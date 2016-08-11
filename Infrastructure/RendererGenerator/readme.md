@@ -3,10 +3,10 @@ RendererGenerator is a tiny console that reads an xml config file and dumps a Re
 A demo is shown as below:
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<rendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
+<RendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
   <VertexProperty NameInShader="in_Position" NameInModel="position" PropertyType="vec3" />
   <VertexProperty NameInShader="in_TexCoord" NameInModel="texCoord" PropertyType="vec2" />
-</rendererGenerator>
+</RendererGenerator>
 ```
 ## TargetName
 Any identifier that you like(just make sure it's a valid identifier in C#). This name specifies what you want to render.
@@ -37,7 +37,7 @@ public enum DrawMode : uint
 ```
 ## VertexProperty
 A VertexProperty is an array that describes model's position, color, normal or any other stuff you need.  
-There could be more than 1 VertexProperty element in `rendererGenerator`'s sub-node.
+There could be more than 1 VertexProperty element in `RendererGenerator`'s sub-node.
 ### NameInShader
 NameInShader is the variable's name in GLSL vertex shader.
 ```

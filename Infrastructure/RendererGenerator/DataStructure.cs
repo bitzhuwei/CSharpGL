@@ -59,7 +59,7 @@ namespace RendererGenerator
 
         public XElement ToXElement()
         {
-            return new XElement(rendererGenerator,
+            return new XElement(RendererGenerator,
                 new XAttribute(strTargetName, TargetName),
                 new XAttribute(strZeroIndexBuffer, ZeroIndexBuffer),
                 new XAttribute(strDrawMode, DrawMode),
@@ -68,6 +68,6 @@ namespace RendererGenerator
                 );
         }
 
-        private const string rendererGenerator = "rendererGenerator";
+        private const string RendererGenerator = "RendererGenerator";
     }
 }
