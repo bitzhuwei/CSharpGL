@@ -8,6 +8,7 @@ using System.Text;
 
 namespace CSharpGL
 {
+    // TODO: 3D纹理(not implemented yet)
     /// <summary>
     /// 3D纹理
     /// </summary>
@@ -75,7 +76,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~Texture3D()
+        ~Texture2D()
         {
             this.Dispose(false);
         }
