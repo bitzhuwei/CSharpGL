@@ -76,7 +76,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~Texture2D()
+        ~Texture3D()
         {
             this.Dispose(false);
         }
