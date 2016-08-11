@@ -1384,10 +1384,10 @@ namespace CSharpGL
         ///// 
         ///// </summary>
         //public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_MIRRORED_REPEAT = 0x8370;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MIRRORED_REPEAT = 0x8370;
         ///// <summary>
         ///// 
         ///// </summary>

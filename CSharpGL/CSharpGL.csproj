@@ -82,6 +82,11 @@
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
+    <Compile Include="0Foundations\OpenGLAPI\Enumerations\Samplers.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\NewFakeSampler2D.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\NewSampler2D.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\NewSampler2DBase.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\NewTexture2D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler3D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler2D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler1D.cs" />
