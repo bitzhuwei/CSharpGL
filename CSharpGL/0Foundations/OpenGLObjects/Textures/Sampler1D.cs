@@ -23,7 +23,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="bitmap"></param>
         public void Initialize()
         {
             if (!this.initialized)

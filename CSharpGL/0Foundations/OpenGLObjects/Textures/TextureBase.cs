@@ -30,6 +30,11 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get { return this.id[0]; } }
 
+        /// <summary>
+        /// base type of all textures.
+        /// </summary>
+        /// <param name="imageBuilder"></param>
+        /// <param name="samplerBuilder"></param>
         public TextureBase(TextureBuilder imageBuilder, NewSamplerBase samplerBuilder)
         {
             this.ImageBuilder = imageBuilder;
@@ -53,6 +58,9 @@ namespace CSharpGL
             OpenGL.BindTexture(this.Target, 0);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Initialize()
         {
             //GL.ActiveTexture(GL.GL_TEXTURE0);
@@ -64,8 +72,14 @@ namespace CSharpGL
             OpenGL.BindTexture(this.Target, 0);
         }
 
+        /// <summary>
+        /// setup texture's image data.
+        /// </summary>
         public TextureBuilder ImageBuilder { get; private set; }
 
+        /// <summary>
+        /// setup texture's sampler properties.
+        /// </summary>
         public NewSamplerBase SamplerBuilder { get; private set; }
     }
 }
