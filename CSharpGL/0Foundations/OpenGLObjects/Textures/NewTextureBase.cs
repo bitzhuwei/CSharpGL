@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// OpenGL.GL_TEXTURE_2D etc.
         /// </summary>
-        public uint Target { get; set; }
+        public BindTextureTarget Target { get; set; }
 
         /// <summary>
         /// texture's id.

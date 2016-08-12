@@ -31,7 +31,7 @@ namespace CSharpGL
         public NewTexture(Bitmap bitmap, TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
             : this(new NewBitmapBuilder(bitmap), new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
         {
-            this.Target = OpenGL.GL_TEXTURE_2D;
+            this.Target = BindTextureTarget.Texture2D;
         }
     }
 }
