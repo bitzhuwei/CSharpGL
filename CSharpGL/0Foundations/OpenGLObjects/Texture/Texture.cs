@@ -59,8 +59,8 @@ namespace CSharpGL
                 OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
                 OpenGL.GenTextures(1, id);
                 OpenGL.BindTexture(this.Target, id[0]);
-                this.SamplerBuilder.Build(this.Target);
                 this.ImageBuilder.Build(this.Target);
+                this.SamplerBuilder.Build(this.Target);
                 OpenGL.BindTexture(this.Target, 0);
                 this.initialized = true;
             }

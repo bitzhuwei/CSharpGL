@@ -121,6 +121,7 @@
     <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Faces.cs" />
+    <Content Include="0Foundations\OpenGLObjects\Texture\readme.md" />
     <None Include="Manipulaters\readme.md" />
     <Compile Include="Renderers\IBufferables\TextModel.SetText.cs" />
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
