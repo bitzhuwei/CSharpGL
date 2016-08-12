@@ -6,9 +6,6 @@ using System.Text;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class Texture
     {
         /// <summary>
