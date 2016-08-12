@@ -22,6 +22,11 @@ namespace CSharpGL
         public uint Id { get { return this.id[0]; } }
 
         /// <summary>
+        /// 2D纹理
+        /// </summary>
+        public Texture2D() { }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="bitmap"></param>
