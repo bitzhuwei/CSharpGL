@@ -17,6 +17,6 @@ namespace CSharpGL
         /// Build texture.
         /// </summary>
         /// <returns></returns>
-        public abstract void Build();
+        public abstract void Build(BindTextureTarget target);
     }
 }

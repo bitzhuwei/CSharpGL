@@ -453,7 +453,6 @@
     <Compile Include="Renderers\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shaders\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shaders\ShaderProgram.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\Texture1D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\BufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\OneIndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndexBuffer.cs" />

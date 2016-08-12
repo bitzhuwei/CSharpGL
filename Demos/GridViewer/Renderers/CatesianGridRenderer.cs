@@ -11,9 +11,9 @@ namespace GridViewer
 {
     public partial class CatesianGridRenderer : GridViewRenderer
     {
-        private Texture1D codedColorSampler;
+        private NewTexture codedColorSampler;
 
-        public static CatesianGridRenderer Create(CatesianGrid grid, Texture1D codedColorSampler)
+        public static CatesianGridRenderer Create(CatesianGrid grid, NewTexture codedColorSampler)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);
@@ -26,7 +26,7 @@ namespace GridViewer
         }
 
         private CatesianGridRenderer(CatesianGrid catesianGrid, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, Texture1D codedColorSampler, params GLSwitch[] switches)
+            PropertyNameMap propertyNameMap, NewTexture codedColorSampler, params GLSwitch[] switches)
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
             this.codedColorSampler = codedColorSampler;
