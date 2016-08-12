@@ -47,18 +47,23 @@ namespace CSharpGL
             OpenGL.BindTexture(this.Target, 0);
         }
 
+        private bool initialized = false;
         /// <summary>
         /// 
         /// </summary>
         public void Initialize()
         {
-            //GL.ActiveTexture(GL.GL_TEXTURE0);
-            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
-            OpenGL.GenTextures(1, id);
-            OpenGL.BindTexture(this.Target, id[0]);
-            this.ImageBuilder.Build();
-            this.SamplerBuilder.Build();
-            OpenGL.BindTexture(this.Target, 0);
+            if (!this.initialized)
+            {
+                //GL.ActiveTexture(GL.GL_TEXTURE0);
+                OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
+                OpenGL.GenTextures(1, id);
+                OpenGL.BindTexture(this.Target, id[0]);
+                this.ImageBuilder.Build();
+                this.SamplerBuilder.Build();
+                OpenGL.BindTexture(this.Target, 0);
+                this.initialized = true;
+            }
         }
 
         /// <summary>
