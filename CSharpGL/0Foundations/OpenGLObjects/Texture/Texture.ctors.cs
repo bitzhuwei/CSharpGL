@@ -16,12 +16,16 @@ namespace CSharpGL
         /// </summary>
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
-        public Texture(NewImageBuilder imageBuilder, SamplerBase samplerBuilder)
+        /// <param name="target"></param>
+        public Texture(NewImageBuilder imageBuilder, SamplerBase samplerBuilder, BindTextureTarget target = BindTextureTarget.Texture2D)
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
 
             this.ImageBuilder = imageBuilder;
             this.SamplerBuilder = samplerBuilder;
+
+            this.ActiveTexture = OpenGL.GL_TEXTURE0;
+            this.Target = target;
         }
 
         /// <summary>
@@ -29,10 +33,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bitmap"></param>
         /// <param name="samplerBuilder"></param>
-        public Texture(Bitmap bitmap, SamplerBase samplerBuilder)
-            : this(new NewBitmapBuilder(bitmap), samplerBuilder)
+        /// <param name="target"></param>
+        public Texture(Bitmap bitmap, SamplerBase samplerBuilder,
+            BindTextureTarget target = BindTextureTarget.Texture2D)
+            : this(new NewBitmapBuilder(bitmap), samplerBuilder, target)
         {
-            this.Target = BindTextureTarget.Texture2D;
         }
 
         /// <summary>
@@ -42,11 +47,13 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
+        /// <param name="target"></param>
         public Texture(NewImageBuilder imageBuilder,
             TextureWrapping wrapping = TextureWrapping.ClampToEdge,
             TextureFilter textureFiltering = TextureFilter.Linear,
-            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(imageBuilder, new FakeSampler(wrapping, textureFiltering, mipmapFiltering))
+            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear,
+            BindTextureTarget target = BindTextureTarget.Texture2D)
+            : this(imageBuilder, new FakeSampler(wrapping, textureFiltering, mipmapFiltering), target)
         {
         }
 
@@ -57,13 +64,14 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
+        /// <param name="target"></param>
         public Texture(Bitmap bitmap,
             TextureWrapping wrapping = TextureWrapping.ClampToEdge,
             TextureFilter textureFiltering = TextureFilter.Linear,
-            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(new NewBitmapBuilder(bitmap), new FakeSampler(wrapping, textureFiltering, mipmapFiltering))
+            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear,
+            BindTextureTarget target = BindTextureTarget.Texture2D)
+            : this(new NewBitmapBuilder(bitmap), new FakeSampler(wrapping, textureFiltering, mipmapFiltering), target)
         {
-            this.Target = BindTextureTarget.Texture2D;
         }
     }
 }
