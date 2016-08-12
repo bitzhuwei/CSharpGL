@@ -42,7 +42,6 @@ namespace CSharpGL
         public NewTexture(NewImageBuilder imageBuilder, TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
             : this(imageBuilder, new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
         {
-            this.Target = BindTextureTarget.Texture2D;
         }
 
         /// <summary>
