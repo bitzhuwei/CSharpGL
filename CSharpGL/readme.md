@@ -13,6 +13,10 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.1:
+1. fix: rename NewTexture to Texutre.
+2. Sampler works.
+
 ## v1.0.6.0:
 1. IModelTransform transforms a model from model's sapce to world's sapce.
 2. Start/Stop scene.
