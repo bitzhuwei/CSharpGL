@@ -9,14 +9,14 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public partial class NewTexture
+    public partial class Texture
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
-        public NewTexture(NewImageBuilder imageBuilder, NewSamplerBase samplerBuilder)
+        public Texture(NewImageBuilder imageBuilder, SamplerBase samplerBuilder)
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
 
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bitmap"></param>
         /// <param name="samplerBuilder"></param>
-        public NewTexture(Bitmap bitmap, NewSamplerBase samplerBuilder)
+        public Texture(Bitmap bitmap, SamplerBase samplerBuilder)
             : this(new NewBitmapBuilder(bitmap), samplerBuilder)
         {
             this.Target = BindTextureTarget.Texture2D;
@@ -42,11 +42,11 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
-        public NewTexture(NewImageBuilder imageBuilder,
+        public Texture(NewImageBuilder imageBuilder,
             TextureWrapping wrapping = TextureWrapping.ClampToEdge,
             TextureFilter textureFiltering = TextureFilter.Linear,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(imageBuilder, new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
+            : this(imageBuilder, new FakeSampler(wrapping, textureFiltering, mipmapFiltering))
         {
         }
 
@@ -57,11 +57,11 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
-        public NewTexture(Bitmap bitmap,
+        public Texture(Bitmap bitmap,
             TextureWrapping wrapping = TextureWrapping.ClampToEdge,
             TextureFilter textureFiltering = TextureFilter.Linear,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(new NewBitmapBuilder(bitmap), new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
+            : this(new NewBitmapBuilder(bitmap), new FakeSampler(wrapping, textureFiltering, mipmapFiltering))
         {
             this.Target = BindTextureTarget.Texture2D;
         }

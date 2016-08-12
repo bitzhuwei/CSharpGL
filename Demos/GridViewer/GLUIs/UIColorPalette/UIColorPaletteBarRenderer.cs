@@ -17,7 +17,7 @@ namespace GridViewer
         /// <summary>
         /// sampler for color palette.
         /// </summary>
-        public NewTexture Sampler { get; private set; }
+        public Texture Sampler { get; private set; }
 
         private CodedColor[] codedColors;
 
@@ -46,7 +46,7 @@ namespace GridViewer
             base.DoInitialize();
 
             Bitmap bitmap = this.codedColors.GetBitmap(1024);
-            var texture = new NewTexture(bitmap) { Target = BindTextureTarget.Texture1D, };
+            var texture = new Texture(bitmap) { Target = BindTextureTarget.Texture1D, };
             this.codedColors = null;
             texture.Initialize();
             this.Sampler = texture;

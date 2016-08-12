@@ -42,7 +42,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="texture"></param>
         /// <param name="bitmap"></param>
-        public static void UpdateTexture(this NewTexture texture, Bitmap bitmap)
+        public static void UpdateTexture(this Texture texture, Bitmap bitmap)
         {
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),

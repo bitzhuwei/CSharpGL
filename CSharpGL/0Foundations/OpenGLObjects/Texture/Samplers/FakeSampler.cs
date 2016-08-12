@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// texture's settings.
     /// </summary>
-    public class NewFakeSampler : NewSamplerBase
+    public class FakeSampler : SamplerBase
     {
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
-        public NewFakeSampler(TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
+        public FakeSampler(TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
             : base(wrapping, textureFiltering, mipmapFiltering)
         {
         }
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// texture's settings.
         /// </summary>
         /// <param name="target"></param>
-        public override void Build(BindTextureTarget target)
+        public override void Bind(uint unit, BindTextureTarget target)
         {
             /* Clamping to edges is important to prevent artifacts when scaling */
             OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);
@@ -54,5 +54,15 @@ namespace CSharpGL
 
             // TODO: mipmap filter not working yet.
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="unit"></param>
+        ///// <param name="target"></param>
+        //public override void Unbind(uint unit, BindTextureTarget target)
+        //{
+        //    // nothing to do.
+        //}
     }
 }

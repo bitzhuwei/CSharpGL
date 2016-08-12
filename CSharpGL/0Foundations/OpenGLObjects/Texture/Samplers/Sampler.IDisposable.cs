@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public partial class Texture
+    public partial class Sampler
     {
 
         #region IDisposable Members
@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~Texture()
+        ~Sampler()
         {
             this.Dispose(false);
         }
@@ -48,18 +48,9 @@ namespace CSharpGL
 
                 // Dispose unmanaged resources.
                 {
-                    OpenGL.DeleteTextures(this.id.Length, this.id);
-                    this.id[0] = 0;
+                    OpenGL.DeleteSamplers(1, new uint[] { this.Id });
+                    this.Id = 0;
                 }
-                {
-                    var disp = this.ImageBuilder as IDisposable;
-                    if (disp != null) { disp.Dispose(); }
-                }
-                //{
-                //    a sampler builder can be used in multiple textures.
-                //    var disp = this.SamplerBuilder as IDisposable;
-                //    if (disp != null) { disp.Dispose(); }
-                //}
             } // end if
 
             this.disposedValue = true;

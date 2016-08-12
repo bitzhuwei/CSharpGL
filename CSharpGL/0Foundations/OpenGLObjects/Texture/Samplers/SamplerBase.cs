@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// texture's settings.
     /// </summary>
-    public abstract class NewSamplerBase
+    public abstract class SamplerBase
     {
         /// <summary>
         /// texture's settings.
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFilter"></param>
         /// <param name="mipmapFilter"></param>
-        public NewSamplerBase(TextureWrapping wrapping, TextureFilter textureFilter, MipmapFilter mipmapFilter)
+        public SamplerBase(TextureWrapping wrapping, TextureFilter textureFilter, MipmapFilter mipmapFilter)
         {
             this.wrapping = wrapping;
             this.textureFilter = textureFilter;
@@ -26,7 +26,14 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Build(BindTextureTarget target);
+        public abstract void Bind(uint unit, BindTextureTarget target);
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="unit"></param>
+        ///// <param name="target"></param>
+        //public abstract void Unbind(uint unit, BindTextureTarget target);
 
         /// <summary>
         /// 

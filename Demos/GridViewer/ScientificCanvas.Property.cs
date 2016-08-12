@@ -18,7 +18,7 @@ namespace GridViewer
 
         public UIAxis uiAxis { get; private set; }
 
-        public NewTexture CodedColorSampler
+        public Texture CodedColorSampler
         {
             get
             {

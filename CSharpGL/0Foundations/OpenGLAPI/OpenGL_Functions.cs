@@ -61,6 +61,15 @@ namespace CSharpGL
         public static extern void BindTexture(uint target, uint texture);
 
         ///// <summary>
+        ///// bind a named sampler to a texturing target.
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="texture"></param>
+        //[DllImport(Win32.opengl32, EntryPoint = "glBindSampler", SetLastError = true)]
+        //public static extern void BindSampler(uint target, uint sampler);
+        public delegate void glBindSampler(uint target, uint sampler);
+
+        ///// <summary>
         ///// Draw a bitmap.
         ///// </summary>
         ///// <param name="width">Specify the pixel width	of the bitmap image.</param>
@@ -579,6 +588,15 @@ namespace CSharpGL
         /// <param name="textures">The array containing the names of the textures to delete.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDeleteTextures", SetLastError = true)]
         private static extern void glDeleteTextures(int n, uint[] textures);
+        public delegate void glDeleteSamplers(int n, uint[] textures);
+
+        ///// <summary>
+        ///// delete named sampler objects.
+        ///// </summary>
+        ///// <param name="n"></param>
+        ///// <param name="samplers"></param>
+        //[DllImport(Win32.opengl32, EntryPoint = "glDeleteSamplers", SetLastError = true)]
+        //private static extern void DeleteSamplers(int n, uint[] textures);
 
         /// <summary>
         /// This function deletes a set of Texture objects.
@@ -591,6 +609,20 @@ namespace CSharpGL
             if (ptr != IntPtr.Zero)
             {
                 glDeleteTextures(n, textures);
+            }
+        }
+
+        /// <summary>
+        /// This function deletes a set of sampler objects.
+        /// </summary>
+        /// <param name="n">Number of textures to delete.</param>
+        /// <param name="samplers">The array containing the names of the textures to delete.</param>
+        public static void DeleteSamplers(int n, uint[] samplers)
+        {
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
+            {
+                OpenGL.GetDelegateFor<OpenGL.glDeleteSamplers>()(n, samplers);
             }
         }
 
@@ -980,6 +1012,15 @@ namespace CSharpGL
         /// <param name="textures">Array to store the texture names.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGenTextures", SetLastError = true)]
         public static extern void GenTextures(int n, uint[] textures);
+
+        ///// <summary>
+        ///// generate sampler object names
+        ///// </summary>
+        ///// <param name="n"></param>
+        ///// <param name="textures"></param>
+        //[DllImport(Win32.opengl32, EntryPoint = "glGenSamplers", SetLastError = true)]
+        //public static extern void GenSamplers(int n, uint[] textures);
+        public delegate void glGenSamplers(int n, uint[] textures);
 
         /// <summary>
         /// This function queries OpenGL for data, and puts it in the buffer supplied.
@@ -2774,6 +2815,7 @@ namespace CSharpGL
         /// <param name="param">The value to set it to.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexParameteri", SetLastError = true)]
         public static extern void TexParameteri(uint target, uint pname, int param);
+        public delegate void glSamplerParameteri(uint sampler, uint pname, int param);
 
         /// <summary>
         ///	This function sets the parameters for the currently binded texture object.

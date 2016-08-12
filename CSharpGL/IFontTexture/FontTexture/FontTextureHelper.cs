@@ -24,7 +24,7 @@ namespace CSharpGL
             TextureFilter textureFiltering = TextureFilter.Linear,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
         {
-            var texture = new NewTexture(fontBitmap.GlyphBitmap,
+            var texture = new Texture(fontBitmap.GlyphBitmap,
                 wrapping, textureFiltering, mipmapFiltering);
             texture.Initialize();
             var result = new FontTexture();

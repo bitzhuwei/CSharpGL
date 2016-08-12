@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// base type of all textures.
     /// </summary>
-    public partial class NewTexture : IDisposable
+    public partial class Texture : IDisposable
     {
         /// <summary>
         /// OpenGL.GL_TEXTURE0 etc.
@@ -36,6 +36,7 @@ namespace CSharpGL
         public void Bind()
         {
             OpenGL.BindTexture(this.Target, this.id[0]);
+            this.SamplerBuilder.Bind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
         }
 
         /// <summary>
@@ -59,8 +60,9 @@ namespace CSharpGL
                 OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
                 OpenGL.GenTextures(1, id);
                 OpenGL.BindTexture(this.Target, id[0]);
+                this.SamplerBuilder.Bind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
                 this.ImageBuilder.Build(this.Target);
-                this.SamplerBuilder.Build(this.Target);
+                //this.SamplerBuilder.Unbind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
                 OpenGL.BindTexture(this.Target, 0);
                 this.initialized = true;
             }
@@ -74,7 +76,7 @@ namespace CSharpGL
         /// <summary>
         /// setup texture's sampler properties.
         /// </summary>
-        public NewSamplerBase SamplerBuilder { get; private set; }
+        public SamplerBase SamplerBuilder { get; private set; }
 
     }
 }
