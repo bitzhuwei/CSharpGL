@@ -13,6 +13,13 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.0:
+1. IModelTransform transforms a model from model's sapce to world's sapce.
+2. Start/Stop scene.
+3. fix: LabelRenderer supports updating text right before rendering.
+4. New project for generating Renderer types.(check CSharpGL on GitHub)
+5. Wrapped types(Texture, Sampler and ImageBuilder) for texture's construction, initialization and destroy.
+
 ## v1.0.5.2:
 1. Add default cursor(an UI element) into Scene.
 2. Hide/Show system's cursor in GLCanvas.
