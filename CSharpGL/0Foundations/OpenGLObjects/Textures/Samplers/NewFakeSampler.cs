@@ -39,7 +39,7 @@ namespace CSharpGL
         {
         }
 
-        public override void Setup()
+        public override void Build()
         {
             /* Clamping to edges is important to prevent artifacts when scaling */
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);

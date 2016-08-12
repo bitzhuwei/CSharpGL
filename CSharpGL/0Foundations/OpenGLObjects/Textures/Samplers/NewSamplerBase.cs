@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Setup();
+        public abstract void Build();
 
         /// <summary>
         /// 

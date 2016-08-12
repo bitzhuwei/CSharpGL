@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class BitmapTextureBuilder : TextureBuilder
+    /// <summary>
+    /// 
+    /// </summary>
+    public class NewBitmapBuilder : TextureBuilder
     {
     }
 }

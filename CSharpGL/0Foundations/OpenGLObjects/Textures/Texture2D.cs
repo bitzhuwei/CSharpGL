@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 2D纹理
     /// </summary>
-    public class Texture2D : TextureBase, IDisposable
+    public class Texture2D : NewTextureBase, IDisposable
     {
         // TODO: this method must be deleted.
         /// <summary>
@@ -23,7 +23,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
-        public Texture2D(TextureBuilder imageBuilder, NewSamplerBase samplerBuilder)
+        public Texture2D(NewImageBuilder imageBuilder, NewSamplerBase samplerBuilder)
             : base(imageBuilder, samplerBuilder)
         { }
 

@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// base type of all textures.
     /// </summary>
-    public abstract class TextureBase
+    public abstract class NewTextureBase : IDisposable
     {
         /// <summary>
         /// OpenGL.GL_TEXTURE0 etc.
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
-        public TextureBase(TextureBuilder imageBuilder, NewSamplerBase samplerBuilder)
+        public NewTextureBase(NewImageBuilder imageBuilder, NewSamplerBase samplerBuilder)
         {
             this.ImageBuilder = imageBuilder;
             this.SamplerBuilder = samplerBuilder;
@@ -67,19 +67,24 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
             OpenGL.GenTextures(1, id);
             OpenGL.BindTexture(this.Target, id[0]);
-
-
+            this.ImageBuilder.Build();
+            this.SamplerBuilder.Build();
             OpenGL.BindTexture(this.Target, 0);
         }
 
         /// <summary>
         /// setup texture's image data.
         /// </summary>
-        public TextureBuilder ImageBuilder { get; private set; }
+        public NewImageBuilder ImageBuilder { get; private set; }
 
         /// <summary>
         /// setup texture's sampler properties.
         /// </summary>
         public NewSamplerBase SamplerBuilder { get; private set; }
+
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
