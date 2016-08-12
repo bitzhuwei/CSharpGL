@@ -55,8 +55,9 @@ namespace CSharpGL
                     var disp = this.ImageBuilder as IDisposable;
                     if (disp != null) { disp.Dispose(); }
                 }
+                // A sampler builder can be used in multiple textures.
+                // Thus we shouldn't dispose it here.
                 //{
-                //    a sampler builder can be used in multiple textures.
                 //    var disp = this.SamplerBuilder as IDisposable;
                 //    if (disp != null) { disp.Dispose(); }
                 //}
