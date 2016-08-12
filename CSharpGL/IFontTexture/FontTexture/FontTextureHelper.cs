@@ -15,17 +15,15 @@ namespace CSharpGL
         /// Gets an instance of <see cref="FontTexture"/>.
         /// </summary>
         /// <param name="fontBitmap"></param>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
+        /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         /// <returns></returns>
         public static FontTexture GetFontTexture(this FontBitmap fontBitmap,
-            TextureWrapping wrapping = TextureWrapping.ClampToEdge,
-            TextureFilter textureFiltering = TextureFilter.Linear,
+            SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
         {
             var texture = new Texture(fontBitmap.GlyphBitmap,
-                wrapping, textureFiltering, mipmapFiltering);
+                parameters, mipmapFiltering);
             texture.Initialize();
             var result = new FontTexture();
             result.GlyphFont = fontBitmap.GlyphFont;

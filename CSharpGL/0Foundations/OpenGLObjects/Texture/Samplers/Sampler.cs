@@ -18,14 +18,12 @@ namespace CSharpGL
         /// <summary>
         /// texture's settings.
         /// </summary>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
+        /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         public Sampler(
-            TextureWrapping wrapping = TextureWrapping.ClampToEdge,
-            TextureFilter textureFiltering = TextureFilter.Linear,
+            SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : base(wrapping, textureFiltering, mipmapFiltering)
+            : base(parameters, mipmapFiltering)
         {
 
         }
@@ -46,25 +44,19 @@ namespace CSharpGL
         private void DoInitialize(uint unit, BindTextureTarget target)
         {
             var ids = new uint[1];
-            //OpenGL.GenSamplers(1, ids);
             OpenGL.GenSamplers(1, ids);
             this.Id = ids[0];
             //OpenGL.BindSampler(unit, ids[0]);
             OpenGL.BindSampler(unit, ids[0]);
             /* Clamping to edges is important to prevent artifacts when scaling */
-            //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);
-            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);
-            //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_WRAP_T, (int)this.Wrapping);
-            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_T, (int)this.Wrapping);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_R, (int)this.parameters.wrapR);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_S, (int)this.parameters.wrapS);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_T, (int)this.parameters.wrapT);
             /* Linear filtering usually looks best for text */
-            //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.TextureFilter);
-            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.TextureFilter);
-            //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.TextureFilter);
-            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.TextureFilter);
-
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.parameters.minFilter);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.parameters.magFilter);
             // TODO: mipmap not used yet.
 
-            //OpenGL.BindSampler(unit, 0);
             OpenGL.BindSampler(unit, 0);
         }
         /// <summary>
@@ -76,7 +68,6 @@ namespace CSharpGL
         {
             if (!this.initialized) { this.Initialize(unit, target); }
 
-            //OpenGL.BindSampler(unit, this.Id);
             OpenGL.BindSampler(unit, this.Id);
         }
 

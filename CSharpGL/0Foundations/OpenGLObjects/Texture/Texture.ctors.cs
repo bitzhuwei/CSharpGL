@@ -14,7 +14,8 @@ namespace CSharpGL
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
         /// <param name="target"></param>
-        public Texture(NewImageBuilder imageBuilder, SamplerBase samplerBuilder, BindTextureTarget target = BindTextureTarget.Texture2D)
+        public Texture(NewImageBuilder imageBuilder, SamplerBase samplerBuilder,
+            BindTextureTarget target = BindTextureTarget.Texture2D)
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
 
@@ -41,16 +42,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="imageBuilder"></param>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
+        /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         /// <param name="target"></param>
         public Texture(NewImageBuilder imageBuilder,
-            TextureWrapping wrapping = TextureWrapping.ClampToEdge,
-            TextureFilter textureFiltering = TextureFilter.Linear,
+            SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear,
             BindTextureTarget target = BindTextureTarget.Texture2D)
-            : this(imageBuilder, new FakeSampler(wrapping, textureFiltering, mipmapFiltering), target)
+            : this(imageBuilder, new FakeSampler(parameters, mipmapFiltering), target)
         {
         }
 
@@ -58,16 +57,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="bitmap"></param>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
+        /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         /// <param name="target"></param>
         public Texture(Bitmap bitmap,
-            TextureWrapping wrapping = TextureWrapping.ClampToEdge,
-            TextureFilter textureFiltering = TextureFilter.Linear,
+            SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear,
             BindTextureTarget target = BindTextureTarget.Texture2D)
-            : this(new NewBitmapBuilder(bitmap), new FakeSampler(wrapping, textureFiltering, mipmapFiltering), target)
+            : this(new NewBitmapBuilder(bitmap), new FakeSampler(parameters, mipmapFiltering), target)
         {
         }
     }
