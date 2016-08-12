@@ -25,9 +25,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="bitmap"></param>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
-        /// <param name="mipmapFiltering"></param>
+        /// <param name="samplerBuilder"></param>
         public NewTexture(Bitmap bitmap, NewSamplerBase samplerBuilder)
             : this(new NewBitmapBuilder(bitmap), samplerBuilder)
         {
@@ -37,7 +35,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="bitmap"></param>
+        /// <param name="imageBuilder"></param>
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
