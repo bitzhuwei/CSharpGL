@@ -82,9 +82,5 @@ namespace CSharpGL
         /// </summary>
         public NewSamplerBase SamplerBuilder { get; private set; }
 
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
