@@ -90,10 +90,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Textures\Samplers\NewSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Samplers\NewSamplerBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\NewTexture.ctors.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler3D.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler2D.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler1D.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\Texture3D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\NewTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\ImageBuilders\NewImageBuilder.cs" />
     <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
@@ -121,7 +117,6 @@
     <Compile Include="Renderers\IModelTransform.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\SquareRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\TextureBuilder.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\TextureInfo.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
@@ -174,7 +169,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
     <Content Include="0Foundations\OpenGLObjects\Camera\readme.md" />
     <None Include="0Foundations\OpenGLObjects\UniformVariables\readme.md" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\TextureUpdater.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\TextureHelper.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformBVec2Array.cs" />

@@ -12,9 +12,9 @@ namespace CSharpGL
     public partial class FontTexture : IFontTexture, IDisposable
     {
         /// <summary>
-        /// Texture's id.
+        /// Texture that contains all glyphs.
         /// </summary>
-        public uint FontTextureId { get; private set; }
+        public uint FontTextureId { get; internal set; }
 
         /// <summary>
         /// font of glyphs.
@@ -47,13 +47,6 @@ namespace CSharpGL
                 BindTextureTarget.Texture2D,
                 this.FontTextureId,
                 OpenGL.GL_TEXTURE0);
-        }
-
-
-        internal void Initialize(TextureBuilder textureBuilder, Bitmap bitmap)
-        {
-            TextureInfo textureInfo = textureBuilder.BuildTexture(bitmap);
-            this.FontTextureId = textureInfo.Id;
         }
 
     }

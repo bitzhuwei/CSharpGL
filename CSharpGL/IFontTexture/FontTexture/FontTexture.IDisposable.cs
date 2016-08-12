@@ -54,7 +54,7 @@ namespace CSharpGL
                 {
                     font.Dispose();
                 }
-                var ids = new uint[] { FontTextureId, };
+                var ids = new uint[] { this.FontTextureId, };
                 OpenGL.DeleteTextures(ids.Length, ids);
             }
 

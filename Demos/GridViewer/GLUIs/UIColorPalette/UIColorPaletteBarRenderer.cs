@@ -70,9 +70,7 @@ namespace GridViewer
 
         public void UpdateTexture(Bitmap bitmap)
         {
-            var textureUpdater = new TextureUpdater(this.Sampler.Id);
-
-            textureUpdater.UpdateTexture(bitmap);
+            this.Sampler.UpdateTexture(bitmap);
         }
 
         //public void UpdateCodedColor(CodedColor[] codedColors)
