@@ -42,6 +42,7 @@ namespace CSharpGL
         /// <summary>
         /// texture's settings.
         /// </summary>
+        /// <param name="unit"></param>
         /// <param name="target"></param>
         public override void Bind(uint unit, BindTextureTarget target)
         {

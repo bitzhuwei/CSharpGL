@@ -47,25 +47,25 @@ namespace CSharpGL
         {
             var ids = new uint[1];
             //OpenGL.GenSamplers(1, ids);
-            OpenGL.GetDelegateFor<OpenGL.glGenSamplers>()(1, ids);
+            OpenGL.GenSamplers(1, ids);
             this.Id = ids[0];
             //OpenGL.BindSampler(unit, ids[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBindSampler>()(unit, ids[0]);
+            OpenGL.BindSampler(unit, ids[0]);
             /* Clamping to edges is important to prevent artifacts when scaling */
             //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);
-            OpenGL.GetDelegateFor<OpenGL.glSamplerParameteri>()(ids[0], OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_S, (int)this.Wrapping);
             //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_WRAP_T, (int)this.Wrapping);
-            OpenGL.GetDelegateFor<OpenGL.glSamplerParameteri>()(ids[0], OpenGL.GL_TEXTURE_WRAP_T, (int)this.Wrapping);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_WRAP_T, (int)this.Wrapping);
             /* Linear filtering usually looks best for text */
             //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.TextureFilter);
-            OpenGL.GetDelegateFor<OpenGL.glSamplerParameteri>()(ids[0], OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.TextureFilter);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.TextureFilter);
             //OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.TextureFilter);
-            OpenGL.GetDelegateFor<OpenGL.glSamplerParameteri>()(ids[0], OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.TextureFilter);
+            OpenGL.SamplerParameteri(ids[0], OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.TextureFilter);
 
             // TODO: mipmap not used yet.
 
             //OpenGL.BindSampler(unit, 0);
-            OpenGL.GetDelegateFor<OpenGL.glBindSampler>()(unit, 0);
+            OpenGL.BindSampler(unit, 0);
         }
         /// <summary>
         /// texture's settings.
@@ -77,7 +77,7 @@ namespace CSharpGL
             if (!this.initialized) { this.Initialize(unit, target); }
 
             //OpenGL.BindSampler(unit, this.Id);
-            OpenGL.GetDelegateFor<OpenGL.glBindSampler>()(unit, this.Id);
+            OpenGL.BindSampler(unit, this.Id);
         }
 
         ///// <summary>

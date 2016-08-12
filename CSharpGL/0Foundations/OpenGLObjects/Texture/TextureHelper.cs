@@ -73,5 +73,17 @@ namespace CSharpGL
             //bitmap.UnlockBits(bitmapData);
         }
 
+        /// <summary>
+        /// get <see cref="samplerValue"/> from this texture.
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <returns></returns>
+        public static samplerValue ToSamplerValue(this Texture texture)
+        {
+            return new samplerValue(
+                texture.Target,
+                texture.Id,
+                texture.ActiveTexture);
+        }
     }
 }
