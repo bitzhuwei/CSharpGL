@@ -3,37 +3,37 @@
   <Class Name="CSharpGL.Buffer">
     <Position X="6.25" Y="0.5" Width="5" />
     <TypeIdentifier>
-      <HashCode>BAIAAAAEACAAAAAEAQ0AAAxEAAAAAkABAAAAAgAAAAA=</HashCode>
-      <FileName>OpenGLObjects\VertexBuffers\Buffer.cs</FileName>
+      <HashCode>BAIAAAAEACAAAAAEAQwAAAREAAAAAkAAAAAAAgAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\Buffer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.PropertyBuffer&lt;T&gt;">
     <Position X="10.75" Y="6.75" Width="6.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAIAEAAAAAEAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
-      <FileName>OpenGLObjects\VertexBuffers\PropertyBuffer.cs</FileName>
+      <HashCode>AAIAAAAAAAIAEAAAAAAAAAAAAAAAAEAAAAAAAAAABAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\PropertyBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.IndexBuffer&lt;T&gt;">
     <Position X="3.25" Y="6.75" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>OpenGLObjects\VertexBuffers\IndexBuffer.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\IndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.OneIndexBuffer&lt;T&gt;">
     <Position X="6" Y="9.25" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAQAAAAAAAAA=</HashCode>
-      <FileName>OpenGLObjects\VertexBuffers\OneIndexBuffer.cs</FileName>
+      <HashCode>AAIAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\OneIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.ZeroIndexBuffer">
     <Position X="0.5" Y="9.25" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAAAAAAAEAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>OpenGLObjects\VertexBuffers\ZeroIndexBuffer.cs</FileName>
+      <HashCode>AAYAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\ZeroIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
