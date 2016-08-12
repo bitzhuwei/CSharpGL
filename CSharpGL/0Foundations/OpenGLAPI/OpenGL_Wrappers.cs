@@ -1615,5 +1615,15 @@ namespace CSharpGL
             min = pointSizeRange[0];
             max = pointSizeRange[1];
         }
+
+        /// <summary>
+        /// bind a named texture to a texturing target
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="textureId"></param>
+        public static void BindTexture(BindTextureTarget target, uint textureId)
+        {
+            OpenGL.BindTexture((uint)target, textureId);
+        }
     }
 }
