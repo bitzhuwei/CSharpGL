@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <summary>
         /// Texture's id.
         /// </summary>
-        uint FontTextureId { get; }
+        Texture TextureObj { get; }
 
         ///// <summary>
         ///// font of glyphs.
@@ -36,10 +36,10 @@ namespace CSharpGL
         /// </summary>
         FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        samplerValue GetSamplerValue();
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //samplerValue GetSamplerValue();
 
     }
 }

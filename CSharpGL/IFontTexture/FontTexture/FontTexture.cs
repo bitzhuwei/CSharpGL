@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <summary>
         /// Texture that contains all glyphs.
         /// </summary>
-        public uint FontTextureId { get; internal set; }
+        public Texture TextureObj { get; internal set; }
 
         /// <summary>
         /// font of glyphs.
@@ -37,17 +37,6 @@ namespace CSharpGL
         public FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; internal set; }
 
         internal FontTexture() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public samplerValue GetSamplerValue()
-        {
-            return new samplerValue(
-                BindTextureTarget.Texture2D,
-                this.FontTextureId,
-                OpenGL.GL_TEXTURE0);
-        }
 
     }
 }

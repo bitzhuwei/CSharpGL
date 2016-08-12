@@ -48,14 +48,20 @@ namespace CSharpGL
                 {
                     dict.Clear();
                 }
+
                 Font font = this.GlyphFont;
                 this.GlyphFont = null;
                 if (font != null)
                 {
                     font.Dispose();
                 }
-                var ids = new uint[] { this.FontTextureId, };
-                OpenGL.DeleteTextures(ids.Length, ids);
+
+                Texture texture = this.TextureObj;
+                this.TextureObj = null;
+                if (texture != null)
+                {
+                    texture.Dispose();
+                }
             }
 
             this.disposedValue = true;

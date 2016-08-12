@@ -32,7 +32,7 @@ namespace CSharpGL
             result.GlyphHeight = fontBitmap.GlyphHeight;
             result.TextureSize = fontBitmap.GlyphBitmap.Size;
             result.GlyphInfoDictionary = fontBitmap.GlyphInfoDictionary;
-            result.FontTextureId = texture.Id;
+            result.TextureObj = texture;
             return result;
         }
     }

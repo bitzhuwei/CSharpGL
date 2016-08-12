@@ -101,7 +101,7 @@ namespace CSharpGL
             base.DoInitialize();
 
             Renderer renderer = this.Renderer as Renderer;
-            renderer.SetUniform("fontTexture", this.fontTexture.GetSamplerValue());
+            renderer.SetUniform("fontTexture", this.fontTexture.TextureObj.ToSamplerValue());
         }
 
         /// <summary>

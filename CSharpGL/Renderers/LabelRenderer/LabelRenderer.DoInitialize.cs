@@ -20,10 +20,8 @@ namespace CSharpGL
             //this.SetUniform("pixelScale", (float)viewport[2]);
             //this.SetUniform("fontHeight", (float)fontResource.FontHeight);
             //this.SetUniform("textColor", new vec3(1, 0, 0));
-            this.SetUniform("fontTexture", new samplerValue(
-                BindTextureTarget.Texture2D,
-                fontTexture.FontTextureId,
-                OpenGL.GL_TEXTURE0));
+            this.SetUniform("fontTexture",
+                this.fontTexture.TextureObj.ToSamplerValue());
         }
 
     }
