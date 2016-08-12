@@ -70,7 +70,7 @@ namespace GridViewer
 
         public void UpdateTexture(Bitmap bitmap)
         {
-            this.Sampler.UpdateTexture(bitmap);
+            this.Sampler.UpdateContent(bitmap);
         }
 
         //public void UpdateCodedColor(CodedColor[] codedColors)

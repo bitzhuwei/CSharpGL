@@ -46,7 +46,7 @@ namespace CSharpGL.Demos
 
         public void UpdateTextureContent(Bitmap bitmap)
         {
-            this.texture.UpdateTexture(bitmap);
+            this.texture.UpdateContent(bitmap);
         }
 
         protected override void DoRender(RenderEventArg arg)

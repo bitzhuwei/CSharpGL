@@ -12,37 +12,13 @@ namespace CSharpGL
     /// </summary>
     public static class TextureHelper
     {
-        ///// <summary>
-        ///// texture's id.
-        ///// </summary>
-        //public uint Id { get; private set; }
-
-        /////// <summary>
-        /////// OpenGL.GL_TEXTURE0 etc.
-        /////// </summary>
-        ////public uint ActiveTexture { get; set; }
-
-        ///// <summary>
-        ///// OpenGL.GL_TEXTURE_2D etc.
-        ///// </summary>
-        //public uint Target { get; set; }
-
-        ///// <summary>
-        ///// build texture.
-        ///// </summary>
-        //public TextureUpdater(uint id)
-        //{
-        //    this.Id = id;
-        //    //this.ActiveTexture = OpenGL.GL_TEXTURE0;
-        //    this.Target = OpenGL.GL_TEXTURE_2D;
-        //}
 
         /// <summary>
         /// upadte texture's content.
         /// </summary>
         /// <param name="texture"></param>
         /// <param name="bitmap"></param>
-        public static void UpdateTexture(this Texture texture, Bitmap bitmap)
+        public static void UpdateContent(this Texture texture, Bitmap bitmap)
         {
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
