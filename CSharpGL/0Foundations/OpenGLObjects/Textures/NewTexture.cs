@@ -1,60 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// base type of all textures.
     /// </summary>
-    public class NewTexture : NewTextureBase
+    public abstract partial class NewTexture : IDisposable
     {
         /// <summary>
+        /// OpenGL.GL_TEXTURE0 etc.
+        /// </summary>
+        public uint ActiveTexture { get; set; }
+
+        /// <summary>
+        /// OpenGL.GL_TEXTURE_2D etc.
+        /// </summary>
+        public BindTextureTarget Target { get; set; }
+
+        /// <summary>
+        /// texture's id.
+        /// </summary>
+        protected uint[] id = new uint[1];
+
+        /// <summary>
+        /// 纹理名（用于标识一个纹理，由OpenGL指定），可在shader中用于指定uniform sampler2D纹理变量。
+        /// </summary>
+        public uint Id { get { return this.id[0]; } }
+
+        /// <summary>
         /// 
         /// </summary>
-        /// <param name="imageBuilder"></param>
-        /// <param name="samplerBuilder"></param>
-        public NewTexture(NewImageBuilder imageBuilder, NewSamplerBase samplerBuilder)
-            : base(imageBuilder, samplerBuilder)
+        public void Bind()
         {
+            OpenGL.BindTexture(this.Target, this.id[0]);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="bitmap"></param>
-        /// <param name="samplerBuilder"></param>
-        public NewTexture(Bitmap bitmap, NewSamplerBase samplerBuilder)
-            : this(new NewBitmapBuilder(bitmap), samplerBuilder)
+        public void Unbind()
         {
-            this.Target = BindTextureTarget.Texture2D;
+            //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            OpenGL.BindTexture(this.Target, 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="imageBuilder"></param>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
-        /// <param name="mipmapFiltering"></param>
-        public NewTexture(NewImageBuilder imageBuilder, TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
-            : this(imageBuilder, new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
+        public void Initialize()
         {
+            //GL.ActiveTexture(GL.GL_TEXTURE0);
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
+            OpenGL.GenTextures(1, id);
+            OpenGL.BindTexture(this.Target, id[0]);
+            this.ImageBuilder.Build();
+            this.SamplerBuilder.Build();
+            OpenGL.BindTexture(this.Target, 0);
         }
 
         /// <summary>
-        /// 
+        /// setup texture's image data.
         /// </summary>
-        /// <param name="bitmap"></param>
-        /// <param name="wrapping"></param>
-        /// <param name="textureFiltering"></param>
-        /// <param name="mipmapFiltering"></param>
-        public NewTexture(Bitmap bitmap, TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
-            : this(new NewBitmapBuilder(bitmap), new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
-        {
-            this.Target = BindTextureTarget.Texture2D;
-        }
+        public NewImageBuilder ImageBuilder { get; private set; }
+
+        /// <summary>
+        /// setup texture's sampler properties.
+        /// </summary>
+        public NewSamplerBase SamplerBuilder { get; private set; }
+
     }
 }

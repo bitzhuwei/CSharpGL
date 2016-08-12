@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public partial class NewTextureBase
+    public partial class NewTexture
     {
 
         #region IDisposable Members
@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~NewTextureBase()
+        ~NewTexture()
         {
             this.Dispose(false);
         }

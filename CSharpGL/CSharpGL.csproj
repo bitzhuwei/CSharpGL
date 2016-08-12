@@ -89,12 +89,12 @@
     <Compile Include="0Foundations\OpenGLObjects\Textures\Samplers\NewFakeSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Samplers\NewSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Samplers\NewSamplerBase.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\NewTexture.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\NewTexture.Ctor.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler3D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler2D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Sampler1D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\Texture3D.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Textures\NewTextureBase.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Textures\NewTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\ImageBuilders\NewImageBuilder.cs" />
     <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
