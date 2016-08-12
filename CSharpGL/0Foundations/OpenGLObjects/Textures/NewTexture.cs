@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// base type of all textures.
     /// </summary>
-    public abstract partial class NewTexture : IDisposable
+    public partial class NewTexture : IDisposable
     {
         /// <summary>
         /// OpenGL.GL_TEXTURE0 etc.
@@ -49,7 +49,7 @@ namespace CSharpGL
 
         private bool initialized = false;
         /// <summary>
-        /// 
+        /// resources(bitmap etc.) can be disposed  after this initialization.
         /// </summary>
         public void Initialize()
         {

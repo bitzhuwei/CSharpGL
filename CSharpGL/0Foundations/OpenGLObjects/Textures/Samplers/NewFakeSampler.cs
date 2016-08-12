@@ -48,7 +48,7 @@ namespace CSharpGL
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.TextureFilter);
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.TextureFilter);
 
-            throw new NotFiniteNumberException();
+            // TODO: mipmap filter not working yet.
         }
     }
 }

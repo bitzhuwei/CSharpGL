@@ -48,9 +48,9 @@ namespace CSharpGL.Demos
         {
             {
                 // This is the texture that the compute program will write into
-                Texture2D texture = new Texture2D();
                 var bitmap = new System.Drawing.Bitmap(@"Textures\PointSprite.png");
-                texture.Initialize(bitmap);
+                var texture = new NewTexture(bitmap);
+                texture.Initialize();
                 bitmap.Dispose();
                 this.sprite_texture[0] = texture.Id;
             }
@@ -153,9 +153,9 @@ namespace CSharpGL.Demos
         internal void UpdateTexture(string filename)
         {
             // This is the texture that the compute program will write into
-            Texture2D texture = new Texture2D();
             var bitmap = new System.Drawing.Bitmap(filename);
-            texture.Initialize(bitmap);
+            var texture = new NewTexture(bitmap);
+            texture.Initialize();
             bitmap.Dispose();
             var old = new uint[1];
             old[0] = this.sprite_texture[0];

@@ -9,7 +9,7 @@ namespace CSharpGL.Demos
 {
     class UpdatingTextureRenderer : Renderer
     {
-        private Texture2D texture;
+        private NewTexture texture;
         public static UpdatingTextureRenderer Create(TexturedRectangleModel model)
         {
             var shaderCodes = new ShaderCode[2];
@@ -36,8 +36,8 @@ namespace CSharpGL.Demos
             {
                 graphics.Clear(Color.Red);
             }
-            var sampler = new Texture2D();
-            sampler.Initialize(bitmap);
+            var sampler = new NewTexture(bitmap);
+            sampler.Initialize();
             bitmap.Dispose();
             this.texture = sampler;
             this.SetUniform("tex", new samplerValue(BindTextureTarget.Texture2D,
