@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL._0Foundations.OpenGLObjects.Textures
+namespace CSharpGL
 {
     class NewTexture2D : IDisposable
     {
-        public NewTexture2D(NewSampler2D sampler2D)
+        public NewTexture2D(NewSampler sampler2D)
         {
 
         }

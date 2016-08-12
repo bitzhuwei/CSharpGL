@@ -11,15 +11,23 @@ namespace CSharpGL
     /// <summary>
     /// 2D纹理
     /// </summary>
-    public class Texture2D : IDisposable
+    public class Texture2D : TextureBase, IDisposable
     {
-        private bool initialized;
-        private uint[] id = new uint[1];
-
+        // TODO: this method must be deleted.
         /// <summary>
-        /// 纹理名（用于标识一个纹理，由OpenGL指定），可在shader中用于指定uniform sampler2D纹理变量。
+        /// 
         /// </summary>
-        public uint Id { get { return this.id[0]; } }
+        public Texture2D() : base(null, null) { throw new NotImplementedException(); }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageBuilder"></param>
+        /// <param name="samplerBuilder"></param>
+        public Texture2D(TextureBuilder imageBuilder, NewSamplerBase samplerBuilder)
+            : base(imageBuilder, samplerBuilder)
+        { }
+
+        private bool initialized;
 
         /// <summary>
         /// 
@@ -110,20 +118,5 @@ namespace CSharpGL
 
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Bind()
-        {
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.id[0]);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Unbind()
-        {
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
-        }
     }
 }

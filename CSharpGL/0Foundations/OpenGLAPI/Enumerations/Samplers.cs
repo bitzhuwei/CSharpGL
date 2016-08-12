@@ -32,7 +32,7 @@ namespace CSharpGL
     /// <summary>
     /// 组成纹理的图片数据和其要贴上去的形状的大小往往是不一样的。两种情况，纹理图片小，贴图区域大，需要放大纹理称为：magnification；或者反过来，缩小纹理显示出来，称为 minification.在做放大喝缩小的操作的时候的具体的策略如下
     /// </summary>
-    public enum TextureFiltering : uint
+    public enum TextureFilter : uint
     {
         /// <summary>
         /// 直接选择最临近的像素的颜色，magnification（放大）时：由于多个片元会在同一个纹理像素上面取值，故最终得到的图片颗粒度很大，会有锯齿。
@@ -49,7 +49,7 @@ namespace CSharpGL
     /// Mipmap就是一系列纹理，每个后面的一个纹理是前一个的二分之一，这一系列的纹理是OpenGL生成的，生成时进行了图像质量的优化，使其拥有更多的细节。这一系列的纹理是提前生成的，程序运行时只需要从中挑出合适大小的纹理应用即可，而不是运行时进行图像大小的处理，效率上会有提高。
     /// OpenGL渲染的时候，两个不同级别的mipmap之间会产生不真实感的生硬的边界。就像普通的纹理过滤一样，也可以在两个不同mipmap级别之间使用NEAREST和LINEAR过滤。指定不同mipmap级别之间的过滤方式可以使用下面四种选项代替原来的过滤方式：
     /// </summary>
-    public enum MipmapFiltering : uint
+    public enum MipmapFilter : uint
     {
         /// <summary>
         /// 接收最近的mipmap来匹配像素大小，并使用最临近插值进行纹理采样。
