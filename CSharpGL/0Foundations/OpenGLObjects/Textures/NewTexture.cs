@@ -28,6 +28,32 @@ namespace CSharpGL
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
         /// <param name="mipmapFiltering"></param>
+        public NewTexture(Bitmap bitmap, NewSamplerBase samplerBuilder)
+            : this(new NewBitmapBuilder(bitmap), samplerBuilder)
+        {
+            this.Target = BindTextureTarget.Texture2D;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="wrapping"></param>
+        /// <param name="textureFiltering"></param>
+        /// <param name="mipmapFiltering"></param>
+        public NewTexture(NewImageBuilder imageBuilder, TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
+            : this(imageBuilder, new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
+        {
+            this.Target = BindTextureTarget.Texture2D;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="wrapping"></param>
+        /// <param name="textureFiltering"></param>
+        /// <param name="mipmapFiltering"></param>
         public NewTexture(Bitmap bitmap, TextureWrapping wrapping, TextureFilter textureFiltering, MipmapFilter mipmapFiltering)
             : this(new NewBitmapBuilder(bitmap), new NewFakeSampler(wrapping, textureFiltering, mipmapFiltering))
         {
