@@ -6,13 +6,13 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// texture's settings.
     /// </summary>
-    class NewFakeSampler : NewSamplerBase
+    public class NewFakeSampler : NewSamplerBase
     {
 
         /// <summary>
-        /// 纹理坐标通常的范围是从(0, 0)到(1, 1)，如果我们把纹理坐标设置为范围以外会发生什么？OpenGL默认的行为是重复这个纹理图像（我们简单地忽略浮点纹理坐标的整数部分），但OpenGL提供了更多的选择
+        /// texture's settings.
         /// </summary>
         /// <param name="wrapping"></param>
         public void SetWrapping(TextureWrapping wrapping)
@@ -29,7 +29,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// texture's settings.
         /// </summary>
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
@@ -39,6 +39,10 @@ namespace CSharpGL
         {
         }
 
+        /// <summary>
+        /// texture's settings.
+        /// </summary>
+        /// <param name="target"></param>
         public override void Build(BindTextureTarget target)
         {
             /* Clamping to edges is important to prevent artifacts when scaling */

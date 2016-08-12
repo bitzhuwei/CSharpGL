@@ -6,14 +6,17 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// texture's settings.
     /// </summary>
-    class NewSampler : NewSamplerBase
+    public class NewSampler : NewSamplerBase
     {
+        /// <summary>
+        /// sampler's Id.
+        /// </summary>
         public uint Id { get; private set; }
 
         /// <summary>
-        /// 
+        /// texture's settings.
         /// </summary>
         /// <param name="wrapping"></param>
         /// <param name="textureFiltering"></param>
@@ -24,6 +27,10 @@ namespace CSharpGL
 
         }
 
+        /// <summary>
+        /// texture's settings.
+        /// </summary>
+        /// <param name="target"></param>
         public override void Build(BindTextureTarget target)
         {
             /* Clamping to edges is important to prevent artifacts when scaling */

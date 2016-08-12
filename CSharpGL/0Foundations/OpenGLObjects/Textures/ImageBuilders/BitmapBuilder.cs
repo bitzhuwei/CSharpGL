@@ -8,14 +8,14 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// build texture's content with Bitmap.
     /// </summary>
     public class NewBitmapBuilder : NewImageBuilder
     {
         private System.Drawing.Bitmap bitmap;
 
         /// <summary>
-        /// 
+        /// build texture's content with Bitmap.
         /// </summary>
         /// <param name="bitmap"></param>
         public NewBitmapBuilder(System.Drawing.Bitmap bitmap)
@@ -25,7 +25,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// build texture's content with Bitmap.
         /// </summary>
         public override void Build(BindTextureTarget target)
         {

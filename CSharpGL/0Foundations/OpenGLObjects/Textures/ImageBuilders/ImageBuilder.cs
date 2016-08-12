@@ -8,13 +8,13 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// build texture.
+    /// build texture's content.
     /// </summary>
     public abstract class NewImageBuilder
     {
 
         /// <summary>
-        /// Build texture.
+        /// build texture's content.
         /// </summary>
         /// <returns></returns>
         public abstract void Build(BindTextureTarget target);
