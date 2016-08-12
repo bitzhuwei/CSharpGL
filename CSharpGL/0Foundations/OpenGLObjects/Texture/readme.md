@@ -1,7 +1,7 @@
 ﻿# Texture
 A texture is generated in 2 steps.
 ## set up texture's configurations
-This is done by calling 'glTexParameteri()', `glSamplerParameteri()` etc.  
+This is done by calling `glTexParameteri()`, or `glSamplerParameteri()` etc.  
 We can ask OpenGL for a `sampler` object to reduce OpenGL calls.
 ## set up texture's content
 This is done by calling `glTexImage2D()`, `glTexImage1D()` etc.  
