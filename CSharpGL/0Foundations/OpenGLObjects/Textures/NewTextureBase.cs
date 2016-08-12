@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// base type of all textures.
     /// </summary>
-    public abstract class NewTextureBase : IDisposable
+    public abstract partial class NewTextureBase : IDisposable
     {
         /// <summary>
         /// OpenGL.GL_TEXTURE0 etc.
