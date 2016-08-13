@@ -7919,11 +7919,11 @@ namespace CSharpGL
         /// <param name="target"></param>
         private delegate void glGenerateMipmapEXT(uint target);
         private static glGenerateMipmapEXT glGenerateMipmapFunc;
-        public static void GenerateMipmap(uint target)
+        public static void GenerateMipmap(MipmapTarget target)
         {
             if (glGenerateMipmapFunc == null)
             { glGenerateMipmapFunc = OpenGL.GetDelegateFor<OpenGL.glGenerateMipmapEXT>(); }
-            glGenerateMipmapFunc(target);
+            glGenerateMipmapFunc((uint)target);
         }
         //  Constants
         /// <summary>
