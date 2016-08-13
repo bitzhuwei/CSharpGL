@@ -60,6 +60,7 @@ namespace CSharpGL
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(this.ActiveTexture);
                 OpenGL.GenTextures(1, id);
+                //OpenGL.GenerateMipmap(id[0]);
                 OpenGL.BindTexture(this.Target, id[0]);
                 this.SamplerBuilder.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, this.Target);
                 this.ImageBuilder.Build(this.Target);
