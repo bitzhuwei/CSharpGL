@@ -96,6 +96,8 @@ namespace RendererGenerator
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of unsafe"));
                 // var array = (uint*)buffer.Header.ToPointer();
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        var array = (uint*)buffer.Header.ToPointer();")));
+                // array[0] =  ...;;
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        // TODO: set array's values: array[0] = ...;")));
                 // }
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    }// end of unsafe"));
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
@@ -160,8 +162,9 @@ namespace RendererGenerator
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        unsafe"));
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        {// begin of unsafe"));
                 // var array = (vec3*)buffer.Header.ToPointer();
-                var newArray = new CodeSnippetStatement(string.Format("                            var array = ({0}*)buffer.Header.ToPointer();", item.PropertyType));
-                ifStatement2.TrueStatements.Add(newArray);
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            var array = ({0}*)buffer.Header.ToPointer();", item.PropertyType)));
+                // array[0] =  ...;;
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            // TODO: set array's values: array[0] = ...;")));
                 // }
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        }// end of unsafe"));
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        {0} = buffer.GetBufferPtr() as PropertyBufferPtr;", item.BufferPtrName)));
