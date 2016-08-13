@@ -191,6 +191,16 @@ namespace CSharpGL
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             GLCanvasHelper.DrawClock();
+
+            OpenGL.DrawText(10,
+                10, Color.White, "Courier New",// "Courier New",
+                14.0f, "CSharpGL.GLCanvas");
+            if (this.RenderTrigger == RenderTriggers.TimerBased)
+            {
+                OpenGL.DrawText(10,
+                    this.Height - 15 - 1, Color.Red, "Courier New",// "Courier New",
+                    14.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
+            }
         }
         /// <summary>
         /// 
