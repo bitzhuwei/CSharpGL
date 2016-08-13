@@ -3,7 +3,7 @@
 
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a pure C# project that allows for modern OpenGL rendering in an Object-Oriented way. It meets common requirements in OpenGL rendering such as:
 ## :rocket:Modern Rendering
-Object-Oriented modern rendering using GLSL shaders and vertex buffer objects.
+High-efficiency rendering of massive vertexes is supported by Object-Oriented modern rendering using GLSL shaders and vertex buffer objects.
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.png?raw=true)
 ## :stars:GLCanvas
 A winform control that supports drag-drop and wraps initialization of creating OpenGL context.
