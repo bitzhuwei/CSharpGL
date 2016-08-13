@@ -68,11 +68,12 @@ glDisable(GL_BLEND);
 <h2>
 <a id="radio_buttonballot_box_with_checkwhite_square_buttonglcontrol--text" class="anchor" href="#radio_buttonballot_box_with_checkwhite_square_buttonglcontrol--text" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="radio_button" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f518.png">🔘</g-emoji><g-emoji alias="ballot_box_with_check" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2611.png">☑️</g-emoji><g-emoji alias="white_square_button" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f533.png">🔳</g-emoji>GLControl &amp; Text</h2>
 
-<p>Rendering 'Control' at fixed position with fixed size. For example, GLAxis renders an axis at left bottom corner.
-'Control' binding to specified border just like winform-control.
-Rendering text using <code>glRasterPos()</code> and <code>CallList()</code>.
-Rendering text using GLText(a special GLControl).
-<img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.png?raw=true" alt="GLText and GLAxis"></p>
+<p>Rendering 'Control' at fixed position with fixed size.<br>
+For example, <code>UIAxis</code> renders an axis at left bottom corner.
+All kinds of controls binds to specified border just like winform-control.
+Rendering text using <code>glRasterPos()</code> and <code>CallList()</code>.(Obsolete)
+Rendering text using <code>UIText</code>.
+<img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.png?raw=true" alt="UIText and UIAxis"></p>
 
 <p><img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true" alt="export-glyph-texture-from-TTF"></p>
 
@@ -82,17 +83,19 @@ Rendering text using GLText(a special GLControl).
 <h2>
 <a id="image-processing-using-compute-shader" class="anchor" href="#image-processing-using-compute-shader" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image Processing Using Compute Shader.</h2>
 
-<p><img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true" alt="compute-shader-image-processing"></p>
+<p>Simple edge-detection implemented by compute shader.<br>
+<img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true" alt="compute-shader-image-processing"></p>
 
 <h2>
-<a id="raycast-volume-rendering" class="anchor" href="#raycast-volume-rendering" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Raycast Volume Rendering.</h2>
+<a id="raycast-volume-rendering-using-3d-texture" class="anchor" href="#raycast-volume-rendering-using-3d-texture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Raycast Volume Rendering using 3D texture.</h2>
 
 <p><img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/raycast-volume-render.gif?raw=true" alt="raycast-volume-rendering"></p>
 
 <h2>
 <a id="particle-simulator-using-compute-shader" class="anchor" href="#particle-simulator-using-compute-shader" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Particle Simulator Using Compute Shader.</h2>
 
-<p><img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true" alt="compute-shader-particles"><br>
+<p>Particle's speed and position is updated by compute shader.<br>
+<img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true" alt="compute-shader-particles"><br>
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.jpg?raw=true" alt="compute-shader-particles"></p>
 
 <h2>
@@ -105,18 +108,20 @@ Rendering text using GLText(a special GLControl).
 
 <p>10000 particles with a sphere inside a cube.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.png?raw=true" alt="point-sprite"><br>
+A spheroid.<br>
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite2.png?raw=true" alt="point-sprite"></p>
 
 <h2>
 <a id="earth" class="anchor" href="#earth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Earth.</h2>
 
-<p>An earth model that singly rotate same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
+<p>An earth model that singly rotates same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true" alt="earth"></p>
 
 <h2>
-<a id="id100billboard" class="anchor" href="#id100billboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="id" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f194.png">🆔</g-emoji><g-emoji alias="100" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png">💯</g-emoji>Billboard</h2>
+<a id="id100billboard-and-labelrenderer" class="anchor" href="#id100billboard-and-labelrenderer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="id" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f194.png">🆔</g-emoji><g-emoji alias="100" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png">💯</g-emoji>Billboard and LabelRenderer</h2>
 
 <p>Billboard can be used to display health-bar, damage numbers in game application.
+LabelRenderer renders a string at specified position which always faces camera.<br>
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/billboard-health-bar-text.png?raw=true" alt="billboard-health-bar-text"></p>
 
 <h2>
@@ -124,6 +129,19 @@ Rendering text using GLText(a special GLControl).
 
 <p>Useful tool to build a scene and feels how opengl's transform system works.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/CSharpGL-Scene-Editor.jpg?raw=true" alt="CSharpGL-Scene-Editor"></p>
+
+<h2>
+<a id="friesfactoryrenderer-generator" class="anchor" href="#friesfactoryrenderer-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="fries" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f35f.png">🍟</g-emoji><g-emoji alias="factory" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3ed.png">🏭</g-emoji>Renderer Generator</h2>
+
+<p>RendererGenerator is a tiny console that reads an xml config file and dumps a Renderer.cs, a Model.cs, a vertex shader file(.vert) and a fragment shader file(.frag).
+A demo is shown as below:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points"&gt;
+  &lt;VertexProperty NameInShader="in_Position" NameInModel="position" PropertyType="vec3" /&gt;
+  &lt;VertexProperty NameInShader="in_TexCoord" NameInModel="texCoord" PropertyType="vec2" /&gt;
+&lt;/RendererGenerator&gt;
+</code></pre>
 
 <h1>
 <a id="questionsupport-or-contact" class="anchor" href="#questionsupport-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="question" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2753.png">❓</g-emoji>Support or Contact</h1>
