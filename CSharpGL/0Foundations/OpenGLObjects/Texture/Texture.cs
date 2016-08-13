@@ -34,6 +34,11 @@ namespace CSharpGL
         ///// <summary>
         ///// 
         ///// </summary>
+        //public bool UseMipmap { get; private set; }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
         //public void Bind()
         //{
         //    OpenGL.BindTexture(this.Target, this.id[0]);
@@ -60,10 +65,10 @@ namespace CSharpGL
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(this.ActiveTexture);
                 OpenGL.GenTextures(1, id);
-                OpenGL.GenerateMipmap((MipmapTarget)((uint)this.Target));
                 OpenGL.BindTexture(this.Target, id[0]);
                 this.SamplerBuilder.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, this.Target);
                 this.ImageBuilder.Build(this.Target);
+                OpenGL.GenerateMipmap((MipmapTarget)((uint)this.Target));
                 //this.SamplerBuilder.Unbind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
                 OpenGL.BindTexture(this.Target, 0);
                 this.initialized = true;
