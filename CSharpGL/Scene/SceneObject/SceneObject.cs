@@ -89,6 +89,23 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Gets script by specified <paramref name="id"/>.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ScriptComponent GetScript(string id)
+        {
+            foreach (var item in this.ScriptList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+        /// <summary>
         /// Enabled or not.
         /// </summary>
         [Category(strBasic)]

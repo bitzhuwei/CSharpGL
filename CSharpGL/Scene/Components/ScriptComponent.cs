@@ -9,6 +9,11 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class ScriptComponent : Component
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
+
         private bool initialized;
         /// <summary>
         /// 
