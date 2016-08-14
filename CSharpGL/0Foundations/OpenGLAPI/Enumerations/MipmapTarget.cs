@@ -10,12 +10,33 @@ namespace CSharpGL
     /// </summary>
     public enum MipmapTarget : uint
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Texture1D = OpenGL.GL_TEXTURE_1D,
+        /// <summary>
+        /// 
+        /// </summary>
         Texture2D = OpenGL.GL_TEXTURE_2D,
+        /// <summary>
+        /// 
+        /// </summary>
         Texture3D = OpenGL.GL_TEXTURE_3D,
+        /// <summary>
+        /// 
+        /// </summary>
         Texture1DArray = OpenGL.GL_TEXTURE_1D_ARRAY,
+        /// <summary>
+        /// 
+        /// </summary>
         Texture2DArray = OpenGL.GL_TEXTURE_2D_ARRAY,
+        /// <summary>
+        /// 
+        /// </summary>
         TextureCubeMap = OpenGL.GL_TEXTURE_CUBE_MAP,
+        /// <summary>
+        /// 
+        /// </summary>
         TextureCubeMapArray = OpenGL.GL_TEXTURE_CUBE_MAP_ARRAY
     }
 }

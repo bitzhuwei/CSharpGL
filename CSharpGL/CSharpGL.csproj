@@ -156,6 +156,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\Scene.Engine.cs" />
+    <Compile Include="Scene\SceneObject\SceneObjectHelper.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.IDisposable.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
     <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
