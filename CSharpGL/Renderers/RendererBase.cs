@@ -13,7 +13,6 @@ namespace CSharpGL
     /// 只做初始化和渲染这两件事。
     /// <para>Initialize and render something.</para>
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class RendererBase : IRenderable, IDisposable
     {
 

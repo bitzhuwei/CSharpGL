@@ -57,10 +57,10 @@ namespace CSharpGL
 
         /// <summary>
         /// renders something.
+        /// Note: I wanted to use <see cref="IRenderable"/> but it fails to display in <see cref="PropertyGridEditor"/>. So I have to upgrade it to <see cref="RendererBase"/>.
         /// </summary>
         [Category(strBasic)]
         [Description("Renders something.")]
-        //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public RendererBase Renderer { get; set; }
 
         /// <summary>
@@ -70,42 +70,6 @@ namespace CSharpGL
         [Description("update state of this object.")]
         public ScriptComponentList ScriptList { get; private set; }
 
-        /// <summary>
-        /// Gets first script with specified type.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T GetScript<T>() where T : ScriptComponent
-        {
-            foreach (var item in this.ScriptList)
-            {
-                var script = item as T;
-                if (script != null)
-                {
-                    return script;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets script by specified <paramref name="id"/>.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ScriptComponent GetScript(string id)
-        {
-            foreach (var item in this.ScriptList)
-            {
-                if (item.Id == id)
-                {
-                    return item;
-                }
-            }
-
-            return null;
-        }
         /// <summary>
         /// Enabled or not.
         /// </summary>
@@ -167,6 +131,43 @@ namespace CSharpGL
             {
                 item.Initialize();
             }
+        }
+
+        /// <summary>
+        /// Gets first script with specified type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetScript<T>() where T : ScriptComponent
+        {
+            foreach (var item in this.ScriptList)
+            {
+                var script = item as T;
+                if (script != null)
+                {
+                    return script;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets script by specified <paramref name="id"/>.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ScriptComponent GetScript(string id)
+        {
+            foreach (var item in this.ScriptList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
     }
 }
