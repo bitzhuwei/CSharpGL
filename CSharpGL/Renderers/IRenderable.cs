@@ -8,10 +8,15 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render something.
+    /// Render something somewhere.
     /// </summary>
     public interface IRenderable
     {
+        /// <summary>
+        /// Transform about this model's position, rotation or scale.
+        /// </summary>
+        IModelTransform Transform { get; }
+
         /// <summary>
         /// Render something.
         /// </summary>
