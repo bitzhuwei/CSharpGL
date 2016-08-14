@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +12,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class ShaderProgram
     {
 
