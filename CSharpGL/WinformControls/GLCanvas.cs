@@ -196,12 +196,12 @@ namespace CSharpGL
 
             OpenGL.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
-                14.0f, this.fullname);
+                20.0f, this.fullname);
             if (this.RenderTrigger == RenderTriggers.TimerBased)
             {
                 OpenGL.DrawText(10,
-                    this.Height - 15 - 1, Color.Red, "Courier New",// "Courier New",
-                    14.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
+                    this.Height - 20 - 1, Color.Gold, "Courier New",// "Courier New",
+                    20.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
             }
         }
         /// <summary>
