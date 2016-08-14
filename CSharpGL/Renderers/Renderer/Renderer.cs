@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
@@ -9,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class Renderer : RendererBase
+    public partial class Renderer : RendererBase, IModelTransform
     {
 
         /// <summary>
@@ -66,5 +68,14 @@ namespace CSharpGL
             this.switchList.AddRange(switches);
         }
 
+        private mat4 modelMatrix = mat4.identity();
+        /// <summary>
+        /// transform this model from model's space to world's space.
+        /// </summary>
+        public mat4 ModelMatrix
+        {
+            get { return modelMatrix; }
+            set { modelMatrix = value; }
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
@@ -10,12 +12,9 @@ namespace CSharpGL
     /// <summary>
     /// Render something somewhere.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface IRenderable
     {
-        /// <summary>
-        /// Transform about this model's position, rotation or scale.
-        /// </summary>
-        IModelTransform Transform { get; }
 
         /// <summary>
         /// Render something.

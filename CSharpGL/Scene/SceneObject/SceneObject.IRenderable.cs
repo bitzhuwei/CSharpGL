@@ -5,20 +5,6 @@ namespace CSharpGL
 {
     public partial class SceneObject
     {
-        /// <summary>
-        /// Transform about this model's position, rotation or scale.
-        /// </summary>
-        public IModelTransform Transform
-        {
-            get
-            {
-                IRenderable renderer = this.Renderer;
-                if (renderer != null)
-                { return renderer.Transform; }
-                else
-                { return null; }
-            }
-        }
 
         /// <summary>
         /// 

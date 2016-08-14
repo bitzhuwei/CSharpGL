@@ -11,18 +11,18 @@ namespace CSharpGL
     /// </summary>
     public class BuildInTransformScript : ScriptComponent
     {
-        private TransformScript transform;
-        private IModelTransform renderer;
+        private TransformScript transformScript;
+        private IModelTransform modelTransform;
 
         protected override void DoInitialize()
         {
-            this.transform = this.BindingObject.GetScript<TransformScript>();
-            this.renderer = this.BindingObject.Renderer as IModelTransform;
+            this.transformScript = this.BindingObject.GetScript<TransformScript>();
+            this.modelTransform = this.BindingObject.Renderer as IModelTransform;
         }
 
         protected override void DoUpdate(double elapsedTime)
         {
-            this.renderer.ModelMatrix = this.transform.GetModelMatrix();
+            this.modelTransform.ModelMatrix = this.transformScript.GetModelMatrix();
         }
     }
 }

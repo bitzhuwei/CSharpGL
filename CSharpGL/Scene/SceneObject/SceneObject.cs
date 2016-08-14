@@ -59,8 +59,9 @@ namespace CSharpGL
         /// renders something.
         /// </summary>
         [Category(strBasic)]
-        [Description("renders something.")]
-        public IRenderable Renderer { get; set; }
+        [Description("Renders something.")]
+        //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+        public RendererBase Renderer { get; set; }
 
         /// <summary>
         /// update state of this object.

@@ -13,21 +13,9 @@ namespace CSharpGL
     /// 只做初始化和渲染这两件事。
     /// <para>Initialize and render something.</para>
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class RendererBase : IRenderable, IDisposable
     {
-        /// <summary>
-        /// Transform about this model's position, rotation or scale.
-        /// </summary>
-        protected IModelTransform transform = new ModelTransform();
-        /// <summary>
-        /// Transform about this model's position, rotation or scale.
-        /// </summary>
-        public IModelTransform Transform
-        {
-            get { return transform; }
-            protected set { this.transform = value; }
-        }
 
         /// <summary>
         /// Render this or not.

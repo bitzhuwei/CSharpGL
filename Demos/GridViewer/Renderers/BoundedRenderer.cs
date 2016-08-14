@@ -31,10 +31,10 @@ namespace GridViewer
 
         protected override void DoInitialize()
         {
-            Renderer boundingBox = this.BoxRenderer;
+            RendererBase boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Initialize(); }
 
-            Renderer scientific = this.Renderer;
+            RendererBase scientific = this.Renderer;
             if (scientific != null) { scientific.Initialize(); }
         }
 
@@ -52,15 +52,15 @@ namespace GridViewer
 
         protected override void DisposeUnmanagedResources()
         {
-            BoundingBoxRenderer boundingBox = this.BoxRenderer;
+            IDisposable boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Dispose(); }
 
-            Renderer scientific = this.Renderer;
+            IDisposable scientific = this.Renderer;
             if (scientific != null) { scientific.Dispose(); }
         }
 
         /// <summary>
-        /// IModelTransform.ModelMatrix
+        /// transforms model from model's sapce to world's space.
         /// </summary>
         public mat4 ModelMatrix
         {

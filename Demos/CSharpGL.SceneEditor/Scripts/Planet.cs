@@ -26,12 +26,8 @@ namespace CSharpGL.SceneEditor.Scripts
 
         protected override void DoInitialize()
         {
-            {
-                this.transform = this.BindingObject.GetScript<TransformScript>();
-            }
-            {
-                this.renderer = this.BindingObject.Renderer as BuildInRenderer;
-            }
+            this.transform = this.BindingObject.GetScript<TransformScript>();
+            this.renderer = this.BindingObject.Renderer as BuildInRenderer;
         }
 
         protected override void DoUpdate(double elapsedTime)

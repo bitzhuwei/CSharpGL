@@ -11,12 +11,8 @@ namespace CSharpGL
     /// <summary>
     /// Renders a bounding box.
     /// </summary>
-    public class BoundingBoxRenderer : Renderer, IBoundingBox, IModelTransform
+    public class BoundingBoxRenderer : Renderer, IBoundingBox
     {
-        /// <summary>
-        /// matrix that transforms a model from model's sapce to world's space.
-        /// </summary>
-        public mat4 ModelMatrix { get; set; }
 
         /// <summary>
         /// get a bounding box renderer.
@@ -52,7 +48,6 @@ namespace CSharpGL
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
             this.BoundingBoxColor = new vec3(1, 1, 1);
-            this.ModelMatrix = mat4.identity();
         }
 
         private UpdatingRecord boundingBoxColorRecord = new UpdatingRecord();

@@ -15,7 +15,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderer"></param>
         /// <returns></returns>
-        public static SceneObject WrapToSceneObject(this IRenderable renderer)
+        public static SceneObject WrapToSceneObject(this RendererBase renderer)
         {
             var obj = new SceneObject();
             obj.Renderer = renderer;

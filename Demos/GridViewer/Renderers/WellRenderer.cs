@@ -12,12 +12,8 @@ namespace GridViewer
     /// <summary>
     /// renders well pipeline(several cylinders)
     /// </summary>
-    public class WellRenderer : Renderer, IModelTransform
+    public class WellRenderer : Renderer
     {
-        /// <summary>
-        /// IModelTransform.ModelMatrix
-        /// </summary>
-        public mat4 ModelMatrix { get; set; }
 
         private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
         private Color wellColor = Color.White;// maps to white color in shader.
@@ -53,7 +49,6 @@ namespace GridViewer
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
-            this.ModelMatrix = mat4.identity();
         }
 
 

@@ -117,8 +117,8 @@
     <Compile Include="IFontTexture\FontTexture\FontTextureHelper.cs" />
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
-    <Compile Include="Renderers\IModelTransform.cs" />
-    <Compile Include="Renderers\IModelTransform\ModelTransform.cs" />
+    <Compile Include="Renderers\Renderer\IModelTransform.cs" />
+    <Compile Include="Renderers\Renderer\ModelTransform.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\SquareRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
