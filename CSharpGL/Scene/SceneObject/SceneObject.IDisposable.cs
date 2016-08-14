@@ -46,7 +46,7 @@ namespace CSharpGL
                 } // end if
 
                 // TODO: Dispose unmanaged resources.
-                RendererBase renderer = this.Renderer;
+                var renderer = this.Renderer as IDisposable;
                 if (renderer != null)
                 {
                     this.Renderer = null;

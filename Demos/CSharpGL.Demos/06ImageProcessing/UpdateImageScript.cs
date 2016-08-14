@@ -43,8 +43,9 @@ namespace CSharpGL.Demos
                 if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     {
-                        RendererBase renderer = this.BindingObject.Renderer;
-                        renderer.Dispose();
+                        var renderer = this.BindingObject.Renderer as IDisposable;
+                        if (renderer != null)
+                        { renderer.Dispose(); }
                     }
                     {
                         var renderer = new ImageProcessingRenderer(this.openTextureDlg.FileName);

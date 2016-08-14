@@ -60,7 +60,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("renders something.")]
-        public RendererBase Renderer { get; set; }
+        public IRenderable Renderer { get; set; }
 
         /// <summary>
         /// update state of this object.
