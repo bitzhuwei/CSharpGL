@@ -70,12 +70,23 @@ namespace CSharpGL
 
         private mat4 modelMatrix = mat4.identity();
         /// <summary>
+        /// records whether modelMatrix is updated.
+        /// </summary>
+        protected UpdatingRecord modelMatrixRecord = new UpdatingRecord();
+        /// <summary>
         /// transform this model from model's space to world's space.
         /// </summary>
-        public mat4 ModelMatrix
+        public virtual mat4 ModelMatrix
         {
             get { return modelMatrix; }
-            set { modelMatrix = value; }
+            set
+            {
+                if (value != modelMatrix)
+                {
+                    modelMatrix = value;
+                    modelMatrixRecord.Mark();
+                }
+            }
         }
     }
 }
