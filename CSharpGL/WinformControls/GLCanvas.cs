@@ -194,7 +194,7 @@ namespace CSharpGL
 
             OpenGL.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
-                14.0f, "CSharpGL.GLCanvas");
+                14.0f, this.GetType().FullName);
             if (this.RenderTrigger == RenderTriggers.TimerBased)
             {
                 OpenGL.DrawText(10,
