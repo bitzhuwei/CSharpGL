@@ -24,6 +24,7 @@ namespace CSharpGL
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
         private Stopwatch stopWatch = new Stopwatch();
+        private readonly string fullname;
         /// <summary>
         /// 
         /// </summary>
@@ -57,6 +58,7 @@ namespace CSharpGL
                 this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
+            this.fullname = this.GetType().FullName;
         }
 
         private bool showingCursor = true;
@@ -194,7 +196,7 @@ namespace CSharpGL
 
             OpenGL.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
-                14.0f, this.GetType().FullName);
+                14.0f, this.fullname);
             if (this.RenderTrigger == RenderTriggers.TimerBased)
             {
                 OpenGL.DrawText(10,
