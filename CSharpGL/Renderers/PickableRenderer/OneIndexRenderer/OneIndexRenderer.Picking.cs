@@ -12,7 +12,7 @@ namespace CSharpGL
     partial class OneIndexRenderer
     {
 
-        public override PickedGeometry GetPickedGeometry(RenderEventArg arg, uint stageVertexId,
+        public override PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId,
             int x, int y)
         {
             uint lastVertexId;
@@ -81,7 +81,7 @@ namespace CSharpGL
             }
         }
 
-        private PickedGeometry SearchPoint(RenderEventArg arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
@@ -93,7 +93,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry SearchLine(RenderEventArg arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
@@ -150,7 +150,7 @@ namespace CSharpGL
         }
 
         private RecognizedPrimitiveIndex GetLastIndexIdOfPickedGeometry(
-            RenderEventArg arg,
+            RenderEventArgs arg,
             uint lastVertexId, int x, int y)
         {
             List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(arg, lastVertexId);
@@ -163,7 +163,7 @@ namespace CSharpGL
             return lastIndexId;
         }
 
-        private uint Pick(RenderEventArg arg, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
+        private uint Pick(RenderEventArgs arg, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
             int x, int y)
         {
             Render4InnerPicking(arg, twoPrimitivesIndexBufferPtr);
@@ -181,7 +181,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArg arg, uint lastVertexId)
+        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs arg, uint lastVertexId)
         {
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.RenderMode == RenderModes.ColorCodedPicking

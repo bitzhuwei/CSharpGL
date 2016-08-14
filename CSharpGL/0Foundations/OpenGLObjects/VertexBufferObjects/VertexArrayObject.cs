@@ -69,7 +69,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
-        public void Create(RenderEventArg arg, ShaderProgram shaderProgram)
+        public void Create(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             if (this.Id != 0)
             { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
@@ -108,7 +108,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
-        public void Render(RenderEventArg arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
+        public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
             if (temporaryIndexBufferPtr == null)
             {

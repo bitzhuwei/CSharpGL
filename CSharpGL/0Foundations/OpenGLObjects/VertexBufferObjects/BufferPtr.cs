@@ -67,7 +67,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram">binding shader program for this VBO.</param>
-        public abstract void Render(RenderEventArg arg, ShaderProgram shaderProgram);
+        public abstract void Render(RenderEventArgs arg, ShaderProgram shaderProgram);
 
         /// <summary>
         /// 

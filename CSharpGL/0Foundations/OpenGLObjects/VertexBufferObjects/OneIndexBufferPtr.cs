@@ -60,7 +60,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             IntPtr offset;
             switch (this.Type)

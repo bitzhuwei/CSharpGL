@@ -65,7 +65,7 @@ namespace GridViewer
             this.texCoordBufferPtr = this.bufferable.GetProperty(QuadStripModel.texCoord, null);
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("renderWireframe", false);
             base.DoRender(arg);

@@ -17,7 +17,7 @@ namespace CSharpGL
         {
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("projection", arg.Camera.GetProjectionMat4());
             this.SetUniform("view", arg.Camera.GetViewMat4());

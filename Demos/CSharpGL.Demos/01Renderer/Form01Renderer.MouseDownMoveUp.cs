@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 UpdateColorInformationAtMouse(e.X, e.Y);
 
                 PickedGeometry pickedGeometry = RunPicking(
-                    new RenderEventArg(
+                    new RenderEventArgs(
                         RenderModes.ColorCodedPicking,
                         this.glCanvas1.ClientRectangle,
                         this.camera,
@@ -89,7 +89,7 @@ namespace CSharpGL.Demos
                 UpdateColorInformationAtMouse(e.X, e.Y);
 
                 PickedGeometry pickedGeometry = RunPicking(
-                    new RenderEventArg(
+                    new RenderEventArgs(
                         RenderModes.ColorCodedPicking,
                         this.glCanvas1.ClientRectangle,
                         this.camera, this.PickingGeometryType),
@@ -158,7 +158,7 @@ namespace CSharpGL.Demos
             this.lblReadColor.Text = content;
         }
 
-        private PickedGeometry RunPicking(RenderEventArg arg, int x, int y)
+        private PickedGeometry RunPicking(RenderEventArgs arg, int x, int y)
         {
             lock (this.synObj)
             {

@@ -10,7 +10,7 @@ namespace CSharpGL
     partial class InnerPickableRenderer
     {
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking)
             {

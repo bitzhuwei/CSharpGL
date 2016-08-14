@@ -100,7 +100,7 @@ namespace CSharpGL.Demos
         }
 
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();

@@ -84,7 +84,7 @@ namespace CSharpGL
         {
             if (!this.initialized) { this.Initialize(); }
 
-            var arg = new RenderEventArg(renderMode, clientRectangle, this.Camera);
+            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
 
             // render objects.
             var list = this.ObjectList.ToArray();

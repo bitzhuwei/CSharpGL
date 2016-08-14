@@ -36,7 +36,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = this.GetOrthoProjection();

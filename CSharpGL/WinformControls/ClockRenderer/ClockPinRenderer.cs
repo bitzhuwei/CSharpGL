@@ -36,7 +36,7 @@ namespace CSharpGL
             hourPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.5f);
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             DateTime now = DateTime.Now;
             const float speed = 1.0f;

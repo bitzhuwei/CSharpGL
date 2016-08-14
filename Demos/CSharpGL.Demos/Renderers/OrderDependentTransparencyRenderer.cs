@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         { }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();

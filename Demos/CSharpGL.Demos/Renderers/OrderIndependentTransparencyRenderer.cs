@@ -114,7 +114,7 @@ namespace CSharpGL.Demos
             OpenGL.ClearDepth(1.0f);
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.depthTestSwitch.On();
             this.cullFaceSwitch.On();

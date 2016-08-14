@@ -28,7 +28,7 @@ namespace CSharpGL
             this.ClockRenderer.Initialize();
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.ClockRenderer.Render(arg);
 

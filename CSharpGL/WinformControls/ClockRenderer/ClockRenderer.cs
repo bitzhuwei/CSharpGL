@@ -18,7 +18,7 @@ namespace CSharpGL
             pinRenderer.Initialize();
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             circleRenderer.Render(arg);
             markRenderer.Render(arg);

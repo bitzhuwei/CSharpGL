@@ -56,7 +56,7 @@ namespace GridViewer
             this.positionBufferPtr = this.bufferable.GetProperty(LinesModel.position, null);
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             base.DoRender(arg);
         }

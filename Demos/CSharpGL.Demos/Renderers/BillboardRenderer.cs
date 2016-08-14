@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
             this.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             //if (this.TargetRenderer == null) { return; }
 

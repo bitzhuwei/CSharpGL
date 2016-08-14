@@ -10,7 +10,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void Render(RenderEventArg arg)
+        public void Render(RenderEventArgs arg)
         {
             if (this.Enabled)
             {

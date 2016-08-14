@@ -103,7 +103,7 @@ namespace CSharpGL
         /// <param name="boundingBox"></param>
         /// <param name="color"></param>
         /// <param name="arg"></param>
-        public static void Render(this IBoundingBox boundingBox, Color color, RenderEventArg arg)
+        public static void Render(this IBoundingBox boundingBox, Color color, RenderEventArgs arg)
         {
             if (renderer == null)
             {

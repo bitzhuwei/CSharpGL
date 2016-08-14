@@ -46,7 +46,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();

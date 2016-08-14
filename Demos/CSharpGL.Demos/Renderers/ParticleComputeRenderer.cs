@@ -56,7 +56,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             float deltaTime = (float)random.NextDouble() * 5;
             time += (float)random.NextDouble() * 5;

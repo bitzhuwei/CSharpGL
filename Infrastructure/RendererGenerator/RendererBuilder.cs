@@ -60,7 +60,7 @@ namespace RendererGenerator
             method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
             method.Name = "DoRender";
             const string arg = "arg";
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(RenderEventArg), arg));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(RenderEventArgs), arg));
             method.Statements.Add(new CodeCommentStatement("mat4 projection = arg.Camera.GetProjectionMat4();"));
             method.Statements.Add(new CodeCommentStatement("mat4 view = arg.Camera.GetViewMat4();"));
             method.Statements.Add(new CodeCommentStatement("mat4 model = mat4.identity();"));

@@ -128,7 +128,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.viewportSwitch.X = this.Location.X;
             this.viewportSwitch.Y = this.Location.Y;

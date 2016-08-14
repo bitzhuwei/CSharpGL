@@ -41,7 +41,7 @@ namespace GridViewer
                 BindTextureTarget.Texture1D, this.codedColorSampler.Id, OpenGL.GL_TEXTURE0));
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMat4());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMat4());

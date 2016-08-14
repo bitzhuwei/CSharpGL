@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             this.raycastRenderer.SetUniform("MVP", mvp);
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             int[] viewport = OpenGL.GetViewport();
             if (this.width != viewport[2] || this.height != viewport[3])

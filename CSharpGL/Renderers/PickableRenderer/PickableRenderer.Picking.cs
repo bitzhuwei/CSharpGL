@@ -75,7 +75,7 @@ namespace CSharpGL
         /// <param name="y"></param>
         /// <returns></returns>
         public PickedGeometry GetPickedGeometry(
-            RenderEventArg arg,
+            RenderEventArgs arg,
             uint stageVertexId,
             int x, int y)
         {

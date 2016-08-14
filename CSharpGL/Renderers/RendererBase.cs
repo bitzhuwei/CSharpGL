@@ -98,7 +98,7 @@ namespace CSharpGL
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        public void Render(RenderEventArg arg)
+        public void Render(RenderEventArgs arg)
         {
             if (this.Enabled)
             {
@@ -112,7 +112,7 @@ namespace CSharpGL
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        protected abstract void DoRender(RenderEventArg arg);
+        protected abstract void DoRender(RenderEventArgs arg);
 
 
         #region IDisposable Members

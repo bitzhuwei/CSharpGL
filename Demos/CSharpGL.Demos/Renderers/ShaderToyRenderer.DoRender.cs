@@ -41,7 +41,7 @@ namespace CSharpGL.Demos
 
         DateTime lastTime;
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             // setup uniforms
             var now = DateTime.Now;

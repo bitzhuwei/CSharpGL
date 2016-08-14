@@ -67,7 +67,7 @@ namespace GridViewer
             this.colorBufferPtr = this.bufferable.GetProperty(QuadStripColoredModel.color, null);
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("renderWireframe", false);
             base.DoRender(arg);

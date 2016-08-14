@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
             this.PickableRenderer.Initialize();
         }
 
-        protected override void DoRender(RenderEventArg arg)
+        protected override void DoRender(RenderEventArgs arg)
         {
             this.Highlighter.Render(arg);
             this.PickableRenderer.Render(arg);

@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     class OneIndexLineInPolygonSearcher : OneIndexLineSearcher
     {
-        internal override uint[] Search(RenderEventArg arg,
+        internal override uint[] Search(RenderEventArgs arg,
             int x, int y,
             RecognizedPrimitiveIndex lastIndexId,
             OneIndexRenderer modernRenderer)

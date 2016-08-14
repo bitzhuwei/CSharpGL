@@ -46,7 +46,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point
