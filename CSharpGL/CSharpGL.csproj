@@ -502,7 +502,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="0Foundations\DataStructrues\FullDictionary.cs" />
     <Compile Include="0Foundations\Utilities\RectangleHelper.cs" />
-    <Compile Include="0Foundations\Utilities\Save2Picture.cs" />
+    <Compile Include="0Foundations\Utilities\ScreenShot.cs" />
     <Compile Include="0Foundations\Utilities\ArrayHelper.cs" />
     <Compile Include="0Foundations\Utilities\CurrentOS.cs" />
     <Compile Include="0Foundations\Utilities\FloatHelper.cs" />
@@ -533,6 +533,7 @@
     <EmbeddedResource Include="Resources\BoundingBox.vert" />
     <EmbeddedResource Include="Resources\SquareRenderer.frag" />
     <EmbeddedResource Include="Resources\SquareRenderer.vert" />
+    <None Include="Resources\readme.md" />
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>
