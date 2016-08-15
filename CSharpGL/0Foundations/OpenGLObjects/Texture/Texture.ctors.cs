@@ -6,10 +6,13 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// Texture.
+    /// </summary>
     public partial class Texture
     {
         /// <summary>
-        /// 
+        /// Texture.
         /// </summary>
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
@@ -27,7 +30,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Texture.
         /// </summary>
         /// <param name="bitmap"></param>
         /// <param name="samplerBuilder"></param>
@@ -39,7 +42,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Texture.
         /// </summary>
         /// <param name="imageBuilder"></param>
         /// <param name="parameters"></param>
@@ -54,7 +57,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Texture.
         /// </summary>
         /// <param name="bitmap"></param>
         /// <param name="parameters"></param>

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -267,9 +267,10 @@ namespace CSharpGL.Demos
                 {
                     lock (this.synObj)
                     {
-                        Save2PictureHelper.Save2Picture(0, 0,
-                            this.glCanvas1.Width, this.glCanvas1.Height,
-                            dlgSaveFile.FileName);
+                        string filename = dlgSaveFile.FileName;
+                        Bitmap bitmap = Save2PictureHelper.ScreenShot(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                        bitmap.Save(filename);
+                        Process.Start("explorer", "/select, " + filename);
                     }
                 }
             }

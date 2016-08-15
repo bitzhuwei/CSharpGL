@@ -13,6 +13,7 @@ namespace CSharpGL
     {
         /// <summary>
         /// 像DOS的树状展示文件夹结构一样展示树结构。
+        /// Display tree similar to 'tree' command in DOS.
         /// </summary>
         /// <param name="chunk"></param>
         /// <returns></returns>

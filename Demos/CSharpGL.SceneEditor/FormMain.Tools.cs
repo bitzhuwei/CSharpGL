@@ -39,7 +39,8 @@ namespace CSharpGL.SceneEditor
             if (dlgSaveFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string filename = dlgSaveFile.FileName;
-                Save2PictureHelper.Save2Picture(0, 0, glCanvas1.Width, glCanvas1.Height, filename);
+                Bitmap bitmap = Save2PictureHelper.ScreenShot(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                bitmap.Save(filename);
                 Process.Start("explorer", "/select, " + filename);
             }
         }
