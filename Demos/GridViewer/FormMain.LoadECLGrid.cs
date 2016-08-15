@@ -101,10 +101,12 @@ namespace GridViewer
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
                 this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
+                this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
+                // refresh objects state in scene.
+                this.scientificCanvas.Scene.Start(1);
+                // render scene to this canvas.
                 this.scientificCanvas.Invalidate();
 
-                this.RefreshScene(this.scientificCanvas.Scene, 0);
-                this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
             }
             catch (Exception ex)
             {

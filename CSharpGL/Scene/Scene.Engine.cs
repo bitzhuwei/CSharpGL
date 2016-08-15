@@ -9,6 +9,12 @@ namespace CSharpGL
     public partial class Scene
     {
 
+        /// <summary>
+        /// how many times should this engine run?
+        /// <para>0 means endless.</para>
+        /// </summary>
+        private int maxCycle = 0;
+        private int currentCycle;
         private bool running = false;
 
         /// <summary>
@@ -31,7 +37,10 @@ namespace CSharpGL
         /// <summary>
         /// start running.
         /// </summary>
-        public void Start()
+        /// <param name="maxCycle">
+        /// how many times should this engine run?
+        /// <para>0 means endless.</para></param>
+        public void Start(int maxCycle = 0)
         {
             if (this.running) { return; }
 
@@ -42,6 +51,8 @@ namespace CSharpGL
                 timer.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
             }
 
+            this.currentCycle = 0;
+            this.maxCycle = maxCycle;
             timer.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
             this.running = true;
         }
@@ -63,9 +74,18 @@ namespace CSharpGL
 
         private void Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
-            foreach (var item in this.objectList)
+            if (this.maxCycle <= 0// endless
+                || this.currentCycle < this.maxCycle)// not reached last cycle yet
             {
-                item.Update(interval);
+                foreach (var item in this.objectList)
+                {
+                    item.Update(interval);
+                }
+                this.currentCycle++;
+            }
+            else
+            {
+                this.Stop();
             }
         }
     }

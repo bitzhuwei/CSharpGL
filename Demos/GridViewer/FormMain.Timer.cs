@@ -22,15 +22,5 @@ namespace GridViewer
 
         }
 
-        private void RefreshScene(Scene scene, double interval)
-        {
-            foreach (var sceneObject in scene.ObjectList)
-            {
-                foreach (var obj in sceneObject)
-                {
-                    obj.Update(interval);
-                }
-            }
-        }
     }
 }
