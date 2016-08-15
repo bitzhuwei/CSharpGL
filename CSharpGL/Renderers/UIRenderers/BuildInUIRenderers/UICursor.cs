@@ -38,7 +38,7 @@ namespace CSharpGL
                     new Padding(0, 0, 0, 0), size, -Math.Max(size.Width, size.Height), Math.Max(size.Width, size.Height))
         {
             this.FocalPoint = focalPoint;
-            SquareRenderer renderer = SquareRenderer.Create(cursorBitmap);
+            TextureRenderer renderer = TextureRenderer.Create(cursorBitmap);
             renderer.SwitchList.Add(new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             this.Renderer = renderer;
         }

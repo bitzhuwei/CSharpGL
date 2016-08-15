@@ -23,12 +23,10 @@ namespace CSharpGL
         /// <param name="zFar"></param>
         public UIAxis(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
-            System.Drawing.Size size, int zNear, int zFar)
+            System.Drawing.Size size, int zNear, int zFar, int partCount = 24)
             : base(anchor, margin, size, zNear, zFar)
         {
-            //PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
-            //PickableRenderer renderer = new PickableRenderer(new Axis(), shaderCodes, map, "position");
-            AxisRenderer renderer = AxisRenderer.Create(24);
+            AxisRenderer renderer = AxisRenderer.Create(partCount);
 
             this.Renderer = renderer;
         }

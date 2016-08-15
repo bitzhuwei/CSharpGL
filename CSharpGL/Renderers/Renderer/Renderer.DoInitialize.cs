@@ -26,7 +26,7 @@ namespace CSharpGL
             foreach (var item in propertyNameMap)
             {
                 PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
-                    item.nameInIBufferable, item.VarNameInShader);
+                    item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", this.bufferable)); }
                 propertyBufferPtrs[index++] = bufferPtr;
             }

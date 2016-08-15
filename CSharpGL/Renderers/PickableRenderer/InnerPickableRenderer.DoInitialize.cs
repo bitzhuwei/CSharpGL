@@ -21,7 +21,7 @@ namespace CSharpGL
             foreach (var item in propertyNameMap)
             {
                 PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
-                    item.nameInIBufferable, item.VarNameInShader);
+                    item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(); }
                 propertyBufferPtrs[index++] = bufferPtr;
             }
@@ -32,10 +32,10 @@ namespace CSharpGL
             foreach (var item in propertyNameMap)
             {
                 PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
-                    item.nameInIBufferable, item.VarNameInShader);
+                    item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(); }
 
-                if (item.nameInIBufferable == positionNameInIBufferable)
+                if (item.NameInIBufferable == positionNameInIBufferable)
                 {
                     this.positionBufferPtr = new PropertyBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader

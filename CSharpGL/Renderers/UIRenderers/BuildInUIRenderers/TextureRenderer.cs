@@ -7,13 +7,13 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Renders an square with texture.
+    /// Renders a bitmap in a squre.
     /// </summary>
-    class SquareRenderer : PickableRenderer
+    class TextureRenderer : PickableRenderer
     {
-        private string cursorBitmap;
+        private string bitmapFilename;
 
-        public static SquareRenderer Create(string cursorBitmap = "")
+        public static TextureRenderer Create(string bitmapFilename = "")
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
@@ -24,12 +24,12 @@ namespace CSharpGL
             map.Add("in_Position", Square.strPosition);
             map.Add("in_TexCoord", Square.strTexCoord);
             var model = new Square();
-            var renderer = new SquareRenderer(model, shaderCodes, map, Square.strPosition);
-            renderer.cursorBitmap = cursorBitmap;
+            var renderer = new TextureRenderer(model, shaderCodes, map, Square.strPosition);
+            renderer.bitmapFilename = bitmapFilename;
             return renderer;
         }
 
-        private SquareRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private TextureRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         { }
@@ -39,10 +39,10 @@ namespace CSharpGL
             base.DoInitialize();
 
             Bitmap bitmap;
-            if (string.IsNullOrEmpty(this.cursorBitmap))
+            if (string.IsNullOrEmpty(this.bitmapFilename))// display a cursor as default.
             { bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\cursor_gold.png"); }
             else
-            { bitmap = new Bitmap(this.cursorBitmap); }
+            { bitmap = new Bitmap(this.bitmapFilename); }
             var sampler = new Texture(bitmap);
             sampler.Initialize();
             bitmap.Dispose();

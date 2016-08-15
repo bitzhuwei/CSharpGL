@@ -119,7 +119,7 @@
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\Renderer\IModelTransform.cs" />
     <Compile Include="Renderers\Renderer\ModelTransform.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\SquareRenderer.cs" />
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
