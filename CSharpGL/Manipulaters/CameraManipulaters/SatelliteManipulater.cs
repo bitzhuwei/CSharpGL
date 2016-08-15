@@ -123,7 +123,7 @@ namespace CSharpGL
         {
             this.camera.MouseWheel(e.Delta);
 
-            if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
             { this.canvas.Invalidate(); }
         }
 
@@ -195,7 +195,7 @@ namespace CSharpGL
                 this.up = up;
                 this.lastPosition = e.Location;
 
-                if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+                if (this.canvas.RenderTrigger == RenderTrigger.Manual)
                 { this.canvas.Invalidate(); }
             }
         }

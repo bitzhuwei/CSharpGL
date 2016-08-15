@@ -21,6 +21,7 @@ namespace CSharpGL
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
+        /// <param name="partCount">24 as default.</param>
         public UIAxis(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar, int partCount = 24)

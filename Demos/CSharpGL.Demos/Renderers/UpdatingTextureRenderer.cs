@@ -36,12 +36,12 @@ namespace CSharpGL.Demos
             {
                 graphics.Clear(Color.Red);
             }
-            var sampler = new Texture(bitmap);
-            sampler.Initialize();
+            var texture = new Texture(bitmap);
+            texture.Initialize();
             bitmap.Dispose();
-            this.texture = sampler;
+            this.texture = texture;
             this.SetUniform("tex", new samplerValue(BindTextureTarget.Texture2D,
-                sampler.Id, OpenGL.GL_TEXTURE0));
+                texture.Id, OpenGL.GL_TEXTURE0));
         }
 
         public void UpdateTextureContent(Bitmap bitmap)

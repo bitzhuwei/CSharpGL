@@ -8,8 +8,8 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// Supports layout UI element in OpenGL canvas.
-    /// 实现在OpenGL窗口中的UI布局
+    /// Supports layout UI element in an OpenGL canvas.
+    /// 实现在OpenGL画布上的UI布局
     /// </summary>
     public interface ILayout : ITreeNode<UIRenderer>
     {

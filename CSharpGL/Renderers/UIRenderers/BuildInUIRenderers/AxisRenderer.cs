@@ -19,8 +19,8 @@ namespace CSharpGL
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.UIAxis.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
-            map.Add("in_Position", "position");
-            map.Add("in_Color", "color");
+            map.Add("in_Position", Axis.strPosition);
+            map.Add("in_Color", Axis.strColor);
             var model = new Axis(partCount);
             var renderer = new AxisRenderer(model, shaderCodes, map, "position");
             return renderer;

@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Renders a bitmap in a squre.
+    /// Renders a bitmap in a square.
     /// </summary>
     class TextureRenderer : PickableRenderer
     {
@@ -43,11 +43,11 @@ namespace CSharpGL
             { bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\cursor_gold.png"); }
             else
             { bitmap = new Bitmap(this.bitmapFilename); }
-            var sampler = new Texture(bitmap);
-            sampler.Initialize();
+            var texture = new Texture(bitmap);
+            texture.Initialize();
             bitmap.Dispose();
             this.SetUniform("tex", new samplerValue(BindTextureTarget.Texture2D,
-                sampler.Id, OpenGL.GL_TEXTURE0));
+                texture.Id, OpenGL.GL_TEXTURE0));
         }
     }
 }

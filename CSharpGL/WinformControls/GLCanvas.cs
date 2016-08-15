@@ -197,7 +197,7 @@ namespace CSharpGL
             OpenGL.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
                 20.0f, this.fullname);
-            if (this.RenderTrigger == RenderTriggers.TimerBased)
+            if (this.RenderTrigger == RenderTrigger.TimerBased)
             {
                 OpenGL.DrawText(10,
                     this.Height - 20 - 1, Color.Gold, "Courier New",// "Courier New",
@@ -309,20 +309,20 @@ namespace CSharpGL
         /// The render trigger.
         /// </value>
         [Description("The render trigger - determines when rendering will occur."), Category("CSharpGL")]
-        public RenderTriggers RenderTrigger
+        public RenderTrigger RenderTrigger
         {
             get
             {
-                return this.redrawTimer.Enabled ? RenderTriggers.TimerBased : RenderTriggers.Manual;
+                return this.redrawTimer.Enabled ? RenderTrigger.TimerBased : RenderTrigger.Manual;
             }
             set
             {
                 switch (value)
                 {
-                    case RenderTriggers.TimerBased:
+                    case RenderTrigger.TimerBased:
                         this.redrawTimer.Enabled = true;
                         break;
-                    case RenderTriggers.Manual:
+                    case RenderTrigger.Manual:
                         this.redrawTimer.Enabled = false;
                         break;
                     default:

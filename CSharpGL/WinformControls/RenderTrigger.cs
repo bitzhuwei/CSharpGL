@@ -11,7 +11,7 @@ namespace CSharpGL
     /// The RenderingMode - specifies how and when rendering 
     /// will occur in an OpenGL control.
     /// </summary>
-    public enum RenderTriggers
+    public enum RenderTrigger
     {
         /// <summary>
         /// The Default RenderingMode, TimerBased. This mode means that

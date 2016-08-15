@@ -645,7 +645,7 @@
             this.scientificCanvas.Location = new System.Drawing.Point(0, 0);
             this.scientificCanvas.Name = "scientificCanvas";
             this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTriggers.Manual;
+            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTrigger.Manual;
             this.scientificCanvas.ShowSystemCursor = true;
             this.scientificCanvas.Size = new System.Drawing.Size(638, 523);
             this.scientificCanvas.TabIndex = 0;

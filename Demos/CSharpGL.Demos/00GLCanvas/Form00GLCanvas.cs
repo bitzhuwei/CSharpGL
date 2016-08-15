@@ -32,11 +32,11 @@ namespace CSharpGL.Demos
             {
                 switch (this.glCanvas1.RenderTrigger)
                 {
-                    case RenderTriggers.TimerBased:
-                        this.glCanvas1.RenderTrigger = RenderTriggers.Manual;
+                    case RenderTrigger.TimerBased:
+                        this.glCanvas1.RenderTrigger = RenderTrigger.Manual;
                         break;
-                    case RenderTriggers.Manual:
-                        this.glCanvas1.RenderTrigger = RenderTriggers.TimerBased;
+                    case RenderTrigger.Manual:
+                        this.glCanvas1.RenderTrigger = RenderTrigger.TimerBased;
                         break;
                     default:
                         break;
