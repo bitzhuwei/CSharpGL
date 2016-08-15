@@ -20,5 +20,26 @@ namespace CSharpGL
             vec4 col3 = matrix[3];
             return new vec3(col3.x, col3.y, col3.z);
         }
+
+        /// <summary>
+        /// Gets scale factor in specified <paramref name="matrix"/>.
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public static vec3 GetScale(this mat4 matrix)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets rotate factor in specified <paramref name="matrix"/>.
+        /// <para>vec4.w means angle, (vec4.x, vec4.y, vec4.z) means rotation axis.</para>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public static vec4 GetRotate(this mat4 matrix)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

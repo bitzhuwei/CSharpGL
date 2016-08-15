@@ -262,7 +262,6 @@
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Components\Component.cs" />
     <Compile Include="Scene\Scene.cs" />
-    <Compile Include="Scene\SceneObject\SceneObject.RelativeTransform.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.IEnumerable.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.IRenderable.cs" />
