@@ -8,10 +8,7 @@ namespace CSharpGL.SceneEditor.Scripts
 {
     class Planet : ScriptComponent
     {
-        private TransformScript transform;
         private BuildInRenderer renderer;
-
-        //private TransformComponent transform;
         private double currentAngle;
 
         /// <summary>
@@ -26,7 +23,6 @@ namespace CSharpGL.SceneEditor.Scripts
 
         protected override void DoInitialize()
         {
-            this.transform = this.BindingObject.GetScript<TransformScript>();
             this.renderer = this.BindingObject.Renderer as BuildInRenderer;
         }
 
@@ -34,13 +30,13 @@ namespace CSharpGL.SceneEditor.Scripts
         {
             double deltaAngle = elapsedTime * Math.PI * 2 / this.RevolutionPeriod;
             double newAngle = this.currentAngle + deltaAngle;
-            this.transform.Position = new vec3(
+            var position = new vec3(
                 (float)(this.RevolutionRadius * Math.Cos(newAngle)),
                 0,
                 (float)(this.RevolutionRadius * Math.Sin(newAngle)));
             this.currentAngle = newAngle;
 
-            this.renderer.ModelMatrix = this.transform.GetModelMatrix();
+            this.renderer.ModelMatrix = glm.translate(mat4.identity(), position);
         }
 
     }
