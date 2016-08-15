@@ -40,19 +40,17 @@ namespace CSharpGL.Demos
             //MovableRenderer movableRenderer;
             {
                 movableRenderer = MovableRenderer.Create(new Teapot());
-                movableRenderer.Scale = 0.1f;
                 //movableRenderer.Initialize();
+                movableRenderer.Scale = 0.1f;
                 var obj = new SceneObject();
                 obj.Renderer = movableRenderer;
-                obj.ScriptList.Add(new TransformScript());
                 this.scene.ObjectList.Add(obj);
             }
             {
                 BillboardRenderer billboardRenderer = BillboardRenderer.GetRenderer(new BillboardModel());
-                billboardRenderer.Initialize();
+                //billboardRenderer.Initialize();
                 var obj = new SceneObject();
                 obj.Renderer = billboardRenderer;
-                //obj.ScriptList.Add(new TransformScript());
                 var updatePosition = new UpdateBillboardPosition(movableRenderer);
                 obj.ScriptList.Add(updatePosition);
                 this.scene.ObjectList.Add(obj);

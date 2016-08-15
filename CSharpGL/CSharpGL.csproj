@@ -153,9 +153,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
-    <Compile Include="Scene\Components\TransformScript.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneObject\SceneObjectHelper.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.IDisposable.cs" />
