@@ -14,16 +14,15 @@ namespace GridViewer
     public partial class ScientificCanvas
     {
 
-        public UIColorPaletteRenderer uiColorPalette { get; private set; }
+        /// <summary>
+        /// OpoenGL UI: color palette.
+        /// </summary>
+        public UIColorPaletteRenderer ColorPalette { get; private set; }
 
-        public UIAxis uiAxis { get; private set; }
+        /// <summary>
+        /// OpenGL UI: axis.
+        /// </summary>
+        public UIAxis Axis { get; private set; }
 
-        public Texture CodedColorSampler
-        {
-            get
-            {
-                return this.uiColorPalette.Sampler;
-            }
-        }
     }
 }

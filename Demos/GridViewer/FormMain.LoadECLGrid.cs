@@ -39,7 +39,7 @@ namespace GridViewer
                 double axisMin, axisMax, step;
                 ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
-                CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.CodedColorSampler);
+                CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
                 scientificRenderer.Initialize();
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
@@ -61,7 +61,7 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScriptComponent(mainObj, gbp, this.scientificCanvas.uiColorPalette);
+                    var script = new ScientificModelScriptComponent(mainObj, gbp, this.scientificCanvas.ColorPalette);
                     mainObj.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;
@@ -101,7 +101,7 @@ namespace GridViewer
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
                 this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
-                this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
+                this.scientificCanvas.ColorPalette.SetCodedColor(axisMin, axisMax, step);
                 // refresh objects state in scene.
                 this.scientificCanvas.Scene.Start(1);
                 // render scene to this canvas.

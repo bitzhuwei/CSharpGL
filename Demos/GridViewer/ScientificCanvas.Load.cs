@@ -28,7 +28,7 @@ namespace GridViewer
                     new Padding(10, 10, 10, 10), new Size(128, 128), -100, 100);
                 uiAxis.Initialize();
                 uiAxis.SwitchList.Add(new ClearColorSwitch());
-                this.uiAxis = uiAxis;
+                this.Axis = uiAxis;
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }
             {
@@ -37,7 +37,7 @@ namespace GridViewer
                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
                     new Padding(148, 10, 60, 10 + 40), new Size(400, 40), -100, 100);
                 uiColorPalette.Initialize();
-                this.uiColorPalette = uiColorPalette;
+                this.ColorPalette = uiColorPalette;
                 this.Scene.UIRoot.Children.Add(uiColorPalette);
             }
             this.Resize += this.Scene.Resize;
