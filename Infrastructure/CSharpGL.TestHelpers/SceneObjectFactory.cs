@@ -26,8 +26,6 @@ namespace CSharpGL
             renderer.Initialize();
 
             var obj = new SceneObject();
-            obj.ScriptList.Add(new TransformScript());
-            obj.ScriptList.Add(new BuildInTransformScript());
             obj.Renderer = renderer;
             obj.Name = string.Format("{0}", buildIn);
 

@@ -28,14 +28,14 @@ namespace GridViewer
                     for (int gridIndex = 0; gridIndex < dimSize; gridIndex++)
                     {
                         this.DataSource.InvertIJK(gridIndex, out I, out J, out K);
-                        array[gridIndex].FLT = this.DataSource.TranslateMatrix + this.DataSource.PointFLT(I, J, K);
-                        array[gridIndex].FRT = this.DataSource.TranslateMatrix + this.DataSource.PointFRT(I, J, K);
-                        array[gridIndex].BRT = this.DataSource.TranslateMatrix + this.DataSource.PointBRT(I, J, K);
-                        array[gridIndex].BLT = this.DataSource.TranslateMatrix + this.DataSource.PointBLT(I, J, K);
-                        array[gridIndex].FLB = this.DataSource.TranslateMatrix + this.DataSource.PointFLB(I, J, K);
-                        array[gridIndex].FRB = this.DataSource.TranslateMatrix + this.DataSource.PointFRB(I, J, K);
-                        array[gridIndex].BRB = this.DataSource.TranslateMatrix + this.DataSource.PointBRB(I, J, K);
-                        array[gridIndex].BLB = this.DataSource.TranslateMatrix + this.DataSource.PointBLB(I, J, K);
+                        array[gridIndex].FLT = this.DataSource.Position + this.DataSource.PointFLT(I, J, K);
+                        array[gridIndex].FRT = this.DataSource.Position + this.DataSource.PointFRT(I, J, K);
+                        array[gridIndex].BRT = this.DataSource.Position + this.DataSource.PointBRT(I, J, K);
+                        array[gridIndex].BLT = this.DataSource.Position + this.DataSource.PointBLT(I, J, K);
+                        array[gridIndex].FLB = this.DataSource.Position + this.DataSource.PointFLB(I, J, K);
+                        array[gridIndex].FRB = this.DataSource.Position + this.DataSource.PointFRB(I, J, K);
+                        array[gridIndex].BRB = this.DataSource.Position + this.DataSource.PointBRB(I, J, K);
+                        array[gridIndex].BLB = this.DataSource.Position + this.DataSource.PointBLB(I, J, K);
                     }
                 }
                 ptr = buffer.GetBufferPtr() as PropertyBufferPtr;

@@ -43,12 +43,10 @@ namespace GridViewer
                 scientificRenderer.Initialize();
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
+                boundedRenderer.ModelMatrix = glm.translate(mat4.identity(),
+                    -grid.DataSource.Position);
                 var mainObj = new SceneObject();
                 mainObj.Renderer = boundedRenderer;
-                var transformScript = new TransformScript();
-                transformScript.Position = -grid.DataSource.TranslateMatrix;
-                mainObj.ScriptList.Add(transformScript);
-                mainObj.ScriptList.Add(new BuildInTransformScript());
                 this.scientificCanvas.Scene.ObjectList.Add(mainObj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 var mainNode = new SceneObjectTreeNode(mainObj);
@@ -101,7 +99,7 @@ namespace GridViewer
                 }
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
-                this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
+                this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.Invalidate();
 

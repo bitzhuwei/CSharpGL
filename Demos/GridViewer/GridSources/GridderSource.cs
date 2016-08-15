@@ -151,12 +151,12 @@ namespace SimLab.GridSource
             mat4 identityMat = mat4.identity();
             vec3 center = this.SourceActiveBounds.Center;
             //矩形三角形移动到中心点
-            this.TranslateMatrix = -center;
+            this.Position = -center;
 
-            vec3 newcenter = this.TranslateMatrix * center;
+            vec3 newcenter = this.Position * center;
             //System.Console.WriteLine(center);
-            vec3 destMin = this.TranslateMatrix * this.SourceActiveBounds.Min;
-            vec3 destMax = this.TranslateMatrix * this.SourceActiveBounds.Max;
+            vec3 destMin = this.Position * this.SourceActiveBounds.Min;
+            vec3 destMax = this.Position * this.SourceActiveBounds.Max;
 
             //变换后的三维矩形六面体
             this.TransformedActiveBounds = new Rectangle3D(destMin, destMax);
@@ -251,7 +251,7 @@ namespace SimLab.GridSource
         /// <summary>
         /// SourceActiveBounds到DestActiveBounds的
         /// </summary>
-        public vec3 TranslateMatrix { get; internal set; }
+        public vec3 Position { get; internal set; }
 
         /// <summary>
         /// 中心点在坐标原点

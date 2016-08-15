@@ -96,9 +96,9 @@ namespace GridViewer
                 if (obj != null)
                 {
                     var renderer = obj.Renderer as BoundedRenderer;
+                    vec3 position = renderer.ModelMatrix.GetTranslate();
                     IBoundingBox box = renderer.BoxRenderer;
-                    TransformScript transform = obj.GetScript<TransformScript>();
-                    IBoundingBox translatedBox = new BoundingBox(box.MinPosition + transform.Position, box.MaxPosition + transform.Position);
+                    IBoundingBox translatedBox = new BoundingBox(box.MinPosition + position, box.MaxPosition + position);
                     translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);
                 }
                 this.scientificCanvas.Invalidate();
