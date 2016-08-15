@@ -9,7 +9,7 @@ namespace CSharpGL.SceneEditor.Scripts
     class Satellite : ScriptComponent
     {
 
-        private TransformScript planetTransform;
+        private IModelTransform planetTransform;
         private double currentAngle;
         private BuildInRenderer renderer;
 
@@ -26,6 +26,7 @@ namespace CSharpGL.SceneEditor.Scripts
         protected override void DoInitialize()
         {
             this.renderer = this.BindingObject.Renderer as BuildInRenderer;
+            this.planetTransform = this.BindingObject.Parent.Renderer as IModelTransform;
         }
 
         protected override void DoUpdate(double elapsedTime)
@@ -36,7 +37,7 @@ namespace CSharpGL.SceneEditor.Scripts
                 (float)(this.RevolutionRadius * Math.Cos(newAngle)),
                 0,
                 (float)(this.RevolutionRadius * Math.Sin(newAngle)))
-                + this.planetTransform.Position;
+                + this.planetTransform.ModelMatrix.GetTranslate();
             this.currentAngle = newAngle;
 
             this.renderer.ModelMatrix = glm.translate(mat4.identity(), position);
