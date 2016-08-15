@@ -45,10 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IFontTexture\FontTexture\FontBitmapHelper.2_PrepareFinalBitmapSize.cs.png" />
-    <Content Include="IFontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs.png" />
-    <Content Include="IFontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs.png" />
-    <Content Include="IFontTexture\FontTexture\readme.md" />
+    <Content Include="FontTexture\FontTexture\FontBitmapHelper.2_PrepareFinalBitmapSize.cs.png" />
+    <Content Include="FontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs.png" />
+    <Content Include="FontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs.png" />
+    <Content Include="FontTexture\FontTexture\readme.md" />
     <Content Include="Renderers\IBufferables\AxisModel2.jpg" />
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
@@ -95,26 +95,26 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.ctors.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageBuilders\ImageBuilder.cs" />
-    <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
+    <Compile Include="0Foundations\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
       <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmap.IDisposable.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmap.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.2_PrepareFinalBitmapSize.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.0_.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.4_RetargetGlyphRectangleInwards.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontTexture.Default.cs" />
-    <Compile Include="IFontTexture\IFontTexture.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontTexture.IDisposable.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontTexture.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontTextureHelper.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmap.IDisposable.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmap.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmapHelper.2_PrepareFinalBitmapSize.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmapHelper.0_.cs" />
+    <Compile Include="FontTexture\FontTexture\FontBitmapHelper.4_RetargetGlyphRectangleInwards.cs" />
+    <Compile Include="FontTexture\FontTexture\FontTexture.Default.cs" />
+    <Compile Include="FontTexture\IFontTexture.cs" />
+    <Compile Include="FontTexture\FontTexture\FontTexture.IDisposable.cs" />
+    <Compile Include="FontTexture\FontTexture\FontTexture.cs" />
+    <Compile Include="FontTexture\FontTexture\FontTextureHelper.cs" />
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\Renderer\IModelTransform.cs" />
@@ -255,13 +255,13 @@
     <Compile Include="Renderers\PickableRenderer\InnerPickableRenderer.MovePositions.cs" />
     <Compile Include="Renderers\PickableRenderer\InnerPickableRenderer.Picking.cs" />
     <Compile Include="Renderers\PickableRenderer\InnerPickableRendererFactory.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Components\Component.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.RelativeTransform.cs" />
@@ -299,7 +299,7 @@
     <Compile Include="WinformControls\RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="WinformControls\RenderContexts\RenderContext.IDisposable.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
-    <Compile Include="IFontTexture\GlyphInfo.cs" />
+    <Compile Include="FontTexture\GlyphInfo.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.Property.cs" />
@@ -392,28 +392,28 @@
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec2.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
       <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormSelectType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
       <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\GeometryType.cs" />
@@ -427,8 +427,8 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\PointSpriteSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitch.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\IListEditor`1.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IListEditor`1.cs" />
     <Compile Include="Renderers\IBufferables\IBufferable.cs" />
     <Compile Include="Renderers\PropertyNameMap.cs" />
     <Compile Include="Renderers\ShaderCode.cs" />
@@ -542,8 +542,8 @@
     <Content Include="0Foundations\Maths\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\readme.md" />
     <Content Include="0Foundations\OpenGLAPI\readme.md" />
-    <Content Include="PropertyGrid\TypeConverters\readme.md" />
-    <Content Include="PropertyGrid\UITypeEditors\readme.md" />
+    <Content Include="0Foundations\PropertyGrid\TypeConverters\readme.md" />
+    <Content Include="0Foundations\PropertyGrid\UITypeEditors\readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

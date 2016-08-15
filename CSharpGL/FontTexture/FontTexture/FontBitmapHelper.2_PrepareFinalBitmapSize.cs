@@ -24,13 +24,13 @@ namespace CSharpGL
             int sideLength;
             int maxGlyphHeight = 0;
             {
-                float totalWidth = 0.0f;
+                int totalWidth = 0;
                 foreach (GlyphInfo item in fontBitmap.GlyphInfoDictionary.Values)
                 {
                     totalWidth += item.width + glyphInterval;
                     if (maxGlyphHeight < item.height) { maxGlyphHeight = item.height; }
                 }
-                float area = totalWidth * maxGlyphHeight;
+                int area = totalWidth * maxGlyphHeight;
                 sideLength = (int)Math.Ceiling(Math.Sqrt(area));
                 fontBitmap.GlyphHeight = maxGlyphHeight;
             }
@@ -52,16 +52,19 @@ namespace CSharpGL
                     }
                 }
 
+                // if there is no glyph
+                // or if there is only 1 line of glyph.
                 if (maxWidth < currentX) { maxWidth = currentX; }
 
-                if (currentX > leftMargin)
+                if (currentX > leftMargin)// last line is not finished.
                 {
                     maxHeight = currentY + maxGlyphHeight;
                 }
-                else
+                else// last line is finished and new line is started and new line has no glyph.
                 {
                     maxHeight = currentY;
                 }
+
                 width = maxWidth;
                 height = maxHeight;
             }
