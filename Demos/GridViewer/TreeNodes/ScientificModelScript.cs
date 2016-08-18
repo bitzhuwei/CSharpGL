@@ -9,11 +9,11 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    public class ScientificModelScriptComponent : ScriptComponent
+    public class ScientificModelScript : ScriptComponent
     {
         private GridBlockProperty gridBlockProperty;
         private UIColorPaletteRenderer uiCodedColorBar;
-        public ScientificModelScriptComponent(SceneObject sceneObject, GridBlockProperty property, UIColorPaletteRenderer uiCodedColorBar)
+        public ScientificModelScript(SceneObject sceneObject, GridBlockProperty property, UIColorPaletteRenderer uiCodedColorBar)
             : base(sceneObject)
         {
             this.gridBlockProperty = property;

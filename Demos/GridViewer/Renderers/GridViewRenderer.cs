@@ -10,7 +10,7 @@ namespace GridViewer
     /// <summary>
     /// base renderer for gridview.
     /// </summary>
-    public class GridViewRenderer : Renderer
+    public abstract class GridViewRenderer : Renderer, IModelSize
     {
         /// <summary>
         /// gridview's model.
@@ -23,5 +23,11 @@ namespace GridViewer
         {
             this.Grid = model;
         }
+
+        public abstract float XLength { get; }
+
+        public abstract float YLength { get; }
+
+        public abstract float ZLength { get; }
     }
 }

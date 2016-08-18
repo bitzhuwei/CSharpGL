@@ -85,6 +85,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\GenerateBoxScript.cs" />
     <Compile Include="Geometry\LineIndex.cs" />
     <Compile Include="Geometry\LinePosition.cs" />
     <Compile Include="Geometry\LineTexCoord.cs" />
@@ -156,7 +157,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Models\CatesianGrid\CatesianGrid.cs" />
-    <Compile Include="TreeNodes\ScientificModelScriptComponent.cs" />
+    <Compile Include="TreeNodes\ScientificModelScript.cs" />
     <Compile Include="TreeNodes\PropertyTreeNode.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="Utils\ArrayHelper.cs" />

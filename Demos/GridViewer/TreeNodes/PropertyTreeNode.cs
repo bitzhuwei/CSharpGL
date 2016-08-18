@@ -13,8 +13,8 @@ namespace GridViewer
 {
     public partial class PropertyTreeNode : AbstractTreeNode
     {
-        private ScientificModelScriptComponent scriptComponent;
-        public PropertyTreeNode(ScientificModelScriptComponent scriptComponent)
+        private ScientificModelScript scriptComponent;
+        public PropertyTreeNode(ScientificModelScript scriptComponent)
         {
             this.scriptComponent = scriptComponent;
         }

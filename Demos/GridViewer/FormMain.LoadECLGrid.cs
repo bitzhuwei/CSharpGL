@@ -41,12 +41,11 @@ namespace GridViewer
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
                 CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
                 scientificRenderer.Initialize();
-                var boundedRenderer = new BoundedRenderer(scientificRenderer,
-                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
-                boundedRenderer.ModelMatrix = glm.translate(mat4.identity(),
+                scientificRenderer.ModelMatrix = glm.translate(mat4.identity(),
                     -grid.DataSource.Position);
                 var mainObj = new SceneObject();
-                mainObj.Renderer = boundedRenderer;
+                mainObj.Renderer = scientificRenderer;
+                mainObj.ScriptList.Add(new GenerateBoxScript());
                 this.scientificCanvas.Scene.ObjectList.Add(mainObj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 var mainNode = new SceneObjectTreeNode(mainObj);
@@ -61,7 +60,7 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScriptComponent(mainObj, gbp, this.scientificCanvas.ColorPalette);
+                    var script = new ScientificModelScript(mainObj, gbp, this.scientificCanvas.ColorPalette);
                     mainObj.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;
