@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -19,6 +20,16 @@ namespace CSharpGL
                 if (renderer != null)
                 {
                     renderer.Render(arg);
+                }
+
+                // render objects.
+                if (this.Children.Count > 0)
+                {
+                    var list = this.Children.ToArray();
+                    foreach (var item in list)
+                    {
+                        item.Render(arg);
+                    }
                 }
             }
         }

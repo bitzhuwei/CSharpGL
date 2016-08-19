@@ -17,6 +17,7 @@ namespace CSharpGL
         static OpenGL.glCompileShader glCompileShader;
         static OpenGL.glDeleteShader glDeleteShader;
         static OpenGL.glGetShaderiv glGetShaderiv;
+        static OpenGL.glGetShaderInfoLog glGetShaderInfoLog;
 
         internal Shader()
         {
@@ -27,6 +28,7 @@ namespace CSharpGL
                 glCompileShader = OpenGL.GetDelegateFor<OpenGL.glCompileShader>();
                 glDeleteShader = OpenGL.GetDelegateFor<OpenGL.glDeleteShader>();
                 glGetShaderiv = OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>();
+                glGetShaderInfoLog = OpenGL.GetDelegateFor<OpenGL.glGetShaderInfoLog>();
             }
         }
         /// <summary>
@@ -84,7 +86,7 @@ namespace CSharpGL
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            OpenGL.GetDelegateFor<OpenGL.glGetShaderInfoLog>()(ShaderObject, bufSize, IntPtr.Zero, il);
+            glGetShaderInfoLog(ShaderObject, bufSize, IntPtr.Zero, il);
             string log = il.ToString();
             return log;
         }

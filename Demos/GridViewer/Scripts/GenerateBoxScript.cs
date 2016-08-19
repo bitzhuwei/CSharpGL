@@ -30,6 +30,7 @@ namespace GridViewer
                     //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
                     boxRenderer.ModelMatrix = transform.ModelMatrix;
                 }
+                //boxRenderer.Initialize();
                 boxObj.Renderer = boxRenderer;
                 this.boxRenderer = boxRenderer;
             }
