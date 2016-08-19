@@ -35,8 +35,6 @@ namespace GridViewer
             var map = new PropertyNameMap();
             map.Add("in_Position", WellModel.strPosition);
             var renderer = new WellRenderer(model, shaderCodes, map);
-            renderer.ModelMatrix = model.ModelMatrix;
-            renderer.lengths = model.lengths;
             return renderer;
         }
 
@@ -53,6 +51,14 @@ namespace GridViewer
         {
         }
 
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            var model = this.bufferable as WellModel;
+            this.ModelMatrix = model.ModelMatrix;
+            this.lengths = model.lengths;
+        }
 
         protected override void DoRender(RenderEventArgs arg)
         {

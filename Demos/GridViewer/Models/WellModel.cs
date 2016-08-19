@@ -43,6 +43,7 @@ namespace GridViewer
 
             this.pipeline = pipeline; this.radius = radius;
             this.faceCount = faceCount;
+            this.ModelMatrix = mat4.identity();
         }
 
         public unsafe PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)

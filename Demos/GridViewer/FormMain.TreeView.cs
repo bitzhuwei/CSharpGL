@@ -95,8 +95,8 @@ namespace GridViewer
                 SceneObject obj = node.Tag as SceneObject;
                 if (obj != null)
                 {
-                    var renderer = obj.Renderer as GridViewRenderer;
-                    vec3 position = renderer.ModelMatrix.GetTranslate();
+                    var transform = obj.Renderer as IModelTransform;
+                    vec3 position = transform.ModelMatrix.GetTranslate();
                     GenerateBoxScript script = obj.GetScript<GenerateBoxScript>();
                     IBoundingBox box = script.BoxRenderer;
                     IBoundingBox translatedBox = new BoundingBox(box.MinPosition + position, box.MaxPosition + position);
