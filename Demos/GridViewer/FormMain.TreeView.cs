@@ -95,9 +95,10 @@ namespace GridViewer
                 SceneObject obj = node.Tag as SceneObject;
                 if (obj != null)
                 {
-                    var renderer = obj.Renderer as BoundedRenderer;
+                    var renderer = obj.Renderer as GridViewRenderer;
                     vec3 position = renderer.ModelMatrix.GetTranslate();
-                    IBoundingBox box = renderer.BoxRenderer;
+                    GenerateBoxScript script = obj.GetScript<GenerateBoxScript>();
+                    IBoundingBox box = script.BoxRenderer;
                     IBoundingBox translatedBox = new BoundingBox(box.MinPosition + position, box.MaxPosition + position);
                     translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);
                 }

@@ -36,10 +36,10 @@ namespace GridViewer
         public void Show()
         {
             var sceneObject = this.BindingObject;
-            BoundedRenderer boundedRenderer = sceneObject.Renderer as BoundedRenderer;
-            if (boundedRenderer.Renderer is GridViewRenderer)
+            var renderer = sceneObject.Renderer as GridViewRenderer;
+            if (renderer != null)
             {
-                IUpdateColorPalette grid = (boundedRenderer.Renderer as GridViewRenderer).Grid;
+                IUpdateColorPalette grid = renderer.Grid;
                 UpdateCatesianGrid(grid, this.gridBlockProperty);
             }
             //this.scientificCanvas.Invalidate();

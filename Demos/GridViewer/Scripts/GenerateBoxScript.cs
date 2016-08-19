@@ -11,6 +11,11 @@ namespace GridViewer
     {
         private BoundingBoxRenderer boxRenderer;
 
+        public BoundingBoxRenderer BoxRenderer
+        {
+            get { return boxRenderer; }
+        }
+
         protected override void DoInitialize()
         {
             var boxObj = new SceneObject();
@@ -22,7 +27,8 @@ namespace GridViewer
                 {
                     var transform = this.BindingObject.Renderer as IModelTransform;
                     vec3 position = transform.ModelMatrix.GetTranslate();
-                    boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+                    //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+                    boxRenderer.ModelMatrix = transform.ModelMatrix;
                 }
                 boxObj.Renderer = boxRenderer;
                 this.boxRenderer = boxRenderer;
