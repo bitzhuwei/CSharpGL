@@ -73,7 +73,7 @@ namespace GridViewer
                 //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
                 //this.scene.ViewType = ViewTypes.UserView;
 
-                List<NamedWellRenderer> well3dList;
+                List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> well3dList;
                 try
                 {
                     well3dList = this.CreateWellPipelineRenderers(inputData, grid);
@@ -88,12 +88,23 @@ namespace GridViewer
                     //this.AddWellNodes(gridderNode, this.scene, well3dList);
                     foreach (var item in well3dList)
                     {
-                        var obj = new SceneObject();
-                        obj.Renderer = item;
-                        this.scientificCanvas.Scene.ObjectList.Add(obj);
-                        var node = new TreeNode(item.Name);
-                        node.Tag = obj;
-                        mainNode.Nodes.Add(node);
+                        {
+                            var obj = new SceneObject();
+                            obj.Renderer = item.Item1;
+                            this.scientificCanvas.Scene.ObjectList.Add(obj);
+                            var node = new TreeNode(item.Item1.Name);
+                            node.Tag = obj;
+                            mainNode.Nodes.Add(node);
+                        }
+                        {
+                            var obj = new SceneObject();
+                            obj.Renderer = item.Item2;
+                            obj.ScriptList.Add(new LabelTargetScript(item.Item1));
+                            this.scientificCanvas.Scene.ObjectList.Add(obj);
+                            var node = new TreeNode(item.Item2.Name);
+                            node.Tag = obj;
+                            mainNode.Nodes.Add(node);
+                        }
                     }
                 }
 
@@ -113,7 +124,7 @@ namespace GridViewer
             }
         }
 
-        private List<NamedWellRenderer> CreateWellPipelineRenderers(SimulationInputData inputData, CatesianGrid grid)
+        private List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> CreateWellPipelineRenderers(SimulationInputData inputData, CatesianGrid grid)
         {
             WellSpecsCollection wellSpecsList = inputData.RootDataFile.GetWELSPECS();
             WellCompatCollection wellCompatList = inputData.RootDataFile.GetCOMPDAT();

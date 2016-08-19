@@ -12,6 +12,13 @@ namespace GridViewer
     class HexahedronGridWellPipelineBuilder : WellPipelineBuilder
     {
         private CatesianGrid grid;
+        private Font labelFont = new Font("Arial", 64.0f, FontStyle.Regular, GraphicsUnit.Pixel);
+
+        public Font LabelFont
+        {
+            get { return labelFont; }
+            set { labelFont = value; }
+        }
 
         public HexahedronGridWellPipelineBuilder(CatesianGrid grid)
         {
@@ -19,7 +26,7 @@ namespace GridViewer
             this.grid = grid;
         }
 
-        protected override NamedWellRenderer Convert(TracyEnergy.Simba.Data.Keywords.impl.WellSpecs wellspec, TracyEnergy.Simba.Data.Keywords.impl.WellCompatCollection wellCompatList)
+        protected override CSharpGL.Tuple<WellRenderer, LabelRenderer> Convert(TracyEnergy.Simba.Data.Keywords.impl.WellSpecs wellspec, TracyEnergy.Simba.Data.Keywords.impl.WellCompatCollection wellCompatList)
         {
             int locI = wellspec.Li;
             int locJ = wellspec.Lj;
@@ -228,8 +235,14 @@ namespace GridViewer
                 }//end for
 
                 var model = new WellModel(wellPath, wellRadius);
-                NamedWellRenderer renderer = NamedWellRenderer.Create(model, pipeColor, wellspec.WellName, 12);
-                return renderer;
+                //NamedWellRenderer renderer = NamedWellRenderer.Create(model, pipeColor, wellspec.WellName, 12);
+                WellRenderer wellRenderer = WellRenderer.Create(model);
+                wellRenderer.WellColor = pipeColor;
+                LabelRenderer labelRenderer = new LabelRenderer(64, 32,
+                    labelFont.GetFontBitmap("0123456789.").GetFontTexture());
+                //labelRenderer.WorldPosition
+                var result = new CSharpGL.Tuple<WellRenderer, LabelRenderer>(wellRenderer, labelRenderer);
+                return result;
             }
             #endregion
         }

@@ -85,6 +85,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="LabelTargetScript.cs" />
     <Compile Include="Scripts\GenerateBoxScript.cs" />
     <Compile Include="Geometry\LineIndex.cs" />
     <Compile Include="Geometry\LinePosition.cs" />
@@ -136,7 +137,6 @@
     <Compile Include="Renderers\CatesianGridRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColor.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColorsHelper.cs" />
-    <Compile Include="Renderers\NamedWellRenderer.cs" />
     <Compile Include="Renderers\WellRenderer.cs" />
     <Compile Include="Renderers\GridViewRenderer.cs" />
     <Compile Include="TreeNodes\AbstractTreeNode.cs" />

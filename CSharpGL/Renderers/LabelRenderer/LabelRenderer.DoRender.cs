@@ -17,10 +17,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (worldPositionRecord.IsMarked())
+            if (this.modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
-                worldPositionRecord.CancelMark();
+                this.SetUniform("billboardCenter_worldspace",
+                    this.ModelMatrix.GetTranslate());
+                this.modelMatrixRecord.CancelMark();
             }
             if (labelHeightRecord.IsMarked())
             {

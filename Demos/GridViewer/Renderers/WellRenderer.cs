@@ -69,19 +69,10 @@ namespace GridViewer
         }
 
         private vec3 lengths;
-        public float XLength
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public float XLength { get { return lengths.x; } }
 
-        public float YLength
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public float YLength { get { return lengths.y; } }
 
-        public float ZLength
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public float ZLength { get { return lengths.z; } }
     }
 }
