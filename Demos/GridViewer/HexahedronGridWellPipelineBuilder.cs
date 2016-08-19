@@ -238,8 +238,7 @@ namespace GridViewer
                 //NamedWellRenderer renderer = NamedWellRenderer.Create(model, pipeColor, wellspec.WellName, 12);
                 WellRenderer wellRenderer = WellRenderer.Create(model);
                 wellRenderer.WellColor = pipeColor;
-                LabelRenderer labelRenderer = new LabelRenderer(64, 32,
-                    labelFont.GetFontBitmap("0123456789.").GetFontTexture());
+                LabelRenderer labelRenderer = new LabelRenderer(64, 32);
                 //labelRenderer.WorldPosition
                 var result = new CSharpGL.Tuple<WellRenderer, LabelRenderer>(wellRenderer, labelRenderer);
                 return result;
