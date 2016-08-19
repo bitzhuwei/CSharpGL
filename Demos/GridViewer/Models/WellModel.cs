@@ -58,6 +58,7 @@ namespace GridViewer
                     BoundingBox box = pipeline.Move2Center();
                     this.ModelMatrix = glm.translate(mat4.identity(), 0.5f * box.MaxPosition + 0.5f * box.MinPosition);
                     this.lengths = box.MaxPosition - box.MinPosition;
+                    this.FirstNode = pipeline[0];
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
@@ -141,6 +142,7 @@ namespace GridViewer
             return this.indexBufferPtr;
         }
 
+        public vec3 FirstNode { get; private set; }
         internal vec3 lengths;
         public float XLength { get { return lengths.x; } }
 

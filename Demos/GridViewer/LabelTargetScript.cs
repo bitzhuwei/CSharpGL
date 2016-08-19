@@ -9,11 +9,14 @@ namespace GridViewer
     class LabelTargetScript : ScriptComponent
     {
         private IModelTransform target;
+        private ILabelPosition labelPosition;
         private IModelTransform self;
-        public LabelTargetScript(IModelTransform target)
+
+        public LabelTargetScript(ILabelPosition labelPosition)
         {
             // TODO: Complete member initialization
-            this.target = target;
+            this.labelPosition = labelPosition;
+            this.target = labelPosition as IModelTransform;
         }
 
         protected override void DoInitialize()
@@ -23,8 +26,16 @@ namespace GridViewer
 
         protected override void DoUpdate(double elapsedTime)
         {
-            //vec3 position = this.target.ModelMatrix * 
-            //this.self=glm
+            if (this.target != null)
+            {
+                vec4 position = this.target.ModelMatrix * new vec4(this.labelPosition.Position, 1.0f);
+                this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3(position));
+            }
+            else
+            {
+                vec3 position = this.labelPosition.Position;
+                this.self.ModelMatrix = glm.translate(mat4.identity(), position);
+            }
         }
     }
 }

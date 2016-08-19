@@ -12,7 +12,7 @@ namespace GridViewer
     /// <summary>
     /// renders well pipeline(several cylinders)
     /// </summary>
-    public class WellRenderer : Renderer, IModelSize
+    public class WellRenderer : Renderer, IModelSize, ILabelPosition
     {
 
         private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
@@ -58,6 +58,7 @@ namespace GridViewer
             var model = this.bufferable as WellModel;
             this.ModelMatrix = model.ModelMatrix;
             this.lengths = model.lengths;
+            this.firstNode = model.FirstNode;
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -74,11 +75,14 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
+        private vec3 firstNode;
         private vec3 lengths;
         public float XLength { get { return lengths.x; } }
 
         public float YLength { get { return lengths.y; } }
 
         public float ZLength { get { return lengths.z; } }
+
+        vec3 ILabelPosition.Position { get { return firstNode; } }
     }
 }

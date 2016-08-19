@@ -100,7 +100,7 @@ namespace GridViewer
                         {
                             var obj = new SceneObject();
                             obj.Renderer = item.Item2;
-                            obj.ScriptList.Add(new LabelTargetScript(item.Item2));
+                            obj.ScriptList.Add(new LabelTargetScript(item.Item1));
                             this.scientificCanvas.Scene.ObjectList.Add(obj);
                             var node = new TreeNode(item.Item2.Name);
                             node.Tag = obj;
