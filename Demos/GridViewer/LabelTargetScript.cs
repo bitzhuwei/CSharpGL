@@ -26,6 +26,7 @@ namespace GridViewer
 
         protected override void DoUpdate(double elapsedTime)
         {
+            //this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3());
             if (this.target != null)
             {
                 vec4 position = this.target.ModelMatrix * new vec4(this.labelPosition.Position, 1.0f);
