@@ -13,11 +13,6 @@ namespace CSharpGL.Demos._16ArcBallManipulater
             this.modelManipulater = modelManipulater;
         }
 
-        protected override void DoInitialize()
-        {
-            //this.renderer = this.BindingObject.RendererComponent;
-        }
-
         protected override void DoUpdate(double elapsedTime)
         {
             throw new NotImplementedException();

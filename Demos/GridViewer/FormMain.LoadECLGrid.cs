@@ -45,7 +45,10 @@ namespace GridViewer
                     -grid.DataSource.Position);
                 var mainObj = new SceneObject();
                 mainObj.Renderer = scientificRenderer;
-                mainObj.ScriptList.Add(new GenerateBoxScript());
+                {
+                    var boxObj = GetBoundingBoxObject(scientificRenderer);
+                    mainObj.Children.Add(boxObj);
+                }
                 this.scientificCanvas.Scene.ObjectList.Add(mainObj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 var mainNode = new SceneObjectTreeNode(mainObj);
@@ -92,7 +95,11 @@ namespace GridViewer
                         var wellObj = new SceneObject();
                         wellObj.Renderer = item.Item1;
                         wellObj.Name = string.Format("SceneObject: {0}", item.Item1.Name);
-                        wellObj.ScriptList.Add(new GenerateBoxScript());
+                        {
+                            item.Item1.Initialize();
+                            var boxObj = GetBoundingBoxObject(item.Item1);
+                            wellObj.Children.Add(boxObj);
+                        }
                         this.scientificCanvas.Scene.ObjectList.Add(wellObj);
                         var wellNode = new TreeNode(item.Item1.Name);
                         wellNode.Tag = wellObj;

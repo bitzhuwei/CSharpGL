@@ -55,7 +55,6 @@
     </Compile>
     <Compile Include="12Billboard\UpdateBillboardPosition.cs" />
     <Compile Include="12Billboard\UpdateLabelPosition.cs" />
-    <Compile Include="16ArcBallManipulater\ModelManipulaterScript.cs" />
     <Compile Include="17UpdateTexture\Form17UpdateTexture.cs">
       <SubType>Form</SubType>
     </Compile>

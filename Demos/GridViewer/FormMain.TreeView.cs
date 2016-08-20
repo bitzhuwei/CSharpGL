@@ -90,20 +90,20 @@ namespace GridViewer
         private void adjustCameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode node = this.objectsTreeView.SelectedNode;
-            if (node != null)
-            {
-                SceneObject obj = node.Tag as SceneObject;
-                if (obj != null)
-                {
-                    var transform = obj.Renderer as IModelTransform;
-                    vec3 position = transform.ModelMatrix.GetTranslate();
-                    GenerateBoxScript script = obj.GetScript<GenerateBoxScript>();
-                    IBoundingBox box = script.BoxRenderer;
-                    IBoundingBox translatedBox = new BoundingBox(box.MinPosition + position, box.MaxPosition + position);
-                    translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);
-                }
-                this.scientificCanvas.Invalidate();
-            }
+            if (node == null) { return; }
+            SceneObject obj = node.Tag as SceneObject;
+            if (obj == null) { return; }
+            var transform = obj.Renderer as IModelTransform;
+            if (transform == null) { return; }
+            var modelSize = obj.Renderer as IModelSize;
+            if (modelSize == null) { return; }
+            vec3 position = transform.ModelMatrix.GetTranslate();
+            var max = new vec3(modelSize.XLength, modelSize.YLength, modelSize.ZLength);
+            var min = -max;
+            IBoundingBox translatedBox = new BoundingBox(min + position, max + position);
+            translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);
+
+            this.scientificCanvas.Invalidate();
         }
     }
 }

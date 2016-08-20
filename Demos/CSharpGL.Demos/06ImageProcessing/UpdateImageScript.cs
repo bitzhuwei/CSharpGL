@@ -18,22 +18,20 @@ namespace CSharpGL.Demos
             this.canvas = canvas;
         }
 
-        protected override void DoInitialize()
-        {
-            {
-                var openTextureDlg = new OpenFileDialog();
-                openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
-                this.openTextureDlg = openTextureDlg;
-            }
-            {
-                this.keyPress = this.glCanvas1_KeyPress;
-                this.canvas.KeyPress += this.keyPress;
-            }
-        }
-
         protected override void DoUpdate(double elapsedTime)
         {
-            throw new NotImplementedException();
+            if (this.openTextureDlg == null)
+            {
+                {
+                    var openTextureDlg = new OpenFileDialog();
+                    openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+                    this.openTextureDlg = openTextureDlg;
+                }
+                {
+                    this.keyPress = this.glCanvas1_KeyPress;
+                    this.canvas.KeyPress += this.keyPress;
+                }
+            }
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)

@@ -5,7 +5,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// Description of TransformComponent.
+    /// Base type of all scripts.
     /// </summary>
     public abstract partial class ScriptComponent : Component
     {
@@ -14,7 +14,6 @@ namespace CSharpGL
         /// </summary>
         public string Id { get; set; }
 
-        private bool initialized;
         /// <summary>
         /// 
         /// </summary>
@@ -28,27 +27,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected abstract void DoInitialize();
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="elapsedTime"></param>
         protected abstract void DoUpdate(double elapsedTime);
 
-        internal void Initialize()
-        {
-            if (!this.initialized)
-            {
-                this.DoInitialize();
-                this.initialized = true;
-            }
-        }
-
         internal void Update(double elapsedTime)
         {
-            if (!this.initialized)
-            { this.Initialize(); }
-
             this.DoUpdate(elapsedTime);
         }
     }

@@ -23,14 +23,14 @@ namespace CSharpGL.SceneEditor.Scripts
         /// </summary>
         public double RevolutionPeriod { get; set; }
 
-        protected override void DoInitialize()
-        {
-            this.renderer = this.BindingObject.Renderer as BuildInRenderer;
-            this.planetTransform = this.BindingObject.Parent.Renderer as IModelTransform;
-        }
-
         protected override void DoUpdate(double elapsedTime)
         {
+            if (this.renderer == null)
+            {
+                this.renderer = this.BindingObject.Renderer as BuildInRenderer;
+                this.planetTransform = this.BindingObject.Parent.Renderer as IModelTransform;
+            }
+
             double deltaAngle = elapsedTime * Math.PI * 2 / this.RevolutionPeriod;
             double newAngle = this.currentAngle + deltaAngle;
             var position = new vec3(

@@ -20,14 +20,12 @@ namespace CSharpGL.Demos
             this.TargetRenderer = targetRenderer;
         }
 
-        protected override void DoInitialize()
-        {
-            //this.transform = this.BindingObject.GetScript<TransformScript>();
-            this.renderer = this.BindingObject.Renderer as IWorldPosition;
-        }
-
         protected override void DoUpdate(double elapsedTime)
         {
+            if (this.renderer == null)
+            {
+                this.renderer = this.BindingObject.Renderer as IWorldPosition;
+            }
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
             this.renderer.Position = this.TargetRenderer.Position + new vec3(0, 0.3f, 0);
         }

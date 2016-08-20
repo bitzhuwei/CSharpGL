@@ -20,11 +20,6 @@ namespace GridViewer
             this.uiCodedColorBar = uiCodedColorBar;
         }
 
-        protected override void DoInitialize()
-        {
-            //throw new NotImplementedException();
-        }
-
         protected override void DoUpdate(double elapsedTime)
         {
             //throw new NotImplementedException();

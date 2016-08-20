@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +21,24 @@ namespace GridViewer
             return inputData;
         }
 
+        private SceneObject GetBoundingBoxObject(IModelSize modelSize)
+        {
+            var boxObj = new SceneObject();
+            boxObj.Name = string.Format("Box of {0}", modelSize);
+            {
+                vec3 lengths = new vec3(modelSize.XLength, modelSize.YLength, modelSize.ZLength);
+                var boxRenderer = BoundingBoxRenderer.Create(lengths);
+                {
+                    var transform = modelSize as IModelTransform;
+                    vec3 position = transform.ModelMatrix.GetTranslate();
+                    //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+                    boxRenderer.ModelMatrix = transform.ModelMatrix;
+                }
+                //boxRenderer.Initialize();
+                boxObj.Renderer = boxRenderer;
+            }
+
+            return boxObj;
+        }
     }
 }

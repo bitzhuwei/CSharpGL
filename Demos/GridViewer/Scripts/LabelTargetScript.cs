@@ -19,13 +19,13 @@ namespace GridViewer
             this.target = labelPosition as IModelTransform;
         }
 
-        protected override void DoInitialize()
-        {
-            this.self = this.BindingObject.Renderer as IModelTransform;
-        }
-
         protected override void DoUpdate(double elapsedTime)
         {
+            if (this.self == null)
+            {
+                this.self = this.BindingObject.Renderer as IModelTransform;
+            }
+
             //this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3());
             if (this.target != null)
             {
