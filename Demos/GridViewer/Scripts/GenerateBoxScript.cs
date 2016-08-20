@@ -21,7 +21,9 @@ namespace GridViewer
             var boxObj = new SceneObject();
             boxObj.Name = "Box's Object";
             {
-                var modelSize = this.BindingObject.Renderer as IModelSize;
+                RendererBase renderer = this.BindingObject.Renderer;
+                if (!renderer.IsInitialized) { renderer.Initialize(); }
+                var modelSize = renderer as IModelSize;
                 vec3 lengths = new vec3(modelSize.XLength, modelSize.YLength, modelSize.ZLength);
                 var boxRenderer = BoundingBoxRenderer.Create(lengths);
                 {

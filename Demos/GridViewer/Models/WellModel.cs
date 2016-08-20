@@ -57,12 +57,13 @@ namespace GridViewer
                     List<vec3> pipeline = this.pipeline.ToList();
                     BoundingBox box = pipeline.Move2Center();
                     this.ModelMatrix = glm.translate(mat4.identity(), 0.5f * box.MaxPosition + 0.5f * box.MinPosition);
-                    this.lengths = box.MaxPosition - box.MinPosition;
                     this.FirstNode = pipeline[0];
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
                     int index = 0;
+                    var max = new vec3(float.MinValue, float.MinValue, float.MinValue);
+                    var min = new vec3(float.MaxValue, float.MaxValue, float.MaxValue);
                     for (int i = 1; i < pipeline.Count; i++)
                     {
                         vec3 p1 = pipeline[i - 1];
@@ -78,10 +79,13 @@ namespace GridViewer
                             double angle = (Math.PI * 2 * faceIndex) / faceCount;
                             vec3 delta = orthogontalVector1 * (float)Math.Cos(angle) + orthogontalVector2 * (float)Math.Sin(angle);
                             vec3 tmp1 = p1 + delta, tmp2 = p2 + delta;
+                            tmp1.UpdateMax(ref max); tmp1.UpdateMin(ref min);
+                            tmp2.UpdateMax(ref max); tmp2.UpdateMin(ref min);
                             array[index++] = tmp1;
                             array[index++] = tmp2;
                         }
                     }
+                    this.lengths = max - min;
 
                     positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
