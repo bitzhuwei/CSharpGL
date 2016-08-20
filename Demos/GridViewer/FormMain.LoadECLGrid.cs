@@ -88,23 +88,23 @@ namespace GridViewer
                     //this.AddWellNodes(gridderNode, this.scene, well3dList);
                     foreach (var item in well3dList)
                     {
+                        //item.Item1.ModelTransformUpdated+=
+                        var wellObj = new SceneObject();
+                        wellObj.Renderer = item.Item1;
+                        wellObj.ScriptList.Add(new GenerateBoxScript());
+                        this.scientificCanvas.Scene.ObjectList.Add(wellObj);
+                        var wellNode = new TreeNode(item.Item1.Name);
+                        wellNode.Tag = wellObj;
+                        mainNode.Nodes.Add(wellNode);
                         {
-                            var obj = new SceneObject();
-                            obj.Renderer = item.Item1;
-                            obj.ScriptList.Add(new GenerateBoxScript());
-                            this.scientificCanvas.Scene.ObjectList.Add(obj);
-                            var node = new TreeNode(item.Item1.Name);
-                            node.Tag = obj;
-                            mainNode.Nodes.Add(node);
-                        }
-                        {
-                            var obj = new SceneObject();
-                            obj.Renderer = item.Item2;
-                            obj.ScriptList.Add(new LabelTargetScript(item.Item1));
-                            this.scientificCanvas.Scene.ObjectList.Add(obj);
-                            var node = new TreeNode(item.Item2.Name);
-                            node.Tag = obj;
-                            mainNode.Nodes.Add(node);
+                            var labelObj = new SceneObject();
+                            labelObj.Renderer = item.Item2;
+                            labelObj.ScriptList.Add(new LabelTargetScript(item.Item1));
+                            wellObj.Children.Add(labelObj);
+
+                            var labelNode = new TreeNode(item.Item2.Name);
+                            labelNode.Tag = labelObj;
+                            wellNode.Nodes.Add(labelNode);
                         }
                     }
                 }
