@@ -102,7 +102,7 @@ namespace GridViewer
                             labelObj.ScriptList.Add(new LabelTargetScript(item.Item1));
                             wellObj.Children.Add(labelObj);
 
-                            var labelNode = new TreeNode(item.Item2.Name);
+                            var labelNode = new TreeNode(string.Format("{0}: {1}", item.Item2.Name, item.Item2.Text));
                             labelNode.Tag = labelObj;
                             wellNode.Nodes.Add(labelNode);
                         }
