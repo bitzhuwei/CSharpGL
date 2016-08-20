@@ -123,17 +123,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// initialize scripts this object.
-        /// </summary>
-        public void Initialize()
-        {
-            foreach (var item in this.ScriptList)
-            {
-                item.Initialize();
-            }
-        }
-
-        /// <summary>
         /// Gets first script with specified type.
         /// </summary>
         /// <typeparam name="T"></typeparam>
