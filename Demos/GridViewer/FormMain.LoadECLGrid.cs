@@ -91,6 +91,7 @@ namespace GridViewer
                         //item.Item1.ModelTransformUpdated+=
                         var wellObj = new SceneObject();
                         wellObj.Renderer = item.Item1;
+                        wellObj.Name = string.Format("SceneObject: {0}", item.Item1.Name);
                         wellObj.ScriptList.Add(new GenerateBoxScript());
                         this.scientificCanvas.Scene.ObjectList.Add(wellObj);
                         var wellNode = new TreeNode(item.Item1.Name);
@@ -99,6 +100,7 @@ namespace GridViewer
                         {
                             var labelObj = new SceneObject();
                             labelObj.Renderer = item.Item2;
+                            labelObj.Name = string.Format("SceneObject: {0}", item.Item2.Name);
                             labelObj.ScriptList.Add(new LabelTargetScript(item.Item1));
                             wellObj.Children.Add(labelObj);
 
