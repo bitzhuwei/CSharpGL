@@ -100,7 +100,7 @@ namespace CSharpGL
 
         private void RenderObjects(ChildList<SceneObject> list, RenderEventArgs arg)
         {
-            var array = list.ToArray();
+            SceneObject[] array = list.ToArray();
             foreach (var obj in array)
             {
                 obj.Render(arg);

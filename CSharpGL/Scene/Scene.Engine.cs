@@ -77,15 +77,22 @@ namespace CSharpGL
             if (this.maxCycle <= 0// endless
                 || this.currentCycle < this.maxCycle)// not reached last cycle yet
             {
-                foreach (var item in this.objectList)
-                {
-                    item.Update(interval);
-                }
                 this.currentCycle++;
+                UpdateObjects(this.ObjectList, interval);
             }
             else
             {
                 this.Stop();
+            }
+        }
+
+        private void UpdateObjects(ChildList<SceneObject> list, double interval)
+        {
+            SceneObject[] array = list.ToArray();
+            foreach (var obj in array)
+            {
+                obj.Update(interval);
+                UpdateObjects(obj.Children, interval);
             }
         }
     }
