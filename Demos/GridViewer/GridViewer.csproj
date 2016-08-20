@@ -85,7 +85,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="LabelTargetScript.cs" />
+    <Compile Include="Scripts\LabelTargetScript.cs" />
     <Compile Include="Renderers\ILabelPosition.cs" />
     <Compile Include="Scripts\GenerateBoxScript.cs" />
     <Compile Include="Geometry\LineIndex.cs" />
