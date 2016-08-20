@@ -12,7 +12,15 @@ namespace GridViewer
     public class ScientificModelScript : ScriptComponent
     {
         private GridBlockProperty gridBlockProperty;
+        public GridBlockProperty GridBlockProperty
+        {
+            get { return gridBlockProperty; }
+        }
         private UIColorPaletteRenderer uiCodedColorBar;
+        public UIColorPaletteRenderer UiCodedColorBar
+        {
+            get { return uiCodedColorBar; }
+        }
         public ScientificModelScript(SceneObject sceneObject, GridBlockProperty property, UIColorPaletteRenderer uiCodedColorBar)
             : base(sceneObject)
         {

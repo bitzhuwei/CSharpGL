@@ -27,7 +27,7 @@ namespace GridViewer
             boxObj.Name = string.Format("Box of {0}", modelSize);
             {
                 vec3 lengths = new vec3(modelSize.XLength, modelSize.YLength, modelSize.ZLength);
-                var boxRenderer = BoundingBoxRenderer.Create(lengths);
+                BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
                 {
                     var transform = modelSize as IModelTransform;
                     vec3 position = transform.ModelMatrix.GetTranslate();

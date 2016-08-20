@@ -58,6 +58,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts\DumpCatesianGridTreeNodeScript.cs" />
+    <Compile Include="Scripts\DumpTreeNodeScript.cs" />
     <Compile Include="FormMain.Timer.cs">
       <SubType>Form</SubType>
     </Compile>

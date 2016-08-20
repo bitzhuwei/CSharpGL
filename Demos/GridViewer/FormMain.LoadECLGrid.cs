@@ -39,92 +39,28 @@ namespace GridViewer
                 double axisMin, axisMax, step;
                 ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
-                CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
-                //string caseFileName = System.IO.Path.GetFileName(fileName);
-                scientificRenderer.Name = System.IO.Path.GetFileName(fileName);
-                scientificRenderer.Initialize();
-                scientificRenderer.ModelMatrix = glm.translate(mat4.identity(),
-                    -grid.DataSource.Position);
-                var gridObj = new SceneObject();
-                gridObj.Renderer = scientificRenderer;
-                {
-                    var boxObj = GetBoundingBoxObject(scientificRenderer);
-                    gridObj.Children.Add(boxObj);
-                }
-                this.scientificCanvas.Scene.ObjectList.Add(gridObj);
-                var mainNode = new SceneObjectTreeNode(gridObj);
-                mainNode.Text = gridObj.Name;
-                mainNode.Tag = gridObj;//TODO: this is not needed any more.
-                mainNode.ToolTipText = grid.GetType().Name;
-                this.objectsTreeView.Nodes.Add(mainNode);
-                //if (gridProps.Count <= 0)
-                //{
-                //    GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");
-                //    gridProps.Add(gbp);
-                //}
-                foreach (GridBlockProperty gbp in gridProperties)
-                {
-                    var script = new ScientificModelScript(gridObj, gbp, this.scientificCanvas.ColorPalette);
-                    gridObj.ScriptList.Add(script);
-                    var propNode = new PropertyTreeNode(script);
-                    propNode.Text = gbp.Name;
-                    propNode.Tag = gbp;
-                    mainNode.Nodes.Add(propNode);
-                }
 
-                this.objectsTreeView.ExpandAll();
-                //modelContainer.AddChild(gridder);
-                //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
-                //this.scene.ViewType = ViewTypes.UserView;
-
-                List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> well3dList;
-                try
-                {
-                    well3dList = this.CreateWellPipelineRenderers(inputData, grid);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(String.Format("Create Well3d,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (well3dList != null && well3dList.Count > 0)
-                {
-                    //this.AddWellNodes(gridderNode, this.scene, well3dList);
-                    foreach (var item in well3dList)
-                    {
-                        //item.Item1.ModelTransformUpdated+=
-                        var wellObj = new SceneObject();
-                        wellObj.Renderer = item.Item1;
-                        wellObj.Name = string.Format("SceneObject: {0}", item.Item1.Name);
-                        {
-                            item.Item1.Initialize();
-                            var boxObj = GetBoundingBoxObject(item.Item1);
-                            wellObj.Children.Add(boxObj);
-                        }
-                        this.scientificCanvas.Scene.ObjectList.Add(wellObj);
-                        var wellNode = new TreeNode(item.Item1.Name);
-                        wellNode.Tag = wellObj;
-                        mainNode.Nodes.Add(wellNode);
-                        {
-                            var labelObj = new SceneObject();
-                            labelObj.Renderer = item.Item2;
-                            labelObj.Name = string.Format("SceneObject: {0}", item.Item2.Name);
-                            labelObj.ScriptList.Add(new LabelTargetScript(item.Item1));
-                            wellObj.Children.Add(labelObj);
-
-                            var labelNode = new TreeNode(item.Item2.Name);//string.Format("{0}: {1}", item.Item2.Name, item.Item2.Text));
-                            labelNode.Tag = labelObj;
-                            wellNode.Nodes.Add(labelNode);
-                        }
-                    }
-                }
+                var mainObj = new SceneObject();
+                mainObj.Name = string.Format("CatesianGrid: {0}", fileName);
+                mainObj.ScriptList.Add(new DumpTreeNodeScript());
+                SceneObject gridObj = AddCatesianGridObj(grid, gridProperties, fileName);
+                mainObj.Children.Add(gridObj);
+                SceneObject[] wellObjects = AddWellObjects(inputData, grid, fileName);
+                mainObj.Children.AddRange(wellObjects);
+                this.scientificCanvas.Scene.ObjectList.Add(mainObj);
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
                 this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.ColorPalette.SetCodedColor(axisMin, axisMax, step);
+
                 // refresh objects state in scene.
                 this.scientificCanvas.Scene.Start(1);
+
+                // update tree node.
+                TreeNode mainNode = DumpTreeNode(mainObj);
+                this.objectsTreeView.Nodes.Add(mainNode);
+
                 // render scene to this canvas.
                 this.scientificCanvas.Invalidate();
 
@@ -136,7 +72,91 @@ namespace GridViewer
             }
         }
 
-        private List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> CreateWellPipelineRenderers(SimulationInputData inputData, CatesianGrid grid)
+        private TreeNode DumpTreeNode(SceneObject obj)
+        {
+            TreeNode node = null;
+            DumpTreeNodeScript script = obj.GetScript<DumpTreeNodeScript>();
+            if (script != null)
+            {
+                node = script.DumpTreeNode();
+            }
+
+            if (node != null)
+            {
+                foreach (var item in obj.Children)
+                {
+                    TreeNode child = DumpTreeNode(item);
+                    if (child != null)
+                    {
+                        node.Nodes.Add(child);
+                    }
+                }
+            }
+
+            return node;
+        }
+
+        private SceneObject[] AddWellObjects(SimulationInputData inputData, CatesianGrid grid, string fileName)
+        {
+            var result = new List<SceneObject>();
+
+            List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> wellList;
+            wellList = this.CreateWellList(inputData, grid);
+            if (wellList == null) { return result.ToArray(); }
+            //this.AddWellNodes(gridderNode, this.scene, well3dList);
+            foreach (var item in wellList)
+            {
+                //item.Item1.ModelTransformUpdated+=
+                var wellObj = new SceneObject();
+                wellObj.Name = string.Format("SceneObject: {0}", item.Item1.Name);
+                wellObj.Renderer = item.Item1;
+                wellObj.ScriptList.Add(new DumpTreeNodeScript());
+                {
+                    item.Item1.Initialize();
+                    SceneObject boxObj = GetBoundingBoxObject(item.Item1);
+                    boxObj.ScriptList.Add(new DumpTreeNodeScript());
+                    wellObj.Children.Add(boxObj);
+                }
+                result.Add(wellObj);
+                {
+                    var labelObj = new SceneObject();
+                    labelObj.Renderer = item.Item2;
+                    labelObj.Name = string.Format("SceneObject: {0}", item.Item2.Name);
+                    labelObj.ScriptList.Add(new LabelTargetScript(item.Item1));
+                    labelObj.ScriptList.Add(new DumpTreeNodeScript());
+                    wellObj.Children.Add(labelObj);
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private SceneObject AddCatesianGridObj(CatesianGrid grid, List<GridBlockProperty> gridProperties, string fileName)
+        {
+            CatesianGridRenderer renderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
+            //string caseFileName = System.IO.Path.GetFileName(fileName);
+            renderer.Name = System.IO.Path.GetFileName(fileName);
+            renderer.ModelMatrix = glm.translate(mat4.identity(),
+                -grid.DataSource.Position);
+            renderer.Initialize();
+            var gridObj = new SceneObject();
+            gridObj.Name = renderer.Name;
+            gridObj.Renderer = renderer;
+            gridObj.ScriptList.Add(new DumpCatesianGridTreeNodeScript());
+            {
+                var boxObj = GetBoundingBoxObject(renderer);
+                gridObj.Children.Add(boxObj);
+            }
+
+            foreach (GridBlockProperty gbp in gridProperties)
+            {
+                var script = new ScientificModelScript(gridObj, gbp, this.scientificCanvas.ColorPalette);
+                gridObj.ScriptList.Add(script);
+            }
+            return gridObj;
+        }
+
+        private List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> CreateWellList(SimulationInputData inputData, CatesianGrid grid)
         {
             WellSpecsCollection wellSpecsList = inputData.RootDataFile.GetWELSPECS();
             WellCompatCollection wellCompatList = inputData.RootDataFile.GetCOMPDAT();
