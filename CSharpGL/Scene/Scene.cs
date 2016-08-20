@@ -84,11 +84,7 @@ namespace CSharpGL
             var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
 
             // render objects.
-            var list = this.ObjectList.ToArray();
-            foreach (var item in list)
-            {
-                item.Render(arg);
-            }
+            this.RenderObjects(this.ObjectList, arg);
 
             // render regular UI.
             this.UIRoot.Render(arg);
@@ -102,5 +98,14 @@ namespace CSharpGL
             }
         }
 
+        private void RenderObjects(ChildList<SceneObject> list, RenderEventArgs arg)
+        {
+            var array = list.ToArray();
+            foreach (var obj in array)
+            {
+                obj.Render(arg);
+                RenderObjects(obj.Children, arg);
+            }
+        }
     }
 }
