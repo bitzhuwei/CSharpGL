@@ -40,20 +40,21 @@ namespace GridViewer
                 ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
                 CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
+                //string caseFileName = System.IO.Path.GetFileName(fileName);
+                scientificRenderer.Name = System.IO.Path.GetFileName(fileName);
                 scientificRenderer.Initialize();
                 scientificRenderer.ModelMatrix = glm.translate(mat4.identity(),
                     -grid.DataSource.Position);
-                var mainObj = new SceneObject();
-                mainObj.Renderer = scientificRenderer;
+                var gridObj = new SceneObject();
+                gridObj.Renderer = scientificRenderer;
                 {
                     var boxObj = GetBoundingBoxObject(scientificRenderer);
-                    mainObj.Children.Add(boxObj);
+                    gridObj.Children.Add(boxObj);
                 }
-                this.scientificCanvas.Scene.ObjectList.Add(mainObj);
-                string caseFileName = System.IO.Path.GetFileName(fileName);
-                var mainNode = new SceneObjectTreeNode(mainObj);
-                mainNode.Text = caseFileName;
-                mainNode.Tag = mainObj;//TODO: this is not needed any more.
+                this.scientificCanvas.Scene.ObjectList.Add(gridObj);
+                var mainNode = new SceneObjectTreeNode(gridObj);
+                mainNode.Text = gridObj.Name;
+                mainNode.Tag = gridObj;//TODO: this is not needed any more.
                 mainNode.ToolTipText = grid.GetType().Name;
                 this.objectsTreeView.Nodes.Add(mainNode);
                 //if (gridProps.Count <= 0)
@@ -63,8 +64,8 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScript(mainObj, gbp, this.scientificCanvas.ColorPalette);
-                    mainObj.ScriptList.Add(script);
+                    var script = new ScientificModelScript(gridObj, gbp, this.scientificCanvas.ColorPalette);
+                    gridObj.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;
                     propNode.Tag = gbp;
