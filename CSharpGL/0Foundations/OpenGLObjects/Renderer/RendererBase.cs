@@ -16,6 +16,8 @@ namespace CSharpGL
     public abstract class RendererBase : IRenderable, IDisposable
     {
 
+        private readonly object synObj = new object();
+
         /// <summary>
         /// Render this or not.
         /// </summary>
@@ -66,13 +68,13 @@ namespace CSharpGL
         //    get { return initializing; }
         //}
 
-        private bool initialized = false;
+        private bool isInitialized = false;
         /// <summary>
         /// Already initialized.
         /// </summary>
-        public bool Initialized
+        public bool IsInitialized
         {
-            get { return initialized; }
+            get { return isInitialized; }
         }
 
         /// <summary>
@@ -80,12 +82,18 @@ namespace CSharpGL
         /// </summary>
         public void Initialize()
         {
-            if (!initialized)
+            if (!isInitialized)
             {
-                //initializing = true;
-                DoInitialize();
-                //initializing = false;
-                initialized = true;
+                lock (synObj)
+                {
+                    if (!isInitialized)
+                    {
+                        //initializing = true;
+                        DoInitialize();
+                        //initializing = false;
+                        isInitialized = true;
+                    }
+                }
             }
         }
 
@@ -102,7 +110,7 @@ namespace CSharpGL
         {
             if (this.Enabled)
             {
-                if (!initialized) { Initialize(); }
+                if (!isInitialized) { Initialize(); }
 
                 DoRender(arg);
             }
