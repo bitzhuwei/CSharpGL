@@ -57,6 +57,7 @@ namespace CSharpGL
                 if (value != this.text)
                 {
                     this.text = value;
+                    this.Name = string.Format("{0}: {1}", this.GetType().Name, value);
                     this.textRecord.Mark();
                 }
                 //if (this.model != null) { this.model.SetText(value, this.fontTexture); }
