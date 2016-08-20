@@ -21,18 +21,7 @@ namespace CSharpGL
                 {
                     renderer.Render(arg);
                 }
-
-                // render objects.
-                if (this.Children.Count > 0)
-                {
-                    var list = this.Children.ToArray();
-                    foreach (var item in list)
-                    {
-                        item.Render(arg);
-                    }
-                }
             }
         }
-
     }
 }
