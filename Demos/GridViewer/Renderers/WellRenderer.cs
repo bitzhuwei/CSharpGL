@@ -75,7 +75,31 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        private vec3 firstNode;
+        public event EventHandler ModelTransformUpdated;
+        private void DoModelTranslateUpdated()
+        {
+            EventHandler ModelTransformUpdated = this.ModelTransformUpdated;
+            if (ModelTransformUpdated != null)
+            {
+                ModelTransformUpdated(this, new EventArgs());
+            }
+        }
+        public override mat4 ModelMatrix
+        {
+            get
+            {
+                return base.ModelMatrix;
+            }
+            set
+            {
+                if (base.ModelMatrix != value)
+                {
+                    base.ModelMatrix = value;
+                    DoModelTranslateUpdated();
+                }
+            }
+        }
+
         private vec3 lengths;
         public float XLength { get { return lengths.x; } }
 
@@ -83,6 +107,7 @@ namespace GridViewer
 
         public float ZLength { get { return lengths.z; } }
 
+        private vec3 firstNode;
         vec3 ILabelPosition.Position { get { return firstNode; } }
     }
 }
