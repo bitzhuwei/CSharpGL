@@ -118,6 +118,7 @@ namespace GridViewer
                 // render scene to this canvas.
                 this.scientificCanvas.Invalidate();
 
+                this.objectsTreeView.ExpandAll();
             }
             catch (Exception ex)
             {
