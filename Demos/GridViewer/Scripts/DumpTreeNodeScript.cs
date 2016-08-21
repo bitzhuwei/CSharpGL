@@ -17,7 +17,7 @@ namespace GridViewer
         public virtual TreeNode DumpTreeNode()
         {
             SceneObject obj = this.BindingObject;
-            var node = new TreeNode(string.Format("{0}", obj.Renderer));
+            var node = new TreeNode(string.Format("{0}", obj));
             node.Tag = obj;
             return node;
         }
