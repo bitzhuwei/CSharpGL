@@ -25,9 +25,7 @@ namespace CSharpGL
             var renderer = new BuildInRenderer(bufferable, shaderCodes, map);
             renderer.Initialize();
 
-            var obj = new SceneObject();
-            obj.Renderer = renderer;
-            obj.Name = string.Format("{0}", buildIn);
+            SceneObject obj = renderer.WrapToSceneObject();
 
             return obj;
         }

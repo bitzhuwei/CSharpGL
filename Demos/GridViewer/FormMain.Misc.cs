@@ -44,10 +44,14 @@ namespace GridViewer
 
         //    return boxObj;
         //}
-        private BoundingBoxRenderer GetBoundingBoxRenderer(SceneObject targetObj)
+        private BoundingBoxRenderer GetBoundingBoxRenderer(params SceneObject[] objects)
         {
-            IRectangle3D[] rectangles = (from item in GetAllRectangle3Ds(targetObj) select item).ToArray();
-            return GetBoundingBoxRenderer(rectangles);
+            List<IRectangle3D> rectangles = new List<IRectangle3D>();
+            foreach (var item in objects)
+            {
+                rectangles.AddRange(GetAllRectangle3Ds(item));
+            }
+            return GetBoundingBoxRenderer(rectangles.ToArray());
         }
         private IEnumerable<IRectangle3D> GetAllRectangle3Ds(SceneObject obj)
         {

@@ -40,15 +40,18 @@ namespace GridViewer
                 ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
 
-                var mainObj = new SceneObject();
-                mainObj.Name = string.Format("CatesianGrid: {0}", fileName);
-                mainObj.ScriptList.Add(new DumpTreeNodeScript());
-                SceneObject gridObj = AddCatesianGridObj(grid, gridProperties, fileName);
+                SceneObject gridObj = GetCatesianGridObj(grid, gridProperties, fileName);
+                SceneObject[] wellObjects = GetWellObjects(inputData, grid, fileName);
+                var list = new List<IRectangle3D>();
+                list.Add(gridObj.Renderer as IRectangle3D);
+                list.AddRange((from item in wellObjects select (item.Renderer as IRectangle3D)).ToArray());
+                BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(list.ToArray());
+                SceneObject mainObj = boxRenderer.WrapToSceneObject(
+                    string.Format("CatesianGrid: {0}", fileName),
+                    new DumpTreeNodeScript());
                 mainObj.Children.Add(gridObj);
-                SceneObject[] wellObjects = AddWellObjects(inputData, grid, fileName);
                 mainObj.Children.AddRange(wellObjects);
-                BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(mainObj);
-                mainObj.Renderer = boxRenderer;
+
                 this.scientificCanvas.Scene.ObjectList.Add(mainObj);
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
@@ -98,7 +101,7 @@ namespace GridViewer
             return node;
         }
 
-        private SceneObject[] AddWellObjects(SimulationInputData inputData, CatesianGrid grid, string fileName)
+        private SceneObject[] GetWellObjects(SimulationInputData inputData, CatesianGrid grid, string fileName)
         {
             var result = new List<SceneObject>();
 
@@ -108,27 +111,19 @@ namespace GridViewer
             //this.AddWellNodes(gridderNode, this.scene, well3dList);
             foreach (var item in wellList)
             {
-                //item.Item1.ModelTransformUpdated+=
-                var wellObj = new SceneObject();
-                wellObj.Name = string.Format("SceneObject: {0}", item.Item1.Name);
-                wellObj.Renderer = item.Item1;
+                item.Item1.Initialize();
+                SceneObject wellObj = item.Item1.WrapToSceneObject();
                 wellObj.ScriptList.Add(new DumpTreeNodeScript());
                 {
-                    item.Item1.Initialize();
                     BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1);
-                    var boxObj = new SceneObject();
-                    boxObj.Name = string.Format("{0}", boxRenderer);
-                    boxObj.Renderer = boxRenderer;
-                    boxObj.ScriptList.Add(new DumpTreeNodeScript());
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new DumpTreeNodeScript());
                     wellObj.Children.Add(boxObj);
                 }
                 result.Add(wellObj);
                 {
-                    var labelObj = new SceneObject();
-                    labelObj.Renderer = item.Item2;
-                    labelObj.Name = string.Format("SceneObject: {0}", item.Item2.Name);
-                    labelObj.ScriptList.Add(new LabelTargetScript(item.Item1));
-                    labelObj.ScriptList.Add(new DumpTreeNodeScript());
+                    SceneObject labelObj = item.Item2.WrapToSceneObject(
+                        new LabelTargetScript(item.Item1),
+                        new DumpTreeNodeScript());
                     wellObj.Children.Add(labelObj);
                 }
             }
@@ -136,7 +131,7 @@ namespace GridViewer
             return result.ToArray();
         }
 
-        private SceneObject AddCatesianGridObj(CatesianGrid grid, List<GridBlockProperty> gridProperties, string fileName)
+        private SceneObject GetCatesianGridObj(CatesianGrid grid, List<GridBlockProperty> gridProperties, string fileName)
         {
             CatesianGridRenderer renderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
             //string caseFileName = System.IO.Path.GetFileName(fileName);
@@ -144,15 +139,10 @@ namespace GridViewer
             renderer.ModelMatrix = glm.translate(mat4.identity(),
                 -grid.DataSource.Position);
             renderer.Initialize();
-            var gridObj = new SceneObject();
-            gridObj.Name = renderer.Name;
-            gridObj.Renderer = renderer;
-            gridObj.ScriptList.Add(new DumpCatesianGridTreeNodeScript());
+            SceneObject gridObj = renderer.WrapToSceneObject(new DumpCatesianGridTreeNodeScript());
             {
                 var boxRenderer = GetBoundingBoxRenderer(renderer);
-                var boxObj = new SceneObject();
-                boxObj.Name = string.Format("{0}", boxRenderer);
-                boxObj.Renderer = boxRenderer;
+                SceneObject boxObj = boxRenderer.WrapToSceneObject();
                 gridObj.Children.Add(boxObj);
             }
 

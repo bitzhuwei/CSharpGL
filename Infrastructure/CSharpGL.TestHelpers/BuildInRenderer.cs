@@ -15,6 +15,7 @@ namespace CSharpGL
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
+            this.Name = bufferable.GetType().Name;
         }
 
         protected override void DoRender(RenderEventArgs arg)
