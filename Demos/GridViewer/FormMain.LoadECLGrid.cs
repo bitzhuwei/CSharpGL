@@ -47,6 +47,8 @@ namespace GridViewer
                 mainObj.Children.Add(gridObj);
                 SceneObject[] wellObjects = AddWellObjects(inputData, grid, fileName);
                 mainObj.Children.AddRange(wellObjects);
+                BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(mainObj);
+                mainObj.Renderer = boxRenderer;
                 this.scientificCanvas.Scene.ObjectList.Add(mainObj);
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
@@ -113,7 +115,10 @@ namespace GridViewer
                 wellObj.ScriptList.Add(new DumpTreeNodeScript());
                 {
                     item.Item1.Initialize();
-                    SceneObject boxObj = GetBoundingBoxObject(item.Item1);
+                    BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1);
+                    var boxObj = new SceneObject();
+                    boxObj.Name = string.Format("{0}", boxRenderer);
+                    boxObj.Renderer = boxRenderer;
                     boxObj.ScriptList.Add(new DumpTreeNodeScript());
                     wellObj.Children.Add(boxObj);
                 }
@@ -144,7 +149,10 @@ namespace GridViewer
             gridObj.Renderer = renderer;
             gridObj.ScriptList.Add(new DumpCatesianGridTreeNodeScript());
             {
-                var boxObj = GetBoundingBoxObject(renderer);
+                var boxRenderer = GetBoundingBoxRenderer(renderer);
+                var boxObj = new SceneObject();
+                boxObj.Name = string.Format("{0}", boxRenderer);
+                boxObj.Renderer = boxRenderer;
                 gridObj.Children.Add(boxObj);
             }
 

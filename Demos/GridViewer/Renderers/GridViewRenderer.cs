@@ -10,7 +10,7 @@ namespace GridViewer
     /// <summary>
     /// base renderer for gridview.
     /// </summary>
-    public abstract class GridViewRenderer : Renderer, IModelSize
+    public abstract class GridViewRenderer : Renderer, IModelSize, IRectangle3D
     {
         /// <summary>
         /// gridview's model.
@@ -29,5 +29,15 @@ namespace GridViewer
         public abstract float YLength { get; }
 
         public abstract float ZLength { get; }
+
+        public virtual Rectangle3D GetRectangle()
+        {
+            var max = new vec3(XLength / 2, YLength / 2, ZLength / 2);
+            var min = -max;
+            vec3 position = this.ModelMatrix.GetTranslate();
+            var result = new Rectangle3D(min + position, max + position);
+
+            return result;
+        }
     }
 }

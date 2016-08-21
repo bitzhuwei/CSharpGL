@@ -12,7 +12,7 @@ namespace GridViewer
     /// <summary>
     /// renders well pipeline(several cylinders)
     /// </summary>
-    public class WellRenderer : Renderer, IModelSize, ILabelPosition
+    public class WellRenderer : Renderer, IModelSize, IRectangle3D, ILabelPosition
     {
 
         private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
@@ -109,5 +109,14 @@ namespace GridViewer
 
         private vec3 firstNode;
         vec3 ILabelPosition.Position { get { return firstNode; } }
+
+        public Rectangle3D GetRectangle()
+        {
+            var max = this.lengths / 2;
+            var min = -max;
+            vec3 position = this.ModelMatrix.GetTranslate();
+            var result = new Rectangle3D(min + position, max + position);
+            return result;
+        }
     }
 }

@@ -21,24 +21,62 @@ namespace GridViewer
             return inputData;
         }
 
-        private SceneObject GetBoundingBoxObject(IModelSize modelSize)
-        {
-            var boxObj = new SceneObject();
-            boxObj.Name = string.Format("Box of {0}", modelSize);
-            {
-                vec3 lengths = new vec3(modelSize.XLength, modelSize.YLength, modelSize.ZLength);
-                BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
-                {
-                    var transform = modelSize as IModelTransform;
-                    vec3 position = transform.ModelMatrix.GetTranslate();
-                    //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
-                    boxRenderer.ModelMatrix = transform.ModelMatrix;
-                }
-                //boxRenderer.Initialize();
-                boxObj.Renderer = boxRenderer;
-            }
+        //private SceneObject GetBoundingBoxObject(params IRectangle3D[] rectangles)
+        //{
+        //    var boxObj = new SceneObject();
+        //    boxObj.Name = string.Format("Box of {0}", rectangles[0]);
+        //    {
+        //        Rectangle3D rect = rectangles[0].GetRectangle();
+        //        for (int i = 1; i < rectangles.Length; i++)
+        //        {
+        //            rect = rect.Union(rectangles[i].GetRectangle());
+        //        }
+        //        vec3 lengths = rect.Max - rect.Min;
+        //        BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
+        //        {
+        //            vec3 position = rect.Max / 2 + rect.Min / 2;
+        //            //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+        //            boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+        //        }
+        //        //boxRenderer.Initialize();
+        //        boxObj.Renderer = boxRenderer;
+        //    }
 
-            return boxObj;
+        //    return boxObj;
+        //}
+        private BoundingBoxRenderer GetBoundingBoxRenderer(SceneObject targetObj)
+        {
+            IRectangle3D[] rectangles = (from item in GetAllRectangle3Ds(targetObj) select item).ToArray();
+            return GetBoundingBoxRenderer(rectangles);
+        }
+        private IEnumerable<IRectangle3D> GetAllRectangle3Ds(SceneObject obj)
+        {
+            var item = obj.Renderer as IRectangle3D;
+            if (item != null) { yield return item; }
+
+            foreach (var child in obj.Children)
+            {
+                foreach (var renderer in GetAllRectangle3Ds(child))
+                {
+                    yield return renderer;
+                }
+            }
+        }
+        private BoundingBoxRenderer GetBoundingBoxRenderer(params IRectangle3D[] rectangles)
+        {
+            Rectangle3D rect = rectangles[0].GetRectangle();
+            for (int i = 1; i < rectangles.Length; i++)
+            {
+                rect = rect.Union(rectangles[i].GetRectangle());
+            }
+            vec3 lengths = rect.Max - rect.Min;
+            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
+            {
+                vec3 position = rect.Max / 2 + rect.Min / 2;
+                //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+                boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+            }
+            return boxRenderer;
         }
     }
 }

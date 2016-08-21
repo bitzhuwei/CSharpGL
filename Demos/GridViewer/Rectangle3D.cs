@@ -55,19 +55,11 @@ namespace GridViewer
             get { return this.max; }
         }
 
-        public vec3 Location
-        {
-            get
-            {
-                return this.min;
-            }
-        }
-
         public float SizeX
         {
             get
             {
-                return this.GetSizeX();
+                return this.max.x - this.min.x;
             }
         }
 
@@ -75,7 +67,7 @@ namespace GridViewer
         {
             get
             {
-                return this.GetSizeY();
+                return this.max.y - this.min.y;
             }
         }
 
@@ -83,34 +75,9 @@ namespace GridViewer
         {
             get
             {
-                return this.GetSizeZ();
+                return this.max.z - this.min.z;
             }
         }
-
-        private float GetSizeX()
-        {
-            vec3 mx = this.min;
-            mx.y = this.max.y;
-            mx.z = this.max.z;
-            return (float)((this.max - mx).length());
-        }
-
-        private float GetSizeY()
-        {
-            vec3 my = this.min;
-            my.x = this.min.x;
-            my.z = this.min.z;
-            return (float)((this.max - my).length());
-        }
-
-        private float GetSizeZ()
-        {
-            vec3 mz = this.min;
-            mz.x = this.min.x;
-            mz.y = this.min.y;
-            return (float)((this.max - mz).length());
-        }
-
 
         /// <summary>
         /// Rect3D 的中心点
@@ -119,47 +86,38 @@ namespace GridViewer
         {
             get
             {
-                return GetCenter();
+                return (max / 2 + min / 2);
             }
-        }
-
-        private vec3 GetCenter()
-        {
-            vec3 distanceVector = this.max - this.min;
-            double length = distanceVector.length();
-            vec3 normVector = distanceVector.normalize();
-            float half = (float)(length / 2.0);
-            vec3 center = this.min + normVector * half;
-            return center;
         }
 
         public override string ToString()
         {
-            return String.Format("({0},{1},{2}),({3},{4},{5})",
-                this.min.x, this.min.y, this.min.z,
-                this.max.x, this.max.y, this.max.z);
+            return String.Format("min:{0}, max:{1}", this.min, this.max);
         }
 
-        public void Union(vec3 point)
+        public Rectangle3D Union(vec3 point)
         {
-            if (this.min.x > point.x)
-                this.min.x = point.x;
-            if (this.min.y > point.y)
-                this.min.y = point.y;
-            if (this.min.z > point.z)
-                this.min.z = point.z;
-            if (this.max.x < point.x)
-                this.max.x = point.x;
-            if (this.max.y < point.y)
-                this.max.y = point.y;
-            if (this.max.z < point.z)
-                this.max.z = point.z;
+            var result = new Rectangle3D(this.min, this.max);
+
+            point.UpdateMax(ref result.max);
+            point.UpdateMin(ref result.min);
+            //if (result.min.x > point.x) { result.min.x = point.x; }
+            //if (result.min.y > point.y) { result.min.y = point.y; }
+            //if (result.min.z > point.z) { result.min.z = point.z; }
+            //if (result.max.x < point.x) { result.max.x = point.x; }
+            //if (result.max.y < point.y) { result.max.y = point.y; }
+            //if (result.max.z < point.z) { result.max.z = point.z; }
+
+            return result;
         }
 
-        public void Union(Rectangle3D rect3D)
+        public Rectangle3D Union(Rectangle3D rect3D)
         {
-            this.Union(rect3D.min);
-            this.Union(rect3D.max);
+            var result = new Rectangle3D(this.min, this.max);
+            rect3D.min.UpdateMin(ref result.min);
+            rect3D.max.UpdateMax(ref result.max);
+
+            return result;
         }
 
     }

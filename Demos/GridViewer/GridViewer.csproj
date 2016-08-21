@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRectangle3D.cs" />
     <Compile Include="Scripts\DumpCatesianGridTreeNodeScript.cs" />
     <Compile Include="Scripts\DumpTreeNodeScript.cs" />
     <Compile Include="FormMain.Timer.cs">
