@@ -13,6 +13,12 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.2:
+1. Wraps texture and sampler.
+2. IModelTransform provides model matrix for rendering in MVP matrix in shader.
+3. fix: Scene renders all objects recursively.
+4. Remove initialize method in ScriptComponent because scripts may be executed in non-UI thread.
+
 ## v1.0.6.1:
 1. fix: rename NewTexture to Texutre.
 2. Sampler works.
