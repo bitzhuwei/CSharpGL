@@ -29,8 +29,7 @@ namespace CSharpGL.Demos
             {
                 var renderer = new ShaderToyRenderer();
                 renderer.Initialize();
-                var obj = new SceneObject();
-                obj.Renderer = renderer;
+                SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.ObjectList.Add(obj);
             }
             {

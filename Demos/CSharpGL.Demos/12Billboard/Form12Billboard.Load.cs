@@ -59,11 +59,7 @@ namespace CSharpGL.Demos
                 var labelRenderer = new LabelRenderer();
                 labelRenderer.Initialize();
                 labelRenderer.Text = "Teapot - CSharpGL";
-                var obj = new SceneObject();
-                obj.Renderer = labelRenderer;
-                //obj.ScriptList.Add(new TransformScript());
-                var updatePosition = new UpdateLabelPosition(movableRenderer);
-                obj.ScriptList.Add(updatePosition);
+                SceneObject obj = labelRenderer.WrapToSceneObject(new UpdateLabelPosition(movableRenderer));
                 this.scene.ObjectList.Add(obj);
             }
             {

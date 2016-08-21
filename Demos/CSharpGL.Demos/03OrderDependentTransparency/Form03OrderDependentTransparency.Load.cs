@@ -32,8 +32,7 @@ namespace CSharpGL.Demos
                 IBufferable bufferable = new Teapot();
                 OrderDependentTransparencyRenderer renderer = OrderDependentTransparencyRenderer.Create(bufferable, "position", "color");
                 renderer.Initialize();
-                var obj = new SceneObject();
-                obj.Renderer = renderer;
+                SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.ObjectList.Add(obj);
             }
         }

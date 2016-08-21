@@ -16,10 +16,7 @@ namespace CSharpGL.Demos
             : base(obj)
         {
             this.canvas = canvas;
-        }
 
-        protected override void DoUpdate(double elapsedTime)
-        {
             if (this.openTextureDlg == null)
             {
                 {
@@ -32,6 +29,11 @@ namespace CSharpGL.Demos
                     this.canvas.KeyPress += this.keyPress;
                 }
             }
+        }
+
+        protected override void DoUpdate(double elapsedTime)
+        {
+
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)

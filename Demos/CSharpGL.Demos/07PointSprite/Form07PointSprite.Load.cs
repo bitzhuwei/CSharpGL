@@ -32,8 +32,7 @@ namespace CSharpGL.Demos
                 var renderer = new PointSpriteRenderer(10000);
                 renderer.Initialize();
                 this.renderer = renderer;
-                var obj = new SceneObject();
-                obj.Renderer = renderer;
+                SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.ObjectList.Add(obj);
             }
             {
