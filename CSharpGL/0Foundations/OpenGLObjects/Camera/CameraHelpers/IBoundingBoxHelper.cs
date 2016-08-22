@@ -59,13 +59,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="boundingBox"></param>
         /// <param name="another"></param>
-        public static void Union(this IBoundingBox boundingBox, IBoundingBox another)
+        public static BoundingBox Union(this IBoundingBox boundingBox, IBoundingBox another)
         {
             vec3 min = Min(boundingBox.MinPosition, another.MinPosition);
             vec3 max = Max(boundingBox.MaxPosition, another.MaxPosition);
 
-            boundingBox.MinPosition = min;
-            boundingBox.MaxPosition = max;
+            return new BoundingBox(min, max);
         }
 
         /// <summary>
@@ -73,9 +72,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="boundingBox"></param>
         /// <param name="factor">0 for no expanding.</param>
-        public static void Expand(this IBoundingBox boundingBox, float factor = 0.1f)
+        public static BoundingBox Expand(this IBoundingBox boundingBox, float factor = 0.1f)
         {
-            if (boundingBox == null) { return; }
+            if (boundingBox == null) { throw new ArgumentNullException("boundingBox"); }
 
             vec3 min = boundingBox.MinPosition;
             vec3 max = boundingBox.MaxPosition;
@@ -92,8 +91,8 @@ namespace CSharpGL
             vector *= (1 + factor);
             vec3 newMax = min + vector;
             vec3 newMin = max - vector;
-            boundingBox.MinPosition = newMin;
-            boundingBox.MaxPosition = newMax;
+
+            return new BoundingBox(newMin, newMax);
         }
 
         private static BoundingBoxRenderer renderer;
@@ -110,9 +109,10 @@ namespace CSharpGL
                 renderer = BoundingBoxRenderer.Create(new vec3(1, 1, 1));
                 renderer.Initialize();
             }
-            renderer.MaxPosition = boundingBox.MaxPosition;
-            renderer.MinPosition = boundingBox.MinPosition;
-            renderer.BoundingBoxColor = color.ToVec3();
+            mat4 model = glm.translate(mat4.identity(), boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2);
+            model = glm.scale(model, boundingBox.MaxPosition - boundingBox.MinPosition);
+            renderer.ModelMatrix = model;
+            renderer.BoundingBoxColor = color;
             renderer.Render(arg);
         }
     }

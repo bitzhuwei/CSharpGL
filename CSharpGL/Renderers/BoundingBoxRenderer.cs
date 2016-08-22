@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,8 +31,8 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetFillSwitch());
-            result.MaxPosition = lengths / 2;
-            result.MinPosition = -lengths / 2;
+            result.maxPosition = lengths / 2;
+            result.minPosition = -lengths / 2;
 
             return result;
         }
@@ -47,7 +48,7 @@ namespace CSharpGL
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
-            this.BoundingBoxColor = new vec3(1, 1, 1);
+            this.BoundingBoxColor = Color.White;
         }
 
         private UpdatingRecord boundingBoxColorRecord = new UpdatingRecord();
@@ -55,14 +56,15 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public vec3 BoundingBoxColor
+        public Color BoundingBoxColor
         {
-            get { return boundingBoxColor; }
+            get { return boundingBoxColor.ToColor(); }
             set
             {
-                if (value != boundingBoxColor)
+                vec3 color = value.ToVec3();
+                if (color != boundingBoxColor)
                 {
-                    boundingBoxColor = value;
+                    boundingBoxColor = color;
                     boundingBoxColorRecord.Mark();
                 }
             }
@@ -76,26 +78,24 @@ namespace CSharpGL
         {
             if (this.boundingBoxColorRecord.IsMarked())
             {
-                this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
+                this.SetUniform("boundingBoxColor", this.boundingBoxColor);
                 this.boundingBoxColorRecord.CancelMark();
             }
 
             this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMat4());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMat4());
-            this.SetUniform("modelMatrix", this.ModelMatrix);
+            if (base.modelMatrixRecord.IsMarked())
+            {
+                this.SetUniform("modelMatrix", this.ModelMatrix);
+            }
 
             base.DoRender(arg);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 MaxPosition { get; set; }
+        private vec3 minPosition;
+        private vec3 maxPosition;
+        vec3 IBoundingBox.MaxPosition { get { return maxPosition; } }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 MinPosition { get; set; }
-
+        vec3 IBoundingBox.MinPosition { get { return minPosition; } }
     }
 }

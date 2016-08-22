@@ -13,12 +13,12 @@ namespace CSharpGL
         /// <summary>
         /// Maximum position of this cuboid.
         /// </summary>
-        vec3 MaxPosition { get; set; }
+        vec3 MaxPosition { get; }
 
         /// <summary>
         /// Minimum position of this cuboid.
         /// </summary>
-        vec3 MinPosition { get; set; }
+        vec3 MinPosition { get; }
 
         ///// <summary>
         ///// Get center position of this cuboid.
