@@ -48,6 +48,7 @@ namespace GridViewer
                 BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(list.ToArray());
                 SceneObject mainObj = boxRenderer.WrapToSceneObject(
                     string.Format("CatesianGrid: {0}", fileName),
+                    new ModelScaleScript(),
                     new DumpTreeNodeScript());
                 mainObj.Children.Add(gridObj);
                 mainObj.Children.AddRange(wellObjects);
@@ -112,16 +113,17 @@ namespace GridViewer
             foreach (var item in wellList)
             {
                 item.Item1.Initialize();
-                SceneObject wellObj = item.Item1.WrapToSceneObject();
+                SceneObject wellObj = item.Item1.WrapToSceneObject(new ModelScaleScript());
                 wellObj.ScriptList.Add(new DumpTreeNodeScript());
                 {
                     BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1);
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new DumpTreeNodeScript());
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript(), new DumpTreeNodeScript());
                     wellObj.Children.Add(boxObj);
                 }
                 result.Add(wellObj);
                 {
                     SceneObject labelObj = item.Item2.WrapToSceneObject(
+                        new ModelScaleScript(),
                         new LabelTargetScript(item.Item1),
                         new DumpTreeNodeScript());
                     wellObj.Children.Add(labelObj);
@@ -139,10 +141,12 @@ namespace GridViewer
             renderer.ModelMatrix = glm.translate(mat4.identity(),
                 -grid.DataSource.Position);
             renderer.Initialize();
-            SceneObject gridObj = renderer.WrapToSceneObject(new DumpCatesianGridTreeNodeScript());
+            SceneObject gridObj = renderer.WrapToSceneObject(
+                new ModelScaleScript(),
+                new DumpCatesianGridTreeNodeScript());
             {
                 var boxRenderer = GetBoundingBoxRenderer(renderer);
-                SceneObject boxObj = boxRenderer.WrapToSceneObject();
+                SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript());
                 gridObj.Children.Add(boxObj);
             }
 
