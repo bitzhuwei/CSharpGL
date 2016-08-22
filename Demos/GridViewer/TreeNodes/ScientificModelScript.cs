@@ -28,11 +28,6 @@ namespace GridViewer
             this.uiCodedColorBar = uiCodedColorBar;
         }
 
-        protected override void DoUpdate(double elapsedTime)
-        {
-            //throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Show property's color binded to this script.
         /// </summary>

@@ -28,7 +28,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="elapsedTime"></param>
-        protected abstract void DoUpdate(double elapsedTime);
+        protected virtual void DoUpdate(double elapsedTime) { }
 
         internal void Update(double elapsedTime)
         {

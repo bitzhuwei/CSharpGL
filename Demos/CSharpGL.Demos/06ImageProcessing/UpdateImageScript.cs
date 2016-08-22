@@ -31,11 +31,6 @@ namespace CSharpGL.Demos
             }
         }
 
-        protected override void DoUpdate(double elapsedTime)
-        {
-
-        }
-
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 'o')

@@ -9,10 +9,6 @@ namespace GridViewer
 {
     public class DumpTreeNodeScript : ScriptComponent
     {
-        protected override void DoUpdate(double elapsedTime)
-        {
-            // nothing to do.
-        }
 
         public virtual TreeNode DumpTreeNode()
         {
