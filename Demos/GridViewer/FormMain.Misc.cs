@@ -75,11 +75,10 @@ namespace GridViewer
             }
             vec3 lengths = rect.Max - rect.Min;
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
-            {
-                vec3 position = rect.Max / 2 + rect.Min / 2;
-                //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
-                boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
-            }
+            boxRenderer.SwitchList.Add(new LineWidthSwitch(1));
+            vec3 position = rect.Max / 2 + rect.Min / 2;
+            boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
+
             return boxRenderer;
         }
     }

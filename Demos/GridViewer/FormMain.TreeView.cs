@@ -13,13 +13,61 @@ namespace GridViewer
     public partial class FormMain
     {
 
+        private TreeNode lastSelectedBoxNode;
+        private bool UpdateCurrentNode(TreeNode node)
+        {
+            bool updated = false;
+            if (node == lastSelectedBoxNode) { return updated; }
+
+            {
+                var obj = node.Tag as SceneObject;
+                if (obj != null)
+                {
+                    var renderer = obj.Renderer as BoundingBoxRenderer;
+                    if (renderer != null)
+                    {
+                        renderer.BoundingBoxColor = Color.Aqua;
+                        var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
+                        glSwitch.LineWidth = 3;
+                        updated = true;
+                    }
+                }
+            }
+
+            if (updated && lastSelectedBoxNode != null)
+            {
+                var obj = lastSelectedBoxNode.Tag as SceneObject;
+                if (obj != null)
+                {
+                    var renderer = obj.Renderer as BoundingBoxRenderer;
+                    if (renderer != null)
+                    {
+                        renderer.BoundingBoxColor = Color.White;
+                        var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
+                        glSwitch.LineWidth = 1;
+                        updated = true;
+                    }
+                }
+            }
+
+            if (updated)
+            {
+                this.lastSelectedBoxNode = node;
+            }
+
+            return updated;
+        }
+
         private void objectsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            bool updated = false;
+            updated = UpdateCurrentNode(e.Node) || updated;
+
             var node = e.Node as AbstractTreeNode;
             if (node != null)
             {
                 node.Selected(sender, e);
-                this.scientificCanvas.Invalidate();
+                updated = true;
             }
 
             this.propertyGrid1.SelectedObject = e.Node.Tag;
@@ -44,6 +92,11 @@ namespace GridViewer
             //    UpdateCatesianGrid(grid, property);
             //    this.scientificCanvas.Invalidate();
             //}
+
+            if (updated)
+            {
+                this.scientificCanvas.Invalidate();
+            }
         }
 
         private void UpdateCatesianGrid(CatesianGrid grid, GridBlockProperty property)
