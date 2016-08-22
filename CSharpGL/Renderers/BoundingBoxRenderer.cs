@@ -98,6 +98,7 @@ namespace CSharpGL
         {
             get
             {
+                // NOTE: make sure this.ModelMatrix don't rotate.
                 return new vec3(
                     this.ModelMatrix
                     * new vec4(maxPosition, 1.0f));
@@ -108,6 +109,7 @@ namespace CSharpGL
         {
             get
             {
+                // NOTE: make sure this.ModelMatrix don't rotate.
                 return new vec3(
                     this.ModelMatrix
                     * new vec4(minPosition, 1.0f));
