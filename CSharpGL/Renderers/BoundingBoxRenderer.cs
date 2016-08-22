@@ -94,8 +94,24 @@ namespace CSharpGL
 
         private vec3 minPosition;
         private vec3 maxPosition;
-        vec3 IBoundingBox.MaxPosition { get { return maxPosition; } }
+        vec3 IBoundingBox.MaxPosition
+        {
+            get
+            {
+                return new vec3(
+                    this.ModelMatrix
+                    * new vec4(maxPosition, 1.0f));
+            }
+        }
 
-        vec3 IBoundingBox.MinPosition { get { return minPosition; } }
+        vec3 IBoundingBox.MinPosition
+        {
+            get
+            {
+                return new vec3(
+                    this.ModelMatrix
+                    * new vec4(minPosition, 1.0f));
+            }
+        }
     }
 }
