@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -12,7 +13,20 @@ namespace GridViewer
     /// </summary>
     public class ModelScaleScript : ScriptComponent
     {
-        public bool Scale(vec3 factor)
+        private vec3 scale;
+
+        [Browsable(true)]
+        [Description("Invoke SetScale(vec3 factor) by modifing this property.")]
+        public vec3 Scale
+        {
+            get { return scale; }
+            set
+            {
+                scale = value;
+                this.SetScale(value);
+            }
+        }
+        public bool SetScale(vec3 factor)
         {
             bool updated = false;
 
@@ -24,7 +38,7 @@ namespace GridViewer
                 var transform = obj.Renderer as IModelTransform;
                 if (transform == null) { throw new Exception(); }
                 rootPosition = transform.ModelMatrix.GetTranslate();
-                foreach (var item in obj.Children) { stack.Push(item); }
+                stack.Push(obj);
             }
 
             while (stack.Count > 0)
@@ -35,8 +49,10 @@ namespace GridViewer
                 {
                     vec3 position = transform.ModelMatrix.GetTranslate();
                     vec3 distance = position - rootPosition;
-                    mat4 model = glm.translate(mat4.identity(), distance);
+                    //mat4 model = glm.translate(mat4.identity(), distance);
+                    mat4 model = glm.translate(mat4.identity(), rootPosition);
                     model = glm.scale(model, factor);
+                    model = glm.translate(model, distance);
                     transform.ModelMatrix = model;
                     updated = true;
                 }
