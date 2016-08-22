@@ -13,50 +13,99 @@ namespace GridViewer
     public partial class FormMain
     {
 
-        private TreeNode lastSelectedBoxNode;
+        //private TreeNode lastSelectedBoxNode;
+        private BoundingBoxRenderer lastselectedBoxRenderer;
         private bool UpdateCurrentNode(TreeNode node)
         {
             bool updated = false;
-            if (node == lastSelectedBoxNode) { return updated; }
-
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            stack.Push(node);
+            BoundingBoxRenderer selectedRenderer = null;
+            while (stack.Count > 0)
             {
-                var obj = node.Tag as SceneObject;
+                TreeNode current = stack.Pop();
+                var obj = current.Tag as SceneObject;
                 if (obj != null)
                 {
                     var renderer = obj.Renderer as BoundingBoxRenderer;
                     if (renderer != null)
                     {
-                        renderer.BoundingBoxColor = Color.Aqua;
-                        var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
-                        glSwitch.LineWidth = 3;
-                        updated = true;
+                        selectedRenderer = renderer;
+                        break;
+
                     }
                 }
-            }
-
-            if (updated && lastSelectedBoxNode != null)
-            {
-                var obj = lastSelectedBoxNode.Tag as SceneObject;
-                if (obj != null)
+                foreach (TreeNode item in current.Nodes)
                 {
-                    var renderer = obj.Renderer as BoundingBoxRenderer;
-                    if (renderer != null)
-                    {
-                        renderer.BoundingBoxColor = Color.White;
-                        var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
-                        glSwitch.LineWidth = 1;
-                        updated = true;
-                    }
+                    stack.Push(item);
                 }
             }
 
-            if (updated)
+            if (selectedRenderer != lastselectedBoxRenderer)
             {
-                this.lastSelectedBoxNode = node;
+                if (selectedRenderer != null)
+                {
+                    selectedRenderer.BoundingBoxColor = Color.Aqua;
+                    var glSwitch = selectedRenderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
+                    glSwitch.LineWidth = 3;
+                }
+
+                if (lastselectedBoxRenderer != null)
+                {
+                    lastselectedBoxRenderer.BoundingBoxColor = Color.White;
+                    var glSwitch = lastselectedBoxRenderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
+                    glSwitch.LineWidth = 1;
+                }
+
+                this.lastselectedBoxRenderer = selectedRenderer;
+                updated = true;
             }
 
             return updated;
         }
+        //private bool UpdateCurrentNode(TreeNode node)
+        //{
+        //    bool updated = false;
+        //    if (node == lastSelectedBoxNode) { return updated; }
+
+        //    {
+        //        var obj = node.Tag as SceneObject;
+        //        if (obj != null)
+        //        {
+        //            var renderer = obj.Renderer as BoundingBoxRenderer;
+        //            if (renderer != null)
+        //            {
+        //                renderer.BoundingBoxColor = Color.Aqua;
+        //                var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
+        //                glSwitch.LineWidth = 3;
+        //                updated = true;
+        //            }
+        //        }
+        //    }
+
+        //    if (updated && lastSelectedBoxNode != null)
+        //    {
+        //        var obj = lastSelectedBoxNode.Tag as SceneObject;
+        //        if (obj != null)
+        //        {
+        //            var renderer = obj.Renderer as BoundingBoxRenderer;
+        //            if (renderer != null)
+        //            {
+        //                renderer.BoundingBoxColor = Color.White;
+        //                var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
+        //                glSwitch.LineWidth = 1;
+        //                updated = true;
+        //            }
+        //        }
+        //    }
+
+        //    if (updated)
+        //    {
+        //        this.lastSelectedBoxNode = node;
+        //    }
+
+        //    return updated;
+        //}
 
         private void objectsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
