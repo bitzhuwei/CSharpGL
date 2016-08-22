@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// scale model and its children models recursively.
+    /// </summary>
     public class ModelScaleScript : ScriptComponent
     {
         public bool Scale(vec3 factor)
@@ -23,6 +26,7 @@ namespace GridViewer
                 rootPosition = transform.ModelMatrix.GetTranslate();
                 foreach (var item in obj.Children) { stack.Push(item); }
             }
+
             while (stack.Count > 0)
             {
                 SceneObject obj = stack.Pop();
