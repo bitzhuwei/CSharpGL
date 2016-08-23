@@ -61,30 +61,11 @@ namespace CSharpGL.Demos
                 BlendingSourceFactor source;
                 BlendingDestinationFactor dest;
                 this.blendFactorHelper.GetNext(out source, out dest);
-                this.glText.BlendSwitch.SourceFactor = source;
-                this.glText.BlendSwitch.DestFactor = dest;
+                this.glText1.BlendSwitch.SourceFactor = source;
+                this.glText2.BlendSwitch.SourceFactor = source;
+                this.glText1.BlendSwitch.DestFactor = dest;
+                this.glText2.BlendSwitch.DestFactor = dest;
                 this.UpdateLabel();
-            }
-            else if (e.KeyChar == 'o')
-            {
-                //TODO: rewreite this with FontTexture.
-                //if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //{
-                //    string ttfFilename = this.openTextureDlg.FileName;
-                //    this.scene.UIRoot.Children.Remove(this.glText);
-                //    this.glText.Dispose();
-                //    FontResource fontResouce = FontResource.Load(ttfFilename, ' ', (char)126);
-                //    var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
-                //        new Padding(3, 3, 3, 3), new Size(850, 50), -100, 100, fontResouce);
-                //    glText.Initialize();
-                //    glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
-                //    glText.Text = "The quick brown fox jumps over the lazy dog!";
-                //    this.glText = glText;
-
-                //    this.scene.UIRoot.Children.Add(glText);
-
-                //    this.formPropertyGrid.DisplayObject(glText);
-                //}
             }
         }
 
