@@ -146,7 +146,9 @@ namespace GridViewer
                 new DumpCatesianGridTreeNodeScript());
             {
                 var boxRenderer = GetBoundingBoxRenderer(renderer);
-                SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript());
+                SceneObject boxObj = boxRenderer.WrapToSceneObject(
+                    new ModelScaleScript(),
+                    new DumpTreeNodeScript());
                 gridObj.Children.Add(boxObj);
             }
 
