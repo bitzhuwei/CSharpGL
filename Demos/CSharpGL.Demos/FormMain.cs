@@ -87,9 +87,9 @@ namespace CSharpGL.Demos
             (new Form14ShaderToy()).Show();
         }
 
-        private void btn15Scene_Click(object sender, EventArgs e)
+        private void btn15LabelRenderer_Click(object sender, EventArgs e)
         {
-            (new Form15Scene()).Show();
+            (new Form15LabelRenderer()).Show();
         }
 
         private void btn16ArcBallManipulater_Click(object sender, EventArgs e)

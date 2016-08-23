@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form15Scene
+    partial class Form15LabelRenderer
     {
         /// <summary>
         /// Required designer variable.
@@ -61,8 +61,8 @@
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(13, 63);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

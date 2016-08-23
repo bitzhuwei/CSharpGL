@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form15Scene : Form
+    public partial class Form15LabelRenderer : Form
     {
 
         private SatelliteManipulater rotator;
 
-        public Form15Scene()
+        public Form15LabelRenderer()
         {
             InitializeComponent();
 
