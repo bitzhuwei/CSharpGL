@@ -94,6 +94,9 @@ namespace CSharpGL
         }
 
         vec4 halfLengths;
+        /// <summary>
+        /// max position in world space.
+        /// </summary>
         vec3 IBoundingBox.MaxPosition
         {
             get
@@ -103,6 +106,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// min position in world space.
+        /// </summary>
         vec3 IBoundingBox.MinPosition
         {
             get
