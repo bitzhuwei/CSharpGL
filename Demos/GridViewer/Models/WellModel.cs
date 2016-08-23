@@ -32,6 +32,7 @@ namespace GridViewer
         /// WellPipeline
         /// 蛇形管道（井）
         /// </summary>
+        /// <param name="originalWorldPosition"></param>
         /// <param name="pipeline"></param>
         /// <param name="radius"></param>
         /// <param name="color"></param>
@@ -41,9 +42,20 @@ namespace GridViewer
             if (pipeline == null || pipeline.Count < 2 || radius <= 0.0f)
             { throw new ArgumentException(); }
 
-            this.pipeline = pipeline; this.radius = radius;
+            this.radius = radius;
             this.faceCount = faceCount;
             this.ModelMatrix = mat4.identity();
+            this.SetupPipeline(pipeline.ToList());
+        }
+
+        private void SetupPipeline(List<vec3> pipeline)
+        {
+            BoundingBox box = pipeline.Move2Center();
+            vec3 position = 0.5f * box.MaxPosition + 0.5f * box.MinPosition;
+            this.OriginalWorldPosition = position;
+            this.ModelMatrix = glm.translate(mat4.identity(), position);
+            this.FirstNode = pipeline[0];
+            this.pipeline = pipeline;
         }
 
         public unsafe PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
@@ -54,10 +66,6 @@ namespace GridViewer
 
                 using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                 {
-                    List<vec3> pipeline = this.pipeline.ToList();
-                    BoundingBox box = pipeline.Move2Center();
-                    this.ModelMatrix = glm.translate(mat4.identity(), 0.5f * box.MaxPosition + 0.5f * box.MinPosition);
-                    this.FirstNode = pipeline[0];
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
@@ -155,5 +163,7 @@ namespace GridViewer
         public float ZLength { get { return lengths.z; } }
 
         public mat4 ModelMatrix { get; set; }
+
+        public vec3 OriginalWorldPosition { get; protected set; }
     }
 }

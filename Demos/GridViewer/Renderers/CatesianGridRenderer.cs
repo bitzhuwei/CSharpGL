@@ -13,7 +13,7 @@ namespace GridViewer
     {
         private Texture codedColorSampler;
 
-        public static CatesianGridRenderer Create(CatesianGrid grid, Texture codedColorSampler)
+        public static CatesianGridRenderer Create(vec3 originalWorldPosition, CatesianGrid grid, Texture codedColorSampler)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);
@@ -21,15 +21,15 @@ namespace GridViewer
             var map = new PropertyNameMap();
             map.Add("in_Position", CatesianGrid.strPosition);
             map.Add("in_uv", CatesianGrid.strColor);
-            var renderer = new CatesianGridRenderer(grid, shaderCodes, map, codedColorSampler);
+            var renderer = new CatesianGridRenderer(originalWorldPosition, grid, shaderCodes, map, codedColorSampler);
             renderer.lengths = grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min;
-            renderer.ModelMatrix = glm.translate(mat4.identity(), grid.DataSource.Position);
+            renderer.ModelMatrix = glm.translate(mat4.identity(), -grid.DataSource.Position);
             return renderer;
         }
 
-        private CatesianGridRenderer(CatesianGrid catesianGrid, ShaderCode[] shaderCodes,
+        private CatesianGridRenderer(vec3 originalWorldPosition, CatesianGrid catesianGrid, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, Texture codedColorSampler, params GLSwitch[] switches)
-            : base(catesianGrid, shaderCodes, propertyNameMap, switches)
+            : base(originalWorldPosition, catesianGrid, shaderCodes, propertyNameMap, switches)
         {
             this.codedColorSampler = codedColorSampler;
         }

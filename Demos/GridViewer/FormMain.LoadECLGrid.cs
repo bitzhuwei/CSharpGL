@@ -135,7 +135,8 @@ namespace GridViewer
 
         private SceneObject GetCatesianGridObj(CatesianGrid grid, List<GridBlockProperty> gridProperties, string fileName)
         {
-            CatesianGridRenderer renderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.ColorPalette.Sampler);
+            CatesianGridRenderer renderer = CatesianGridRenderer.Create(
+                -grid.DataSource.Position, grid, this.scientificCanvas.ColorPalette.Sampler);
             //string caseFileName = System.IO.Path.GetFileName(fileName);
             renderer.Name = System.IO.Path.GetFileName(fileName);
             renderer.ModelMatrix = glm.translate(mat4.identity(),
@@ -168,7 +169,7 @@ namespace GridViewer
             }
             // rename Well3DHelper to WellPipelineBuilder.
             WellPipelineBuilder well3DHelper = new HexahedronGridWellPipelineBuilder(grid);
-            return well3DHelper.Convert(wellSpecsList, wellCompatList);
+            return well3DHelper.Convert(-grid.DataSource.Position, wellSpecsList, wellCompatList);
         }
 
     }

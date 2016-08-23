@@ -11,6 +11,11 @@ namespace CSharpGL
     public interface IModelTransform
     {
         /// <summary>
+        /// world position before model is scaled or rotated.
+        /// </summary>
+        vec3 OriginalWorldPosition { get; }
+
+        /// <summary>
         /// matrix that transforms a model from model's sapce to world's space.
         /// </summary>
         mat4 ModelMatrix { get; set; }

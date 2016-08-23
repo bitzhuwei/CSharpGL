@@ -26,7 +26,7 @@ namespace GridViewer
             this.grid = grid;
         }
 
-        protected override CSharpGL.Tuple<WellRenderer, LabelRenderer> Convert(TracyEnergy.Simba.Data.Keywords.impl.WellSpecs wellspec, TracyEnergy.Simba.Data.Keywords.impl.WellCompatCollection wellCompatList)
+        protected override CSharpGL.Tuple<WellRenderer, LabelRenderer> Convert(vec3 originalWorldPosition, TracyEnergy.Simba.Data.Keywords.impl.WellSpecs wellspec, TracyEnergy.Simba.Data.Keywords.impl.WellCompatCollection wellCompatList)
         {
             int locI = wellspec.Li;
             int locJ = wellspec.Lj;

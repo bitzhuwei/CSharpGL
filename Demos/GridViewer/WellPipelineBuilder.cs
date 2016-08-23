@@ -9,14 +9,14 @@ namespace GridViewer
 {
     abstract class WellPipelineBuilder
     {
-        public List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> Convert(WellSpecsCollection wellSpecsList, WellCompatCollection wellCompatList)
+        public List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> Convert(vec3 originalWorldPosition, WellSpecsCollection wellSpecsList, WellCompatCollection wellCompatList)
         {
             var result = new List<CSharpGL.Tuple<WellRenderer, LabelRenderer>>();
             if (wellSpecsList != null)
             {
                 foreach (WellSpecs wellspec in wellSpecsList)
                 {
-                    CSharpGL.Tuple<WellRenderer, LabelRenderer> wellPipelineRenderer = this.Convert(wellspec, wellCompatList);
+                    CSharpGL.Tuple<WellRenderer, LabelRenderer> wellPipelineRenderer = this.Convert(originalWorldPosition, wellspec, wellCompatList);
                     if (wellPipelineRenderer != null)
                     {
                         result.Add(wellPipelineRenderer);
@@ -27,7 +27,7 @@ namespace GridViewer
             return result;
         }
 
-        protected abstract CSharpGL.Tuple<WellRenderer, LabelRenderer> Convert(WellSpecs wellspec, WellCompatCollection wellCompatList);
+        protected abstract CSharpGL.Tuple<WellRenderer, LabelRenderer> Convert(vec3 originalWorldPosition, WellSpecs wellspec, WellCompatCollection wellCompatList);
 
     }
 }

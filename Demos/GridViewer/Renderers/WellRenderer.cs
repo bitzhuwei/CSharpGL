@@ -57,6 +57,7 @@ namespace GridViewer
 
             var model = this.bufferable as WellModel;
             this.ModelMatrix = model.ModelMatrix;
+            this.OriginalWorldPosition = model.ModelMatrix.GetTranslate();
             this.lengths = model.lengths;
             this.firstNode = model.FirstNode;
         }
@@ -118,5 +119,6 @@ namespace GridViewer
             var result = new Rectangle3D(min + position, max + position);
             return result;
         }
+
     }
 }

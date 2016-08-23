@@ -88,5 +88,10 @@ namespace CSharpGL
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 OriginalWorldPosition { get; protected set; }
     }
 }

@@ -17,10 +17,11 @@ namespace GridViewer
         /// </summary>
         public GridViewModel Grid { get; private set; }
 
-        public GridViewRenderer(GridViewModel model, ShaderCode[] shaderCodes,
+        protected GridViewRenderer(vec3 originalWorldPosition, GridViewModel model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
+            this.OriginalWorldPosition = originalWorldPosition;
             this.Grid = model;
         }
 
@@ -39,5 +40,6 @@ namespace GridViewer
 
             return result;
         }
+
     }
 }

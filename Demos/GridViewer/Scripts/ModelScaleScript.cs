@@ -13,8 +13,11 @@ namespace GridViewer
     /// </summary>
     public class ModelScaleScript : ScriptComponent
     {
-        private vec3 scale;
-
+        private vec3 scale = new vec3(1, 1, 1);
+        /// <summary>
+        /// Invoke SetScale(vec3 factor) by modifing this property.
+        /// 
+        /// </summary>
         [Browsable(true)]
         [Description("Invoke SetScale(vec3 factor) by modifing this property.")]
         public vec3 Scale
@@ -37,7 +40,7 @@ namespace GridViewer
                 if (obj == null) { throw new Exception(); }
                 var transform = obj.Renderer as IModelTransform;
                 if (transform == null) { throw new Exception(); }
-                rootPosition = transform.ModelMatrix.GetTranslate();
+                rootPosition = transform.OriginalWorldPosition;
                 stack.Push(obj);
             }
 
@@ -47,9 +50,7 @@ namespace GridViewer
                 var transform = obj.Renderer as IModelTransform;
                 if (transform != null)
                 {
-                    vec3 position = transform.ModelMatrix.GetTranslate();
-                    vec3 distance = position - rootPosition;
-                    //mat4 model = glm.translate(mat4.identity(), distance);
+                    vec3 distance = transform.OriginalWorldPosition - rootPosition;
                     mat4 model = glm.translate(mat4.identity(), rootPosition);
                     model = glm.scale(model, factor);
                     model = glm.translate(model, distance);

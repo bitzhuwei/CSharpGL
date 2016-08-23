@@ -106,7 +106,7 @@ namespace CSharpGL
         {
             if (renderer == null)
             {
-                renderer = BoundingBoxRenderer.Create(new vec3(1, 1, 1));
+                renderer = BoundingBoxRenderer.Create(new vec3(1, 1, 1), new vec3(0, 0, 0));
                 renderer.Initialize();
             }
             mat4 model = glm.translate(mat4.identity(), boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2);
