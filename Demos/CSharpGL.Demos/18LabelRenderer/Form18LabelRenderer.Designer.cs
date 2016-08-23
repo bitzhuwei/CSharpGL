@@ -46,15 +46,15 @@
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(280, 16);
+            this.label1.Size = new System.Drawing.Size(200, 32);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Press \'b\' to switch blend factors.";
+            this.label1.Text = "B: switch blend factors.\r\nD: discard transparency.";
             // 
             // lblCurrentBlend
             // 
             this.lblCurrentBlend.AutoSize = true;
             this.lblCurrentBlend.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblCurrentBlend.Location = new System.Drawing.Point(9, 31);
+            this.lblCurrentBlend.Location = new System.Drawing.Point(213, 9);
             this.lblCurrentBlend.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCurrentBlend.Name = "lblCurrentBlend";
             this.lblCurrentBlend.Size = new System.Drawing.Size(120, 16);
@@ -63,8 +63,8 @@
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(10, 50);
             this.glCanvas1.Name = "glCanvas1";
@@ -75,7 +75,7 @@
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
-            // Form15LabelRenderer
+            // Form18LabelRenderer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,8 +83,8 @@
             this.Controls.Add(this.lblCurrentBlend);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Form15LabelRenderer";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Form18LabelRenderer";
             this.Text = "Form15Scene";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

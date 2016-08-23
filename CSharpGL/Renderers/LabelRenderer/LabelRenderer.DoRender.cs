@@ -35,6 +35,10 @@ namespace CSharpGL
                     this.model.SetText(this.text, this.fontTexture);
                 }
             }
+            if (discardTransparencyRecord.IsMarked())
+            {
+                this.SetUniform("discardTransparency", this.DiscardTransparency);
+            }
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));
             mat4 projection = arg.Camera.GetProjectionMat4();
