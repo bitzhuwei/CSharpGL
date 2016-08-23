@@ -64,7 +64,7 @@ namespace CSharpGL
             }
         }
 
-        private bool discardTransparency = false;
+        private bool discardTransparency = true;
         private UpdatingRecord discardTransparencyRecord = new UpdatingRecord();
         /// <summary>
         /// If true, transparent part of glyph will be discarded in shader, which avoids wrrong blend effect and reduce looking effect.
