@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="lengths">bounding box's length at x, y, z direction.</param>
         /// <param name="originalWorldPosition"></param>
         /// <returns></returns>
-        public static BoundingBoxRenderer Create(vec3 lengths, vec3 originalWorldPosition)
+        public static BoundingBoxRenderer Create(vec3 lengths, vec3 originalWorldPosition = new vec3())
         {
             var bufferable = new BoundingBoxModel(lengths);
             var shaderCodes = new ShaderCode[2];
@@ -32,10 +32,9 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetFillSwitch());
-            result.maxPosition = lengths / 2;
-            result.minPosition = -lengths / 2;
+            result.halfLengths = new vec4(lengths / 2, 1.0f);
             result.OriginalWorldPosition = originalWorldPosition;
-
+            result.ModelMatrix = glm.translate(mat4.identity(), originalWorldPosition);
             return result;
         }
 
@@ -94,16 +93,13 @@ namespace CSharpGL
             base.DoRender(arg);
         }
 
-        private vec3 minPosition;
-        private vec3 maxPosition;
+        vec4 halfLengths;
         vec3 IBoundingBox.MaxPosition
         {
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(
-                    this.ModelMatrix
-                    * new vec4(maxPosition, 1.0f));
+                return new vec3(this.ModelMatrix * this.halfLengths);
             }
         }
 
@@ -112,9 +108,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(
-                    this.ModelMatrix
-                    * new vec4(minPosition, 1.0f));
+                return new vec3(this.ModelMatrix * (-this.halfLengths));
             }
         }
     }

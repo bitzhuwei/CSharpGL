@@ -74,10 +74,9 @@ namespace GridViewer
                 rect = rect.Union(rectangles[i].GetRectangle());
             }
             vec3 lengths = rect.Max - rect.Min;
-            vec3 position = rect.Max / 2 + rect.Min / 2;
-            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, position);
+            vec3 originalWorldPosition = rect.Max / 2 + rect.Min / 2;
+            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, originalWorldPosition);
             boxRenderer.SwitchList.Add(new LineWidthSwitch(1));
-            boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
 
             return boxRenderer;
         }
