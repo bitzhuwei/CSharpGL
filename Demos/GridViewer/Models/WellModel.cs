@@ -16,12 +16,10 @@ namespace GridViewer
     {
 
         public const string strPosition = "position";
-        //public const string strColor = "color";
-        //public const string strprojectionMatrix = "projectionMatrix";
-        //public const string strviewMatrix = "viewMatrix";
-        //public const string strmodelMatrix = "modelMatrix";
         private PropertyBufferPtr positionBufferPtr = null;
-        //private PropertyBufferPtr colorBufferPtr = null;
+        public const string strBrightness = "brightness";
+        private PropertyBufferPtr brightnessBufferPtr = null;
+
         private IndexBufferPtr indexBufferPtr = null;
 
         private List<vec3> pipeline;
@@ -100,26 +98,27 @@ namespace GridViewer
 
                 return positionBufferPtr;
             }
-            //else if (bufferName == strColor)
-            //{
-            //    if (colorBufferPtr != null) { return colorBufferPtr; }
+            else if (bufferName == strBrightness)
+            {
+                if (brightnessBufferPtr != null) { return brightnessBufferPtr; }
 
-            //    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
-            //    {
-            //        int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
-            //        buffer.Create(vertexCount);
-            //        var array = (vec3*)buffer.Header.ToPointer();
-            //        vec3 vColor = this.color.ToVec3();
-            //        for (int i = 0; i < buffer.Length; i++)
-            //        {
-            //            array[i] = vColor;
-            //        }
+                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                {
+                    int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
+                    buffer.Create(vertexCount);
+                    var array = (vec3*)buffer.Header.ToPointer();
+                    var random = new Random();
+                    for (int i = 0; i < buffer.Length; i++)
+                    {
+                        var x = (float)(random.NextDouble() * 0.5 + 0.5);
+                        array[i] = new vec3(x, x, x);
+                    }
 
-            //        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
-            //    }
+                    brightnessBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                }
 
-            //    return colorBufferPtr;
-            //}
+                return brightnessBufferPtr;
+            }
             else
             {
                 throw new ArgumentException();

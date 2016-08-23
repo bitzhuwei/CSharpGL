@@ -34,6 +34,7 @@ namespace GridViewer
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Well.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", WellModel.strPosition);
+            map.Add("in_Brightness", WellModel.strBrightness);
             var renderer = new WellRenderer(model, shaderCodes, map);
             return renderer;
         }
