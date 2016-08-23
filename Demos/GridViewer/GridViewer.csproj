@@ -196,52 +196,53 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="ModernRendering\shaders\Well.frag">
+    <None Include="shaders\readme.md" />
+    <None Include="shaders\Well.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\Well.vert">
+    <None Include="shaders\Well.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\Lines.frag">
+    <None Include="shaders\Lines.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\Lines.vert">
+    <None Include="shaders\Lines.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\QuadStripColor.frag">
+    <None Include="shaders\QuadStripColor.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\QuadStripColor.vert">
+    <None Include="shaders\QuadStripColor.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\QuadStripTexture.frag">
+    <None Include="shaders\QuadStripTexture.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\QuadStripTexture.vert">
+    <None Include="shaders\QuadStripTexture.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\ColorCodedBarLine.frag">
+    <None Include="shaders\ColorCodedBarLine.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\ColorCodedBarLine.vert">
+    <None Include="shaders\ColorCodedBarLine.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\ColorCodedBarRect.frag">
+    <None Include="shaders\ColorCodedBarRect.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\ColorCodedBarRect.vert">
+    <None Include="shaders\ColorCodedBarRect.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\BoundingBox.vert">
+    <None Include="shaders\BoundingBox.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\BoundingBox.frag">
+    <None Include="shaders\BoundingBox.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\HexahedronGrid.frag">
+    <None Include="shaders\HexahedronGrid.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ModernRendering\shaders\HexahedronGrid.vert">
+    <None Include="shaders\HexahedronGrid.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
