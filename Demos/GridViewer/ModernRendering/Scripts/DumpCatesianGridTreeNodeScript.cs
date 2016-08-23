@@ -15,7 +15,7 @@ namespace GridViewer
             var renderer = obj.Renderer as CatesianGridRenderer;
             var gridNode = new SceneObjectTreeNode(obj);
             gridNode.Text = obj.Name;
-            gridNode.Tag = obj;//TODO: this is not needed any more.
+            gridNode.Tag = obj;
             gridNode.ToolTipText = renderer.Grid.GetType().Name;
             foreach (var item in obj.ScriptList)
             {
