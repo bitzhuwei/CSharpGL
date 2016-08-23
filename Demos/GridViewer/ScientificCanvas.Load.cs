@@ -28,7 +28,8 @@ namespace GridViewer
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(128, 128), -100, 100);
                 uiAxis.Initialize();
-                uiAxis.SwitchList.Add(new ClearColorSwitch());
+                //// display this UI control's area.
+                //uiAxis.SwitchList.Add(new ClearColorSwitch());
                 this.Axis = uiAxis;
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }

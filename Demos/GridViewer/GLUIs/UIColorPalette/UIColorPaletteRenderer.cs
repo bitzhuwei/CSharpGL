@@ -69,7 +69,9 @@ namespace GridViewer
         {
             this.maxMarkerCount = maxMarkerCount;
             this.currentMarkersCount = maxMarkerCount;
-            this.SwitchList.Add(new ClearColorSwitch());
+
+            //// display this UI control's area.
+            //this.SwitchList.Add(new ClearColorSwitch());
 
             // color bar using texture.
             {
