@@ -13,15 +13,15 @@ namespace GridViewer
 {
     public partial class PropertyTreeNode : AbstractTreeNode
     {
-        private ScientificModelScript scriptComponent;
-        public PropertyTreeNode(ScientificModelScript scriptComponent)
+        private ScientificModelScript script;
+        public PropertyTreeNode(ScientificModelScript script)
         {
-            this.scriptComponent = scriptComponent;
+            this.script = script;
         }
 
         public override void Selected(object sender, TreeViewEventArgs e)
         {
-            this.scriptComponent.Show();
+            this.script.Show();
         }
     }
 }
