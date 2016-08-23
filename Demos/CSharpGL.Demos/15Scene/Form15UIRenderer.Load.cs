@@ -17,8 +17,7 @@ namespace CSharpGL.Demos
         private Scene scene;
 
         private FormProperyGrid formPropertyGrid;
-        private UIText glText1;
-        private UIText glText2;
+        private UIText glText;
         private BlendFactorHelper blendFactorHelper = new BlendFactorHelper();
 
         private void Form_Load(object sender, EventArgs e)
@@ -40,18 +39,9 @@ namespace CSharpGL.Demos
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
                 glText.Initialize();
-                //glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
+                glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.Text = "The quick brown fox jumps over the lazy dog!";
-                this.glText1 = glText;
-                this.scene.UIRoot.Children.Add(glText);
-            }
-            {
-                var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
-                    new Padding(10, 30, 10, 10), new Size(550, 50), -100, 100);
-                glText.Initialize();
-                //glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
-                glText.Text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!";
-                this.glText2 = glText;
+                this.glText = glText;
                 this.scene.UIRoot.Children.Add(glText);
             }
             {
@@ -63,7 +53,7 @@ namespace CSharpGL.Demos
                 this.UpdateLabel();
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.glText1);
+                var frmPropertyGrid = new FormProperyGrid(this.glText);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }
@@ -72,8 +62,8 @@ namespace CSharpGL.Demos
         private void UpdateLabel()
         {
             this.lblCurrentBlend.Text = string.Format("glBlend({0}, {1});",
-                this.glText1.BlendSwitch.SourceFactor,
-                this.glText1.BlendSwitch.DestFactor);
+                this.glText.BlendSwitch.SourceFactor,
+                this.glText.BlendSwitch.DestFactor);
         }
     }
 }
