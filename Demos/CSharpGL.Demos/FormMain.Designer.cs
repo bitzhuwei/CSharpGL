@@ -45,6 +45,7 @@
             this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn17UpdateTexture = new System.Windows.Forms.Button();
+            this.btn18LabelRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -53,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm00GLCanvas.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm00GLCanvas.Location = new System.Drawing.Point(9, 10);
-            this.btnForm00GLCanvas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm00GLCanvas.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm00GLCanvas.Name = "btnForm00GLCanvas";
             this.btnForm00GLCanvas.Size = new System.Drawing.Size(575, 30);
             this.btnForm00GLCanvas.TabIndex = 0;
@@ -67,7 +68,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm01Renderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm01Renderer.Location = new System.Drawing.Point(9, 44);
-            this.btnForm01Renderer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm01Renderer.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm01Renderer.Name = "btnForm01Renderer";
             this.btnForm01Renderer.Size = new System.Drawing.Size(575, 30);
             this.btnForm01Renderer.TabIndex = 0;
@@ -81,7 +82,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn02OriderIndependentTransparency.Font = new System.Drawing.Font("宋体", 12F);
             this.btn02OriderIndependentTransparency.Location = new System.Drawing.Point(9, 78);
-            this.btn02OriderIndependentTransparency.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn02OriderIndependentTransparency.Margin = new System.Windows.Forms.Padding(2);
             this.btn02OriderIndependentTransparency.Name = "btn02OriderIndependentTransparency";
             this.btn02OriderIndependentTransparency.Size = new System.Drawing.Size(575, 30);
             this.btn02OriderIndependentTransparency.TabIndex = 0;
@@ -95,7 +96,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm04SimpleCompute.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm04SimpleCompute.Location = new System.Drawing.Point(9, 113);
-            this.btnForm04SimpleCompute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm04SimpleCompute.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm04SimpleCompute.Name = "btnForm04SimpleCompute";
             this.btnForm04SimpleCompute.Size = new System.Drawing.Size(575, 30);
             this.btnForm04SimpleCompute.TabIndex = 0;
@@ -109,7 +110,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm05ParticleSimulator.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm05ParticleSimulator.Location = new System.Drawing.Point(9, 147);
-            this.btnForm05ParticleSimulator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm05ParticleSimulator.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm05ParticleSimulator.Name = "btnForm05ParticleSimulator";
             this.btnForm05ParticleSimulator.Size = new System.Drawing.Size(575, 30);
             this.btnForm05ParticleSimulator.TabIndex = 0;
@@ -123,7 +124,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm06ImageProcessing.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm06ImageProcessing.Location = new System.Drawing.Point(9, 182);
-            this.btnForm06ImageProcessing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm06ImageProcessing.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm06ImageProcessing.Name = "btnForm06ImageProcessing";
             this.btnForm06ImageProcessing.Size = new System.Drawing.Size(575, 30);
             this.btnForm06ImageProcessing.TabIndex = 0;
@@ -137,7 +138,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm07PointSprite.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm07PointSprite.Location = new System.Drawing.Point(9, 216);
-            this.btnForm07PointSprite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm07PointSprite.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm07PointSprite.Name = "btnForm07PointSprite";
             this.btnForm07PointSprite.Size = new System.Drawing.Size(575, 30);
             this.btnForm07PointSprite.TabIndex = 0;
@@ -151,7 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm08AnalyzedPointSprite.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm08AnalyzedPointSprite.Location = new System.Drawing.Point(9, 250);
-            this.btnForm08AnalyzedPointSprite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm08AnalyzedPointSprite.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm08AnalyzedPointSprite.Name = "btnForm08AnalyzedPointSprite";
             this.btnForm08AnalyzedPointSprite.Size = new System.Drawing.Size(575, 30);
             this.btnForm08AnalyzedPointSprite.TabIndex = 0;
@@ -166,7 +167,7 @@
             this.btnForm09TextBoxRenderer.Enabled = false;
             this.btnForm09TextBoxRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm09TextBoxRenderer.Location = new System.Drawing.Point(9, 285);
-            this.btnForm09TextBoxRenderer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForm09TextBoxRenderer.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm09TextBoxRenderer.Name = "btnForm09TextBoxRenderer";
             this.btnForm09TextBoxRenderer.Size = new System.Drawing.Size(575, 30);
             this.btnForm09TextBoxRenderer.TabIndex = 0;
@@ -180,7 +181,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn10RaycastVolumeRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btn10RaycastVolumeRenderer.Location = new System.Drawing.Point(9, 319);
-            this.btn10RaycastVolumeRenderer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn10RaycastVolumeRenderer.Margin = new System.Windows.Forms.Padding(2);
             this.btn10RaycastVolumeRenderer.Name = "btn10RaycastVolumeRenderer";
             this.btn10RaycastVolumeRenderer.Size = new System.Drawing.Size(575, 30);
             this.btn10RaycastVolumeRenderer.TabIndex = 0;
@@ -194,7 +195,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn11IFontTexture.Font = new System.Drawing.Font("宋体", 12F);
             this.btn11IFontTexture.Location = new System.Drawing.Point(9, 354);
-            this.btn11IFontTexture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn11IFontTexture.Margin = new System.Windows.Forms.Padding(2);
             this.btn11IFontTexture.Name = "btn11IFontTexture";
             this.btn11IFontTexture.Size = new System.Drawing.Size(575, 30);
             this.btn11IFontTexture.TabIndex = 0;
@@ -208,7 +209,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn12Billboard.Font = new System.Drawing.Font("宋体", 12F);
             this.btn12Billboard.Location = new System.Drawing.Point(9, 388);
-            this.btn12Billboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn12Billboard.Margin = new System.Windows.Forms.Padding(2);
             this.btn12Billboard.Name = "btn12Billboard";
             this.btn12Billboard.Size = new System.Drawing.Size(575, 30);
             this.btn12Billboard.TabIndex = 0;
@@ -222,7 +223,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn13SimplexNoise.Font = new System.Drawing.Font("宋体", 12F);
             this.btn13SimplexNoise.Location = new System.Drawing.Point(9, 422);
-            this.btn13SimplexNoise.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn13SimplexNoise.Margin = new System.Windows.Forms.Padding(2);
             this.btn13SimplexNoise.Name = "btn13SimplexNoise";
             this.btn13SimplexNoise.Size = new System.Drawing.Size(575, 30);
             this.btn13SimplexNoise.TabIndex = 0;
@@ -236,7 +237,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn14ShaderToy.Font = new System.Drawing.Font("宋体", 12F);
             this.btn14ShaderToy.Location = new System.Drawing.Point(9, 457);
-            this.btn14ShaderToy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn14ShaderToy.Margin = new System.Windows.Forms.Padding(2);
             this.btn14ShaderToy.Name = "btn14ShaderToy";
             this.btn14ShaderToy.Size = new System.Drawing.Size(575, 30);
             this.btn14ShaderToy.TabIndex = 0;
@@ -244,13 +245,13 @@
             this.btn14ShaderToy.UseVisualStyleBackColor = true;
             this.btn14ShaderToy.Click += new System.EventHandler(this.btn14ShaderToy_Click);
             // 
-            // btn15Scene
+            // btn15UIRenderer
             // 
             this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn15UIRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btn15UIRenderer.Location = new System.Drawing.Point(9, 491);
-            this.btn15UIRenderer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn15UIRenderer.Margin = new System.Windows.Forms.Padding(2);
             this.btn15UIRenderer.Name = "btn15UIRenderer";
             this.btn15UIRenderer.Size = new System.Drawing.Size(575, 30);
             this.btn15UIRenderer.TabIndex = 0;
@@ -264,7 +265,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn16ArcBallManipulater.Font = new System.Drawing.Font("宋体", 12F);
             this.btn16ArcBallManipulater.Location = new System.Drawing.Point(9, 526);
-            this.btn16ArcBallManipulater.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn16ArcBallManipulater.Margin = new System.Windows.Forms.Padding(2);
             this.btn16ArcBallManipulater.Name = "btn16ArcBallManipulater";
             this.btn16ArcBallManipulater.Size = new System.Drawing.Size(575, 30);
             this.btn16ArcBallManipulater.TabIndex = 0;
@@ -278,7 +279,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn17UpdateTexture.Font = new System.Drawing.Font("宋体", 12F);
             this.btn17UpdateTexture.Location = new System.Drawing.Point(9, 560);
-            this.btn17UpdateTexture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn17UpdateTexture.Margin = new System.Windows.Forms.Padding(2);
             this.btn17UpdateTexture.Name = "btn17UpdateTexture";
             this.btn17UpdateTexture.Size = new System.Drawing.Size(575, 30);
             this.btn17UpdateTexture.TabIndex = 0;
@@ -286,11 +287,26 @@
             this.btn17UpdateTexture.UseVisualStyleBackColor = true;
             this.btn17UpdateTexture.Click += new System.EventHandler(this.btn17UpdateTexture_Click);
             // 
+            // btn18LabelRenderer
+            // 
+            this.btn18LabelRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn18LabelRenderer.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn18LabelRenderer.Location = new System.Drawing.Point(11, 594);
+            this.btn18LabelRenderer.Margin = new System.Windows.Forms.Padding(2);
+            this.btn18LabelRenderer.Name = "btn18LabelRenderer";
+            this.btn18LabelRenderer.Size = new System.Drawing.Size(575, 30);
+            this.btn18LabelRenderer.TabIndex = 0;
+            this.btn18LabelRenderer.Text = "18 LabelRenderer";
+            this.btn18LabelRenderer.UseVisualStyleBackColor = true;
+            this.btn18LabelRenderer.Click += new System.EventHandler(this.btn18LabelRenderer_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 673);
+            this.Controls.Add(this.btn18LabelRenderer);
             this.Controls.Add(this.btn17UpdateTexture);
             this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
@@ -308,7 +324,7 @@
             this.Controls.Add(this.btn02OriderIndependentTransparency);
             this.Controls.Add(this.btnForm01Renderer);
             this.Controls.Add(this.btnForm00GLCanvas);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.Text = "CSharpGL Test/Demo Panel - http://bitzhuwei.cnblogs.com";
             this.ResumeLayout(false);
@@ -334,5 +350,6 @@
         private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn17UpdateTexture;
+        private System.Windows.Forms.Button btn18LabelRenderer;
     }
 }
