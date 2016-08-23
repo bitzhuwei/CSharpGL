@@ -12,6 +12,197 @@ namespace CSharpGL
     public static partial class OpenGL
     {
 
+        private static Delegate GetDelegate(string name, Type type)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = null;
+            if (!extensionFunctions.TryGetValue(name, out del))
+            {
+                IntPtr proc = IntPtr.Zero;
+                if (CurrentOS.IsWindows)
+                {
+                    // check https://www.opengl.org/wiki/Load_OpenGL_Functions
+                    proc = Win32.wglGetProcAddress(name);
+                    long pointer = proc.ToInt64();
+                    if (-1 <= pointer && pointer <= 3)
+                    {
+                        proc = Win32.GetProcAddress(Win32.Instance.opengl32Library, name);
+                        pointer = proc.ToInt64();
+                        if (-1 <= pointer && pointer <= 3)
+                        {
+                            throw new Exception("Extension function " + name + " not supported");
+                        }
+                    }
+                }
+                else if (CurrentOS.IsLinux)
+                {
+                    proc = glxGetProcAddress(name);
+                    if (proc == IntPtr.Zero)
+                    {
+                        throw new Exception("Extension function " + name + " not supported");
+                    }
+                }
+                else
+                {
+                    throw new NotImplementedException("Unsupported OS.");
+                }
+
+                //  Get the delegate for the function pointer.
+                del = Marshal.GetDelegateForFunctionPointer(proc, type);
+
+                //  Add to the dictionary.
+                extensionFunctions.Add(name, del);
+            }
+
+            return del;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Action GetAction(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Action));
+
+            return del as Action;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Action<T> GetAction<T>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Action<T>));
+
+            return del as Action<T>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Action<T1, T2> GetAction<T1, T2>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Action<T1, T2>));
+
+            return del as Action<T1, T2>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Action<T1, T2, T3> GetAction<T1, T2, T3>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Action<T1, T2, T3>));
+
+            return del as Action<T1, T2, T3>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Action<T1, T2, T3, T4> GetAction<T1, T2, T3, T4>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Action<T1, T2, T3, T4>));
+
+            return del as Action<T1, T2, T3, T4>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Func<TResult> GetFunc<TResult>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Func<TResult>));
+
+            return del as Func<TResult>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Func<T1, TResult> GetFunc<T1, TResult>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Func<T1, TResult>));
+
+            return del as Func<T1, TResult>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Func<T1, T2, TResult> GetFunc<T1, T2, TResult>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Func<T1, T2, TResult>));
+
+            return del as Func<T1, T2, TResult>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Func<T1, T2, T3, TResult> GetFunc<T1, T2, T3, TResult>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Func<T1, T2, T3, TResult>));
+
+            return del as Func<T1, T2, T3, TResult>;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Func<T1, T2, T3, T4, TResult> GetFunc<T1, T2, T3, T4, TResult>(string name)
+        {
+            // ftlPhysicsGuy - Better way
+            Delegate del = GetDelegate(name, typeof(Func<T1, T2, T3, T4, TResult>));
+
+            return del as Func<T1, T2, T3, T4, TResult>;
+        }
+
         // https://msdn.microsoft.com/zh-cn/library/ms379564(VS.80).aspx
         // 如果客户端指定引用类型，则 JIT 编译器将服务器 IL 中的一般参数替换为 Object，并将其编译为本机代码。
         // 在以后的任何针对引用类型而不是一般类型参数的请求中，都将使用该代码。
