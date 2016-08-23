@@ -33,7 +33,7 @@ namespace GridViewer
         /// </summary>
         public void Show()
         {
-            var sceneObject = this.BindingObject;
+            SceneObject sceneObject = this.BindingObject;
             var renderer = sceneObject.Renderer as GridViewRenderer;
             if (renderer != null)
             {
