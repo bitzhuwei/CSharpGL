@@ -73,13 +73,13 @@
     <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="15Scene\Form15UIRenderer.cs">
+    <Compile Include="15UIRenderer\Form15UIRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="15Scene\Form15UIRenderer.Designer.cs">
+    <Compile Include="15UIRenderer\Form15UIRenderer.Designer.cs">
       <DependentUpon>Form15UIRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="15Scene\Form15UIRenderer.Load.cs">
+    <Compile Include="15UIRenderer\Form15UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\TexturedRectangleModel.cs" />
@@ -358,7 +358,7 @@
     <EmbeddedResource Include="16ArcBallManipulater\Form16ArcBallManipulater.resx">
       <DependentUpon>Form16ArcBallManipulater.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="15Scene\Form15UIRenderer.resx">
+    <EmbeddedResource Include="15UIRenderer\Form15UIRenderer.resx">
       <DependentUpon>Form15UIRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="14ShaderToy\Form14ShaderToy.resx">
