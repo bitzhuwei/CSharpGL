@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form15LabelRenderer
+    partial class Form15UIRenderer
     {
         /// <summary>
         /// Required designer variable.

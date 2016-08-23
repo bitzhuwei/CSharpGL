@@ -42,7 +42,7 @@
             this.btn12Billboard = new System.Windows.Forms.Button();
             this.btn13SimplexNoise = new System.Windows.Forms.Button();
             this.btn14ShaderToy = new System.Windows.Forms.Button();
-            this.btn15LabelRenderer = new System.Windows.Forms.Button();
+            this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn17UpdateTexture = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -246,17 +246,17 @@
             // 
             // btn15Scene
             // 
-            this.btn15LabelRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn15LabelRenderer.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn15LabelRenderer.Location = new System.Drawing.Point(9, 491);
-            this.btn15LabelRenderer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn15LabelRenderer.Name = "btn15LabelRenderer";
-            this.btn15LabelRenderer.Size = new System.Drawing.Size(575, 30);
-            this.btn15LabelRenderer.TabIndex = 0;
-            this.btn15LabelRenderer.Text = "15 LabelRenderer";
-            this.btn15LabelRenderer.UseVisualStyleBackColor = true;
-            this.btn15LabelRenderer.Click += new System.EventHandler(this.btn15LabelRenderer_Click);
+            this.btn15UIRenderer.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn15UIRenderer.Location = new System.Drawing.Point(9, 491);
+            this.btn15UIRenderer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn15UIRenderer.Name = "btn15UIRenderer";
+            this.btn15UIRenderer.Size = new System.Drawing.Size(575, 30);
+            this.btn15UIRenderer.TabIndex = 0;
+            this.btn15UIRenderer.Text = "15 UIenderer";
+            this.btn15UIRenderer.UseVisualStyleBackColor = true;
+            this.btn15UIRenderer.Click += new System.EventHandler(this.btn15UIRenderer_Click);
             // 
             // btn16ArcBallManipulater
             // 
@@ -293,7 +293,7 @@
             this.ClientSize = new System.Drawing.Size(593, 673);
             this.Controls.Add(this.btn17UpdateTexture);
             this.Controls.Add(this.btn16ArcBallManipulater);
-            this.Controls.Add(this.btn15LabelRenderer);
+            this.Controls.Add(this.btn15UIRenderer);
             this.Controls.Add(this.btn14ShaderToy);
             this.Controls.Add(this.btn13SimplexNoise);
             this.Controls.Add(this.btn12Billboard);
@@ -331,7 +331,7 @@
         private System.Windows.Forms.Button btn12Billboard;
         private System.Windows.Forms.Button btn13SimplexNoise;
         private System.Windows.Forms.Button btn14ShaderToy;
-        private System.Windows.Forms.Button btn15LabelRenderer;
+        private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn17UpdateTexture;
     }

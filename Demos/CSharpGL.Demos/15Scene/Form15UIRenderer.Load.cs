@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form15LabelRenderer : Form
+    public partial class Form15UIRenderer : Form
     {
 
         private Scene scene;
@@ -40,7 +40,7 @@ namespace CSharpGL.Demos
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
                 glText.Initialize();
-                glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
+                //glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.Text = "The quick brown fox jumps over the lazy dog!";
                 this.glText1 = glText;
                 this.scene.UIRoot.Children.Add(glText);
@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(10, 30, 10, 10), new Size(550, 50), -100, 100);
                 glText.Initialize();
-                glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
+                //glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.Text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!";
                 this.glText2 = glText;
                 this.scene.UIRoot.Children.Add(glText);
