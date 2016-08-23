@@ -10,5 +10,8 @@ out vec4 color;
 void main(void)
 {
     vec4 textureColor = texture(fontTexture, passUV);
+
+	if (textureColor.r < 0.1f) discard;
+
     color = vec4(textColor, textureColor.r);
 }
