@@ -106,8 +106,7 @@ namespace GridViewer
         {
             var result = new List<SceneObject>();
 
-            List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> wellList;
-            wellList = this.CreateWellList(inputData, grid);
+            List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> wellList = this.CreateWellList(inputData, grid);
             if (wellList == null) { return result.ToArray(); }
             //this.AddWellNodes(gridderNode, this.scene, well3dList);
             foreach (var item in wellList)
