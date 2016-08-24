@@ -37,7 +37,9 @@ namespace CSharpGL
             }
             if (discardTransparencyRecord.IsMarked())
             {
-                this.SetUniform("discardTransparency", this.DiscardTransparency);
+                bool discard = this.DiscardTransparency;
+                this.SetUniform("discardTransparency", discard);
+                this.blendSwitch.InUse = discard;
             }
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));

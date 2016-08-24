@@ -13,6 +13,7 @@ namespace CSharpGL
     {
         private IFontTexture fontTexture;
         private TextModel model;
+        private GLSwitch blendSwitch;
 
         /// <summary>
         /// 
@@ -92,6 +93,10 @@ namespace CSharpGL
         public LabelRenderer(int maxCharCount = 64, int labelHeight = 32, IFontTexture fontTexture = null)
             : base(null, null, null, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One))
         {
+            GLSwitch blendSwitch = this.SwitchList.Find(x => x is BlendSwitch);
+            if (blendSwitch == null) { throw new Exception(); }
+            this.blendSwitch = blendSwitch;
+
             if (fontTexture == null)
             { this.fontTexture = FontTexture.Default; }// FontResource.Default; }
             else
