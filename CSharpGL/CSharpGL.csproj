@@ -78,7 +78,7 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="0Foundations\OpenGLObjects\GLSwitches\readme.md" />
     <EmbeddedResource Include="Resources\cursor_gold.png" />
-    <Content Include="WinformControls\RenderContexts\readme.md" />
+    <Content Include="Canvas\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
@@ -161,11 +161,11 @@
     <Compile Include="Scene\SceneRootObject.cs" />
     <Compile Include="Scene\SceneObjectHelper.cs" />
     <Compile Include="Scene\SceneObject.IDisposable.cs" />
-    <Compile Include="WinformControls\BoundedClockRenderer.cs" />
-    <Compile Include="WinformControls\ICanvas.cs">
+    <Compile Include="Canvas\BoundedClockRenderer.cs" />
+    <Compile Include="Canvas\ICanvas.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
+    <Compile Include="Canvas\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\DepthTestSwitch.cs" />
@@ -286,22 +286,22 @@
     <Compile Include="0Foundations\DataStructrues\ITreeNode.yield.cs" />
     <Compile Include="0Foundations\DataStructrues\ITreeNode.cs" />
     <Compile Include="0Foundations\DataStructrues\UpdatingRecord.cs" />
-    <Compile Include="WinformControls\ClockRenderer\ClockRenderer.cs" />
-    <Compile Include="WinformControls\ClockRenderer\ClockMarkRenderer.cs" />
-    <Compile Include="WinformControls\ClockRenderer\ClockCircleRenderer.cs" />
-    <Compile Include="WinformControls\ClockRenderer\ClockPinRenderer.cs" />
-    <Compile Include="WinformControls\GLCanvas.cs">
+    <Compile Include="Canvas\ClockRenderer\ClockRenderer.cs" />
+    <Compile Include="Canvas\ClockRenderer\ClockMarkRenderer.cs" />
+    <Compile Include="Canvas\ClockRenderer\ClockCircleRenderer.cs" />
+    <Compile Include="Canvas\ClockRenderer\ClockPinRenderer.cs" />
+    <Compile Include="Canvas\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinformControls\GLCanvas.Designer.cs">
+    <Compile Include="Canvas\GLCanvas.Designer.cs">
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinformControls\GLCanvasHelper.cs" />
-    <Compile Include="WinformControls\RenderContexts\DefaultFramebuffer.IDisposable.cs" />
-    <Compile Include="WinformControls\RenderContexts\DefaultFramebuffer.cs" />
-    <Compile Include="WinformControls\RenderContexts\DIBSection.IDisposable.cs" />
-    <Compile Include="WinformControls\RenderContexts\RenderContext.IDisposable.cs" />
-    <Compile Include="WinformControls\RenderTrigger.cs" />
+    <Compile Include="Canvas\GLCanvasHelper.cs" />
+    <Compile Include="Canvas\RenderContexts\DefaultFramebuffer.IDisposable.cs" />
+    <Compile Include="Canvas\RenderContexts\DefaultFramebuffer.cs" />
+    <Compile Include="Canvas\RenderContexts\DIBSection.IDisposable.cs" />
+    <Compile Include="Canvas\RenderContexts\RenderContext.IDisposable.cs" />
+    <Compile Include="Canvas\RenderTrigger.cs" />
     <Compile Include="FontTexture\GlyphInfo.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
@@ -446,12 +446,12 @@
     <Compile Include="0Foundations\Maths\vec3.cs" />
     <Compile Include="0Foundations\Maths\vec4.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IRenderable.cs" />
-    <Compile Include="WinformControls\RenderContexts\DIBSection.cs" />
-    <Compile Include="WinformControls\RenderContexts\FBORenderContext.cs" />
-    <Compile Include="WinformControls\RenderContexts\GLVersion.cs" />
-    <Compile Include="WinformControls\RenderContexts\HiddenWindowRenderContext.cs" />
-    <Compile Include="WinformControls\RenderContexts\RenderContext.cs" />
-    <Compile Include="WinformControls\RenderContexts\VersionAttribute.cs" />
+    <Compile Include="Canvas\RenderContexts\DIBSection.cs" />
+    <Compile Include="Canvas\RenderContexts\FBORenderContext.cs" />
+    <Compile Include="Canvas\RenderContexts\GLVersion.cs" />
+    <Compile Include="Canvas\RenderContexts\HiddenWindowRenderContext.cs" />
+    <Compile Include="Canvas\RenderContexts\RenderContext.cs" />
+    <Compile Include="Canvas\RenderContexts\VersionAttribute.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
@@ -496,15 +496,15 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL_Extensions.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL_Functions.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL_Wrappers.cs" />
-    <Compile Include="WinformControls\Win32API\BitmapInfo.cs" />
-    <Compile Include="WinformControls\Win32API\ClassStyles.cs" />
-    <Compile Include="WinformControls\Win32API\WndProc.cs" />
-    <Compile Include="WinformControls\Win32API\PixelFormatDescriptor.cs" />
-    <Compile Include="WinformControls\Win32API\SetWindowPosFlags.cs" />
-    <Compile Include="WinformControls\Win32API\Win32.cs" />
-    <Compile Include="WinformControls\Win32API\WindowStyles.cs" />
-    <Compile Include="WinformControls\Win32API\WindowStylesEx.cs" />
-    <Compile Include="WinformControls\Win32API\WNDCLASSEX.cs" />
+    <Compile Include="Canvas\Win32API\BitmapInfo.cs" />
+    <Compile Include="Canvas\Win32API\ClassStyles.cs" />
+    <Compile Include="Canvas\Win32API\WndProc.cs" />
+    <Compile Include="Canvas\Win32API\PixelFormatDescriptor.cs" />
+    <Compile Include="Canvas\Win32API\SetWindowPosFlags.cs" />
+    <Compile Include="Canvas\Win32API\Win32.cs" />
+    <Compile Include="Canvas\Win32API\WindowStyles.cs" />
+    <Compile Include="Canvas\Win32API\WindowStylesEx.cs" />
+    <Compile Include="Canvas\Win32API\WNDCLASSEX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="0Foundations\DataStructrues\FullDictionary.cs" />
     <Compile Include="0Foundations\Utilities\RectangleHelper.cs" />
