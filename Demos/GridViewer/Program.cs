@@ -18,8 +18,8 @@ namespace GridViewer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var mainWindow = new FormMain();
-            Rectangle rect = WindowSizeHelper.WindowSize(0.8f, 0.9f);
-            mainWindow.Size = rect.Size;
+            //Rectangle rect = WindowSizeHelper.WindowSize(0.8f, 0.9f);
+            //mainWindow.Size = rect.Size;
             mainWindow.StartPosition = FormStartPosition.CenterScreen;
             Application.Run(mainWindow);
         }
