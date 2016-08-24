@@ -14,21 +14,21 @@ namespace GridViewer
 
         void FormMain_Load(object sender, EventArgs e)
         {
-            //this.scientificCanvas.Scene.ObjectList.ItemAdded += ObjectList_ItemAdded;
-            //this.scientificCanvas.Scene.ObjectList.ItemRemoved += ObjectList_ItemRemoved;
+            //this.scientificCanvas.Scene.RootObject.Children.ItemAdded += RootObject.Children_ItemAdded;
+            //this.scientificCanvas.Scene.RootObject.Children.ItemRemoved += RootObject.Children_ItemRemoved;
             SceneObject ground = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Ground);
-            this.scientificCanvas.Scene.ObjectList.Add(ground);
+            this.scientificCanvas.Scene.RootObject.Children.Add(ground);
             TreeNode groundTreeNode = this.objectsTreeView.Nodes.Add(ground.Name);
             groundTreeNode.Tag = ground;
             SceneObject axis = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Axis);
-            this.scientificCanvas.Scene.ObjectList.Add(axis);
+            this.scientificCanvas.Scene.RootObject.Children.Add(axis);
             TreeNode axisTreeNode = this.objectsTreeView.Nodes.Add(axis.Name);
             axisTreeNode.Tag = axis;
 
             Application.Idle += Application_Idle;
         }
 
-        //void ObjectList_ItemRemoved(object sender, RemoveItemEventArgs<SceneObject> e)
+        //void RootObject.Children_ItemRemoved(object sender, RemoveItemEventArgs<SceneObject> e)
         //{
         //    if (e.RemovedItem.Parent == null)
         //    {
@@ -42,11 +42,11 @@ namespace GridViewer
         //    }
         //}
 
-        //void ObjectList_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
+        //void RootObject.Children_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
         //{
         //    if (e.NewItem.Parent == null)
         //    {
-        //        int index = this.scientificCanvas.Scene.ObjectList.IndexOf(e.NewItem);
+        //        int index = this.scientificCanvas.Scene.RootObject.Children.IndexOf(e.NewItem);
         //        var node = new TreeNode(e.NewItem.ToString());
         //        node.Tag = e.NewItem;
         //        e.NewItem.Tag = node;

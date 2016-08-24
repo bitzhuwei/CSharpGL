@@ -22,7 +22,7 @@ namespace CSharpGL.SceneEditor
             var node = new TreeNode(obj.ToString());
             node.Tag = obj;
             obj.Tag = node;
-            this.scene.ObjectList.Add(obj);
+            this.scene.RootObject.Children.Add(obj);
             this.treeView1.Nodes.Add(node);
         }
 
@@ -42,15 +42,15 @@ namespace CSharpGL.SceneEditor
 
         void Children_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
         {
-            if (e.NewItem.Parent == null)
-            {
-                int index = this.scene.ObjectList.IndexOf(e.NewItem);
-                var node = new TreeNode(e.NewItem.ToString());
-                node.Tag = e.NewItem;
-                e.NewItem.Tag = node;
-                this.treeView1.Nodes.Insert(index, node);
-            }
-            else
+            //if (e.NewItem.Parent == null)
+            //{
+            //    int index = this.scene.RootObject.Children.IndexOf(e.NewItem);
+            //    var node = new TreeNode(e.NewItem.ToString());
+            //    node.Tag = e.NewItem;
+            //    e.NewItem.Tag = node;
+            //    this.treeView1.Nodes.Insert(index, node);
+            //}
+            //else
             {
                 int index = e.NewItem.Parent.Children.IndexOf(e.NewItem);
                 var node = new TreeNode(e.NewItem.ToString());
@@ -97,7 +97,7 @@ namespace CSharpGL.SceneEditor
                     { /* nothing to do */ }
                 }
                 {
-                    this.scene.ObjectList.Remove(node.Tag as SceneObject);
+                    this.scene.RootObject.Children.Remove(node.Tag as SceneObject);
                     TreeNode parent = node.Parent;
                     if (parent != null)
                     { parent.Nodes.Remove(node); }
@@ -135,7 +135,7 @@ namespace CSharpGL.SceneEditor
         private void refreshTreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.treeView1.Nodes.Clear();
-            foreach (var sceneObject in this.scene.ObjectList)
+            foreach (SceneObject sceneObject in this.scene.RootObject)
             {
                 var node = new TreeNode(sceneObject.Name);
                 node.Tag = sceneObject;

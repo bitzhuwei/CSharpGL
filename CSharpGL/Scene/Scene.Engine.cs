@@ -78,7 +78,8 @@ namespace CSharpGL
                 || this.currentCycle < this.maxCycle)// not reached last cycle yet
             {
                 this.currentCycle++;
-                UpdateObjects(this.ObjectList, interval);
+                SceneRootObject rootObj = this.rootObject;
+                UpdateObject(rootObj, interval);
             }
             else
             {
@@ -86,13 +87,13 @@ namespace CSharpGL
             }
         }
 
-        private void UpdateObjects(ChildList<SceneObject> list, double interval)
+        private void UpdateObject(SceneObject sceneObject, double interval)
         {
-            SceneObject[] array = list.ToArray();
-            foreach (var obj in array)
+            sceneObject.Update(interval);
+            SceneObject[] array = sceneObject.Children.ToArray();
+            foreach (var child in array)
             {
-                obj.Update(interval);
-                UpdateObjects(obj.Children, interval);
+                UpdateObject(child, interval);
             }
         }
 
@@ -101,7 +102,7 @@ namespace CSharpGL
         /// </summary>
         public void Update()
         {
-            this.UpdateObjects(this.objectList, 0);
+            this.UpdateObject(this.RootObject, 0);
         }
     }
 }

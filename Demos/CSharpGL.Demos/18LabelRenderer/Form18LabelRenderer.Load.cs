@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
                 labelRenderer.Initialize();
                 labelRenderer.SetPosition(new vec3(1, 0, 0));
                 SceneObject obj = labelRenderer.WrapToSceneObject("label 1");
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
                 this.blendSwitch1 = labelRenderer.SwitchList.Find(x => x is BlendSwitch) as BlendSwitch;
                 this.labelRenderer1 = labelRenderer;
             }
@@ -53,7 +53,7 @@ namespace CSharpGL.Demos
                 labelRenderer.Initialize();
                 labelRenderer.SetPosition(new vec3(-1, 0, 0));
                 SceneObject obj = labelRenderer.WrapToSceneObject("label 2");
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
                 this.blendSwitch2 = labelRenderer.SwitchList.Find(x => x is BlendSwitch) as BlendSwitch;
                 this.labelRenderer2 = labelRenderer;
             }

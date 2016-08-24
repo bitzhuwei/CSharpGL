@@ -53,7 +53,7 @@ namespace GridViewer
                 mainObj.Children.Add(gridObj);
                 mainObj.Children.AddRange(wellObjects);
 
-                this.scientificCanvas.Scene.ObjectList.Add(mainObj);
+                this.scientificCanvas.Scene.RootObject.Children.Add(mainObj);
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
                 this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;

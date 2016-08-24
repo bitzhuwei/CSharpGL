@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
                 var renderer = new SimplexNoiseRenderer();
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,

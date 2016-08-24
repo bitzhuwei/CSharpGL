@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
                 var renderer = new SimpleComputeRenderer();
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
                 var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
             }

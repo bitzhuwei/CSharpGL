@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
                 //this.ground = ground;
                 var obj = new SceneObject();
                 obj.Renderer = ground;
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
             //MovableRenderer movableRenderer;
             {
@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
                 movableRenderer.Scale = 0.1f;
                 var obj = new SceneObject();
                 obj.Renderer = movableRenderer;
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
             {
                 BillboardRenderer billboardRenderer = BillboardRenderer.GetRenderer(new BillboardModel());
@@ -53,14 +53,14 @@ namespace CSharpGL.Demos
                 obj.Renderer = billboardRenderer;
                 var updatePosition = new UpdateBillboardPosition(movableRenderer);
                 obj.ScriptList.Add(updatePosition);
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
             {
                 var labelRenderer = new LabelRenderer();
                 labelRenderer.Initialize();
                 labelRenderer.Text = "Teapot - CSharpGL";
                 SceneObject obj = labelRenderer.WrapToSceneObject(new UpdateLabelPosition(movableRenderer));
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
@@ -92,7 +92,7 @@ namespace CSharpGL.Demos
             { timerEnableSignIndex = 0; }
             this.lblTimerEnabled.Text = timerEnabledSign[timerEnableSignIndex];
 
-            //foreach (var sceneObject in this.scene.ObjectList)
+            //foreach (var sceneObject in this.scene.RootObject.Children)
             //{
             //    foreach (var obj in sceneObject)
             //    {

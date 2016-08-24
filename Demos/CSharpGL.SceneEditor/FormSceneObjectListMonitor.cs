@@ -29,7 +29,7 @@ namespace CSharpGL.SceneEditor
         void Application_Idle(object sender, EventArgs e)
         {
             this.textBox1.Clear();
-            foreach (var item in this.scene.ObjectList)
+            foreach (var item in this.scene.RootObject)
             {
                 this.textBox1.AppendText(item.DumpToText());
             }
@@ -39,7 +39,6 @@ namespace CSharpGL.SceneEditor
         {
             Application_Idle(sender, e);
         }
-
 
     }
 }

@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
                 renderer.Name = "OIT Renderer";
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
 
             this.form03 = new Form03OrderDependentTransparency(this);

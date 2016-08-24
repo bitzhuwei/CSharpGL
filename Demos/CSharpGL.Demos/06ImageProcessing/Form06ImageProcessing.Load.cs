@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
                 var renderer = new ImageProcessingRenderer();
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject(new UpdateImageScript(this.glCanvas1));
-                this.scene.ObjectList.Add(obj);
+                this.scene.RootObject.Children.Add(obj);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);

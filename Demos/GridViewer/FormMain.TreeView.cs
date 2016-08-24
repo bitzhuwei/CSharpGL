@@ -169,7 +169,7 @@ namespace GridViewer
                 {
                     if (obj.Parent == null)
                     {
-                        this.scientificCanvas.Scene.ObjectList.Remove(obj);
+                        this.scientificCanvas.Scene.RootObject.Children.Remove(obj);
                         this.objectsTreeView.Nodes.Remove(node);
                     }
                     else

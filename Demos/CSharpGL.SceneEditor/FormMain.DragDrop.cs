@@ -30,7 +30,7 @@ namespace CSharpGL.SceneEditor
             if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
                 var treeView = sender as TreeView;
- 
+
                 // 获取当前光标所处的坐标
                 // 定义一个位置点的变量，保存当前光标所处的坐标点
                 Point point = treeView.PointToClient(new Point(e.X, e.Y));
@@ -49,7 +49,7 @@ namespace CSharpGL.SceneEditor
                         if (dragedObj.Parent != null)
                         { dragedObj.Parent.Children.Remove(dragedObj); }
                         else
-                        { this.scene.ObjectList.Remove(dragedObj); }
+                        { this.scene.RootObject.Children.Remove(dragedObj); }
                         //treeNodeObj.Parent = null;
                         // 往目标节点中加入被拖动节点的一份克隆
                         targetNode.Nodes.Add(dragedNode);
@@ -64,9 +64,9 @@ namespace CSharpGL.SceneEditor
                         if (dragedObj.Parent != null)
                         { dragedObj.Parent.Children.Remove(dragedObj); }
                         else
-                        { this.scene.ObjectList.Remove(dragedObj); }
+                        { this.scene.RootObject.Children.Remove(dragedObj); }
                         treeView.Nodes.Add(dragedNode);
-                        this.scene.ObjectList.Add(dragedObj);
+                        this.scene.RootObject.Children.Add(dragedObj);
                         // 将被拖动的节点移除
                         treeView.ExpandAll();
                     }

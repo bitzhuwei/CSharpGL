@@ -24,12 +24,11 @@ namespace CSharpGL
         /// </summary>
         public Camera Camera { get; private set; }
 
-        private ChildList<SceneObject> objectList = new ChildList<SceneObject>();
+        private SceneRootObject rootObject;
         /// <summary>
-        /// objects to be rendered.
+        /// Root object of all objects to be rendered in the scene.
         /// </summary>
-        [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
-        public ChildList<SceneObject> ObjectList { get { return this.objectList; } }
+        public SceneRootObject RootObject { get { return rootObject; } }
 
         private UIRoot uiRoot = new UIRoot();
         /// <summary>
@@ -54,7 +53,9 @@ namespace CSharpGL
             { throw new ArgumentNullException(); }
 
             this.Camera = camera;
-            this.ObjectList.AddRange(objects);
+            var rootObject = new SceneRootObject(this);
+            rootObject.Children.AddRange(objects);
+            this.rootObject = rootObject;
             this.Cursor = UICursor.CreateDefault();
             this.cursorRoot.Children.Add(this.Cursor);
         }
@@ -84,7 +85,10 @@ namespace CSharpGL
             var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
 
             // render objects.
-            this.RenderObjects(this.ObjectList, arg);
+            {
+                SceneRootObject rootObject = this.RootObject;
+                this.RenderObject(rootObject, arg);
+            }
 
             // render regular UI.
             this.UIRoot.Render(arg);
@@ -98,13 +102,13 @@ namespace CSharpGL
             }
         }
 
-        private void RenderObjects(ChildList<SceneObject> list, RenderEventArgs arg)
+        private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
         {
-            SceneObject[] array = list.ToArray();
-            foreach (var obj in array)
+            sceneObject.Render(arg);
+            SceneObject[] array = sceneObject.Children.ToArray();
+            foreach (var child in array)
             {
-                obj.Render(arg);
-                RenderObjects(obj.Children, arg);
+                RenderObject(child, arg);
             }
         }
     }
