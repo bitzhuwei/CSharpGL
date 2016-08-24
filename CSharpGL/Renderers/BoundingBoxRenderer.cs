@@ -118,10 +118,19 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// length at x axis.
+        /// </summary>
         public float XLength { get { return this.halfLengths.x * 2; } }
 
+        /// <summary>
+        /// length at y axis.
+        /// </summary>
         public float YLength { get { return this.halfLengths.y * 2; } }
 
+        /// <summary>
+        /// length at z axis.
+        /// </summary>
         public float ZLength { get { return this.halfLengths.z * 2; } }
     }
 }
