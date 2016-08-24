@@ -22,6 +22,6 @@ namespace CSharpGL
         /// <summary>
         /// Which scene is this object in?
         /// </summary>
-        public Scene BindingScene { get; set; }
+        public Scene BindingScene { get; private set; }
     }
 }
