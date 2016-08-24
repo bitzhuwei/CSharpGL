@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL.SceneEditor.Scripts
 {
-    class Satellite : ScriptComponent
+    class Satellite : Script
     {
 
         private IModelTransform planetTransform;

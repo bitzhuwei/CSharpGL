@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GridViewer
 {
-    class LabelTargetScript : ScriptComponent
+    class LabelTargetScript : Script
     {
         private IModelTransform target;
         private ILabelPosition labelPosition;

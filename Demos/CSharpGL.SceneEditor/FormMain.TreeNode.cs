@@ -112,11 +112,11 @@ namespace CSharpGL.SceneEditor
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null)
             {
-                var frmSelectScript = new FormSelectType(typeof(ScriptComponent));
+                var frmSelectScript = new FormSelectType(typeof(Script));
                 if (frmSelectScript.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     var obj = node.Tag as SceneObject;
-                    var script = Activator.CreateInstance(frmSelectScript.SelectedType) as ScriptComponent;
+                    var script = Activator.CreateInstance(frmSelectScript.SelectedType) as Script;
                     obj.ScriptList.Add(script);
                 }
             }

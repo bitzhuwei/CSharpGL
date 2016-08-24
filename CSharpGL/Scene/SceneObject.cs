@@ -68,7 +68,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("update state of this object.")]
-        public ScriptComponentList ScriptList { get; private set; }
+        public ScriptList ScriptList { get; private set; }
 
         /// <summary>
         /// Enabled or not.
@@ -93,7 +93,7 @@ namespace CSharpGL
             this.Name = this.GetType().Name;
             this.Enabled = true;
             //this.Transform = new TransformComponent(this);
-            this.ScriptList = new ScriptComponentList(this);
+            this.ScriptList = new ScriptList(this);
             this.Children = new ChildList<SceneObject>(this);
         }
 
@@ -114,7 +114,7 @@ namespace CSharpGL
         {
             if (this.Enabled)
             {
-                ScriptComponentList scriptList = this.ScriptList;
+                ScriptList scriptList = this.ScriptList;
                 foreach (var script in scriptList)
                 {
                     script.Update(elapsedTime);
@@ -127,7 +127,7 @@ namespace CSharpGL
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetScript<T>() where T : ScriptComponent
+        public T GetScript<T>() where T : Script
         {
             foreach (var item in this.ScriptList)
             {
@@ -146,7 +146,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ScriptComponent GetScript(string id)
+        public Script GetScript(string id)
         {
             foreach (var item in this.ScriptList)
             {

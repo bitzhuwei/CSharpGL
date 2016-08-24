@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static SceneObject WrapToSceneObject(
             this RendererBase renderer,
-            params ScriptComponent[] scripts)
+            params Script[] scripts)
         {
             return WrapToSceneObject(renderer, "", scripts);
         }
@@ -30,7 +30,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static SceneObject WrapToSceneObject(
             this RendererBase renderer,
-            string name, params ScriptComponent[] scripts)
+            string name, params Script[] scripts)
         {
             var obj = new SceneObject();
             obj.Renderer = renderer;

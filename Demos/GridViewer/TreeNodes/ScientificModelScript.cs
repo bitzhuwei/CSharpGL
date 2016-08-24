@@ -9,7 +9,7 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    public class ScientificModelScript : ScriptComponent
+    public class ScientificModelScript : Script
     {
         private GridBlockProperty gridBlockProperty;
         public GridBlockProperty GridBlockProperty

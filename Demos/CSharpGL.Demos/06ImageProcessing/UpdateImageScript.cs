@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    class UpdateImageScript : ScriptComponent, IDisposable
+    class UpdateImageScript : Script, IDisposable
     {
         private Control canvas;
         private OpenFileDialog openTextureDlg;

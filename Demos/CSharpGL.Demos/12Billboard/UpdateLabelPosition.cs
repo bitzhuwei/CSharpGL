@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    class UpdateLabelPosition : ScriptComponent
+    class UpdateLabelPosition : Script
     {
         private LabelRenderer renderer;
         public IWorldPosition TargetRenderer { get; set; }

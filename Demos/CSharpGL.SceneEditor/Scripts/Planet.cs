@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL.SceneEditor.Scripts
 {
-    class Planet : ScriptComponent
+    class Planet : Script
     {
         private BuildInRenderer renderer;
         private double currentAngle;

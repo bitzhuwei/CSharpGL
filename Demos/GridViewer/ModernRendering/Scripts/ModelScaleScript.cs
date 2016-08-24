@@ -11,7 +11,7 @@ namespace GridViewer
     /// <summary>
     /// scale model and its children models recursively.
     /// </summary>
-    public class ModelScaleScript : ScriptComponent
+    public class ModelScaleScript : Script
     {
         private vec3 scale = new vec3(1, 1, 1);
         /// <summary>

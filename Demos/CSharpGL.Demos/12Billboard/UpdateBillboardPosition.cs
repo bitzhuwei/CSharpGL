@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    class UpdateBillboardPosition : ScriptComponent
+    class UpdateBillboardPosition : Script
     {
         private IWorldPosition renderer;
         public IWorldPosition TargetRenderer { get; set; }

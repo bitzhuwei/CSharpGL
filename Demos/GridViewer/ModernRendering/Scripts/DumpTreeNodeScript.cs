@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace GridViewer
 {
-    public class DumpTreeNodeScript : ScriptComponent
+    public class DumpTreeNodeScript : Script
     {
 
         public virtual TreeNode DumpTreeNode()

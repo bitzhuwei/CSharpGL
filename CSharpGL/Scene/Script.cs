@@ -7,23 +7,27 @@ namespace CSharpGL
     /// <summary>
     /// Base type of all scripts.
     /// </summary>
-    public abstract partial class ScriptComponent : Component
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    public abstract partial class Script : IBindingObject<SceneObject>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public SceneObject BindingObject { get; set; }
+        /// <summary>
+        /// Base type of all scripts.
+        /// </summary>
+        /// <param name="bindingObject"></param>
+        public Script(SceneObject bindingObject = null)
+        {
+            this.BindingObject = bindingObject;
+        }
+
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ScriptComponent() : base(null) { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="bindingObject"></param>
-        public ScriptComponent(SceneObject bindingObject) : base(bindingObject) { }
         /// <summary>
         /// 
         /// </summary>
