@@ -158,6 +158,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
+    <Compile Include="Scene\SceneRootObject.cs" />
     <Compile Include="Scene\SceneObjectHelper.cs" />
     <Compile Include="Scene\SceneObject.IDisposable.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
