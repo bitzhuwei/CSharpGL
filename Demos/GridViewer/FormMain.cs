@@ -25,6 +25,12 @@ namespace GridViewer
             this.scientificCanvas.Scene.Running = this.timer1.Enabled;
         }
 
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            this.scientificCanvas.Scene.Update();
+            this.scientificCanvas.Invalidate();
+        }
+
 
 
     }
