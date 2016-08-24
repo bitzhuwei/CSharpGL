@@ -427,7 +427,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitch.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IListEditor`1.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IListEditor.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IBufferable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\PropertyNameMap.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\ShaderCode.cs" />
