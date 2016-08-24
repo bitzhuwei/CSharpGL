@@ -40,8 +40,6 @@ namespace CSharpGL
                         ICanvas canvas = scene.Canvas;
                         scene.Update();
                         canvas.Repaint();
-                        //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-                        //scene.Render(RenderModes.Render, canvas.CanvasRectangle, canvas.CursorPosition);
                     }
                 }
             }
