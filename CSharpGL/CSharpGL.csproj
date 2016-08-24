@@ -122,6 +122,7 @@
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelTransform.cs" />
+    <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
