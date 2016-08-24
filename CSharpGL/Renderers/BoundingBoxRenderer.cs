@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <summary>
     /// Renders a bounding box.
     /// </summary>
-    public class BoundingBoxRenderer : Renderer, IBoundingBox
+    public class BoundingBoxRenderer : Renderer, IModelSize, IBoundingBox
     {
 
         /// <summary>
@@ -117,5 +117,11 @@ namespace CSharpGL
                 return new vec3(this.ModelMatrix * (-this.halfLengths));
             }
         }
+
+        public float XLength { get { return this.halfLengths.x * 2; } }
+
+        public float YLength { get { return this.halfLengths.y * 2; } }
+
+        public float ZLength { get { return this.halfLengths.z * 2; } }
     }
 }
