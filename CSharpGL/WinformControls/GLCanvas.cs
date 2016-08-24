@@ -21,7 +21,10 @@ namespace CSharpGL
     [DefaultEvent("OpenGLDraw")]
     [Description("A canvas for OpenGL rendering.")]
     //[ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
-    public partial class GLCanvas : UserControl, ISupportInitialize
+    public partial class GLCanvas :
+        UserControl,
+        ISupportInitialize,
+        ICanvas
     {
         private Stopwatch stopWatch = new Stopwatch();
         private readonly string fullname;
@@ -368,6 +371,34 @@ namespace CSharpGL
         /// </summary>
         [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
         public event EventHandler<PaintEventArgs> OpenGLDraw;
+
+        #region ICanvas
+
+        /// <summary>
+        /// repaint this canvas' content.
+        /// </summary>
+        public void Repaint()
+        {
+            this.Invalidate();
+        }
+
+        ///// <summary>
+        ///// canvas' rectangle.
+        ///// </summary>
+        //public Rectangle CanvasRectangle
+        //{
+        //    get { return this.ClientRectangle; }
+        //}
+
+        ///// <summary>
+        ///// Mouse position to canvas' left-top corner.
+        ///// </summary>
+        //public Point CursorPosition
+        //{
+        //    get { return this.PointToClient(Control.MousePosition); }
+        //}
+
+        #endregion ICanvas
 
     }
 

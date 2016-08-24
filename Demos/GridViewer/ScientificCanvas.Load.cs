@@ -22,7 +22,7 @@ namespace GridViewer
             cameraManipulater.Bind(camera, this);
             this.cameraManipulater = cameraManipulater;
 
-            this.Scene = new Scene(camera);
+            this.Scene = new Scene(camera, this);
             this.Scene.Cursor.Enabled = false;
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,

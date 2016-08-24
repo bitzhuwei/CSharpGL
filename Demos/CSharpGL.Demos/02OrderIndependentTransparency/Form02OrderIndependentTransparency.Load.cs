@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
                 rotator.Bind(camera, this.glCanvas1);
                 rotator.BindingMouseButtons = System.Windows.Forms.MouseButtons.Left | System.Windows.Forms.MouseButtons.Right;
                 this.rotator = rotator;
-                this.scene = new Scene(camera);
+                this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {

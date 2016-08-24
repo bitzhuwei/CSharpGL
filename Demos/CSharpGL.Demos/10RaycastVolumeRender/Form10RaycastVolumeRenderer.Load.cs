@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
-                this.scene = new Scene(camera);
+                this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {

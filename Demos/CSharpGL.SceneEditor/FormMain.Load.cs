@@ -34,7 +34,7 @@ namespace CSharpGL.SceneEditor
         {
             var camera = new Camera(new vec3(1, 2, 3), new vec3(0, 0, 0), new vec3(0, 1, 0),
                CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-            this.scene = new Scene(camera);
+            this.scene = new Scene(camera, this.glCanvas1);
             var cameraManipulater = new FirstPerspectiveManipulater();
             cameraManipulater.Bind(camera, this.glCanvas1);
             this.cameraManipulater = cameraManipulater;

@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
                 this.rotator = rotator;
-                this.scene = new Scene(camera);
+                this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {

@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
                 rotator.Bind(camera, this.glCanvas1);
                 this.camera = camera;
                 this.rotator = rotator;
-                this.scene = new Scene(camera);
+                this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {

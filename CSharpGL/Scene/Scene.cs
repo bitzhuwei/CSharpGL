@@ -24,6 +24,11 @@ namespace CSharpGL
         /// </summary>
         public Camera Camera { get; private set; }
 
+        /// <summary>
+        /// Canvas that this scene binds to.
+        /// </summary>
+        public ICanvas Canvas { get; set; }
+
         private SceneRootObject rootObject;
         /// <summary>
         /// Root object of all objects to be rendered in the scene.
@@ -45,14 +50,19 @@ namespace CSharpGL
         /// <summary>
         /// Manages a scene to be rendered and updated.
         /// </summary>
-        /// <param name="camera">camera of the scene</param>
-        /// <param name="objects">objects to be rendered</param>
-        public Scene(Camera camera, params SceneObject[] objects)
+        /// <param name="camera">Camera of the scene</param>
+        /// <param name="canvas">Canvas that this scene binds to.</param>
+        /// <param name="objects">Objects to be rendered</param>
+        public Scene(Camera camera, ICanvas canvas, params SceneObject[] objects)
         {
             if (camera == null)
             { throw new ArgumentNullException(); }
 
+            if (canvas == null)
+            { throw new ArgumentNullException(); }
+
             this.Camera = camera;
+            this.Canvas = canvas;
             var rootObject = new SceneRootObject(this);
             rootObject.Children.AddRange(objects);
             this.rootObject = rootObject;
@@ -111,5 +121,6 @@ namespace CSharpGL
                 RenderObject(child, arg);
             }
         }
+
     }
 }

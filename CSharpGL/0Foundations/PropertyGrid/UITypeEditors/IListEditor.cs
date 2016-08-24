@@ -23,7 +23,28 @@ namespace CSharpGL
         {
             // 打开属性编辑器修改数据
             var editor = new FormIListEditor<T>(value as IList<T>);
-            editor.ShowDialog();
+            if (editor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var sceneObject = context.Instance as SceneObject;
+                if (sceneObject != null)
+                {
+                    SceneRootObject rootObject = null;
+                    while (sceneObject != null && sceneObject.Parent != null)
+                    {
+                        sceneObject = sceneObject.Parent;
+                    }
+                    rootObject = sceneObject as SceneRootObject;
+                    if (rootObject != null)
+                    {
+                        Scene scene = rootObject.BindingScene;
+                        ICanvas canvas = scene.Canvas;
+                        scene.Update();
+                        canvas.Repaint();
+                        //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+                        //scene.Render(RenderModes.Render, canvas.CanvasRectangle, canvas.CursorPosition);
+                    }
+                }
+            }
 
             return value;
         }

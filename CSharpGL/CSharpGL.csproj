@@ -162,6 +162,9 @@
     <Compile Include="Scene\SceneObjectHelper.cs" />
     <Compile Include="Scene\SceneObject.IDisposable.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
+    <Compile Include="WinformControls\ICanvas.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
