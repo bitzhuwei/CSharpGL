@@ -60,17 +60,18 @@ namespace GridViewer
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.ColorPalette.SetCodedColor(axisMin, axisMax, step);
 
-                // refresh objects state in scene.
-                this.scientificCanvas.Scene.Start(1);
 
                 // update tree node.
                 TreeNode mainNode = DumpTreeNode(mainObj);
                 this.objectsTreeView.Nodes.Add(mainNode);
+                this.objectsTreeView.ExpandAll();
+
+                // refresh objects state in scene.
+                this.scientificCanvas.Scene.Update();
 
                 // render scene to this canvas.
                 this.scientificCanvas.Invalidate();
 
-                this.objectsTreeView.ExpandAll();
             }
             catch (Exception ex)
             {

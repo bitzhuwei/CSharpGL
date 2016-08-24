@@ -144,6 +144,7 @@ namespace GridViewer
 
             if (updated)
             {
+                this.scientificCanvas.Scene.Update();
                 this.scientificCanvas.Invalidate();
             }
         }
