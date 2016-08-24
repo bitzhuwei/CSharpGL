@@ -22,27 +22,8 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据
-            var editor = new FormIListEditor<T>(value as IList<T>);
-            if (editor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var sceneObject = context.Instance as SceneObject;
-                if (sceneObject != null)
-                {
-                    SceneRootObject rootObject = null;
-                    while (sceneObject != null && sceneObject.Parent != null)
-                    {
-                        sceneObject = sceneObject.Parent;
-                    }
-                    rootObject = sceneObject as SceneRootObject;
-                    if (rootObject != null)
-                    {
-                        Scene scene = rootObject.BindingScene;
-                        ICanvas canvas = scene.Canvas;
-                        scene.Update();
-                        canvas.Repaint();
-                    }
-                }
-            }
+            var editor = new FormIListEditor<T>(context, provider, value as IList<T>);
+            editor.ShowDialog();
 
             return value;
         }

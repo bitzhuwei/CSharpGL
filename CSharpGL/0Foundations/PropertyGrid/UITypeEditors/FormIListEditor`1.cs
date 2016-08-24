@@ -16,10 +16,15 @@ namespace CSharpGL
     {
 
         IList<T> list;
+        private ITypeDescriptorContext context;
+        private IServiceProvider provider;
 
-        public FormIListEditor(IList<T> list)
+        public FormIListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<T> list)
         {
             InitializeComponent();
+
+            this.context = context;
+            this.provider = provider;
 
             if (list != null)
             {
@@ -31,6 +36,17 @@ namespace CSharpGL
                 this.list = list;
 
                 this.Text = string.Format("{0} List Editor", typeof(T).Name);
+            }
+
+            this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
+        }
+
+        void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            var sceneObject = context.Instance as SceneObject;
+            if (sceneObject != null)
+            {
+                sceneObject.UpdateRender();
             }
         }
 

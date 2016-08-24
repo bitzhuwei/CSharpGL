@@ -22,7 +22,7 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据 
-            var editor = new FormPropertyGridEditor(value);
+            var editor = new FormPropertyGridEditor(context, provider, value);
             editor.ShowDialog();
 
             return value;

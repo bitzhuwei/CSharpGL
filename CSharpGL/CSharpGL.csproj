@@ -106,6 +106,7 @@
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
       <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UpdateScene.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
     <Compile Include="FontTexture\FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="FontTexture\FontTexture\FontBitmap.cs" />

@@ -12,20 +12,33 @@ namespace CSharpGL
 {
     partial class FormPropertyGridEditor : Form
     {
+        private ITypeDescriptorContext context;
+        private IServiceProvider provider;
 
-        public FormPropertyGridEditor(object obj)
+        public FormPropertyGridEditor(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             InitializeComponent();
 
-            this.propertyGrid.SelectedObject = obj;
-            this.Text = string.Format("{0} - Property Editor", obj);
+            this.context = context;
+            this.provider = provider;
+            this.propertyGrid.SelectedObject = value;
+            this.Text = string.Format("{0} - Property Editor", value);
+            this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
+        }
+
+        void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            var sceneObject = context.Instance as SceneObject;
+            if (sceneObject != null)
+            {
+                sceneObject.UpdateRender();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
-
 
     }
 }

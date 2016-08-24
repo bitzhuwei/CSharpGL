@@ -16,10 +16,15 @@ namespace CSharpGL
     {
 
         IList<UniformVariable> list;
+        private ITypeDescriptorContext context;
+        private IServiceProvider provider;
 
-        public FormUniformVariableListEditor(IList<UniformVariable> list)
+        public FormUniformVariableListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<UniformVariable> list)
         {
             InitializeComponent();
+
+            this.context = context;
+            this.provider = provider;
 
             if (list != null)
             {
@@ -29,6 +34,17 @@ namespace CSharpGL
                 }
 
                 this.list = list;
+            }
+
+            this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
+        }
+
+        void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            var sceneObject = context.Instance as SceneObject;
+            if (sceneObject != null)
+            {
+                sceneObject.UpdateRender();
             }
         }
 
