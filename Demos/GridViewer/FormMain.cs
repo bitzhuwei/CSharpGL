@@ -21,8 +21,13 @@ namespace GridViewer
 
         private void lblTimerEnabled_Click(object sender, EventArgs e)
         {
-            this.timer1.Enabled = !this.timer1.Enabled;
-            this.scientificCanvas.Scene.Running = this.timer1.Enabled;
+            bool start = !this.timer1.Enabled;
+            this.timer1.Enabled = start;
+            this.scientificCanvas.Scene.Running = start;
+            if (start)
+            { this.lblTimerEnabled.ToolTipText = "Stop"; }
+            else
+            { this.lblTimerEnabled.ToolTipText = "Start"; }
         }
 
         private void btnApply_Click(object sender, EventArgs e)

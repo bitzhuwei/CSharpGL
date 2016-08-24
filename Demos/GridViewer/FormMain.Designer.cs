@@ -450,9 +450,11 @@
             // 
             // lblTimerEnabled
             // 
+            this.lblTimerEnabled.AutoToolTip = true;
             this.lblTimerEnabled.Name = "lblTimerEnabled";
             this.lblTimerEnabled.Size = new System.Drawing.Size(28, 21);
             this.lblTimerEnabled.Text = "-|-";
+            this.lblTimerEnabled.ToolTipText = "Start";
             this.lblTimerEnabled.Click += new System.EventHandler(this.lblTimerEnabled_Click);
             // 
             // toolStrip1
@@ -636,7 +638,7 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.Font = new System.Drawing.Font("宋体", 14F);
-            this.btnApply.Location = new System.Drawing.Point(226, 323);
+            this.btnApply.Location = new System.Drawing.Point(226, 325);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(90, 32);
             this.btnApply.TabIndex = 1;
@@ -652,7 +654,7 @@
             this.propertyGrid1.Location = new System.Drawing.Point(0, 2);
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(2);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(319, 317);
+            this.propertyGrid1.Size = new System.Drawing.Size(319, 319);
             this.propertyGrid1.TabIndex = 0;
             // 
             // scientificCanvas
