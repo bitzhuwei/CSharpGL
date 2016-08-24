@@ -95,5 +95,13 @@ namespace CSharpGL
                 UpdateObjects(obj.Children, interval);
             }
         }
+
+        /// <summary>
+        /// update once.
+        /// </summary>
+        public void Update()
+        {
+            this.UpdateObjects(this.objectList, 0);
+        }
     }
 }
