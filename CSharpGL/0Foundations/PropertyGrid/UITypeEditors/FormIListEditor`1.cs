@@ -23,6 +23,8 @@ namespace CSharpGL
         {
             InitializeComponent();
 
+            this.lblSelectedType.Text = string.Empty;
+
             this.context = context;
             this.provider = provider;
 
@@ -92,9 +94,9 @@ namespace CSharpGL
             object obj = this.lstMember.SelectedItem;
             this.propertyGrid.SelectedObject = obj;
             if (obj != null)
-            { this.lblProperty.Text = string.Format("{0}", obj.GetType()); }
+            { this.lblSelectedType.Text = string.Format("{0}", obj.GetType()); }
             else
-            { this.lblProperty.Text = string.Format("NULL"); }
+            { this.lblSelectedType.Text = string.Format("NULL"); }
         }
 
         private void btnMoveUp_Click(object sender, EventArgs e)

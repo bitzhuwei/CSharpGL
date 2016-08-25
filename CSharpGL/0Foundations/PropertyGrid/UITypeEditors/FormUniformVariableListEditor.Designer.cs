@@ -35,7 +35,7 @@
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lstMember = new System.Windows.Forms.ListBox();
-            this.lblProperty = new System.Windows.Forms.Label();
+            this.lblSelectedType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -128,16 +128,16 @@
             this.lstMember.TabIndex = 6;
             this.lstMember.SelectedIndexChanged += new System.EventHandler(this.lstMember_SelectedIndexChanged);
             // 
-            // lblProperty
+            // lblSelectedType
             // 
-            this.lblProperty.AutoSize = true;
-            this.lblProperty.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblProperty.Location = new System.Drawing.Point(247, 9);
-            this.lblProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblProperty.Name = "lblProperty";
-            this.lblProperty.Size = new System.Drawing.Size(80, 16);
-            this.lblProperty.TabIndex = 4;
-            this.lblProperty.Text = "Property:";
+            this.lblSelectedType.AutoSize = true;
+            this.lblSelectedType.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblSelectedType.Location = new System.Drawing.Point(247, 9);
+            this.lblSelectedType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSelectedType.Name = "lblSelectedType";
+            this.lblSelectedType.Size = new System.Drawing.Size(112, 16);
+            this.lblSelectedType.TabIndex = 4;
+            this.lblSelectedType.Text = "selected type";
             // 
             // label1
             // 
@@ -162,9 +162,9 @@
             this.Controls.Add(this.btnMoveUp);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lstMember);
-            this.Controls.Add(this.lblProperty);
+            this.Controls.Add(this.lblSelectedType);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormUniformVariableListEditor";
             this.Text = "UniformVariable List Editor";
             this.ResumeLayout(false);
@@ -181,7 +181,7 @@
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListBox lstMember;
-        private System.Windows.Forms.Label lblProperty;
+        private System.Windows.Forms.Label lblSelectedType;
         private System.Windows.Forms.Label label1;
 
     }

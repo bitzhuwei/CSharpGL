@@ -34,7 +34,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
-            this.lblProperty = new System.Windows.Forms.Label();
+            this.lblSelectedType = new System.Windows.Forms.Label();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -114,16 +114,16 @@
             this.btnMoveDown.UseVisualStyleBackColor = true;
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
             // 
-            // lblProperty
+            // lblSelectedType
             // 
-            this.lblProperty.AutoSize = true;
-            this.lblProperty.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblProperty.Location = new System.Drawing.Point(248, 7);
-            this.lblProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblProperty.Name = "lblProperty";
-            this.lblProperty.Size = new System.Drawing.Size(80, 16);
-            this.lblProperty.TabIndex = 0;
-            this.lblProperty.Text = "Property:";
+            this.lblSelectedType.AutoSize = true;
+            this.lblSelectedType.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblSelectedType.Location = new System.Drawing.Point(248, 7);
+            this.lblSelectedType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSelectedType.Name = "lblSelectedType";
+            this.lblSelectedType.Size = new System.Drawing.Size(112, 16);
+            this.lblSelectedType.TabIndex = 0;
+            this.lblSelectedType.Text = "selected type";
             // 
             // propertyGrid
             // 
@@ -164,7 +164,7 @@
             this.Controls.Add(this.btnMoveUp);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lstMember);
-            this.Controls.Add(this.lblProperty);
+            this.Controls.Add(this.lblSelectedType);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormIListEditor";
@@ -182,7 +182,7 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Button btnMoveDown;
-        private System.Windows.Forms.Label lblProperty;
+        private System.Windows.Forms.Label lblSelectedType;
         private System.Windows.Forms.PropertyGrid propertyGrid;
         private System.Windows.Forms.Button btnClose;
     }

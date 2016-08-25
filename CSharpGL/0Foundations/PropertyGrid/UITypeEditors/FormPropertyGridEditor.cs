@@ -19,14 +19,16 @@ namespace CSharpGL
         {
             InitializeComponent();
 
+            this.lblSelectedType.Text = string.Empty;
+
             this.context = context;
             this.provider = provider;
             this.propertyGrid.SelectedObject = value;
             this.Text = string.Format("{0} - Property Editor", value);
             if (value != null)
-            { this.lblProperty.Text = string.Format("{0}", value.GetType()); }
+            { this.lblSelectedType.Text = string.Format("{0}", value.GetType()); }
             else
-            { this.lblProperty.Text = string.Format("NULL"); }
+            { this.lblSelectedType.Text = string.Format("NULL"); }
             this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
         }
 
