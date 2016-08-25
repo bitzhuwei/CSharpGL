@@ -33,7 +33,7 @@ namespace CSharpGL
         /// 为便于调试而设置的ID值，没有应用意义。
         /// <para>Only for debugging.</para>
         /// </summary>
-        public int ID { get; private set; }
+        public int Id { get; private set; }
 
         private static int idCounter = 0;
 
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("[{0}]: [{1}]", this.ID, this.Name);
+            return string.Format("[{0}]: [{1}]", this.Id, this.Name);
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace CSharpGL
         public RendererBase()
         {
             this.Enabled = true;
-            this.ID = idCounter++;
-            this.Name = string.Format("{0}: {1}", this.ID, this.GetType().Name);
+            this.Id = idCounter++;
+            this.Name = string.Format("{0}: {1}", this.Id, this.GetType().Name);
         }
 
         //private bool initializing = false;

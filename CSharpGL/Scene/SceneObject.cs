@@ -144,13 +144,13 @@ namespace CSharpGL
         /// <summary>
         /// Gets script by specified <paramref name="id"/>.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public Script GetScript(string id)
+        public Script GetScript(string name)
         {
             foreach (var item in this.ScriptList)
             {
-                if (item.Id == id)
+                if (item.Name == name)
                 {
                     return item;
                 }
