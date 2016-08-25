@@ -46,7 +46,7 @@ namespace CSharpGL
             var sceneObject = context.Instance as SceneObject;
             if (sceneObject != null)
             {
-                sceneObject.UpdateRender();
+                sceneObject.UpdateAndRender();
             }
         }
 

@@ -9,7 +9,7 @@ namespace CSharpGL
 {
     static class UpdateScene
     {
-        internal static void UpdateRender(this SceneObject sceneObject)
+        internal static void UpdateAndRender(this SceneObject sceneObject)
         {
             while (sceneObject != null && sceneObject.Parent != null)
             {
