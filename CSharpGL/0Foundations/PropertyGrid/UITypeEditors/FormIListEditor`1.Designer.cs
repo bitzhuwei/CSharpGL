@@ -42,9 +42,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("宋体", 12F);
+            this.label1.Location = new System.Drawing.Point(11, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 15);
+            this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Members:";
             // 
@@ -52,20 +54,24 @@
             // 
             this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstMember.Font = new System.Drawing.Font("宋体", 12F);
             this.lstMember.FormattingEnabled = true;
-            this.lstMember.ItemHeight = 15;
-            this.lstMember.Location = new System.Drawing.Point(15, 37);
+            this.lstMember.ItemHeight = 16;
+            this.lstMember.Location = new System.Drawing.Point(11, 30);
+            this.lstMember.Margin = new System.Windows.Forms.Padding(2);
             this.lstMember.Name = "lstMember";
-            this.lstMember.Size = new System.Drawing.Size(267, 394);
+            this.lstMember.Size = new System.Drawing.Size(201, 308);
             this.lstMember.TabIndex = 1;
             this.lstMember.SelectedIndexChanged += new System.EventHandler(this.lstMember_SelectedIndexChanged);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 443);
+            this.btnAdd.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnAdd.Location = new System.Drawing.Point(11, 341);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(68, 30);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -74,9 +80,11 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(93, 443);
+            this.btnRemove.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnRemove.Location = new System.Drawing.Point(83, 341);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.Size = new System.Drawing.Size(68, 30);
             this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -84,9 +92,11 @@
             // 
             // btnMoveUp
             // 
-            this.btnMoveUp.Location = new System.Drawing.Point(288, 37);
+            this.btnMoveUp.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnMoveUp.Location = new System.Drawing.Point(216, 30);
+            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(2);
             this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(36, 23);
+            this.btnMoveUp.Size = new System.Drawing.Size(27, 28);
             this.btnMoveUp.TabIndex = 2;
             this.btnMoveUp.Text = "↑";
             this.btnMoveUp.UseVisualStyleBackColor = true;
@@ -94,9 +104,11 @@
             // 
             // btnMoveDown
             // 
-            this.btnMoveDown.Location = new System.Drawing.Point(288, 66);
+            this.btnMoveDown.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnMoveDown.Location = new System.Drawing.Point(216, 62);
+            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(2);
             this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(36, 23);
+            this.btnMoveDown.Size = new System.Drawing.Size(27, 28);
             this.btnMoveDown.TabIndex = 2;
             this.btnMoveDown.Text = "↓";
             this.btnMoveDown.UseVisualStyleBackColor = true;
@@ -105,9 +117,11 @@
             // lblProperty
             // 
             this.lblProperty.AutoSize = true;
-            this.lblProperty.Location = new System.Drawing.Point(331, 9);
+            this.lblProperty.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblProperty.Location = new System.Drawing.Point(248, 7);
+            this.lblProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProperty.Name = "lblProperty";
-            this.lblProperty.Size = new System.Drawing.Size(79, 15);
+            this.lblProperty.Size = new System.Drawing.Size(80, 16);
             this.lblProperty.TabIndex = 0;
             this.lblProperty.Text = "Property:";
             // 
@@ -116,18 +130,21 @@
             this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid.Location = new System.Drawing.Point(330, 37);
+            this.propertyGrid.Location = new System.Drawing.Point(248, 30);
+            this.propertyGrid.Margin = new System.Windows.Forms.Padding(2);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(336, 400);
+            this.propertyGrid.Size = new System.Drawing.Size(252, 307);
             this.propertyGrid.TabIndex = 3;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(591, 443);
+            this.btnClose.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnClose.Location = new System.Drawing.Point(429, 341);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(68, 30);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -136,10 +153,10 @@
             // FormIListEditor
             // 
             this.AcceptButton = this.btnClose;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(678, 478);
+            this.ClientSize = new System.Drawing.Size(508, 382);
             this.Controls.Add(this.propertyGrid);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRemove);
@@ -149,6 +166,7 @@
             this.Controls.Add(this.lstMember);
             this.Controls.Add(this.lblProperty);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormIListEditor";
             this.Text = "{0} List Editor";
             this.ResumeLayout(false);

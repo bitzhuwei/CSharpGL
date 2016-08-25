@@ -23,6 +23,10 @@ namespace CSharpGL
             this.provider = provider;
             this.propertyGrid.SelectedObject = value;
             this.Text = string.Format("{0} - Property Editor", value);
+            if (value != null)
+            { this.lblProperty.Text = string.Format("{0}", value.GetType()); }
+            else
+            { this.lblProperty.Text = string.Format("NULL"); }
             this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
         }
 
