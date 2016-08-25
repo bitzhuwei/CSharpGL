@@ -11,21 +11,17 @@ namespace CSharpGL
     {
         internal static void UpdateRender(this SceneObject sceneObject)
         {
-            if (sceneObject != null)
+            while (sceneObject != null && sceneObject.Parent != null)
             {
-                SceneRootObject rootObject = null;
-                while (sceneObject != null && sceneObject.Parent != null)
-                {
-                    sceneObject = sceneObject.Parent;
-                }
-                rootObject = sceneObject as SceneRootObject;
-                if (rootObject != null)
-                {
-                    Scene scene = rootObject.BindingScene;
-                    ICanvas canvas = scene.Canvas;
-                    scene.Update();
-                    canvas.Repaint();
-                }
+                sceneObject = sceneObject.Parent;
+            }
+            var rootObject = sceneObject as SceneRootObject;
+            if (rootObject != null)
+            {
+                Scene scene = rootObject.BindingScene;
+                ICanvas canvas = scene.Canvas;
+                scene.Update();
+                canvas.Repaint();
             }
         }
     }
