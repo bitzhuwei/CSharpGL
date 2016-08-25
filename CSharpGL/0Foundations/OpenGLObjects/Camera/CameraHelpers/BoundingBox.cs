@@ -32,8 +32,14 @@ namespace CSharpGL
         /// <param name="max"></param>
         public BoundingBox(vec3 min, vec3 max)
         {
-            this.MinPosition = min;
-            this.MaxPosition = max;
+            this.MinPosition = new vec3(
+                Math.Min(min.x, max.x),
+                Math.Min(min.y, max.y),
+                Math.Min(min.z, max.z));
+            this.MaxPosition = new vec3(
+                Math.Max(min.x, max.x),
+                Math.Max(min.y, max.y),
+                Math.Max(min.z, max.z));
         }
 
         /// <summary>
