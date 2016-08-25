@@ -15,9 +15,9 @@ namespace CSharpGL
     partial class FormIListEditor<T> : Form
     {
 
-        IList<T> list;
         private ITypeDescriptorContext context;
         private IServiceProvider provider;
+        IList<T> list;
 
         public FormIListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<T> list)
         {

@@ -15,9 +15,9 @@ namespace CSharpGL
     partial class FormUniformVariableListEditor : Form
     {
 
-        IList<UniformVariable> list;
         private ITypeDescriptorContext context;
         private IServiceProvider provider;
+        IList<UniformVariable> list;
 
         public FormUniformVariableListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<UniformVariable> list)
         {
