@@ -26,4 +26,30 @@ namespace CSharpGL
         /// </summary>
         vec3 Lengths { get; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class IModelSpaceHelper
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static BoundingBox GetBoundingBox(this IModelSpace model)
+        {
+            vec3 max, min;
+            {
+                vec3 position = model.OriginalWorldPosition + model.Lengths / 2;
+                max = position;
+            }
+            {
+                vec3 position = model.OriginalWorldPosition - model.Lengths / 2;
+                min = position;
+            }
+
+            return new BoundingBox(min, max);
+        }
+    }
 }
