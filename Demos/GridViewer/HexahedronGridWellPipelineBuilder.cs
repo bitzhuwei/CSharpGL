@@ -57,12 +57,12 @@ namespace GridViewer
             //vec3 minCord = this.grid.FlipTransform * this.grid.SourceActiveBounds.Min;
             vec3 minCord = this.grid.DataSource.SourceActiveBounds.Min;
             vec3 maxCord = this.grid.DataSource.SourceActiveBounds.Max;
-            Rectangle3D rectSrc = new Rectangle3D(minCord, maxCord);
-            vec3 modelTop = new vec3(comp1.x, comp1.y, rectSrc.Max.z);
+            var rectSrc = new BoundingBox(minCord, maxCord);
+            vec3 modelTop = new vec3(comp1.x, comp1.y, rectSrc.MaxPosition.z);
 
-            float mdx = rectSrc.SizeX;
-            float mdy = rectSrc.SizeY;
-            float mdz = rectSrc.SizeZ;
+            float mdx = (rectSrc.MaxPosition - rectSrc.MinPosition).x;
+            float mdy = (rectSrc.MaxPosition - rectSrc.MinPosition).y;
+            float mdz = (rectSrc.MaxPosition - rectSrc.MinPosition).z;
 
             float xyextend = System.Math.Max(mdx, mdy); //XY平面的最大边长
             float extHeight; //延长线段

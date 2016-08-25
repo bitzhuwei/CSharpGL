@@ -42,9 +42,9 @@ namespace GridViewer
 
                 SceneObject gridObj = GetCatesianGridObj(grid, gridProperties, fileName);
                 SceneObject[] wellObjects = GetWellObjects(inputData, grid, fileName);
-                var list = new List<IRectangle3D>();
-                list.Add(gridObj.Renderer as IRectangle3D);
-                list.AddRange((from item in wellObjects select (item.Renderer as IRectangle3D)).ToArray());
+                var list = new List<IBoundingBox>();
+                list.Add((gridObj.Renderer as IModelSpace).GetBoundingBox());
+                list.AddRange((from item in wellObjects select (item.Renderer as IModelSpace).GetBoundingBox()).ToArray());
                 BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(list.ToArray());
                 SceneObject mainObj = boxRenderer.WrapToSceneObject(
                     string.Format("CatesianGrid: {0}", fileName),
@@ -116,7 +116,7 @@ namespace GridViewer
                 SceneObject wellObj = item.Item1.WrapToSceneObject(new ModelScaleScript());
                 wellObj.ScriptList.Add(new DumpTreeNodeScript());
                 {
-                    BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1);
+                    BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1.GetBoundingBox());
                     SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript(), new DumpTreeNodeScript());
                     wellObj.Children.Add(boxObj);
                 }
@@ -146,7 +146,7 @@ namespace GridViewer
                 new ModelScaleScript(),
                 new DumpCatesianGridTreeNodeScript());
             {
-                var boxRenderer = GetBoundingBoxRenderer(renderer);
+                var boxRenderer = GetBoundingBoxRenderer(renderer.GetBoundingBox());
                 SceneObject boxObj = boxRenderer.WrapToSceneObject(
                     new ModelScaleScript(),
                     new DumpTreeNodeScript());

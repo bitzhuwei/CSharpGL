@@ -21,7 +21,7 @@ namespace GridViewer
             return inputData;
         }
 
-        //private SceneObject GetBoundingBoxObject(params IRectangle3D[] rectangles)
+        //private SceneObject GetBoundingBoxObject(params IBoundingBox[] rectangles)
         //{
         //    var boxObj = new SceneObject();
         //    boxObj.Name = string.Format("Box of {0}", rectangles[0]);
@@ -46,16 +46,16 @@ namespace GridViewer
         //}
         private BoundingBoxRenderer GetBoundingBoxRenderer(params SceneObject[] objects)
         {
-            List<IRectangle3D> rectangles = new List<IRectangle3D>();
+            var rectangles = new List<IBoundingBox>();
             foreach (var item in objects)
             {
                 rectangles.AddRange(GetAllRectangle3Ds(item));
             }
             return GetBoundingBoxRenderer(rectangles.ToArray());
         }
-        private IEnumerable<IRectangle3D> GetAllRectangle3Ds(SceneObject obj)
+        private IEnumerable<IBoundingBox> GetAllRectangle3Ds(SceneObject obj)
         {
-            var item = obj.Renderer as IRectangle3D;
+            var item = obj.Renderer as IBoundingBox;
             if (item != null) { yield return item; }
 
             foreach (var child in obj.Children)
@@ -66,15 +66,15 @@ namespace GridViewer
                 }
             }
         }
-        private BoundingBoxRenderer GetBoundingBoxRenderer(params IRectangle3D[] rectangles)
+        private BoundingBoxRenderer GetBoundingBoxRenderer(params IBoundingBox[] rectangles)
         {
-            Rectangle3D rect = rectangles[0].GetRectangle();
+            var rect = rectangles[0];
             for (int i = 1; i < rectangles.Length; i++)
             {
-                rect = rect.Union(rectangles[i].GetRectangle());
+                rect = rect.Union(rectangles[i]);
             }
-            vec3 lengths = rect.Max - rect.Min;
-            vec3 originalWorldPosition = rect.Max / 2 + rect.Min / 2;
+            vec3 lengths = rect.MaxPosition - rect.MinPosition;
+            vec3 originalWorldPosition = rect.MaxPosition / 2 + rect.MinPosition / 2;
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, originalWorldPosition);
             boxRenderer.SwitchList.Add(new LineWidthSwitch(1));
 

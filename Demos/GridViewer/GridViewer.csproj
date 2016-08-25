@@ -58,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRectangle3D.cs" />
     <Compile Include="ModernRendering\Scripts\ModelScaleScript.cs" />
     <Compile Include="ModernRendering\Scripts\DumpCatesianGridTreeNodeScript.cs" />
     <Compile Include="ModernRendering\Scripts\DumpTreeNodeScript.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="ModernRendering\Models\SimulationInputDataHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle3D.cs" />
     <Compile Include="ModernRendering\Renderers\CatesianGridRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColor.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColorsHelper.cs" />
