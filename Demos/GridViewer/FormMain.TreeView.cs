@@ -162,27 +162,21 @@ namespace GridViewer
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode node = this.objectsTreeView.SelectedNode;
-            if (node != null)
-            {
-                SceneObject obj = node.Tag as SceneObject;
-                if (obj != null)
-                {
-                    if (obj.Parent == null)
-                    {
-                        this.scientificCanvas.Scene.RootObject.Children.Remove(obj);
-                        this.objectsTreeView.Nodes.Remove(node);
-                    }
-                    else
-                    {
-                        obj.Parent.Children.Remove(obj);
-                        node.Parent.Nodes.Remove(node);
-                    }
+            if (node == null) { return; }
+            SceneObject obj = node.Tag as SceneObject;
+            if (obj == null) { return; }
 
-                    obj.Dispose();
-                }
+            if (obj.Parent == null) { throw new Exception("This should not happen."); }
 
-                this.scientificCanvas.Invalidate();
-            }
+            obj.Parent.Children.Remove(obj);
+            if (node.Parent == null)
+            { this.objectsTreeView.Nodes.Remove(node); }
+            else
+            { node.Parent.Nodes.Remove(node); }
+
+            obj.Dispose();
+
+            this.scientificCanvas.Invalidate();
         }
 
         /// <summary>
