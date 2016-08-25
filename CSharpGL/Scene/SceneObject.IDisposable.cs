@@ -46,11 +46,11 @@ namespace CSharpGL
                 } // end if
 
                 // TODO: Dispose unmanaged resources.
-                var renderer = this.Renderer as IDisposable;
-                if (renderer != null)
+                var disp = this.Renderer as IDisposable;
+                if (disp != null)
                 {
                     this.Renderer = null;
-                    renderer.Dispose();
+                    disp.Dispose();
                 }
 
             } // end if
