@@ -1,17 +1,31 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class LabelTargetScript : Script
     {
+        /// <summary>
+        /// scale model and its children models recursively.
+        /// </summary>
+        [Description("scale model and its children models recursively.")]
+        public string Desc { get { return "scale model and its children models recursively."; } }
+
         private IModelTransform target;
         private ILabelPosition labelPosition;
         private IModelTransform self;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="labelPosition"></param>
         public LabelTargetScript(ILabelPosition labelPosition)
         {
             // TODO: Complete member initialization

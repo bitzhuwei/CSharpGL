@@ -2,6 +2,7 @@
 using SimLab.helper;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,23 +10,32 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// Used in <see cref="DumpCatesianGridTreeNodeScript"/>.
+    /// </summary>
     public class ScientificModelScript : Script
     {
-        private GridBlockProperty gridBlockProperty;
-        public GridBlockProperty GridBlockProperty
-        {
-            get { return gridBlockProperty; }
-        }
-        private UIColorPaletteRenderer uiCodedColorBar;
-        public UIColorPaletteRenderer UiCodedColorBar
-        {
-            get { return uiCodedColorBar; }
-        }
+        /// <summary>
+        /// used in DumpCatesianGridTreeNodeScript.
+        /// </summary>
+        [Description("used in DumpCatesianGridTreeNodeScript.")]
+        public string Desc { get { return "used in DumpCatesianGridTreeNodeScript."; } }
+
+        public GridBlockProperty GridBlockProperty { get; private set; }
+
+        public UIColorPaletteRenderer UIColorPalette { get; private set; }
+
+        /// <summary>
+        /// Used in <see cref="DumpCatesianGridTreeNodeScript"/>.
+        /// </summary>
+        /// <param name="sceneObject"></param>
+        /// <param name="property"></param>
+        /// <param name="uiCodedColorBar"></param>
         public ScientificModelScript(SceneObject sceneObject, GridBlockProperty property, UIColorPaletteRenderer uiCodedColorBar)
             : base(sceneObject)
         {
-            this.gridBlockProperty = property;
-            this.uiCodedColorBar = uiCodedColorBar;
+            this.GridBlockProperty = property;
+            this.UIColorPalette = uiCodedColorBar;
         }
 
         /// <summary>
@@ -38,9 +48,8 @@ namespace GridViewer
             if (renderer != null)
             {
                 IUpdateColorPalette grid = renderer.Grid;
-                UpdateCatesianGrid(grid, this.gridBlockProperty);
+                UpdateCatesianGrid(grid, this.GridBlockProperty);
             }
-            //this.scientificCanvas.Invalidate();
         }
 
         private void UpdateCatesianGrid(IUpdateColorPalette grid, GridBlockProperty property)
@@ -50,7 +59,7 @@ namespace GridViewer
             grid.MinColorCode = (float)axisMin;
             grid.MaxColorCode = (float)axisMax;
             grid.UpdateColor(property);
-            this.uiCodedColorBar.SetCodedColor(axisMin, axisMax, step);
+            this.UIColorPalette.SetCodedColor(axisMin, axisMax, step);
         }
 
     }

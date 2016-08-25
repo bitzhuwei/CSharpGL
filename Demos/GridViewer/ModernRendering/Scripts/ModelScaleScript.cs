@@ -13,6 +13,12 @@ namespace GridViewer
     /// </summary>
     public class ModelScaleScript : Script
     {
+        /// <summary>
+        /// scale model and its children models recursively.
+        /// </summary>
+        [Description("scale model and its children models recursively.")]
+        public string Desc { get { return "scale model and its children models recursively."; } }
+
         private vec3 scale = new vec3(1, 1, 1);
         /// <summary>
         /// Invoke SetScale(vec3 factor) by modifing this property.
