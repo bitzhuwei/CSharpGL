@@ -99,15 +99,15 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.ctors.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageBuilders\ImageBuilder.cs" />
-    <Compile Include="0Foundations\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
+    <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
       <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UpdateScene.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\UpdateScene.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
     <Compile Include="FontTexture\FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="FontTexture\FontTexture\FontBitmap.cs" />
     <Compile Include="FontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs" />
@@ -261,13 +261,13 @@
     <Compile Include="Renderers\PickableRenderer\InnerPickableRenderer.MovePositions.cs" />
     <Compile Include="Renderers\PickableRenderer\InnerPickableRenderer.Picking.cs" />
     <Compile Include="Renderers\PickableRenderer\InnerPickableRendererFactory.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneObject.cs" />
     <Compile Include="Scene\SceneObject.IEnumerable.cs" />
@@ -396,28 +396,28 @@
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec2.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
       <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormSelectType.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
       <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\GeometryType.cs" />
@@ -431,8 +431,8 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\PointSpriteSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitch.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IListEditor.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\IListEditor.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IBufferable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\PropertyNameMap.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\ShaderCode.cs" />
@@ -547,8 +547,8 @@
     <Content Include="0Foundations\Maths\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\readme.md" />
     <Content Include="0Foundations\OpenGLAPI\readme.md" />
-    <Content Include="0Foundations\PropertyGrid\TypeConverters\readme.md" />
-    <Content Include="0Foundations\PropertyGrid\UITypeEditors\readme.md" />
+    <Content Include="PropertyGrid\TypeConverters\readme.md" />
+    <Content Include="PropertyGrid\UITypeEditors\readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
