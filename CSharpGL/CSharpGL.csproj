@@ -88,7 +88,6 @@
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Samplers.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\IBoundingBoxHelper.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelSpace.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelSize.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\SamplerParameters.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\Sampler.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.IDisposable.cs" />
@@ -122,7 +121,6 @@
     <Compile Include="FontTexture\FontTexture\FontTextureHelper.cs" />
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelTransform.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />

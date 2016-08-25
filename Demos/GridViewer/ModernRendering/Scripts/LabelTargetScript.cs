@@ -19,9 +19,9 @@ namespace GridViewer
         [Description("retarget label's position to specified target.")]
         public string Desc { get { return "retarget label's position to specified target."; } }
 
-        private IModelTransform target;
+        private IModelSpace target;
         private ILabelPosition labelPosition;
-        private IModelTransform self;
+        private IModelSpace self;
 
         /// <summary>
         /// 
@@ -31,14 +31,14 @@ namespace GridViewer
         {
             // TODO: Complete member initialization
             this.labelPosition = labelPosition;
-            this.target = labelPosition as IModelTransform;
+            this.target = labelPosition as IModelSpace;
         }
 
         protected override void DoUpdate(double elapsedTime)
         {
             if (this.self == null)
             {
-                this.self = this.BindingObject.Renderer as IModelTransform;
+                this.self = this.BindingObject.Renderer as IModelSpace;
             }
 
             //this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3());

@@ -15,7 +15,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 # release notes:
 ## v1.0.6.2:
 1. Wraps texture and sampler.
-2. IModelTransform provides model matrix for rendering in MVP matrix in shader.
+2. IModelSpace provides model matrix for rendering in MVP matrix in shader.
 3. fix: Scene renders all objects recursively.
 4. Remove initialize method in ScriptComponent because scripts may be executed in non-UI thread.
 
@@ -24,7 +24,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Sampler works.
 
 ## v1.0.6.0:
-1. IModelTransform transforms a model from model's sapce to world's sapce.
+1. IModelSpace transforms a model from model's sapce to world's sapce.
 2. Start/Stop scene.
 3. fix: LabelRenderer supports updating text right before rendering.
 4. New project for generating Renderer types.(check CSharpGL on GitHub)
@@ -35,7 +35,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Hide/Show system's cursor in GLCanvas.
 3. fix: update UIRoot's size when scene is resized.
 4. TransformComponent is no longer a field member in SceneObject.
-5. IModelTransform transform a model from model's sapce to world's space.
+5. IModelSpace transform a model from model's sapce to world's space.
 
 ## v1.0.5.1:
 1. TextureUpdater allows for updating texture's content.

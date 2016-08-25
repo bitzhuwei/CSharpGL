@@ -45,7 +45,7 @@ namespace GridViewer
             {
                 SceneObject obj = this.BindingObject;
                 if (obj == null) { throw new Exception(); }
-                var transform = obj.Renderer as IModelTransform;
+                var transform = obj.Renderer as IModelSpace;
                 if (transform == null) { throw new Exception(); }
                 rootPosition = transform.OriginalWorldPosition;
                 stack.Push(obj);
@@ -54,7 +54,7 @@ namespace GridViewer
             while (stack.Count > 0)
             {
                 SceneObject obj = stack.Pop();
-                var transform = obj.Renderer as IModelTransform;
+                var transform = obj.Renderer as IModelSpace;
                 if (transform != null)
                 {
                     vec3 distance = transform.OriginalWorldPosition - rootPosition;

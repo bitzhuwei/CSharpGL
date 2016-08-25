@@ -22,7 +22,7 @@ namespace GridViewer
             map.Add("in_Position", CatesianGrid.strPosition);
             map.Add("in_uv", CatesianGrid.strColor);
             var renderer = new CatesianGridRenderer(originalWorldPosition, grid, shaderCodes, map, codedColorSampler);
-            renderer.lengths = grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min;
+            renderer.Lengths = grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min;
             renderer.ModelMatrix = glm.translate(mat4.identity(), -grid.DataSource.Position);
             return renderer;
         }
@@ -52,11 +52,5 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        private vec3 lengths;
-        public override float XLength { get { return lengths.x; } }
-
-        public override float YLength { get { return lengths.y; } }
-
-        public override float ZLength { get { return lengths.z; } }
     }
 }

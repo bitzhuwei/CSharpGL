@@ -13,12 +13,6 @@ namespace GridViewer
     /// </summary>
     public class DumpCatesianGridTreeNodeScript : DumpTreeNodeScript
     {
-        /// <summary>
-        /// scale model and its children models recursively.
-        /// </summary>
-        [Category("Desc")]
-        [Description("Dump a TreeNode object that binds to this renderer.")]
-        public string Desc { get { return "Dump a TreeNode object that binds to this renderer."; } }
 
         public override TreeNode DumpTreeNode()
         {

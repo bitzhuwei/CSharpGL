@@ -12,7 +12,7 @@ namespace GridViewer
     /// WellPipeline
     /// 蛇形管道（井）
     /// </summary>
-    public partial class WellModel : IBufferable, IModelSize, IModelTransform
+    public partial class WellModel : IBufferable, IModelSpace
     {
 
         public const string strPosition = "position";
@@ -91,7 +91,7 @@ namespace GridViewer
                             array[index++] = tmp2;
                         }
                     }
-                    this.lengths = max - min;
+                    this.Lengths = max - min;
 
                     positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
@@ -154,12 +154,8 @@ namespace GridViewer
         }
 
         public vec3 FirstNode { get; private set; }
-        internal vec3 lengths;
-        public float XLength { get { return lengths.x; } }
 
-        public float YLength { get { return lengths.y; } }
-
-        public float ZLength { get { return lengths.z; } }
+        public vec3 Lengths { get; private set; }
 
         public mat4 ModelMatrix { get; set; }
 

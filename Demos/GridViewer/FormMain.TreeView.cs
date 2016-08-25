@@ -190,12 +190,10 @@ namespace GridViewer
             if (node == null) { return; }
             SceneObject obj = node.Tag as SceneObject;
             if (obj == null) { return; }
-            var transform = obj.Renderer as IModelTransform;
+            var transform = obj.Renderer as IModelSpace;
             if (transform == null) { return; }
-            var modelSize = obj.Renderer as IModelSize;
-            if (modelSize == null) { return; }
             vec3 position = transform.ModelMatrix.GetTranslate();
-            var max = new vec3(modelSize.XLength, modelSize.YLength, modelSize.ZLength);
+            var max = transform.Lengths / 2;
             var min = -max;
             IBoundingBox translatedBox = new BoundingBox(min + position, max + position);
             translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);

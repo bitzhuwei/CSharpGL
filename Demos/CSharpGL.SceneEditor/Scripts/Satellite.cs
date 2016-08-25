@@ -9,7 +9,7 @@ namespace CSharpGL.SceneEditor.Scripts
     class Satellite : Script
     {
 
-        private IModelTransform planetTransform;
+        private IModelSpace planetTransform;
         private double currentAngle;
         private BuildInRenderer renderer;
 
@@ -28,7 +28,7 @@ namespace CSharpGL.SceneEditor.Scripts
             if (this.renderer == null)
             {
                 this.renderer = this.BindingObject.Renderer as BuildInRenderer;
-                this.planetTransform = this.BindingObject.Parent.Renderer as IModelTransform;
+                this.planetTransform = this.BindingObject.Parent.Renderer as IModelSpace;
             }
 
             double deltaAngle = elapsedTime * Math.PI * 2 / this.RevolutionPeriod;

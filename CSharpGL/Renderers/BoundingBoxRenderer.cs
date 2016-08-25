@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <summary>
     /// Renders a bounding box.
     /// </summary>
-    public class BoundingBoxRenderer : Renderer, IModelSize, IBoundingBox
+    public class BoundingBoxRenderer : Renderer, IBoundingBox
     {
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetFillSwitch());
-            result.halfLengths = new vec4(lengths / 2, 1.0f);
             result.OriginalWorldPosition = originalWorldPosition;
             result.ModelMatrix = glm.translate(mat4.identity(), originalWorldPosition);
+            result.Lengths = lengths;
             return result;
         }
 
@@ -93,7 +93,6 @@ namespace CSharpGL
             base.DoRender(arg);
         }
 
-        vec4 halfLengths;
         /// <summary>
         /// max position in world space.
         /// </summary>
@@ -102,7 +101,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.ModelMatrix * this.halfLengths);
+                return new vec3(this.ModelMatrix * new vec4(this.Lengths / 2, 1.0f));
             }
         }
 
@@ -114,23 +113,9 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.ModelMatrix * (-this.halfLengths));
+                return new vec3(this.ModelMatrix * new vec4(this.Lengths / 2, 1.0f));
             }
         }
 
-        /// <summary>
-        /// length at x axis.
-        /// </summary>
-        public float XLength { get { return this.halfLengths.x * 2; } }
-
-        /// <summary>
-        /// length at y axis.
-        /// </summary>
-        public float YLength { get { return this.halfLengths.y * 2; } }
-
-        /// <summary>
-        /// length at z axis.
-        /// </summary>
-        public float ZLength { get { return this.halfLengths.z * 2; } }
     }
 }

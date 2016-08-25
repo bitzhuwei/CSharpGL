@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class Renderer : RendererBase, IModelTransform
+    public partial class Renderer : RendererBase, IModelSpace
     {
 
         /// <summary>
@@ -68,6 +68,8 @@ namespace CSharpGL
             this.switchList.AddRange(switches);
         }
 
+        #region IModelSpace
+
         private mat4 modelMatrix = mat4.identity();
         /// <summary>
         /// records whether modelMatrix is updated.
@@ -93,5 +95,13 @@ namespace CSharpGL
         /// 
         /// </summary>
         public vec3 OriginalWorldPosition { get; protected set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Lengths { get; protected set; }
+
+        #endregion IModelSpace
+
     }
 }
