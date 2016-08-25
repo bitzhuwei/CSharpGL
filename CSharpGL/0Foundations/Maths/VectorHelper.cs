@@ -16,6 +16,20 @@ namespace CSharpGL
         internal static readonly char[] separator = new char[] { ' ', ',' };
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static vec3 Abs(this vec3 item)
+        {
+            vec3 result = new vec3(item.x, item.y, item.z);
+            if (result.x < 0) { result.x = -result.x; }
+            if (result.y < 0) { result.y = -result.y; }
+            if (result.z < 0) { result.z = -result.z; }
+
+            return result;
+        }
+        /// <summary>
         /// update minimum values.
         /// </summary>
         /// <param name="item"></param>
