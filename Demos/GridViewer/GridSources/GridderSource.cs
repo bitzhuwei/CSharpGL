@@ -53,7 +53,7 @@ namespace SimLab.GridSource
         /// <summary>
         /// 此网格至少包含1个元素，返回true；否则返回false。
         /// </summary>
-        public bool IsDimensEmpty 
+        public bool IsDimensEmpty
         { get { return (this.NX <= 0 || this.NY <= 0 || this.NZ <= 0); } }
 
         public int[] ActiveBlocks { get; set; }
@@ -118,7 +118,7 @@ namespace SimLab.GridSource
         /// <summary>
         /// 计算初始Bounds,
         /// </summary>
-        protected abstract Rectangle3D InitSourceActiveBounds();
+        protected abstract BoundingBox InitSourceActiveBounds();
 
         /// <summary>
         /// 初始化
@@ -149,17 +149,17 @@ namespace SimLab.GridSource
             this.SourceActiveBounds = this.InitSourceActiveBounds();
             //初始化
             mat4 identityMat = mat4.identity();
-            vec3 center = this.SourceActiveBounds.Center;
+            vec3 center = this.SourceActiveBounds.GetCenter();
             //矩形三角形移动到中心点
             this.Position = -center;
 
             vec3 newcenter = this.Position * center;
             //System.Console.WriteLine(center);
-            vec3 destMin = this.Position * this.SourceActiveBounds.Min;
-            vec3 destMax = this.Position * this.SourceActiveBounds.Max;
+            vec3 destMin = this.Position * this.SourceActiveBounds.MinPosition;
+            vec3 destMax = this.Position * this.SourceActiveBounds.MaxPosition;
 
             //变换后的三维矩形六面体
-            this.TransformedActiveBounds = new Rectangle3D(destMin, destMax);
+            this.TransformedActiveBounds = new BoundingBox(destMin, destMax);
 
         }
 
@@ -245,7 +245,7 @@ namespace SimLab.GridSource
         /// <summary>
         /// 原始数据的三维矩形边界
         /// </summary>
-        public Rectangle3D SourceActiveBounds { get; internal set; }
+        public BoundingBox SourceActiveBounds { get; internal set; }
 
         //TODO: rename to translate.
         /// <summary>
@@ -256,7 +256,7 @@ namespace SimLab.GridSource
         /// <summary>
         /// 中心点在坐标原点
         /// </summary>
-        public Rectangle3D TransformedActiveBounds { get; internal set; }
+        public BoundingBox TransformedActiveBounds { get; internal set; }
 
         public object Tag { get; set; }
 

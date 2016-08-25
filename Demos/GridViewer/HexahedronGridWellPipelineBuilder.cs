@@ -55,8 +55,8 @@ namespace GridViewer
             vec3 comp1 = CenterOfLine(h1, h2); ; //地层完井段的起始点
 
             //vec3 minCord = this.grid.FlipTransform * this.grid.SourceActiveBounds.Min;
-            vec3 minCord = this.grid.DataSource.SourceActiveBounds.Min;
-            vec3 maxCord = this.grid.DataSource.SourceActiveBounds.Max;
+            vec3 minCord = this.grid.DataSource.SourceActiveBounds.MinPosition;
+            vec3 maxCord = this.grid.DataSource.SourceActiveBounds.MaxPosition;
             var rectSrc = new BoundingBox(minCord, maxCord);
             vec3 modelTop = new vec3(comp1.x, comp1.y, rectSrc.MaxPosition.z);
 

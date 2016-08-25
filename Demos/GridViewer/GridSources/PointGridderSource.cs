@@ -80,18 +80,18 @@ namespace SimLab.GridSource
         //    return (this.Factory as PointGridFactory).CreateRadiusBufferData(this, radius);
         //}
 
-        protected override Rectangle3D InitSourceActiveBounds()
+        protected override BoundingBox InitSourceActiveBounds()
         {
             if (this.Positions == null || this.Positions.Length <= 0)
             { throw new ArgumentException("Points has No Value"); }
 
             vec3 v = this.Positions[0];
-            var rect3d = new Rectangle3D(v, v);
-            for (int i = 0; i < this.Positions.Length; i++)
+            var boundingBox = new BoundingBox(v, v);
+            for (int i = 1; i < this.Positions.Length; i++)
             {
-                rect3d.Union(this.Positions[i]);
+                boundingBox = boundingBox.Union(this.Positions[i]);
             }
-            return rect3d;
+            return boundingBox;
         }
 
     }

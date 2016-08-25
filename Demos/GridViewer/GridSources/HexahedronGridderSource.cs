@@ -210,10 +210,10 @@ namespace SimLab.GridSource
             this.InitSliceVisibles();
         }
 
-        protected override Rectangle3D InitSourceActiveBounds()
+        protected override BoundingBox InitSourceActiveBounds()
         {
             bool initFlag = false;
-            var rect = new Rectangle3D();
+            var boundingBox = new BoundingBox();
             int i, j, k;
             for (int gridIndex = 0; gridIndex < this.DimenSize; gridIndex++)
             {
@@ -223,19 +223,19 @@ namespace SimLab.GridSource
                     if (!initFlag)
                     {
                         initFlag = true;
-                        rect = new Rectangle3D(PointFLB(i, j, k), PointBRT(i, j, k));
+                        boundingBox = new BoundingBox(PointFLB(i, j, k), PointBRT(i, j, k));
                     }
-                    rect.Union(PointFLT(i, j, k));
-                    rect.Union(PointFRT(i, j, k));
-                    rect.Union(PointBLT(i, j, k));
-                    rect.Union(PointBRT(i, j, k));
-                    rect.Union(PointFLB(i, j, k));
-                    rect.Union(PointFRB(i, j, k));
-                    rect.Union(PointBLB(i, j, k));
-                    rect.Union(PointBRB(i, j, k));
+                    boundingBox = boundingBox.Union(PointFLT(i, j, k));
+                    boundingBox = boundingBox.Union(PointFRT(i, j, k));
+                    boundingBox = boundingBox.Union(PointBLT(i, j, k));
+                    boundingBox = boundingBox.Union(PointBRT(i, j, k));
+                    boundingBox = boundingBox.Union(PointFLB(i, j, k));
+                    boundingBox = boundingBox.Union(PointFRB(i, j, k));
+                    boundingBox = boundingBox.Union(PointBLB(i, j, k));
+                    boundingBox = boundingBox.Union(PointBRB(i, j, k));
                 }
             }
-            return rect;
+            return boundingBox;
         }
     }
 }

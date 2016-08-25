@@ -22,7 +22,7 @@ namespace GridViewer
             map.Add("in_Position", CatesianGrid.strPosition);
             map.Add("in_uv", CatesianGrid.strColor);
             var renderer = new CatesianGridRenderer(originalWorldPosition, grid, shaderCodes, map, codedColorSampler);
-            renderer.Lengths = grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min;
+            renderer.Lengths = (grid.DataSource.SourceActiveBounds.MaxPosition - grid.DataSource.SourceActiveBounds.MinPosition).Abs();
             renderer.ModelMatrix = glm.translate(mat4.identity(), -grid.DataSource.Position);
             return renderer;
         }

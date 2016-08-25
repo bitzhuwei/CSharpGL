@@ -164,7 +164,6 @@
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="Utils\ColorMapAxisAutomation.cs" />
     <Compile Include="Utils\ColorMapIndicatorParams.cs" />
-    <Compile Include="Utils\Rectangle3D.cs" />
     <Compile Include="FormMain.Load.cs">
       <SubType>Form</SubType>
     </Compile>

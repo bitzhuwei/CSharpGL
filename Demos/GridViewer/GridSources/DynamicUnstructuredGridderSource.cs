@@ -188,18 +188,18 @@ namespace SimLab.SimGrid
             }
         }
 
-        protected override Rectangle3D InitSourceActiveBounds()
+        protected override BoundingBox InitSourceActiveBounds()
         {
             if (this.NodeNum <= 0)
             { throw new ArgumentException("No nodes found"); }
 
             vec3[] nodes = this.Nodes;
-            var rect = new Rectangle3D(nodes[0], nodes[0]);
-            for (int i = 0; i < nodes.Length; i++)
+            var boundingBox = new BoundingBox(nodes[0], nodes[0]);
+            for (int i = 1; i < nodes.Length; i++)
             {
-                rect.Union(nodes[i]);
+                boundingBox = boundingBox.Union(nodes[i]);
             }
-            return rect;
+            return boundingBox;
         }
 
         //public TexCoordBuffer CreateFractureTextureCoordinates(int[] gridIndexes, float[] values, float minValue, float maxValue)
