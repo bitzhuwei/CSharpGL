@@ -16,6 +16,7 @@ namespace GridViewer
         /// <summary>
         /// scale model and its children models recursively.
         /// </summary>
+        [Category("Desc")]
         [Description("scale model and its children models recursively.")]
         public string Desc { get { return "scale model and its children models recursively."; } }
 

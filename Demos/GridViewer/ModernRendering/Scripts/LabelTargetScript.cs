@@ -8,15 +8,16 @@ using System.Text;
 namespace GridViewer
 {
     /// <summary>
-    /// 
+    /// retarget label's position to specified target.
     /// </summary>
     class LabelTargetScript : Script
     {
         /// <summary>
-        /// scale model and its children models recursively.
+        /// retarget label's position to specified target.
         /// </summary>
-        [Description("scale model and its children models recursively.")]
-        public string Desc { get { return "scale model and its children models recursively."; } }
+        [Category("Desc")]
+        [Description("retarget label's position to specified target.")]
+        public string Desc { get { return "retarget label's position to specified target."; } }
 
         private IModelTransform target;
         private ILabelPosition labelPosition;
