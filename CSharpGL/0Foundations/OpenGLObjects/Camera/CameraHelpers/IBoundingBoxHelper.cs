@@ -116,5 +116,58 @@ namespace CSharpGL
             renderer.BoundingBoxColor = color;
             renderer.Render(arg);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="box"></param>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public static BoundingBox Union(this IBoundingBox box, vec3 point)
+        {
+            vec3 min = box.MinPosition;
+            vec3 max = box.MaxPosition;
+            {
+                if (min.x > point.x) { min.x = point.x; }
+                if (min.y > point.y) { min.y = point.y; }
+                if (min.z > point.z) { min.z = point.z; }
+                if (max.x < point.x) { max.x = point.x; }
+                if (max.y < point.y) { max.y = point.y; }
+                if (max.z < point.z) { max.z = point.z; }
+            }
+
+            return new BoundingBox(min, max);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="box"></param>
+        /// <returns></returns>
+        public static BoundingBox Union(this IBoundingBox box)
+        {
+            vec3 min = box.MinPosition;
+            vec3 max = box.MaxPosition;
+            {
+                vec3 point = box.MinPosition;
+                if (min.x > point.x) { min.x = point.x; }
+                if (min.y > point.y) { min.y = point.y; }
+                if (min.z > point.z) { min.z = point.z; }
+                if (max.x < point.x) { max.x = point.x; }
+                if (max.y < point.y) { max.y = point.y; }
+                if (max.z < point.z) { max.z = point.z; }
+            }
+            {
+                vec3 point = box.MaxPosition;
+                if (min.x > point.x) { min.x = point.x; }
+                if (min.y > point.y) { min.y = point.y; }
+                if (min.z > point.z) { min.z = point.z; }
+                if (max.x < point.x) { max.x = point.x; }
+                if (max.y < point.y) { max.y = point.y; }
+                if (max.z < point.z) { max.z = point.z; }
+            }
+
+            return new BoundingBox(min, max);
+        }
     }
 }
