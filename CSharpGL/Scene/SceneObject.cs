@@ -142,7 +142,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Gets script by specified <paramref name="id"/>.
+        /// Gets script by specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
