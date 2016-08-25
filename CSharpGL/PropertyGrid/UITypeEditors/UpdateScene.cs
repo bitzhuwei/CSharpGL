@@ -7,9 +7,16 @@ using System.Text;
 
 namespace CSharpGL
 {
-    static class UpdateScene
+    /// <summary>
+    /// update and render the scene that contains specified <paramref name="sceneObject"/>.
+    /// </summary>
+    public static class UpdateScene
     {
-        internal static void UpdateAndRender(this SceneObject sceneObject)
+        /// <summary>
+        /// update and render the scene that contains specified <paramref name="sceneObject"/>.
+        /// </summary>
+        /// <param name="sceneObject"></param>
+        public static void UpdateAndRender(this SceneObject sceneObject)
         {
             while (sceneObject != null && sceneObject.Parent != null)
             {

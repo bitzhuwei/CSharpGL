@@ -1,11 +1,11 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-
 using System.Windows.Forms;
 
 namespace GridViewer
@@ -17,6 +17,16 @@ namespace GridViewer
             InitializeComponent();
 
             this.Load += FormMain_Load;
+            this.propertyGrid1.PropertyValueChanged += propertyGrid1_PropertyValueChanged;
+        }
+
+        void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            var sceneObject = s as SceneObject;
+            if (sceneObject != null)
+            {
+                sceneObject.UpdateAndRender();
+            }
         }
 
         private void lblTimerEnabled_Click(object sender, EventArgs e)

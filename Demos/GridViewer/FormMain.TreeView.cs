@@ -18,7 +18,7 @@ namespace GridViewer
         private bool UpdateCurrentNode(TreeNode node)
         {
             bool updated = false;
-            Stack<TreeNode> stack = new Stack<TreeNode>();
+            var stack = new Stack<TreeNode>();
             stack.Push(node);
             BoundingBoxRenderer selectedRenderer = null;
             while (stack.Count > 0)
@@ -119,6 +119,10 @@ namespace GridViewer
                 updated = true;
             }
 
+            if (e.Node.Tag != null)
+            { this.lblSelectedType.Text = e.Node.Tag.GetType().FullName; }
+            else
+            { this.lblSelectedType.Text = ""; }
             this.propertyGrid1.SelectedObject = e.Node.Tag;
 
             //if (e.Node.Tag is GridBlockProperty)

@@ -97,6 +97,7 @@
             this.scientificCanvas = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblSelectedType = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -593,6 +594,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.lblSelectedType);
             this.splitContainer2.Panel2.Controls.Add(this.btnApply);
             this.splitContainer2.Panel2.Controls.Add(this.propertyGrid1);
             this.splitContainer2.Size = new System.Drawing.Size(319, 515);
@@ -638,7 +640,7 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.Font = new System.Drawing.Font("宋体", 14F);
-            this.btnApply.Location = new System.Drawing.Point(226, 325);
+            this.btnApply.Location = new System.Drawing.Point(226, 326);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(90, 32);
             this.btnApply.TabIndex = 1;
@@ -651,10 +653,10 @@
             this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 2);
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 21);
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(2);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(319, 319);
+            this.propertyGrid1.Size = new System.Drawing.Size(319, 301);
             this.propertyGrid1.TabIndex = 0;
             // 
             // scientificCanvas
@@ -677,6 +679,16 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblSelectedType
+            // 
+            this.lblSelectedType.AutoSize = true;
+            this.lblSelectedType.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblSelectedType.Location = new System.Drawing.Point(4, 3);
+            this.lblSelectedType.Name = "lblSelectedType";
+            this.lblSelectedType.Size = new System.Drawing.Size(112, 16);
+            this.lblSelectedType.TabIndex = 2;
+            this.lblSelectedType.Text = "Selected Type";
             // 
             // FormMain
             // 
@@ -703,6 +715,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.treeViewRightMenu.ResumeLayout(false);
@@ -781,6 +794,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel lblTimerEnabled;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Label lblSelectedType;
     }
 }
 
