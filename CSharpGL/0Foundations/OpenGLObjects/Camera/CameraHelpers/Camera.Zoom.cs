@@ -140,16 +140,16 @@ namespace CSharpGL
                 //camera.UpVector = new vec3(0f, 1f, 0f);
             }
 
-            {
-                int[] viewport = new int[4];
-                OpenGL.GetInteger(GetTarget.Viewport, viewport);
-                int width = viewport[2]; int height = viewport[3];
+            //{
+            //int[] viewport = new int[4];
+            //OpenGL.GetInteger(GetTarget.Viewport, viewport);
+            //int width = viewport[2]; int height = viewport[3];
 
-                camera.FieldOfView = 60;
-                camera.AspectRatio = (double)width / (double)height;
-                camera.Near = 0.01;
-                camera.Far = size * 3 + 1;// double.MaxValue;
-            }
+            //camera.FieldOfView = 60;
+            //camera.AspectRatio = (double)width / (double)height;
+            //camera.Near = 0.01;
+            //camera.Far = size * 3 + 1;// double.MaxValue;
+            //}
         }
 
         /// <summary>
