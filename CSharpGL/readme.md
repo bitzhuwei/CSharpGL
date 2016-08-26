@@ -13,6 +13,19 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.3:
+1. fix: BoundingBoxHelper.Render().
+2. virtual DoUpdate() in Script instead of abstract.
+3. fix: discard transparent part in glyph.
+4. Scene.Update once.
+5. Scene only has script component.
+6. SceneRootObject as root object in scene.
+7. Update+Render scene whenever property is changed.
+8. Bigger font for property grid.
+9. Renderer supports IModelSpace.
+10. Zooming camera updates camera's position and target only.
+11. Model matrix should be marked as updated at first.
+
 ## v1.0.6.2:
 1. Wraps texture and sampler.
 2. IModelSpace provides model matrix for rendering in MVP matrix in shader.
