@@ -74,7 +74,7 @@ namespace CSharpGL
         /// <summary>
         /// records whether modelMatrix is updated.
         /// </summary>
-        protected UpdatingRecord modelMatrixRecord = new UpdatingRecord();
+        protected UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
         /// <summary>
         /// transform this model from model's space to world's space.
         /// </summary>
