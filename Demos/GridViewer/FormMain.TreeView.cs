@@ -32,7 +32,6 @@ namespace GridViewer
                     {
                         selectedRenderer = renderer;
                         break;
-
                     }
                 }
                 foreach (TreeNode item in current.Nodes)
