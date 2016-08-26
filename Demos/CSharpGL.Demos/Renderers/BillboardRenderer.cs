@@ -84,7 +84,7 @@ namespace CSharpGL.Demos
                 view[0][1], view[1][1], view[2][1]));
             if (modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("billboardCenter_worldspace", this.OriginalWorldPosition);
+                this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
                 modelMatrixRecord.CancelMark();
             }
             //this.TargetRenderer.Position + this.Offset);

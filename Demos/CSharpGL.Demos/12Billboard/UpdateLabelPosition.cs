@@ -28,8 +28,8 @@ namespace CSharpGL.Demos
             }
 
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
-            vec3 worldPosition = this.TargetRenderer.OriginalWorldPosition + new vec3(0, 0.3f, 0);
-            this.renderer.OriginalWorldPosition = worldPosition;
+            vec3 worldPosition = this.TargetRenderer.WorldPosition + new vec3(0, 0.3f, 0);
+            this.renderer.WorldPosition = worldPosition;
         }
 
     }

@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 model = mat4.identity();
-            model = glm.translate(model, this.OriginalWorldPosition);
+            model = glm.translate(model, this.WorldPosition);
             model = glm.scale(model, this.Scale);
             model = glm.rotate(model, this.RotationAngle, this.RotationAxis);
             this.SetUniform("projectionMatrix", projection);

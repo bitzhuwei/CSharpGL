@@ -27,7 +27,7 @@ namespace CSharpGL.Demos
                 this.renderer = this.BindingObject.Renderer as IModelSpace;
             }
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
-            this.renderer.OriginalWorldPosition = this.TargetRenderer.OriginalWorldPosition + new vec3(0, 0.3f, 0);
+            this.renderer.WorldPosition = this.TargetRenderer.WorldPosition + new vec3(0, 0.3f, 0);
         }
 
     }

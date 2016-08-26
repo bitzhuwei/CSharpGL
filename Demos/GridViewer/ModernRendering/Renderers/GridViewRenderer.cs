@@ -21,7 +21,7 @@ namespace GridViewer
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
-            this.OriginalWorldPosition = originalWorldPosition;
+            this.WorldPosition = originalWorldPosition;
             this.Grid = model;
         }
 
@@ -29,7 +29,7 @@ namespace GridViewer
         {
             var max = this.Lengths / 2;
             var min = -max;
-            vec3 position = this.OriginalWorldPosition;
+            vec3 position = this.WorldPosition;
             var result = new BoundingBox(min + position, max + position);
 
             return result;

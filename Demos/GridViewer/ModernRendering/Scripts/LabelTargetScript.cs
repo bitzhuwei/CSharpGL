@@ -45,12 +45,12 @@ namespace GridViewer
             if (this.target != null)
             {
                 vec4 position = this.target.GetMatrix() * new vec4(this.labelPosition.Position, 1.0f);
-                this.self.OriginalWorldPosition = new vec3(position);
+                this.self.WorldPosition = new vec3(position);
             }
             else
             {
                 vec3 position = this.labelPosition.Position;
-                this.self.OriginalWorldPosition = new vec3(position);
+                this.self.WorldPosition = new vec3(position);
             }
         }
     }

@@ -48,7 +48,7 @@ namespace GridViewer
         private void SetupPipeline(List<vec3> pipeline)
         {
             BoundingBox box = pipeline.Move2Center();
-            this.OriginalWorldPosition = 0.5f * box.MaxPosition + 0.5f * box.MinPosition;
+            this.WorldPosition = 0.5f * box.MaxPosition + 0.5f * box.MinPosition;
             this.FirstNode = pipeline[0];
             this.pipeline = pipeline;
         }
@@ -154,7 +154,7 @@ namespace GridViewer
 
         public vec3 Lengths { get; private set; }
 
-        public vec3 OriginalWorldPosition { get; set; }
+        public vec3 WorldPosition { get; set; }
 
         public float RotationAngle { get; set; }
 

@@ -12,9 +12,9 @@ namespace CSharpGL
     public interface IModelSpace
     {
         /// <summary>
-        /// world position before model is scaled or rotated.
+        /// Position in world space.
         /// </summary>
-        vec3 OriginalWorldPosition { get; set; }
+        vec3 WorldPosition { get; set; }
 
         /// <summary>
         /// 
@@ -49,7 +49,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 GetMatrix(this IModelSpace model)
         {
-            mat4 matrix = glm.translate(mat4.identity(), model.OriginalWorldPosition);
+            mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
             matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
             return matrix;
@@ -63,11 +63,11 @@ namespace CSharpGL
         {
             vec3 max, min;
             {
-                vec3 position = model.OriginalWorldPosition + model.Lengths / 2;
+                vec3 position = model.WorldPosition + model.Lengths / 2;
                 max = position;
             }
             {
-                vec3 position = model.OriginalWorldPosition - model.Lengths / 2;
+                vec3 position = model.WorldPosition - model.Lengths / 2;
                 min = position;
             }
 
@@ -81,7 +81,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static vec3 GetMaxPosition(this IModelSpace model)
         {
-            return model.OriginalWorldPosition + model.Lengths / 2;
+            return model.WorldPosition + model.Lengths / 2;
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static vec3 GetMinPosition(this IModelSpace model)
         {
-            return model.OriginalWorldPosition - model.Lengths / 2;
+            return model.WorldPosition - model.Lengths / 2;
         }
     }
 }

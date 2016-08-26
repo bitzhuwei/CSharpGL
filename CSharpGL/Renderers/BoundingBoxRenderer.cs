@@ -32,7 +32,7 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetFillSwitch());
-            result.OriginalWorldPosition = originalWorldPosition;
+            result.WorldPosition = originalWorldPosition;
             result.Lengths = lengths;
             return result;
         }

@@ -82,9 +82,9 @@ namespace CSharpGL
 
         private vec3 worldPosition;
         /// <summary>
-        /// 
+        /// Position in world space.
         /// </summary>
-        public virtual vec3 OriginalWorldPosition
+        public virtual vec3 WorldPosition
         {
             get { return worldPosition; }
             set

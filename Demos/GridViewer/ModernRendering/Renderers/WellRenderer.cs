@@ -57,7 +57,7 @@ namespace GridViewer
             base.DoInitialize();
 
             var model = this.bufferable as WellModel;
-            this.OriginalWorldPosition = model.OriginalWorldPosition;
+            this.WorldPosition = model.WorldPosition;
             this.Lengths = model.Lengths;
             this.firstNode = model.FirstNode;
         }
@@ -85,17 +85,20 @@ namespace GridViewer
                 ModelTransformUpdated(this, new EventArgs());
             }
         }
-        public override vec3 OriginalWorldPosition
+        /// <summary>
+        /// Position in world space.
+        /// </summary>
+        public override vec3 WorldPosition
         {
             get
             {
-                return base.OriginalWorldPosition;
+                return base.WorldPosition;
             }
             set
             {
-                if (base.OriginalWorldPosition != value)
+                if (base.WorldPosition != value)
                 {
-                    base.OriginalWorldPosition = value;
+                    base.WorldPosition = value;
                     DoModelTranslateUpdated();
                 }
             }
@@ -109,7 +112,7 @@ namespace GridViewer
         {
             var max = this.Lengths / 2;
             var min = -max;
-            vec3 position = this.OriginalWorldPosition;
+            vec3 position = this.WorldPosition;
             var result = new BoundingBox(min + position, max + position);
             return result;
         }
