@@ -16,15 +16,36 @@ namespace GridViewer
         {
             //this.scientificCanvas.Scene.RootObject.Children.ItemAdded += RootObject.Children_ItemAdded;
             //this.scientificCanvas.Scene.RootObject.Children.ItemRemoved += RootObject.Children_ItemRemoved;
-            SceneObject ground = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Ground);
-            this.scientificCanvas.Scene.RootObject.Children.Add(ground);
-            TreeNode groundTreeNode = this.objectsTreeView.Nodes.Add(ground.Name);
-            groundTreeNode.Tag = ground;
-            SceneObject axis = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Axis);
-            this.scientificCanvas.Scene.RootObject.Children.Add(axis);
-            TreeNode axisTreeNode = this.objectsTreeView.Nodes.Add(axis.Name);
-            axisTreeNode.Tag = axis;
-
+            {
+                SceneObject groundObj = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Ground);
+                {
+                    var boxRenderer = GetBoundingBoxRenderer(
+                    (groundObj.Renderer as IModelSpace).GetBoundingBox());
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(
+                        new ModelScaleScript());
+                    groundObj.Children.Add(boxObj);
+                }
+                this.scientificCanvas.Scene.RootObject.Children.Add(groundObj);
+                //TreeNode groundTreeNode = this.objectsTreeView.Nodes.Add(groundObj.Name);
+                //groundTreeNode.Tag = groundObj;
+                TreeNode groundTreeNode = DumpTreeNode(groundObj);
+                this.objectsTreeView.Nodes.Add(groundTreeNode);
+            }
+            {
+                SceneObject axisObj = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Axis);
+                {
+                    var boxRenderer = GetBoundingBoxRenderer(
+                    (axisObj.Renderer as IModelSpace).GetBoundingBox());
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(
+                        new ModelScaleScript());
+                    axisObj.Children.Add(boxObj);
+                }
+                this.scientificCanvas.Scene.RootObject.Children.Add(axisObj);
+                //TreeNode axisTreeNode = this.objectsTreeView.Nodes.Add(axisObj.Name);
+                //axisTreeNode.Tag = axisObj;
+                TreeNode axisTreeNode = DumpTreeNode(axisObj);
+                this.objectsTreeView.Nodes.Add(axisTreeNode);
+            }
             Application.Idle += Application_Idle;
         }
 
