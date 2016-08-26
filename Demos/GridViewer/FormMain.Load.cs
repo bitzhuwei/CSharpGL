@@ -45,6 +45,7 @@ namespace GridViewer
                 //axisTreeNode.Tag = axisObj;
                 TreeNode axisTreeNode = DumpTreeNode(axisObj);
                 this.objectsTreeView.Nodes.Add(axisTreeNode);
+                this.objectsTreeView.ExpandAll();
             }
             Application.Idle += Application_Idle;
         }
