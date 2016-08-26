@@ -31,12 +31,12 @@ namespace CSharpGL
             return obj;
         }
 
-        private const int groundXLength = 1000;
-        private const int groundZLength = 1000;
+        private const int groundXLength = 2000;
+        private const int groundZLength = 2000;
 
         private static vec3 GetLengths(BuildInSceneObject buildIn)
         {
-            var lengths = new vec3(1, 1, 1);
+            var lengths = new vec3(1, 1, 1) * 2;
 
             switch (buildIn)
             {
@@ -98,7 +98,7 @@ namespace CSharpGL
                     bufferable = new Sphere();
                     break;
                 case BuildInSceneObject.Ground:
-                    bufferable = new Ground(1, groundXLength, groundZLength);
+                    bufferable = new Ground(1, groundXLength / 2, groundZLength / 2);
                     break;
                 case BuildInSceneObject.Axis:
                     bufferable = new Axis();

@@ -68,11 +68,20 @@ namespace GridViewer
         }
         private BoundingBoxRenderer GetBoundingBoxRenderer(params IBoundingBox[] rectangles)
         {
-            var rect = rectangles[0];
-            for (int i = 1; i < rectangles.Length; i++)
+            IBoundingBox rect;
+            if (rectangles.Length > 0)
             {
-                rect = rect.Union(rectangles[i]);
+                rect = rectangles[0];
+                for (int i = 1; i < rectangles.Length; i++)
+                {
+                    rect = rect.Union(rectangles[i]);
+                }
             }
+            else
+            {
+                rect = new BoundingBox();
+            }
+
             vec3 lengths = rect.MaxPosition - rect.MinPosition;
             vec3 originalWorldPosition = rect.MaxPosition / 2 + rect.MinPosition / 2;
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, originalWorldPosition);
