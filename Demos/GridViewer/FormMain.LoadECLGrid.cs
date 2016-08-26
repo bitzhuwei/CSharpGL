@@ -48,8 +48,7 @@ namespace GridViewer
                 BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(list.ToArray());
                 SceneObject mainObj = boxRenderer.WrapToSceneObject(
                     string.Format("CatesianGrid: {0}", fileName),
-                    new ModelScaleScript(),
-                    new DumpTreeNodeScript());
+                    new ModelScaleScript());
                 mainObj.Children.Add(gridObj);
                 mainObj.Children.AddRange(wellObjects);
 
@@ -62,8 +61,9 @@ namespace GridViewer
 
 
                 // update tree node.
-                TreeNode mainNode = DumpTreeNode(mainObj);
-                this.objectsTreeView.Nodes.Add(mainNode);
+                TreeNode rootNode = DumpTreeNode(this.scientificCanvas.Scene.RootObject);
+                this.objectsTreeView.Nodes.Clear();
+                this.objectsTreeView.Nodes.Add(rootNode);
                 this.objectsTreeView.ExpandAll();
 
                 // refresh objects state in scene.
@@ -87,16 +87,19 @@ namespace GridViewer
             {
                 node = script.DumpTreeNode();
             }
-
-            if (node != null)
+            else
             {
-                foreach (var item in obj.Children)
+                node = new TreeNode(string.Format("{0}", obj.Name));
+                node.Tag = obj;
+            }
+
+            // dump children nodes.
+            foreach (var item in obj.Children)
+            {
+                TreeNode child = DumpTreeNode(item);
+                if (child != null)
                 {
-                    TreeNode child = DumpTreeNode(item);
-                    if (child != null)
-                    {
-                        node.Nodes.Add(child);
-                    }
+                    node.Nodes.Add(child);
                 }
             }
 
@@ -114,18 +117,16 @@ namespace GridViewer
             {
                 item.Item1.Initialize();
                 SceneObject wellObj = item.Item1.WrapToSceneObject(new ModelScaleScript());
-                wellObj.ScriptList.Add(new DumpTreeNodeScript());
                 {
                     BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1.GetBoundingBox());
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript(), new DumpTreeNodeScript());
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript());
                     wellObj.Children.Add(boxObj);
                 }
                 result.Add(wellObj);
                 {
                     SceneObject labelObj = item.Item2.WrapToSceneObject(
                         new ModelScaleScript(),
-                        new LabelTargetScript(item.Item1),
-                        new DumpTreeNodeScript());
+                        new LabelTargetScript(item.Item1));
                     wellObj.Children.Add(labelObj);
                 }
             }
@@ -148,8 +149,7 @@ namespace GridViewer
             {
                 var boxRenderer = GetBoundingBoxRenderer(renderer.GetBoundingBox());
                 SceneObject boxObj = boxRenderer.WrapToSceneObject(
-                    new ModelScaleScript(),
-                    new DumpTreeNodeScript());
+                    new ModelScaleScript());
                 gridObj.Children.Add(boxObj);
             }
 
