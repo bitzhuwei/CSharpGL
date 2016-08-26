@@ -74,24 +74,5 @@ namespace CSharpGL
             return new BoundingBox(min, max);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static vec3 GetMaxPosition(this IModelSpace model)
-        {
-            return model.WorldPosition + model.Lengths / 2;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static vec3 GetMinPosition(this IModelSpace model)
-        {
-            return model.WorldPosition - model.Lengths / 2;
-        }
     }
 }
