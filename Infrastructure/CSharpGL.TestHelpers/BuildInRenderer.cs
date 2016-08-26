@@ -23,7 +23,11 @@ namespace CSharpGL
         {
             this.SetUniform("projection", arg.Camera.GetProjectionMat4());
             this.SetUniform("view", arg.Camera.GetViewMat4());
-            this.SetUniform("model", this.ModelMatrix);
+            if (modelMatrixRecord.IsMarked())
+            {
+                this.SetUniform("model", this.GetMatrix());
+                modelMatrixRecord.CancelMark();
+            }
 
             base.DoRender(arg);
         }

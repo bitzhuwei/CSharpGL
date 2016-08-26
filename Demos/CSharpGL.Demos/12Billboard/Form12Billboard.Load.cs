@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
                 const int gridsPer2Unit = 20;
                 const int scale = 2;
                 var ground = GroundRenderer.Create(new GroundModel(gridsPer2Unit * scale));
-                ground.Scale = scale;
+                ground.Scale = new vec3(scale, scale, scale);
                 //ground.Initialize();
                 //this.ground = ground;
                 var obj = new SceneObject();
@@ -41,7 +41,7 @@ namespace CSharpGL.Demos
             {
                 movableRenderer = MovableRenderer.Create(new Teapot());
                 //movableRenderer.Initialize();
-                movableRenderer.Scale = 0.1f;
+                movableRenderer.Scale = new vec3(0.1f, 0.1f, 0.1f);
                 var obj = new SceneObject();
                 obj.Renderer = movableRenderer;
                 this.scene.RootObject.Children.Add(obj);

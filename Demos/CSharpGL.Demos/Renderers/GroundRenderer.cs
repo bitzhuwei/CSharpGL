@@ -27,14 +27,11 @@ namespace CSharpGL.Demos
 
         public Color LineColor { get; set; }
 
-        public float Scale { get; set; }
-
         private GroundRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
             this.LineColor = Color.White;
-            this.Scale = 1.0f;
         }
 
         protected override void DoInitialize()
@@ -46,7 +43,7 @@ namespace CSharpGL.Demos
         {
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
-            mat4 model = glm.scale(mat4.identity(), new vec3(this.Scale, this.Scale, this.Scale));
+            mat4 model = glm.scale(mat4.identity(), this.Scale);
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             this.SetUniform("modelMatrix", model);

@@ -42,16 +42,13 @@ namespace GridViewer
 
             this.radius = radius;
             this.faceCount = faceCount;
-            this.ModelMatrix = mat4.identity();
             this.SetupPipeline(pipeline.ToList());
         }
 
         private void SetupPipeline(List<vec3> pipeline)
         {
             BoundingBox box = pipeline.Move2Center();
-            vec3 position = 0.5f * box.MaxPosition + 0.5f * box.MinPosition;
-            this.OriginalWorldPosition = position;
-            this.ModelMatrix = glm.translate(mat4.identity(), position);
+            this.OriginalWorldPosition = 0.5f * box.MaxPosition + 0.5f * box.MinPosition;
             this.FirstNode = pipeline[0];
             this.pipeline = pipeline;
         }
@@ -157,8 +154,12 @@ namespace GridViewer
 
         public vec3 Lengths { get; private set; }
 
-        public mat4 ModelMatrix { get; set; }
+        public vec3 OriginalWorldPosition { get; set; }
 
-        public vec3 OriginalWorldPosition { get; protected set; }
+        public float RotationAngle { get; set; }
+
+        public vec3 RotationAxis { get; set; }
+
+        public vec3 Scale { get; set; }
     }
 }

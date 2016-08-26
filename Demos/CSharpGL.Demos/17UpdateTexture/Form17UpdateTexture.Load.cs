@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
                 const int scale = 2;
                 GroundRenderer ground = GroundRenderer.Create(new GroundModel(gridsPer2Unit * scale));
                 ground.Initialize();
-                ground.Scale = scale;
+                ground.Scale = new vec3(scale, scale, scale);
                 this.ground = ground;
             }
             {

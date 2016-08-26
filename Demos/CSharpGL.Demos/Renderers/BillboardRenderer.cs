@@ -10,7 +10,7 @@ using System.Text;
 namespace CSharpGL.Demos
 {
 
-    class BillboardRenderer : Renderer, IWorldPosition
+    class BillboardRenderer : Renderer
     {
 
         public static BillboardRenderer GetRenderer(IBufferable model)
@@ -82,7 +82,11 @@ namespace CSharpGL.Demos
                 view[0][0], view[1][0], view[2][0]));
             this.SetUniform("CameraUp_worldspace", new vec3(
                 view[0][1], view[1][1], view[2][1]));
-            this.SetUniform("billboardCenter_worldspace", this.Position);
+            if (modelMatrixRecord.IsMarked())
+            {
+                this.SetUniform("billboardCenter_worldspace", this.OriginalWorldPosition);
+                modelMatrixRecord.CancelMark();
+            }
             //this.TargetRenderer.Position + this.Offset);
             this.SetUniform("BillboardSize", new vec2(this.Width, this.Height));
             if (this.percentageRecord.IsMarked())
@@ -106,7 +110,6 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
         }
 
-        public vec3 Position { get; set; }
     }
 
     enum BillboardType

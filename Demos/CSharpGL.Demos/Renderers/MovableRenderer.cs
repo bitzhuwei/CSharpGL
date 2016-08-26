@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 可设定其在world space的位置。
     /// </summary>
-    internal class MovableRenderer : PickableRenderer, IWorldPosition
+    internal class MovableRenderer : PickableRenderer
     {
         public static MovableRenderer Create(IBufferable model)
         {
@@ -25,20 +25,12 @@ namespace CSharpGL.Demos
             return result;
         }
 
-        private float radian;
-
-        public float Scale { get; set; }
-
-        public vec3 Position { get; set; }
-
-        public mat4 Rotation { get; set; }
-
         private MovableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, "position")
         {
-            this.Scale = 1.0f;
+            this.RotationAxis = new vec3(0, 1, 0);
         }
 
         protected override void DoInitialize()
@@ -51,9 +43,9 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 model = mat4.identity();
-            model = glm.translate(model, this.Position);
-            model = glm.scale(model, new vec3(this.Scale, this.Scale, this.Scale));
-            model = glm.rotate(model, this.radian, new vec3(0, 1, 0));
+            model = glm.translate(model, this.OriginalWorldPosition);
+            model = glm.scale(model, this.Scale);
+            model = glm.rotate(model, this.RotationAngle, this.RotationAxis);
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             this.SetUniform("modelMatrix", model);
@@ -67,7 +59,7 @@ namespace CSharpGL.Demos
             float cosRadian = direction.dot(new vec3(1, 0, 0));
             float radian = (float)Math.Acos(cosRadian);
             if (direction.z > 0) { radian = -radian; }
-            this.radian = radian;
+            this.RotationAngle = radian;
         }
     }
 }

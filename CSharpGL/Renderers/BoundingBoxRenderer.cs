@@ -33,7 +33,6 @@ namespace CSharpGL
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetFillSwitch());
             result.OriginalWorldPosition = originalWorldPosition;
-            result.ModelMatrix = glm.translate(mat4.identity(), originalWorldPosition);
             result.Lengths = lengths;
             return result;
         }
@@ -87,7 +86,8 @@ namespace CSharpGL
             this.SetUniform("viewMatrix", arg.Camera.GetViewMat4());
             if (base.modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("modelMatrix", this.ModelMatrix);
+                this.SetUniform("modelMatrix", this.GetMatrix());
+                this.modelMatrixRecord.CancelMark();
             }
 
             base.DoRender(arg);
@@ -101,7 +101,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.ModelMatrix * new vec4(this.Lengths / 2, 1.0f));
+                return new vec3(this.GetMatrix() * new vec4(this.Lengths / 2, 1.0f));
             }
         }
 
@@ -113,7 +113,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.ModelMatrix * new vec4(this.Lengths / 2, 1.0f));
+                return new vec3(this.GetMatrix() * new vec4(this.Lengths / 2, 1.0f));
             }
         }
 

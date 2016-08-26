@@ -28,7 +28,12 @@ namespace CSharpGL
         /// <returns></returns>
         public static vec3 GetScale(this mat4 matrix)
         {
-            throw new NotImplementedException();
+            vec3 result = new vec3(
+                matrix.col0.x,
+                matrix.col1.y,
+                matrix.col2.z
+                );
+            return result;
         }
 
         /// <summary>

@@ -110,9 +110,8 @@ namespace CSharpGL
                 renderer = BoundingBoxRenderer.Create(lengths);
                 renderer.Initialize();
             }
-            mat4 model = glm.translate(mat4.identity(), boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2);
-            model = glm.scale(model, boundingBox.MaxPosition - boundingBox.MinPosition);
-            renderer.ModelMatrix = model;
+            renderer.OriginalWorldPosition = boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2;
+            renderer.Scale = boundingBox.MaxPosition - boundingBox.MinPosition;
             renderer.BoundingBoxColor = color;
             renderer.Render(arg);
         }

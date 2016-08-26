@@ -8,13 +8,13 @@ namespace CSharpGL.Demos
 {
     class UpdateBillboardPosition : Script
     {
-        private IWorldPosition renderer;
-        public IWorldPosition TargetRenderer { get; set; }
+        private IModelSpace renderer;
+        public IModelSpace TargetRenderer { get; set; }
 
         public UpdateBillboardPosition(SceneObject obj = null)
             : this(null, obj) { }
 
-        public UpdateBillboardPosition(IWorldPosition targetRenderer, SceneObject obj = null)
+        public UpdateBillboardPosition(IModelSpace targetRenderer, SceneObject obj = null)
             : base(obj)
         {
             this.TargetRenderer = targetRenderer;
@@ -24,10 +24,10 @@ namespace CSharpGL.Demos
         {
             if (this.renderer == null)
             {
-                this.renderer = this.BindingObject.Renderer as IWorldPosition;
+                this.renderer = this.BindingObject.Renderer as IModelSpace;
             }
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
-            this.renderer.Position = this.TargetRenderer.Position + new vec3(0, 0.3f, 0);
+            this.renderer.OriginalWorldPosition = this.TargetRenderer.OriginalWorldPosition + new vec3(0, 0.3f, 0);
         }
 
     }

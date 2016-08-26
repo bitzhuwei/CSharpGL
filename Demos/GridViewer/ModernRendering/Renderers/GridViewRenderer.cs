@@ -29,7 +29,7 @@ namespace GridViewer
         {
             var max = this.Lengths / 2;
             var min = -max;
-            vec3 position = this.ModelMatrix.GetTranslate();
+            vec3 position = this.OriginalWorldPosition;
             var result = new BoundingBox(min + position, max + position);
 
             return result;

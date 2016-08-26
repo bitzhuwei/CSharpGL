@@ -14,12 +14,22 @@ namespace CSharpGL
         /// <summary>
         /// world position before model is scaled or rotated.
         /// </summary>
-        vec3 OriginalWorldPosition { get; }
+        vec3 OriginalWorldPosition { get; set; }
 
         /// <summary>
-        /// matrix that transforms a model from model's sapce to world's space.
+        /// 
         /// </summary>
-        mat4 ModelMatrix { get; set; }
+        float RotationAngle { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        vec3 RotationAxis { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        vec3 Scale { get; set; }
 
         /// <summary>
         /// Length in X/Y/Z axis.
@@ -32,6 +42,18 @@ namespace CSharpGL
     /// </summary>
     public static class IModelSpaceHelper
     {
+        /// <summary>
+        /// Get model matrix that transform model from model space to world space.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static mat4 GetMatrix(this IModelSpace model)
+        {
+            mat4 matrix = glm.translate(mat4.identity(), model.OriginalWorldPosition);
+            matrix = glm.scale(matrix, model.Scale);
+            matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
+            return matrix;
+        }
         /// <summary>
         /// 
         /// </summary>

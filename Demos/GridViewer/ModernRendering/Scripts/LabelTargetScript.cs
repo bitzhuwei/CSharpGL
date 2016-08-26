@@ -44,13 +44,13 @@ namespace GridViewer
             //this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3());
             if (this.target != null)
             {
-                vec4 position = this.target.ModelMatrix * new vec4(this.labelPosition.Position, 1.0f);
-                this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3(position));
+                vec4 position = this.target.GetMatrix() * new vec4(this.labelPosition.Position, 1.0f);
+                this.self.OriginalWorldPosition = new vec3(position);
             }
             else
             {
                 vec3 position = this.labelPosition.Position;
-                this.self.ModelMatrix = glm.translate(mat4.identity(), position);
+                this.self.OriginalWorldPosition = new vec3(position);
             }
         }
     }

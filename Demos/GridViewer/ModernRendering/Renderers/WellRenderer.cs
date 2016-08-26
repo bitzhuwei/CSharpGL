@@ -57,8 +57,7 @@ namespace GridViewer
             base.DoInitialize();
 
             var model = this.bufferable as WellModel;
-            this.ModelMatrix = model.ModelMatrix;
-            this.OriginalWorldPosition = model.ModelMatrix.GetTranslate();
+            this.OriginalWorldPosition = model.OriginalWorldPosition;
             this.Lengths = model.Lengths;
             this.firstNode = model.FirstNode;
         }
@@ -71,7 +70,7 @@ namespace GridViewer
                 wellPipelineColorRecord.CancelMark();
             }
 
-            mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4() * this.ModelMatrix;
+            mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4() * this.GetMatrix();
             this.SetUniform("mvp", mvp);
 
             base.DoRender(arg);
@@ -86,17 +85,17 @@ namespace GridViewer
                 ModelTransformUpdated(this, new EventArgs());
             }
         }
-        public override mat4 ModelMatrix
+        public override vec3 OriginalWorldPosition
         {
             get
             {
-                return base.ModelMatrix;
+                return base.OriginalWorldPosition;
             }
             set
             {
-                if (base.ModelMatrix != value)
+                if (base.OriginalWorldPosition != value)
                 {
-                    base.ModelMatrix = value;
+                    base.OriginalWorldPosition = value;
                     DoModelTranslateUpdated();
                 }
             }
@@ -110,7 +109,7 @@ namespace GridViewer
         {
             var max = this.Lengths / 2;
             var min = -max;
-            vec3 position = this.ModelMatrix.GetTranslate();
+            vec3 position = this.OriginalWorldPosition;
             var result = new BoundingBox(min + position, max + position);
             return result;
         }

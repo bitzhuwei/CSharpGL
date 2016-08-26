@@ -58,30 +58,6 @@ namespace CSharpGL
 
         #endregion discard
 
-        #region World Position
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="worldPosition"></param>
-        public void SetPosition(vec3 worldPosition)
-        {
-            this.ModelMatrix = glm.translate(mat4.identity(), worldPosition);
-        }
-
-        //private UpdatingRecord worldPositionRecord = new UpdatingRecord();
-        //private vec3 worldPosition;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public vec3 WorldPosition
-        //{
-        //    get { return worldPosition; }
-        //    set { worldPositionRecord.Set(ref worldPosition, value); }
-        //}
-
-        #endregion World Position
-
         #region Height
 
         private UpdatingRecord labelHeightRecord = new UpdatingRecord();

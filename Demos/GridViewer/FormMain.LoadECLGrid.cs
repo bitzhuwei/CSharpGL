@@ -140,8 +140,7 @@ namespace GridViewer
                 -grid.DataSource.Position, grid, this.scientificCanvas.ColorPalette.Sampler);
             //string caseFileName = System.IO.Path.GetFileName(fileName);
             renderer.Name = System.IO.Path.GetFileName(fileName);
-            renderer.ModelMatrix = glm.translate(mat4.identity(),
-                -grid.DataSource.Position);
+            renderer.OriginalWorldPosition = -grid.DataSource.Position;
             renderer.Initialize();
             SceneObject gridObj = renderer.WrapToSceneObject(
                 new ModelScaleScript(),

@@ -9,12 +9,12 @@ namespace CSharpGL.Demos
     class UpdateLabelPosition : Script
     {
         private LabelRenderer renderer;
-        public IWorldPosition TargetRenderer { get; set; }
+        public IModelSpace TargetRenderer { get; set; }
 
         public UpdateLabelPosition(SceneObject obj = null)
             : this(null, obj) { }
 
-        public UpdateLabelPosition(IWorldPosition targetRenderer, SceneObject obj = null)
+        public UpdateLabelPosition(IModelSpace targetRenderer, SceneObject obj = null)
             : base(obj)
         {
             this.TargetRenderer = targetRenderer;
@@ -28,8 +28,8 @@ namespace CSharpGL.Demos
             }
 
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
-            vec3 worldPosition = this.TargetRenderer.Position + new vec3(0, 0.3f, 0);
-            this.renderer.SetPosition(worldPosition);
+            vec3 worldPosition = this.TargetRenderer.OriginalWorldPosition + new vec3(0, 0.3f, 0);
+            this.renderer.OriginalWorldPosition = worldPosition;
         }
 
     }

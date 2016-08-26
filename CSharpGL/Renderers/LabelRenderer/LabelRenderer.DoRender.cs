@@ -19,8 +19,7 @@ namespace CSharpGL
         {
             if (this.modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("billboardCenter_worldspace",
-                    this.ModelMatrix.GetTranslate());
+                this.SetUniform("billboardCenter_worldspace", this.OriginalWorldPosition);
                 this.modelMatrixRecord.CancelMark();
             }
             if (labelHeightRecord.IsMarked())

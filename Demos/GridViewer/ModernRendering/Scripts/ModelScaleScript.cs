@@ -61,7 +61,9 @@ namespace GridViewer
                     mat4 model = glm.translate(mat4.identity(), rootPosition);
                     model = glm.scale(model, factor);
                     model = glm.translate(model, distance);
-                    transform.ModelMatrix = model;
+                    transform.OriginalWorldPosition = model.GetTranslate();
+                    transform.Scale = model.GetScale();
+
                     updated = true;
                 }
 

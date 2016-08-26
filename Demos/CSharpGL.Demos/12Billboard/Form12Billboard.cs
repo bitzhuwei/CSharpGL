@@ -74,7 +74,7 @@ namespace CSharpGL.Demos
                 this.position = new vec3(0, 0, 0);
             }
 
-            this.movableRenderer.Position = this.position;
+            this.movableRenderer.OriginalWorldPosition = this.position;
 
             this.lblCubePosition.Text = string.Format("Cube Pos: {0}", this.position);
         }

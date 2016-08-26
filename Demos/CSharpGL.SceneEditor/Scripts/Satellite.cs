@@ -37,10 +37,10 @@ namespace CSharpGL.SceneEditor.Scripts
                 (float)(this.RevolutionRadius * Math.Cos(newAngle)),
                 0,
                 (float)(this.RevolutionRadius * Math.Sin(newAngle)))
-                + this.planetTransform.ModelMatrix.GetTranslate();
+                + this.planetTransform.OriginalWorldPosition;
             this.currentAngle = newAngle;
 
-            this.renderer.ModelMatrix = glm.translate(mat4.identity(), position);
+            this.renderer.OriginalWorldPosition = position;
         }
 
     }
