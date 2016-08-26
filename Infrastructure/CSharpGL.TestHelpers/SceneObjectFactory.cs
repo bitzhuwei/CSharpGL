@@ -22,12 +22,38 @@ namespace CSharpGL
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\BuildInSceneObject.frag"), ShaderType.FragmentShader);
             IBufferable bufferable = GetModel(buildIn);
             PropertyNameMap map = GetMap(buildIn);
-            var renderer = new BuildInRenderer(bufferable, shaderCodes, map);
+            vec3 lengths = GetLengths(buildIn);
+            var renderer = new BuildInRenderer(lengths, bufferable, shaderCodes, map);
             renderer.Initialize();
 
             SceneObject obj = renderer.WrapToSceneObject();
 
             return obj;
+        }
+
+        private const int groundXLength = 1000;
+        private const int groundZLength = 1000;
+
+        private static vec3 GetLengths(BuildInSceneObject buildIn)
+        {
+            var lengths = new vec3(1, 1, 1);
+
+            switch (buildIn)
+            {
+                case BuildInSceneObject.Cube:
+                    break;
+                case BuildInSceneObject.Sphere:
+                    break;
+                case BuildInSceneObject.Ground:
+                    lengths = new vec3(groundXLength, 1, groundZLength);
+                    break;
+                case BuildInSceneObject.Axis:
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return lengths;
         }
 
         private static PropertyNameMap GetMap(BuildInSceneObject buildIn)
@@ -72,7 +98,7 @@ namespace CSharpGL
                     bufferable = new Sphere();
                     break;
                 case BuildInSceneObject.Ground:
-                    bufferable = new Ground(1, 1000, 1000);
+                    bufferable = new Ground(1, groundXLength, groundZLength);
                     break;
                 case BuildInSceneObject.Axis:
                     bufferable = new Axis();
