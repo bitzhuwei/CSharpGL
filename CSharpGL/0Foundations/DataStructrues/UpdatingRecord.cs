@@ -20,6 +20,15 @@ namespace CSharpGL
         private long uploadTicks;
 
         /// <summary>
+        /// Records time when is a property is updated and uploaded.
+        /// </summary>
+        /// <param name="marking">mark as initial state.</param>
+        public UpdatingRecord(bool marking = false)
+        {
+            if (marking) { this.Mark(); }
+        }
+
+        /// <summary>
         /// Mark a property as updated(thus needs to be uploaded to OpenGL).
         /// </summary>
         public void Mark()
