@@ -37,17 +37,21 @@
             this.lstMember = new System.Windows.Forms.ListBox();
             this.lblSelectedType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // propertyGrid
             // 
-            this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid.Location = new System.Drawing.Point(247, 32);
+            this.propertyGrid.Location = new System.Drawing.Point(5, 21);
             this.propertyGrid.Margin = new System.Windows.Forms.Padding(2);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(252, 307);
+            this.propertyGrid.Size = new System.Drawing.Size(345, 351);
             this.propertyGrid.TabIndex = 12;
             // 
             // btnClose
@@ -55,7 +59,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnClose.Location = new System.Drawing.Point(428, 343);
+            this.btnClose.Location = new System.Drawing.Point(601, 391);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(68, 30);
@@ -68,7 +72,7 @@
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemove.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnRemove.Location = new System.Drawing.Point(82, 343);
+            this.btnRemove.Location = new System.Drawing.Point(82, 391);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(68, 30);
@@ -79,8 +83,9 @@
             // 
             // btnMoveDown
             // 
+            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveDown.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnMoveDown.Location = new System.Drawing.Point(215, 64);
+            this.btnMoveDown.Location = new System.Drawing.Point(274, 53);
             this.btnMoveDown.Margin = new System.Windows.Forms.Padding(2);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(27, 28);
@@ -91,8 +96,9 @@
             // 
             // btnMoveUp
             // 
+            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveUp.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnMoveUp.Location = new System.Drawing.Point(215, 32);
+            this.btnMoveUp.Location = new System.Drawing.Point(274, 21);
             this.btnMoveUp.Margin = new System.Windows.Forms.Padding(2);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(27, 28);
@@ -105,7 +111,7 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnAdd.Location = new System.Drawing.Point(10, 343);
+            this.btnAdd.Location = new System.Drawing.Point(10, 391);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(68, 30);
@@ -116,15 +122,16 @@
             // 
             // lstMember
             // 
-            this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstMember.Font = new System.Drawing.Font("宋体", 12F);
             this.lstMember.FormattingEnabled = true;
             this.lstMember.ItemHeight = 16;
-            this.lstMember.Location = new System.Drawing.Point(10, 32);
+            this.lstMember.Location = new System.Drawing.Point(6, 21);
             this.lstMember.Margin = new System.Windows.Forms.Padding(2);
             this.lstMember.Name = "lstMember";
-            this.lstMember.Size = new System.Drawing.Size(201, 308);
+            this.lstMember.Size = new System.Drawing.Size(264, 340);
             this.lstMember.TabIndex = 6;
             this.lstMember.SelectedIndexChanged += new System.EventHandler(this.lstMember_SelectedIndexChanged);
             // 
@@ -132,7 +139,7 @@
             // 
             this.lblSelectedType.AutoSize = true;
             this.lblSelectedType.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblSelectedType.Location = new System.Drawing.Point(247, 9);
+            this.lblSelectedType.Location = new System.Drawing.Point(2, 3);
             this.lblSelectedType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSelectedType.Name = "lblSelectedType";
             this.lblSelectedType.Size = new System.Drawing.Size(112, 16);
@@ -143,32 +150,54 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(10, 13);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Members:";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(10, 12);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.lstMember);
+            this.splitContainer1.Panel1.Controls.Add(this.btnMoveUp);
+            this.splitContainer1.Panel1.Controls.Add(this.btnMoveDown);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblSelectedType);
+            this.splitContainer1.Panel2.Controls.Add(this.propertyGrid);
+            this.splitContainer1.Size = new System.Drawing.Size(659, 374);
+            this.splitContainer1.SplitterDistance = 303;
+            this.splitContainer1.TabIndex = 13;
+            // 
             // FormUniformVariableListEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 382);
-            this.Controls.Add(this.propertyGrid);
+            this.ClientSize = new System.Drawing.Size(681, 430);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnMoveDown);
-            this.Controls.Add(this.btnMoveUp);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.lstMember);
-            this.Controls.Add(this.lblSelectedType);
-            this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormUniformVariableListEditor";
             this.Text = "UniformVariable List Editor";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -183,6 +212,7 @@
         private System.Windows.Forms.ListBox lstMember;
         private System.Windows.Forms.Label lblSelectedType;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
 
     }
 }
