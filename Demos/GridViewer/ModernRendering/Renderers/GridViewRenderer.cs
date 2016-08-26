@@ -25,15 +25,5 @@ namespace GridViewer
             this.Grid = model;
         }
 
-        public virtual BoundingBox GetRectangle()
-        {
-            var max = this.Lengths / 2;
-            var min = -max;
-            vec3 position = this.WorldPosition;
-            var result = new BoundingBox(min + position, max + position);
-
-            return result;
-        }
-
     }
 }

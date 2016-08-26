@@ -21,29 +21,6 @@ namespace GridViewer
             return inputData;
         }
 
-        //private SceneObject GetBoundingBoxObject(params IBoundingBox[] rectangles)
-        //{
-        //    var boxObj = new SceneObject();
-        //    boxObj.Name = string.Format("Box of {0}", rectangles[0]);
-        //    {
-        //        Rectangle3D rect = rectangles[0].GetRectangle();
-        //        for (int i = 1; i < rectangles.Length; i++)
-        //        {
-        //            rect = rect.Union(rectangles[i].GetRectangle());
-        //        }
-        //        vec3 lengths = rect.Max - rect.Min;
-        //        BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
-        //        {
-        //            vec3 position = rect.Max / 2 + rect.Min / 2;
-        //            //boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
-        //            boxRenderer.ModelMatrix = glm.translate(mat4.identity(), position);
-        //        }
-        //        //boxRenderer.Initialize();
-        //        boxObj.Renderer = boxRenderer;
-        //    }
-
-        //    return boxObj;
-        //}
         private BoundingBoxRenderer GetBoundingBoxRenderer(params SceneObject[] objects)
         {
             var rectangles = new List<IBoundingBox>();

@@ -108,14 +108,5 @@ namespace GridViewer
         private vec3 firstNode;
         vec3 ILabelPosition.Position { get { return firstNode; } }
 
-        public BoundingBox GetRectangle()
-        {
-            var max = this.Lengths / 2;
-            var min = -max;
-            vec3 position = this.WorldPosition;
-            var result = new BoundingBox(min + position, max + position);
-            return result;
-        }
-
     }
 }
