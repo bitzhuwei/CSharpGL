@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModernRendering\Scripts\DumpTreeNodeScript.cs" />
     <Compile Include="ModernRendering\Scripts\ModelScaleScript.cs" />
     <Compile Include="ModernRendering\Scripts\DumpCatesianGridTreeNodeScript.cs" />
     <Compile Include="FormMain.Timer.cs">
