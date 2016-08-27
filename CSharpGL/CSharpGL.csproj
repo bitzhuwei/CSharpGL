@@ -154,7 +154,6 @@
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\StringName.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\BoundingBox2D.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="Manipulaters\IMouseHandler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
