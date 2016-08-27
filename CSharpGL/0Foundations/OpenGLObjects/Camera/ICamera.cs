@@ -10,5 +10,11 @@
         /// camera's perspective type.
         /// </summary>
         CameraType CameraType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        mat4 GetProjectionMatrix();
     }
 }

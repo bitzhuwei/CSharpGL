@@ -12,7 +12,6 @@ namespace CSharpGL
 
         private UpdatingRecord viewMatrixRecord = new UpdatingRecord(true);
 
-        private const string strCamera = "Camera";
         private vec3 target;
         /// <summary>
         /// Gets or sets world coordinate of the camera's target.

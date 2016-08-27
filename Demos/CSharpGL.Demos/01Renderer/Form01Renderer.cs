@@ -231,7 +231,7 @@ namespace CSharpGL.Demos
 
         private void UpdateMVP(HighlightedPickableRenderer renderer)
         {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 projectionMatrix = camera.GetProjectionMatrix();
             mat4 viewMatrix = camera.GetViewMatrix();
             mat4 modelMatrix = mat4.identity();
 

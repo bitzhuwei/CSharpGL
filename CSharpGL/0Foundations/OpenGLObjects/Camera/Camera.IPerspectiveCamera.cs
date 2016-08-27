@@ -69,7 +69,7 @@ namespace CSharpGL
         }
 
         private mat4 perspectiveProjectionMatrix;
-        mat4 IPerspectiveCamera.GetProjectionMatrix()
+        mat4 IPerspectiveCamera.GetPerspectiveProjectionMatrix()
         {
             if (perspectiveCameraRecord.IsMarked())
             {

@@ -42,6 +42,6 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        mat4 GetProjectionMatrix();
+        mat4 GetPerspectiveProjectionMatrix();
     }
 }

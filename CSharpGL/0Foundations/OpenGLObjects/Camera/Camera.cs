@@ -113,12 +113,6 @@ namespace CSharpGL
         double lastHeight;
 
         /// <summary>
-        /// camera's perspective type.
-        /// </summary>
-        [Category(strCamera)]
-        public CameraType CameraType { get; set; }
-
-        /// <summary>
         /// Pos:{0}, Target:{1}, Up:{2}
         /// </summary>
         /// <returns></returns>
