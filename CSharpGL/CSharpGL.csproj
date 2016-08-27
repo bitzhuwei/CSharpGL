@@ -106,6 +106,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.ctors.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageBuilders\ImageBuilder.cs" />
+    <None Include="Canvas\readme.md" />
     <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
