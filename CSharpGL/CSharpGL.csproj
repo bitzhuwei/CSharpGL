@@ -541,6 +541,7 @@
     <EmbeddedResource Include="Resources\BoundingBox.vert" />
     <EmbeddedResource Include="Resources\SquareRenderer.frag" />
     <EmbeddedResource Include="Resources\SquareRenderer.vert" />
+    <None Include="Resources\!!!.md" />
     <None Include="Resources\readme.md" />
     <None Include="Scene\readme.md" />
   </ItemGroup>
