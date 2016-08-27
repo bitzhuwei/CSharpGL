@@ -199,7 +199,7 @@ namespace CSharpGL
 
             OpenGL.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
-                20.0f, this.fullname);
+                25.0f, this.fullname);
             if (this.RenderTrigger == RenderTrigger.TimerBased)
             {
                 OpenGL.DrawText(10,

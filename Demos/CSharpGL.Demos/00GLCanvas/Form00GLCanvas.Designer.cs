@@ -42,7 +42,7 @@
             this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.glCanvas1.ShowSystemCursor = true;
-            this.glCanvas1.Size = new System.Drawing.Size(529, 406);
+            this.glCanvas1.Size = new System.Drawing.Size(574, 402);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);
             // 
@@ -50,9 +50,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 427);
+            this.ClientSize = new System.Drawing.Size(593, 423);
             this.Controls.Add(this.glCanvas1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form00GLCanvas";
             this.Text = "Form00GLCanvas";
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
