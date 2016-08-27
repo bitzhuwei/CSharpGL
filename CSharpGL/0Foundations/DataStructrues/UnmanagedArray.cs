@@ -37,38 +37,6 @@ namespace CSharpGL
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
 
-        // Do not try to use less effitient way of accessing elements as we're using OpenGL.
-        // 既然要用OpenGL，就不要试图才用低效的方式了。
-        ///// <summary>
-        ///// 获取或设置索引为<paramref name="index"/>的元素。
-        ///// <para>如果要处理的元素数目较大，请使用unsafe方式(<see cref="UnmanagedArrayFastAccessHelper"/>)。</para>
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <returns></returns>
-        //public unsafe T this[int index]
-        //{
-        //    get
-        //    {
-        //        if (index < 0 || index >= this.Length)
-        //            throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
-
-        //        var pItem = this.Header + (index * elementSize);
-        //        var obj = Marshal.PtrToStructure(pItem, typeof(T));
-        //        T result = (T)obj;
-        //        //T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
-        //        return result;
-        //    }
-        //    set
-        //    {
-        //        if (index < 0 || index >= this.Length)
-        //            throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
-
-        //        var pItem = this.Header + (index * elementSize);
-        //        Marshal.StructureToPtr(value, pItem, true);
-        //        //Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
-        //    }
-        //}
-
         /// <summary>
         /// Dispose unmanaged resources
         /// </summary>
@@ -79,18 +47,6 @@ namespace CSharpGL
             UnmanagedArray<T>.thisTypeDisposedCount++;
         }
 
-        // Do not try to use less effitient way of accessing elements as we're using OpenGL.
-        ///// <summary>
-        ///// 按索引顺序依次获取各个元素。
-        ///// </summary>
-        ///// <returns></returns>
-        //public IEnumerable<T> Elements()
-        //{
-        //    for (int i = 0; i < this.Length; i++)
-        //    {
-        //        yield return this[i];
-        //    }
-        //}
     }
 
     /// <summary>
@@ -215,13 +171,6 @@ namespace CSharpGL
 
             this.Header = IntPtr.Zero;
         }
-
-        ///// <summary>
-        ///// Dispose managed resources
-        ///// </summary>
-        //protected virtual void DisposeManagedResources()
-        //{
-        //}
 
         /// <summary>
         /// return string.Format("head: {0}, element count: {1}, byte length: {2}",
