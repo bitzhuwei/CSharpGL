@@ -45,7 +45,7 @@ namespace CSharpGL.Demos
 
             {
                 mat4 projection = arg.Camera.GetProjectionMat4();
-                mat4 view = arg.Camera.GetViewMat4();
+                mat4 view = arg.Camera.GetViewMatrix();
                 mat4 model = this.arcballManipulater.GetRotationMatrix();
                 this.teapotRenderer.SetUniform("projectionMatrix", projection);
                 this.teapotRenderer.SetUniform("viewMatrix", view);

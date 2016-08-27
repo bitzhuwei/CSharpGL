@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 model = mat4.identity();
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMat4();
             this.SetUniform("modelMatrix", model);
             this.SetUniform("viewMatrix", view);

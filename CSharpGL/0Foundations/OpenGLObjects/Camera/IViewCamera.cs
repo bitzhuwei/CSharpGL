@@ -35,5 +35,12 @@ namespace CSharpGL
         /// </value>
         [Description("The up direction, relative to camera. (Controls tilt)."), Category("Camera")]
         vec3 UpVector { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        mat4 GetViewMatrix();
+
     }
 }

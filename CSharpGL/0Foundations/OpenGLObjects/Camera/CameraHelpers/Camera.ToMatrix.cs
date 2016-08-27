@@ -60,16 +60,16 @@ namespace CSharpGL
             return ortho;
         }
 
-        /// <summary>
-        /// Extension method for <see cref="IViewCamera"/> to get view matrix.
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <returns></returns>
-        public static mat4 GetViewMat4(this IViewCamera camera)
-        {
-            mat4 lookAt = glm.lookAt(camera.Position, camera.Target, camera.UpVector);
-            return lookAt;
-        }
+        ///// <summary>
+        ///// Extension method for <see cref="IViewCamera"/> to get view matrix.
+        ///// </summary>
+        ///// <param name="camera"></param>
+        ///// <returns></returns>
+        //public static mat4 GetViewMat4(this IViewCamera camera)
+        //{
+        //    mat4 lookAt = glm.lookAt(camera.Position, camera.Target, camera.UpVector);
+        //    return lookAt;
+        //}
 
     }
 }

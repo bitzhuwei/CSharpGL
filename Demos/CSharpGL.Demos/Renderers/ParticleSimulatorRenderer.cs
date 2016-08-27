@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
             // Clear, select the rendering program and draw a full screen quad
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMat4();
             this.particleRenderer.SetUniform("mvp", projection * view);
             this.particleRenderer.Render(arg);

@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMat4();
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             this.SetUniform("mvp", projection * view);
 
             base.DoRender(arg);

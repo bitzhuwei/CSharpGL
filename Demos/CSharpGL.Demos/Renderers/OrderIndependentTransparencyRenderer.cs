@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
                 var build_lists = new ShaderCode[2];
                 build_lists[0] = new ShaderCode(File.ReadAllText(@"shaders\build_lists.vert"), ShaderType.VertexShader);
                 build_lists[1] = new ShaderCode(File.ReadAllText(@"shaders\build_lists.frag"), ShaderType.FragmentShader);
-                this.buildListsRenderer =new PickableRenderer(model, build_lists, map, positionName);
+                this.buildListsRenderer = new PickableRenderer(model, build_lists, map, positionName);
             }
             {
                 var map = new PropertyNameMap();
@@ -145,7 +145,7 @@ namespace CSharpGL.Demos
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
             mat4 model = mat4.identity();
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMat4();
             this.buildListsRenderer.SetUniform("model_matrix", model);
             this.buildListsRenderer.SetUniform("view_matrix", view);

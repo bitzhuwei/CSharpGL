@@ -232,7 +232,7 @@ namespace CSharpGL.Demos
         private void UpdateMVP(HighlightedPickableRenderer renderer)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
-            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 viewMatrix = camera.GetViewMatrix();
             mat4 modelMatrix = mat4.identity();
 
             mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;

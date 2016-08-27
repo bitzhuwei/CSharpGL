@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMat4();
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = glm.scale(mat4.identity(), this.Scale);
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);

@@ -125,7 +125,7 @@ namespace CSharpGL.Demos
             //GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
             //GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
 
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMat4();
             this.renderer.SetUniform("mvp", projection * view);
             this.renderer.Render(arg);

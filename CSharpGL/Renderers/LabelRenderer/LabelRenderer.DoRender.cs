@@ -43,7 +43,7 @@ namespace CSharpGL
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));
             mat4 projection = arg.Camera.GetProjectionMat4();
-            mat4 view = arg.Camera.GetViewMat4();
+            mat4 view = arg.Camera.GetViewMatrix();
             this.SetUniform("projection", projection);
             this.SetUniform("view", view);
 

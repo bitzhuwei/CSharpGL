@@ -40,7 +40,7 @@ namespace CSharpGL.Demos
                 Resize(viewport[2], viewport[3]);
             }
 
-            mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4();
+            mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMatrix();
             this.backfaceRenderer.SetUniform("MVP", mvp);
             this.raycastRenderer.SetUniform("MVP", mvp);
 

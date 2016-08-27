@@ -9,7 +9,7 @@ namespace CSharpGL
     /// 摄像机。Camera.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class Camera : ICamera
+    public partial class Camera : ICamera
     {
         ///// <summary>
         ///// 默认目标为vec3(0, 0, -1)
@@ -112,67 +112,11 @@ namespace CSharpGL
         double lastWidth;
         double lastHeight;
 
-        private const string strCamera = "Camera";
-        /// <summary>
-        /// Gets or sets world coordinate of the camera's target.
-        /// </summary>
-        [Description("world coordinate of the camera's target(the point it's looking at).")]
-        [Category(strCamera)]
-        public vec3 Target { get; set; }
-
-        /// <summary>
-        /// Gets or sets world coordinate of the camera's up vector.
-        /// </summary>
-        /// <value>
-        /// Up vector.
-        /// </value>
-        [Description("world coordinate of the camera's up vector.")]
-        [Category(strCamera)]
-        public vec3 UpVector { get; set; }
-
-        /// <summary>
-        /// Gets or sets world coordinate of the camera 's position.
-        /// </summary>
-        /// <value>
-        /// The position.
-        /// </value>
-        [Description("world coordinate of the camera 's position.")]
-        [Category(strCamera)]
-        public vec3 Position { get; set; }
-
         /// <summary>
         /// camera's perspective type.
         /// </summary>
         [Category(strCamera)]
         public CameraType CameraType { get; set; }
-
-        #region IPerspectiveCamera 成员
-
-        double IPerspectiveCamera.FieldOfView { get; set; }
-
-        double IPerspectiveCamera.AspectRatio { get; set; }
-
-        double IPerspectiveCamera.Near { get; set; }
-
-        double IPerspectiveCamera.Far { get; set; }
-
-        #endregion
-
-        #region IOrthoCamera 成员
-
-        double IOrthoCamera.Left { get; set; }
-
-        double IOrthoCamera.Right { get; set; }
-
-        double IOrthoCamera.Bottom { get; set; }
-
-        double IOrthoCamera.Top { get; set; }
-
-        double IOrthoCamera.Near { get; set; }
-
-        double IOrthoCamera.Far { get; set; }
-
-        #endregion
 
         /// <summary>
         /// Pos:{0}, Target:{1}, Up:{2}

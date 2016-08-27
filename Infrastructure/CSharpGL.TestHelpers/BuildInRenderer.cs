@@ -22,7 +22,7 @@ namespace CSharpGL
         protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("projection", arg.Camera.GetProjectionMat4());
-            this.SetUniform("view", arg.Camera.GetViewMat4());
+            this.SetUniform("view", arg.Camera.GetViewMatrix());
             if (modelMatrixRecord.IsMarked())
             {
                 this.SetUniform("model", this.GetMatrix());

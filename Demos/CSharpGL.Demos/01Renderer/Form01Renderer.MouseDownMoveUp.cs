@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
                         pickedGeometry.Indexes);
                     var dragParam = new DragParam(
                         camera.GetProjectionMat4(),
-                        camera.GetViewMat4(),
+                        camera.GetViewMatrix(),
                         new Point(e.X, glCanvas1.Height - e.Y - 1));
                     dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes);
                     this.dragParam = dragParam;
@@ -138,7 +138,7 @@ namespace CSharpGL.Demos
             if (pickedGeometry != null)
             {
                 this.pickedGeometryBoard.SetContent(pickedGeometry.ToString(
-                    camera.GetProjectionMat4(), camera.GetViewMat4(), mat4.identity()));
+                    camera.GetProjectionMat4(), camera.GetViewMatrix(), mat4.identity()));
             }
             else
             {
@@ -164,7 +164,7 @@ namespace CSharpGL.Demos
             {
                 // prepare pickable elements
                 PickableRenderer pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
-                pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
+                pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMatrix();
 
                 PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
                     arg, x, y,

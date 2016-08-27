@@ -83,7 +83,7 @@ namespace CSharpGL
             }
 
             this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMat4());
-            this.SetUniform("viewMatrix", arg.Camera.GetViewMat4());
+            this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
             if (base.modelMatrixRecord.IsMarked())
             {
                 this.SetUniform("modelMatrix", this.GetMatrix());
