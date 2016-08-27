@@ -1,5 +1,5 @@
 ﻿# Note
-DO NOT rename or remove this folder!
+DO NOT rename or move this folder!
 # Embeded resources
 Every file in this folder(except this readme.md) will be embeded into CSharpGL.dll. And they work with ManifestResourceLoader.
 ```
