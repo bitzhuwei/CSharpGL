@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
                 this.ground = ground;
             }
             {
-                var renderer = UpdatingTextureRenderer.Create(new TexturedRectangleModel());
+                UpdatingTextureRenderer renderer = UpdatingTextureRenderer.Create(new TexturedRectangleModel());
                 renderer.Initialize();
                 this.renderer = renderer;
             }

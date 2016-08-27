@@ -99,6 +99,18 @@ namespace CSharpGL.Demos
                     }
                 }
             }
+            else if (e.KeyChar == 'p')
+            {
+                bool original = false;
+                if (this.renderer.GetUniformValue<bool>("original", out original))
+                {
+                    this.renderer.SetUniform("original", !original);
+                }
+                else
+                {
+                    this.renderer.SetUniform("original", original);
+                }
+            }
         }
 
     }
