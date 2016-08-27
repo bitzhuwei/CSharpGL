@@ -8,18 +8,6 @@ namespace CSharpGL
     public partial class Camera
     {
 
-        #region IPerspectiveCamera 成员
-
-        double IPerspectiveCamera.FieldOfView { get; set; }
-
-        double IPerspectiveCamera.AspectRatio { get; set; }
-
-        double IPerspectiveCamera.Near { get; set; }
-
-        double IPerspectiveCamera.Far { get; set; }
-
-        #endregion
-
         #region IOrthoCamera 成员
 
         double IOrthoCamera.Left { get; set; }

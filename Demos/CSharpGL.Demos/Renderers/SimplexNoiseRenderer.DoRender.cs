@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
             this.SetUniform("rainDrop", this.rainDrop);
             this.SetUniform("granularity", this.granularity);
 
-            mat4 projection = arg.Camera.GetProjectionMat4();
+            mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = mat4.identity();
             this.SetUniform("projectionMatrix", projection);

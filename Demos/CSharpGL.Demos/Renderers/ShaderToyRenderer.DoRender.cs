@@ -51,13 +51,13 @@ namespace CSharpGL.Demos
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("iResolution", new vec2(viewport[2], viewport[3]));
 
-            mat4 projection = arg.Camera.GetProjectionMat4();
+            mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = mat4.identity();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             this.SetUniform("modelMatrix", model);
-            mat4 projectionMatrix = arg.Camera.GetProjectionMat4();
+            mat4 projectionMatrix = arg.Camera.GetProjectionMatrix();
             mat4 viewMatrix = arg.Camera.GetViewMatrix();
             mat4 modelMatrix = mat4.identity();
 

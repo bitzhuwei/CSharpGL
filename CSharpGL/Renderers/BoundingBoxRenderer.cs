@@ -82,7 +82,7 @@ namespace CSharpGL
                 this.boundingBoxColorRecord.CancelMark();
             }
 
-            this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMat4());
+            this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMatrix());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
             if (base.modelMatrixRecord.IsMarked())
             {

@@ -45,7 +45,7 @@ namespace GridViewer
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMat4());
+            this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMatrix());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
             if (this.modelMatrixRecord.IsMarked())
             {

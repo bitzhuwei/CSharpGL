@@ -21,7 +21,7 @@ namespace CSharpGL
             switch (camera.CameraType)
             {
                 case CameraType.Perspecitive:
-                    result = ((IPerspectiveCamera)camera).GetProjectionMat4();
+                    result = ((IPerspectiveCamera)camera).GetProjectionMatrix();
                     break;
                 case CameraType.Ortho:
                     result = ((IOrthoCamera)camera).GetProjectionMat4();
@@ -33,18 +33,18 @@ namespace CSharpGL
             return result;
         }
 
-        /// <summary>
-        /// Extension method for <see cref="IPerspectiveCamera"/> to get projection matrix.
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <returns></returns>
-        public static mat4 GetProjectionMat4(this IPerspectiveCamera camera)
-        {
-            mat4 perspective = glm.perspective(
-                (float)(camera.FieldOfView * Math.PI / 180.0f),
-                (float)camera.AspectRatio, (float)camera.Near, (float)camera.Far);
-            return perspective;
-        }
+        ///// <summary>
+        ///// Extension method for <see cref="IPerspectiveCamera"/> to get projection matrix.
+        ///// </summary>
+        ///// <param name="camera"></param>
+        ///// <returns></returns>
+        //public static mat4 GetProjectionMat4(this IPerspectiveCamera camera)
+        //{
+        //    mat4 perspective = glm.perspective(
+        //        (float)(camera.FieldOfView * Math.PI / 180.0f),
+        //        (float)camera.AspectRatio, (float)camera.Near, (float)camera.Far);
+        //    return perspective;
+        //}
 
         /// <summary>
         /// Extension method for <see cref="IOrthoCamera"/> to get projection matrix.

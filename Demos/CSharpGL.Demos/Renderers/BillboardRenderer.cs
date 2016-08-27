@@ -76,7 +76,7 @@ namespace CSharpGL.Demos
         {
             //if (this.TargetRenderer == null) { return; }
 
-            mat4 projection = arg.Camera.GetProjectionMat4();
+            mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             this.SetUniform("CameraRight_worldspace", new vec3(
                 view[0][0], view[1][0], view[2][0]));

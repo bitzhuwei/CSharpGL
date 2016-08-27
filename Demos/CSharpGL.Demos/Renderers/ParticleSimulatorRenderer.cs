@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
 
             // Clear, select the rendering program and draw a full screen quad
             mat4 view = arg.Camera.GetViewMatrix();
-            mat4 projection = arg.Camera.GetProjectionMat4();
+            mat4 projection = arg.Camera.GetProjectionMatrix();
             this.particleRenderer.SetUniform("mvp", projection * view);
             this.particleRenderer.Render(arg);
         }
