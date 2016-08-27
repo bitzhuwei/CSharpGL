@@ -16,11 +16,6 @@ namespace CSharpGL
         /// </summary>
         Texture TextureObj { get; }
 
-        ///// <summary>
-        ///// font of glyphs.
-        ///// </summary>
-        //Font GlyphFont { get; }
-
         /// <summary>
         /// glyph's height.
         /// </summary>
@@ -35,11 +30,6 @@ namespace CSharpGL
         /// glyph information dictionary.
         /// </summary>
         FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; }
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //samplerValue GetSamplerValue();
 
     }
 }
