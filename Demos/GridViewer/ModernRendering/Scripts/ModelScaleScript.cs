@@ -62,7 +62,7 @@ namespace GridViewer
                     model = glm.scale(model, factor);
                     model = glm.translate(model, distance);
                     transform.WorldPosition = model.GetTranslate();
-                    transform.Scale = model.GetScale();
+                    transform.Scale = factor;
 
                     updated = true;
                 }
