@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
+    <Compile Include="Renderers\ByteImageBuilder.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
