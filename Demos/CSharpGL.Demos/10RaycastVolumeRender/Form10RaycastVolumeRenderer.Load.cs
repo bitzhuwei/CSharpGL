@@ -31,10 +31,6 @@ namespace CSharpGL.Demos
                 SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.RootObject.Children.Add(obj);
             }
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.scene);
-                frmPropertyGrid.Show();
-            }
         }
     }
 }
