@@ -63,25 +63,26 @@ namespace CSharpGL
             }
         }
 
-//#if DEBUG
-//        private int stackLevel = 0;
-//#endif
+        //#if DEBUG
+        //        private int stackLevel = 0;
+        //#endif
 
         private void RenderUIRenderer(UIRenderer renderer, RenderEventArgs arg)
         {
-//#if DEBUG
-//            stackLevel++;
-//            if (stackLevel > ushort.MaxValue)
-//            { throw new Exception(string.Format("Maybe circular reference in UI tree!")); }
-//#endif
+            //#if DEBUG
+            //            stackLevel++;
+            //            if (stackLevel > ushort.MaxValue)
+            //            { throw new Exception(string.Format("Maybe circular reference in UI tree!")); }
+            //#endif
             renderer.Render(arg);
-            foreach (var item in renderer.Children)
+            UIRenderer[] array = renderer.Children.ToArray();
+            foreach (var item in array)
             {
                 RenderUIRenderer(item, arg);
             }
-//#if DEBUG
-//            stackLevel--;
-//#endif
+            //#if DEBUG
+            //            stackLevel--;
+            //#endif
         }
 
     }
