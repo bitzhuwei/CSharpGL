@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             const float deltaDistance = 0.1f;
-            Camera camera = this.scene.Camera;
+            ICamera camera = this.scene.Camera;
 
             if (e.KeyChar == 'w')
             {

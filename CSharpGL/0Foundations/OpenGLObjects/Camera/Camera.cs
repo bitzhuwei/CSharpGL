@@ -44,9 +44,6 @@ namespace CSharpGL
             this.Target = target;
             this.UpVector = up;
 
-            this.lastWidth = width;
-            this.lastHeight = height;
-
             IPerspectiveCamera perspectiveCamera = this;
             perspectiveCamera.FieldOfView = 60.0f;
             perspectiveCamera.AspectRatio = width / height;
@@ -64,53 +61,6 @@ namespace CSharpGL
 
             this.CameraType = cameraType;
         }
-
-        /// <summary>
-        /// opengl控件的大小改变时调整camera.
-        /// Adjust camera when OpenGL canvas's size changed.
-        /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public void Resize(double width, double height)
-        {
-            double aspectRatio = width / height;
-
-            IPerspectiveCamera perspectiveCamera = this;
-            perspectiveCamera.AspectRatio = aspectRatio;
-
-            IOrthoCamera orthoCamera = this;
-
-            double lastAspectRatio = this.lastWidth / this.lastHeight;
-            if (aspectRatio > lastAspectRatio)
-            {
-                double top = orthoCamera.Top;
-                double newRight = top * aspectRatio;
-                orthoCamera.Left = -newRight;
-                orthoCamera.Right = newRight;
-            }
-            else if (aspectRatio < lastAspectRatio)
-            {
-                double right = orthoCamera.Right;
-                double newTop = right / aspectRatio;
-                orthoCamera.Bottom = -newTop;
-                orthoCamera.Top = newTop;
-            }
-
-            //const int factor = 100;
-            //if (width / 2 / factor != orthoCamera.Right)
-            //{
-            //    orthoCamera.Left = -width / 2 / factor;
-            //    orthoCamera.Right = width / 2 / factor;
-            //}
-            //if (height / 2 / factor != orthoCamera.Top)
-            //{
-            //    orthoCamera.Bottom = -height / 2 / factor;
-            //    orthoCamera.Top = height / 2 / factor;
-            //}
-        }
-
-        double lastWidth;
-        double lastHeight;
 
         /// <summary>
         /// Pos:{0}, Target:{1}, Up:{2}

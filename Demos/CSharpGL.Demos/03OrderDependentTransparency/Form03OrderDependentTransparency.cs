@@ -60,7 +60,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
-            Camera camera = this.scene.Camera;
+            ICamera camera = this.scene.Camera;
             if (camera != null)
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);

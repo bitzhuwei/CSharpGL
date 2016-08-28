@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// camera of the scene.
         /// </summary>
-        public Camera Camera { get; private set; }
+        public ICamera Camera { get; private set; }
 
         /// <summary>
         /// Canvas that this scene binds to.
@@ -81,6 +81,7 @@ namespace CSharpGL
             if (control == null) { throw new ArgumentException(); }
 
             this.Camera.Resize(control.Width, control.Height);
+
 
             this.uiRoot.Size = control.Size;
         }
