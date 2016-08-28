@@ -22,7 +22,9 @@ namespace CSharpGL
             SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
         {
-            var texture = new Texture(fontBitmap.GlyphBitmap,
+            var texture = new Texture(
+                fontBitmap.GlyphBitmap,
+                BindTextureTarget.Texture2D,
                 parameters, mipmapFiltering);
             texture.Initialize();
             var result = new FontTexture();

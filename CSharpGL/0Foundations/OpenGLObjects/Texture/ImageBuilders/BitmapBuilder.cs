@@ -13,21 +13,24 @@ namespace CSharpGL
     public class BitmapBuilder : ImageBuilder
     {
         private System.Drawing.Bitmap bitmap;
+        private BindTextureTarget target;
 
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
         /// <param name="bitmap"></param>
-        public BitmapBuilder(System.Drawing.Bitmap bitmap)
+        /// <param name="target"></param>
+        public BitmapBuilder(System.Drawing.Bitmap bitmap, BindTextureTarget target)
         {
             // TODO: Complete member initialization
             this.bitmap = bitmap;
+            this.target = target;
         }
 
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
-        public override void Build(BindTextureTarget target)
+        public override void Build()
         {
             // generate texture.
             //  Lock the image bits (so that we can pass them to OGL).
