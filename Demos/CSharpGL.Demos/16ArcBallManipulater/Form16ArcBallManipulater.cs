@@ -27,9 +27,24 @@ namespace CSharpGL.Demos
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+        }
+
+        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == 'c')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
         }
 
         void Application_Idle(object sender, EventArgs e)
@@ -76,7 +91,7 @@ namespace CSharpGL.Demos
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
-      
+
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             if (camera != null)

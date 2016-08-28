@@ -27,6 +27,7 @@ namespace CSharpGL.Demos
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
@@ -111,6 +112,12 @@ namespace CSharpGL.Demos
                     this.renderer.SetUniform("original", original);
                 }
             }
+            else if (e.KeyChar == 'c')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
+
         }
 
     }

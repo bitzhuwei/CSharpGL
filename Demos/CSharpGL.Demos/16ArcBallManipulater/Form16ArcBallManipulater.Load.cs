@@ -65,12 +65,10 @@ namespace CSharpGL.Demos
                 UIRoot.Children.Add(uiAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.teapotRenderer);
-                frmPropertyGrid.Show();
-            }
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
-                frmPropertyGrid.Show();
+                var builder = new StringBuilder();
+                builder.AppendLine("S: Scene's property grid.");
+                builder.AppendLine("C: Canvas' property grid.");
+                MessageBox.Show(builder.ToString());
             }
         }
 
