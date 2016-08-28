@@ -16,7 +16,6 @@ namespace CSharpGL.Demos
 
         private Scene scene;
 
-        private FormProperyGrid formPropertyGrid;
         private UIText glText;
         private BlendFactorHelper blendFactorHelper = new BlendFactorHelper();
 
@@ -53,9 +52,10 @@ namespace CSharpGL.Demos
                 this.UpdateLabel();
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.glText);
-                frmPropertyGrid.Show();
-                this.formPropertyGrid = frmPropertyGrid;
+                var builder = new StringBuilder();
+                builder.AppendLine("S: Scene's property grid.");
+                builder.AppendLine("C: Canvas' property grid.");
+                MessageBox.Show(builder.ToString());
             }
         }
 

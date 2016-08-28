@@ -73,7 +73,6 @@
             this.glCanvas1.ShowSystemCursor = true;
             this.glCanvas1.Size = new System.Drawing.Size(568, 378);
             this.glCanvas1.TabIndex = 0;
-            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
             // Form15LabelRenderer
             // 
