@@ -35,12 +35,7 @@ namespace CSharpGL.Demos
 
         void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 's')
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.scene);
-                frmPropertyGrid.Show();
-            }
-            else if (e.KeyChar == 'c')
+            if (e.KeyChar == 'c')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
