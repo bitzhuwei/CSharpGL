@@ -16,12 +16,10 @@ namespace CSharpGL.Demos
     {
         private Renderer backfaceRenderer;
         private Renderer raycastRenderer;
-        private uint[] transferFunc1DTexObj = new uint[1];
+        private Texture transferFunc1DTexture;
         private uint[] backface2DTexObj = new uint[1];
         private uint[] vol3DTexObj = new uint[1];
         private uint[] frameBuffer = new uint[1];
-
-        //private DepthTestSwitch depthTest;
 
         private static readonly IBufferable model = new RaycastModel();
         private float g_stepSize = 0.001f;
@@ -36,7 +34,7 @@ namespace CSharpGL.Demos
         {
             this.backfaceRenderer.Dispose();
             this.raycastRenderer.Dispose();
-            OpenGL.DeleteTextures(1, transferFunc1DTexObj);
+            this.transferFunc1DTexture.Dispose();
             OpenGL.DeleteTextures(1, backface2DTexObj);
             OpenGL.DeleteTextures(1, vol3DTexObj);
             OpenGL.DeleteFrameBuffers(1, frameBuffer);

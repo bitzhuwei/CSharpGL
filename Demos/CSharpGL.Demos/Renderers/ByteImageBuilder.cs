@@ -26,7 +26,7 @@ namespace CSharpGL
         public override void Build()
         {
             OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
-            OpenGL.TexImage1D((uint)BindTextureTarget.Texture1D, 0, OpenGL.GL_RGBA8, this.width, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, content);
+            OpenGL.TexImage1D((uint)BindTextureTarget.Texture1D, 0, OpenGL.GL_RGBA8, this.width, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, content);
         }
     }
 }
