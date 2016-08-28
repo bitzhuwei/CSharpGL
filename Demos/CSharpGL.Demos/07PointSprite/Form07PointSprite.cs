@@ -23,6 +23,7 @@ namespace CSharpGL.Demos
             InitializeComponent();
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
             OpenGL.ClearColor(0, 0, 0, 0);
@@ -49,6 +50,17 @@ namespace CSharpGL.Demos
                     this.renderer.UpdateTexture(this.openTextureDlg.FileName);
                 }
             }
+            else if (e.KeyChar == 's')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == 'c')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
+
         }
 
     }

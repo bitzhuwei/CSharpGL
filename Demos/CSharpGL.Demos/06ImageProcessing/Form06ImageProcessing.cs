@@ -20,10 +20,35 @@ namespace CSharpGL.Demos
             InitializeComponent();
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             //GL.ClearColor(0, 0, 0, 0);
+        }
+
+        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == 'c')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
+            if (e.KeyChar == 's')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == 'c')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
         }
 
         void Application_Idle(object sender, EventArgs e)

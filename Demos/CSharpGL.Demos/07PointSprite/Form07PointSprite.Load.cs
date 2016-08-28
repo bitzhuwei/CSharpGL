@@ -42,8 +42,11 @@ namespace CSharpGL.Demos
                 this.scene.UIRoot.Children.Add(uiAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.scene);
-                frmPropertyGrid.Show();
+                var builder = new StringBuilder();
+                builder.AppendLine("O: to select image.");
+                builder.AppendLine("S: Scene's property grid.");
+                builder.AppendLine("C: Canvas' property grid.");
+                MessageBox.Show(builder.ToString());
             }
         }
     }
