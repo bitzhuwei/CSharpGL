@@ -78,7 +78,7 @@ namespace CSharpGL
         /// <summary>
         /// setup texture's image data.
         /// </summary>
-        public NewImageBuilder ImageBuilder { get; private set; }
+        public ImageBuilder ImageBuilder { get; private set; }
 
         /// <summary>
         /// setup texture's sampler properties.

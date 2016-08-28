@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// build texture's content.
     /// </summary>
-    public abstract class NewImageBuilder
+    public abstract class ImageBuilder
     {
 
         /// <summary>

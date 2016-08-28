@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CSharpGL.Demos
 {
-    partial class RaycastVolumeRenderer 
+    partial class RaycastVolumeRenderer
     {
         int width, height;
 
@@ -24,7 +24,7 @@ namespace CSharpGL.Demos
 
             int[] viewport = OpenGL.GetViewport();
             Resize(viewport[2], viewport[3]);
-          
+
         }
 
         private void Resize(int width, int height)

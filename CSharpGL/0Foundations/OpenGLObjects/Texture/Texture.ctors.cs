@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
         /// <param name="target"></param>
-        public Texture(NewImageBuilder imageBuilder, SamplerBase samplerBuilder,
+        public Texture(ImageBuilder imageBuilder, SamplerBase samplerBuilder,
             BindTextureTarget target = BindTextureTarget.Texture2D)
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
@@ -37,7 +37,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         public Texture(Bitmap bitmap, SamplerBase samplerBuilder,
             BindTextureTarget target = BindTextureTarget.Texture2D)
-            : this(new NewBitmapBuilder(bitmap), samplerBuilder, target)
+            : this(new BitmapBuilder(bitmap), samplerBuilder, target)
         {
         }
 
@@ -48,7 +48,7 @@ namespace CSharpGL
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         /// <param name="target"></param>
-        public Texture(NewImageBuilder imageBuilder,
+        public Texture(ImageBuilder imageBuilder,
             SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear,
             BindTextureTarget target = BindTextureTarget.Texture2D)
@@ -67,7 +67,7 @@ namespace CSharpGL
             SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear,
             BindTextureTarget target = BindTextureTarget.Texture2D)
-            : this(new NewBitmapBuilder(bitmap), new FakeSampler(parameters, mipmapFiltering), target)
+            : this(new BitmapBuilder(bitmap), new FakeSampler(parameters, mipmapFiltering), target)
         {
         }
     }

@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// build texture's content with Bitmap.
     /// </summary>
-    public class NewBitmapBuilder : NewImageBuilder
+    public class BitmapBuilder : ImageBuilder
     {
         private System.Drawing.Bitmap bitmap;
 
@@ -18,7 +18,7 @@ namespace CSharpGL
         /// build texture's content with Bitmap.
         /// </summary>
         /// <param name="bitmap"></param>
-        public NewBitmapBuilder(System.Drawing.Bitmap bitmap)
+        public BitmapBuilder(System.Drawing.Bitmap bitmap)
         {
             // TODO: Complete member initialization
             this.bitmap = bitmap;
