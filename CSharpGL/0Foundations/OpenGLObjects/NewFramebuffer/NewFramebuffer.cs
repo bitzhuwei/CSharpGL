@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Create, update and delete a framebuffer object.
+    /// Create, update, use and delete a framebuffer object.
     /// </summary>
     public partial class NewFramebuffer : IDisposable
     {
@@ -18,11 +18,15 @@ namespace CSharpGL
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
         private static OpenGL.glDrawBuffers glDrawBuffers;
 
+        uint[] frameBuffer = new uint[1];
         /// <summary>
         /// Framebuffer Id.
         /// </summary>
-        public uint Id { get; private set; }
+        public uint Id { get { return frameBuffer[0]; } }
 
+        /// <summary>
+        /// Create, update, use and delete a framebuffer object.
+        /// </summary>
         public NewFramebuffer()
         {
             if (glGenFramebuffers == null)
@@ -32,11 +36,42 @@ namespace CSharpGL
                 glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
                 glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
                 glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
+                glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>();
             }
 
-            var frameBuffer = new uint[1];
             glGenFramebuffers(1, frameBuffer);
         }
 
+        /// <summary>
+        /// check completeness.
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckCompleteness()
+        {
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
+
+            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE)
+            {
+                throw new Exception("Failed to create frame buffer object!");
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// start to use this framebuffer.
+        /// </summary>
+        public void Bind()
+        {
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, this.Id);
+        }
+
+        /// <summary>
+        /// stop to use this framebuffer.
+        /// </summary>
+        public void Unbind()
+        {
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
+        }
     }
 }

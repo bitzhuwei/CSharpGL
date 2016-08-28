@@ -40,7 +40,7 @@ namespace CSharpGL
                 }
 
                 //// Dispose unmanaged resources.
-                glDeleteFramebuffers(1, this.id);
+                glDeleteFramebuffers(1, this.frameBuffer);
             }
 
             this.disposedValue = true;
