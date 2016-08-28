@@ -41,6 +41,13 @@ namespace CSharpGL.Demos
 
             this.form03 = new Form03OrderDependentTransparency(this);
             this.form03.Show();
+
+            {
+                var builder = new StringBuilder();
+                builder.AppendLine("S: Scene's property grid.");
+                builder.AppendLine("C: Canvas' property grid.");
+                MessageBox.Show(builder.ToString());
+            }
         }
     }
 }

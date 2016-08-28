@@ -354,9 +354,6 @@
     <None Include="shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
-      <DependentUpon>Form00GLCanvas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="11IFontTexture\Form11IFontTexture.resx">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
     </EmbeddedResource>

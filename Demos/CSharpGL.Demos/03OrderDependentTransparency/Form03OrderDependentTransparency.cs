@@ -26,10 +26,25 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
             // 天蓝色背景
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+        }
+
+        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == 'c')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
         }
 
         void Application_Idle(object sender, EventArgs e)
