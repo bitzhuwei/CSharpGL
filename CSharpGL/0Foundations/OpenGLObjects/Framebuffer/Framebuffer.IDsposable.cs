@@ -40,7 +40,16 @@ namespace CSharpGL
                 }
 
                 //// Dispose unmanaged resources.
-                glDeleteFramebuffers(1, this.frameBuffer);
+                {
+                    Renderbuffer[] array = this.renderbufferList.ToArray();
+                    foreach (var item in array)
+                    {
+                        item.Dispose();
+                    }
+                }
+                {
+                    glDeleteFramebuffers(1, this.frameBuffer);
+                }
             }
 
             this.disposedValue = true;

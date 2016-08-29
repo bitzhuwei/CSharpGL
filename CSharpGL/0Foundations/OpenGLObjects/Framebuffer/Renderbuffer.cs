@@ -25,7 +25,10 @@ namespace CSharpGL
         /// <summary>
         /// Create, update, use and delete a framebuffer object.
         /// </summary>
-        public Renderbuffer(int width, int height)
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="internalformat"></param>
+        public Renderbuffer(int width, int height, uint internalformat)
         {
             if (glGenRenderbuffers == null)
             {
@@ -40,7 +43,9 @@ namespace CSharpGL
 
             glGenRenderbuffers(1, renderbuffer);
             glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, renderbuffer[0]);
-            glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH24_STENCIL8, width, height);
+            glRenderbufferStorage(OpenGL.GL_RENDERBUFFER,
+                internalformat,// TODO: add comment about OpenGL.GL_DEPTH24_STENCIL8, OpenGL.GL_RGBA,
+                width, height);
         }
 
         /// <summary>

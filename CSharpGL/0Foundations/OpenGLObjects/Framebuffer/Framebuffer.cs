@@ -50,7 +50,7 @@ namespace CSharpGL
         /// start to use this framebuffer.
         /// </summary>
         /// <param name="target"></param>
-        public void Bind(FramebufferTarget target = FramebufferTarget.DrawRead)
+        public void Bind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
             glBindFramebuffer((uint)target, this.Id);
         }
@@ -59,7 +59,7 @@ namespace CSharpGL
         /// stop to use this framebuffer(and use default framebuffer).
         /// </summary>
         /// <param name="target"></param>
-        public void Unbind(FramebufferTarget target = FramebufferTarget.DrawRead)
+        public void Unbind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
             glBindFramebuffer((uint)target, 0);
         }
@@ -73,14 +73,14 @@ namespace CSharpGL
         /// <summary>
         /// used to draw(write only) something.
         /// </summary>
-        Draw = OpenGL.GL_DRAW_FRAMEBUFFER,
+        DrawFramebuffer = OpenGL.GL_DRAW_FRAMEBUFFER,
         /// <summary>
         /// used to read from(read only).
         /// </summary>
-        Read = OpenGL.GL_READ_FRAMEBUFFER,
+        ReadFramebuffer = OpenGL.GL_READ_FRAMEBUFFER,
         /// <summary>
         /// both read/write.
         /// </summary>
-        DrawRead = OpenGL.GL_FRAMEBUFFER,
+        Framebuffer = OpenGL.GL_FRAMEBUFFER,
     }
 }

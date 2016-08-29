@@ -58,8 +58,7 @@ namespace CSharpGL
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
             // Create frame buffer object.
-            var framebuffer = new DefaultFramebuffer();
-            framebuffer.Create(width, height);
+            Framebuffer framebuffer = CreateFramebuffer(width, height);
             this.framebuffer = framebuffer;
 
             //  Create the DIB section.
@@ -68,6 +67,21 @@ namespace CSharpGL
             this.dibSection = dibSection;
 
             return true;
+        }
+
+        private static Framebuffer CreateFramebuffer(int width, int height)
+        {
+            var framebuffer = new Framebuffer();
+            //framebuffer.Create(width, height);
+            var colorRenderBuffer = new Renderbuffer(width, height, OpenGL.GL_RGBA);
+            var depthRenderBuffer = new Renderbuffer(width, height, OpenGL.GL_DEPTH_COMPONENT24);
+            framebuffer.Bind();
+            framebuffer.Attach(colorRenderBuffer, FramebufferTarget.Framebuffer, RenderbufferAttachment.ColorAttachment0);
+            framebuffer.Attach(depthRenderBuffer, FramebufferTarget.Framebuffer, RenderbufferAttachment.DepthAttachment);
+
+            framebuffer.CheckCompleteness();
+
+            return framebuffer;
         }
 
         /// <summary>
@@ -111,8 +125,7 @@ namespace CSharpGL
             var complete = GL.CheckFramebufferStatusEXT(GL.GL_FRAMEBUFFER_EXT);
             */
             this.framebuffer.Dispose();
-            var framebuffer = new DefaultFramebuffer();
-            framebuffer.Create(width, height);
+            Framebuffer framebuffer = CreateFramebuffer(width, height);
             this.framebuffer = framebuffer;
         }
         /// <summary>
@@ -136,7 +149,7 @@ namespace CSharpGL
             }
         }
 
-        private DefaultFramebuffer framebuffer;
+        private Framebuffer framebuffer;
 
         ///// <summary>
         ///// 

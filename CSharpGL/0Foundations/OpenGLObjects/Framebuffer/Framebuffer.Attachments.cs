@@ -30,21 +30,20 @@ namespace CSharpGL
 			OpenGL.GL_COLOR_ATTACHMENT15,
         };
         private int nextColorAttachmentIndex = 0;
+        private List<Renderbuffer> renderbufferList = new List<Renderbuffer>();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="texture"></param>
         /// <returns></returns>
-        public bool Attach(Texture texture)
+        public void Attach(Texture texture)
         {
             if (nextColorAttachmentIndex >= attachment_id.Length)
             { throw new IndexOutOfRangeException("Not enough color attach points!"); }
 
             glFramebufferTexture2D(
     OpenGL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], OpenGL.GL_TEXTURE_2D, texture.Id, 0);
-
-            return CheckCompleteness();
         }
 
         /// <summary>
@@ -54,14 +53,14 @@ namespace CSharpGL
         /// <param name="attachment"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public bool Attach(Renderbuffer renderbuffer, FramebufferTarget target, RenderbufferAttachment attachment)
+        public void Attach(Renderbuffer renderbuffer, FramebufferTarget target, RenderbufferAttachment attachment)
         {
             if (nextColorAttachmentIndex >= attachment_id.Length)
             { throw new IndexOutOfRangeException("Not enough attach points!"); }
 
             glFramebufferRenderbuffer((uint)target, (uint)attachment, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
 
-            return CheckCompleteness();
+            this.renderbufferList.Add(renderbuffer);
         }
 
         #endregion attach Texture images
