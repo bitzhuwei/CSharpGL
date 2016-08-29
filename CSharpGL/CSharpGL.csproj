@@ -96,6 +96,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.1.4.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.1.5.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.2.0.cs" />
+    <Compile Include="0Foundations\OpenGLAPI\OpenGL.2.1.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
