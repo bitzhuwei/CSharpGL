@@ -50,7 +50,7 @@ namespace CSharpGL
         public bool Attach(Renderbuffer renderbuffer)
         {
             if (nextColorAttachmentIndex >= attachment_id.Length)
-            { throw new IndexOutOfRangeException("Not enough color attach points!"); }
+            { throw new IndexOutOfRangeException("Not enough attach points!"); }
 
             glFramebufferRenderbuffer(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_STENCIL_ATTACHMENT, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
 
