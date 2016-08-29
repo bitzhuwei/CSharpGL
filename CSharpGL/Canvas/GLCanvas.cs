@@ -203,7 +203,7 @@ namespace CSharpGL
             if (this.RenderTrigger == RenderTrigger.TimerBased)
             {
                 OpenGL.DrawText(10,
-                    this.Height - 20 - 1, Color.Gold, "Courier New",// "Courier New",
+                    this.Height - 20 - 1, Color.Red, "Courier New",// "Courier New",
                     20.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
             }
         }
