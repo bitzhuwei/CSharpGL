@@ -26,7 +26,7 @@ namespace CSharpGL
         public uint Id { get { return frameBuffer[0]; } }
 
         /// <summary>
-        /// Create, update, use and delete a framebuffer object.
+        /// Create an empty framebuffer object.
         /// </summary>
         public Framebuffer()
         {
