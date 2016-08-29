@@ -24,7 +24,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
-        /// <param name="color"></param>
         public LegacyBoundingBoxRenderer(vec3 min, vec3 max)
         {
             this.MinPosition = min;
