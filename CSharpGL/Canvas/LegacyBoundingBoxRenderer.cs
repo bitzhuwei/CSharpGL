@@ -13,15 +13,10 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// Cuboid's color of its lines.
-        /// </summary>
-        public Color BoxColor { get; set; }
-
-        /// <summary>
         /// Specify a cuboid that marks a model's edges.
         /// </summary>
         public LegacyBoundingBoxRenderer()
-            : this(new vec3(-0.5f, -0.5f, -0.5f), new vec3(0.5f, 0.5f, 0.5f), Color.White)
+            : this(new vec3(-0.5f, -0.5f, -0.5f), new vec3(0.5f, 0.5f, 0.5f))
         { }
 
         /// <summary>
@@ -30,11 +25,10 @@ namespace CSharpGL
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <param name="color"></param>
-        public LegacyBoundingBoxRenderer(vec3 min, vec3 max, Color color)
+        public LegacyBoundingBoxRenderer(vec3 min, vec3 max)
         {
             this.MinPosition = min;
             this.MaxPosition = max;
-            this.BoxColor = color;
 
             this.Scale = new vec3(1, 1, 1);
             this.RotationAxis = new vec3(0, 1, 0);
@@ -73,45 +67,67 @@ namespace CSharpGL
             OpenGL.LoadIdentity();
             this.LegacyTransform();
 
-            OpenGL.Color4f(BoxColor.R / 255.0f, BoxColor.G / 255.0f, BoxColor.B / 255.0f, BoxColor.A / 255.0f);
-
-            //GL.Color(1.0f, 0, 0);
-            OpenGL.Begin(DrawMode.LineLoop);
+            OpenGL.Begin(DrawMode.Quads);
+            OpenGL.Color(1.0f, 0, 0);
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);
+            OpenGL.Color(0, 1.0f, 0);
             OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);
+            OpenGL.Color(0, 0, 1.0f);
             OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);
+            OpenGL.Color(1.0f, 1.0f, 1.0f);
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
             OpenGL.End();
 
-            //GL.Color(0, 1.0f, 0);
             OpenGL.Begin(DrawMode.LineLoop);
+            OpenGL.Color(1.0f, 0, 0);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Color(0, 1.0f, 0);
             OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Color(0, 0, 1.0f);
             OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);
+            OpenGL.Color(1.0f, 1.0f, 1.0f);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
 
-            //GL.Color(0, 0, 1.0f);
             OpenGL.Begin(DrawMode.Lines);
+            OpenGL.Color(1.0f, 0, 0);
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Color(0, 1.0f, 0);
             OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);
             OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Color(0, 0, 1.0f);
             OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);
             OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);
+            OpenGL.Color(1.0f, 1.0f, 1.0f);
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 WorldPosition { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float RotationAngle { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 RotationAxis { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 Scale { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 Lengths { get; set; }
     }
 }

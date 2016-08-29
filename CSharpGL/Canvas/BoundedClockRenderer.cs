@@ -16,7 +16,8 @@ namespace CSharpGL
         public BoundedClockRenderer()
         {
             this.BoxRenderer = new LegacyBoundingBoxRenderer();
-            this.BoxRenderer.BoxColor = Color.Aqua;
+            const float factor = 1.4f;
+            this.BoxRenderer.Scale = new vec3(factor, factor, factor);
             this.ClockRenderer = new ClockRenderer(new vec3(1, 0.8f, 0));
         }
 
