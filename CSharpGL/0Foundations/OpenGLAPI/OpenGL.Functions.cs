@@ -170,61 +170,61 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glClearDepth", SetLastError = true)]
         public static extern void ClearDepth(double depth);
 
-        ///// <summary>
-        ///// Specify the clear value for the color index buffers.
-        ///// </summary>
-        ///// <param name="c">Specifies the index used when the color index buffers are cleared. The initial value is 0.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glClearIndex", SetLastError = true)]
-        //public static extern void ClearIndex(float c);
+        /// <summary>
+        /// Specify the clear value for the color index buffers.
+        /// </summary>
+        /// <param name="c">Specifies the index used when the color index buffers are cleared. The initial value is 0.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glClearIndex", SetLastError = true)]
+        public static extern void ClearIndex(float c);
 
-        ///// <summary>
-        ///// Specify the clear value for the stencil buffer.
-        ///// </summary>
-        ///// <param name="s">Specifies the index used when the stencil buffer is cleared. The initial value is 0.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glClearStencil", SetLastError = true)]
-        //public static extern void ClearStencil(int s);
+        /// <summary>
+        /// Specify the clear value for the stencil buffer.
+        /// </summary>
+        /// <param name="s">Specifies the index used when the stencil buffer is cleared. The initial value is 0.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glClearStencil", SetLastError = true)]
+        public static extern void ClearStencil(int s);
 
-        ///// <summary>
-        ///// Specify a plane against which all geometry is clipped.
-        ///// </summary>
-        ///// <param name="plane">Specifies which clipping plane is being positioned. Symbolic names of the form OpenGL.CLIP_PLANEi, where i is an integer between 0 and OpenGL.MAX_CLIP_PLANES -1, are accepted.</param>
-        ///// <param name="equation">Specifies the address of an	array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glClipPlane", SetLastError = true)]
-        //public static extern void ClipPlane(uint plane, double[] equation);
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="red"></param>
-        ///// <param name="green"></param>
-        ///// <param name="blue"></param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3b", SetLastError = true)]
-        //public static extern void Color3b(byte red, byte green, byte blue);
+        /// <summary>
+        /// Specify a plane against which all geometry is clipped.
+        /// </summary>
+        /// <param name="plane">Specifies which clipping plane is being positioned. Symbolic names of the form OpenGL.CLIP_PLANEi, where i is an integer between 0 and OpenGL.MAX_CLIP_PLANES -1, are accepted.</param>
+        /// <param name="equation">Specifies the address of an	array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glClipPlane", SetLastError = true)]
+        public static extern void ClipPlane(uint plane, double[] equation);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3b", SetLastError = true)]
+        public static extern void Color3b(byte red, byte green, byte blue);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 byte values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3bv", SetLastError = true)]
-        //public static extern void Color3bv(byte[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 byte values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3bv", SetLastError = true)]
+        public static extern void Color3bv(byte[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3d", SetLastError = true)]
-        //public static extern void Color3d(double red, double green, double blue);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3d", SetLastError = true)]
+        public static extern void Color3d(double red, double green, double blue);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 double values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3dv", SetLastError = true)]
-        //public static extern void Color3dv(double[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 double values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3dv", SetLastError = true)]
+        public static extern void Color3dv(double[] v);
 
         /// <summary>
         /// Sets the current color.
@@ -236,49 +236,49 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glColor3f", SetLastError = true)]
         public static extern void Color3f(float red, float green, float blue);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 float values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3fv", SetLastError = true)]
-        //public static extern void Color3fv(float[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 float values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3fv", SetLastError = true)]
+        public static extern void Color3fv(float[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3i", SetLastError = true)]
-        //public static extern void Color3i(int red, int green, int blue);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3i", SetLastError = true)]
+        public static extern void Color3i(int red, int green, int blue);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3iv", SetLastError = true)]
-        //public static extern void Color3iv(int[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3iv", SetLastError = true)]
+        public static extern void Color3iv(int[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3s", SetLastError = true)]
-        //public static extern void Color3s(short red, short green, short blue);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3s", SetLastError = true)]
+        public static extern void Color3s(short red, short green, short blue);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3sv", SetLastError = true)]
-        //public static extern void Color3sv(short[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3sv", SetLastError = true)]
+        public static extern void Color3sv(short[] v);
 
         /// <summary>
         /// Sets the current color.
@@ -290,87 +290,13 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glColor3ub", SetLastError = true)]
         public static extern void Color3ub(byte red, byte green, byte blue);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3ubv", SetLastError = true)]
-        //public static extern void Color3ubv(byte[] v);
-
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3ui", SetLastError = true)]
-        //public static extern void Color3ui(uint red, uint green, uint blue);
-
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 unsigned int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3uiv", SetLastError = true)]
-        //public static extern void Color3uiv(uint[] v);
-
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3us", SetLastError = true)]
-        //public static extern void Color3us(ushort red, ushort green, ushort blue);
-
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 unsigned short values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor3usv", SetLastError = true)]
-        //public static extern void Color3usv(ushort[] v);
-
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 255).</param>
-        ///// <param name="green">Green color component (between 0 and 255).</param>
-        ///// <param name="blue">Blue color component (between 0 and 255).</param>
-        ///// <param name="alpha">Alpha color component (between 0 and 255).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4b", SetLastError = true)]
-        //public static extern void Color4b(byte red, byte green, byte blue, byte alpha);
-
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 byte values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4bv", SetLastError = true)]
-        //public static extern void Color4bv(byte[] v);
-
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component (between 0 and 255).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4d", SetLastError = true)]
-        //public static extern void Color4d(double red, double green, double blue, double alpha);
-
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 double values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4dv", SetLastError = true)]
-        //public static extern void Color4dv(double[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3ubv", SetLastError = true)]
+        public static extern void Color3ubv(byte[] v);
 
         /// <summary>
         /// Sets the current color.
@@ -378,113 +304,187 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3ui", SetLastError = true)]
+        public static extern void Color3ui(uint red, uint green, uint blue);
+
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 unsigned int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3uiv", SetLastError = true)]
+        public static extern void Color3uiv(uint[] v);
+
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3us", SetLastError = true)]
+        public static extern void Color3us(ushort red, ushort green, ushort blue);
+
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 unsigned short values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor3usv", SetLastError = true)]
+        public static extern void Color3usv(ushort[] v);
+
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 255).</param>
+        /// <param name="green">Green color component (between 0 and 255).</param>
+        /// <param name="blue">Blue color component (between 0 and 255).</param>
+        /// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4b", SetLastError = true)]
+        public static extern void Color4b(byte red, byte green, byte blue, byte alpha);
+
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 byte values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4bv", SetLastError = true)]
+        public static extern void Color4bv(byte[] v);
+
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4d", SetLastError = true)]
+        public static extern void Color4d(double red, double green, double blue, double alpha);
+
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 double values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4dv", SetLastError = true)]
+        public static extern void Color4dv(double[] v);
+
+        ///<summary>
+        ///Sets the current color.
+        ///</summary>
+        ///<param name="red">Red color component (between 0 and 1).</param>
+        ///<param name="green">Green color component (between 0 and 1).</param>
+        ///<param name="blue">Blue color component (between 0 and 1).</param>
+        ///<param name="alpha">Alpha color component (between 0 and 1).</param>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.opengl32, EntryPoint = "glColor4f", SetLastError = true)]
         public static extern void Color4f(float red, float green, float blue, float alpha);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 float values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4fv", SetLastError = true)]
-        //public static extern void Color4fv(float[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 float values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4fv", SetLastError = true)]
+        public static extern void Color4fv(float[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4i", SetLastError = true)]
-        //public static extern void Color4i(int red, int green, int blue, int alpha);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4i", SetLastError = true)]
+        public static extern void Color4i(int red, int green, int blue, int alpha);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4iv", SetLastError = true)]
-        //public static extern void Color4iv(int[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4iv", SetLastError = true)]
+        public static extern void Color4iv(int[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4s", SetLastError = true)]
-        //public static extern void Color4s(short red, short green, short blue, short alpha);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4s", SetLastError = true)]
+        public static extern void Color4s(short red, short green, short blue, short alpha);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4sv", SetLastError = true)]
-        //public static extern void Color4sv(short[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4sv", SetLastError = true)]
+        public static extern void Color4sv(short[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 255).</param>
-        ///// <param name="green">Green color component (between 0 and 255).</param>
-        ///// <param name="blue">Blue color component (between 0 and 255).</param>
-        ///// <param name="alpha">Alpha color component (between 0 and 255).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4ub", SetLastError = true)]
-        //public static extern void Color4ub(byte red, byte green, byte blue, byte alpha);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 255).</param>
+        /// <param name="green">Green color component (between 0 and 255).</param>
+        /// <param name="blue">Blue color component (between 0 and 255).</param>
+        /// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4ub", SetLastError = true)]
+        public static extern void Color4ub(byte red, byte green, byte blue, byte alpha);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4ubv", SetLastError = true)]
-        //public static extern void Color4ubv(byte[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4ubv", SetLastError = true)]
+        public static extern void Color4ubv(byte[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4ui", SetLastError = true)]
-        //public static extern void Color4ui(uint red, uint green, uint blue, uint alpha);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4ui", SetLastError = true)]
+        public static extern void Color4ui(uint red, uint green, uint blue, uint alpha);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 unsigned int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4uiv", SetLastError = true)]
-        //public static extern void Color4uiv(uint[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 unsigned int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4uiv", SetLastError = true)]
+        public static extern void Color4uiv(uint[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4us", SetLastError = true)]
-        //public static extern void Color4us(ushort red, ushort green, ushort blue, ushort alpha);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4us", SetLastError = true)]
+        public static extern void Color4us(ushort red, ushort green, ushort blue, ushort alpha);
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 unsigned short values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4usv", SetLastError = true)]
-        //public static extern void Color4usv(ushort[] v);
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 unsigned short values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4usv", SetLastError = true)]
+        public static extern void Color4usv(ushort[] v);
 
         ///// <summary>
         ///// This function sets the current colour mask.
@@ -2300,16 +2300,16 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glRenderMode", SetLastError = true)]
         //public static extern int RenderMode(uint mode);
 
-        ///// <summary>
-        ///// This function applies a rotation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="angle">The angle to rotate.</param>
-        ///// <param name="x">Amount along x.</param>
-        ///// <param name="y">Amount along y.</param>
-        ///// <param name="z">Amount along z.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glRotated", SetLastError = true)]
-        //public static extern void Rotated(double angle, double x, double y, double z);
+        /// <summary>
+        /// This function applies a rotation transformation to the current matrix.
+        /// </summary>
+        /// <param name="angle">The angle to rotate.</param>
+        /// <param name="x">Amount along x.</param>
+        /// <param name="y">Amount along y.</param>
+        /// <param name="z">Amount along z.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glRotated", SetLastError = true)]
+        public static extern void Rotated(double angle, double x, double y, double z);
 
         /// <summary>
         /// This function applies a rotation transformation to the current matrix.
@@ -2322,25 +2322,25 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glRotatef", SetLastError = true)]
         public static extern void Rotatef(float angle, float x, float y, float z);
 
-        ///// <summary>
-        ///// This function applies a scale transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to scale along x.</param>
-        ///// <param name="y">The amount to scale along y.</param>
-        ///// <param name="z">The amount to scale along z.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glScaled", SetLastError = true)]
-        //public static extern void Scaled(double x, double y, double z);
+        /// <summary>
+        /// This function applies a scale transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to scale along x.</param>
+        /// <param name="y">The amount to scale along y.</param>
+        /// <param name="z">The amount to scale along z.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glScaled", SetLastError = true)]
+        public static extern void Scaled(double x, double y, double z);
 
-        ///// <summary>
-        ///// This function applies a scale transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to scale along x.</param>
-        ///// <param name="y">The amount to scale along y.</param>
-        ///// <param name="z">The amount to scale along z.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glScalef", SetLastError = true)]
-        //public static extern void Scalef(float x, float y, float z);
+        /// <summary>
+        /// This function applies a scale transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to scale along x.</param>
+        /// <param name="y">The amount to scale along y.</param>
+        /// <param name="z">The amount to scale along z.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glScalef", SetLastError = true)]
+        public static extern void Scalef(float x, float y, float z);
 
         /// <summary>
         /// Define the scissor box.
@@ -2393,261 +2393,261 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glStencilOp", SetLastError = true)]
         //public static extern void StencilOp(uint fail, uint zfail, uint zpass);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1d", SetLastError = true)]
-        //public static extern void TexCoord1d(double s);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1d", SetLastError = true)]
+        public static extern void TexCoord1d(double s);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1dv", SetLastError = true)]
-        //public static extern void TexCoord1dv(double[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1dv", SetLastError = true)]
+        public static extern void TexCoord1dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1f", SetLastError = true)]
-        //public static extern void TexCoord1f(float s);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1f", SetLastError = true)]
+        public static extern void TexCoord1f(float s);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates. WARNING: if you
-        ///// can call something more explicit, like TexCoord2f then call that, it's
-        ///// much faster.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1fv", SetLastError = true)]
-        //public static extern void TexCoord1fv(float[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates. WARNING: if you
+        /// can call something more explicit, like TexCoord2f then call that, it's
+        /// much faster.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1fv", SetLastError = true)]
+        public static extern void TexCoord1fv(float[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1i", SetLastError = true)]
-        //public static extern void TexCoord1i(int s);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1i", SetLastError = true)]
+        public static extern void TexCoord1i(int s);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1iv", SetLastError = true)]
-        //public static extern void TexCoord1iv(int[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1iv", SetLastError = true)]
+        public static extern void TexCoord1iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1s", SetLastError = true)]
-        //public static extern void TexCoord1s(short s);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1s", SetLastError = true)]
+        public static extern void TexCoord1s(short s);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord1sv", SetLastError = true)]
-        //public static extern void TexCoord1sv(short[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord1sv", SetLastError = true)]
+        public static extern void TexCoord1sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2d", SetLastError = true)]
-        //public static extern void TexCoord2d(double s, double t);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2d", SetLastError = true)]
+        public static extern void TexCoord2d(double s, double t);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2dv", SetLastError = true)]
-        //public static extern void TexCoord2dv(double[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2dv", SetLastError = true)]
+        public static extern void TexCoord2dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2f", SetLastError = true)]
-        //public static extern void TexCoord2f(float s, float t);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2f", SetLastError = true)]
+        public static extern void TexCoord2f(float s, float t);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates. WARNING: if you
-        ///// can call something more explicit, like TexCoord2f then call that, it's
-        ///// much faster.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2fv", SetLastError = true)]
-        //public static extern void TexCoord2fv(float[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates. WARNING: if you
+        /// can call something more explicit, like TexCoord2f then call that, it's
+        /// much faster.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2fv", SetLastError = true)]
+        public static extern void TexCoord2fv(float[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2i", SetLastError = true)]
-        //public static extern void TexCoord2i(int s, int t);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2i", SetLastError = true)]
+        public static extern void TexCoord2i(int s, int t);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2iv", SetLastError = true)]
-        //public static extern void TexCoord2iv(int[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2iv", SetLastError = true)]
+        public static extern void TexCoord2iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2s", SetLastError = true)]
-        //public static extern void TexCoord2s(short s, short t);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2s", SetLastError = true)]
+        public static extern void TexCoord2s(short s, short t);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord2sv", SetLastError = true)]
-        //public static extern void TexCoord2sv(short[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord2sv", SetLastError = true)]
+        public static extern void TexCoord2sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3d", SetLastError = true)]
-        //public static extern void TexCoord3d(double s, double t, double r);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3d", SetLastError = true)]
+        public static extern void TexCoord3d(double s, double t, double r);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3dv", SetLastError = true)]
-        //public static extern void TexCoord3dv(double[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3dv", SetLastError = true)]
+        public static extern void TexCoord3dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3f", SetLastError = true)]
-        //public static extern void TexCoord3f(float s, float t, float r);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3f", SetLastError = true)]
+        public static extern void TexCoord3f(float s, float t, float r);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates. WARNING: if you
-        ///// can call something more explicit, like TexCoord2f then call that, it's
-        ///// much faster.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3fv", SetLastError = true)]
-        //public static extern void TexCoord3fv(float[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates. WARNING: if you
+        /// can call something more explicit, like TexCoord2f then call that, it's
+        /// much faster.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3fv", SetLastError = true)]
+        public static extern void TexCoord3fv(float[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3i", SetLastError = true)]
-        //public static extern void TexCoord3i(int s, int t, int r);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3i", SetLastError = true)]
+        public static extern void TexCoord3i(int s, int t, int r);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3iv", SetLastError = true)]
-        //public static extern void TexCoord3iv(int[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3iv", SetLastError = true)]
+        public static extern void TexCoord3iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3s", SetLastError = true)]
-        //public static extern void TexCoord3s(short s, short t, short r);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3s", SetLastError = true)]
+        public static extern void TexCoord3s(short s, short t, short r);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord3sv", SetLastError = true)]
-        //public static extern void TexCoord3sv(short[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord3sv", SetLastError = true)]
+        public static extern void TexCoord3sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4d", SetLastError = true)]
-        //public static extern void TexCoord4d(double s, double t, double r, double q);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4d", SetLastError = true)]
+        public static extern void TexCoord4d(double s, double t, double r, double q);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4dv", SetLastError = true)]
-        //public static extern void TexCoord4dv(double[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4dv", SetLastError = true)]
+        public static extern void TexCoord4dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4f", SetLastError = true)]
-        //public static extern void TexCoord4f(float s, float t, float r, float q);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4f", SetLastError = true)]
+        public static extern void TexCoord4f(float s, float t, float r, float q);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates. WARNING: if you
-        ///// can call something more explicit, like TexCoord2f then call that, it's
-        ///// much faster.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4fv", SetLastError = true)]
-        //public static extern void TexCoord4fv(float[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates. WARNING: if you
+        /// can call something more explicit, like TexCoord2f then call that, it's
+        /// much faster.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4fv", SetLastError = true)]
+        public static extern void TexCoord4fv(float[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4i", SetLastError = true)]
-        //public static extern void TexCoord4i(int s, int t, int r, int q);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4i", SetLastError = true)]
+        public static extern void TexCoord4i(int s, int t, int r, int q);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4iv", SetLastError = true)]
-        //public static extern void TexCoord4iv(int[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4iv", SetLastError = true)]
+        public static extern void TexCoord4iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4s", SetLastError = true)]
-        //public static extern void TexCoord4s(short s, short t, short r, short q);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4s", SetLastError = true)]
+        public static extern void TexCoord4s(short s, short t, short r, short q);
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoord4sv", SetLastError = true)]
-        //public static extern void TexCoord4sv(short[] v);
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4sv", SetLastError = true)]
+        public static extern void TexCoord4sv(short[] v);
 
         ///// <summary>
         ///// This function sets the texture coord array.
@@ -2915,111 +2915,111 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glTexSubImage2D", SetLastError = true)]
         public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, IntPtr pixels);
 
-        ///// <summary>
-        ///// This function applies a translation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to translate along the x axis.</param>
-        ///// <param name="y">The amount to translate along the y axis.</param>
-        ///// <param name="z">The amount to translate along the z axis.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glTranslated", SetLastError = true)]
-        //public static extern void Translated(double x, double y, double z);
+        /// <summary>
+        /// This function applies a translation transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to translate along the x axis.</param>
+        /// <param name="y">The amount to translate along the y axis.</param>
+        /// <param name="z">The amount to translate along the z axis.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glTranslated", SetLastError = true)]
+        public static extern void Translated(double x, double y, double z);
 
-        ///// <summary>
-        ///// This function applies a translation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to translate along the x axis.</param>
-        ///// <param name="y">The amount to translate along the y axis.</param>
-        ///// <param name="z">The amount to translate along the z axis.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glTranslatef", SetLastError = true)]
-        //public static extern void Translatef(float x, float y, float z);
+        /// <summary>
+        /// This function applies a translation transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to translate along the x axis.</param>
+        /// <param name="y">The amount to translate along the y axis.</param>
+        /// <param name="z">The amount to translate along the z axis.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glTranslatef", SetLastError = true)]
+        public static extern void Translatef(float x, float y, float z);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2d", SetLastError = true)]
-        //public static extern void Vertex2d(double x, double y);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2d", SetLastError = true)]
+        public static extern void Vertex2d(double x, double y);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2dv", SetLastError = true)]
-        //public static extern void Vertex2dv(double[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2dv", SetLastError = true)]
+        public static extern void Vertex2dv(double[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2f", SetLastError = true)]
-        //public static extern void Vertex2f(float x, float y);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2f", SetLastError = true)]
+        public static extern void Vertex2f(float x, float y);
 
-        ///// <summary>
-        ///// Sets the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">An array of 2, 3 or 4 floats.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2fv", SetLastError = true)]
-        //public static extern void Vertex2fv(float[] v);
+        /// <summary>
+        /// Sets the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">An array of 2, 3 or 4 floats.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2fv", SetLastError = true)]
+        public static extern void Vertex2fv(float[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2i", SetLastError = true)]
-        //public static extern void Vertex2i(int x, int y);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2i", SetLastError = true)]
+        public static extern void Vertex2i(int x, int y);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2iv", SetLastError = true)]
-        //public static extern void Vertex2iv(int[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2iv", SetLastError = true)]
+        public static extern void Vertex2iv(int[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2s", SetLastError = true)]
-        //public static extern void Vertex2s(short x, short y);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2s", SetLastError = true)]
+        public static extern void Vertex2s(short x, short y);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex2sv", SetLastError = true)]
-        //public static extern void Vertex2sv(short[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex2sv", SetLastError = true)]
+        public static extern void Vertex2sv(short[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3d", SetLastError = true)]
-        //public static extern void Vertex3d(double x, double y, double z);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3d", SetLastError = true)]
+        public static extern void Vertex3d(double x, double y, double z);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3dv", SetLastError = true)]
-        //public static extern void Vertex3dv(double[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3dv", SetLastError = true)]
+        public static extern void Vertex3dv(double[] v);
 
         /// <summary>
         /// Set the current vertex (must be called between 'Begin' and 'End').
@@ -3031,175 +3031,175 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glVertex3f", SetLastError = true)]
         public static extern void Vertex3f(float x, float y, float z);
 
-        ///// <summary>
-        ///// Sets the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">An array of 2, 3 or 4 floats.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3fv", SetLastError = true)]
-        //public static extern void Vertex3fv(float[] v);
+        /// <summary>
+        /// Sets the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">An array of 2, 3 or 4 floats.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3fv", SetLastError = true)]
+        public static extern void Vertex3fv(float[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3i", SetLastError = true)]
-        //public static extern void Vertex3i(int x, int y, int z);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3i", SetLastError = true)]
+        public static extern void Vertex3i(int x, int y, int z);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3iv", SetLastError = true)]
-        //public static extern void Vertex3iv(int[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3iv", SetLastError = true)]
+        public static extern void Vertex3iv(int[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3s", SetLastError = true)]
-        //public static extern void Vertex3s(short x, short y, short z);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3s", SetLastError = true)]
+        public static extern void Vertex3s(short x, short y, short z);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex3sv", SetLastError = true)]
-        //public static extern void Vertex3sv(short[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex3sv", SetLastError = true)]
+        public static extern void Vertex3sv(short[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4d", SetLastError = true)]
-        //public static extern void Vertex4d(double x, double y, double z, double w);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4d", SetLastError = true)]
+        public static extern void Vertex4d(double x, double y, double z, double w);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4dv", SetLastError = true)]
-        //public static extern void Vertex4dv(double[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4dv", SetLastError = true)]
+        public static extern void Vertex4dv(double[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4f", SetLastError = true)]
-        //public static extern void Vertex4f(float x, float y, float z, float w);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4f", SetLastError = true)]
+        public static extern void Vertex4f(float x, float y, float z, float w);
 
-        ///// <summary>
-        ///// Sets the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">An array of 2, 3 or 4 floats.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4fv", SetLastError = true)]
-        //public static extern void Vertex4fv(float[] v);
+        /// <summary>
+        /// Sets the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">An array of 2, 3 or 4 floats.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4fv", SetLastError = true)]
+        public static extern void Vertex4fv(float[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4i", SetLastError = true)]
-        //public static extern void Vertex4i(int x, int y, int z, int w);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4i", SetLastError = true)]
+        public static extern void Vertex4i(int x, int y, int z, int w);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4iv", SetLastError = true)]
-        //public static extern void Vertex4iv(int[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4iv", SetLastError = true)]
+        public static extern void Vertex4iv(int[] v);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4s", SetLastError = true)]
-        //public static extern void Vertex4s(short x, short y, short z, short w);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4s", SetLastError = true)]
+        public static extern void Vertex4s(short x, short y, short z, short w);
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertex4sv", SetLastError = true)]
-        //public static extern void Vertex4sv(short[] v);
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glVertex4sv", SetLastError = true)]
+        public static extern void Vertex4sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the address of the vertex pointer array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per vertex.</param>
-        ///// <param name="type">The data type.</param>
-        ///// <param name="stride">The byte offset between vertices.</param>
-        ///// <param name="pointer">The array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
-        //public static extern void VertexPointer(int size, uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// This function sets the address of the vertex pointer array.
+        /// </summary>
+        /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type">The data type.</param>
+        /// <param name="stride">The byte offset between vertices.</param>
+        /// <param name="pointer">The array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
+        public static extern void VertexPointer(int size, uint type, int stride, IntPtr pointer);
 
-        ///// <summary>
-        ///// This function sets the address of the vertex pointer array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per vertex.</param>
-        ///// <param name="type"></param>
-        ///// <param name="stride">The byte offset between vertices.</param>
-        ///// <param name="pointer">The array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
-        //public static extern void VertexPointer(int size, uint type, int stride, short[] pointer);
+        /// <summary>
+        /// This function sets the address of the vertex pointer array.
+        /// </summary>
+        /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
+        /// <param name="stride">The byte offset between vertices.</param>
+        /// <param name="pointer">The array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
+        public static extern void VertexPointer(int size, uint type, int stride, short[] pointer);
 
-        ///// <summary>
-        ///// This function sets the address of the vertex pointer array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per vertex.</param>
-        ///// <param name="type"></param>
-        ///// <param name="stride">The byte offset between vertices.</param>
-        ///// <param name="pointer">The array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
-        //public static extern void VertexPointer(int size, uint type, int stride, int[] pointer);
+        /// <summary>
+        /// This function sets the address of the vertex pointer array.
+        /// </summary>
+        /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
+        /// <param name="stride">The byte offset between vertices.</param>
+        /// <param name="pointer">The array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
+        public static extern void VertexPointer(int size, uint type, int stride, int[] pointer);
 
-        ///// <summary>
-        ///// This function sets the address of the vertex pointer array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per vertex.</param>
-        ///// <param name="type"></param>
-        ///// <param name="stride">The byte offset between vertices.</param>
-        ///// <param name="pointer">The array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
-        //public static extern void VertexPointer(int size, uint type, int stride, float[] pointer);
+        /// <summary>
+        /// This function sets the address of the vertex pointer array.
+        /// </summary>
+        /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
+        /// <param name="stride">The byte offset between vertices.</param>
+        /// <param name="pointer">The array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
+        public static extern void VertexPointer(int size, uint type, int stride, float[] pointer);
 
-        ///// <summary>
-        ///// This function sets the address of the vertex pointer array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per vertex.</param>
-        ///// <param name="type"></param>
-        ///// <param name="stride">The byte offset between vertices.</param>
-        ///// <param name="pointer">The array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
-        //public static extern void VertexPointer(int size, uint type, int stride, double[] pointer);
+        /// <summary>
+        /// This function sets the address of the vertex pointer array.
+        /// </summary>
+        /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
+        /// <param name="stride">The byte offset between vertices.</param>
+        /// <param name="pointer">The array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glVertexPointer", SetLastError = true)]
+        public static extern void VertexPointer(int size, uint type, int stride, double[] pointer);
 
         /// <summary>
         /// This sets the viewport of the current Render Context. Normally x and y are 0

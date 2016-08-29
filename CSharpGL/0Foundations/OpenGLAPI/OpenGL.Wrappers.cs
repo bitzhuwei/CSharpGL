@@ -11,840 +11,840 @@ namespace CSharpGL
     // 用重载和枚举来简化GL编程。
     public static partial class OpenGL
     {
-        //#region translate, rotate, scale
+        #region translate, rotate, scale
 
-        ///// <summary>
-        ///// This function applies a translation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to translate along the x axis.</param>
-        ///// <param name="y">The amount to translate along the y axis.</param>
-        ///// <param name="z">The amount to translate along the z axis.</param>
-        //////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Translate(double x, double y, double z)
-        //{
-        //    OpenGL.Translated(x, y, z);
-        //}
-
-        ///// <summary>
-        ///// This function applies a translation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to translate along the x axis.</param>
-        ///// <param name="y">The amount to translate along the y axis.</param>
-        ///// <param name="z">The amount to translate along the z axis.</param>
-        //////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Translate(float x, float y, float z)
-        //{
-        //    OpenGL.Translatef(x, y, z);
-        //}
-
-        ///// <summary>
-        ///// This function applies a rotation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="angle">The angle to rotate.</param>
-        ///// <param name="x">Amount along x.</param>
-        ///// <param name="y">Amount along y.</param>
-        ///// <param name="z">Amount along z.</param>
-        //////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Rotate(double angle, double x, double y, double z)
-        //{
-        //    OpenGL.Rotated(angle, x, y, z);
-        //}
-
-        ///// <summary>
-        ///// This function applies a rotation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="angle">The angle to rotate.</param>
-        ///// <param name="x">Amount along x.</param>
-        ///// <param name="y">Amount along y.</param>
-        ///// <param name="z">Amount along z.</param>
-        //////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Rotate(float angle, float x, float y, float z)
-        //{
-        //    OpenGL.Rotatef(angle, x, y, z);
-        //}
-
-        ///// <summary>
-        ///// This function applies a translation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to translate along the x axis.</param>
-        ///// <param name="y">The amount to translate along the y axis.</param>
-        ///// <param name="z">The amount to translate along the z axis.</param>
-        //////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Scale(double x, double y, double z)
-        //{
-        //    OpenGL.Scaled(x, y, z);
-        //}
-
-        ///// <summary>
-        ///// This function applies a translation transformation to the current matrix.
-        ///// </summary>
-        ///// <param name="x">The amount to translate along the x axis.</param>
-        ///// <param name="y">The amount to translate along the y axis.</param>
-        ///// <param name="z">The amount to translate along the z axis.</param>
-        //////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Scale(float x, float y, float z)
-        //{
-        //    OpenGL.Scalef(x, y, z);
-        //}
-
-        //#endregion translate, rotate, scale
-
-        //#region GL.Color
-
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 255).</param>
-        ///// <param name="green">Green color component (between 0 and 255).</param>
-        ///// <param name="blue">Blue color component (between 0 and 255).</param>
+        /// <summary>
+        /// This function applies a translation transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to translate along the x axis.</param>
+        /// <param name="y">The amount to translate along the y axis.</param>
+        /// <param name="z">The amount to translate along the z axis.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(byte red, byte green, byte blue)
-        //{
-        //    OpenGL.Color3ub(red, green, blue);
-        //}
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Translate(double x, double y, double z)
+        {
+            OpenGL.Translated(x, y, z);
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 255).</param>
-        ///// <param name="green">Green color component (between 0 and 255).</param>
-        ///// <param name="blue">Blue color component (between 0 and 255).</param>
-        ///// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        /// <summary>
+        /// This function applies a translation transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to translate along the x axis.</param>
+        /// <param name="y">The amount to translate along the y axis.</param>
+        /// <param name="z">The amount to translate along the z axis.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(byte red, byte green, byte blue, byte alpha)
-        //{
-        //    OpenGL.Color4ub(red, green, blue, alpha);
-        //}
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Translate(float x, float y, float z)
+        {
+            OpenGL.Translatef(x, y, z);
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <summary>
+        /// This function applies a rotation transformation to the current matrix.
+        /// </summary>
+        /// <param name="angle">The angle to rotate.</param>
+        /// <param name="x">Amount along x.</param>
+        /// <param name="y">Amount along y.</param>
+        /// <param name="z">Amount along z.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(double red, double green, double blue)
-        //{
-        //    OpenGL.Color3d(red, green, blue);
-        //}
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Rotate(double angle, double x, double y, double z)
+        {
+            OpenGL.Rotated(angle, x, y, z);
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
+        /// <summary>
+        /// This function applies a rotation transformation to the current matrix.
+        /// </summary>
+        /// <param name="angle">The angle to rotate.</param>
+        /// <param name="x">Amount along x.</param>
+        /// <param name="y">Amount along y.</param>
+        /// <param name="z">Amount along z.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(double red, double green, double blue, double alpha)
-        //{
-        //    OpenGL.Color4d(red, green, blue, alpha);
-        //}
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Rotate(float angle, float x, float y, float z)
+        {
+            OpenGL.Rotatef(angle, x, y, z);
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <summary>
+        /// This function applies a translation transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to translate along the x axis.</param>
+        /// <param name="y">The amount to translate along the y axis.</param>
+        /// <param name="z">The amount to translate along the z axis.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(float red, float green, float blue)
-        //{
-        //    OpenGL.Color3f(red, green, blue);
-        //}
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Scale(double x, double y, double z)
+        {
+            OpenGL.Scaled(x, y, z);
+        }
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 float values.</param>
+        /// <summary>
+        /// This function applies a translation transformation to the current matrix.
+        /// </summary>
+        /// <param name="x">The amount to translate along the x axis.</param>
+        /// <param name="y">The amount to translate along the y axis.</param>
+        /// <param name="z">The amount to translate along the z axis.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(float[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3fv(v); }
-        //    else if (length == 4) { OpenGL.Color4fv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Scale(float x, float y, float z)
+        {
+            OpenGL.Scalef(x, y, z);
+        }
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(int[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3iv(v); }
-        //    else if (length == 4) { OpenGL.Color4iv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        #endregion translate, rotate, scale
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(short[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3sv(v); }
-        //    else if (length == 4) { OpenGL.Color4sv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        #region GL.Color
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 double values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(double[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3dv(v); }
-        //    else if (length == 4) { OpenGL.Color4dv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 255).</param>
+        /// <param name="green">Green color component (between 0 and 255).</param>
+        /// <param name="blue">Blue color component (between 0 and 255).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(byte red, byte green, byte blue)
+        {
+            OpenGL.Color3ub(red, green, blue);
+        }
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 byte values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(byte[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3bv(v); }
-        //    else if (length == 4) { OpenGL.Color4bv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 255).</param>
+        /// <param name="green">Green color component (between 0 and 255).</param>
+        /// <param name="blue">Blue color component (between 0 and 255).</param>
+        /// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(byte red, byte green, byte blue, byte alpha)
+        {
+            OpenGL.Color4ub(red, green, blue, alpha);
+        }
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 unsigned int values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(uint[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3uiv(v); }
-        //    else if (length == 4) { OpenGL.Color4uiv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(double red, double green, double blue)
+        {
+            OpenGL.Color3d(red, green, blue);
+        }
 
-        ///// <summary>
-        ///// Sets the current color to 'v'.
-        ///// </summary>
-        ///// <param name="v">An array of either 3 or 4 unsigned short values.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(ushort[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 3) { OpenGL.Color3usv(v); }
-        //    else if (length == 4) { OpenGL.Color4usv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(double red, double green, double blue, double alpha)
+        {
+            OpenGL.Color4d(red, green, blue, alpha);
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(int red, int green, int blue)
-        //{
-        //    OpenGL.Color3i(red, green, blue);
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(float red, float green, float blue)
+        {
+            OpenGL.Color3f(red, green, blue);
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(int red, int green, int blue, int alpha)
-        //{
-        //    OpenGL.Color4i(red, green, blue, alpha);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 float values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(float[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3fv(v); }
+            else if (length == 4) { OpenGL.Color4fv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(short red, short green, short blue)
-        //{
-        //    OpenGL.Color3s(red, green, blue);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(int[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3iv(v); }
+            else if (length == 4) { OpenGL.Color4iv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(short red, short green, short blue, short alpha)
-        //{
-        //    OpenGL.Color4s(red, green, blue, alpha);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(short[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3sv(v); }
+            else if (length == 4) { OpenGL.Color4sv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(uint red, uint green, uint blue)
-        //{
-        //    OpenGL.Color3ui(red, green, blue);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 double values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(double[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3dv(v); }
+            else if (length == 4) { OpenGL.Color4dv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(uint red, uint green, uint blue, uint alpha)
-        //{
-        //    OpenGL.Color4ui(red, green, blue, alpha);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 byte values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(byte[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3bv(v); }
+            else if (length == 4) { OpenGL.Color4bv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(ushort red, ushort green, ushort blue)
-        //{
-        //    OpenGL.Color3us(red, green, blue);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 unsigned int values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(uint[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3uiv(v); }
+            else if (length == 4) { OpenGL.Color4uiv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
-        //{
-        //    OpenGL.Color4us(red, green, blue, alpha);
-        //}
+        /// <summary>
+        /// Sets the current color to 'v'.
+        /// </summary>
+        /// <param name="v">An array of either 3 or 4 unsigned short values.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(ushort[] v)
+        {
+            int length = v.Length;
+            if (length == 3) { OpenGL.Color3usv(v); }
+            else if (length == 4) { OpenGL.Color4usv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Color(float red, float green, float blue, float alpha)
-        //{
-        //    OpenGL.Color4f(red, green, blue, alpha);
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(int red, int green, int blue)
+        {
+            OpenGL.Color3i(red, green, blue);
+        }
 
-        //#endregion GL.Color
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(int red, int green, int blue, int alpha)
+        {
+            OpenGL.Color4i(red, green, blue, alpha);
+        }
 
-        //#region GL.Vertex
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(short red, short green, short blue)
+        {
+            OpenGL.Color3s(red, green, blue);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(double x, double y)
-        //{
-        //    OpenGL.Vertex2d(x, y);
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(short red, short green, short blue, short alpha)
+        {
+            OpenGL.Color4s(red, green, blue, alpha);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(double[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 2) { OpenGL.Vertex2dv(v); }
-        //    else if (length == 3) { OpenGL.Vertex3dv(v); }
-        //    else if (length == 4) { OpenGL.Vertex4dv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(uint red, uint green, uint blue)
+        {
+            OpenGL.Color3ui(red, green, blue);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(float x, float y)
-        //{
-        //    OpenGL.Vertex2f(x, y);
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(uint red, uint green, uint blue, uint alpha)
+        {
+            OpenGL.Color4ui(red, green, blue, alpha);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(int x, int y)
-        //{
-        //    OpenGL.Vertex2i(x, y);
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(ushort red, ushort green, ushort blue)
+        {
+            OpenGL.Color3us(red, green, blue);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(int[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 2) { OpenGL.Vertex2iv(v); }
-        //    else if (length == 3) { OpenGL.Vertex3iv(v); }
-        //    else if (length == 4) { OpenGL.Vertex4iv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
+        {
+            OpenGL.Color4us(red, green, blue, alpha);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(short x, short y)
-        //{
-        //    OpenGL.Vertex2s(x, y);
-        //}
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Color(float red, float green, float blue, float alpha)
+        {
+            OpenGL.Color4f(red, green, blue, alpha);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">Specifies the coordinate.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(short[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 2) { OpenGL.Vertex2sv(v); }
-        //    else if (length == 3) { OpenGL.Vertex3sv(v); }
-        //    else if (length == 4) { OpenGL.Vertex4sv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        #endregion GL.Color
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(double x, double y, double z)
-        //{
-        //    OpenGL.Vertex3d(x, y, z);
-        //}
+        #region GL.Vertex
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(float x, float y, float z)
-        //{
-        //    OpenGL.Vertex3f(x, y, z);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(double x, double y)
+        {
+            OpenGL.Vertex2d(x, y);
+        }
 
-        ///// <summary>
-        ///// Sets the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="v">An array of 2, 3 or 4 floats.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(float[] v)
-        //{
-        //    int length = v.Length;
-        //    if (length == 2) { OpenGL.Vertex2fv(v); }
-        //    else if (length == 3) { OpenGL.Vertex3fv(v); }
-        //    else if (length == 4) { OpenGL.Vertex4fv(v); }
-        //    else { throw new ArgumentOutOfRangeException(); }
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(double[] v)
+        {
+            int length = v.Length;
+            if (length == 2) { OpenGL.Vertex2dv(v); }
+            else if (length == 3) { OpenGL.Vertex3dv(v); }
+            else if (length == 4) { OpenGL.Vertex4dv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(int x, int y, int z)
-        //{
-        //    OpenGL.Vertex3i(x, y, z);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(float x, float y)
+        {
+            OpenGL.Vertex2f(x, y);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(short x, short y, short z)
-        //{
-        //    OpenGL.Vertex3s(x, y, z);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(int x, int y)
+        {
+            OpenGL.Vertex2i(x, y);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(double x, double y, double z, double w)
-        //{
-        //    OpenGL.Vertex4d(x, y, z, w);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(int[] v)
+        {
+            int length = v.Length;
+            if (length == 2) { OpenGL.Vertex2iv(v); }
+            else if (length == 3) { OpenGL.Vertex3iv(v); }
+            else if (length == 4) { OpenGL.Vertex4iv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(float x, float y, float z, float w)
-        //{
-        //    OpenGL.Vertex4f(x, y, z, w);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(short x, short y)
+        {
+            OpenGL.Vertex2s(x, y);
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(int x, int y, int z, int w)
-        //{
-        //    OpenGL.Vertex4i(x, y, z, w);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">Specifies the coordinate.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(short[] v)
+        {
+            int length = v.Length;
+            if (length == 2) { OpenGL.Vertex2sv(v); }
+            else if (length == 3) { OpenGL.Vertex3sv(v); }
+            else if (length == 4) { OpenGL.Vertex4sv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
-        ///// <summary>
-        ///// Set the current vertex (must be called between 'Begin' and 'End').
-        ///// </summary>
-        ///// <param name="x">X Value.</param>
-        ///// <param name="y">Y Value.</param>
-        ///// <param name="z">Z Value.</param>
-        ///// <param name="w">W Value.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Vertex(short x, short y, short z, short w)
-        //{
-        //    OpenGL.Vertex4s(x, y, z, w);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(double x, double y, double z)
+        {
+            OpenGL.Vertex3d(x, y, z);
+        }
 
-        //#endregion GL.Vertex
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(float x, float y, float z)
+        {
+            OpenGL.Vertex3f(x, y, z);
+        }
 
-        //#region GL.TexCoord
+        /// <summary>
+        /// Sets the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="v">An array of 2, 3 or 4 floats.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(float[] v)
+        {
+            int length = v.Length;
+            if (length == 2) { OpenGL.Vertex2fv(v); }
+            else if (length == 3) { OpenGL.Vertex3fv(v); }
+            else if (length == 4) { OpenGL.Vertex4fv(v); }
+            else { throw new ArgumentOutOfRangeException(); }
+        }
 
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(int x, int y, int z)
+        {
+            OpenGL.Vertex3i(x, y, z);
+        }
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //public static void TexCoord(double s)
-        //{
-        //    OpenGL.TexCoord1d(s);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(short x, short y, short z)
+        {
+            OpenGL.Vertex3s(x, y, z);
+        }
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //public static void TexCoord(double[] v)
-        //{
-        //    if (v.Length == 1)
-        //        OpenGL.TexCoord1dv(v);
-        //    else if (v.Length == 2)
-        //        OpenGL.TexCoord2dv(v);
-        //    else if (v.Length == 3)
-        //        OpenGL.TexCoord3dv(v);
-        //    else if (v.Length == 4)
-        //        OpenGL.TexCoord4dv(v);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(double x, double y, double z, double w)
+        {
+            OpenGL.Vertex4d(x, y, z, w);
+        }
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //public static void TexCoord(float s)
-        //{
-        //    OpenGL.TexCoord1f(s);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(float x, float y, float z, float w)
+        {
+            OpenGL.Vertex4f(x, y, z, w);
+        }
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates. WARNING: if you
-        ///// can call something more explicit, like TexCoord2f then call that, it's
-        ///// much faster.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //public static void TexCoord(float[] v)
-        //{
-        //    if (v.Length == 1)
-        //        OpenGL.TexCoord1fv(v);
-        //    else if (v.Length == 2)
-        //        OpenGL.TexCoord2fv(v);
-        //    else if (v.Length == 3)
-        //        OpenGL.TexCoord3fv(v);
-        //    else if (v.Length == 4)
-        //        OpenGL.TexCoord4fv(v);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(int x, int y, int z, int w)
+        {
+            OpenGL.Vertex4i(x, y, z, w);
+        }
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //public static void TexCoord(int s)
-        //{
-        //    OpenGL.TexCoord1i(s);
-        //}
+        /// <summary>
+        /// Set the current vertex (must be called between 'Begin' and 'End').
+        /// </summary>
+        /// <param name="x">X Value.</param>
+        /// <param name="y">Y Value.</param>
+        /// <param name="z">Z Value.</param>
+        /// <param name="w">W Value.</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Vertex(short x, short y, short z, short w)
+        {
+            OpenGL.Vertex4s(x, y, z, w);
+        }
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //public static void TexCoord(int[] v)
-        //{
-        //    if (v.Length == 1)
-        //        OpenGL.TexCoord1iv(v);
-        //    else if (v.Length == 2)
-        //        OpenGL.TexCoord2iv(v);
-        //    else if (v.Length == 3)
-        //        OpenGL.TexCoord3iv(v);
-        //    else if (v.Length == 4)
-        //        OpenGL.TexCoord4iv(v);
-        //}
+        #endregion GL.Vertex
 
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        //public static void TexCoord(short s)
-        //{
-        //    OpenGL.TexCoord1s(s);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        //public static void TexCoord(short[] v)
-        //{
-        //    if (v.Length == 1)
-        //        OpenGL.TexCoord1sv(v);
-        //    else if (v.Length == 2)
-        //        OpenGL.TexCoord2sv(v);
-        //    else if (v.Length == 3)
-        //        OpenGL.TexCoord3sv(v);
-        //    else if (v.Length == 4)
-        //        OpenGL.TexCoord4sv(v);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //public static void TexCoord(double s, double t)
-        //{
-        //    OpenGL.TexCoord2d(s, t);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //public static void TexCoord(float s, float t)
-        //{
-        //    OpenGL.TexCoord2f(s, t);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //public static void TexCoord(int s, int t)
-        //{
-        //    OpenGL.TexCoord2i(s, t);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        //public static void TexCoord(short s, short t)
-        //{
-        //    OpenGL.TexCoord2s(s, t);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //public static void TexCoord(double s, double t, double r)
-        //{
-        //    OpenGL.TexCoord3d(s, t, r);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //public static void TexCoord(float s, float t, float r)
-        //{
-        //    OpenGL.TexCoord3f(s, t, r);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //public static void TexCoord(int s, int t, int r)
-        //{
-        //    OpenGL.TexCoord3i(s, t, r);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        //public static void TexCoord(short s, short t, short r)
-        //{
-        //    OpenGL.TexCoord3s(s, t, r);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //public static void TexCoord(double s, double t, double r, double q)
-        //{
-        //    OpenGL.TexCoord4d(s, t, r, q);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //public static void TexCoord(float s, float t, float r, float q)
-        //{
-        //    OpenGL.TexCoord4f(s, t, r, q);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //public static void TexCoord(int s, int t, int r, int q)
-        //{
-        //    OpenGL.TexCoord4i(s, t, r, q);
-        //}
-
-        ///// <summary>
-        ///// This function sets the current texture coordinates.
-        ///// </summary>
-        ///// <param name="s">Texture Coordinate.</param>
-        ///// <param name="t">Texture Coordinate.</param>
-        ///// <param name="r">Texture Coordinate.</param>
-        ///// <param name="q">Texture Coordinate.</param>
-        //public static void TexCoord(short s, short t, short r, short q)
-        //{
-        //    OpenGL.TexCoord4s(s, t, r, q);
-        //}
+        #region GL.TexCoord
 
 
-        //#endregion GL.TexCoord
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(double s)
+        {
+            OpenGL.TexCoord1d(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(double[] v)
+        {
+            if (v.Length == 1)
+                OpenGL.TexCoord1dv(v);
+            else if (v.Length == 2)
+                OpenGL.TexCoord2dv(v);
+            else if (v.Length == 3)
+                OpenGL.TexCoord3dv(v);
+            else if (v.Length == 4)
+                OpenGL.TexCoord4dv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(float s)
+        {
+            OpenGL.TexCoord1f(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates. WARNING: if you
+        /// can call something more explicit, like TexCoord2f then call that, it's
+        /// much faster.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(float[] v)
+        {
+            if (v.Length == 1)
+                OpenGL.TexCoord1fv(v);
+            else if (v.Length == 2)
+                OpenGL.TexCoord2fv(v);
+            else if (v.Length == 3)
+                OpenGL.TexCoord3fv(v);
+            else if (v.Length == 4)
+                OpenGL.TexCoord4fv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(int s)
+        {
+            OpenGL.TexCoord1i(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(int[] v)
+        {
+            if (v.Length == 1)
+                OpenGL.TexCoord1iv(v);
+            else if (v.Length == 2)
+                OpenGL.TexCoord2iv(v);
+            else if (v.Length == 3)
+                OpenGL.TexCoord3iv(v);
+            else if (v.Length == 4)
+                OpenGL.TexCoord4iv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(short s)
+        {
+            OpenGL.TexCoord1s(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(short[] v)
+        {
+            if (v.Length == 1)
+                OpenGL.TexCoord1sv(v);
+            else if (v.Length == 2)
+                OpenGL.TexCoord2sv(v);
+            else if (v.Length == 3)
+                OpenGL.TexCoord3sv(v);
+            else if (v.Length == 4)
+                OpenGL.TexCoord4sv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(double s, double t)
+        {
+            OpenGL.TexCoord2d(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(float s, float t)
+        {
+            OpenGL.TexCoord2f(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(int s, int t)
+        {
+            OpenGL.TexCoord2i(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(short s, short t)
+        {
+            OpenGL.TexCoord2s(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(double s, double t, double r)
+        {
+            OpenGL.TexCoord3d(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(float s, float t, float r)
+        {
+            OpenGL.TexCoord3f(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(int s, int t, int r)
+        {
+            OpenGL.TexCoord3i(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(short s, short t, short r)
+        {
+            OpenGL.TexCoord3s(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(double s, double t, double r, double q)
+        {
+            OpenGL.TexCoord4d(s, t, r, q);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(float s, float t, float r, float q)
+        {
+            OpenGL.TexCoord4f(s, t, r, q);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(int s, int t, int r, int q)
+        {
+            OpenGL.TexCoord4i(s, t, r, q);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(short s, short t, short r, short q)
+        {
+            OpenGL.TexCoord4s(s, t, r, q);
+        }
+
+
+        #endregion GL.TexCoord
 
         /// <summary>
         /// 

@@ -74,5 +74,15 @@ namespace CSharpGL
             return new BoundingBox(min, max);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        internal static void LegacyTransform(this IModelSpace model)
+        {
+            OpenGL.Translate(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
+            OpenGL.Scale(model.Scale.x, model.Scale.y, model.Scale.z);
+            OpenGL.Rotate(model.RotationAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+        }
     }
 }
