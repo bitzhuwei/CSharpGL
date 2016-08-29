@@ -96,6 +96,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IPerspectiveCamera.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\Renderbuffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\Renderbuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NewFramebuffer.Completeness.cs" />
     <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NullImageBuilder.cs" />
