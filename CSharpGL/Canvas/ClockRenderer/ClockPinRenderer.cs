@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class ClockPinRenderer : RendererBase
+    class ClockPinRenderer : RendererBase, IModelSpace
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
@@ -16,6 +16,13 @@ namespace CSharpGL
         private readonly List<vec3> hourPosition = new List<vec3>();
         private readonly List<vec3> hourColor = new List<vec3>();
         private readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
+
+        public ClockPinRenderer()
+        {
+            this.Scale = new vec3(1, 1, 1);
+            this.RotationAxis = new vec3(0, 0, -1);
+            this.Lengths = new vec3(2, 2, 2);
+        }
 
         protected override void DoInitialize()
         {
@@ -41,51 +48,71 @@ namespace CSharpGL
             DateTime now = DateTime.Now;
             const float speed = 1.0f;
 
-            OpenGL.LoadIdentity();
-            float secondAngle = ((float)now.Second) / 60.0f * 360.0f * speed;
-            OpenGL.Rotatef(secondAngle, 0.0f, 0.0f, -1.0f);
-            secondLineWidthSwitch.On();
-            OpenGL.Begin(OpenGL.GL_LINES);
-            for (int i = 0; i < secondPosition.Count; i++)
             {
-                vec3 color = secondColor[i];
-                OpenGL.Color3f(color.x, color.y, color.z);
-                vec3 position = secondPosition[i];
-                OpenGL.Vertex3f(position.x, position.y, position.z);
-            }
-            OpenGL.End();
-            secondLineWidthSwitch.Off();
+                float secondAngle = ((float)now.Second) / 60.0f * 360.0f * speed;
+                this.RotationAngle = secondAngle;
+                OpenGL.LoadIdentity();
+                this.LegacyTransform();
 
-            OpenGL.LoadIdentity();
-            float minuteAngle = ((float)(now.Minute * 60 + now.Second)) / (60.0f * 60.0f) * 360.0f * speed;
-            OpenGL.Rotatef(minuteAngle, 0.0f, 0.0f, -1.0f);
-            minuteLineWidthSwitch.On();
-            OpenGL.Begin(OpenGL.GL_LINES);
-            for (int i = 0; i < minutePosition.Count; i++)
-            {
-                vec3 color = minuteColor[i];
-                OpenGL.Color3f(color.x, color.y, color.z);
-                vec3 position = minutePosition[i];
-                OpenGL.Vertex3f(position.x, position.y, position.z);
+                secondLineWidthSwitch.On();
+                OpenGL.Begin(OpenGL.GL_LINES);
+                for (int i = 0; i < secondPosition.Count; i++)
+                {
+                    vec3 color = secondColor[i];
+                    OpenGL.Color3f(color.x, color.y, color.z);
+                    vec3 position = secondPosition[i];
+                    OpenGL.Vertex3f(position.x, position.y, position.z);
+                }
+                OpenGL.End();
+                secondLineWidthSwitch.Off();
             }
-            OpenGL.End();
-            minuteLineWidthSwitch.Off();
+            {
+                float minuteAngle = ((float)(now.Minute * 60 + now.Second)) / (60.0f * 60.0f) * 360.0f * speed;
+                this.RotationAngle = minuteAngle;
+                OpenGL.LoadIdentity();
+                this.LegacyTransform();
 
-            OpenGL.LoadIdentity();
-            float hourAngle = ((float)((now.Hour * 60 + now.Minute) * 60 + now.Second)) / (12.0f * 60.0f * 60.0f) * 360.0f * speed;
-            OpenGL.Rotatef(hourAngle, 0.0f, 0.0f, -1.0f);
-            hourLineWidthSwitch.On();
-            OpenGL.Begin(OpenGL.GL_LINES);
-            for (int i = 0; i < hourPosition.Count; i++)
-            {
-                vec3 color = hourColor[i];
-                OpenGL.Color3f(color.x, color.y, color.z);
-                vec3 position = hourPosition[i];
-                OpenGL.Vertex3f(position.x, position.y, position.z);
+                minuteLineWidthSwitch.On();
+                OpenGL.Begin(OpenGL.GL_LINES);
+                for (int i = 0; i < minutePosition.Count; i++)
+                {
+                    vec3 color = minuteColor[i];
+                    OpenGL.Color3f(color.x, color.y, color.z);
+                    vec3 position = minutePosition[i];
+                    OpenGL.Vertex3f(position.x, position.y, position.z);
+                }
+                OpenGL.End();
+                minuteLineWidthSwitch.Off();
             }
-            OpenGL.End();
-            hourLineWidthSwitch.Off();
+            {
+                float hourAngle = ((float)((now.Hour * 60 + now.Minute) * 60 + now.Second)) / (12.0f * 60.0f * 60.0f) * 360.0f * speed;
+                this.RotationAngle = hourAngle;
+                OpenGL.LoadIdentity();
+                this.LegacyTransform();
+
+                hourLineWidthSwitch.On();
+                OpenGL.Begin(OpenGL.GL_LINES);
+                for (int i = 0; i < hourPosition.Count; i++)
+                {
+                    vec3 color = hourColor[i];
+                    OpenGL.Color3f(color.x, color.y, color.z);
+                    vec3 position = hourPosition[i];
+                    OpenGL.Vertex3f(position.x, position.y, position.z);
+                }
+                OpenGL.End();
+                hourLineWidthSwitch.Off();
+            }
         }
 
+
+        public vec3 WorldPosition { get; set; }
+
+        public float RotationAngle { get; set; }
+
+        public vec3 RotationAxis { get; set; }
+
+        public vec3 Scale { get; set; }
+
+        public vec3 Lengths { get; set; }
     }
 }

@@ -5,10 +5,16 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class ClockMarkRenderer : RendererBase
+    class ClockMarkRenderer : RendererBase, IModelSpace
     {
         private readonly List<vec3> markPosition = new List<vec3>();
         private readonly List<vec3> markColor = new List<vec3>();
+
+        public ClockMarkRenderer()
+        {
+            this.Scale = new vec3(1, 1, 1);
+            this.Lengths = new vec3(2, 2, 2);
+        }
 
         protected override void DoInitialize()
         {
@@ -34,6 +40,8 @@ namespace CSharpGL
         protected override void DoRender(RenderEventArgs arg)
         {
             OpenGL.LoadIdentity();
+            this.LegacyTransform();
+
             OpenGL.Begin(DrawMode.Lines);
             for (int i = 0; i < markPosition.Count; i++)
             {
@@ -45,5 +53,15 @@ namespace CSharpGL
             OpenGL.End();
         }
 
+
+        public vec3 WorldPosition { get; set; }
+
+        public float RotationAngle { get; set; }
+
+        public vec3 RotationAxis { get; set; }
+
+        public vec3 Scale { get; set; }
+
+        public vec3 Lengths { get; set; }
     }
 }

@@ -9,32 +9,37 @@ namespace CSharpGL
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public class LegacyBoundingBoxRenderer : RendererBase, IBoundingBox
+    public class LegacyBoundingBoxRenderer : RendererBase, IBoundingBox, IModelSpace
     {
 
         /// <summary>
         /// Cuboid's color of its lines.
         /// </summary>
-        public vec4 BoxColor { get; set; }
+        public Color BoxColor { get; set; }
 
         /// <summary>
         /// Specify a cuboid that marks a model's edges.
         /// </summary>
         public LegacyBoundingBoxRenderer()
-            : this(new vec3(0.5f, 0.5f, 0.5f), new vec3(0.5f, 0.5f, 0.5f), Color.White)
+            : this(new vec3(-0.5f, -0.5f, -0.5f), new vec3(0.5f, 0.5f, 0.5f), Color.White)
         { }
 
         /// <summary>
         /// Specify a cuboid that marks a model's edges.
         /// </summary>
-        /// <param name="max"></param>
         /// <param name="min"></param>
+        /// <param name="max"></param>
         /// <param name="color"></param>
-        public LegacyBoundingBoxRenderer(vec3 max, vec3 min, Color color)
+        public LegacyBoundingBoxRenderer(vec3 min, vec3 max, Color color)
         {
-            this.MaxPosition = max;
             this.MinPosition = min;
-            this.BoxColor = color.ToVec4();
+            this.MaxPosition = max;
+            this.BoxColor = color;
+
+            this.Scale = new vec3(1, 1, 1);
+            this.RotationAxis = new vec3(0, 1, 0);
+
+            this.Lengths = max - min;
         }
 
         #region IBoundingBox 成员
@@ -52,40 +57,6 @@ namespace CSharpGL
         #endregion
 
         /// <summary>
-        /// This simulates BoundingVolume's render method.
-        /// </summary>
-        /// <param name="renderMode"></param>
-        private void QuadsDraw(RenderModes renderMode)
-        {
-            OpenGL.Begin(DrawMode.Quads);
-            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);// Top Right Of The Quad (Top)
-            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);// Top Left Of The Quad (Top)
-            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);// Bottom Left Of The Quad (Top)
-            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);// Bottom Right Of The Quad (Top)
-            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);// Top Right Of The Quad (Bottom)
-            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);// Top Left Of The Quad (Bottom)
-            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);// Bottom Left Of The Quad (Bottom)
-            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);// Bottom Right Of The Quad (Bottom)
-            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);// Top Right Of The Quad (Front)
-            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);// Top Left Of The Quad (Front)
-            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);// Bottom Left Of The Quad (Front)
-            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);// Bottom Right Of The Quad (Front)
-            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);// Top Right Of The Quad (Back)
-            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);// Top Left Of The Quad (Back)
-            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);// Bottom Left Of The Quad (Back)
-            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);// Bottom Right Of The Quad (Back)
-            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);// Top Right Of The Quad (Left)
-            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);// Top Left Of The Quad (Left)
-            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);// Bottom Left Of The Quad (Left)
-            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);// Bottom Right Of The Quad (Left)
-            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);// Top Right Of The Quad (Right)
-            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);// Top Left Of The Quad (Right)
-            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);// Bottom Left Of The Quad (Right)
-            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);// Bottom Right Of The Quad (Right)
-            OpenGL.End();
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         protected override void DoInitialize()
@@ -98,15 +69,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            //  Push attributes, disable lighting.
-            OpenGL.PushAttrib(OpenGL.GL_CURRENT_BIT | OpenGL.GL_ENABLE_BIT |
-                OpenGL.GL_LINE_BIT | OpenGL.GL_POLYGON_BIT);
-            OpenGL.Disable(OpenGL.GL_LIGHTING);
-            OpenGL.Disable(OpenGL.GL_TEXTURE_2D);
-            OpenGL.LineWidth(1.0f);
-            OpenGL.Color4f(BoxColor.x, BoxColor.y, BoxColor.z, BoxColor.w);
+            this.RotationAngle += 3.0f;
+            OpenGL.LoadIdentity();
+            this.LegacyTransform();
 
-            //QuadsDraw(gl);
+            OpenGL.Color4f(BoxColor.R / 255.0f, BoxColor.G / 255.0f, BoxColor.B / 255.0f, BoxColor.A / 255.0f);
 
             //GL.Color(1.0f, 0, 0);
             OpenGL.Begin(DrawMode.LineLoop);
@@ -135,8 +102,16 @@ namespace CSharpGL
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
-
-            OpenGL.PopAttrib();
         }
+
+        public vec3 WorldPosition { get; set; }
+
+        public float RotationAngle { get; set; }
+
+        public vec3 RotationAxis { get; set; }
+
+        public vec3 Scale { get; set; }
+
+        public vec3 Lengths { get; set; }
     }
 }
