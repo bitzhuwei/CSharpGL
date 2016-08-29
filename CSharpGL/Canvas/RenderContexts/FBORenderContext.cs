@@ -57,10 +57,6 @@ namespace CSharpGL
             //  Call the base class.
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
-            // Create frame buffer object.
-            Framebuffer framebuffer = CreateFramebuffer(width, height);
-            this.framebuffer = framebuffer;
-
             //  Create the DIB section.
             var dibSection = new DIBSection();
             dibSection.Create(this.DeviceContextHandle, width, height, bitDepth);
@@ -89,9 +85,6 @@ namespace CSharpGL
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            //  Delete the render buffers.
-            this.framebuffer.Dispose();
-
             //  Destroy the internal dc.
             Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
 
@@ -112,21 +105,6 @@ namespace CSharpGL
 
             //	Resize dib section.
             this.dibSection.Resize(width, height, this.BitDepth);
-
-            //  TODO: We should be able to just use the code below - however we
-            //  get invalid dimension issues at the moment, so recreate for now.
-
-            /*
-            //  Resize the render buffer storage.
-            GL.GetDelegateFor<GL.glBindRenderbufferEXT(GL.GL_RENDERBUFFER, colourRenderBufferId);
-            GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
-            GL.GetDelegateFor<GL.glBindRenderbufferEXT(GL.GL_RENDERBUFFER, depthRenderBufferId);
-            GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);
-            var complete = GL.CheckFramebufferStatusEXT(GL.GL_FRAMEBUFFER_EXT);
-            */
-            this.framebuffer.Dispose();
-            Framebuffer framebuffer = CreateFramebuffer(width, height);
-            this.framebuffer = framebuffer;
         }
         /// <summary>
         /// 
@@ -148,8 +126,6 @@ namespace CSharpGL
                     this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
             }
         }
-
-        private Framebuffer framebuffer;
 
         ///// <summary>
         ///// 
