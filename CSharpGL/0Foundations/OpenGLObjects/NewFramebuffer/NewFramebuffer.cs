@@ -43,22 +43,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// check completeness.
-        /// </summary>
-        /// <returns></returns>
-        public bool CheckCompleteness()
-        {
-            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
-
-            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE)
-            {
-                throw new Exception("Failed to create frame buffer object!");
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// start to use this framebuffer.
         /// </summary>
         public void Bind()

@@ -91,6 +91,7 @@
     <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox2D.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBoxHelper.cs" />
+    <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
