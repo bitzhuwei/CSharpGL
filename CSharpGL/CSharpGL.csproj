@@ -96,13 +96,13 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IPerspectiveCamera.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\Renderbuffer.IDisposable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\Renderbuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NewFramebuffer.Completeness.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NullImageBuilder.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NewFramebuffer.Attachments.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NewFramebuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\NewFramebuffer\NewFramebuffer.IDsposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Completeness.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\NullImageBuilder.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDsposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelSpace.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\SamplerParameters.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\Sampler.IDisposable.cs" />
@@ -232,11 +232,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\IPerspectiveViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\IViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\ICamera.MouseWheel.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\FramebufferTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\ClearColorSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitchList.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\ViewportSwitch.cs" />

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public partial class NewFramebuffer
+    public partial class Framebuffer
     {
         #region attach Texture images
 

@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     //TODO: IDisposable
-    public partial class NewFramebuffer : IDisposable
+    public partial class Framebuffer : IDisposable
     {
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        ~NewFramebuffer()
+        ~Framebuffer()
         {
             this.Dispose(false);
         }
