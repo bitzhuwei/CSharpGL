@@ -87,6 +87,7 @@ namespace CSharpGL
         {
             //  Destroy the internal dc.
             Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
+            this.dibSection.Dispose();
 
             //this.dibSection.Dispose();
 
