@@ -56,6 +56,7 @@ namespace CSharpGL
 
             return CheckCompleteness();
         }
+
         #endregion attach Texture images
     }
 }
