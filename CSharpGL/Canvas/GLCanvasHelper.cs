@@ -13,7 +13,7 @@ namespace CSharpGL
 
         ////  Use the 'look at' helper function to position and aim the camera.
         //OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
-        static readonly mat4 viewMatrix = glm.lookAt(new vec3(0, 0, 3), new vec3(0, 0, 0), new vec3(0, 1, 0));
+        static readonly mat4 viewMatrix = glm.lookAt(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0));
         public static void ResizeGL(double width, double height)
         {
             //  Set the projection matrix.
