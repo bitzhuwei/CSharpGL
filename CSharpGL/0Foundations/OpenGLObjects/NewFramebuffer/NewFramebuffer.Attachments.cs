@@ -47,6 +47,15 @@ namespace CSharpGL
             return CheckCompleteness();
         }
 
+        public bool Attach(Renderbuffer renderbuffer)
+        {
+            if (nextColorAttachmentIndex >= attachment_id.Length)
+            { throw new IndexOutOfRangeException("Not enough color attach points!"); }
+
+            glFramebufferRenderbuffer(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_STENCIL_ATTACHMENT, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
+
+            return CheckCompleteness();
+        }
         #endregion attach Texture images
     }
 }

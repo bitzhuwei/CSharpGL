@@ -302,6 +302,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        public const uint GL_DEPTH_STENCIL_ATTACHMENT = 0x821A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER = 0x8D40;
         /// <summary>
         /// 

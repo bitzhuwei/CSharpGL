@@ -9602,10 +9602,10 @@ namespace CSharpGL
         ///// 
         ///// </summary>
         //public const uint GL_DEPTH_COMPONENT32F = 0x8CAC;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_DEPTH24_STENCIL8 = 0x88F0;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_DEPTH24_STENCIL8 = 0x88F0;
         ///// <summary>
         ///// 
         ///// </summary>
