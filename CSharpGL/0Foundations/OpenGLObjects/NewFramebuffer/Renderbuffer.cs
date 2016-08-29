@@ -32,7 +32,7 @@ namespace CSharpGL
                 glGenRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>();
                 glBindRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>();
                 glRenderbufferStorage = OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>();
-                glDeleteRenderbuffersa = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>();
+                glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>();
             }
 
             glGenRenderbuffers(1, renderbuffer);

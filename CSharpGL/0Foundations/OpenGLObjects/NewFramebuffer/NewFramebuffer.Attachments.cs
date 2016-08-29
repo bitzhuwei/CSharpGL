@@ -47,6 +47,11 @@ namespace CSharpGL
             return CheckCompleteness();
         }
 
+        /// <summary>
+        /// Attach a render buffer.
+        /// </summary>
+        /// <param name="renderbuffer"></param>
+        /// <returns></returns>
         public bool Attach(Renderbuffer renderbuffer)
         {
             if (nextColorAttachmentIndex >= attachment_id.Length)

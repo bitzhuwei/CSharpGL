@@ -191,7 +191,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_FRAMEBUFFER_COMPLETE = 0x8CD5;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_UNDEFINED = 0x8219;
         /// <summary>
         /// 
@@ -201,7 +203,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE = 0x8D56;
         /// <summary>
         /// 
