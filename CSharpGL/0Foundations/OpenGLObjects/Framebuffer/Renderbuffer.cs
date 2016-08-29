@@ -35,10 +35,31 @@ namespace CSharpGL
                 glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>();
             }
 
+            this.Width = width;
+            this.Height = height;
+
             glGenRenderbuffers(1, renderbuffer);
             glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, renderbuffer[0]);
             glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH24_STENCIL8, width, height);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Width { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0}: [w:{1}, h:{2}]", this.GetType().Name, this.Width, this.Height);
+        }
     }
 }
