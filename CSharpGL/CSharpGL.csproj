@@ -101,6 +101,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.3.1.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.3.2.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.3.3.cs" />
+    <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
