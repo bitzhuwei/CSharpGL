@@ -122,7 +122,16 @@ namespace CSharpGL
             {
                 Win32.DeleteObject(this.HBitmap);
                 this.HBitmap = IntPtr.Zero;
+
+                Win32.DeleteDC(this.MemoryDeviceContext);
+                this.MemoryDeviceContext = IntPtr.Zero;
             }
+            // rendering during design mode will fail if un-comment this:
+            //if (this.MemoryDeviceContext != IntPtr.Zero)
+            //{
+            //    Win32.DeleteDC(this.MemoryDeviceContext);
+            //    this.MemoryDeviceContext = IntPtr.Zero;
+            //}
         }
 
         ///// <summary>

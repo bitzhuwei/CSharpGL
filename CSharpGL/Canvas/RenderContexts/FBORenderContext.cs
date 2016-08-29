@@ -86,7 +86,6 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //  Destroy the internal dc.
-            Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
             this.dibSection.Dispose();
 
             //this.dibSection.Dispose();
