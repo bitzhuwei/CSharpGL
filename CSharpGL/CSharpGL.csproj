@@ -316,8 +316,6 @@
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="Canvas\GLCanvasHelper.cs" />
-    <Compile Include="Canvas\RenderContexts\DefaultFramebuffer.IDisposable.cs" />
-    <Compile Include="Canvas\RenderContexts\DefaultFramebuffer.cs" />
     <Compile Include="Canvas\RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="Canvas\RenderContexts\RenderContext.IDisposable.cs" />
     <Compile Include="Canvas\RenderTrigger.cs" />
