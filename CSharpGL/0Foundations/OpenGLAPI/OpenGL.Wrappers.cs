@@ -992,6 +992,16 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Use this function to query OpenGL parameter values.
+        /// </summary>
+        /// <param name="pname">The Parameter to query</param>
+        /// <param name="parameters">An array to put the values into.</param>
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void GetInteger(uint pname, int[] parameters)
+        {
+            OpenGL.GetIntegerv(pname, parameters);
+        }
+        /// <summary>
         /// This this function to query OpenGL values.
         /// </summary>
         /// <param name="pname">The parameter to query.</param>

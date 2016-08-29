@@ -267,6 +267,22 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        public const uint GL_MAX_FRAMEBUFFER_WIDTH = 0x9315;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_FRAMEBUFFER_HEIGHT = 0x9316;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_FRAMEBUFFER_LAYERS = 0x9317;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_FRAMEBUFFER_SAMPLES = 0x9318;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_ATTACHMENT0 = 0x8CE0;
         /// <summary>
         /// 
