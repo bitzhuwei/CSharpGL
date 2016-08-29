@@ -28,7 +28,7 @@ namespace CSharpGL.Demos
 
         void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar=='t')
+            if (e.KeyChar == 't')
             {
                 switch (this.glCanvas1.RenderTrigger)
                 {
@@ -57,6 +57,11 @@ namespace CSharpGL.Demos
             OpenGL.GetInteger(GetTarget.MaxTextureSize, maxTextureSize);
             this.content.Add(string.Format("FPS: {0}", this.glCanvas1.FPS));
             this.content.Add(string.Format("Max Texture Width: {0}", maxTextureSize[0]));
+            this.content.Add(string.Format("Max Color Attachments: {0}", Framebuffer.MaxColorAttachments()));
+            this.content.Add(string.Format("Max Framebuffer Width: {0}", Framebuffer.MaxFramebufferWidth()));
+            this.content.Add(string.Format("Max Framebuffer Height: {0}", Framebuffer.MaxFramebufferHeight()));
+            this.content.Add(string.Format("Max Framebuffer Layers: {0}", Framebuffer.MaxFramebufferLayers()));
+            this.content.Add(string.Format("Max Framebuffer Samples: {0}", Framebuffer.MaxFramebufferSamples()));
         }
 
         void glCanvas1_MouseMove(object sender, MouseEventArgs e)
