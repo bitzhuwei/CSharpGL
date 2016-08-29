@@ -400,7 +400,22 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_RENDERBUFFER_STENCIL_SIZE = 0x8D55;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_FRAMEBUFFER_DEFAULT_WIDTH = 0x9310;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_FRAMEBUFFER_DEFAULT_HEIGHT = 0x9311;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_FRAMEBUFFER_DEFAULT_LAYERS = 0x9312;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_FRAMEBUFFER_DEFAULT_SAMPLES = 0x9313;
 
         #endregion
 
