@@ -18,6 +18,7 @@ namespace CSharpGL
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
         private static OpenGL.glDrawBuffers glDrawBuffers;
         private static OpenGL.glFramebufferRenderbufferEXT glFramebufferRenderbuffer;
+        private static OpenGL.glFramebufferParameteri glFramebufferParameteri;
 
         uint[] frameBuffer = new uint[1];
         /// <summary>
@@ -39,6 +40,7 @@ namespace CSharpGL
                 glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
                 glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>();
                 glFramebufferRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>();
+                glFramebufferParameteri = OpenGL.GetDelegateFor<OpenGL.glFramebufferParameteri>();
             }
 
             glGenFramebuffers(1, frameBuffer);
