@@ -32,11 +32,12 @@ namespace CSharpGL
         /// <summary>
         /// Texture.
         /// </summary>
+        /// <param name="target"></param>
         /// <param name="bitmap"></param>
         /// <param name="samplerBuilder"></param>
-        /// <param name="target"></param>
-        public Texture(Bitmap bitmap, SamplerBase samplerBuilder,
-            BindTextureTarget target = BindTextureTarget.Texture2D)
+        public Texture(BindTextureTarget target,
+            Bitmap bitmap,
+            SamplerBase samplerBuilder)
             : this(new BitmapBuilder(bitmap, target), samplerBuilder, target)
         {
         }
@@ -65,7 +66,8 @@ namespace CSharpGL
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         public Texture(
-            BindTextureTarget target, Bitmap bitmap,
+            BindTextureTarget target,
+            Bitmap bitmap,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
             : this(new BitmapBuilder(bitmap, target), new FakeSampler(parameters, mipmapFiltering), target)
