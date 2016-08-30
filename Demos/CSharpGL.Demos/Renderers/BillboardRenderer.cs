@@ -66,7 +66,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             var bitmap = new Bitmap(@"Textures\ExampleBillboard.png");
-            var texture = new Texture(BindTextureTarget.Texture2D, bitmap);
+            var texture = new Texture(BindTextureTarget.Texture2D, bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();
             this.SetUniform("myTextureSampler", texture.ToSamplerValue());
