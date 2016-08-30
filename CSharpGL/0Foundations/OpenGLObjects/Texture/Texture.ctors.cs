@@ -44,13 +44,14 @@ namespace CSharpGL
         /// <summary>
         /// Texture.
         /// </summary>
+        /// <param name="target"></param>
         /// <param name="imageBuilder"></param>
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
-        /// <param name="target"></param>
-        public Texture(ImageBuilder imageBuilder,
-            BindTextureTarget target = BindTextureTarget.Texture2D,
-            SamplerParameters parameters = null,
+        public Texture(
+            BindTextureTarget target,
+            ImageBuilder imageBuilder,
+            SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
             : this(imageBuilder, new FakeSampler(parameters, mipmapFiltering), target)
         {

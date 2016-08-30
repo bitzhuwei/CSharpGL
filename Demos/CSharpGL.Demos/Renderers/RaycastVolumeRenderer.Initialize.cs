@@ -85,7 +85,10 @@ namespace CSharpGL.Demos
 
         private Texture initVol3DTex(string filename, int width, int height, int depth)
         {
-            var texture = new Texture(new RaycastVolumeImageBuilder(filename, width, height, depth), BindTextureTarget.Texture3D, new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Linear, TextureFilter.Linear));
+            var texture = new Texture(
+                BindTextureTarget.Texture3D,
+                new RaycastVolumeImageBuilder(filename, width, height, depth),
+                new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Linear, TextureFilter.Linear));
             texture.Initialize();
 
             return texture;
@@ -95,7 +98,10 @@ namespace CSharpGL.Demos
         {
             if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
 
-            var texture = new Texture(new NullImageBuilder(width, height, OpenGL.GL_RGBA16F, OpenGL.GL_RGBA, OpenGL.GL_FLOAT), BindTextureTarget.Texture2D, new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
+            var texture = new Texture(
+                BindTextureTarget.Texture2D,
+                new NullImageBuilder(width, height, OpenGL.GL_RGBA16F, OpenGL.GL_RGBA, OpenGL.GL_FLOAT),
+                new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
             texture.Initialize();
 
             return texture;
@@ -109,8 +115,9 @@ namespace CSharpGL.Demos
             {
                 tff = br.ReadBytes((int)fs.Length);
             }
-            var builder = new ByteImageBuilder(tff, 256);
-            var texture = new Texture(builder, BindTextureTarget.Texture1D,
+            var texture = new Texture(
+                BindTextureTarget.Texture1D,
+                new ByteImageBuilder(tff, 256),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
             texture.Initialize();
             return texture;
