@@ -7,13 +7,15 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
+    /// build texture's content with IntPtr.Zero.
     /// </summary>
     public class NullImageBuilder : ImageBuilder
     {
         private int width;
         private int height;
+
         /// <summary>
-        /// 
+        /// build texture's content with IntPtr.Zero.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
