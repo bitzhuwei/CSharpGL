@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
+    // TODO: members of OpenGL in this file is not organized yet.
     public static partial class OpenGL
     {
 

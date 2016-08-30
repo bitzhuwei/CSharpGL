@@ -16,9 +16,9 @@ namespace CSharpGL
         /// <param name="samples">how many samples?</param>
         public void SetParameter(int width, int height, int samples)
         {
-            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_WIDTH, 512);
-            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_HEIGHT, 512);
-            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_SAMPLES, 4);
+            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_WIDTH, width);//512
+            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_HEIGHT, height);//512
+            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_SAMPLES, samples);//512
         }
     }
 }
