@@ -85,6 +85,7 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //  Destroy the internal dc.
+            //Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
             this.dibSection.Dispose();
 
             //	Call the base, which will delete the render context handle and window.

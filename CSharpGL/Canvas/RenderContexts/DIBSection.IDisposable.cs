@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    partial class DIBSection 
+    partial class DIBSection
     {
-      
+
         /// <summary>
         /// 
         /// </summary>
@@ -36,6 +36,12 @@ namespace CSharpGL
 
                 // Dispose unmanaged resources.
                 this.DestroyBitmap();
+
+                if (this.MemoryDeviceContext != IntPtr.Zero)
+                {
+                    Win32.DeleteDC(this.MemoryDeviceContext);
+                    this.MemoryDeviceContext = IntPtr.Zero;
+                }
             }
 
             this.disposedValue = true;
