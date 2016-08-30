@@ -93,7 +93,7 @@ namespace CSharpGL
         /// <param name="size"></param>
         /// <param name="data"></param>
         /// <param name="usage"></param>
-        private delegate void glBufferData(uint target, int size, IntPtr data, uint usage);
+        public delegate void glBufferData(uint target, int size, IntPtr data, uint usage);
         /// <summary>
         /// 
         /// </summary>

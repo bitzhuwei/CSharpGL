@@ -85,7 +85,7 @@ namespace CSharpGL
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, buffers[0]);
-            OpenGL.BufferData(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
+            glBufferData(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
 
             var bufferPtr = new OneIndexBufferPtr(

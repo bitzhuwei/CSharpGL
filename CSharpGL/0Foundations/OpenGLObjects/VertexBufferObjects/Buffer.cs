@@ -20,6 +20,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         protected static OpenGL.glBindBuffer glBindBuffer;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected static OpenGL.glBufferData glBufferData;
 
         /// <summary>
         /// 
@@ -98,6 +102,7 @@ namespace CSharpGL
             {
                 glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
                 glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+                glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
             }
 
             this.Usage = usage;
