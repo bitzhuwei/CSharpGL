@@ -18,6 +18,7 @@ namespace GridViewer
 
             this.Load += FormMain_Load;
             this.propertyGrid1.PropertyValueChanged += propertyGrid1_PropertyValueChanged;
+            this.scientificCanvas.RenderTrigger = RenderTrigger.Manual;
         }
 
         void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)

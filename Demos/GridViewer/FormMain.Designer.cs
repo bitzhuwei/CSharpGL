@@ -92,12 +92,12 @@
             this.treeViewRightMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblSelectedType = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.scientificCanvas = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblSelectedType = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -636,11 +636,21 @@
             this.adjustCameraToolStripMenuItem.Text = "Adjust Camera";
             this.adjustCameraToolStripMenuItem.Click += new System.EventHandler(this.adjustCameraToolStripMenuItem_Click);
             // 
+            // lblSelectedType
+            // 
+            this.lblSelectedType.AutoSize = true;
+            this.lblSelectedType.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblSelectedType.Location = new System.Drawing.Point(4, 3);
+            this.lblSelectedType.Name = "lblSelectedType";
+            this.lblSelectedType.Size = new System.Drawing.Size(112, 16);
+            this.lblSelectedType.TabIndex = 2;
+            this.lblSelectedType.Text = "Selected Type";
+            // 
             // btnApply
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.Font = new System.Drawing.Font("宋体", 14F);
-            this.btnApply.Location = new System.Drawing.Point(226, 326);
+            this.btnApply.Location = new System.Drawing.Point(226, 327);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(90, 32);
             this.btnApply.TabIndex = 1;
@@ -656,7 +666,7 @@
             this.propertyGrid1.Location = new System.Drawing.Point(0, 21);
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(2);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(319, 301);
+            this.propertyGrid1.Size = new System.Drawing.Size(319, 302);
             this.propertyGrid1.TabIndex = 0;
             // 
             // scientificCanvas
@@ -665,7 +675,7 @@
             this.scientificCanvas.Location = new System.Drawing.Point(0, 0);
             this.scientificCanvas.Name = "scientificCanvas";
             this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTrigger.Manual;
+            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.scientificCanvas.ShowSystemCursor = true;
             this.scientificCanvas.Size = new System.Drawing.Size(638, 515);
             this.scientificCanvas.TabIndex = 0;
@@ -679,16 +689,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblSelectedType
-            // 
-            this.lblSelectedType.AutoSize = true;
-            this.lblSelectedType.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblSelectedType.Location = new System.Drawing.Point(4, 3);
-            this.lblSelectedType.Name = "lblSelectedType";
-            this.lblSelectedType.Size = new System.Drawing.Size(112, 16);
-            this.lblSelectedType.TabIndex = 2;
-            this.lblSelectedType.Text = "Selected Type";
             // 
             // FormMain
             // 
