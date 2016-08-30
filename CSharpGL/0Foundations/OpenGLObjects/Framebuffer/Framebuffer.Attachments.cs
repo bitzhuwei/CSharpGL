@@ -30,7 +30,8 @@ namespace CSharpGL
 			OpenGL.GL_COLOR_ATTACHMENT15,
         };
         private int nextColorAttachmentIndex = 0;
-        private List<Renderbuffer> renderbufferList = new List<Renderbuffer>();
+        private Renderbuffer depthBuffer;
+        private List<Renderbuffer> colorBufferList = new List<Renderbuffer>();
 
         /// <summary>
         /// 
@@ -53,14 +54,26 @@ namespace CSharpGL
         /// <param name="attachment"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public void Attach(Renderbuffer renderbuffer, FramebufferTarget target, RenderbufferAttachment attachment)
+        public void Attach(Renderbuffer renderbuffer, FramebufferTarget target)
         {
-            if (nextColorAttachmentIndex >= attachment_id.Length)
-            { throw new IndexOutOfRangeException("Not enough attach points!"); }
+            switch (renderbuffer.BufferType)
+            {
+                case RenderbufferType.DepthBuffer:
+                    if (this.depthBuffer != null)
+                    { throw new Exception("Depth buffer already exists!"); }
+                    glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
+                    this.depthBuffer = renderbuffer;
+                    break;
+                case RenderbufferType.ColorBuffer:
+                    if (nextColorAttachmentIndex >= attachment_id.Length)
+                    { throw new IndexOutOfRangeException("Not enough attach points!"); }
 
-            glFramebufferRenderbuffer((uint)target, (uint)attachment, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
-
-            this.renderbufferList.Add(renderbuffer);
+                    glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
+                    this.colorBufferList.Add(renderbuffer);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
         #endregion attach Texture images

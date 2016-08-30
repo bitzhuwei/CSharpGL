@@ -41,7 +41,7 @@ namespace CSharpGL
 
                 //// Dispose unmanaged resources.
                 {
-                    Renderbuffer[] array = this.renderbufferList.ToArray();
+                    Renderbuffer[] array = this.colorBufferList.ToArray();
                     foreach (var item in array)
                     {
                         item.Dispose();
