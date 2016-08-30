@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using CSharpGL.Demos.Renderers;
 
 
 namespace CSharpGL.Demos
@@ -13,7 +14,8 @@ namespace CSharpGL.Demos
     {
         private ShaderProgram computeProgram;
         private ShaderProgram resetProgram;
-        private uint[] output_image = new uint[1];
+        //private uint[] output_image = new uint[1];
+        private Texture outputImage;
         private uint[] output_image_buffer = new uint[1];
         static ShaderCode[] staticShaderCodes;
         static PropertyNameMap map;
@@ -51,10 +53,12 @@ namespace CSharpGL.Demos
             }
             {
                 // This is the texture that the compute program will write into
-                OpenGL.GenTextures(1, output_image);
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, output_image[0]);
-                OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+                var texture = new Texture(BindTextureTarget.Texture2D,
+                    new TexStorageImageBuilder(8, OpenGL.GL_RGBA32F, 256, 256),
+                    new NullSampler());
+                texture.Initialize();
+                this.outputImage = texture;
             }
             {
                 this.GroupX = 1;
@@ -62,9 +66,8 @@ namespace CSharpGL.Demos
                 this.GroupZ = 1;
             }
             base.DoInitialize();
-            this.SetUniform("output_image", new samplerValue(
-                BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
 
+            this.SetUniform("output_image", this.outputImage.ToSamplerValue());
         }
 
         private uint maxX;
@@ -96,13 +99,13 @@ namespace CSharpGL.Demos
         {
             // reset image
             resetProgram.Bind();
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, output_image[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(maxX, maxY, maxZ);
             resetProgram.Unbind();
 
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, output_image[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(GroupX, GroupY, GroupZ);
             computeProgram.Unbind();
 
@@ -120,7 +123,7 @@ namespace CSharpGL.Demos
         {
             resetProgram.Delete();
             computeProgram.Delete();
-            OpenGL.DeleteTextures(1, output_image);
+            this.outputImage.Dispose();
         }
 
         class SimpleCompute : IBufferable
