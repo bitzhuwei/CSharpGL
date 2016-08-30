@@ -13,6 +13,11 @@ namespace CSharpGL
     {
         private string bitmapFilename;
 
+        /// <summary>
+        /// Gets a renderer that renders a bitmap in a square.
+        /// </summary>
+        /// <param name="bitmapFilename"></param>
+        /// <returns></returns>
         public static TextureRenderer Create(string bitmapFilename = "")
         {
             var shaderCodes = new ShaderCode[2];
