@@ -107,6 +107,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
+    <Compile Include="Renderers\RaycastVolumeImageBuilder.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.Render.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.Dispose.cs" />

@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
             InitRaycastRenderer();
 
             this.transferFunc1DTexture = InitTFF1DTexture(@"data\tff.dat");
-            initVol3DTex(@"data\head256.raw", 256, 256, 225);
+            this.volume3DTexture = initVol3DTex(@"data\head256.raw", 256, 256, 225);
 
             int[] viewport = OpenGL.GetViewport();
             Resize(viewport[2], viewport[3]);
@@ -50,14 +50,12 @@ namespace CSharpGL.Demos
             int[] viewport = OpenGL.GetViewport();
             this.raycastRenderer.SetUniform("ScreenSize", new vec2(viewport[2], viewport[3]));
             this.raycastRenderer.SetUniform("StepSize", g_stepSize);
-            this.raycastRenderer.SetUniform("TransferFunc", new samplerValue(
-                BindTextureTarget.Texture1D,
-                this.transferFunc1DTexture.Id,
-                OpenGL.GL_TEXTURE0));
-            this.raycastRenderer.SetUniform("ExitPoints", new samplerValue(BindTextureTarget.Texture2D,
-                this.backface2DTexture.Id,
-                OpenGL.GL_TEXTURE0));
-            this.raycastRenderer.SetUniform("VolumeTex", new samplerValue(BindTextureTarget.Texture3D, vol3DTexObj[0], OpenGL.GL_TEXTURE0));
+            this.raycastRenderer.SetUniform("TransferFunc",
+                this.transferFunc1DTexture.ToSamplerValue());
+            this.raycastRenderer.SetUniform("ExitPoints",
+                this.backface2DTexture.ToSamplerValue());
+            this.raycastRenderer.SetUniform("VolumeTex",
+                this.volume3DTexture.ToSamplerValue());
             var clearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
             this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());
@@ -92,51 +90,12 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void initVol3DTex(string filename, int width, int height, int depth)
+        private Texture initVol3DTex(string filename, int width, int height, int depth)
         {
-            var data = new UnmanagedArray<byte>(width * height * depth);
-            unsafe
-            {
-                int index = 0;
-                int readCount = 0;
-                byte* array = (byte*)data.Header.ToPointer();
-                using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-                using (var br = new BinaryReader(fs))
-                {
-                    int unReadCount = (int)fs.Length;
-                    const int cacheSize = 1024 * 1024;
-                    do
-                    {
-                        int min = Math.Min(cacheSize, unReadCount);
-                        var cache = new byte[min];
-                        readCount = br.Read(cache, 0, min);
-                        if (readCount != min)
-                        { throw new Exception(); }
+            var texture = new Texture(new RaycastVolumeImageBuilder(filename, width, height, depth), BindTextureTarget.Texture3D, new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Linear, TextureFilter.Linear));
+            texture.Initialize();
 
-                        for (int i = 0; i < readCount; i++)
-                        {
-                            array[index++] = cache[i];
-                        }
-                        unReadCount -= readCount;
-                    } while (readCount > 0);
-                }
-            }
-
-            OpenGL.GenTextures(1, vol3DTexObj);
-            // bind 3D texture target
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_3D, vol3DTexObj[0]);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_3D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_LINEAR);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_3D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_LINEAR);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_3D, OpenGL.GL_TEXTURE_WRAP_S, (int)OpenGL.GL_REPEAT);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_3D, OpenGL.GL_TEXTURE_WRAP_T, (int)OpenGL.GL_REPEAT);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_3D, OpenGL.GL_TEXTURE_WRAP_R, (int)OpenGL.GL_REPEAT);
-            // pixel transfer happens here from client to OpenGL server
-            OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
-            OpenGL.TexImage3D(OpenGL.GL_TEXTURE_3D, 0, (int)OpenGL.GL_INTENSITY,
-                width, height, depth, 0,
-                OpenGL.GL_LUMINANCE, OpenGL.GL_UNSIGNED_BYTE, data.Header);
-            data.Dispose();
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_3D, 0);
+            return texture;
         }
 
         private Texture initFace2DTex(int width, int height)

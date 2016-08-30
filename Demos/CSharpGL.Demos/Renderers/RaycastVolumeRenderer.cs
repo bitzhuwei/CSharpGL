@@ -18,7 +18,8 @@ namespace CSharpGL.Demos
         private Renderer raycastRenderer;
         private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
-        private uint[] vol3DTexObj = new uint[1];
+        //private uint[] vol3DTexObj = new uint[1];
+        private Texture volume3DTexture;
         private uint[] frameBuffer = new uint[1];
 
         private static readonly IBufferable model = new RaycastModel();
@@ -36,7 +37,7 @@ namespace CSharpGL.Demos
             this.raycastRenderer.Dispose();
             this.transferFunc1DTexture.Dispose();
             this.backface2DTexture.Dispose();
-            OpenGL.DeleteTextures(1, vol3DTexObj);
+            this.volume3DTexture.Dispose();
             OpenGL.DeleteFrameBuffers(1, frameBuffer);
         }
 
