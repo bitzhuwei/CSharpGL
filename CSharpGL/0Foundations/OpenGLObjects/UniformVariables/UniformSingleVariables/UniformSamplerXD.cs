@@ -26,13 +26,16 @@ namespace CSharpGL
         /// <param name="value"></param>
         public UniformSampler(string varName, samplerValue value) : base(varName, value) { }
 
+        private static OpenGL.glActiveTexture activeTexture;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
-            OpenGL.ActiveTexture(value.ActiveTextureIndex);
+            if (activeTexture == null)
+            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+            activeTexture(value.ActiveTextureIndex);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
             OpenGL.BindTexture(value.target, value.TextureId);
             this.Location = program.SetUniform(VarName, value.activeTextureIndex);
@@ -43,7 +46,9 @@ namespace CSharpGL
         /// <param name="program"></param>
         public override void ResetUniform(ShaderProgram program)
         {
-            OpenGL.ActiveTexture(value.ActiveTextureIndex);
+            if (activeTexture == null)
+            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+            activeTexture(value.ActiveTextureIndex);
             OpenGL.BindTexture(value.target, 0);
             //base.ResetUniform(program);
             //if (glActiveTexture == null)

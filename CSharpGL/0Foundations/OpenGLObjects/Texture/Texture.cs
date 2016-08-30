@@ -55,6 +55,7 @@ namespace CSharpGL
         //    OpenGL.BindTexture(this.Target, 0);
         //}
 
+        private static OpenGL.glActiveTexture activeTexture;
         private bool initialized = false;
         /// <summary>
         /// resources(bitmap etc.) can be disposed  after this initialization.
@@ -63,7 +64,9 @@ namespace CSharpGL
         {
             if (!this.initialized)
             {
-                OpenGL.ActiveTexture(this.ActiveTexture);
+                if (activeTexture == null)
+                { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+                activeTexture(this.ActiveTexture);
                 OpenGL.GenTextures(1, id);
                 BindTextureTarget target = this.Target;
                 OpenGL.BindTexture(target, id[0]);

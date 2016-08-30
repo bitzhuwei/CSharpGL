@@ -12,18 +12,12 @@ namespace CSharpGL
         #region OpenGL 1.3
 
         //  Delegates
-        private delegate void glActiveTexture(uint texture);
-        private static glActiveTexture activeTexture;
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="texture">OpenGL.GL_TEXTURE0 etc.</param>
-        public static void ActiveTexture(uint texture)
-        {
-            if (activeTexture == null)
-            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            activeTexture(texture);
-        }
+        /// <param name="texture"></param>
+        public delegate void glActiveTexture(uint texture);
+
         ///// <summary>
         ///// 
         ///// </summary>
