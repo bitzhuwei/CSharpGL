@@ -61,6 +61,15 @@ namespace CSharpGL
         {
             glBindFramebuffer((uint)target, 0);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("Framebuffer Id: {0}", this.Id);
+        }
     }
 
     /// <summary>

@@ -148,6 +148,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// somehing wrong if this field is removed. I don't know why.
+        /// </summary>
         private Framebuffer framebuffer;
 
         ///// <summary>

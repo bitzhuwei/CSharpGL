@@ -69,7 +69,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}: [w:{1}, h:{2}]", this.GetType().Name, this.Width, this.Height);
+            return string.Format("{0}: [w:{1}, h:{2}] {3}", this.GetType().Name, this.Width, this.Height, this.BufferType);
         }
     }
 
