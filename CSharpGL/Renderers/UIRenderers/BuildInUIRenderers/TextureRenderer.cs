@@ -48,7 +48,7 @@ namespace CSharpGL
             { bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\cursor_gold.png"); }
             else
             { bitmap = new Bitmap(this.bitmapFilename); }
-            var texture = new Texture(bitmap, BindTextureTarget.Texture2D);
+            var texture = new Texture(BindTextureTarget.Texture2D, bitmap);
             texture.Initialize();
             bitmap.Dispose();
             this.SetUniform("tex", texture.ToSamplerValue());

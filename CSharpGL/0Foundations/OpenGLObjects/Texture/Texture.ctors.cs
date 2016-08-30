@@ -59,12 +59,12 @@ namespace CSharpGL
         /// <summary>
         /// Texture.
         /// </summary>
+        /// <param name="target"></param>
         /// <param name="bitmap"></param>
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
-        /// <param name="target"></param>
-        public Texture(Bitmap bitmap,
-            BindTextureTarget target,
+        public Texture(
+            BindTextureTarget target, Bitmap bitmap,
             SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
             : this(new BitmapBuilder(bitmap, target), new FakeSampler(parameters, mipmapFiltering), target)
