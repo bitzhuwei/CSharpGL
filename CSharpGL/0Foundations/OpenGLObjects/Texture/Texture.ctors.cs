@@ -24,9 +24,9 @@ namespace CSharpGL
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
 
+            this.Target = target;
             this.ImageBuilder = imageBuilder;
             this.SamplerBuilder = samplerBuilder;
-            this.Target = target;
 
             this.ActiveTexture = OpenGL.GL_TEXTURE0;
         }
