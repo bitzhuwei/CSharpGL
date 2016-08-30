@@ -16,7 +16,7 @@ namespace GridViewer
 
         void ScientificCanvas_Load(object sender, EventArgs e)
         {
-            var camera = new Camera(new vec3(4, 1.6f, 3), new vec3(), new vec3(0, 1, 0),
+            var camera = new Camera(new vec3(4, 1.6f, 3), new vec3(0, 0, 0), new vec3(0, 1, 0),
                  CameraType.Perspecitive, this.Width, this.Height);
             var cameraManipulater = new SatelliteManipulater();
             cameraManipulater.Bind(camera, this);
