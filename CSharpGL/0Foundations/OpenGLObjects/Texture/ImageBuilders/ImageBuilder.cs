@@ -12,6 +12,16 @@ namespace CSharpGL
     /// </summary>
     public abstract class ImageBuilder
     {
+        private BindTextureTarget target;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BindTextureTarget Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
 
         /// <summary>
         /// build texture's content.

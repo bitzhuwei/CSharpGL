@@ -43,11 +43,10 @@ namespace CSharpGL
             { bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\cursor_gold.png"); }
             else
             { bitmap = new Bitmap(this.bitmapFilename); }
-            var texture = new Texture(bitmap);
+            var texture = new Texture(bitmap, BindTextureTarget.Texture2D);
             texture.Initialize();
             bitmap.Dispose();
-            this.SetUniform("tex", new samplerValue(BindTextureTarget.Texture2D,
-                texture.Id, OpenGL.GL_TEXTURE0));
+            this.SetUniform("tex", texture.ToSamplerValue());
         }
     }
 }

@@ -18,7 +18,21 @@ namespace CSharpGL
         /// <summary>
         /// binding target of this texture.
         /// </summary>
-        public BindTextureTarget Target { get; set; }
+        public BindTextureTarget Target
+        {
+            get
+            {
+                ImageBuilder builder = this.ImageBuilder;
+                if (builder == null) { return BindTextureTarget.Unknown; }
+                else { return builder.Target; }
+            }
+            set
+            {
+                ImageBuilder builder = this.ImageBuilder;
+                if (builder == null) { throw new Exception("Builder needed."); }
+                else { builder.Target = value; }
+            }
+        }
 
         /// <summary>
         /// texture's id/name.

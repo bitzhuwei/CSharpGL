@@ -13,7 +13,6 @@ namespace CSharpGL
     public class BitmapBuilder : ImageBuilder
     {
         private System.Drawing.Bitmap bitmap;
-        private BindTextureTarget target;
 
         /// <summary>
         /// build texture's content with Bitmap.
@@ -24,7 +23,7 @@ namespace CSharpGL
         {
             // TODO: Complete member initialization
             this.bitmap = bitmap;
-            this.target = target;
+            this.Target = target;
         }
 
         /// <summary>
@@ -36,13 +35,13 @@ namespace CSharpGL
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            if (target == BindTextureTarget.Texture1D)
+            if (Target == BindTextureTarget.Texture1D)
             {
-                OpenGL.TexImage1D((uint)target, 0, (int)OpenGL.GL_RGBA, bitmap.Width, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
+                OpenGL.TexImage1D((uint)Target, 0, (int)OpenGL.GL_RGBA, bitmap.Width, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
             }
-            else if (target == BindTextureTarget.Texture2D)
+            else if (Target == BindTextureTarget.Texture2D)
             {
-                OpenGL.TexImage2D((uint)target, 0, (int)OpenGL.GL_RGBA, bitmap.Width, bitmap.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
+                OpenGL.TexImage2D((uint)Target, 0, (int)OpenGL.GL_RGBA, bitmap.Width, bitmap.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
             }
             else
             { throw new NotImplementedException(); }

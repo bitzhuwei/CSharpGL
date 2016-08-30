@@ -46,7 +46,7 @@ namespace GridViewer
             base.DoInitialize();
 
             Bitmap bitmap = this.codedColors.GetBitmap(1024);
-            var texture = new Texture(bitmap) { Target = BindTextureTarget.Texture1D, };
+            var texture = new Texture(bitmap, BindTextureTarget.Texture1D);
             this.codedColors = null;
             texture.Initialize();
             this.Sampler = texture;

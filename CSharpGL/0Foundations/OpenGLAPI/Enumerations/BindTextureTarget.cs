@@ -12,6 +12,10 @@ namespace CSharpGL
     public enum BindTextureTarget : uint
     {
         /// <summary>
+        /// 
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
         /// The initial value is GL_ZERO
         /// </summary>
         Texture1D = OpenGL.GL_TEXTURE_1D,
