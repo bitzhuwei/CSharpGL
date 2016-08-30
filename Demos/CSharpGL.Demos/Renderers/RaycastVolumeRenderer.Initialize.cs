@@ -29,11 +29,11 @@ namespace CSharpGL.Demos
 
         private void Resize(int width, int height)
         {
-            OpenGL.DeleteTextures(1, backface2DTexObj);
+            if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
             OpenGL.DeleteFrameBuffers(1, frameBuffer);
 
             this.width = width; this.height = height;
-            initFace2DTex(width, height);
+            this.backface2DTexture = initFace2DTex(width, height);
             initFrameBuffer(width, height);
 
             RaycastingSetupUniforms();
@@ -54,7 +54,9 @@ namespace CSharpGL.Demos
                 BindTextureTarget.Texture1D,
                 this.transferFunc1DTexture.Id,
                 OpenGL.GL_TEXTURE0));
-            this.raycastRenderer.SetUniform("ExitPoints", new samplerValue(BindTextureTarget.Texture2D, backface2DTexObj[0], OpenGL.GL_TEXTURE0));
+            this.raycastRenderer.SetUniform("ExitPoints", new samplerValue(BindTextureTarget.Texture2D,
+                this.backface2DTexture.Id,
+                OpenGL.GL_TEXTURE0));
             this.raycastRenderer.SetUniform("VolumeTex", new samplerValue(BindTextureTarget.Texture3D, vol3DTexObj[0], OpenGL.GL_TEXTURE0));
             var clearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
@@ -72,7 +74,10 @@ namespace CSharpGL.Demos
             // attach the texture and the depth buffer to the framebuffer
             OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>()(1, frameBuffer);
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBuffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0, OpenGL.GL_TEXTURE_2D, backface2DTexObj[0], 0);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0, OpenGL.GL_TEXTURE_2D,
+                //backface2DTexObj[0], 
+                this.backface2DTexture.Id,
+                0);
             OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_RENDERBUFFER, depthBuffer[0]);
             checkFramebufferStatus();
             //OpenGL.Enable(GL_DEPTH_TEST); 
@@ -134,17 +139,14 @@ namespace CSharpGL.Demos
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_3D, 0);
         }
 
-        private void initFace2DTex(int width, int height)
+        private Texture initFace2DTex(int width, int height)
         {
-            OpenGL.DeleteTextures(1, backface2DTexObj);
-            OpenGL.GenTextures(1, backface2DTexObj);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, backface2DTexObj[0]);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, (int)OpenGL.GL_REPEAT);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, (int)OpenGL.GL_REPEAT);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
-            OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGBA16F, width, height, 0, OpenGL.GL_RGBA, OpenGL.GL_FLOAT, IntPtr.Zero);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
+
+            var texture = new Texture(new NullImageBuilder(width, height, OpenGL.GL_RGBA16F, OpenGL.GL_RGBA, OpenGL.GL_FLOAT), BindTextureTarget.Texture2D, new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
+            texture.Initialize();
+
+            return texture;
         }
 
         private Texture InitTFF1DTexture(string filename)
