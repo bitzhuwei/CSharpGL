@@ -62,6 +62,11 @@ namespace CSharpGL.Demos
             this.content.Add(string.Format("Max Framebuffer Height: {0}", Framebuffer.MaxFramebufferHeight()));
             this.content.Add(string.Format("Max Framebuffer Layers: {0}", Framebuffer.MaxFramebufferLayers()));
             this.content.Add(string.Format("Max Framebuffer Samples: {0}", Framebuffer.MaxFramebufferSamples()));
+            //this.content.Add(string.Format("Framebuffer Default Width: {0}", Framebuffer.DefaultWidth()));
+            //this.content.Add(string.Format("Framebuffer Default Height: {0}", Framebuffer.DefaultHeight()));
+            //this.content.Add(string.Format("Framebuffer Default Layers: {0}", Framebuffer.DefaultLayers()));
+            //this.content.Add(string.Format("Framebuffer Default Samples: {0}", Framebuffer.DefaultSamples()));
+            //this.content.Add(string.Format("Framebuffer Default Fixed Sample Locations: {0}", Framebuffer.DefaultFixedSampleLocations()));
         }
 
         void glCanvas1_MouseMove(object sender, MouseEventArgs e)

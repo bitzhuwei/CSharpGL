@@ -58,5 +58,59 @@ namespace CSharpGL
             return result[0];
         }
 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //public static int DefaultWidth()
+        //{
+        //    var result = new int[1];
+        //    OpenGL.GetInteger(OpenGL.GL_FRAMEBUFFER_DEFAULT_WIDTH, result);
+        //    return result[0];
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //public static int DefaultHeight()
+        //{
+        //    var result = new int[1];
+        //    OpenGL.GetInteger(OpenGL.GL_FRAMEBUFFER_DEFAULT_HEIGHT, result);
+        //    return result[0];
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //public static int DefaultLayers()
+        //{
+        //    var result = new int[1];
+        //    OpenGL.GetInteger(OpenGL.GL_FRAMEBUFFER_DEFAULT_LAYERS, result);
+        //    return result[0];
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //public static int DefaultSamples()
+        //{
+        //    var result = new int[1];
+        //    OpenGL.GetInteger(OpenGL.GL_FRAMEBUFFER_DEFAULT_SAMPLES, result);
+        //    return result[0];
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <returns></returns>
+        //public static int DefaultFixedSampleLocations()
+        //{
+        //    var result = new int[1];
+        //    OpenGL.GetInteger(OpenGL.GL_FRAMEBUFFER_DEFAULT_FIXED_SAMPLES_LOCATIONS, result);
+        //    return result[0];
+        //}
     }
 }

@@ -432,6 +432,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_FRAMEBUFFER_DEFAULT_SAMPLES = 0x9313;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_FRAMEBUFFER_DEFAULT_FIXED_SAMPLES_LOCATIONS = 0x9314;
 
         #endregion
 
