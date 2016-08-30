@@ -11,8 +11,8 @@ namespace CSharpGL.Demos
 {
     class RaycastModel : IBufferable
     {
-        public const string strPosition = "position";
-        public const string strBoundingBox = "boundingBox";
+        public const string strposition = "position";
+        public const string strcolor = "color";
         PropertyBufferPtr positionBuffer;
         PropertyBufferPtr colorBuffer;
         // draw the six faces of the boundbox by drawwing triangles
@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
-            if (bufferName == strPosition)
+            if (bufferName == strposition)
             {
                 if (positionBuffer == null)
                 {
@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
                 }
                 return positionBuffer;
             }
-            else if (bufferName == strBoundingBox)
+            else if (bufferName == strcolor)
             {
                 if (colorBuffer == null)
                 {
