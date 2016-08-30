@@ -13,7 +13,8 @@ namespace CSharpGL.Demos
         private PickableRenderer buildListsRenderer;
         private PickableRenderer resolve_lists;
 
-        private uint[] head_pointer_texture = new uint[1];
+        //private uint[] head_pointer_texture = new uint[1];
+        private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
         private uint[] head_pointer_clear_buffer = new uint[1];
@@ -60,23 +61,18 @@ namespace CSharpGL.Demos
             }
         }
 
-        private static OpenGL.glActiveTexture activeTexture;
         protected override void DoInitialize()
         {
             this.buildListsRenderer.Initialize();
             this.resolve_lists.Initialize();
-            // Create head pointer texture
-            if (activeTexture == null)
-            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            activeTexture(OpenGL.GL_TEXTURE0);
-            OpenGL.GenTextures(1, head_pointer_texture);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, head_pointer_texture[0]);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
-            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
-            OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_R32UI, MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, 0, OpenGL.GL_RED_INTEGER, OpenGL.GL_UNSIGNED_INT, IntPtr.Zero);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
-
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, head_pointer_texture[0], 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+            {
+                var texture = new Texture(BindTextureTarget.Texture2D,
+                    new NullImageBuilder(MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, OpenGL.GL_R32UI, OpenGL.GL_RED_INTEGER, OpenGL.GL_UNSIGNED_BYTE),
+                    new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
+                texture.Initialize();
+                this.headTexture = texture;
+            }
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Create buffer for clearing the head pointer texture
             OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, head_pointer_clear_buffer);
@@ -135,14 +131,14 @@ namespace CSharpGL.Demos
 
             // Clear head-pointer image
             OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, head_pointer_texture[0]);
+            this.headTexture.Bind();
             OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            this.headTexture.Unbind();
             OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
             //
 
             // Bind head-pointer image for read-write
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, head_pointer_texture[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Bind linked-list buffer for write
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
@@ -177,7 +173,7 @@ namespace CSharpGL.Demos
             OpenGL.DeleteTextures(linked_list_texture.Length, linked_list_texture);
             OpenGL.DeleteBuffers(linked_list_buffer.Length, linked_list_buffer);
             OpenGL.DeleteBuffers(atomic_counter_buffer.Length, atomic_counter_buffer);
-            OpenGL.DeleteTextures(head_pointer_texture.Length, head_pointer_texture);
+            this.headTexture.Dispose();
         }
     }
 }

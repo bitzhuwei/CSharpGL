@@ -37,23 +37,23 @@ namespace CSharpGL
         ///// </summary>
         //public bool UseMipmap { get; private set; }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public void Bind()
-        //{
-        //    OpenGL.BindTexture(this.Target, this.id[0]);
-        //    //this.SamplerBuilder.Bind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Bind()
+        {
+            OpenGL.BindTexture(this.Target, this.Id);
+            //this.SamplerBuilder.Bind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
+        }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public void Unbind()
-        //{
-        //    //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
-        //    OpenGL.BindTexture(this.Target, 0);
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Unbind()
+        {
+            //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            OpenGL.BindTexture(this.Target, 0);
+        }
 
         private static OpenGL.glActiveTexture activeTexture;
         private bool initialized = false;
