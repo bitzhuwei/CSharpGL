@@ -14,11 +14,10 @@ namespace CSharpGL
         private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
         private static OpenGL.glBindFramebufferEXT glBindFramebuffer;
         private static OpenGL.glFramebufferTexture2DEXT glFramebufferTexture2D;
-        private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
-        private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
-        private static OpenGL.glDrawBuffers glDrawBuffers;
+        //private static OpenGL.glDrawBuffers glDrawBuffers;
         private static OpenGL.glFramebufferRenderbufferEXT glFramebufferRenderbuffer;
         private static OpenGL.glFramebufferParameteri glFramebufferParameteri;
+        private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
 
         uint[] frameBuffer = new uint[1];
         /// <summary>
@@ -36,11 +35,10 @@ namespace CSharpGL
                 glGenFramebuffers = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>();
                 glBindFramebuffer = OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>();
                 glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
-                glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
-                glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
-                glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>();
+                //glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>();
                 glFramebufferRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>();
                 glFramebufferParameteri = OpenGL.GetDelegateFor<OpenGL.glFramebufferParameteri>();
+                glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
             }
 
             glGenFramebuffers(1, frameBuffer);

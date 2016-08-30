@@ -34,7 +34,8 @@ namespace CSharpGL
         private List<Renderbuffer> colorBufferList = new List<Renderbuffer>();
 
         /// <summary>
-        /// 
+        /// Attach a texture.
+        /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
         /// <param name="texture"></param>
         /// <returns></returns>
@@ -49,6 +50,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Attach a render buffer.
+        /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
         /// <param name="renderbuffer"></param>
         /// <param name="target"></param>

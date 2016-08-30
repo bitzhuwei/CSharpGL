@@ -63,7 +63,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="n"></param>
         /// <param name="renderbuffers"></param>
-        public delegate void glDeleteRenderbuffersEXT(uint n, uint[] renderbuffers);
+        private delegate void glDeleteRenderbuffersEXT(uint n, uint[] renderbuffers);
         /// <summary>
         /// 
         /// </summary>
@@ -102,7 +102,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="n"></param>
         /// <param name="framebuffers"></param>
-        public delegate void glDeleteFramebuffersEXT(uint n, uint[] framebuffers);
+        private delegate void glDeleteFramebuffersEXT(uint n, uint[] framebuffers);
         /// <summary>
         /// 
         /// </summary>

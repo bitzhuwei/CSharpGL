@@ -14,7 +14,6 @@ namespace CSharpGL
         private static OpenGL.glGenRenderbuffersEXT glGenRenderbuffers;
         private static OpenGL.glBindRenderbufferEXT glBindRenderbuffer;
         private static OpenGL.glRenderbufferStorageEXT glRenderbufferStorage;
-        private static OpenGL.glDeleteRenderbuffersEXT glDeleteRenderbuffers;
 
         uint[] renderbuffer = new uint[1];
         /// <summary>
@@ -36,7 +35,6 @@ namespace CSharpGL
                 glGenRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>();
                 glBindRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>();
                 glRenderbufferStorage = OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>();
-                glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>();
             }
 
             this.Width = width;

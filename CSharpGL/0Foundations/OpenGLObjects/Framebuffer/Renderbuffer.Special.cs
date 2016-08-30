@@ -16,10 +16,23 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
+        /// <param name="internalFormat"></param>
         /// <returns></returns>
-        public static Renderbuffer GetDepthbuffer(int width, int height)
+        public static Renderbuffer CreateDepthbuffer(int width, int height, DepthComponentType internalFormat = DepthComponentType.DepthComponent)
         {
-            var renderbuffer = new Renderbuffer(width, height, OpenGL.GL_DEPTH_COMPONENT24, RenderbufferType.DepthBuffer);
+            return CreateDepthbuffer(width, height, (uint)internalFormat);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="internalFormat"></param>
+        /// <returns></returns>
+        public static Renderbuffer CreateDepthbuffer(int width, int height, uint internalFormat = OpenGL.GL_DEPTH_COMPONENT)
+        {
+            var renderbuffer = new Renderbuffer(width, height, internalFormat, RenderbufferType.DepthBuffer);
 
             return renderbuffer;
         }
@@ -29,12 +42,28 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
+        /// <param name="internalFormat"></param>
         /// <returns></returns>
-        public static Renderbuffer GetColorbuffer(int width, int height)
+        public static Renderbuffer CreateColorbuffer(int width, int height, uint internalFormat = OpenGL.GL_RGBA)
         {
-            var renderbuffer = new Renderbuffer(width, height, OpenGL.GL_RGBA, RenderbufferType.ColorBuffer);
+            var renderbuffer = new Renderbuffer(width, height, internalFormat, RenderbufferType.ColorBuffer);
 
             return renderbuffer;
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum DepthComponentType : uint
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthComponent = OpenGL.GL_DEPTH_COMPONENT,
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthComponent24 = OpenGL.GL_DEPTH_COMPONENT24,
     }
 }

@@ -30,11 +30,11 @@ namespace CSharpGL.Demos
         private void Resize(int width, int height)
         {
             if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
-            OpenGL.DeleteFrameBuffers(1, frameBuffer);
+            if (framebuffer != null) { framebuffer.Dispose(); }
 
             this.width = width; this.height = height;
             this.backface2DTexture = InitFace2DTexture(width, height);
-            initFrameBuffer(width, height);
+            this.framebuffer = InitFramebuffer(width, height);
 
             RaycastingSetupUniforms();
         }
@@ -61,24 +61,16 @@ namespace CSharpGL.Demos
             this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());
         }
 
-        private void initFrameBuffer(int texWidth, int texHeight)
+        private Framebuffer InitFramebuffer(int texWidth, int texHeight)
         {
-            // create a depth buffer for our framebuffer
-            var depthBuffer = new uint[1];
-            OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>()(1, depthBuffer);
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, depthBuffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT, texWidth, texHeight);
+            var framebuffer = new Framebuffer();
+            framebuffer.Bind();
+            framebuffer.Attach(this.backface2DTexture);
+            var depthBuffer = Renderbuffer.CreateDepthbuffer(texWidth, texHeight, DepthComponentType.DepthComponent);
+            framebuffer.Attach(depthBuffer, FramebufferTarget.Framebuffer);
+            framebuffer.Unbind();
 
-            // attach the texture and the depth buffer to the framebuffer
-            OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>()(1, frameBuffer);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBuffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0, OpenGL.GL_TEXTURE_2D,
-                //backface2DTexObj[0], 
-                this.backface2DTexture.Id,
-                0);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_RENDERBUFFER, depthBuffer[0]);
-            checkFramebufferStatus();
-            //OpenGL.Enable(GL_DEPTH_TEST); 
+            return framebuffer;
         }
 
         private void checkFramebufferStatus()

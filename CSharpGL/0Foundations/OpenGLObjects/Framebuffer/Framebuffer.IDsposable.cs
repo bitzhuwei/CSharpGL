@@ -39,7 +39,7 @@ namespace CSharpGL
 
                 }
 
-                //// Dispose unmanaged resources.
+                // Dispose unmanaged resources.
                 {
                     Renderbuffer depthBuffer = this.depthBuffer;
                     if (depthBuffer != null)
@@ -55,7 +55,7 @@ namespace CSharpGL
                     }
                 }
                 {
-                    glDeleteFramebuffers(1, this.frameBuffer);
+                    OpenGL.DeleteFramebuffers(1, this.frameBuffer);
                 }
             }
 

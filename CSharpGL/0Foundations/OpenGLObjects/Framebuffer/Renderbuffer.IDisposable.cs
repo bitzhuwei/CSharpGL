@@ -39,8 +39,8 @@ namespace CSharpGL
 
                 }
 
-                //// Dispose unmanaged resources.
-                glDeleteRenderbuffers(1, this.renderbuffer);
+                // Dispose unmanaged resources.
+                OpenGL.DeleteRenderbuffers(1, this.renderbuffer);
             }
 
             this.disposedValue = true;

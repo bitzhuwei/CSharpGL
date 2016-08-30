@@ -67,8 +67,8 @@ namespace CSharpGL
 
         private static Framebuffer CreateFramebuffer(int width, int height)
         {
-            Renderbuffer colorBuffer = Renderbuffer.GetColorbuffer(width, height);
-            Renderbuffer depthBuffer = Renderbuffer.GetDepthbuffer(width, height);
+            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, OpenGL.GL_RGBA);
+            Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, OpenGL.GL_DEPTH_COMPONENT24);
             var framebuffer = new Framebuffer();
             framebuffer.Bind();
             framebuffer.Attach(colorBuffer, FramebufferTarget.Framebuffer);
