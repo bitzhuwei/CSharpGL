@@ -23,7 +23,8 @@ namespace CSharpGL
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
-        public override void Build()
+        /// <param name="target"></param>
+        public override void Build(BindTextureTarget target)
         {
             OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
             OpenGL.TexImage1D((uint)BindTextureTarget.Texture1D, 0, OpenGL.GL_RGBA8, this.width, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, content);

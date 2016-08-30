@@ -14,19 +14,21 @@ namespace CSharpGL
         /// <summary>
         /// Texture.
         /// </summary>
+        /// <param name="target"></param>
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
-        /// <param name="target"></param>
-        public Texture(ImageBuilder imageBuilder, SamplerBase samplerBuilder,
-            BindTextureTarget target = BindTextureTarget.Texture2D)
+        public Texture(
+            BindTextureTarget target,
+            ImageBuilder imageBuilder,
+            SamplerBase samplerBuilder)
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
 
             this.ImageBuilder = imageBuilder;
             this.SamplerBuilder = samplerBuilder;
+            this.Target = target;
 
             this.ActiveTexture = OpenGL.GL_TEXTURE0;
-            this.Target = target;
         }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace CSharpGL
         public Texture(BindTextureTarget target,
             Bitmap bitmap,
             SamplerBase samplerBuilder)
-            : this(new BitmapBuilder(bitmap, target), samplerBuilder, target)
+            : this(target, new BitmapBuilder(bitmap), samplerBuilder)
         {
         }
 
@@ -54,7 +56,7 @@ namespace CSharpGL
             ImageBuilder imageBuilder,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(imageBuilder, new FakeSampler(parameters, mipmapFiltering), target)
+            : this(target, imageBuilder, new FakeSampler(parameters, mipmapFiltering))
         {
         }
 
@@ -70,7 +72,7 @@ namespace CSharpGL
             Bitmap bitmap,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(new BitmapBuilder(bitmap, target), new FakeSampler(parameters, mipmapFiltering), target)
+            : this(target, new BitmapBuilder(bitmap), new FakeSampler(parameters, mipmapFiltering))
         {
         }
     }

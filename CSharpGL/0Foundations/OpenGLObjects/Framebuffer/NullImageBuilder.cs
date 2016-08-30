@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Build()
+        public override void Build(BindTextureTarget target)
         {
             OpenGL.TexImage2D((uint)BindTextureTarget.Texture2D, 0,
                 internalFormat,// OpenGL.GL_RGBA, 

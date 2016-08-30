@@ -34,7 +34,11 @@ namespace CSharpGL.Demos
             this.depth = depth;
         }
 
-        public override void Build()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        public override void Build(BindTextureTarget target)
         {
             var data = new UnmanagedArray<byte>(width * height * depth);
             unsafe

@@ -18,21 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// binding target of this texture.
         /// </summary>
-        public BindTextureTarget Target
-        {
-            get
-            {
-                ImageBuilder builder = this.ImageBuilder;
-                if (builder == null) { return BindTextureTarget.Unknown; }
-                else { return builder.Target; }
-            }
-            set
-            {
-                ImageBuilder builder = this.ImageBuilder;
-                if (builder == null) { throw new Exception("Builder needed."); }
-                else { builder.Target = value; }
-            }
-        }
+        public BindTextureTarget Target { get; private set; }
 
         /// <summary>
         /// texture's id/name.
@@ -79,10 +65,11 @@ namespace CSharpGL
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(this.ActiveTexture);
                 OpenGL.GenTextures(1, id);
-                OpenGL.BindTexture(this.Target, id[0]);
-                this.SamplerBuilder.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, this.Target);
-                this.ImageBuilder.Build();
-                OpenGL.GenerateMipmap((MipmapTarget)((uint)this.Target));// TODO: does this work?
+                BindTextureTarget target = this.Target;
+                OpenGL.BindTexture(target, id[0]);
+                this.SamplerBuilder.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, target);
+                this.ImageBuilder.Build(target);
+                OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
                 //this.SamplerBuilder.Unbind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
                 OpenGL.BindTexture(this.Target, 0);
                 this.initialized = true;
