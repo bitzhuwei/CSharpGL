@@ -92,7 +92,8 @@ namespace CSharpGL
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
-            Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
+            //Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
+            this.dibSection.Dispose();
 
             //this.dibSection.Dispose();
 

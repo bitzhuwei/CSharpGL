@@ -37,10 +37,11 @@ namespace CSharpGL
                 // Dispose unmanaged resources.
                 this.DestroyBitmap();
 
-                if (this.MemoryDeviceContext != IntPtr.Zero)
+                IntPtr dc = this.MemoryDeviceContext;
+                if (dc != IntPtr.Zero)
                 {
-                    Win32.DeleteDC(this.MemoryDeviceContext);
                     this.MemoryDeviceContext = IntPtr.Zero;
+                    Win32.DeleteDC(dc);
                 }
             }
 
