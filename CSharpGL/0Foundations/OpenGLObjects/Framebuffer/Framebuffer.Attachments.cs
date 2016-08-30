@@ -51,7 +51,6 @@ namespace CSharpGL
         /// Attach a render buffer.
         /// </summary>
         /// <param name="renderbuffer"></param>
-        /// <param name="attachment"></param>
         /// <param name="target"></param>
         /// <returns></returns>
         public void Attach(Renderbuffer renderbuffer, FramebufferTarget target)
