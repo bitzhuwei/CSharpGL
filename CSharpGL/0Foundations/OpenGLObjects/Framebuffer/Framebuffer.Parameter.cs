@@ -18,7 +18,7 @@ namespace CSharpGL
         {
             glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_WIDTH, width);//512
             glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_HEIGHT, height);//512
-            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_SAMPLES, samples);//512
+            glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_SAMPLES, samples);//4
         }
     }
 }
