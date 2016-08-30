@@ -18,9 +18,7 @@ namespace CSharpGL.Demos
         private Renderer raycastRenderer;
         private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
-        //private uint[] vol3DTexObj = new uint[1];
         private Texture volume3DTexture;
-        //private uint[] frameBuffer = new uint[1];
         private Framebuffer framebuffer;
 
         private static readonly IBufferable model = new RaycastModel();
