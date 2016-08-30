@@ -28,7 +28,8 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="internalformat"></param>
-        public Renderbuffer(int width, int height, uint internalformat)
+        /// <param name="bufferType"></param>
+        public Renderbuffer(int width, int height, uint internalformat, RenderbufferType bufferType)
         {
             if (glGenRenderbuffers == null)
             {
@@ -40,6 +41,7 @@ namespace CSharpGL
 
             this.Width = width;
             this.Height = height;
+            this.BufferType = bufferType;
 
             glGenRenderbuffers(1, renderbuffer);
             glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, renderbuffer[0]);
@@ -61,10 +63,30 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        public RenderbufferType BufferType { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}: [w:{1}, h:{2}]", this.GetType().Name, this.Width, this.Height);
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum RenderbufferType
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthBuffer,
+        /// <summary>
+        /// 
+        /// </summary>
+        ColorBuffer,
     }
 }
