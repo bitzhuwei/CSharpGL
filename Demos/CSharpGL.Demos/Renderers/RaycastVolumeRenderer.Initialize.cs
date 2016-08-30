@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
             OpenGL.DeleteFrameBuffers(1, frameBuffer);
 
             this.width = width; this.height = height;
-            this.backface2DTexture = initFace2DTex(width, height);
+            this.backface2DTexture = InitFace2DTexture(width, height);
             initFrameBuffer(width, height);
 
             RaycastingSetupUniforms();
@@ -98,7 +98,7 @@ namespace CSharpGL.Demos
             return texture;
         }
 
-        private Texture initFace2DTex(int width, int height)
+        private Texture InitFace2DTexture(int width, int height)
         {
             if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
 
