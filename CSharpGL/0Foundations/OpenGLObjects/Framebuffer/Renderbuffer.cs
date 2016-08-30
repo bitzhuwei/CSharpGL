@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Create, update, use and delete a framebuffer object.
+    /// Create, update, use and delete a renderbuffer object.
     /// </summary>
     public partial class Renderbuffer
     {
@@ -23,7 +23,7 @@ namespace CSharpGL
         public uint Id { get { return renderbuffer[0]; } }
 
         /// <summary>
-        /// Create, update, use and delete a framebuffer object.
+        /// Create, update, use and delete a renderbuffer object.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
