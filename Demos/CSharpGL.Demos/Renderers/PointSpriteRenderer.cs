@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
             staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.vert"), ShaderType.VertexShader);
             staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
-            map.Add("position", "position");
+            map.Add("position", PointSpriteModel.strposition);
         }
         public PointSpriteRenderer(int particleCount)
             : base(new PointSpriteModel(particleCount), staticShaderCodes, map)
@@ -82,7 +82,7 @@ namespace CSharpGL.Demos
             {
                 this.particleCount = particleCount;
             }
-            public const string strPosition = "position";
+            public const string strposition = "position";
             private PropertyBufferPtr positionBufferPtr = null;
             private IndexBufferPtr indexBufferPtr;
             private int particleCount;
@@ -91,7 +91,7 @@ namespace CSharpGL.Demos
 
             public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
-                if (bufferName == strPosition)
+                if (bufferName == strposition)
                 {
                     if (positionBufferPtr == null)
                     {
