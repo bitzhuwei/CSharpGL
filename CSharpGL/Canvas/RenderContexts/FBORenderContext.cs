@@ -75,8 +75,8 @@ namespace CSharpGL
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer();
             framebuffer.Bind();
-            framebuffer.Attach(colorBuffer, FramebufferTarget.Framebuffer);
-            framebuffer.Attach(depthBuffer, FramebufferTarget.Framebuffer);
+            framebuffer.Attach(colorBuffer);
+            framebuffer.Attach(depthBuffer);
 
             framebuffer.CheckCompleteness();
 

@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <param name="renderbuffer"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public void Attach(Renderbuffer renderbuffer, FramebufferTarget target)
+        public void Attach(Renderbuffer renderbuffer, FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
             switch (renderbuffer.BufferType)
             {

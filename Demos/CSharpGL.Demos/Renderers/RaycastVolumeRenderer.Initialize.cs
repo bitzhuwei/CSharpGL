@@ -67,7 +67,7 @@ namespace CSharpGL.Demos
             framebuffer.Bind();
             framebuffer.Attach(this.backface2DTexture);
             var depthBuffer = Renderbuffer.CreateDepthbuffer(texWidth, texHeight, DepthComponentType.DepthComponent);
-            framebuffer.Attach(depthBuffer, FramebufferTarget.Framebuffer);
+            framebuffer.Attach(depthBuffer);
             framebuffer.Unbind();
 
             return framebuffer;
