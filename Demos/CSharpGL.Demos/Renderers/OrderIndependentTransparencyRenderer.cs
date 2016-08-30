@@ -65,7 +65,7 @@ namespace CSharpGL.Demos
             this.buildListsRenderer.Initialize();
             this.resolve_lists.Initialize();
             // Create head pointer texture
-            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
+            OpenGL.ActiveTexture(OpenGL.GL_TEXTURE0);
             OpenGL.GenTextures(1, head_pointer_texture);
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, head_pointer_texture[0]);
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);

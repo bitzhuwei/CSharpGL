@@ -10,6 +10,7 @@ namespace CSharpGL
     /// </summary>
     public partial class Texture : IDisposable
     {
+
         /// <summary>
         /// OpenGL.GL_TEXTURE0 etc.
         /// </summary>
@@ -62,8 +63,7 @@ namespace CSharpGL
         {
             if (!this.initialized)
             {
-                //GL.ActiveTexture(GL.GL_TEXTURE0);
-                OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(this.ActiveTexture);
+                OpenGL.ActiveTexture(this.ActiveTexture);
                 OpenGL.GenTextures(1, id);
                 BindTextureTarget target = this.Target;
                 OpenGL.BindTexture(target, id[0]);
@@ -86,5 +86,14 @@ namespace CSharpGL
         /// </summary>
         public SamplerBase SamplerBuilder { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("ActiveTexture{0}, Target:{1}, Id:{2}",
+                this.ActiveTexture - OpenGL.GL_TEXTURE0, this.Target, this.Id);
+        }
     }
 }

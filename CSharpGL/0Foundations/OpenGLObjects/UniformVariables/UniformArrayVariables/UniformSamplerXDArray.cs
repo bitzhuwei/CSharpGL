@@ -21,19 +21,16 @@ namespace CSharpGL
         /// <param name="length"></param>
         public UniformSamplerArray(string varName, int length) : base(varName, length) { }
 
-        static OpenGL.glActiveTexture glActiveTexture = null;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
-            if (glActiveTexture == null)
-            { glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
             for (int i = 0; i < this.Value.Length; i++)
             {
                 samplerValue value = this.Value[i];
-                glActiveTexture(value.ActiveTextureIndex);
+                OpenGL.ActiveTexture(value.ActiveTextureIndex);
                 //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.value[i].TextureId);
                 OpenGL.BindTexture(value.target, value.TextureId);
                 // TODO: assign the first location or last?
