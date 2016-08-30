@@ -31,6 +31,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         TextureCubeMap = OpenGL.GL_TEXTURE_CUBE_MAP,
+        /// <summary>
+        /// 
+        /// </summary>
+        TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
     }
 
 }

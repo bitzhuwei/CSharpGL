@@ -19,7 +19,8 @@ namespace CSharpGL.Demos
         private uint[] head_pointer_clear_buffer = new uint[1];
         private uint[] atomic_counter_buffer = new uint[1];
         private uint[] linked_list_buffer = new uint[1];
-        private uint[] linked_list_texture = new uint[1];
+        //private uint[] linked_list_texture = new uint[1];
+        private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
 
         public DepthTestSwitch DepthTestSwitch
@@ -102,12 +103,14 @@ namespace CSharpGL.Demos
             OpenGL.BindBuffer(BufferTarget.TextureBuffer, 0);
 
             // Bind it to a texture (for use as a TBO)
-            OpenGL.GenTextures(1, linked_list_texture);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, linked_list_texture[0]);
-            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32UI, linked_list_buffer[0]);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, 0);
-
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            {
+                var texture = new Texture(BindTextureTarget.TextureBuffer,
+                    new TexBufferImageBuilder(linked_list_buffer[0]),
+                    new NullSampler());
+                texture.Initialize();
+                this.linkedListTexture = texture;
+            }
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
             OpenGL.ClearDepth(1.0f);
         }
@@ -140,7 +143,7 @@ namespace CSharpGL.Demos
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Bind linked-list buffer for write
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMatrix();
@@ -169,10 +172,32 @@ namespace CSharpGL.Demos
             this.buildListsRenderer.Dispose();
             this.resolve_lists.Dispose();
 
-            OpenGL.DeleteTextures(linked_list_texture.Length, linked_list_texture);
+            this.linkedListTexture.Dispose();
             OpenGL.DeleteBuffers(linked_list_buffer.Length, linked_list_buffer);
             OpenGL.DeleteBuffers(atomic_counter_buffer.Length, atomic_counter_buffer);
             this.headTexture.Dispose();
+        }
+    }
+
+    class TexBufferImageBuilder : ImageBuilder
+    {
+        private uint textureBufferId;
+        public TexBufferImageBuilder(uint textureBufferId)
+        {
+            this.textureBufferId = textureBufferId;
+        }
+        public override void Build(BindTextureTarget target)
+        {
+            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32UI, textureBufferId);
+        }
+    }
+
+    class NullSampler : SamplerBase
+    {
+        public NullSampler() : base(null, MipmapFilter.LinearMipmapLinear) { }
+
+        public override void Bind(uint unit, BindTextureTarget target)
+        {
         }
     }
 }
