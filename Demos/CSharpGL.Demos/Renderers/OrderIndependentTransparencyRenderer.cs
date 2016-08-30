@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
             // Create buffer for clearing the head pointer texture
             OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, head_pointer_clear_buffer);
             OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_PIXEL_UNPACK_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * sizeof(uint), IntPtr.Zero, OpenGL.GL_STATIC_DRAW);
+            OpenGL.BufferData((uint)BufferTarget.PixelUnpackBuffer, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * sizeof(int), IntPtr.Zero, OpenGL.GL_STATIC_DRAW);
             IntPtr data = OpenGL.MapBuffer(BufferTarget.PixelUnpackBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
@@ -94,13 +94,13 @@ namespace CSharpGL.Demos
             // Create the atomic counter buffer
             OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, atomic_counter_buffer);
             OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+            OpenGL.BufferData(OpenGL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
             OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
 
             // Create the linked list storage buffer
             OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, linked_list_buffer);
             OpenGL.BindBuffer(BufferTarget.TextureBuffer, linked_list_buffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+            OpenGL.BufferData(OpenGL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
             OpenGL.BindBuffer(BufferTarget.TextureBuffer, 0);
 
             // Bind it to a texture (for use as a TBO)

@@ -1046,6 +1046,7 @@ namespace CSharpGL
             OpenGL.ShadeModel((uint)mode);
         }
 
+        private static glBufferData bufferData;
         /// <summary>
         /// 设置当前VBO的数据。
         /// </summary>
@@ -1054,7 +1055,22 @@ namespace CSharpGL
         /// <param name="usage"></param>
         public static void BufferData(BufferTarget target, UnmanagedArrayBase data, BufferUsage usage)
         {
-            GetDelegateFor<glBufferData>()((uint)target, data.ByteLength, data.Header, (uint)usage);
+            if (bufferData == null)
+            { bufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>(); }
+            bufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="byteLength"></param>
+        /// <param name="data"></param>
+        /// <param name="usage"></param>
+        public static void BufferData(uint target, int byteLength, IntPtr data, uint usage)
+        {
+            if (bufferData == null)
+            { bufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>(); }
+            bufferData(target, byteLength, data, usage);
         }
 
         /// <summary>
