@@ -84,8 +84,8 @@ namespace CSharpGL
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.TextModel.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
-            map.Add("position", "position");
-            map.Add("uv", "uv");
+            map.Add("position", TextModel.strPosition);
+            map.Add("uv", TextModel.strUV);
             var model = new TextModel(maxCharCount);
             Renderer renderer = new Renderer(model, shaderCodes, map);
 

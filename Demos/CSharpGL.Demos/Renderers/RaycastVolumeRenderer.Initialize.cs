@@ -121,8 +121,8 @@ namespace CSharpGL.Demos
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
-            map.Add(RaycastModel.strposition, RaycastModel.strposition);
-            map.Add(RaycastModel.strcolor, RaycastModel.strcolor);
+            map.Add("position", RaycastModel.strposition);
+            map.Add("boundingBox", RaycastModel.strcolor);
             var raycastRenderer = new Renderer(model, shaderCodes, map);
             raycastRenderer.Initialize();
             raycastRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));

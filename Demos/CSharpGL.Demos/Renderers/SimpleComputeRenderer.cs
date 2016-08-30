@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
             staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\compute.vert"), ShaderType.VertexShader);
             staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\compute.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
-            map.Add(SimpleCompute.strPosition, "position");
+            map.Add("position", SimpleCompute.strPosition);
         }
         public SimpleComputeRenderer()
             : base(new SimpleCompute(), staticShaderCodes, map)
