@@ -15,15 +15,15 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
-            InitBackfaceRenderer();
-
-            InitRaycastRenderer();
+            this.backfaceRenderer = InitBackfaceRenderer();
+            this.raycastRenderer = InitRaycastRenderer();
 
             this.transferFunc1DTexture = InitTFF1DTexture(@"data\tff.dat");
             this.volume3DTexture = initVol3DTex(@"data\head256.raw", 256, 256, 225);
 
             int[] viewport = OpenGL.GetViewport();
-            Resize(viewport[2], viewport[3]);
+            int width = viewport[2], height = viewport[3];
+            Resize(width, height);
 
         }
 
@@ -115,7 +115,7 @@ namespace CSharpGL.Demos
             return texture;
         }
 
-        private void InitRaycastRenderer()
+        private Renderer InitRaycastRenderer()
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.vert"), ShaderType.VertexShader);
@@ -123,12 +123,14 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add(RaycastModel.strPosition, RaycastModel.strPosition);
             map.Add(RaycastModel.strBoundingBox, RaycastModel.strBoundingBox);
-            this.raycastRenderer = new Renderer(model, shaderCodes, map);
-            this.raycastRenderer.Initialize();
-            this.raycastRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));
+            var raycastRenderer = new Renderer(model, shaderCodes, map);
+            raycastRenderer.Initialize();
+            raycastRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));
+
+            return raycastRenderer;
         }
 
-        private void InitBackfaceRenderer()
+        private Renderer InitBackfaceRenderer()
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\backface.vert"), ShaderType.VertexShader);
@@ -136,9 +138,11 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add(RaycastModel.strPosition, RaycastModel.strPosition);
             map.Add(RaycastModel.strBoundingBox, RaycastModel.strBoundingBox);
-            this.backfaceRenderer = new Renderer(model, shaderCodes, map);
-            this.backfaceRenderer.Initialize();
-            this.backfaceRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Front, true));
+            var backfaceRenderer = new Renderer(model, shaderCodes, map);
+            backfaceRenderer.Initialize();
+            backfaceRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Front, true));
+
+            return backfaceRenderer;
         }
 
     }
