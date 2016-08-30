@@ -10,7 +10,7 @@ using System.Text;
 namespace CSharpGL.Demos
 {
     /// <summary>
-    /// 使用Default字体在一块区域渲染文字。
+    /// Raycast Volume Rendering Demo.
     /// </summary>
     partial class RaycastVolumeRenderer : RendererBase
     {
