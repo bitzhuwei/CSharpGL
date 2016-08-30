@@ -41,6 +41,13 @@ namespace CSharpGL
 
                 //// Dispose unmanaged resources.
                 {
+                    Renderbuffer depthBuffer = this.depthBuffer;
+                    if (depthBuffer != null)
+                    {
+                        depthBuffer.Dispose();
+                    }
+                }
+                {
                     Renderbuffer[] array = this.colorBufferList.ToArray();
                     foreach (var item in array)
                     {
