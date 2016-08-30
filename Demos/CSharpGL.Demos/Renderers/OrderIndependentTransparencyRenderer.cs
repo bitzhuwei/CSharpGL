@@ -105,7 +105,7 @@ namespace CSharpGL.Demos
             // Bind it to a texture (for use as a TBO)
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageBuilder(linked_list_buffer[0]),
+                    new TexBufferImageBuilder(OpenGL.GL_RGBA32UI, linked_list_buffer[0]),
                     new NullSampler());
                 texture.Initialize();
                 this.linkedListTexture = texture;
@@ -181,14 +181,16 @@ namespace CSharpGL.Demos
 
     class TexBufferImageBuilder : ImageBuilder
     {
+        private uint internalformat;
         private uint textureBufferId;
-        public TexBufferImageBuilder(uint textureBufferId)
+        public TexBufferImageBuilder(uint internalformat, uint textureBufferId)
         {
+            this.internalformat = internalformat;
             this.textureBufferId = textureBufferId;
         }
         public override void Build(BindTextureTarget target)
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32UI, textureBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, textureBufferId);
         }
     }
 

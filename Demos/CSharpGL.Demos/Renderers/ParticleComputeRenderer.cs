@@ -13,8 +13,10 @@ namespace CSharpGL.Demos
     class ParticleComputeRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
-        private uint[] textureBufferPosition = new uint[1];
-        private uint[] textureBufferVelocity = new uint[1];
+        //private uint[] textureBufferPosition = new uint[1];
+        //private uint[] textureBufferVelocity = new uint[1];
+        private Texture positionTexture;
+        private Texture velocityTexture;
         private uint[] attractor_buffer = new uint[1];
         private uint positionBufferPtrId;
         private uint velocityBufferPtrId;
@@ -37,14 +39,18 @@ namespace CSharpGL.Demos
                 this.computeProgram = computeProgram;
             }
             {
-                OpenGL.GenTextures(1, textureBufferPosition);
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
-                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER,
-                    OpenGL.GL_RGBA32F, this.positionBufferPtrId);
-                OpenGL.GenTextures(1, textureBufferVelocity);
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferVelocity[0]);
-                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER,
-                    OpenGL.GL_RGBA32F, this.velocityBufferPtrId);
+                var texture = new Texture(BindTextureTarget.TextureBuffer,
+                    new TexBufferImageBuilder(OpenGL.GL_RGBA32F, this.positionBufferPtrId),
+                    new NullSampler());
+                texture.Initialize();
+                this.positionTexture = texture;
+            }
+            {
+                var texture = new Texture(BindTextureTarget.TextureBuffer,
+                    new TexBufferImageBuilder(OpenGL.GL_RGBA32F, this.velocityBufferPtrId),
+                    new NullSampler());
+                texture.Initialize();
+                this.velocityTexture = texture;
             }
             {
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
@@ -83,8 +89,8 @@ namespace CSharpGL.Demos
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, textureBufferVelocity[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, textureBufferPosition[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.velocityTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.positionTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Set delta time
             computeProgram.SetUniform("dt", deltaTime);
             // Dispatch
@@ -95,8 +101,8 @@ namespace CSharpGL.Demos
         protected override void DisposeUnmanagedResources()
         {
             this.computeProgram.Delete();
-            OpenGL.DeleteBuffers(1, textureBufferPosition);
-            OpenGL.DeleteBuffers(1, textureBufferVelocity);
+            this.positionTexture.Dispose();
+            this.velocityTexture.Dispose();
             OpenGL.DeleteBuffers(1, attractor_buffer);
         }
     }
