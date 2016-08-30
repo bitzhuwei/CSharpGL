@@ -13,7 +13,6 @@ namespace CSharpGL.Demos
         private PickableRenderer buildListsRenderer;
         private PickableRenderer resolve_lists;
 
-        //private uint[] head_pointer_texture = new uint[1];
         private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
