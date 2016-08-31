@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Demos.Renderers
+namespace CSharpGL.Demos
 {
-    class TexStorageImageBuilder : ImageBuilder
+    public class TexStorageImageBuilder : ImageBuilder
     {
         private int levels;
         private uint internalFormat;
