@@ -16,9 +16,12 @@ namespace CSharpGL.Demos
     class ImageProcessingRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
-        private uint[] input_image = new uint[1];
-        private uint[] intermediate_image = new uint[1];
-        private uint[] output_image = new uint[1];
+        //private uint[] input_image = new uint[1];
+        //private uint[] intermediate_image = new uint[1];
+        //private uint[] output_image = new uint[1];
+        private Texture inputTexture;
+        private Texture intermediateTexture;
+        private Texture outputTexture;
         private PickableRenderer renderer;
         private string textureFilename;
 
@@ -44,40 +47,36 @@ namespace CSharpGL.Demos
                 {
                     bitmap = (Bitmap)bitmap.GetThumbnailImage(512, 512, null, IntPtr.Zero);
                 }
-                OpenGL.GenTextures(1, this.input_image);
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.input_image[0]);
-                //  Lock the image bits (so that we can pass them to OGL).
-                BitmapData bitmapData = bitmap.LockBits(
-                    new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-                //GL.ActiveTexture(GL.GL_TEXTURE0);
-                OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, (int)OpenGL.GL_RGBA32F,
-                    bitmap.Width, bitmap.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
-                    bitmapData.Scan0);
-                //  Unlock the image.
-                bitmap.UnlockBits(bitmapData);
                 /* We require 1 byte alignment when uploading texture data */
                 //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
                 /* Clamping to edges is important to prevent artifacts when scaling */
-                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, (int)OpenGL.GL_CLAMP_TO_EDGE);
-                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, (int)OpenGL.GL_CLAMP_TO_EDGE);
                 /* Linear filtering usually looks best for text */
-                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_LINEAR);
-                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_LINEAR);
+                var texture = new Texture(BindTextureTarget.Texture2D,
+                    new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA32F, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE),
+                    new SamplerParameters(
+                        TextureWrapping.ClampToEdge,
+                        TextureWrapping.ClampToEdge,
+                        TextureWrapping.ClampToEdge,
+                        TextureFilter.Linear,
+                        TextureFilter.Linear));
+                texture.Initialize();
                 bitmap.Dispose();
+                this.inputTexture = texture;
             }
             {
-                //GL.ActiveTexture(GL.GL_TEXTURE0);
-                OpenGL.GenTextures(1, this.intermediate_image);
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.intermediate_image[0]);
-                OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 512, 512);
+                var texture = new Texture(BindTextureTarget.Texture2D,
+                    new TexStorageImageBuilder(8, OpenGL.GL_RGBA32F, 512, 512),
+                    new NullSampler());
+                texture.Initialize();
+                this.intermediateTexture = texture;
             }
             {
                 // This is the texture that the compute program will write into
-                //GL.ActiveTexture(GL.GL_TEXTURE0);
-                OpenGL.GenTextures(1, this.output_image);
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.output_image[0]);
-                OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 512, 512);
+                var texture = new Texture(BindTextureTarget.Texture2D,
+           new TexStorageImageBuilder(8, OpenGL.GL_RGBA32F, 512, 512),
+           new NullSampler());
+                texture.Initialize();
+                this.outputTexture = texture;
             }
             {
                 var bufferable = new ImageProcessingModel();
@@ -92,8 +91,7 @@ namespace CSharpGL.Demos
                 pickableRenderer.Name = string.Format("Pickable: [{0}]", this.GetType().Name);
                 pickableRenderer.Initialize();
                 pickableRenderer.SetUniform("output_image",
-                    new samplerValue(
-                        BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
+                    this.outputTexture.ToSamplerValue());
                 this.renderer = pickableRenderer;
             }
 
@@ -105,18 +103,30 @@ namespace CSharpGL.Demos
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("input_image"), input_image[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+                (uint)computeProgram.GetUniformLocation("input_image"),
+                //input_image[0], 
+                inputTexture.Id,
+                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("output_image"), intermediate_image[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+                (uint)computeProgram.GetUniformLocation("output_image"),
+                //intermediate_image[0],
+                intermediateTexture.Id,
+                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(1, 512, 1);
 
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("input_image"), intermediate_image[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+                (uint)computeProgram.GetUniformLocation("input_image"),
+                //intermediate_image[0],
+                intermediateTexture.Id,
+                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("output_image"), output_image[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+                (uint)computeProgram.GetUniformLocation("output_image"),
+                //output_image[0],
+                outputTexture.Id,
+                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(1, 512, 1);
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
@@ -134,9 +144,9 @@ namespace CSharpGL.Demos
         protected override void DisposeUnmanagedResources()
         {
             computeProgram.Delete();
-            OpenGL.DeleteTextures(1, input_image);
-            OpenGL.DeleteTextures(1, intermediate_image);
-            OpenGL.DeleteTextures(1, output_image);
+            inputTexture.Dispose();
+            intermediateTexture.Dispose();
+            outputTexture.Dispose();
             this.renderer.Dispose();
         }
 
@@ -215,20 +225,17 @@ namespace CSharpGL.Demos
                 {
                     case CurrentDisplayImage.Input:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(
-                                BindTextureTarget.Texture2D, this.intermediate_image[0], OpenGL.GL_TEXTURE0));
+                            this.intermediateTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(
-                                BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
+                            this.outputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(
-                                BindTextureTarget.Texture2D, this.input_image[0], OpenGL.GL_TEXTURE0));
+                            this.inputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
                     default:
@@ -241,20 +248,17 @@ namespace CSharpGL.Demos
                 {
                     case CurrentDisplayImage.Input:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(
-                                BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
+                            this.outputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(
-                                BindTextureTarget.Texture2D, this.input_image[0], OpenGL.GL_TEXTURE0));
+                            this.inputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(
-                                BindTextureTarget.Texture2D, this.intermediate_image[0], OpenGL.GL_TEXTURE0));
+                            this.intermediateTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
                     default:
