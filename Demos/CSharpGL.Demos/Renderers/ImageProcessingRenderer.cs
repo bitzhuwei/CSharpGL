@@ -16,9 +16,6 @@ namespace CSharpGL.Demos
     class ImageProcessingRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
-        //private uint[] input_image = new uint[1];
-        //private uint[] intermediate_image = new uint[1];
-        //private uint[] output_image = new uint[1];
         private Texture inputTexture;
         private Texture intermediateTexture;
         private Texture outputTexture;
@@ -130,10 +127,6 @@ namespace CSharpGL.Demos
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(1, 512, 1);
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
-
-            //// Now bind the texture for rendering _from_
-            //GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
-            //GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
 
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMatrix();

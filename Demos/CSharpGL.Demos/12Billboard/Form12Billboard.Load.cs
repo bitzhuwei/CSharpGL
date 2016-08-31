@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                BillboardRenderer billboardRenderer = BillboardRenderer.GetRenderer(new BillboardModel());
+                BillboardRenderer billboardRenderer = BillboardRenderer.Create(new BillboardModel());
                 //billboardRenderer.Initialize();
                 var obj = new SceneObject();
                 obj.Renderer = billboardRenderer;

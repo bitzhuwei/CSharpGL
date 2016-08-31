@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
     class BillboardRenderer : Renderer
     {
 
-        public static BillboardRenderer GetRenderer(IBufferable model)
+        public static BillboardRenderer Create(IBufferable model)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\billboard.vert"), ShaderType.VertexShader);
@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
 
         public BillboardType Type { get; set; }
 
-        public BillboardRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private BillboardRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
