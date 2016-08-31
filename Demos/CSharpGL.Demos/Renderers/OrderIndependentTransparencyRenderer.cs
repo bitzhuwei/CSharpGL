@@ -16,7 +16,8 @@ namespace CSharpGL.Demos
         private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
-        private uint[] head_pointer_clear_buffer = new uint[1];
+        //private uint[] head_pointer_clear_buffer = new uint[1];
+        private PixelUnpackBufferPtr headClearBufferPtr;
         private uint[] atomic_counter_buffer = new uint[1];
         private uint[] linked_list_buffer = new uint[1];
         //private uint[] linked_list_texture = new uint[1];
@@ -72,36 +73,37 @@ namespace CSharpGL.Demos
                 texture.Initialize();
                 this.headTexture = texture;
             }
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
-
-            // Create buffer for clearing the head pointer texture
-            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, head_pointer_clear_buffer);
-            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_PIXEL_UNPACK_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * sizeof(uint), IntPtr.Zero, OpenGL.GL_STATIC_DRAW);
-            IntPtr data = OpenGL.MapBuffer(BufferTarget.PixelUnpackBuffer, MapBufferAccess.WriteOnly);
-            unsafe
             {
-                var array = (uint*)data.ToPointer();
-                for (int i = 0; i < MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT; i++)
+                OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+
+                // Create buffer for clearing the head pointer texture
+                var buffer = new PixelUnpackBuffer<uint>(1, sizeof(uint), BufferUsage.StaticDraw);
+                buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
+                unsafe
                 {
-                    array[i] = 0;
+                    var array = (uint*)buffer.Header.ToPointer();
+                    for (int i = 0; i < MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT; i++)
+                    {
+                        array[i] = 0;
+                    }
                 }
+                var bufferPtr = buffer.GetBufferPtr() as PixelUnpackBufferPtr;
+                this.headClearBufferPtr = bufferPtr;
             }
-            OpenGL.UnmapBuffer(BufferTarget.PixelUnpackBuffer);
-            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
-
             // Create the atomic counter buffer
-            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, atomic_counter_buffer);
-            OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
-            OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
-
+            {
+                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, atomic_counter_buffer);
+                OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+                OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
+            }
             // Create the linked list storage buffer
-            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, linked_list_buffer);
-            OpenGL.BindBuffer(BufferTarget.TextureBuffer, linked_list_buffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
-            OpenGL.BindBuffer(BufferTarget.TextureBuffer, 0);
-
+            {
+                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, linked_list_buffer);
+                OpenGL.BindBuffer(BufferTarget.TextureBuffer, linked_list_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+                OpenGL.BindBuffer(BufferTarget.TextureBuffer, 0);
+            }
             // Bind it to a texture (for use as a TBO)
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
@@ -110,8 +112,9 @@ namespace CSharpGL.Demos
                 texture.Initialize();
                 this.linkedListTexture = texture;
             }
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
-
+            {
+                OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            }
             OpenGL.ClearDepth(1.0f);
         }
 
@@ -132,7 +135,7 @@ namespace CSharpGL.Demos
             OpenGL.BindBufferBase(BindBufferBaseTarget.AtomicCounterBuffer, 0, 0);
 
             // Clear head-pointer image
-            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
+            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, this.headClearBufferPtr.BufferId);
             this.headTexture.Bind();
             OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
             this.headTexture.Unbind();

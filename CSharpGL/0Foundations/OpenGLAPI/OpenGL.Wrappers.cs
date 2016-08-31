@@ -1046,6 +1046,7 @@ namespace CSharpGL
             OpenGL.ShadeModel((uint)mode);
         }
 
+        private static OpenGL.glBufferData bufferData;
         /// <summary>
         /// 设置当前VBO的数据。
         /// </summary>
@@ -1054,9 +1055,25 @@ namespace CSharpGL
         /// <param name="usage"></param>
         public static void BufferData(BufferTarget target, UnmanagedArrayBase data, BufferUsage usage)
         {
-            GetDelegateFor<glBufferData>()((uint)target, data.ByteLength, data.Header, (uint)usage);
+            if (bufferData == null)
+            { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
+            bufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
         }
 
+        /// <summary>
+        /// 设置当前VBO的数据。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="data"></param>
+        /// <param name="usage"></param>
+        public static void BufferData(uint target, UnmanagedArrayBase data, BufferUsage usage)
+        {
+            if (bufferData == null)
+            { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
+            bufferData(target, data.ByteLength, data.Header, (uint)usage);
+        }
+
+        private static OpenGL.glBindBuffer bindBuffer;
         /// <summary>
         /// 选择一个VBO作为当前VBO。
         /// </summary>
@@ -1064,10 +1081,24 @@ namespace CSharpGL
         /// <param name="id"></param>
         public static void BindBuffer(BufferTarget target, uint id)
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindBuffer>()((uint)target, id);
+            if (bindBuffer == null)
+            { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+            bindBuffer((uint)target, id);
         }
 
+        /// <summary>
+        /// 选择一个VBO作为当前VBO。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
+        public static void BindBuffer(uint target, uint id)
+        {
+            if (bindBuffer == null)
+            { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+            bindBuffer(target, id);
+        }
 
+        private static OpenGL.glMapBuffer mapBuffer;
         /// <summary>
         /// 把服务端（GPU）上的当前Buffer Object映射到客户端（CPU）的内存上。
         /// </summary>
@@ -1076,9 +1107,24 @@ namespace CSharpGL
         /// <returns></returns>
         public static IntPtr MapBuffer(BufferTarget target, MapBufferAccess access)
         {
-            return GetDelegateFor<glMapBuffer>()((uint)target, (uint)access);
+            if (mapBuffer == null)
+            { mapBuffer = OpenGL.GetDelegateFor<glMapBuffer>(); }
+            return mapBuffer((uint)target, (uint)access);
+        }
+        /// <summary>
+        /// 把服务端（GPU）上的当前Buffer Object映射到客户端（CPU）的内存上。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
+        public static IntPtr MapBuffer(uint target, MapBufferAccess access)
+        {
+            if (mapBuffer == null)
+            { mapBuffer = OpenGL.GetDelegateFor<glMapBuffer>(); }
+            return mapBuffer(target, (uint)access);
         }
 
+        private static OpenGL.glUnmapBuffer unmapBuffer;
         /// <summary>
         /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
         /// </summary>
@@ -1086,9 +1132,23 @@ namespace CSharpGL
         /// <returns></returns>
         public static bool UnmapBuffer(BufferTarget target)
         {
-            return GetDelegateFor<glUnmapBuffer>()((uint)target);
+            if (unmapBuffer == null)
+            { unmapBuffer = OpenGL.GetDelegateFor<glUnmapBuffer>(); }
+            return unmapBuffer((uint)target);
+        }
+        /// <summary>
+        /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static bool UnmapBuffer(uint target)
+        {
+            if (unmapBuffer == null)
+            { unmapBuffer = OpenGL.GetDelegateFor<glUnmapBuffer>(); }
+            return unmapBuffer(target);
         }
 
+        private static OpenGL.glMapBufferRange mapBufferRange;
         /// <summary>
         /// 
         /// </summary>
@@ -1099,9 +1159,25 @@ namespace CSharpGL
         /// <returns></returns>
         public static IntPtr MapBufferRange(BufferTarget target, int offset, int length, MapBufferRangeAccess access)
         {
-            return GetDelegateFor<OpenGL.glMapBufferRange>()((uint)target, offset, length, (uint)access);
+            if (mapBufferRange == null)
+            { mapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
+            return mapBufferRange((uint)target, offset, length, (uint)access);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
+        public static IntPtr MapBufferRange(uint target, int offset, int length, MapBufferRangeAccess access)
+        {
+            if (mapBufferRange == null)
+            { mapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
+            return mapBufferRange(target, offset, length, (uint)access);
+        }
         /// <summary>
         /// This function sets the image for the currently binded texture.
         /// </summary>
