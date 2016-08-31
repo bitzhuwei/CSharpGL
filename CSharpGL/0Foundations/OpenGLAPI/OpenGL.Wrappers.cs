@@ -1465,14 +1465,14 @@ namespace CSharpGL
             { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
             bindBufferRange(target, index, buffer, offset, size);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="primitiveMode"></param>
-        public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glBeginTransformFeedback>()((uint)primitiveMode);
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="primitiveMode"></param>
+        //public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glBeginTransformFeedback>()((uint)primitiveMode);
+        //}
 
 
         #endregion transform feedback

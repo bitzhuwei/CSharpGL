@@ -119,6 +119,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDsposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelSpace.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\NullSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\SamplerParameters.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\Sampler.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.IDisposable.cs" />
@@ -487,8 +488,6 @@
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\Buffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\ZeroIndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\ZeroIndexBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLAPI\Enumerations\ActiveTextureIndex.cs" />
-    <Compile Include="0Foundations\OpenGLAPI\Enumerations\BeginTransformFeedbackPrimitiveMode.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\BlendFunc.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Buffer.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\DebugMessageControlParams.cs" />

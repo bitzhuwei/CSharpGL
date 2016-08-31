@@ -197,12 +197,4 @@ namespace CSharpGL.Demos
         }
     }
 
-    class NullSampler : SamplerBase
-    {
-        public NullSampler() : base(null, MipmapFilter.LinearMipmapLinear) { }
-
-        public override void Bind(uint unit, BindTextureTarget target)
-        {
-        }
-    }
 }
