@@ -13,14 +13,30 @@ namespace CSharpGL
     public class BitmapBuilder : ImageBuilder
     {
         private System.Drawing.Bitmap bitmap;
+        private int level;
+        private uint internalformat;
+        private int border;
+        private uint format;
+        private uint type;
 
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
         /// <param name="bitmap"></param>
-        public BitmapBuilder(System.Drawing.Bitmap bitmap)
+        /// <param name="level">0</param>
+        /// <param name="internalformat">OpenGL.GL_RGBA etc.</param>
+        /// <param name="border">0</param>
+        /// <param name="format">OpenGL.GL_BGRA etc.</param>
+        /// <param name="type">OpenGL.GL_UNSIGNED_BYTE etc.</param>
+        public BitmapBuilder(System.Drawing.Bitmap bitmap,
+            int level, uint internalformat, int border, uint format, uint type)
         {
             this.bitmap = bitmap;
+            this.level = level;
+            this.internalformat = internalformat;
+            this.border = border;
+            this.format = format;
+            this.type = type;
         }
 
         /// <summary>
