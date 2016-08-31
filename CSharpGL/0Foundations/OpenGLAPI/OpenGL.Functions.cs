@@ -143,6 +143,14 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glClear", SetLastError = true)]
         public static extern void Clear(uint mask);
 
+        /// <summary>
+        /// This function clears the buffers specified by mask.
+        /// </summary>
+        /// <param name="mask">Which buffers to clear.</param>
+        public static void Clear(ClearBufferMask mask)
+        {
+            OpenGL.Clear((uint)mask);
+        }
         ///// <summary>
         ///// Specify clear values for the accumulation buffer.
         ///// </summary>
