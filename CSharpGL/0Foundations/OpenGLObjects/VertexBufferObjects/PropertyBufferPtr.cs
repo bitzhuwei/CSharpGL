@@ -26,6 +26,7 @@ namespace CSharpGL
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+        /// <para>How many float/int/uint are there in a data unit?</para>
         /// </param>
         /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
@@ -81,6 +82,7 @@ namespace CSharpGL
 
         /// <summary>
         /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+        /// <para>How many float/int/uint are there in a data unit?</para>
         /// </summary>
         public int DataSize { get; private set; }
 

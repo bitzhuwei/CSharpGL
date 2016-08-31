@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
-        /// <para>How many float/int/uint are there in specified <paramref name="dataType"/>?</para>
+        /// <para>How many float/int/uint are there in a data unit?</para>
         /// </param>
         /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
@@ -30,7 +30,7 @@ namespace CSharpGL
 
         /// <summary>
         /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-        /// <para>How many float/int/uint are there in specified <paramref name="dataType"/>?</para>
+        /// <para>How many float/int/uint are there in a data unit?</para>
         /// </summary>
         public int DataSize { get; private set; }
 
