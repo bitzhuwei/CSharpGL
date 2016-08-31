@@ -15,6 +15,11 @@ namespace CSharpGL
         /// </summary>
         public NullSampler() : base(null, MipmapFilter.LinearMipmapLinear) { }
 
+        /// <summary>
+        /// do nothing.
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="target"></param>
         public override void Bind(uint unit, BindTextureTarget target)
         {
         }
