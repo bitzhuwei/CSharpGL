@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
                     }
                 }
             }
-            else if (e.KeyChar == 'c')
+            else if (e.KeyChar == 'z')
             {
                 var renderer = this.BindingObject.Renderer as ImageProcessingRenderer;
                 renderer.SwitchDisplayImage(true);

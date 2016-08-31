@@ -382,9 +382,6 @@
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="06ImageProcessing\Form06ImageProcessing.resx">
-      <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="05ParticleSimulator\Form05ParticleSimulator.resx">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </EmbeddedResource>

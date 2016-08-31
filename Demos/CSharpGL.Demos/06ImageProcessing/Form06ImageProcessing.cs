@@ -39,16 +39,6 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
             }
-            if (e.KeyChar == 's')
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.scene);
-                frmPropertyGrid.Show();
-            }
-            else if (e.KeyChar == 'c')
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
-                frmPropertyGrid.Show();
-            }
         }
 
         void Application_Idle(object sender, EventArgs e)
