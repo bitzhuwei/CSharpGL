@@ -1333,6 +1333,7 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glBindTransformFeedback>()((uint)target, id);
         }
 
+        private static OpenGL.glBindBufferBase bindBufferBase;
         /// <summary>
         /// 用于transform feedback。
         /// <para>bind a buffer object to an indexed buffer target.</para>
@@ -1340,9 +1341,39 @@ namespace CSharpGL
         /// <param name="target">Specifies the target buffer object.</param>
         /// <param name="index">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
         /// <param name="buffer">The name of a buffer object to bind to the specified binding point.</param>
-        public static void BindBufferBase(TransformFeedbackBufferTarget target, uint index, uint buffer)
+        public static void BindBufferBase(BindBufferBaseTarget target, uint index, uint buffer)
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()((uint)target, index, buffer);
+            if (bindBufferBase == null)
+            { bindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
+            bindBufferBase((uint)target, index, buffer);
+        }
+        private static OpenGL.glBindBufferRange bindBufferRange;
+        /// <summary>
+        /// bind a range within a buffer object to an indexed buffer target
+        /// </summary>
+        /// <param name="target">Specifies the target buffer object.</param>
+        /// <param name="index">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
+        /// <param name="buffer">The name of a buffer object to bind to the specified binding point.</param>
+        /// <param name="offset">The starting offset in basic machine units into the buffer object <paramref name="buffer"/>​.</param>
+        /// <param name="size">The amount of data in machine units that can be read from the buffer object while used as an indexed target.</param>
+        public static void BindBufferRange(BindBufferBaseTarget target, uint index, uint buffer, int offset, int size)
+        {
+            if (bindBufferRange == null)
+            { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
+            bindBufferRange((uint)target, index, buffer, offset, size);
+        }
+        /// <summary>
+        /// 用于transform feedback。
+        /// <para>bind a buffer object to an indexed buffer target.</para>
+        /// </summary>
+        /// <param name="target">Specifies the target buffer object.</param>
+        /// <param name="index">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
+        /// <param name="buffer">The name of a buffer object to bind to the specified binding point.</param>
+        public static void BindBufferBase(uint target, uint index, uint buffer)
+        {
+            if (bindBufferBase == null)
+            { bindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
+            bindBufferBase(target, index, buffer);
         }
         /// <summary>
         /// bind a range within a buffer object to an indexed buffer target
@@ -1352,9 +1383,11 @@ namespace CSharpGL
         /// <param name="buffer">The name of a buffer object to bind to the specified binding point.</param>
         /// <param name="offset">The starting offset in basic machine units into the buffer object <paramref name="buffer"/>​.</param>
         /// <param name="size">The amount of data in machine units that can be read from the buffer object while used as an indexed target.</param>
-        public static void BindBufferRange(TransformFeedbackBufferTarget target, uint index, uint buffer, int offset, int size)
+        public static void BindBufferRange(uint target, uint index, uint buffer, int offset, int size)
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>()((uint)target, index, buffer, offset, size);
+            if (bindBufferRange == null)
+            { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
+            bindBufferRange(target, index, buffer, offset, size);
         }
         /// <summary>
         /// 

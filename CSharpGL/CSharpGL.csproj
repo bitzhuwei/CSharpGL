@@ -506,7 +506,7 @@
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\TexStorage2DTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\TexStorage3DTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\TexSubImage2D.cs" />
-    <Compile Include="0Foundations\OpenGLAPI\Enumerations\TransformFeedbackBufferTarget.cs" />
+    <Compile Include="0Foundations\OpenGLAPI\Enumerations\BindBufferBaseTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\TransformFeedbackTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGLU.Constants.cs" />

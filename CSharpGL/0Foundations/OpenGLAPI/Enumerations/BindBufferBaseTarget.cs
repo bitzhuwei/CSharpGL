@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// Used for BindBufferBase() or BindBufferRange()
     /// </summary>
-    public enum TransformFeedbackBufferTarget : uint
+    public enum BindBufferBaseTarget : uint
     {
         /// <summary>
         /// 
