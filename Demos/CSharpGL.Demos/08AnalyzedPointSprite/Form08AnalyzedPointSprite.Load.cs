@@ -27,7 +27,8 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var renderer = new AnalyzedPointSpriteRenderer(10000);
+                int particleCount = 10000;
+                var renderer = AnalyzedPointSpriteRenderer.Create(particleCount);
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.RootObject.Children.Add(obj);

@@ -27,20 +27,23 @@ namespace CSharpGL.Demos
             }
         }
 
-        static ShaderCode[] staticShaderCodes;
-        static PropertyNameMap map;
-        static AnalyzedPointSpriteRenderer()
+        public static AnalyzedPointSpriteRenderer Create(int particleCount)
         {
-            staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.frag"), ShaderType.FragmentShader);
-            map = new PropertyNameMap();
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
             map.Add("position", "position");
+            var model = new BillboardModel(particleCount);
+            var renderer = new AnalyzedPointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            return renderer;
         }
-        public AnalyzedPointSpriteRenderer(int particleCount)
-            : base(new BillboardModel(particleCount), staticShaderCodes, map)
+
+        private AnalyzedPointSpriteRenderer(
+            IBufferable bufferable, ShaderCode[] shaderCodes,
+            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
-            this.SwitchList.Add(new PointSpriteSwitch());
         }
 
         protected override void DoInitialize()
