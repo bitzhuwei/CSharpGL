@@ -40,7 +40,7 @@ namespace CSharpGL
         public Texture(BindTextureTarget target,
             Bitmap bitmap,
             SamplerBase samplerBuilder)
-            : this(target, new BitmapBuilder(bitmap), samplerBuilder)
+            : this(target, new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), samplerBuilder)
         {
         }
 
@@ -72,7 +72,7 @@ namespace CSharpGL
             Bitmap bitmap,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(target, new BitmapBuilder(bitmap), new FakeSampler(parameters, mipmapFiltering))
+            : this(target, new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), new FakeSampler(parameters, mipmapFiltering))
         {
         }
     }
