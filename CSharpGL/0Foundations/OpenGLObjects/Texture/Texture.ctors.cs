@@ -31,18 +31,18 @@ namespace CSharpGL
             this.ActiveTexture = OpenGL.GL_TEXTURE0;
         }
 
-        ///// <summary>
-        ///// Texture.
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="bitmap"></param>
-        ///// <param name="samplerBuilder"></param>
-        //public Texture(BindTextureTarget target,
-        //    Bitmap bitmap,
-        //    SamplerBase samplerBuilder)
-        //    : this(target, new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), samplerBuilder)
-        //{
-        //}
+        /// <summary>
+        /// Texture.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="bitmap"></param>
+        /// <param name="samplerBuilder"></param>
+        public Texture(BindTextureTarget target,
+            Bitmap bitmap,
+            SamplerBase samplerBuilder)
+            : this(target, new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), samplerBuilder)
+        {
+        }
 
         /// <summary>
         /// Texture.
