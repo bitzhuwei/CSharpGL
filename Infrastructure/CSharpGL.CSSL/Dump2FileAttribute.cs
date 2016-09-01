@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.CSSL
 {
@@ -25,7 +21,6 @@ namespace CSharpGL.CSSL
         {
             this.Dump2File = dump2File;
         }
-
 
         public override string ToString()
         {

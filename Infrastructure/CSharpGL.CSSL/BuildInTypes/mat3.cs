@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 namespace CSharpGL.CSSL
 {
     /// <summary>
@@ -12,10 +9,11 @@ namespace CSharpGL.CSSL
         public override string ToString()
         {
             return string.Format("CSSL's mat3 type.");
-
         }
 
-        private mat3() { }
+        private mat3()
+        {
+        }
 
         #region Index Access
 
@@ -60,7 +58,7 @@ namespace CSharpGL.CSSL
             }
         }
 
-        #endregion
+        #endregion Index Access
 
         #region Multiplication
 
@@ -91,7 +89,7 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        #endregion
+        #endregion Multiplication
 
         //private vec3 col0;
         //private vec3 col1;

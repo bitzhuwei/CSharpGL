@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL.CSSL
+﻿namespace CSharpGL.CSSL
 {
-
     /// <summary>
     /// fragment shader共有的内容。
     /// 想写一个fragment shader，就继承此类型吧。
     /// </summary>
     public abstract partial class FragmentCSShaderCode : CSShaderCode
     {
-
         protected vec4 gl_FragCoord { get { return null; } private set { } }
 
         protected vec2 gl_PointCoord { get { return null; } private set { } }
@@ -23,7 +15,5 @@ namespace CSharpGL.CSSL
         /// 代表GLSL里的discard;语句。
         /// </summary>
         protected void discard() { }
-
     }
-
 }

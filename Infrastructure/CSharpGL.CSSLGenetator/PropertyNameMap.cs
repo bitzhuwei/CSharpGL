@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using System.Xml.Linq;
 
@@ -17,8 +16,8 @@ namespace CSharpGL.CSSLGenetator
     /// </summary>
     public class PropertyNameMap : IEnumerable<PropertyNameMap.NamePair>
     {
-        List<string> namesInShader = new List<string>();
-        List<string> namesInIBufferable = new List<string>();
+        private List<string> namesInShader = new List<string>();
+        private List<string> namesInIBufferable = new List<string>();
 
         /// <summary>
         /// 持有从<see cref="IBufferable"/>到GLSL中in/uniform变量名的对应关系。
@@ -118,10 +117,10 @@ namespace CSharpGL.CSSLGenetator
 
         public class NamePair
         {
-            const string strVarNameInShader = "VarNameInShader";
+            private const string strVarNameInShader = "VarNameInShader";
             public string VarNameInShader { get; set; }
 
-            const string strNameInIBufferable = "NameInIBufferable";
+            private const string strNameInIBufferable = "NameInIBufferable";
             public string nameInIBufferable { get; set; }
 
             public NamePair(string nameInShader, string nameInIBufferable)
@@ -155,5 +154,4 @@ namespace CSharpGL.CSSLGenetator
             }
         }
     }
-
 }

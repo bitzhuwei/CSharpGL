@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.CSSL
 {
@@ -21,7 +17,6 @@ namespace CSharpGL.CSSL
         {
             return this.NameInGLSL;
         }
-
     }
 
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = true)]
@@ -33,6 +28,7 @@ namespace CSharpGL.CSSL
         {
         }
     }
+
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = true)]
     public sealed class OutAttribute : QualifierAttribute
     {
@@ -42,6 +38,7 @@ namespace CSharpGL.CSSL
         {
         }
     }
+
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = true)]
     public sealed class UniformAttribute : QualifierAttribute
     {
@@ -51,6 +48,7 @@ namespace CSharpGL.CSSL
         {
         }
     }
+
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = true)]
     public sealed class FlatAttribute : QualifierAttribute
     {

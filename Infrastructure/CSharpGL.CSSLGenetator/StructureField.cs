@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
     public class StructureField : ICloneable
     {
-        const string strFieldType = "FieldType";
+        private const string strFieldType = "FieldType";
         public string FieldType { get; set; }
 
-        const string strFieldName = "FieldName";
+        private const string strFieldName = "FieldName";
         public string FieldName { get; set; }
 
         public XElement ToXElement()

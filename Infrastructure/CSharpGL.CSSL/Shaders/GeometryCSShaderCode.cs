@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL.CSSL
+﻿namespace CSharpGL.CSSL
 {
     /// <summary>
     /// Geometry shader invocations take a single Primitive as input and may output zero or more primitives.
@@ -12,7 +6,6 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class GeometryCSShaderCode : CSShaderCode
     {
-
         protected class gl_inElement
         {
             public vec4 gl_Position;
@@ -24,7 +17,10 @@ namespace CSharpGL.CSSL
         {
             public gl_inElement this[int index] { get { return null; } }
 
-            public int length() { return 0; }
+            public int length()
+            {
+                return 0;
+            }
         }
 
         protected gl_inArray gl_in;
@@ -62,8 +58,12 @@ namespace CSharpGL.CSSL
 
         protected vec4 gl_Position;
 
-        protected void EmitVertex() { }
-        protected void EndPrimitive() { }
-    }
+        protected void EmitVertex()
+        {
+        }
 
+        protected void EndPrimitive()
+        {
+        }
+    }
 }

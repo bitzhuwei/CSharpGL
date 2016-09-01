@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.InteropServices;
-
 namespace CSharpGL.CSSL
 {
     /// <summary>
@@ -381,70 +378,70 @@ namespace CSharpGL.CSSL
         public vec2 ab { get { return null; } set { } }
         public vec2 aa { get { return null; } set { } }
 
-        public vec3 rrr{ get { return null; } set { } }
-        public vec3 rrg{ get { return null; } set { } }
-        public vec3 rrb{ get { return null; } set { } }
-        public vec3 rra{ get { return null; } set { } }
-        public vec3 rgr{ get { return null; } set { } }
-        public vec3 rgg{ get { return null; } set { } }
-        public vec3 rgb{ get { return null; } set { } }
-        public vec3 rga{ get { return null; } set { } }
-        public vec3 rbr{ get { return null; } set { } }
-        public vec3 rbg{ get { return null; } set { } }
-        public vec3 rbb{ get { return null; } set { } }
-        public vec3 rba{ get { return null; } set { } }
-        public vec3 rar{ get { return null; } set { } }
-        public vec3 rag{ get { return null; } set { } }
-        public vec3 rab{ get { return null; } set { } }
-        public vec3 raa{ get { return null; } set { } }
-        public vec3 grr{ get { return null; } set { } }
-        public vec3 grg{ get { return null; } set { } }
-        public vec3 grb{ get { return null; } set { } }
-        public vec3 gra{ get { return null; } set { } }
-        public vec3 ggr{ get { return null; } set { } }
-        public vec3 ggg{ get { return null; } set { } }
-        public vec3 ggb{ get { return null; } set { } }
-        public vec3 gga{ get { return null; } set { } }
-        public vec3 gbr{ get { return null; } set { } }
-        public vec3 gbg{ get { return null; } set { } }
-        public vec3 gbb{ get { return null; } set { } }
-        public vec3 gba{ get { return null; } set { } }
-        public vec3 gar{ get { return null; } set { } }
-        public vec3 gag{ get { return null; } set { } }
-        public vec3 gab{ get { return null; } set { } }
-        public vec3 gaa{ get { return null; } set { } }
-        public vec3 brr{ get { return null; } set { } }
-        public vec3 brg{ get { return null; } set { } }
-        public vec3 brb{ get { return null; } set { } }
-        public vec3 bra{ get { return null; } set { } }
-        public vec3 bgr{ get { return null; } set { } }
-        public vec3 bgg{ get { return null; } set { } }
-        public vec3 bgb{ get { return null; } set { } }
-        public vec3 bga{ get { return null; } set { } }
-        public vec3 bbr{ get { return null; } set { } }
-        public vec3 bbg{ get { return null; } set { } }
-        public vec3 bbb{ get { return null; } set { } }
-        public vec3 bba{ get { return null; } set { } }
-        public vec3 bar{ get { return null; } set { } }
-        public vec3 bag{ get { return null; } set { } }
-        public vec3 bab{ get { return null; } set { } }
-        public vec3 baa{ get { return null; } set { } }
-        public vec3 arr{ get { return null; } set { } }
-        public vec3 arg{ get { return null; } set { } }
-        public vec3 arb{ get { return null; } set { } }
-        public vec3 ara{ get { return null; } set { } }
-        public vec3 agr{ get { return null; } set { } }
-        public vec3 agg{ get { return null; } set { } }
-        public vec3 agb{ get { return null; } set { } }
-        public vec3 aga{ get { return null; } set { } }
-        public vec3 abr{ get { return null; } set { } }
-        public vec3 abg{ get { return null; } set { } }
-        public vec3 abb{ get { return null; } set { } }
-        public vec3 aba{ get { return null; } set { } }
-        public vec3 aar{ get { return null; } set { } }
-        public vec3 aag{ get { return null; } set { } }
-        public vec3 aab{ get { return null; } set { } }
-        public vec3 aaa{ get { return null; } set { } }
+        public vec3 rrr { get { return null; } set { } }
+        public vec3 rrg { get { return null; } set { } }
+        public vec3 rrb { get { return null; } set { } }
+        public vec3 rra { get { return null; } set { } }
+        public vec3 rgr { get { return null; } set { } }
+        public vec3 rgg { get { return null; } set { } }
+        public vec3 rgb { get { return null; } set { } }
+        public vec3 rga { get { return null; } set { } }
+        public vec3 rbr { get { return null; } set { } }
+        public vec3 rbg { get { return null; } set { } }
+        public vec3 rbb { get { return null; } set { } }
+        public vec3 rba { get { return null; } set { } }
+        public vec3 rar { get { return null; } set { } }
+        public vec3 rag { get { return null; } set { } }
+        public vec3 rab { get { return null; } set { } }
+        public vec3 raa { get { return null; } set { } }
+        public vec3 grr { get { return null; } set { } }
+        public vec3 grg { get { return null; } set { } }
+        public vec3 grb { get { return null; } set { } }
+        public vec3 gra { get { return null; } set { } }
+        public vec3 ggr { get { return null; } set { } }
+        public vec3 ggg { get { return null; } set { } }
+        public vec3 ggb { get { return null; } set { } }
+        public vec3 gga { get { return null; } set { } }
+        public vec3 gbr { get { return null; } set { } }
+        public vec3 gbg { get { return null; } set { } }
+        public vec3 gbb { get { return null; } set { } }
+        public vec3 gba { get { return null; } set { } }
+        public vec3 gar { get { return null; } set { } }
+        public vec3 gag { get { return null; } set { } }
+        public vec3 gab { get { return null; } set { } }
+        public vec3 gaa { get { return null; } set { } }
+        public vec3 brr { get { return null; } set { } }
+        public vec3 brg { get { return null; } set { } }
+        public vec3 brb { get { return null; } set { } }
+        public vec3 bra { get { return null; } set { } }
+        public vec3 bgr { get { return null; } set { } }
+        public vec3 bgg { get { return null; } set { } }
+        public vec3 bgb { get { return null; } set { } }
+        public vec3 bga { get { return null; } set { } }
+        public vec3 bbr { get { return null; } set { } }
+        public vec3 bbg { get { return null; } set { } }
+        public vec3 bbb { get { return null; } set { } }
+        public vec3 bba { get { return null; } set { } }
+        public vec3 bar { get { return null; } set { } }
+        public vec3 bag { get { return null; } set { } }
+        public vec3 bab { get { return null; } set { } }
+        public vec3 baa { get { return null; } set { } }
+        public vec3 arr { get { return null; } set { } }
+        public vec3 arg { get { return null; } set { } }
+        public vec3 arb { get { return null; } set { } }
+        public vec3 ara { get { return null; } set { } }
+        public vec3 agr { get { return null; } set { } }
+        public vec3 agg { get { return null; } set { } }
+        public vec3 agb { get { return null; } set { } }
+        public vec3 aga { get { return null; } set { } }
+        public vec3 abr { get { return null; } set { } }
+        public vec3 abg { get { return null; } set { } }
+        public vec3 abb { get { return null; } set { } }
+        public vec3 aba { get { return null; } set { } }
+        public vec3 aar { get { return null; } set { } }
+        public vec3 aag { get { return null; } set { } }
+        public vec3 aab { get { return null; } set { } }
+        public vec3 aaa { get { return null; } set { } }
 
         public vec4 rrrr { get { return null; } set { } }
         public vec4 rrrg { get { return null; } set { } }
@@ -1049,7 +1046,6 @@ namespace CSharpGL.CSSL
 
         #endregion compositions
 
-
         public float this[int index]
         {
             get
@@ -1061,7 +1057,9 @@ namespace CSharpGL.CSSL
             }
         }
 
-        private vec4() { }
+        private vec4()
+        {
+        }
 
         public static vec4 operator -(vec4 lhs)
         {
@@ -1077,11 +1075,12 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static vec4 operator +(double lhs, vec4 rhs)
         {
             return null;
         }
-    
+
         public static vec4 operator -(vec4 lhs, double rhs)
         {
             return null;
@@ -1111,6 +1110,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static vec4 operator /(vec4 lhs, double rhs)
         {
             return null;

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 
 namespace CSharpGL.CSSLGenetator
 {
-    static class BuildInFieldTypeHelper
+    internal static class BuildInFieldTypeHelper
     {
-        static List<IntermediateStructure> buildInFieldTypeList = new List<IntermediateStructure>();
+        private static List<IntermediateStructure> buildInFieldTypeList = new List<IntermediateStructure>();
 
         static BuildInFieldTypeHelper()
         {
@@ -29,6 +25,5 @@ namespace CSharpGL.CSSLGenetator
         {
             return buildInFieldTypeList;
         }
-
     }
 }

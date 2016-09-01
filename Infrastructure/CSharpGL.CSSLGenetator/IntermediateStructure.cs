@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
@@ -12,8 +9,7 @@ namespace CSharpGL.CSSLGenetator
     /// </summary>
     public class IntermediateStructure : ICloneable
     {
-
-        const string strName = "Name";
+        private const string strName = "Name";
         public string Name { get; set; }
 
         public StructureFieldList FieldList { get; set; }
@@ -24,6 +20,7 @@ namespace CSharpGL.CSSLGenetator
         {
             this.FieldList = new StructureFieldList();
         }
+
         public static IntermediateStructure Parse(XElement element)
         {
             if (element.Name != typeof(IntermediateStructure).Name) { throw new NotImplementedException(); }
@@ -34,6 +31,7 @@ namespace CSharpGL.CSSLGenetator
 
             return result;
         }
+
         public XElement ToXElement()
         {
             return new XElement(this.GetType().Name,
@@ -56,5 +54,4 @@ namespace CSharpGL.CSSLGenetator
             return string.Format("{0}", this.Name);
         }
     }
-
 }

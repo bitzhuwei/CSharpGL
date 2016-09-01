@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
     public class IntermediateStructureList : List<IntermediateStructure>, ICloneable
     {
-
         public XElement ToXElement()
         {
             return new XElement(this.GetType().Name,
@@ -24,7 +22,7 @@ namespace CSharpGL.CSSLGenetator
             IntermediateStructureList list = new IntermediateStructureList();
             foreach (var item in xElement.Elements(typeof(IntermediateStructure).Name))
             {
-                list.Add(IntermediateStructure.Parse(item)); 
+                list.Add(IntermediateStructure.Parse(item));
             }
 
             return list;

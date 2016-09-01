@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.CSSLGenetator
 {
@@ -14,14 +10,14 @@ namespace CSharpGL.CSSLGenetator
     public static class OpenFolderHelper
     {
         [DllImport("shell32.dll", ExactSpelling = true)]
-        static extern int SHOpenFolderAndSelectItems(
+        private static extern int SHOpenFolderAndSelectItems(
            IntPtr pidlFolder,
            uint cidl,
            [In, MarshalAs(UnmanagedType.LPArray)] IntPtr[] apidl,
            uint dwFlags);
 
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
-        static extern IntPtr ILCreateFromPath([MarshalAs(UnmanagedType.LPTStr)] string pszPath);
+        private static extern IntPtr ILCreateFromPath([MarshalAs(UnmanagedType.LPTStr)] string pszPath);
 
         //[ComImport]
         //[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

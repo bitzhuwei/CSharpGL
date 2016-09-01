@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
     public class StructureFieldList : List<StructureField>, ICloneable
     {
-
         public XElement ToXElement()
         {
             return new XElement(this.GetType().Name,

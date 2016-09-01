@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace RendererGenerator
@@ -10,13 +9,14 @@ namespace RendererGenerator
     /// <summary>
     /// data structure of Renderer.
     /// </summary>
-    class DataStructure
+    internal class DataStructure
     {
         private const string strTargetName = "TargetName";
         public string TargetName { get; set; }
 
         private const string strPropertyList = "PropertyList";
         private List<VertexProperty> propertyList = new List<VertexProperty>();
+
         internal List<VertexProperty> PropertyList
         {
             get { return propertyList; }
@@ -27,6 +27,7 @@ namespace RendererGenerator
         public string RendererName { get { return string.Format("{0}Renderer", this.TargetName); } }
 
         private const string strZeroIndexBuffer = "ZeroIndexBuffer";
+
         /// <summary>
         /// If true, use ZeroIndexBuffer; otherwise, use OneIndexBuffer<>.
         /// </summary>

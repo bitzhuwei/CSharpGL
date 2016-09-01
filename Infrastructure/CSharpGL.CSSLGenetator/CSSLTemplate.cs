@@ -1,19 +1,13 @@
-﻿using System;
+﻿using CSharpGL.CSSL;
+using Microsoft.CSharp;
+using System;
+using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-
 using System.Xml.Linq;
-using System.CodeDom;
-using Microsoft.CSharp;
-using CSharpGL.CSSL;
-
-using System.CodeDom.Compiler;
-
-
-
 
 namespace CSharpGL.CSSLGenetator
 {
@@ -23,17 +17,17 @@ namespace CSharpGL.CSSLGenetator
     /// </summary>
     public class CSSLTemplate : ICloneable
     {
-        const GLSLVersion defaultVersion = GLSLVersion.v150;
-        const GeometryCSShaderCode.InType defaultLayoutIn = GeometryCSShaderCode.InType.triangles;
-        const GeometryCSShaderCode.OutType defaultLayoutOut = GeometryCSShaderCode.OutType.triangle_strip;
+        private const GLSLVersion defaultVersion = GLSLVersion.v150;
+        private const GeometryCSShaderCode.InType defaultLayoutIn = GeometryCSShaderCode.InType.triangles;
+        private const GeometryCSShaderCode.OutType defaultLayoutOut = GeometryCSShaderCode.OutType.triangle_strip;
 
-        const string strExtentsion = "config";
+        private const string strExtentsion = "config";
         public string Fullname { get; set; }
 
-        const string strShaderName = "ShaderName";
+        private const string strShaderName = "ShaderName";
         public string ShaderName { get; set; }
 
-        const string strProgramType = "ProgramType";
+        private const string strProgramType = "ProgramType";
         public ShaderProgramType ProgramType { get; set; }
 
         public VertexShaderFieldList VertexShaderFieldList { get; set; }
@@ -367,7 +361,6 @@ namespace CSharpGL.CSSLGenetator
                     Debug.WriteLine(string.Format(
                         "program.SetUniformMatrix4(str{0}, {0}.ToArray());", item.FieldName));
                 }
-
             }
         }
 
@@ -529,7 +522,7 @@ namespace CSharpGL.CSSLGenetator
             return vertexShaderType;
         }
 
-        static readonly Dictionary<string, Type> primitiveDict = new Dictionary<string, Type>();
+        private static readonly Dictionary<string, Type> primitiveDict = new Dictionary<string, Type>();
 
         static CSSLTemplate()
         {
@@ -537,6 +530,7 @@ namespace CSharpGL.CSSLGenetator
             primitiveDict.Add("int", typeof(int));
             primitiveDict.Add("bool", typeof(bool));
         }
+
         private CodeMemberField GetCodeMemberField(ShaderField shaderField)
         {
             CodeMemberField result = null;
@@ -577,7 +571,7 @@ namespace CSharpGL.CSSLGenetator
                 }
                 return new CodeMethodInvokeExpression(
                     new CodeMethodReferenceExpression(null, parts[0]),
-                    (from item in valueParts 
+                    (from item in valueParts
                      select new CodePrimitiveExpression(float.Parse(item.TrimEnd('f', 'd')))).ToArray());
             }
         }

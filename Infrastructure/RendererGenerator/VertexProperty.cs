@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace RendererGenerator
 {
@@ -18,7 +13,7 @@ namespace RendererGenerator
         public string BufferPtrName { get { return string.Format("{0}BufferPtr", this.NameInModel); } }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="nameInShader"></param>
         /// <param name="nameInModel"></param>

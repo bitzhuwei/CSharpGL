@@ -1,16 +1,12 @@
 ﻿using CSharpGL;
 using Microsoft.CSharp;
-using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace RendererGenerator
 {
-    class RendererBuilder
+    internal class RendererBuilder
     {
         public string GetFilename(DataStructure dataStructure)
         {
@@ -38,7 +34,7 @@ namespace RendererGenerator
             parserNamespace.Imports.Add(new CodeNamespaceImport(typeof(System.Collections.Generic.List<int>).Namespace));
             parserNamespace.Types.Add(rendererType);
 
-            //生成代码  
+            //生成代码
             using (var stream = new StreamWriter(rendererFilename, false))
             {
                 CSharpCodeProvider codeProvider = new CSharpCodeProvider();

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -13,7 +9,7 @@ namespace CSharpGL.CSSLGenetator
 {
     public partial class FormMain : Form
     {
-        CSSLTemplate currentFile;
+        private CSSLTemplate currentFile;
         private bool isDrag;
 
         public FormMain()
@@ -23,7 +19,7 @@ namespace CSharpGL.CSSLGenetator
             Application.Idle += Application_Idle;
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("CSSL Generator - {0}", this.currentFile.Fullname);
         }
@@ -76,7 +72,6 @@ namespace CSharpGL.CSSLGenetator
                     this.lstStructure.Items.Add(item);
                 }
             }
-
         }
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,9 +117,9 @@ namespace CSharpGL.CSSLGenetator
         private void FormMain_Load(object sender, EventArgs e)
         {
             {
-                ShaderProgramType[] types = new ShaderProgramType[] 
+                ShaderProgramType[] types = new ShaderProgramType[]
                 {
-                   ShaderProgramType.VertexFragment, 
+                   ShaderProgramType.VertexFragment,
                    ShaderProgramType.VertexGeometryFragment,
                 };
                 if (types.Length != Enum.GetNames(typeof(ShaderProgramType)).Length)
@@ -269,9 +264,11 @@ namespace CSharpGL.CSSLGenetator
                 case ShaderProgramType.VertexFragment:
                     this.lstGeometryShaderField.Visible = false;
                     break;
+
                 case ShaderProgramType.VertexGeometryFragment:
                     this.lstGeometryShaderField.Visible = true;
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -460,7 +457,6 @@ namespace CSharpGL.CSSLGenetator
                     this.lstStructure.Items[index] = form.Result;
                     this.currentFile.StrutureList[index] = form.Result;
                 }
-
             }
         }
 
@@ -505,10 +501,7 @@ namespace CSharpGL.CSSLGenetator
             }
             catch (Exception)
             {
-
             }
         }
-
-
     }
 }

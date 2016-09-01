@@ -1,6 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 
 namespace CSharpGL
@@ -11,7 +9,7 @@ namespace CSharpGL
     public partial class SceneObjectFactory
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="buildIn"></param>
         /// <returns></returns>
@@ -42,13 +40,17 @@ namespace CSharpGL
             {
                 case BuildInSceneObject.Cube:
                     break;
+
                 case BuildInSceneObject.Sphere:
                     break;
+
                 case BuildInSceneObject.Ground:
                     lengths = new vec3(groundXLength, 1, groundZLength);
                     break;
+
                 case BuildInSceneObject.Axis:
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -66,18 +68,22 @@ namespace CSharpGL
                     map.Add("in_Position", Cube.strPosition);
                     map.Add("in_Color", Cube.strColor);
                     break;
+
                 case BuildInSceneObject.Sphere:
                     map.Add("in_Position", Sphere.strPosition);
                     map.Add("in_Color", Sphere.strColor);
                     break;
+
                 case BuildInSceneObject.Ground:
                     map.Add("in_Position", Ground.strPosition);
                     map.Add("in_Color", Ground.strColor);
                     break;
+
                 case BuildInSceneObject.Axis:
                     map.Add("in_Position", Axis.strPosition);
                     map.Add("in_Color", Axis.strColor);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -94,15 +100,19 @@ namespace CSharpGL
                 case BuildInSceneObject.Cube:
                     bufferable = new Cube();
                     break;
+
                 case BuildInSceneObject.Sphere:
                     bufferable = new Sphere();
                     break;
+
                 case BuildInSceneObject.Ground:
                     bufferable = new Ground(1, groundXLength / 2, groundZLength / 2);
                     break;
+
                 case BuildInSceneObject.Axis:
                     bufferable = new Axis();
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -112,24 +122,27 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum BuildInSceneObject
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Cube,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Sphere,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ground,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Axis,
     }

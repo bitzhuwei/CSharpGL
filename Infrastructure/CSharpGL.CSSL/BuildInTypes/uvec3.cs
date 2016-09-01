@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.InteropServices;
-
 namespace CSharpGL.CSSL
 {
     /// <summary>
@@ -154,7 +151,9 @@ namespace CSharpGL.CSSL
             }
         }
 
-        private uvec3() { }
+        private uvec3()
+        {
+        }
 
         public static uvec3 operator -(uvec3 lhs)
         {
@@ -185,6 +184,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static uvec3 operator *(double lhs, uvec3 rhs)
         {
             return null;

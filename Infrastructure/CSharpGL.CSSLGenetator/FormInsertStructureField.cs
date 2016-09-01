@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -12,7 +6,6 @@ namespace CSharpGL.CSSLGenetator
 {
     public partial class FormInsertStructureField : Form
     {
-
         public StructureField Result { get; private set; }
 
         private CSSLTemplate template;
@@ -38,10 +31,10 @@ namespace CSharpGL.CSSLGenetator
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.Result = new StructureField() 
+            this.Result = new StructureField()
             {
-                FieldType = this.cmbType.SelectedItem.ToString(), 
-                FieldName = this.txtName.Text, 
+                FieldType = this.cmbType.SelectedItem.ToString(),
+                FieldName = this.txtName.Text,
             };
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;

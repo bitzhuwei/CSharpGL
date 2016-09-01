@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.InteropServices;
-
 namespace CSharpGL.CSSL
 {
     /// <summary>
@@ -154,7 +151,9 @@ namespace CSharpGL.CSSL
             }
         }
 
-        private bvec3() { }
+        private bvec3()
+        {
+        }
 
         public static bvec3 operator -(bvec3 lhs)
         {
@@ -185,6 +184,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static bvec3 operator *(double lhs, bvec3 rhs)
         {
             return null;

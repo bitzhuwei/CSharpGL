@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CSharpGL.TestHelpers;
-using System.ComponentModel;
-using System.Drawing.Design;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public class BuildInRenderer : Renderer
     {
-
         public BuildInRenderer(vec3 lengths, IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)

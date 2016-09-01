@@ -1,8 +1,5 @@
 ﻿using CSharpGL.CSSL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
@@ -14,16 +11,16 @@ namespace CSharpGL.CSSLGenetator
     /// </summary>
     public class ShaderField : ICloneable
     {
-        const string strQualifier = "Qualifier";
+        private const string strQualifier = "Qualifier";
         public FieldQualifier Qualider { get; set; }
 
-        const string strFieldType = "FieldType";
+        private const string strFieldType = "FieldType";
         public string FieldType { get; set; }
 
-        const string strFieldName = "FieldName";
+        private const string strFieldName = "FieldName";
         public string FieldName { get; set; }
 
-        const string strFieldValue = "FieldValue";
+        private const string strFieldValue = "FieldValue";
         public string FieldValue { get; set; }
 
         public ShaderField()
@@ -70,7 +67,6 @@ namespace CSharpGL.CSSLGenetator
 
             return result;
         }
-
     }
 
     public static class QualifierHelper
@@ -83,12 +79,15 @@ namespace CSharpGL.CSSLGenetator
                 case FieldQualifier.In:
                     result = "in";
                     break;
+
                 case FieldQualifier.Out:
                     result = "out";
                     break;
+
                 case FieldQualifier.Uniform:
                     result = "uniform";
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -104,12 +103,15 @@ namespace CSharpGL.CSSLGenetator
                 case FieldQualifier.In:
                     type = typeof(InAttribute);
                     break;
+
                 case FieldQualifier.Out:
                     type = typeof(OutAttribute);
                     break;
+
                 case FieldQualifier.Uniform:
                     type = typeof(UniformAttribute);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -124,5 +126,4 @@ namespace CSharpGL.CSSLGenetator
         Out,
         Uniform,
     }
-
 }

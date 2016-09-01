@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace RendererGenerator
 {
-    class FragmentShaderBuilder : ShaderBuilder
+    internal class FragmentShaderBuilder : ShaderBuilder
     {
         public override string Build(DataStructure data)
         {

@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 namespace CSharpGL.CSSL
 {
     /// <summary>
@@ -14,7 +11,8 @@ namespace CSharpGL.CSSL
             return string.Format("CSSL's mat2x4 type.");
         }
 
-        private mat2x4() { }
-
+        private mat2x4()
+        {
+        }
     }
 }

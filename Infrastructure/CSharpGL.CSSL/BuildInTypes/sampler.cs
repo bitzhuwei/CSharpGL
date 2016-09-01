@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL.CSSL
+﻿namespace CSharpGL.CSSL
 {
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class sampler1D { }
+
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class sampler2D { }
+
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
@@ -26,28 +23,31 @@ namespace CSharpGL.CSSL
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class isampler1D { }
+
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class isampler2D { }
+
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class isampler3D { }
 
-
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class usampler1D { }
+
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
     public class usampler2D { }
+
     /// <summary>
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
@@ -143,6 +143,4 @@ namespace CSharpGL.CSSL
     /// 专用于CSSL。不可用于数学计算。
     /// </summary>
     public class sampler2DRectShadow { }
-
-
 }

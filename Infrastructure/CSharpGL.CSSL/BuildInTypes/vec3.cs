@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.InteropServices;
-
 namespace CSharpGL.CSSL
 {
     /// <summary>
@@ -154,7 +151,9 @@ namespace CSharpGL.CSSL
             }
         }
 
-        private vec3() { }
+        private vec3()
+        {
+        }
 
         public static vec3 operator -(vec3 lhs)
         {
@@ -170,6 +169,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static vec3 operator +(double lhs, vec3 rhs)
         {
             return null;
@@ -184,6 +184,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static vec3 operator -(double lhs, vec3 rhs)
         {
             return null;
@@ -193,7 +194,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-      
+
         public static vec3 operator *(double lhs, vec3 rhs)
         {
             return null;
@@ -203,6 +204,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+
         public static vec3 operator /(vec3 lhs, double rhs)
         {
             return null;
