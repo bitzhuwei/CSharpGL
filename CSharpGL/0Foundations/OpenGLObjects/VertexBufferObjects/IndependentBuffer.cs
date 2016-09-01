@@ -9,6 +9,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
+    /// Buffer object that not work as input variable in shader.
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class IndependentBuffer<T> : Buffer where T : struct

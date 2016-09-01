@@ -134,9 +134,7 @@
     <Content Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndependentBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\PixelUnpackBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndependentBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\PixelUnpackBufferPtr.cs" />
     <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>

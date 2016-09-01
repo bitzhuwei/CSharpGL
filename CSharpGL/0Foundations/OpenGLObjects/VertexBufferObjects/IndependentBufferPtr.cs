@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// pixel unpack buffer's pointer.
+    /// Buffer object that not work as input variable in shader.
     /// </summary>
     public class IndependentBufferPtr : BufferPtr
     {
