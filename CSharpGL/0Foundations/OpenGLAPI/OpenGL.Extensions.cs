@@ -5353,6 +5353,7 @@ namespace CSharpGL
         private static glBindImageTexture bindImageTexture;
         /// <summary>
         /// bind a level of a texture to an image unit(a uniform image2D in compute shader).
+        /// <para>for more information check http://www.unix.com/man-page/debian/3g/GLBINDIMAGETEXTURE/</para>
         /// </summary>
         /// <param name="unit">Specifies the index of the image unit to which to bind the texture.<para>a uniform image2D variable's location.</para></param>
         /// <param name="texture">Specifies the name of the texture to bind to the image unit.<para>texture's id from glGenTexture().</para></param>
