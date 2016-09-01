@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
     public abstract class EnableSwitch : GLSwitch
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected bool enableCapacityWhenSwitchOn;
 
@@ -25,6 +19,7 @@ namespace CSharpGL
         /// GL.Enable(capacity); or GL.Disable(capacity);
         /// </summary>
         public bool EnableCapacity { get; set; }
+
         private bool originalEnableCapacity;
 
         /// <summary>
@@ -51,7 +46,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -62,7 +57,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -81,7 +76,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOff()
         {
@@ -96,9 +91,5 @@ namespace CSharpGL
                 { OpenGL.Enable(Capacity); }
             }
         }
-
     }
-
-   
-
 }

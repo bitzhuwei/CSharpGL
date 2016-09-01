@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,12 +9,12 @@ namespace CSharpGL
     /// </summary>
     public class Shader
     {
-        static OpenGL.glCreateShader glCreateShader;
-        static OpenGL.glShaderSource glShaderSource;
-        static OpenGL.glCompileShader glCompileShader;
-        static OpenGL.glDeleteShader glDeleteShader;
-        static OpenGL.glGetShaderiv glGetShaderiv;
-        static OpenGL.glGetShaderInfoLog glGetShaderInfoLog;
+        private static OpenGL.glCreateShader glCreateShader;
+        private static OpenGL.glShaderSource glShaderSource;
+        private static OpenGL.glCompileShader glCompileShader;
+        private static OpenGL.glDeleteShader glDeleteShader;
+        private static OpenGL.glGetShaderiv glGetShaderiv;
+        private static OpenGL.glGetShaderInfoLog glGetShaderInfoLog;
 
         internal Shader()
         {
@@ -31,8 +28,9 @@ namespace CSharpGL
                 glGetShaderInfoLog = OpenGL.GetDelegateFor<OpenGL.glGetShaderInfoLog>();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="shaderType"></param>
         /// <param name="source"></param>
@@ -55,16 +53,18 @@ namespace CSharpGL
                     string.Format("Failed to compile shader with ID {0}: {1}", ShaderObject, log));
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Delete()
         {
             glDeleteShader(ShaderObject);
             ShaderObject = 0;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool GetCompileStatus()
@@ -73,8 +73,9 @@ namespace CSharpGL
             glGetShaderiv(ShaderObject, OpenGL.GL_COMPILE_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public string GetInfoLog()

@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     public partial class Renderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="varNameInShader"></param>
@@ -117,7 +114,6 @@ namespace CSharpGL
             }
         }
 
-        static Dictionary<Type, Type> variableDict;
-
+        private static Dictionary<Type, Type> variableDict;
     }
 }

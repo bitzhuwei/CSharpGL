@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class Camera
     {
-
         #region IOrthoCamera 成员
 
         private UpdatingRecord orthoCameraRecord = new UpdatingRecord(true);
@@ -25,6 +19,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double right;
 
         double IOrthoCamera.Right
@@ -39,6 +34,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double bottom;
 
         double IOrthoCamera.Bottom
@@ -53,6 +49,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double top;
 
         double IOrthoCamera.Top
@@ -67,6 +64,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double orthoNear;
 
         double IOrthoCamera.Near
@@ -81,6 +79,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double orthoFar;
 
         double IOrthoCamera.Far
@@ -97,6 +96,7 @@ namespace CSharpGL
         }
 
         private mat4 orhtoProjectionMatrix;
+
         mat4 IOrthoCamera.GetOrthoProjectionMatrix()
         {
             if (orthoCameraRecord.IsMarked())
@@ -111,7 +111,6 @@ namespace CSharpGL
             return this.orhtoProjectionMatrix;
         }
 
-        #endregion
-
+        #endregion IOrthoCamera 成员
     }
 }

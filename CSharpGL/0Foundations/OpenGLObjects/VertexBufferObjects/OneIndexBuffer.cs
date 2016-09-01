@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -49,12 +45,15 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     result = base.ByteLength / sizeof(byte);
                     break;
+
                 case IndexElementType.UnsighedShort:
                     result = base.ByteLength / sizeof(ushort);
                     break;
+
                 case IndexElementType.UnsignedInt:
                     result = base.ByteLength / sizeof(uint);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -78,7 +77,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override BufferPtr Upload2GPU()
         {
@@ -96,7 +95,7 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum IndexElementType : uint
     {
@@ -104,10 +103,12 @@ namespace CSharpGL
         /// byte
         /// </summary>
         UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
+
         /// <summary>
         /// ushort
         /// </summary>
         UnsighedShort = OpenGL.GL_UNSIGNED_SHORT,
+
         /// <summary>
         /// uint
         /// </summary>

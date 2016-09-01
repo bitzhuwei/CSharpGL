@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
     public partial class Renderer : RendererBase, IModelSpace
     {
-
         /// <summary>
         /// algorithm for rendering.
         /// </summary>
@@ -22,19 +13,22 @@ namespace CSharpGL
         // data structure for rendering.
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected VertexArrayObject vertexArrayObject;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected PropertyBufferPtr[] propertyBufferPtrs;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected IndexBufferPtr indexBufferPtr;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected GLSwitchList switchList = new GLSwitchList();
 
@@ -42,15 +36,16 @@ namespace CSharpGL
         /// model data that can be transfermed into OpenGL Buffer's pointer.
         /// </summary>
         protected IBufferable bufferable;
+
         /// <summary>
         /// All shader codes needed for this renderer.
         /// </summary>
         protected ShaderCode[] shaderCodes;
+
         /// <summary>
         /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="bufferable"/>.
         /// </summary>
         protected PropertyNameMap propertyNameMap;
-
 
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
@@ -81,6 +76,7 @@ namespace CSharpGL
         protected UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
 
         private vec3 worldPosition;
+
         /// <summary>
         /// Position in world space.
         /// </summary>
@@ -98,8 +94,9 @@ namespace CSharpGL
         }
 
         private float rotationAngle;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual float RotationAngle
         {
@@ -115,8 +112,9 @@ namespace CSharpGL
         }
 
         private vec3 rotationAxis = new vec3(0, 1, 0);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual vec3 RotationAxis
         {
@@ -132,8 +130,9 @@ namespace CSharpGL
         }
 
         private vec3 scale = new vec3(1, 1, 1);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual vec3 Scale
         {
@@ -149,13 +148,10 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual vec3 Lengths { get; protected set; }
 
         #endregion IModelSpace
-
-
-
     }
 }

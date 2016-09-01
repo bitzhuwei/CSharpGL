@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -33,16 +29,17 @@ namespace CSharpGL
             this.format = format;
             this.type = type;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void Fill(BindTextureTarget target)
         {
             OpenGL.TexImage2D((uint)BindTextureTarget.Texture2D, 0,
-                internalFormat,// OpenGL.GL_RGBA, 
+                internalFormat,// OpenGL.GL_RGBA,
                 width, height, 0,
                 this.format,// OpenGL.GL_RGBA,
-                this.type,// OpenGL.GL_UNSIGNED_BYTE, 
+                this.type,// OpenGL.GL_UNSIGNED_BYTE,
                 IntPtr.Zero);
         }
     }

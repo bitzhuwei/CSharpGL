@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -10,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public partial class Texture : IDisposable
     {
-
         /// <summary>
         /// OpenGL.GL_TEXTURE0 etc.
         /// </summary>
@@ -33,12 +29,12 @@ namespace CSharpGL
         public uint Id { get { return this.id[0]; } }
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         //public bool UseMipmap { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Bind()
         {
@@ -47,7 +43,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Unbind()
         {
@@ -57,6 +53,7 @@ namespace CSharpGL
 
         private static OpenGL.glActiveTexture activeTexture;
         private bool initialized = false;
+
         /// <summary>
         /// resources(bitmap etc.) can be disposed  after this initialization.
         /// </summary>
@@ -90,7 +87,7 @@ namespace CSharpGL
         public SamplerBase Sampler { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

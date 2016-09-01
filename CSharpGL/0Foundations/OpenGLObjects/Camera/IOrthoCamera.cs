@@ -55,7 +55,7 @@
         double Far { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         mat4 GetOrthoProjectionMatrix();

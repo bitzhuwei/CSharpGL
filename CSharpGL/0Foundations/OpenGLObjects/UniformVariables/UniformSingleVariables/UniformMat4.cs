@@ -1,19 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// uniform mat4 variable;
     /// </summary>
     public class UniformMat4 : UniformSingleVariable<mat4>
     {
-
         /// <summary>
         /// uniform mat4 variable;
         /// </summary>
@@ -28,7 +19,7 @@ namespace CSharpGL
         public UniformMat4(string varName, mat4 value) : base(varName, value) { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)

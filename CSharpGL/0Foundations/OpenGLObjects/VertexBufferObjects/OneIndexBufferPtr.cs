@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -56,7 +52,7 @@ namespace CSharpGL
         public IndexElementType Type { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
@@ -68,12 +64,15 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     offset = new IntPtr(this.FirstIndex * sizeof(byte));
                     break;
+
                 case IndexElementType.UnsighedShort:
                     offset = new IntPtr(this.FirstIndex * sizeof(ushort));
                     break;
+
                 case IndexElementType.UnsignedInt:
                     offset = new IntPtr(this.FirstIndex * sizeof(uint));
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -82,7 +81,7 @@ namespace CSharpGL
                 && arg.PickingGeometryType == GeometryType.Point
                 && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
             {
-                // this may render points that should not appear. 
+                // this may render points that should not appear.
                 // so need to select by another picking.
                 OpenGL.DrawElements((uint)DrawMode.Points, this.ElementCount, (uint)this.Type, offset);
             }
@@ -94,7 +93,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -105,12 +104,15 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     type = "byte";
                     break;
+
                 case IndexElementType.UnsighedShort:
                     type = "ushort";
                     break;
+
                 case IndexElementType.UnsignedInt:
                     type = "uint";
                     break;
+
                 default:
                     throw new NotImplementedException();
             }

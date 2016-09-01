@@ -1,10 +1,5 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -13,12 +8,12 @@ namespace CSharpGL
     /// </summary>
     public class UniformSampler : UniformSingleVariable<samplerValue>
     {
-
         /// <summary>
         /// uniform samplerXD variable;
         /// </summary>
         /// <param name="varName"></param>
         public UniformSampler(string varName) : base(varName) { }
+
         /// <summary>
         /// uniform samplerXD variable;
         /// </summary>
@@ -27,8 +22,9 @@ namespace CSharpGL
         public UniformSampler(string varName, samplerValue value) : base(varName, value) { }
 
         private static OpenGL.glActiveTexture activeTexture;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
@@ -40,8 +36,9 @@ namespace CSharpGL
             OpenGL.BindTexture(value.target, value.TextureId);
             this.Location = program.SetUniform(VarName, value.activeTextureIndex);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void ResetUniform(ShaderProgram program)
@@ -66,8 +63,9 @@ namespace CSharpGL
     public struct samplerValue : IEquatable<samplerValue>, ILoadFromString
     {
         internal uint target;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BindTextureTarget Target
         {
@@ -76,8 +74,9 @@ namespace CSharpGL
         }
 
         private uint textureId;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public uint TextureId
         {
@@ -86,6 +85,7 @@ namespace CSharpGL
         }
 
         internal uint activeTextureIndex;
+
         /// <summary>
         /// OpenGL.GL_TEXTURE0, OpenGL.GL_TEXTURE1, OpenGL.GL_TEXTURE2, ...
         /// </summary>
@@ -108,7 +108,7 @@ namespace CSharpGL
             this.activeTextureIndex = (activeTextureIndex - OpenGL.GL_TEXTURE0);
         }
 
-        static readonly char[] separator = new char[] { '[', ']', };
+        private static readonly char[] separator = new char[] { '[', ']', };
 
         internal static samplerValue Parse(string value)
         {
@@ -119,16 +119,18 @@ namespace CSharpGL
 
             return new samplerValue(target, textureId, activeTextureIndex);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             return string.Format("texture target: [{0}] texture id:[{1}] active texture index:[{2}]", target, textureId, activeTextureIndex);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -148,8 +150,9 @@ namespace CSharpGL
 
             return left.Equals(right);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -158,8 +161,9 @@ namespace CSharpGL
         {
             return !left.Equals(right);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -167,8 +171,9 @@ namespace CSharpGL
         {
             return (obj is samplerValue) && (this.Equals((samplerValue)obj));
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -177,7 +182,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

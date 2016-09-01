@@ -1,19 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// uniform float variable[10];
     /// </summary>
     public class UniformFloatArray : UniformArrayVariable<float>
     {
-
         /// <summary>
         /// uniform float variable[10];
         /// </summary>
@@ -22,7 +13,7 @@ namespace CSharpGL
         public UniformFloatArray(string varName, int length) : base(varName, length) { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)

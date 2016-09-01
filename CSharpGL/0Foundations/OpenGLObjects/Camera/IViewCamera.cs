@@ -1,6 +1,5 @@
-﻿
+﻿using System.ComponentModel;
 
-using System.ComponentModel;
 namespace CSharpGL
 {
     /// <summary>
@@ -37,10 +36,9 @@ namespace CSharpGL
         vec3 UpVector { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         mat4 GetViewMatrix();
-
     }
 }

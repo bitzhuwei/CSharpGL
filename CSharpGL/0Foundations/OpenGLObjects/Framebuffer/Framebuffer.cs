@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -14,12 +10,15 @@ namespace CSharpGL
         private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
         private static OpenGL.glBindFramebufferEXT glBindFramebuffer;
         private static OpenGL.glFramebufferTexture2DEXT glFramebufferTexture2D;
+
         //private static OpenGL.glDrawBuffers glDrawBuffers;
         private static OpenGL.glFramebufferRenderbufferEXT glFramebufferRenderbuffer;
+
         private static OpenGL.glFramebufferParameteri glFramebufferParameteri;
         private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
 
-        uint[] frameBuffer = new uint[1];
+        private uint[] frameBuffer = new uint[1];
+
         /// <summary>
         /// Framebuffer Id.
         /// </summary>
@@ -63,7 +62,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -73,7 +72,7 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum FramebufferTarget : uint
     {
@@ -81,10 +80,12 @@ namespace CSharpGL
         /// used to draw(write only) something.
         /// </summary>
         DrawFramebuffer = OpenGL.GL_DRAW_FRAMEBUFFER,
+
         /// <summary>
         /// used to read from(read only).
         /// </summary>
         ReadFramebuffer = OpenGL.GL_READ_FRAMEBUFFER,
+
         /// <summary>
         /// both read/write.
         /// </summary>

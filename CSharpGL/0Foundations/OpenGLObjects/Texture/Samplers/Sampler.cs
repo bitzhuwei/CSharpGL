@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -25,12 +22,12 @@ namespace CSharpGL
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
             : base(parameters, mipmapFiltering)
         {
-
         }
 
         private bool initialized = false;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Initialize(uint unit, BindTextureTarget target)
         {
@@ -59,6 +56,7 @@ namespace CSharpGL
 
             OpenGL.BindSampler(unit, 0);
         }
+
         /// <summary>
         /// texture's settings.
         /// </summary>
@@ -72,13 +70,13 @@ namespace CSharpGL
         }
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="unit"></param>
         ///// <param name="target"></param>
         //public override void Unbind(uint unit, BindTextureTarget target)
         //{
-        //    //OpenGL.BindSampler(unit, 0); 
+        //    //OpenGL.BindSampler(unit, 0);
         //    OpenGL.GetDelegateFor<OpenGL.glBindSampler>()(unit, 0);
         //}
     }

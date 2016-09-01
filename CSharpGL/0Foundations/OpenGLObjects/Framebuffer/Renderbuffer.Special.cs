@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Create, update, use and delete a framebuffer object.
@@ -12,7 +6,7 @@ namespace CSharpGL
     public partial class Renderbuffer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -24,7 +18,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -38,7 +32,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -53,16 +47,17 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum DepthComponentType : uint
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DepthComponent = OpenGL.GL_DEPTH_COMPONENT,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DepthComponent24 = OpenGL.GL_DEPTH_COMPONENT24,
     }

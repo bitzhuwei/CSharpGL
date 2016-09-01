@@ -1,19 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// uniform vec3 variable;
     /// </summary>
     public class UniformVec3 : UniformSingleVariable<vec3>
     {
-
         /// <summary>
         /// uniform vec3 variable;
         /// </summary>
@@ -28,7 +19,7 @@ namespace CSharpGL
         public UniformVec3(string varName, vec3 value) : base(varName, value) { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
@@ -36,5 +27,4 @@ namespace CSharpGL
             this.Location = program.SetUniform(VarName, value.x, value.y, value.z);
         }
     }
-
 }

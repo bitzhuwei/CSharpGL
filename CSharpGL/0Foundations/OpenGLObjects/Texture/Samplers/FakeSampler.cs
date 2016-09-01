@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// texture's settings.
     /// </summary>
     public class FakeSampler : SamplerBase
     {
-
         /// <summary>
         /// texture's settings.
         /// </summary>
@@ -36,11 +30,10 @@ namespace CSharpGL
             OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_MIN_FILTER, (int)this.parameters.minFilter);
             OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_MAG_FILTER, (int)this.parameters.magFilter);
             // TODO: mipmap filter not working yet.
-
         }
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="unit"></param>
         ///// <param name="target"></param>

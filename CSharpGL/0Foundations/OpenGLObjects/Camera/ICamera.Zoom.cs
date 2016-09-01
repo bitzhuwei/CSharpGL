@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 namespace CSharpGL
 {
     /// <summary>
@@ -9,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public static partial class CameraHelper
     {
-
         /// <summary>
         /// Zoom camera to fit in specified <paramref name="boundingBox"/>.
         /// </summary>
@@ -24,9 +21,11 @@ namespace CSharpGL
                 case CameraType.Perspecitive:
                     ((IPerspectiveViewCamera)camera).ZoomCamera(boundingBox);
                     break;
+
                 case CameraType.Ortho:
                     ((IOrthoViewCamera)camera).ZoomCamera(boundingBox);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -102,6 +101,5 @@ namespace CSharpGL
                 camera.Far = size * 3 + 1;// double.MaxValue;
             }
         }
-
     }
 }

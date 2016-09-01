@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class PrimitiveRestartSwitch : EnableSwitch
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="indexBufferPtr"></param>
         public PrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
@@ -26,18 +22,22 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     this.RestartIndex = byte.MaxValue;
                     break;
+
                 case IndexElementType.UnsighedShort:
                     this.RestartIndex = ushort.MaxValue;
                     break;
+
                 case IndexElementType.UnsignedInt:
                     this.RestartIndex = uint.MaxValue;
                     break;
+
                 default:
                     break;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -45,9 +45,10 @@ namespace CSharpGL
             return string.Format("Restart Index: {0}", RestartIndex);
         }
 
-        static OpenGL.glPrimitiveRestartIndex glPrimitiveRestartIndex;
+        private static OpenGL.glPrimitiveRestartIndex glPrimitiveRestartIndex;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -61,10 +62,10 @@ namespace CSharpGL
                 glPrimitiveRestartIndex(RestartIndex);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public uint RestartIndex { get; set; }
     }
-
 }

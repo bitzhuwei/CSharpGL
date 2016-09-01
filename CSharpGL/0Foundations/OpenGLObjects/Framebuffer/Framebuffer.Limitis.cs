@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class Framebuffer
     {
@@ -59,7 +53,7 @@ namespace CSharpGL
         }
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <returns></returns>
         //public static int DefaultWidth()
@@ -70,7 +64,7 @@ namespace CSharpGL
         //}
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <returns></returns>
         //public static int DefaultHeight()
@@ -81,7 +75,7 @@ namespace CSharpGL
         //}
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <returns></returns>
         //public static int DefaultLayers()
@@ -92,7 +86,7 @@ namespace CSharpGL
         //}
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <returns></returns>
         //public static int DefaultSamples()
@@ -103,7 +97,7 @@ namespace CSharpGL
         //}
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <returns></returns>
         //public static int DefaultFixedSampleLocations()

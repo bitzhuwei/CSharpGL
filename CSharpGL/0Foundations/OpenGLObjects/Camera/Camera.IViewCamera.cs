@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
+﻿using System.ComponentModel;
 
 namespace CSharpGL
 {
     public partial class Camera
     {
-
         #region IViewCamera
 
         private UpdatingRecord viewMatrixRecord = new UpdatingRecord(true);
 
         private vec3 target;
+
         /// <summary>
         /// Gets or sets world coordinate of the camera's target.
         /// </summary>
@@ -32,6 +29,7 @@ namespace CSharpGL
         }
 
         private vec3 upVector = new vec3(0, 1, 0);
+
         /// <summary>
         /// Gets or sets world coordinate of the camera's up vector.
         /// </summary>
@@ -54,6 +52,7 @@ namespace CSharpGL
         }
 
         private vec3 position = new vec3(1, 1, 1);
+
         /// <summary>
         /// Gets or sets world coordinate of the camera 's position.
         /// </summary>
@@ -76,8 +75,9 @@ namespace CSharpGL
         }
 
         private mat4 viewMatrix;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public mat4 GetViewMatrix()
@@ -92,6 +92,5 @@ namespace CSharpGL
         }
 
         #endregion IViewCamera
-
     }
 }

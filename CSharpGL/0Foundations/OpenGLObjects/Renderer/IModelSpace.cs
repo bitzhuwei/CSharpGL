@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// gets model's original size.
@@ -17,17 +12,17 @@ namespace CSharpGL
         vec3 WorldPosition { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         float RotationAngle { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         vec3 RotationAxis { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         vec3 Scale { get; set; }
 
@@ -38,7 +33,7 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class IModelSpaceHelper
     {
@@ -54,8 +49,9 @@ namespace CSharpGL
             matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
             return matrix;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -75,7 +71,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="model"></param>
         internal static void LegacyTransform(this IModelSpace model)

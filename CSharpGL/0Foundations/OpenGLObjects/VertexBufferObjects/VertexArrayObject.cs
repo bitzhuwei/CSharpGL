@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,14 +8,13 @@ namespace CSharpGL
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PropertyBufferPtr[] PropertyBufferPtrs { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
@@ -29,9 +24,9 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get; private set; }
 
-        static OpenGL.glGenVertexArrays glGenVertexArrays;
-        static OpenGL.glBindVertexArray glBindVertexArray;
-        static OpenGL.glDeleteVertexArrays glDeleteVertexArrays;
+        private static OpenGL.glGenVertexArrays glGenVertexArrays;
+        private static OpenGL.glBindVertexArray glBindVertexArray;
+        private static OpenGL.glDeleteVertexArrays glDeleteVertexArrays;
 
         /// <summary>
         /// VAO是用来管理VBO的。可以进一步减少DrawCall。
@@ -126,7 +121,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -134,7 +129,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -143,7 +138,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~VertexArrayObject()
         {
@@ -159,7 +154,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.
@@ -190,6 +184,5 @@ namespace CSharpGL
 
             this.disposedValue = true;
         }
-
     }
 }

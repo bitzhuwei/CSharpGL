@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class TexStorageImageFiller : ImageFiller
     {
@@ -16,7 +11,7 @@ namespace CSharpGL
         private int height;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="levels"></param>
         /// <param name="internalFormat"></param>
@@ -32,7 +27,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         public override void Fill(BindTextureTarget target)
@@ -41,17 +36,23 @@ namespace CSharpGL
             {
                 case BindTextureTarget.Unknown:
                     break;
+
                 case BindTextureTarget.Texture1D:
                     break;
+
                 case BindTextureTarget.Texture2D:
                     OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, levels, internalFormat, width, height);
                     break;
+
                 case BindTextureTarget.Texture3D:
                     break;
+
                 case BindTextureTarget.TextureCubeMap:
                     break;
+
                 case BindTextureTarget.TextureBuffer:
                     break;
+
                 default:
                     break;
             }

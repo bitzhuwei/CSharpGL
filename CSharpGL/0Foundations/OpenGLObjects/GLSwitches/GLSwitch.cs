@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class GLSwitch
     {
-
         private bool inUse = false;
 
         /// <summary>
@@ -22,7 +17,7 @@ namespace CSharpGL
         public bool InUse { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GLSwitch()
         {
@@ -30,7 +25,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void On()
         {
@@ -42,7 +37,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Off()
         {
@@ -54,14 +49,13 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected abstract void SwitchOn();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected abstract void SwitchOff();
     }
-
 }

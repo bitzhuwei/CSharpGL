@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Data for CPU(model) -&gt; pointer to Data for GPU(buffer renderer)
@@ -13,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public interface IBufferable
     {
-
         /// <summary>
         /// 获取顶点某种属性的<see cref="BufferPtr"/>。
         /// </summary>

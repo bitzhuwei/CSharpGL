@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -29,6 +26,7 @@ namespace CSharpGL
 			OpenGL.GL_COLOR_ATTACHMENT14,
 			OpenGL.GL_COLOR_ATTACHMENT15,
         };
+
         private int nextColorAttachmentIndex = 0;
         private Renderbuffer depthBuffer;
         private List<Renderbuffer> colorBufferList = new List<Renderbuffer>();
@@ -65,6 +63,7 @@ namespace CSharpGL
                     glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
                     this.depthBuffer = renderbuffer;
                     break;
+
                 case RenderbufferType.ColorBuffer:
                     if (nextColorAttachmentIndex >= attachment_id.Length)
                     { throw new IndexOutOfRangeException("Not enough attach points!"); }
@@ -72,6 +71,7 @@ namespace CSharpGL
                     glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
                     this.colorBufferList.Add(renderbuffer);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -81,84 +81,102 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum RenderbufferAttachment : uint
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment0 = OpenGL.GL_COLOR_ATTACHMENT0,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment1 = OpenGL.GL_COLOR_ATTACHMENT1,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment2 = OpenGL.GL_COLOR_ATTACHMENT2,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment3 = OpenGL.GL_COLOR_ATTACHMENT3,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment4 = OpenGL.GL_COLOR_ATTACHMENT4,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment5 = OpenGL.GL_COLOR_ATTACHMENT5,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment6 = OpenGL.GL_COLOR_ATTACHMENT6,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment7 = OpenGL.GL_COLOR_ATTACHMENT7,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment8 = OpenGL.GL_COLOR_ATTACHMENT8,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment9 = OpenGL.GL_COLOR_ATTACHMENT9,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment10 = OpenGL.GL_COLOR_ATTACHMENT10,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment11 = OpenGL.GL_COLOR_ATTACHMENT11,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment12 = OpenGL.GL_COLOR_ATTACHMENT12,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment13 = OpenGL.GL_COLOR_ATTACHMENT13,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment14 = OpenGL.GL_COLOR_ATTACHMENT14,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorAttachment15 = OpenGL.GL_COLOR_ATTACHMENT15,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DepthAttachment = OpenGL.GL_DEPTH_ATTACHMENT,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StencilAttachment = OpenGL.GL_STENCIL_ATTACHMENT,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DepthStencilAttachment = OpenGL.GL_DEPTH_STENCIL_ATTACHMENT,
     }

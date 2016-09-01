@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -26,8 +24,9 @@ namespace CSharpGL
         ///// </summary>
         //public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
 
-
-        internal Camera() { }
+        internal Camera()
+        {
+        }
 
         /// <summary>
         /// Camera.

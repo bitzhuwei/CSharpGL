@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// texture's settings.
@@ -12,34 +6,37 @@ namespace CSharpGL
     public class SamplerParameters
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextureWrapping wrapS = TextureWrapping.ClampToEdge;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextureWrapping wrapT = TextureWrapping.ClampToEdge;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextureWrapping wrapR = TextureWrapping.ClampToEdge;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextureFilter minFilter = TextureFilter.Linear;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextureFilter magFilter = TextureFilter.Linear;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SamplerParameters() { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="wrapS"></param>
         /// <param name="wrapT"></param>
@@ -63,7 +60,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

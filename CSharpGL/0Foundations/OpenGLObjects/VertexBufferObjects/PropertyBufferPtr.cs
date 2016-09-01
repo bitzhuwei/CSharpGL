@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,11 +8,12 @@ namespace CSharpGL
     public class PropertyBufferPtr : BufferPtr
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected static OpenGL.glVertexAttribPointer glVertexAttribPointer;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
 
@@ -109,6 +106,5 @@ namespace CSharpGL
             // enable this VBO.
             glEnableVertexAttribArray(loc);
         }
-
     }
 }

@@ -1,19 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// uniform samplerXD variable[10];
     /// </summary>
     public class UniformSamplerArray : UniformArrayVariable<samplerValue>
     {
-
         /// <summary>
         /// uniform samplerXD variable[10];
         /// </summary>
@@ -22,8 +13,9 @@ namespace CSharpGL
         public UniformSamplerArray(string varName, int length) : base(varName, length) { }
 
         private static OpenGL.glActiveTexture activeTexture;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
@@ -40,8 +32,9 @@ namespace CSharpGL
                 this.Location = program.SetUniform(VarName, value.activeTextureIndex);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void ResetUniform(ShaderProgram program)
@@ -54,5 +47,4 @@ namespace CSharpGL
             //OpenGL.BindTexture(value.target, 0);
         }
     }
-
 }

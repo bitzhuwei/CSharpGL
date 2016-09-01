@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// texture's settings.
@@ -30,32 +25,32 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="unit">OpenGL.GL_TEXTURE0 etc.</param>
         /// <param name="target"></param>
         public abstract void Bind(uint unit, BindTextureTarget target);
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="unit"></param>
         ///// <param name="target"></param>
         //public abstract void Unbind(uint unit, BindTextureTarget target);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected SamplerParameters parameters;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected MipmapFilter mipmapFilter;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SamplerParameters Parameters { get { return this.parameters; } }
-
     }
 }

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,11 +7,11 @@ namespace CSharpGL
     /// </summary>
     public abstract class UniformSingleVariable<T> : UniformSingleVariableBase where T : struct, IEquatable<T>
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected T value;
+
         /// <summary>
         /// Don't rename this property because its used in Renderer.GetVariable&lt;T&gt;(T value, string varNameInShader).
         /// </summary>
@@ -47,14 +42,12 @@ namespace CSharpGL
         public UniformSingleVariable(string varName, T value) : base(varName) { this.Value = value; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0} {1}: [{2}]", this.GetType().Name, this.VarName, this.value);
         }
-
     }
-
 }

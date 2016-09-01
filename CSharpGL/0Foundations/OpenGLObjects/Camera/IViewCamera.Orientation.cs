@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class CameraHelper
     {
-
         /// <summary>
         /// Get front vector in world space.
         /// </summary>

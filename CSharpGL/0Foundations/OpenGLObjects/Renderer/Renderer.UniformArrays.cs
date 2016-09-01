@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     public partial class Renderer
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -34,8 +30,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -59,8 +56,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -84,8 +82,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -109,8 +108,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -134,8 +134,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -159,8 +160,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -184,8 +186,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -209,8 +212,9 @@ namespace CSharpGL
 
             return gotUniform;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -236,7 +240,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -279,7 +283,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -320,8 +324,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -362,8 +367,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -404,8 +410,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -446,8 +453,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -488,8 +496,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -530,8 +539,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -572,8 +582,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
@@ -614,8 +625,9 @@ namespace CSharpGL
 
             return updated;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="value"></param>
         /// <param name="varNameInShader"></param>
@@ -655,7 +667,6 @@ namespace CSharpGL
             }
         }
 
-        static Dictionary<Type, Type> variableArrayDict;
-
+        private static Dictionary<Type, Type> variableArrayDict;
     }
 }

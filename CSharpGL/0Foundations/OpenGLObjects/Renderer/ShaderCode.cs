@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 各种类型的shader代码
     /// </summary>
     public class ShaderCode
     {
-
         /// <summary>
         /// 各种类型的shader代码
         /// </summary>
@@ -21,24 +15,28 @@ namespace CSharpGL
             this.SourceCode = sourceCode;
             this.ShaderType = shaderType;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string SourceCode { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ShaderType ShaderType { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}", this.ShaderType);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Shader CreateShader()

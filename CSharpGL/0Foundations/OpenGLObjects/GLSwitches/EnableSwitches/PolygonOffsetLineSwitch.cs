@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-
     /// <summary>
     /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
     /// </summary>
     public class PolygonOffsetLineSwitch : PolygonOffsetSwitch
     {
-
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
@@ -26,7 +19,5 @@ namespace CSharpGL
         public PolygonOffsetLineSwitch(bool pullNear)
             : base(PolygonOffset.Line, pullNear)
         { }
-
     }
-
 }

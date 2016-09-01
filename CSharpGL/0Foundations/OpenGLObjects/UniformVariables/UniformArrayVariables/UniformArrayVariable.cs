@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -14,10 +9,10 @@ namespace CSharpGL
     /// </summary>
     public abstract class UniformArrayVariable<T> : UniformArrayVariableBase where T : struct, IEquatable<T>
     {
-
         private NoisyArray<T> array;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public NoisyArray<T> Value
         {
@@ -53,7 +48,8 @@ namespace CSharpGL
             this.Updated = true;
         }
 
-        EventHandler<NoisyArrayEventArgs<T>> eventHandler;
+        private EventHandler<NoisyArrayEventArgs<T>> eventHandler;
+
         /// <summary>
         /// shader中的一个数组类型的uniform变量。
         /// </summary>
@@ -67,7 +63,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -83,5 +79,4 @@ namespace CSharpGL
             }
         }
     }
-
 }

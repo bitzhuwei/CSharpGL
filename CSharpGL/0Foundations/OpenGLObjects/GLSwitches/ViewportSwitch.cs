@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// set and reset viewport using glViewport();
@@ -49,7 +44,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -59,7 +54,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -69,7 +64,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOff()
         {
@@ -77,25 +72,23 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int X { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Y { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Width { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Height { get; set; }
-
     }
-
 }

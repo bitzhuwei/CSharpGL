@@ -1,9 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System;
 
 namespace CSharpGL
 {
@@ -13,20 +8,22 @@ namespace CSharpGL
     public abstract class Buffer : IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glGenBuffers glGenBuffers;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glBindBuffer glBindBuffer;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glBufferData glBufferData;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected UnmanagedArrayBase array = null;
 
@@ -54,7 +51,6 @@ namespace CSharpGL
                 UnmanagedArrayBase array = this.array;
                 return (array == null) ? 0 : array.ByteLength;
             }
-
         }
 
         /// <summary>
@@ -125,7 +121,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -133,7 +129,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -142,7 +138,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~Buffer()
         {
@@ -158,7 +154,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.
@@ -172,7 +167,5 @@ namespace CSharpGL
 
             this.disposedValue = true;
         }
-
     }
-
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -16,7 +11,6 @@ namespace CSharpGL
     [Editor(typeof(IndexBufferPtrEditor), typeof(UITypeEditor))]
     public abstract class IndexBufferPtr : BufferPtr
     {
-
         /// <summary>
         /// 用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
         /// </summary>

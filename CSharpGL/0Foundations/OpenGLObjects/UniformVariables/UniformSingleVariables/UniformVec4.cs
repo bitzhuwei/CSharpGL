@@ -1,19 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// uniform vec4 variable;
     /// </summary>
     public class UniformVec4 : UniformSingleVariable<vec4>
     {
-
         /// <summary>
         /// uniform vec4 variable;
         /// </summary>
@@ -28,7 +19,7 @@ namespace CSharpGL
         public UniformVec4(string varName, vec4 value) : base(varName, value) { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)

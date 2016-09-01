@@ -3,58 +3,55 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Design;
-using System.Linq;
 using System.Text;
-
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class ShaderProgram
     {
-
-        static OpenGL.glCreateProgram glCreateProgram;
-        static OpenGL.glAttachShader glAttachShader;
-        static OpenGL.glLinkProgram glLinkProgram;
-        static OpenGL.glDetachShader glDetachShader;
-        static OpenGL.glDeleteProgram glDeleteProgram;
-        static OpenGL.glGetAttribLocation glGetAttribLocation;
-        static OpenGL.glUseProgram glUseProgram;
-        static OpenGL.glGetProgramiv glGetProgramiv;
-        static OpenGL.glUniform1ui glUniform1ui;
-        static OpenGL.glUniform2ui glUniform2ui;
-        static OpenGL.glUniform3ui glUniform3ui;
-        static OpenGL.glUniform4ui glUniform4ui;
-        static OpenGL.glUniform1uiv glUniform1uiv;
-        static OpenGL.glUniform2uiv glUniform2uiv;
-        static OpenGL.glUniform3uiv glUniform3uiv;
-        static OpenGL.glUniform4uiv glUniform4uiv;
-        static OpenGL.glUniform1i glUniform1i;
-        static OpenGL.glUniform2i glUniform2i;
-        static OpenGL.glUniform3i glUniform3i;
-        static OpenGL.glUniform4i glUniform4i;
-        static OpenGL.glUniform1iv glUniform1iv;
-        static OpenGL.glUniform2iv glUniform2iv;
-        static OpenGL.glUniform3iv glUniform3iv;
-        static OpenGL.glUniform4iv glUniform4iv;
-        static OpenGL.glUniform1f glUniform1f;
-        static OpenGL.glUniform2f glUniform2f;
-        static OpenGL.glUniform3f glUniform3f;
-        static OpenGL.glUniform4f glUniform4f;
-        static OpenGL.glUniform1fv glUniform1fv;
-        static OpenGL.glUniform2fv glUniform2fv;
-        static OpenGL.glUniform3fv glUniform3fv;
-        static OpenGL.glUniform4fv glUniform4fv;
-        static OpenGL.glUniformMatrix2fv glUniformMatrix2fv;
-        static OpenGL.glUniformMatrix3fv glUniformMatrix3fv;
-        static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
-        static OpenGL.glGetUniformLocation glGetUniformLocation;
+        private static OpenGL.glCreateProgram glCreateProgram;
+        private static OpenGL.glAttachShader glAttachShader;
+        private static OpenGL.glLinkProgram glLinkProgram;
+        private static OpenGL.glDetachShader glDetachShader;
+        private static OpenGL.glDeleteProgram glDeleteProgram;
+        private static OpenGL.glGetAttribLocation glGetAttribLocation;
+        private static OpenGL.glUseProgram glUseProgram;
+        private static OpenGL.glGetProgramiv glGetProgramiv;
+        private static OpenGL.glUniform1ui glUniform1ui;
+        private static OpenGL.glUniform2ui glUniform2ui;
+        private static OpenGL.glUniform3ui glUniform3ui;
+        private static OpenGL.glUniform4ui glUniform4ui;
+        private static OpenGL.glUniform1uiv glUniform1uiv;
+        private static OpenGL.glUniform2uiv glUniform2uiv;
+        private static OpenGL.glUniform3uiv glUniform3uiv;
+        private static OpenGL.glUniform4uiv glUniform4uiv;
+        private static OpenGL.glUniform1i glUniform1i;
+        private static OpenGL.glUniform2i glUniform2i;
+        private static OpenGL.glUniform3i glUniform3i;
+        private static OpenGL.glUniform4i glUniform4i;
+        private static OpenGL.glUniform1iv glUniform1iv;
+        private static OpenGL.glUniform2iv glUniform2iv;
+        private static OpenGL.glUniform3iv glUniform3iv;
+        private static OpenGL.glUniform4iv glUniform4iv;
+        private static OpenGL.glUniform1f glUniform1f;
+        private static OpenGL.glUniform2f glUniform2f;
+        private static OpenGL.glUniform3f glUniform3f;
+        private static OpenGL.glUniform4f glUniform4f;
+        private static OpenGL.glUniform1fv glUniform1fv;
+        private static OpenGL.glUniform2fv glUniform2fv;
+        private static OpenGL.glUniform3fv glUniform3fv;
+        private static OpenGL.glUniform4fv glUniform4fv;
+        private static OpenGL.glUniformMatrix2fv glUniformMatrix2fv;
+        private static OpenGL.glUniformMatrix3fv glUniformMatrix3fv;
+        private static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
+        private static OpenGL.glGetUniformLocation glGetUniformLocation;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ShaderProgram()
         {
@@ -73,6 +70,7 @@ namespace CSharpGL
 
             this.ShaderProgramObject = glCreateProgram();
         }
+
         /// <summary>
         /// Initialize this shader program object.
         /// </summary>
@@ -112,8 +110,9 @@ namespace CSharpGL
                 glDetachShader(program, item.ShaderObject);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Delete()
         {
@@ -124,8 +123,9 @@ namespace CSharpGL
             }
             this.ShaderProgramObject = 0;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="attributeName"></param>
         /// <returns></returns>
@@ -148,15 +148,17 @@ namespace CSharpGL
             //  Return the attribute location.
             return location;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Bind()
         {
             glUseProgram(this.ShaderProgramObject);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Unbind()
         {
@@ -184,6 +186,7 @@ namespace CSharpGL
             string log = il.ToString();
             return log;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -199,6 +202,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -214,6 +218,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -237,6 +242,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -260,6 +266,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -283,6 +290,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -306,6 +314,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -330,6 +339,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -354,6 +364,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -378,6 +389,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -402,6 +414,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -427,6 +440,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -452,6 +466,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -477,6 +492,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -502,6 +518,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -603,6 +620,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -618,6 +636,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -750,7 +769,6 @@ namespace CSharpGL
             return location;
         }
 
-
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -867,6 +885,7 @@ namespace CSharpGL
             }
             return location;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -893,7 +912,6 @@ namespace CSharpGL
         /// Gets the shader program object.
         /// </summary>
         public uint ShaderProgramObject { get; protected set; }
-
 
         /// <summary>
         /// A mapping of uniform names to locations. This allows us to very easily specify

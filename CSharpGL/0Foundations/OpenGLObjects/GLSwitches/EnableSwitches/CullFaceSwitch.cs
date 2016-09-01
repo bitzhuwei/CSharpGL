@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
     /// </summary>
     public class CullFaceSwitch : EnableSwitch
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CullFaceSwitch()
             : base(OpenGL.GL_CULL_FACE, true)
@@ -21,7 +15,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         public CullFaceSwitch(bool enableCapacity)
@@ -29,8 +23,9 @@ namespace CSharpGL
         {
             this.Init(CullFaceMode.Back);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         public CullFaceSwitch(CullFaceMode mode)
@@ -40,7 +35,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
@@ -56,7 +51,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -71,7 +66,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -99,20 +94,22 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum CullFaceMode : uint
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Front = OpenGL.GL_FRONT,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Back = OpenGL.GL_BACK,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FrontAndBack = OpenGL.GL_FRONT_AND_BACK,
     }

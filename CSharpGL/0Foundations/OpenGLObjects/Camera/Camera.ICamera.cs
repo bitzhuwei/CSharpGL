@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing.Design;
 
 namespace CSharpGL
 {
     public partial class Camera
     {
-
         #region ICamera 成员
 
         private const string strCamera = "Camera";
@@ -19,7 +16,7 @@ namespace CSharpGL
         public CameraType CameraType { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public mat4 GetProjectionMatrix()
@@ -31,9 +28,11 @@ namespace CSharpGL
                 case CameraType.Perspecitive:
                     result = ((IPerspectiveCamera)this).GetPerspectiveProjectionMatrix();
                     break;
+
                 case CameraType.Ortho:
                     result = ((IOrthoCamera)this).GetOrthoProjectionMatrix();
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -41,7 +40,6 @@ namespace CSharpGL
             return result;
         }
 
-        #endregion ICamera
-
+        #endregion ICamera 成员
     }
 }

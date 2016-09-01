@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     public partial class Renderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DoInitialize()
         {
@@ -42,6 +39,5 @@ namespace CSharpGL
                 this.switchList.Add(glSwitch);
             }
         }
-
     }
 }

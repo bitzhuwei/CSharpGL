@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class BlendSwitch : EnableSwitch
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BlendSwitch() : this(BlendingSourceFactor.One, BlendingDestinationFactor.DestinationAlpha) { }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sourceFactor"></param>
         /// <param name="destFactor"></param>
@@ -28,7 +23,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -45,7 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -58,13 +53,13 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BlendingSourceFactor SourceFactor { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BlendingDestinationFactor DestFactor { get; set; }
     }
-
 }

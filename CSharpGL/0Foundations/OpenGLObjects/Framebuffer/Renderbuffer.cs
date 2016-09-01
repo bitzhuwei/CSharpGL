@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Create, update, use and delete a renderbuffer object.
@@ -15,7 +9,8 @@ namespace CSharpGL
         private static OpenGL.glBindRenderbufferEXT glBindRenderbuffer;
         private static OpenGL.glRenderbufferStorageEXT glRenderbufferStorage;
 
-        uint[] renderbuffer = new uint[1];
+        private uint[] renderbuffer = new uint[1];
+
         /// <summary>
         /// Framebuffer Id.
         /// </summary>
@@ -49,22 +44,22 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Width { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Height { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public RenderbufferType BufferType { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -74,16 +69,17 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum RenderbufferType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DepthBuffer,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorBuffer,
     }

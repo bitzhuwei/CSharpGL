@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class LineWidthSwitch : GLSwitch
     {
-        static float min;
-        static float max;
+        private static float min;
+        private static float max;
 
         static LineWidthSwitch()
         {
@@ -21,25 +15,27 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float MinLineWidth { get; private set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float MaxLineWidth { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float LineWidth { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public LineWidthSwitch() : this(1.0f) { }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lineWidth"></param>
         public LineWidthSwitch(float lineWidth)
@@ -49,10 +45,10 @@ namespace CSharpGL
             this.MaxLineWidth = max;
         }
 
-        float[] original = new float[1];
+        private float[] original = new float[1];
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -60,7 +56,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -70,7 +66,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOff()
         {

@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// An uniform variable in shader.
     /// </summary>
     public abstract class UniformVariable
     {
-
         /// <summary>
         /// variable name.
         /// </summary>
@@ -58,5 +50,4 @@ namespace CSharpGL
             this.Updated = false;
         }
     }
-
 }

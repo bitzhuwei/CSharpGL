@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -15,7 +10,6 @@ namespace CSharpGL
     /// </summary>
     public abstract class RendererBase : IRenderable, IDisposable
     {
-
         private readonly object synObj = new object();
 
         /// <summary>
@@ -25,7 +19,7 @@ namespace CSharpGL
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Name { get; set; }
 
@@ -38,7 +32,7 @@ namespace CSharpGL
         private static int idCounter = 0;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -69,6 +63,7 @@ namespace CSharpGL
         //}
 
         private bool isInitialized = false;
+
         /// <summary>
         /// Already initialized.
         /// </summary>
@@ -122,7 +117,6 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected abstract void DoRender(RenderEventArgs arg);
 
-
         #region IDisposable Members
 
         /// <summary>
@@ -153,7 +147,6 @@ namespace CSharpGL
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
         private void Dispose(bool disposing)
         {
-
             if (this.disposedValue == false)
             {
                 if (disposing)
@@ -169,7 +162,7 @@ namespace CSharpGL
             this.disposedValue = true;
         } // end sub
 
-        #endregion
+        #endregion IDisposable Members
 
         /// <summary>
         /// 释放.net托管资源。
@@ -182,7 +175,5 @@ namespace CSharpGL
         /// <para>Dispose resources not managed by .NET(OpenGL buffers, textures, etc.).</para>
         /// </summary>
         protected virtual void DisposeUnmanagedResources() { }
-
     }
-
 }

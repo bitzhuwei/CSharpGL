@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     //TODO: IDisposable
     public partial class Renderbuffer : IDisposable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -20,7 +15,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~Renderbuffer()
         {
@@ -36,7 +31,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.

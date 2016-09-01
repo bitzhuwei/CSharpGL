@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -33,11 +29,12 @@ namespace CSharpGL
         public int ByteLength { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glBindBuffer glBindBuffer;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glDeleteBuffers glDeleteBuffers;
 
@@ -70,7 +67,7 @@ namespace CSharpGL
         public abstract void Render(RenderEventArgs arg, ShaderProgram shaderProgram);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -79,7 +76,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~BufferPtr()
         {
@@ -104,7 +101,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
@@ -118,11 +115,10 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void DisposeManagedResources()
         {
         }
-
     }
 }

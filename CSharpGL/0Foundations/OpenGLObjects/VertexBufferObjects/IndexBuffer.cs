@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 用于存储索引的VBO。
@@ -29,8 +23,5 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
         /// </summary>
         public DrawMode Mode { get; private set; }
-
     }
-
-
 }

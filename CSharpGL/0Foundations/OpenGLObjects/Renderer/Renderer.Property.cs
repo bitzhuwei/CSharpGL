@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     public partial class Renderer
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DrawMode Mode
         {
@@ -44,7 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GLSwitchList SwitchList
         {
@@ -52,7 +48,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [Editor(typeof(UniformVariableListEditor), typeof(UITypeEditor))]
         public List<UniformVariable> UniformVariables
@@ -61,12 +57,11 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IndexBufferPtr IndexBufferPtr
         {
             get { return this.indexBufferPtr; }
         }
-
     }
 }

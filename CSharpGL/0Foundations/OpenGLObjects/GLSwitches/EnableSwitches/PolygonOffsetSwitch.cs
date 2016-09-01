@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
     /// </summary>
     public abstract class PolygonOffsetSwitch : EnableSwitch
     {
-
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
@@ -26,8 +20,9 @@ namespace CSharpGL
         {
             this.PullNear = pullNear;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -36,8 +31,9 @@ namespace CSharpGL
                 (PolygonOffset)this.Capacity,
                 this.PullNear ? "Near" : "Far");
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SwitchOn()
         {
@@ -49,10 +45,10 @@ namespace CSharpGL
                 OpenGL.PolygonOffset(value, value);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool PullNear { get; set; }
     }
-
 }

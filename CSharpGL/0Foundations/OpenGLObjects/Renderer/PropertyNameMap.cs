@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using System.Xml.Linq;
 
@@ -17,8 +16,8 @@ namespace CSharpGL
     /// </summary>
     public class PropertyNameMap : IEnumerable<PropertyNameMap.NamePair>
     {
-        List<string> namesInShader = new List<string>();
-        List<string> namesInIBufferable = new List<string>();
+        private List<string> namesInShader = new List<string>();
+        private List<string> namesInIBufferable = new List<string>();
 
         /// <summary>
         /// 持有从<see cref="IBufferable"/>到GLSL中in/uniform变量名的对应关系。
@@ -66,8 +65,9 @@ namespace CSharpGL
                 this.Add(nameInShaders[i], nameInIBufferables[i]);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="nameInShader"></param>
         /// <param name="nameInIBufferable"></param>
@@ -78,7 +78,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public XElement ToXElement()
@@ -92,8 +92,9 @@ namespace CSharpGL
 
             return result;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="xElement"></param>
         /// <returns></returns>
@@ -112,8 +113,9 @@ namespace CSharpGL
 
             return result;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<NamePair> GetEnumerator()
@@ -130,24 +132,28 @@ namespace CSharpGL
         {
             return this.GetEnumerator();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public class NamePair
         {
-            const string strVarNameInShader = "VarNameInShader";
+            private const string strVarNameInShader = "VarNameInShader";
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public string VarNameInShader { get; set; }
 
-            const string strNameInIBufferable = "NameInIBufferable";
+            private const string strNameInIBufferable = "NameInIBufferable";
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public string NameInIBufferable { get; set; }
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="nameInShader"></param>
             /// <param name="nameInIBufferable"></param>
@@ -156,8 +162,9 @@ namespace CSharpGL
                 this.VarNameInShader = nameInShader;
                 this.NameInIBufferable = nameInIBufferable;
             }
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <returns></returns>
             public XElement ToXElement()
@@ -166,8 +173,9 @@ namespace CSharpGL
                     new XAttribute(strVarNameInShader, VarNameInShader),
                     new XAttribute(strNameInIBufferable, NameInIBufferable));
             }
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="xElement"></param>
             /// <returns></returns>
@@ -182,8 +190,9 @@ namespace CSharpGL
 
                 return result;
             }
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <returns></returns>
             public override string ToString()
@@ -192,5 +201,4 @@ namespace CSharpGL
             }
         }
     }
-
 }

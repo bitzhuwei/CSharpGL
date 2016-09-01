@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     // 没有显式索引时的渲染方法。
     /// <summary>
@@ -42,7 +36,7 @@ namespace CSharpGL
         public int OriginalVertexCount { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
@@ -52,7 +46,7 @@ namespace CSharpGL
                 && arg.PickingGeometryType == GeometryType.Point
                 && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
             {
-                // this maybe render points that should not appear. 
+                // this maybe render points that should not appear.
                 // so need to select by another picking.
                 OpenGL.DrawArrays((uint)DrawMode.Points, this.FirstVertex, this.VertexCount);
             }
@@ -63,7 +57,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -15,7 +10,6 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface IRenderable
     {
-
         /// <summary>
         /// Render something.
         /// </summary>
@@ -62,22 +56,23 @@ namespace CSharpGL
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when render mode is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.
         /// </summary>
         public GeometryType PickingGeometryType { get; private set; }
-
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum RenderModes
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Render,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColorCodedPicking,
+
         //DesignMode,
     }
 }

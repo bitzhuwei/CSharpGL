@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
@@ -16,7 +9,6 @@ namespace CSharpGL
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class PropertyBuffer<T> : Buffer where T : struct
     {
-
         /// <summary>
         /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="PropertyBuffer&lt;T&gt;"/>仅描述其中一个属性。</para>
@@ -57,7 +49,7 @@ namespace CSharpGL
         public uint DataType { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         protected override BufferPtr Upload2GPU()

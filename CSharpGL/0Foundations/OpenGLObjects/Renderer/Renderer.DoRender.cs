@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-
 
 namespace CSharpGL
 {
     public partial class Renderer
     {
-
         private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
+
         //private Stack<UniformArrayVariable> uniformArrayVariableStack = new Stack<UniformArrayVariable>();
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -102,6 +98,5 @@ namespace CSharpGL
             var updatedUniforms = (from item in this.uniformVariables where item.Updated select item).ToArray();
             foreach (var item in updatedUniforms) { item.SetUniform(program); uniformVariableStack.Push(item); }
         }
-
     }
 }

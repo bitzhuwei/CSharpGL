@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
 
 namespace CSharpGL
 {
     public partial class Camera
     {
-
         #region IPerspectiveCamera 成员
 
         private UpdatingRecord perspectiveCameraRecord = new UpdatingRecord(true);
@@ -25,6 +21,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double aspectRatio;
 
         double IPerspectiveCamera.AspectRatio
@@ -39,6 +36,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double perspectiveNear;
 
         double IPerspectiveCamera.Near
@@ -53,6 +51,7 @@ namespace CSharpGL
                 }
             }
         }
+
         private double perspectiveFar;
 
         double IPerspectiveCamera.Far
@@ -69,6 +68,7 @@ namespace CSharpGL
         }
 
         private mat4 perspectiveProjectionMatrix;
+
         mat4 IPerspectiveCamera.GetPerspectiveProjectionMatrix()
         {
             if (perspectiveCameraRecord.IsMarked())
@@ -83,7 +83,6 @@ namespace CSharpGL
             return perspectiveProjectionMatrix;
         }
 
-        #endregion
-
+        #endregion IPerspectiveCamera 成员
     }
 }

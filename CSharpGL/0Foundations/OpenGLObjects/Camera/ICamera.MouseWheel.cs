@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class CameraHelper
     {
@@ -49,6 +43,5 @@ namespace CSharpGL
                 orthoCamera.Top = centerX + distanceY * (1 - delta * 0.001) / 2;
             }
         }
-
     }
 }

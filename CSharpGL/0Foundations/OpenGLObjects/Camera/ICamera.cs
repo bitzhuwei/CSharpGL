@@ -12,18 +12,17 @@
         CameraType CameraType { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         mat4 GetProjectionMatrix();
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class ICameraHelper
     {
-
         /// <summary>
         /// opengl控件的大小改变时调整camera.
         /// Adjust camera when OpenGL canvas's size changed.

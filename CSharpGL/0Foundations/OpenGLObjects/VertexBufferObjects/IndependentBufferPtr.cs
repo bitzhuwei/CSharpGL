@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Buffer object that not work as input variable in shader.
@@ -12,16 +6,17 @@ namespace CSharpGL
     public class IndependentBufferPtr : BufferPtr
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BufferTarget Target { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected static OpenGL.glVertexAttribPointer glVertexAttribPointer;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
 
@@ -59,7 +54,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Bind()
         {
@@ -67,7 +62,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Unbind()
         {
@@ -75,7 +70,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

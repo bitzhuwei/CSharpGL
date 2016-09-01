@@ -1,24 +1,16 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// uniform bvec4 variable;
     /// </summary>
     public class UniformBVec4 : UniformSingleVariable<bvec4>
     {
-
         /// <summary>
         /// uniform bvec4 variable;
         /// </summary>
         /// <param name="varName"></param>
         public UniformBVec4(string varName) : base(varName) { }
+
         /// <summary>
         /// uniform bvec4 variable;
         /// </summary>
@@ -27,7 +19,7 @@ namespace CSharpGL
         public UniformBVec4(string varName, bvec4 value) : base(varName, value) { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
