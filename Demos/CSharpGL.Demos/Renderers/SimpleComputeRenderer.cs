@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
                 var computeProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\compute.comp"), ShaderType.ComputeShader);
                 Shader shader = shaderCode.CreateShader();
-                computeProgram.Create(shader);
+                computeProgram.Initialize(shader);
                 shader.Delete();
                 this.computeProgram = computeProgram;
             }
@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                 var resetProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\computeReset.comp"), ShaderType.ComputeShader);
                 Shader shader = shaderCode.CreateShader();
-                resetProgram.Create(shader);
+                resetProgram.Initialize(shader);
                 shader.Delete();
                 this.resetProgram = resetProgram;
             }

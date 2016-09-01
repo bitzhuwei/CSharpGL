@@ -74,12 +74,12 @@ namespace CSharpGL
             this.ShaderProgramObject = glCreateProgram();
         }
         /// <summary>
-        /// 
+        /// Initialize this shader program object.
         /// </summary>
         /// <param name="shaders"></param>
-        public void Create(params Shader[] shaders)
+        public void Initialize(params Shader[] shaders)
         {
-            if (shaders.Length < 1) { throw new ArgumentException(); }
+            //if (shaders.Length < 1) { throw new ArgumentException(); }
 
             uint program = this.ShaderProgramObject;
 

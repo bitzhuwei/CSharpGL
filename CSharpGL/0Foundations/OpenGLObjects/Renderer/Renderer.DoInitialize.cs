@@ -16,7 +16,7 @@ namespace CSharpGL
             // init shader program
             var program = new ShaderProgram();
             var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
-            program.Create(shaders);
+            program.Initialize(shaders);
             this.Program = program;
             foreach (var item in shaders) { item.Delete(); }
 

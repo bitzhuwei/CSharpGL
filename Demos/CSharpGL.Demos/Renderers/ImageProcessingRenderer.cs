@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 var shaderCode = new ShaderCode(File.ReadAllText(
                     @"shaders\ImageProcessing.comp"), ShaderType.ComputeShader);
                 var shader = shaderCode.CreateShader();
-                computeProgram.Create(shader);
+                computeProgram.Initialize(shader);
                 shader.Delete();
                 this.computeProgram = computeProgram;
             }

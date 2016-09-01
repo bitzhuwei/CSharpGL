@@ -31,7 +31,7 @@ namespace CSharpGL
             shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
 
             var shaderProgram = new ShaderProgram();
-            shaderProgram.Create((from item in shaderCodes select item.CreateShader()).ToArray());
+            shaderProgram.Initialize((from item in shaderCodes select item.CreateShader()).ToArray());
 
             return shaderProgram;
         }
