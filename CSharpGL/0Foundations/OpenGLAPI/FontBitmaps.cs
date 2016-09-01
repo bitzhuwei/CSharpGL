@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
-
     /// <summary>
     /// This class wraps the functionality of the wglUseFontBitmaps function to
     /// allow straightforward rendering of text.
     /// </summary>
-    class FontBitmaps
+    internal class FontBitmaps
     {
         private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
         {

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -23,5 +19,4 @@ namespace CSharpGL
 
         public uint ListCount { get; set; }
     }
-
 }
