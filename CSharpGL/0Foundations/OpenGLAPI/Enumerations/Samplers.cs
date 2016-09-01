@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 纹理坐标通常的范围是从(0, 0)到(1, 1)，如果我们把纹理坐标设置为范围以外会发生什么？OpenGL默认的行为是重复这个纹理图像（我们简单地忽略浮点纹理坐标的整数部分），但OpenGL提供了更多的选择
@@ -15,14 +9,17 @@ namespace CSharpGL
         /// 纹理的默认行为。重复纹理图像。
         /// </summary>
         Repeat = OpenGL.GL_REPEAT,
+
         /// <summary>
         /// 和GL_REPEAT一样，除了重复的图片是镜像放置的。
         /// </summary>
         MirroredRepeaet = OpenGL.GL_MIRRORED_REPEAT,
+
         /// <summary>
         /// 纹理坐标会在0到1之间。超出的部分会重复纹理坐标的边缘，就是边缘被拉伸。
         /// </summary>
         ClampToEdge = OpenGL.GL_CLAMP_TO_EDGE,
+
         /// <summary>
         /// 超出的部分是用户指定的边缘的颜色。
         /// </summary>
@@ -55,14 +52,17 @@ namespace CSharpGL
         /// 接收最近的mipmap来匹配像素大小，并使用最临近插值进行纹理采样。
         /// </summary>
         NearestMipmapNearest = OpenGL.GL_NEAREST_MIPMAP_NEAREST,
+
         /// <summary>
         /// 接收最近的mipmap级别，并使用线性插值采样。
         /// </summary>
         LinearMipmapNearest = OpenGL.GL_LINEAR_MIPMAP_NEAREST,
+
         /// <summary>
         /// 在两个mipmap之间进行线性插值，通过最邻近插值采样。
         /// </summary>
         NearestMipmapLinear = OpenGL.GL_NEAREST_MIPMAP_LINEAR,
+
         /// <summary>
         /// 在两个相邻的mipmap进行线性插值，并通过线性插值进行采样。
         /// </summary>
@@ -71,4 +71,3 @@ namespace CSharpGL
 
     // 总结一下：magnification和minification的时候都可以设置NEAREST和LINEAR两种方式；minification的时候还可以设置mipmap的方式，该方法效果更好。关于具体的算法的实现，可以参考《OpenGL ES specification》的8.13-8.14内容。
 }
-

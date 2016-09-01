@@ -1,42 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum BufferTarget : uint
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ArrayBuffer = OpenGL.GL_ARRAY_BUFFER,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ElementArrayBuffer = OpenGL.GL_ELEMENT_ARRAY_BUFFER,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         UniformBuffer = OpenGL.GL_UNIFORM_BUFFER,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TransformFeedbackBuffer = OpenGL.GL_TRANSFORM_FEEDBACK_BUFFER,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PixelUnpackBuffer = OpenGL.GL_PIXEL_UNPACK_BUFFER,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AtomicCounterBuffer = OpenGL.GL_ATOMIC_COUNTER_BUFFER,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
     }
@@ -57,39 +57,47 @@ namespace CSharpGL
     public enum BufferUsage : uint
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StreamDraw = OpenGL.GL_STREAM_DRAW,//= 0x88E0,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StreamRead = OpenGL.GL_STREAM_READ,//= 0x88E1,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StreamCopy = OpenGL.GL_STREAM_COPY,//= 0x88E2,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StaticDraw = OpenGL.GL_STATIC_DRAW,//= 0x88E4,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StaticRead = OpenGL.GL_STATIC_READ,//= 0x88E5,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StaticCopy = OpenGL.GL_STATIC_COPY,//= 0x88E6,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DynamicDraw = OpenGL.GL_DYNAMIC_DRAW,//= 0x88E8,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DynamicRead = OpenGL.GL_DYNAMIC_READ,//= 0x88E9,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DynamicCopy = OpenGL.GL_DYNAMIC_COPY,//= 0x88EA,
     }
