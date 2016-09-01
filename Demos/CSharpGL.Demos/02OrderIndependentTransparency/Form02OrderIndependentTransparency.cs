@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -12,7 +7,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form02OrderIndependentTransparency : Form
     {
-
         private IMouseHandler rotator;
 
         public Form02OrderIndependentTransparency()
@@ -32,7 +26,7 @@ namespace CSharpGL.Demos
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
-        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 's')
             {
@@ -46,7 +40,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
         }
@@ -57,7 +51,6 @@ namespace CSharpGL.Demos
 
             this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, this.glCanvas1.PointToClient(Control.MousePosition));
         }
-
 
         private const float crossCursorSize = 40.0f;
 
@@ -74,6 +67,5 @@ namespace CSharpGL.Demos
                 this.rotator.canvas_MouseWheel(sender, e);
             }
         }
-
     }
 }

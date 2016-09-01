@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
-    class BillboardModel : IBufferable
+    internal class BillboardModel : IBufferable
     {
         public const string strPosition = "position";
-        PropertyBufferPtr positionBuffer;
-        static readonly float[] positions = 
+        private PropertyBufferPtr positionBuffer;
+
+        private static readonly float[] positions =
         {
 		    -0.5f, -0.5f, 0.0f,
 		    0.5f, -0.5f, 0.0f,
@@ -62,7 +54,6 @@ namespace CSharpGL.Demos
             return indexBufferPtr;
         }
 
-        IndexBufferPtr indexBufferPtr = null;
-
+        private IndexBufferPtr indexBufferPtr = null;
     }
 }

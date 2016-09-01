@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 using System.Windows.Forms;
 
@@ -13,7 +6,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form02OrderIndependentTransparency : Form
     {
-
         private Point lastMousePosition;
 
         internal void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -62,6 +54,5 @@ namespace CSharpGL.Demos
                 rotator.canvas_MouseUp(sender, e);
             }
         }
-
     }
 }

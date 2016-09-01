@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -16,20 +13,24 @@ namespace GridViewer
     /// </summary>
     public class UIColorPaletteRenderer : UIRenderer
     {
-        List<UIText> labelList = new List<UIText>();
-        const int marginLeft = 50;
-        const int marginRight = 50;
+        private List<UIText> labelList = new List<UIText>();
+        private const int marginLeft = 50;
+        private const int marginRight = 50;
         private int maxMarkerCount;
+
         /// <summary>
         /// renders a color palette bar with 1-D texture and its coordiante(float).
         /// </summary>
         private UIColorPaletteBarRenderer colorPaletteBar;
+
         /// <summary>
         /// renders a color palette bar with direct color(vec3).
         /// Compare this with colorPaletteBar to check if there's difference.
         /// </summary>
         private UIColorPaletteColoredBarRenderer colorPaletteBar2;
+
         private UIColorPaletteMarkersRenderer markers;
+
         /// <summary>
         /// current marker's count.
         /// </summary>
@@ -153,7 +154,7 @@ namespace GridViewer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void label_beforeLayout(object sender, EventArgs e)
+        private void label_beforeLayout(object sender, EventArgs e)
         {
             int count = currentMarkersCount - 1;
             var label = sender as UIText;
@@ -174,6 +175,7 @@ namespace GridViewer
 
         //public int Update { get { return 0; } set { this.SetCodedColor(CodedColor.GetDefault()); } }
         public int Update { get { return 0; } set { this.SetCodedColor(0, 100, 11); } }
+
         //public void SetCodedColor(CodedColor[] codedColors)
         //{
         //    {

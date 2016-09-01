@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 using System.Windows.Forms;
 
@@ -13,8 +6,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form01Renderer
     {
-
-        PickedGeometry pickedGeometry;
+        private PickedGeometry pickedGeometry;
         private DragParam dragParam;
         private Point lastMousePosition;
 
@@ -108,8 +100,6 @@ namespace CSharpGL.Demos
                 this.pickedGeometry = pickedGeometry;
                 UpdatePickingBoard(pickedGeometry);
             }
-
-
 
             this.lastMousePosition = e.Location;
         }

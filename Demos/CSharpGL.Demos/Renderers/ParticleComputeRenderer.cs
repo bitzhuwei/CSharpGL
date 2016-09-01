@@ -1,34 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-    class ParticleComputeRenderer : RendererBase
+    internal class ParticleComputeRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
+
         //private uint[] textureBufferPosition = new uint[1];
         //private uint[] textureBufferVelocity = new uint[1];
         private Texture positionTexture;
+
         private Texture velocityTexture;
+
         //private uint[] attractor_buffer = new uint[1];
         private IndependentBufferPtr attractorBufferPtr;
+
         private uint positionBufferPtrId;
         private uint velocityBufferPtrId;
         private float time = 0;
-        Random random = new Random();
+        private Random random = new Random();
 
         public ParticleComputeRenderer(uint positionBufferPtrId, uint velocityBufferPtrId)
         {
             this.positionBufferPtrId = positionBufferPtrId;
             this.velocityBufferPtrId = velocityBufferPtrId;
         }
+
         protected override void DoInitialize()
         {
             {
@@ -101,7 +100,6 @@ namespace CSharpGL.Demos
             computeProgram.SetUniform("dt", deltaTime);
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(ParticleModel.particleGroupCount, 1, 1);
-
         }
 
         protected override void DisposeUnmanagedResources()

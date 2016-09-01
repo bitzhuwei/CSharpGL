@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.SceneEditor.Scripts
 {
-    class Satellite : Script
+    internal class Satellite : Script
     {
-
         private IModelSpace planetTransform;
         private double currentAngle;
         private BuildInRenderer renderer;
@@ -42,6 +37,5 @@ namespace CSharpGL.SceneEditor.Scripts
 
             this.renderer.WorldPosition = position;
         }
-
     }
 }

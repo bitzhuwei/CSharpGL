@@ -1,11 +1,5 @@
 ﻿using CSharpGL;
-using SimLab.GridSource;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace GridViewer
 {
@@ -43,7 +37,6 @@ namespace GridViewer
 
             return ptr;
         }
-
     }
 
     /// <summary>
@@ -73,12 +66,12 @@ namespace GridViewer
         public vec3 BLT;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 FLB;
+
         public vec3 FRB;
         public vec3 BRB;
         public vec3 BLB;
-
     }
 }

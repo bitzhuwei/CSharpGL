@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
-    class UpdateBillboardPosition : Script
+    internal class UpdateBillboardPosition : Script
     {
         private IModelSpace renderer;
         public IModelSpace TargetRenderer { get; set; }
@@ -29,6 +23,5 @@ namespace CSharpGL.Demos
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
             this.renderer.WorldPosition = this.TargetRenderer.WorldPosition + new vec3(0, 0.3f, 0);
         }
-
     }
 }

@@ -1,13 +1,10 @@
 ﻿using CSharpGL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    abstract class WellPipelineBuilder
+    internal abstract class WellPipelineBuilder
     {
         public List<CSharpGL.Tuple<WellRenderer, LabelRenderer>> Convert(vec3 originalWorldPosition, WellSpecsCollection wellSpecsList, WellCompatCollection wellCompatList)
         {
@@ -28,6 +25,5 @@ namespace GridViewer
         }
 
         protected abstract CSharpGL.Tuple<WellRenderer, LabelRenderer> Convert(vec3 originalWorldPosition, WellSpecs wellspec, WellCompatCollection wellCompatList);
-
     }
 }

@@ -1,10 +1,6 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -26,7 +22,7 @@ namespace GridViewer
     /// 1    3    5    7    9    11
     /// side length is 1.
     /// </summary>
-    class LinesRenderer : Renderer
+    internal class LinesRenderer : Renderer
     {
         private PropertyBufferPtr positionBufferPtr;
         private int markerCount;
@@ -60,7 +56,6 @@ namespace GridViewer
         {
             base.DoRender(arg);
         }
-
 
         public void UpdateCodedColors(double axisMin, double axisMax, double step)
         {
@@ -96,6 +91,7 @@ namespace GridViewer
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
+
         //public void UpdateCodedColors(CodedColor[] codedColors)
         //{
         //    int lineCount = codedColors.Length;

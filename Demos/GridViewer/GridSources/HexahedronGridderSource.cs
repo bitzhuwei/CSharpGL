@@ -1,9 +1,5 @@
 ﻿using CSharpGL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.GridSource
 {
@@ -12,7 +8,6 @@ namespace SimLab.GridSource
     /// </summary>
     public abstract class HexahedronGridderSource : GridderSource
     {
-
         private Dictionary<int, bool> CreateSliceDict(IList<int> slices)
         {
             Dictionary<int, bool> result = new Dictionary<int, bool>();
@@ -32,6 +27,7 @@ namespace SimLab.GridSource
 
         private List<int> _iBlocks;
         private Dictionary<int, bool> iSlices;
+
         public List<int> IBlocks
         {
             get { return this._iBlocks; }
@@ -44,6 +40,7 @@ namespace SimLab.GridSource
 
         private List<int> _jBlocks;
         private Dictionary<int, bool> jSlices;
+
         public List<int> JBlocks
         {
             get { return this._jBlocks; }
@@ -56,6 +53,7 @@ namespace SimLab.GridSource
 
         private List<int> _kBlocks;
         private Dictionary<int, bool> kSlices;
+
         public List<int> KBlocks
         {
             get

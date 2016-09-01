@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System.Runtime.InteropServices;
 
 namespace SimLab.SimGrid
 {
@@ -17,10 +12,12 @@ namespace SimLab.SimGrid
         /// 第0个顶点的索引值
         /// </summary>
         public uint dot0;
+
         /// <summary>
         /// 第1个顶点的索引值
         /// </summary>
         public uint dot1;
+
         /// <summary>
         /// 第2个顶点的索引值
         /// </summary>

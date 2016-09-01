@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using CSharpGL;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-
 using System.Windows.Forms;
-using CSharpGL;
 
 namespace GridViewer
 {
     public partial class ScientificCanvas
     {
-
-        void ScientificCanvas_Load(object sender, EventArgs e)
+        private void ScientificCanvas_Load(object sender, EventArgs e)
         {
             var camera = new Camera(new vec3(4, 1.6f, 3), new vec3(0, 0, 0), new vec3(0, 1, 0),
                  CameraType.Perspecitive, this.Width, this.Height);
@@ -48,9 +41,6 @@ namespace GridViewer
             //this.MouseMove += ScientificCanvas_MouseMove;
             //this.MouseUp += ScientificCanvas_MouseUp;
             //this.MouseWheel += ScientificCanvas_MouseWheel;
-
         }
-
-
     }
 }

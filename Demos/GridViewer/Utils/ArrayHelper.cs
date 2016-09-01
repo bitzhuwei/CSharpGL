@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 
 namespace SimLab
 {
     public static class ArrayHelper
     {
-
         /// <summary>
         /// 创建数组
         /// </summary>

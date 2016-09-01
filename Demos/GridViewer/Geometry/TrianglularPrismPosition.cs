@@ -1,10 +1,5 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace SimLab.Geometry
 {
@@ -27,6 +22,5 @@ namespace SimLab.Geometry
         public vec3 P4;
         public vec3 P5;
         public vec3 P6;
-
     }
 }

@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-
-    class SimpleComputeRenderer : Renderer
+    internal class SimpleComputeRenderer : Renderer
     {
         private ShaderProgram computeProgram;
         private ShaderProgram resetProgram;
+
         //private uint[] output_image = new uint[1];
         private Texture outputImage;
+
         private uint[] output_image_buffer = new uint[1];
 
         public static SimpleComputeRenderer Create()
@@ -44,7 +40,7 @@ namespace CSharpGL.Demos
                 this.computeProgram = computeProgram;
             }
             {
-                // Initialize our resetProgram 
+                // Initialize our resetProgram
                 var resetProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\computeReset.comp"), ShaderType.ComputeShader);
                 Shader shader = shaderCode.CreateShader();
@@ -80,6 +76,7 @@ namespace CSharpGL.Demos
             get { return groupX; }
             set { groupX = value; if (maxX < value) { maxX = value; } }
         }
+
         private uint groupY;
 
         public uint GroupY
@@ -87,6 +84,7 @@ namespace CSharpGL.Demos
             get { return groupY; }
             set { groupY = value; if (maxY < value) { maxY = value; } }
         }
+
         private uint groupZ;
 
         public uint GroupZ
@@ -126,10 +124,9 @@ namespace CSharpGL.Demos
             this.outputImage.Dispose();
         }
 
-        class SimpleCompute : IBufferable
+        private class SimpleCompute : IBufferable
         {
-
-            static readonly vec3[] vertsData = new vec3[]
+            private static readonly vec3[] vertsData = new vec3[]
         {
             new vec3(-1.0f, -1.0f, 0.5f),
             new vec3(1.0f, -1.0f, 0.5f),

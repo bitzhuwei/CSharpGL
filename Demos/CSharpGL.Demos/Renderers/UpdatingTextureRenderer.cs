@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL.Demos
 {
-    class UpdatingTextureRenderer : Renderer
+    internal class UpdatingTextureRenderer : Renderer
     {
         private Texture texture;
+
         public static UpdatingTextureRenderer Create(TexturedRectangleModel model)
         {
             var shaderCodes = new ShaderCode[2];

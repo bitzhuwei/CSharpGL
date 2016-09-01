@@ -1,19 +1,12 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
     /// <summary>
     /// 若干条向下突出的白色竖线。
     /// </summary>
-    class UIColorPaletteMarkersRenderer : UIRenderer
+    internal class UIColorPaletteMarkersRenderer : UIRenderer
     {
-
         /// <summary>
         /// </summary>
         /// <param name="anchor"></param>

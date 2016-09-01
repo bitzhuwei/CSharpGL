@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
@@ -39,7 +35,6 @@ namespace CSharpGL.Demos
 
             return positions;
         }
-
 
         public const string strPosition = "position";
         private PropertyBufferPtr positionBufferPtr;
@@ -91,4 +86,3 @@ namespace CSharpGL.Demos
         private IndexBufferPtr indexBufferPtr = null;
     }
 }
-

@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-
-    class AnalyzedPointSpriteRenderer : Renderer
+    internal class AnalyzedPointSpriteRenderer : Renderer
     {
-
         private Color clearColor = Color.Black;
+
         public Color ClearColor
         {
             get { return clearColor; }
@@ -63,19 +57,20 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
         }
 
-        class BillboardModel : IBufferable
+        private class BillboardModel : IBufferable
         {
-
             public BillboardModel(int particleCount)
             {
                 this.particleCount = particleCount;
             }
+
             public const string strPosition = "position";
             private PropertyBufferPtr positionBufferPtr = null;
             private IndexBufferPtr indexBufferPtr;
             private int particleCount;
             private Random random = new Random();
             private const float a = 5, b = 4, c = 3;
+
             public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
@@ -126,6 +121,5 @@ namespace CSharpGL.Demos
                 return indexBufferPtr;
             }
         }
-
     }
 }

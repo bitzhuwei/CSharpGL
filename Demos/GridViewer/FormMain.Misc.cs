@@ -1,9 +1,6 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords;
 
@@ -11,7 +8,6 @@ namespace GridViewer
 {
     public partial class FormMain : Form
     {
-
         private SimulationInputData LoadEclInputData(String fileName)
         {
             KeywordSchema schema = KeywordSchemaExtension.RestoreSchemaFromEmbededResource();
@@ -30,6 +26,7 @@ namespace GridViewer
             }
             return GetBoundingBoxRenderer(rectangles.ToArray());
         }
+
         private IEnumerable<IBoundingBox> GetAllRectangle3Ds(SceneObject obj)
         {
             var item = obj.Renderer as IBoundingBox;
@@ -43,6 +40,7 @@ namespace GridViewer
                 }
             }
         }
+
         private BoundingBoxRenderer GetBoundingBoxRenderer(params IBoundingBox[] rectangles)
         {
             IBoundingBox rect;

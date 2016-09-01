@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -12,11 +6,9 @@ namespace CSharpGL.Demos
 {
     public partial class Form07PointSprite : Form
     {
-
         private Camera camera;
         private SatelliteManipulater rotator;
         private PointSpriteRenderer renderer;
-
 
         public Form07PointSprite()
         {
@@ -29,7 +21,7 @@ namespace CSharpGL.Demos
             OpenGL.ClearColor(0, 0, 0, 0);
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
         }
@@ -60,8 +52,6 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
             }
-
         }
-
     }
 }

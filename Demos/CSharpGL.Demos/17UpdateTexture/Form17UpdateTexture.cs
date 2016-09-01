@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -12,10 +7,8 @@ namespace CSharpGL.Demos
 {
     public partial class Form17UpdateTexture : Form
     {
-
         private Camera camera;
         private SatelliteManipulater cameraManipulater;
-
 
         public Form17UpdateTexture()
         {
@@ -33,7 +26,7 @@ namespace CSharpGL.Demos
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
         }
@@ -71,8 +64,7 @@ namespace CSharpGL.Demos
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
 
-        vec3 position = new vec3(0, 0, 0);
-
+        private vec3 position = new vec3(0, 0, 0);
 
         private const float crossCursorSize = 40.0f;
 
@@ -117,9 +109,6 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
             }
-
         }
-
     }
-
 }

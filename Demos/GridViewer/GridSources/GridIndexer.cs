@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace SimLab.SimGrid
+﻿namespace SimLab.SimGrid
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class GridIndexer
     {
-        private  int ni;
-        private  int nj;
-        private  int nk;
+        private int ni;
+        private int nj;
+        private int nk;
 
         /// <summary>
         /// k平面的网格数
         /// </summary>
-        private  int nij;
+        private int nij;
 
         public GridIndexer(int nx, int ny, int nz)
         {
@@ -40,8 +33,8 @@ namespace SimLab.SimGrid
         /// <returns></returns>
         public int IndexOf(int i, int j, int k)
         {
-             int result = (k - 1) * (this.ni * this.nj) + (j- 1) * this.ni + (i- 1);
-             return result;
+            int result = (k - 1) * (this.ni * this.nj) + (j - 1) * this.ni + (i - 1);
+            return result;
         }
 
         public int DimenSize { get; private set; }
@@ -60,8 +53,5 @@ namespace SimLab.SimGrid
             J = ijLeft / this.ni + 1;
             I = ijLeft % this.ni + 1;
         }
-
-
-
     }
 }

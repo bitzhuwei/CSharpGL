@@ -1,10 +1,6 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -28,15 +24,15 @@ namespace GridViewer
     /// 1    3    5    7    9    11
     /// side length is 1.
     /// </summary>
-    class QuadStripColoredModel : IBufferable
+    internal class QuadStripColoredModel : IBufferable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string position = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string color = "color";
 
@@ -50,7 +46,7 @@ namespace GridViewer
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -111,8 +107,9 @@ namespace GridViewer
                 throw new NotImplementedException();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()

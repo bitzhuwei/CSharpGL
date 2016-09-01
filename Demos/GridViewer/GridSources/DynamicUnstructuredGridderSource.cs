@@ -1,11 +1,6 @@
 ﻿using CSharpGL;
 using SimLab.GridSource;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.SimGrid
 {
@@ -14,7 +9,7 @@ namespace SimLab.SimGrid
     /// 文件内容分为三个段,依次为nodes,elements,fractures.
     /// nodes为（x,y,z,0)的数组
     /// elements元素为nodes数组的索引,element[ELEMENT_FORMAT3+1](三角形) 或element[ELEMENT_FORMAT4+1](4面体)
-    /// fratures元素为node数组的索引, fracture[FRACTURE_FORMAT2+1] (线段） 或fracture[FRACTURE_FORMAT3+1](三角形)]  
+    /// fratures元素为node数组的索引, fracture[FRACTURE_FORMAT2+1] (线段） 或fracture[FRACTURE_FORMAT3+1](三角形)]
     /// elements.Length+fractures.Length = NX*NY*NZ ,通常NY,NZ =1， 所以NX = (elements.length+fratures.length)
     /// </summary>
     public class DynamicUnstructuredGridderSource : GridderSource
@@ -23,12 +18,15 @@ namespace SimLab.SimGrid
         /// 组成母体的形状
         /// </summary>
         public const int MATRIX_FORMAT3_TRIANGLE = 3;
+
         public const int MATRIX_FORMAT4_TETRAHEDRON = 4;
         public const int MATRIX_FORMAT6_TRIANGULAR_PRISM = 6;
+
         /// <summary>
         /// 组成裂缝的形状
         /// </summary>
         public const int FRACTURE_FORMAT2_LINE = 2;
+
         public const int FRACTURE_FORMAT3_TRIANGLE = 3;
         public const int FRACTURE_FORMAT4_QUAD = 4;
 
@@ -80,7 +78,6 @@ namespace SimLab.SimGrid
         /// 断层不可见
         /// </summary>
         public int[] FracturesInvisible { get; internal set; }
-
 
         /// <summary>
         /// 不可见母体纹理,值全部为2

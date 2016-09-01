@@ -1,9 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 
 using System.Windows.Forms;
 
@@ -11,7 +6,6 @@ namespace GridViewer
 {
     public partial class FormMain
     {
-
         private void sceneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormProperyGrid(this.scientificCanvas.Scene);
@@ -20,7 +14,7 @@ namespace GridViewer
             this.scientificCanvas.Invalidate();
         }
 
-        void PropertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void PropertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             this.scientificCanvas.Invalidate();
         }

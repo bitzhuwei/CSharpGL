@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -40,15 +35,15 @@ namespace CSharpGL.Demos
                     new Sphere(),
                     new Teapot(),
                 };
-                var keys = new GeometryModel[] 
-                { 
+                var keys = new GeometryModel[]
+                {
                     GeometryModel.Axis,
-                    GeometryModel.BigDipper, 
+                    GeometryModel.BigDipper,
                     GeometryModel.Chain,
-                    GeometryModel.Tetrahedron, 
-                    GeometryModel.Cube, 
-                    GeometryModel.Sphere, 
-                    GeometryModel.Teapot, 
+                    GeometryModel.Tetrahedron,
+                    GeometryModel.Cube,
+                    GeometryModel.Sphere,
+                    GeometryModel.Teapot,
                 };
                 ShaderCode[] simpleShader = new ShaderCode[2];
                 simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
@@ -85,13 +80,13 @@ namespace CSharpGL.Demos
                 };
                 var positionNameInIBufferables = new string[]
                 {
-                    "position", 
-                    "position", 
-                    "position", 
-                    "position", 
-                    "position", 
-                    "position", 
-                    "position", 
+                    "position",
+                    "position",
+                    "position",
+                    "position",
+                    "position",
+                    "position",
+                    "position",
                 };
                 for (int i = 0; i < bufferables.Length; i++)
                 {
@@ -182,8 +177,6 @@ namespace CSharpGL.Demos
                 frmIndexBufferPtrBoard.Show();
                 this.frmIndexBufferPtrBoard = frmIndexBufferPtrBoard;
             }
-
         }
-
     }
 }

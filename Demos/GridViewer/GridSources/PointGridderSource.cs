@@ -1,9 +1,5 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.GridSource
 {
@@ -93,6 +89,5 @@ namespace SimLab.GridSource
             }
             return boundingBox;
         }
-
     }
 }

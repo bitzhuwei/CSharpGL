@@ -1,17 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-
-    class DragParam
+    internal class DragParam
     {
-
         public List<uint> pickedIndexes = new List<uint>();
         public mat4 projectionMatrix;
         public mat4 viewMatrix;
@@ -29,7 +22,7 @@ namespace CSharpGL.Demos
 
         public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen,
            IEnumerable<uint> indexes)
-            :this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
+            : this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
         {
             this.pickedIndexes.AddRange(indexes);
         }

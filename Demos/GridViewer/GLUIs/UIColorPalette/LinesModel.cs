@@ -1,9 +1,5 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -25,13 +21,13 @@ namespace GridViewer
     /// 1    3    5    7    9    11
     /// side length is 1.
     /// </summary>
-    class LinesModel : IBufferable
+    internal class LinesModel : IBufferable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string position = "position";
+
         private PropertyBufferPtr positionBufferPtr;
 
         public LinesModel(int markerCount)
@@ -40,7 +36,7 @@ namespace GridViewer
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -75,8 +71,9 @@ namespace GridViewer
                 throw new NotImplementedException();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()

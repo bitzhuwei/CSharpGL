@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -25,6 +20,7 @@ namespace CSharpGL.Demos
         }
 
         private GeometryModel selectedModel = GeometryModel.BigDipper;
+
         public GeometryModel SelectedModel
         {
             get { return selectedModel; }
@@ -46,7 +42,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        Dictionary<GeometryModel, HighlightedPickableRenderer> rendererDict = new Dictionary<GeometryModel, HighlightedPickableRenderer>();
+        private Dictionary<GeometryModel, HighlightedPickableRenderer> rendererDict = new Dictionary<GeometryModel, HighlightedPickableRenderer>();
 
         ///// <summary>
         ///// 要渲染的对象
@@ -63,7 +59,7 @@ namespace CSharpGL.Demos
         /// <summary>
         /// 摄像机
         /// </summary>
-        Camera camera;
+        private Camera camera;
 
         private FormBulletinBoard pickedGeometryBoard;
         private FormProperyGrid pickableRendererPropertyGrid;
@@ -86,7 +82,7 @@ namespace CSharpGL.Demos
             Application.Idle += Application_Idle;
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} {1} FPS: {2}", this.Name,
                 this.rendererDict[this.selectedModel].PickableRenderer.Mode, this.glCanvas1.FPS.ToShortString());
@@ -94,7 +90,7 @@ namespace CSharpGL.Demos
 
         public Color ClearColor { get; set; }
 
-        RenderModes renderMode;
+        private RenderModes renderMode;
         private readonly object synObj = new object();
 
         public RenderModes RenderMode
@@ -116,11 +112,9 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
-
                 RenderersDraw(this.renderMode);
 
                 DrawText(e);
-
             }
         }
 
@@ -225,9 +219,8 @@ namespace CSharpGL.Demos
 
         private Point offset = new Point(13, 11);
 
-
-        const float fontSize = 20.0f;
-        Font font = new Font("Courier New", fontSize);
+        private const float fontSize = 20.0f;
+        private Font font = new Font("Courier New", fontSize);
 
         private void UpdateMVP(HighlightedPickableRenderer renderer)
         {
@@ -252,7 +245,7 @@ namespace CSharpGL.Demos
             { throw new NotImplementedException(); }
         }
 
-        void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             camera.MouseWheel(e.Delta);
             //cameraUpdated = true;
@@ -294,8 +287,5 @@ namespace CSharpGL.Demos
                 item.Value.Dispose();
             }
         }
-
-
-
     }
 }

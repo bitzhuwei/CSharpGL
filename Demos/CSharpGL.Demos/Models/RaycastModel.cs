@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
-    class RaycastModel : IBufferable
+    internal class RaycastModel : IBufferable
     {
         public const string strposition = "position";
         public const string strcolor = "color";
-        PropertyBufferPtr positionBuffer;
-        PropertyBufferPtr colorBuffer;
+        private PropertyBufferPtr positionBuffer;
+        private PropertyBufferPtr colorBuffer;
+
         // draw the six faces of the boundbox by drawwing triangles
         // draw it contra-clockwise
         // front: 1 5 7 3
         // back:  0 2 6 4
         // left： 0 1 3 2
-        // right: 7 5 4 6    
+        // right: 7 5 4 6
         // up:    2 3 7 6
         // down:  1 0 4 5
-        static readonly float[] boundingBox = 
+        private static readonly float[] boundingBox =
         {
 			0.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, 1.0f,
@@ -34,7 +26,8 @@ namespace CSharpGL.Demos
 			1.0f, 1.0f, 0.0f,
 			1.0f, 1.0f, 1.0f,
         };
-        static readonly uint[] indices = 
+
+        private static readonly uint[] indices =
         {
 			1,5,7,
 			7,3,1,
@@ -121,7 +114,6 @@ namespace CSharpGL.Demos
             return indexBufferPtr;
         }
 
-        IndexBufferPtr indexBufferPtr = null;
-
+        private IndexBufferPtr indexBufferPtr = null;
     }
 }

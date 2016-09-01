@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     /// <summary>
     /// 链条。若干个点用直线连接起来。
     /// </summary>
-    class ChainModel
+    internal class ChainModel
     {
         public vec3[] Positions { get; protected set; }
         public vec3[] Colors { get; protected set; }
@@ -56,7 +52,5 @@ namespace CSharpGL
                 }
             }
         }
-
-
     }
 }

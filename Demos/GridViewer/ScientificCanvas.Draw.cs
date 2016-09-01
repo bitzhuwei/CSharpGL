@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using CSharpGL;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-
 using System.Windows.Forms;
-using CSharpGL;
 
 namespace GridViewer
 {
     public partial class ScientificCanvas
     {
-
-        void ScientificCanvas_OpenGLDraw(object sender, PaintEventArgs e)
+        private void ScientificCanvas_OpenGLDraw(object sender, PaintEventArgs e)
         {
             vec4 clearColor = this.Scene.ClearColor.ToVec4();
             OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);

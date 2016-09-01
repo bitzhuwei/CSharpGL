@@ -1,9 +1,4 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GridViewer
@@ -13,7 +8,6 @@ namespace GridViewer
     /// </summary>
     public class DumpCatesianGridTreeNodeScript : DumpTreeNodeScript
     {
-
         public override TreeNode DumpTreeNode()
         {
             SceneObject obj = this.BindingObject;

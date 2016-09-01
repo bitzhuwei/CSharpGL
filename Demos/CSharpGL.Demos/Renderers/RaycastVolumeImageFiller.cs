@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
     /// <summary>
     /// 3D texture builder of Raycast Volume Rendering Demo.
     /// </summary>
-    class RaycastVolumeImageFiller : ImageFiller
+    internal class RaycastVolumeImageFiller : ImageFiller
     {
         private string filename;
         private int width;
@@ -35,7 +29,7 @@ namespace CSharpGL.Demos
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         public override void Fill(BindTextureTarget target)

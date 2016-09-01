@@ -1,10 +1,7 @@
 ﻿using CSharpGL;
 using SimLab.SimGrid;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 
 namespace SimLab.GridSource
 {
@@ -17,7 +14,6 @@ namespace SimLab.GridSource
     /// </summary>
     public abstract class GridderSource
     {
-
         private GridIndexer gridIndexer;
 
         /// <summary>
@@ -160,7 +156,6 @@ namespace SimLab.GridSource
 
             //变换后的三维矩形六面体
             this.TransformedActiveBounds = new BoundingBox(destMin, destMax);
-
         }
 
         ///// <summary>
@@ -259,9 +254,5 @@ namespace SimLab.GridSource
         public BoundingBox TransformedActiveBounds { get; internal set; }
 
         public object Tag { get; set; }
-
     }
-
-
-
 }

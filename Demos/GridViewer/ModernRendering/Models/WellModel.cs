@@ -1,10 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-
 
 namespace GridViewer
 {
@@ -14,7 +11,6 @@ namespace GridViewer
     /// </summary>
     public partial class WellModel : IBufferable, IModelSpace
     {
-
         public const string strPosition = "position";
         private PropertyBufferPtr positionBufferPtr = null;
         public const string strBrightness = "brightness";

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL.CSSL
+﻿namespace CSharpGL.CSSL
 {
     /// <summary>
     /// 所有CSSL都共有的内容。
@@ -20,6 +14,7 @@ namespace CSharpGL.CSSL
         /// <param name="y"></param>
         /// <returns></returns>
         public static float pow(double x, double y) { return 0.0f; }
+
         /// <summary>
         /// Returns x raised to the y power, i.e., x^y. Results
         /// are undefined if x < 0. Results are undefined if
@@ -29,6 +24,7 @@ namespace CSharpGL.CSSL
         /// <param name="y"></param>
         /// <returns></returns>
         public static vec2 pow(vec2 x, vec2 y) { return null; }
+
         /// <summary>
         /// Returns x raised to the y power, i.e., x^y. Results
         /// are undefined if x < 0. Results are undefined if
@@ -38,6 +34,7 @@ namespace CSharpGL.CSSL
         /// <param name="y"></param>
         /// <returns></returns>
         public static vec3 pow(vec3 x, vec3 y) { return null; }
+
         /// <summary>
         /// Returns x raised to the y power, i.e., x^y. Results
         /// are undefined if x < 0. Results are undefined if
@@ -54,18 +51,21 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static float exp(double x) { return 0.0f; }
+
         /// <summary>
         /// Returns the natural exponentiation of x, i.e., e^x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 exp(vec2 x) { return null; }
+
         /// <summary>
         /// Returns the natural exponentiation of x, i.e., e^x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 exp(vec3 x) { return null; }
+
         /// <summary>
         /// Returns the natural exponentiation of x, i.e., e^x.
         /// </summary>
@@ -81,6 +81,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static float log(double x) { return 0.0f; }
+
         /// <summary>
         /// Returns the natural logarithm of x, i.e., returns
         /// the value y, which satisfies the equation x = e^y.
@@ -89,6 +90,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 log(vec2 x) { return null; }
+
         /// <summary>
         /// Returns the natural logarithm of x, i.e., returns
         /// the value y, which satisfies the equation x = e^y.
@@ -97,6 +99,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 log(vec3 x) { return null; }
+
         /// <summary>
         /// Returns the natural logarithm of x, i.e., returns
         /// the value y, which satisfies the equation x = e^y.
@@ -112,18 +115,21 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static float exp2(double x) { return 0.0f; }
+
         /// <summary>
         /// Returns 2 raised to the x power, i.e., 2^x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 exp2(vec2 x) { return null; }
+
         /// <summary>
         /// Returns 2 raised to the x power, i.e., 2^x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 exp2(vec3 x) { return null; }
+
         /// <summary>
         /// Returns 2 raised to the x power, i.e., 2^x.
         /// </summary>
@@ -139,6 +145,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static float log2(double x) { return 0.0f; }
+
         /// <summary>
         /// Returns the base 2 log of x, i.e., returns the
         /// value y, which satisfies the equation x = 2^y.
@@ -147,6 +154,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 log2(vec2 x) { return null; }
+
         /// <summary>
         /// Returns the base 2 log of x, i.e., returns the
         /// value y, which satisfies the equation x = 2^y.
@@ -155,6 +163,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 log2(vec3 x) { return null; }
+
         /// <summary>
         /// Returns the base 2 log of x, i.e., returns the
         /// value y, which satisfies the equation x = 2^y.
@@ -171,6 +180,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static float sqrt(double x) { return 0.0f; }
+
         /// <summary>
         /// Returns the positive square root of x. Results
         /// are undefined if x < 0.
@@ -178,6 +188,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 sqrt(vec2 x) { return null; }
+
         /// <summary>
         /// Returns the positive square root of x. Results
         /// are undefined if x < 0.
@@ -185,6 +196,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 sqrt(vec3 x) { return null; }
+
         /// <summary>
         /// Returns the positive square root of x. Results
         /// are undefined if x < 0.
@@ -200,6 +212,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static float inversesqrt(double x) { return 0.0f; }
+
         /// <summary>
         /// Returns the reciprocal of the positive square
         /// root of x. Results are undefined if x <= 0.
@@ -207,6 +220,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 inversesqrt(vec2 x) { return null; }
+
         /// <summary>
         /// Returns the reciprocal of the positive square
         /// root of x. Results are undefined if x <= 0.
@@ -214,6 +228,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 inversesqrt(vec3 x) { return null; }
+
         /// <summary>
         /// Returns the reciprocal of the positive square
         /// root of x. Results are undefined if x <= 0.
@@ -221,6 +236,5 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec4 inversesqrt(vec4 x) { return null; }
-
     }
 }

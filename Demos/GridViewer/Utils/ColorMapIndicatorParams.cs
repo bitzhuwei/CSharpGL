@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace SimLab.Utils
+﻿namespace SimLab.Utils
 {
-
     /// <summary>
     /// 色标参数
     /// </summary>
     public class ColorMapParams
     {
-
         public bool IsAutomatic { get; set; }
 
         public double MinValue { get; set; }
@@ -27,6 +19,5 @@ namespace SimLab.Utils
         /// 步长
         /// </summary>
         public double Step { get; set; }
-
     }
 }

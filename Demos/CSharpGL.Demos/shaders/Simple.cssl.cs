@@ -5,8 +5,7 @@
 namespace CSharpShadingLanguage.Simple
 {
     using CSharpGL.CSSL;
-    
-    
+
     /// <summary>
     /// 一个<see cref="SimpleVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// (GLSLVersion)0 is GLSLVersion.v150
@@ -15,26 +14,25 @@ namespace CSharpShadingLanguage.Simple
     [CSharpGL.CSSL.GLSLVersionAttribute(((CSharpGL.CSSL.GLSLVersion)(0u)))]
     public partial class SimpleVert : CSharpGL.CSSL.VertexCSShaderCode
     {
-        
         [CSharpGL.CSSL.InAttribute()]
         private vec3 in_Position = vec3(1F, 1F, 1F);
-        
+
         [CSharpGL.CSSL.InAttribute()]
         private vec3 in_Color = vec3(1F, 1F, 1F);
-        
+
         [CSharpGL.CSSL.OutAttribute()]
         private vec4 pass_Color = vec4(1F, 1F, 1F, 1F);
-        
+
         [CSharpGL.CSSL.UniformAttribute()]
         private mat4 projectionMatrix = mat4(1F);
-        
+
         [CSharpGL.CSSL.UniformAttribute()]
         private mat4 viewMatrix = mat4(1F);
-        
+
         [CSharpGL.CSSL.UniformAttribute()]
         private mat4 modelMatrix = mat4(1F);
     }
-    
+
     /// <summary>
     /// 一个<see cref="SimpleFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// (GLSLVersion)0 is GLSLVersion.v150
@@ -43,10 +41,9 @@ namespace CSharpShadingLanguage.Simple
     [CSharpGL.CSSL.GLSLVersionAttribute(((CSharpGL.CSSL.GLSLVersion)(0u)))]
     public partial class SimpleFrag : CSharpGL.CSSL.FragmentCSShaderCode
     {
-        
         [CSharpGL.CSSL.InAttribute()]
         private vec4 pass_Color = vec4(1F, 1F, 1F, 1F);
-        
+
         [CSharpGL.CSSL.OutAttribute()]
         private vec4 out_Color = vec4(1F, 1F, 1F, 1F);
     }

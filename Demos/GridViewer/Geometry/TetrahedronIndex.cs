@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System.Runtime.InteropServices;
 
 namespace SimLab.SimGrid.Geometry
 {
@@ -19,6 +14,7 @@ namespace SimLab.SimGrid.Geometry
         public uint dot3;
         public uint dot4;
         public uint dot5;
+
         /// <summary>
         /// 请给此变量赋值'uint.MaxValue'
         /// </summary>
@@ -39,10 +35,10 @@ namespace SimLab.SimGrid.Geometry
         public uint dot5;
         public uint dot6;
         public uint dot7;
+
         /// <summary>
         /// 请给此变量赋值'uint.MaxValue'
         /// </summary>
         public uint restartIndex;
     }
-
 }

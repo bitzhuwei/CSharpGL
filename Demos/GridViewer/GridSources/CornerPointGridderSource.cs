@@ -1,13 +1,8 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.GridSource
 {
-
     public class CornerPointGridderSource : HexahedronGridderSource
     {
         public float[] COORDS { get; set; }
@@ -72,7 +67,6 @@ namespace SimLab.GridSource
             return this.IndexOfCoordBRT(i, j);
         }
 
-
         public int IndexOfZCornFLT(int iv, int jv, int kv)
         {
             return ((kv - 1) * 2) * (this.NX * 2) * (this.NY * 2) + ((jv - 1) * 2) * (this.NX * 2) + (iv - 1) * 2;
@@ -112,7 +106,6 @@ namespace SimLab.GridSource
         {
             return this.IndexOfZCornBLB(i, j, k) + 1;
         }
-
 
         public override vec3 PointFLT(int i, int j, int k)
         {
@@ -157,7 +150,6 @@ namespace SimLab.GridSource
             vec3 p = new vec3(x, y, z);
             return p;
         }
-
 
         public override vec3 PointBLT(int i, int j, int k)
         {
@@ -220,7 +212,6 @@ namespace SimLab.GridSource
                     minValue = values[i];
                 if (values[i] > maxValue)
                     maxValue = values[i];
-
             }
             result = true;
             return result;
@@ -263,7 +254,5 @@ namespace SimLab.GridSource
             }
             base.Init();
         }
-
     }
-
 }

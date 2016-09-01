@@ -1,16 +1,12 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace GridViewer
 {
     /// <summary>
     /// retarget label's position to specified target.
     /// </summary>
-    class LabelTargetScript : Script
+    internal class LabelTargetScript : Script
     {
         /// <summary>
         /// retarget label's position to specified target.
@@ -24,7 +20,7 @@ namespace GridViewer
         private IModelSpace self;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="labelPosition"></param>
         public LabelTargetScript(ILabelPosition labelPosition)

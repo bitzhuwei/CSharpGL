@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
-    class TexturedRectangleModel : IBufferable
+    internal class TexturedRectangleModel : IBufferable
     {
         public const string strPosition = "position";
-        PropertyBufferPtr positionBufferPtr;
-        static readonly float[] positions = 
+        private PropertyBufferPtr positionBufferPtr;
+
+        private static readonly float[] positions =
         {
 		    -0.5f, -0.5f, 0.0f,
 		    0.5f, -0.5f, 0.0f,
 		    -0.5f,  0.5f, 0.0f,
 		    0.5f,  0.5f, 0.0f,
         };
+
         public const string strTexCoord = "texCoord";
-        PropertyBufferPtr texCoordBufferPtr;
-        static readonly float[] texCoords = 
+        private PropertyBufferPtr texCoordBufferPtr;
+
+        private static readonly float[] texCoords =
         {
             0,0,
             1,0,
@@ -87,7 +85,6 @@ namespace CSharpGL.Demos
             return indexBufferPtr;
         }
 
-        IndexBufferPtr indexBufferPtr = null;
-
+        private IndexBufferPtr indexBufferPtr = null;
     }
 }

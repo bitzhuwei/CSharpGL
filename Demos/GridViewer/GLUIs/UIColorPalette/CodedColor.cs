@@ -1,9 +1,5 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace GridViewer
 {
@@ -12,7 +8,6 @@ namespace GridViewer
     /// </summary>
     public class CodedColor
     {
-
         public static CodedColor[] GetDefault()
         {
             var result = new CodedColor[5];
@@ -42,6 +37,7 @@ namespace GridViewer
         public vec3 DisplayColor { get; set; }
 
         private float coord;
+
         /// <summary>
         /// position in coded color bar. Ranges from 0.0f to 1.0f.
         /// </summary>

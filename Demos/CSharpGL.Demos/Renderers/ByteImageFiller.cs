@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    class ByteImageFiller : ImageFiller
+    internal class ByteImageFiller : ImageFiller
     {
         private byte[] content;
         private int width;

@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using TracyEnergy.Simba.Data;
 using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    class HexahedronGridWellPipelineBuilder : WellPipelineBuilder
+    internal class HexahedronGridWellPipelineBuilder : WellPipelineBuilder
     {
         private CatesianGrid grid;
         private Font labelFont = new Font("Arial", 64.0f, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -94,7 +92,9 @@ namespace GridViewer
 
             //确定井的半径
             float wellRadius;
+
             #region decide the well radius
+
             if (mdx < mdy)
             {
                 if (mdy * 0.5f >= mdx) //长方形的模型
@@ -108,7 +108,6 @@ namespace GridViewer
                     {
                         wellRadius = (mdx / n) * 0.35f;
                     }
-
                 }
                 else
                 {
@@ -139,7 +138,6 @@ namespace GridViewer
             }
             else
             {
-
                 if (mdx * 0.5f >= mdy)
                 {
                     int n = this.grid.DataSource.NY;
@@ -152,11 +150,9 @@ namespace GridViewer
                     {
                         wellRadius = (mdy / n) * 0.35f;
                     }
-
                 }
                 else
                 {
-
                     int n = this.grid.DataSource.NY;
                     if (n > 10)
                     {
@@ -168,9 +164,9 @@ namespace GridViewer
                         wellRadius = (mdx / n) * 0.35f;
                     }
                 }
-
             }
-            #endregion
+
+            #endregion decide the well radius
 
             Fluid fluid = FluidConverter.Convert(wellspec.Fluid);
             Color pipeColor = MapFluidToColor(fluid);
@@ -181,6 +177,7 @@ namespace GridViewer
             wellPath.Add(modelTop);
 
             #region start decide the trajery of the well
+
             {
                 int lastI = locI;
                 int lastJ = locJ;
@@ -243,7 +240,8 @@ namespace GridViewer
                 var result = new CSharpGL.Tuple<WellRenderer, LabelRenderer>(wellRenderer, labelRenderer);
                 return result;
             }
-            #endregion
+
+            #endregion start decide the trajery of the well
         }
 
         private Color MapFluidToColor(Fluid fluid)
@@ -280,7 +278,5 @@ namespace GridViewer
         {
             return (a * 0.5f + b * 0.5f);
         }
-
-
     }
 }

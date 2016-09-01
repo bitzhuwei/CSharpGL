@@ -1,20 +1,13 @@
 ﻿using CSharpGL;
 using SimLab.SimGrid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.GridSource
 {
-
     /// <summary>
     /// 正交网格数据源
     /// </summary>
     public class CatesianGridderSource : HexahedronGridderSource
     {
-
         /// <summary>
         /// X(I)方向上的网格宽度
         /// </summary>
@@ -30,7 +23,6 @@ namespace SimLab.GridSource
         /// </summary>
         public float[] DZ { get; internal set; }
 
-
         public float[] TOPS { get; internal set; }
 
         /// <summary>
@@ -42,6 +34,7 @@ namespace SimLab.GridSource
         ///  数组大小为 (nx+1)*(ny+1)*(nz+1);
         /// </summary>
         private float[] ycoords;
+
         private float[] zcoords;
 
         private GridIndexer coordIndexer;
@@ -77,6 +70,7 @@ namespace SimLab.GridSource
             p.z = this.zcoords[gridIndex];
             return p;
         }
+
         public override vec3 PointFRT(int i, int j, int k)
         {
             vec3 p = new vec3();
@@ -86,6 +80,7 @@ namespace SimLab.GridSource
             p.z = this.zcoords[gridIndex];
             return p;
         }
+
         public override vec3 PointFLB(int i, int j, int k)
         {
             vec3 p = new vec3();
@@ -246,6 +241,5 @@ namespace SimLab.GridSource
             this.zcoords = coordZ;
             this.coordIndexer = coordIndexer;
         }
-
     }
 }

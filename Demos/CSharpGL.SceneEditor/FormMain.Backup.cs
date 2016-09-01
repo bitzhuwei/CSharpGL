@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
-using System.Windows.Forms;
-
-namespace CSharpGL.SceneEditor
+﻿namespace CSharpGL.SceneEditor
 {
-    public partial class FormMain 
+    public partial class FormMain
     {
-
     }
 }

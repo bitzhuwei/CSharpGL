@@ -1,10 +1,5 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -28,9 +23,8 @@ namespace GridViewer
     /// 1    3    5    7    9    11
     /// side length is 1.
     /// </summary>
-    class QuadStripRenderer : Renderer
+    internal class QuadStripRenderer : Renderer
     {
-
         private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Lines);
         private LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
 
@@ -75,7 +69,7 @@ namespace GridViewer
             // offsetSwitch.On();
             this.SetUniform("renderWireframe", true);
             base.DoRender(arg);
-            //offsetSwitch.Off(); 
+            //offsetSwitch.Off();
             lineWidthSwitch.Off();
             polygonModeSwitch.Off();
         }
@@ -166,5 +160,4 @@ namespace GridViewer
         //    }
         //}
     }
-
 }

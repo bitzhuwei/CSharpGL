@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     /// <summary>
     /// Raycast Volume Rendering Demo.
@@ -39,6 +30,5 @@ namespace CSharpGL.Demos
             this.volume3DTexture.Dispose();
             this.framebuffer.Dispose();
         }
-
     }
 }

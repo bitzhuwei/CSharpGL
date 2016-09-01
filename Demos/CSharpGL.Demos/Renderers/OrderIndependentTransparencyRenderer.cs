@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-    class OrderIndependentTransparencyRenderer : RendererBase
+    internal class OrderIndependentTransparencyRenderer : RendererBase
     {
         private PickableRenderer buildListsRenderer;
         private PickableRenderer resolve_lists;
@@ -26,13 +21,13 @@ namespace CSharpGL.Demos
         {
             get { return depthTestSwitch; }
         }
+
         private CullFaceSwitch cullFaceSwitch;
 
         public CullFaceSwitch CullFaceSwitch
         {
             get { return cullFaceSwitch; }
         }
-
 
         public OrderIndependentTransparencyRenderer(IBufferable model,
             string positionName, string normalName)
@@ -180,19 +175,20 @@ namespace CSharpGL.Demos
         }
     }
 
-    class TexBufferImageFiller : ImageFiller
+    internal class TexBufferImageFiller : ImageFiller
     {
         private uint internalformat;
         private uint textureBufferId;
+
         public TexBufferImageFiller(uint internalformat, uint textureBufferId)
         {
             this.internalformat = internalformat;
             this.textureBufferId = textureBufferId;
         }
+
         public override void Fill(BindTextureTarget target)
         {
             OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, textureBufferId);
         }
     }
-
 }

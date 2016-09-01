@@ -3,8 +3,6 @@ using SimLab.helper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords.impl;
 
@@ -12,9 +10,9 @@ namespace GridViewer
 {
     public partial class FormMain
     {
-
         //private TreeNode lastSelectedBoxNode;
         private BoundingBoxRenderer lastselectedBoxRenderer;
+
         private bool UpdateCurrentNode(TreeNode node)
         {
             bool updated = false;
@@ -62,6 +60,7 @@ namespace GridViewer
 
             return updated;
         }
+
         //private bool UpdateCurrentNode(TreeNode node)
         //{
         //    bool updated = false;

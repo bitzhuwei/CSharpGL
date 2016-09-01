@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    class UpdateImageScript : Script, IDisposable
+    internal class UpdateImageScript : Script, IDisposable
     {
         private Control canvas;
         private OpenFileDialog openTextureDlg;
@@ -91,7 +88,6 @@ namespace CSharpGL.Demos
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
         protected virtual void Dispose(bool disposing)
         {
-
             if (this.disposedValue == false)
             {
                 if (disposing)
@@ -104,12 +100,11 @@ namespace CSharpGL.Demos
                 } // end if
 
                 // TODO: Dispose unmanaged resources.
-
             } // end if
 
             this.disposedValue = true;
         } // end sub
 
-        #endregion
+        #endregion IDisposable Members
     }
 }

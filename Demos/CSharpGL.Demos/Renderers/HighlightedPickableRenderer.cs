@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     /// <summary>
     /// 高亮显示拾取的图元。
     /// </summary>
     public class HighlightedPickableRenderer : RendererBase
     {
-
         /// <summary>
         /// 高亮显示拾取的图元。
         /// </summary>
         /// <param name="highlighter"></param>
         /// <param name="pickableRenderer"></param>
-        public HighlightedPickableRenderer(HighlightRenderer highlighter, 
+        public HighlightedPickableRenderer(HighlightRenderer highlighter,
             PickableRenderer pickableRenderer)
         {
             this.Highlighter = highlighter;
@@ -51,6 +44,5 @@ namespace CSharpGL.Demos
         /// 拾取。
         /// </summary>
         public PickableRenderer PickableRenderer { get; private set; }
-
     }
 }

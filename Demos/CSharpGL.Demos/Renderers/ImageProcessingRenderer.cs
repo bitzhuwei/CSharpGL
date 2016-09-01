@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Design;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-
-    class ImageProcessingRenderer : RendererBase
+    internal class ImageProcessingRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
         private Texture inputTexture;
@@ -91,9 +82,7 @@ namespace CSharpGL.Demos
                     this.outputTexture.ToSamplerValue());
                 this.renderer = pickableRenderer;
             }
-
         }
-
 
         protected override void DoRender(RenderEventArgs arg)
         {
@@ -127,13 +116,13 @@ namespace CSharpGL.Demos
             this.renderer.Dispose();
         }
 
-        class ImageProcessingModel : IBufferable
+        private class ImageProcessingModel : IBufferable
         {
             public const string strposition = "position";
             public const string struv = "uv";
-            PropertyBufferPtr positionBufferPtr;
-            PropertyBufferPtr uvBufferPtr;
-            IndexBufferPtr indexBufferPtr;
+            private PropertyBufferPtr positionBufferPtr;
+            private PropertyBufferPtr uvBufferPtr;
+            private IndexBufferPtr indexBufferPtr;
 
             public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
@@ -205,16 +194,19 @@ namespace CSharpGL.Demos
                             this.intermediateTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
+
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
                             this.outputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
+
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
                             this.inputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -228,25 +220,28 @@ namespace CSharpGL.Demos
                             this.outputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
+
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
                             this.inputTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
+
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
                             this.intermediateTexture.ToSamplerValue());
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
             }
         }
 
-        CurrentDisplayImage currentDisplay = CurrentDisplayImage.Output;
+        private CurrentDisplayImage currentDisplay = CurrentDisplayImage.Output;
 
-        enum CurrentDisplayImage
+        private enum CurrentDisplayImage
         {
             Input,
             Intermediate,

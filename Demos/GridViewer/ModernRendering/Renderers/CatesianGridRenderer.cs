@@ -1,11 +1,5 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -34,7 +28,6 @@ namespace GridViewer
             this.codedColorSampler = codedColorSampler;
         }
 
-
         protected override void DoInitialize()
         {
             base.DoInitialize();
@@ -55,6 +48,5 @@ namespace GridViewer
 
             base.DoRender(arg);
         }
-
     }
 }

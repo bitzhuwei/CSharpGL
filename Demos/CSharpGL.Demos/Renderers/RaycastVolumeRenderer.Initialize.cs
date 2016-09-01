@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
     partial class RaycastVolumeRenderer
     {
-        int width, height;
+        private int width, height;
 
         protected override void DoInitialize()
         {
@@ -24,7 +18,6 @@ namespace CSharpGL.Demos
             int[] viewport = OpenGL.GetViewport();
             int width = viewport[2], height = viewport[3];
             Resize(width, height);
-
         }
 
         private void Resize(int width, int height)
@@ -42,7 +35,7 @@ namespace CSharpGL.Demos
         private void RaycastingSetupUniforms()
         {
             // setting uniforms such as
-            // ScreenSize 
+            // ScreenSize
             // StepSize
             // TransferFunc
             // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
@@ -152,6 +145,5 @@ namespace CSharpGL.Demos
 
             return backfaceRenderer;
         }
-
     }
 }

@@ -1,12 +1,5 @@
 ﻿using CSharpGL;
-using SimLab.GridSource;
-using SimLab.SimGrid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace GridViewer
 {
@@ -52,7 +45,6 @@ namespace GridViewer
 
             return ptr;
         }
-
     }
 
     /// <summary>
@@ -65,14 +57,17 @@ namespace GridViewer
         /// 第0个顶点的索引值
         /// </summary>
         public uint dot0;
+
         /// <summary>
         /// 第1个顶点的索引值
         /// </summary>
         public uint dot1;
+
         /// <summary>
         /// 第2个顶点的索引值
         /// </summary>
         public uint dot2;
+
         public uint dot3;
         public uint dot4;
         public uint dot5;

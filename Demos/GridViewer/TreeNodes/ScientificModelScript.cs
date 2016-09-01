@@ -1,11 +1,6 @@
 ﻿using CSharpGL;
 using SimLab.helper;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
@@ -61,6 +56,5 @@ namespace GridViewer
             grid.UpdateColor(property);
             this.UIColorPalette.SetCodedColor(axisMin, axisMax, step);
         }
-
     }
 }

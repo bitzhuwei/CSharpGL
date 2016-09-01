@@ -1,9 +1,5 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -11,8 +7,7 @@ namespace GridViewer
 {
     public partial class FormMain
     {
-
-        void FormMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             //this.scientificCanvas.Scene.RootObject.Children.ItemAdded += RootObject.Children_ItemAdded;
             //this.scientificCanvas.Scene.RootObject.Children.ItemRemoved += RootObject.Children_ItemRemoved;
@@ -84,13 +79,12 @@ namespace GridViewer
         //    }
         //}
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.lblCameraInfo.Text = string.Format("eye{0}, center:{1}, up:{2}",
                 this.scientificCanvas.Scene.Camera.Position,
                 this.scientificCanvas.Scene.Camera.Target,
                 this.scientificCanvas.Scene.Camera.UpVector);
         }
-
     }
 }

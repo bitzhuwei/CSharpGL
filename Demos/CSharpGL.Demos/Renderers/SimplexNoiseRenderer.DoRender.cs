@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
     partial class SimplexNoiseRenderer
     {
         private float timeElapsingSpeed = 1.0f;
+
         /// <summary>
         /// 时间流逝速度
         /// </summary>
@@ -20,6 +16,7 @@ namespace CSharpGL.Demos
         }
 
         private float rainDrop = 1.0f;
+
         /// <summary>
         /// 雨滴效果强度
         /// </summary>
@@ -30,6 +27,7 @@ namespace CSharpGL.Demos
         }
 
         private float granularity = 4.0f;
+
         /// <summary>
         /// 颗粒粒度
         /// </summary>
@@ -39,7 +37,7 @@ namespace CSharpGL.Demos
             set { granularity = value; }
         }
 
-        DateTime lastTime;
+        private DateTime lastTime;
 
         protected override void DoRender(RenderEventArgs arg)
         {

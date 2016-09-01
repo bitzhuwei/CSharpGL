@@ -1,9 +1,6 @@
 ﻿using CSharpGL;
 using SimLab.GridSource;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using TracyEnergy.Simba.Data.Keywords.impl;
 
@@ -54,12 +51,10 @@ namespace GridViewer
             this.defaultBlockPropertyIndex = defaultBlockPropertyIndex;
         }
 
-
         public abstract PropertyBufferPtr GetProperty(string bufferName, string varNameInShader);
 
         public abstract IndexBufferPtr GetIndex();
 
         public abstract void UpdateColor(GridBlockProperty property);
-
     }
 }

@@ -2,8 +2,6 @@
 using SimLab.GridSource;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using TracyEnergy.Simba.Data.Keywords.impl;
 
@@ -11,7 +9,6 @@ namespace GridViewer
 {
     public partial class CatesianGrid : GridViewModel
     {
-
         public CatesianGrid(CatesianGridderSource dataSource, List<GridBlockProperty> gridProps,
             float minColorCode, float maxColorCode, int defaultBlockPropertyIndex = 0)
             : base(dataSource, gridProps, minColorCode, maxColorCode, defaultBlockPropertyIndex)
@@ -50,6 +47,5 @@ namespace GridViewer
 
             return this.indexBufferPtr;
         }
-
     }
 }

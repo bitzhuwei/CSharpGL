@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace GridViewer
 {
@@ -21,9 +18,10 @@ namespace GridViewer
         public string Desc { get { return "scale model and its children models recursively."; } }
 
         private vec3 scale = new vec3(1, 1, 1);
+
         /// <summary>
         /// Invoke SetScale(vec3 factor) by modifing this property.
-        /// 
+        ///
         /// </summary>
         [Browsable(true)]
         [Description("Invoke SetScale(vec3 factor) by modifing this property.")]
@@ -36,6 +34,7 @@ namespace GridViewer
                 this.SetScale(value);
             }
         }
+
         public bool SetScale(vec3 factor)
         {
             bool updated = false;

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.Utils
 {
-
     /// <summary>
     /// 自动计算坐标范围
     /// </summary>
@@ -25,7 +20,6 @@ namespace SimLab.Utils
             return;
         }
 
-
         /// <summary>
         /// 自动计算步长
         /// </summary>
@@ -36,10 +30,8 @@ namespace SimLab.Utils
         /// <param name="scale">计算出的刻度大小，如果需要计算刻度数用 (int)Math.Round((axisMax-axisMin)/scale)</param>
         public static void Automate(double min, double max, out double axisMin, out double axisMax, out double scale)
         {
-
             int expectedMaxSteps = 10; //期待的最大步长
             double mnDiff;
-
 
             MinMax(ref min, ref max);
             if ((min == max) && min == 0.0d)
@@ -61,9 +53,7 @@ namespace SimLab.Utils
                 mnDiff = max - min;
             }
 
-
             majorUnitPow = (int)Math.Floor(Math.Log10(mnDiff));
-
 
             double majorUnit = Math.Pow(10, majorUnitPow);
             int steps = (int)Math.Floor((max - min) / majorUnit);

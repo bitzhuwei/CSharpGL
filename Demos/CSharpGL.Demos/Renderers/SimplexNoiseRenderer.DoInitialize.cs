@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
     partial class SimplexNoiseRenderer
     {
-
-
         protected override void DoInitialize()
         {
             base.DoInitialize();
@@ -24,6 +17,5 @@ namespace CSharpGL.Demos
             bitmap.Dispose();
             this.SetUniform("sunColor", texture.ToSamplerValue());
         }
-
     }
 }

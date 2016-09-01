@@ -1,11 +1,7 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.SimGrid.Loader
 {
@@ -49,26 +45,25 @@ namespace SimLab.SimGrid.Loader
                 int nodeNum, elemNum, elemFormat, fracNum, fracFormat;
 
                 #region read header
+
                 nodeNum = System.Convert.ToInt32(heads[0], CultureInfo.InvariantCulture);
                 elemNum = System.Convert.ToInt32(heads[1], CultureInfo.InvariantCulture);
                 elemFormat = System.Convert.ToInt32(heads[2], CultureInfo.InvariantCulture);
                 fracNum = System.Convert.ToInt32(heads[3], CultureInfo.InvariantCulture);
                 fracFormat = System.Convert.ToInt32(heads[4], CultureInfo.InvariantCulture);
 
-
                 if (elemFormat != ElEMENT_FORMAT3_TRIANGLE && elemFormat != ELEMENT_FORMAT4_TETRAHEDRON && elemFormat != ELEMENT_FORMAT6_TRIANGULAR_PRISM && elemFormat != 0)
                     throw new FormatException("bad format, unknown element format");
                 if (fracFormat != FRACTURE_FORMAT2_LINE && fracFormat != FRACTURE_FORMAT3_TRIANGLE && fracFormat != FRACTURE_FORMAT4_QUAD)
                     throw new FormatException("bad format, unknown frac format");
 
-
-
-                #endregion
+                #endregion read header
 
                 bool gotFirstMin = false; bool gotFirstMax = false;
                 vec3 min = new vec3(), max = new vec3();
 
                 #region read nodes
+
                 vec3[] nodes = new vec3[nodeNum];
                 for (int i = 0; i < nodeNum; i++)
                 {
@@ -104,12 +99,14 @@ namespace SimLab.SimGrid.Loader
                         min = vec3Helper.Min(min, nodes[i]);
                     }
                 }
-                #endregion
+
+                #endregion read nodes
 
                 src.Min = min;
                 src.Max = max;
 
                 #region read elements
+
                 int[][] elements = new int[elemNum][];
                 for (int i = 0; i < elemNum; i++)
                 {
@@ -127,8 +124,11 @@ namespace SimLab.SimGrid.Loader
                     }
                     elements[i] = elemnt;
                 }
-                #endregion
+
+                #endregion read elements
+
                 #region read fracture
+
                 int[][] fractures = new int[fracNum][];
                 for (int i = 0; i < fracNum; i++)
                 {
@@ -146,7 +146,8 @@ namespace SimLab.SimGrid.Loader
                     }
                     fractures[i] = frac;
                 }
-                #endregion
+
+                #endregion read fracture
 
                 src.NodeNum = nodeNum;
                 src.Nodes = nodes;
@@ -181,7 +182,7 @@ namespace SimLab.SimGrid.Loader
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pathFileName"></param>
         /// <param name="nx"></param>
@@ -217,7 +218,7 @@ namespace SimLab.SimGrid.Loader
             return line;
         }
 
-        class vec3Helper
+        private class vec3Helper
         {
             public static vec3 Min(vec3 current, vec3 other)
             {

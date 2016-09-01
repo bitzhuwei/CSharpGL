@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     partial class RaycastVolumeRenderer
     {
-
         protected override void DoRender(RenderEventArgs arg)
         {
             int[] viewport = OpenGL.GetViewport();
@@ -36,10 +26,10 @@ namespace CSharpGL.Demos
             // glBindTexture(GL_TEXTURE_2D, 0);
             // glDisable(GL_TEXTURE_2D);
             // glActiveTexture(GL_TEXTURE2);
-            // glBindTexture(GL_TEXTURE_3D, 0);    
+            // glBindTexture(GL_TEXTURE_3D, 0);
             // glDisable(GL_TEXTURE_3D);
             // glActiveTexture(GL_TEXTURE0);
-            // glBindTexture(GL_TEXTURE_1D, 0);    
+            // glBindTexture(GL_TEXTURE_1D, 0);
             // glDisable(GL_TEXTURE_1D);
             // glActiveTexture(GL_TEXTURE0);
 
@@ -57,6 +47,5 @@ namespace CSharpGL.Demos
             // GL_ERROR();
             //this.depthTest.Off();
         }
-
     }
 }

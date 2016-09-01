@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 using System.Windows.Forms;
 
@@ -12,7 +6,6 @@ namespace CSharpGL.SceneEditor
 {
     public partial class FormMain
     {
-
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             Color clearColor = this.scene.ClearColor;

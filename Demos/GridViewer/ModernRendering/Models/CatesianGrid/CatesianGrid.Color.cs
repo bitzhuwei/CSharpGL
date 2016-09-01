@@ -1,13 +1,7 @@
 ﻿using CSharpGL;
-using SimLab.GridSource;
-using SimLab.SimGrid.Geometry;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using TracyEnergy.Simba.Data.Keywords.impl;
-
 
 namespace GridViewer
 {
@@ -121,14 +115,17 @@ namespace GridViewer
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>
         public float FLT;
+
         /// <summary>
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>
         public float FRT;
+
         /// <summary>
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>
         public float BRT;
+
         /// <summary>
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>
@@ -143,10 +140,12 @@ namespace GridViewer
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>
         public float FRB;
+
         /// <summary>
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>
         public float BRB;
+
         /// <summary>
         /// U坐标在0.0~1.0之间为正常值，否则为透明色。
         /// </summary>

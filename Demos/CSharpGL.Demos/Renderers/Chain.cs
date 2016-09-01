@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -10,9 +7,10 @@ namespace CSharpGL
     /// 北斗七星
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
-    class Chain : IBufferable
+    internal class Chain : IBufferable
     {
         private ChainModel model;
+
         public Chain(ChainModel model)
         {
             this.model = model;
@@ -20,7 +18,7 @@ namespace CSharpGL
 
         public const string position = "position";
         public const string color = "color";
-        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+        private Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {

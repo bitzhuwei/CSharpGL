@@ -4,15 +4,11 @@
 // 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）
 namespace CSharpShadingLanguage.Simple
 {
-    using CSharpGL.CSSL;
-
-
     /// <summary>
     /// 一个<see cref="SimpleVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
     public partial class SimpleVert : CSharpGL.CSSL.VertexCSShaderCode
     {
-
         public override void main()
         {
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
@@ -26,7 +22,6 @@ namespace CSharpShadingLanguage.Simple
     /// </summary>
     public partial class SimpleFrag : CSharpGL.CSSL.FragmentCSShaderCode
     {
-
         public override void main()
         {
             out_Color = pass_Color;

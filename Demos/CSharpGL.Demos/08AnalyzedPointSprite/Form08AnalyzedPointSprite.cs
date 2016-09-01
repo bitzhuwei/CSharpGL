@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -12,7 +6,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form08AnalyzedPointSprite : Form
     {
-
         public Form08AnalyzedPointSprite()
         {
             InitializeComponent();
@@ -24,7 +17,7 @@ namespace CSharpGL.Demos
             OpenGL.ClearColor(0, 0, 0, 0);
         }
 
-        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 's')
             {
@@ -38,7 +31,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
         }
@@ -49,6 +42,5 @@ namespace CSharpGL.Demos
 
             this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, this.glCanvas1.PointToClient(Control.MousePosition));
         }
-
     }
 }

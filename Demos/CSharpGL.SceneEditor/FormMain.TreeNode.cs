@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CSharpGL.SceneEditor
 {
     public partial class FormMain
     {
-
         private void addSceneObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BuildInSceneObject type = (BuildInSceneObject)Enum.Parse(typeof(BuildInSceneObject),
@@ -26,7 +20,7 @@ namespace CSharpGL.SceneEditor
             this.treeView1.Nodes.Add(node);
         }
 
-        void Children_ItemRemoved(object sender, RemoveItemEventArgs<SceneObject> e)
+        private void Children_ItemRemoved(object sender, RemoveItemEventArgs<SceneObject> e)
         {
             if (e.RemovedItem.Parent == null)
             {
@@ -40,7 +34,7 @@ namespace CSharpGL.SceneEditor
             }
         }
 
-        void Children_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
+        private void Children_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
         {
             //if (e.NewItem.Parent == null)
             //{
@@ -167,6 +161,5 @@ namespace CSharpGL.SceneEditor
 
             return result;
         }
-
     }
 }

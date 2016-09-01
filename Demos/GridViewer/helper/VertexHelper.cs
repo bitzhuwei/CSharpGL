@@ -1,9 +1,4 @@
 ﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace SimLab.SimGrid.helper
 {
@@ -30,6 +25,5 @@ namespace SimLab.SimGrid.helper
                 max.z = value.z;
             return max;
         }
-
     }
 }

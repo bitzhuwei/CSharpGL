@@ -1,11 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
-using System.Windows.Forms;
+﻿using System;
 
 namespace GridViewer
 {
@@ -13,14 +6,13 @@ namespace GridViewer
     {
         private string[] timerEnabledSign = { "-", "/", "|", "\\", };
         private int timerEnableSignIndex = 0;
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             timerEnableSignIndex++;
             if (timerEnableSignIndex >= timerEnabledSign.Length)
             { timerEnableSignIndex = 0; }
             this.lblTimerEnabled.Text = timerEnabledSign[timerEnableSignIndex];
-
         }
-
     }
 }

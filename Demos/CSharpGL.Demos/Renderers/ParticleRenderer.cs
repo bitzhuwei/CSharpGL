@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-    class ParticleRenderer : Renderer
+    internal class ParticleRenderer : Renderer
     {
         public VertexArrayObject VertexArrayObject { get; private set; }
         public PropertyBufferPtr PositionBufferPtr { get; private set; }
@@ -26,7 +18,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             {
-                // velocity 
+                // velocity
                 var buffer = new PropertyBuffer<vec4>("empty", 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy);
                 buffer.Create(ParticleModel.particleCount);
                 unsafe

@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-    class ParticleModel : IBufferable
+    internal class ParticleModel : IBufferable
     {
         public static readonly float[] attractor_masses = new float[maxAttractor];
 
@@ -24,7 +16,7 @@ namespace CSharpGL.Demos
         private PropertyBufferPtr positionBufferPtr = null;
         private PropertyBufferPtr velocityBufferPtr = null;
         private IndexBufferPtr indexBufferPtr;
-        Random random = new Random();
+        private Random random = new Random();
 
         static ParticleModel()
         {

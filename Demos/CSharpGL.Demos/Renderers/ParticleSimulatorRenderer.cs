@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System.IO;
 
 namespace CSharpGL.Demos
 {
-
-    class ParticleSimulatorRenderer : RendererBase
+    internal class ParticleSimulatorRenderer : RendererBase
     {
-
         private ParticleRenderer particleRenderer;
         private ParticleComputeRenderer particleComputeRenderer;
 
@@ -38,7 +28,6 @@ namespace CSharpGL.Demos
                 this.particleComputeRenderer = particleComputeRenderer;
             }
         }
-
 
         protected override void DoRender(RenderEventArgs arg)
         {

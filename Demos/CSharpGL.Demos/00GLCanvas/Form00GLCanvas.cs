@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 
 using System.Windows.Forms;
@@ -12,7 +9,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form00GLCanvas : Form
     {
-
         private Point mousePosition;
         private List<string> content = new List<string>();
 
@@ -26,7 +22,7 @@ namespace CSharpGL.Demos
             Application.Idle += Application_Idle;
         }
 
-        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 't')
             {
@@ -35,16 +31,18 @@ namespace CSharpGL.Demos
                     case RenderTrigger.TimerBased:
                         this.glCanvas1.RenderTrigger = RenderTrigger.Manual;
                         break;
+
                     case RenderTrigger.Manual:
                         this.glCanvas1.RenderTrigger = RenderTrigger.TimerBased;
                         break;
+
                     default:
                         break;
                 }
             }
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
         }
@@ -69,7 +67,7 @@ namespace CSharpGL.Demos
             //this.content.Add(string.Format("Framebuffer Default Fixed Sample Locations: {0}", Framebuffer.DefaultFixedSampleLocations()));
         }
 
-        void glCanvas1_MouseMove(object sender, MouseEventArgs e)
+        private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
             this.mousePosition = e.Location;
         }
@@ -92,6 +90,5 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Height - this.mousePosition.Y - 1, Color.Red, "Courier New",
                 14.0f, string.Format("Mouse Position: {0}", this.mousePosition));
         }
-
     }
 }

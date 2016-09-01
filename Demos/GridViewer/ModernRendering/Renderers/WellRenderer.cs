@@ -1,11 +1,7 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridViewer
 {
@@ -14,9 +10,9 @@ namespace GridViewer
     /// </summary>
     public class WellRenderer : Renderer, ILabelPosition
     {
-
         private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
         private Color wellColor = Color.White;// maps to white color in shader.
+
         public Color WellColor
         {
             get { return wellColor; }
@@ -77,6 +73,7 @@ namespace GridViewer
         }
 
         public event EventHandler ModelTransformUpdated;
+
         private void DoModelTranslateUpdated()
         {
             EventHandler ModelTransformUpdated = this.ModelTransformUpdated;
@@ -85,6 +82,7 @@ namespace GridViewer
                 ModelTransformUpdated(this, new EventArgs());
             }
         }
+
         /// <summary>
         /// Position in world space.
         /// </summary>
@@ -104,9 +102,7 @@ namespace GridViewer
             }
         }
 
-
         private vec3 firstNode;
         vec3 ILabelPosition.Position { get { return firstNode; } }
-
     }
 }

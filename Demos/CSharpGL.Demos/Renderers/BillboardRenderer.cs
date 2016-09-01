@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-
-    class BillboardRenderer : Renderer
+    internal class BillboardRenderer : Renderer
     {
-
         public static BillboardRenderer Create(IBufferable model)
         {
             var shaderCodes = new ShaderCode[2];
@@ -23,6 +16,7 @@ namespace CSharpGL.Demos
             var billboardRenderer = new BillboardRenderer(model, shaderCodes, map);
             return billboardRenderer;
         }
+
         private double currentTime;
 
         public float Width { get; set; }
@@ -30,6 +24,7 @@ namespace CSharpGL.Demos
 
         private UpdatingRecord percentageRecord = new UpdatingRecord();
         private vec2 percentage;
+
         /// <summary>
         /// width percentage and height percentage.
         /// </summary>
@@ -41,8 +36,9 @@ namespace CSharpGL.Demos
 
         private UpdatingRecord pixelSizeRecord = new UpdatingRecord();
         private ivec2 pixelSize;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ivec2 PixelSize
         {
@@ -109,10 +105,9 @@ namespace CSharpGL.Demos
 
             base.DoRender(arg);
         }
-
     }
 
-    enum BillboardType
+    internal enum BillboardType
     {
         Pixel = 0,
         Physical = 1,

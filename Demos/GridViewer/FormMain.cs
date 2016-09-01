@@ -1,11 +1,5 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GridViewer
@@ -21,7 +15,7 @@ namespace GridViewer
             this.scientificCanvas.RenderTrigger = RenderTrigger.Manual;
         }
 
-        void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             var sceneObject = s as SceneObject;
             if (sceneObject != null)
@@ -46,8 +40,5 @@ namespace GridViewer
             this.scientificCanvas.Scene.Update();
             this.scientificCanvas.Invalidate();
         }
-
-
-
     }
 }

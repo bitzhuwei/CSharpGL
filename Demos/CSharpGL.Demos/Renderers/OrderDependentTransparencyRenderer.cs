@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System.IO;
 
 namespace CSharpGL.Demos
 {
-    class OrderDependentTransparencyRenderer : PickableRenderer
+    internal class OrderDependentTransparencyRenderer : PickableRenderer
     {
-
         public static OrderDependentTransparencyRenderer Create(IBufferable model, string position, string color)
         {
             var shaderCodes = new ShaderCode[2];

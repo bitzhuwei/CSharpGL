@@ -3,8 +3,6 @@ using SimLab.helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords;
 using TracyEnergy.Simba.Data.Keywords.impl;
@@ -13,7 +11,6 @@ namespace GridViewer
 {
     public partial class FormMain : Form
     {
-
         private void mniLoadECLGrid_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() != DialogResult.OK) { return; }
@@ -59,7 +56,6 @@ namespace GridViewer
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.ColorPalette.SetCodedColor(axisMin, axisMax, step);
 
-
                 // update tree node.
                 TreeNode rootNode = DumpTreeNode(this.scientificCanvas.Scene.RootObject);
                 this.objectsTreeView.Nodes.Clear();
@@ -71,7 +67,6 @@ namespace GridViewer
 
                 // render scene to this canvas.
                 this.scientificCanvas.Invalidate();
-
             }
             catch (Exception ex)
             {
@@ -172,6 +167,5 @@ namespace GridViewer
             WellPipelineBuilder well3DHelper = new HexahedronGridWellPipelineBuilder(grid);
             return well3DHelper.Convert(-grid.DataSource.Position, wellSpecsList, wellCompatList);
         }
-
     }
 }

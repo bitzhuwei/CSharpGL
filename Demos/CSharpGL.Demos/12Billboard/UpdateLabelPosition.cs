@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
-    class UpdateLabelPosition : Script
+    internal class UpdateLabelPosition : Script
     {
         private LabelRenderer renderer;
         public IModelSpace TargetRenderer { get; set; }
@@ -31,6 +25,5 @@ namespace CSharpGL.Demos
             vec3 worldPosition = this.TargetRenderer.WorldPosition + new vec3(0, 0.3f, 0);
             this.renderer.WorldPosition = worldPosition;
         }
-
     }
 }

@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
-
-    class PointSpriteRenderer : Renderer
+    internal class PointSpriteRenderer : Renderer
     {
-
         private Color clearColor = Color.Black;
+
         public Color ClearColor
         {
             get { return clearColor; }
@@ -28,8 +22,9 @@ namespace CSharpGL.Demos
         }
 
         private uint[] sprite_texture = new uint[1];
-        static ShaderCode[] staticShaderCodes;
-        static PropertyNameMap map;
+        private static ShaderCode[] staticShaderCodes;
+        private static PropertyNameMap map;
+
         static PointSpriteRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
@@ -38,6 +33,7 @@ namespace CSharpGL.Demos
             map = new PropertyNameMap();
             map.Add("position", PointSpriteModel.strposition);
         }
+
         public PointSpriteRenderer(int particleCount)
             : base(new PointSpriteModel(particleCount), staticShaderCodes, map)
         {
@@ -75,13 +71,13 @@ namespace CSharpGL.Demos
             OpenGL.DeleteTextures(1, sprite_texture);
         }
 
-        class PointSpriteModel : IBufferable
+        private class PointSpriteModel : IBufferable
         {
-
             public PointSpriteModel(int particleCount)
             {
                 this.particleCount = particleCount;
             }
+
             public const string strposition = "position";
             private PropertyBufferPtr positionBufferPtr = null;
             private IndexBufferPtr indexBufferPtr;

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.SceneEditor.Scripts
 {
-    class Planet : Script
+    internal class Planet : Script
     {
         private BuildInRenderer renderer;
         private double currentAngle;
@@ -38,6 +34,5 @@ namespace CSharpGL.SceneEditor.Scripts
 
             this.renderer.WorldPosition = position;
         }
-
     }
 }

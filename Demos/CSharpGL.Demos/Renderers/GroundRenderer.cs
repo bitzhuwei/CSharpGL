@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL.Demos
 {
@@ -13,7 +8,6 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class GroundRenderer : Renderer
     {
-
         public static GroundRenderer Create(GroundModel model)
         {
             var shaderCodes = new ShaderCode[2];
@@ -52,4 +46,3 @@ namespace CSharpGL.Demos
         }
     }
 }
-
