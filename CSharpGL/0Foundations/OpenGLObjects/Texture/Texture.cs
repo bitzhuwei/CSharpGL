@@ -71,7 +71,7 @@ namespace CSharpGL
                 BindTextureTarget target = this.Target;
                 OpenGL.BindTexture(target, id[0]);
                 this.SamplerBuilder.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, target);
-                this.ImageBuilder.Build(target);
+                this.ImageFiller.Fill(target);
                 OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
                 //this.SamplerBuilder.Unbind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
                 OpenGL.BindTexture(this.Target, 0);
@@ -82,7 +82,7 @@ namespace CSharpGL
         /// <summary>
         /// setup texture's image data.
         /// </summary>
-        public ImageBuilder ImageBuilder { get; private set; }
+        public ImageFiller ImageFiller { get; private set; }
 
         /// <summary>
         /// setup texture's sampler properties.

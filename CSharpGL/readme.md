@@ -41,7 +41,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Start/Stop scene.
 3. fix: LabelRenderer supports updating text right before rendering.
 4. New project for generating Renderer types.(check CSharpGL on GitHub)
-5. Wrapped types(Texture, Sampler and ImageBuilder) for texture's construction, initialization and destroy.
+5. Wrapped types(Texture, Sampler and ImageFiller) for texture's construction, initialization and destroy.
 
 ## v1.0.5.2:
 1. Add default cursor(an UI element) into Scene.

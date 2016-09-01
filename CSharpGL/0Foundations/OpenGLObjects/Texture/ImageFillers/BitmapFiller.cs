@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// build texture's content with Bitmap.
     /// </summary>
-    public class BitmapBuilder : ImageBuilder
+    public class BitmapFiller : ImageFiller
     {
         private System.Drawing.Bitmap bitmap;
         private int level;
@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <param name="border">0</param>
         /// <param name="format">OpenGL.GL_BGRA etc.</param>
         /// <param name="type">OpenGL.GL_UNSIGNED_BYTE etc.</param>
-        public BitmapBuilder(System.Drawing.Bitmap bitmap,
+        public BitmapFiller(System.Drawing.Bitmap bitmap,
             int level, uint internalformat, int border, uint format, uint type)
         {
             this.bitmap = bitmap;
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// build texture's content with Bitmap.
         /// </summary>
         /// <param name="target"></param>
-        public override void Build(BindTextureTarget target)
+        public override void Fill(BindTextureTarget target)
         {
             // generate texture.
             //  Lock the image bits (so that we can pass them to OGL).

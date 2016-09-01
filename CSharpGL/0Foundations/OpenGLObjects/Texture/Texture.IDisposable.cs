@@ -52,7 +52,7 @@ namespace CSharpGL
                     this.id[0] = 0;
                 }
                 {
-                    var disp = this.ImageBuilder as IDisposable;
+                    var disp = this.ImageFiller as IDisposable;
                     if (disp != null) { disp.Dispose(); }
                 }
                 // A sampler builder can be used in multiple textures.

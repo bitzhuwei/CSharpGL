@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
                 /* Clamping to edges is important to prevent artifacts when scaling */
                 /* Linear filtering usually looks best for text */
                 var texture = new Texture(BindTextureTarget.Texture2D,
-                    new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA32F, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE),
+                    new BitmapFiller(bitmap, 0, OpenGL.GL_RGBA32F, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE),
                     new SamplerParameters(
                         TextureWrapping.ClampToEdge,
                         TextureWrapping.ClampToEdge,
@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
             }
             {
                 var texture = new Texture(BindTextureTarget.Texture2D,
-                    new TexStorageImageBuilder(8, OpenGL.GL_RGBA32F, 512, 512),
+                    new TexStorageImageFiller(8, OpenGL.GL_RGBA32F, 512, 512),
                     new NullSampler());
                 texture.Initialize();
                 this.intermediateTexture = texture;
@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
             {
                 // This is the texture that the compute program will write into
                 var texture = new Texture(BindTextureTarget.Texture2D,
-           new TexStorageImageBuilder(8, OpenGL.GL_RGBA32F, 512, 512),
+           new TexStorageImageFiller(8, OpenGL.GL_RGBA32F, 512, 512),
            new NullSampler());
                 texture.Initialize();
                 this.outputTexture = texture;

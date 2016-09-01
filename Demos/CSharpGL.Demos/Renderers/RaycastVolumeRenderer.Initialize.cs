@@ -87,7 +87,7 @@ namespace CSharpGL.Demos
         {
             var texture = new Texture(
                 BindTextureTarget.Texture3D,
-                new RaycastVolumeImageBuilder(filename, width, height, depth),
+                new RaycastVolumeImageFiller(filename, width, height, depth),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Linear, TextureFilter.Linear));
             texture.Initialize();
 
@@ -100,7 +100,7 @@ namespace CSharpGL.Demos
 
             var texture = new Texture(
                 BindTextureTarget.Texture2D,
-                new NullImageBuilder(width, height, OpenGL.GL_RGBA16F, OpenGL.GL_RGBA, OpenGL.GL_FLOAT),
+                new NullImageFiller(width, height, OpenGL.GL_RGBA16F, OpenGL.GL_RGBA, OpenGL.GL_FLOAT),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
             texture.Initialize();
 
@@ -117,7 +117,7 @@ namespace CSharpGL.Demos
             }
             var texture = new Texture(
                 BindTextureTarget.Texture1D,
-                new ByteImageBuilder(tff, 256),
+                new ByteImageFiller(tff, 256),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
             texture.Initialize();
             return texture;

@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 3D texture builder of Raycast Volume Rendering Demo.
     /// </summary>
-    class RaycastVolumeImageBuilder : ImageBuilder
+    class RaycastVolumeImageFiller : ImageFiller
     {
         private string filename;
         private int width;
@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="depth"></param>
-        public RaycastVolumeImageBuilder(string filename, int width, int height, int depth)
+        public RaycastVolumeImageFiller(string filename, int width, int height, int depth)
         {
             this.filename = filename;
             this.width = width;
@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
         /// 
         /// </summary>
         /// <param name="target"></param>
-        public override void Build(BindTextureTarget target)
+        public override void Fill(BindTextureTarget target)
         {
             var data = new UnmanagedArray<byte>(width * height * depth);
             unsafe

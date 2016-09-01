@@ -40,14 +40,14 @@ namespace CSharpGL.Demos
             }
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageBuilder(OpenGL.GL_RGBA32F, this.positionBufferPtrId),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.positionBufferPtrId),
                     new NullSampler());
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageBuilder(OpenGL.GL_RGBA32F, this.velocityBufferPtrId),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.velocityBufferPtrId),
                     new NullSampler());
                 texture.Initialize();
                 this.velocityTexture = texture;

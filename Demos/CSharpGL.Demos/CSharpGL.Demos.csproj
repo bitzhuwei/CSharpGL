@@ -93,7 +93,7 @@
     </Compile>
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
-    <Compile Include="Renderers\ByteImageBuilder.cs" />
+    <Compile Include="Renderers\ByteImageFiller.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
@@ -107,14 +107,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
-    <Compile Include="Renderers\RaycastVolumeImageBuilder.cs" />
+    <Compile Include="Renderers\RaycastVolumeImageFiller.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.Render.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.Dispose.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.Static.cs" />
-    <Compile Include="Renderers\TexStorageImageBuilder.cs" />
     <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />

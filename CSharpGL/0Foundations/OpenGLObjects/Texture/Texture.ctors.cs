@@ -19,13 +19,13 @@ namespace CSharpGL
         /// <param name="samplerBuilder"></param>
         public Texture(
             BindTextureTarget target,
-            ImageBuilder imageBuilder,
+            ImageFiller imageBuilder,
             SamplerBase samplerBuilder)
         {
             if (imageBuilder == null || samplerBuilder == null) { throw new ArgumentNullException(); }
 
             this.Target = target;
-            this.ImageBuilder = imageBuilder;
+            this.ImageFiller = imageBuilder;
             this.SamplerBuilder = samplerBuilder;
 
             this.ActiveTexture = OpenGL.GL_TEXTURE0;
@@ -40,7 +40,7 @@ namespace CSharpGL
         public Texture(BindTextureTarget target,
             Bitmap bitmap,
             SamplerBase samplerBuilder)
-            : this(target, new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), samplerBuilder)
+            : this(target, new BitmapFiller(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), samplerBuilder)
         {
         }
 
@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <param name="mipmapFiltering"></param>
         public Texture(
             BindTextureTarget target,
-            ImageBuilder imageBuilder,
+            ImageFiller imageBuilder,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
             : this(target, imageBuilder, new FakeSampler(parameters, mipmapFiltering))
@@ -72,7 +72,7 @@ namespace CSharpGL
             Bitmap bitmap,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(target, new BitmapBuilder(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), new FakeSampler(parameters, mipmapFiltering))
+            : this(target, new BitmapFiller(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), new FakeSampler(parameters, mipmapFiltering))
         {
         }
     }

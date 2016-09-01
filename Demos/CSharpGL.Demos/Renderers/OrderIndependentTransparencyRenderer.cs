@@ -68,7 +68,7 @@ namespace CSharpGL.Demos
             this.resolve_lists.Initialize();
             {
                 var texture = new Texture(BindTextureTarget.Texture2D,
-                    new NullImageBuilder(MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, OpenGL.GL_R32UI, OpenGL.GL_RED_INTEGER, OpenGL.GL_UNSIGNED_BYTE),
+                    new NullImageFiller(MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, OpenGL.GL_R32UI, OpenGL.GL_RED_INTEGER, OpenGL.GL_UNSIGNED_BYTE),
                     new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
                 texture.Initialize();
                 this.headTexture = texture;
@@ -107,7 +107,7 @@ namespace CSharpGL.Demos
             // Bind it to a texture (for use as a TBO)
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageBuilder(OpenGL.GL_RGBA32UI, linked_list_buffer[0]),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32UI, linked_list_buffer[0]),
                     new NullSampler());
                 texture.Initialize();
                 this.linkedListTexture = texture;
@@ -182,16 +182,16 @@ namespace CSharpGL.Demos
         }
     }
 
-    class TexBufferImageBuilder : ImageBuilder
+    class TexBufferImageFiller : ImageFiller
     {
         private uint internalformat;
         private uint textureBufferId;
-        public TexBufferImageBuilder(uint internalformat, uint textureBufferId)
+        public TexBufferImageFiller(uint internalformat, uint textureBufferId)
         {
             this.internalformat = internalformat;
             this.textureBufferId = textureBufferId;
         }
-        public override void Build(BindTextureTarget target)
+        public override void Fill(BindTextureTarget target)
         {
             OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, textureBufferId);
         }

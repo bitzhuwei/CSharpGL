@@ -10,13 +10,13 @@ namespace CSharpGL
     /// <summary>
     /// build texture's content.
     /// </summary>
-    public abstract class ImageBuilder
+    public abstract class ImageFiller
     {
 
         /// <summary>
         /// build texture's content.
         /// </summary>
         /// <param name="target"></param>
-        public abstract void Build(BindTextureTarget target);
+        public abstract void Fill(BindTextureTarget target);
     }
 }

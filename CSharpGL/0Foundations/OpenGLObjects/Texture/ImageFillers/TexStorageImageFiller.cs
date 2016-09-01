@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Demos
+namespace CSharpGL
 {
-    public class TexStorageImageBuilder : ImageBuilder
+    /// <summary>
+    /// 
+    /// </summary>
+    public class TexStorageImageFiller : ImageFiller
     {
         private int levels;
         private uint internalFormat;
         private int width;
         private int height;
 
-        public TexStorageImageBuilder(int levels, uint internalFormat, int width, int height)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="levels"></param>
+        /// <param name="internalFormat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public TexStorageImageFiller(int levels, uint internalFormat, int width, int height)
         {
             // TODO: Complete member initialization
             this.levels = levels;
@@ -21,7 +31,11 @@ namespace CSharpGL.Demos
             this.height = height;
         }
 
-        public override void Build(BindTextureTarget target)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        public override void Fill(BindTextureTarget target)
         {
             switch (target)
             {

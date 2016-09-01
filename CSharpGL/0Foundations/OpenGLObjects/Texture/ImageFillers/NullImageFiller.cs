@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// build texture's content with IntPtr.Zero.
     /// </summary>
-    public class NullImageBuilder : ImageBuilder
+    public class NullImageFiller : ImageFiller
     {
         private int width;
         private int height;
@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
-        public NullImageBuilder(int width, int height, uint internalFormat, uint format, uint type)
+        public NullImageFiller(int width, int height, uint internalFormat, uint format, uint type)
         {
             this.width = width;
             this.height = height;
@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Build(BindTextureTarget target)
+        public override void Fill(BindTextureTarget target)
         {
             OpenGL.TexImage2D((uint)BindTextureTarget.Texture2D, 0,
                 internalFormat,// OpenGL.GL_RGBA, 
