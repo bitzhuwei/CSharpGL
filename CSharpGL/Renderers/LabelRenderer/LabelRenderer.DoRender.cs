@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Renders a label that always faces camera in 3D space.
@@ -12,7 +6,7 @@ namespace CSharpGL
     public partial class LabelRenderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -49,6 +43,5 @@ namespace CSharpGL
 
             base.DoRender(arg);
         }
-
     }
 }

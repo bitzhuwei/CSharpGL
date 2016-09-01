@@ -1,12 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 一个正方形的模型。

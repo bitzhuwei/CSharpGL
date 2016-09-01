@@ -1,17 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     partial class InnerPickableRenderer
     {
-
         /// <summary>
         /// 根据<paramref name="differenceOnWindow"/>来修改指定索引处的顶点位置。
         /// </summary>
@@ -71,6 +65,5 @@ namespace CSharpGL
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
-
     }
 }

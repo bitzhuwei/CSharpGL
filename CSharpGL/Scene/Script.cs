@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -24,9 +23,10 @@ namespace CSharpGL
         private static int idCounter = 0;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SceneObject BindingObject { get; set; }
+
         /// <summary>
         /// Base type of all scripts.
         /// </summary>
@@ -39,7 +39,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="elapsedTime"></param>
         protected virtual void DoUpdate(double elapsedTime) { }

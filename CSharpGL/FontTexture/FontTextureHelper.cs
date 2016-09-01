@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// helper class.
     /// </summary>
     public static class FontTextureHelper
     {
-
         /// <summary>
         /// Gets an instance of <see cref="FontTexture"/>.
         /// </summary>

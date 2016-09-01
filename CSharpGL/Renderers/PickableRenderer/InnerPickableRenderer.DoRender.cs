@@ -1,15 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     partial class InnerPickableRenderer
     {
-
         protected override void DoRender(RenderEventArgs arg)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking)
@@ -20,8 +12,6 @@ namespace CSharpGL
             {
                 base.DoRender(arg);
             }
-
         }
-
     }
 }

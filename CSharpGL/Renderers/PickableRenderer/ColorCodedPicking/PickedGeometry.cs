@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace CSharpGL
 {
@@ -12,7 +9,7 @@ namespace CSharpGL
     public class PickedGeometry : IPickedGeometry
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string ErrorInfo { get; set; }
 
@@ -43,7 +40,7 @@ namespace CSharpGL
         public virtual IColorCodedPicking From { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="projection"></param>
         /// <param name="view"></param>
@@ -124,8 +121,9 @@ namespace CSharpGL
 
             return builder.ToString();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -168,7 +166,6 @@ namespace CSharpGL
                     builder.AppendLine();
                 }
             }
-
 
             return builder;
         }

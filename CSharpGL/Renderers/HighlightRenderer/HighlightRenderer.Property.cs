@@ -1,15 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class HighlightRenderer
     {
-
         /// <summary>
         /// 要渲染多少个索引。
         /// </summary>
@@ -50,12 +42,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected UniformMat4 uniformMVP = new UniformMat4("MVP");
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public mat4 MVP
         {
@@ -68,8 +60,5 @@ namespace CSharpGL
                 }
             }
         }
-
     }
-
-
 }

@@ -1,21 +1,20 @@
 using System;
 using System.Runtime.InteropServices;
-using System.ComponentModel;
 
 namespace CSharpGL
 {
     /// <summary>
     /// Useful functions imported from the Win32 SDK.
     /// </summary>
-    sealed class Win32 : IDisposable
+    internal sealed class Win32 : IDisposable
     {
-
         internal static readonly Win32 Instance = new Win32();
 
         private Win32()
         {
             opengl32Library = Win32.LoadLibrary(opengl32);
         }
+
         /// <summary>
         /// glLibrary = Win32.LoadLibrary(OpenGL32);
         /// </summary>
@@ -24,7 +23,7 @@ namespace CSharpGL
         #region IDisposable
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -33,7 +32,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~Win32()
         {
@@ -49,7 +48,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.
@@ -66,10 +64,12 @@ namespace CSharpGL
         /// private const string kernel32 = "kernel32.dll";
         /// </summary>
         private const string kernel32 = "kernel32.dll";
+
         /// <summary>
         /// private const string gdi32 = "gdi32.dll"
         /// </summary>
         private const string gdi32 = "gdi32.dll";
+
         /// <summary>
         /// private const string user32 = "user32.dll"
         /// </summary>
@@ -79,6 +79,7 @@ namespace CSharpGL
         /// internal const string OpenGL32 = "opengl32.dll"
         /// </summary>
         internal const string opengl32 = "opengl32.dll";
+
         ///// <summary>
         ///// internal const string Glu32 = "Glu32.dll"
         ///// </summary>
@@ -95,7 +96,7 @@ namespace CSharpGL
         [DllImport(kernel32, SetLastError = true)]
         private extern static bool FreeLibrary(IntPtr lib);
 
-        #endregion
+        #endregion Kernel32 Functions
 
         #region WGL Functions
 
@@ -112,6 +113,7 @@ namespace CSharpGL
         /// <returns></returns>
         [DllImport(opengl32, SetLastError = true)]
         internal static extern IntPtr wglGetCurrentDC();
+
         /// <summary>
         /// Make the specified render context current.
         /// </summary>
@@ -177,12 +179,12 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="hrc1">The first context.</param>
         ///// <param name="hrc2">The second context.</param>
-        ///// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. 
+        ///// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE.
         ///// To get extended error information, call GetLastError.</returns>
         //[DllImport(opengl32, SetLastError = true)]
         //internal static extern bool wglShareLists(IntPtr hrc1, IntPtr hrc2);
 
-        #endregion
+        #endregion WGL Functions
 
         #region PixelFormatDescriptor structure and flags.
 
@@ -190,8 +192,10 @@ namespace CSharpGL
         //internal const byte PFD_TYPE_COLORINDEX = 1;
 
         internal const uint PFD_DOUBLEBUFFER = 1;
+
         //internal const uint PFD_STEREO = 2;
         internal const uint PFD_DRAW_TO_WINDOW = 4;
+
         internal const uint PFD_DRAW_TO_BITMAP = 8;
         internal const uint PFD_SUPPORT_GDI = 16;
         internal const uint PFD_SUPPORT_OPENGL = 32;
@@ -207,7 +211,6 @@ namespace CSharpGL
         internal const sbyte PFD_MAIN_PLANE = 0;
         //internal const sbyte PFD_OVERLAY_PLANE = 1;
         //internal const sbyte PFD_UNDERLAY_PLANE = -1;
-
 
         [DllImport(user32, SetLastError = true)]
         internal static extern IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
@@ -227,7 +230,7 @@ namespace CSharpGL
            IntPtr hInstance,
            IntPtr lpParam);
 
-        #endregion
+        #endregion PixelFormatDescriptor structure and flags.
 
         #region Win32 Function Definitions.
 
@@ -278,7 +281,7 @@ namespace CSharpGL
            fdwStrikeOut, uint fdwCharSet, uint fdwOutputPrecision, uint
            fdwClipPrecision, uint fdwQuality, uint fdwPitchAndFamily, string lpszFace);
 
-        #endregion
+        #endregion Win32 Function Definitions.
 
         #region User32 Functions
 
@@ -300,9 +303,7 @@ namespace CSharpGL
         [return: MarshalAs(UnmanagedType.U2)]
         internal static extern short RegisterClassEx([In] ref WNDCLASSEX lpwcx);
 
-        #endregion
-
-
+        #endregion User32 Functions
 
         #region Windows Messages
 
@@ -513,7 +514,7 @@ namespace CSharpGL
         //internal const int WM_XBUTTONDOWN = 0x020B;
         //internal const int WM_XBUTTONUP = 0x020C;
 
-        #endregion
+        #endregion Windows Messages
 
         //internal const uint WHITE_BRUSH = 0;
         //internal const uint LTGRAY_BRUSH = 1;
@@ -546,6 +547,7 @@ namespace CSharpGL
         //internal const uint NONANTIALIASED_QUALITY = 3;
         //internal const uint ANTIALIASED_QUALITY = 4;
         internal const uint CLEARTYPE_QUALITY = 5;
+
         //internal const uint CLEARTYPE_NATURAL_QUALITY = 6;
 
         internal const uint CLIP_DEFAULT_PRECIS = 0;
@@ -562,11 +564,13 @@ namespace CSharpGL
         //internal const uint OUT_RASTER_PRECIS = 6;
         //internal const uint OUT_TT_ONLY_PRECIS = 7;
         internal const uint OUT_OUTLINE_PRECIS = 8;
+
         //internal const uint OUT_SCREEN_OUTLINE_PRECIS = 9;
         //internal const uint OUT_PS_ONLY_PRECIS = 10;
 
         //internal const uint ANSI_CHARSET = 0;
         internal const uint DEFAULT_CHARSET = 1;
+
         //internal const uint SYMBOL_CHARSET = 2;
 
         internal const uint FW_DONTCARE = 0;
@@ -580,21 +584,21 @@ namespace CSharpGL
         //internal const uint FW_EXTRABOLD = 800;
         //internal const uint FW_HEAVY = 900;
 
-        internal const uint SRCCOPY = 0x00CC0020;	// dest = source                   
-        //internal const uint SRCPAINT = 0x00EE0086;	// dest = source OR dest           
-        //internal const uint SRCAND = 0x008800C6;	// dest = source AND dest          
-        //internal const uint SRCINVERT = 0x00660046;	// dest = source XOR dest          
-        //internal const uint SRCERASE = 0x00440328;	// dest = source AND (NOT dest )   
-        //internal const uint NOTSRCCOPY = 0x00330008;	// dest = (NOT source)             
-        //internal const uint NOTSRCERASE = 0x001100A6;	// dest = (NOT src) AND (NOT dest) 
-        //internal const uint MERGECOPY = 0x00C000CA;	// dest = (source AND pattern)     
-        //internal const uint MERGEPAINT = 0x00BB0226;	// dest = (NOT source) OR dest     
-        //internal const uint PATCOPY = 0x00F00021;	// dest = pattern                  
-        //internal const uint PATPAINT = 0x00FB0A09;	// dest = DPSnoo                   
-        //internal const uint PATINVERT = 0x005A0049;	// dest = pattern XOR dest         
-        //internal const uint DSTINVERT = 0x00550009;	// dest = (NOT dest)               
-        //internal const uint BLACKNESS = 0x00000042;	// dest = BLACK                    
-        //internal const uint WHITENESS = 0x00FF0062;	// dest = WHITE     
+        internal const uint SRCCOPY = 0x00CC0020;	// dest = source
+        //internal const uint SRCPAINT = 0x00EE0086;	// dest = source OR dest
+        //internal const uint SRCAND = 0x008800C6;	// dest = source AND dest
+        //internal const uint SRCINVERT = 0x00660046;	// dest = source XOR dest
+        //internal const uint SRCERASE = 0x00440328;	// dest = source AND (NOT dest )
+        //internal const uint NOTSRCCOPY = 0x00330008;	// dest = (NOT source)
+        //internal const uint NOTSRCERASE = 0x001100A6;	// dest = (NOT src) AND (NOT dest)
+        //internal const uint MERGECOPY = 0x00C000CA;	// dest = (source AND pattern)
+        //internal const uint MERGEPAINT = 0x00BB0226;	// dest = (NOT source) OR dest
+        //internal const uint PATCOPY = 0x00F00021;	// dest = pattern
+        //internal const uint PATPAINT = 0x00FB0A09;	// dest = DPSnoo
+        //internal const uint PATINVERT = 0x005A0049;	// dest = pattern XOR dest
+        //internal const uint DSTINVERT = 0x00550009;	// dest = (NOT dest)
+        //internal const uint BLACKNESS = 0x00000042;	// dest = BLACK
+        //internal const uint WHITENESS = 0x00FF0062;	// dest = WHITE
 
         internal const uint DIB_RGB_COLORS = 0;
         //internal const uint DIB_PAL_COLORS = 1;

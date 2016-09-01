@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public partial class FormIndexBufferPtrBoard : Form
     {
         private IndexBufferPtrController controller;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="indexBufferPtr"></param>
         public FormIndexBufferPtrBoard(IndexBufferPtr indexBufferPtr = null)
@@ -28,8 +23,9 @@ namespace CSharpGL
                 this.SetTarget(indexBufferPtr);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="indexBufferPtr"></param>
         public void SetTarget(IndexBufferPtr indexBufferPtr)
@@ -117,19 +113,18 @@ namespace CSharpGL
         }
     }
 
-    abstract class IndexBufferPtrController
+    internal abstract class IndexBufferPtrController
     {
-
         public abstract int First();
+
         public abstract int Count();
 
         public abstract void SetFirst(int value);
 
         internal abstract void SetCount(int value);
-
     }
 
-    class ZeroIndexBufferPtrController : IndexBufferPtrController
+    internal class ZeroIndexBufferPtrController : IndexBufferPtrController
     {
         private ZeroIndexBufferPtr indexBufferPtr;
 
@@ -137,7 +132,6 @@ namespace CSharpGL
         {
             this.indexBufferPtr = indexBufferPtr;
         }
-
 
         public override int First()
         {
@@ -164,7 +158,8 @@ namespace CSharpGL
             return string.Format("{0}", this.indexBufferPtr);
         }
     }
-    class OneIndexBufferPtrController : IndexBufferPtrController
+
+    internal class OneIndexBufferPtrController : IndexBufferPtrController
     {
         private OneIndexBufferPtr indexBufferPtr;
 
@@ -172,7 +167,6 @@ namespace CSharpGL
         {
             this.indexBufferPtr = indexBufferPtr;
         }
-
 
         public override int First()
         {
@@ -199,7 +193,8 @@ namespace CSharpGL
             return string.Format("{0}", this.indexBufferPtr);
         }
     }
-    static class ControllerFactory
+
+    internal static class ControllerFactory
     {
         public static IndexBufferPtrController CreateController(this IndexBufferPtr indexBufferPtr)
         {

@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-
-using System.Windows.Forms;
-using System.Threading;
-using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace CSharpGL
 {
@@ -28,8 +21,9 @@ namespace CSharpGL
     {
         private Stopwatch stopWatch = new Stopwatch();
         private readonly string fullname;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected RenderContext renderContext;
 
@@ -37,6 +31,7 @@ namespace CSharpGL
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
+
         private EventHandler mouseEnter;
         private EventHandler mouseLeave;
 
@@ -66,6 +61,7 @@ namespace CSharpGL
 
         private bool showingCursor = true;
         private bool showSystemCursor = true;
+
         /// <summary>
         /// show/hide system's cursor.
         /// </summary>
@@ -109,10 +105,10 @@ namespace CSharpGL
             CreateRenderContext();
         }
 
-        #endregion
+        #endregion ISupportInitialize 成员
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void CreateRenderContext()
         {
@@ -137,8 +133,9 @@ namespace CSharpGL
                 GLCanvasHelper.ResizeGL(this.Width, this.Height);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
@@ -184,7 +181,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void DesignModeRender()
         {
@@ -207,8 +204,9 @@ namespace CSharpGL
                     20.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnPaintBackground(PaintEventArgs e)
@@ -221,8 +219,9 @@ namespace CSharpGL
             //this.renderingRequired = true;
             this.Invalidate();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnSizeChanged(EventArgs e)
@@ -248,7 +247,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnHandleDestroyed(EventArgs e)
@@ -269,7 +268,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [Category("CSharpGL")]
         public double FPS { get; private set; }
@@ -325,9 +324,11 @@ namespace CSharpGL
                     case RenderTrigger.TimerBased:
                         this.redrawTimer.Enabled = true;
                         break;
+
                     case RenderTrigger.Manual:
                         this.redrawTimer.Enabled = false;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -399,7 +400,5 @@ namespace CSharpGL
         //}
 
         #endregion ICanvas
-
     }
-
 }

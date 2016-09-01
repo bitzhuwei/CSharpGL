@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,19 +8,21 @@ namespace CSharpGL
     /// </summary>
     public class BigDipper : IBufferable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string position = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string color = "color";
+
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -80,8 +78,9 @@ namespace CSharpGL
                 throw new NotImplementedException();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()

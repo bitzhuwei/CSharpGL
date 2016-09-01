@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -14,10 +9,9 @@ namespace CSharpGL
 {
     partial class FormUniformVariableListEditor : Form
     {
-
         private ITypeDescriptorContext context;
         private IServiceProvider provider;
-        IList<UniformVariable> list;
+        private IList<UniformVariable> list;
 
         public FormUniformVariableListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<UniformVariable> list)
         {
@@ -41,7 +35,7 @@ namespace CSharpGL
             this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
         }
 
-        void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             var sceneObject = context.Instance as SceneObject;
             if (sceneObject != null)

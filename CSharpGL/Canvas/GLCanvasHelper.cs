@@ -1,19 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    static class GLCanvasHelper
+    internal static class GLCanvasHelper
     {
-
         ////  Use the 'look at' helper function to position and aim the camera.
         //OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
-        static readonly mat4 viewMatrix = glm.lookAt(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0));
+        private static readonly mat4 viewMatrix = glm.lookAt(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0));
+
         public static void ResizeGL(double width, double height)
         {
             //  Set the projection matrix.
@@ -30,12 +22,11 @@ namespace CSharpGL
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
-        static readonly BoundedClockRenderer clockRenderer = new BoundedClockRenderer();
+        private static readonly BoundedClockRenderer clockRenderer = new BoundedClockRenderer();
 
         public static void DrawClock()
         {
             clockRenderer.Render(null);
         }
-
     }
 }

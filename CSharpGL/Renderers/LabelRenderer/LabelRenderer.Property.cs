@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class LabelRenderer
     {
@@ -15,6 +9,7 @@ namespace CSharpGL
 
         private string text = string.Empty;
         private UpdatingRecord textRecord = new UpdatingRecord();
+
         /// <summary>
         /// Displayed text whose maximum length is limited by constructor's maxCharCount parameter.
         /// </summary>
@@ -40,6 +35,7 @@ namespace CSharpGL
         private GLSwitch blendSwitch;
         private bool discardTransparency = true;
         private UpdatingRecord discardTransparencyRecord = new UpdatingRecord();
+
         /// <summary>
         /// If true, transparent part of glyph will be discarded in shader, which avoids wrrong blend effect and reduce looking effect.
         /// </summary>
@@ -62,6 +58,7 @@ namespace CSharpGL
 
         private UpdatingRecord labelHeightRecord = new UpdatingRecord();
         private int labelHeight;
+
         /// <summary>
         /// Label's height(in pixels of OpenGL's viewport)
         /// </summary>
@@ -72,6 +69,5 @@ namespace CSharpGL
         }
 
         #endregion Height
-
     }
 }

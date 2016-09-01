@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -10,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public class HiddenWindowRenderContext : RenderContext
     {
-
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
         /// </summary>
@@ -87,7 +83,7 @@ namespace CSharpGL
             pfd.cStencilBits = 8;
             pfd.iLayerType = Win32.PFD_MAIN_PLANE;
 
-            //	Match an appropriate pixel format 
+            //	Match an appropriate pixel format
             int iPixelformat = Win32.ChoosePixelFormat(this.DeviceContextHandle, pfd);
             if (iPixelformat == 0)
             {
@@ -119,13 +115,13 @@ namespace CSharpGL
                 return;
             }
 
-            //  Now the none-trivial case. We must use the WGL_ARB_create_context extension to 
+            //  Now the none-trivial case. We must use the WGL_ARB_create_context extension to
             //  attempt to create a 3.0+ context.
             try
             {
-                int[] attributes = 
+                int[] attributes =
                 {
-                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
+                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,
                     OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
                     OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
 #if DEBUG

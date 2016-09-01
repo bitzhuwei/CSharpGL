@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -11,9 +7,8 @@ namespace CSharpGL
     /// </summary>
     public partial class LabelRenderer : Renderer
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="maxCharCount">Max char count to display for this label.
         /// Careful to set this value because greater <paramref name="maxCharCount"/> means more space ocupied in GPU nemory.</param>
@@ -49,6 +44,5 @@ namespace CSharpGL
             map.Add("in_UV", TextModel.strUV);
             this.propertyNameMap = map;
         }
-
     }
 }

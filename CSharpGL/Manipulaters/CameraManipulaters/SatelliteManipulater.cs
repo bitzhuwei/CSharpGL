@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -16,7 +11,6 @@ namespace CSharpGL
     /// </summary>
     public class SatelliteManipulater : Manipulater, IMouseHandler
     {
-
         private ICamera camera;
         private GLCanvas canvas;
 
@@ -33,23 +27,24 @@ namespace CSharpGL
         private vec3 right;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float HorizontalRotationFactor { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float VerticalRotationFactor { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MouseButtons BindingMouseButtons { get; set; }
+
         private MouseButtons lastBindingMouseButtons;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SatelliteManipulater()
         {
@@ -63,7 +58,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void Bind(ICamera camera, GLCanvas canvas)
         {
@@ -79,7 +74,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void Unbind()
         {
@@ -93,8 +88,9 @@ namespace CSharpGL
                 this.camera = null;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -118,7 +114,6 @@ namespace CSharpGL
             }
         }
 
-
         void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -127,7 +122,7 @@ namespace CSharpGL
             { this.canvas.Invalidate(); }
         }
 
-        void SetBounds(int width, int height)
+        private void SetBounds(int width, int height)
         {
             this.bound.Width = width;
             this.bound.Height = height;
@@ -207,6 +202,5 @@ namespace CSharpGL
                 this.mouseDownFlag = false;
             }
         }
-
     }
 }

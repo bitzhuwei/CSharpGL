@@ -1,17 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     // check http://www.cnblogs.com/bitzhuwei/p/CSharpGL-18-Picking-of-OneIndexBuffer.html
     partial class OneIndexRenderer
     {
-
         public override PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId,
             int x, int y)
         {
@@ -203,6 +198,5 @@ namespace CSharpGL
 
             return lastIndexIdList;
         }
-
     }
 }

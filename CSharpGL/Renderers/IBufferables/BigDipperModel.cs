@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 北斗七星+北极星
@@ -43,7 +37,6 @@ namespace CSharpGL
             colors[8] = new vec3(1.0f * 0.9f, 215.0f / 255.0f * 0.9f, 0.0f);
             colors[9] = new vec3(1.0f * 0.8f, 215.0f / 255.0f * 0.8f, 0.0f);
             colors[10] = new vec3(1.0f * 0.7f, 215.0f / 255.0f * 0.7f, 0.0f);
-
         }
     }
 }

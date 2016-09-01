@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ZeroIndexPointInTriangleStripAdjacencySearcher : ZeroIndexPointSearcher
+    internal class ZeroIndexPointInTriangleStripAdjacencySearcher : ZeroIndexPointSearcher
     {
         internal override uint Search(RenderEventArgs arg,
             int x, int y,

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CSharpGL
 {
     public partial class SceneObject
     {
-
         #region IEnumerable<SceneObject>
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<SceneObject> GetEnumerator()
@@ -26,6 +25,5 @@ namespace CSharpGL
         }
 
         #endregion IEnumerable<SceneObject>
-
     }
 }

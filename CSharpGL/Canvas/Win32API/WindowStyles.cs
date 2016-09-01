@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [Flags()]
-    enum WindowStyles : uint
+    internal enum WindowStyles : uint
     {
         /// <summary>The window has a thin-line border.</summary>
         WS_BORDER = 0x800000,
@@ -45,10 +42,10 @@ namespace CSharpGL
         /// <summary>The window has a horizontal scroll bar.</summary>
         WS_HSCROLL = 0x100000,
 
-        /// <summary>The window is initially maximized.</summary> 
+        /// <summary>The window is initially maximized.</summary>
         WS_MAXIMIZE = 0x1000000,
 
-        /// <summary>The window has a maximize button. Cannot be combined with the WS_EX_CONTEXTHELP style. The WS_SYSMENU style must also be specified.</summary> 
+        /// <summary>The window has a maximize button. Cannot be combined with the WS_EX_CONTEXTHELP style. The WS_SYSMENU style must also be specified.</summary>
         WS_MAXIMIZEBOX = 0x10000,
 
         /// <summary>The window is initially minimized.</summary>
@@ -77,7 +74,7 @@ namespace CSharpGL
 
         /// <summary>
         /// The window is a control that can receive the keyboard focus when the user presses the TAB key.
-        /// Pressing the TAB key changes the keyboard focus to the next control with the WS_TABSTOP style.  
+        /// Pressing the TAB key changes the keyboard focus to the next control with the WS_TABSTOP style.
         /// You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the SetWindowLong function.
         /// For user-created windows and modeless dialogs to work with tab stops, alter the message loop to call the IsDialogMessage function.
         /// </summary>

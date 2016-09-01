@@ -1,13 +1,11 @@
 using System;
-using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
     partial class DIBSection
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -16,7 +14,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~DIBSection()
         {

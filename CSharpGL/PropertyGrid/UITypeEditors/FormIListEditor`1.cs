@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -14,10 +9,9 @@ namespace CSharpGL
 {
     partial class FormIListEditor<T> : Form
     {
-
         private ITypeDescriptorContext context;
         private IServiceProvider provider;
-        IList<T> list;
+        private IList<T> list;
 
         public FormIListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<T> list)
         {
@@ -43,7 +37,7 @@ namespace CSharpGL
             this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
         }
 
-        void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             var sceneObject = context.Instance as SceneObject;
             if (sceneObject != null)
@@ -132,6 +126,5 @@ namespace CSharpGL
                 this.lstMember.SelectedIndex = index + 1;
             }
         }
-
     }
 }

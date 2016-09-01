@@ -1,17 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     // check http://www.cnblogs.com/bitzhuwei/p/CSharpGL-18-Picking-of-OneIndexBuffer.html
     partial class OneIndexRenderer
     {
-
         /// <summary>
         /// 在所有可能的图元（lastVertexId匹配）中，
         /// 逐个测试，找到最接近摄像机的那个图元，
@@ -182,6 +177,5 @@ namespace CSharpGL
 
             return result;
         }
-
     }
 }

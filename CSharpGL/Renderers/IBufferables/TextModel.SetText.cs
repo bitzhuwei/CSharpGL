@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public partial class TextModel
     {
-
         private string content = string.Empty;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Text { get { return content; } }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="content"></param>
         /// <param name="fontTextureService"></param>
@@ -59,7 +56,7 @@ namespace CSharpGL
              * |     |  |     | |     |  |     |
              * |     |  |     | |     |  |     |
              * -------  ------- -------  -------
-             * 1     2  5     6 9     10 13   14 
+             * 1     2  5     6 9     10 13   14
              */
             for (int i = 0; i < content.Length; i++)
             {
@@ -95,7 +92,7 @@ namespace CSharpGL
              * |     |  |     | |     |  |     |
              * |     |  |     | |     |  |     |
              * -------  ------- -------  -------
-             * 1     2  5     6 9     10 13   14 
+             * 1     2  5     6 9     10 13   14
              */
             for (int i = 0; i < content.Length; i++)
             {
@@ -139,6 +136,5 @@ namespace CSharpGL
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
-
     }
 }

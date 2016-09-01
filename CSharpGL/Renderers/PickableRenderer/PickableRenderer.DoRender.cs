@@ -1,17 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class PickableRenderer
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -24,8 +16,6 @@ namespace CSharpGL
             {
                 base.DoRender(arg);
             }
-
         }
-
     }
 }

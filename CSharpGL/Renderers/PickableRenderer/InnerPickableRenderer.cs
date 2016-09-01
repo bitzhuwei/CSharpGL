@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Renderer that supports color-coded rendering.
@@ -16,7 +8,7 @@ namespace CSharpGL
         protected string positionNameInIBufferable;
         internal PropertyBufferPtr positionBufferPtr;
 
-        PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
 
         /// <summary>
         /// Renderer that supports color-coded rendering.
@@ -48,6 +40,5 @@ namespace CSharpGL
                 this.switchList.Add(new PointSizeSwitch(max));
             }
         }
-
     }
 }

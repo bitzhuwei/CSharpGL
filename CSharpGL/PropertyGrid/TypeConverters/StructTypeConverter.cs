@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,7 +8,7 @@ namespace CSharpGL
     /// Supports editing values in PropertyGrid.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class StructTypeConverter<T> : TypeConverter where T : struct, ILoadFromString
+    internal class StructTypeConverter<T> : TypeConverter where T : struct, ILoadFromString
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -48,5 +44,4 @@ namespace CSharpGL
             return result;
         }
     }
-
 }

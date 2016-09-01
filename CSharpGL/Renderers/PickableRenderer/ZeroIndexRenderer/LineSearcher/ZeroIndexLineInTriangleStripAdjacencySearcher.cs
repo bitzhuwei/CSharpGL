@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    class ZeroIndexLineInTriangleStripAdjacencySearcher : ZeroIndexLineSearcher
+    internal class ZeroIndexLineInTriangleStripAdjacencySearcher : ZeroIndexLineSearcher
     {
         internal override uint[] Search(RenderEventArgs arg,
-            int x, int y, 
+            int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             OneIndexBufferPtr indexBufferPtr = null;

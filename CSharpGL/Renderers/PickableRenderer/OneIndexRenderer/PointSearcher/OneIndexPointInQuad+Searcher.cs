@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class OneIndexPointInQuadSearcher : OneIndexPointSearcher
+    internal class OneIndexPointInQuadSearcher : OneIndexPointSearcher
     {
         internal override uint Search(RenderEventArgs arg,
             int x, int y,

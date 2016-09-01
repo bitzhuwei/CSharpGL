@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct BitmapInfo
+    internal struct BitmapInfo
     {
         public Int32 biSize;
         public Int32 biWidth;

@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
     public class LegacyBoundingBoxRenderer : RendererBase, IBoundingBox, IModelSpace
     {
-
         /// <summary>
         /// Specify a cuboid that marks a model's edges.
         /// </summary>
@@ -47,17 +40,17 @@ namespace CSharpGL
         /// </summary>
         public vec3 MinPosition { get; set; }
 
-        #endregion
+        #endregion IBoundingBox 成员
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DoInitialize()
         {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -105,27 +98,27 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 WorldPosition { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float RotationAngle { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 RotationAxis { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 Scale { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 Lengths { get; set; }
     }

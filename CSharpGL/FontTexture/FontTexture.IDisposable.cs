@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -11,9 +8,8 @@ namespace CSharpGL
     /// </summary>
     public partial class FontTexture
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -22,7 +18,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~FontTexture()
         {
@@ -38,7 +34,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.
@@ -66,6 +61,5 @@ namespace CSharpGL
 
             this.disposedValue = true;
         }
-
     }
 }

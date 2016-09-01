@@ -15,7 +15,6 @@ namespace CSharpGL
         IEnumerable<SceneObject>, // enumerates self and all children objects recursively.
         IDisposable
     {
-
         private const string strBasic = "Basic";
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    class ZeroIndexLineInTriangleSearcher : ZeroIndexLineSearcher
+    internal class ZeroIndexLineInTriangleSearcher : ZeroIndexLineSearcher
     {
         /// <summary>
         /// 在三角形图元中拾取指定位置的Line
@@ -17,7 +12,7 @@ namespace CSharpGL
         /// <param name="modernRenderer">目标Renderer</param>
         /// <returns></returns>
         internal override uint[] Search(RenderEventArgs arg,
-            int x, int y, 
+            int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             // 创建临时索引

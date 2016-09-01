@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -12,7 +9,7 @@ namespace CSharpGL
     public partial class FontBitmap
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -21,7 +18,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~FontBitmap()
         {
@@ -37,7 +34,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.

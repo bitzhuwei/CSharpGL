@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
-    class LineLoopRecognizer : PrimitiveRecognizer
+    internal class LineLoopRecognizer : PrimitiveRecognizer
     {
-
         protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
@@ -93,7 +89,6 @@ namespace CSharpGL
                 }
             }
         }
-
 
         protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
         {
@@ -238,6 +233,5 @@ namespace CSharpGL
                 }
             }
         }
-
     }
 }

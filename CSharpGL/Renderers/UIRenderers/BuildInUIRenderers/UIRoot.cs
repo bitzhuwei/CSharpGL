@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-using System.Windows.Forms;
+﻿using System.Linq;
 
 namespace CSharpGL
 {
@@ -13,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public class UIRoot : UIRenderer
     {
-
         /// <summary>
         /// root UI for opengl.
         /// </summary>
@@ -44,14 +37,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DoInitialize()
         {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -84,6 +77,5 @@ namespace CSharpGL
             //            stackLevel--;
             //#endif
         }
-
     }
 }

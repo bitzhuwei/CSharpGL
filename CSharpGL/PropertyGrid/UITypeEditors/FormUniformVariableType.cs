@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -13,7 +7,6 @@ namespace CSharpGL
 {
     partial class FormUniformVariableType : Form
     {
-
         private static List<Type> cachedList;
 
         private readonly Type baseType;

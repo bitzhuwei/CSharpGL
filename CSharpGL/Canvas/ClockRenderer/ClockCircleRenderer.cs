@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ClockCircleRenderer : RendererBase, IModelSpace
+    internal class ClockCircleRenderer : RendererBase, IModelSpace
     {
         private readonly List<vec3> circlePosition = new List<vec3>();
         private readonly List<vec3> circleColor = new List<vec3>();
@@ -49,7 +47,6 @@ namespace CSharpGL
 
             circleLineWidthSwitch.Off();
         }
-
 
         public vec3 WorldPosition { get; set; }
 

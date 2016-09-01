@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     partial class ZeroIndexRenderer
     {
-
         public override PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId,
             int x, int y)
         {
@@ -106,6 +100,7 @@ namespace CSharpGL
                     pickedGeometry.Indexes = new uint[] { lastVertexId - 1, lastVertexId, };
                     pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 1, 2);
                     break;
+
                 case GeometryType.Triangle:
                     if (mode == DrawMode.TriangleFan)
                     {
@@ -123,16 +118,19 @@ namespace CSharpGL
                         pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 2, 3);
                     }
                     break;
+
                 case GeometryType.Quad:
                     pickedGeometry.Indexes = new uint[] { lastVertexId - 3, lastVertexId - 2, lastVertexId - 1, lastVertexId, };
                     pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 3, 4);
                     break;
+
                 case GeometryType.Polygon:
                     pickedGeometry.Indexes = new uint[vertexCount];
                     for (uint i = 0; i < vertexCount; i++)
                     { pickedGeometry.Indexes[i] = lastVertexId + i; }
                     pickedGeometry.Positions = FillPickedGeometrysPosition(0, vertexCount);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -200,12 +198,15 @@ namespace CSharpGL
                 case DrawMode.Points:
                     result = true;
                     break;
+
                 case DrawMode.LineStrip:
                     result = vertexCount > 1;
                     break;
+
                 case DrawMode.LineLoop:
                     result = vertexCount > 1;
                     break;
+
                 case DrawMode.Lines:
                     if (vertexCount > 1)
                     {
@@ -219,12 +220,14 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.LineStripAdjacency:
                     if (vertexCount > 3)
                     {
                         result = (first < lastVertexId && lastVertexId < last);
                     }
                     break;
+
                 case DrawMode.LinesAdjacency:
                     if (vertexCount > 3)
                     {
@@ -236,18 +239,21 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.TriangleStrip:
                     if (vertexCount > 2)
                     {
                         result = vertexCount > 2;
                     }
                     break;
+
                 case DrawMode.TriangleFan:
                     if (vertexCount > 2)
                     {
                         result = vertexCount > 2;
                     }
                     break;
+
                 case DrawMode.Triangles:
                     if (vertexCount > 2)
                     {
@@ -259,6 +265,7 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.TriangleStripAdjacency:
                     if (vertexCount > 5)
                     {
@@ -269,6 +276,7 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.TrianglesAdjacency:
                     if (vertexCount > 5)
                     {
@@ -279,9 +287,11 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.Patches:
                     // not know what to do for now
                     break;
+
                 case DrawMode.QuadStrip:
                     if (vertexCount > 3)
                     {
@@ -292,6 +302,7 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.Quads:
                     if (vertexCount > 3)
                     {
@@ -306,12 +317,14 @@ namespace CSharpGL
                         }
                     }
                     break;
+
                 case DrawMode.Polygon:
                     if (vertexCount > 2)
                     {
                         result = (first <= lastVertexId && lastVertexId <= last);
                     }
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -341,6 +354,5 @@ namespace CSharpGL
                 pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             }
         }
-
     }
 }

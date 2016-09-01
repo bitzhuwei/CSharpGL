@@ -4,13 +4,12 @@ using System.Linq;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class PickingShaderHelper //: IDisposable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static ShaderCode[] GetPickingShaderCode()
@@ -21,8 +20,9 @@ namespace CSharpGL
 
             return shaderCodes;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static ShaderProgram GetPickingShaderProgram()
@@ -42,14 +42,15 @@ namespace CSharpGL
         /// <summary>
         /// vertex shader's cache.
         /// </summary>
-        static string vertexShader = null;
+        private static string vertexShader = null;
 
         /// <summary>
         /// fragmente shader's cache.
         /// </summary>
-        static string fragmentShader = null;
+        private static string fragmentShader = null;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static ShaderCode[] GetShaderCodes()
@@ -60,6 +61,7 @@ namespace CSharpGL
 
             return shaderCodes;
         }
+
         /// <summary>
         /// Gets shader's source code for color coded picking.
         /// </summary>
@@ -79,6 +81,7 @@ namespace CSharpGL
                     }
                     result = vertexShader;
                     break;
+
                 case ShaderType.FragmentShader:
                     if (fragmentShader == null)
                     {
@@ -87,12 +90,12 @@ namespace CSharpGL
                     }
                     result = fragmentShader;
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
 
             return result;
         }
-
     }
 }

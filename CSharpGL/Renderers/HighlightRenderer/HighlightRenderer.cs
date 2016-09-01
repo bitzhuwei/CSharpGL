@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 高亮显示指定的图元。
@@ -13,9 +6,10 @@ namespace CSharpGL
     public partial class HighlightRenderer : Renderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected string positionNameInIBufferable;
+
         internal PropertyBufferPtr positionBufferPtr;
 
         /// <summary>
@@ -41,10 +35,6 @@ namespace CSharpGL
             this.SwitchList.Add(new PointSizeSwitch(20.0f));
             this.SwitchList.Add(new PolygonOffsetFillSwitch());
             this.SwitchList.Add(new PolygonOffsetPointSwitch());
-
         }
-
     }
-
-
 }

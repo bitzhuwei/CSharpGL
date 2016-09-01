@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing.Imaging;
 
 namespace CSharpGL
 {
@@ -12,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public static partial class FontBitmapHelper
     {
-
         /// <summary>
         /// Returns true if the given pixel is empty (i.e. black)
         /// </summary>
@@ -76,6 +70,5 @@ namespace CSharpGL
                 glyph.width = endX - startX + 1;
             }
         }
-
     }
 }

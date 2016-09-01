@@ -1,16 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     partial class InnerPickableRenderer : IColorCodedPicking
     {
-
         /// <summary>
         /// uniform mat4 VMP; (in shader)
         /// </summary>
@@ -157,6 +151,5 @@ namespace CSharpGL
 
             return positions;
         }
-
     }
 }

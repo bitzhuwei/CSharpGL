@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 namespace CSharpGL
 {
     /// <summary>
     /// Renders a bitmap in a square.
     /// </summary>
-    class TextureRenderer : PickableRenderer
+    internal class TextureRenderer : PickableRenderer
     {
         private string bitmapFilename;
 

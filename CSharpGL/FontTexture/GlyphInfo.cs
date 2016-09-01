@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -11,9 +8,8 @@ namespace CSharpGL
     /// </summary>
     public class GlyphInfo : ICloneable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static readonly GlyphInfo Default = new GlyphInfo(0, 0, 0, 0);
 
@@ -36,6 +32,7 @@ namespace CSharpGL
         /// 此字符的字形高度
         /// </summary>
         public int height;
+
         /// <summary>
         /// 绘制一个字符所需要的所有信息
         /// </summary>
@@ -52,7 +49,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Rectangle ToRectangle(int shrinkX = 0, int shrinkY = 0, int shrinkWidth = 0, int shrinkHeight = 0)
@@ -62,7 +59,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Renders an axis with white circle on arrow.
     /// </summary>
-    class AxisRenderer : PickableRenderer
+    internal class AxisRenderer : PickableRenderer
     {
-
         public static AxisRenderer Create(int partCount = 24)
         {
             var shaderCodes = new ShaderCode[2];
@@ -30,6 +24,5 @@ namespace CSharpGL
             PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         { }
-
     }
 }

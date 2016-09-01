@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class SceneObject
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         public void Render(RenderEventArgs arg)

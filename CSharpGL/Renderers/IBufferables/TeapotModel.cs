@@ -1,17 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     internal partial class TeapotModel
     {
         internal static float[] normals;
 
-        public TeapotModel() { }
+        public TeapotModel()
+        {
+        }
 
         public float[] GetPositions()
         {
@@ -112,5 +107,4 @@ namespace CSharpGL
             }
         }
     }
-
 }

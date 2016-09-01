@@ -1,19 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Scene element that implemented this interface will take part in color-coded picking.
     /// </summary>
     public interface IColorCodedPicking : IRenderable
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         mat4 MVP { get; set; }
 

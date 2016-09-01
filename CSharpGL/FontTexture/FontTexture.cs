@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -36,7 +33,8 @@ namespace CSharpGL
         /// </summary>
         public FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; internal set; }
 
-        internal FontTexture() { }
-
+        internal FontTexture()
+        {
+        }
     }
 }

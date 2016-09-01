@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace CSharpGL
 {
@@ -30,18 +29,21 @@ namespace CSharpGL
         public ICanvas Canvas { get; set; }
 
         private SceneRootObject rootObject;
+
         /// <summary>
         /// Root object of all objects to be rendered in the scene.
         /// </summary>
         public SceneRootObject RootObject { get { return rootObject; } }
 
         private UIRoot uiRoot = new UIRoot();
+
         /// <summary>
         /// hosts all UI renderers.
         /// </summary>
         public UIRoot UIRoot { get { return this.uiRoot; } }
 
         private UIRoot cursorRoot = new UIRoot();
+
         /// <summary>
         /// OpenGL UI for cursor.
         /// </summary>
@@ -82,11 +84,11 @@ namespace CSharpGL
 
             this.Camera.Resize(control.Width, control.Height);
 
-
             this.uiRoot.Size = control.Size;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
@@ -122,6 +124,5 @@ namespace CSharpGL
                 RenderObject(child, arg);
             }
         }
-
     }
 }

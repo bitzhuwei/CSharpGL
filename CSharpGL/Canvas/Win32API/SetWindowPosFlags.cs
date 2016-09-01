@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     [Flags]
-    enum SetWindowPosFlags : uint
+    internal enum SetWindowPosFlags : uint
     {
         SWP_ASYNCWINDOWPOS = 0x4000,
         SWP_DEFERERASE = 0x2000,

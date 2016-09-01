@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ZeroIndexPointInTriangleSearcher : ZeroIndexPointSearcher
+    internal class ZeroIndexPointInTriangleSearcher : ZeroIndexPointSearcher
     {
         /// <summary>
         /// 在三角形图元中拾取指定位置的Point

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Root object to be rendered in a scene.
     /// </summary>
     public partial class SceneRootObject : SceneObject
     {
-
         /// <summary>
         /// an object to be rendered in a scene.
         /// </summary>

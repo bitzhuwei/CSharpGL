@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    class ClockRenderer : RendererBase, IModelSpace
+    internal class ClockRenderer : RendererBase, IModelSpace
     {
         private readonly ClockCircleRenderer circleRenderer = new ClockCircleRenderer();
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();
@@ -18,6 +13,7 @@ namespace CSharpGL
             this.Scale = new vec3(factor, factor, factor);
             this.Lengths = new vec3(2, 2, 2);
         }
+
         protected override void DoInitialize()
         {
             circleRenderer.Initialize();
@@ -31,7 +27,6 @@ namespace CSharpGL
             markRenderer.Render(arg);
             pinRenderer.Render(arg);
         }
-
 
         public vec3 WorldPosition
         {

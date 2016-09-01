@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// </summary>
@@ -21,6 +16,7 @@ namespace CSharpGL
         {
             return WrapToSceneObject(renderer, "", scripts);
         }
+
         /// <summary>
         /// Gets a <see cref="SceneObject"/> that contains this renderer.
         /// </summary>

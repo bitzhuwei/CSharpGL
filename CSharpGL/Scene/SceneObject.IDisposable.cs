@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
 
 namespace CSharpGL
 {
@@ -37,7 +34,6 @@ namespace CSharpGL
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
         protected virtual void Dispose(bool disposing)
         {
-
             if (this.disposedValue == false)
             {
                 if (disposing)
@@ -52,13 +48,11 @@ namespace CSharpGL
                     this.Renderer = null;
                     disp.Dispose();
                 }
-
             } // end if
 
             this.disposedValue = true;
         } // end sub
 
-        #endregion
-
+        #endregion IDisposable Members
     }
 }

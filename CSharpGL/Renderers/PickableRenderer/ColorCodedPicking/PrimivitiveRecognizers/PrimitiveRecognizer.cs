@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
 
 namespace CSharpGL
 {
-    abstract class PrimitiveRecognizer
+    internal abstract class PrimitiveRecognizer
     {
-
         /// <summary>
         /// 识别出以<paramref name="lastVertexId"/>结尾的图元。
         /// </summary>
@@ -25,12 +22,15 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     RecognizeByte(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
                     break;
+
                 case IndexElementType.UnsighedShort:
                     RecognizeUShort(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
                     break;
+
                 case IndexElementType.UnsignedInt:
                     RecognizeUInt(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -64,12 +64,15 @@ namespace CSharpGL
                     case IndexElementType.UnsignedByte:
                         RecognizeByte(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
                         break;
+
                     case IndexElementType.UnsighedShort:
                         RecognizeUShort(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
                         break;
+
                     case IndexElementType.UnsignedInt:
                         RecognizeUInt(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -83,12 +86,12 @@ namespace CSharpGL
         protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex);
 
         protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex);
-
     }
 
-    class RecognizedPrimitiveIndex
+    internal class RecognizedPrimitiveIndex
     {
         private uint Index;
+
         public RecognizedPrimitiveIndex(uint lastIndexId, uint index, params uint[] indexIds)
         {
             //if (indexIDs.Length == 0) { throw new ArgumentException(); }

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-
     /// <summary>
     /// Windows process.
     /// </summary>
@@ -14,6 +10,5 @@ namespace CSharpGL
     /// <param name="wParam"></param>
     /// <param name="lParam"></param>
     /// <returns></returns>
-    delegate IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
-
+    internal delegate IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 }

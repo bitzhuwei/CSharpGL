@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -12,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public class UIAxis : UIRenderer
     {
-
         /// <summary>
         /// opengl UI for Axis
         /// </summary>
@@ -31,8 +25,9 @@ namespace CSharpGL
 
             this.Renderer = renderer;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)

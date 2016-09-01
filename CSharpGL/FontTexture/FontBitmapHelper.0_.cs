@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 namespace CSharpGL
 {
@@ -15,11 +10,13 @@ namespace CSharpGL
         /// <summary>
         /// bigger interval means less mix. Maybe 1 is enough for font with size of 64.
         /// </summary>
-        const int glyphInterval = 1;
+        private const int glyphInterval = 1;
+
         /// <summary>
         /// bigger maring means less mix. But 1 is enough.
         /// </summary>
-        const int leftMargin = 1;
+        private const int leftMargin = 1;
+
         /// <summary>
         /// Gets a <see cref="FontBitmap"/>'s intance.
         /// </summary>
@@ -56,6 +53,5 @@ namespace CSharpGL
             }
             return fontBitmap;
         }
-
     }
 }

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     partial class InnerPickableRenderer : IColorCodedPicking
     {
-
         private void ColorCodedRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
@@ -53,7 +48,6 @@ namespace CSharpGL
 
             if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
 
-
             // 解绑shader
             program.Unbind();
         }
@@ -83,22 +77,26 @@ namespace CSharpGL
                 case GeometryType.Point:
                     polygonModeSwitch.Mode = PolygonModes.Points;
                     break;
+
                 case GeometryType.Line:
                     polygonModeSwitch.Mode = PolygonModes.Lines;
                     break;
+
                 case GeometryType.Triangle:
                     polygonModeSwitch.Mode = PolygonModes.Filled;
                     break;
+
                 case GeometryType.Quad:
                     polygonModeSwitch.Mode = PolygonModes.Filled;
                     break;
+
                 case GeometryType.Polygon:
                     polygonModeSwitch.Mode = PolygonModes.Filled;
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
         }
-
     }
 }

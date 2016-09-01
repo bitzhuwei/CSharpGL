@@ -1,12 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Sphere.
@@ -15,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public class Sphere : IBufferable
     {
-
         private SphereModel model;
 
         /// <summary>
@@ -30,28 +21,33 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strPosition = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strNormal = "normal";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strColor = "color";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strUV = "uv";
+
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr normalBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
         private PropertyBufferPtr uvBufferPtr;
         private IndexBufferPtr indexBufferPtr = null;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -78,7 +74,7 @@ namespace CSharpGL
                 }
                 return positionBufferPtr;
             }
-                else if (bufferName == strNormal)
+            else if (bufferName == strNormal)
             {
                 if (normalBufferPtr == null)
                 {
@@ -142,10 +138,10 @@ namespace CSharpGL
             {
                 return null;
             }
-
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()
@@ -214,5 +210,4 @@ namespace CSharpGL
             return indexBufferPtr;
         }
     }
-
 }

@@ -1,12 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Square.
@@ -14,7 +6,6 @@ namespace CSharpGL
     /// </summary>
     public class Square : IBufferable
     {
-
         private SquareModel model;
 
         /// <summary>
@@ -26,18 +17,21 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strPosition = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strTexCoord = "texCoord";
+
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr uvBufferPtr;
         private IndexBufferPtr indexBufferPtr;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -88,10 +82,10 @@ namespace CSharpGL
             {
                 return null;
             }
-
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()
@@ -107,5 +101,4 @@ namespace CSharpGL
             return indexBufferPtr;
         }
     }
-
 }

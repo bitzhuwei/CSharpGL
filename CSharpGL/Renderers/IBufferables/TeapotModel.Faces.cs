@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     internal partial class TeapotModel
     {
@@ -14,7 +7,8 @@ namespace CSharpGL
             public ushort vertexId1;
             public ushort vertexId2;
             public ushort vertexId3;
-            public Face(ushort vertexId1,ushort vertexId2,ushort vertexId3)
+
+            public Face(ushort vertexId1, ushort vertexId2, ushort vertexId3)
             {
                 this.vertexId1 = vertexId1;
                 this.vertexId2 = vertexId2;
@@ -2281,7 +2275,5 @@ namespace CSharpGL
 			1091,1202,1089,
 			1201,1089,1202,
         };
-
     }
-
 }

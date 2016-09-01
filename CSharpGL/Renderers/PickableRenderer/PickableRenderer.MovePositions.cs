@@ -1,17 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     public partial class PickableRenderer
     {
-
         /// <summary>
         /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
         /// </summary>
@@ -45,6 +39,5 @@ namespace CSharpGL
 
             this.innerPickableRenderer.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
         }
-
     }
 }

@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -17,7 +10,6 @@ namespace CSharpGL
     /// </summary>
     public partial class FormSelectType : Form
     {
-
         private static Dictionary<Type, List<Type>> dict = new Dictionary<Type, List<Type>>();
 
         private readonly Type baseType;
@@ -86,7 +78,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Type SelectedType { get; set; }
 

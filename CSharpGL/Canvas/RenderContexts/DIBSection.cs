@@ -100,7 +100,7 @@ namespace CSharpGL
             pixelFormat.cDepthBits = 32;
             pixelFormat.iLayerType = Win32.PFD_MAIN_PLANE;
 
-            //	Match an appropriate pixel format 
+            //	Match an appropriate pixel format
             int iPixelformat = Win32.ChoosePixelFormat(hDC, pixelFormat);
             if (iPixelformat == 0) { return false; }
 
@@ -136,6 +136,7 @@ namespace CSharpGL
         /// The bits.
         /// </summary>
         protected IntPtr bits = IntPtr.Zero;
+
         /// <summary>
         /// parentDC
         /// </summary>

@@ -1,16 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class PickableRenderer : IColorCodedPicking
     {
-
         /// <summary>
         /// uniform mat4 VMP; (in shader)
         /// </summary>
@@ -33,7 +24,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public uint PickingBaseId
         {
@@ -54,7 +45,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public uint GetVertexCount()
@@ -67,7 +58,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
@@ -85,6 +76,5 @@ namespace CSharpGL
             else
             { return null; }
         }
-
     }
 }

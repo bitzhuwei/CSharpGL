@@ -1,41 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public partial class TextModel : IBufferable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="maxCharCount"></param>
         public TextModel(int maxCharCount)
         {
             this.maxCharCount = maxCharCount;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strPosition = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strUV = "uv";
+
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr uvBufferPtr;
         private ZeroIndexBufferPtr indexBufferPtr;
         private int maxCharCount;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -75,8 +72,9 @@ namespace CSharpGL
                 throw new ArgumentException();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()
@@ -94,28 +92,32 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public struct GlyphPosition
         {
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 leftUp;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 leftDown;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 rightUp;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 rightDown;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="leftUp"></param>
             /// <param name="leftDown"></param>
@@ -133,29 +135,34 @@ namespace CSharpGL
                 this.rightDown = rightDown;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public struct GlyphTexCoord
         {
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 leftUp;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 leftDown;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 rightUp;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public vec2 rightDown;
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="leftUp"></param>
             /// <param name="leftDown"></param>
@@ -174,7 +181,4 @@ namespace CSharpGL
             }
         }
     }
-
-
-
 }

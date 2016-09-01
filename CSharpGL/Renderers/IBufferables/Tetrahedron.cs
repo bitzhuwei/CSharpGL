@@ -1,12 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Tetrahedron.
@@ -16,23 +8,26 @@ namespace CSharpGL
     public class Tetrahedron : IBufferable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strPosition = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strColor = "color";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strNormal = "normal";
 
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
         private PropertyBufferPtr normalBufferPtr;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -107,8 +102,9 @@ namespace CSharpGL
                 return null;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()
@@ -134,6 +130,6 @@ namespace CSharpGL
             return indexBufferPtr;
         }
 
-        IndexBufferPtr indexBufferPtr = null;
+        private IndexBufferPtr indexBufferPtr = null;
     }
 }

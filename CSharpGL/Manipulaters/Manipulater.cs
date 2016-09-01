@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-using System.Windows.Forms;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     //TODO: post a blog about two ways of using CameraManipulater.
     /// <summary>
@@ -27,6 +17,5 @@ namespace CSharpGL
         /// stop to manipulate camera or model.
         /// </summary>
         public abstract void Unbind();
-
     }
 }

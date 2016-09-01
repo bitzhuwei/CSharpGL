@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    class ZeroIndexLineInQuadSearcher : ZeroIndexLineSearcher
+    internal class ZeroIndexLineInQuadSearcher : ZeroIndexLineSearcher
     {
         internal override uint[] Search(RenderEventArgs arg,
             int x, int y,

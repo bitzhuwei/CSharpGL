@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -15,7 +11,7 @@ namespace CSharpGL
         internal vec3[] colors;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="squreCountPerUnit">每个world space里的1个距离单位有几个方块？</param>
         /// <param name="xUnit">在x轴正方向画多少个距离单位？</param>
@@ -25,7 +21,6 @@ namespace CSharpGL
             this.positions = GeneratePositions(squreCountPerUnit, xUnit, zUnit);
             this.colors = GenerateColors(squreCountPerUnit, xUnit, zUnit);
         }
-
 
         private vec3[] GenerateColors(int squreCountPerUnit, int xUnit, int zUnit)
         {
@@ -98,17 +93,20 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strPosition = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strColor = "color";
+
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -164,8 +162,9 @@ namespace CSharpGL
                 throw new ArgumentException();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()
@@ -185,4 +184,3 @@ namespace CSharpGL
         private IndexBufferPtr indexBufferPtr = null;
     }
 }
-

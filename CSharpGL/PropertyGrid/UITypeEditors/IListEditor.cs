@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
     /// 用在IList&lt;GLSwitch&gt;类型的属性上。
     /// </summary>
-    class IListEditor<T> : UITypeEditor
+    internal class IListEditor<T> : UITypeEditor
     {
-
         public override UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)
         {
             // 指定为模式窗体属性编辑器类型

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ClockPinRenderer : RendererBase, IModelSpace
+    internal class ClockPinRenderer : RendererBase, IModelSpace
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
@@ -103,7 +101,6 @@ namespace CSharpGL
                 hourLineWidthSwitch.Off();
             }
         }
-
 
         public vec3 WorldPosition { get; set; }
 

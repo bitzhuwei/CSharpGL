@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 用glDrarArrays进行渲染。
     /// </summary>
     partial class ZeroIndexRenderer : InnerPickableRenderer
     {
-
         /// <summary>
         /// 用glDrarArrays进行渲染。
         /// </summary>
@@ -25,6 +18,5 @@ namespace CSharpGL
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         { }
-
     }
 }

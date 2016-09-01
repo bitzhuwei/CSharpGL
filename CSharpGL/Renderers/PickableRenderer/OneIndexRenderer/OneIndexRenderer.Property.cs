@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     partial class OneIndexRenderer
     {
-
         // TODO: 将来优化时以此作为分段操作的界限。
         //private int mapBufferRangeLength = 2 * 2 * 2 * 2 * 3 * 3 * 3 * 3 * 10;
 
@@ -30,7 +23,6 @@ namespace CSharpGL
         //        }
         //    }
         //}
-
 
         /// <summary>
         /// 此渲染器的索引Buffer。

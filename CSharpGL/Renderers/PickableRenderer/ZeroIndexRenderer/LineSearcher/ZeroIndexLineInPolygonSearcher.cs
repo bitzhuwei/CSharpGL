@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-    class ZeroIndexLineInPolygonSearcher : ZeroIndexLineSearcher
+    internal class ZeroIndexLineInPolygonSearcher : ZeroIndexLineSearcher
     {
         internal override uint[] Search(RenderEventArgs arg,
             int x, int y,
@@ -13,7 +8,7 @@ namespace CSharpGL
         {
             ZeroIndexBufferPtr zeroIndexBufferPtr = modernRenderer.IndexBufferPtr;
             ZeroIndexBufferPtr indexBufferPtr = null;
-            // when the temp index buffer could be long, it's no longer needed. 
+            // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             using (var buffer = new ZeroIndexBuffer(DrawMode.LineLoop,
                 zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.VertexCount))

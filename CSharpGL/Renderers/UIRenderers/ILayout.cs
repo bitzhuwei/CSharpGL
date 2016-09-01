@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.Windows.Forms;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Supports layout UI element in an OpenGL canvas.
@@ -38,19 +31,18 @@ namespace CSharpGL
         System.Drawing.Size Size { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         System.Drawing.Size ParentLastSize { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         int zNear { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         int zFar { get; set; }
-
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ZeroIndexPointInPolygonSearcher : ZeroIndexPointSearcher
+    internal class ZeroIndexPointInPolygonSearcher : ZeroIndexPointSearcher
     {
         internal override uint Search(RenderEventArgs arg,
             int x, int y,
@@ -13,7 +10,7 @@ namespace CSharpGL
         {
             ZeroIndexBufferPtr zeroIndexBufferPtr = modernRenderer.IndexBufferPtr;
             ZeroIndexBufferPtr indexBufferPtr = null;
-            // when the temp index buffer could be long, it's no longer needed. 
+            // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             using (var buffer = new ZeroIndexBuffer(DrawMode.Points,
                 zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.VertexCount))
@@ -25,7 +22,7 @@ namespace CSharpGL
 
             indexBufferPtr.Dispose();
 
-            if (zeroIndexBufferPtr.FirstVertex <= id 
+            if (zeroIndexBufferPtr.FirstVertex <= id
                 && id < zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.VertexCount)
             { return id; }
             else

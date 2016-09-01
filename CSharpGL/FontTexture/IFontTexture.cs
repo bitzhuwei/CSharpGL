@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 namespace CSharpGL
 {
@@ -30,6 +26,5 @@ namespace CSharpGL
         /// glyph information dictionary.
         /// </summary>
         FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; }
-
     }
 }

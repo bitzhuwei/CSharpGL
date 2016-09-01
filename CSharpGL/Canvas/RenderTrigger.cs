@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-
     /// <summary>
-    /// The RenderingMode - specifies how and when rendering 
+    /// The RenderingMode - specifies how and when rendering
     /// will occur in an OpenGL control.
     /// </summary>
     public enum RenderTrigger

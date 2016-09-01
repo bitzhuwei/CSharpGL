@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 
 namespace CSharpGL
 {
@@ -14,7 +9,6 @@ namespace CSharpGL
     /// </summary>
     public class UICursor : UIRenderer
     {
-
         /// <summary>
         /// crates default cursor.
         /// Note: put this as the last one of <see cref="UIRoot"/>'s children.
@@ -44,7 +38,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System.Drawing;
 
 namespace CSharpGL
 {
@@ -15,14 +8,14 @@ namespace CSharpGL
     /// </summary>
     public partial class UIText : UIRenderer
     {
-
         private TextModel model;
 
         private IFontTexture fontTexture;
 
         private string content = string.Empty;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Text
         {
@@ -35,8 +28,9 @@ namespace CSharpGL
         }
 
         private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BlendSwitch BlendSwitch
         {
@@ -45,6 +39,7 @@ namespace CSharpGL
 
         private UpdatingRecord textColorRecord = new UpdatingRecord();
         private vec3 textColor = new vec3(1, 1, 1);
+
         /// <summary>
         /// Text's color.
         /// </summary>
@@ -57,8 +52,9 @@ namespace CSharpGL
                 textColorRecord.Set(ref this.textColor, color);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="anchor"></param>
         /// <param name="margin"></param>
@@ -94,7 +90,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DoInitialize()
         {
@@ -105,7 +101,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -132,6 +128,5 @@ namespace CSharpGL
 
             blendSwitch.Off();
         }
-
     }
 }

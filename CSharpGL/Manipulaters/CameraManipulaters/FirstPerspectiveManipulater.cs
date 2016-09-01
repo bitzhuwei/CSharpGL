@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -42,7 +37,7 @@ namespace CSharpGL
         private char downKey;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public char FrontKey
         {
@@ -55,7 +50,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public char BackKey
         {
@@ -68,7 +63,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public char LeftKey
         {
@@ -81,7 +76,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public char RightKey
         {
@@ -94,7 +89,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public char UpKey
         {
@@ -107,7 +102,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public char DownKey
         {
@@ -120,29 +115,35 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float StepLength { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float HorizontalRotationSpeed { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float VerticalRotationSpeed { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MouseButtons BindingMouseButtons { get; set; }
+
         private MouseButtons lastBindingMouseButtons;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FirstPerspectiveManipulater()
             : this(0.1f, 0.002f, 0.002f, MouseButtons.Right) { }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="stepLength"></param>
         /// <param name="horizontalRotationSpeed"></param>
@@ -170,8 +171,9 @@ namespace CSharpGL
             this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
             this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
@@ -190,7 +192,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void Unbind()
         {

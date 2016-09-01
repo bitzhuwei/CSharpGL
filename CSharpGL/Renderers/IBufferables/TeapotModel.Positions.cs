@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     internal partial class TeapotModel
     {
-
         internal static readonly float[] positionData = new float[]
         {
 			1.38137f, 2.45469f, -9.07128e-006f,

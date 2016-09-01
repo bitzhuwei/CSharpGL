@@ -1,21 +1,16 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System;
 
 namespace CSharpGL
 {
     public partial class HighlightRenderer
     {
-
         /// <summary>
         /// <see cref="OneIndexBufferPtr"/>实际存在多少个元素。
         /// </summary>
         protected int maxElementCount = 0;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DoInitialize()
         {
@@ -40,7 +35,7 @@ namespace CSharpGL
                 }
             }
 
-            // init index buffer 
+            // init index buffer
             {
                 //IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
 
@@ -56,14 +51,10 @@ namespace CSharpGL
                 this.maxElementCount = oneIndexBufferPtr.ElementCount;
                 oneIndexBufferPtr.ElementCount = 0;// 高亮0个图元
             }
-            
+
             //this.bufferable = null;
             //this.shaderCodes = null;
             //this.propertyNameMap = null;
         }
-
-
     }
-
-
 }

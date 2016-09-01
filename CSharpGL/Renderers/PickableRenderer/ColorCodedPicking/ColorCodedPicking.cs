@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class ColorCodedPicking
     {
-
         /// <summary>
         /// Color Coded Picking
         /// </summary>
@@ -166,7 +162,6 @@ namespace CSharpGL
             OpenGL.Flush();
         }
 
-
         /// <summary>
         /// get picked geometry.
         /// </summary>
@@ -226,9 +221,9 @@ namespace CSharpGL
                             /* // This is how is vertexID coded into color in vertex shader.
                              * 	int objectID = gl_VertexID;
                                 codedColor = vec4(
-                                    float(objectID & 0xFF), 
-                                    float((objectID >> 8) & 0xFF), 
-                                    float((objectID >> 16) & 0xFF), 
+                                    float(objectID & 0xFF),
+                                    float((objectID >> 8) & 0xFF),
+                                    float((objectID >> 16) & 0xFF),
                                     float((objectID >> 24) & 0xFF));
                              */
                             // get vertexID from coded color.
@@ -252,7 +247,7 @@ namespace CSharpGL
 
             return result;
         }
-    
+
         internal static unsafe uint ReadPixel(int x, int y, int canvasHeight)
         {
             uint stageVertexId = uint.MaxValue;
@@ -270,9 +265,9 @@ namespace CSharpGL
                     /* // This is how is vertexID coded into color in vertex shader.
                      * 	int objectID = gl_VertexID;
                         codedColor = vec4(
-                            float(objectID & 0xFF), 
-                            float((objectID >> 8) & 0xFF), 
-                            float((objectID >> 16) & 0xFF), 
+                            float(objectID & 0xFF),
+                            float((objectID >> 8) & 0xFF),
+                            float((objectID >> 16) & 0xFF),
                             float((objectID >> 24) & 0xFF));
                      */
                     // get vertexID from coded color.
@@ -288,7 +283,5 @@ namespace CSharpGL
 
             return stageVertexId;
         }
-
     }
-
 }

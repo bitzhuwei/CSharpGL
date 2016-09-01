@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ClockMarkRenderer : RendererBase, IModelSpace
+    internal class ClockMarkRenderer : RendererBase, IModelSpace
     {
         private readonly List<vec3> markPosition = new List<vec3>();
         private readonly List<vec3> markColor = new List<vec3>();
@@ -52,7 +50,6 @@ namespace CSharpGL
             }
             OpenGL.End();
         }
-
 
         public vec3 WorldPosition { get; set; }
 

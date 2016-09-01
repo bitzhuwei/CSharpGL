@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public abstract partial class RenderContext
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {
@@ -21,7 +17,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ~RenderContext()
         {
@@ -37,7 +33,6 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
 
                 // Dispose unmanaged resources.
@@ -48,7 +43,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
@@ -59,6 +54,5 @@ namespace CSharpGL
                 this.RenderContextHandle = IntPtr.Zero;
             }
         }
-
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -13,9 +9,10 @@ namespace CSharpGL
     public class Axis : IBufferable
     {
         private AxisModel model;
+
         /// <summary>
         /// 3D坐标系
-        /// 
+        ///
         /// </summary>
         /// <param name="partCount"></param>
         /// <param name="radius"></param>
@@ -26,17 +23,20 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strPosition = "position";
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strColor = "color";
+
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -92,8 +92,9 @@ namespace CSharpGL
                 throw new NotImplementedException();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()

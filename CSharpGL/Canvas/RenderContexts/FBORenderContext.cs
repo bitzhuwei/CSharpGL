@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -84,7 +81,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
@@ -100,8 +97,9 @@ namespace CSharpGL
             //	Call the base, which will delete the render context handle and window.
             base.DisposeUnmanagedResources();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -128,8 +126,9 @@ namespace CSharpGL
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             this.framebuffer = framebuffer;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="hdc"></param>
         public override void Blit(IntPtr hdc)
@@ -155,11 +154,11 @@ namespace CSharpGL
         private Framebuffer framebuffer;
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         //private IntPtr dibSectionDeviceContext = IntPtr.Zero;
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private DIBSection dibSection;
 

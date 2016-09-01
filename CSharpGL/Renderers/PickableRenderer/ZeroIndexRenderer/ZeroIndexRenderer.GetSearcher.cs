@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 
 namespace CSharpGL
 {
     partial class ZeroIndexRenderer
     {
-        static Dictionary<DrawMode, ZeroIndexLineSearcher> lineSearcherDict;
-        static Dictionary<DrawMode, ZeroIndexPointSearcher> pointSearcherDict;
+        private static Dictionary<DrawMode, ZeroIndexLineSearcher> lineSearcherDict;
+        private static Dictionary<DrawMode, ZeroIndexPointSearcher> pointSearcherDict;
 
-        static ZeroIndexLineSearcher GetLineSearcher(DrawMode mode)
+        private static ZeroIndexLineSearcher GetLineSearcher(DrawMode mode)
         {
             if (lineSearcherDict == null)
             {
@@ -36,7 +31,7 @@ namespace CSharpGL
             { return null; }
         }
 
-        static ZeroIndexPointSearcher GetPointSearcher(DrawMode mode)
+        private static ZeroIndexPointSearcher GetPointSearcher(DrawMode mode)
         {
             if (pointSearcherDict == null)
             {

@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
-    class LineStripRecognizer : PrimitiveRecognizer
+    internal class LineStripRecognizer : PrimitiveRecognizer
     {
-
-
         protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;

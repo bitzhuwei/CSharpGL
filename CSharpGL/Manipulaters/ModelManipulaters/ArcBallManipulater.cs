@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 
 namespace CSharpGL
 {
@@ -15,7 +8,6 @@ namespace CSharpGL
     /// </summary>
     public class ArcBallManipulater : Manipulater, IMouseHandler
     {
-
         private ICamera camera;
         private GLCanvas canvas;
 
@@ -36,14 +28,15 @@ namespace CSharpGL
         private bool mouseDownFlag;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float MouseSensitivity { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MouseButtons BindingMouseButtons { get; set; }
+
         private MouseButtons lastBindingMouseButtons;
 
         /// <summary>
@@ -72,7 +65,7 @@ namespace CSharpGL
             this.cameraState.up = up;
         }
 
-        class CameraState
+        private class CameraState
         {
             public vec3 position;
             public vec3 target;
@@ -89,14 +82,15 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public mat4 GetRotationMatrix()
         {
             return totalRotation;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
@@ -116,7 +110,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void Unbind()
         {
@@ -215,6 +209,5 @@ namespace CSharpGL
                 mouseDownFlag = false;
             }
         }
-
     }
 }

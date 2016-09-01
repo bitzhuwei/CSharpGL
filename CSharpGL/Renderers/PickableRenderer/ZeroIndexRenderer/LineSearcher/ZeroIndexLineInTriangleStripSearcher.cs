@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ZeroIndexLineInTriangleStripSearcher : ZeroIndexLineSearcher
+    internal class ZeroIndexLineInTriangleStripSearcher : ZeroIndexLineSearcher
     {
         internal override uint[] Search(RenderEventArgs arg,
-            int x, int y, 
+            int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             OneIndexBufferPtr indexBufferPtr = null;
@@ -26,7 +23,7 @@ namespace CSharpGL
             }
 
             modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
-            uint id = ColorCodedPicking.ReadPixel(x, y,arg.CanvasRect.Height);
+            uint id = ColorCodedPicking.ReadPixel(x, y, arg.CanvasRect.Height);
 
             indexBufferPtr.Dispose();
             if (id + 2 == lastVertexId)

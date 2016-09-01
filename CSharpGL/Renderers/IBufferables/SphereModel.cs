@@ -1,10 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System;
 
 namespace CSharpGL
 {
@@ -20,13 +14,14 @@ namespace CSharpGL
         internal vec2[] uv;
         internal uint[] indexes;
 
-        static Random random = new Random();
-        static vec3 RandomVec3()
+        private static Random random = new Random();
+
+        private static vec3 RandomVec3()
         {
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        static readonly Func<int, int, vec3> defaultColorGenerator = new Func<int, int, vec3>(DefaultColorGenerator);
+        private static readonly Func<int, int, vec3> defaultColorGenerator = new Func<int, int, vec3>(DefaultColorGenerator);
 
         private static vec3 DefaultColorGenerator(int latitude, int longitude)
         {
@@ -34,7 +29,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="radius"></param>
         /// <param name="latitudeParts">用纬线把地球切割为几块。</param>
@@ -110,14 +105,12 @@ namespace CSharpGL
                     this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 0) + j);
                     this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 1) + j);
                 }
-                // use 
-                // GL.Enable(GL.GL_PRIMITIVE_RESTART); 
-                // GL.PrimitiveRestartIndex(uint.MaxValue); 
+                // use
+                // GL.Enable(GL.GL_PRIMITIVE_RESTART);
+                // GL.PrimitiveRestartIndex(uint.MaxValue);
                 // GL.Disable(GL.GL_PRIMITIVE_RESTART);
                 this.indexes[index++] = uint.MaxValue;
             }
         }
-
     }
-
 }

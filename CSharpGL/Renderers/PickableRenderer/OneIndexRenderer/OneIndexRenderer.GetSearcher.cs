@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 
 namespace CSharpGL
 {
     partial class OneIndexRenderer
     {
-        static Dictionary<DrawMode, OneIndexLineSearcher> lineSearcherDict;
-        static Dictionary<DrawMode, OneIndexPointSearcher> pointSearcherDict;
+        private static Dictionary<DrawMode, OneIndexLineSearcher> lineSearcherDict;
+        private static Dictionary<DrawMode, OneIndexPointSearcher> pointSearcherDict;
 
-        static OneIndexLineSearcher GetLineSearcher(DrawMode mode)
+        private static OneIndexLineSearcher GetLineSearcher(DrawMode mode)
         {
             if (lineSearcherDict == null)
             {
@@ -39,7 +34,7 @@ namespace CSharpGL
             { return null; }
         }
 
-        static OneIndexPointSearcher GetPointSearcher(DrawMode mode)
+        private static OneIndexPointSearcher GetPointSearcher(DrawMode mode)
         {
             if (pointSearcherDict == null)
             {

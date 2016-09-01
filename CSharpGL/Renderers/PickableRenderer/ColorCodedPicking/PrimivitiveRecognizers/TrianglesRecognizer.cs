@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 
 namespace CSharpGL
 {
-    class TrianglesRecognizer : PrimitiveRecognizer
+    internal class TrianglesRecognizer : PrimitiveRecognizer
     {
-
         protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
@@ -112,7 +108,7 @@ namespace CSharpGL
                 }
             }
         }
-      
+
         protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;

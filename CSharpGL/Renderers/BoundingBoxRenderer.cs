@@ -1,11 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-
+﻿using System.Drawing;
 
 namespace CSharpGL
 {
@@ -14,7 +7,6 @@ namespace CSharpGL
     /// </summary>
     public class BoundingBoxRenderer : Renderer, IBoundingBox
     {
-
         /// <summary>
         /// get a bounding box renderer.
         /// </summary>
@@ -53,8 +45,9 @@ namespace CSharpGL
 
         private UpdatingRecord boundingBoxColorRecord = new UpdatingRecord();
         private vec3 boundingBoxColor;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Color BoundingBoxColor
         {
@@ -71,7 +64,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -116,6 +109,5 @@ namespace CSharpGL
                 return new vec3(this.GetMatrix() * new vec4(this.Lengths / 2, 1.0f));
             }
         }
-
     }
 }

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    class ZeroIndexLineInQuadStripSearcher : ZeroIndexLineSearcher
+    internal class ZeroIndexLineInQuadStripSearcher : ZeroIndexLineSearcher
     {
         internal override uint[] Search(RenderEventArgs arg,
-            int x, int y, 
+            int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             OneIndexBufferPtr indexBufferPtr = null;

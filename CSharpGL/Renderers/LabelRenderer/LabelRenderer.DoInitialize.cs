@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class LabelRenderer
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void DoInitialize()
         {
@@ -23,6 +16,5 @@ namespace CSharpGL
             this.SetUniform("fontTexture",
                 this.fontTexture.TextureObj.ToSamplerValue());
         }
-
     }
 }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -32,7 +27,7 @@ namespace CSharpGL
             this.propertyGrid.PropertyValueChanged += propertyGrid_PropertyValueChanged;
         }
 
-        void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             var sceneObject = context.Instance as SceneObject;
             if (sceneObject != null)
@@ -45,6 +40,5 @@ namespace CSharpGL
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
-
     }
 }

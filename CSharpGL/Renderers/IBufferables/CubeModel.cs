@@ -1,10 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -14,10 +8,10 @@ namespace CSharpGL
     /// </summary>
     internal class CubeModel
     {
-        static readonly vec3[] eightVertexes = new vec3[] 
-        { 
+        private static readonly vec3[] eightVertexes = new vec3[]
+        {
             new vec3(-1, 1, 1), new vec3(1, 1, 1), new vec3(1, 1, -1), new vec3(-1, 1, -1),
-            new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), 
+            new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1),
         };
 
         internal static readonly CubePosition position = new CubePosition()
@@ -29,6 +23,7 @@ namespace CSharpGL
             faceZ = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[5], position3 = eightVertexes[4], },
             faceNZ = new SqurePosition() { position0 = eightVertexes[3], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[7], },
         };
+
         internal static readonly CubeColor color = new CubeColor()
         {
             faceX = new SqureColor(new vec3(1, 0, 0)),
@@ -38,6 +33,7 @@ namespace CSharpGL
             faceZ = new SqureColor(new vec3(0, 0, 1)),
             faceNZ = new SqureColor(new vec3(0, 0, 0.5f)),
         };
+
         internal static readonly CubeNormal normal = new CubeNormal()
         {
             faceX = new SqureNormal(new vec3(1, 0, 0)),
@@ -47,14 +43,15 @@ namespace CSharpGL
             faceZ = new SqureNormal(new vec3(0, 0, 1)),
             faceNZ = new SqureNormal(new vec3(0, 0, -1)),
         };
-        internal static readonly byte[] index = new byte[] 
+
+        internal static readonly byte[] index = new byte[]
         {
-            0, 1, 2, 0, 2, 3, 
-            4, 5, 6, 4, 6, 7, 
+            0, 1, 2, 0, 2, 3,
+            4, 5, 6, 4, 6, 7,
             8, 9, 10, 8, 10, 11,
             12, 13, 14, 12, 14, 15,
             16, 17, 18, 16, 18, 19,
-            20, 21, 22, 20, 22, 23 
+            20, 21, 22, 20, 22, 23
         };
 
         [StructLayout(LayoutKind.Sequential)]
@@ -142,7 +139,5 @@ namespace CSharpGL
                 return string.Format("normal: {0}", normal0);
             }
         }
-
-
     }
 }

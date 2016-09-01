@@ -1,9 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System;
 
 namespace CSharpGL
 {
@@ -12,9 +7,8 @@ namespace CSharpGL
     /// </summary>
     public partial class BoundingBoxModel : IBufferable
     {
-
-        private vec3[] positions = new vec3[] 
-        { 
+        private vec3[] positions = new vec3[]
+        {
             new vec3(1, 1, 1),   new vec3(-1, 1, 1),
             new vec3(1, 1, -1),  new vec3(-1, 1, -1),
             new vec3(1, -1, -1), new vec3(-1, -1, -1),
@@ -26,6 +20,7 @@ namespace CSharpGL
         /// position
         /// </summary>
         public const string strPosition = "position";
+
         private PropertyBufferPtr positionBufferPtr = null;
         private IndexBufferPtr indexBufferPtr = null;
         private vec3 lengths;
@@ -44,7 +39,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -79,7 +74,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IndexBufferPtr GetIndex()
@@ -95,6 +90,5 @@ namespace CSharpGL
 
             return indexBufferPtr;
         }
-
     }
 }

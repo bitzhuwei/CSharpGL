@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 支持"拾取"的渲染器
     /// </summary>
     public partial class PickableRenderer : Renderer, IColorCodedPicking
     {
-
-        InnerPickableRenderer innerPickableRenderer;
+        private InnerPickableRenderer innerPickableRenderer;
 
         /// <summary>
         /// 支持"拾取"的渲染器
@@ -33,6 +24,5 @@ namespace CSharpGL
                 bufferable, propertyNameMap, positionNameInIBufferable);
             this.innerPickableRenderer = innerPickableRenderer;
         }
-
     }
 }

@@ -1,10 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-
+﻿using System;
 
 namespace CSharpGL
 {
@@ -15,14 +9,16 @@ namespace CSharpGL
     internal class TetrahedronModel
     {
         internal static readonly vec3[] position = new vec3[4];
-        static readonly vec3 center =
+
+        private static readonly vec3 center =
             new vec3(1.0f / (float)Math.Sqrt(3),
                 (float)Math.Sqrt(8.0 / 3.0) - (float)Math.Sqrt(3.0 / 2.0),
                 0);
+
         internal static readonly vec3[] normal = new vec3[4];
 
-        internal static readonly vec3[] color = new vec3[] 
-        { 
+        internal static readonly vec3[] color = new vec3[]
+        {
             new vec3(0, 0, 1),
             new vec3(1, 0, 0),
             new vec3(0, 0, 1),
