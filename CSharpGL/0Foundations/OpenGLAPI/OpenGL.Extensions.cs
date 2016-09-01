@@ -5340,7 +5340,7 @@ namespace CSharpGL
         #region texture
 
         /// <summary>
-        /// bind a level of a texture to an image unit.
+        /// bind a level of a texture to an image unit(a uniform image2D in compute shader).
         /// </summary>
         /// <param name="unit">Specifies the index of the image unit to which to bind the texture.</param>
         /// <param name="texture">Specifies the name of the texture to bind to the image unit.</param>
@@ -5349,8 +5349,24 @@ namespace CSharpGL
         /// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
         /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.</param>
         /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.</param>
-        public delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
-
+        private delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
+        private static glBindImageTexture bindImageTexture;
+        /// <summary>
+        /// bind a level of a texture to an image unit(a uniform image2D in compute shader).
+        /// </summary>
+        /// <param name="unit">Specifies the index of the image unit to which to bind the texture.<para>a uniform image2D variable's location.</para></param>
+        /// <param name="texture">Specifies the name of the texture to bind to the image unit.<para>texture's id from glGenTexture().</para></param>
+        /// <param name="level">Specifies the level of the texture that is to be bound.</param>
+        /// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
+        /// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
+        /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.<para>OpenGL.GL_READ_WRITE etc.</para></param>
+        /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.<para>OpenGL.GL_RGBA32F etc.</para></param>
+        public static void BindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format)
+        {
+            if (bindImageTexture == null)
+            { bindImageTexture = OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>(); }
+            bindImageTexture(unit, texture, level, layered, layer, access, format);
+        }
         /// <summary>
         /// 
         /// </summary>

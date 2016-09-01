@@ -74,7 +74,7 @@ namespace CSharpGL.Demos
                 this.headTexture = texture;
             }
             {
-                OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+                OpenGL.BindImageTexture(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
                 // Create buffer for clearing the head pointer texture
                 var buffer = new PixelUnpackBuffer<uint>(1, sizeof(uint), BufferUsage.StaticDraw);
@@ -113,7 +113,7 @@ namespace CSharpGL.Demos
                 this.linkedListTexture = texture;
             }
             {
-                OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+                OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
             }
             OpenGL.ClearDepth(1.0f);
         }
@@ -143,10 +143,10 @@ namespace CSharpGL.Demos
             //
 
             // Bind head-pointer image for read-write
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.headTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+            OpenGL.BindImageTexture(0, this.headTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Bind linked-list buffer for write
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMatrix();
@@ -163,8 +163,8 @@ namespace CSharpGL.Demos
             // second pass
             this.resolve_lists.Render(arg);
 
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, 0, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, 0, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+            OpenGL.BindImageTexture(1, 0, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            OpenGL.BindImageTexture(0, 0, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             this.cullFaceSwitch.Off();
             this.depthTestSwitch.Off();

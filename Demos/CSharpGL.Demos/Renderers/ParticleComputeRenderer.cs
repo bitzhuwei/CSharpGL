@@ -88,8 +88,8 @@ namespace CSharpGL.Demos
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, this.velocityTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, this.positionTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.BindImageTexture(0, this.velocityTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.BindImageTexture(1, this.positionTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Set delta time
             computeProgram.SetUniform("dt", deltaTime);
             // Dispatch

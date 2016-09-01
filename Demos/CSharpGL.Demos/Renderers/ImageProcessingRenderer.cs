@@ -99,31 +99,15 @@ namespace CSharpGL.Demos
         {
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("input_image"),
-                //input_image[0], 
-                inputTexture.Id,
-                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("output_image"),
-                //intermediate_image[0],
-                intermediateTexture.Id,
-                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.BindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), inputTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.BindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), intermediateTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(1, 512, 1);
 
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("input_image"),
-                //intermediate_image[0],
-                intermediateTexture.Id,
-                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
-            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(
-                (uint)computeProgram.GetUniformLocation("output_image"),
-                //output_image[0],
-                outputTexture.Id,
-                0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.BindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), intermediateTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.BindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), outputTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(1, 512, 1);
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
