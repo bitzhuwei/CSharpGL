@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+
 namespace CSharpGL
 {
     /// <summary>
@@ -81,43 +82,42 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool IsWindows { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool IsUnix { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool IsMac { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool IsLinux { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool IsUnknown { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool Is32bit { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool Is64bit { get; private set; }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool Is64BitProcess
         {
@@ -125,7 +125,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool Is32BitProcess
         {
@@ -133,7 +133,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static string Name { get; private set; }
 

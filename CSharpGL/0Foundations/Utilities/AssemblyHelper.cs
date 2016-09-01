@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 using System.Windows.Forms;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    static class AssemblyHelper
+    internal static class AssemblyHelper
     {
         /// <summary>
         /// Get all derived non-abstract types of specified base type from all loaded assemblies.
@@ -95,6 +94,5 @@ namespace CSharpGL
 
             return result.ToArray();
         }
-
     }
 }

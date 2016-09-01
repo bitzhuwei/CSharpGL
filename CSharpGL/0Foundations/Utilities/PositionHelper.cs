@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class PositionHelper
     {
@@ -63,6 +60,7 @@ namespace CSharpGL
 
             return new BoundingBox2D(min, max);
         }
+
         /// <summary>
         /// Move positions where around (0, 0, 0)
         /// </summary>
@@ -120,6 +118,5 @@ namespace CSharpGL
 
             return new BoundingBox(min, max);
         }
-
     }
 }

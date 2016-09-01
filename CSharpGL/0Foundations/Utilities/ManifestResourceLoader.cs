@@ -28,6 +28,7 @@ namespace CSharpGL
 
             return stream;
         }
+
         /// <summary>
         /// Loads the named manifest resource and returns each line in order.
         /// </summary>
