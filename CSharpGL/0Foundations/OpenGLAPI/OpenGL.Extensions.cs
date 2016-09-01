@@ -5359,7 +5359,7 @@ namespace CSharpGL
         /// <param name="level">Specifies the level of the texture that is to be bound.</param>
         /// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
         /// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
-        /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.<para>OpenGL.GL_READ_WRITE etc.</para></param>
+        /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.<para>OpenGL.GL_READ_ONLY, OpenGL.GL_WRITE_ONLY, OpenGL.GL_READ_WRITE etc.</para></param>
         /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.<para>OpenGL.GL_RGBA32F etc.</para></param>
         public static void BindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format)
         {

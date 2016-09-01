@@ -27,12 +27,10 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var renderer = new SimpleComputeRenderer();
+                SimpleComputeRenderer renderer = SimpleComputeRenderer.Create();
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.RootObject.Children.Add(obj);
-                var frmPropertyGrid = new FormProperyGrid(this.scene);
-                frmPropertyGrid.Show();
             }
             {
                 var builder = new StringBuilder();

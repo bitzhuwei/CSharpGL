@@ -16,18 +16,20 @@ namespace CSharpGL.Demos
         //private uint[] output_image = new uint[1];
         private Texture outputImage;
         private uint[] output_image_buffer = new uint[1];
-        static ShaderCode[] staticShaderCodes;
-        static PropertyNameMap map;
-        static SimpleComputeRenderer()
+
+        public static SimpleComputeRenderer Create()
         {
-            staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\compute.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\compute.frag"), ShaderType.FragmentShader);
-            map = new PropertyNameMap();
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\compute.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\compute.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
             map.Add("position", SimpleCompute.strPosition);
+            return new SimpleComputeRenderer(new SimpleCompute(), shaderCodes, map);
         }
-        public SimpleComputeRenderer()
-            : base(new SimpleCompute(), staticShaderCodes, map)
+
+        private SimpleComputeRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            : base(bufferable, shaderCodes, propertyNameMap, switches)
         { }
 
         protected override void DoInitialize()
@@ -52,7 +54,6 @@ namespace CSharpGL.Demos
             }
             {
                 // This is the texture that the compute program will write into
-                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
                 var texture = new Texture(BindTextureTarget.Texture2D,
                     new TexStorageImageBuilder(8, OpenGL.GL_RGBA32F, 256, 256),
                     new NullSampler());
