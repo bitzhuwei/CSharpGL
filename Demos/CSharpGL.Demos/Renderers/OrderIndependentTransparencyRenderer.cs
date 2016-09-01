@@ -90,14 +90,14 @@ namespace CSharpGL.Demos
             }
             // Create the atomic counter buffer
             {
-                var buffer = new IndependentBuffer<uint>(BufferTarget.AtomicCounterBuffer, BufferUsage.DynamicCopy);
+                var buffer = new IndependentBuffer<uint>(BufferTarget.AtomicCounterBuffer, BufferUsage.DynamicCopy, true);
                 buffer.Create(1);
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 this.atomicCountBufferPtr = ptr;
             }
             // Create the linked list storage buffer
             {
-                var buffer = new IndependentBuffer<vec4>(BufferTarget.TextureBuffer, BufferUsage.DynamicCopy);
+                var buffer = new IndependentBuffer<vec4>(BufferTarget.TextureBuffer, BufferUsage.DynamicCopy, true);
                 buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 this.linked_list_buffer = ptr;

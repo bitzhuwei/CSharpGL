@@ -34,7 +34,7 @@ namespace CSharpGL
         /// 此VBO中的数据在内存中的起始地址
         /// <para>Start position of this buffer; first element's position of this buffer.</para>
         /// </summary>
-        public IntPtr Header
+        public virtual IntPtr Header
         {
             get
             {
@@ -43,28 +43,11 @@ namespace CSharpGL
             }
         }
 
-        // Use 
-        // this.Header.ToPointer()
-        // instead of this.
-        ///// <summary>
-        ///// 获取此VBO的内存首地址。用于快速读写。
-        ///// </summary>
-        ///// <returns></returns>
-        //public unsafe void* FirstElement()
-        //{
-        //    UnmanagedArrayBase array = this.array;
-        //    if (array == null) { return (void*)0; }
-        //    else
-        //    {
-        //        return array.Header.ToPointer();
-        //    }
-        //}
-
         /// <summary>
         /// 此VBO中的数据在内存中占用多少个字节？
         /// <para>How many bytes in this buffer?</para>
         /// </summary>
-        public int ByteLength
+        public virtual int ByteLength
         {
             get
             {
@@ -78,7 +61,7 @@ namespace CSharpGL
         /// 此VBO含有多个个元素？
         /// <para>How many elements?</para>
         /// </summary>
-        public int Length
+        public virtual int Length
         {
             get
             {
@@ -108,23 +91,12 @@ namespace CSharpGL
             this.Usage = usage;
         }
 
-        ///// <summary>
-        ///// 根据buffer内存放的具体的结构类型创建非托管数组。
-        ///// <para>create an unmanaged array to store data for this buffer.</para>
-        ///// </summary>
-        ///// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        ///// <returns></returns>
-        //protected abstract UnmanagedArrayBase CreateElements(int elementCount);
-
         /// <summary>
         /// 申请指定长度的非托管数组。
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         public abstract void Create(int elementCount);
-        //{
-        //    this.array = CreateElements(elementCount);
-        //}
 
         /// <summary>
         /// 获取一个可渲染此VBO的渲染器。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
