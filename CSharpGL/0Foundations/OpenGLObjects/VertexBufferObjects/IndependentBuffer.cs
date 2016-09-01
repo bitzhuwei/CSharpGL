@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -29,7 +24,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int ByteLength
         {
@@ -47,7 +42,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override IntPtr Header
         {
@@ -65,7 +60,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int Length
         {
@@ -83,12 +78,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool NoDataCopyed { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BufferTarget Target { get; private set; }
 
@@ -110,7 +105,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -119,7 +114,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         protected override BufferPtr Upload2GPU()
