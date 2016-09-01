@@ -133,7 +133,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("ByteLength: {0}, Header: {1}", this.ByteLength, this.Header);
+            return string.Format("{0}, ByteLength: {1}, Header: {2}", this.Target, this.ByteLength, this.Header);
         }
     }
 }

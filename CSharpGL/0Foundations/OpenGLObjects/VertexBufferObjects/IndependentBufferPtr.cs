@@ -74,5 +74,13 @@ namespace CSharpGL
             OpenGL.BindBuffer((uint)this.Target, 0);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("Id: {0}, {1}, ByteLength: {2}", this.BufferId, this.Target, this.ByteLength);
+        }
     }
 }
