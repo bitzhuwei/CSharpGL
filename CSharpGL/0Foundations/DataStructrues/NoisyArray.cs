@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -10,7 +7,8 @@ namespace CSharpGL
     /// </summary>
     public class NoisyArray<T> where T : struct, IEquatable<T>
     {
-        T[] array;
+        private T[] array;
+
         /// <summary>
         /// Array.
         /// </summary>
@@ -95,12 +93,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public T Value { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Index { get; private set; }
     }

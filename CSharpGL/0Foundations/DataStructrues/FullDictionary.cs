@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-
 
 namespace CSharpGL
 {
@@ -15,20 +13,19 @@ namespace CSharpGL
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
     public class FullDictionary<TKey, TValue> : IDictionary<TKey, TValue>,
-        ICollection<KeyValuePair<TKey, TValue>>, 
-        IDictionary, ICollection, 
+        ICollection<KeyValuePair<TKey, TValue>>,
+        IDictionary, ICollection,
         //IReadOnlyDictionary<TKey, TValue>,
         //IReadOnlyCollection<KeyValuePair<TKey, TValue>>,
-        IEnumerable<KeyValuePair<TKey, TValue>>, 
+        IEnumerable<KeyValuePair<TKey, TValue>>,
         IEnumerable, ISerializable, IDeserializationCallback
- 
     {
-        Dictionary<TKey, TValue> dict = new Dictionary<TKey, TValue>();
+        private Dictionary<TKey, TValue> dict = new Dictionary<TKey, TValue>();
 
         /// <summary>
         /// 对于没有key的情况，统一返回那个固定值.
         /// </summary>
-        readonly TValue defaultValue;
+        private readonly TValue defaultValue;
 
         /// <summary>
         /// 对于没有key的情况，统一返回一个固定值.
@@ -41,7 +38,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -51,7 +48,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -61,7 +58,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICollection<TKey> Keys
         {
@@ -69,7 +66,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -79,7 +76,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -95,7 +92,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICollection<TValue> Values
         {
@@ -103,7 +100,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -122,7 +119,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         public void Add(KeyValuePair<TKey, TValue> item)
@@ -131,7 +128,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Clear()
         {
@@ -139,7 +136,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -149,7 +146,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         /// <param name="arrayIndex"></param>
@@ -159,7 +156,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Count
         {
@@ -167,7 +164,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsReadOnly
         {
@@ -175,7 +172,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -185,7 +182,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
@@ -199,7 +196,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -209,7 +206,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -224,7 +221,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsFixedSize
         {
@@ -237,7 +234,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         public void Remove(object key)
@@ -251,7 +248,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -268,7 +265,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         /// <param name="index"></param>
@@ -278,7 +275,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsSynchronized
         {
@@ -286,7 +283,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object SyncRoot
         {
@@ -294,7 +291,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>
@@ -302,9 +299,9 @@ namespace CSharpGL
         {
             dict.GetObjectData(info, context);
         }
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         public void OnDeserialization(object sender)

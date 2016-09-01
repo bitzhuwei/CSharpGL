@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
-
 
 namespace CSharpGL
 {
-
     /// <summary>
     /// unmanaged huge array.
     /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
@@ -21,6 +15,7 @@ namespace CSharpGL
         /// <para>Only used for debugging.</para>
         /// </summary>
         private static int thisTypeAllocatedCount = 0;
+
         /// <summary>
         /// How many <see cref="UnmanagedArray&lt;T&gt;"/> objects released?
         /// <para>Only used for debugging.</para>
@@ -46,7 +41,6 @@ namespace CSharpGL
 
             UnmanagedArray<T>.thisTypeDisposedCount++;
         }
-
     }
 
     /// <summary>
@@ -160,7 +154,7 @@ namespace CSharpGL
             this.disposedValue = true;
         } // end sub
 
-        #endregion
+        #endregion IDisposable Members
 
         /// <summary>
         /// Dispose unmanaged resources

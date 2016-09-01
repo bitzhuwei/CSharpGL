@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -14,6 +12,7 @@ namespace CSharpGL
         /// The last time that a property is updated in client application.
         /// </summary>
         private long updateTicks;
+
         /// <summary>
         /// The first time that a property is uploaded to OpenGL.
         /// </summary>
@@ -69,7 +68,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

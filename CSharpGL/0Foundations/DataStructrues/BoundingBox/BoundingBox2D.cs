@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
@@ -21,12 +16,12 @@ namespace CSharpGL
         public vec2 MinPosition { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BoundingBox2D() { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
@@ -37,13 +32,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             return string.Format("min: {0} max: {1}", this.MinPosition, this.MaxPosition);
         }
+
         ///// <summary>
         ///// Get center position of this cuboid.
         ///// </summary>
@@ -76,7 +72,5 @@ namespace CSharpGL
         ///// <param name="maxY"></param>
         ///// <param name="maxZ"></param>
         //void Set(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);
-
-
     }
 }

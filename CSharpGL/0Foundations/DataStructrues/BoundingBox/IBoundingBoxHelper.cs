@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class IBoundingBoxHelper
     {
-
         /// <summary>
         /// Gets all maximum parts from two <see cref="vec3"/>.
         /// </summary>
@@ -96,6 +92,7 @@ namespace CSharpGL
         }
 
         private static BoundingBoxRenderer renderer;
+
         /// <summary>
         /// Render this bounding box.
         /// </summary>
@@ -117,7 +114,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="box"></param>
         /// <param name="point"></param>
@@ -139,7 +136,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="box"></param>
         /// <returns></returns>

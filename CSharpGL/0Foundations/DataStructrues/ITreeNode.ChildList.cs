@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -14,17 +10,17 @@ namespace CSharpGL
     //[Editor(typeof(IListEditor<T>), typeof(UITypeEditor))]
     public class ChildList<T> : IList<T> where T : ITreeNode<T>
     {
-
         /// <summary>
         /// invoked when an item is added into this list.
         /// </summary>
         public event EventHandler<AddItemEventArgs<T>> ItemAdded;
+
         /// <summary>
         /// invoked when an item is removed from this list.
         /// </summary>
         public event EventHandler<RemoveItemEventArgs<T>> ItemRemoved;
 
-        List<T> list = new List<T>();
+        private List<T> list = new List<T>();
 
         /// <summary>
         /// parent of this list's items.
@@ -236,7 +232,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -246,7 +242,7 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class AddItemEventArgs<T> : EventArgs
@@ -257,7 +253,7 @@ namespace CSharpGL
         public T NewItem { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="newItem"></param>
         public AddItemEventArgs(T newItem)
@@ -266,7 +262,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -276,7 +272,7 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class RemoveItemEventArgs<T> : EventArgs
@@ -287,7 +283,7 @@ namespace CSharpGL
         public T RemovedItem { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="removedItem"></param>
         public RemoveItemEventArgs(T removedItem)
@@ -296,7 +292,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -304,5 +300,4 @@ namespace CSharpGL
             return string.Format("Removed item: {0}", RemovedItem);
         }
     }
-
 }

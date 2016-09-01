@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
-
     //public class Tuple<T1>
     //{
     //    //private readonly T1 m_Item1;
@@ -19,7 +13,7 @@ namespace CSharpGL
 
     //}
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>
@@ -29,16 +23,17 @@ namespace CSharpGL
 
         //private readonly T2 m_Item2;
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public T1 Item1 { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public T2 Item2 { get; private set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item1"></param>
         /// <param name="item2"></param>
@@ -47,7 +42,6 @@ namespace CSharpGL
             this.Item1 = item1;
             this.Item2 = item2;
         }
-
     }
 
     //public class Tuple<T1, T2, T3>
@@ -72,7 +66,6 @@ namespace CSharpGL
     //    }
 
     //}
-
 
     //public class Tuple<T1, T2, T3, T4>
     //{
@@ -101,7 +94,6 @@ namespace CSharpGL
     //    }
 
     //}
-
 
     //public class Tuple<T1, T2, T3, T4, T5>
     //{
@@ -149,7 +141,6 @@ namespace CSharpGL
 
     //    //private readonly T6 m_Item6;
 
-
     //    public T1 Item1 { get; private set; }
 
     //    public T2 Item2 { get; private set; }
@@ -174,7 +165,6 @@ namespace CSharpGL
 
     //}
 
-
     //public class Tuple<T1, T2, T3, T4, T5, T6, T7>
     //{
     //    //private readonly T1 m_Item1;
@@ -190,7 +180,6 @@ namespace CSharpGL
     //    //private readonly T6 m_Item6;
 
     //    //private readonly T7 m_Item7;
-
 
     //    public T1 Item1 { get; private set; }
 
@@ -218,5 +207,4 @@ namespace CSharpGL
     //    }
 
     //}
-
 }

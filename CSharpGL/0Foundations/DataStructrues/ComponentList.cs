@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -17,17 +13,19 @@ namespace CSharpGL
     public abstract class ComponentList<TBinding, TComponent> : IList<TComponent> where TComponent : IBindingObject<TBinding>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public event EventHandler<AddItemEventArgs<TComponent>> ItemAdded;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public event EventHandler<RemoveItemEventArgs<TComponent>> ItemRemoved;
 
-        List<TComponent> list = new List<TComponent>();
+        private List<TComponent> list = new List<TComponent>();
 
         private TBinding bindingObject;
+
         /// <summary>
         /// a list of components who bind to the specified binding object.
         /// </summary>
@@ -36,8 +34,9 @@ namespace CSharpGL
         {
             this.bindingObject = bindingObject;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -45,8 +44,9 @@ namespace CSharpGL
         {
             return list.IndexOf(item);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <param name="item"></param>
@@ -59,8 +59,9 @@ namespace CSharpGL
             if (ItemAdded != null)
             { ItemAdded(this, new AddItemEventArgs<TComponent>(item)); }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         public void RemoveAt(int index)
@@ -73,8 +74,9 @@ namespace CSharpGL
             if (ItemRemoved != null)
             { ItemRemoved(this, new RemoveItemEventArgs<TComponent>(obj)); }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -89,8 +91,9 @@ namespace CSharpGL
                 list[index] = value;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         public void Add(TComponent item)
@@ -102,8 +105,9 @@ namespace CSharpGL
             if (ItemAdded != null)
             { ItemAdded(this, new AddItemEventArgs<TComponent>(item)); }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="items"></param>
         public void AddRange(IEnumerable<TComponent> items)
@@ -125,7 +129,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Clear()
         {
@@ -146,8 +150,9 @@ namespace CSharpGL
                 }
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -155,8 +160,9 @@ namespace CSharpGL
         {
             return list.Contains(item);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         /// <param name="arrayIndex"></param>
@@ -164,22 +170,25 @@ namespace CSharpGL
         {
             list.CopyTo(array, arrayIndex);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Count
         {
             get { return list.Count; }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsReadOnly
         {
             get { return ((ICollection<TComponent>)(this.list)).IsReadOnly; }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -196,8 +205,9 @@ namespace CSharpGL
             }
             return result;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<TComponent> GetEnumerator()
@@ -210,16 +220,16 @@ namespace CSharpGL
             return this.GetEnumerator();
         }
     }
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TBinding"></typeparam>
     public interface IBindingObject<TBinding>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TBinding BindingObject { get; set; }
     }
-
 }

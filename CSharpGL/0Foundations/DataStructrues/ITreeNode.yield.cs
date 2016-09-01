@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static partial class ITreeNodeHelper
     {
@@ -55,6 +51,5 @@ namespace CSharpGL
                 yield return current.Self;
             }
         }
-
     }
 }
