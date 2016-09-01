@@ -22,6 +22,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         public override void Bind(uint unit, BindTextureTarget target)
         {
+            // nothing to do.
         }
     }
 }
