@@ -17,7 +17,8 @@ namespace CSharpGL.Demos
         //private uint[] textureBufferVelocity = new uint[1];
         private Texture positionTexture;
         private Texture velocityTexture;
-        private uint[] attractor_buffer = new uint[1];
+        //private uint[] attractor_buffer = new uint[1];
+        private IndependentBufferPtr attractorBufferPtr;
         private uint positionBufferPtrId;
         private uint velocityBufferPtrId;
         private float time = 0;
@@ -53,11 +54,17 @@ namespace CSharpGL.Demos
                 this.velocityTexture = texture;
             }
             {
-                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
-                OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER,
-                    64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
-                OpenGL.BindBufferBase(BindBufferBaseTarget.UniformBuffer, 0, attractor_buffer[0]);
+                //OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
+                //OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
+                //OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER,
+                //    64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+                //OpenGL.BindBufferBase(BindBufferBaseTarget.UniformBuffer, 0, attractor_buffer[0]);
+                var buffer = new IndependentBuffer<vec4>(BufferTarget.UniformBuffer, BufferUsage.DynamicCopy);
+                buffer.Create(64);
+                var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
+                ptr.Bind();
+                OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, ptr.BufferId);
+                this.attractorBufferPtr = ptr;
             }
         }
 
@@ -66,7 +73,7 @@ namespace CSharpGL.Demos
             float deltaTime = (float)random.NextDouble() * 5;
             time += (float)random.NextDouble() * 5;
 
-            OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
+            attractorBufferPtr.Bind();
             IntPtr attractors = OpenGL.MapBufferRange(BufferTarget.UniformBuffer,
                 0, 64 * Marshal.SizeOf(typeof(vec4)),
                 MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
@@ -84,7 +91,7 @@ namespace CSharpGL.Demos
             }
 
             OpenGL.UnmapBuffer(BufferTarget.UniformBuffer);
-            OpenGL.BindBuffer(BufferTarget.UniformBuffer, 0);
+            attractorBufferPtr.Unbind();
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
@@ -102,7 +109,7 @@ namespace CSharpGL.Demos
             this.computeProgram.Delete();
             this.positionTexture.Dispose();
             this.velocityTexture.Dispose();
-            OpenGL.DeleteBuffers(1, attractor_buffer);
+            attractorBufferPtr.Dispose();
         }
     }
 }

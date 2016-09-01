@@ -16,11 +16,9 @@ namespace CSharpGL.Demos
         private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
-        //private uint[] head_pointer_clear_buffer = new uint[1];
         private PixelUnpackBufferPtr headClearBufferPtr;
-        private uint[] atomic_counter_buffer = new uint[1];
-        private uint[] linked_list_buffer = new uint[1];
-        //private uint[] linked_list_texture = new uint[1];
+        private IndependentBufferPtr atomicCountBufferPtr;
+        private IndependentBufferPtr linked_list_buffer;
         private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
 
@@ -92,22 +90,22 @@ namespace CSharpGL.Demos
             }
             // Create the atomic counter buffer
             {
-                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, atomic_counter_buffer);
-                OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
-                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
-                OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
+                var buffer = new IndependentBuffer<uint>(BufferTarget.AtomicCounterBuffer, BufferUsage.DynamicCopy);
+                buffer.Create(1);
+                var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
+                this.atomicCountBufferPtr = ptr;
             }
             // Create the linked list storage buffer
             {
-                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, linked_list_buffer);
-                OpenGL.BindBuffer(BufferTarget.TextureBuffer, linked_list_buffer[0]);
-                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
-                OpenGL.BindBuffer(BufferTarget.TextureBuffer, 0);
+                var buffer = new IndependentBuffer<vec4>(BufferTarget.TextureBuffer, BufferUsage.DynamicCopy);
+                buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
+                var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
+                this.linked_list_buffer = ptr;
             }
             // Bind it to a texture (for use as a TBO)
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageFiller(OpenGL.GL_RGBA32UI, linked_list_buffer[0]),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32UI, linked_list_buffer.BufferId),
                     new NullSampler());
                 texture.Initialize();
                 this.linkedListTexture = texture;
@@ -124,7 +122,7 @@ namespace CSharpGL.Demos
             this.cullFaceSwitch.On();
 
             // Reset atomic counter
-            OpenGL.BindBufferBase(BindBufferBaseTarget.AtomicCounterBuffer, 0, atomic_counter_buffer[0]);
+            OpenGL.BindBufferBase(BindBufferBaseTarget.AtomicCounterBuffer, 0, atomicCountBufferPtr.BufferId);
             IntPtr data = OpenGL.MapBuffer(BufferTarget.AtomicCounterBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
@@ -176,8 +174,8 @@ namespace CSharpGL.Demos
             this.resolve_lists.Dispose();
 
             this.linkedListTexture.Dispose();
-            OpenGL.DeleteBuffers(linked_list_buffer.Length, linked_list_buffer);
-            OpenGL.DeleteBuffers(atomic_counter_buffer.Length, atomic_counter_buffer);
+            this.linked_list_buffer.Dispose();
+            this.atomicCountBufferPtr.Dispose();
             this.headTexture.Dispose();
         }
     }

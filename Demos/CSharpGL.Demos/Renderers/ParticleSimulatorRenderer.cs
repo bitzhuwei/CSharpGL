@@ -32,8 +32,8 @@ namespace CSharpGL.Demos
             }
             {
                 var particleComputeRenderer = new ParticleComputeRenderer(
-                    this.particleRenderer.PositionBufferPtr.BufferId, 
-                    this.particleRenderer.VelocityBufferPtrId);
+                    this.particleRenderer.PositionBufferPtr.BufferId,
+                    this.particleRenderer.VelocityBufferPtr.BufferId);
                 particleComputeRenderer.Initialize();
                 this.particleComputeRenderer = particleComputeRenderer;
             }

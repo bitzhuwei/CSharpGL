@@ -35,11 +35,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected static OpenGL.glBindBuffer glBindBuffer;
+        internal static OpenGL.glBindBuffer glBindBuffer;
         /// <summary>
         /// 
         /// </summary>
-        protected static OpenGL.glDeleteBuffers glDeleteBuffers;
+        internal static OpenGL.glDeleteBuffers glDeleteBuffers;
 
         /// <summary>
         /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。

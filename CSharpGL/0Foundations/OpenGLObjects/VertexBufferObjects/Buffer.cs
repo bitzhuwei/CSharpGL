@@ -15,15 +15,15 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected static OpenGL.glGenBuffers glGenBuffers;
+        internal static OpenGL.glGenBuffers glGenBuffers;
         /// <summary>
         /// 
         /// </summary>
-        protected static OpenGL.glBindBuffer glBindBuffer;
+        internal static OpenGL.glBindBuffer glBindBuffer;
         /// <summary>
         /// 
         /// </summary>
-        protected static OpenGL.glBufferData glBufferData;
+        internal static OpenGL.glBufferData glBufferData;
 
         /// <summary>
         /// 

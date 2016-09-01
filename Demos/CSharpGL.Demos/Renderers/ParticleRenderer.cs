@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     {
         public VertexArrayObject VertexArrayObject { get; private set; }
         public PropertyBufferPtr PositionBufferPtr { get; private set; }
-        public uint VelocityBufferPtrId { get; private set; }
+        public PropertyBufferPtr VelocityBufferPtr { get; private set; }
 
         public ParticleRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
@@ -26,15 +26,13 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             {
-                // velocity
-                var velocity_buffer = new uint[1];
-                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, velocity_buffer);
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, velocity_buffer[0]);
-                var velocities = new UnmanagedArray<vec4>(ParticleModel.particleCount);
+                // velocity 
+                var buffer = new PropertyBuffer<vec4>("empty", 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy);
+                buffer.Create(ParticleModel.particleCount);
                 unsafe
                 {
                     var random = new Random();
-                    var array = (vec4*)velocities.Header.ToPointer();
+                    var array = (vec4*)buffer.Header.ToPointer();
                     for (int i = 0; i < ParticleModel.particleCount; i++)
                     {
                         array[i] = new vec4(
@@ -44,13 +42,8 @@ namespace CSharpGL.Demos
                             0);
                     }
                 }
-                OpenGL.BufferData(BufferTarget.ArrayBuffer, velocities, BufferUsage.DynamicCopy);
-                velocities.Dispose();
-                //GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                //GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
-                //
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-                this.VelocityBufferPtrId = velocity_buffer[0];
+                var ptr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                this.VelocityBufferPtr = ptr;
             }
 
             this.PositionBufferPtr = this.bufferable.GetProperty(ParticleModel.strPosition, null);
@@ -61,7 +54,7 @@ namespace CSharpGL.Demos
         {
             base.DisposeUnmanagedResources();
 
-            OpenGL.DeleteBuffers(1, new uint[] { this.VelocityBufferPtrId, });
+            this.VelocityBufferPtr.Dispose();
         }
     }
 }
