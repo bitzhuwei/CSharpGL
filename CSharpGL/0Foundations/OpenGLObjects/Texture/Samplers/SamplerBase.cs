@@ -32,6 +32,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="unit">OpenGL.GL_TEXTURE0 etc.</param>
+        /// <param name="target"></param>
         public abstract void Bind(uint unit, BindTextureTarget target);
 
         ///// <summary>
