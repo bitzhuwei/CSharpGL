@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -11,16 +10,17 @@ namespace CSharpGL
     public struct vec2 : IEquatable<vec2>, ILoadFromString
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float x;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float y;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="s"></param>
         public vec2(float s)
@@ -50,7 +50,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -59,8 +59,9 @@ namespace CSharpGL
             this.x = x;
             this.y = y;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public vec2(vec2 v)
@@ -68,8 +69,9 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public vec2(vec3 v)
@@ -77,8 +79,9 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public vec2(vec4 v)
@@ -86,8 +89,9 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <returns></returns>
@@ -95,8 +99,9 @@ namespace CSharpGL
         {
             return new vec2(-lhs.x, -lhs.y);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -105,8 +110,9 @@ namespace CSharpGL
         {
             return new vec2(lhs.x + rhs.x, lhs.y + rhs.y);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -115,8 +121,9 @@ namespace CSharpGL
         {
             return new vec2(lhs.x + rhs, lhs.y + rhs);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -125,8 +132,9 @@ namespace CSharpGL
         {
             return new vec2(lhs.x - rhs.x, lhs.y - rhs.y);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -135,8 +143,9 @@ namespace CSharpGL
         {
             return new vec2(lhs.x - rhs, lhs.y - rhs);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="self"></param>
         /// <param name="s"></param>
@@ -145,8 +154,9 @@ namespace CSharpGL
         {
             return new vec2(self.x * s, self.y * s);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -155,8 +165,9 @@ namespace CSharpGL
         {
             return new vec2(rhs.x * lhs, rhs.y * lhs);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -165,8 +176,9 @@ namespace CSharpGL
         {
             return new vec2(rhs.x * lhs.x, rhs.y * lhs.y);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -175,8 +187,9 @@ namespace CSharpGL
         {
             return new vec2(lhs.x / rhs, lhs.y / rhs);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rhs"></param>
         /// <returns></returns>
@@ -185,8 +198,9 @@ namespace CSharpGL
             var result = this.x * rhs.x + this.y * rhs.y;
             return result;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public float length()
@@ -195,8 +209,9 @@ namespace CSharpGL
 
             return (float)result;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -205,8 +220,9 @@ namespace CSharpGL
         {
             return (lhs.x == rhs.x && lhs.y == rhs.y);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -215,8 +231,9 @@ namespace CSharpGL
         {
             return (lhs.x != rhs.x || lhs.y != rhs.y);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -224,16 +241,18 @@ namespace CSharpGL
         {
             return (obj is vec2) && (this.Equals((vec2)obj));
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}", x, y).GetHashCode();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public float[] ToArray()
@@ -251,8 +270,9 @@ namespace CSharpGL
 
             return new vec2(x / frt, y / frt);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -270,7 +290,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

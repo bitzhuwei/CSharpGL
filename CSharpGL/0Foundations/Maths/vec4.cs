@@ -1,39 +1,37 @@
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
     /// <summary>
     /// Represents a four dimensional vector.
     /// </summary>
-    //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]   
+    //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [TypeConverter(typeof(StructTypeConverter<vec4>))]
     public struct vec4 : IEquatable<vec4>, ILoadFromString
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float x;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float y;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float z;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float w;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -58,7 +56,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="s"></param>
         public vec4(float s)
@@ -67,7 +65,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -82,7 +80,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public vec4(vec4 v)
@@ -94,7 +92,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="xyz"></param>
         /// <param name="w"></param>
@@ -107,7 +105,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <returns></returns>
@@ -117,7 +115,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -138,7 +136,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -149,7 +147,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="self"></param>
         /// <param name="s"></param>
@@ -160,7 +158,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -171,7 +169,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -182,7 +180,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -193,7 +191,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rhs"></param>
         /// <returns></returns>
@@ -204,7 +202,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public float length()
@@ -215,7 +213,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -226,7 +224,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -237,7 +235,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -247,7 +245,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -256,7 +254,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public float[] ToArray()
@@ -277,7 +275,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -288,7 +286,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

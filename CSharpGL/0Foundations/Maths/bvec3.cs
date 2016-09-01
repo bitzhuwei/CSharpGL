@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -10,24 +9,23 @@ namespace CSharpGL
     [TypeConverter(typeof(StructTypeConverter<bvec3>))]
     public struct bvec3 : IEquatable<bvec3>, ILoadFromString
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool x;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool y;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool z;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -50,7 +48,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="s"></param>
         public bvec3(bool s)
@@ -59,7 +57,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -72,7 +70,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public bvec3(bvec3 v)
@@ -83,7 +81,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public bvec3(bvec4 v)
@@ -94,7 +92,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="xy"></param>
         /// <param name="z"></param>
@@ -106,7 +104,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -117,7 +115,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -128,7 +126,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -138,7 +136,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -147,7 +145,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool[] ToArray()
@@ -156,7 +154,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -165,7 +163,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -43,7 +40,6 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 infinitePerspective(float fovy, float aspect, float zNear)
         {
-
             float range = tan(fovy / (2f)) * zNear;
 
             float left = -range * aspect;
@@ -275,7 +271,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="angle"></param>
         /// <param name="v"></param>
@@ -284,7 +280,6 @@ namespace CSharpGL
         {
             return rotate(mat4.identity(), angle, v);
         }
-
 
         /// <summary>
         /// Applies a scale transformation to matrix <paramref name="m"/> by vector <paramref name="v"/>.
@@ -316,7 +311,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a matrix for a symmetric perspective-view frustum with far plane 
+        /// Creates a matrix for a symmetric perspective-view frustum with far plane
         /// at infinite for graphics hardware that doesn't support depth clamping.
         /// </summary>
         /// <param name="fovy">The fovy.</param>
@@ -363,5 +358,6 @@ namespace CSharpGL
             return new vec3(obj);
         }
     }
+
     // ReSharper restore InconsistentNaming
 }

@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Linq;
 
 namespace CSharpGL
 {
@@ -10,7 +9,6 @@ namespace CSharpGL
     [TypeConverter(typeof(StructTypeConverter<mat2>))]
     public struct mat2 : IEquatable<mat2>, ILoadFromString
     {
-
         //internal static mat2 Parse(string value)
         //{
         //    string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
@@ -21,7 +19,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -37,8 +35,8 @@ namespace CSharpGL
                 builder.AppendLine();
             }
             return builder.ToString();
-
         }
+
         #region Construction
 
         /// <summary>
@@ -62,8 +60,9 @@ namespace CSharpGL
             this.col0 = cols[0];
             this.col1 = cols[1];
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="col0"></param>
         /// <param name="col1"></param>
@@ -72,8 +71,9 @@ namespace CSharpGL
             this.col0 = col0;
             this.col1 = col1;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -98,7 +98,7 @@ namespace CSharpGL
             };
         }
 
-        #endregion
+        #endregion Construction
 
         #region Index Access
 
@@ -161,7 +161,7 @@ namespace CSharpGL
             }
         }
 
-        #endregion
+        #endregion Index Access
 
         #region Conversion
 
@@ -178,7 +178,7 @@ namespace CSharpGL
             return result;
         }
 
-        #endregion
+        #endregion Conversion
 
         #region Multiplication
 
@@ -217,8 +217,9 @@ namespace CSharpGL
 
             return result;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="s"></param>
@@ -232,12 +233,13 @@ namespace CSharpGL
             });
         }
 
-        #endregion
+        #endregion Multiplication
 
         internal vec2 col0;
         internal vec2 col1;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -257,8 +259,9 @@ namespace CSharpGL
 
             return left.Equals(right);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -267,8 +270,9 @@ namespace CSharpGL
         {
             return !(left == right);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -276,16 +280,18 @@ namespace CSharpGL
         {
             return (obj is mat2) && (this.Equals((mat2)obj));
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

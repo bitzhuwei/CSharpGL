@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Linq;
 
 namespace CSharpGL
 {
@@ -10,7 +9,6 @@ namespace CSharpGL
     [TypeConverter(typeof(StructTypeConverter<mat3>))]
     public struct mat3 : IEquatable<mat3>, ILoadFromString
     {
-
         //internal static mat3 Parse(string value)
         //{
         //    string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
@@ -22,7 +20,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string ToString()
         {
@@ -67,7 +65,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="col0"></param>
         /// <param name="col1"></param>
@@ -93,7 +91,7 @@ namespace CSharpGL
             };
         }
 
-        #endregion
+        #endregion Construction
 
         #region Index Access
 
@@ -160,7 +158,7 @@ namespace CSharpGL
             }
         }
 
-        #endregion
+        #endregion Index Access
 
         #region Conversion
 
@@ -190,7 +188,7 @@ namespace CSharpGL
                 });
         }
 
-        #endregion
+        #endregion Conversion
 
         #region Multiplication
 
@@ -241,7 +239,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="s"></param>
@@ -256,13 +254,14 @@ namespace CSharpGL
             });
         }
 
-        #endregion
+        #endregion Multiplication
 
         internal vec3 col0;
         internal vec3 col1;
         internal vec3 col2;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -282,8 +281,9 @@ namespace CSharpGL
 
             return left.Equals(right);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -292,8 +292,9 @@ namespace CSharpGL
         {
             return !(left == right);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -301,8 +302,9 @@ namespace CSharpGL
         {
             return (obj is mat3) && (this.Equals((mat3)obj));
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -311,7 +313,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

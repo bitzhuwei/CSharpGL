@@ -3,13 +3,12 @@
     public static partial class glm
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
         public static mat2 inverse(mat2 m)
         {
-
             float OneOverDeterminant = (1f) / (
                 +m[0][0] * m[1][1]
                 - m[1][0] * m[0][1]);
@@ -24,7 +23,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
@@ -47,10 +46,10 @@
             Inverse[2, 2] = +(m[0][0] * m[1][1] - m[1][0] * m[0][1]) * OneOverDeterminant;
 
             return Inverse;
-
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>

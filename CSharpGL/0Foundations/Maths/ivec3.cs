@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -10,24 +9,23 @@ namespace CSharpGL
     [TypeConverter(typeof(StructTypeConverter<ivec3>))]
     public struct ivec3 : IEquatable<ivec3>, ILoadFromString
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int x;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int y;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int z;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -50,7 +48,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="s"></param>
         public ivec3(int s)
@@ -59,7 +57,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -72,7 +70,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public ivec3(ivec3 v)
@@ -83,7 +81,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         public ivec3(ivec4 v)
@@ -94,7 +92,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="xy"></param>
         /// <param name="z"></param>
@@ -106,7 +104,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <returns></returns>
@@ -116,7 +114,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -132,7 +130,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -148,7 +146,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="self"></param>
         /// <param name="s"></param>
@@ -159,7 +157,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -170,7 +168,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -181,7 +179,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -192,7 +190,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rhs"></param>
         /// <returns></returns>
@@ -203,7 +201,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public int length()
@@ -214,7 +212,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rhs"></param>
         /// <returns></returns>
@@ -227,7 +225,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -238,7 +236,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
@@ -249,7 +247,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -259,7 +257,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -268,7 +266,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public int[] ToArray()
@@ -288,7 +286,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -306,7 +304,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

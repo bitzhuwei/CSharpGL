@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -84,24 +81,28 @@ namespace CSharpGL
                     y = (m31 - m13) * mult;
                     z = (m12 - m21) * mult;
                     break;
+
                 case 1:
                     x = biggestVal;
                     w = (m23 - m32) * mult;
                     y = (m12 + m21) * mult;
                     z = (m31 + m13) * mult;
                     break;
+
                 case 2:
                     y = biggestVal;
                     w = (m31 - m13) * mult;
                     x = (m12 + m21) * mult;
                     z = (m23 + m32) * mult;
                     break;
+
                 case 3:
                     z = biggestVal;
                     w = (m12 - m21) * mult;
                     x = (m31 + m13) * mult;
                     y = (m23 + m32) * mult;
                     break;
+
                 default:
                     break;
             }

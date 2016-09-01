@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// vector's helper.
@@ -16,7 +11,7 @@ namespace CSharpGL
         internal static readonly char[] separator = new char[] { ' ', ',' };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -29,6 +24,7 @@ namespace CSharpGL
 
             return result;
         }
+
         /// <summary>
         /// update minimum values.
         /// </summary>
@@ -100,6 +96,5 @@ namespace CSharpGL
             if (currentMax.y < item.y) { currentMax.y = item.y; }
             if (currentMax.z < item.z) { currentMax.z = item.z; }
         }
-
     }
 }
