@@ -126,5 +126,14 @@ namespace CSharpGL
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("ByteLength: {0}, Header: {1}", this.ByteLength, this.Header);
+        }
     }
 }
