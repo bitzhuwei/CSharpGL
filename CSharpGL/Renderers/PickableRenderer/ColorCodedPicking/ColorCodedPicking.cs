@@ -53,6 +53,7 @@ namespace CSharpGL
             return Pick(arg, rect, pickableElements);
         }
 
+        private static Framebuffer pickingFramebuffer;
         /// <summary>
         /// Color Coded Picking
         /// </summary>
@@ -69,8 +70,19 @@ namespace CSharpGL
             if (pickableElements.Length == 0) { return result; }
             if (!PickedSomething(rect, arg.CanvasRect)) { return result; }
 
+            if (pickingFramebuffer == null
+                || pickingFramebuffer.Width != arg.CanvasRect.Width
+                || pickingFramebuffer.Height != arg.CanvasRect.Height)
+            {
+                if (pickingFramebuffer != null) { pickingFramebuffer.Dispose(); }
+
+                pickingFramebuffer = InitializePickingFramebuffer(
+                  arg.CanvasRect.Width, arg.CanvasRect.Height);
+            }
+            pickingFramebuffer.Bind();
             Render4Picking(arg, pickableElements);
             List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, arg.CanvasRect.Height);
+            pickingFramebuffer.Unbind();
             foreach (var tuple in stageVertexIdList)
             {
                 int x = tuple.Item1.X;
@@ -87,6 +99,21 @@ namespace CSharpGL
             }
 
             return result;
+        }
+
+        private static Framebuffer InitializePickingFramebuffer(int width, int height)
+        {
+            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, OpenGL.GL_RGBA);
+            Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
+            var framebuffer = new Framebuffer();
+            framebuffer.Bind();
+            framebuffer.Attach(colorBuffer);
+            framebuffer.Attach(depthBuffer);
+
+            framebuffer.CheckCompleteness();
+            framebuffer.Unbind();
+
+            return framebuffer;
         }
 
         private static unsafe bool PickedSomething(Rectangle rect, Rectangle rectangle)
