@@ -10,30 +10,6 @@
 //    /// </summary>
 //    public class FramebufferTexture
 //    {
-//        private uint[] m_texture_id = new uint[1];
-//        /// <summary>
-//        /// 
-//        /// </summary>
-//        public uint TextureId { get { return m_texture_id[0]; } }
-
-//        /// <summary>
-//        /// 
-//        /// </summary>
-//        public uint TextureTarget { get; private set; }
-
-//        private uint m_internalfmt;
-//        private uint m_fmt;
-//        private bool m_mipmap;
-//        private bool m_interpol;
-
-//        /// <summary>
-//        /// 
-//        /// </summary>
-//        public int Width { get; private set; }
-//        /// <summary>
-//        /// 
-//        /// </summary>
-//        public int Height { get; private set; }
 //        /// <summary>
 //        /// 
 //        /// </summary>
