@@ -24,10 +24,6 @@ namespace CSharpGL
         ///// </summary>
         //public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
 
-        internal Camera()
-        {
-        }
-
         /// <summary>
         /// Camera.
         /// </summary>
@@ -61,6 +57,7 @@ namespace CSharpGL
             this.CameraType = cameraType;
         }
 
+        internal Camera() { }
         /// <summary>
         /// Pos:{0}, Target:{1}, Up:{2}
         /// </summary>
