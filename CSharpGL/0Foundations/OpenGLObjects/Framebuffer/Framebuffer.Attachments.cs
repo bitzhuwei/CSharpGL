@@ -173,9 +173,19 @@ namespace CSharpGL
         {
             if (nextColorAttachmentIndex >= attachment_id.Length)
             { throw new IndexOutOfRangeException("Not enough attach points!"); }
+            if (this.colorBufferList.Count > 0)
+            {
+                if (this.Width != renderbuffer.Width
+                    || this.Height != renderbuffer.Height)
+                {
+                    throw new Exception("Size not match!");
+                }
+            }
 
             glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
             this.colorBufferList.Add(renderbuffer);
+            this.Width = renderbuffer.Width;
+            this.Height = renderbuffer.Height;
         }
 
         private void AttachDepthbuffer(Renderbuffer renderbuffer, FramebufferTarget target)

@@ -7,8 +7,8 @@ namespace CSharpGL
     /// </summary>
     public partial class Framebuffer : IDisposable
     {
-        private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
         private static OpenGL.glBindFramebufferEXT glBindFramebuffer;
+        private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
         private static OpenGL.glFramebufferTexture2DEXT glFramebufferTexture2D;
 
         //private static OpenGL.glDrawBuffers glDrawBuffers;
@@ -23,6 +23,16 @@ namespace CSharpGL
         /// Framebuffer Id.
         /// </summary>
         public uint Id { get { return frameBuffer[0]; } }
+
+        /// <summary>
+        /// 0 means no renderbuffer attached.
+        /// </summary>
+        public int Width { get; private set; }
+
+        /// <summary>
+        /// 0 means no renderbuffer attached.
+        /// </summary>
+        public int Height { get; private set; }
 
         /// <summary>
         /// Create an empty framebuffer object.
