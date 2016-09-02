@@ -19,26 +19,11 @@ namespace CSharpGL
         //    return new mat3(col0, col1, col2);
         //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        public override string ToString()
-        {
-            var builder = new System.Text.StringBuilder();
-            var cols = new vec3[] { col0, col1, col2 };
-            for (int i = 0; i < cols.Length; i++)
-            {
-                builder.Append("col ");
-                builder.Append(i);
-                builder.Append(": [");
-                builder.Append(cols[i]);
-                builder.Append("] ");
-                builder.AppendLine();
-            }
-            return builder.ToString();
-        }
+        internal vec3 col0;
 
-        #region Construction
+        internal vec3 col1;
+
+        internal vec3 col2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="mat3"/> struct.
@@ -76,24 +61,6 @@ namespace CSharpGL
             this.col1 = col1;
             this.col2 = col2;
         }
-
-        /// <summary>
-        /// Creates an identity matrix.
-        /// </summary>
-        /// <returns>A new identity matrix.</returns>
-        public static mat3 identity()
-        {
-            return new mat3
-            {
-                col0 = new vec3(1, 0, 0),
-                col1 = new vec3(0, 1, 0),
-                col2 = new vec3(0, 0, 1),
-            };
-        }
-
-        #endregion Construction
-
-        #region Index Access
 
         /// <summary>
         /// Gets or sets the <see cref="vec3"/> column at the specified index.
@@ -158,39 +125,30 @@ namespace CSharpGL
             }
         }
 
-        #endregion Index Access
-
-        #region Conversion
+        /// <summary>
+        /// Creates an identity matrix.
+        /// </summary>
+        /// <returns>A new identity matrix.</returns>
+        public static mat3 identity()
+        {
+            return new mat3
+            {
+                col0 = new vec3(1, 0, 0),
+                col1 = new vec3(0, 1, 0),
+                col2 = new vec3(0, 0, 1),
+            };
+        }
 
         /// <summary>
-        /// Returns the matrix as a flat array of elements, column major.
+        ///
         /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
         /// <returns></returns>
-        public float[] ToArray()
+        public static bool operator !=(mat3 left, mat3 right)
         {
-            float[] result = new float[9];
-            result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z;
-            result[3 + 0] = col1.x; result[3 + 1] = col1.y; result[3 + 2] = col1.z;
-            result[6 + 0] = col2.x; result[6 + 1] = col2.y; result[6 + 2] = col2.z;
-            return result;
+            return !(left == right);
         }
-
-        /// <summary>
-        /// Returns the <see cref="mat3"/> portion of this matrix.
-        /// </summary>
-        /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
-        public mat2 to_mat2()
-        {
-            return new mat2(new vec2[]
-                {
-                    new vec2(col0.x,col0.y),
-                    new vec2(col1.x,col1.y),
-                });
-        }
-
-        #endregion Conversion
-
-        #region Multiplication
 
         /// <summary>
         /// Multiplies the <paramref name="lhs"/> matrix by the <paramref name="rhs"/> vector.
@@ -254,12 +212,6 @@ namespace CSharpGL
             });
         }
 
-        #endregion Multiplication
-
-        internal vec3 col0;
-        internal vec3 col1;
-        internal vec3 col2;
-
         /// <summary>
         ///
         /// </summary>
@@ -285,31 +237,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(mat3 left, mat3 right)
-        {
-            return !(left == right);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public override bool Equals(object obj)
         {
             return (obj is mat3) && (this.Equals((mat3)obj));
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
         }
 
         /// <summary>
@@ -322,12 +254,66 @@ namespace CSharpGL
             return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
+
         void ILoadFromString.Load(string value)
         {
             string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
             this.col0 = vec3.Parse(parts[1]);
             this.col1 = vec3.Parse(parts[3]);
             this.col2 = vec3.Parse(parts[5]);
+        }
+
+        /// <summary>
+        /// Returns the <see cref="mat3"/> portion of this matrix.
+        /// </summary>
+        /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
+        public mat2 to_mat2()
+        {
+            return new mat2(new vec2[]
+                {
+                    new vec2(col0.x,col0.y),
+                    new vec2(col1.x,col1.y),
+                });
+        }
+
+        /// <summary>
+        /// Returns the matrix as a flat array of elements, column major.
+        /// </summary>
+        /// <returns></returns>
+        public float[] ToArray()
+        {
+            float[] result = new float[9];
+            result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z;
+            result[3 + 0] = col1.x; result[3 + 1] = col1.y; result[3 + 2] = col1.z;
+            result[6 + 0] = col2.x; result[6 + 1] = col2.y; result[6 + 2] = col2.z;
+            return result;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override string ToString()
+        {
+            var builder = new System.Text.StringBuilder();
+            var cols = new vec3[] { col0, col1, col2 };
+            for (int i = 0; i < cols.Length; i++)
+            {
+                builder.Append("col ");
+                builder.Append(i);
+                builder.Append(": [");
+                builder.Append(cols[i]);
+                builder.Append("] ");
+                builder.AppendLine();
+            }
+            return builder.ToString();
         }
     }
 }

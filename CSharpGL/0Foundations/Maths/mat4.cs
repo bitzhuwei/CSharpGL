@@ -20,6 +20,114 @@ namespace CSharpGL
         //    return new mat4(col0, col1, col2, col3);
         //}
 
+        internal vec4 col0;
+
+        internal vec4 col1;
+
+        internal vec4 col2;
+
+        internal vec4 col3;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(mat4 left, mat4 right)
+        {
+            return !(left == right);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(mat4 left, mat4 right)
+        {
+            //object leftObj = left, rightObj = right;
+            //if (leftObj == null)
+            //{
+            //    if (rightObj == null) { return true; }
+            //    else { return false; }
+            //}
+            //else
+            //{
+            //    if (rightObj == null) { return false; }
+            //}
+
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            return (obj is mat4) && (this.Equals((mat4)obj));
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(mat4 other)
+        {
+            return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2 && this.col3 == other.col3);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.col0 = vec4.Parse(parts[1]);
+            this.col1 = vec4.Parse(parts[3]);
+            this.col2 = vec4.Parse(parts[5]);
+            this.col3 = vec4.Parse(parts[7]);
+        }
+
+        /// <summary>
+        /// Returns the <see cref="mat3"/> portion of this matrix.
+        /// </summary>
+        /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
+        public mat3 to_mat3()
+        {
+            return new mat3(new vec3[]
+            {
+                new vec3(col0),
+                new vec3(col1),
+                new vec3(col2),
+            });
+        }
+
+        /// <summary>
+        /// Returns the matrix as a flat array of elements, column major.
+        /// </summary>
+        /// <returns></returns>
+        public float[] ToArray()
+        {
+            float[] result = new float[16];
+            result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z; result[0 + 3] = col0.w;
+            result[4 + 0] = col1.x; result[4 + 1] = col1.y; result[4 + 2] = col1.z; result[4 + 3] = col1.w;
+            result[8 + 0] = col2.x; result[8 + 1] = col2.y; result[8 + 2] = col2.z; result[8 + 3] = col2.w;
+            result[12 + 0] = col3.x; result[12 + 1] = col3.y; result[12 + 2] = col3.z; result[12 + 3] = col3.w;
+
+            return result;
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -169,40 +277,6 @@ namespace CSharpGL
         }
 
         #endregion Index Access
-
-        #region Conversion
-
-        /// <summary>
-        /// Returns the matrix as a flat array of elements, column major.
-        /// </summary>
-        /// <returns></returns>
-        public float[] ToArray()
-        {
-            float[] result = new float[16];
-            result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z; result[0 + 3] = col0.w;
-            result[4 + 0] = col1.x; result[4 + 1] = col1.y; result[4 + 2] = col1.z; result[4 + 3] = col1.w;
-            result[8 + 0] = col2.x; result[8 + 1] = col2.y; result[8 + 2] = col2.z; result[8 + 3] = col2.w;
-            result[12 + 0] = col3.x; result[12 + 1] = col3.y; result[12 + 2] = col3.z; result[12 + 3] = col3.w;
-
-            return result;
-        }
-
-        /// <summary>
-        /// Returns the <see cref="mat3"/> portion of this matrix.
-        /// </summary>
-        /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
-        public mat3 to_mat3()
-        {
-            return new mat3(new vec3[]
-            {
-                new vec3(col0),
-                new vec3(col1),
-                new vec3(col2),
-            });
-        }
-
-        #endregion Conversion
-
         #region Multiplication
 
         /// <summary>
@@ -277,81 +351,5 @@ namespace CSharpGL
         }
 
         #endregion Multiplication
-
-        internal vec4 col0;
-        internal vec4 col1;
-        internal vec4 col2;
-        internal vec4 col3;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(mat4 left, mat4 right)
-        {
-            //object leftObj = left, rightObj = right;
-            //if (leftObj == null)
-            //{
-            //    if (rightObj == null) { return true; }
-            //    else { return false; }
-            //}
-            //else
-            //{
-            //    if (rightObj == null) { return false; }
-            //}
-
-            return left.Equals(right);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(mat4 left, mat4 right)
-        {
-            return !(left == right);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return (obj is mat4) && (this.Equals((mat4)obj));
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(mat4 other)
-        {
-            return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2 && this.col3 == other.col3);
-        }
-
-        void ILoadFromString.Load(string value)
-        {
-            string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
-            this.col0 = vec4.Parse(parts[1]);
-            this.col1 = vec4.Parse(parts[3]);
-            this.col2 = vec4.Parse(parts[5]);
-            this.col3 = vec4.Parse(parts[7]);
-        }
     }
 }

@@ -22,27 +22,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public bool this[int index]
-        {
-            get
-            {
-                if (index == 0) return x;
-                else if (index == 1) return y;
-                else throw new Exception("Out of range.");
-            }
-            set
-            {
-                if (index == 0) x = value;
-                else if (index == 1) y = value;
-                else throw new Exception("Out of range.");
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="s"></param>
         public bvec2(bool s)
         {
@@ -93,14 +72,23 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public static bool operator ==(bvec2 lhs, bvec2 rhs)
+        public bool this[int index]
         {
-            return (lhs.x == rhs.x && lhs.y == rhs.y);
+            get
+            {
+                if (index == 0) return x;
+                else if (index == 1) return y;
+                else throw new Exception("Out of range.");
+            }
+            set
+            {
+                if (index == 0) x = value;
+                else if (index == 1) y = value;
+                else throw new Exception("Out of range.");
+            }
         }
-
         /// <summary>
         ///
         /// </summary>
@@ -115,6 +103,16 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static bool operator ==(bvec2 lhs, bvec2 rhs)
+        {
+            return (lhs.x == rhs.x && lhs.y == rhs.y);
+        }
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public override bool Equals(object obj)
@@ -125,10 +123,27 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(bvec2 other)
+        {
+            return (this.x == other.x && this.y == other.y);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}", x, y).GetHashCode();
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = bool.Parse(parts[0]);
+            this.y = bool.Parse(parts[1]);
         }
 
         /// <summary>
@@ -157,23 +172,6 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("{0}, {1}", x, y);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(bvec2 other)
-        {
-            return (this.x == other.x && this.y == other.y);
-        }
-
-        void ILoadFromString.Load(string value)
-        {
-            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
-            this.x = bool.Parse(parts[0]);
-            this.y = bool.Parse(parts[1]);
         }
     }
 }

@@ -13,6 +13,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        public bool w;
+
+        /// <summary>
+        ///
+        /// </summary>
         public bool x;
 
         /// <summary>
@@ -24,37 +29,6 @@ namespace CSharpGL
         ///
         /// </summary>
         public bool z;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool w;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public bool this[int index]
-        {
-            get
-            {
-                if (index == 0) return x;
-                else if (index == 1) return y;
-                else if (index == 2) return z;
-                else if (index == 3) return w;
-                else throw new Exception("Out of range.");
-            }
-            set
-            {
-                if (index == 0) x = value;
-                else if (index == 1) y = value;
-                else if (index == 2) z = value;
-                else if (index == 3) w = value;
-                else throw new Exception("Out of range.");
-            }
-        }
-
         /// <summary>
         ///
         /// </summary>
@@ -107,14 +81,27 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public static bool operator ==(bvec4 lhs, bvec4 rhs)
+        public bool this[int index]
         {
-            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w);
+            get
+            {
+                if (index == 0) return x;
+                else if (index == 1) return y;
+                else if (index == 2) return z;
+                else if (index == 3) return w;
+                else throw new Exception("Out of range.");
+            }
+            set
+            {
+                if (index == 0) x = value;
+                else if (index == 1) y = value;
+                else if (index == 2) z = value;
+                else if (index == 3) w = value;
+                else throw new Exception("Out of range.");
+            }
         }
-
         /// <summary>
         ///
         /// </summary>
@@ -129,6 +116,16 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static bool operator ==(bvec4 lhs, bvec4 rhs)
+        {
+            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w);
+        }
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public override bool Equals(object obj)
@@ -139,10 +136,29 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(bvec4 other)
+        {
+            return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}#{2}#{3}", x, y, z, w).GetHashCode();
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = bool.Parse(parts[0]);
+            this.y = bool.Parse(parts[1]);
+            this.z = bool.Parse(parts[2]);
+            this.w = bool.Parse(parts[3]);
         }
 
         /// <summary>
@@ -161,25 +177,6 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}", x, y, z, w);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(bvec4 other)
-        {
-            return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
-        }
-
-        void ILoadFromString.Load(string value)
-        {
-            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
-            this.x = bool.Parse(parts[0]);
-            this.y = bool.Parse(parts[1]);
-            this.z = bool.Parse(parts[2]);
-            this.w = bool.Parse(parts[3]);
         }
     }
 }

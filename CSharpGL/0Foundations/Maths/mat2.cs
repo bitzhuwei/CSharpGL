@@ -18,26 +18,9 @@ namespace CSharpGL
         //    return new mat2(col0, col1);
         //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        public override string ToString()
-        {
-            var builder = new System.Text.StringBuilder();
-            var cols = new vec2[] { col0, col1 };
-            for (int i = 0; i < cols.Length; i++)
-            {
-                builder.Append("col ");
-                builder.Append(i);
-                builder.Append(": [");
-                builder.Append(cols[i]);
-                builder.Append("] ");
-                builder.AppendLine();
-            }
-            return builder.ToString();
-        }
+        internal vec2 col0;
 
-        #region Construction
+        internal vec2 col1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="mat2"/> struct.
@@ -84,23 +67,6 @@ namespace CSharpGL
             this.col0 = new vec2(a, b);
             this.col1 = new vec2(c, d);
         }
-
-        /// <summary>
-        /// Creates an identity matrix.
-        /// </summary>
-        /// <returns>A new identity matrix.</returns>
-        public static mat2 identity()
-        {
-            return new mat2
-            {
-                col0 = new vec2(1, 0),
-                col1 = new vec2(0, 1),
-            };
-        }
-
-        #endregion Construction
-
-        #region Index Access
 
         /// <summary>
         /// Gets or sets the <see cref="vec2"/> column at the specified index.
@@ -161,26 +127,29 @@ namespace CSharpGL
             }
         }
 
-        #endregion Index Access
-
-        #region Conversion
-
         /// <summary>
-        /// Returns the matrix as a flat array of elements, column major.
+        /// Creates an identity matrix.
         /// </summary>
-        /// <returns></returns>
-        public float[] ToArray()
+        /// <returns>A new identity matrix.</returns>
+        public static mat2 identity()
         {
-            var result = new float[4];
-            result[0 + 0] = col0.x; result[0 + 1] = col0.y;
-            result[2 + 0] = col1.x; result[2 + 1] = col1.y;
-
-            return result;
+            return new mat2
+            {
+                col0 = new vec2(1, 0),
+                col1 = new vec2(0, 1),
+            };
         }
 
-        #endregion Conversion
-
-        #region Multiplication
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(mat2 left, mat2 right)
+        {
+            return !(left == right);
+        }
 
         /// <summary>
         /// Multiplies the <paramref name="lhs"/> matrix by the <paramref name="rhs"/> vector.
@@ -233,11 +202,6 @@ namespace CSharpGL
             });
         }
 
-        #endregion Multiplication
-
-        internal vec2 col0;
-        internal vec2 col1;
-
         /// <summary>
         ///
         /// </summary>
@@ -263,31 +227,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(mat2 left, mat2 right)
-        {
-            return !(left == right);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public override bool Equals(object obj)
         {
             return (obj is mat2) && (this.Equals((mat2)obj));
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
         }
 
         /// <summary>
@@ -300,11 +244,52 @@ namespace CSharpGL
             return (this.col0 == other.col0 && this.col1 == other.col1);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
+
         void ILoadFromString.Load(string value)
         {
             string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
             this.col0 = vec2.Parse(parts[1]);
             this.col1 = vec2.Parse(parts[3]);
+        }
+
+        /// <summary>
+        /// Returns the matrix as a flat array of elements, column major.
+        /// </summary>
+        /// <returns></returns>
+        public float[] ToArray()
+        {
+            var result = new float[4];
+            result[0 + 0] = col0.x; result[0 + 1] = col0.y;
+            result[2 + 0] = col1.x; result[2 + 1] = col1.y;
+
+            return result;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override string ToString()
+        {
+            var builder = new System.Text.StringBuilder();
+            var cols = new vec2[] { col0, col1 };
+            for (int i = 0; i < cols.Length; i++)
+            {
+                builder.Append("col ");
+                builder.Append(i);
+                builder.Append(": [");
+                builder.Append(cols[i]);
+                builder.Append("] ");
+                builder.AppendLine();
+            }
+            return builder.ToString();
         }
     }
 }
