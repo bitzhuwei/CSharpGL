@@ -150,7 +150,7 @@ namespace GridViewer
             foreach (GridBlockProperty gbp in gridProperties)
             {
                 var script = new ScientificModelScript(gridObj, gbp, this.scientificCanvas.ColorPalette);
-                gridObj.ScriptList.Add(script);
+                gridObj.Scripts.Add(script);
             }
             return gridObj;
         }

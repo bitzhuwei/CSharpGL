@@ -46,7 +46,7 @@ namespace CSharpGL.Demos
                 var obj = new SceneObject();
                 obj.Renderer = billboardRenderer;
                 var updatePosition = new UpdateBillboardPosition(movableRenderer);
-                obj.ScriptList.Add(updatePosition);
+                obj.Scripts.Add(updatePosition);
                 this.scene.RootObject.Children.Add(obj);
             }
             {

@@ -31,7 +31,7 @@
             var obj = new SceneObject();
             obj.Renderer = renderer;
             obj.Name = string.IsNullOrEmpty(name) ? string.Format("{0}", renderer) : name;
-            obj.ScriptList.AddRange(scripts);
+            obj.Scripts.AddRange(scripts);
 
             return obj;
         }

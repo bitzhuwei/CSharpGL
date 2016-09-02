@@ -48,5 +48,14 @@ namespace CSharpGL
         {
             this.DoUpdate(elapsedTime);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("Id:{0}, {1}, {2}", this.Id, this.Name, this.BindingObject);
+        }
     }
 }

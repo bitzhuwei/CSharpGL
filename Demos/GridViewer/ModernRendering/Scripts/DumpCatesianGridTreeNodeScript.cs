@@ -16,7 +16,7 @@ namespace GridViewer
             gridNode.Text = obj.Name;
             gridNode.Tag = obj;
             gridNode.ToolTipText = renderer.Grid.GetType().Name;
-            foreach (var item in obj.ScriptList)
+            foreach (var item in obj.Scripts)
             {
                 var script = item as ScientificModelScript;
                 if (script != null)

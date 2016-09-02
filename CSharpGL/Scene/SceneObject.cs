@@ -24,36 +24,6 @@ namespace CSharpGL
         [Description("Name.")]
         public string Name { get; set; }
 
-        ///// <summary>
-        ///// Translate, rotate and scale this object in world space.
-        ///// </summary>
-        //[Category(strBasic)]
-        //[Description("Translate, rotate and scale this object in world space.")]
-        //public TransformComponent Transform { get; protected set; }
-
-        //private RendererComponent rendererComponent;
-        ///// <summary>
-        ///// render this object.
-        ///// </summary>
-        //[Category(strBasic)]
-        //[Description("render this object.")]
-        //public RendererComponent RendererComponent
-        //{
-        //    get { return this.rendererComponent; }
-        //    set
-        //    {
-        //        RendererComponent rendererComponent = this.rendererComponent;
-        //        if (rendererComponent != value)
-        //        {
-        //            if (rendererComponent != null) { rendererComponent.BindingObject = null; }
-
-        //            if (value != null) { value.BindingObject = this; }
-
-        //            this.rendererComponent = value;
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// renders something.
         /// Note: I wanted to use <see cref="IRenderable"/> but it fails to display in <see cref="PropertyGridEditor"/>. So I have to upgrade it to <see cref="RendererBase"/>.
@@ -67,7 +37,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("update state of this object.")]
-        public ScriptList ScriptList { get; private set; }
+        public ScriptList Scripts { get; private set; }
 
         /// <summary>
         /// Enabled or not.
@@ -92,7 +62,7 @@ namespace CSharpGL
             this.Name = this.GetType().Name;
             this.Enabled = true;
             //this.Transform = new TransformComponent(this);
-            this.ScriptList = new ScriptList(this);
+            this.Scripts = new ScriptList(this);
             this.Children = new ChildList<SceneObject>(this);
         }
 
@@ -113,8 +83,8 @@ namespace CSharpGL
         {
             if (this.Enabled)
             {
-                ScriptList scriptList = this.ScriptList;
-                foreach (var script in scriptList)
+                ScriptList scripts = this.Scripts;
+                foreach (var script in scripts)
                 {
                     script.Update(elapsedTime);
                 }
@@ -128,7 +98,7 @@ namespace CSharpGL
         /// <returns></returns>
         public T GetScript<T>() where T : Script
         {
-            foreach (var item in this.ScriptList)
+            foreach (var item in this.Scripts)
             {
                 var script = item as T;
                 if (script != null)
@@ -147,11 +117,11 @@ namespace CSharpGL
         /// <returns></returns>
         public Script GetScript(string name)
         {
-            foreach (var item in this.ScriptList)
+            foreach (Script script in this.Scripts)
             {
-                if (item.Name == name)
+                if (script.Name == name)
                 {
-                    return item;
+                    return script;
                 }
             }
 

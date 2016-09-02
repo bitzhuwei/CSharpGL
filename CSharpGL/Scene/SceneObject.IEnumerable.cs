@@ -7,7 +7,7 @@ namespace CSharpGL
         #region IEnumerable<SceneObject>
 
         /// <summary>
-        ///
+        /// enumerates self and all children objects recursively.
         /// </summary>
         /// <returns></returns>
         public IEnumerator<SceneObject> GetEnumerator()

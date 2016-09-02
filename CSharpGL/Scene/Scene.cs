@@ -13,41 +13,9 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Scene
     {
-        /// <summary>
-        /// background color.
-        /// </summary>
-        public Color ClearColor { get; set; }
-
-        /// <summary>
-        /// camera of the scene.
-        /// </summary>
-        public ICamera Camera { get; private set; }
-
-        /// <summary>
-        /// Canvas that this scene binds to.
-        /// </summary>
-        public ICanvas Canvas { get; set; }
-
-        private SceneRootObject rootObject;
-
-        /// <summary>
-        /// Root object of all objects to be rendered in the scene.
-        /// </summary>
-        public SceneRootObject RootObject { get { return rootObject; } }
-
-        private UIRoot uiRoot = new UIRoot();
-
-        /// <summary>
-        /// hosts all UI renderers.
-        /// </summary>
-        public UIRoot UIRoot { get { return this.uiRoot; } }
-
         private UIRoot cursorRoot = new UIRoot();
-
-        /// <summary>
-        /// OpenGL UI for cursor.
-        /// </summary>
-        public UICursor Cursor { get; set; }
+        private UIRoot uiRoot = new UIRoot();
+        private SceneRootObject rootObject;
 
         /// <summary>
         /// Manages a scene to be rendered and updated.
@@ -57,11 +25,9 @@ namespace CSharpGL
         /// <param name="objects">Objects to be rendered</param>
         public Scene(Camera camera, ICanvas canvas, params SceneObject[] objects)
         {
-            if (camera == null)
-            { throw new ArgumentNullException(); }
+            if (camera == null) { throw new ArgumentNullException(); }
 
-            if (canvas == null)
-            { throw new ArgumentNullException(); }
+            if (canvas == null) { throw new ArgumentNullException(); }
 
             this.Camera = camera;
             this.Canvas = canvas;
@@ -73,20 +39,32 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Please bind this method to Control.Resize event.
+        /// camera of the scene.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void Resize(object sender, EventArgs e)
-        {
-            Control control = sender as Control;
-            if (control == null) { throw new ArgumentException(); }
+        public ICamera Camera { get; private set; }
 
-            this.Camera.Resize(control.Width, control.Height);
+        /// <summary>
+        /// Canvas that this scene binds to.
+        /// </summary>
+        public ICanvas Canvas { get; set; }
 
-            this.uiRoot.Size = control.Size;
-        }
+        /// <summary>
+        /// background color.
+        /// </summary>
+        public Color ClearColor { get; set; }
+        /// <summary>
+        /// OpenGL UI for cursor.
+        /// </summary>
+        public UICursor Cursor { get; set; }
 
+        /// <summary>
+        /// Root object of all objects to be rendered in the scene.
+        /// </summary>
+        public SceneRootObject RootObject { get { return rootObject; } }
+        /// <summary>
+        /// hosts all UI renderers.
+        /// </summary>
+        public UIRoot UIRoot { get { return this.uiRoot; } }
         /// <summary>
         ///
         /// </summary>
@@ -115,6 +93,21 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// Please bind this method to Control.Resize event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Resize(object sender, EventArgs e)
+        {
+            Control control = sender as Control;
+            if (control == null) { throw new ArgumentException(); }
+
+            this.Camera.Resize(control.Width, control.Height);
+
+            this.uiRoot.Size = control.Size;
+            this.cursorRoot.Size = control.Size;
+        }
         private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
         {
             sceneObject.Render(arg);

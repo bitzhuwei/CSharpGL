@@ -4,14 +4,18 @@ namespace CSharpGL
 {
     public partial class Scene
     {
+        private const double interval = 1000 / 25;
+
+        private int currentCycle;
+
         /// <summary>
         /// how many times should this engine run?
         /// <para>0 means endless.</para>
         /// </summary>
         private int maxCycle = 0;
-
-        private int currentCycle;
         private bool running = false;
+
+        private System.Timers.Timer timer;
 
         /// <summary>
         /// whether this scene's objects are being updated now.
@@ -27,9 +31,7 @@ namespace CSharpGL
                 { this.Stop(); }
             }
         }
-
-        private const double interval = 1000 / 25;
-        private System.Timers.Timer timer;// = new System.Timers.Timer(10000);   //实例化Timer类，设置间隔时间为10000毫秒；
+        // = new System.Timers.Timer(10000);   //实例化Timer类，设置间隔时间为10000毫秒；
 
         /// <summary>
         /// start running.
@@ -69,6 +71,14 @@ namespace CSharpGL
             this.running = false;
         }
 
+        /// <summary>
+        /// update once.
+        /// </summary>
+        public void Update()
+        {
+            this.UpdateObject(this.RootObject, 0);
+        }
+
         private void Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
             if (this.maxCycle <= 0// endless
@@ -92,14 +102,6 @@ namespace CSharpGL
             {
                 UpdateObject(child, interval);
             }
-        }
-
-        /// <summary>
-        /// update once.
-        /// </summary>
-        public void Update()
-        {
-            this.UpdateObject(this.RootObject, 0);
         }
     }
 }

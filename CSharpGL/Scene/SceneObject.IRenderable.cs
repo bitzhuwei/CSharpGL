@@ -11,7 +11,7 @@
             if (this.Enabled)
             {
                 //RendererComponent renderer = this.RendererComponent;
-                IRenderable renderer = this.Renderer;
+                RendererBase renderer = this.Renderer;
                 if (renderer != null)
                 {
                     renderer.Render(arg);

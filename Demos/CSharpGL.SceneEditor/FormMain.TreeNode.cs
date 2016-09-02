@@ -111,7 +111,7 @@ namespace CSharpGL.SceneEditor
                 {
                     var obj = node.Tag as SceneObject;
                     var script = Activator.CreateInstance(frmSelectScript.SelectedType) as Script;
-                    obj.ScriptList.Add(script);
+                    obj.Scripts.Add(script);
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace CSharpGL.SceneEditor
             if (node != null)
             {
                 var obj = node.Tag as SceneObject;
-                obj.ScriptList.Clear();
+                obj.Scripts.Clear();
             }
         }
 
