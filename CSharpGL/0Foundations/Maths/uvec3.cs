@@ -27,29 +27,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public uint this[int index]
-        {
-            get
-            {
-                if (index == 0) return x;
-                else if (index == 1) return y;
-                else if (index == 2) return z;
-                else throw new Exception("Out of range.");
-            }
-            set
-            {
-                if (index == 0) x = value;
-                else if (index == 1) y = value;
-                else if (index == 2) z = value;
-                else throw new Exception("Out of range.");
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="s"></param>
         public uvec3(uint s)
         {
@@ -103,6 +80,28 @@ namespace CSharpGL
             this.z = z;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public uint this[int index]
+        {
+            get
+            {
+                if (index == 0) return x;
+                else if (index == 1) return y;
+                else if (index == 2) return z;
+                else throw new Exception("Out of range.");
+            }
+            set
+            {
+                if (index == 0) x = value;
+                else if (index == 1) y = value;
+                else if (index == 2) z = value;
+                else throw new Exception("Out of range.");
+            }
+        }
         ///// <summary>
         /////
         ///// </summary>
@@ -119,15 +118,10 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static uvec3 operator +(uvec3 lhs, uvec3 rhs)
+        public static uvec3 operator -(uvec3 lhs, uvec3 rhs)
         {
-            return new uvec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
+            return new uvec3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
         }
-
-        //public static uvec3 operator +(uvec3 lhs, uint rhs)
-        //{
-        //    return new uvec3(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
-        //}
 
         /// <summary>
         ///
@@ -135,15 +129,10 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static uvec3 operator -(uvec3 lhs, uvec3 rhs)
+        public static bool operator !=(uvec3 lhs, uvec3 rhs)
         {
-            return new uvec3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
+            return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
         }
-
-        //public static uvec3 operator -(uvec3 lhs, uint rhs)
-        //{
-        //    return new uvec3(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
-        //}
 
         /// <summary>
         ///
@@ -156,6 +145,14 @@ namespace CSharpGL
             return new uvec3(self.x * s, self.y * s, self.z * s);
         }
 
+        //public static uvec3 operator +(uvec3 lhs, uint rhs)
+        //{
+        //    return new uvec3(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
+        //}
+        //public static uvec3 operator -(uvec3 lhs, uint rhs)
+        //{
+        //    return new uvec3(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
+        //}
         /// <summary>
         ///
         /// </summary>
@@ -165,6 +162,17 @@ namespace CSharpGL
         public static uvec3 operator *(uint lhs, uvec3 rhs)
         {
             return new uvec3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static uvec3 operator *(uvec3 lhs, uvec3 rhs)
+        {
+            return new uvec3(rhs.x * lhs.x, rhs.y * lhs.y, rhs.z * lhs.z);
         }
 
         /// <summary>
@@ -184,31 +192,19 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static uvec3 operator *(uvec3 lhs, uvec3 rhs)
+        public static uvec3 operator +(uvec3 lhs, uvec3 rhs)
         {
-            return new uvec3(rhs.x * lhs.x, rhs.y * lhs.y, rhs.z * lhs.z);
+            return new uvec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
         }
-
         /// <summary>
         ///
         /// </summary>
+        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public uint dot(uvec3 rhs)
+        public static bool operator ==(uvec3 lhs, uvec3 rhs)
         {
-            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z;
-            return result;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public float length()
-        {
-            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
-
-            return (float)result;
+            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
         }
 
         /// <summary>
@@ -227,23 +223,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator ==(uvec3 lhs, uvec3 rhs)
+        public uint dot(uvec3 rhs)
         {
-            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns></returns>
-        public static bool operator !=(uvec3 lhs, uvec3 rhs)
-        {
-            return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
+            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z;
+            return result;
         }
 
         /// <summary>
@@ -259,12 +244,40 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(uvec3 other)
+        {
+            return (this.x == other.x && this.y == other.y && this.z == other.z);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}#{2}", x, y, z).GetHashCode();
         }
 
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = uint.Parse(parts[0]);
+            this.y = uint.Parse(parts[1]);
+            this.z = uint.Parse(parts[2]);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public float length()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+
+            return (float)result;
+        }
         /// <summary>
         ///
         /// </summary>
@@ -301,24 +314,6 @@ namespace CSharpGL
             uint y = uint.Parse(parts[1]);
             uint z = uint.Parse(parts[2]);
             return new uvec3(x, y, z);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(uvec3 other)
-        {
-            return (this.x == other.x && this.y == other.y && this.z == other.z);
-        }
-
-        void ILoadFromString.Load(string value)
-        {
-            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
-            this.x = uint.Parse(parts[0]);
-            this.y = uint.Parse(parts[1]);
-            this.z = uint.Parse(parts[2]);
         }
     }
 }

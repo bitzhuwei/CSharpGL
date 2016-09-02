@@ -13,6 +13,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        public uint w;
+
+        /// <summary>
+        ///
+        /// </summary>
         public uint x;
 
         /// <summary>
@@ -24,37 +29,6 @@ namespace CSharpGL
         ///
         /// </summary>
         public uint z;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public uint w;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public uint this[int index]
-        {
-            get
-            {
-                if (index == 0) return x;
-                else if (index == 1) return y;
-                else if (index == 2) return z;
-                else if (index == 3) return w;
-                else throw new Exception("Out of range.");
-            }
-            set
-            {
-                if (index == 0) x = value;
-                else if (index == 1) y = value;
-                else if (index == 2) z = value;
-                else if (index == 3) w = value;
-                else throw new Exception("Out of range.");
-            }
-        }
-
         /// <summary>
         ///
         /// </summary>
@@ -104,6 +78,30 @@ namespace CSharpGL
             this.w = w;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public uint this[int index]
+        {
+            get
+            {
+                if (index == 0) return x;
+                else if (index == 1) return y;
+                else if (index == 2) return z;
+                else if (index == 3) return w;
+                else throw new Exception("Out of range.");
+            }
+            set
+            {
+                if (index == 0) x = value;
+                else if (index == 1) y = value;
+                else if (index == 2) z = value;
+                else if (index == 3) w = value;
+                else throw new Exception("Out of range.");
+            }
+        }
         ///// <summary>
         /////
         ///// </summary>
@@ -120,20 +118,10 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static uvec4 operator +(uvec4 lhs, uvec4 rhs)
+        public static uvec4 operator -(uvec4 lhs, uvec4 rhs)
         {
-            return new uvec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
+            return new uvec4(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
         }
-
-        //public static uvec4 operator +(uvec4 lhs, uint rhs)
-        //{
-        //    return new uvec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
-        //}
-
-        //public static uvec4 operator -(uvec4 lhs, uint rhs)
-        //{
-        //    return new uvec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
-        //}
 
         /// <summary>
         ///
@@ -141,11 +129,15 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static uvec4 operator -(uvec4 lhs, uvec4 rhs)
+        public static bool operator !=(uvec4 lhs, uvec4 rhs)
         {
-            return new uvec4(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
+            return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z || lhs.w != rhs.w);
         }
 
+        //public static uvec4 operator -(uvec4 lhs, uint rhs)
+        //{
+        //    return new uvec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
+        //}
         /// <summary>
         ///
         /// </summary>
@@ -157,6 +149,10 @@ namespace CSharpGL
             return new uvec4(self.x * s, self.y * s, self.z * s, self.w * s);
         }
 
+        //public static uvec4 operator +(uvec4 lhs, uint rhs)
+        //{
+        //    return new uvec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
+        //}
         /// <summary>
         ///
         /// </summary>
@@ -193,25 +189,13 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public uint dot(uvec4 rhs)
+        public static uvec4 operator +(uvec4 lhs, uvec4 rhs)
         {
-            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z + this.w * rhs.w;
-            return result;
+            return new uvec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public float length()
-        {
-            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
-
-            return (float)result;
-        }
-
         /// <summary>
         ///
         /// </summary>
@@ -226,12 +210,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator !=(uvec4 lhs, uvec4 rhs)
+        public uint dot(uvec4 rhs)
         {
-            return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z || lhs.w != rhs.w);
+            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z + this.w * rhs.w;
+            return result;
         }
 
         /// <summary>
@@ -247,12 +231,41 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(uvec4 other)
+        {
+            return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}#{2}#{3}", x, y, z, w).GetHashCode();
         }
 
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = uint.Parse(parts[0]);
+            this.y = uint.Parse(parts[1]);
+            this.z = uint.Parse(parts[2]);
+            this.w = uint.Parse(parts[3]);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public float length()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
+
+            return (float)result;
+        }
         /// <summary>
         ///
         /// </summary>
@@ -291,25 +304,6 @@ namespace CSharpGL
             uint z = uint.Parse(parts[2]);
             uint w = uint.Parse(parts[3]);
             return new uvec4(x, y, z, w);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(uvec4 other)
-        {
-            return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
-        }
-
-        void ILoadFromString.Load(string value)
-        {
-            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
-            this.x = uint.Parse(parts[0]);
-            this.y = uint.Parse(parts[1]);
-            this.z = uint.Parse(parts[2]);
-            this.w = uint.Parse(parts[3]);
         }
     }
 }

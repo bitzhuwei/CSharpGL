@@ -22,27 +22,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public uint this[int index]
-        {
-            get
-            {
-                if (index == 0) return x;
-                else if (index == 1) return y;
-                else throw new Exception("Out of range.");
-            }
-            set
-            {
-                if (index == 0) x = value;
-                else if (index == 1) y = value;
-                else throw new Exception("Out of range.");
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="s"></param>
         public uvec2(uint s)
         {
@@ -90,37 +69,26 @@ namespace CSharpGL
             this.y = v.y;
         }
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="lhs"></param>
-        ///// <returns></returns>
-        //public static uvec2 operator -(uvec2 lhs)
-        //{
-        //    return new uvec2(-lhs.x, -lhs.y);
-        //}
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public static uvec2 operator +(uvec2 lhs, uvec2 rhs)
+        public uint this[int index]
         {
-            return new uvec2(lhs.x + rhs.x, lhs.y + rhs.y);
+            get
+            {
+                if (index == 0) return x;
+                else if (index == 1) return y;
+                else throw new Exception("Out of range.");
+            }
+            set
+            {
+                if (index == 0) x = value;
+                else if (index == 1) y = value;
+                else throw new Exception("Out of range.");
+            }
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns></returns>
-        public static uvec2 operator +(uvec2 lhs, uint rhs)
-        {
-            return new uvec2(lhs.x + rhs, lhs.y + rhs);
-        }
-
         /// <summary>
         ///
         /// </summary>
@@ -141,6 +109,17 @@ namespace CSharpGL
         public static uvec2 operator -(uvec2 lhs, uint rhs)
         {
             return new uvec2(lhs.x - rhs, lhs.y - rhs);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static bool operator !=(uvec2 lhs, uvec2 rhs)
+        {
+            return (lhs.x != rhs.x || lhs.y != rhs.y);
         }
 
         /// <summary>
@@ -187,28 +166,36 @@ namespace CSharpGL
             return new uvec2(lhs.x / rhs, lhs.y / rhs);
         }
 
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="lhs"></param>
+        ///// <returns></returns>
+        //public static uvec2 operator -(uvec2 lhs)
+        //{
+        //    return new uvec2(-lhs.x, -lhs.y);
+        //}
         /// <summary>
         ///
         /// </summary>
+        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public uint dot(uvec2 rhs)
+        public static uvec2 operator +(uvec2 lhs, uvec2 rhs)
         {
-            var result = this.x * rhs.x + this.y * rhs.y;
-            return result;
+            return new uvec2(lhs.x + rhs.x, lhs.y + rhs.y);
         }
 
         /// <summary>
         ///
         /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
         /// <returns></returns>
-        public float length()
+        public static uvec2 operator +(uvec2 lhs, uint rhs)
         {
-            double result = Math.Sqrt(this.x * this.x + this.y * this.y);
-
-            return (float)result;
+            return new uvec2(lhs.x + rhs, lhs.y + rhs);
         }
-
         /// <summary>
         ///
         /// </summary>
@@ -223,12 +210,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator !=(uvec2 lhs, uvec2 rhs)
+        public uint dot(uvec2 rhs)
         {
-            return (lhs.x != rhs.x || lhs.y != rhs.y);
+            var result = this.x * rhs.x + this.y * rhs.y;
+            return result;
         }
 
         /// <summary>
@@ -244,12 +231,39 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(uvec2 other)
+        {
+            return (this.x == other.x && this.y == other.y);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}", x, y).GetHashCode();
         }
 
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = uint.Parse(parts[0]);
+            this.y = uint.Parse(parts[1]);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public float length()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y);
+
+            return (float)result;
+        }
         /// <summary>
         ///
         /// </summary>
@@ -284,23 +298,6 @@ namespace CSharpGL
             uint x = uint.Parse(parts[0]);
             uint y = uint.Parse(parts[1]);
             return new uvec2(x, y);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(uvec2 other)
-        {
-            return (this.x == other.x && this.y == other.y);
-        }
-
-        void ILoadFromString.Load(string value)
-        {
-            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
-            this.x = uint.Parse(parts[0]);
-            this.y = uint.Parse(parts[1]);
         }
     }
 }
