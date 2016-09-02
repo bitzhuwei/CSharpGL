@@ -118,7 +118,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\NullImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDsposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelSpace.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexStorageImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\NullSampler.cs" />
