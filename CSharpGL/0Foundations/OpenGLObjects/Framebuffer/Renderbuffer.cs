@@ -5,16 +5,11 @@
     /// </summary>
     public partial class Renderbuffer
     {
-        private static OpenGL.glGenRenderbuffersEXT glGenRenderbuffers;
         private static OpenGL.glBindRenderbufferEXT glBindRenderbuffer;
+        private static OpenGL.glGenRenderbuffersEXT glGenRenderbuffers;
         private static OpenGL.glRenderbufferStorageEXT glRenderbufferStorage;
 
         private uint[] renderbuffer = new uint[1];
-
-        /// <summary>
-        /// Framebuffer Id.
-        /// </summary>
-        public uint Id { get { return renderbuffer[0]; } }
 
         /// <summary>
         /// Create, update, use and delete a renderbuffer object.
@@ -46,7 +41,7 @@
         /// <summary>
         ///
         /// </summary>
-        public int Width { get; set; }
+        public RenderbufferType BufferType { get; private set; }
 
         /// <summary>
         ///
@@ -54,10 +49,13 @@
         public int Height { get; set; }
 
         /// <summary>
+        /// Framebuffer Id.
+        /// </summary>
+        public uint Id { get { return renderbuffer[0]; } }
+        /// <summary>
         ///
         /// </summary>
-        public RenderbufferType BufferType { get; private set; }
-
+        public int Width { get; set; }
         /// <summary>
         ///
         /// </summary>
@@ -66,21 +64,5 @@
         {
             return string.Format("{0}: [w:{1}, h:{2}] {3}", this.GetType().Name, this.Width, this.Height, this.BufferType);
         }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public enum RenderbufferType
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        DepthBuffer,
-
-        /// <summary>
-        ///
-        /// </summary>
-        ColorBuffer,
     }
 }

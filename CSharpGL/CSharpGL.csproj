@@ -110,6 +110,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IPerspectiveCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Limitis.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Parameter.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\RenderbufferType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.Special.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.cs" />
