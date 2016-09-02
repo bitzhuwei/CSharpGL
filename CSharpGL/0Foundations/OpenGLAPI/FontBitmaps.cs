@@ -11,49 +11,10 @@ namespace CSharpGL
     /// </summary>
     internal class FontBitmaps
     {
-        private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
-        {
-            //  Make the OpenGL instance current.
-            //GL.MakeCurrent();
-            IntPtr renderContext = Win32.wglGetCurrentContext();
-            IntPtr deviceContext = Win32.wglGetCurrentDC();
-            Win32.wglMakeCurrent(deviceContext, renderContext);
-
-            //  Create the font based on the face name.
-            var hFont = Win32.CreateFont(height, 0, 0, 0, Win32.FW_DONTCARE, 0, 0, 0, Win32.DEFAULT_CHARSET,
-                Win32.OUT_OUTLINE_PRECIS, Win32.CLIP_DEFAULT_PRECIS, Win32.CLEARTYPE_QUALITY, Win32.VARIABLE_PITCH, faceName);
-
-            //  Select the font handle.
-            var hOldObject = Win32.SelectObject(deviceContext, hFont);
-
-            //  Create the list base.
-            var listBase = OpenGL.GenLists(1);
-
-            //  Create the font bitmaps.
-            bool result = Win32.wglUseFontBitmaps(deviceContext, 0, 255, listBase);
-
-            //  Reselect the old font.
-            Win32.SelectObject(deviceContext, hOldObject);
-
-            //  Free the font.
-            Win32.DeleteObject(hFont);
-
-            //  Create the font bitmap entry.
-            var fbe = new FontBitmapEntry()
-            {
-                HDC = deviceContext,
-                HRC = renderContext,
-                FaceName = faceName,
-                Height = height,
-                ListBase = listBase,
-                ListCount = 255
-            };
-
-            //  Add the font bitmap entry to the internal list.
-            fontBitmapEntries.Add(fbe);
-
-            return fbe;
-        }
+        /// <summary>
+        /// Cache of font bitmap enties.
+        /// </summary>
+        private static readonly List<FontBitmapEntry> fontBitmapEntries = new List<FontBitmapEntry>();
 
         /// <summary>
         /// Draws the text.
@@ -135,9 +96,48 @@ namespace CSharpGL
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
-        /// <summary>
-        /// Cache of font bitmap enties.
-        /// </summary>
-        private static readonly List<FontBitmapEntry> fontBitmapEntries = new List<FontBitmapEntry>();
+        private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
+        {
+            //  Make the OpenGL instance current.
+            //GL.MakeCurrent();
+            IntPtr renderContext = Win32.wglGetCurrentContext();
+            IntPtr deviceContext = Win32.wglGetCurrentDC();
+            Win32.wglMakeCurrent(deviceContext, renderContext);
+
+            //  Create the font based on the face name.
+            var hFont = Win32.CreateFont(height, 0, 0, 0, Win32.FW_DONTCARE, 0, 0, 0, Win32.DEFAULT_CHARSET,
+                Win32.OUT_OUTLINE_PRECIS, Win32.CLIP_DEFAULT_PRECIS, Win32.CLEARTYPE_QUALITY, Win32.VARIABLE_PITCH, faceName);
+
+            //  Select the font handle.
+            var hOldObject = Win32.SelectObject(deviceContext, hFont);
+
+            //  Create the list base.
+            var listBase = OpenGL.GenLists(1);
+
+            //  Create the font bitmaps.
+            bool result = Win32.wglUseFontBitmaps(deviceContext, 0, 255, listBase);
+
+            //  Reselect the old font.
+            Win32.SelectObject(deviceContext, hOldObject);
+
+            //  Free the font.
+            Win32.DeleteObject(hFont);
+
+            //  Create the font bitmap entry.
+            var fbe = new FontBitmapEntry()
+            {
+                HDC = deviceContext,
+                HRC = renderContext,
+                FaceName = faceName,
+                Height = height,
+                ListBase = listBase,
+                ListCount = 255
+            };
+
+            //  Add the font bitmap entry to the internal list.
+            fontBitmapEntries.Add(fbe);
+
+            return fbe;
+        }
     }
 }
