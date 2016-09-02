@@ -11,38 +11,20 @@ namespace CSharpGL
     /// </summary>
     public class SatelliteManipulater : Manipulater, IMouseHandler
     {
+        private vec3 back;
+        private Size bound = new Size();
         private ICamera camera;
         private GLCanvas canvas;
 
+        private MouseButtons lastBindingMouseButtons;
+        private Point lastPosition = new Point();
         private MouseEventHandler mouseDownEvent;
+        private bool mouseDownFlag = false;
         private MouseEventHandler mouseMoveEvent;
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
-
-        private Point lastPosition = new Point();
-        private Size bound = new Size();
-        private bool mouseDownFlag = false;
-        private vec3 up;
-        private vec3 back;
         private vec3 right;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float HorizontalRotationFactor { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float VerticalRotationFactor { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public MouseButtons BindingMouseButtons { get; set; }
-
-        private MouseButtons lastBindingMouseButtons;
-
+        private vec3 up;
         /// <summary>
         ///
         /// </summary>
@@ -60,6 +42,20 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        public MouseButtons BindingMouseButtons { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public float HorizontalRotationFactor { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public float VerticalRotationFactor { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
         public override void Bind(ICamera camera, GLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
@@ -71,61 +67,6 @@ namespace CSharpGL
             canvas.MouseMove += this.mouseMoveEvent;
             canvas.MouseUp += this.mouseUpEvent;
             canvas.MouseWheel += this.mouseWheelEvent;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override void Unbind()
-        {
-            if (this.canvas != null && (!this.canvas.IsDisposed))
-            {
-                this.canvas.MouseDown -= this.mouseDownEvent;
-                this.canvas.MouseMove -= this.mouseMoveEvent;
-                this.canvas.MouseUp -= this.mouseUpEvent;
-                this.canvas.MouseWheel -= this.mouseWheelEvent;
-                this.canvas = null;
-                this.camera = null;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("back:{0}|{3:0.00},up:{1}|{4:0.00},right:{2}|{5:0.00}",
-                back, up, right, back.length(), up.length(), right.length());
-        }
-
-        private void PrepareCamera()
-        {
-            var camera = this.camera;
-            if (camera != null)
-            {
-                vec3 back = camera.Position - camera.Target;
-                vec3 right = camera.UpVector.cross(back);
-                vec3 up = back.cross(right);
-
-                this.back = back.normalize();
-                this.right = right.normalize();
-                this.up = up.normalize();
-            }
-        }
-
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
-        {
-            this.camera.MouseWheel(e.Delta);
-
-            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-            { this.canvas.Invalidate(); }
-        }
-
-        private void SetBounds(int width, int height)
-        {
-            this.bound.Width = width;
-            this.bound.Height = height;
         }
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
@@ -201,6 +142,59 @@ namespace CSharpGL
             {
                 this.mouseDownFlag = false;
             }
+        }
+
+        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+            this.camera.MouseWheel(e.Delta);
+
+            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
+            { this.canvas.Invalidate(); }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("back:{0}|{3:0.00},up:{1}|{4:0.00},right:{2}|{5:0.00}",
+                back, up, right, back.length(), up.length(), right.length());
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override void Unbind()
+        {
+            if (this.canvas != null && (!this.canvas.IsDisposed))
+            {
+                this.canvas.MouseDown -= this.mouseDownEvent;
+                this.canvas.MouseMove -= this.mouseMoveEvent;
+                this.canvas.MouseUp -= this.mouseUpEvent;
+                this.canvas.MouseWheel -= this.mouseWheelEvent;
+                this.canvas = null;
+                this.camera = null;
+            }
+        }
+        private void PrepareCamera()
+        {
+            var camera = this.camera;
+            if (camera != null)
+            {
+                vec3 back = camera.Position - camera.Target;
+                vec3 right = camera.UpVector.cross(back);
+                vec3 up = back.cross(right);
+
+                this.back = back.normalize();
+                this.right = right.normalize();
+                this.up = up.normalize();
+            }
+        }
+        private void SetBounds(int width, int height)
+        {
+            this.bound.Width = width;
+            this.bound.Height = height;
         }
     }
 }

@@ -8,37 +8,24 @@ namespace CSharpGL
     /// </summary>
     public class ArcBallManipulater : Manipulater, IMouseHandler
     {
+        private int _height;
+        private float _length, _radiusRadius;
+        private vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
+        private vec3 _vectorBack;
+        private vec3 _vectorRight;
+        private vec3 _vectorUp;
+        private int _width;
         private ICamera camera;
+        private CameraState cameraState = new CameraState();
         private GLCanvas canvas;
 
+        private bool mouseDownFlag;
+        private MouseButtons lastBindingMouseButtons;
         private MouseEventHandler mouseDownEvent;
         private MouseEventHandler mouseMoveEvent;
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
-
-        private vec3 _vectorRight;
-        private vec3 _vectorUp;
-        private vec3 _vectorBack;
-        private float _length, _radiusRadius;
-        private CameraState cameraState = new CameraState();
         private mat4 totalRotation = mat4.identity();
-        private vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
-        private int _width;
-        private int _height;
-        private bool mouseDownFlag;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float MouseSensitivity { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public MouseButtons BindingMouseButtons { get; set; }
-
-        private MouseButtons lastBindingMouseButtons;
-
         /// <summary>
         /// Rotate model using arc-ball method.
         /// </summary>
@@ -54,41 +41,15 @@ namespace CSharpGL
             this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
-        private void SetCamera(vec3 position, vec3 target, vec3 up)
-        {
-            _vectorBack = (position - target).normalize();
-            _vectorRight = up.cross(_vectorBack).normalize();
-            _vectorUp = _vectorBack.cross(_vectorRight).normalize();
-
-            this.cameraState.position = position;
-            this.cameraState.target = target;
-            this.cameraState.up = up;
-        }
-
-        private class CameraState
-        {
-            public vec3 position;
-            public vec3 target;
-            public vec3 up;
-
-            public bool IsSameState(ICamera camera)
-            {
-                if (camera.Position != this.position) { return false; }
-                if (camera.Target != this.target) { return false; }
-                if (camera.UpVector != this.up) { return false; }
-
-                return true;
-            }
-        }
+        /// <summary>
+        ///
+        /// </summary>
+        public MouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        public mat4 GetRotationMatrix()
-        {
-            return totalRotation;
-        }
-
+        public float MouseSensitivity { get; set; }
         /// <summary>
         ///
         /// </summary>
@@ -112,21 +73,9 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Unbind()
+        public mat4 GetRotationMatrix()
         {
-            if (this.canvas != null && (!this.canvas.IsDisposed))
-            {
-                this.canvas.MouseDown -= this.mouseDownEvent;
-                this.canvas.MouseMove -= this.mouseMoveEvent;
-                this.canvas.MouseUp -= this.mouseUpEvent;
-                this.canvas.MouseWheel -= this.mouseWheelEvent;
-                this.canvas = null;
-                this.camera = null;
-            }
-        }
-
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
-        {
+            return totalRotation;
         }
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
@@ -146,15 +95,6 @@ namespace CSharpGL
 
                 mouseDownFlag = true;
             }
-        }
-
-        private void SetBounds(int width, int height)
-        {
-            this._width = width; this._height = height;
-            _length = width > height ? width : height;
-            var rx = (width / 2) / _length;
-            var ry = (height / 2) / _length;
-            _radiusRadius = (float)(rx * rx + ry * ry);
         }
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
@@ -184,6 +124,34 @@ namespace CSharpGL
             }
         }
 
+        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            {
+                mouseDownFlag = false;
+            }
+        }
+
+        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override void Unbind()
+        {
+            if (this.canvas != null && (!this.canvas.IsDisposed))
+            {
+                this.canvas.MouseDown -= this.mouseDownEvent;
+                this.canvas.MouseMove -= this.mouseMoveEvent;
+                this.canvas.MouseUp -= this.mouseUpEvent;
+                this.canvas.MouseWheel -= this.mouseWheelEvent;
+                this.canvas = null;
+                this.camera = null;
+            }
+        }
+
         private vec3 GetArcBallPosition(int x, int y)
         {
             float rx = (x - _width / 2) / _length;
@@ -202,11 +170,39 @@ namespace CSharpGL
             return result;
         }
 
-        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        private void SetBounds(int width, int height)
         {
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            this._width = width; this._height = height;
+            _length = width > height ? width : height;
+            var rx = (width / 2) / _length;
+            var ry = (height / 2) / _length;
+            _radiusRadius = (float)(rx * rx + ry * ry);
+        }
+
+        private void SetCamera(vec3 position, vec3 target, vec3 up)
+        {
+            _vectorBack = (position - target).normalize();
+            _vectorRight = up.cross(_vectorBack).normalize();
+            _vectorUp = _vectorBack.cross(_vectorRight).normalize();
+
+            this.cameraState.position = position;
+            this.cameraState.target = target;
+            this.cameraState.up = up;
+        }
+
+        private class CameraState
+        {
+            public vec3 position;
+            public vec3 target;
+            public vec3 up;
+
+            public bool IsSameState(ICamera camera)
             {
-                mouseDownFlag = false;
+                if (camera.Position != this.position) { return false; }
+                if (camera.Target != this.target) { return false; }
+                if (camera.UpVector != this.up) { return false; }
+
+                return true;
             }
         }
     }

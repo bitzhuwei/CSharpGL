@@ -11,131 +11,29 @@ namespace CSharpGL
     public class FirstPerspectiveManipulater :
         Manipulater, IMouseHandler, IKeyboardHandler
     {
+        private char backKey;
         private ICamera camera;
         private GLCanvas canvas;
 
+        private char downKey;
+        private char frontKey;
         private KeyPressEventHandler keyPressEvent;
+        private MouseButtons lastBindingMouseButtons;
+        private Point lastPosition;
+        private char leftKey;
         private MouseEventHandler mouseDownEvent;
+        private bool mouseDownFlag = false;
         private MouseEventHandler mouseMoveEvent;
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
-
-        private bool mouseDownFlag = false;
-        private Point lastPosition;
-
-        private char upcaseFrontKey;
+        private char rightKey;
         private char upcaseBackKey;
+        private char upcaseDownKey;
+        private char upcaseFrontKey;
         private char upcaseLeftKey;
         private char upcaseRightKey;
         private char upcaseUpKey;
-        private char upcaseDownKey;
-        private char frontKey;
-        private char backKey;
-        private char leftKey;
-        private char rightKey;
         private char upKey;
-        private char downKey;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public char FrontKey
-        {
-            get { return frontKey; }
-            set
-            {
-                frontKey = value.ToString().ToLower()[0];
-                upcaseFrontKey = value.ToString().ToUpper()[0];
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public char BackKey
-        {
-            get { return backKey; }
-            set
-            {
-                backKey = value.ToString().ToLower()[0];
-                upcaseBackKey = value.ToString().ToUpper()[0];
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public char LeftKey
-        {
-            get { return leftKey; }
-            set
-            {
-                leftKey = value.ToString().ToLower()[0];
-                upcaseLeftKey = value.ToString().ToUpper()[0];
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public char RightKey
-        {
-            get { return rightKey; }
-            set
-            {
-                rightKey = value.ToString().ToLower()[0];
-                upcaseRightKey = value.ToString().ToUpper()[0];
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public char UpKey
-        {
-            get { return upKey; }
-            set
-            {
-                upKey = value.ToString().ToLower()[0];
-                upcaseUpKey = value.ToString().ToUpper()[0];
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public char DownKey
-        {
-            get { return downKey; }
-            set
-            {
-                downKey = value.ToString().ToLower()[0];
-                upcaseDownKey = value.ToString().ToUpper()[0];
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float StepLength { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float HorizontalRotationSpeed { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float VerticalRotationSpeed { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public MouseButtons BindingMouseButtons { get; set; }
-
-        private MouseButtons lastBindingMouseButtons;
-
         /// <summary>
         ///
         /// </summary>
@@ -175,6 +73,101 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        public char BackKey
+        {
+            get { return backKey; }
+            set
+            {
+                backKey = value.ToString().ToLower()[0];
+                upcaseBackKey = value.ToString().ToUpper()[0];
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public MouseButtons BindingMouseButtons { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public char DownKey
+        {
+            get { return downKey; }
+            set
+            {
+                downKey = value.ToString().ToLower()[0];
+                upcaseDownKey = value.ToString().ToUpper()[0];
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public char FrontKey
+        {
+            get { return frontKey; }
+            set
+            {
+                frontKey = value.ToString().ToLower()[0];
+                upcaseFrontKey = value.ToString().ToUpper()[0];
+            }
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        public float HorizontalRotationSpeed { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public char LeftKey
+        {
+            get { return leftKey; }
+            set
+            {
+                leftKey = value.ToString().ToLower()[0];
+                upcaseLeftKey = value.ToString().ToUpper()[0];
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public char RightKey
+        {
+            get { return rightKey; }
+            set
+            {
+                rightKey = value.ToString().ToLower()[0];
+                upcaseRightKey = value.ToString().ToUpper()[0];
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public float StepLength { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public char UpKey
+        {
+            get { return upKey; }
+            set
+            {
+                upKey = value.ToString().ToLower()[0];
+                upcaseUpKey = value.ToString().ToUpper()[0];
+            }
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        public float VerticalRotationSpeed { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
         public override void Bind(ICamera camera, GLCanvas canvas)
@@ -189,70 +182,6 @@ namespace CSharpGL
             canvas.MouseMove += this.mouseMoveEvent;
             canvas.MouseUp += this.mouseUpEvent;
             canvas.MouseWheel += this.mouseWheelEvent;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override void Unbind()
-        {
-            if (this.canvas != null && (!this.canvas.IsDisposed))
-            {
-                this.canvas.KeyPress -= this.keyPressEvent;
-                this.canvas.MouseDown -= this.mouseDownEvent;
-                this.canvas.MouseMove -= this.mouseMoveEvent;
-                this.canvas.MouseUp -= this.mouseUpEvent;
-                this.canvas.MouseWheel -= this.mouseWheelEvent;
-                this.canvas = null;
-                this.camera = null;
-            }
-        }
-
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
-        {
-            this.camera.MouseWheel(e.Delta);
-
-            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-            { this.canvas.Invalidate(); }
-        }
-
-        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.lastBindingMouseButtons = this.BindingMouseButtons;
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
-            {
-                this.mouseDownFlag = true;
-                this.lastPosition = e.Location;
-            }
-        }
-
-        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (this.mouseDownFlag
-                && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
-                && (e.X != this.lastPosition.X || e.Y != this.lastPosition.Y))
-            {
-                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (e.X - this.lastPosition.X), -this.camera.UpVector);
-                var front = new vec4(this.camera.GetFront(), 1.0f);
-                vec4 front1 = rotationMatrix * front;
-                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.Y - e.Y), this.camera.GetRight());
-                vec4 front2 = rotationMatrix * front1;
-                front2 = front2.normalize();
-                this.camera.Target = this.camera.Position + new vec3(front2);
-
-                this.lastPosition = e.Location;
-
-                if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-                { this.canvas.Invalidate(); }
-            }
-        }
-
-        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
-        {
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
-            {
-                this.mouseDownFlag = false;
-            }
         }
 
         void IKeyboardHandler.canvas_KeyPress(object sender, KeyPressEventArgs e)
@@ -309,6 +238,70 @@ namespace CSharpGL
             {
                 if (this.canvas.RenderTrigger == RenderTrigger.Manual)
                 { this.canvas.Invalidate(); }
+            }
+        }
+
+        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.lastBindingMouseButtons = this.BindingMouseButtons;
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            {
+                this.mouseDownFlag = true;
+                this.lastPosition = e.Location;
+            }
+        }
+
+        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.mouseDownFlag
+                && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+                && (e.X != this.lastPosition.X || e.Y != this.lastPosition.Y))
+            {
+                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (e.X - this.lastPosition.X), -this.camera.UpVector);
+                var front = new vec4(this.camera.GetFront(), 1.0f);
+                vec4 front1 = rotationMatrix * front;
+                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.Y - e.Y), this.camera.GetRight());
+                vec4 front2 = rotationMatrix * front1;
+                front2 = front2.normalize();
+                this.camera.Target = this.camera.Position + new vec3(front2);
+
+                this.lastPosition = e.Location;
+
+                if (this.canvas.RenderTrigger == RenderTrigger.Manual)
+                { this.canvas.Invalidate(); }
+            }
+        }
+
+        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            {
+                this.mouseDownFlag = false;
+            }
+        }
+
+        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+            this.camera.MouseWheel(e.Delta);
+
+            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
+            { this.canvas.Invalidate(); }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override void Unbind()
+        {
+            if (this.canvas != null && (!this.canvas.IsDisposed))
+            {
+                this.canvas.KeyPress -= this.keyPressEvent;
+                this.canvas.MouseDown -= this.mouseDownEvent;
+                this.canvas.MouseMove -= this.mouseMoveEvent;
+                this.canvas.MouseUp -= this.mouseUpEvent;
+                this.canvas.MouseWheel -= this.mouseWheelEvent;
+                this.canvas = null;
+                this.camera = null;
             }
         }
     }

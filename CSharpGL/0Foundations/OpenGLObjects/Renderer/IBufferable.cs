@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Data for CPU(model) -&gt; pointer to Data for GPU(buffer renderer)
-    /// <para>从模型的数据格式转换为<see cref="Buffer&lt;T&gt;"/>，<see cref="Buffer&lt;T&gt;"/>转换为<see cref="BufferPtr"/>，
+    /// <para>从模型的数据格式转换为<see cref="Buffer"/>，<see cref="Buffer"/>转换为<see cref="BufferPtr"/>，
     /// <see cref="BufferPtr"/>则可用于控制GPU的渲染操作。</para>
     /// </summary>
     public interface IBufferable
