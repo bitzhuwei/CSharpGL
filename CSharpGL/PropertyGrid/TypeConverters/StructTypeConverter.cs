@@ -15,6 +15,11 @@ namespace CSharpGL
             return sourceType == typeof(string);
         }
 
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        {
+            return destinationType == typeof(T);
+        }
+
         public override object ConvertFrom(ITypeDescriptorContext context,
             CultureInfo culture, object value)
         {
@@ -23,12 +28,6 @@ namespace CSharpGL
 
             return result;
         }
-
-        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
-        {
-            return destinationType == typeof(T);
-        }
-
         public override object ConvertTo(ITypeDescriptorContext context,
             CultureInfo culture, object value, Type destinationType)
         {

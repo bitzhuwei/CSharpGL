@@ -89,7 +89,7 @@ namespace CSharpGL
         /// <summary>
         /// max position in world space.
         /// </summary>
-        vec3 IBoundingBox.MaxPosition
+        public vec3 MaxPosition
         {
             get
             {
@@ -101,7 +101,7 @@ namespace CSharpGL
         /// <summary>
         /// min position in world space.
         /// </summary>
-        vec3 IBoundingBox.MinPosition
+        public vec3 MinPosition
         {
             get
             {
