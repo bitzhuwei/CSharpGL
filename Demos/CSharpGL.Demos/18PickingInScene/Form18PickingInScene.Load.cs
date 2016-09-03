@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
             }
             {
                 var camera = new Camera(
-                    new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0),
+                    new vec3(15, 5, 0), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new FirstPerspectiveManipulater();
                 rotator.Bind(camera, this.glCanvas1);
@@ -23,8 +23,9 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var ground = GroundRenderer.Create(new GroundModel(10));
+                var ground = GroundRenderer.Create(new GroundModel(100));
                 ground.Initialize();
+                ground.Scale = new vec3(10, 10, 10);
                 ground.WorldPosition = new vec3(0, 0, 0);
                 SceneObject obj = ground.WrapToSceneObject("ground");
                 this.scene.RootObject.Children.Add(obj);
@@ -32,7 +33,7 @@ namespace CSharpGL.Demos
             {
                 var tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
                 tetrahedron.Initialize();
-                //tetrahedron.WorldPosition = new vec3(1, 0, 1);
+                tetrahedron.WorldPosition = new vec3(5, 1, 5);
                 SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
                 this.scene.RootObject.Children.Add(obj);
             }
