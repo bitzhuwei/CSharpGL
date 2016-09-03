@@ -7,18 +7,12 @@ namespace CSharpGL.Demos
 {
     public partial class Form18PickingInScene : Form
     {
-        private SatelliteManipulater rotator;
 
         public Form18PickingInScene()
         {
             InitializeComponent();
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
-            //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
-            //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
-            //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
-            //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
-            //this.glCanvas1.Resize += glCanvas1_Resize;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
@@ -50,22 +44,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'b')
-            {
-                BlendingSourceFactor source;
-                BlendingDestinationFactor dest;
-                this.blendFactorHelper.GetNext(out source, out dest);
-                this.blendSwitch1.SourceFactor = source;
-                this.blendSwitch1.DestFactor = dest;
-                this.blendSwitch2.SourceFactor = source;
-                this.blendSwitch2.DestFactor = dest;
-            }
-            else if (e.KeyChar == 'd')
-            {
-                this.labelRenderer1.DiscardTransparency = !this.labelRenderer1.DiscardTransparency;
-                this.labelRenderer2.DiscardTransparency = !this.labelRenderer2.DiscardTransparency;
-            }
-            else if (e.KeyChar == 's')
+            if (e.KeyChar == 's')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
@@ -76,7 +55,6 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
             }
 
-            this.UpdateLabel();
         }
     }
 }
