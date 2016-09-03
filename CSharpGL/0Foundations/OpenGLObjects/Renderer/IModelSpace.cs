@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static mat4 GetMatrix(this IModelSpace model)
+        public static mat4 GetModelMatrix(this IModelSpace model)
         {
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);

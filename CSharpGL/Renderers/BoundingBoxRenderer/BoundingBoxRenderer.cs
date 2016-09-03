@@ -79,7 +79,7 @@ namespace CSharpGL
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
             if (base.modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("modelMatrix", this.GetMatrix());
+                this.SetUniform("modelMatrix", this.GetModelMatrix());
                 this.modelMatrixRecord.CancelMark();
             }
 
@@ -94,7 +94,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetMatrix() * new vec4(this.Lengths / 2, 1.0f));
+                return new vec3(this.GetModelMatrix() * new vec4(this.Lengths / 2, 1.0f));
             }
         }
 
@@ -106,7 +106,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetMatrix() * new vec4(this.Lengths / 2, 1.0f));
+                return new vec3(this.GetModelMatrix() * new vec4(this.Lengths / 2, 1.0f));
             }
         }
     }

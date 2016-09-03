@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
         private void Form_Load(object sender, EventArgs e)
         {
             {
-                this.glCanvas1.ShowSystemCursor = false;
+                //this.glCanvas1.ShowSystemCursor = false;
             }
             {
                 var camera = new Camera(
@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             {
                 var tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
                 tetrahedron.Initialize();
-                tetrahedron.WorldPosition = new vec3(1, 0, 1);
+                //tetrahedron.WorldPosition = new vec3(1, 0, 1);
                 SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
                 this.scene.RootObject.Children.Add(obj);
             }

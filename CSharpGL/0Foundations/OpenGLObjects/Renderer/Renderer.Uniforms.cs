@@ -51,6 +51,9 @@ namespace CSharpGL
                 if (item.VarName == varNameInShader)
                 {
                     var variable = item as UniformSingleVariable<T>;
+                    if (variable == null)
+                    { throw new ArgumentException(string.Format("Wrong type[{0}] for uniform variable [{1}] [{2}];", typeof(T), item.GetType().Name, item.VarName)); }
+
                     variable.Value = value;
                     updated = variable.Updated;
                     gotUniform = true;

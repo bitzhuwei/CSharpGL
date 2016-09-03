@@ -40,7 +40,7 @@ namespace GridViewer
             //this.self.ModelMatrix = glm.translate(mat4.identity(), new vec3());
             if (this.target != null)
             {
-                vec4 position = this.target.GetMatrix() * new vec4(this.labelPosition.Position, 1.0f);
+                vec4 position = this.target.GetModelMatrix() * new vec4(this.labelPosition.Position, 1.0f);
                 this.self.WorldPosition = new vec3(position);
             }
             else

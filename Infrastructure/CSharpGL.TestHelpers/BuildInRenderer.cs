@@ -16,7 +16,7 @@
             this.SetUniform("view", arg.Camera.GetViewMatrix());
             if (modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("model", this.GetMatrix());
+                this.SetUniform("model", this.GetModelMatrix());
                 modelMatrixRecord.CancelMark();
             }
 

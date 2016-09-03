@@ -98,6 +98,7 @@ namespace CSharpGL
         {
             if (this.modelMatrixRecord.IsMarked())
             {
+                this.SetUniform("modelMatrix", this.GetModelMatrix());
                 this.SetUniform("modelMatrix", this.WorldPosition);
                 this.modelMatrixRecord.CancelMark();
             }

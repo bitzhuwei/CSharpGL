@@ -42,7 +42,7 @@ namespace GridViewer
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
             if (this.modelMatrixRecord.IsMarked())
             {
-                this.SetUniform("modelMatrix", this.GetMatrix());
+                this.SetUniform("modelMatrix", this.GetModelMatrix());
                 this.modelMatrixRecord.CancelMark();
             }
 
