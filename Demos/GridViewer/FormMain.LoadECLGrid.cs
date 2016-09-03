@@ -42,7 +42,7 @@ namespace GridViewer
                 var list = new List<IBoundingBox>();
                 list.Add((gridObj.Renderer as IModelSpace).GetBoundingBox());
                 list.AddRange((from item in wellObjects select (item.Renderer as IModelSpace).GetBoundingBox()).ToArray());
-                BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(list.ToArray());
+                BoundingBoxRenderer boxRenderer = list.GetBoundingBoxRenderer();
                 SceneObject mainObj = boxRenderer.WrapToSceneObject(
                     string.Format("CatesianGrid: {0}", fileName),
                     new ModelScaleScript());
@@ -113,7 +113,7 @@ namespace GridViewer
                 item.Item1.Initialize();
                 SceneObject wellObj = item.Item1.WrapToSceneObject(new ModelScaleScript());
                 {
-                    BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(item.Item1.GetBoundingBox());
+                    BoundingBoxRenderer boxRenderer = item.Item1.GetBoundingBoxRenderer();
                     SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript());
                     wellObj.Children.Add(boxObj);
                 }
@@ -141,7 +141,7 @@ namespace GridViewer
                 new ModelScaleScript(),
                 new DumpCatesianGridTreeNodeScript());
             {
-                var boxRenderer = GetBoundingBoxRenderer(renderer.GetBoundingBox());
+                BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
                 SceneObject boxObj = boxRenderer.WrapToSceneObject(
                     new ModelScaleScript());
                 gridObj.Children.Add(boxObj);
