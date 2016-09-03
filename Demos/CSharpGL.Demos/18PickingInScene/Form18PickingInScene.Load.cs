@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                var teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Axis);
+                var teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Teapot);
                 teapot.Initialize();
                 teapot.WorldPosition = new vec3(-5, 2, 5);
                 SceneObject obj = teapot.WrapToSceneObject("Teapot");
