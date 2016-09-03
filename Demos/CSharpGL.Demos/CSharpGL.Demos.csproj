@@ -55,13 +55,13 @@
     </Compile>
     <Compile Include="12Billboard\UpdateBillboardPosition.cs" />
     <Compile Include="12Billboard\UpdateLabelPosition.cs" />
-    <Compile Include="18LabelRenderer\Form18LabelRenderer.cs">
+    <Compile Include="18PickingInScene\Form18PickingInScene.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="18LabelRenderer\Form18LabelRenderer.Designer.cs">
-      <DependentUpon>Form18LabelRenderer.cs</DependentUpon>
+    <Compile Include="18PickingInScene\Form18PickingInScene.Designer.cs">
+      <DependentUpon>Form18PickingInScene.cs</DependentUpon>
     </Compile>
-    <Compile Include="18LabelRenderer\Form18LabelRenderer.Load.cs">
+    <Compile Include="18PickingInScene\Form18PickingInScene.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="17UpdateTexture\Form17UpdateTexture.cs">
@@ -360,8 +360,8 @@
     <EmbeddedResource Include="11IFontTexture\Form11IFontTexture.resx">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="18LabelRenderer\Form18LabelRenderer.resx">
-      <DependentUpon>Form18LabelRenderer.cs</DependentUpon>
+    <EmbeddedResource Include="18PickingInScene\Form18PickingInScene.resx">
+      <DependentUpon>Form18PickingInScene.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="17UpdateTexture\Form17UpdateTexture.resx">
       <DependentUpon>Form17UpdateTexture.cs</DependentUpon>

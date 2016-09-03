@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form18LabelRenderer
+    partial class Form18PickingInScene
     {
         /// <summary>
         /// Required designer variable.
@@ -74,7 +74,7 @@
             this.glCanvas1.Size = new System.Drawing.Size(568, 378);
             this.glCanvas1.TabIndex = 0;
             // 
-            // Form18LabelRenderer
+            // Form18PickingInScene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,7 +83,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form18LabelRenderer";
+            this.Name = "Form18PickingInScene";
             this.Text = "Form15Scene";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

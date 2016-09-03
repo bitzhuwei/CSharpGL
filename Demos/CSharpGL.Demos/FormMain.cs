@@ -96,9 +96,9 @@ namespace CSharpGL.Demos
             (new Form17UpdateTexture()).Show();
         }
 
-        private void btn18LabelRenderer_Click(object sender, EventArgs e)
+        private void btn18PickingInScene_Click(object sender, EventArgs e)
         {
-            (new Form18LabelRenderer()).Show();
+            (new Form18PickingInScene()).Show();
         }
     }
 }
