@@ -22,14 +22,14 @@ namespace CSharpGL
             int index = 0;
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
+                PropertyBufferPtr bufferPtr = this.model.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
-                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", this.bufferable)); }
+                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", this.model)); }
                 propertyBufferPtrs[index++] = bufferPtr;
             }
 
             this.propertyBufferPtrs = propertyBufferPtrs;
-            this.indexBufferPtr = this.bufferable.GetIndex();
+            this.indexBufferPtr = this.model.GetIndex();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
             var ptr = this.indexBufferPtr as OneIndexBufferPtr;

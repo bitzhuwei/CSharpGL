@@ -15,18 +15,18 @@ namespace CSharpGL
             int index = 0;
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
+                PropertyBufferPtr bufferPtr = this.model.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(); }
                 propertyBufferPtrs[index++] = bufferPtr;
             }
 
             this.propertyBufferPtrs = propertyBufferPtrs;
-            this.indexBufferPtr = this.bufferable.GetIndex();
+            this.indexBufferPtr = this.model.GetIndex();
 
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
+                PropertyBufferPtr bufferPtr = this.model.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(); }
 

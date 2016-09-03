@@ -55,8 +55,8 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBufferPtr = this.bufferable.GetProperty(QuadStripModel.position, null);
-            this.texCoordBufferPtr = this.bufferable.GetProperty(QuadStripModel.texCoord, null);
+            this.positionBufferPtr = this.model.GetProperty(QuadStripModel.position, null);
+            this.texCoordBufferPtr = this.model.GetProperty(QuadStripModel.texCoord, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)

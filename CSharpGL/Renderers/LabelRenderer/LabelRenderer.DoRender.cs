@@ -25,7 +25,7 @@
             {
                 if (this.model != null)
                 {
-                    this.model.SetText(this.text, this.fontTexture);
+                    (this.model as TextModel).SetText(this.text, this.fontTexture);
                 }
             }
             if (discardTransparencyRecord.IsMarked())

@@ -8,41 +8,49 @@ namespace CSharpGL
     public partial class LabelRenderer : Renderer
     {
         /// <summary>
-        ///
+        /// Create a label renderer.
         /// </summary>
-        /// <param name="maxCharCount">Max char count to display for this label.
-        /// Careful to set this value because greater <paramref name="maxCharCount"/> means more space ocupied in GPU nemory.</param>
+        /// <param name="maxCharCount">Max char count to display for this label. Careful to set this value because greater <paramref name="maxCharCount"/> means more space ocupied in GPU nemory.</param>
         /// <param name="labelHeight">Label height(in pixels)</param>
         /// <param name="fontTexture">Use which font to render text?</param>
-        public LabelRenderer(int maxCharCount = 64, int labelHeight = 32, IFontTexture fontTexture = null)
-            : base(null, null, null, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One))
+        /// <returns></returns>
+        public static LabelRenderer Create(int maxCharCount = 64, int labelHeight = 32, IFontTexture fontTexture = null)
         {
-            GLSwitch blendSwitch = this.SwitchList.Find(x => x is BlendSwitch);
-            if (blendSwitch == null) { throw new Exception(); }
-            this.blendSwitch = blendSwitch;
-
-            if (fontTexture == null)
-            { this.fontTexture = FontTexture.Default; }// FontResource.Default; }
-            else
-            { this.fontTexture = fontTexture; }
-
-            this.LabelHeight = labelHeight;
+            if (fontTexture == null) { fontTexture = FontTexture.Default; }
 
             var model = new TextModel(maxCharCount);
-            this.bufferable = model;
-            this.model = model;
 
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\Label.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\Label.frag"), ShaderType.FragmentShader);
-            this.shaderCodes = shaderCodes;
 
             var map = new PropertyNameMap();
             map.Add("in_Position", TextModel.strPosition);
             map.Add("in_UV", TextModel.strUV);
-            this.propertyNameMap = map;
+
+            var blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
+
+            var renderer = new LabelRenderer(model, shaderCodes, map, blendSwitch);
+            renderer.blendSwitch = blendSwitch;
+            renderer.fontTexture = fontTexture;
+            renderer.LabelHeight = labelHeight;
+
+            return renderer;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="shaderCodes"></param>
+        /// <param name="propertyNameMap"></param>
+        /// <param name="switches"></param>
+        private LabelRenderer(IBufferable model, ShaderCode[] shaderCodes,
+            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, propertyNameMap, switches)
+        {
         }
     }
 }

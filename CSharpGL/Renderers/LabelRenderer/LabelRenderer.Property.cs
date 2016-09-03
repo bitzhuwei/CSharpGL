@@ -5,7 +5,6 @@
         #region Text
 
         private IFontTexture fontTexture;
-        private TextModel model;
 
         private string text = string.Empty;
         private UpdatingRecord textRecord = new UpdatingRecord();

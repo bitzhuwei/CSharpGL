@@ -161,6 +161,8 @@
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
+    <Compile Include="Renderers\SimpleRenderer\TetrahedronRenderer.cs" />
+    <Compile Include="Renderers\SimpleRenderer\TetrahedronRenderer.DoRender.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
@@ -564,6 +566,12 @@
     <EmbeddedResource Include="Resources\SquareRenderer.vert" />
     <None Include="Resources\!!!.md" />
     <None Include="Resources\readme.md" />
+    <None Include="Resources\Simple.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Simple.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>

@@ -35,7 +35,7 @@
         /// <summary>
         /// model data that can be transfermed into OpenGL Buffer's pointer.
         /// </summary>
-        protected IBufferable bufferable;
+        protected IBufferable model;
 
         /// <summary>
         /// All shader codes needed for this renderer.
@@ -43,18 +43,18 @@
         protected ShaderCode[] shaderCodes;
 
         /// <summary>
-        /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="bufferable"/>.
+        /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="model"/>.
         /// </summary>
         protected PropertyNameMap propertyNameMap;
 
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
-        /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
+        /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="bufferable"/>.</param>
+        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
-        public Renderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        public Renderer(IBufferable model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
         {
             //this.OriginalWorldPosition = new vec3(0, 0, 0);// this is not needed.
@@ -62,7 +62,7 @@
             //this.RotationAngle = 0;// this is not needed.
             this.RotationAxis = new vec3(1, 0, 0);
 
-            this.bufferable = bufferable;
+            this.model = model;
             this.shaderCodes = shaderCodes;
             this.propertyNameMap = propertyNameMap;
             this.switchList.AddRange(switches);

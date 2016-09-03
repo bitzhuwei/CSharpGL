@@ -52,7 +52,7 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            var model = this.bufferable as WellModel;
+            var model = this.model as WellModel;
             this.WorldPosition = model.WorldPosition;
             this.Lengths = model.Lengths;
             this.firstNode = model.FirstNode;
