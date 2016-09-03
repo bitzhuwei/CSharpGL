@@ -157,6 +157,7 @@
     <Compile Include="FontTexture\FontTexture.IDisposable.cs" />
     <Compile Include="FontTexture\FontTexture.cs" />
     <Compile Include="FontTexture\FontTextureHelper.cs" />
+    <Compile Include="Renderers\BoundingBoxRenderer\BoundingBoxRenderer.FromIModelSpace.cs" />
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
@@ -236,7 +237,7 @@
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec3.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariableBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec2.cs" />
-    <Compile Include="Renderers\BoundingBoxRenderer.cs" />
+    <Compile Include="Renderers\BoundingBoxRenderer\BoundingBoxRenderer.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.cs" />
