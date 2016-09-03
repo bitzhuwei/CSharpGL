@@ -37,7 +37,7 @@ namespace GridViewer
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            this.scientificCanvas.Scene.Update();
+            this.scientificCanvas.Scene.UpdateOnce();
             this.scientificCanvas.Invalidate();
         }
     }

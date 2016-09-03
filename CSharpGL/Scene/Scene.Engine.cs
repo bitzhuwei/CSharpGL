@@ -74,7 +74,7 @@ namespace CSharpGL
         /// <summary>
         /// update once.
         /// </summary>
-        public void Update()
+        public void UpdateOnce()
         {
             this.UpdateObject(this.RootObject, 0);
         }

@@ -63,7 +63,7 @@ namespace GridViewer
                 this.objectsTreeView.ExpandAll();
 
                 // refresh objects state in scene.
-                this.scientificCanvas.Scene.Update();
+                this.scientificCanvas.Scene.UpdateOnce();
 
                 // render scene to this canvas.
                 this.scientificCanvas.Invalidate();

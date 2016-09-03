@@ -20,7 +20,7 @@
             {
                 Scene scene = rootObject.BindingScene;
                 ICanvas canvas = scene.Canvas;
-                scene.Update();
+                scene.UpdateOnce();
                 canvas.Repaint();
             }
         }
