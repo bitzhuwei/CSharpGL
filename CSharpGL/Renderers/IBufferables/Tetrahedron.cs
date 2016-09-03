@@ -131,5 +131,10 @@
         }
 
         private IndexBufferPtr indexBufferPtr = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Lengths { get { return new vec3(1.73205078f, 1.63299322f, 2.0f); } }
     }
 }

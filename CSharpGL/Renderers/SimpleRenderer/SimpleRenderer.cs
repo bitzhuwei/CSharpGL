@@ -47,33 +47,44 @@ namespace CSharpGL
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
             IBufferable model = null;
+            vec3 lengths = new vec3();
             switch (modelType)
             {
                 case ModelTypes.Axis:
-                    model = new Axis();
+                    var axis = new Axis();
+                    lengths = axis.Lengths;
+                    model = axis;
                     break;
 
                 case ModelTypes.Tetrahedron:
-                    model = new Tetrahedron();
+                    var tetra = new Tetrahedron();
+                    lengths = tetra.Lengths;
+                    model = tetra;
                     break;
 
                 case ModelTypes.Cube:
-                    model = new Cube();
+                    var cube = new Cube();
+                    lengths = cube.Lengths;
+                    model = cube;
                     break;
 
                 case ModelTypes.Sphere:
-                    model = new Sphere();
+                    var sphere = new Sphere();
+                    lengths = sphere.Lengths;
+                    model = sphere;
                     break;
 
                 case ModelTypes.Teapot:
-                    model = new Teapot();
+                    var teapot = new Teapot();
+                    lengths = teapot.Lengths;
+                    model = teapot;
                     break;
 
                 default:
                     throw new NotImplementedException();
             }
             var tetrahedron = new SimpleRenderer(model, shaderCodes, map);
-
+            tetrahedron.Lengths = lengths;
             return tetrahedron;
         }
 

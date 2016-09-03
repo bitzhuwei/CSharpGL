@@ -18,6 +18,7 @@
         public Sphere(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40)
         {
             this.model = new SphereModel(radius, latitudeParts, longitudeParts);
+            this.Lengths = new vec3(radius * 2, radius * 2, radius * 2);
         }
 
         /// <summary>
@@ -209,5 +210,10 @@
 
             return indexBufferPtr;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Lengths { get; private set; }
     }
 }

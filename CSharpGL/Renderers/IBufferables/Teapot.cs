@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Collections.Generic;
+namespace CSharpGL
 {
     /// <summary>
     /// Teapot.
@@ -49,6 +50,13 @@
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] positions = model.GetPositions();
+                        //List<vec3> pos = new List<vec3>();
+                        //for (int i = 0; i < positions.Length; i += 3)
+                        //{
+                        //    pos.Add(new vec3(positions[i], positions[i + 1], positions[i + 2]));
+                        //}
+                        //IBoundingBox box = pos.Move2Center();
+                        //vec3 lengths = box.MaxPosition - box.MinPosition;
                         buffer.Create(positions.Length);
                         unsafe
                         {
@@ -140,5 +148,10 @@
         }
 
         private IndexBufferPtr indexBufferPtr = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Lengths { get { return new vec3(6.42963028f, 3.15f, 4.0f); } }
     }
 }

@@ -121,5 +121,10 @@ namespace CSharpGL
         }
 
         private IndexBufferPtr indexBufferPtr = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Lengths { get { return new vec3(2, 2, 2); } }
     }
 }

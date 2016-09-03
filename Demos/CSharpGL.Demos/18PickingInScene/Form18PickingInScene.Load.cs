@@ -27,14 +27,36 @@ namespace CSharpGL.Demos
                 ground.Initialize();
                 ground.Scale = new vec3(10, 10, 10);
                 ground.WorldPosition = new vec3(0, 0, 0);
-                SceneObject obj = ground.WrapToSceneObject("ground");
+                SceneObject obj = ground.WrapToSceneObject("Ground");
+                {
+                    BoundingBoxRenderer boxRenderer = ground.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Ground box");
+                    obj.Children.Add(boxObj);
+                }
                 this.scene.RootObject.Children.Add(obj);
             }
             {
                 var tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
                 tetrahedron.Initialize();
-                tetrahedron.WorldPosition = new vec3(5, 1, 5);
+                tetrahedron.WorldPosition = new vec3(5, 2, 5);
                 SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
+                {
+                    BoundingBoxRenderer boxRenderer = tetrahedron.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Tetrahedron box");
+                    obj.Children.Add(boxObj);
+                }
+                this.scene.RootObject.Children.Add(obj);
+            }
+            {
+                var teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Axis);
+                teapot.Initialize();
+                teapot.WorldPosition = new vec3(-5, 2, 5);
+                SceneObject obj = teapot.WrapToSceneObject("Teapot");
+                {
+                    BoundingBoxRenderer boxRenderer = teapot.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Teapot box");
+                    obj.Children.Add(boxObj);
+                }
                 this.scene.RootObject.Children.Add(obj);
             }
         }
