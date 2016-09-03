@@ -23,9 +23,9 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var ground = GroundRenderer.Create(new GroundModel(100));
+                GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));
                 ground.Initialize();
-                ground.Scale = new vec3(10, 10, 10);
+                ground.Scale = new vec3(20, 20, 20);
                 ground.WorldPosition = new vec3(0, 0, 0);
                 SceneObject obj = ground.WrapToSceneObject("Ground");
                 {
@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                var tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
+                SimpleRenderer tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
                 tetrahedron.Initialize();
                 tetrahedron.WorldPosition = new vec3(5, 2, 5);
                 SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                var teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Teapot);
+                SimpleRenderer teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Teapot);
                 teapot.Initialize();
                 teapot.WorldPosition = new vec3(-5, 2, 5);
                 SceneObject obj = teapot.WrapToSceneObject("Teapot");
