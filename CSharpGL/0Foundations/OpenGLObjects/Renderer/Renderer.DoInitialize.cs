@@ -11,11 +11,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program
-            var program = new ShaderProgram();
-            var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
-            program.Initialize(shaders);
-            this.Program = program;
-            foreach (var item in shaders) { item.Delete(); }
+            this.Program = InitializeProgram();
 
             // init property buffer objects
             var propertyBufferPtrs = new PropertyBufferPtr[propertyNameMap.Count()];
@@ -38,6 +34,15 @@ namespace CSharpGL
                 GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr);
                 this.switchList.Add(glSwitch);
             }
+        }
+
+        private ShaderProgram InitializeProgram()
+        {
+            var program = new ShaderProgram();
+            var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
+            program.Initialize(shaders);
+            foreach (var item in shaders) { item.Delete(); }
+            return program;
         }
     }
 }

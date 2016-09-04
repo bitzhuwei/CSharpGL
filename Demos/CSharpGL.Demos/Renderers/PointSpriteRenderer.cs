@@ -133,7 +133,7 @@ namespace CSharpGL.Demos
                 return indexBufferPtr;
             }
 
-            public vec3 Lengths { get { return new vec3(1, 1, 1); } }
+            public vec3 Lengths { get { return new vec3(2, 2, 2); } }
         }
 
         internal void UpdateTexture(string filename)
