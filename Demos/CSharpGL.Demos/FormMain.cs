@@ -100,5 +100,10 @@ namespace CSharpGL.Demos
         {
             (new Form18PickingInScene()).Show();
         }
+
+        private void btn19PointCloud_Click(object sender, EventArgs e)
+        {
+            (new Form19PointCloud()).Show();
+        }
     }
 }

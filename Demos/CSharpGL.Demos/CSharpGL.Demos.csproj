@@ -47,6 +47,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="06ImageProcessing\UpdateImageScript.cs" />
+    <Compile Include="07PointSprite\Form07PointSprite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="07PointSprite\Form07PointSprite.Designer.cs">
+      <DependentUpon>Form07PointSprite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07PointSprite\Form07PointSprite.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="19PointCloud\Form19PointCloud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="19PointCloud\Form19PointCloud.Designer.cs">
+      <DependentUpon>Form19PointCloud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="19PointCloud\Form19PointCloud.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="11IFontTexture\Form11IFontTexture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,15 +226,6 @@
     <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07PointSprite\Form07PointSprite.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="07PointSprite\Form07PointSprite.Designer.cs">
-      <DependentUpon>Form07PointSprite.cs</DependentUpon>
-    </Compile>
-    <Compile Include="07PointSprite\Form07PointSprite.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Renderers\PointSpriteRenderer.cs" />
     <Compile Include="12Billboard\Form12Billboard.cs">
       <SubType>Form</SubType>
@@ -275,6 +284,12 @@
     <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="shaders\PointCloud.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\PointCloud.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\UpdatingTexture.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -359,6 +374,12 @@
     <None Include="shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="07PointSprite\Form07PointSprite.resx">
+      <DependentUpon>Form07PointSprite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="19PointCloud\Form19PointCloud.resx">
+      <DependentUpon>Form19PointCloud.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="11IFontTexture\Form11IFontTexture.resx">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
     </EmbeddedResource>
@@ -397,9 +418,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.resx">
       <DependentUpon>Form08AnalyzedPointSprite.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="07PointSprite\Form07PointSprite.resx">
-      <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="12Billboard\Form12Billboard.resx">
       <DependentUpon>Form12Billboard.cs</DependentUpon>
@@ -502,6 +520,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\19PointCloud.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="shaders\Simple.PropertyNameMap.xml" />
     <Content Include="Textures\box.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
