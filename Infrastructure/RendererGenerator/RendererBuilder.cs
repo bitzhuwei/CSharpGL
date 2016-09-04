@@ -109,7 +109,7 @@ namespace RendererGenerator
                 // var shaderCodes = new ShaderCode[2];
                 method.Statements.Add(new CodeSnippetStatement(string.Format("            var {0} = new {1}[2];", shaderCodes, typeof(ShaderCode).Name)));
                 method.Statements.Add(new CodeSnippetStatement(string.Format("            {0}[0] = new {1}(File.ReadAllText(@\"shaders\\{2}.vert\"), {3}.{4});", shaderCodes, typeof(ShaderCode).Name, dataStructure.TargetName, ShaderType.VertexShader.GetType().Name, ShaderType.VertexShader)));
-                method.Statements.Add(new CodeSnippetStatement(string.Format("            {0}[0] = new {1}(File.ReadAllText(@\"shaders\\{2}.frag\"), {3}.{4});", shaderCodes, typeof(ShaderCode).Name, dataStructure.TargetName, ShaderType.VertexShader.GetType().Name, ShaderType.FragmentShader)));
+                method.Statements.Add(new CodeSnippetStatement(string.Format("            {0}[1] = new {1}(File.ReadAllText(@\"shaders\\{2}.frag\"), {3}.{4});", shaderCodes, typeof(ShaderCode).Name, dataStructure.TargetName, ShaderType.VertexShader.GetType().Name, ShaderType.FragmentShader)));
             }
             {
                 // var map = new PropertyNameMap();
