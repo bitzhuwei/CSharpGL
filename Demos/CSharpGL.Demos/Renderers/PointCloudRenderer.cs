@@ -1,5 +1,6 @@
 namespace CSharpGL
 {
+    using System.Drawing;
     using System.IO;
 
     /// <summary>
@@ -31,12 +32,40 @@ namespace CSharpGL
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
+            if (this.modelMatrixRecord.IsMarked())
+            {
+                mat4 model = this.GetModelMatrix();
+                this.SetUniform("modelMatrix", model);
+                this.modelMatrixRecord.CancelMark();
+            }
+            if (this.pointColorRecord.IsMarked())
+            {
+                this.SetUniform("PointColor", this.pointColor);
+                this.pointColorRecord.CancelMark();
+            }
 
             base.DoRender(arg);
+        }
+
+        private UpdatingRecord pointColorRecord = new UpdatingRecord();
+        private vec3 pointColor = new vec3(1, 0, 1);
+        /// <summary>
+        /// 
+        /// </summary>
+        public Color PointColor
+        {
+            get { return pointColor.ToColor(); }
+            set
+            {
+                vec3 color = value.ToVec3();
+                if (color != pointColor)
+                {
+                    this.pointColor = color;
+                    pointColorRecord.Mark();
+                }
+            }
         }
     }
 }
