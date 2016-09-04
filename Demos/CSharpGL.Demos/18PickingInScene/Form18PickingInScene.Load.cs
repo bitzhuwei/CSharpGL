@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -21,6 +22,12 @@ namespace CSharpGL.Demos
                 rotator.Bind(camera, this.glCanvas1);
                 this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
+            }
+            {
+                var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+              new Padding(3, 3, 3, 3), new Size(128, 128), -100, 100);
+                uiAxis.Initialize();
+                this.scene.UIRoot.Children.Add(uiAxis);
             }
             {
                 GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));

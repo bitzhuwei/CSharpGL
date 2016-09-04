@@ -1,43 +1,30 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 
 namespace CSharpGL.Demos
 {
     internal class PointSpriteRenderer : Renderer
     {
-        private Color clearColor = Color.Black;
+        private Texture spriteTexture;
 
-        public Color ClearColor
+        public static PointSpriteRenderer Create(int particleCount)
         {
-            get { return clearColor; }
-            set
-            {
-                if (value != clearColor)
-                {
-                    clearColor = value;
-                    OpenGL.ClearColor(value.R / 255.0f, value.G / 255.0f, value.B / 255.0f, value.A / 255.0f);
-                }
-            }
-        }
-
-        private uint[] sprite_texture = new uint[1];
-        private static ShaderCode[] staticShaderCodes;
-        private static PropertyNameMap map;
-
-        static PointSpriteRenderer()
-        {
-            staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.frag"), ShaderType.FragmentShader);
-            map = new PropertyNameMap();
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
             map.Add("position", PointSpriteModel.strposition);
+            var model = new PointSpriteModel(particleCount);
+            var renderer = new PointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            renderer.Lengths = model.Lengths;
+
+            return renderer;
         }
 
-        public PointSpriteRenderer(int particleCount)
-            : base(new PointSpriteModel(particleCount), staticShaderCodes, map)
+        public PointSpriteRenderer(IBufferable model, ShaderCode[] shaderCodes,
+            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, propertyNameMap, switches)
         {
-            this.SwitchList.Add(new PointSpriteSwitch());
         }
 
         protected override void DoInitialize()
@@ -48,11 +35,10 @@ namespace CSharpGL.Demos
                 var texture = new Texture(BindTextureTarget.Texture2D, bitmap, new SamplerParameters());
                 texture.Initialize();
                 bitmap.Dispose();
-                this.sprite_texture[0] = texture.Id;
+                this.spriteTexture = texture;
             }
             base.DoInitialize();
-            this.SetUniform("sprite_texture", new samplerValue(
-                  BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
+            this.SetUniform("spriteTexture", this.spriteTexture.ToSamplerValue());
             this.SetUniform("factor", 100.0f);
         }
 
@@ -68,7 +54,9 @@ namespace CSharpGL.Demos
 
         protected override void DisposeUnmanagedResources()
         {
-            OpenGL.DeleteTextures(1, sprite_texture);
+            base.DisposeUnmanagedResources();
+
+            this.spriteTexture.Dispose();
         }
 
         private class PointSpriteModel : IBufferable
@@ -144,6 +132,8 @@ namespace CSharpGL.Demos
 
                 return indexBufferPtr;
             }
+
+            public vec3 Lengths { get { return new vec3(1, 1, 1); } }
         }
 
         internal void UpdateTexture(string filename)
@@ -153,12 +143,11 @@ namespace CSharpGL.Demos
             var texture = new Texture(BindTextureTarget.Texture2D, bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();
-            var old = new uint[1];
-            old[0] = this.sprite_texture[0];
-            this.sprite_texture[0] = texture.Id;
+            Texture old = this.spriteTexture;
+            this.spriteTexture = texture;
             this.SetUniform("sprite_texture", texture.ToSamplerValue());
 
-            OpenGL.DeleteTextures(1, old);
+            old.Dispose();
         }
     }
 }

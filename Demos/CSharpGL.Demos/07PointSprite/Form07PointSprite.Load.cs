@@ -23,29 +23,17 @@ namespace CSharpGL.Demos
                 this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
             }
-            //{
-            //    var renderer = new PointSpriteRenderer(10000);
-            //    renderer.Initialize();
-            //    this.renderer = renderer;
-            //    SceneObject obj = renderer.WrapToSceneObject();
-            //    this.scene.RootObject.Children.Add(obj);
-            //}
             {
-                var list = new List<vec3>();
-                list.Add(new vec3(0, 0, 0));
-                list.Add(new vec3(0, 0, 1));
-                list.Add(new vec3(0, 1, 0));
-                list.Add(new vec3(0, 1, 1));
-                list.Add(new vec3(1, 0, 0));
-                list.Add(new vec3(1, 0, 1));
-                list.Add(new vec3(1, 1, 0));
-                list.Add(new vec3(1, 1, 1));
-                list.Add(new vec3(1, 1, 1) * 0.3f);
-                list.Add(new vec3(1, 1, 1) * 0.6f);
-                list.Add(new vec3(1, 1, 1) * 0.9f);
-                var renderer = PointCloudRenderer.Create(new PointCloudModel(list));
+                const int particleCount = 10000;
+                PointSpriteRenderer renderer = PointSpriteRenderer.Create(particleCount);
                 renderer.Initialize();
-                SceneObject obj = renderer.WrapToSceneObject("point cloud");
+                this.renderer = renderer;
+                SceneObject obj = renderer.WrapToSceneObject();
+                {
+                    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("PointSprite box");
+                    obj.Children.Add(boxObj);
+                }
                 this.scene.RootObject.Children.Add(obj);
             }
             {

@@ -8,7 +8,6 @@ namespace CSharpGL.Demos
     {
         private Camera camera;
         private SatelliteManipulater rotator;
-        private PointSpriteRenderer renderer;
 
         public Form19PointCloud()
         {
@@ -35,14 +34,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'o')
-            {
-                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.renderer.UpdateTexture(this.openTextureDlg.FileName);
-                }
-            }
-            else if (e.KeyChar == 's')
+            if (e.KeyChar == 's')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
