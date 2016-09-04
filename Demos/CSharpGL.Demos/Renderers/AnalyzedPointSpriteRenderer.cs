@@ -6,20 +6,6 @@ namespace CSharpGL.Demos
 {
     internal class AnalyzedPointSpriteRenderer : Renderer
     {
-        private Color clearColor = Color.Black;
-
-        public Color ClearColor
-        {
-            get { return clearColor; }
-            set
-            {
-                if (value != clearColor)
-                {
-                    clearColor = value;
-                    OpenGL.ClearColor(value.R / 255.0f, value.G / 255.0f, value.B / 255.0f, value.A / 255.0f);
-                }
-            }
-        }
 
         public static AnalyzedPointSpriteRenderer Create(int particleCount)
         {
@@ -30,6 +16,8 @@ namespace CSharpGL.Demos
             map.Add("position", "position");
             var model = new BillboardModel(particleCount);
             var renderer = new AnalyzedPointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            renderer.Lengths = model.Lengths;
+
             return renderer;
         }
 
@@ -120,6 +108,8 @@ namespace CSharpGL.Demos
 
                 return indexBufferPtr;
             }
+
+            public vec3 Lengths { get { return new vec3(a, b, c) * 2; } }
         }
     }
 }

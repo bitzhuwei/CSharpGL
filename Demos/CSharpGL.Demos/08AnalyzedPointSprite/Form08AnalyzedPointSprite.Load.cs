@@ -23,9 +23,14 @@ namespace CSharpGL.Demos
             }
             {
                 int particleCount = 10000;
-                var renderer = AnalyzedPointSpriteRenderer.Create(particleCount);
+                AnalyzedPointSpriteRenderer renderer = AnalyzedPointSpriteRenderer.Create(particleCount);
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
+                {
+                    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Analyzed PointSprite box");
+                    obj.Children.Add(boxObj);
+                }
                 this.scene.RootObject.Children.Add(obj);
             }
             {
