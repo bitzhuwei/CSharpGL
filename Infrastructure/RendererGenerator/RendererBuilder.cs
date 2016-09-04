@@ -57,9 +57,9 @@ namespace RendererGenerator
             method.Name = "DoRender";
             const string arg = "arg";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(RenderEventArgs), arg));
-            method.Statements.Add(new CodeCommentStatement("mat4 projection = arg.Camera.GetProjectionMat4();"));
-            method.Statements.Add(new CodeCommentStatement("mat4 view = arg.Camera.GetViewMat4();"));
-            method.Statements.Add(new CodeCommentStatement("mat4 model = mat4.identity();"));
+            method.Statements.Add(new CodeCommentStatement("mat4 projection = arg.Camera.GetProjectionMatrix();"));
+            method.Statements.Add(new CodeCommentStatement("mat4 view = arg.Camera.GetViewMatrix();"));
+            method.Statements.Add(new CodeCommentStatement("mat4 model = this.GetModelMatrix();"));
             method.Statements.Add(new CodeCommentStatement("this.SetUniform(\"projectionMatrix\", projection);"));
             method.Statements.Add(new CodeCommentStatement("this.SetUniform(\"viewMatrix\", view);"));
             method.Statements.Add(new CodeCommentStatement("this.SetUniform(\"modelMatrix\", model);"));
