@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form18PickingInScene : Form
+    public partial class Form18PickingInScene
     {
         private Scene scene;
 
