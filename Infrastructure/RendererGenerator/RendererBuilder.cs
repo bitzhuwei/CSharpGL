@@ -131,6 +131,11 @@ namespace RendererGenerator
                 method.Statements.Add(new CodeSnippetStatement(string.Format("            var {0} = new {1}({2}, {3}, map);", renderer, dataStructure.RendererName, model, shaderCodes)));
             }
             {
+                // setup renderer's Lengths, WorldPosition etc.
+                method.Comments.Add(new CodeCommentStatement(string.Format("renderer.Lengths = ...")));
+                method.Comments.Add(new CodeCommentStatement(string.Format("renderer.WorldPosition = ...")));
+            }
+            {
                 // return renderer;
                 method.Statements.Add(new CodeMethodReturnStatement(new CodeVariableReferenceExpression(renderer)));
             }
