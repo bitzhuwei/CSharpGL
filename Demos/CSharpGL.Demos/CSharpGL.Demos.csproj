@@ -91,6 +91,7 @@
     <Compile Include="15UIRenderer\Form15UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\PointCloudModel.cs" />
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
@@ -107,6 +108,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
+    <Compile Include="Renderers\PointCloudRenderer.cs" />
     <Compile Include="Renderers\RaycastVolumeImageFiller.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.Render.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.cs" />

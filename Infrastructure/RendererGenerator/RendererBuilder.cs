@@ -53,7 +53,7 @@ namespace RendererGenerator
         {
             //throw new NotImplementedException();
             var method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.Attributes = MemberAttributes.Family | MemberAttributes.Override;
             method.Name = "DoRender";
             const string arg = "arg";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(RenderEventArgs), arg));
