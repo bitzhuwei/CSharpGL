@@ -387,11 +387,22 @@ namespace CSharpGL
         [Description("Scene to be rendered."), Category("CSharpGL")]
         public Scene Scene { get; private set; }
 
+        private Manipulater cameraManipulater;
         /// <summary>
         /// Controls how camera moves according to mouse/keyboard.
         /// </summary>
         [Description("Controls how camera moves according to mouse/keyboard."), Category("CSharpGL")]
-        public FirstPerspectiveManipulater CameraManipulater { get; set; }
+        public Manipulater CameraManipulater
+        {
+            get { return this.cameraManipulater; }
+            set
+            {
+                if (this.cameraManipulater != null)
+                { this.cameraManipulater.Unbind(); }
+                this.cameraManipulater = value;
+                value.Bind(this.Scene.Camera, this);
+            }
+        }
 
         /// <summary>
         /// repaint this canvas' content.
