@@ -192,6 +192,21 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Call this function in derived classes to do the OpenGL Draw event.
+        /// </summary>
+        private void DoOpenGLDraw(PaintEventArgs e)
+        {
+            vec4 clearColor = this.Scene.ClearColor.ToVec4();
+            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+
+            //  Clear the color and depth buffer.
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+            this.Scene.Render(RenderModes.Render, this.ClientRectangle,
+                this.PointToClient(Control.MousePosition));
+        }
+
+        /// <summary>
         ///
         /// </summary>
         protected virtual void DesignModeRender()
@@ -379,47 +394,12 @@ namespace CSharpGL
         public FirstPerspectiveManipulater CameraManipulater { get; set; }
 
         /// <summary>
-        /// Call this function in derived classes to do the OpenGL Draw event.
-        /// </summary>
-        private void DoOpenGLDraw(PaintEventArgs e)
-        {
-            vec4 clearColor = this.Scene.ClearColor.ToVec4();
-            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-
-            //  Clear the color and depth buffer.
-            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-
-            this.Scene.Render(RenderModes.Render, this.ClientRectangle,
-                this.PointToClient(Control.MousePosition));
-        }
-
-        #region ICanvas
-
-        /// <summary>
         /// repaint this canvas' content.
         /// </summary>
         public void Repaint()
         {
             this.Invalidate();
         }
-
-        ///// <summary>
-        ///// canvas' rectangle.
-        ///// </summary>
-        //public Rectangle CanvasRectangle
-        //{
-        //    get { return this.ClientRectangle; }
-        //}
-
-        ///// <summary>
-        ///// Mouse position to canvas' left-top corner.
-        ///// </summary>
-        //public Point CursorPosition
-        //{
-        //    get { return this.PointToClient(Control.MousePosition); }
-        //}
-
-        #endregion ICanvas
 
     }
 }

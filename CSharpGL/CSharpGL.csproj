@@ -136,6 +136,12 @@
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndependentBufferPtr.cs" />
+    <Compile Include="Canvas\GLSceneCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Canvas\GLSceneCanvas.Designer.cs">
+      <DependentUpon>GLSceneCanvas.cs</DependentUpon>
+    </Compile>
     <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
