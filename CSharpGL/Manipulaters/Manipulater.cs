@@ -11,7 +11,7 @@
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
-        public abstract void Bind(ICamera camera, GLCanvas canvas);
+        public abstract void Bind(ICamera camera, ICanvas canvas);
 
         /// <summary>
         /// stop to manipulate camera or model.

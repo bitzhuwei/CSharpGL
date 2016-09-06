@@ -13,7 +13,7 @@ namespace CSharpGL
     {
         private char backKey;
         private ICamera camera;
-        private GLCanvas canvas;
+        private ICanvas canvas;
 
         private char downKey;
         private char frontKey;
@@ -170,7 +170,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
-        public override void Bind(ICamera camera, GLCanvas canvas)
+        public override void Bind(ICamera camera, ICanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
@@ -237,7 +237,7 @@ namespace CSharpGL
             if (updated)
             {
                 if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-                { this.canvas.Invalidate(); }
+                { this.canvas.Repaint(); }
             }
         }
 
@@ -268,7 +268,7 @@ namespace CSharpGL
                 this.lastPosition = e.Location;
 
                 if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-                { this.canvas.Invalidate(); }
+                { this.canvas.Repaint(); }
             }
         }
 
@@ -285,7 +285,7 @@ namespace CSharpGL
             this.camera.MouseWheel(e.Delta);
 
             if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-            { this.canvas.Invalidate(); }
+            { this.canvas.Repaint(); }
         }
 
         /// <summary>
