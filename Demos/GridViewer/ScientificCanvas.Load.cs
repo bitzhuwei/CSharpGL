@@ -19,7 +19,7 @@ namespace GridViewer
             this.Scene.Cursor.Enabled = false;
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
-                    new Padding(10, 10, 10, 10), new Size(128, 128), -100, 100);
+                    new Padding(10, 10, 10, 10), new Size(128, 128));
                 uiAxis.Initialize();
                 //// display this UI control's area.
                 //uiAxis.SwitchList.Add(new ClearColorSwitch());

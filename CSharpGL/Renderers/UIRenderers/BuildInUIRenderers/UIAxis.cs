@@ -13,13 +13,11 @@ namespace CSharpGL
         /// <param name="anchor"></param>
         /// <param name="margin"></param>
         /// <param name="size"></param>
-        /// <param name="zNear"></param>
-        /// <param name="zFar"></param>
         /// <param name="partCount">24 as default.</param>
         public UIAxis(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
-            System.Drawing.Size size, int zNear, int zFar, int partCount = 24)
-            : base(anchor, margin, size, zNear, zFar)
+            System.Drawing.Size size, int partCount = 24)
+            : base(anchor, margin, size, -Math.Max(size.Width, size.Height), Math.Max(size.Width, size.Height))
         {
             AxisRenderer renderer = AxisRenderer.Create(partCount);
 

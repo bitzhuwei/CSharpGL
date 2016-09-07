@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
                 this.uiRoot = UIRoot;
 
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
-                    new Padding(3, 3, 3, 3), new Size(128, 128), -100, 100);
+                    new Padding(3, 3, 3, 3), new Size(128, 128));
                 uiAxis.Initialize();
                 this.uiAxis = uiAxis;
 
