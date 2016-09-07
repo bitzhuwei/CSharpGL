@@ -571,12 +571,8 @@
     <EmbeddedResource Include="Resources\SquareRenderer.vert" />
     <None Include="Resources\!!!.md" />
     <None Include="Resources\readme.md" />
-    <EmbeddedResource Include="Resources\Simple.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Simple.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Simple.frag" />
+    <EmbeddedResource Include="Resources\Simple.vert" />
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>
