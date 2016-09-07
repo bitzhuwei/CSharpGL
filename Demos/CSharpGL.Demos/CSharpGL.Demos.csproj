@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Models\PointCloudModel.cs" />
     <Compile Include="Models\TexturedRectangleModel.cs" />
+    <None Include="readme.md" />
     <None Include="Resources\readme.md" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
