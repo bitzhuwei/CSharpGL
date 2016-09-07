@@ -11,8 +11,8 @@ namespace CSharpGL
     /// 可执行OpenGL渲染的控件。
     /// </summary>
     [DefaultProperty("Text")]
-    [DefaultEvent("OpenGLDraw")]
-    [Description("A canvas for OpenGL rendering.")]
+    //[DefaultEvent("OpenGLDraw")]
+    [Description("A canvas that renders a scene with OpenGL.")]
     //[ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
     public partial class GLSceneCanvas :
         UserControl,
@@ -20,7 +20,6 @@ namespace CSharpGL
         ICanvas
     {
         private Stopwatch stopWatch = new Stopwatch();
-        private readonly string fullname;
 
         /// <summary>
         ///
@@ -56,17 +55,16 @@ namespace CSharpGL
                 this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
-            this.fullname = this.GetType().FullName;
             {
                 var camera = new Camera(
                     new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.Width, this.Height);
-                var rotator = new FirstPerspectiveManipulater();// SatelliteManipulater();
-                rotator.Bind(camera, this);
-                this.CameraManipulater = rotator;
                 var scene = new Scene(camera, this);
                 this.Scene = scene;
                 this.Resize += scene.Resize;
+                var rotator = new FirstPerspectiveManipulater();// SatelliteManipulater();
+                //rotator.Bind(camera, this);
+                this.CameraManipulater = rotator;
             }
         }
 
@@ -222,7 +220,7 @@ namespace CSharpGL
 
             OpenGL.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
-                25.0f, this.fullname);
+                25.0f, this.GetType().FullName);
             if (this.RenderTrigger == RenderTrigger.TimerBased)
             {
                 OpenGL.DrawText(10,
