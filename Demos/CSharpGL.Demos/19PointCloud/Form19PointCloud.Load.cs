@@ -27,7 +27,7 @@ namespace CSharpGL.Demos
             {
                 var list = new List<vec3>();
 
-                using (var reader = new StreamReader(@"data\19PointCloud.txt"))
+                using (var reader = new StreamReader(@"Resources\data\19PointCloud.txt"))
                 {
                     while (!reader.EndOfStream)
                     {

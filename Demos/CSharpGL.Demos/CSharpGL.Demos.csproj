@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Models\PointCloudModel.cs" />
     <Compile Include="Models\TexturedRectangleModel.cs" />
+    <None Include="Resources\readme.md" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />
@@ -480,7 +481,7 @@
     <None Include="shaders\backface.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="data\tff.dat">
+    <None Include="Resources\data\tff.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\billboard.frag">
@@ -532,7 +533,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\19PointCloud.txt">
+    <Content Include="Resources\data\19PointCloud.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="shaders\Simple.PropertyNameMap.xml" />
@@ -548,7 +549,7 @@
     <Content Include="Textures\PointSprite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\head256.raw">
+    <Content Include="Resources\data\head256.raw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\ExampleBillboard.png">

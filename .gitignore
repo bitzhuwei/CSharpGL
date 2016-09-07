@@ -156,4 +156,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 # data folder
-Demos/CSharpGL.Demos/data/
+Demos/CSharpGL.Demos/Resources/data/

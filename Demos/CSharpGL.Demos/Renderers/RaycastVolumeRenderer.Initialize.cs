@@ -12,8 +12,8 @@ namespace CSharpGL.Demos
             this.backfaceRenderer = InitBackfaceRenderer();
             this.raycastRenderer = InitRaycastRenderer();
 
-            this.transferFunc1DTexture = InitTFF1DTexture(@"data\tff.dat");
-            this.volume3DTexture = initVol3DTex(@"data\head256.raw", 256, 256, 225);
+            this.transferFunc1DTexture = InitTFF1DTexture(@"Resources\data\tff.dat");
+            this.volume3DTexture = initVol3DTex(@"Resources\data\head256.raw", 256, 256, 225);
 
             int[] viewport = OpenGL.GetViewport();
             int width = viewport[2], height = viewport[3];
