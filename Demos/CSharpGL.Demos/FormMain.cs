@@ -105,5 +105,10 @@ namespace CSharpGL.Demos
         {
             (new Form19PointCloud()).Show();
         }
+
+        private void btn20GLSceneCanvas_Click(object sender, EventArgs e)
+        {
+            (new Form20GLSceneCanvas()).Show();
+        }
     }
 }

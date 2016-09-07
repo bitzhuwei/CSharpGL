@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="20GLSceneCanvas\Form20GLSceneCanvas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="20GLSceneCanvas\Form20GLSceneCanvas.Designer.cs">
+      <DependentUpon>Form20GLSceneCanvas.cs</DependentUpon>
+    </Compile>
     <Compile Include="06ImageProcessing\UpdateImageScript.cs" />
     <Compile Include="07PointSprite\Form07PointSprite.cs">
       <SubType>Form</SubType>
@@ -377,6 +383,9 @@
     <None Include="shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="20GLSceneCanvas\Form20GLSceneCanvas.resx">
+      <DependentUpon>Form20GLSceneCanvas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="07PointSprite\Form07PointSprite.resx">
       <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </EmbeddedResource>
