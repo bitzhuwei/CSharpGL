@@ -113,7 +113,7 @@ namespace CSharpGL.Demos
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("iexplore", "https://github.com/bitzhuwei/CSharpGL.Data");
+            Process.Start("https://github.com/bitzhuwei/CSharpGL.Data");
         }
     }
 }
