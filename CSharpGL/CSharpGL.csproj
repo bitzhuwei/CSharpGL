@@ -63,7 +63,6 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Renderer\readme.md" />
     <Content Include="0Foundations\OpenGLAPI\Enumerations\DrawMode.png" />
-    <Content Include="ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
     <Content Include="ColorCodedPicking\readme.md" />
     <Content Include="Renderers\IBufferables\AxisModel.jpg" />
