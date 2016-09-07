@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -109,6 +109,11 @@ namespace CSharpGL.Demos
         private void btn20GLSceneCanvas_Click(object sender, EventArgs e)
         {
             (new Form20GLSceneCanvas()).Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("iexplore", "https://github.com/bitzhuwei/CSharpGL.Data");
         }
     }
 }
