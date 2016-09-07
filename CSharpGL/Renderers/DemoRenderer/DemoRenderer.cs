@@ -3,9 +3,9 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Renders a simple model embeded in CSharpGL.
+    /// Renders a model provided by CSharpGL.
     /// </summary>
-    public partial class SimpleRenderer : Renderer
+    public partial class DemoRenderer : Renderer
     {
         /// <summary>
         /// 
@@ -38,7 +38,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public static SimpleRenderer Create(ModelTypes modelType)
+        public static DemoRenderer Create(ModelTypes modelType)
         {
             ShaderCode[] shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
@@ -83,7 +83,7 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
-            var tetrahedron = new SimpleRenderer(model, shaderCodes, map);
+            var tetrahedron = new DemoRenderer(model, shaderCodes, map);
             tetrahedron.Lengths = lengths;
             return tetrahedron;
         }
@@ -95,7 +95,7 @@ namespace CSharpGL
         /// <param name="shaderCodes"></param>
         /// <param name="propertyNameMap"></param>
         /// <param name="switches"></param>
-        public SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        public DemoRenderer(IBufferable model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {

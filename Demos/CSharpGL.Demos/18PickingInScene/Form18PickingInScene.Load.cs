@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                SimpleRenderer tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
+                DemoRenderer tetrahedron = DemoRenderer.Create(DemoRenderer.ModelTypes.Tetrahedron);
                 tetrahedron.Initialize();
                 tetrahedron.WorldPosition = new vec3(5, 2, 5);
                 SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
@@ -55,7 +55,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                SimpleRenderer teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Teapot);
+                DemoRenderer teapot = DemoRenderer.Create(DemoRenderer.ModelTypes.Teapot);
                 teapot.Initialize();
                 teapot.WorldPosition = new vec3(-5, 2, 5);
                 SceneObject obj = teapot.WrapToSceneObject("Teapot");
