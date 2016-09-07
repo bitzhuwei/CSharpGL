@@ -3,12 +3,12 @@ in float pass_uv;
 out vec4 out_Color;
 
 uniform sampler1D colorCodeSampler;
-uniform float renderingWireframe;
+uniform bool renderingWireframe = false;
 uniform float brightness = 1.0f;
 uniform float opacity = 1.0f;
 
 void main(void) {
-	if (renderingWireframe > 0.0)
+	if (renderingWireframe)
 	{
 		if (0.0 <= pass_uv && pass_uv <= 1.0)
 		{

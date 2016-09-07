@@ -19,5 +19,48 @@ namespace GridViewer
             this.WorldPosition = originalWorldPosition;
             this.Grid = model;
         }
+
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            if (this.RenderGrid)
+            {
+                this.SetUniform("renderingWireframe", false);
+                this.polygonModeSwitch.Mode = PolygonModes.Filled;
+                this.polygonModeSwitch.On();
+                base.DoRender(arg);
+                this.polygonModeSwitch.Off();
+            }
+
+            if (this.renderWireframe)
+            {
+                this.SetUniform("renderingWireframe", true);
+                this.polygonModeSwitch.Mode = PolygonModes.Lines;
+                this.polygonModeSwitch.On();
+                this.polygonOffsetSwitch.On();
+                base.DoRender(arg);
+                this.polygonOffsetSwitch.Off();
+                this.polygonModeSwitch.Off();
+            }
+        }
+
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch();
+        private PolygonOffsetSwitch polygonOffsetSwitch = new PolygonOffsetLineSwitch();
+        private bool renderGrid = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderGrid
+        {
+            get { return renderGrid; }
+            set { renderGrid = value; }
+        }
+
+        private bool renderWireframe = false;
+
+        public bool RenderWireframe
+        {
+            get { return renderWireframe; }
+            set { renderWireframe = value; }
+        }
     }
 }
