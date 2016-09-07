@@ -45,6 +45,12 @@ namespace GridViewer
 
             return ptr;
         }
+        /// <summary>
+        /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+        /// </summary>
+        /// <returns></returns>
+        public override bool UsesZeroIndexBufferPtr() { return false; }
+
     }
 
     /// <summary>

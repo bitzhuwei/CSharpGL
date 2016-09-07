@@ -21,5 +21,11 @@
         /// </summary>
         /// <returns></returns>
         IndexBufferPtr GetIndex();
+
+        /// <summary>
+        /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+        /// </summary>
+        /// <returns></returns>
+        bool UsesZeroIndexBufferPtr();
     }
 }

@@ -108,6 +108,11 @@ namespace CSharpGL.Demos
 
                 return indexBufferPtr;
             }
+            /// <summary>
+            /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+            /// </summary>
+            /// <returns></returns>
+            public bool UsesZeroIndexBufferPtr() { return true; }
 
             public vec3 Lengths { get { return new vec3(a, b, c) * 2; } }
         }

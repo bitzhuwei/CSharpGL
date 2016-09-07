@@ -145,6 +145,11 @@ namespace GridViewer
 
             return this.indexBufferPtr;
         }
+        /// <summary>
+        /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+        /// </summary>
+        /// <returns></returns>
+        public bool UsesZeroIndexBufferPtr() { return false; }
 
         public vec3 FirstNode { get; private set; }
 

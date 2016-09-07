@@ -120,6 +120,12 @@ namespace CSharpGL
             return indexBufferPtr;
         }
 
+        /// <summary>
+        /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+        /// </summary>
+        /// <returns></returns>
+        public bool UsesZeroIndexBufferPtr() { return false; }
+
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>

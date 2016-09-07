@@ -24,17 +24,14 @@ namespace CSharpGL
             if (bufferable == null || propertyNameMap == null || string.IsNullOrEmpty(positionNameInIBufferable))
             { throw new ArgumentNullException(); }
 
-            IndexBufferPtr indexBufferPtr = bufferable.GetIndex();
-            if (indexBufferPtr is ZeroIndexBufferPtr)
+            if (bufferable.UsesZeroIndexBufferPtr())
             {
                 return new ZeroIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), propertyNameMap, positionNameInIBufferable, switches);
             }
-            else if (indexBufferPtr is OneIndexBufferPtr)
+            else
             {
                 return new OneIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), propertyNameMap, positionNameInIBufferable, switches);
             }
-            else
-            { throw new NotImplementedException(); }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             Debug.AutoFlush = true;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new CSharpGL.Demos._00GLCanvas.Form1());
             {
                 ErrorCode error = (ErrorCode)OpenGL.GetError();
                 if (error != ErrorCode.NoError)
