@@ -69,14 +69,6 @@ namespace CSharpGL
         public abstract void Unbind();
 
         /// <summary>
-        /// 执行此VBO的渲染操作。
-        /// <para>Render using this VBO.</para>
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="shaderProgram">binding shader program for this VBO.</param>
-        public abstract void Render(RenderEventArgs arg, ShaderProgram shaderProgram);
-
-        /// <summary>
         ///
         /// </summary>
         public void Dispose()

@@ -103,9 +103,8 @@ namespace CSharpGL
         /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
         /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>
-        /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
+        public void Render(ShaderProgram shaderProgram)
         {
             int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
             if (location < 0)

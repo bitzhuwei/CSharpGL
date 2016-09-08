@@ -62,9 +62,8 @@ namespace CSharpGL
         /// <para>Creates VAO and bind it to specified VBOs.</para>
         /// <para>The whole process of binding is also the process of rendering.</para>
         /// </summary>
-        /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
-        public void Create(RenderEventArgs arg, ShaderProgram shaderProgram)
+        public void Create(ShaderProgram shaderProgram)
         {
             if (this.Id != 0)
             { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
@@ -80,7 +79,7 @@ namespace CSharpGL
             {
                 foreach (var item in propertyBufferPtrs)
                 {
-                    item.Render(arg, shaderProgram);
+                    item.Render(shaderProgram);
                 }
             }
             this.Unbind();
@@ -109,13 +108,13 @@ namespace CSharpGL
             {
                 IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
                 this.Bind();
-                indexBufferPtr.Render(arg, shaderProgram);
+                indexBufferPtr.Render(arg);
                 this.Unbind();
             }
             else
             {
                 this.Bind();
-                temporaryIndexBufferPtr.Render(arg, shaderProgram);
+                temporaryIndexBufferPtr.Render(arg);
                 this.Unbind();
             }
         }

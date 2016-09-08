@@ -79,7 +79,7 @@
     <EmbeddedResource Include="Resources\cursor_gold.png" />
     <Content Include="Canvas\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\VertexBufferObjects\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Buffers\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox2D.cs" />
@@ -133,8 +133,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\ImageFiller.cs" />
     <Content Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
     <None Include="Canvas\readme.md" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndependentBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndependentBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferPtr.cs" />
     <Compile Include="Canvas\GLSceneCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -486,17 +486,17 @@
     <Compile Include="0Foundations\OpenGLObjects\Renderer\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\BufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\OneIndexBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndexBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\OneIndexBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\IndexBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\PropertyBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\PropertyBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\VertexArrayObject.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\Buffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\ZeroIndexBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\VertexBufferObjects\ZeroIndexBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\PropertyBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\PropertyBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexArrayObject.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\BlendFunc.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Buffer.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\DebugMessageControlParams.cs" />
@@ -555,8 +555,8 @@
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
-    <None Include="0Foundations\OpenGLObjects\VertexBufferObjects\Buffer.cd" />
-    <None Include="0Foundations\OpenGLObjects\VertexBufferObjects\BufferPtr.cd" />
+    <None Include="0Foundations\OpenGLObjects\Buffers\Buffer.cd" />
+    <None Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.cd" />
     <EmbeddedResource Include="Resources\UIAxis.frag" />
     <EmbeddedResource Include="Resources\UIAxis.vert" />
     <EmbeddedResource Include="Resources\TextModel.frag" />

@@ -32,6 +32,13 @@ namespace CSharpGL
 
 
         /// <summary>
+        /// 执行此VBO的渲染操作。
+        /// <para>Render using this VBO.</para>
+        /// </summary>
+        /// <param name="arg"></param>
+        public abstract void Render(RenderEventArgs arg);
+
+        /// <summary>
         ///Bind this buffer.
         /// </summary>
         public override void Bind()

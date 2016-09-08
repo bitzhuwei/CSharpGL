@@ -31,7 +31,7 @@ namespace CSharpGL
             {
                 var vertexArrayObject = new VertexArrayObject(
                     this.indexBufferPtr, this.positionBufferPtr);
-                vertexArrayObject.Create(arg, program);
+                vertexArrayObject.Create(program);
 
                 this.vertexArrayObject = vertexArrayObject;
             }

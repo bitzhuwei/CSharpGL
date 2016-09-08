@@ -39,8 +39,7 @@
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArgs arg)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point

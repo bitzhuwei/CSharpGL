@@ -11,16 +11,6 @@
         public BufferTarget Target { get; private set; }
 
         /// <summary>
-        ///
-        /// </summary>
-        protected static OpenGL.glVertexAttribPointer glVertexAttribPointer;
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
-
-        /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>
         /// <param name="target"></param>
@@ -31,26 +21,7 @@
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
-            if (glVertexAttribPointer == null)
-            {
-                glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
-                glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
-            }
-
             this.Target = target;
-        }
-
-        /// <summary>
-        /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
-        /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
-        {
-            // 选中此VBO
-            // select this VBO.
-            glBindBuffer((uint)this.Target, this.BufferId);
         }
 
         /// <summary>
