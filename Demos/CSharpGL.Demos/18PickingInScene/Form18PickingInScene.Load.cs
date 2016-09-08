@@ -20,8 +20,10 @@ namespace CSharpGL.Demos
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new FirstPerspectiveManipulater();
                 rotator.Bind(camera, this.glCanvas1);
-                this.scene = new Scene(camera, this.glCanvas1);
-                this.glCanvas1.Resize += this.scene.Resize;
+                var scene = new Scene(camera, this.glCanvas1);
+                scene.Cursor.Enabled = false;
+                this.scene = scene;
+                this.glCanvas1.Resize += scene.Resize;
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
@@ -62,6 +64,30 @@ namespace CSharpGL.Demos
                 {
                     BoundingBoxRenderer boxRenderer = teapot.GetBoundingBoxRenderer();
                     SceneObject boxObj = boxRenderer.WrapToSceneObject("Teapot box");
+                    obj.Children.Add(boxObj);
+                }
+                this.scene.RootObject.Children.Add(obj);
+            }
+            {
+                DemoRenderer axis = DemoRenderer.Create(DemoRenderer.ModelTypes.Axis);
+                axis.Initialize();
+                axis.WorldPosition = new vec3(5, 2, -5);
+                SceneObject obj = axis.WrapToSceneObject("Axis");
+                {
+                    BoundingBoxRenderer boxRenderer = axis.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Axis box");
+                    obj.Children.Add(boxObj);
+                }
+                this.scene.RootObject.Children.Add(obj);
+            }
+            {
+                DemoRenderer sphere = DemoRenderer.Create(DemoRenderer.ModelTypes.Sphere);
+                sphere.Initialize();
+                sphere.WorldPosition = new vec3(-5, 2, -5);
+                SceneObject obj = sphere.WrapToSceneObject("Sphere");
+                {
+                    BoundingBoxRenderer boxRenderer = sphere.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Sphere box");
                     obj.Children.Add(boxObj);
                 }
                 this.scene.RootObject.Children.Add(obj);
