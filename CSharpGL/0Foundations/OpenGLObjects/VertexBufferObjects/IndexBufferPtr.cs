@@ -29,5 +29,23 @@ namespace CSharpGL
         {
             this.Mode = mode;
         }
+
+
+        /// <summary>
+        ///Bind this buffer.
+        /// </summary>
+        public override void Bind()
+        {
+            glBindBuffer((uint)BufferTarget.ElementArrayBuffer, this.BufferId);
+        }
+
+        /// <summary>
+        /// Unind this buffer.
+        /// </summary>
+        public override void Unbind()
+        {
+            glBindBuffer((uint)BufferTarget.ElementArrayBuffer, 0);
+        }
+
     }
 }

@@ -7,7 +7,8 @@ namespace CSharpGL
     public partial class PickableRenderer
     {
         /// <summary>
-        /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
+        /// Move vertexes' position accroding to difference on screen.
+        /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
         /// </summary>
         /// <param name="differenceOnScreen"></param>
         /// <param name="viewMatrix"></param>
@@ -24,7 +25,8 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
+        /// Move vertexes' position accroding to difference on screen.
+        /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
         /// </summary>
         /// <param name="differenceOnScreen"></param>
         /// <param name="viewMatrix"></param>

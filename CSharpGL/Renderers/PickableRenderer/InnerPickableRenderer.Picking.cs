@@ -81,7 +81,7 @@ namespace CSharpGL
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
             int offset = (int)(firstIndex * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            this.positionBufferPtr.Bind();
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
@@ -109,7 +109,7 @@ namespace CSharpGL
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.positionBufferPtr.Unbind();
 
             return positions;
         }
@@ -118,7 +118,7 @@ namespace CSharpGL
         {
             var positions = new vec3[indexes.Length];
 
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            this.positionBufferPtr.Bind();
             for (int i = 0; i < indexes.Length; i++)
             {
                 int offset = (int)(indexes[i] * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
@@ -146,8 +146,7 @@ namespace CSharpGL
                 }
                 OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             }
-
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.positionBufferPtr.Unbind();
 
             return positions;
         }

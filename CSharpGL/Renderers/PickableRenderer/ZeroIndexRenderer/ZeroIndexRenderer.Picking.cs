@@ -340,7 +340,7 @@ namespace CSharpGL
             pickedGeometry.Indexes = new uint[vertexCount];
             for (int i = 0; i < vertexCount; i++)
             {
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+                this.positionBufferPtr.Bind();
                 IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offsets[i],
                     1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
@@ -351,6 +351,7 @@ namespace CSharpGL
                     pickedGeometry.Positions[i] = array[0];
                 }
                 OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                this.positionBufferPtr.Unbind();
                 pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             }
         }

@@ -165,7 +165,7 @@ namespace GridViewer
 
         public void UpdateColorBar(System.Drawing.Bitmap bitmap)
         {
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBufferPtr.BufferId);
+            this.colorBufferPtr.Bind();
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
             {
@@ -179,7 +179,7 @@ namespace GridViewer
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.colorBufferPtr.Unbind();
         }
     }
 }

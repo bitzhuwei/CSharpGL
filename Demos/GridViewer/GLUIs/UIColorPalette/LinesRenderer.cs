@@ -60,7 +60,7 @@ namespace GridViewer
         public void UpdateCodedColors(double axisMin, double axisMax, double step)
         {
             int lineCount = (int)((axisMax - axisMin) / step) + 1;
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            this.positionBufferPtr.Bind();
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
             {
@@ -89,7 +89,7 @@ namespace GridViewer
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.positionBufferPtr.Unbind();
         }
 
         //public void UpdateCodedColors(CodedColor[] codedColors)

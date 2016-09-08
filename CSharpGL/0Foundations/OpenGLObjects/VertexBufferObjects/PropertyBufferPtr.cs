@@ -84,6 +84,22 @@ namespace CSharpGL
         public int DataSize { get; private set; }
 
         /// <summary>
+        ///Bind this buffer.
+        /// </summary>
+        public override void Bind()
+        {
+            glBindBuffer((uint)BufferTarget.ArrayBuffer, this.BufferId);
+        }
+
+        /// <summary>
+        /// Unind this buffer.
+        /// </summary>
+        public override void Unbind()
+        {
+            glBindBuffer((uint)BufferTarget.ArrayBuffer, 0);
+        }
+
+        /// <summary>
         /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
         /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>

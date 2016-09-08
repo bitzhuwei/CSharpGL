@@ -1073,30 +1073,30 @@ namespace CSharpGL
             bufferData(target, data.ByteLength, data.Header, (uint)usage);
         }
 
-        private static OpenGL.glBindBuffer bindBuffer;
-        /// <summary>
-        /// 选择一个VBO作为当前VBO。
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="id"></param>
-        public static void BindBuffer(BufferTarget target, uint id)
-        {
-            if (bindBuffer == null)
-            { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
-            bindBuffer((uint)target, id);
-        }
+        //private static OpenGL.glBindBuffer bindBuffer;
+        ///// <summary>
+        ///// 选择一个VBO作为当前VBO。
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="id"></param>
+        //public static void BindBuffer(BufferTarget target, uint id)
+        //{
+        //    if (bindBuffer == null)
+        //    { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+        //    bindBuffer((uint)target, id);
+        //}
 
-        /// <summary>
-        /// 选择一个VBO作为当前VBO。
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="id"></param>
-        public static void BindBuffer(uint target, uint id)
-        {
-            if (bindBuffer == null)
-            { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
-            bindBuffer(target, id);
-        }
+        ///// <summary>
+        ///// 选择一个VBO作为当前VBO。
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="id"></param>
+        //public static void BindBuffer(uint target, uint id)
+        //{
+        //    if (bindBuffer == null)
+        //    { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+        //    bindBuffer(target, id);
+        //}
 
         private static OpenGL.glMapBuffer mapBuffer;
         /// <summary>

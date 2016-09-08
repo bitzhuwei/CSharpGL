@@ -38,7 +38,7 @@ namespace GridViewer
             float[] textures = GetTextureCoords(property);
             int gridCellCount = this.DataSource.DimenSize;
 
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBufferPtr.BufferId);
+            this.colorBufferPtr.Bind();
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
@@ -49,7 +49,7 @@ namespace GridViewer
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.colorBufferPtr.Unbind();
         }
 
         private float[] GetTextureCoords(GridBlockProperty property)

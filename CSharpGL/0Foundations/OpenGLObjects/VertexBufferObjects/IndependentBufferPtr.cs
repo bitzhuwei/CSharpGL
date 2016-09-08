@@ -54,19 +54,19 @@
         }
 
         /// <summary>
-        ///
+        /// Bind this buffer.
         /// </summary>
-        public void Bind()
+        public override void Bind()
         {
-            OpenGL.BindBuffer((uint)this.Target, this.BufferId);
+            glBindBuffer((uint)this.Target, this.BufferId);
         }
 
         /// <summary>
-        ///
+        /// Unind this buffer.
         /// </summary>
-        public void Unbind()
+        public override void Unbind()
         {
-            OpenGL.BindBuffer((uint)this.Target, 0);
+            glBindBuffer((uint)this.Target, 0);
         }
 
         /// <summary>

@@ -59,6 +59,16 @@ namespace CSharpGL
         }
 
         /// <summary>
+        ///Bind this buffer.
+        /// </summary>
+        public abstract void Bind();
+
+        /// <summary>
+        /// Unind this buffer.
+        /// </summary>
+        public abstract void Unbind();
+
+        /// <summary>
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
         /// </summary>

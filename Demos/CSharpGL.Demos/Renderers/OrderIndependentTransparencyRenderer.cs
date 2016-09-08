@@ -128,11 +128,11 @@ namespace CSharpGL.Demos
             OpenGL.BindBufferBase(BindBufferBaseTarget.AtomicCounterBuffer, 0, 0);
 
             // Clear head-pointer image
-            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, this.headClearBufferPtr.BufferId);
+            this.headClearBufferPtr.Bind();
             this.headTexture.Bind();
             OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
             this.headTexture.Unbind();
-            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
+            this.headClearBufferPtr.Unbind();
             //
 
             // Bind head-pointer image for read-write

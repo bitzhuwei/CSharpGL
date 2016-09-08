@@ -7,17 +7,18 @@ namespace CSharpGL
     partial class InnerPickableRenderer
     {
         /// <summary>
-        /// 根据<paramref name="differenceOnWindow"/>来修改指定索引处的顶点位置。
+        /// Move vertexes' position accroding to difference on screen.
+        /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
         /// </summary>
-        /// <param name="differenceOnWindow"></param>
+        /// <param name="differenceOnScreen"></param>
         /// <param name="viewMatrix"></param>
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnWindow,
+        public void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            this.positionBufferPtr.Bind();
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
             {
@@ -26,28 +27,29 @@ namespace CSharpGL
                 {
                     vec3 windowPos = glm.project(array[index],
                         viewMatrix, projectionMatrix, viewport);
-                    var newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
-                        windowPos.y + differenceOnWindow.Y, windowPos.z);
+                    var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X,
+                        windowPos.y + differenceOnScreen.Y, windowPos.z);
                     array[index] = glm.unProject(newWindowPos,
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.positionBufferPtr.Unbind();
         }
 
         /// <summary>
-        /// 根据<paramref name="differenceOnWindow"/>来修改指定索引处的顶点位置。
+        /// Move vertexes' position accroding to difference on screen.
+        /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
         /// </summary>
-        /// <param name="differenceOnWindow"></param>
+        /// <param name="differenceOnScreen"></param>
         /// <param name="viewMatrix"></param>
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnWindow,
+        public void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            this.positionBufferPtr.Bind();
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
             {
@@ -56,14 +58,14 @@ namespace CSharpGL
                 {
                     vec3 windowPos = glm.project(array[index],
                         viewMatrix, projectionMatrix, viewport);
-                    var newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
-                        windowPos.y + differenceOnWindow.Y, windowPos.z);
+                    var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X,
+                        windowPos.y + differenceOnScreen.Y, windowPos.z);
                     array[index] = glm.unProject(newWindowPos,
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.positionBufferPtr.Unbind();
         }
     }
 }
