@@ -91,10 +91,12 @@ namespace CSharpGL.Demos
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
                         this.PickingGeometryType.ToDrawMode(),
                         pickedGeometry.Indexes);
+                    this.glCanvas1.Cursor = Cursors.Hand;
                 }
                 else
                 {
                     this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
+                    this.glCanvas1.Cursor = Cursors.Default;
                 }
 
                 this.pickedGeometry = pickedGeometry;

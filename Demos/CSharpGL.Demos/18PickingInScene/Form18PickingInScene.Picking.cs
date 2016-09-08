@@ -24,13 +24,6 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-                PickedGeometry pickedGeometry = RunPicking(
-                    new RenderEventArgs(
-                        RenderModes.ColorCodedPicking,
-                        this.glCanvas1.ClientRectangle,
-                        this.scene.Camera,
-                        this.PickingGeometryType),
-                    e.X, e.Y);
                 if (pickedGeometry != null)
                 {
                     var dragParam = new DragParam(
@@ -40,8 +33,6 @@ namespace CSharpGL.Demos
                     dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes);
                     this.dragParam = dragParam;
                 }
-
-                this.pickedGeometry = pickedGeometry;
             }
         }
 
@@ -81,6 +72,14 @@ namespace CSharpGL.Demos
                         this.scene.Camera, this.PickingGeometryType),
                     e.X, e.Y);
 
+                if (pickedGeometry != null)
+                {
+                    this.glCanvas1.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    this.glCanvas1.Cursor = Cursors.Default;
+                }
                 this.pickedGeometry = pickedGeometry;
             }
 
