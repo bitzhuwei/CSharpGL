@@ -153,7 +153,7 @@ namespace GridViewer
 
         public vec3 FirstNode { get; private set; }
 
-        public vec3 Lengths { get; private set; }
+        public vec3 Lengths { get; set; }
 
         public vec3 WorldPosition { get; set; }
 

@@ -29,7 +29,7 @@
         /// <summary>
         /// Length in X/Y/Z axis.
         /// </summary>
-        vec3 Lengths { get; }
+        vec3 Lengths { get; set; }
     }
 
     /// <summary>

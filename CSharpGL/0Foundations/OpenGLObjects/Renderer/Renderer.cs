@@ -150,7 +150,7 @@
         /// <summary>
         ///
         /// </summary>
-        public virtual vec3 Lengths { get; protected set; }
+        public virtual vec3 Lengths { get; set; }
 
         #endregion IModelSpace
     }
