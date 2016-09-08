@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="18PickingInScene\UpdatingBoxScript.cs" />
     <Compile Include="20GLSceneCanvas\Form20GLSceneCanvas.cs">
       <SubType>Form</SubType>
     </Compile>

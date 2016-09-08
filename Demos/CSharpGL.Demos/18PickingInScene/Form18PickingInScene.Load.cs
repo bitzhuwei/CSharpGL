@@ -54,6 +54,7 @@ namespace CSharpGL.Demos
                     SceneObject boxObj = boxRenderer.WrapToSceneObject("Tetrahedron box");
                     obj.Children.Add(boxObj);
                 }
+                obj.Scripts.Add(new UpdatingBoxScript("Tetrahedron box"));
                 this.scene.RootObject.Children.Add(obj);
             }
             {
@@ -66,6 +67,7 @@ namespace CSharpGL.Demos
                     SceneObject boxObj = boxRenderer.WrapToSceneObject("Teapot box");
                     obj.Children.Add(boxObj);
                 }
+                obj.Scripts.Add(new UpdatingBoxScript("Teapot box"));
                 this.scene.RootObject.Children.Add(obj);
             }
             {
@@ -78,6 +80,7 @@ namespace CSharpGL.Demos
                     SceneObject boxObj = boxRenderer.WrapToSceneObject("Axis box");
                     obj.Children.Add(boxObj);
                 }
+                obj.Scripts.Add(new UpdatingBoxScript("Axis box"));
                 this.scene.RootObject.Children.Add(obj);
             }
             {
@@ -90,9 +93,14 @@ namespace CSharpGL.Demos
                     SceneObject boxObj = boxRenderer.WrapToSceneObject("Sphere box");
                     obj.Children.Add(boxObj);
                 }
+                obj.Scripts.Add(new UpdatingBoxScript("Sphere box"));
                 this.scene.RootObject.Children.Add(obj);
             }
+            {
+                this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            }
         }
+
 
     }
 }
