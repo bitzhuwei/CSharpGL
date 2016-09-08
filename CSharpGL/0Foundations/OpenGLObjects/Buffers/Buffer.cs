@@ -31,7 +31,7 @@ namespace CSharpGL
         /// 此VBO中的数据在内存中的起始地址
         /// <para>Start position of this buffer; first element's position of this buffer.</para>
         /// </summary>
-        public virtual IntPtr Header
+        public IntPtr Header
         {
             get
             {
@@ -44,7 +44,7 @@ namespace CSharpGL
         /// 此VBO中的数据在内存中占用多少个字节？
         /// <para>How many bytes in this buffer?</para>
         /// </summary>
-        public virtual int ByteLength
+        public int ByteLength
         {
             get
             {
@@ -57,7 +57,7 @@ namespace CSharpGL
         /// 此VBO含有多个个元素？
         /// <para>How many elements?</para>
         /// </summary>
-        public virtual int Length
+        public int Length
         {
             get
             {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Buffer object that not work as input variable in shader.
@@ -9,8 +6,6 @@ namespace CSharpGL
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class IndependentBuffer<T> : Buffer where T : struct
     {
-        private int length;
-
         /// <summary>
         /// </summary>
         /// <param name="target"></param>
@@ -21,60 +16,6 @@ namespace CSharpGL
         {
             this.Target = target;
             this.NoDataCopyed = noDataCopyed;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override int ByteLength
-        {
-            get
-            {
-                if (this.NoDataCopyed)
-                {
-                    return this.length * Marshal.SizeOf(typeof(T));
-                }
-                else
-                {
-                    return base.ByteLength;
-                }
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override IntPtr Header
-        {
-            get
-            {
-                if (this.NoDataCopyed)
-                {
-                    return IntPtr.Zero;
-                }
-                else
-                {
-                    return base.Header;
-                }
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override int Length
-        {
-            get
-            {
-                if (this.NoDataCopyed)
-                {
-                    return this.length;
-                }
-                else
-                {
-                    return base.Length;
-                }
-            }
         }
 
         /// <summary>
@@ -94,14 +35,7 @@ namespace CSharpGL
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         public override void Create(int elementCount)
         {
-            if (this.NoDataCopyed)
-            {
-                this.length = elementCount;
-            }
-            else
-            {
-                this.array = new UnmanagedArray<T>(elementCount);
-            }
+            this.array = new UnmanagedArray<T>(elementCount, !this.NoDataCopyed);
         }
 
         /// <summary>

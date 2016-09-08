@@ -26,8 +26,9 @@ namespace CSharpGL
         /// unmanaged array.
         /// </summary>
         /// <param name="count"></param>
-        public UnmanagedArray(int count)
-            : base(count, Marshal.SizeOf(typeof(T)))
+        /// <param name="autoAllloc"></param>
+        public UnmanagedArray(int count, bool autoAllloc = true)
+            : base(count, Marshal.SizeOf(typeof(T)), autoAllloc)
         {
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
@@ -95,18 +96,35 @@ namespace CSharpGL
         /// </summary>
         /// <param name="elementCount">How many elements?</param>
         /// <param name="elementSize">How manay bytes for one element of array?</param>
+        /// <param name="autoAlloc"></param>
         //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么 Dead lock, Why?
-        protected UnmanagedArrayBase(int elementCount, int elementSize)
+        protected UnmanagedArrayBase(int elementCount, int elementSize, bool autoAlloc)
         {
             this.Length = elementCount;
             this.elementSize = elementSize;
-
-            int memSize = elementCount * elementSize;
-            this.Header = Marshal.AllocHGlobal(memSize);
+            if (autoAlloc)
+            {
+                this.Alloc();
+            }
 
             UnmanagedArrayBase.allocatedCount++;
         }
 
+        private bool initialized = false;
+
+        /// <summary>
+        /// ALloate memory for this array.
+        /// </summary>
+        public void Alloc()
+        {
+            if (!this.initialized)
+            {
+                int memSize = this.Length * this.elementSize;
+                this.Header = Marshal.AllocHGlobal(memSize);
+
+                this.initialized = true;
+            }
+        }
         #region IDisposable Members
 
         /// <summary>
@@ -161,9 +179,12 @@ namespace CSharpGL
         /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
-            Marshal.FreeHGlobal(this.Header);
-
-            this.Header = IntPtr.Zero;
+            IntPtr header = this.Header;
+            if (header != IntPtr.Zero)
+            {
+                this.Header = IntPtr.Zero;
+                Marshal.FreeHGlobal(header);
+            }
         }
 
         /// <summary>
