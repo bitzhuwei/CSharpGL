@@ -26,7 +26,7 @@
         }
 
         /// <summary>
-        /// update minimum values.
+        /// update maximum values.
         /// </summary>
         /// <param name="item"></param>
         /// <param name="currentMax"></param>
