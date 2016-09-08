@@ -7,6 +7,11 @@ namespace CSharpGL
     public partial class PickableRenderer
     {
         /// <summary>
+        /// Position buffer.
+        /// </summary>
+        public PropertyBufferPtr PositionBufferPtr { get { return this.innerPickableRenderer.positionBufferPtr; } }
+
+        /// <summary>
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
         /// </summary>
