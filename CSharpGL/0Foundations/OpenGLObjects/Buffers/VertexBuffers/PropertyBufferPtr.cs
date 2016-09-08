@@ -88,7 +88,7 @@ namespace CSharpGL
         /// </summary>
         public override void Bind()
         {
-            glBindBuffer((uint)BufferTarget.ArrayBuffer, this.BufferId);
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace CSharpGL
         /// </summary>
         public override void Unbind()
         {
-            glBindBuffer((uint)BufferTarget.ArrayBuffer, 0);
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
         }
 
         /// <summary>
