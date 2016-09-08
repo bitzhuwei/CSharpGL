@@ -35,7 +35,8 @@
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         public override void Create(int elementCount)
         {
-            this.array = new UnmanagedArray<T>(elementCount, !this.noDataCopyed);
+            bool autoAlloc = !this.noDataCopyed;
+            this.array = new UnmanagedArray<T>(elementCount, autoAlloc);
         }
 
         /// <summary>

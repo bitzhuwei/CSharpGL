@@ -26,9 +26,9 @@ namespace CSharpGL
         /// unmanaged array.
         /// </summary>
         /// <param name="count"></param>
-        /// <param name="autoAllloc"></param>
-        public UnmanagedArray(int count, bool autoAllloc = true)
-            : base(count, Marshal.SizeOf(typeof(T)), autoAllloc)
+        /// <param name="autoAlloc"></param>
+        public UnmanagedArray(int count, bool autoAlloc = true)
+            : base(count, Marshal.SizeOf(typeof(T)), autoAlloc)
         {
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
