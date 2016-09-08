@@ -127,5 +127,23 @@ namespace CSharpGL
 
             return null;
         }
+
+        /// <summary>
+        /// find child by name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public SceneObject FindChild(string name)
+        {
+            foreach (var item in this.Children)
+            {
+                if (item.Name == name)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
     }
 }
