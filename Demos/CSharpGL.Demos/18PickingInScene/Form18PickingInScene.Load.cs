@@ -97,10 +97,10 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
+                this.glCanvas1.MouseDown += glCanvas1_MouseDown;
                 this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+                this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             }
         }
-
-
     }
 }
