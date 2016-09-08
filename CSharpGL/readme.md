@@ -13,6 +13,21 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.4:
+1. IModelSpace consists of position, scale and rotation.
+2. Get quaternion from model matrix.
+3. Wraps framebuffer and use framebuffer in GLCanvas and Color-Coded picking.
+4. Add NullImageBuilder for Texture.
+5. Add IndependentBuffer(Ptr).
+6. Remove useless enumerations.
+7. Clean code with CodeMaid.
+8. Renderer.SetUniform() throws exception when wrong type of value is fed in.
+9. The ICanvas interface abstracts winform controls.
+10. Add 'bool UsesZeroIndexBufferPtr()' in IBufferable.
+11. Bind/Unbind buffer.
+12. Initialize VAO inside Renderer's initializing.
+13. Auto-allocate memory in UnmanagedArray.
+
 ## v1.0.6.3:
 1. fix: BoundingBoxHelper.Render().
 2. virtual DoUpdate() in Script instead of abstract.
