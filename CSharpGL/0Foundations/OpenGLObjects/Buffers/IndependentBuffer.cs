@@ -7,21 +7,21 @@
     public class IndependentBuffer<T> : Buffer where T : struct
     {
         /// <summary>
+        /// No data copyed from CPU memory to GPU memory.
+        /// </summary>
+        private bool noDataCopyed;
+
+        /// <summary>
         /// </summary>
         /// <param name="target"></param>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
+        /// <param name="noDataCopyed">No data copyed from CPU memory to GPU memory.</param>
         public IndependentBuffer(BufferTarget target, BufferUsage usage, bool noDataCopyed)
             : base(usage)
         {
             this.Target = target;
-            this.NoDataCopyed = noDataCopyed;
+            this.noDataCopyed = noDataCopyed;
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool NoDataCopyed { get; private set; }
 
         /// <summary>
         ///
@@ -35,7 +35,7 @@
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         public override void Create(int elementCount)
         {
-            this.array = new UnmanagedArray<T>(elementCount, !this.NoDataCopyed);
+            this.array = new UnmanagedArray<T>(elementCount, !this.noDataCopyed);
         }
 
         /// <summary>
@@ -60,8 +60,7 @@
             glBufferData(target, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new IndependentBufferPtr(this.Target,
-                buffers[0], this.Length, this.ByteLength);
+            var bufferPtr = new IndependentBufferPtr(this.Target, buffers[0], this.Length, this.ByteLength);
 
             return bufferPtr;
         }
