@@ -67,25 +67,25 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="buffer"></param>
-        internal delegate void glBindBuffer(uint target, uint buffer);
+        public delegate void glBindBuffer(uint target, uint buffer);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="n"></param>
         /// <param name="buffers"></param>
-        internal delegate void glDeleteBuffers(int n, uint[] buffers);
+        public delegate void glDeleteBuffers(int n, uint[] buffers);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="n"></param>
         /// <param name="buffers"></param>
-        internal delegate void glGenBuffers(int n, uint[] buffers);
+        public delegate void glGenBuffers(int n, uint[] buffers);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        internal delegate bool glIsBuffer(uint buffer);
+        public delegate bool glIsBuffer(uint buffer);
         /// <summary>
         /// 
         /// </summary>
@@ -93,7 +93,7 @@ namespace CSharpGL
         /// <param name="size"></param>
         /// <param name="data"></param>
         /// <param name="usage"></param>
-        internal delegate void glBufferData(uint target, int size, IntPtr data, uint usage);
+        public delegate void glBufferData(uint target, int size, IntPtr data, uint usage);
         /// <summary>
         /// 
         /// </summary>
@@ -101,7 +101,7 @@ namespace CSharpGL
         /// <param name="offset"></param>
         /// <param name="size"></param>
         /// <param name="data"></param>
-        internal delegate void glBufferSubData(uint target, int offset, int size, IntPtr data);
+        public delegate void glBufferSubData(uint target, int offset, int size, IntPtr data);
         /// <summary>
         /// 
         /// </summary>
@@ -109,14 +109,14 @@ namespace CSharpGL
         /// <param name="offset"></param>
         /// <param name="size"></param>
         /// <param name="data"></param>
-        internal delegate void glGetBufferSubData(uint target, int offset, int size, IntPtr data);
+        public delegate void glGetBufferSubData(uint target, int offset, int size, IntPtr data);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="target"></param>
         /// <param name="access"></param>
         /// <returns></returns>
-        internal delegate IntPtr glMapBuffer(uint target, uint access);
+        public delegate IntPtr glMapBuffer(uint target, uint access);
         /// <summary>
         /// 
         /// </summary>
@@ -125,27 +125,27 @@ namespace CSharpGL
         /// <param name="length"></param>
         /// <param name="access"></param>
         /// <returns></returns>
-        internal delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
+        public delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        internal delegate bool glUnmapBuffer(uint target);
+        public delegate bool glUnmapBuffer(uint target);
         ///// <summary>
         ///// 
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //internal delegate void glGetBufferParameteriv(uint target, uint pname, int[] parameters);
+        //public delegate void glGetBufferParameteriv(uint target, uint pname, int[] parameters);
         ///// <summary>
         ///// 
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //internal delegate void glGetBufferPointerv(uint target, uint pname, IntPtr[] parameters);
+        //public delegate void glGetBufferPointerv(uint target, uint pname, IntPtr[] parameters);
 
         //  Constants
         ///// <summary>
