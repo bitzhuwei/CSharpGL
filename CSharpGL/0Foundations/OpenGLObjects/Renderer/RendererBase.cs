@@ -13,6 +13,12 @@ namespace CSharpGL
         private readonly object synObj = new object();
 
         /// <summary>
+        /// binding object.
+        /// </summary>
+        [Description("binding object.")]
+        public object Tag { get; set; }
+
+        /// <summary>
         /// Render this or not.
         /// </summary>
         [Description("Render this or not.")]

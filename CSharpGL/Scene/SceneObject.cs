@@ -24,13 +24,28 @@ namespace CSharpGL
         [Description("Name.")]
         public string Name { get; set; }
 
+        private RendererBase renderer;
         /// <summary>
         /// renders something.
         /// Note: I wanted to use <see cref="IRenderable"/> but it fails to display in <see cref="PropertyGridEditor"/>. So I have to upgrade it to <see cref="RendererBase"/>.
         /// </summary>
         [Category(strBasic)]
         [Description("Renders something.")]
-        public RendererBase Renderer { get; set; }
+        public RendererBase Renderer
+        {
+            get { return renderer; }
+            set
+            {
+                RendererBase renderer = this.renderer;
+                if (renderer != value)
+                {
+                    if (renderer != null) { renderer.Tag = null; }
+
+                    value.Tag = this;
+                    this.renderer = value;
+                }
+            }
+        }
 
         /// <summary>
         /// update state of this object.
