@@ -10,30 +10,41 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            // init shader program
-            this.Program = InitializeProgram();
+            // init shader program.
+            ShaderProgram program = InitializeProgram();
 
-            // init property buffer objects
+            // init property buffer objects.
+            IBufferable bufferable = this.model;
             var propertyBufferPtrs = new PropertyBufferPtr[propertyNameMap.Count()];
             int index = 0;
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = this.model.GetProperty(
+                PropertyBufferPtr bufferPtr = bufferable.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
-                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", this.model)); }
+                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
                 propertyBufferPtrs[index++] = bufferPtr;
             }
 
-            this.propertyBufferPtrs = propertyBufferPtrs;
-            this.indexBufferPtr = this.model.GetIndex();
+            // init index buffer.
+            IndexBufferPtr indexBufferPtr = bufferable.GetIndex();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = this.indexBufferPtr as OneIndexBufferPtr;
+            var ptr = indexBufferPtr as OneIndexBufferPtr;
             if (ptr != null)
             {
                 GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr);
                 this.switchList.Add(glSwitch);
             }
+
+            // init VAO.
+            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, propertyBufferPtrs);
+            vertexArrayObject.Create(program);
+
+            // sets fields.
+            this.Program = program;
+            this.propertyBufferPtrs = propertyBufferPtrs;
+            this.indexBufferPtr = indexBufferPtr;
+            this.vertexArrayObject = vertexArrayObject;
         }
 
         private ShaderProgram InitializeProgram()

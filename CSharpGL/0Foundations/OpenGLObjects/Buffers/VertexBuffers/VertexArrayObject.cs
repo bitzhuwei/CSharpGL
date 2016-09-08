@@ -79,7 +79,7 @@ namespace CSharpGL
             {
                 foreach (var item in propertyBufferPtrs)
                 {
-                    item.Render(shaderProgram);
+                    item.Standby(shaderProgram);
                 }
             }
             this.Unbind();

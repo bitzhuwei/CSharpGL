@@ -104,7 +104,7 @@ namespace CSharpGL
         /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>
         /// <param name="shaderProgram"></param>
-        public void Render(ShaderProgram shaderProgram)
+        public void Standby(ShaderProgram shaderProgram)
         {
             int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
             if (location < 0)

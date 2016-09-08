@@ -25,18 +25,7 @@ namespace CSharpGL
             SwitchesOn();
 
             IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
-            if (this.vertexArrayObject == null)
-            {
-                PropertyBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
-                if (indexBufferPtr != null && propertyBufferPtrs != null)
-                {
-                    var vertexArrayObject = new VertexArrayObject(
-                        indexBufferPtr, propertyBufferPtrs);
-                    vertexArrayObject.Create(program);
 
-                    this.vertexArrayObject = vertexArrayObject;
-                }
-            }
             {
                 VertexArrayObject vertexArrayObject = this.vertexArrayObject;
                 if (vertexArrayObject != null)

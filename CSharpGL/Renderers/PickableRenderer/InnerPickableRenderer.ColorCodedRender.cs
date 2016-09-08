@@ -27,15 +27,7 @@ namespace CSharpGL
                 primitiveRestartIndexSwitch.On();
             }
 
-            if (this.vertexArrayObject == null)
-            {
-                var vertexArrayObject = new VertexArrayObject(
-                    this.indexBufferPtr, this.positionBufferPtr);
-                vertexArrayObject.Create(program);
 
-                this.vertexArrayObject = vertexArrayObject;
-            }
-            //else
             {
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
             }
