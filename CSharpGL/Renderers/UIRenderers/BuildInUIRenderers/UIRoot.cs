@@ -20,8 +20,6 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles.Top,
             new System.Windows.Forms.Padding(), new System.Drawing.Size(), zNear, zFar)
         {
-            this.Name = typeof(UIRoot).Name;
-
             int[] viewport = OpenGL.GetViewport();
             this.Location = new System.Drawing.Point(viewport[0], viewport[1]);
             this.Size = new System.Drawing.Size(viewport[2], viewport[3]);
