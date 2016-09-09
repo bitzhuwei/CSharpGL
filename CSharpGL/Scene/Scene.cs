@@ -77,8 +77,8 @@ namespace CSharpGL
 
             // render objects.
             {
-                SceneRootObject rootObject = this.RootObject;
-                this.RenderObject(rootObject, arg);
+                SceneObject obj = this.RootObject;
+                this.RenderObject(obj, arg);
             }
 
             // render regular UI.
