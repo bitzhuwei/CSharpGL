@@ -83,7 +83,7 @@ namespace CSharpGL
             map.Add("position", TextModel.strPosition);
             map.Add("uv", TextModel.strUV);
             var model = new TextModel(maxCharCount);
-            Renderer renderer = new Renderer(model, shaderCodes, map);
+            var renderer = new Renderer(model, shaderCodes, map);
 
             this.model = model;
             this.Renderer = renderer;
@@ -96,7 +96,7 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            Renderer renderer = this.Renderer as Renderer;
+            var renderer = this.Renderer as Renderer;
             renderer.SetUniform("fontTexture", this.fontTexture.TextureObj.ToSamplerValue());
         }
 
