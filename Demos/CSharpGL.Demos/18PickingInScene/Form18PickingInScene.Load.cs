@@ -45,7 +45,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                DemoRenderer tetrahedron = DemoRenderer.Create(DemoRenderer.ModelTypes.Tetrahedron);
+                SimpleRenderer tetrahedron = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Tetrahedron);
                 tetrahedron.Initialize();
                 tetrahedron.WorldPosition = new vec3(5, 2, 5);
                 SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
@@ -58,7 +58,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                DemoRenderer teapot = DemoRenderer.Create(DemoRenderer.ModelTypes.Teapot);
+                SimpleRenderer teapot = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Teapot);
                 teapot.Initialize();
                 teapot.WorldPosition = new vec3(-5, 2, 5);
                 SceneObject obj = teapot.WrapToSceneObject("Teapot");
@@ -71,7 +71,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                DemoRenderer axis = DemoRenderer.Create(DemoRenderer.ModelTypes.Axis);
+                SimpleRenderer axis = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Axis);
                 axis.Initialize();
                 axis.WorldPosition = new vec3(5, 2, -5);
                 SceneObject obj = axis.WrapToSceneObject("Axis");
@@ -84,7 +84,7 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                DemoRenderer sphere = DemoRenderer.Create(DemoRenderer.ModelTypes.Sphere);
+                SimpleRenderer sphere = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Sphere);
                 sphere.Initialize();
                 sphere.WorldPosition = new vec3(-5, 2, -5);
                 SceneObject obj = sphere.WrapToSceneObject("Sphere");
