@@ -34,8 +34,9 @@ namespace CSharpGL
             var rootObject = new SceneRootObject(this);
             rootObject.Children.AddRange(objects);
             this.rootObject = rootObject;
-            this.Cursor = UICursor.CreateDefault();
-            this.cursorRoot.Children.Add(this.Cursor);
+            var cursor = UICursor.CreateDefault();
+            this.cursorRoot.Children.Add(cursor);
+            this.Cursor = cursor;
         }
 
         /// <summary>
