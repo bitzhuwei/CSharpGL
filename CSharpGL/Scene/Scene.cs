@@ -86,7 +86,7 @@ namespace CSharpGL
 
             // render cursor.
             UICursor cursor = this.Cursor;
-            if (cursor.Enabled)
+            if (cursor != null && cursor.Enabled)
             {
                 cursor.UpdatePosition(mousePosition);
                 this.cursorRoot.Render(arg);
@@ -100,7 +100,7 @@ namespace CSharpGL
         /// <param name="e"></param>
         public void Resize(object sender, EventArgs e)
         {
-            Control control = sender as Control;
+            var control = sender as Control;
             if (control == null) { throw new ArgumentException(); }
 
             this.Camera.Resize(control.Width, control.Height);
@@ -112,7 +112,7 @@ namespace CSharpGL
         {
             sceneObject.Render(arg);
             SceneObject[] array = sceneObject.Children.ToArray();
-            foreach (var child in array)
+            foreach (SceneObject child in array)
             {
                 RenderObject(child, arg);
             }

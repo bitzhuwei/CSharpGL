@@ -85,8 +85,8 @@ namespace CSharpGL
                 || this.currentCycle < this.maxCycle)// not reached last cycle yet
             {
                 this.currentCycle++;
-                SceneRootObject rootObj = this.rootObject;
-                UpdateObject(rootObj, interval);
+                SceneObject obj = this.rootObject;
+                UpdateObject(obj, interval);
             }
             else
             {

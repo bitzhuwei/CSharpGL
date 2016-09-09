@@ -41,7 +41,8 @@ namespace CSharpGL
                 {
                     if (renderer != null) { renderer.Tag = null; }
 
-                    value.Tag = this;
+                    if (value != null) { value.Tag = this; }
+
                     this.renderer = value;
                 }
             }
@@ -99,7 +100,7 @@ namespace CSharpGL
             if (this.Enabled)
             {
                 ScriptList scripts = this.Scripts;
-                foreach (var script in scripts)
+                foreach (Script script in scripts)
                 {
                     script.Update(elapsedTime);
                 }
@@ -113,7 +114,7 @@ namespace CSharpGL
         /// <returns></returns>
         public T GetScript<T>() where T : Script
         {
-            foreach (var item in this.Scripts)
+            foreach (Script item in this.Scripts)
             {
                 var script = item as T;
                 if (script != null)
