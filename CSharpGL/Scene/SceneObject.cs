@@ -15,12 +15,12 @@ namespace CSharpGL
         IEnumerable<SceneObject>, // enumerates self and all children objects recursively.
         IDisposable
     {
-        private const string strBasic = "Basic";
+        private const string strSceneObject = "Scene Object";
 
         /// <summary>
         /// Name.
         /// </summary>
-        [Category(strBasic)]
+        [Category(strSceneObject)]
         [Description("Name.")]
         public string Name { get; set; }
 
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// renders something.
         /// Note: I wanted to use <see cref="IRenderable"/> but it fails to display in <see cref="PropertyGridEditor"/>. So I have to upgrade it to <see cref="RendererBase"/>.
         /// </summary>
-        [Category(strBasic)]
+        [Category(strSceneObject)]
         [Description("Renders something.")]
         public RendererBase Renderer
         {
@@ -51,21 +51,21 @@ namespace CSharpGL
         /// <summary>
         /// update state of this object.
         /// </summary>
-        [Category(strBasic)]
+        [Category(strSceneObject)]
         [Description("update state of this object.")]
         public ScriptList Scripts { get; private set; }
 
         /// <summary>
         /// Enabled or not.
         /// </summary>
-        [Category(strBasic)]
+        [Category(strSceneObject)]
         [Description("Enabled or Not.")]
         public bool Enabled { get; set; }
 
         /// <summary>
         /// binded object.
         /// </summary>
-        [Category(strBasic)]
+        [Category(strSceneObject)]
         [Description("binded object.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public object Tag { get; set; }
