@@ -10,7 +10,7 @@ namespace CSharpGL
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class SceneObject :
-        IRenderable, // take part in rendering an object.
+        //IRenderable, // take part in rendering an object.
         ITreeNode<SceneObject>, // contains children objects and is contained by parent.
         IEnumerable<SceneObject>, // enumerates self and all children objects recursively.
         IDisposable
