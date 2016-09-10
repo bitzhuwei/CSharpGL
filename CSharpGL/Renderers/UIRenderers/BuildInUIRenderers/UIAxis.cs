@@ -37,7 +37,7 @@ namespace CSharpGL
             float length = Math.Max(this.Size.Width, this.Size.Height) / 2;
             mat4 model = glm.scale(mat4.identity(),
                 new vec3(length, length, length));
-            Renderer renderer = this.Renderer as Renderer;
+            var renderer = this.Renderer as Renderer;
             renderer.SetUniform("projectionMatrix", projection);
             renderer.SetUniform("viewMatrix", view);
             renderer.SetUniform("modelMatrix", model);
