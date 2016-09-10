@@ -24,13 +24,25 @@ namespace CSharpGL
             if (bufferable == null || propertyNameMap == null || string.IsNullOrEmpty(positionNameInIBufferable))
             { throw new ArgumentNullException(); }
 
+            PropertyNameMap map = null;
+            foreach (var item in propertyNameMap)
+            {
+                if (item.NameInIBufferable == positionNameInIBufferable)
+                {
+                    map = new PropertyNameMap();
+                    map.Add(item.VarNameInShader, item.NameInIBufferable);
+                    break;
+                }
+            }
+            if (map == null) { throw new Exception(string.Format("No matching variable name in shader for [{0}]", positionNameInIBufferable)); }
+
             if (bufferable.UsesZeroIndexBufferPtr())
             {
-                return new ZeroIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), propertyNameMap, positionNameInIBufferable, switches);
+                return new ZeroIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), map, positionNameInIBufferable, switches);
             }
             else
             {
-                return new OneIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), propertyNameMap, positionNameInIBufferable, switches);
+                return new OneIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), map, positionNameInIBufferable, switches);
             }
         }
     }
