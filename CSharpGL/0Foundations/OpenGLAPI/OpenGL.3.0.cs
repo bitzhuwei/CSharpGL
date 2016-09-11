@@ -71,14 +71,14 @@ namespace CSharpGL
         /// <param name="buffer"></param>
         /// <param name="offset"></param>
         /// <param name="size"></param>
-        private delegate void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
+        public delegate void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
+
         /// <summary>
-        /// 
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="index"></param>
-        /// <param name="buffer"></param>
-        private delegate void glBindBufferBase(uint target, uint index, uint buffer);
+        /// <param name="target">Specifies the target buffer object.</param>
+        /// <param name="bindingPoint">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
+        /// <param name="bufferName">Buffer name generated from glGenBuffers().</param>
+        public delegate void glBindBufferBase(uint target, uint bindingPoint, uint bufferName);
         ///// <summary>
         ///// 
         ///// </summary>

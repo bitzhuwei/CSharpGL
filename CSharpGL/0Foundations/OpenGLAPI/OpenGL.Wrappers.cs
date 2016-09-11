@@ -1438,19 +1438,7 @@ namespace CSharpGL
             { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
             bindBufferRange((uint)target, index, buffer, offset, size);
         }
-        /// <summary>
-        /// 用于transform feedback。
-        /// <para>bind a buffer object to an indexed buffer target.</para>
-        /// </summary>
-        /// <param name="target">Specifies the target buffer object.</param>
-        /// <param name="index">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
-        /// <param name="buffer">The name of a buffer object to bind to the specified binding point.</param>
-        public static void BindBufferBase(uint target, uint index, uint buffer)
-        {
-            if (bindBufferBase == null)
-            { bindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
-            bindBufferBase(target, index, buffer);
-        }
+
         /// <summary>
         /// bind a range within a buffer object to an indexed buffer target
         /// </summary>
