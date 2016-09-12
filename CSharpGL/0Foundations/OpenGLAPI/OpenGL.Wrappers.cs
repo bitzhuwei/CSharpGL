@@ -933,33 +933,6 @@ namespace CSharpGL
             GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="first"></param>
-        /// <param name="count"></param>
-        /// <param name="primcount"></param>
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawArraysInstanced(DrawMode mode, int first, int count, int primcount)
-        {
-            GetDelegateFor<glDrawArraysInstanced>()((uint)mode, first, count, primcount);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="count"></param>
-        /// <param name="type"></param>
-        /// <param name="indices"></param>
-        /// <param name="primcount"></param>
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElementsInstanced(DrawMode mode, int count, uint type, IntPtr indices, int primcount)
-        {
-            GetDelegateFor<glDrawElementsInstanced>()((uint)mode, count, type, indices, primcount);
-        }
-
         #endregion Draw vertex array object
 
         /// <summary>
