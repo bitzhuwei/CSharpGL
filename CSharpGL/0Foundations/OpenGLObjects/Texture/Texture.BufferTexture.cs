@@ -13,11 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static Texture CreateBufferTexture(uint internalFormat, BufferPtr bufferPtr, bool autoDispose)
         {
-            var texture = new Texture(BindTextureTarget.TextureBuffer,
-                new TexBufferImageFiller(internalFormat, bufferPtr, autoDispose),
-                new NullSampler());
-            texture.Initialize();
-            return texture;
+            return bufferPtr.DumpBufferTexture(internalFormat, autoDispose);
         }
 
         /// <summary>
@@ -33,14 +29,10 @@ namespace CSharpGL
         {
             var buffer = new TextureBuffer<T>(usage, noDataCopyed);
             buffer.Create(elementCount);
-            var bufferPtr = buffer.GetBufferPtr() as IndependentBufferPtr;
+            BufferPtr bufferPtr = buffer.GetBufferPtr();
 
             const bool autoDispose = true;
-            var texture = new Texture(BindTextureTarget.TextureBuffer,
-                new TexBufferImageFiller(internalFormat, bufferPtr, autoDispose),
-                new NullSampler());
-            texture.Initialize();
-            return texture;
+            return bufferPtr.DumpBufferTexture(internalFormat, autoDispose);
         }
     }
 }

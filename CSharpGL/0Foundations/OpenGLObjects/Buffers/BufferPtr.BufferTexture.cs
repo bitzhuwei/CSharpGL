@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class BufferPtrHelper
     {
@@ -14,7 +14,11 @@
         /// <returns></returns>
         public static Texture DumpBufferTexture(this BufferPtr bufferPtr, uint internalFormat, bool autoDispose)
         {
-            return Texture.CreateBufferTexture(internalFormat, bufferPtr, autoDispose);
+            var texture = new Texture(BindTextureTarget.TextureBuffer,
+                new TexBufferImageFiller(internalFormat, bufferPtr, autoDispose),
+                new NullSampler());
+            texture.Initialize();
+            return texture;
         }
     }
 }
