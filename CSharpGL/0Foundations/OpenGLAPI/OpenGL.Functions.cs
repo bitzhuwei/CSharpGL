@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
     public static partial class OpenGL
     {
-
         #region The OpenGL DLL Functions.
 
         ///// <summary>
@@ -44,7 +41,7 @@ namespace CSharpGL
         //public static extern void ArrayElement(int i);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         //[Obsolete(fixedPipelineIsNotGood, error)]
@@ -68,9 +65,11 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glBindSampler", SetLastError = true)]
         //public static extern void BindSampler(uint target, uint sampler);
         private delegate void glBindSampler(uint target, uint sampler);
+
         private static glBindSampler glBindSamplerFunc;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="sampler"></param>
@@ -151,6 +150,7 @@ namespace CSharpGL
         {
             OpenGL.Clear((uint)mask);
         }
+
         ///// <summary>
         ///// Specify clear values for the accumulation buffer.
         ///// </summary>
@@ -199,8 +199,9 @@ namespace CSharpGL
         /// <param name="equation">Specifies the address of an	array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glClipPlane", SetLastError = true)]
         public static extern void ClipPlane(uint plane, double[] equation);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="red"></param>
         /// <param name="green"></param>
@@ -624,7 +625,9 @@ namespace CSharpGL
         }
 
         private delegate void glDeleteSamplers(int n, uint[] textures);
+
         private static glDeleteSamplers glDeleteSamplersFunc;
+
         /// <summary>
         /// This function deletes a set of sampler objects.
         /// </summary>
@@ -642,6 +645,7 @@ namespace CSharpGL
         }
 
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
+
         /// <summary>
         /// This function deletes a set of Texture objects.
         /// </summary>
@@ -659,6 +663,7 @@ namespace CSharpGL
         }
 
         private static OpenGL.glDeleteRenderbuffersEXT glDeleteRenderbuffers;
+
         /// <summary>
         /// This function deletes a set of Texture objects.
         /// </summary>
@@ -851,7 +856,7 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glEnableClientState", SetLastError = true)]
         //public static extern void EnableClientState(uint array);
         /// <summary>
-        /// 
+        ///
         /// </summary>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.opengl32, EntryPoint = "glEnd", SetLastError = true)]
@@ -1056,9 +1061,11 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glGenSamplers", SetLastError = true)]
         //public static extern void GenSamplers(int n, uint[] textures);
         private delegate void glGenSamplers(int n, uint[] textures);
+
         private static glGenSamplers glGenSamplersFunc;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="textures"></param>
@@ -1643,7 +1650,7 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glMapGrid1d", SetLastError = true)]
         //public static extern void MapGrid1d(int un, double u1, double u2);
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="un"></param>
         ///// <param name="u1"></param>
@@ -2264,7 +2271,7 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glRectdv", SetLastError = true)]
         //public static extern void Rectdv(double[] v1, double[] v2);
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="x1"></param>
         ///// <param name="y1"></param>
@@ -2723,8 +2730,9 @@ namespace CSharpGL
         /// <param name="param">Specifies a single symbolic constant, one of OpenGL.MODULATE, OpenGL.DECAL, OpenGL.BLEND, or OpenGL.REPLACE.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexEnvi", SetLastError = true)]
         public static extern void TexEnvi(uint target, uint pname, int param);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="pname"></param>
@@ -2806,6 +2814,7 @@ namespace CSharpGL
         /// <param name="pixels">The actual pixel data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexImage1D", SetLastError = true)]
         public static extern void TexImage1D(uint target, int level, uint internalformat, int width, int border, uint format, uint type, byte[] pixels);
+
         /// <summary>
         /// This function sets the image for the currently binded texture.
         /// </summary>
@@ -2864,9 +2873,11 @@ namespace CSharpGL
         public static extern void TexParameteri(uint target, uint pname, int param);
 
         private delegate void glSamplerParameteri(uint sampler, uint pname, int param);
+
         private static glSamplerParameteri glSamplerParameteriFunc;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sampler"></param>
         /// <param name="pname"></param>
@@ -3241,7 +3252,6 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glViewport", SetLastError = true)]
         public static extern void Viewport(int x, int y, int width, int height);
 
-        #endregion
-
+        #endregion The OpenGL DLL Functions.
     }
 }

@@ -106,7 +106,6 @@ namespace CSharpGL
 
     public partial class Framebuffer
     {
-
         private static readonly uint[] attachment_id =
         {
 			OpenGL.GL_COLOR_ATTACHMENT0,
@@ -130,6 +129,7 @@ namespace CSharpGL
         private List<Renderbuffer> colorBufferList = new List<Renderbuffer>();
         private Renderbuffer depthBuffer;
         private int nextColorAttachmentIndex = 0;
+
         /// <summary>
         /// Attach a texture.
         /// <para>Bind() this framebuffer before invoking this method.</para>
@@ -196,6 +196,5 @@ namespace CSharpGL
             glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
             this.depthBuffer = renderbuffer;
         }
-
     }
 }

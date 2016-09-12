@@ -26,6 +26,7 @@ namespace CSharpGL
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
         private mat4 totalRotation = mat4.identity();
+
         /// <summary>
         /// Rotate model using arc-ball method.
         /// </summary>
@@ -50,6 +51,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public float MouseSensitivity { get; set; }
+
         /// <summary>
         ///
         /// </summary>

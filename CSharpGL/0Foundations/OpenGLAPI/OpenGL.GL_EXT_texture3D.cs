@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class OpenGL
     {
-
         #region GL_EXT_texture3D
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="level"></param>
@@ -27,7 +20,7 @@ namespace CSharpGL
         //public delegate void glTexImage3DEXT(uint target, int level, uint internalformat, uint width,
         //    uint height, uint depth, int border, uint format, uint type, IntPtr pixels);
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="level"></param>
@@ -43,7 +36,6 @@ namespace CSharpGL
         //public delegate void glTexSubImage3DEXT(uint target, int level, int xoffset, int yoffset, int zoffset,
         //    uint width, uint height, uint depth, uint format, uint type, IntPtr pixels);
 
-        #endregion
-
+        #endregion GL_EXT_texture3D
     }
 }

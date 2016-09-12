@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-
 
 namespace CSharpGL
 {
@@ -608,7 +605,6 @@ namespace CSharpGL
 
         #region GL.TexCoord
 
-
         /// <summary>
         /// This function sets the current texture coordinates.
         /// </summary>
@@ -843,11 +839,10 @@ namespace CSharpGL
             OpenGL.TexCoord4s(s, t, r, q);
         }
 
-
         #endregion GL.TexCoord
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
@@ -872,7 +867,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="first"></param>
@@ -898,7 +893,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="count"></param>
@@ -924,7 +919,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="start"></param>
@@ -939,7 +934,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="first"></param>
@@ -952,7 +947,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="count"></param>
@@ -1001,6 +996,7 @@ namespace CSharpGL
         {
             OpenGL.GetIntegerv(pname, parameters);
         }
+
         /// <summary>
         /// This this function to query OpenGL values.
         /// </summary>
@@ -1047,6 +1043,7 @@ namespace CSharpGL
         }
 
         private static OpenGL.glBufferData bufferData;
+
         /// <summary>
         /// 设置当前VBO的数据。
         /// </summary>
@@ -1099,6 +1096,7 @@ namespace CSharpGL
         //}
 
         private static OpenGL.glMapBuffer mapBuffer;
+
         /// <summary>
         /// 把服务端（GPU）上的当前Buffer Object映射到客户端（CPU）的内存上。
         /// </summary>
@@ -1111,6 +1109,7 @@ namespace CSharpGL
             { mapBuffer = OpenGL.GetDelegateFor<glMapBuffer>(); }
             return mapBuffer((uint)target, (uint)access);
         }
+
         /// <summary>
         /// 把服务端（GPU）上的当前Buffer Object映射到客户端（CPU）的内存上。
         /// </summary>
@@ -1125,6 +1124,7 @@ namespace CSharpGL
         }
 
         private static OpenGL.glUnmapBuffer unmapBuffer;
+
         /// <summary>
         /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
         /// </summary>
@@ -1136,6 +1136,7 @@ namespace CSharpGL
             { unmapBuffer = OpenGL.GetDelegateFor<glUnmapBuffer>(); }
             return unmapBuffer((uint)target);
         }
+
         /// <summary>
         /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
         /// </summary>
@@ -1149,8 +1150,9 @@ namespace CSharpGL
         }
 
         private static OpenGL.glMapBufferRange mapBufferRange;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="offset"></param>
@@ -1165,7 +1167,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="offset"></param>
@@ -1178,6 +1180,7 @@ namespace CSharpGL
             { mapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
             return mapBufferRange(target, offset, length, (uint)access);
         }
+
         /// <summary>
         /// This function sets the image for the currently binded texture.
         /// </summary>
@@ -1228,7 +1231,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="level"></param>
@@ -1311,11 +1314,11 @@ namespace CSharpGL
             GetDelegateFor<glDebugMessageCallback>()(innerCallbackProc, userParam);
         }
 
-        static int debugProcDictCount = 0;
-        static int maxDebugProcDictCount = 100;
-        static readonly Dictionary<IntPtr, DebugProc> rc2ProcDict = new Dictionary<IntPtr, DebugProc>();
-        static readonly Dictionary<IntPtr, IntPtr> rc2dcDict = new Dictionary<IntPtr, IntPtr>();
-        static DEBUGPROC innerCallbackProc;
+        private static int debugProcDictCount = 0;
+        private static int maxDebugProcDictCount = 100;
+        private static readonly Dictionary<IntPtr, DebugProc> rc2ProcDict = new Dictionary<IntPtr, DebugProc>();
+        private static readonly Dictionary<IntPtr, IntPtr> rc2dcDict = new Dictionary<IntPtr, IntPtr>();
+        private static DEBUGPROC innerCallbackProc;
 
         private static void innerCallback(
             uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam)
@@ -1337,7 +1340,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="source"></param>
         /// <param name="type"></param>
@@ -1400,7 +1403,7 @@ namespace CSharpGL
         #region transform feedback
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="id"></param>
@@ -1410,6 +1413,7 @@ namespace CSharpGL
         }
 
         private static OpenGL.glBindBufferBase bindBufferBase;
+
         /// <summary>
         /// 用于transform feedback。
         /// <para>bind a buffer object to an indexed buffer target.</para>
@@ -1423,7 +1427,9 @@ namespace CSharpGL
             { bindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
             bindBufferBase((uint)target, index, buffer);
         }
+
         private static OpenGL.glBindBufferRange bindBufferRange;
+
         /// <summary>
         /// bind a range within a buffer object to an indexed buffer target
         /// </summary>
@@ -1453,8 +1459,9 @@ namespace CSharpGL
             { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
             bindBufferRange(target, index, buffer, offset, size);
         }
+
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="primitiveMode"></param>
         //public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
@@ -1462,9 +1469,7 @@ namespace CSharpGL
         //    OpenGL.GetDelegateFor<OpenGL.glBeginTransformFeedback>()((uint)primitiveMode);
         //}
 
-
         #endregion transform feedback
-
 
         #region patch
 
@@ -1542,12 +1547,13 @@ namespace CSharpGL
         {
             OpenGL.GetDelegateFor<OpenGL.glTexStorage3D>()((uint)target, levels, internalformat, width, height, depth);
         }
+
         #endregion texture
 
         #region Blend
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sfactor"></param>
         /// <param name="dfactor"></param>
@@ -1555,7 +1561,6 @@ namespace CSharpGL
         {
             BlendFunc((uint)sfactor, (uint)dfactor);
         }
-
 
         #endregion Blend
 
@@ -1658,9 +1663,10 @@ namespace CSharpGL
             FontBitmaps.DrawText(x, y, color, faceName, fontSize, text);
         }
 
-        #endregion
+        #endregion Text
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static int[] GetViewport()
@@ -1670,8 +1676,9 @@ namespace CSharpGL
 
             return viewport;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -1687,7 +1694,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="near"></param>
         /// <param name="far"></param>
@@ -1698,8 +1705,9 @@ namespace CSharpGL
 
             near = depthRange[0]; far = depthRange[1];
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
@@ -1710,8 +1718,9 @@ namespace CSharpGL
             min = lineWidthRange[0];
             max = lineWidthRange[1];
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>

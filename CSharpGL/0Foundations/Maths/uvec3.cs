@@ -102,6 +102,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         ///// <summary>
         /////
         ///// </summary>
@@ -196,6 +197,7 @@ namespace CSharpGL
         {
             return new uvec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -278,6 +280,7 @@ namespace CSharpGL
 
             return (float)result;
         }
+
         /// <summary>
         ///
         /// </summary>

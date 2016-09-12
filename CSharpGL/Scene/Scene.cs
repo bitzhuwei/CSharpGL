@@ -53,6 +53,7 @@ namespace CSharpGL
         /// background color.
         /// </summary>
         public Color ClearColor { get; set; }
+
         /// <summary>
         /// OpenGL UI for cursor.
         /// </summary>
@@ -62,10 +63,12 @@ namespace CSharpGL
         /// Root object of all objects to be rendered in the scene.
         /// </summary>
         public SceneRootObject RootObject { get { return rootObject; } }
+
         /// <summary>
         /// hosts all UI renderers.
         /// </summary>
         public UIRoot UIRoot { get { return this.uiRoot; } }
+
         /// <summary>
         ///
         /// </summary>
@@ -109,6 +112,7 @@ namespace CSharpGL
             this.uiRoot.Size = control.Size;
             this.cursorRoot.Size = control.Size;
         }
+
         private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
         {
             sceneObject.Render(arg);

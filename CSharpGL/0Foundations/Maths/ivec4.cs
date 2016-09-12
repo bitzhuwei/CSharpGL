@@ -29,6 +29,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public int z;
+
         /// <summary>
         ///
         /// </summary>
@@ -102,6 +103,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -196,6 +198,7 @@ namespace CSharpGL
         {
             return new ivec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -266,6 +269,7 @@ namespace CSharpGL
 
             return (int)result;
         }
+
         /// <summary>
         /// 归一化向量
         /// </summary>
@@ -286,6 +290,7 @@ namespace CSharpGL
         {
             return new[] { x, y, z, w };
         }
+
         /// <summary>
         ///
         /// </summary>

@@ -125,6 +125,7 @@ namespace CSharpGL
                 this.initialized = true;
             }
         }
+
         #region IDisposable Members
 
         /// <summary>

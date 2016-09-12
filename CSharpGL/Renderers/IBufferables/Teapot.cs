@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Teapot.
@@ -148,6 +147,7 @@ namespace CSharpGL
         }
 
         private IndexBufferPtr indexBufferPtr = null;
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
         /// </summary>
@@ -155,7 +155,7 @@ namespace CSharpGL
         public bool UsesZeroIndexBufferPtr() { return false; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 Lengths { get { return new vec3(6.42963028f, 3.15f, 4.0f); } }
     }

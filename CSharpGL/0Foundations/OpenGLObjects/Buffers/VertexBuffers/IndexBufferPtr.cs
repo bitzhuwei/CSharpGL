@@ -30,7 +30,6 @@ namespace CSharpGL
             this.Mode = mode;
         }
 
-
         /// <summary>
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
@@ -53,6 +52,5 @@ namespace CSharpGL
         {
             glBindBuffer((uint)BufferTarget.ElementArrayBuffer, 0);
         }
-
     }
 }

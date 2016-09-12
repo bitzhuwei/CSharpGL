@@ -89,6 +89,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -110,6 +111,7 @@ namespace CSharpGL
         {
             return (lhs.x == rhs.x && lhs.y == rhs.y);
         }
+
         /// <summary>
         ///
         /// </summary>

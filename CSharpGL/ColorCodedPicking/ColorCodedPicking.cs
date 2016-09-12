@@ -54,6 +54,7 @@ namespace CSharpGL
         }
 
         private static Framebuffer pickingFramebuffer;
+
         /// <summary>
         /// Color Coded Picking
         /// </summary>

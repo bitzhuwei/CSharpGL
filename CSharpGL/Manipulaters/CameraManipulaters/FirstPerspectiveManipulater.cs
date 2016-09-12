@@ -34,6 +34,7 @@ namespace CSharpGL
         private char upcaseRightKey;
         private char upcaseUpKey;
         private char upKey;
+
         /// <summary>
         ///
         /// </summary>
@@ -113,6 +114,7 @@ namespace CSharpGL
                 upcaseFrontKey = value.ToString().ToUpper()[0];
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -161,10 +163,12 @@ namespace CSharpGL
                 upcaseUpKey = value.ToString().ToUpper()[0];
             }
         }
+
         /// <summary>
         ///
         /// </summary>
         public float VerticalRotationSpeed { get; set; }
+
         /// <summary>
         ///
         /// </summary>

@@ -122,6 +122,7 @@
         }
 
         private IndexBufferPtr indexBufferPtr = null;
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
         /// </summary>
@@ -129,7 +130,7 @@
         public bool UsesZeroIndexBufferPtr() { return false; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 Lengths { get { return new vec3(2, 2, 2); } }
     }

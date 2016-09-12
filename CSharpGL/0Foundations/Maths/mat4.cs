@@ -277,6 +277,7 @@ namespace CSharpGL
         }
 
         #endregion Index Access
+
         #region Multiplication
 
         /// <summary>

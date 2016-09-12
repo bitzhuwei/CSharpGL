@@ -13,6 +13,7 @@ namespace CSharpGL
         /// <para>0 means endless.</para>
         /// </summary>
         private int maxCycle = 0;
+
         private bool running = false;
 
         private System.Timers.Timer timer;
@@ -31,6 +32,7 @@ namespace CSharpGL
                 { this.Stop(); }
             }
         }
+
         // = new System.Timers.Timer(10000);   //实例化Timer类，设置间隔时间为10000毫秒；
 
         /// <summary>

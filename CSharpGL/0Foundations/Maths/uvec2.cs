@@ -89,6 +89,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -196,6 +197,7 @@ namespace CSharpGL
         {
             return new uvec2(lhs.x + rhs, lhs.y + rhs);
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -264,6 +266,7 @@ namespace CSharpGL
 
             return (float)result;
         }
+
         /// <summary>
         ///
         /// </summary>

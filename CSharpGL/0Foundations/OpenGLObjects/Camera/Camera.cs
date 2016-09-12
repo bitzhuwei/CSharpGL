@@ -57,7 +57,10 @@ namespace CSharpGL
             this.CameraType = cameraType;
         }
 
-        internal Camera() { }
+        internal Camera()
+        {
+        }
+
         /// <summary>
         /// Pos:{0}, Target:{1}, Up:{2}
         /// </summary>

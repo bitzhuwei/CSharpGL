@@ -27,7 +27,6 @@ namespace CSharpGL
                 primitiveRestartIndexSwitch.On();
             }
 
-
             {
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
             }

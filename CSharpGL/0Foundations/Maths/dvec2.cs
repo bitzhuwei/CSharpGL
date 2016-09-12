@@ -89,6 +89,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -197,6 +198,7 @@ namespace CSharpGL
         {
             return new dvec2(lhs.x + rhs, lhs.y + rhs);
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -265,6 +267,7 @@ namespace CSharpGL
 
             return (double)result;
         }
+
         /// <summary>
         /// 归一化向量
         /// </summary>
@@ -284,6 +287,7 @@ namespace CSharpGL
         {
             return new[] { x, y };
         }
+
         /// <summary>
         ///
         /// </summary>

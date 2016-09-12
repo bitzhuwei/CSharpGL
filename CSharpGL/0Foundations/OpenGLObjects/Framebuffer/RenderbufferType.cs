@@ -15,5 +15,4 @@
         /// </summary>
         ColorBuffer,
     }
-
 }

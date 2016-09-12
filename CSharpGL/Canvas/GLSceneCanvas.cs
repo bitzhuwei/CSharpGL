@@ -386,6 +386,7 @@ namespace CSharpGL
         public Scene Scene { get; private set; }
 
         private Manipulater cameraManipulater;
+
         /// <summary>
         /// Controls how camera moves according to mouse/keyboard.
         /// </summary>
@@ -409,6 +410,5 @@ namespace CSharpGL
         {
             this.Invalidate();
         }
-
     }
 }

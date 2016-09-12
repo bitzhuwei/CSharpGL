@@ -2,17 +2,16 @@
 {
     // http://blog.csdn.net/csxiaoshui/article/details/32101977
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class UniformBuffer : Buffer
     {
-
         internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
         internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
         internal static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UniformBuffer(BufferUsage usage)
             : base(usage)
@@ -26,7 +25,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="elementCount"></param>
         public override void Create(int elementCount)
@@ -35,7 +34,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         protected override BufferPtr Upload2GPU()

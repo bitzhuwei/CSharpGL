@@ -1,13 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class OpenGL
     {
-
         //#region The GLU DLL Constant Definitions.
 
         ////   Version
@@ -108,7 +102,6 @@ namespace CSharpGL
         //public const uint GLU_PARAMETRIC_ERROR = 100216;
         //public const uint GLU_DOMAIN_DISTANCE = 100217;
 
-
         ////   NurbsTrim
         //public const uint GLU_MAP1_TRIM_2 = 100210;
         //public const uint GLU_MAP1_TRIM_3 = 100211;
@@ -161,6 +154,5 @@ namespace CSharpGL
         //public const uint GLU_NURBS_ERROR37 = 100287;
 
         //#endregion
-
     }
 }

@@ -72,6 +72,7 @@
             if (item.y < currentMin.y) { currentMin.y = item.y; }
             if (item.z < currentMin.z) { currentMin.z = item.z; }
         }
+
         /// <summary>
         /// update minimum values.
         /// </summary>
@@ -83,6 +84,7 @@
             if (item.y < currentMin.y) { currentMin.y = item.y; }
             if (item.z < currentMin.z) { currentMin.z = item.z; }
         }
+
         /// <summary>
         /// update minimum values.
         /// </summary>

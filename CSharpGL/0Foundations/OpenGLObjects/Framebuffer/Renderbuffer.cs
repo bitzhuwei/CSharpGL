@@ -52,10 +52,12 @@
         /// Framebuffer Id.
         /// </summary>
         public uint Id { get { return renderbuffer[0]; } }
+
         /// <summary>
         ///
         /// </summary>
         public int Width { get; set; }
+
         /// <summary>
         ///
         /// </summary>

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class OpenGL
     {
-
         //#region The GLU DLL Functions (Exactly the same naming).
 
         ///// <summary>
@@ -29,7 +23,7 @@ namespace CSharpGL
         //private static unsafe extern sbyte* gluGetString(int name);
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="left"></param>
         ///// <param name="right"></param>
@@ -444,7 +438,7 @@ namespace CSharpGL
         ///// <param name="nurbsObject"></param>
         ///// <param name="knotsCount">The number of knots.</param>
         ///// <param name="knots">The knots themselves.</param>
-        ///// <param name="stride">The stride, i.e. distance between vertices in the 
+        ///// <param name="stride">The stride, i.e. distance between vertices in the
         ///// control points array.</param>
         ///// <param name="controlPointsArray">The array of control points.</param>
         ///// <param name="order">The order of the polynomial.</param>
@@ -502,7 +496,7 @@ namespace CSharpGL
         //[DllImport(Win32.Glu32, SetLastError = true)]
         //public static extern void gluGetNurbsProperty(IntPtr nurbsObject, int property, float value);
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="nurbsObject"></param>
         ///// <param name="which"></param>
@@ -512,6 +506,5 @@ namespace CSharpGL
         //public static extern void IntPtrCallback(IntPtr nurbsObject, int which, IntPtr Callback);
 
         //#endregion
-
     }
 }

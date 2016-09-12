@@ -25,6 +25,7 @@ namespace CSharpGL
         private MouseEventHandler mouseWheelEvent;
         private vec3 right;
         private vec3 up;
+
         /// <summary>
         ///
         /// </summary>
@@ -53,6 +54,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public float VerticalRotationFactor { get; set; }
+
         /// <summary>
         ///
         /// </summary>
@@ -177,6 +179,7 @@ namespace CSharpGL
                 this.camera = null;
             }
         }
+
         private void PrepareCamera()
         {
             var camera = this.camera;
@@ -191,6 +194,7 @@ namespace CSharpGL
                 this.up = up.normalize();
             }
         }
+
         private void SetBounds(int width, int height)
         {
             this.bound.Width = width;

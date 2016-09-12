@@ -104,6 +104,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -198,6 +199,7 @@ namespace CSharpGL
         {
             return new vec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -280,6 +282,7 @@ namespace CSharpGL
 
             return (float)result;
         }
+
         /// <summary>
         /// 归一化向量
         /// </summary>
@@ -299,6 +302,7 @@ namespace CSharpGL
         {
             return new[] { x, y, z };
         }
+
         /// <summary>
         ///
         /// </summary>

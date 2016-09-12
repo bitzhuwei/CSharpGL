@@ -8,28 +8,32 @@ namespace CSharpGL
     public partial class SimpleRenderer : Renderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public enum ModelTypes
         {
             /// <summary>
-            /// 
+            ///
             /// </summary>
             Axis,
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             Tetrahedron,
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             Cube,
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             Sphere,
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             Teapot,
         }

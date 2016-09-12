@@ -29,6 +29,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public double z;
+
         /// <summary>
         ///
         /// </summary>
@@ -102,6 +103,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -196,6 +198,7 @@ namespace CSharpGL
         {
             return new dvec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -266,6 +269,7 @@ namespace CSharpGL
 
             return (double)result;
         }
+
         /// <summary>
         /// 归一化向量
         /// </summary>
@@ -286,6 +290,7 @@ namespace CSharpGL
         {
             return new[] { x, y, z, w };
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -296,6 +301,7 @@ namespace CSharpGL
             return string.Format("{0}, {1}, {2}, {3}", x.ToShortString(), y.ToShortString(), z.ToShortString(), w.ToShortString());
             //return base.ToString();
         }
+
         internal static dvec4 Parse(string value)
         {
             string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);

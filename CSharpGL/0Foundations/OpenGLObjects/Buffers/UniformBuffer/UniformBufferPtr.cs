@@ -5,7 +5,6 @@
     /// </summary>
     public class UniformBufferPtr : BufferPtr
     {
-
         /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>

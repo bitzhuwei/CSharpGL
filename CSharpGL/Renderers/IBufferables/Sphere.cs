@@ -210,6 +210,7 @@
 
             return indexBufferPtr;
         }
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
         /// </summary>
@@ -217,7 +218,7 @@
         public bool UsesZeroIndexBufferPtr() { return false; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 Lengths { get; private set; }
     }

@@ -29,6 +29,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public bool z;
+
         /// <summary>
         ///
         /// </summary>
@@ -102,6 +103,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -123,6 +125,7 @@ namespace CSharpGL
         {
             return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w);
         }
+
         /// <summary>
         ///
         /// </summary>

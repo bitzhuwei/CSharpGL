@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class BoundingBoxRendererHelper
     {
-
         /// <summary>
         /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="models"/>.
         /// </summary>
@@ -31,6 +29,7 @@ namespace CSharpGL
         {
             return GetBoundingBoxRenderer(model.GetBoundingBox());
         }
+
         /// <summary>
         /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangles"/>.
         /// </summary>
@@ -62,6 +61,7 @@ namespace CSharpGL
 
             return boxRenderer;
         }
+
         /// <summary>
         /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangles"/>.
         /// </summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Renders a label(a single line of text) that always faces camera in 3D space.
@@ -41,7 +39,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="model"></param>
         /// <param name="shaderCodes"></param>

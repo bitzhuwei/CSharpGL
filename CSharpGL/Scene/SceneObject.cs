@@ -25,6 +25,7 @@ namespace CSharpGL
         public string Name { get; set; }
 
         private RendererBase renderer;
+
         /// <summary>
         /// renders something.
         /// Note: I wanted to use <see cref="IRenderable"/> but it fails to display in <see cref="PropertyGridEditor"/>. So I have to upgrade it to <see cref="RendererBase"/>.

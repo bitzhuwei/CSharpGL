@@ -28,6 +28,7 @@ namespace CSharpGL
 
             return result;
         }
+
         public override object ConvertTo(ITypeDescriptorContext context,
             CultureInfo culture, object value, Type destinationType)
         {
