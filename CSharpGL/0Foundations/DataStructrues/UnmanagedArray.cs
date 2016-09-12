@@ -113,7 +113,7 @@ namespace CSharpGL
         private bool initialized = false;
 
         /// <summary>
-        /// ALloate memory for this array.
+        /// Alloate memory for this array.
         /// </summary>
         public void Alloc()
         {
