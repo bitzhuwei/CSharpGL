@@ -492,8 +492,8 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitch.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\IBufferable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\PropertyNameMap.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\IBufferable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\PropertyNameMap.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\ShaderCode.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariable.cs" />
     <Compile Include="0Foundations\Maths\glm_camera.cs" />
