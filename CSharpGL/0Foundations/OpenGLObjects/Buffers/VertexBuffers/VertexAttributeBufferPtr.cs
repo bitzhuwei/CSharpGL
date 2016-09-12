@@ -135,6 +135,7 @@ namespace CSharpGL
             glEnableVertexAttribArray(loc);
             if (this.InstancedDivisor > 0)
             {
+                // TODO: what if this is mat4? ...
                 glVertexAttribDivisor(loc, this.InstancedDivisor);
             }
         }
