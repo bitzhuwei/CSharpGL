@@ -55,6 +55,16 @@ namespace CSharpGL
         /// </summary>
         public ShaderProgram()
         {
+        }
+
+        /// <summary>
+        /// Initialize this shader program object.
+        /// </summary>
+        /// <param name="shaders"></param>
+        public void Initialize(params Shader[] shaders)
+        {
+            //if (shaders.Length < 1) { throw new ArgumentException(); }
+
             if (glCreateProgram == null)
             {
                 glCreateProgram = OpenGL.GetDelegateFor<OpenGL.glCreateProgram>();
@@ -68,18 +78,8 @@ namespace CSharpGL
                 glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
             }
 
-            this.ShaderProgramObject = glCreateProgram();
-        }
-
-        /// <summary>
-        /// Initialize this shader program object.
-        /// </summary>
-        /// <param name="shaders"></param>
-        public void Initialize(params Shader[] shaders)
-        {
-            //if (shaders.Length < 1) { throw new ArgumentException(); }
-
-            uint program = this.ShaderProgramObject;
+            uint program = glCreateProgram();
+            this.ShaderProgramObject = program;
 
             foreach (var item in shaders)
             {
@@ -93,7 +93,7 @@ namespace CSharpGL
                 string log = this.GetInfoLog();
                 throw new Exception(
                     string.Format("Failed to compile shader with ID {0}: {1}",
-                        this.ShaderProgramObject, log));
+                        program, log));
             }
 
             foreach (var item in shaders)
@@ -109,6 +109,7 @@ namespace CSharpGL
             {
                 glDetachShader(program, item.ShaderObject);
             }
+
         }
 
         /// <summary>

@@ -77,13 +77,6 @@ namespace CSharpGL
         /// <param name="usage"></param>
         public Buffer(BufferUsage usage)
         {
-            if (glGenBuffers == null)
-            {
-                glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
-                glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
-                glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
-            }
-
             this.Usage = usage;
         }
 
@@ -114,6 +107,13 @@ namespace CSharpGL
         {
             if (bufferPtr == null)
             {
+                if (glGenBuffers == null)
+                {
+                    glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
+                    glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+                    glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
+                }
+
                 bufferPtr = Upload2GPU();
             }
 

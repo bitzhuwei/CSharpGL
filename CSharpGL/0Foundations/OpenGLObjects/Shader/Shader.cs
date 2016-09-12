@@ -16,7 +16,12 @@ namespace CSharpGL
         private static OpenGL.glGetShaderiv glGetShaderiv;
         private static OpenGL.glGetShaderInfoLog glGetShaderInfoLog;
 
-        internal Shader()
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="shaderType"></param>
+        /// <param name="source"></param>
+        public void Create(uint shaderType, string source)
         {
             if (glCreateShader == null)
             {
@@ -27,15 +32,7 @@ namespace CSharpGL
                 glGetShaderiv = OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>();
                 glGetShaderInfoLog = OpenGL.GetDelegateFor<OpenGL.glGetShaderInfoLog>();
             }
-        }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="shaderType"></param>
-        /// <param name="source"></param>
-        public void Create(uint shaderType, string source)
-        {
             //  Create the OpenGL shader object.
             ShaderObject = glCreateShader(shaderType);
 

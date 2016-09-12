@@ -19,12 +19,6 @@
         public UniformBuffer(BufferUsage usage, bool noDataCopyed = false)
             : base(usage, noDataCopyed)
         {
-            if (glGetUniformBlockIndex == null)
-            {
-                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
-                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
-            }
         }
 
         /// <summary>
@@ -33,6 +27,13 @@
         /// <returns></returns>
         protected override BufferPtr Upload2GPU()
         {
+            if (glGetUniformBlockIndex == null)
+            {
+                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
+                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
+                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
+            }
+
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
             const uint target = (uint)BufferTarget.UniformBuffer;

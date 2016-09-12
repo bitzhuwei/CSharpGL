@@ -18,11 +18,12 @@ namespace CSharpGL
         /// </summary>
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
+        private uint[] ids = new uint[1];
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
         /// <para>Id gets from glGenVertexArrays().</para>
         /// </summary>
-        public uint Id { get; private set; }
+        public uint Id { get { return ids[0]; } }
 
         private static OpenGL.glGenVertexArrays glGenVertexArrays;
         private static OpenGL.glBindVertexArray glBindVertexArray;
@@ -45,13 +46,6 @@ namespace CSharpGL
                 throw new ArgumentNullException("propertyBufferPtrs");
             }
 
-            if (glGenVertexArrays == null)
-            {
-                glGenVertexArrays = OpenGL.GetDelegateFor<OpenGL.glGenVertexArrays>();
-                glBindVertexArray = OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>();
-                glDeleteVertexArrays = OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>();
-            }
-
             this.IndexBufferPtr = indexBufferPtr;
             this.PropertyBufferPtrs = propertyBufferPtrs;
         }
@@ -68,10 +62,14 @@ namespace CSharpGL
             if (this.Id != 0)
             { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
 
-            uint[] buffers = new uint[1];
-            glGenVertexArrays(1, buffers);
+            if (glGenVertexArrays == null)
+            {
+                glGenVertexArrays = OpenGL.GetDelegateFor<OpenGL.glGenVertexArrays>();
+                glBindVertexArray = OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>();
+                glDeleteVertexArrays = OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>();
+            }
 
-            this.Id = buffers[0];
+            glGenVertexArrays(1, ids);
 
             this.Bind();
             VertexAttributeBufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
@@ -160,9 +158,8 @@ namespace CSharpGL
                 if (ptr != IntPtr.Zero)
                 {
                     {
-                        uint[] arrays = new uint[] { this.Id };
-                        this.Id = 0;
-                        glDeleteVertexArrays(1, new uint[] { this.Id });
+                        glDeleteVertexArrays(1, this.ids);
+                        this.ids[0] = 0;
                     }
                     {
                         VertexAttributeBufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
