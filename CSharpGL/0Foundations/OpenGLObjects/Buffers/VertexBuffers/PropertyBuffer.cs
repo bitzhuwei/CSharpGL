@@ -22,12 +22,14 @@
         /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
         /// <param name="usage"></param>
-        public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage)
+        /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
+        public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage, uint instancedDivisor = 0)
             : base(usage)
         {
             this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
             this.DataType = dataType;
+            this.InstancedDivisor = instancedDivisor;
         }
 
         /// <summary>
@@ -49,6 +51,11 @@
         public uint DataType { get; private set; }
 
         /// <summary>
+        /// 0: not instanced. 1: instanced divisor is 1.
+        /// </summary>
+        public uint InstancedDivisor { get; private set; }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
@@ -61,7 +68,7 @@
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
 
             var bufferPtr = new PropertyBufferPtr(
-                this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType, this.Length, this.ByteLength);
+                this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType, this.Length, this.ByteLength, this.InstancedDivisor);
 
             return bufferPtr;
         }

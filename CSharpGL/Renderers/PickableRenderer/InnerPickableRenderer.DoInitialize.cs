@@ -25,7 +25,8 @@ namespace CSharpGL
                         bufferPtr.DataSize,
                         bufferPtr.DataType,
                         bufferPtr.Length,
-                        bufferPtr.ByteLength);
+                        bufferPtr.ByteLength,
+                        0);
                     break;
                 }
             }

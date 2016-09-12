@@ -18,6 +18,11 @@ namespace CSharpGL
         protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
+
+        /// <summary>
         /// Vertex' property buffer's pointer.
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
@@ -29,18 +34,22 @@ namespace CSharpGL
         /// </param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+        /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         internal PropertyBufferPtr(string varNameInVertexShader,
-            uint bufferId, int dataSize, uint dataType, int length, int byteLength)
+            uint bufferId, int dataSize, uint dataType, int length, int byteLength,
+            uint instancedDivisor)
             : base(bufferId, length, byteLength)
         {
             if (glVertexAttribPointer == null)
             {
                 glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
                 glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
+                glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
             }
             this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
             this.DataType = dataType;
+            this.InstancedDivisor = instancedDivisor;
         }
 
         /// <summary>
@@ -84,6 +93,11 @@ namespace CSharpGL
         public int DataSize { get; private set; }
 
         /// <summary>
+        /// 0: not instanced. 1: instanced divisor is 1.
+        /// </summary>
+        public uint InstancedDivisor { get; private set; }
+
+        /// <summary>
         ///Bind this buffer.
         /// </summary>
         public override void Bind()
@@ -115,11 +129,15 @@ namespace CSharpGL
             // select this VBO.
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             // 指定格式
-            // specify data format.
+            // set up data format.
             glVertexAttribPointer(loc, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
             // 启用
             // enable this VBO.
             glEnableVertexAttribArray(loc);
+            if (this.InstancedDivisor > 0)
+            {
+                glVertexAttribDivisor(loc, this.InstancedDivisor);
+            }
         }
     }
 }

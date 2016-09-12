@@ -11,13 +11,13 @@ namespace CSharpGL
 
         #region OpenGL 3.3
 
-        ////  Delegates
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="divisor"></param>
-        //public delegate void glVertexAttribDivisor(uint index, uint divisor);
+        //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="divisor"></param>
+        public delegate void glVertexAttribDivisor(uint index, uint divisor);
 
         ////  Constants
         ///// <summary>

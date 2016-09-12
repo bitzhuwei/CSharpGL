@@ -125,7 +125,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// Query location/index of specified <paramref name="attributeName"/>.
         /// </summary>
         /// <param name="attributeName"></param>
         /// <returns></returns>
