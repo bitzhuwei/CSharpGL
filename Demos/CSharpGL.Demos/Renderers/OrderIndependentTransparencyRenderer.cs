@@ -91,12 +91,9 @@ namespace CSharpGL.Demos
                 this.atomicCountBufferPtr = ptr;
             }
             {
-                // Create the linked list storage buffer
-                var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, false);
-                buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
-                var linkedListBufferPtr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 // Bind it to a texture (for use as a TBO)
-                var texture = Texture.CreateBufferTexture(OpenGL.GL_RGBA32UI, linkedListBufferPtr, true);
+                const bool noDataCopyed = false;
+                var texture = Texture.CreateBufferTexture<vec4>(OpenGL.GL_RGBA32UI, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3, BufferUsage.DynamicCopy, noDataCopyed);
                 texture.Initialize();
                 this.linkedListTexture = texture;
             }
