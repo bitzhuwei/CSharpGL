@@ -88,6 +88,7 @@
     <Compile Include="0Foundations\Maths\dvec3.cs" />
     <Compile Include="0Foundations\Maths\dvec4.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\BindTextureTarget.cs" />
+    <Compile Include="0Foundations\OpenGLAPI\Enumerations\QueryTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\MipmapTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Samplers.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox.cs" />

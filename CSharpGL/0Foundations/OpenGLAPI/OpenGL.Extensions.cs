@@ -2142,10 +2142,10 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_SAMPLES_PASSED_ARB = 0x8914;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ANY_SAMPLES_PASSED = 0x8C2F;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ANY_SAMPLES_PASSED = 0x8C2F;
 
         //#endregion
 
@@ -4152,10 +4152,10 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_PRIMITIVE_RESTART_FIXED_INDEX = 0x8D69;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ANY_SAMPLES_PASSED_CONSERVATIVE = 0x8D6A;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ANY_SAMPLES_PASSED_CONSERVATIVE = 0x8D6A;
         ///// <summary>
         /////
         ///// </summary>

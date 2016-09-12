@@ -99,16 +99,16 @@
         ///// <param name="target"></param>
         ///// <param name="clamp"></param>
         //public delegate void glClampColor(uint target, uint clamp);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <param name="mode"></param>
-        //public delegate void glBeginConditionalRender(uint id, uint mode);
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public delegate void glEndConditionalRender();
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="mode"></param>
+        public delegate void glBeginConditionalRender(uint id, uint mode);
+        /// <summary>
+        ///
+        /// </summary>
+        public delegate void glEndConditionalRender();
         ///// <summary>
         /////
         ///// </summary>

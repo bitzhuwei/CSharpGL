@@ -272,10 +272,10 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_DYNAMIC_COPY = 0x88EA;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLES_PASSED = 0x8914;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLES_PASSED = 0x8914;
 
         #endregion OpenGL 1.5
     }

@@ -16,6 +16,8 @@ namespace CSharpGL
         private static OpenGL.glGetQueryiv glGetQueryiv;
         private static OpenGL.glGetQueryObjectiv glGetQueryObjectiv;
         private static OpenGL.glGetQueryObjectuiv glGetQueryObjectuiv;
+        private static OpenGL.glBeginConditionalRender glBeginConditionalRender;
+        private static OpenGL.glEndConditionalRender glEndConditionalRender;
 
         /// <summary>
         /// texture's id/name.
@@ -28,23 +30,40 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get { return this.ids[0]; } }
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public bool UseMipmap { get; private set; }
-
         /// <summary>
-        ///
+        /// Begin query.
         /// </summary>
-        public void Bind()
+        public void Begin(QueryTarget target)
         {
+            glBeginQuery((uint)target, this.Id);
+        }
+
+        // TODO: need demo!
+        /// <summary>
+        /// Begin conditional rendering.
+        /// </summary>
+        public void Begin(ConditionalRenderMode mode)
+        {
+            glBeginQuery((uint)QueryTarget.SamplesPassed, this.Id);
+            glBeginConditionalRender(this.Id, (uint)mode);
+        }
+
+        // TODO: need demo!
+        /// <summary>
+        /// Een query.
+        /// </summary>
+        public void End(QueryTarget target)
+        {
+            glEndQuery((uint)target);
         }
 
         /// <summary>
-        ///
+        /// End conditional rendering.
         /// </summary>
-        public void Unbind()
+        public void End()
         {
+            glEndConditionalRender();
+            glEndQuery((uint)QueryTarget.SamplesPassed);
         }
 
         private bool initialized = false;
@@ -66,8 +85,9 @@ namespace CSharpGL
                     glGetQueryiv = OpenGL.GetDelegateFor<OpenGL.glGetQueryiv>();
                     glGetQueryObjectiv = OpenGL.GetDelegateFor<OpenGL.glGetQueryObjectiv>();
                     glGetQueryObjectuiv = OpenGL.GetDelegateFor<OpenGL.glGetQueryObjectuiv>();
+                    glBeginConditionalRender = OpenGL.GetDelegateFor<OpenGL.glBeginConditionalRender>();
+                    glEndConditionalRender = OpenGL.GetDelegateFor<OpenGL.glEndConditionalRender>();
                 }
-
 
                 this.initialized = true;
             }
