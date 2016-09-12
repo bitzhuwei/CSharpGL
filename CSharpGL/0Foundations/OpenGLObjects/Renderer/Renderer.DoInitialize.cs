@@ -11,7 +11,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program.
-            ShaderProgram program = InitializeProgram();
+            ShaderProgram program = InitializeProgram(this.shaderCodes);
 
             // init property buffer objects.
             IBufferable bufferable = this.model;
@@ -47,7 +47,7 @@ namespace CSharpGL
             this.vertexArrayObject = vertexArrayObject;
         }
 
-        private ShaderProgram InitializeProgram()
+        protected ShaderProgram InitializeProgram(ShaderCode[] shaderCodes)
         {
             var program = new ShaderProgram();
             var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
