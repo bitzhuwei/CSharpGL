@@ -5,6 +5,7 @@
     /// <para>每个<see cref="VertexAttributeBuffer&lt;T&gt;"/>仅描述其中一个属性。</para>
     /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, ect.).</para>
     /// <para>Each <see cref="VertexAttributeBuffer&lt;T&gt;"/> describes only 1 property.</para>
+    /// <para>If <typeparamref name="T"/> is matches one of this.Config's value, then (this.ByteLength / (this.DataSize * this.DataTypeByteLength)) equals (this.Length).</para>
     /// </summary>
     /// <typeparam name="T">element type in this array in application level.</typeparam>
     public class VertexAttributeBuffer<T> : Buffer where T : struct
