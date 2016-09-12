@@ -40,6 +40,11 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
+                IntPtr context = Win32.wglGetCurrentContext();
+                if (context != IntPtr.Zero)
+                {
+                    glDeleteQueries(1, this.ids);
+                }
             } // end if
 
             this.disposedValue = true;
