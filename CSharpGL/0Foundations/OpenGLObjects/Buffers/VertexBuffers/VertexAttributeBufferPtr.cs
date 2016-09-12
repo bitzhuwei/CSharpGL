@@ -60,7 +60,7 @@ namespace CSharpGL
         public VertexAttributeConfig Config { get; private set; }
 
         /// <summary>
-        /// <see cref="Config"/>有多少字节？
+        /// How many bytes are there in a primitive data type(float/uint/int etc)?
         /// </summary>
         public int DataTypeByteLength
         {
@@ -171,7 +171,7 @@ namespace CSharpGL
 
         /// <summary>
         /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-        /// <para>How many float/int/uint are there in a data unit?</para>
+        /// <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
         /// </summary>
         public int DataSize
         {
