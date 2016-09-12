@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace CSharpGL
@@ -113,12 +114,18 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="type"></param>
+        /// <param name="locationCount"></param>
         /// <param name="dataSize"></param>
         /// <param name="dataType"></param>
-        public static void Parse(this VertexAttributeDataType type, out int dataSize, out uint dataType)
+        /// <param name="stride"></param>
+        /// <param name="startOffsetUnit"></param>
+        public static void Parse(this VertexAttributeDataType type, out int locationCount, out int dataSize, out uint dataType, out int stride, out int startOffsetUnit)
         {
-            dataSize = 0;
-            dataType = 0;
+            locationCount = 1;
+            //dataSize = 0;
+            //dataType = 0;
+            stride = 0;
+            startOffsetUnit = 0;
             switch (type)
             {
                 case VertexAttributeDataType.Byte:
@@ -202,16 +209,25 @@ namespace CSharpGL
                     dataType = OpenGL.GL_DOUBLE;
                     break;
                 case VertexAttributeDataType.Mat2:
+                    locationCount = 2;
                     dataSize = 2;
                     dataType = OpenGL.GL_FLOAT;
+                    stride = Marshal.SizeOf(typeof(mat2));
+                    startOffsetUnit = Marshal.SizeOf(typeof(vec2));
                     break;
                 case VertexAttributeDataType.Mat3:
+                    locationCount = 3;
                     dataSize = 3;
                     dataType = OpenGL.GL_FLOAT;
+                    stride = Marshal.SizeOf(typeof(mat3));
+                    startOffsetUnit = Marshal.SizeOf(typeof(vec3));
                     break;
                 case VertexAttributeDataType.Mat4:
+                    locationCount = 4;
                     dataSize = 4;
                     dataType = OpenGL.GL_FLOAT;
+                    stride = Marshal.SizeOf(typeof(mat4));
+                    startOffsetUnit = Marshal.SizeOf(typeof(vec4));
                     break;
                 default:
                     throw new System.NotImplementedException();

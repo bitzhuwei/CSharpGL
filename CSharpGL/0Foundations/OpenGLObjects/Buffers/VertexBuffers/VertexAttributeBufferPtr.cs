@@ -157,9 +157,14 @@ namespace CSharpGL
         {
             get
             {
+                int locationCount;
                 int dataSize;
                 uint dataType;
-                this.DataType.Parse(out dataSize, out dataType);
+                int stride;
+                int startOffsetUnit;
+                this.DataType.Parse(
+                    out locationCount, out dataSize, out dataType,
+                    out stride, out startOffsetUnit);
                 return dataSize;
             }
         }
@@ -201,17 +206,25 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             // 指定格式
             // set up data format.
+            int locationCount;
             int dataSize;
             uint dataType;
-            this.DataType.Parse(out dataSize, out dataType);
-            glVertexAttribPointer(loc, dataSize, dataType, false, 0, IntPtr.Zero);
-            // 启用
-            // enable this VBO.
-            glEnableVertexAttribArray(loc);
-            if (this.InstancedDivisor > 0)
+            int stride;
+            int startOffsetUnit;
+            this.DataType.Parse(
+                out locationCount, out dataSize, out dataType,
+                out stride, out startOffsetUnit);
+            for (uint i = 0; i < locationCount; i++)
             {
-                // TODO: what if this is mat4? ...
-                glVertexAttribDivisor(loc, this.InstancedDivisor);
+                glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                // 启用
+                // enable this VBO.
+                glEnableVertexAttribArray(loc + i);
+                if (this.InstancedDivisor > 0)
+                {
+                    // TODO: what if this is mat4? ...
+                    glVertexAttribDivisor(loc + i, this.InstancedDivisor);
+                }
             }
         }
     }
