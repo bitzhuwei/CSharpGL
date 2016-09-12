@@ -121,8 +121,7 @@ namespace CSharpGL
         public void Standby(ShaderProgram shaderProgram)
         {
             int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
-            if (location < 0)
-            { throw new ArgumentException(); }
+            if (location < 0) { throw new ArgumentException(); }
 
             uint loc = (uint)location;
             // 选中此VBO
