@@ -7,7 +7,8 @@ namespace CSharpGL
     {
         protected override void DoInitialize()
         {
-            base.DoInitialize();
+            // init shader program.
+            ShaderProgram program = InitializeProgram(this.shaderCodes);
 
             VertexAttributeBufferPtr positionBufferPtr = null;
             IBufferable bufferable = this.model;
@@ -22,7 +23,6 @@ namespace CSharpGL
                     positionBufferPtr = new VertexAttributeBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
                         bufferPtr.BufferId,
-                        bufferPtr.DataSize,
                         bufferPtr.DataType,
                         bufferPtr.Length,
                         bufferPtr.ByteLength,
@@ -32,10 +32,30 @@ namespace CSharpGL
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
-            if (positionBufferPtr == null || positionBufferPtr.DataSize != 3 || positionBufferPtr.DataType != OpenGL.GL_FLOAT)
+            if (positionBufferPtr == null || positionBufferPtr.DataType != VertexAttributeDataType.Vec3)
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
-            this.positionBufferPtr = positionBufferPtr;
+
+            // init index buffer.
+            IndexBufferPtr indexBufferPtr = bufferable.GetIndex();
+
+            // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
+            var ptr = indexBufferPtr as OneIndexBufferPtr;
+            if (ptr != null)
+            {
+                GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr);
+                this.switchList.Add(glSwitch);
+            }
+
+            // init VAO.
+            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, positionBufferPtr);
+            vertexArrayObject.Create(program);
+
+            // sets fields.
+            this.Program = program;
+            this.propertyBufferPtrs = new VertexAttributeBufferPtr[] { positionBufferPtr };
+            this.indexBufferPtr = indexBufferPtr;
+            this.vertexArrayObject = vertexArrayObject;
         }
     }
 }
