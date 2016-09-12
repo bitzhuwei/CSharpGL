@@ -96,9 +96,9 @@ namespace CSharpGL.Demos
                 var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed);
                 const int elementCount = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3;
                 buffer.Create(elementCount);
-                var bufferPtr = buffer.GetBufferPtr() as IndependentBufferPtr;
+                BufferPtr bufferPtr = buffer.GetBufferPtr();
                 const bool autoDispose = true;
-                var texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose);
+                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose);
                 texture.Initialize();
                 this.linkedListTexture = texture;
             }
