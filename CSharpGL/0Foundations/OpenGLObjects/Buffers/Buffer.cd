@@ -4,36 +4,37 @@
     <Position X="6.25" Y="0.5" Width="5" />
     <TypeIdentifier>
       <HashCode>BAIAAAAEACAAAAAEAQwAAAREAAAAAkAAAAAAAgAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\Buffer.cs</FileName>
+      <FileName>0Foundations\OpenGLObjects\Buffers\Buffer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CSharpGL.PropertyBuffer&lt;T&gt;">
+  <Class Name="CSharpGL.VertexBuffer">
     <Position X="10.75" Y="6.75" Width="6.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAIAEAAAAAAAAAAAAAAAAEAAAAAAAAAABAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\PropertyBuffer.cs</FileName>
+      <HashCode>AAIAAAAAAAIAEAAAAAAAAAAAAAAAAEAAAAAAAAAgBAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBuffer.Create.cs</FileName>
+      <NewMemberFileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBuffer.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.IndexBuffer&lt;T&gt;">
     <Position X="3.25" Y="6.75" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\IndexBuffer.cs</FileName>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.OneIndexBuffer&lt;T&gt;">
     <Position X="6" Y="9.25" Width="4" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\OneIndexBuffer.cs</FileName>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.ZeroIndexBuffer">
     <Position X="0.5" Y="9.25" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\VertexBufferObjects\ZeroIndexBuffer.cs</FileName>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

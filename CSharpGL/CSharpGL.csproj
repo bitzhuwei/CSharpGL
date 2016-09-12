@@ -84,6 +84,9 @@
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox2D.cs" />
     <Compile Include="0Foundations\Maths\ModelMatrixHelper.cs" />
+    <Compile Include="0Foundations\Maths\dvec2.cs" />
+    <Compile Include="0Foundations\Maths\dvec3.cs" />
+    <Compile Include="0Foundations\Maths\dvec4.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\BindTextureTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\MipmapTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Samplers.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeDataType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
