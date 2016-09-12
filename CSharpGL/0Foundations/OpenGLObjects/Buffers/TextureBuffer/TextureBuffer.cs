@@ -9,7 +9,8 @@
     {
         /// <summary>
         /// TextureBufferObject matches <code>uniform samplerBuffer xxx;</code> in GLSL shader.
-        /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></        /// </summary>
+        /// T: 此buffer存储的是哪种struct的数据？<para>type of index value.</para>
+        /// </summary>
         /// <param name="usage"></param>
         /// <param name="noDataCopyed"></param>
         public TextureBuffer(BufferUsage usage, bool noDataCopyed = false)
