@@ -106,6 +106,10 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\PixelUnpackBuffer\PixelUnpackBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\AtomicCounterBuffer\AtomicCounterBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBufferPtr.cs" />

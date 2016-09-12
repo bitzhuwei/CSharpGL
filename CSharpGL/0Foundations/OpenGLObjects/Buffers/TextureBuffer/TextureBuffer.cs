@@ -2,35 +2,19 @@
 {
     // http://blog.csdn.net/csxiaoshui/article/details/32101977
     /// <summary>
-    ///
+    /// TextureBufferObject matches <code>uniform samplerBuffer xxx;</code> in GLSL shader.
     /// </summary>
-    public class TextureBuffer : Buffer
+    /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
+    public class TextureBuffer<T> : IndependentBuffer<T> where T : struct
     {
-        internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
-        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
-        internal static OpenGL.glBindBufferBase glBindBufferBase;
-
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        public TextureBuffer(BufferUsage usage)
-            : base(usage)
+        /// <param name="usage"></param>
+        /// <param name="noDataCopyed"></param>
+        public TextureBuffer(BufferUsage usage, bool noDataCopyed = false)
+            : base(usage, noDataCopyed)
         {
-            if (glGetUniformBlockIndex == null)
-            {
-                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
-                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="elementCount"></param>
-        public override void Create(int elementCount)
-        {
-            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -41,7 +25,7 @@
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
-            var target = (uint)BufferTarget.TextureBuffer;
+            const uint target = (uint)BufferTarget.TextureBuffer;
             glBindBuffer(target, buffers[0]);
             glBufferData(target, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(target, 0);

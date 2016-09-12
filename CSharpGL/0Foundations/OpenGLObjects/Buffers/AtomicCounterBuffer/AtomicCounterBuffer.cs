@@ -5,26 +5,16 @@
     ///
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
-    public class UniformBuffer<T> : IndependentBuffer<T> where T : struct
+    public class AtomicCounterBuffer<T> : IndependentBuffer<T> where T : struct
     {
-        internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
-        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
-        internal static OpenGL.glBindBufferBase glBindBufferBase;
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="usage"></param>
         /// <param name="noDataCopyed"></param>
-        public UniformBuffer(BufferUsage usage, bool noDataCopyed = false)
+        public AtomicCounterBuffer(BufferUsage usage, bool noDataCopyed = false)
             : base(usage, noDataCopyed)
         {
-            if (glGetUniformBlockIndex == null)
-            {
-                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
-                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
-            }
         }
 
         /// <summary>
@@ -35,12 +25,12 @@
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
-            const uint target = (uint)BufferTarget.UniformBuffer;
+            const uint target = (uint)BufferTarget.AtomicCounterBuffer;
             glBindBuffer(target, buffers[0]);
             glBufferData(target, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new UniformBufferPtr(buffers[0], this.Length, this.ByteLength);
+            var bufferPtr = new AtomicCounterBufferPtr(buffers[0], this.Length, this.ByteLength);
 
             return bufferPtr;
         }

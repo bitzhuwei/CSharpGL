@@ -70,7 +70,8 @@ namespace CSharpGL.Demos
                 OpenGL.BindImageTexture(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
                 // Create buffer for clearing the head pointer texture
-                var buffer = new IndependentBuffer<uint>(BufferTarget.PixelUnpackBuffer, BufferUsage.StaticDraw, false);
+                //var buffer = new IndependentBuffer<uint>(BufferTarget.PixelUnpackBuffer, BufferUsage.StaticDraw, false);
+                var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw, false);
                 buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
                 unsafe
                 {
@@ -85,14 +86,14 @@ namespace CSharpGL.Demos
             }
             // Create the atomic counter buffer
             {
-                var buffer = new IndependentBuffer<uint>(BufferTarget.AtomicCounterBuffer, BufferUsage.DynamicCopy, true);
+                var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy, false);
                 buffer.Create(1);
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 this.atomicCountBufferPtr = ptr;
             }
             // Create the linked list storage buffer
             {
-                var buffer = new IndependentBuffer<vec4>(BufferTarget.TextureBuffer, BufferUsage.DynamicCopy, true);
+                var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, false);
                 buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 this.linkedListBufferPtr = ptr;
