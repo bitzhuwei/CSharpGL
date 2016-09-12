@@ -110,6 +110,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\AtomicCounterBuffer\AtomicCounterBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.BufferTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBufferPtr.cs" />
