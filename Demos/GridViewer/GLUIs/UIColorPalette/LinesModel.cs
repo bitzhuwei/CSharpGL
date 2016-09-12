@@ -48,7 +48,7 @@ namespace GridViewer
                 if (positionBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(this.markerCount * 2);
                         unsafe

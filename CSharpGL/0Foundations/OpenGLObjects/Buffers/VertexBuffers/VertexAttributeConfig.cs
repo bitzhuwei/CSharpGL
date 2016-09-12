@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public enum VertexAttributeDataType : uint
+    public enum VertexAttributeConfig : uint
     {
         /// <summary>
         /// 
@@ -108,121 +108,121 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public static class VertexAttributeDataTypeHelper
+    public static class VertexAttributeConfigHelper
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="config"></param>
         /// <param name="locationCount"></param>
         /// <param name="dataSize"></param>
         /// <param name="dataType"></param>
         /// <param name="stride"></param>
         /// <param name="startOffsetUnit"></param>
-        public static void Parse(this VertexAttributeDataType type, out int locationCount, out int dataSize, out uint dataType, out int stride, out int startOffsetUnit)
+        public static void Parse(this VertexAttributeConfig config, out int locationCount, out int dataSize, out uint dataType, out int stride, out int startOffsetUnit)
         {
             locationCount = 1;
             //dataSize = 0;
             //dataType = 0;
             stride = 0;
             startOffsetUnit = 0;
-            switch (type)
+            switch (config)
             {
-                case VertexAttributeDataType.Byte:
+                case VertexAttributeConfig.Byte:
                     dataSize = 1;
                     dataType = OpenGL.GL_BYTE;
                     break;
-                case VertexAttributeDataType.BVec2:
+                case VertexAttributeConfig.BVec2:
                     dataSize = 2;
                     dataType = OpenGL.GL_BYTE;
                     break;
-                case VertexAttributeDataType.BVec3:
+                case VertexAttributeConfig.BVec3:
                     dataSize = 3;
                     dataType = OpenGL.GL_BYTE;
                     break;
-                case VertexAttributeDataType.BVec4:
+                case VertexAttributeConfig.BVec4:
                     dataSize = 4;
                     dataType = OpenGL.GL_BYTE;
                     break;
-                case VertexAttributeDataType.Int:
+                case VertexAttributeConfig.Int:
                     dataSize = 1;
                     dataType = OpenGL.GL_INT;
                     break;
-                case VertexAttributeDataType.IVec2:
+                case VertexAttributeConfig.IVec2:
                     dataSize = 2;
                     dataType = OpenGL.GL_INT;
                     break;
-                case VertexAttributeDataType.IVec3:
+                case VertexAttributeConfig.IVec3:
                     dataSize = 3;
                     dataType = OpenGL.GL_INT;
                     break;
-                case VertexAttributeDataType.IVec4:
+                case VertexAttributeConfig.IVec4:
                     dataSize = 4;
                     dataType = OpenGL.GL_INT;
                     break;
-                case VertexAttributeDataType.UInt:
+                case VertexAttributeConfig.UInt:
                     dataSize = 1;
                     dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
-                case VertexAttributeDataType.UVec2:
+                case VertexAttributeConfig.UVec2:
                     dataSize = 2;
                     dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
-                case VertexAttributeDataType.UVec3:
+                case VertexAttributeConfig.UVec3:
                     dataSize = 3;
                     dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
-                case VertexAttributeDataType.UVec4:
+                case VertexAttributeConfig.UVec4:
                     dataSize = 4;
                     dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
-                case VertexAttributeDataType.Float:
+                case VertexAttributeConfig.Float:
                     dataSize = 1;
                     dataType = OpenGL.GL_FLOAT;
                     break;
-                case VertexAttributeDataType.Vec2:
+                case VertexAttributeConfig.Vec2:
                     dataSize = 2;
                     dataType = OpenGL.GL_FLOAT;
                     break;
-                case VertexAttributeDataType.Vec3:
+                case VertexAttributeConfig.Vec3:
                     dataSize = 3;
                     dataType = OpenGL.GL_FLOAT;
                     break;
-                case VertexAttributeDataType.Vec4:
+                case VertexAttributeConfig.Vec4:
                     dataSize = 4;
                     dataType = OpenGL.GL_FLOAT;
                     break;
-                case VertexAttributeDataType.Double:
+                case VertexAttributeConfig.Double:
                     dataSize = 1;
                     dataType = OpenGL.GL_DOUBLE;
                     break;
-                case VertexAttributeDataType.DVec2:
+                case VertexAttributeConfig.DVec2:
                     dataSize = 2;
                     dataType = OpenGL.GL_DOUBLE;
                     break;
-                case VertexAttributeDataType.DVec3:
+                case VertexAttributeConfig.DVec3:
                     dataSize = 3;
                     dataType = OpenGL.GL_DOUBLE;
                     break;
-                case VertexAttributeDataType.DVec4:
+                case VertexAttributeConfig.DVec4:
                     dataSize = 4;
                     dataType = OpenGL.GL_DOUBLE;
                     break;
-                case VertexAttributeDataType.Mat2:
+                case VertexAttributeConfig.Mat2:
                     locationCount = 2;
                     dataSize = 2;
                     dataType = OpenGL.GL_FLOAT;
                     stride = Marshal.SizeOf(typeof(mat2));
                     startOffsetUnit = Marshal.SizeOf(typeof(vec2));
                     break;
-                case VertexAttributeDataType.Mat3:
+                case VertexAttributeConfig.Mat3:
                     locationCount = 3;
                     dataSize = 3;
                     dataType = OpenGL.GL_FLOAT;
                     stride = Marshal.SizeOf(typeof(mat3));
                     startOffsetUnit = Marshal.SizeOf(typeof(vec3));
                     break;
-                case VertexAttributeDataType.Mat4:
+                case VertexAttributeConfig.Mat4:
                     locationCount = 4;
                     dataSize = 4;
                     dataType = OpenGL.GL_FLOAT;

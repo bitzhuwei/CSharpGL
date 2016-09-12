@@ -50,7 +50,7 @@ namespace CSharpGL
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(positions.Length);
                         unsafe

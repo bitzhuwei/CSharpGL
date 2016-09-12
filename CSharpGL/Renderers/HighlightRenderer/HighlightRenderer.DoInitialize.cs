@@ -27,7 +27,7 @@ namespace CSharpGL
                     this.positionBufferPtr = new VertexAttributeBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
                         bufferPtr.BufferId,
-                        bufferPtr.DataType,
+                        bufferPtr.Config,
                         bufferPtr.Length,
                         bufferPtr.ByteLength,
                         0);

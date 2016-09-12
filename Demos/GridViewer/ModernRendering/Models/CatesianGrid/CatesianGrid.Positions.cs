@@ -11,7 +11,7 @@ namespace GridViewer
         private VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)
         {
             VertexAttributeBufferPtr ptr = null;
-            using (var buffer = new VertexAttributeBuffer<HexahedronPosition>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+            using (var buffer = new VertexAttributeBuffer<HexahedronPosition>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
             {
                 int dimSize = this.DataSource.DimenSize;
                 buffer.Create(dimSize);

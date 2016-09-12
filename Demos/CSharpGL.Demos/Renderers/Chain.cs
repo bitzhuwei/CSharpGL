@@ -27,7 +27,7 @@ namespace CSharpGL
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.Positions.Length);
                         unsafe
@@ -49,7 +49,7 @@ namespace CSharpGL
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.Colors.Length);
                         unsafe

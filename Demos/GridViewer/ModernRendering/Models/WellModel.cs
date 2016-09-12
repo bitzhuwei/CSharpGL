@@ -55,7 +55,7 @@ namespace GridViewer
             {
                 if (positionBufferPtr != null) { return positionBufferPtr; }
 
-                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);
@@ -95,7 +95,7 @@ namespace GridViewer
             {
                 if (brightnessBufferPtr != null) { return brightnessBufferPtr; }
 
-                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);

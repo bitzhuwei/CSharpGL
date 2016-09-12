@@ -13,7 +13,7 @@ namespace GridViewer
         private VertexAttributeBufferPtr GetColorBufferPtr(string varNameInShader)
         {
             VertexAttributeBufferPtr ptr = null;
-            using (var buffer = new VertexAttributeBuffer<HexahedronTexCoord>(varNameInShader, VertexAttributeDataType.Float, BufferUsage.StaticDraw))
+            using (var buffer = new VertexAttributeBuffer<HexahedronTexCoord>(varNameInShader, VertexAttributeConfig.Float, BufferUsage.StaticDraw))
             {
                 float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
 

@@ -34,7 +34,7 @@ namespace CSharpGL
                 if (positionBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(BigDipperModel.positions.Length);
                         unsafe
@@ -56,7 +56,7 @@ namespace CSharpGL
                 if (colorBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(BigDipperModel.colors.Length);
                         unsafe

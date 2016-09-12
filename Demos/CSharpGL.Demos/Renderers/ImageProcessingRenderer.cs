@@ -130,7 +130,7 @@ namespace CSharpGL.Demos
                 {
                     if (positionBufferPtr == null)
                     {
-                        using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                        using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                         {
                             buffer.Create(4);
                             unsafe
@@ -150,7 +150,7 @@ namespace CSharpGL.Demos
                 {
                     if (uvBufferPtr == null)
                     {
-                        using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeDataType.Vec2, BufferUsage.StaticDraw))
+                        using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
                         {
                             buffer.Create(4);
                             unsafe

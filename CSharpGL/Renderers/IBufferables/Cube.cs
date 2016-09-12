@@ -38,7 +38,7 @@
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubePosition>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubePosition>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(1);
                         unsafe
@@ -56,7 +56,7 @@
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeColor>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeColor>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(1);
                         unsafe
@@ -74,7 +74,7 @@
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeNormal>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeNormal>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(1);
                         unsafe

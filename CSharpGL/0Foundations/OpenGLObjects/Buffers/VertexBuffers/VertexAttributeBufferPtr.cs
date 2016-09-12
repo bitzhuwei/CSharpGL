@@ -30,13 +30,13 @@ namespace CSharpGL
         /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// <para>How many float/int/uint are there in a data unit?</para>
         /// </param>
-        /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+        /// <param name="config">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         internal VertexAttributeBufferPtr(string varNameInVertexShader,
-            uint bufferId, VertexAttributeDataType dataType, int length, int byteLength,
+            uint bufferId, VertexAttributeConfig config, int length, int byteLength,
             uint instancedDivisor)
             : base(bufferId, length, byteLength)
         {
@@ -47,7 +47,7 @@ namespace CSharpGL
                 glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
             }
             this.VarNameInVertexShader = varNameInVertexShader;
-            this.DataType = dataType;
+            this.Config = config;
             this.InstancedDivisor = instancedDivisor;
         }
 
@@ -60,85 +60,85 @@ namespace CSharpGL
         /// <summary>
         /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
-        public VertexAttributeDataType DataType { get; private set; }
+        public VertexAttributeConfig Config { get; private set; }
 
         /// <summary>
-        /// <see cref="DataType"/>有多少字节？
+        /// <see cref="Config"/>有多少字节？
         /// </summary>
         public int DataTypeByteLength
         {
             get
             {
                 int result = 0;
-                switch (this.DataType)
+                switch (this.Config)
                 {
-                    case VertexAttributeDataType.Byte:
+                    case VertexAttributeConfig.Byte:
                         result = sizeof(byte);
                         break;
-                    case VertexAttributeDataType.BVec2:
+                    case VertexAttributeConfig.BVec2:
                         result = sizeof(byte);
                         break;
-                    case VertexAttributeDataType.BVec3:
+                    case VertexAttributeConfig.BVec3:
                         result = sizeof(byte);
                         break;
-                    case VertexAttributeDataType.BVec4:
+                    case VertexAttributeConfig.BVec4:
                         result = sizeof(byte);
                         break;
-                    case VertexAttributeDataType.Int:
+                    case VertexAttributeConfig.Int:
                         result = sizeof(int);
                         break;
-                    case VertexAttributeDataType.IVec2:
+                    case VertexAttributeConfig.IVec2:
                         result = sizeof(int);
                         break;
-                    case VertexAttributeDataType.IVec3:
+                    case VertexAttributeConfig.IVec3:
                         result = sizeof(int);
                         break;
-                    case VertexAttributeDataType.IVec4:
+                    case VertexAttributeConfig.IVec4:
                         result = sizeof(int);
                         break;
-                    case VertexAttributeDataType.UInt:
+                    case VertexAttributeConfig.UInt:
                         result = sizeof(uint);
                         break;
-                    case VertexAttributeDataType.UVec2:
+                    case VertexAttributeConfig.UVec2:
                         result = sizeof(uint);
                         break;
-                    case VertexAttributeDataType.UVec3:
+                    case VertexAttributeConfig.UVec3:
                         result = sizeof(uint);
                         break;
-                    case VertexAttributeDataType.UVec4:
+                    case VertexAttributeConfig.UVec4:
                         result = sizeof(uint);
                         break;
-                    case VertexAttributeDataType.Float:
+                    case VertexAttributeConfig.Float:
                         result = sizeof(float);
                         break;
-                    case VertexAttributeDataType.Vec2:
+                    case VertexAttributeConfig.Vec2:
                         result = sizeof(float);
                         break;
-                    case VertexAttributeDataType.Vec3:
+                    case VertexAttributeConfig.Vec3:
                         result = sizeof(float);
                         break;
-                    case VertexAttributeDataType.Vec4:
+                    case VertexAttributeConfig.Vec4:
                         result = sizeof(float);
                         break;
-                    case VertexAttributeDataType.Double:
+                    case VertexAttributeConfig.Double:
                         result = sizeof(double);
                         break;
-                    case VertexAttributeDataType.DVec2:
+                    case VertexAttributeConfig.DVec2:
                         result = sizeof(double);
                         break;
-                    case VertexAttributeDataType.DVec3:
+                    case VertexAttributeConfig.DVec3:
                         result = sizeof(double);
                         break;
-                    case VertexAttributeDataType.DVec4:
+                    case VertexAttributeConfig.DVec4:
                         result = sizeof(double);
                         break;
-                    case VertexAttributeDataType.Mat2:
+                    case VertexAttributeConfig.Mat2:
                         result = sizeof(float);
                         break;
-                    case VertexAttributeDataType.Mat3:
+                    case VertexAttributeConfig.Mat3:
                         result = sizeof(float);
                         break;
-                    case VertexAttributeDataType.Mat4:
+                    case VertexAttributeConfig.Mat4:
                         result = sizeof(float);
                         break;
                     default:
@@ -162,7 +162,7 @@ namespace CSharpGL
                 uint dataType;
                 int stride;
                 int startOffsetUnit;
-                this.DataType.Parse(
+                this.Config.Parse(
                     out locationCount, out dataSize, out dataType,
                     out stride, out startOffsetUnit);
                 return dataSize;
@@ -211,7 +211,7 @@ namespace CSharpGL
             uint dataType;
             int stride;
             int startOffsetUnit;
-            this.DataType.Parse(
+            this.Config.Parse(
                 out locationCount, out dataSize, out dataType,
                 out stride, out startOffsetUnit);
             for (uint i = 0; i < locationCount; i++)

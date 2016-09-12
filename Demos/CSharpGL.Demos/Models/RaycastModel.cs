@@ -49,7 +49,7 @@
             {
                 if (positionBuffer == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(boundingBox.Length);
                         unsafe
@@ -69,7 +69,7 @@
             {
                 if (colorBuffer == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(boundingBox.Length);
                         unsafe
