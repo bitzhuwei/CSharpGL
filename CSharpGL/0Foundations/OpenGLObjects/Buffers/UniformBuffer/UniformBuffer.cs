@@ -12,7 +12,7 @@
         internal static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="usage"></param>
         /// <param name="noDataCopyed"></param>

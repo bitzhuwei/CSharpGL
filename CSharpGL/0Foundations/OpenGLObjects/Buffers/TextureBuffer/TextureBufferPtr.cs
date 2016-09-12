@@ -6,7 +6,7 @@
     public class TextureBufferPtr : IndependentBufferPtr
     {
         /// <summary>
-        /// pixel unpack buffer's pointer.
+        /// TextureBufferObject matches <code>uniform samplerBuffer xxx;</code> in GLSL shader.
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>

@@ -8,7 +8,7 @@
     public class PixelUnpackBuffer<T> : IndependentBuffer<T> where T : struct
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="usage"></param>
         /// <param name="noDataCopyed"></param>
