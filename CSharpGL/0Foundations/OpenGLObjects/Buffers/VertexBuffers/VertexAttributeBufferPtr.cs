@@ -182,9 +182,7 @@ namespace CSharpGL
                 uint dataType;
                 int stride;
                 int startOffsetUnit;
-                this.Config.Parse(
-                    out locationCount, out dataSize, out dataType,
-                    out stride, out startOffsetUnit);
+                this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
                 return dataSize;
             }
         }
@@ -231,9 +229,7 @@ namespace CSharpGL
             uint dataType;
             int stride;
             int startOffsetUnit;
-            this.Config.Parse(
-                out locationCount, out dataSize, out dataType,
-                out stride, out startOffsetUnit);
+            this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
             for (uint i = 0; i < locationCount; i++)
             {
                 glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
