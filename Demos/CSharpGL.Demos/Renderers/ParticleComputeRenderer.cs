@@ -17,15 +17,15 @@ namespace CSharpGL.Demos
         //private uint[] attractor_buffer = new uint[1];
         private IndependentBufferPtr attractorBufferPtr;
 
-        private uint positionBufferPtrId;
-        private uint velocityBufferPtrId;
+        private BufferPtr positionBufferPtr;
+        private BufferPtr velocityBufferPtr;
         private float time = 0;
         private Random random = new Random();
 
-        public ParticleComputeRenderer(uint positionBufferPtrId, uint velocityBufferPtrId)
+        public ParticleComputeRenderer(BufferPtr positionBufferPtr, BufferPtr velocityBufferPtr)
         {
-            this.positionBufferPtrId = positionBufferPtrId;
-            this.velocityBufferPtrId = velocityBufferPtrId;
+            this.positionBufferPtr = positionBufferPtr;
+            this.velocityBufferPtr = velocityBufferPtr;
         }
 
         protected override void DoInitialize()
@@ -40,14 +40,14 @@ namespace CSharpGL.Demos
             }
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.positionBufferPtrId),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.positionBufferPtr),
                     new NullSampler());
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.velocityBufferPtrId),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.velocityBufferPtr),
                     new NullSampler());
                 texture.Initialize();
                 this.velocityTexture = texture;

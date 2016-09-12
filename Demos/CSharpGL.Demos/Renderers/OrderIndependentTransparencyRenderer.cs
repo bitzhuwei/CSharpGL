@@ -13,7 +13,6 @@ namespace CSharpGL.Demos
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
         private IndependentBufferPtr headClearBufferPtr;
         private IndependentBufferPtr atomicCountBufferPtr;
-        private IndependentBufferPtr linkedListBufferPtr;
         private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
 
@@ -91,17 +90,14 @@ namespace CSharpGL.Demos
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 this.atomicCountBufferPtr = ptr;
             }
-            // Create the linked list storage buffer
             {
+                // Create the linked list storage buffer
                 var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, false);
                 buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
-                var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
-                this.linkedListBufferPtr = ptr;
-            }
-            // Bind it to a texture (for use as a TBO)
-            {
+                var linkedListBufferPtr = buffer.GetBufferPtr() as IndependentBufferPtr;
+                // Bind it to a texture (for use as a TBO)
                 var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageFiller(OpenGL.GL_RGBA32UI, linkedListBufferPtr.BufferId),
+                    new TexBufferImageFiller(OpenGL.GL_RGBA32UI, linkedListBufferPtr),
                     new NullSampler());
                 texture.Initialize();
                 this.linkedListTexture = texture;
@@ -170,26 +166,68 @@ namespace CSharpGL.Demos
             this.resolve_lists.Dispose();
 
             this.linkedListTexture.Dispose();
-            this.linkedListBufferPtr.Dispose();
             this.atomicCountBufferPtr.Dispose();
             this.headTexture.Dispose();
         }
     }
 
-    internal class TexBufferImageFiller : ImageFiller
+    internal class TexBufferImageFiller : ImageFiller, IDisposable
     {
         private uint internalformat;
-        private uint textureBufferId;
+        private BufferPtr bufferPtr;
 
-        public TexBufferImageFiller(uint internalformat, uint textureBufferId)
+        public TexBufferImageFiller(uint internalformat, BufferPtr bufferPtr)
         {
             this.internalformat = internalformat;
-            this.textureBufferId = textureBufferId;
+            this.bufferPtr = bufferPtr;
         }
 
         public override void Fill(BindTextureTarget target)
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, textureBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, bufferPtr.BufferId);
         }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        } // end sub
+
+        /// <summary>
+        /// Destruct instance of the class.
+        /// </summary>
+        ~TexBufferImageFiller()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Backing field to track whether Dispose has been called.
+        /// </summary>
+        private bool disposedValue = false;
+
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                } // end if
+
+                // Dispose unmanaged resources.
+                var disp = this.bufferPtr as IDisposable;
+                if (disp != null) { disp.Dispose(); }
+            } // end if
+
+            this.disposedValue = true;
+        } // end sub
     }
 }
