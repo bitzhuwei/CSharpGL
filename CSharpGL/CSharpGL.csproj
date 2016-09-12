@@ -106,6 +106,8 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfig.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
@@ -140,6 +142,7 @@
     <Content Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBuffer.cs" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\readme.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferPtr.cs" />
