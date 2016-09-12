@@ -93,7 +93,12 @@ namespace CSharpGL.Demos
             {
                 // Bind it to a texture (for use as a TBO)
                 const bool noDataCopyed = false;
-                var texture = Texture.CreateBufferTexture<vec4>(OpenGL.GL_RGBA32UI, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3, BufferUsage.DynamicCopy, noDataCopyed);
+                var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed);
+                const int elementCount = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3;
+                buffer.Create(elementCount);
+                var bufferPtr = buffer.GetBufferPtr() as IndependentBufferPtr;
+                const bool autoDispose = true;
+                var texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose);
                 texture.Initialize();
                 this.linkedListTexture = texture;
             }
