@@ -61,7 +61,7 @@
     <Content Include="Renderers\PickableRenderer\InnerPickableRenderer.jpg" />
     <Content Include="Renderers\PickableRenderer\readme.md" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Renderer\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Rendering\readme.md" />
     <Content Include="0Foundations\OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
     <Content Include="ColorCodedPicking\readme.md" />
@@ -119,6 +119,13 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IPerspectiveCamera.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Dispose.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.DoInitialize.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.DoRender.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Property.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.UniformArrays.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Uniforms.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Limits.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Parameter.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\RenderbufferType.cs" />
@@ -133,7 +140,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\IModelSpace.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\IModelSpace.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexStorageImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\NullSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\SamplerParameters.cs" />
@@ -153,6 +160,7 @@
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\readme.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferPtr.cs" />
@@ -295,7 +303,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Renderers\UIRenderers\UIRenderer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.UniformArrays.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformBoolArray.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformFloatArray.cs" />
@@ -390,13 +398,13 @@
     <Compile Include="Renderers\PickableRenderer\ZeroIndexRenderer\ZeroIndexRenderer.GetSearcher.cs" />
     <Compile Include="Renderers\PickableRenderer\ZeroIndexRenderer\ZeroIndexRenderer.Picking.cs" />
     <Compile Include="Renderers\PickableRenderer\ZeroIndexRenderer\ZeroIndexRenderer.Property.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.Dispose.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.DoInitialize.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.DoRender.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.Dispose.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.DoInitialize.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.DoRender.cs" />
     <Compile Include="Renderers\PickableRenderer\PickableRenderer.MovePositions.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.Property.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.Property.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.Uniforms.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\ErrorCode.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\PolugonOffset.cs" />
@@ -484,9 +492,9 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitch.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\IBufferable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\PropertyNameMap.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\ShaderCode.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\IBufferable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\PropertyNameMap.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\ShaderCode.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariable.cs" />
     <Compile Include="0Foundations\Maths\glm_camera.cs" />
     <Compile Include="0Foundations\Maths\glm_inverse.cs" />
@@ -497,14 +505,14 @@
     <Compile Include="0Foundations\Maths\vec2.cs" />
     <Compile Include="0Foundations\Maths\vec3.cs" />
     <Compile Include="0Foundations\Maths\vec4.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\IRenderable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\IRenderable.cs" />
     <Compile Include="Canvas\RenderContexts\DIBSection.cs" />
     <Compile Include="Canvas\RenderContexts\FBORenderContext.cs" />
     <Compile Include="Canvas\RenderContexts\GLVersion.cs" />
     <Compile Include="Canvas\RenderContexts\HiddenWindowRenderContext.cs" />
     <Compile Include="Canvas\RenderContexts\RenderContext.cs" />
     <Compile Include="Canvas\RenderContexts\VersionAttribute.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Renderer\RendererBase.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.cs" />
@@ -572,7 +580,7 @@
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
     <Content Include="Renderers\LabelRenderer\readme.md" />
-    <None Include="0Foundations\OpenGLObjects\Renderer\Renderers.cd" />
+    <None Include="Renderers\Renderers.cd" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
