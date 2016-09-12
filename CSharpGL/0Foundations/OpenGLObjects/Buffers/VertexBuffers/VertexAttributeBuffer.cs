@@ -6,7 +6,7 @@
     /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, ect.).</para>
     /// <para>Each <see cref="VertexAttributeBuffer&lt;T&gt;"/> describes only 1 property.</para>
     /// </summary>
-    /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
+    /// <typeparam name="T">element type in this array in application level.</typeparam>
     public class VertexAttributeBuffer<T> : Buffer where T : struct
     {
         /// <summary>
