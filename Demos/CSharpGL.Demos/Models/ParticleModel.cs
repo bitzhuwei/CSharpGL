@@ -13,8 +13,8 @@ namespace CSharpGL.Demos
 
         public const string strPosition = "position";
         public const string strVelocity = "velocity";
-        private PropertyBufferPtr positionBufferPtr = null;
-        private PropertyBufferPtr velocityBufferPtr = null;
+        private VertexAttributeBufferPtr positionBufferPtr = null;
+        private VertexAttributeBufferPtr velocityBufferPtr = null;
         private IndexBufferPtr indexBufferPtr;
         private Random random = new Random();
 
@@ -27,13 +27,13 @@ namespace CSharpGL.Demos
             }
         }
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec4>(
+                    using (var buffer = new VertexAttributeBuffer<vec4>(
                         varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
                     {
                         buffer.Create(particleCount);
@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
 
@@ -61,7 +61,7 @@ namespace CSharpGL.Demos
             {
                 if (velocityBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec4>(
+                    using (var buffer = new VertexAttributeBuffer<vec4>(
                         varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
                     {
                         buffer.Create(particleCount);
@@ -79,7 +79,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        velocityBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        velocityBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
 

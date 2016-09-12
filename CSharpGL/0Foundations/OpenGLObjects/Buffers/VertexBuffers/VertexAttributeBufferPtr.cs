@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// Vertex' property buffer's pointer.
     /// </summary>
-    public class PropertyBufferPtr : BufferPtr
+    public class VertexAttributeBufferPtr : BufferPtr
     {
         /// <summary>
         ///
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
-        internal PropertyBufferPtr(string varNameInVertexShader,
+        internal VertexAttributeBufferPtr(string varNameInVertexShader,
             uint bufferId, int dataSize, uint dataType, int length, int byteLength,
             uint instancedDivisor)
             : base(bufferId, length, byteLength)

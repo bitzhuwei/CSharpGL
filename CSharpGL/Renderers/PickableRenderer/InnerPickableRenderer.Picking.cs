@@ -23,7 +23,7 @@ namespace CSharpGL
 
         public uint GetVertexCount()
         {
-            PropertyBufferPtr positionBufferPtr = this.positionBufferPtr;
+            VertexAttributeBufferPtr positionBufferPtr = this.positionBufferPtr;
             if (positionBufferPtr == null) { return 0; }
             int byteLength = positionBufferPtr.ByteLength;
             int vertexLength = positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength;

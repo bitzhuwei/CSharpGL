@@ -12,9 +12,9 @@ namespace GridViewer
     public partial class WellModel : IBufferable, IModelSpace
     {
         public const string strPosition = "position";
-        private PropertyBufferPtr positionBufferPtr = null;
+        private VertexAttributeBufferPtr positionBufferPtr = null;
         public const string strBrightness = "brightness";
-        private PropertyBufferPtr brightnessBufferPtr = null;
+        private VertexAttributeBufferPtr brightnessBufferPtr = null;
 
         private IndexBufferPtr indexBufferPtr = null;
 
@@ -49,13 +49,13 @@ namespace GridViewer
             this.pipeline = pipeline;
         }
 
-        public unsafe PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public unsafe VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr != null) { return positionBufferPtr; }
 
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);
@@ -86,7 +86,7 @@ namespace GridViewer
                     }
                     this.Lengths = max - min;
 
-                    positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                    positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                 }
 
                 return positionBufferPtr;
@@ -95,7 +95,7 @@ namespace GridViewer
             {
                 if (brightnessBufferPtr != null) { return brightnessBufferPtr; }
 
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
                     buffer.Create(vertexCount);
@@ -107,7 +107,7 @@ namespace GridViewer
                         array[i] = new vec3(x, x, x);
                     }
 
-                    brightnessBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                    brightnessBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                 }
 
                 return brightnessBufferPtr;

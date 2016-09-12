@@ -26,8 +26,8 @@
         /// </summary>
         public const string strTexCoord = "texCoord";
 
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr uvBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr uvBufferPtr;
         private IndexBufferPtr indexBufferPtr;
 
         /// <summary>
@@ -36,13 +36,13 @@
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.positions.Length);
                         unsafe
@@ -53,7 +53,7 @@
                                 array[i] = model.positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -62,7 +62,7 @@
             {
                 if (uvBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.texCoords.Length);
                         unsafe
@@ -73,7 +73,7 @@
                                 array[i] = model.texCoords[i];
                             }
                         }
-                        uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return uvBufferPtr;

@@ -3,7 +3,7 @@
     internal class BillboardModel : IBufferable
     {
         public const string strPosition = "position";
-        private PropertyBufferPtr positionBuffer;
+        private VertexAttributeBufferPtr positionBuffer;
 
         private static readonly float[] positions =
         {
@@ -13,13 +13,13 @@
 		    0.5f,  0.5f, 0.0f,
         };
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBuffer == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
                     {
                         buffer.Create(positions.Length);
                         unsafe
@@ -30,7 +30,7 @@
                                 array[i] = positions[i];
                             }
                         }
-                        positionBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBuffer;

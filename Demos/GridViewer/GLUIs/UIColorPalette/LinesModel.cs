@@ -28,7 +28,7 @@ namespace GridViewer
         /// </summary>
         public const string position = "position";
 
-        private PropertyBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
 
         public LinesModel(int markerCount)
         {
@@ -41,13 +41,13 @@ namespace GridViewer
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(this.markerCount * 2);
@@ -61,7 +61,7 @@ namespace GridViewer
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;

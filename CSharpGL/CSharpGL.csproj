@@ -494,8 +494,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\PropertyBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\PropertyBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexArrayObject.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBuffer.cs" />

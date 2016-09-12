@@ -18,13 +18,13 @@ namespace CSharpGL
 
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = this.model.GetProperty(
+                VertexAttributeBufferPtr bufferPtr = this.model.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(); }
 
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {
-                    this.positionBufferPtr = new PropertyBufferPtr(
+                    this.positionBufferPtr = new VertexAttributeBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
                         bufferPtr.BufferId,
                         bufferPtr.DataSize,

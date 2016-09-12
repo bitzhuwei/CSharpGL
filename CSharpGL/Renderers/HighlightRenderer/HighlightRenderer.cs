@@ -10,7 +10,7 @@
         /// </summary>
         protected string positionNameInIBufferable;
 
-        internal PropertyBufferPtr positionBufferPtr;
+        internal VertexAttributeBufferPtr positionBufferPtr;
 
         /// <summary>
         /// 高亮显示指定的图元。

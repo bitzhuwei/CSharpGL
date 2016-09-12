@@ -31,9 +31,9 @@ namespace CSharpGL
         public const string strNormal = "normal";
 
         private TeapotModel model;
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
-        private PropertyBufferPtr normalBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr normalBufferPtr;
 
         /// <summary>
         ///
@@ -41,13 +41,13 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] positions = model.GetPositions();
                         //List<vec3> pos = new List<vec3>();
@@ -66,7 +66,7 @@ namespace CSharpGL
                                 array[i] = positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -75,7 +75,7 @@ namespace CSharpGL
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
                         buffer.Create(normals.Length);
@@ -87,7 +87,7 @@ namespace CSharpGL
                                 array[i] = normals[i];
                             }
                         }
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBufferPtr;
@@ -96,7 +96,7 @@ namespace CSharpGL
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
                         buffer.Create(normals.Length);
@@ -108,7 +108,7 @@ namespace CSharpGL
                                 array[i] = normals[i];
                             }
                         }
-                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return normalBufferPtr;

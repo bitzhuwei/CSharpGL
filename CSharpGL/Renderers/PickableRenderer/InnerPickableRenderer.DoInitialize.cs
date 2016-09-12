@@ -9,17 +9,17 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            PropertyBufferPtr positionBufferPtr = null;
+            VertexAttributeBufferPtr positionBufferPtr = null;
             IBufferable bufferable = this.model;
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = bufferable.GetProperty(
+                VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
 
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {
-                    positionBufferPtr = new PropertyBufferPtr(
+                    positionBufferPtr = new VertexAttributeBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
                         bufferPtr.BufferId,
                         bufferPtr.DataSize,

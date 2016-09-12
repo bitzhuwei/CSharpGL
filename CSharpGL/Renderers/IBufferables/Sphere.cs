@@ -41,10 +41,10 @@
         /// </summary>
         public const string strUV = "uv";
 
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr normalBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
-        private PropertyBufferPtr uvBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr normalBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr uvBufferPtr;
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
@@ -53,13 +53,13 @@
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.positions.Length);
                         unsafe
@@ -70,7 +70,7 @@
                                 array[i] = model.positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -79,7 +79,7 @@
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.normals.Length);
                         unsafe
@@ -90,7 +90,7 @@
                                 array[i] = model.normals[i];
                             }
                         }
-                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return normalBufferPtr;
@@ -99,7 +99,7 @@
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.colors.Length);
                         unsafe
@@ -110,7 +110,7 @@
                                 array[i] = model.colors[i];
                             }
                         }
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBufferPtr;
@@ -119,7 +119,7 @@
             {
                 if (uvBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.uv.Length);
                         unsafe
@@ -130,7 +130,7 @@
                                 array[i] = model.uv[i];
                             }
                         }
-                        uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return uvBufferPtr;

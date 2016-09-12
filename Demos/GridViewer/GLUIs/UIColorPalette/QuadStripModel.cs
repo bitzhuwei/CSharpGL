@@ -41,9 +41,9 @@ namespace GridViewer
         /// </summary>
         public const string color = "color";
 
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr texCoordBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr texCoordBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
 
         public QuadStripModel(int quadCount, Bitmap bitmap = null)
         {
@@ -57,13 +57,13 @@ namespace GridViewer
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
@@ -77,7 +77,7 @@ namespace GridViewer
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -86,7 +86,7 @@ namespace GridViewer
             {
                 if (texCoordBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(
+                    using (var buffer = new VertexAttributeBuffer<float>(
                         varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
@@ -102,7 +102,7 @@ namespace GridViewer
                             }
                         }
 
-                        texCoordBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        texCoordBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return texCoordBufferPtr;
@@ -111,7 +111,7 @@ namespace GridViewer
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
@@ -128,7 +128,7 @@ namespace GridViewer
                             }
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBufferPtr;

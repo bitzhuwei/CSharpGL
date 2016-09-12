@@ -32,8 +32,8 @@ namespace CSharpGL
         /// </summary>
         public const string strColor = "color";
 
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
 
         /// <summary>
         ///
@@ -41,13 +41,13 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(this.model.positions.Length);
@@ -60,7 +60,7 @@ namespace CSharpGL
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -69,7 +69,7 @@ namespace CSharpGL
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(this.model.colors.Length);
@@ -82,7 +82,7 @@ namespace CSharpGL
                             }
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBufferPtr;

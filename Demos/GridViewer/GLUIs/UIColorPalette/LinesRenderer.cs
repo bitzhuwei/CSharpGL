@@ -24,7 +24,7 @@ namespace GridViewer
     /// </summary>
     internal class LinesRenderer : Renderer
     {
-        private PropertyBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
         private int markerCount;
 
         public static LinesRenderer Create(LinesModel model)

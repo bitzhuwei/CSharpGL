@@ -4,8 +4,8 @@
     {
         public const string strposition = "position";
         public const string strcolor = "color";
-        private PropertyBufferPtr positionBuffer;
-        private PropertyBufferPtr colorBuffer;
+        private VertexAttributeBufferPtr positionBuffer;
+        private VertexAttributeBufferPtr colorBuffer;
 
         // draw the six faces of the boundbox by drawwing triangles
         // draw it contra-clockwise
@@ -43,13 +43,13 @@
 			4,5,1,
         };
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strposition)
             {
                 if (positionBuffer == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(boundingBox.Length);
                         unsafe
@@ -60,7 +60,7 @@
                                 array[i] = boundingBox[i] - 0.5f;
                             }
                         }
-                        positionBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBuffer;
@@ -69,7 +69,7 @@
             {
                 if (colorBuffer == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(boundingBox.Length);
                         unsafe
@@ -80,7 +80,7 @@
                                 array[i] = boundingBox[i];
                             }
                         }
-                        colorBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBuffer;

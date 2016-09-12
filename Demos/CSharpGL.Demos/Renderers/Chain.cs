@@ -18,15 +18,15 @@ namespace CSharpGL
 
         public const string position = "position";
         public const string color = "color";
-        private Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+        private Dictionary<string, VertexAttributeBufferPtr> propertyBufferPtrDict = new Dictionary<string, VertexAttributeBufferPtr>();
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.Positions.Length);
@@ -39,7 +39,7 @@ namespace CSharpGL
                             }
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as VertexAttributeBufferPtr);
                     }
                 }
                 return propertyBufferPtrDict[bufferName];
@@ -48,7 +48,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
+                    using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.Colors.Length);
@@ -61,7 +61,7 @@ namespace CSharpGL
                             }
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as VertexAttributeBufferPtr);
                     }
                 }
                 return propertyBufferPtrDict[bufferName];

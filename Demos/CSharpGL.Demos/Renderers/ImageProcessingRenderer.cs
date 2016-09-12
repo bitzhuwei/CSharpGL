@@ -120,17 +120,17 @@ namespace CSharpGL.Demos
         {
             public const string strposition = "position";
             public const string struv = "uv";
-            private PropertyBufferPtr positionBufferPtr;
-            private PropertyBufferPtr uvBufferPtr;
+            private VertexAttributeBufferPtr positionBufferPtr;
+            private VertexAttributeBufferPtr uvBufferPtr;
             private IndexBufferPtr indexBufferPtr;
 
-            public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+            public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
                 if (bufferName == strposition)
                 {
                     if (positionBufferPtr == null)
                     {
-                        using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                        using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
                             buffer.Create(4);
                             unsafe
@@ -141,7 +141,7 @@ namespace CSharpGL.Demos
                                 array[2] = new vec3(1.0f, 1.0f, 0.5f);
                                 array[3] = new vec3(-1.0f, 1.0f, 0.5f);
                             }
-                            positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                            positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                         }
                     }
                     return positionBufferPtr;
@@ -150,7 +150,7 @@ namespace CSharpGL.Demos
                 {
                     if (uvBufferPtr == null)
                     {
-                        using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                        using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
                             buffer.Create(4);
                             unsafe
@@ -161,7 +161,7 @@ namespace CSharpGL.Demos
                                 array[2] = new vec2(0, 0);
                                 array[3] = new vec2(1, 0);
                             }
-                            uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                            uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                         }
                     }
                     return uvBufferPtr;

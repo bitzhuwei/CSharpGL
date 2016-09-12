@@ -3,7 +3,7 @@
     internal class TexturedRectangleModel : IBufferable
     {
         public const string strPosition = "position";
-        private PropertyBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
 
         private static readonly float[] positions =
         {
@@ -14,7 +14,7 @@
         };
 
         public const string strTexCoord = "texCoord";
-        private PropertyBufferPtr texCoordBufferPtr;
+        private VertexAttributeBufferPtr texCoordBufferPtr;
 
         private static readonly float[] texCoords =
         {
@@ -24,13 +24,13 @@
             1,1,
         };
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
                     {
                         buffer.Create(positions.Length);
                         unsafe
@@ -41,7 +41,7 @@
                                 array[i] = positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -50,7 +50,7 @@
             {
                 if (texCoordBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
                     {
                         buffer.Create(texCoords.Length);
                         unsafe
@@ -61,7 +61,7 @@
                                 array[i] = texCoords[i];
                             }
                         }
-                        texCoordBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        texCoordBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return texCoordBufferPtr;

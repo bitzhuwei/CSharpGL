@@ -191,7 +191,7 @@ namespace RendererGenerator
         {
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
-            method.ReturnType = new CodeTypeReference(typeof(PropertyBufferPtr));
+            method.ReturnType = new CodeTypeReference(typeof(VertexAttributeBufferPtr));
             method.Name = "GetProperty";
             var parameter0 = new CodeParameterDeclarationExpression(typeof(string), bufferName);
             method.Parameters.Add(parameter0);
@@ -218,7 +218,7 @@ namespace RendererGenerator
                 }
                 {
                     // private PropertyBufferPtr positionBufferPtr;
-                    var bufferPtrField = new CodeMemberField(typeof(PropertyBufferPtr), item.BufferPtrName);
+                    var bufferPtrField = new CodeMemberField(typeof(VertexAttributeBufferPtr), item.BufferPtrName);
                     modelType.Members.Add(bufferPtrField);
                 }
             }

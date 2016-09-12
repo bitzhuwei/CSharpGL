@@ -22,9 +22,9 @@
         /// </summary>
         public const string strNormal = "normal";
 
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
-        private PropertyBufferPtr normalBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr normalBufferPtr;
 
         /// <summary>
         ///
@@ -32,13 +32,13 @@
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(TetrahedronModel.position.Length);
                         unsafe
@@ -50,7 +50,7 @@
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -59,7 +59,7 @@
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(TetrahedronModel.color.Length);
                         unsafe
@@ -71,7 +71,7 @@
                             }
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBufferPtr;
@@ -80,7 +80,7 @@
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(TetrahedronModel.normal.Length);
                         unsafe
@@ -92,7 +92,7 @@
                             }
                         }
 
-                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return normalBufferPtr;

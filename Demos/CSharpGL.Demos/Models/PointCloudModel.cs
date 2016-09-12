@@ -22,17 +22,17 @@ namespace CSharpGL
 
         public const string position = "position";
 
-        private CSharpGL.PropertyBufferPtr positionBufferPtr;
+        private CSharpGL.VertexAttributeBufferPtr positionBufferPtr;
 
         private CSharpGL.IndexBufferPtr indexBufferPtr;
 
-        public CSharpGL.PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public CSharpGL.VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if ((bufferName == position))
             {
                 if ((positionBufferPtr == null))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {// begin of using
                         buffer.Create(this.pointPositions.Count);
                         unsafe
@@ -43,7 +43,7 @@ namespace CSharpGL
                                 array[i] = this.pointPositions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }// end of using
                 }
                 return positionBufferPtr;

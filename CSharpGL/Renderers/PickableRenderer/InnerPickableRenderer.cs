@@ -6,7 +6,7 @@
     abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
     {
         protected string positionNameInIBufferable;
-        internal PropertyBufferPtr positionBufferPtr;
+        internal VertexAttributeBufferPtr positionBufferPtr;
 
         private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
 

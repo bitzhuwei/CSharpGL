@@ -15,11 +15,11 @@ namespace CSharpGL
 
             // init property buffer objects.
             IBufferable bufferable = this.model;
-            var propertyBufferPtrs = new PropertyBufferPtr[propertyNameMap.Count()];
+            var propertyBufferPtrs = new VertexAttributeBufferPtr[propertyNameMap.Count()];
             int index = 0;
             foreach (var item in propertyNameMap)
             {
-                PropertyBufferPtr bufferPtr = bufferable.GetProperty(
+                VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
                 propertyBufferPtrs[index++] = bufferPtr;

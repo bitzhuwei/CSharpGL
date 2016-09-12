@@ -22,9 +22,9 @@
         /// </summary>
         public const string strNormal = "normal";
 
-        private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
-        private PropertyBufferPtr normalBufferPtr;
+        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr normalBufferPtr;
 
         /// <summary>
         ///
@@ -32,13 +32,13 @@
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubePosition>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(1);
                         unsafe
@@ -47,7 +47,7 @@
                             positionArray[0] = CubeModel.position;
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return positionBufferPtr;
@@ -56,7 +56,7 @@
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeColor>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(1);
                         unsafe
@@ -65,7 +65,7 @@
                             colorArray[0] = CubeModel.color;
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return colorBufferPtr;
@@ -74,7 +74,7 @@
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeNormal>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create(1);
                         unsafe
@@ -83,7 +83,7 @@
                             normalArray[0] = CubeModel.normal;
                         }
 
-                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
                     }
                 }
                 return normalBufferPtr;

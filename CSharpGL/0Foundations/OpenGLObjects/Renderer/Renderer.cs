@@ -20,7 +20,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected PropertyBufferPtr[] propertyBufferPtrs;
+        protected VertexAttributeBufferPtr[] propertyBufferPtrs;
 
         /// <summary>
         ///

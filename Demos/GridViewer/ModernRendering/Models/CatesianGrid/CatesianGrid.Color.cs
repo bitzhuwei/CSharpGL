@@ -8,12 +8,12 @@ namespace GridViewer
     public partial class CatesianGrid
     {
         public const string strColor = "color";
-        private PropertyBufferPtr colorBufferPtr;
+        private VertexAttributeBufferPtr colorBufferPtr;
 
-        private PropertyBufferPtr GetColorBufferPtr(string varNameInShader)
+        private VertexAttributeBufferPtr GetColorBufferPtr(string varNameInShader)
         {
-            PropertyBufferPtr ptr = null;
-            using (var buffer = new PropertyBuffer<HexahedronTexCoord>(varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+            VertexAttributeBufferPtr ptr = null;
+            using (var buffer = new VertexAttributeBuffer<HexahedronTexCoord>(varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
             {
                 float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
 
@@ -27,7 +27,7 @@ namespace GridViewer
                         array[gridIndex].SetCoord(textures[gridIndex]);
                     }
                 }
-                ptr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                ptr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
             }
 
             return ptr;

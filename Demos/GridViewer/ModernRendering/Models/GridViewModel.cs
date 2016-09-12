@@ -51,7 +51,7 @@ namespace GridViewer
             this.defaultBlockPropertyIndex = defaultBlockPropertyIndex;
         }
 
-        public abstract PropertyBufferPtr GetProperty(string bufferName, string varNameInShader);
+        public abstract VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader);
 
         public abstract IndexBufferPtr GetIndex();
 
