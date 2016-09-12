@@ -23,7 +23,7 @@ namespace CSharpGL
 
         public uint GetVertexCount()
         {
-            VertexAttributeBufferPtr positionBufferPtr = this.positionBufferPtr;
+            VertexAttributeBufferPtr positionBufferPtr = this.PositionBufferPtr;
             if (positionBufferPtr == null) { return 0; }
             int byteLength = positionBufferPtr.ByteLength;
             int vertexLength = positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength;
@@ -80,12 +80,12 @@ namespace CSharpGL
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
-            int offset = (int)(firstIndex * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
-            this.positionBufferPtr.Bind();
+            int offset = (int)(firstIndex * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
+            this.PositionBufferPtr.Bind();
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
-                indexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
+                indexCount * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
                 MapBufferRangeAccess.MapReadBit);
             var positions = new vec3[indexCount];
             if (pointer.ToInt32() != 0)
@@ -105,11 +105,11 @@ namespace CSharpGL
                 if (error != ErrorCode.NoError)
                 {
                     throw new Exception(string.Format(
-                        "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
+                        "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
                 }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            this.positionBufferPtr.Unbind();
+            this.PositionBufferPtr.Unbind();
 
             return positions;
         }
@@ -118,14 +118,14 @@ namespace CSharpGL
         {
             var positions = new vec3[indexes.Length];
 
-            this.positionBufferPtr.Bind();
+            this.PositionBufferPtr.Bind();
             for (int i = 0; i < indexes.Length; i++)
             {
-                int offset = (int)(indexes[i] * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
+                int offset = (int)(indexes[i] * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
                 IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offset,
-                    1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
+                    1 * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit);
                 if (pointer.ToInt32() != 0)
                 {
@@ -141,12 +141,12 @@ namespace CSharpGL
                     if (error != ErrorCode.NoError)
                     {
                         Debug.WriteLine(string.Format(
-                            "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
+                            "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
                     }
                 }
                 OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             }
-            this.positionBufferPtr.Unbind();
+            this.PositionBufferPtr.Unbind();
 
             return positions;
         }

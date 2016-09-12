@@ -85,7 +85,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
+            if (vertexCount == -1) { vertexCount = this.PositionBufferPtr.Length; }
             if (lastVertexId == 0 && vertexCount == 2)
             {
                 // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
@@ -335,15 +335,15 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
         {
             const int vertexCount = 2;
-            var offsets = new int[vertexCount] { (this.positionBufferPtr.Length - 1) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength, 0, };
+            var offsets = new int[vertexCount] { (this.PositionBufferPtr.Length - 1) * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength, 0, };
             pickedGeometry.Positions = new vec3[vertexCount];
             pickedGeometry.Indexes = new uint[vertexCount];
             for (int i = 0; i < vertexCount; i++)
             {
-                this.positionBufferPtr.Bind();
+                this.PositionBufferPtr.Bind();
                 IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offsets[i],
-                    1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
+                    1 * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit);
                 unsafe
                 {
@@ -351,8 +351,8 @@ namespace CSharpGL
                     pickedGeometry.Positions[i] = array[0];
                 }
                 OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-                this.positionBufferPtr.Unbind();
-                pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
+                this.PositionBufferPtr.Unbind();
+                pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
             }
         }
     }
