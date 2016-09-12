@@ -125,6 +125,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Completeness.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexBufferImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\NullImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\NullSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\SamplerParameters.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\Sampler.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.BufferTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\BitmapFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\FakeSampler.cs" />

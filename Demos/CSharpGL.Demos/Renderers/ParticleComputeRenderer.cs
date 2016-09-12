@@ -39,16 +39,12 @@ namespace CSharpGL.Demos
                 this.computeProgram = computeProgram;
             }
             {
-                var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.positionBufferPtr),
-                    new NullSampler());
+                var texture = Texture.CreateBufferTexture(OpenGL.GL_RGBA32F, this.positionBufferPtr, false);
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
-                var texture = new Texture(BindTextureTarget.TextureBuffer,
-                    new TexBufferImageFiller(OpenGL.GL_RGBA32F, this.velocityBufferPtr),
-                    new NullSampler());
+                var texture = Texture.CreateBufferTexture(OpenGL.GL_RGBA32F, this.velocityBufferPtr, false);
                 texture.Initialize();
                 this.velocityTexture = texture;
             }
