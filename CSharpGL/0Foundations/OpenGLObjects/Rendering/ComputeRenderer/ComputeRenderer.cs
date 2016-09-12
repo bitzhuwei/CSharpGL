@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Rendering something using GLSL shader and VBO(VAO).
+    /// Work with compute shader.
     /// </summary>
     public partial class ComputeRenderer : RendererBase
     {
@@ -16,7 +16,7 @@
         protected ShaderCode[] shaderCodes;
 
         /// <summary>
-        /// Rendering something using GLSL shader and VBO(VAO).
+        /// Work with compute shader.
         /// </summary>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
         public ComputeRenderer(ShaderCode[] shaderCodes)
