@@ -16,7 +16,7 @@
         /// <para>Each <see cref="VertexAttributeBuffer&lt;T&gt;"/> describes only 1 property.</para>
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
-        /// <param name="config">parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+        /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
