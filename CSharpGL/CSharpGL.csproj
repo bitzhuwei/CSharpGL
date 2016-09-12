@@ -126,6 +126,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Completeness.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Query\Query.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Query\Query.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexBufferImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\NullImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBuffer.cs" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferPtr.cs" />
