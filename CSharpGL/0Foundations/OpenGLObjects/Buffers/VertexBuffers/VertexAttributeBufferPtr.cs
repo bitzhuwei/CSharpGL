@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         internal VertexAttributeBufferPtr(string varNameInVertexShader,
-            uint bufferId, int dataSize, uint dataType, int length, int byteLength,
+            uint bufferId, VertexAttributeDataType dataType, int length, int byteLength,
             uint instancedDivisor)
             : base(bufferId, length, byteLength)
         {
@@ -47,7 +47,6 @@ namespace CSharpGL
                 glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
             }
             this.VarNameInVertexShader = varNameInVertexShader;
-            this.DataSize = dataSize;
             this.DataType = dataType;
             this.InstancedDivisor = instancedDivisor;
         }
@@ -59,10 +58,9 @@ namespace CSharpGL
         public string VarNameInVertexShader { get; set; }
 
         /// <summary>
-        /// GL_FLOAT etc
-        /// <para>third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
+        /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
-        public uint DataType { get; private set; }
+        public VertexAttributeDataType DataType { get; private set; }
 
         /// <summary>
         /// <see cref="DataType"/>有多少字节？
@@ -71,18 +69,83 @@ namespace CSharpGL
         {
             get
             {
-                if (DataType == OpenGL.GL_FLOAT)
-                { return sizeof(float); }
-                else if (DataType == OpenGL.GL_BYTE)
-                { return sizeof(byte); }
-                else if (DataType == OpenGL.GL_UNSIGNED_BYTE)
-                { return sizeof(byte); }
-                else if (DataType == OpenGL.GL_SHORT)
-                { return sizeof(short); }
-                else if (DataType == OpenGL.GL_UNSIGNED_SHORT)
-                { return sizeof(ushort); }
-                else
-                { throw new NotImplementedException(); }
+                int result = 0;
+                switch (this.DataType)
+                {
+                    case VertexAttributeDataType.Byte:
+                        result = sizeof(byte);
+                        break;
+                    case VertexAttributeDataType.BVec2:
+                        result = sizeof(byte);
+                        break;
+                    case VertexAttributeDataType.BVec3:
+                        result = sizeof(byte);
+                        break;
+                    case VertexAttributeDataType.BVec4:
+                        result = sizeof(byte);
+                        break;
+                    case VertexAttributeDataType.Int:
+                        result = sizeof(int);
+                        break;
+                    case VertexAttributeDataType.IVec2:
+                        result = sizeof(int);
+                        break;
+                    case VertexAttributeDataType.IVec3:
+                        result = sizeof(int);
+                        break;
+                    case VertexAttributeDataType.IVec4:
+                        result = sizeof(int);
+                        break;
+                    case VertexAttributeDataType.UInt:
+                        result = sizeof(uint);
+                        break;
+                    case VertexAttributeDataType.UVec2:
+                        result = sizeof(uint);
+                        break;
+                    case VertexAttributeDataType.UVec3:
+                        result = sizeof(uint);
+                        break;
+                    case VertexAttributeDataType.UVec4:
+                        result = sizeof(uint);
+                        break;
+                    case VertexAttributeDataType.Float:
+                        result = sizeof(float);
+                        break;
+                    case VertexAttributeDataType.Vec2:
+                        result = sizeof(float);
+                        break;
+                    case VertexAttributeDataType.Vec3:
+                        result = sizeof(float);
+                        break;
+                    case VertexAttributeDataType.Vec4:
+                        result = sizeof(float);
+                        break;
+                    case VertexAttributeDataType.Double:
+                        result = sizeof(double);
+                        break;
+                    case VertexAttributeDataType.DVec2:
+                        result = sizeof(double);
+                        break;
+                    case VertexAttributeDataType.DVec3:
+                        result = sizeof(double);
+                        break;
+                    case VertexAttributeDataType.DVec4:
+                        result = sizeof(double);
+                        break;
+                    case VertexAttributeDataType.Mat2:
+                        result = sizeof(float);
+                        break;
+                    case VertexAttributeDataType.Mat3:
+                        result = sizeof(float);
+                        break;
+                    case VertexAttributeDataType.Mat4:
+                        result = sizeof(float);
+                        break;
+                    default:
+                        throw new System.NotImplementedException();
+                }
+
+                return result;
             }
         }
 
@@ -90,7 +153,16 @@ namespace CSharpGL
         /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// <para>How many float/int/uint are there in a data unit?</para>
         /// </summary>
-        public int DataSize { get; private set; }
+        public int DataSize
+        {
+            get
+            {
+                int dataSize;
+                uint dataType;
+                this.DataType.Parse(out dataSize, out dataType);
+                return dataSize;
+            }
+        }
 
         /// <summary>
         /// 0: not instanced. 1: instanced divisor is 1.
@@ -129,7 +201,10 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             // 指定格式
             // set up data format.
-            glVertexAttribPointer(loc, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
+            int dataSize;
+            uint dataType;
+            this.DataType.Parse(out dataSize, out dataType);
+            glVertexAttribPointer(loc, dataSize, dataType, false, 0, IntPtr.Zero);
             // 启用
             // enable this VBO.
             glEnableVertexAttribArray(loc);

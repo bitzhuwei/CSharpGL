@@ -47,7 +47,7 @@ namespace CSharpGL
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         float[] positions = model.GetPositions();
                         //List<vec3> pos = new List<vec3>();
@@ -75,7 +75,7 @@ namespace CSharpGL
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
                         buffer.Create(normals.Length);
@@ -96,7 +96,7 @@ namespace CSharpGL
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
                         buffer.Create(normals.Length);

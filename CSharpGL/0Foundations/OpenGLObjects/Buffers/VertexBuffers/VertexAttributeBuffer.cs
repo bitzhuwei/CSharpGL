@@ -16,18 +16,14 @@
         /// <para>Each <see cref="VertexAttributeBuffer&lt;T&gt;"/> describes only 1 property.</para>
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
-        /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
-        /// <para>How many float/int/uint are there in a data unit?</para>
-        /// </param>
-        /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+        /// <param name="dataType">parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
-        public VertexAttributeBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage, uint instancedDivisor = 0)
+        public VertexAttributeBuffer(string varNameInVertexShader, VertexAttributeDataType dataType, BufferUsage usage, uint instancedDivisor = 0)
             : base(usage)
         {
             this.VarNameInVertexShader = varNameInVertexShader;
-            this.DataSize = dataSize;
             this.DataType = dataType;
             this.InstancedDivisor = instancedDivisor;
         }
@@ -39,16 +35,9 @@
         public string VarNameInVertexShader { get; private set; }
 
         /// <summary>
-        /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-        /// <para>How many float/int/uint are there in a data unit?</para>
+        /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
-        public int DataSize { get; private set; }
-
-        /// <summary>
-        /// GL_FLOAT etc
-        /// <para>third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
-        /// </summary>
-        public uint DataType { get; private set; }
+        public VertexAttributeDataType DataType { get; private set; }
 
         /// <summary>
         /// 0: not instanced. 1: instanced divisor is 1.
@@ -68,7 +57,7 @@
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
 
             var bufferPtr = new VertexAttributeBufferPtr(
-                this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType, this.Length, this.ByteLength, this.InstancedDivisor);
+                this.VarNameInVertexShader, buffers[0], this.DataType, this.Length, this.ByteLength, this.InstancedDivisor);
 
             return bufferPtr;
         }

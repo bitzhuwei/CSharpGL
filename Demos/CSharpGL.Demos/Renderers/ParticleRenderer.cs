@@ -19,7 +19,7 @@ namespace CSharpGL.Demos
 
             {
                 // velocity
-                var buffer = new VertexAttributeBuffer<vec4>("empty", 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy);
+                var buffer = new VertexAttributeBuffer<vec4>("empty", VertexAttributeDataType.Vec4, BufferUsage.DynamicCopy);
                 buffer.Create(ParticleModel.particleCount);
                 unsafe
                 {

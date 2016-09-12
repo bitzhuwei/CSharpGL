@@ -64,7 +64,7 @@ namespace GridViewer
                 if (positionBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
                         unsafe
@@ -87,7 +87,7 @@ namespace GridViewer
                 if (texCoordBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<float>(
-                        varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeDataType.Float, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
                         unsafe
@@ -112,7 +112,7 @@ namespace GridViewer
                 if (colorBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                        varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
                         unsafe

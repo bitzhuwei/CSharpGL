@@ -43,7 +43,7 @@ namespace CSharpGL
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<GlyphPosition>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
+                    using (var buffer = new VertexAttributeBuffer<GlyphPosition>(varNameInShader, VertexAttributeDataType.Vec2, BufferUsage.DynamicDraw))
                     {
                         buffer.Create(maxCharCount);
 
@@ -57,7 +57,7 @@ namespace CSharpGL
             {
                 if (uvBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<GlyphTexCoord>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
+                    using (var buffer = new VertexAttributeBuffer<GlyphTexCoord>(varNameInShader, VertexAttributeDataType.Vec2, BufferUsage.DynamicDraw))
                     {
                         buffer.Create(maxCharCount);
 

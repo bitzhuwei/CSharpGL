@@ -59,7 +59,7 @@
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.positions.Length);
                         unsafe
@@ -79,7 +79,7 @@
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.normals.Length);
                         unsafe
@@ -99,7 +99,7 @@
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.colors.Length);
                         unsafe
@@ -119,7 +119,7 @@
             {
                 if (uvBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeDataType.Vec2, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.uv.Length);
                         unsafe

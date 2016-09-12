@@ -19,7 +19,7 @@
             {
                 if (positionBuffer == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
+                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.DynamicDraw))
                     {
                         buffer.Create(positions.Length);
                         unsafe

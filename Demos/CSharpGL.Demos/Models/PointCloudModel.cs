@@ -32,7 +32,7 @@ namespace CSharpGL
             {
                 if ((positionBufferPtr == null))
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {// begin of using
                         buffer.Create(this.pointPositions.Count);
                         unsafe

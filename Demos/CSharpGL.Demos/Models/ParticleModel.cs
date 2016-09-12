@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 if (positionBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec4>(
-                        varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
+                        varNameInShader, VertexAttributeDataType.Vec4, BufferUsage.DynamicCopy))
                     {
                         buffer.Create(particleCount);
                         unsafe
@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
                 if (velocityBufferPtr == null)
                 {
                     using (var buffer = new VertexAttributeBuffer<vec4>(
-                        varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
+                        varNameInShader, VertexAttributeDataType.Vec4, BufferUsage.DynamicCopy))
                     {
                         buffer.Create(particleCount);
                         unsafe

@@ -38,7 +38,7 @@
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(TetrahedronModel.position.Length);
                         unsafe
@@ -59,7 +59,7 @@
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(TetrahedronModel.color.Length);
                         unsafe
@@ -80,7 +80,7 @@
             {
                 if (normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeDataType.Vec3, BufferUsage.StaticDraw))
                     {
                         buffer.Create(TetrahedronModel.normal.Length);
                         unsafe
