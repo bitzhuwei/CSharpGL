@@ -4,8 +4,6 @@ namespace CSharpGL
 {
     public partial class Texture
     {
-        #region IDisposable Members
-
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -60,7 +58,5 @@ namespace CSharpGL
 
             this.disposedValue = true;
         } // end sub
-
-        #endregion IDisposable Members
     }
 }
