@@ -8,6 +8,8 @@ namespace CSharpGL
     /// </summary>
     public sealed class OneIndexBufferPtr : IndexBufferPtr
     {
+        private static OpenGL.glDrawElementsInstanced glDrawElementsInstanced;
+
         /// <summary>
         /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
         /// </summary>
@@ -19,10 +21,14 @@ namespace CSharpGL
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
         internal OneIndexBufferPtr(uint bufferId, DrawMode mode, int firstIndex, int elementCount,
-            IndexElementType type, int length, int byteLength)
-            : base(mode, bufferId, length, byteLength)
+            IndexElementType type, int length, int byteLength, int primCount = 1)
+            : base(mode, bufferId, length, byteLength, primCount)
         {
+            if (glDrawElementsInstanced == null)
+            { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
+
             this.FirstIndex = firstIndex;
             this.ElementCount = elementCount;
             this.OriginalElementCount = elementCount;
@@ -76,18 +82,31 @@ namespace CSharpGL
                     throw new NotImplementedException();
             }
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            uint mode = 0;
             if (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point
                 && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
             {
                 // this may render points that should not appear.
                 // so need to select by another picking.
-                OpenGL.DrawElements((uint)DrawMode.Points, this.ElementCount, (uint)this.Type, offset);
+                mode = (uint)DrawMode.Points;
             }
             else
             {
-                OpenGL.DrawElements((uint)this.Mode, this.ElementCount, (uint)this.Type, offset);
+                mode = (uint)this.Mode;
             }
+
+            int primCount = this.PrimCount;
+            if (primCount < 1) { }
+            else if (primCount == 1)
+            {
+                OpenGL.DrawElements(mode, this.ElementCount, (uint)this.Type, offset);
+            }
+            else
+            {
+                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.Type, offset, primCount);
+            }
+
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
@@ -115,8 +134,21 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
-            return string.Format("glDrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
-                this.Mode, this.ElementCount, this.Type, this.FirstIndex, type);
+            int primCount = this.PrimCount;
+            if (primCount < 1)
+            {
+                return string.Format("error: primCount is less than 1.");
+            }
+            else if (primCount == 1)
+            {
+                return string.Format("glDrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
+                    this.Mode, this.ElementCount, this.Type, this.FirstIndex, type);
+            }
+            else
+            {
+                return string.Format("glDrawElementsInstanced({0}, {1}, {2}, new IntPtr({3} * sizeof({4}), {5})",
+                    this.Mode, this.ElementCount, this.Type, this.FirstIndex, type, primCount);
+            }
         }
     }
 }

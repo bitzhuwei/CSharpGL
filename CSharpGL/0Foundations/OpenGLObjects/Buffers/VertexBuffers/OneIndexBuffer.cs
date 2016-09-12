@@ -15,8 +15,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
-        public OneIndexBuffer(DrawMode mode, BufferUsage usage)
-            : base(mode, usage)
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        public OneIndexBuffer(DrawMode mode, BufferUsage usage, int primCount = 1)
+            : base(mode, usage, primCount)
         {
             if (typeof(uint) == typeof(T))
             {

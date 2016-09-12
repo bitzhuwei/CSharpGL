@@ -13,8 +13,9 @@
         /// <param name="mode">渲染模式。</param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
-        public ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount)
-            : base(mode, BufferUsage.StaticDraw)
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        public ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
+            : base(mode, BufferUsage.StaticDraw, primCount)
         {
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;

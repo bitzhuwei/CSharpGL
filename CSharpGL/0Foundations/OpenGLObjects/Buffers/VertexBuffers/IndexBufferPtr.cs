@@ -24,10 +24,12 @@ namespace CSharpGL
         /// <param name="bufferId"></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal IndexBufferPtr(DrawMode mode, uint bufferId, int length, int byteLength)
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        internal IndexBufferPtr(DrawMode mode, uint bufferId, int length, int byteLength, int primCount)
             : base(bufferId, length, byteLength)
         {
             this.Mode = mode;
+            this.PrimCount = primCount;
         }
 
         /// <summary>
@@ -52,5 +54,10 @@ namespace CSharpGL
         {
             glBindBuffer((uint)BufferTarget.ElementArrayBuffer, 0);
         }
+
+        /// <summary>
+        /// primCount in instanced rendering.
+        /// </summary>
+        public int PrimCount { get; private set; }
     }
 }
