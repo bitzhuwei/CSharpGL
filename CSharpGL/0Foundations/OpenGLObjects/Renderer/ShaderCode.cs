@@ -1,4 +1,6 @@
-﻿namespace CSharpGL
+﻿using System.Linq;
+
+namespace CSharpGL
 {
     /// <summary>
     /// 各种类型的shader代码
@@ -45,6 +47,26 @@
             shader.Create((uint)this.ShaderType, this.SourceCode);
 
             return shader;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ShaderCodesHelper
+    {
+        /// <summary>
+        /// Creates a shader program.
+        /// </summary>
+        /// <param name="shaderCodes"></param>
+        /// <returns></returns>
+        public static ShaderProgram CreateProgram(this ShaderCode[] shaderCodes)
+        {
+            var program = new ShaderProgram();
+            var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
+            program.Initialize(shaders);
+            foreach (var item in shaders) { item.Delete(); }
+            return program;
         }
     }
 }
