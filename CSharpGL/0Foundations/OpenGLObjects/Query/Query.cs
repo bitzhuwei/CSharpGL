@@ -33,9 +33,34 @@ namespace CSharpGL
         /// <summary>
         /// Begin query.
         /// </summary>
-        public void Begin(QueryTarget target)
+        public void BeginQuery(QueryTarget target)
         {
             glBeginQuery((uint)target, this.Id);
+        }
+
+        // TODO: need demo!
+        /// <summary>
+        /// Een query.
+        /// </summary>
+        public void EndQuery(QueryTarget target)
+        {
+            glEndQuery((uint)target);
+        }
+        /// <summary>
+        /// Begin query.
+        /// </summary>
+        public void BeginQuery(uint target)
+        {
+            glBeginQuery(target, this.Id);
+        }
+
+        // TODO: need demo!
+        /// <summary>
+        /// Een query.
+        /// </summary>
+        public void EndQuery(uint target)
+        {
+            glEndQuery(target);
         }
 
         // TODO: need demo!
@@ -48,13 +73,13 @@ namespace CSharpGL
             glBeginConditionalRender(this.Id, (uint)mode);
         }
 
-        // TODO: need demo!
         /// <summary>
-        /// Een query.
+        /// Begin conditional rendering.
         /// </summary>
-        public void End(QueryTarget target)
+        public void Begin(uint mode)
         {
-            glEndQuery((uint)target);
+            glBeginQuery((uint)QueryTarget.SamplesPassed, this.Id);
+            glBeginConditionalRender(this.Id, mode);
         }
 
         /// <summary>
