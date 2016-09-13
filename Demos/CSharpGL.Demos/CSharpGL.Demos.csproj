@@ -47,6 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="18PickingInScene\UpdatingBoxScript.cs" />
+    <Compile Include="21ConditionalRendering\Form21ConditionalRendering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="21ConditionalRendering\Form21ConditionalRendering.Designer.cs">
+      <DependentUpon>Form21ConditionalRendering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="21ConditionalRendering\Form21ConditionalRendering.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="20GLSceneCanvas\Form20GLSceneCanvas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,6 +395,9 @@
     <None Include="shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="21ConditionalRendering\Form21ConditionalRendering.resx">
+      <DependentUpon>Form21ConditionalRendering.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="20GLSceneCanvas\Form20GLSceneCanvas.resx">
       <DependentUpon>Form20GLSceneCanvas.cs</DependentUpon>
     </EmbeddedResource>
