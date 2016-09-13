@@ -120,6 +120,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IPerspectiveCamera.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\GLSwitches\ColorMaskSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\DepthMaskSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Dispose.cs" />
