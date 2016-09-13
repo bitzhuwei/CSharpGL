@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
         private IndependentBufferPtr headClearBufferPtr;
-        private IndependentBufferPtr atomicCountBufferPtr;
+        private AtomicCounterBufferPtr atomicCountBufferPtr;
         private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
 
@@ -87,8 +87,7 @@ namespace CSharpGL.Demos
             {
                 var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy, false);
                 buffer.Create(1);
-                var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
-                this.atomicCountBufferPtr = ptr;
+                this.atomicCountBufferPtr = buffer.GetBufferPtr() as AtomicCounterBufferPtr;
             }
             {
                 // Bind it to a texture (for use as a TBO)
