@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
         private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
-        private IndependentBufferPtr headClearBufferPtr;
+        private PixelUnpackBufferPtr headClearBufferPtr;
         private AtomicCounterBufferPtr atomicCountBufferPtr;
         private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
@@ -80,8 +80,7 @@ namespace CSharpGL.Demos
                         array[i] = 0;
                     }
                 }
-                var bufferPtr = buffer.GetBufferPtr() as IndependentBufferPtr;
-                this.headClearBufferPtr = bufferPtr;
+                this.headClearBufferPtr = buffer.GetBufferPtr() as PixelUnpackBufferPtr;
             }
             // Create the atomic counter buffer
             {
