@@ -701,12 +701,14 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glDepthFunc", SetLastError = true)]
         public static extern void DepthFunc(uint func);
 
-        ///// <summary>
-        ///// This function sets the depth mask.
-        ///// </summary>
-        ///// <param name="flag">The depth mask flag, normally 1.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDepthMask", SetLastError = true)]
-        //public static extern void DepthMask(byte flag);
+        /// <summary>
+        /// enable or disable writing into the depth buffer
+        /// <para>允许或禁止向深度缓冲区写入数据</para>
+        /// </summary>
+        /// <param name="writable">Specifies whether the depth buffer is enabled for writing.If flag is GL_FALSE,depth buffer writing is disabled.Otherwise, it is enabled.Initially, depth buffer writing is enabled.
+        /// <para>指定是否允许向深度缓冲区写入数据。如果flag是GL_FLASE，那么向深度缓冲区写入是禁止的。否则，就是允许的。初始时，是允许向深度缓冲区写入数据的。</para></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDepthMask", SetLastError = true)]
+        public static extern void DepthMask(bool writable);
 
         ///// <summary>
         ///// Specify mapping of depth values from normalized device coordinates	to window coordinates.

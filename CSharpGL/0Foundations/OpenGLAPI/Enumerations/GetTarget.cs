@@ -251,7 +251,7 @@
         DepthTest = OpenGL.GL_DEPTH_TEST,
 
         /// <summary>
-        ///
+        /// Gets result of glDepthMask(bool writable);
         /// </summary>
         DepthWritemask = OpenGL.GL_DEPTH_WRITEMASK,
 
