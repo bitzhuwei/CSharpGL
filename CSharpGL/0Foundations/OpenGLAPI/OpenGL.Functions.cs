@@ -495,15 +495,17 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glColor4usv", SetLastError = true)]
         public static extern void Color4usv(ushort[] v);
 
-        ///// <summary>
-        ///// This function sets the current colour mask.
-        ///// </summary>
-        ///// <param name="red">Red component mask.</param>
-        ///// <param name="green">Green component mask.</param>
-        ///// <param name="blue">Blue component mask.</param>
-        ///// <param name="alpha">Alpha component mask.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glColorMask", SetLastError = true)]
-        //public static extern void ColorMask(byte red, byte green, byte blue, byte alpha);
+        /// <summary>
+        /// enable and disable writing of frame buffer color components.
+        /// <para>Specify whether red, green, blue, and alpha can or cannot be written into the frame buffer. The initial values are all GL_TRUE, indicating that the color components can be written.</para>
+        /// <para>glGet with argument GL_COLOR_WRITEMASK.</para>
+        /// </summary>
+        /// <param name="redWritable">Red component mask.</param>
+        /// <param name="greenWritable">Green component mask.</param>
+        /// <param name="blueWritable">Blue component mask.</param>
+        /// <param name="alphaWritable">Alpha component mask.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glColorMask", SetLastError = true)]
+        public static extern void ColorMask(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable);
 
         ///// <summary>
         ///// Cause a material color to track the current color.
