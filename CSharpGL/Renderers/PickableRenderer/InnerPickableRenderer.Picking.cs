@@ -81,9 +81,8 @@ namespace CSharpGL
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
             int offset = (int)(firstIndex * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
-            this.PositionBufferPtr.Bind();
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
+            IntPtr pointer = this.PositionBufferPtr.MapBufferRange(
                 offset,
                 indexCount * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
                 MapBufferRangeAccess.MapReadBit);
@@ -105,7 +104,7 @@ namespace CSharpGL
                 if (error != ErrorCode.NoError)
                 {
                     throw new Exception(string.Format(
-                        "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
+                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
                 }
             }
             this.PositionBufferPtr.UnmapBuffer();
@@ -122,10 +121,10 @@ namespace CSharpGL
             {
                 int offset = (int)(indexes[i] * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-                IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
+                IntPtr pointer = this.PositionBufferPtr.MapBufferRange(
                     offset,
                     1 * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
-                    MapBufferRangeAccess.MapReadBit);
+                    MapBufferRangeAccess.MapReadBit, false);
                 if (pointer.ToInt32() != 0)
                 {
                     unsafe
@@ -140,7 +139,7 @@ namespace CSharpGL
                     if (error != ErrorCode.NoError)
                     {
                         Debug.WriteLine(string.Format(
-                            "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
+                            "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
                     }
                 }
                 this.PositionBufferPtr.UnmapBuffer(false);

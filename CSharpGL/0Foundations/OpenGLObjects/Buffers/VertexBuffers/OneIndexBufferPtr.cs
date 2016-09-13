@@ -123,6 +123,23 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Start to read/write buffer.
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public IntPtr MapBufferRange(int offset, int length, MapBufferRangeAccess access, bool bind = true)
+        {
+            if (bind)
+            {
+                glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            }
+            return glMapBufferRange(OpenGL.GL_ELEMENT_ARRAY_BUFFER, offset, length, (uint)access);
+        }
+
+        /// <summary>
         /// Stop reading/writing buffer.
         /// </summary>
         public void UnmapBuffer()

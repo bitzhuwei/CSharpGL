@@ -72,8 +72,7 @@ namespace CSharpGL.Demos
             float deltaTime = (float)random.NextDouble() * 5;
             time += (float)random.NextDouble() * 5;
 
-            this.attractorBufferPtr.Bind();
-            IntPtr attractors = OpenGL.MapBufferRange(BufferTarget.UniformBuffer,
+            IntPtr attractors = this.attractorBufferPtr.MapBufferRange(
                 0, 64 * Marshal.SizeOf(typeof(vec4)),
                 MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
             unsafe
@@ -88,7 +87,6 @@ namespace CSharpGL.Demos
                         ParticleModel.attractor_masses[i]);
                 }
             }
-
             this.attractorBufferPtr.UnmapBuffer();
 
             // Activate the compute program and bind the position and velocity buffers

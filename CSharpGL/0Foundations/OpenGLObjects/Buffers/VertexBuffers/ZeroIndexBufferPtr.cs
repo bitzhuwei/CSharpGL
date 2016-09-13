@@ -7,6 +7,7 @@
     public sealed class ZeroIndexBufferPtr : IndexBufferPtr
     {
         private static OpenGL.glDrawArraysInstanced glDrawArraysInstanced;
+
         /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>

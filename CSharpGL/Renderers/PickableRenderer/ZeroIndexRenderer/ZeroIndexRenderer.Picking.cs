@@ -338,21 +338,22 @@ namespace CSharpGL
             var offsets = new int[vertexCount] { (this.PositionBufferPtr.Length - 1) * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength, 0, };
             pickedGeometry.Positions = new vec3[vertexCount];
             pickedGeometry.Indexes = new uint[vertexCount];
+            this.PositionBufferPtr.Bind();
             for (int i = 0; i < vertexCount; i++)
             {
-                this.PositionBufferPtr.Bind();
-                IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
+                IntPtr pointer = this.PositionBufferPtr.MapBufferRange(
                     offsets[i],
                     1 * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
-                    MapBufferRangeAccess.MapReadBit);
+                    MapBufferRangeAccess.MapReadBit, false);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
                     pickedGeometry.Positions[i] = array[0];
                 }
-                this.PositionBufferPtr.UnmapBuffer();
+                this.PositionBufferPtr.UnmapBuffer(false);
                 pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
             }
+            this.PositionBufferPtr.Unbind();
         }
     }
 }

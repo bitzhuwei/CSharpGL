@@ -1068,38 +1068,6 @@ namespace CSharpGL
         //    bindBuffer(target, id);
         //}
 
-        private static OpenGL.glMapBufferRange mapBufferRange;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="offset"></param>
-        /// <param name="length"></param>
-        /// <param name="access"></param>
-        /// <returns></returns>
-        public static IntPtr MapBufferRange(BufferTarget target, int offset, int length, MapBufferRangeAccess access)
-        {
-            if (mapBufferRange == null)
-            { mapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
-            return mapBufferRange((uint)target, offset, length, (uint)access);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="offset"></param>
-        /// <param name="length"></param>
-        /// <param name="access"></param>
-        /// <returns></returns>
-        public static IntPtr MapBufferRange(uint target, int offset, int length, MapBufferRangeAccess access)
-        {
-            if (mapBufferRange == null)
-            { mapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
-            return mapBufferRange(target, offset, length, (uint)access);
-        }
-
         /// <summary>
         /// This function sets the image for the currently binded texture.
         /// </summary>

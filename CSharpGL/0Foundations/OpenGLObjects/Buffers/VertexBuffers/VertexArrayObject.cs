@@ -19,6 +19,7 @@ namespace CSharpGL
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
         private uint[] ids = new uint[1];
+
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
         /// <para>Id gets from glGenVertexArrays().</para>
