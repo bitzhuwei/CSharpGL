@@ -13,6 +13,15 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.5:
+1. Uniform/Texture/AtomicCounter/PixelUnpack Buffer.
+2. Create Texture filled with Buffer(uniform samplerBuffer in GLSL shader).
+3. Rename PropertyBuffer to VertexAttributeBuffer.
+4. VertexAttributeBuffer supports instanced-rendering.
+5. VertexAttributeConfig decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+6. fix: logic error in InnerPickableRenderer.DoInitialize().
+7. Map/Unmap buffer in VertexAttributeBuffer, IndependentBuffer and OneIndexBuffer.
+
 ## v1.0.6.4:
 1. IModelSpace consists of position, scale and rotation.
 2. Get quaternion from model matrix.
