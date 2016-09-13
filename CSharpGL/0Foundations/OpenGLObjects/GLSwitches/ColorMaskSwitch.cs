@@ -77,8 +77,6 @@
             return string.Format("glColorMask({0});", this.Mask);
         }
 
-        private ColorMask lastState;
-
         /// <summary>
         ///
         /// </summary>

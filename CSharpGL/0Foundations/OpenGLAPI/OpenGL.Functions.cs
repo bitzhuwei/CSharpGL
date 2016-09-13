@@ -2417,12 +2417,17 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glStencilFunc", SetLastError = true)]
         //public static extern void StencilFunc(uint func, int reference, uint mask);
 
-        ///// <summary>
-        ///// This function sets the stencil buffer mask.
-        ///// </summary>
-        ///// <param name="mask">The mask.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glStencilMask", SetLastError = true)]
-        //public static extern void StencilMask(uint mask);
+        /// <summary>
+        /// control the front and back writing of individual bits in the stencil planes
+        /// <para>glStencilMask controls the writing of individual bits in the stencil planes. The least significant n bits of mask, where n is the number of bits in the stencil buffer, specify a mask. Where a 1 appears in the mask, it's possible to write to the corresponding bit in the stencil buffer. Where a 0 appears, the corresponding bit is write-protected. Initially, all bits are enabled for writing.
+        /// There can be two separate mask writemasks; one affects back-facing polygons, and the other affects front-facing polygons as well as other non-polygon primitives. glStencilMask sets both front and back stencil writemasks to the same values. Use glStencilMaskSeparate to set front and back stencil writemasks to different values.</para>
+        /// <para>glStencilMask is the same as calling glStencilMaskSeparate with face set to GL_FRONT_AND_BACK.</para>
+        /// <para>glGet with argument GL_STENCIL_WRITEMASK, GL_STENCIL_BACK_WRITEMASK, or GL_STENCIL_BITS</para>
+        /// <para>See Also glColorMask, glDepthMask, glStencilFunc, glStencilFuncSeparate, glStencilMaskSeparate, glStencilOp, glStencilOpSeparate</para>
+        /// </summary>
+        /// <param name="mask">Specifies a bit mask to enable and disable writing of individual bits in the stencil planes. Initially, the mask is all 1's.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glStencilMask", SetLastError = true)]
+        public static extern void StencilMask(uint mask);
 
         ///// <summary>
         ///// This function sets the stencil buffer operation.
