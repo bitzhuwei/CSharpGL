@@ -704,6 +704,7 @@ namespace CSharpGL
         /// <summary>
         /// enable or disable writing into the depth buffer
         /// <para>允许或禁止向深度缓冲区写入数据</para>
+        /// <para>glGet with argument GL_DEPTH_WRITEMASK</para>
         /// </summary>
         /// <param name="writable">Specifies whether the depth buffer is enabled for writing.If flag is GL_FALSE,depth buffer writing is disabled.Otherwise, it is enabled.Initially, depth buffer writing is enabled.
         /// <para>指定是否允许向深度缓冲区写入数据。如果flag是GL_FLASE，那么向深度缓冲区写入是禁止的。否则，就是允许的。初始时，是允许向深度缓冲区写入数据的。</para></param>
