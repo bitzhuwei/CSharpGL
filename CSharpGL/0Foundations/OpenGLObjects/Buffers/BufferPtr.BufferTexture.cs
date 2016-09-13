@@ -6,7 +6,7 @@
     public static class BufferPtrHelper
     {
         /// <summary>
-        ///
+        /// Dump a <see cref="Texture"/> filled with this <see cref="BufferPtr"/>.
         /// </summary>
         /// <param name="bufferPtr"></param>
         /// <param name="internalFormat"></param>

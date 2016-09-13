@@ -107,14 +107,14 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\PixelUnpackBuffer\PixelUnpackBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\AtomicCounterBuffer\AtomicCounterBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.BufferTexture.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\TextureBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfig.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
@@ -156,15 +156,15 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\ImageFiller.cs" />
     <Content Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\readme.md" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\UniformBuffer\UniformBuffer.cs" />
+    <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\readme.md" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBuffer.cs" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Buffers\TextureBuffer\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\readme.md" />
     <None Include="Canvas\readme.md" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs" />
     <Compile Include="Canvas\GLSceneCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -586,7 +586,6 @@
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
     <None Include="0Foundations\OpenGLObjects\Buffers\Buffer.cd" />
-    <None Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.cd" />
     <EmbeddedResource Include="Resources\UIAxis.frag" />
     <EmbeddedResource Include="Resources\UIAxis.vert" />
     <EmbeddedResource Include="Resources\TextModel.frag" />
