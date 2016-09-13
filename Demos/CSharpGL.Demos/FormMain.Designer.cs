@@ -294,6 +294,7 @@
             // 
             this.btn18PickingInScene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn18PickingInScene.Enabled = false;
             this.btn18PickingInScene.Font = new System.Drawing.Font("宋体", 12F);
             this.btn18PickingInScene.Location = new System.Drawing.Point(7, 614);
             this.btn18PickingInScene.Margin = new System.Windows.Forms.Padding(2);
