@@ -165,8 +165,7 @@ namespace GridViewer
 
         public void UpdateColorBar(System.Drawing.Bitmap bitmap)
         {
-            this.colorBufferPtr.Bind();
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            IntPtr pointer = this.colorBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
@@ -178,8 +177,7 @@ namespace GridViewer
                     array[i * 2 + 1] = array[i * 2 + 0];
                 }
             }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            this.colorBufferPtr.Unbind();
+            this.colorBufferPtr.UnmapBuffer();
         }
     }
 }

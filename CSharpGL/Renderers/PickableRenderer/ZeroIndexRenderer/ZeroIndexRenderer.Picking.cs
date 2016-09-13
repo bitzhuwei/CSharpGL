@@ -350,8 +350,7 @@ namespace CSharpGL
                     var array = (vec3*)pointer.ToPointer();
                     pickedGeometry.Positions[i] = array[0];
                 }
-                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-                this.PositionBufferPtr.Unbind();
+                this.PositionBufferPtr.UnmapBuffer();
                 pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
             }
         }

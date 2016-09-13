@@ -209,6 +209,35 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Start to read/write buffer.
+        /// </summary>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public IntPtr MapBuffer(MapBufferAccess access, bool bind = true)
+        {
+            if (bind)
+            {
+                glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
+            }
+            IntPtr pointer = glMapBuffer(OpenGL.GL_ARRAY_BUFFER, (uint)access);
+            return pointer;
+        }
+
+        /// <summary>
+        /// Stop reading/writing buffer.
+        /// </summary>
+        /// <param name="unbind"></param>
+        public void UnmapBuffer(bool unbind = true)
+        {
+            glUnmapBuffer(OpenGL.GL_ARRAY_BUFFER);
+            if (unbind)
+            {
+                glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
+            }
+        }
+
+        /// <summary>
         /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
         /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>

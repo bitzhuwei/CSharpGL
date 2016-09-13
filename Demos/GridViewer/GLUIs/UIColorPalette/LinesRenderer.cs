@@ -60,8 +60,7 @@ namespace GridViewer
         public void UpdateCodedColors(double axisMin, double axisMax, double step)
         {
             int lineCount = (int)((axisMax - axisMin) / step) + 1;
-            this.positionBufferPtr.Bind();
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            IntPtr pointer = this.positionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
@@ -88,8 +87,7 @@ namespace GridViewer
                     array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
                 }
             }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            this.positionBufferPtr.Unbind();
+            this.positionBufferPtr.UnmapBuffer();
         }
 
         //public void UpdateCodedColors(CodedColor[] codedColors)

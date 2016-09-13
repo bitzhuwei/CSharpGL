@@ -38,8 +38,7 @@ namespace GridViewer
             float[] textures = GetTextureCoords(property);
             int gridCellCount = this.DataSource.DimenSize;
 
-            this.colorBufferPtr.Bind();
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
+            IntPtr pointer = this.colorBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
             unsafe
             {
                 var array = (HexahedronTexCoord*)pointer;
@@ -48,8 +47,7 @@ namespace GridViewer
                     array[gridIndex].SetCoord(textures[gridIndex]);
                 }
             }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            this.colorBufferPtr.Unbind();
+            this.colorBufferPtr.UnmapBuffer();
         }
 
         private float[] GetTextureCoords(GridBlockProperty property)

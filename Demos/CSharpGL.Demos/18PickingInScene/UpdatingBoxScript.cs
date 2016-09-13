@@ -34,8 +34,7 @@ namespace CSharpGL.Demos
             BoundingBox box = null;
             var self = this.BindingObject.Renderer as PickableRenderer;
             VertexAttributeBufferPtr positionPtr = self.PositionBufferPtr;
-            positionPtr.Bind();
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+            IntPtr pointer = positionPtr.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (vec3*)pointer;
@@ -48,7 +47,7 @@ namespace CSharpGL.Demos
                 }
                 box = new BoundingBox(min, max);
             }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            positionPtr.UnmapBuffer();
 
             return box;
         }

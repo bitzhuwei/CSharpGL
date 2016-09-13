@@ -113,7 +113,7 @@ namespace CSharpGL
         public delegate void glGetBufferSubData(uint target, int offset, int size, IntPtr data);
 
         /// <summary>
-        ///
+        /// 把服务端（GPU）上的当前Buffer Object映射到客户端（CPU）的内存上。
         /// </summary>
         /// <param name="target"></param>
         /// <param name="access"></param>
@@ -131,7 +131,7 @@ namespace CSharpGL
         public delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
 
         /// <summary>
-        ///
+        /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>

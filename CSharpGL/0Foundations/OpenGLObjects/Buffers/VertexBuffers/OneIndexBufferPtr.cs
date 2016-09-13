@@ -111,6 +111,27 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Start to read/write buffer.
+        /// </summary>
+        /// <param name="access"></param>
+        /// <returns></returns>
+        public IntPtr MapBuffer(MapBufferAccess access)
+        {
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            IntPtr pointer = glMapBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, (uint)access);
+            return pointer;
+        }
+
+        /// <summary>
+        /// Stop reading/writing buffer.
+        /// </summary>
+        public void UnmapBuffer()
+        {
+            glUnmapBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER);
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>

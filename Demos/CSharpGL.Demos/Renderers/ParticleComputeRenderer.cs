@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
             float deltaTime = (float)random.NextDouble() * 5;
             time += (float)random.NextDouble() * 5;
 
-            attractorBufferPtr.Bind();
+            this.attractorBufferPtr.Bind();
             IntPtr attractors = OpenGL.MapBufferRange(BufferTarget.UniformBuffer,
                 0, 64 * Marshal.SizeOf(typeof(vec4)),
                 MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
@@ -89,8 +89,7 @@ namespace CSharpGL.Demos
                 }
             }
 
-            OpenGL.UnmapBuffer(BufferTarget.UniformBuffer);
-            attractorBufferPtr.Unbind();
+            this.attractorBufferPtr.UnmapBuffer();
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();

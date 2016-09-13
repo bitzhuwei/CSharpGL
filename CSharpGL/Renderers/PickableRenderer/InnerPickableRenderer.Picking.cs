@@ -108,8 +108,7 @@ namespace CSharpGL
                         "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
                 }
             }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            this.PositionBufferPtr.Unbind();
+            this.PositionBufferPtr.UnmapBuffer();
 
             return positions;
         }
@@ -144,7 +143,7 @@ namespace CSharpGL
                             "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
                     }
                 }
-                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                this.PositionBufferPtr.UnmapBuffer(false);
             }
             this.PositionBufferPtr.Unbind();
 
