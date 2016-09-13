@@ -112,7 +112,7 @@ namespace CSharpGL.Demos
             this.cullFaceSwitch.On();
 
             // Reset atomic counter
-            OpenGL.BindBufferBase(BindBufferBaseTarget.AtomicCounterBuffer, 0, atomicCountBufferPtr.BufferId);
+            atomicCountBufferPtr.Bind();
             IntPtr data = OpenGL.MapBuffer(BufferTarget.AtomicCounterBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
@@ -120,7 +120,7 @@ namespace CSharpGL.Demos
                 array[0] = 0;
             }
             OpenGL.UnmapBuffer(BufferTarget.AtomicCounterBuffer);
-            OpenGL.BindBufferBase(BindBufferBaseTarget.AtomicCounterBuffer, 0, 0);
+            atomicCountBufferPtr.Unbind();
 
             // Clear head-pointer image
             this.headClearBufferPtr.Bind();
