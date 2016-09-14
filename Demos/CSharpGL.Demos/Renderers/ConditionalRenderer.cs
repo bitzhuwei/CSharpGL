@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
             set { enableConditionalRendering = value; }
         }
 
-        private bool renderBoundingBox = true;
+        private bool renderBoundingBox = false;
 
         public bool RenderBoundingBox
         {
