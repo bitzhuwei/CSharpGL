@@ -1,16 +1,17 @@
-﻿using System.Drawing;
-using System.IO;
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     /// <summary>
     /// demostrates how to perform conditional rendering.
     /// </summary>
     internal class ConditionalRenderer : RendererBase
     {
+        private BoundingBoxRenderer boxRenderer;
+        private RendererBase concreteRenderer;
 
         public static ConditionalRenderer Create()
         {
+            const int xside = 5, yside = 5, zside = 5;
+
             throw new System.NotFiniteNumberException();
         }
 
