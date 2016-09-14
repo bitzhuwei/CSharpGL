@@ -25,6 +25,22 @@ namespace CSharpGL.Demos
             set { enableConditionalRendering = value; }
         }
 
+        private bool renderBoundingBox = true;
+
+        public bool RenderBoundingBox
+        {
+            get { return renderBoundingBox; }
+            set { renderBoundingBox = value; }
+        }
+
+        private bool renderTargetModel = true;
+
+        public bool RenderTargetModel
+        {
+            get { return renderTargetModel; }
+            set { renderTargetModel = value; }
+        }
+
         public static ConditionalRenderer Create()
         {
             var result = new ConditionalRenderer();
@@ -91,7 +107,8 @@ namespace CSharpGL.Demos
                 foreach (var item in this.coupleList)
                 {
                     item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryByRegionWait);
-                    item.Item2.Render(arg);
+                    if (this.renderBoundingBox) { item.Item1.Render(arg); }
+                    if (this.renderTargetModel) { item.Item2.Render(arg); }
                     item.Item3.EndConditionalRender();
                 }
             }
@@ -99,8 +116,8 @@ namespace CSharpGL.Demos
             {
                 foreach (var item in this.coupleList)
                 {
-                    item.Item1.Render(arg);
-                    item.Item2.Render(arg);
+                    if (this.renderBoundingBox) { item.Item1.Render(arg); }
+                    if (this.renderTargetModel) { item.Item2.Render(arg); }
                 }
             }
         }

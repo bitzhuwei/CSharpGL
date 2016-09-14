@@ -27,6 +27,22 @@
         private VertexAttributeBufferPtr normalBufferPtr;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public Cube()
+            : this(new vec3(2, 2, 2))
+        {
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lengths"></param>
+        public Cube(vec3 lengths)
+        {
+            this.Lengths = lengths;
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="bufferName"></param>
@@ -45,6 +61,14 @@
                         {
                             var positionArray = (CubeModel.CubePosition*)buffer.Header.ToPointer();
                             positionArray[0] = CubeModel.position;
+                        }
+                        unsafe
+                        {
+                            var positionArray = (vec3*)buffer.Header.ToPointer();
+                            for (int i = 0; i < 24; i++)
+                            {
+                                positionArray[i] = positionArray[i] / 2 * Lengths;
+                            }
                         }
 
                         positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
@@ -132,6 +156,6 @@
         /// <summary>
         ///
         /// </summary>
-        public vec3 Lengths { get { return new vec3(2, 2, 2); } }
+        public vec3 Lengths { get; private set; }
     }
 }
