@@ -49,6 +49,7 @@
             this.btn19PointCloud = new System.Windows.Forms.Button();
             this.btn20GLSceneCanvas = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -347,12 +348,27 @@
             this.linkLabel1.UseCompatibleTextRendering = true;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // btn21ConditionalRendering
+            // 
+            this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn21ConditionalRendering.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn21ConditionalRendering.Location = new System.Drawing.Point(7, 716);
+            this.btn21ConditionalRendering.Margin = new System.Windows.Forms.Padding(2);
+            this.btn21ConditionalRendering.Name = "btn21ConditionalRendering";
+            this.btn21ConditionalRendering.Size = new System.Drawing.Size(575, 30);
+            this.btn21ConditionalRendering.TabIndex = 0;
+            this.btn21ConditionalRendering.Text = "21 Conditional Rendering";
+            this.btn21ConditionalRendering.UseVisualStyleBackColor = true;
+            this.btn21ConditionalRendering.Click += new System.EventHandler(this.btn21ConditionalRendering_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 750);
+            this.ClientSize = new System.Drawing.Size(593, 793);
             this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.btn21ConditionalRendering);
             this.Controls.Add(this.btn20GLSceneCanvas);
             this.Controls.Add(this.btn19PointCloud);
             this.Controls.Add(this.btn18PickingInScene);
@@ -404,5 +420,6 @@
         private System.Windows.Forms.Button btn19PointCloud;
         private System.Windows.Forms.Button btn20GLSceneCanvas;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button btn21ConditionalRendering;
     }
 }

@@ -11,6 +11,11 @@ namespace CSharpGL.Demos
             InitializeComponent();
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/bitzhuwei/CSharpGL.Data");
+        }
+
         private void btn00GLCanvas_Click(object sender, EventArgs e)
         {
             (new Form00GLCanvas()).Show();
@@ -111,9 +116,9 @@ namespace CSharpGL.Demos
             (new Form20GLSceneCanvas()).Show();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btn21ConditionalRendering_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/bitzhuwei/CSharpGL.Data");
+            (new Form21ConditionalRendering()).Show();
         }
     }
 }

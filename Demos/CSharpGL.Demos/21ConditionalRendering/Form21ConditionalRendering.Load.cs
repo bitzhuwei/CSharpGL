@@ -25,15 +25,15 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                //var renderer = PointCloudRenderer.Create(new PointCloudModel(list));
-                //renderer.Initialize();
-                //SceneObject obj = renderer.WrapToSceneObject("point cloud");
-                //{
-                //    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
-                //    SceneObject boxObj = boxRenderer.WrapToSceneObject("point cloud box");
-                //    obj.Children.Add(boxObj);
-                //}
-                //this.scene.RootObject.Children.Add(obj);
+                var renderer = ConditionalRenderer.Create();
+                renderer.Initialize();
+                SceneObject obj = renderer.WrapToSceneObject("Conditional Renderer Demo");
+                {
+                    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Conditional Renderer Demo box");
+                    obj.Children.Add(boxObj);
+                }
+                this.scene.RootObject.Children.Add(obj);
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
