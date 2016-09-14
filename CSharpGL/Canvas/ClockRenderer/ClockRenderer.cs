@@ -28,58 +28,63 @@
             pinRenderer.Render(arg);
         }
 
-        public vec3 WorldPosition
+        public override vec3 WorldPosition
         {
-            get { return this.circleRenderer.WorldPosition; }
+            //get { return this.circleRenderer.WorldPosition; }
             set
             {
                 this.circleRenderer.WorldPosition = value;
                 this.markRenderer.WorldPosition = value;
                 this.pinRenderer.WorldPosition = value;
+                base.WorldPosition = value;
             }
         }
 
-        public float RotationAngle
+        public override float RotationAngle
         {
-            get { return this.circleRenderer.RotationAngle; }
+            //get { return this.circleRenderer.RotationAngle; }
             set
             {
                 this.circleRenderer.RotationAngle = value;
                 this.markRenderer.RotationAngle = value;
                 this.pinRenderer.RotationAngle = value;
+                base.RotationAngle = value;
             }
         }
 
-        public vec3 RotationAxis
+        public override vec3 RotationAxis
         {
-            get { return this.circleRenderer.RotationAxis; }
+            //get { return this.circleRenderer.RotationAxis; }
             set
             {
                 this.circleRenderer.RotationAxis = value;
                 this.markRenderer.RotationAxis = value;
                 this.pinRenderer.RotationAxis = value;
+                base.RotationAxis = value;
             }
         }
 
-        public vec3 Scale
+        public override vec3 Scale
         {
-            get { return this.circleRenderer.Scale; }
+            //get { return this.circleRenderer.Scale; }
             set
             {
                 this.circleRenderer.Scale = value;
                 this.markRenderer.Scale = value;
                 this.pinRenderer.Scale = value;
+                base.Scale = value;
             }
         }
 
-        public vec3 Lengths
+        public override vec3 Lengths
         {
-            get { return this.circleRenderer.Lengths; }
+            //get { return this.circleRenderer.Lengths; }
             set
             {
                 this.circleRenderer.Lengths = value;
                 this.markRenderer.Lengths = value;
                 this.pinRenderer.Lengths = value;
+                base.Lengths = value;
             }
         }
     }

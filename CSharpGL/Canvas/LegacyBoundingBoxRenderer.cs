@@ -96,30 +96,5 @@
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public vec3 WorldPosition { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float RotationAngle { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public vec3 RotationAxis { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public vec3 Scale { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public vec3 Lengths { get; set; }
     }
 }

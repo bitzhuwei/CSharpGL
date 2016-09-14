@@ -101,15 +101,5 @@ namespace CSharpGL
                 hourLineWidthSwitch.Off();
             }
         }
-
-        public vec3 WorldPosition { get; set; }
-
-        public float RotationAngle { get; set; }
-
-        public vec3 RotationAxis { get; set; }
-
-        public vec3 Scale { get; set; }
-
-        public vec3 Lengths { get; set; }
     }
 }
