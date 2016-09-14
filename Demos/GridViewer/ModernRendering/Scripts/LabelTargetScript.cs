@@ -46,7 +46,7 @@ namespace GridViewer
             else
             {
                 vec3 position = this.labelPosition.Position;
-                this.self.WorldPosition = new vec3(position);
+                this.self.WorldPosition = position;
             }
         }
     }

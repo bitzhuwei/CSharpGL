@@ -72,35 +72,35 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        public event EventHandler ModelTransformUpdated;
+        //public event EventHandler ModelTransformUpdated;
 
-        private void DoModelTranslateUpdated()
-        {
-            EventHandler ModelTransformUpdated = this.ModelTransformUpdated;
-            if (ModelTransformUpdated != null)
-            {
-                ModelTransformUpdated(this, new EventArgs());
-            }
-        }
+        //private void DoModelTranslateUpdated()
+        //{
+        //    EventHandler ModelTransformUpdated = this.ModelTransformUpdated;
+        //    if (ModelTransformUpdated != null)
+        //    {
+        //        ModelTransformUpdated(this, new EventArgs());
+        //    }
+        //}
 
-        /// <summary>
-        /// Position in world space.
-        /// </summary>
-        public override vec3 WorldPosition
-        {
-            get
-            {
-                return base.WorldPosition;
-            }
-            set
-            {
-                if (base.WorldPosition != value)
-                {
-                    base.WorldPosition = value;
-                    DoModelTranslateUpdated();
-                }
-            }
-        }
+        ///// <summary>
+        ///// Position in world space.
+        ///// </summary>
+        //public override vec3 WorldPosition
+        //{
+        //    get
+        //    {
+        //        return base.WorldPosition;
+        //    }
+        //    set
+        //    {
+        //        if (base.WorldPosition != value)
+        //        {
+        //            base.WorldPosition = value;
+        //            DoModelTranslateUpdated();
+        //        }
+        //    }
+        //}
 
         private vec3 firstNode;
         vec3 ILabelPosition.Position { get { return firstNode; } }
