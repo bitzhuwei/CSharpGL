@@ -17,6 +17,14 @@ namespace CSharpGL.Demos
         private DepthMaskSwitch depthMaskSwitch = new DepthMaskSwitch(false);
         private ColorMaskSwitch colorMaskSwitch = new ColorMaskSwitch(false, false, false, false);
 
+        private bool enableConditionalRendering = true;
+
+        public bool EnableConditionalRendering
+        {
+            get { return enableConditionalRendering; }
+            set { enableConditionalRendering = value; }
+        }
+
         public static ConditionalRenderer Create()
         {
             var result = new ConditionalRenderer();
@@ -68,21 +76,32 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.depthMaskSwitch.On();
-            this.colorMaskSwitch.On();
-            foreach (var item in this.coupleList)
+            if (this.EnableConditionalRendering)
             {
-                item.Item3.BeginQuery(QueryTarget.AnySamplesPassed);
-                item.Item1.Render(arg);
-                item.Item3.EndQuery(QueryTarget.AnySamplesPassed);
+                this.depthMaskSwitch.On();
+                this.colorMaskSwitch.On();
+                foreach (var item in this.coupleList)
+                {
+                    item.Item3.BeginQuery(QueryTarget.AnySamplesPassed);
+                    item.Item1.Render(arg);
+                    item.Item3.EndQuery(QueryTarget.AnySamplesPassed);
+                }
+                this.colorMaskSwitch.Off();
+                this.depthMaskSwitch.Off();
+                foreach (var item in this.coupleList)
+                {
+                    item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryByRegionWait);
+                    item.Item2.Render(arg);
+                    item.Item3.EndConditionalRender();
+                }
             }
-            this.colorMaskSwitch.Off();
-            this.depthMaskSwitch.Off();
-            foreach (var item in this.coupleList)
+            else
             {
-                item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryByRegionWait);
-                item.Item2.Render(arg);
-                item.Item3.EndConditionalRender();
+                foreach (var item in this.coupleList)
+                {
+                    item.Item1.Render(arg);
+                    item.Item2.Render(arg);
+                }
             }
         }
     }
