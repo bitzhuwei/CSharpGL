@@ -8,8 +8,8 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class ConditionalRenderer : RendererBase
     {
-        private const int xside = 5, yside = 5, zside = 5;
-        private const int pointCount = 10000;
+        private const int xside = 10, yside = 10, zside = 10;
+        private const int pointCount = 1000;
         private static readonly vec3 unitLengths = new vec3(1, 1, 1);
         private const float scaleFactor = 1.0f;
 
@@ -44,7 +44,14 @@ namespace CSharpGL.Demos
         public static ConditionalRenderer Create()
         {
             var result = new ConditionalRenderer();
-
+            {
+                var wallRenderer = CubeRenderer.Create(new Cube(new vec3(15, 15, 0.1f)));
+                wallRenderer.WorldPosition = new vec3(0, 0, 6);
+                var boxRenderer = CubeRenderer.Create(new Cube(new vec3(10, 10, 0.1f)));
+                boxRenderer.WorldPosition = new vec3(0, 0, 6);
+                var query = new Query();
+                result.coupleList.Add(new Tuple<CubeRenderer, RendererBase, Query>(boxRenderer, wallRenderer, query));
+            }
             for (int x = 0; x < xside; x++)
             {
                 for (int y = 0; y < yside; y++)
@@ -106,7 +113,7 @@ namespace CSharpGL.Demos
                     item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryWait);
                     //if (item.Item3.SampleRendered())
                     {
-                        if (this.renderBoundingBox) { item.Item1.Render(arg); }
+                        //if (this.renderBoundingBox) { item.Item1.Render(arg); }
                         if (this.renderTargetModel) { item.Item2.Render(arg); }
                     }
                     item.Item3.EndConditionalRender();
