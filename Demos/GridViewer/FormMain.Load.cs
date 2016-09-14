@@ -29,7 +29,7 @@ namespace GridViewer
             {
                 SceneObject axisObj = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Axis);
                 {
-                    BoundingBoxRenderer boxRenderer = (axisObj.Renderer as IModelSpace).GetBoundingBoxRenderer();
+                    BoundingBoxRenderer boxRenderer = axisObj.Renderer.GetBoundingBoxRenderer();
                     SceneObject boxObj = boxRenderer.WrapToSceneObject(
                         new ModelScaleScript());
                     axisObj.Children.Add(boxObj);
