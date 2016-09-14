@@ -36,8 +36,8 @@
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(10, 58);
             this.glCanvas1.Name = "glCanvas1";
@@ -79,7 +79,7 @@
             this.Controls.Add(this.glCanvas1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form21ConditionalRendering";
-            this.Text = "Form19PointCloud";
+            this.Text = "Form21ConditionalRendering";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
