@@ -1,17 +1,18 @@
-﻿namespace CSharpGL.Demos
+﻿using System.Collections.Generic;
+
+namespace CSharpGL.Demos
 {
     /// <summary>
     /// demostrates how to perform conditional rendering.
     /// </summary>
     internal class ConditionalRenderer : RendererBase
     {
-        private BoundingBoxRenderer boxRenderer;
-        private RendererBase concreteRenderer;
+        private const int xside = 5, yside = 5, zside = 5;
+
+        private List<Tuple<BoundingBoxRenderer, RendererBase>> coupleList = new List<Tuple<BoundingBoxRenderer, RendererBase>>();
 
         public static ConditionalRenderer Create()
         {
-            const int xside = 5, yside = 5, zside = 5;
-
             throw new System.NotFiniteNumberException();
         }
 
