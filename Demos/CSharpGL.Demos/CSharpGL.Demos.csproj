@@ -128,6 +128,7 @@
     <Compile Include="15UIRenderer\Form15UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\RandomPointsModel.cs" />
     <Compile Include="Models\PointCloudModel.cs" />
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <None Include="readme.md" />
@@ -147,6 +148,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
+    <Compile Include="Renderers\RandomPointsRenderer.cs" />
     <Compile Include="Renderers\PointCloudRenderer.cs" />
     <Compile Include="Renderers\RaycastVolumeImageFiller.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.Render.cs" />
@@ -306,6 +308,12 @@
     <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="shaders\RandomPoints.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\RandomPoints.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\PointCloud.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
