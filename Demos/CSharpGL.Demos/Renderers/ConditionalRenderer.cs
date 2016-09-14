@@ -113,8 +113,8 @@ namespace CSharpGL.Demos
                     item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryByRegionWait);
                     //if (item.Item3.SampleRendered())
                     {
-                        //if (this.renderBoundingBox) { item.Item1.Render(arg); }
                         if (this.renderTargetModel) { item.Item2.Render(arg); }
+                        if (this.renderBoundingBox) { item.Item1.Render(arg); }
                     }
                     item.Item3.EndConditionalRender();
                 }
@@ -123,8 +123,8 @@ namespace CSharpGL.Demos
             {
                 foreach (var item in this.coupleList)
                 {
-                    if (this.renderBoundingBox) { item.Item1.Render(arg); }
                     if (this.renderTargetModel) { item.Item2.Render(arg); }
+                    if (this.renderBoundingBox) { item.Item1.Render(arg); }
                 }
             }
         }
