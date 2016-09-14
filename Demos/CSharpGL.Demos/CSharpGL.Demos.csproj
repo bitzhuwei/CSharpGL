@@ -155,6 +155,7 @@
     <Compile Include="Renderers\ShaderToyRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.Static.cs" />
+    <Compile Include="Renderers\ConditionalRenderer.cs" />
     <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />
