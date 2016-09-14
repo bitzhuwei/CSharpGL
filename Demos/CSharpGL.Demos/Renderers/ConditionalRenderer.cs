@@ -8,9 +8,9 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class ConditionalRenderer : RendererBase
     {
-        private const int xside = 10, yside = 10, zside = 10;
-        private const int pointCount = 1000;
-        private static readonly vec3 unitLengths = new vec3(1, 1, 1);
+        private const int xside = 1, yside = 1, zside = 1;
+        private const int pointCount = 1000000;
+        private static readonly vec3 unitLengths = new vec3(1, 1, 1) * 10;
         private const float scaleFactor = 1.0f;
 
         private List<Tuple<CubeRenderer, RendererBase, Query>> coupleList = new List<Tuple<CubeRenderer, RendererBase, Query>>();
@@ -45,9 +45,9 @@ namespace CSharpGL.Demos
         {
             var result = new ConditionalRenderer();
             {
-                var wallRenderer = CubeRenderer.Create(new Cube(new vec3(15, 15, 0.1f)));
+                var wallRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f)));
                 wallRenderer.WorldPosition = new vec3(0, 0, 6);
-                var boxRenderer = CubeRenderer.Create(new Cube(new vec3(10, 10, 0.1f)));
+                var boxRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f)));
                 boxRenderer.WorldPosition = new vec3(0, 0, 6);
                 var query = new Query();
                 result.coupleList.Add(new Tuple<CubeRenderer, RendererBase, Query>(boxRenderer, wallRenderer, query));
@@ -101,16 +101,16 @@ namespace CSharpGL.Demos
                 this.colorMaskSwitch.On();
                 foreach (var item in this.coupleList)
                 {
-                    item.Item3.BeginQuery(QueryTarget.SamplesPassed);
+                    item.Item3.BeginQuery(QueryTarget.AnySamplesPassed);
                     item.Item1.Render(arg);
-                    item.Item3.EndQuery(QueryTarget.SamplesPassed);
+                    item.Item3.EndQuery(QueryTarget.AnySamplesPassed);
                 }
                 this.colorMaskSwitch.Off();
                 this.depthMaskSwitch.Off();
                 var result = new int[1];
                 foreach (var item in this.coupleList)
                 {
-                    item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryWait);
+                    item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryByRegionWait);
                     //if (item.Item3.SampleRendered())
                     {
                         //if (this.renderBoundingBox) { item.Item1.Render(arg); }
