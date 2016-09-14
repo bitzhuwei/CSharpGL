@@ -277,6 +277,11 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_SAMPLES_PASSED = 0x8914;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_TIME_ELAPSED = 0x88BF;
+
         #endregion OpenGL 1.5
     }
 }

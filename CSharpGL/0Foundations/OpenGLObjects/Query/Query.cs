@@ -33,32 +33,37 @@ namespace CSharpGL
 
         /// <summary>
         /// Begin query.
+        /// <para>delimit the boundaries of a query object.</para>
         /// </summary>
+        /// <param name="target">Specifies the target type of query object established between glBeginQuery and the subsequent glEndQuery.</param>
         public void BeginQuery(QueryTarget target)
         {
             glBeginQuery((uint)target, this.Id);
         }
 
-        // TODO: need demo!
         /// <summary>
         /// Een query.
         /// </summary>
+        /// <param name="target">Specifies the target type of query object to be concluded.s</param>
         public void EndQuery(QueryTarget target)
         {
             glEndQuery((uint)target);
         }
+
         /// <summary>
         /// Begin query.
+        /// <para>delimit the boundaries of a query object.</para>
         /// </summary>
+        /// <param name="target">Specifies the target type of query object established between glBeginQuery and the subsequent glEndQuery. The symbolic constant must be one of GL_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED_CONSERVATIVE, GL_PRIMITIVES_GENERATED, GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN, or GL_TIME_ELAPSED.</param>
         public void BeginQuery(uint target)
         {
             glBeginQuery(target, this.Id);
         }
 
-        // TODO: need demo!
         /// <summary>
         /// Een query.
         /// </summary>
+        /// <param name="target">Specifies the target type of query object to be concluded. The symbolic constant must be one of GL_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED_CONSERVATIVE, GL_PRIMITIVES_GENERATED, GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN, or GL_TIME_ELAPSED.</param>
         public void EndQuery(uint target)
         {
             glEndQuery(target);
