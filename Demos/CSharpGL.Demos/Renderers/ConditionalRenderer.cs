@@ -9,7 +9,7 @@ namespace CSharpGL.Demos
     {
         private const int xside = 5, yside = 5, zside = 5;
 
-        private List<Tuple<BoundingBoxRenderer, RendererBase>> coupleList = new List<Tuple<BoundingBoxRenderer, RendererBase>>();
+        private List<Tuple<BoundingBoxRenderer, RendererBase, Query>> coupleList = new List<Tuple<BoundingBoxRenderer, RendererBase, Query>>();
 
         public static ConditionalRenderer Create()
         {
