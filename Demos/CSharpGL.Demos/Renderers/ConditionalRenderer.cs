@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
         private const int xside = 5, yside = 5, zside = 5;
         private const int pointCount = 10000;
         private static readonly vec3 unitLengths = new vec3(1, 1, 1);
-        private const float scaleFactor = 1.01f;
+        private const float scaleFactor = 1.0f;
 
         private List<Tuple<CubeRenderer, RendererBase, Query>> coupleList = new List<Tuple<CubeRenderer, RendererBase, Query>>();
         private DepthMaskSwitch depthMaskSwitch = new DepthMaskSwitch(false);
