@@ -13,29 +13,34 @@ namespace CSharpGL
         /// <param name="n"></param>
         /// <param name="ids"></param>
         public delegate void glGenQueries(int n, uint[] ids);
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="ids"></param>
         public delegate void glDeleteQueries(int n, uint[] ids);
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public delegate bool glIsQuery(uint id);
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="id"></param>
         public delegate void glBeginQuery(uint target, uint id);
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
         public delegate void glEndQuery(uint target);
+
         /// <summary>
         ///
         /// </summary>
@@ -43,6 +48,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
         public delegate void glGetQueryiv(uint target, uint pname, int[] parameters);
+
         /// <summary>
         ///
         /// </summary>
@@ -50,6 +56,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
         public delegate void glGetQueryObjectiv(uint id, uint pname, int[] parameters);
+
         /// <summary>
         ///
         /// </summary>
@@ -57,6 +64,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
         public delegate void glGetQueryObjectuiv(uint id, uint pname, uint[] parameters);
+
         /// <summary>
         ///
         /// </summary>
@@ -278,9 +286,19 @@ namespace CSharpGL
         public const uint GL_SAMPLES_PASSED = 0x8914;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const uint GL_TIME_ELAPSED = 0x88BF;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_QUERY_RESULT = 0x8866;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_QUERY_RESULT_AVAILABLE = 0x8867;
 
         #endregion OpenGL 1.5
     }

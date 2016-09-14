@@ -94,17 +94,21 @@ namespace CSharpGL.Demos
                 this.colorMaskSwitch.On();
                 foreach (var item in this.coupleList)
                 {
-                    item.Item3.BeginQuery(QueryTarget.AnySamplesPassed);
+                    item.Item3.BeginQuery(QueryTarget.SamplesPassed);
                     item.Item1.Render(arg);
-                    item.Item3.EndQuery(QueryTarget.AnySamplesPassed);
+                    item.Item3.EndQuery(QueryTarget.SamplesPassed);
                 }
                 this.colorMaskSwitch.Off();
                 this.depthMaskSwitch.Off();
+                var result = new int[1];
                 foreach (var item in this.coupleList)
                 {
-                    item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryByRegionWait);
-                    if (this.renderBoundingBox) { item.Item1.Render(arg); }
-                    if (this.renderTargetModel) { item.Item2.Render(arg); }
+                    item.Item3.BeginConditionalRender(ConditionalRenderMode.QueryWait);
+                    //if (item.Item3.SampleRendered())
+                    {
+                        if (this.renderBoundingBox) { item.Item1.Render(arg); }
+                        if (this.renderTargetModel) { item.Item2.Render(arg); }
+                    }
                     item.Item3.EndConditionalRender();
                 }
             }

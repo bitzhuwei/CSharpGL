@@ -94,6 +94,31 @@ namespace CSharpGL
             glEndConditionalRender();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool SampleRendered()
+        {
+            var result = new int[1];
+            int count = 1000;
+            while (result[0] == 0 && count-- > 0)
+            {
+                glGetQueryObjectiv(this.Id, OpenGL.GL_QUERY_RESULT_AVAILABLE, result);
+            }
+
+            if (result[0] != 0)
+            {
+                glGetQueryObjectiv(this.Id, OpenGL.GL_QUERY_RESULT, result);
+            }
+            else
+            {
+                result[0] = 1;
+            }
+
+            return result[0] != 0;
+        }
+
         private bool initialized = false;
 
         /// <summary>
