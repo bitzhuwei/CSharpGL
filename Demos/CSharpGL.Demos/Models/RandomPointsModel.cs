@@ -54,7 +54,7 @@ namespace CSharpGL
         {
             if ((indexBufferPtr == null))
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.Triangles, 0, this.pointCount))
+                using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, this.pointCount))
                 {// begin of using
                     indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }// end of using
