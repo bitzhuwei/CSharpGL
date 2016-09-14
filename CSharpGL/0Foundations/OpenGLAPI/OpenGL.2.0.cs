@@ -1019,18 +1019,20 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_UPPER_LEFT = 0x8CA2;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_STENCIL_BACK_REF = 0x8CA3;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_STENCIL_BACK_VALUE_MASK = 0x8CA4;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_STENCIL_BACK_WRITEMASK = 0x8CA5;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_STENCIL_BACK_REF = 0x8CA3;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_STENCIL_BACK_VALUE_MASK = 0x8CA4;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_STENCIL_BACK_WRITEMASK = 0x8CA5;
 
         #endregion OpenGL 2.0
     }

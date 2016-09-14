@@ -318,6 +318,11 @@
         /// <summary>
         ///
         /// </summary>
+        StencilBackWritemask = OpenGL.GL_STENCIL_BACK_WRITEMASK,
+
+        /// <summary>
+        ///
+        /// </summary>
         MatrixMode = OpenGL.GL_MATRIX_MODE,
 
         /// <summary>
