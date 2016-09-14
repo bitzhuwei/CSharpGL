@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                 }
             }
 
-            result.Lengths = new vec3(xside, yside, zside) * unitLengths * scaleFactor;
+            result.Lengths = new vec3(xside + 1, yside + 1, zside + 1) * unitLengths * scaleFactor;
 
             return result;
         }
