@@ -151,7 +151,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// Use this program.
         /// </summary>
         public void Bind()
         {
@@ -159,7 +159,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// Stop using this program.
         /// </summary>
         public void Unbind()
         {
