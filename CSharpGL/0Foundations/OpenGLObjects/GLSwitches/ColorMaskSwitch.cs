@@ -18,7 +18,6 @@
         /// <summary>
         /// Toggle of color mask.
         /// </summary>
-        /// <param name="writable">mask when this switch is turned on?</param>
         /// <param name="redWritable">red mask when this switch is turned on</param>
         /// <param name="greenWritable">green mask when this switch is turned on</param>
         /// <param name="blueWritable">blue mask when this switch is turned on</param>
