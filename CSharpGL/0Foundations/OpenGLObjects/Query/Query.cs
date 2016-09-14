@@ -5,6 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// A query object.
     /// <para>Occlusion Querys enable you to determine if a representative set of geometry will be visible after depth testing.</para>
+    /// <para>Conditional rendering is for a single object that takes a lot of rendering resources. That means you only want to render it if it is absolutely necessary.</para>
     /// </summary>
     public partial class Query : IDisposable
     {
@@ -67,28 +68,25 @@ namespace CSharpGL
         /// <summary>
         /// Begin conditional rendering.
         /// </summary>
-        public void Begin(ConditionalRenderMode mode)
+        public void BeginConditionalRender(ConditionalRenderMode mode)
         {
-            glBeginQuery((uint)QueryTarget.SamplesPassed, this.Id);
             glBeginConditionalRender(this.Id, (uint)mode);
         }
 
         /// <summary>
         /// Begin conditional rendering.
         /// </summary>
-        public void Begin(uint mode)
+        public void BeginConditionalRender(uint mode)
         {
-            glBeginQuery((uint)QueryTarget.SamplesPassed, this.Id);
             glBeginConditionalRender(this.Id, mode);
         }
 
         /// <summary>
         /// End conditional rendering.
         /// </summary>
-        public void End()
+        public void EndConditionalRender()
         {
             glEndConditionalRender();
-            glEndQuery((uint)QueryTarget.SamplesPassed);
         }
 
         private bool initialized = false;
