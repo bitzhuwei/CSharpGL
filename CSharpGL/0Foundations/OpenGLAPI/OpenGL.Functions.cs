@@ -2408,14 +2408,14 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glShadeModel", SetLastError = true)]
         public static extern void ShadeModel(uint mode);
 
-        ///// <summary>
-        ///// This function sets the current stencil buffer function.
-        ///// </summary>
-        ///// <param name="func">The function type.</param>
-        ///// <param name="reference">The function reference.</param>
-        ///// <param name="mask">The function mask.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glStencilFunc", SetLastError = true)]
-        //public static extern void StencilFunc(uint func, int reference, uint mask);
+        /// <summary>
+        /// This function sets the current stencil buffer function.
+        /// </summary>
+        /// <param name="func">The function type.</param>
+        /// <param name="reference">The function reference.</param>
+        /// <param name="mask">The function mask.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glStencilFunc", SetLastError = true)]
+        public static extern void StencilFunc(uint func, int reference, uint mask);
 
         /// <summary>
         /// control the front and back writing of individual bits in the stencil planes
