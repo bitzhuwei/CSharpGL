@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace CSharpGL.Demos
 {
@@ -28,6 +29,10 @@ namespace CSharpGL.Demos
                     {
                         var model = new RandomPointsModel(unitLengths, pointCount);
                         RandomPointsRenderer renderer = RandomPointsRenderer.Create(model);
+                        renderer.PointColor = Color.FromArgb(
+                            (int)((float)(x + 1) / (float)xside * 255),
+                            (int)((float)(y + 1) / (float)yside * 255),
+                            (int)((float)(z + 1) / (float)zside * 255));
                         renderer.WorldPosition = new vec3(
                             (float)x / (float)(xside - 1) - 0.5f,
                             (float)y / (float)(yside - 1) - 0.5f,
