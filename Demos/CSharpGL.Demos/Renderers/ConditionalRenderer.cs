@@ -11,15 +11,15 @@ namespace CSharpGL.Demos
         private const int xside = 5, yside = 5, zside = 5;
         private const int pointCount = 10000;
         private static readonly vec3 unitLengths = new vec3(1, 1, 1);
-        private const float scaleFactor = 1.1f;
+        private const float scaleFactor = 1.01f;
 
-        private List<Tuple<BoundingBoxRenderer, RendererBase, Query>> coupleList = new List<Tuple<BoundingBoxRenderer, RendererBase, Query>>();
+        private List<Tuple<RendererBase, RendererBase, Query>> coupleList = new List<Tuple<RendererBase, RendererBase, Query>>();
         private DepthMaskSwitch depthMaskSwitch = new DepthMaskSwitch(false);
         private ColorMaskSwitch colorMaskSwitch = new ColorMaskSwitch(false, false, false, false);
 
         private bool enableConditionalRendering = true;
 
-        public bool EnableConditionalRendering
+        public bool ConditionalRendering
         {
             get { return enableConditionalRendering; }
             set { enableConditionalRendering = value; }
@@ -57,17 +57,20 @@ namespace CSharpGL.Demos
                             (int)((float)(x + 1) / (float)xside * 255),
                             (int)((float)(y + 1) / (float)yside * 255),
                             (int)((float)(z + 1) / (float)zside * 255));
-                        renderer.WorldPosition = new vec3(
-                            (float)x / (float)(xside - 1) - 0.5f,
-                            (float)y / (float)(yside - 1) - 0.5f,
-                            (float)z / (float)(zside - 1) - 0.5f)
-                            * new vec3(xside, yside, zside)
-                            * unitLengths
-                            * scaleFactor;// move a little longer.
-                        BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
-                        boxRenderer.SwitchList.Find(glSwitch => glSwitch is PolygonModeSwitch).InUse = false;
+                        //renderer.WorldPosition = new vec3(
+                        //    (float)x / (float)(xside - 1) - 0.5f,
+                        //    (float)y / (float)(yside - 1) - 0.5f,
+                        //    (float)z / (float)(zside - 1) - 0.5f)
+                        //    * new vec3(xside, yside, zside)
+                        //    * unitLengths
+                        //    * scaleFactor;// move a little longer.
+                        renderer.WorldPosition =
+                            (new vec3(x, y, z) * unitLengths * scaleFactor)
+                            - (new vec3(xside - 1, yside - 1, zside - 1) * unitLengths * scaleFactor * 0.5f);
+                        var cubeRenderer = CubeRenderer.Create(new Cube(unitLengths));
+                        cubeRenderer.WorldPosition = renderer.WorldPosition;
                         var query = new Query();
-                        result.coupleList.Add(new Tuple<BoundingBoxRenderer, RendererBase, Query>(boxRenderer, renderer, query));
+                        result.coupleList.Add(new Tuple<RendererBase, RendererBase, Query>(cubeRenderer, renderer, query));
                     }
                 }
             }
@@ -92,7 +95,7 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (this.EnableConditionalRendering)
+            if (this.ConditionalRendering)
             {
                 this.depthMaskSwitch.On();
                 this.colorMaskSwitch.On();

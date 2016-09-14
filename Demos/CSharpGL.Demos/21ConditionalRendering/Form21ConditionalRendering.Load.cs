@@ -10,6 +10,7 @@ namespace CSharpGL.Demos
     public partial class Form21ConditionalRendering
     {
         private Scene scene;
+        private ConditionalRenderer conditionalRenderer;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -34,6 +35,8 @@ namespace CSharpGL.Demos
                     obj.Children.Add(boxObj);
                 }
                 this.scene.RootObject.Children.Add(obj);
+
+                this.conditionalRenderer = renderer;
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
