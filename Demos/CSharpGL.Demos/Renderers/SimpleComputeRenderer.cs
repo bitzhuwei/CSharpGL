@@ -32,21 +32,13 @@ namespace CSharpGL.Demos
         {
             {
                 // Initialize our compute program
-                var computeProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\compute.comp"), ShaderType.ComputeShader);
-                Shader shader = shaderCode.CreateShader();
-                computeProgram.Initialize(shader);
-                shader.Delete();
-                this.computeProgram = computeProgram;
+                this.computeProgram = shaderCode.CreateProgram();
             }
             {
                 // Initialize our resetProgram
-                var resetProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\computeReset.comp"), ShaderType.ComputeShader);
-                Shader shader = shaderCode.CreateShader();
-                resetProgram.Initialize(shader);
-                shader.Delete();
-                this.resetProgram = resetProgram;
+                this.resetProgram = shaderCode.CreateProgram();
             }
             {
                 // This is the texture that the compute program will write into

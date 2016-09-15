@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// A GLSL shader(supported extensions: vs, fs, gs, vsh, fsh, gsh, vshader, fshader, gshader, vert, frag, geom, tesc, tese, comp, glsl).
     /// </summary>
-    public class Shader
+    public partial class Shader : IDisposable
     {
         private static OpenGL.glCreateShader glCreateShader;
         private static OpenGL.glShaderSource glShaderSource;
@@ -50,15 +50,6 @@ namespace CSharpGL
             }
 
             this.ShaderObject = shaderObject;
-        }
-
-        /// <summary>
-        /// Delete this shader.
-        /// </summary>
-        public void Delete()
-        {
-            glDeleteShader(ShaderObject);
-            ShaderObject = 0;
         }
 
         /// <summary>

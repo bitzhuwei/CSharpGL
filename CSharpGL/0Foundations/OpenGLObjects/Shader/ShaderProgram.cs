@@ -11,7 +11,7 @@ namespace CSharpGL
     /// A shader program object.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class ShaderProgram
+    public partial class ShaderProgram
     {
         private static OpenGL.glCreateProgram glCreateProgram;
         private static OpenGL.glAttachShader glAttachShader;

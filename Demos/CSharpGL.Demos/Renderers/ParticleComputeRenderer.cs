@@ -31,12 +31,8 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             {
-                var computeProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\particleSimulator.comp"), ShaderType.ComputeShader);
-                var shader = shaderCode.CreateShader();
-                computeProgram.Initialize(shader);
-                shader.Delete();
-                this.computeProgram = computeProgram;
+                this.computeProgram = shaderCode.CreateProgram();
             }
             {
                 const bool autoDispose = false;

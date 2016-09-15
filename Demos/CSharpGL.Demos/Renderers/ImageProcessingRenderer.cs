@@ -21,13 +21,9 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             {
-                var computeProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(
                     @"shaders\ImageProcessing.comp"), ShaderType.ComputeShader);
-                var shader = shaderCode.CreateShader();
-                computeProgram.Initialize(shader);
-                shader.Delete();
-                this.computeProgram = computeProgram;
+                this.computeProgram = shaderCode.CreateProgram();
             }
             {
                 Bitmap bitmap = new System.Drawing.Bitmap(this.textureFilename);

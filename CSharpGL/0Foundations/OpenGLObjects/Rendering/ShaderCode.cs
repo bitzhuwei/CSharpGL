@@ -56,6 +56,21 @@ namespace CSharpGL
     public static class ShaderCodesHelper
     {
         /// <summary>
+        /// Creates a shader program by a single shader.
+        /// </summary>
+        /// <param name="shaderCode"></param>
+        /// <returns></returns>
+        public static ShaderProgram CreateProgram(this ShaderCode shaderCode)
+        {
+            var program = new ShaderProgram();
+            Shader shader = shaderCode.CreateShader();
+            program.Initialize(shader);
+            shader.Dispose();
+
+            return program;
+        }
+
+        /// <summary>
         /// Creates a shader program.
         /// </summary>
         /// <param name="shaderCodes"></param>
@@ -65,7 +80,7 @@ namespace CSharpGL
             var program = new ShaderProgram();
             var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
             program.Initialize(shaders);
-            foreach (var item in shaders) { item.Delete(); }
+            foreach (var item in shaders) { item.Dispose(); }
             return program;
         }
     }
