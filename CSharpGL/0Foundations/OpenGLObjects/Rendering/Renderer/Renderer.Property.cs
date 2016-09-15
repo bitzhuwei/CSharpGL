@@ -10,58 +10,17 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public DrawMode Mode
-        {
-            get
-            {
-                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
-                if (indexBufferPtr != null)
-                {
-                    return indexBufferPtr.Mode;
-                }
-                else
-                {
-                    throw new Exception("Index Buffer Not Initialized!");
-                    //return CSharpGL.DrawMode.Points;
-                }
-            }
-            set
-            {
-                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
-                if (indexBufferPtr != null)
-                {
-                    indexBufferPtr.Mode = value;
-                }
-                else
-                {
-                    throw new Exception("Index Buffer Not Initialized!");
-                }
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public GLSwitchList SwitchList
-        {
-            get { return switchList; }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         [Editor(typeof(UniformVariableListEditor), typeof(UITypeEditor))]
-        public List<UniformVariable> UniformVariables
-        {
-            get { return uniformVariables; }
-        }
+        public List<UniformVariable> UniformVariables { get { return uniformVariables; } }
 
         /// <summary>
         ///
         /// </summary>
-        public IndexBufferPtr IndexBufferPtr
-        {
-            get { return this.indexBufferPtr; }
-        }
+        public GLSwitchList SwitchList { get { return switchList; } }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public IndexBufferPtr IndexBufferPtr { get { return this.indexBufferPtr; } }
     }
 }

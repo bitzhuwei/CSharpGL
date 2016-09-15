@@ -85,7 +85,7 @@ namespace CSharpGL.Demos
         private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} {1} FPS: {2}", this.Name,
-                this.rendererDict[this.selectedModel].PickableRenderer.Mode, this.glCanvas1.FPS.ToShortString());
+                this.rendererDict[this.selectedModel].PickableRenderer.IndexBufferPtr.Mode, this.glCanvas1.FPS.ToShortString());
         }
 
         public Color ClearColor { get; set; }
