@@ -175,7 +175,7 @@ namespace CSharpGL
 
         public override int Count()
         {
-            return indexBufferPtr.OriginalElementCount;
+            return indexBufferPtr.Length;
         }
 
         public override void SetFirst(int value)

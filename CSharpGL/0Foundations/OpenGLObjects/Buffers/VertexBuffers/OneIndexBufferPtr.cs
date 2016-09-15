@@ -43,12 +43,6 @@ namespace CSharpGL
         /// </summary>
         public int ElementCount { get; set; }
 
-        // TODO: remove this.
-        /// <summary>
-        /// How many indexes are there in total?
-        /// </summary>
-        public int OriginalElementCount { get { return this.Length; } }
-
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// </summary>
