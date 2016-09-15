@@ -15,32 +15,18 @@ namespace CSharpGL
         protected override void DoRender(RenderEventArgs arg)
         {
             ShaderProgram program = this.Program;
-            if (program == null) { return; }
 
             // 绑定shader
             program.Bind();
-
             SetUniformValues(program);
 
             SwitchesOn();
 
-            IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
-
-            {
-                VertexArrayObject vertexArrayObject = this.vertexArrayObject;
-                if (vertexArrayObject != null)
-                {
-                    if (vertexArrayObject.IndexBufferPtr != indexBufferPtr)
-                    { vertexArrayObject.Render(arg, program, indexBufferPtr); }
-                    else
-                    { vertexArrayObject.Render(arg, program); }
-                }
-            }
+            this.vertexArrayObject.Render(arg, program);
 
             SwithesOff();
 
             ResetUniformValues(program);
-
             // 解绑shader
             program.Unbind();
         }
