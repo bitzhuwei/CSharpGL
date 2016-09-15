@@ -37,6 +37,8 @@ namespace CSharpGL
         /// <param name="target">Specifies the target type of query object established between glBeginQuery and the subsequent glEndQuery.</param>
         public void BeginQuery(QueryTarget target)
         {
+            if (!this.initialized) { this.Initialize(); }
+
             glBeginQuery((uint)target, this.Id);
         }
 
@@ -56,6 +58,8 @@ namespace CSharpGL
         /// <param name="target">Specifies the target type of query object established between glBeginQuery and the subsequent glEndQuery. The symbolic constant must be one of GL_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED_CONSERVATIVE, GL_PRIMITIVES_GENERATED, GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN, or GL_TIME_ELAPSED.</param>
         public void BeginQuery(uint target)
         {
+            if (!this.initialized) { this.Initialize(); }
+
             glBeginQuery(target, this.Id);
         }
 
