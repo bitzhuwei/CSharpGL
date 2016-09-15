@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -14,47 +15,60 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            base.DoInitialize();
+            // init shader program.
+            ShaderProgram program = this.shaderCodes.CreateProgram();
 
+            // init property buffer objects.
+            IBufferable bufferable = this.model;
+            var propertyBufferPtrs = new VertexAttributeBufferPtr[propertyNameMap.Count()];
+            VertexAttributeBufferPtr positionBufferPtr = null;
+            int index = 0;
             foreach (var item in propertyNameMap)
             {
-                VertexAttributeBufferPtr bufferPtr = this.model.GetProperty(
+                VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
                     item.NameInIBufferable, item.VarNameInShader);
-                if (bufferPtr == null) { throw new Exception(); }
-
+                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
+                propertyBufferPtrs[index++] = bufferPtr;
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {
-                    this.positionBufferPtr = new VertexAttributeBufferPtr(
+                    positionBufferPtr = new VertexAttributeBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
                         bufferPtr.BufferId,
                         bufferPtr.Config,
                         bufferPtr.Length,
                         bufferPtr.ByteLength,
                         0);
-                    break;
                 }
             }
 
             // init index buffer
+            OneIndexBufferPtr indexBufferPtr;
             {
-                //IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
-
                 using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt,
-                    this.indexBufferPtr.Mode, BufferUsage.DynamicDraw))
+                     DrawMode.Points, // any mode is OK as we'll update it later in other place.
+                     BufferUsage.DynamicDraw))
                 {
-                    buffer.Create(this.positionBufferPtr.ByteLength / (this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength));
-                    this.indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    buffer.Create(positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
+                    indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
                 }
-            }
-            {
-                var oneIndexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
-                this.maxElementCount = oneIndexBufferPtr.ElementCount;
-                oneIndexBufferPtr.ElementCount = 0;// 高亮0个图元
+                this.maxElementCount = indexBufferPtr.ElementCount;
+                indexBufferPtr.ElementCount = 0;// 高亮0个图元
+                // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
+                GLSwitch glSwitch = new PrimitiveRestartSwitch(indexBufferPtr);
+                this.switchList.Add(glSwitch);
             }
 
-            //this.bufferable = null;
-            //this.shaderCodes = null;
-            //this.propertyNameMap = null;
+            // init VAO.
+            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, propertyBufferPtrs);
+            vertexArrayObject.Create(program);
+
+            // sets fields.
+            this.Program = program;
+            this.propertyBufferPtrs = propertyBufferPtrs;
+            this.indexBufferPtr = indexBufferPtr;
+            this.vertexArrayObject = vertexArrayObject;
+
+            this.positionBufferPtr = positionBufferPtr;
         }
     }
 }
