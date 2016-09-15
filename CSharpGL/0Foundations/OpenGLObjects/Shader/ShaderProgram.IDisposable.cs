@@ -30,7 +30,7 @@ namespace CSharpGL
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        protected void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (this.disposedValue == false)
             {
