@@ -9,10 +9,6 @@ namespace CSharpGL
     {
         private vec4 clearColor = new vec4();
 
-        static ClearColorSwitch()
-        {
-        }
-
         /// <summary>
         ///
         /// </summary>
