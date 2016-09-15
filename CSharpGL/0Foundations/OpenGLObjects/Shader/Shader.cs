@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Text;
 
 namespace CSharpGL
@@ -6,6 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// A GLSL shader(supported extensions: vs, fs, gs, vsh, fsh, gsh, vshader, fshader, gshader, vert, frag, geom, tesc, tese, comp, glsl).
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Shader : IDisposable
     {
         private static OpenGL.glCreateShader glCreateShader;
