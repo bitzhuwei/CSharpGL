@@ -23,8 +23,8 @@ namespace CSharpGL
         protected uint[] id = new uint[1];
 
         /// <summary>
-        /// texture's id/name.
-        /// 纹理名（用于标识一个纹理，由OpenGL指定），可在shader中用于指定uniform sampler2D纹理变量。
+        /// texture's id/name from glGenTextures().
+        /// 纹理名（用于标识一个纹理，由OpenGL指定）。
         /// </summary>
         public uint Id { get { return this.id[0]; } }
 
