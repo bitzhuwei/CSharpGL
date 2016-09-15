@@ -14,14 +14,14 @@ namespace CSharpGL
         /// <summary>
         /// You want to use this switch?
         /// </summary>
-        public bool InUse { get; set; }
+        public bool Enabled { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         public GLSwitch()
         {
-            this.InUse = true;
+            this.Enabled = true;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// </summary>
         public void On()
         {
-            if (this.InUse)
+            if (this.Enabled)
             {
                 this.inUse = true;
                 this.SwitchOn();
