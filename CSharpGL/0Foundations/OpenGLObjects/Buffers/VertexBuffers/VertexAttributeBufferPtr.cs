@@ -3,7 +3,7 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Vertex' property buffer's pointer.
+    /// Vertex' attribute buffer's pointer.
     /// </summary>
     public class VertexAttributeBufferPtr : BufferPtr
     {
@@ -23,7 +23,7 @@ namespace CSharpGL
         protected static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
 
         /// <summary>
-        /// Vertex' property buffer's pointer.
+        /// Vertex' attribute buffer's pointer.
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
