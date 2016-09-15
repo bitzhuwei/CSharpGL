@@ -8,9 +8,9 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class ConditionalRenderer : RendererBase
     {
-        private const int xside = 1, yside = 1, zside = 1;
-        private const int pointCount = 1000000;
-        private static readonly vec3 unitLengths = new vec3(1, 1, 1) * 10;
+        private const int xside = 5, yside = 5, zside = 5;
+        private const int pointCount = 10000;
+        private static readonly vec3 unitLengths = new vec3(1, 1, 1);
         private const float scaleFactor = 1.0f;
 
         private List<Tuple<CubeRenderer, RendererBase, Query>> coupleList = new List<Tuple<CubeRenderer, RendererBase, Query>>();
@@ -45,9 +45,9 @@ namespace CSharpGL.Demos
         {
             var result = new ConditionalRenderer();
             {
-                var wallRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f)));
+                var wallRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
                 wallRenderer.WorldPosition = new vec3(0, 0, 6);
-                var boxRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f)));
+                var boxRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
                 boxRenderer.WorldPosition = new vec3(0, 0, 6);
                 var query = new Query();
                 result.coupleList.Add(new Tuple<CubeRenderer, RendererBase, Query>(boxRenderer, wallRenderer, query));
