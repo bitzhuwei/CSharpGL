@@ -3,20 +3,18 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// 3D坐标系
-    /// <para>使用<see cref="ZeroIndexBuffer"/></para>
+    /// an 3D axis
     /// </summary>
     public class Axis : IBufferable
     {
         private AxisModel model;
 
         /// <summary>
-        /// 3D坐标系
-        ///
+        /// an 3D axis
         /// </summary>
         /// <param name="partCount"></param>
         /// <param name="radius"></param>
-        public Axis(int partCount = 24, float radius = 1.0f)
+        public Axis(int partCount = 24, float radius = 0.5f)
         {
             if (partCount < 2) { throw new ArgumentException(); }
             this.model = new AxisModel(partCount, radius);

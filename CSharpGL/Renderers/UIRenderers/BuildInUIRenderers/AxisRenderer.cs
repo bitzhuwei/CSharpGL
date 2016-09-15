@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Renders an axis with white circle on arrow.
+    /// Renders an 3D axis.
     /// </summary>
     internal class AxisRenderer : PickableRenderer
     {
