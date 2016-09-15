@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -11,23 +12,29 @@ namespace CSharpGL
 
             VertexAttributeBufferPtr positionBufferPtr = null;
             IBufferable bufferable = this.model;
-            foreach (var item in propertyNameMap)
+            VertexAttributeBufferPtr[] propertyBufferPtrs;
             {
-                VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
-                    item.NameInIBufferable, item.VarNameInShader);
-                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
-
-                if (item.NameInIBufferable == positionNameInIBufferable)
+                var list = new List<VertexAttributeBufferPtr>();
+                foreach (var item in propertyNameMap)
                 {
-                    positionBufferPtr = new VertexAttributeBufferPtr(
-                        "in_Position",// in_Postion same with in the PickingShader.vert shader
-                        bufferPtr.BufferId,
-                        bufferPtr.Config,
-                        bufferPtr.Length,
-                        bufferPtr.ByteLength,
-                        0);
-                    break;
+                    VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
+                     item.NameInIBufferable, item.VarNameInShader);
+                    if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
+
+                    if (item.NameInIBufferable == positionNameInIBufferable)
+                    {
+                        positionBufferPtr = new VertexAttributeBufferPtr(
+                            "in_Position",// in_Postion same with in the PickingShader.vert shader
+                            bufferPtr.BufferId,
+                            bufferPtr.Config,
+                            bufferPtr.Length,
+                            bufferPtr.ByteLength,
+                            0);
+                        break;
+                    }
+                    list.Add(bufferPtr);
                 }
+                propertyBufferPtrs = list.ToArray();
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。

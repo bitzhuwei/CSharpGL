@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CSharpGL
@@ -15,14 +16,17 @@ namespace CSharpGL
 
             // init property buffer objects.
             IBufferable bufferable = this.model;
-            var propertyBufferPtrs = new VertexAttributeBufferPtr[propertyNameMap.Count()];
-            int index = 0;
-            foreach (var item in propertyNameMap)
+            VertexAttributeBufferPtr[] propertyBufferPtrs;
             {
-                VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
-                    item.NameInIBufferable, item.VarNameInShader);
-                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
-                propertyBufferPtrs[index++] = bufferPtr;
+                var list = new List<VertexAttributeBufferPtr>();
+                foreach (var item in propertyNameMap)
+                {
+                    VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
+                        item.NameInIBufferable, item.VarNameInShader);
+                    if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
+                    list.Add(bufferPtr);
+                }
+                propertyBufferPtrs = list.ToArray();
             }
 
             // init index buffer.
