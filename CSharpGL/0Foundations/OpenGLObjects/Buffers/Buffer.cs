@@ -5,22 +5,22 @@ namespace CSharpGL
     /// <summary>
     /// Vertex Buffer Object.
     /// </summary>
-    public abstract class Buffer : IDisposable
+    public abstract partial class Buffer : IDisposable
     {
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glGenBuffers glGenBuffers;
+        protected static OpenGL.glGenBuffers glGenBuffers;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glBindBuffer glBindBuffer;
+        protected static OpenGL.glBindBuffer glBindBuffer;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glBufferData glBufferData;
+        protected static OpenGL.glBufferData glBufferData;
 
         /// <summary>
         ///
@@ -30,6 +30,7 @@ namespace CSharpGL
         /// <summary>
         /// 此VBO中的数据在内存中的起始地址
         /// <para>Start position of this buffer; first element's position of this buffer.</para>
+        /// <para>Similar to <code>array</code> in <code>int array[Length];</code></para>
         /// </summary>
         public IntPtr Header
         {
@@ -41,8 +42,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 此VBO中的数据在内存中占用多少个字节？
+        /// 此VBO中的数据在内存中占用多少个字节？（元素的总数 * 单个元素的字节数）
         /// <para>How many bytes in this buffer?</para>
+        /// <para>Length * elementSize</para>
         /// </summary>
         public int ByteLength
         {
@@ -56,6 +58,7 @@ namespace CSharpGL
         /// <summary>
         /// 此VBO含有多个个元素？
         /// <para>How many elements?</para>
+        /// <para>Similar to <code>Length</code> in <code>int array[Length];</code></para>
         /// </summary>
         public int Length
         {
@@ -81,14 +84,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 申请指定长度的非托管数组。
+        /// 申请指定元素数目的非托管数组。
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         public abstract void Create(int elementCount);
 
         /// <summary>
-        /// 获取一个可渲染此VBO的渲染器。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+        /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
         /// Uploads this buffer to GPU memory and gets its pointer.
         /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
@@ -98,7 +101,7 @@ namespace CSharpGL
         private BufferPtr bufferPtr = null;
 
         /// <summary>
-        /// 获取一个可渲染此VBO的渲染器。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+        /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
         /// Uploads this buffer to GPU memory and gets its pointer.
         /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
@@ -126,46 +129,6 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("VBO: {0}, usage: {1}", this.array, Usage);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        ~Buffer()
-        {
-            this.Dispose(false);
-        }
-
-        private bool disposedValue = false;
-
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
-                    // Dispose managed resources.
-                }
-
-                // Dispose unmanaged resources.
-                UnmanagedArrayBase array = this.array;
-                this.array = null;
-                if (array != null)
-                {
-                    array.Dispose();
-                }
-            }
-
-            this.disposedValue = true;
         }
     }
 }

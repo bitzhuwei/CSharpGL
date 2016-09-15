@@ -63,14 +63,15 @@ namespace CSharpGL
         public static int disposedCount = 0;
 
         /// <summary>
+        /// 此非托管数组中的数据在内存中的起始地址
         /// Start position of array; Head of array; first element's position of array.
-        /// <para><code>array</code> in <code>int array[Length];</code></para>
+        /// <para>Similar to <code>array</code> in <code>int array[Length];</code></para>
         /// </summary>
         public IntPtr Header { get; private set; }
 
         /// <summary>
         /// How many elements?
-        /// <para><code>Length</code> in <code>int array[Length];</code></para>
+        /// <para>Similar to <code>Length</code> in <code>int array[Length];</code></para>
         /// </summary>
         public int Length { get; private set; }
 
