@@ -53,7 +53,7 @@ namespace CSharpGL
             return Pick(arg, rect, pickableElements);
         }
 
-        private static Framebuffer pickingFramebuffer;
+        //private static Framebuffer pickingFramebuffer;
 
         /// <summary>
         /// Color Coded Picking
@@ -71,19 +71,19 @@ namespace CSharpGL
             if (pickableElements.Length == 0) { return result; }
             if (!PickedSomething(rect, arg.CanvasRect)) { return result; }
 
-            if (pickingFramebuffer == null
-                || pickingFramebuffer.Width != arg.CanvasRect.Width
-                || pickingFramebuffer.Height != arg.CanvasRect.Height)
-            {
-                if (pickingFramebuffer != null) { pickingFramebuffer.Dispose(); }
+            //if (pickingFramebuffer == null
+            //    || pickingFramebuffer.Width != arg.CanvasRect.Width
+            //    || pickingFramebuffer.Height != arg.CanvasRect.Height)
+            //{
+            //    if (pickingFramebuffer != null) { pickingFramebuffer.Dispose(); }
 
-                pickingFramebuffer = InitializePickingFramebuffer(
-                  arg.CanvasRect.Width, arg.CanvasRect.Height);
-            }
-            pickingFramebuffer.Bind();
+            //    pickingFramebuffer = InitializePickingFramebuffer(
+            //      arg.CanvasRect.Width, arg.CanvasRect.Height);
+            //}
+            //pickingFramebuffer.Bind();
             Render4Picking(arg, pickableElements);
             List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, arg.CanvasRect.Height);
-            pickingFramebuffer.Unbind();
+            //pickingFramebuffer.Unbind();
             foreach (var tuple in stageVertexIdList)
             {
                 int x = tuple.Item1.X;
