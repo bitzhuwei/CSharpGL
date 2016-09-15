@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    ///
+    /// A shader program object.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class ShaderProgram
@@ -51,13 +51,6 @@ namespace CSharpGL
         private static OpenGL.glGetUniformLocation glGetUniformLocation;
 
         /// <summary>
-        ///
-        /// </summary>
-        public ShaderProgram()
-        {
-        }
-
-        /// <summary>
         /// Initialize this shader program object.
         /// </summary>
         /// <param name="shaders"></param>
@@ -79,7 +72,6 @@ namespace CSharpGL
             }
 
             uint program = glCreateProgram();
-            this.ShaderProgramObject = program;
 
             foreach (var item in shaders)
             {
@@ -88,9 +80,9 @@ namespace CSharpGL
 
             glLinkProgram(program);
 
-            if (this.GetLinkStatus() == false)
+            if (this.GetLinkStatus(program) == false)
             {
-                string log = this.GetInfoLog();
+                string log = this.GetInfoLog(program);
                 throw new Exception(
                     string.Format("Failed to compile shader with ID {0}: {1}",
                         program, log));
@@ -98,17 +90,10 @@ namespace CSharpGL
 
             foreach (var item in shaders)
             {
-                if (item.GetCompileStatus() == false)
-                {
-                    string log = item.GetInfoLog();
-                    throw new Exception(log);
-                }
-            }
-
-            foreach (var item in shaders)
-            {
                 glDetachShader(program, item.ShaderObject);
             }
+
+            this.ShaderProgramObject = program;
         }
 
         /// <summary>
@@ -165,23 +150,23 @@ namespace CSharpGL
             glUseProgram(0);
         }
 
-        private bool GetLinkStatus()
+        private bool GetLinkStatus(uint program)
         {
             int[] parameters = new int[] { 0 };
-            glGetProgramiv(this.ShaderProgramObject, OpenGL.GL_LINK_STATUS, parameters);
+            glGetProgramiv(program, OpenGL.GL_LINK_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
-        private string GetInfoLog()
+        private string GetInfoLog(uint program)
         {
             //  Get the info log length.
             int[] infoLength = new int[] { 0 };
-            glGetProgramiv(this.ShaderProgramObject, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
+            glGetProgramiv(program, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
             int bufSize = infoLength[0];
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(this.ShaderProgramObject, bufSize, IntPtr.Zero, il);
+            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(program, bufSize, IntPtr.Zero, il);
 
             string log = il.ToString();
             return log;
