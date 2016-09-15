@@ -97,19 +97,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
-        /// </summary>
-        public void Delete()
-        {
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                glDeleteProgram(this.ShaderProgramObject);
-            }
-            this.ShaderProgramObject = 0;
-        }
-
-        /// <summary>
         /// Query location/index of specified <paramref name="attributeName"/>.
         /// </summary>
         /// <param name="attributeName"></param>

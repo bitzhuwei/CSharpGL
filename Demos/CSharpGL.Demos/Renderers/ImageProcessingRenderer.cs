@@ -105,7 +105,7 @@ namespace CSharpGL.Demos
 
         protected override void DisposeUnmanagedResources()
         {
-            computeProgram.Delete();
+            computeProgram.Dispose();
             inputTexture.Dispose();
             intermediateTexture.Dispose();
             outputTexture.Dispose();

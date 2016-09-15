@@ -21,7 +21,7 @@
             }
             if (this.Program != null)
             {
-                this.Program.Delete();
+                this.Program.Dispose();
             }
         }
     }

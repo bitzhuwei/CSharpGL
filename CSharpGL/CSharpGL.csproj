@@ -144,6 +144,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.IRenderable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexBufferImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\NullImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
