@@ -9,12 +9,12 @@ namespace CSharpGL
     public sealed class VertexArrayObject : IDisposable
     {
         /// <summary>
-        ///
+        /// vertex attribute buffers('in vec3 position;' in shader etc.)
         /// </summary>
-        public VertexAttributeBufferPtr[] PropertyBufferPtrs { get; private set; }
+        public VertexAttributeBufferPtr[] VertexAttributeBufferPtrs { get; private set; }
 
         /// <summary>
-        ///
+        /// The one and only one index buffer used to indexing vertex attribute buffers.
         /// </summary>
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
@@ -48,7 +48,7 @@ namespace CSharpGL
             }
 
             this.IndexBufferPtr = indexBufferPtr;
-            this.PropertyBufferPtrs = propertyBufferPtrs;
+            this.VertexAttributeBufferPtrs = propertyBufferPtrs;
         }
 
         /// <summary>
@@ -72,16 +72,16 @@ namespace CSharpGL
 
             glGenVertexArrays(1, ids);
 
-            this.Bind();
-            VertexAttributeBufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
-            if (propertyBufferPtrs != null)
+            this.Bind();// this vertex array object will record all stand-by actions.
+            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
+            if (vertexAttributeBufferPtrs != null)
             {
-                foreach (var item in propertyBufferPtrs)
+                foreach (var item in vertexAttributeBufferPtrs)
                 {
                     item.Standby(shaderProgram);
                 }
             }
-            this.Unbind();
+            this.Unbind();// this vertex array object has recorded all stand-by actions.
         }
 
         private void Bind()
@@ -162,7 +162,7 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
-                        VertexAttributeBufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
+                        VertexAttributeBufferPtr[] propertyBufferPtrs = this.VertexAttributeBufferPtrs;
                         if (propertyBufferPtrs != null)
                         {
                             foreach (var item in propertyBufferPtrs)
