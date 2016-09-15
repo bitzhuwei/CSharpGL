@@ -110,23 +110,6 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
-
-        /// <summary>
-        /// Start to read/write buffer.
-        /// </summary>
-        /// <param name="access"></param>
-        /// <param name="bind"></param>
-        /// <returns></returns>
-        public IntPtr MapBuffer(MapBufferAccess access, bool bind = true)
-        {
-            if (bind)
-            {
-                glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            }
-            IntPtr pointer = glMapBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, (uint)access);
-            return pointer;
-        }
-
         /// <summary>
         /// Start to read/write buffer.
         /// </summary>
@@ -142,6 +125,22 @@ namespace CSharpGL
                 glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             }
             return glMapBufferRange(OpenGL.GL_ELEMENT_ARRAY_BUFFER, offset, length, (uint)access);
+        }
+
+        /// <summary>
+        /// Start to read/write buffer.
+        /// </summary>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public IntPtr MapBuffer(MapBufferAccess access, bool bind = true)
+        {
+            if (bind)
+            {
+                glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            }
+            IntPtr pointer = glMapBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, (uint)access);
+            return pointer;
         }
 
         /// <summary>
