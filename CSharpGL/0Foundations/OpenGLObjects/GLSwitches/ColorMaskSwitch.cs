@@ -10,10 +10,10 @@
         /// </summary>
         public ColorMask Mask { get; set; }
 
-        /// <summary>
-        ///  mask when this switch is turned off.
-        /// </summary>
-        public ColorMask OriginalMask { get; private set; }
+        ///// <summary>
+        /////  mask when this switch is turned off.
+        ///// </summary>
+        //public ColorMask OriginalMask { get; private set; }
 
         /// <summary>
         /// Toggle of color mask.
@@ -26,25 +26,7 @@
         public ColorMaskSwitch(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable)
         {
             this.Mask = new ColorMask(redWritable, greenWritable, blueWritable, alphaWritable);
-            this.OriginalMask = ColorMask.GetCurrent();
-        }
-
-        /// <summary>
-        /// Toggle of color mask.
-        /// </summary>
-        /// <param name="redWritable">red mask when this switch is turned on.</param>
-        /// <param name="greenWritable">green mask when this switch is turned on.</param>
-        /// <param name="blueWritable">blue mask when this switch is turned on.</param>
-        /// <param name="alphaWritable">alpha mask when this switch is turned on.</param>
-        /// <param name="originalAlphaWritable">red mask when this switch is turned off.</param>
-        /// <param name="originalBlueWritable">green mask when this switch is turned off.</param>
-        /// <param name="originalGreenWritable">blue mask when this switch is turned off.</param>
-        /// <param name="originalRedWritable">alpha mask when this switch is turned off.</param>
-        public ColorMaskSwitch(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable, bool originalRedWritable, bool originalGreenWritable, bool originalBlueWritable, bool originalAlphaWritable)
-        {
-            this.Mask = new ColorMask(redWritable, greenWritable, blueWritable, alphaWritable);
-            this.OriginalMask = new ColorMask(
-                originalRedWritable, originalGreenWritable, originalBlueWritable, originalAlphaWritable);
+            //this.OriginalMask = ColorMask.GetCurrent();
         }
 
         /// <summary>
@@ -54,7 +36,7 @@
         public ColorMaskSwitch(ColorMask mask)
         {
             this.Mask = mask;
-            this.OriginalMask = ColorMask.GetCurrent();
+            //this.OriginalMask = ColorMask.GetCurrent();
         }
 
         /// <summary>
@@ -65,7 +47,7 @@
         public ColorMaskSwitch(ColorMask mask, ColorMask originalMask)
         {
             this.Mask = mask;
-            this.OriginalMask = originalMask;
+            //this.OriginalMask = originalMask;
         }
 
         /// <summary>
@@ -76,11 +58,15 @@
             return string.Format("glColorMask({0});", this.Mask);
         }
 
+        private ColorMask originalMask;
+
         /// <summary>
         ///
         /// </summary>
         protected override void SwitchOn()
         {
+            this.originalMask = ColorMask.GetCurrent();
+
             ColorMask mask = this.Mask;
             OpenGL.ColorMask(mask.redWritable, mask.greenWritable, mask.blueWritable, mask.alphaWritable);
         }
@@ -90,7 +76,7 @@
         /// </summary>
         protected override void SwitchOff()
         {
-            ColorMask mask = this.OriginalMask;
+            ColorMask mask = this.originalMask;
             OpenGL.ColorMask(mask.redWritable, mask.greenWritable, mask.blueWritable, mask.alphaWritable);
         }
     }
