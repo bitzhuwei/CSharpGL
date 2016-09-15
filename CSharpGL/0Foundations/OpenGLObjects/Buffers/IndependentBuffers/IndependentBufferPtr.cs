@@ -5,13 +5,8 @@ namespace CSharpGL
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public class IndependentBufferPtr : BufferPtr
+    public abstract class IndependentBufferPtr : BufferPtr
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public BufferTarget Target { get; private set; }
-
         /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>
@@ -21,25 +16,8 @@ namespace CSharpGL
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         internal IndependentBufferPtr(BufferTarget target,
             uint bufferId, int length, int byteLength)
-            : base(bufferId, length, byteLength)
+            : base(target, bufferId, length, byteLength)
         {
-            this.Target = target;
-        }
-
-        /// <summary>
-        /// Bind this buffer.
-        /// </summary>
-        public override void Bind()
-        {
-            glBindBuffer((uint)this.Target, this.BufferId);
-        }
-
-        /// <summary>
-        /// Unind this buffer.
-        /// </summary>
-        public override void Unbind()
-        {
-            glBindBuffer((uint)this.Target, 0);
         }
 
         /// <summary>

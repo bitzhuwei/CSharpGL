@@ -35,7 +35,7 @@ namespace CSharpGL
         internal VertexAttributeBufferPtr(string varNameInVertexShader,
             uint bufferId, VertexAttributeConfig config, int length, int byteLength,
             uint instancedDivisor)
-            : base(bufferId, length, byteLength)
+            : base(BufferTarget.ArrayBuffer, bufferId, length, byteLength)
         {
             if (glVertexAttribPointer == null)
             {
@@ -191,22 +191,6 @@ namespace CSharpGL
         /// 0: not instanced. 1: instanced divisor is 1.
         /// </summary>
         public uint InstancedDivisor { get; private set; }
-
-        /// <summary>
-        ///Bind this buffer.
-        /// </summary>
-        public override void Bind()
-        {
-            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
-        }
-
-        /// <summary>
-        /// Unind this buffer.
-        /// </summary>
-        public override void Unbind()
-        {
-            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
-        }
 
         /// <summary>
         /// Start to read/write buffer.

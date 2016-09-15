@@ -24,7 +24,7 @@ namespace CSharpGL
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal OneIndexBufferPtr(uint bufferId, DrawMode mode, int firstIndex, int elementCount,
             IndexElementType type, int length, int byteLength, int primCount = 1)
-            : base(mode, bufferId, length, byteLength, primCount)
+            : base(BufferTarget.ElementArrayBuffer, mode, bufferId, length, byteLength, primCount)
         {
             if (glDrawElementsInstanced == null)
             { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }

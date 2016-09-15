@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal ZeroIndexBufferPtr(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
-            : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
+            : base(BufferTarget.ElementArrayBuffer, mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
             if (glDrawArraysInstanced == null)
             { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }
@@ -41,6 +41,22 @@ namespace CSharpGL
         /// 总共有多少个元素？<para>How many vertexes are there in total?</para>
         /// </summary>
         public int OriginalVertexCount { get; private set; }
+
+        /// <summary>
+        /// need to do nothing.
+        /// </summary>
+        public override void Bind()
+        {
+            // need to do nothing.
+        }
+
+        /// <summary>
+        /// need to do nothing.
+        /// </summary>
+        public override void Unbind()
+        {
+            // need to do nothing.
+        }
 
         /// <summary>
         ///
