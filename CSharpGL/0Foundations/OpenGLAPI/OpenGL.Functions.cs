@@ -626,25 +626,12 @@ namespace CSharpGL
             }
         }
 
-        private delegate void glDeleteSamplers(int n, uint[] textures);
-
-        private static glDeleteSamplers glDeleteSamplersFunc;
-
         /// <summary>
         /// This function deletes a set of sampler objects.
         /// </summary>
         /// <param name="n">Number of textures to delete.</param>
         /// <param name="samplers">The array containing the names of the textures to delete.</param>
-        public static void DeleteSamplers(int n, uint[] samplers)
-        {
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                if (glDeleteSamplersFunc == null)
-                { glDeleteSamplersFunc = OpenGL.GetDelegateFor<OpenGL.glDeleteSamplers>(); }
-                glDeleteSamplersFunc(n, samplers);
-            }
-        }
+        public delegate void glDeleteSamplers(int n, uint[] samplers);
 
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
 

@@ -4,6 +4,8 @@ namespace CSharpGL
 {
     public partial class Sampler
     {
+        private static OpenGL.glDeleteSamplers glDeleteSamplers;
+
         #region IDisposable Members
 
         /// <summary>
@@ -42,8 +44,12 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
+                IntPtr ptr = Win32.wglGetCurrentContext();
+                if (ptr != IntPtr.Zero)
                 {
-                    OpenGL.DeleteSamplers(1, new uint[] { this.Id });
+                    if (glDeleteSamplers == null)
+                    { glDeleteSamplers = OpenGL.GetDelegateFor<OpenGL.glDeleteSamplers>(); }
+                    glDeleteSamplers(1, new uint[] { this.Id });
                     this.Id = 0;
                 }
             } // end if
