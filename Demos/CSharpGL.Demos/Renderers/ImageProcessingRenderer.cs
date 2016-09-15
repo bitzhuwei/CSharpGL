@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
         private PickableRenderer renderer;
         private string textureFilename;
 
-        public ImageProcessingRenderer(string textureFilename = @"Textures\teapot.bmp")
+        public ImageProcessingRenderer(string textureFilename = @"Textures\edgeDetection.bmp")
         {
             this.textureFilename = textureFilename;
         }
