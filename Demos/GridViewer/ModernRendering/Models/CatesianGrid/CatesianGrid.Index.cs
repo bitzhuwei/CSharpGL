@@ -46,7 +46,7 @@ namespace GridViewer
             return ptr;
         }
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
+        /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public override bool UsesZeroIndexBuffer() { return false; }
