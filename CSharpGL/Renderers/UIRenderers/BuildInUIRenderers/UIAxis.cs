@@ -19,7 +19,7 @@ namespace CSharpGL
             System.Drawing.Size size, int partCount = 24)
             : base(anchor, margin, size, -Math.Max(size.Width, size.Height), Math.Max(size.Width, size.Height))
         {
-            AxisRenderer renderer = AxisRenderer.Create(partCount);
+            AxisRenderer renderer = AxisRenderer.Create(partCount, 0.5f);
 
             this.Renderer = renderer;
         }
@@ -34,7 +34,7 @@ namespace CSharpGL
             mat4 projection = this.GetOrthoProjection();
             vec3 position = (camera.Position - camera.Target).normalize();
             mat4 view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-            float length = Math.Max(this.Size.Width, this.Size.Height) / 2;
+            float length = Math.Max(this.Size.Width, this.Size.Height);
             mat4 model = glm.scale(mat4.identity(),
                 new vec3(length, length, length));
             var renderer = this.Renderer as Renderer;
