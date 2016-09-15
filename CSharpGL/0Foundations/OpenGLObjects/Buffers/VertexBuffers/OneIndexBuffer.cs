@@ -94,6 +94,6 @@ namespace CSharpGL
 
     //public static class OneIndexBufferHelper
     //{
-    //    public static 
+    //    public static
     //}
 }

@@ -142,6 +142,5 @@ namespace CSharpGL
                 glBindBuffer((uint)this.Target, 0);
             }
         }
-
     }
 }

@@ -109,7 +109,6 @@ namespace CSharpGL
             {
                 glDetachShader(program, item.ShaderObject);
             }
-
         }
 
         /// <summary>

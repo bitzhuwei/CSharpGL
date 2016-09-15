@@ -105,10 +105,12 @@
         /// <param name="id"></param>
         /// <param name="mode"></param>
         public delegate void glBeginConditionalRender(uint id, uint mode);
+
         /// <summary>
         ///
         /// </summary>
         public delegate void glEndConditionalRender();
+
         ///// <summary>
         /////
         ///// </summary>

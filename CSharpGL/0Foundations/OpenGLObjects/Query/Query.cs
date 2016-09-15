@@ -95,7 +95,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool SampleRendered()

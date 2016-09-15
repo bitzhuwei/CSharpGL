@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class ComputeRenderer
     {

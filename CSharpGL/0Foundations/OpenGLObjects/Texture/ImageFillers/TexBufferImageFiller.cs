@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -15,7 +12,7 @@ namespace CSharpGL
         private bool autoDispose;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="internalformat"></param>
         /// <param name="bufferPtr"></param>
@@ -28,7 +25,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         public override void Fill(BindTextureTarget target)

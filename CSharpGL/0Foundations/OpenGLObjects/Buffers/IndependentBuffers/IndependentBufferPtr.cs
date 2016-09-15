@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Buffer object that not work as input variable in shader.

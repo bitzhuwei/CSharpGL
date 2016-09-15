@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class Texture
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="internalFormat"></param>
         /// <param name="bufferPtr"></param>
@@ -17,7 +15,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="internalFormat"></param>

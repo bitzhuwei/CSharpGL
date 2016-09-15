@@ -4156,6 +4156,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public const uint GL_ANY_SAMPLES_PASSED_CONSERVATIVE = 0x8D6A;
+
         ///// <summary>
         /////
         ///// </summary>

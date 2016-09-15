@@ -24,6 +24,7 @@
         {
             this.Writable = writable;
         }
+
         /// <summary>
         ///
         /// </summary>
@@ -35,6 +36,7 @@
         }
 
         private bool lastState;
+
         /// <summary>
         ///
         /// </summary>

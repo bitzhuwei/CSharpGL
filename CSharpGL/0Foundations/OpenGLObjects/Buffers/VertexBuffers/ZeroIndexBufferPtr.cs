@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace CSharpGL
 {
     // 没有显式索引时的渲染方法。
@@ -93,6 +94,7 @@ namespace CSharpGL
         {
             // need to do nothing.
         }
+
         /// <summary>
         ///
         /// </summary>

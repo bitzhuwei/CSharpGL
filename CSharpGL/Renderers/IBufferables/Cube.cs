@@ -27,14 +27,15 @@
         private VertexAttributeBufferPtr normalBufferPtr;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Cube()
             : this(new vec3(2, 2, 2))
         {
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="lengths"></param>
         public Cube(vec3 lengths)
