@@ -59,6 +59,41 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Start to read/write buffer.
+        /// <para>This will returns IntPtr.Zero as this buffer allocates no data in memory.</para>
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public override IntPtr MapBufferRange(int offset, int length, MapBufferRangeAccess access, bool bind = true)
+        {
+            return IntPtr.Zero;
+        }
+
+        /// <summary>
+        /// Start to read/write buffer.
+        /// <para>This will returns IntPtr.Zero as this buffer allocates no data in memory.</para>
+        /// </summary>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public override IntPtr MapBuffer(MapBufferAccess access, bool bind = true)
+        {
+            return IntPtr.Zero;
+        }
+
+        /// <summary>
+        /// Stop reading/writing buffer.
+        /// <para>need to do nothing.</para>
+        /// </summary>
+        /// <param name="unbind"></param>
+        public override void UnmapBuffer(bool unbind = true)
+        {
+            // need to do nothing.
+        }
+        /// <summary>
         ///
         /// </summary>
         /// <param name="arg"></param>
