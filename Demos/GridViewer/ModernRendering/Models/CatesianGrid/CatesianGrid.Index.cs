@@ -10,7 +10,7 @@ namespace GridViewer
         private IndexBufferPtr GetIndexBufferPtr()
         {
             IndexBufferPtr ptr = null;
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.QuadStrip, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.QuadStrip, BufferUsage.StaticDraw))
             {
                 int dimSize = this.DataSource.DimenSize;
                 buffer.Create(dimSize * 2 * (Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint)));
@@ -46,7 +46,7 @@ namespace GridViewer
             return ptr;
         }
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public override bool UsesZeroIndexBuffer() { return false; }

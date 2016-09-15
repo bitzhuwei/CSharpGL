@@ -39,7 +39,7 @@ namespace CSharpGL
             {
                 //IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
 
-                using (var buffer = new OneIndexBuffer<uint>(
+                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt,
                     this.indexBufferPtr.Mode, BufferUsage.DynamicDraw))
                 {
                     buffer.Create(this.positionBufferPtr.ByteLength / (this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength));

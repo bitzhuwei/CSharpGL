@@ -17,7 +17,7 @@
         {
             // 创建临时索引
             OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.Lines, BufferUsage.StaticDraw))
             {
                 buffer.Create(6);
                 unsafe

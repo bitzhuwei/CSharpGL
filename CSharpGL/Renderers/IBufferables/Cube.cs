@@ -3,7 +3,7 @@
     /// <summary>
     /// Cube.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_CubeModel.jpg
-    /// <para>Uses <see cref="OneIndexBuffer&lt;T&gt;"/></para>
+    /// <para>Uses <see cref="OneIndexBuffer"/></para>
     /// </summary>
     public class Cube : IBufferable
     {
@@ -126,7 +126,7 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedByte, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     buffer.Create(CubeModel.index.Length);
                     unsafe
@@ -148,7 +148,7 @@
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }

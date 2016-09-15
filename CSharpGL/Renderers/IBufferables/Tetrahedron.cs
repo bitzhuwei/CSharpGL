@@ -111,7 +111,7 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedByte, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     buffer.Create(TetrahedronModel.index.Length);
                     unsafe
@@ -133,7 +133,7 @@
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }

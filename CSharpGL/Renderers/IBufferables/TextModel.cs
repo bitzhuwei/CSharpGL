@@ -92,7 +92,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return true; }

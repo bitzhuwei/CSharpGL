@@ -15,23 +15,19 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        /// <param name="firstIndex">要渲染的第一个索引的位置。<para>First index to be rendered.</para></param>
-        /// <param name="elementCount">索引数组中有多少个元素。<para>How many indexes to be rendered?</para></param>
         /// <param name="type">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
-        internal OneIndexBufferPtr(uint bufferId, DrawMode mode, int firstIndex, int elementCount,
+        internal OneIndexBufferPtr(uint bufferId, DrawMode mode,
             IndexElementType type, int length, int byteLength, int primCount = 1)
             : base(BufferTarget.ElementArrayBuffer, mode, bufferId, length, byteLength, primCount)
         {
             if (glDrawElementsInstanced == null)
             { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
 
-            this.FirstIndex = firstIndex;
-            this.ElementCount = elementCount;
-            this.OriginalElementCount = elementCount;
+            this.ElementCount = length;
             this.Type = type;
         }
 
@@ -47,10 +43,11 @@ namespace CSharpGL
         /// </summary>
         public int ElementCount { get; set; }
 
+        // TODO: remove this.
         /// <summary>
         /// How many indexes are there in total?
         /// </summary>
-        public int OriginalElementCount { get; private set; }
+        public int OriginalElementCount { get { return this.Length; } }
 
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);

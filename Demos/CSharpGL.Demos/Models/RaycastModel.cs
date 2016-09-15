@@ -95,7 +95,7 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     buffer.Create(indices.Length);
                     unsafe
@@ -116,7 +116,7 @@
 
         private IndexBufferPtr indexBufferPtr = null;
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }

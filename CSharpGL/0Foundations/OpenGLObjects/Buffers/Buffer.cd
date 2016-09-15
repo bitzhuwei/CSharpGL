@@ -23,7 +23,7 @@
       <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.OneIndexBuffer&lt;T&gt;">
+  <Class Name="CSharpGL.OneIndexBuffer">
     <Position X="6" Y="9.25" Width="4" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAA=</HashCode>

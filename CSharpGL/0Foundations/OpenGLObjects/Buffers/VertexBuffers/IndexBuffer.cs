@@ -4,8 +4,7 @@
     /// 用于存储索引的VBO。
     /// <para>Vertex Buffer Object storing vertex' index.</para>
     /// </summary>
-    /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
-    public abstract class IndexBuffer<T> : Buffer where T : struct
+    public abstract class IndexBuffer : Buffer
     {
         /// <summary>
         /// 用于存储索引的VBO。

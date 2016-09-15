@@ -3,7 +3,7 @@
     /// <summary>
     /// Sphere.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
-    /// <para>Uses <see cref="OneIndexBuffer&lt;T&gt;"/></para>
+    /// <para>Uses <see cref="OneIndexBuffer"/></para>
     /// </summary>
     public class Sphere : IBufferable
     {
@@ -151,7 +151,7 @@
             {
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    using (var buffer = new OneIndexBuffer<byte>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedByte, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.indexes.Length);
                         unsafe
@@ -171,7 +171,7 @@
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    using (var buffer = new OneIndexBuffer<ushort>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    using (var buffer = new OneIndexBuffer(IndexElementType.UnsighedShort, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.indexes.Length);
                         unsafe
@@ -191,7 +191,7 @@
                 }
                 else
                 {
-                    using (var buffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.indexes.Length);
                         unsafe
@@ -212,7 +212,7 @@
         }
 
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }

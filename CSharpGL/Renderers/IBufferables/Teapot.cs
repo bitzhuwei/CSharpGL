@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Teapot.
-    /// <para>Uses <see cref="OneIndexBuffer&lt;T&gt;"/></para>
+    /// <para>Uses <see cref="OneIndexBuffer"/></para>
     /// </summary>
     public class Teapot : IBufferable
     {
@@ -126,7 +126,7 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<ushort>(DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UnsighedShort, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     ushort[] faces = model.GetFaces();
                     buffer.Create(faces.Length);
@@ -149,7 +149,7 @@
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
-        /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }

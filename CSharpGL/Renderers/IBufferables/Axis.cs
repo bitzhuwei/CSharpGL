@@ -100,7 +100,7 @@ namespace CSharpGL
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<uint>(
+                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt,
                      this.model.mode, BufferUsage.StaticDraw))
                 {
                     buffer.Create(this.model.indexes.Length);
@@ -120,7 +120,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }

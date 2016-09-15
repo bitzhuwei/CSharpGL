@@ -19,7 +19,7 @@ namespace CSharpGL
         {
             // 创建临时索引
             OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Points, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.Points, BufferUsage.StaticDraw))
             {
                 buffer.Create(3);
                 unsafe
