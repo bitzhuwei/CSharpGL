@@ -592,8 +592,8 @@
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
     <None Include="0Foundations\OpenGLObjects\Buffers\Buffer.cd" />
-    <EmbeddedResource Include="Resources\UIAxis.frag" />
-    <EmbeddedResource Include="Resources\UIAxis.vert" />
+    <EmbeddedResource Include="Resources\Axis.frag" />
+    <EmbeddedResource Include="Resources\Axis.vert" />
     <EmbeddedResource Include="Resources\TextModel.frag" />
     <EmbeddedResource Include="Resources\TextModel.vert" />
     <EmbeddedResource Include="Resources\Label.vert" />

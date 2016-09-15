@@ -20,6 +20,7 @@ namespace CSharpGL
         {
             if (partCount < 2) { throw new ArgumentException(); }
             this.model = new AxisModel(partCount, radius);
+            this.Lengths = new vec3(radius * 2, radius * 2, radius * 2);
         }
 
         /// <summary>
@@ -121,16 +122,16 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+        /// UsesUses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
         /// </summary>
         /// <returns></returns>
-        public bool UsesZeroIndexBufferPtr() { return false; }
+        public bool UsesZeroIndexBuffer() { return false; }
 
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
         ///
         /// </summary>
-        public vec3 Lengths { get { return new vec3(2, 2, 2); } }
+        public vec3 Lengths { get; private set; }
     }
 }

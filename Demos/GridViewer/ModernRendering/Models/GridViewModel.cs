@@ -57,6 +57,6 @@ namespace GridViewer
 
         public abstract void UpdateColor(GridBlockProperty property);
 
-        public abstract bool UsesZeroIndexBufferPtr();
+        public abstract bool UsesZeroIndexBuffer();
     }
 }

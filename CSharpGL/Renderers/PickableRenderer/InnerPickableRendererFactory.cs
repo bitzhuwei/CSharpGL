@@ -36,7 +36,7 @@ namespace CSharpGL
             }
             if (map == null) { throw new Exception(string.Format("No matching variable name in shader for [{0}]", positionNameInIBufferable)); }
 
-            if (bufferable.UsesZeroIndexBufferPtr())
+            if (bufferable.UsesZeroIndexBuffer())
             {
                 return new ZeroIndexRenderer(bufferable, PickingShaderHelper.GetShaderCodes(), map, positionNameInIBufferable, switches);
             }

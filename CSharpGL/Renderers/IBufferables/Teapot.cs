@@ -149,10 +149,10 @@
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
-        /// Uses <see cref="ZeroIndexBufferPtr"/> or <see cref="OneIndexBufferPtr"/>.
+        /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer&lt;T&gt;"/>.
         /// </summary>
         /// <returns></returns>
-        public bool UsesZeroIndexBufferPtr() { return false; }
+        public bool UsesZeroIndexBuffer() { return false; }
 
         /// <summary>
         ///
