@@ -7,9 +7,10 @@ using System.Xml.Linq;
 namespace CSharpGL
 {
     /// <summary>
-    /// 持有从<see cref="IBufferable"/>到GLSL中in/uniform变量名的对应关系。
-    /// 每个<see cref="IBufferable"/>和每个GLSL的代表（Renderer）都有一个Map关系。
-    /// 这里存储的内容需要OpenGL开发者和APP开发者协商对接。
+    /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
+    /// 每个<see cref="IBufferable"/>和每个<see cref="Renderer"/>都有一个Map关系。
+    /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
+    /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
     /// </summary>
     public class PropertyNameMap : IEnumerable<PropertyNameMap.NamePair>
     {
