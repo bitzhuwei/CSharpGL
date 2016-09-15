@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     // 没有显式索引时的渲染方法。
     /// <summary>
@@ -62,7 +63,7 @@
             }
 
             int primCount = this.PrimCount;
-            if (primCount < 1) { }
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
             else if (primCount == 1)
             {
                 OpenGL.DrawArrays(mode, this.FirstVertex, this.VertexCount);

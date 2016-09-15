@@ -97,7 +97,7 @@ namespace CSharpGL
             }
 
             int primCount = this.PrimCount;
-            if (primCount < 1) { }
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
             else if (primCount == 1)
             {
                 OpenGL.DrawElements(mode, this.ElementCount, (uint)this.Type, offset);
