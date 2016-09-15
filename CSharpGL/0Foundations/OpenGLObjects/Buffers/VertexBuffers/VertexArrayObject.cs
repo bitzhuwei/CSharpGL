@@ -103,17 +103,16 @@ namespace CSharpGL
         /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
         public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
-            if (temporaryIndexBufferPtr == null)
+            if (temporaryIndexBufferPtr != null)
             {
-                IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
                 this.Bind();
-                indexBufferPtr.Render(arg);
+                temporaryIndexBufferPtr.Render(arg);
                 this.Unbind();
             }
             else
             {
                 this.Bind();
-                temporaryIndexBufferPtr.Render(arg);
+                this.IndexBufferPtr.Render(arg);
                 this.Unbind();
             }
         }
