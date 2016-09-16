@@ -56,9 +56,10 @@
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
-            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, buffers[0]);
-            glBufferData(OpenGL.GL_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
-            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
+            const uint target = OpenGL.GL_ARRAY_BUFFER;
+            glBindBuffer(target, buffers[0]);
+            glBufferData(target, this.ByteLength, this.Header, (uint)this.Usage);
+            glBindBuffer(target, 0);
 
             var bufferPtr = new VertexAttributeBufferPtr(
                 this.VarNameInVertexShader, buffers[0], this.Config, this.Length, this.ByteLength, this.InstancedDivisor);
