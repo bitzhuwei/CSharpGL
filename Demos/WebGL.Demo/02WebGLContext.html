@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>01 Set up WebGL Context</title>
+    <style style="text\css">
+        canvas {
+            background: #00a9ff;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.khronos.org/registry/webgl/sdk/demos/common/webgl-utils.js"></script>
+    <script tabindex="text/javascript">
+        var canvas;
+        var gl;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("gl-canvas");
+            gl = WebGLUtils.setupWebGL(canvas);
+            if (!gl) { alert("WebGL isn't available!"); }
+
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.clearColor(0.4, 0.8, 1.0, 1.0);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+    </script>
+</head>
+<body>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support HTML5's Canvas element!
+    </canvas>
+</body>
+</html>
