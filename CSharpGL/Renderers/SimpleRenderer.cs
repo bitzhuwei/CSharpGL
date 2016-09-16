@@ -57,7 +57,7 @@
 
         internal static SimpleRenderer Create(IBufferable model, vec3 lengths)
         {
-            ShaderCode[] shaderCodes = new ShaderCode[2];
+            var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();

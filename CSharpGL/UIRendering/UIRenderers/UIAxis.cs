@@ -19,7 +19,13 @@ namespace CSharpGL
             System.Drawing.Size size, int partCount = 24)
             : base(anchor, margin, size, -Math.Max(size.Width, size.Height), Math.Max(size.Width, size.Height))
         {
-            SimpleRenderer renderer = SimpleRenderer.Create(new Axis(partCount, 0.5f));
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
+            map.Add("in_Position", Axis.strPosition);
+            map.Add("in_Color", Axis.strColor);
+            var renderer = new Renderer(new Axis(partCount, 0.5f), shaderCodes, map);
 
             this.Renderer = renderer;
         }
