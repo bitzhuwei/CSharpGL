@@ -37,7 +37,7 @@ namespace CSharpGL.Demos
                 this.glSceneCanvas1.Scene.RootObject.Children.Add(obj);
             }
             {
-                var axis = SimpleRenderer.Create(SimpleRenderer.ModelTypes.Axis);
+                SimpleRenderer axis = SimpleRenderer.Create(new Axis());
                 SceneObject obj = axis.WrapToSceneObject("Axis");
                 BoundingBoxRenderer box = axis.GetBoundingBoxRenderer();
                 SceneObject boxObj = box.WrapToSceneObject("box");

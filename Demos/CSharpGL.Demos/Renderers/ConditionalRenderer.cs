@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
         private static readonly vec3 unitLengths = new vec3(1, 1, 1);
         private const float scaleFactor = 1.0f;
 
-        private List<Tuple<CubeRenderer, RendererBase, Query>> coupleList = new List<Tuple<CubeRenderer, RendererBase, Query>>();
+        private List<Tuple<SimpleRenderer, RendererBase, Query>> coupleList = new List<Tuple<SimpleRenderer, RendererBase, Query>>();
         private DepthMaskSwitch depthMaskSwitch = new DepthMaskSwitch(false);
         private ColorMaskSwitch colorMaskSwitch = new ColorMaskSwitch(false, false, false, false);
 
@@ -45,12 +45,12 @@ namespace CSharpGL.Demos
         {
             var result = new ConditionalRenderer();
             {
-                var wallRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
+                var wallRenderer = SimpleRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
                 wallRenderer.WorldPosition = new vec3(0, 0, 6);
-                var boxRenderer = CubeRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
+                var boxRenderer = SimpleRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
                 boxRenderer.WorldPosition = new vec3(0, 0, 6);
                 var query = new Query();
-                result.coupleList.Add(new Tuple<CubeRenderer, RendererBase, Query>(boxRenderer, wallRenderer, query));
+                result.coupleList.Add(new Tuple<SimpleRenderer, RendererBase, Query>(boxRenderer, wallRenderer, query));
             }
             for (int x = 0; x < xside; x++)
             {
@@ -67,10 +67,10 @@ namespace CSharpGL.Demos
                         renderer.WorldPosition =
                             (new vec3(x, y, z) * unitLengths * scaleFactor)
                             - (new vec3(xside - 1, yside - 1, zside - 1) * unitLengths * scaleFactor * 0.5f);
-                        var cubeRenderer = CubeRenderer.Create(new Cube(unitLengths));
+                        var cubeRenderer = SimpleRenderer.Create(new Cube(unitLengths));
                         cubeRenderer.WorldPosition = renderer.WorldPosition;
                         var query = new Query();
-                        result.coupleList.Add(new Tuple<CubeRenderer, RendererBase, Query>(cubeRenderer, renderer, query));
+                        result.coupleList.Add(new Tuple<SimpleRenderer, RendererBase, Query>(cubeRenderer, renderer, query));
                     }
                 }
             }

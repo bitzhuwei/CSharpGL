@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// Renders a model provided by CSharpGL.
@@ -8,41 +6,56 @@ namespace CSharpGL
     public partial class SimpleRenderer : Renderer
     {
         /// <summary>
-        ///
+        /// create an Axis' renderer.
         /// </summary>
-        public enum ModelTypes
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static SimpleRenderer Create(Axis model)
         {
-            /// <summary>
-            ///
-            /// </summary>
-            Axis,
-
-            /// <summary>
-            ///
-            /// </summary>
-            Tetrahedron,
-
-            /// <summary>
-            ///
-            /// </summary>
-            Cube,
-
-            /// <summary>
-            ///
-            /// </summary>
-            Sphere,
-
-            /// <summary>
-            ///
-            /// </summary>
-            Teapot,
+            return Create(model, model.Lengths);
         }
 
         /// <summary>
-        ///
+        /// create an Cube' renderer.
         /// </summary>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public static SimpleRenderer Create(ModelTypes modelType)
+        public static SimpleRenderer Create(Cube model)
+        {
+            return Create(model, model.Lengths);
+        }
+
+        /// <summary>
+        /// create an Tetrahedron' renderer.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static SimpleRenderer Create(Tetrahedron model)
+        {
+            return Create(model, model.Lengths);
+        }
+
+        /// <summary>
+        /// create an Sphere' renderer.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static SimpleRenderer Create(Sphere model)
+        {
+            return Create(model, model.Lengths);
+        }
+
+        /// <summary>
+        /// create an Teapot' renderer.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static SimpleRenderer Create(Teapot model)
+        {
+            return Create(model, model.Lengths);
+        }
+
+        internal static SimpleRenderer Create(IBufferable model, vec3 lengths)
         {
             ShaderCode[] shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
@@ -50,43 +63,6 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
-            IBufferable model = null;
-            vec3 lengths = new vec3();
-            switch (modelType)
-            {
-                case ModelTypes.Axis:
-                    var axis = new Axis();
-                    lengths = axis.Lengths;
-                    model = axis;
-                    break;
-
-                case ModelTypes.Tetrahedron:
-                    var tetra = new Tetrahedron();
-                    lengths = tetra.Lengths;
-                    model = tetra;
-                    break;
-
-                case ModelTypes.Cube:
-                    var cube = new Cube();
-                    lengths = cube.Lengths;
-                    model = cube;
-                    break;
-
-                case ModelTypes.Sphere:
-                    var sphere = new Sphere();
-                    lengths = sphere.Lengths;
-                    model = sphere;
-                    break;
-
-                case ModelTypes.Teapot:
-                    var teapot = new Teapot();
-                    lengths = teapot.Lengths;
-                    model = teapot;
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
             var tetrahedron = new SimpleRenderer(model, shaderCodes, map);
             tetrahedron.Lengths = lengths;
             return tetrahedron;
@@ -99,7 +75,7 @@ namespace CSharpGL
         /// <param name="shaderCodes"></param>
         /// <param name="propertyNameMap"></param>
         /// <param name="switches"></param>
-        public SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {

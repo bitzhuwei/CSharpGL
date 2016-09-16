@@ -19,7 +19,7 @@ namespace CSharpGL
             System.Drawing.Size size, int partCount = 24)
             : base(anchor, margin, size, -Math.Max(size.Width, size.Height), Math.Max(size.Width, size.Height))
         {
-            AxisRenderer renderer = AxisRenderer.Create(partCount, 0.5f);
+            SimpleRenderer renderer = SimpleRenderer.Create(new Axis(partCount, 0.5f));
 
             this.Renderer = renderer;
         }
