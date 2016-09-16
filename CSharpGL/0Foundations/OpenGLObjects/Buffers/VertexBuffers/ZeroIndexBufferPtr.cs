@@ -15,7 +15,7 @@ namespace CSharpGL
         /// </summary>
         public override BufferTarget Target
         {
-            get { return BufferTarget.ElementArrayBuffer; }
+            get { return BufferTarget.InvalidTarget; }
         }
 
         /// <summary>
