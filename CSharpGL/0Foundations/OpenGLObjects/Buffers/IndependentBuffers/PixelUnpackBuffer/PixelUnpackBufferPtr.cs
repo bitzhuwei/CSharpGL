@@ -6,6 +6,14 @@
     public class PixelUnpackBufferPtr : IndependentBufferPtr
     {
         /// <summary>
+        /// Target that this buffer should bind to.
+        /// </summary>
+        public override BufferTarget Target
+        {
+            get { return BufferTarget.PixelUnpackBuffer; }
+        }
+
+        /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
@@ -13,7 +21,7 @@
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         internal PixelUnpackBufferPtr(
             uint bufferId, int length, int byteLength)
-            : base(BufferTarget.PixelUnpackBuffer, bufferId, length, byteLength)
+            : base(bufferId, length, byteLength)
         {
         }
     }

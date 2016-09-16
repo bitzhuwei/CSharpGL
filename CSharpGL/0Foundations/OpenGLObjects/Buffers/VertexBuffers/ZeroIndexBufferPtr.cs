@@ -11,6 +11,14 @@ namespace CSharpGL
         private static OpenGL.glDrawArraysInstanced glDrawArraysInstanced;
 
         /// <summary>
+        /// Invalid for <see cref="ZeroIndexBufferPtr"/>.
+        /// </summary>
+        public override BufferTarget Target
+        {
+            get { return BufferTarget.ElementArrayBuffer; }
+        }
+
+        /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
@@ -18,7 +26,7 @@ namespace CSharpGL
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal ZeroIndexBufferPtr(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
-            : base(BufferTarget.ElementArrayBuffer, mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
+            : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
             if (glDrawArraysInstanced == null)
             { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }

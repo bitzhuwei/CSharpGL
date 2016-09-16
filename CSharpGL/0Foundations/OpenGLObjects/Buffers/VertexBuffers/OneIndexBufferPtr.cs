@@ -11,6 +11,14 @@ namespace CSharpGL
         private static OpenGL.glDrawElementsInstanced glDrawElementsInstanced;
 
         /// <summary>
+        /// Target that this buffer should bind to.
+        /// </summary>
+        public override BufferTarget Target
+        {
+            get { return BufferTarget.ElementArrayBuffer; }
+        }
+
+        /// <summary>
         /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
@@ -22,7 +30,7 @@ namespace CSharpGL
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal OneIndexBufferPtr(uint bufferId, DrawMode mode,
             IndexElementType type, int length, int byteLength, int primCount = 1)
-            : base(BufferTarget.ElementArrayBuffer, mode, bufferId, length, byteLength, primCount)
+            : base(mode, bufferId, length, byteLength, primCount)
         {
             if (glDrawElementsInstanced == null)
             { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }

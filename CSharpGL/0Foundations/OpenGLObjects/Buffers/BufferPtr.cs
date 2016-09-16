@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
-        public BufferTarget Target { get; private set; }
+        public abstract BufferTarget Target { get; }
 
         /// <summary>
         ///
@@ -60,11 +60,10 @@ namespace CSharpGL
         /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
         /// VBO's pointer got from Buffer's GetBufferPtr() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
         /// </summary>
-        /// <param name="target">Target that this buffer should bind to.</param>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal BufferPtr(BufferTarget target, uint bufferId, int length, int byteLength)
+        internal BufferPtr(uint bufferId, int length, int byteLength)
         {
             if (glBindBuffer == null)
             {
@@ -75,7 +74,6 @@ namespace CSharpGL
                 glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>();
             }
 
-            this.Target = target;
             this.BufferId = bufferId;
             this.Length = length;
             this.ByteLength = byteLength;

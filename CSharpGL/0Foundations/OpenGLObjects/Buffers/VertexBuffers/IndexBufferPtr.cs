@@ -20,14 +20,13 @@ namespace CSharpGL
         /// 索引buffer渲染器的基类。
         /// <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
         /// </summary>
-        /// <param name="target">Target that this buffer should bind to.</param>
         /// <param name="mode"></param>
         /// <param name="bufferId"></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
-        internal IndexBufferPtr(BufferTarget target, DrawMode mode, uint bufferId, int length, int byteLength, int primCount)
-            : base(target, bufferId, length, byteLength)
+        internal IndexBufferPtr(DrawMode mode, uint bufferId, int length, int byteLength, int primCount)
+            : base(bufferId, length, byteLength)
         {
             this.Mode = mode;
             this.PrimCount = primCount;

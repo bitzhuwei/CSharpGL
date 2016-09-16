@@ -23,6 +23,14 @@ namespace CSharpGL
         protected static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
 
         /// <summary>
+        /// Target that this buffer should bind to.
+        /// </summary>
+        public override BufferTarget Target
+        {
+            get { return BufferTarget.ArrayBuffer; }
+        }
+
+        /// <summary>
         /// Vertex' attribute buffer's pointer.
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
@@ -35,7 +43,7 @@ namespace CSharpGL
         internal VertexAttributeBufferPtr(string varNameInVertexShader,
             uint bufferId, VertexAttributeConfig config, int length, int byteLength,
             uint instancedDivisor)
-            : base(BufferTarget.ArrayBuffer, bufferId, length, byteLength)
+            : base(bufferId, length, byteLength)
         {
             if (glVertexAttribPointer == null)
             {
