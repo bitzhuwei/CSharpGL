@@ -16,8 +16,7 @@
         ElementArrayBuffer = OpenGL.GL_ELEMENT_ARRAY_BUFFER,
 
         /// <summary>
-        /// Used in <see cref="ZeroIndexBufferPtr"/>.
-        /// This means that <see cref="ZeroIndexBufferPtr"/> doesn't have (or need) a valid binding target.
+        /// This means that this buffer doesn't have (or need) a valid binding target.
         /// </summary>
         InvalidTarget = 0,
 
