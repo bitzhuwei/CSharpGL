@@ -65,7 +65,7 @@ namespace CSharpGL
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs arg,
             Rectangle rect,
-            params PickableRenderer[] pickableElements)
+            params IColorCodedPicking[] pickableElements)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
@@ -146,7 +146,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="pickableElements"></param>
-        public static void Render4Picking(RenderEventArgs arg, params PickableRenderer[] pickableElements)
+        public static void Render4Picking(RenderEventArgs arg, params IColorCodedPicking[] pickableElements)
         {
             if (arg.RenderMode != RenderModes.ColorCodedPicking)
             {

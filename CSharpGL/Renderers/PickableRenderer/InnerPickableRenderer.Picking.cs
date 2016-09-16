@@ -19,8 +19,15 @@ namespace CSharpGL
             set { uniformmMVP4Picking.Value = value; }
         }
 
-        public uint PickingBaseId { get; internal set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint PickingBaseId { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public uint GetVertexCount()
         {
             VertexAttributeBufferPtr positionBufferPtr = this.PositionBufferPtr;

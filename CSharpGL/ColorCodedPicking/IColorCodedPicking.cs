@@ -13,7 +13,7 @@
         /// <summary>
         /// Gets how many primitived have been rendered till now during color coded rendering.
         /// </summary>
-        uint PickingBaseId { get; }
+        uint PickingBaseId { get; set; }
 
         /// <summary>
         /// Gets vertices' count in this element's VBO representing positions.

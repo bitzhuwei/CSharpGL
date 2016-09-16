@@ -36,7 +36,7 @@
                 else
                 { return 0; }
             }
-            internal set
+            set
             {
                 InnerPickableRenderer renderer = this.innerPickableRenderer;
                 if (renderer != null)
