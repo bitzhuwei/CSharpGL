@@ -12,8 +12,8 @@
         public static CubeRenderer Create(Cube model)
         {
             ShaderCode[] shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Cube.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Cube.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", Cube.strPosition);
             map.Add("in_Color", Cube.strColor);

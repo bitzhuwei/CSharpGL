@@ -203,7 +203,7 @@
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
-    <Compile Include="Renderers\CubeRenderer\CubeRenderer.cs" />
+    <Compile Include="Renderers\SimpleRenderer\CubeRenderer.cs" />
     <Compile Include="Renderers\SimpleRenderer\SimpleRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
@@ -593,8 +593,6 @@
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
     <None Include="0Foundations\OpenGLObjects\Buffers\Buffer.cd" />
-    <EmbeddedResource Include="Resources\Axis.frag" />
-    <EmbeddedResource Include="Resources\Axis.vert" />
     <EmbeddedResource Include="Resources\TextModel.frag" />
     <EmbeddedResource Include="Resources\TextModel.vert" />
     <EmbeddedResource Include="Resources\Label.vert" />
@@ -607,8 +605,6 @@
     <None Include="Resources\readme.md" />
     <EmbeddedResource Include="Resources\Simple.frag" />
     <EmbeddedResource Include="Resources\Simple.vert" />
-    <EmbeddedResource Include="Resources\Cube.vert" />
-    <EmbeddedResource Include="Resources\Cube.frag" />
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>

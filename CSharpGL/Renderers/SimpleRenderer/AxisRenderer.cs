@@ -9,9 +9,9 @@
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.Axis.vert"), ShaderType.VertexShader);
+@"Resources.Simple.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.Axis.frag"), ShaderType.FragmentShader);
+@"Resources.Simple.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", Axis.strPosition);
             map.Add("in_Color", Axis.strColor);
