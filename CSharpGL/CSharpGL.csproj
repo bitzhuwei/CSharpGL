@@ -51,7 +51,7 @@
     <Content Include="FontTexture\readme.md" />
     <Content Include="Renderers\IBufferables\AxisModel2.jpg" />
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
-    <Content Include="Renderers\UIRenderers\readme.md" />
+    <Content Include="Renderers\UIRendering\readme.md" />
     <Content Include="Renderers\IBufferables\readme.md" />
     <Content Include="Renderers\HighlightRenderer\readme.md" />
     <Content Include="Renderers\PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
@@ -233,9 +233,9 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\IViewCamera.Orientation.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="Manipulaters\IMouseHandler.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
+    <Compile Include="Renderers\SimpleRenderer\AxisRenderer.cs" />
+    <Compile Include="Renderers\TextureRenderer.cs" />
+    <Compile Include="Renderers\UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneRootObject.cs" />
     <Compile Include="Scene\SceneObjectHelper.cs" />
@@ -301,16 +301,16 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\GLSwitchList.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="Renderers\IBufferables\TextModel.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UIText.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UIRoot.cs" />
-    <Compile Include="Renderers\UIRenderers\ILayoutHelper.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UIAxis.cs">
+    <Compile Include="Renderers\UIRendering\UIRenderers\UIText.cs" />
+    <Compile Include="Renderers\UIRendering\UIRenderers\UIRoot.cs" />
+    <Compile Include="Renderers\UIRendering\ILayoutHelper.cs" />
+    <Compile Include="Renderers\UIRendering\UIRenderers\UIAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Renderers\UIRenderers\ILayout.cs">
+    <Compile Include="Renderers\UIRendering\ILayout.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Renderers\UIRenderers\UIRenderer.cs" />
+    <Compile Include="Renderers\UIRendering\UIRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformBoolArray.cs" />
