@@ -20,7 +20,7 @@ namespace CSharpGL
         public static PickedGeometry Pick(
             RenderEventArgs arg,
             int x, int y,
-            params PickableRenderer[] pickableElements)
+            params IColorCodedPicking[] pickableElements)
         {
             if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { return null; }
 
@@ -45,7 +45,7 @@ namespace CSharpGL
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs arg,
             int x, int y, int radius,
-            params PickableRenderer[] pickableElements)
+            params IColorCodedPicking[] pickableElements)
         {
             if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { return null; }
 
