@@ -12,7 +12,7 @@ OpenGL中执行渲染的指令是`glDrawArrays()`和`glDrawElemtns()`以及他�
 `Camera`把模型的坐标从世界坐标系转换到camera/view/eye坐标系。
 ## uniform变量
 `UniformVariable`封装了shader里的uniform变量（例如`uniform vec3 vPosition;`）。`UniformVariable`在`Renderer`里用于为uniform变量指定值。
-# OpenGL开关
+## OpenGL开关
 OpenGL是个状态机。`GLSwitch`就是控制其状态的。  
 例如`LineWidthSwitch`控制线的宽度。在渲染前将线宽设置为指定的宽度，在渲染后恢复到原来的宽度。  
 这可以避免忘记恢复原有状态的bug。
@@ -35,7 +35,7 @@ Camera is a special object in world space.
 `Camera` transforms object's world coordinate to camera/view/eye coordiate.
 ## Uniform Variable
 `UniformVariable` wraps uniform variables in shader like `uniform vec3 vPosition;`. `UniformVariable` is used in `Renderer` to setup uniform variable's value.
-# OpenGL switch
+## OpenGL switch
 OpenGL works as a state machine. `GLSwitch` controls one of states in OpenGL.  
 For example, `LineWidthSwitch` controls line's width. It sets line's width to specified value before rendering, and reset it to original value after rendering.  
 This could prevent future bugs about forgetting to reset to original state.
