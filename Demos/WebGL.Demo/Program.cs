@@ -10,6 +10,7 @@ namespace WebGL.Demo
     {
         static void Main(string[] args)
         {
+            // need to do nothing.
         }
     }
 }
