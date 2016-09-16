@@ -205,7 +205,8 @@ namespace CSharpGL
             uint loc = (uint)location;
             // 选中此VBO
             // select this VBO.
-            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
+            //glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
+            glBindBuffer((uint)this.Target, this.BufferId);
             // 指定格式
             // set up data format.
             int locationCount;
