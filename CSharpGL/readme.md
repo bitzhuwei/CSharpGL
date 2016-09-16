@@ -11,6 +11,13 @@ It meets common requirements in OpenGL rendering such as:
 For more information and demonstrations please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.6:
+1. More switces(DepthMask, ColorMask, StencilMask).
+2. Query object supports conditional rendering.
+3. fix: remove framebuffer object in ColorCodedPicking.
+4.. `BufferPtr` supports bind/unbind and abstract Target property.
+5. `Renderer` always renders with its own index buffer.
+
 ## v1.0.6.5:
 1. Uniform/Texture/AtomicCounter/PixelUnpack Buffer.
 2. Create Texture filled with Buffer(uniform samplerBuffer in GLSL shader).

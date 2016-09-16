@@ -205,8 +205,6 @@
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
     <Compile Include="Renderers\CubeRenderer\CubeRenderer.cs" />
     <Compile Include="Renderers\SimpleRenderer\SimpleRenderer.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
-    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />
@@ -235,6 +233,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\IViewCamera.Orientation.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="Manipulaters\IMouseHandler.cs" />
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\TextureRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneRootObject.cs" />
