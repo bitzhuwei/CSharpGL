@@ -61,7 +61,6 @@
     <Content Include="Renderers\PickableRenderer\InnerPickableRenderer.jpg" />
     <Content Include="Renderers\PickableRenderer\readme.md" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Rendering\readme.md" />
     <Content Include="0Foundations\OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
     <Content Include="ColorCodedPicking\readme.md" />
@@ -75,11 +74,9 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
-    <Content Include="0Foundations\OpenGLObjects\GLSwitches\readme.md" />
     <EmbeddedResource Include="Resources\cursor_gold.png" />
     <Content Include="Canvas\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Buffers\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox2D.cs" />
@@ -171,6 +168,7 @@
     <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\readme.md" />
+    <Content Include="0Foundations\readme.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs" />
@@ -258,7 +256,6 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\PolygonOffsetSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\PrimitiveRestartSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
-    <Content Include="0Foundations\OpenGLObjects\Camera\readme.md" />
     <None Include="0Foundations\OpenGLObjects\UniformVariables\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\TextureHelper.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
