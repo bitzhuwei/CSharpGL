@@ -36,7 +36,7 @@
 
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
-            const uint target = (uint)BufferTarget.UniformBuffer;
+            const uint target = OpenGL.GL_UNIFORM_BUFFER;
             glBindBuffer(target, buffers[0]);
             glBufferData(target, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(target, 0);
