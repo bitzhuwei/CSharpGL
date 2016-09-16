@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>01 Webgl Shader</title>
+    <style style="text\css">
+        canvas {
+            background: #00a9ff;
+        }
+    </style>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        void main()
+        {
+        gl_Position = vec4(1,1,1,1);
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        #ifdef GL_ES
+        precision highp float;
+        #endif
+
+        uniform sampler2D uTexture;
+        varying vec2 texCoord;
+
+        void main()
+        {
+        gl_FragColor = texture2D(uTexture, texCoord);
+        }
+    </script>
+    <script type="text/javascript" src="https://www.khronos.org/registry/webgl/sdk/demos/common/webgl-utils.js"></script>
+    <script type="text/javascript" src="InitShaders.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+</head>
+<body>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support HTML5's Canvas element!
+    </canvas>
+</body>
+</html>

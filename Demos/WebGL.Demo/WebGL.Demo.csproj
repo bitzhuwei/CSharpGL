@@ -48,8 +48,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="02WebGLContext.html" />
+    <Content Include="03WebglShader.html" />
+    <Content Include="02WebglContext.html" />
     <Content Include="01Html5Canvas.html" />
+    <Content Include="box.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="demo.js" />
+    <Content Include="InitShaders.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
