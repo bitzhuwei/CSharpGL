@@ -1,5 +1,5 @@
 ﻿# CSharpGL
-CSharpGL is a pure C# project that allows for modern OpenGL rendering in an Object-Oriented way. 
+CSharpGL is a pure C# DLL that allows for modern OpenGL rendering in an Object-Oriented way. 
 It meets common requirements in OpenGL rendering such as: 
 * modern rendering using GLSL shaders and vertex buffer objects;
 * a winform control that wraps initialization of creating OpenGL context;
@@ -7,10 +7,8 @@ It meets common requirements in OpenGL rendering such as:
 * OpenGL state switch wrappers;
 * picking primitives in multiple vertex buffer objects;
 * rendering text using build-in GLText object in 3D space world or UI(window space);
-* a scene editor;
-* different kinds of demonstrations to use CSharpGL.
 
-For more information please check (http://bitzhuwei.github.io/CSharpGL/)
+For more information and demonstrations please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
 ## v1.0.6.5:
