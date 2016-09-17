@@ -17,8 +17,8 @@ namespace CSharpGL
         public PickedGeometry Pick(Rectangle clientRectangle, Point mousePosition, GeometryType geometryType)
         {
             var renderers = (from item in this.RootObject
-                             where item.Renderer != null && item is IColorCodedPicking
-                             select item as IColorCodedPicking).ToArray();
+                             where item.Renderer is IColorCodedPicking
+                             select item.Renderer as IColorCodedPicking).ToArray();
             PickedGeometry result = null;
             lock (this.synHbj)
             {
