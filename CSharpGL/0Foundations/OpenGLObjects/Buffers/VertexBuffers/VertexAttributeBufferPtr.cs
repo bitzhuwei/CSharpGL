@@ -28,6 +28,11 @@ namespace CSharpGL
         protected static OpenGL.glPatchParameteri glPatchParameteri;
 
         /// <summary>
+        /// TODO: temporary field here. not know where to use it yet.
+        /// </summary>
+        protected static OpenGL.glPatchParameterfv glPatchParameterfv;
+
+        /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
         public override BufferTarget Target
@@ -57,7 +62,9 @@ namespace CSharpGL
                 glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
                 glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
                 glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>();
+                glPatchParameterfv = OpenGL.GetDelegateFor<OpenGL.glPatchParameterfv>();
             }
+
             this.VarNameInVertexShader = varNameInVertexShader;
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
