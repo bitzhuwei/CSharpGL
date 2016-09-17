@@ -233,6 +233,7 @@
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="Manipulaters\IMouseHandler.cs" />
     <Compile Include="Renderers\TextureRenderer.cs" />
+    <Compile Include="Scene\Scene.Rendering.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneRootObject.cs" />

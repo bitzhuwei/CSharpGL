@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CSharpGL
@@ -70,34 +69,6 @@ namespace CSharpGL
         public UIRoot UIRoot { get { return this.uiRoot; } }
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="renderMode"></param>
-        /// <param name="clientRectangle"></param>
-        /// <param name="mousePosition">mouse position in window coordinate system.</param>
-        public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition)
-        {
-            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
-
-            // render objects.
-            {
-                SceneObject obj = this.RootObject;
-                this.RenderObject(obj, arg);
-            }
-
-            // render regular UI.
-            this.UIRoot.Render(arg);
-
-            // render cursor.
-            UICursor cursor = this.Cursor;
-            if (cursor != null && cursor.Enabled)
-            {
-                cursor.UpdatePosition(mousePosition);
-                this.cursorRoot.Render(arg);
-            }
-        }
-
-        /// <summary>
         /// Please bind this method to Control.Resize event.
         /// </summary>
         /// <param name="sender"></param>
@@ -111,16 +82,6 @@ namespace CSharpGL
 
             this.uiRoot.Size = control.Size;
             this.cursorRoot.Size = control.Size;
-        }
-
-        private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
-        {
-            sceneObject.Render(arg);
-            SceneObject[] array = sceneObject.Children.ToArray();
-            foreach (SceneObject child in array)
-            {
-                RenderObject(child, arg);
-            }
         }
     }
 }
