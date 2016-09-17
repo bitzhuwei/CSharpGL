@@ -23,7 +23,7 @@ or
 ``glLineWidth(2.0f);``
 ![GLSwitch](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLSwitch.jpg?raw=true)
 ## :pushpin:Color-Coded Picking
-PickableRenderer supports picking primitives in multiple vertex buffer objects using Mouse.  
+`IColorCodedPicking` supports picking primitives in multiple vertex buffer objects using Mouse.  
 ![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
 ## :radio_button::ballot_box_with_check::white_square_button:GLControl & Text
 Rendering 'Control' at fixed position with fixed size.  
