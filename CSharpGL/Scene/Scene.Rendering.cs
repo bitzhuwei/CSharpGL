@@ -16,12 +16,12 @@ namespace CSharpGL
         /// <returns></returns>
         public PickedGeometry ColorCodedPicking(Rectangle clientRectangle, Point mousePosition, GeometryType geometryType)
         {
-            var renderers = (from item in this.RootObject
-                             where item.Renderer is IColorCodedPicking
-                             select item.Renderer as IColorCodedPicking).ToArray();
             PickedGeometry result = null;
             lock (this.synObj)
             {
+                var renderers = (from item in this.RootObject
+                                 where item.Renderer is IColorCodedPicking
+                                 select item.Renderer as IColorCodedPicking).ToArray();
                 result = CSharpGL.ColorCodedPicking.Pick(new RenderEventArgs(
                          RenderModes.ColorCodedPicking, clientRectangle, this.Camera, geometryType),
                          mousePosition.X, mousePosition.Y, renderers);
