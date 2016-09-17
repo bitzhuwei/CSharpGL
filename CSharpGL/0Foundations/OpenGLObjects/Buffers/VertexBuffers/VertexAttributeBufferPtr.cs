@@ -23,6 +23,11 @@ namespace CSharpGL
         protected static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected static OpenGL.glPatchParameteri glPatchParameteri;
+
+        /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
         public override BufferTarget Target
@@ -40,9 +45,10 @@ namespace CSharpGL
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
+        /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         internal VertexAttributeBufferPtr(string varNameInVertexShader,
             uint bufferId, VertexAttributeConfig config, int length, int byteLength,
-            uint instancedDivisor)
+            uint instancedDivisor = 0, int patchVertexes = 0)
             : base(bufferId, length, byteLength)
         {
             if (glVertexAttribPointer == null)
@@ -50,10 +56,12 @@ namespace CSharpGL
                 glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
                 glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
                 glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
+                glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>();
             }
             this.VarNameInVertexShader = varNameInVertexShader;
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
+            this.PatchVertexes = patchVertexes;
         }
 
         /// <summary>
@@ -201,6 +209,11 @@ namespace CSharpGL
         public uint InstancedDivisor { get; private set; }
 
         /// <summary>
+        /// How many vertexes makes a patch? No patch if PatchVertexes is 0.
+        /// </summary>
+        public int PatchVertexes { get; set; }
+
+        /// <summary>
         /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
         /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>
@@ -223,16 +236,20 @@ namespace CSharpGL
             int stride;
             int startOffsetUnit;
             this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
+            int patchVertexes = this.PatchVertexes;
+            uint divisor = this.InstancedDivisor;
             for (uint i = 0; i < locationCount; i++)
             {
                 glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                if (patchVertexes > 0)
+                { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
                 // 启用
                 // enable this VBO.
                 glEnableVertexAttribArray(loc + i);
-                if (this.InstancedDivisor > 0)
+                if (divisor > 0)
                 {
                     // TODO: what if this is mat4? ...
-                    glVertexAttribDivisor(loc + i, this.InstancedDivisor);
+                    glVertexAttribDivisor(loc + i, divisor);
                 }
             }
         }

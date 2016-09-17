@@ -28,8 +28,7 @@ namespace CSharpGL
                             bufferPtr.BufferId,
                             bufferPtr.Config,
                             bufferPtr.Length,
-                            bufferPtr.ByteLength,
-                            0);
+                            bufferPtr.ByteLength);
                         break;
                     }
                     list.Add(bufferPtr);

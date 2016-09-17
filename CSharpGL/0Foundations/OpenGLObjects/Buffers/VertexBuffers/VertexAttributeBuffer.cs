@@ -24,12 +24,14 @@
         /// </param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
-        public VertexAttributeBuffer(string varNameInVertexShader, VertexAttributeConfig config, BufferUsage usage, uint instancedDivisor = 0)
+        /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
+        public VertexAttributeBuffer(string varNameInVertexShader, VertexAttributeConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
             : base(usage)
         {
             this.VarNameInVertexShader = varNameInVertexShader;
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
+            this.PatchVertexes = patchVertexes;
         }
 
         /// <summary>
@@ -49,6 +51,11 @@
         public uint InstancedDivisor { get; private set; }
 
         /// <summary>
+        /// How many vertexes makes a patch? No patch if PatchVertexes is 0.
+        /// </summary>
+        public int PatchVertexes { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
@@ -62,7 +69,7 @@
             glBindBuffer(target, 0);
 
             var bufferPtr = new VertexAttributeBufferPtr(
-                this.VarNameInVertexShader, buffers[0], this.Config, this.Length, this.ByteLength, this.InstancedDivisor);
+                this.VarNameInVertexShader, buffers[0], this.Config, this.Length, this.ByteLength, this.InstancedDivisor, this.PatchVertexes);
 
             return bufferPtr;
         }
