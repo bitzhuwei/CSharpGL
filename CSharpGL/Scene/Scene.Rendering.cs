@@ -5,6 +5,31 @@ namespace CSharpGL
 {
     public partial class Scene
     {
+        private object synHbj = new object();
+
+        /// <summary>
+        /// Pick 
+        /// </summary>
+        /// <param name="clientRectangle">viewport.</param>
+        /// <param name="mousePosition">mouse position.</param>
+        /// <param name="geometryType">target's geometry type.</param>
+        /// <returns></returns>
+        public PickedGeometry Pick(Rectangle clientRectangle, Point mousePosition, GeometryType geometryType)
+        {
+            var renderers = (from item in this.RootObject
+                             where item.Renderer != null && item is IColorCodedPicking
+                             select item as IColorCodedPicking).ToArray();
+            PickedGeometry result = null;
+            lock (this.synHbj)
+            {
+                result = ColorCodedPicking.Pick(new RenderEventArgs(
+                         RenderModes.ColorCodedPicking, clientRectangle, this.Camera, geometryType),
+                         mousePosition.X, mousePosition.Y, renderers);
+            }
+
+            return result;
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -15,21 +40,24 @@ namespace CSharpGL
         {
             var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
 
-            // render objects.
+            lock (this.synHbj)
             {
-                SceneObject obj = this.RootObject;
-                this.RenderObject(obj, arg);
-            }
+                // render objects.
+                {
+                    SceneObject obj = this.RootObject;
+                    this.RenderObject(obj, arg);
+                }
 
-            // render regular UI.
-            this.UIRoot.Render(arg);
+                // render regular UI.
+                this.UIRoot.Render(arg);
 
-            // render cursor.
-            UICursor cursor = this.Cursor;
-            if (cursor != null && cursor.Enabled)
-            {
-                cursor.UpdatePosition(mousePosition);
-                this.cursorRoot.Render(arg);
+                // render cursor.
+                UICursor cursor = this.Cursor;
+                if (cursor != null && cursor.Enabled)
+                {
+                    cursor.UpdatePosition(mousePosition);
+                    this.cursorRoot.Render(arg);
+                }
             }
         }
 
