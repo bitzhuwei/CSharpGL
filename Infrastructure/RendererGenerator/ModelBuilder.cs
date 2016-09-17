@@ -148,7 +148,7 @@ namespace RendererGenerator
                         new CodePrimitiveExpression(null)));
                 ifStatement.TrueStatements.Add(ifStatement2);
                 // using (var buffer = new PropertyBuffer<vec3>(varNameInShader))
-                var usingBegin = new CodeSnippetStatement(string.Format("                    using(var buffer = new PropertyBuffer<{0}>({1}))", item.PropertyType, varNameInShader));
+                var usingBegin = new CodeSnippetStatement(string.Format("                    using(var buffer = new PropertyBuffer<{0}>({1}))", item.AttributeType, varNameInShader));
                 ifStatement2.TrueStatements.Add(usingBegin);
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of using"));
                 var create = new CodeSnippetStatement("                        buffer.Create();");
@@ -157,7 +157,7 @@ namespace RendererGenerator
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        unsafe"));
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        {// begin of unsafe"));
                 // var array = (vec3*)buffer.Header.ToPointer();
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            var array = ({0}*)buffer.Header.ToPointer();", item.PropertyType)));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            var array = ({0}*)buffer.Header.ToPointer();", item.AttributeType)));
                 // array[0] =  ...;;
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            // TODO: set array's values: array[0] = ...;")));
                 // }

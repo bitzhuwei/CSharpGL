@@ -4,8 +4,8 @@ A demo is shown as below:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <RendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
-  <VertexProperty NameInShader="in_Position" NameInModel="position" PropertyType="vec3" />
-  <VertexProperty NameInShader="in_TexCoord" NameInModel="texCoord" PropertyType="vec2" />
+  <VertexAttribute NameInShader="in_Position" NameInModel="position" AttributeType="vec3" />
+  <VertexAttribute NameInShader="in_TexCoord" NameInModel="texCoord" AttributeType="vec2" />
 </RendererGenerator>
 ```
 ## TargetName
@@ -35,9 +35,9 @@ public enum DrawMode : uint
     Polygon = OpenGL.GL_POLYGON,
 }
 ```
-## VertexProperty
-A VertexProperty is an array that describes model's position, color, normal or any other stuff you need.  
-There could be more than 1 VertexProperty element in `RendererGenerator`'s sub-node.
+## VertexAttribute
+A VertexAttribute is an array that describes model's position, color, normal or any other stuff you need.  
+There could be more than 1 VertexAttribute element in `RendererGenerator`'s sub-node.
 ### NameInShader
 NameInShader is the variable's name in GLSL vertex shader.
 ```
@@ -46,8 +46,8 @@ in vec3 in_Position;
 ### NameInModel
 NameInModel is the name in `IBufferable` corresponding to the name in GLSL shader.
 For example, `position` maps to `in_Position` in vertex shader shown above.
-### PropertyType
-It's strightforward to understand that PropertyType means variable's type in GLSL shader and `IBufferable`.
+### AttributeType
+It's strightforward to understand that AttributeType means variable's type in GLSL shader and `IBufferable`.
 # Why bother?
 I forgot to assign the result to the `indexBufferPtr` in `IBufferable`'s `GetIndex()` method today, and it took me hours of debugging to find out this annoying mistake.  
 Thus I decided to write this tiny generator to help dumping framework of all future renderer types that derives from `CSharpGL.Renderer`.  

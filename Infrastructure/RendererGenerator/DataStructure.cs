@@ -15,9 +15,9 @@ namespace RendererGenerator
         public string TargetName { get; set; }
 
         private const string strPropertyList = "PropertyList";
-        private List<VertexProperty> propertyList = new List<VertexProperty>();
+        private List<VertexAttribute> propertyList = new List<VertexAttribute>();
 
-        internal List<VertexProperty> PropertyList
+        internal List<VertexAttribute> PropertyList
         {
             get { return propertyList; }
         }
@@ -49,9 +49,9 @@ namespace RendererGenerator
             result.TargetName = targetName;
             result.ZeroIndexBuffer = zeroIndexBuffer;
             result.DrawMode = mode;
-            foreach (var item in xElement.Elements(VertexProperty.strVertexProperty))
+            foreach (var item in xElement.Elements(VertexAttribute.strVertexAttribute))
             {
-                VertexProperty property = VertexProperty.Parse(item);
+                VertexAttribute property = VertexAttribute.Parse(item);
                 result.propertyList.Add(property);
             }
 
