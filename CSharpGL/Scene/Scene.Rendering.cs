@@ -5,7 +5,7 @@ namespace CSharpGL
 {
     public partial class Scene
     {
-        private object synHbj = new object();
+        private object synObj = new object();
 
         /// <summary>
         /// Pick 
@@ -14,15 +14,15 @@ namespace CSharpGL
         /// <param name="mousePosition">mouse position.</param>
         /// <param name="geometryType">target's geometry type.</param>
         /// <returns></returns>
-        public PickedGeometry Pick(Rectangle clientRectangle, Point mousePosition, GeometryType geometryType)
+        public PickedGeometry ColorCodedPicking(Rectangle clientRectangle, Point mousePosition, GeometryType geometryType)
         {
             var renderers = (from item in this.RootObject
                              where item.Renderer is IColorCodedPicking
                              select item.Renderer as IColorCodedPicking).ToArray();
             PickedGeometry result = null;
-            lock (this.synHbj)
+            lock (this.synObj)
             {
-                result = ColorCodedPicking.Pick(new RenderEventArgs(
+                result = CSharpGL.ColorCodedPicking.Pick(new RenderEventArgs(
                          RenderModes.ColorCodedPicking, clientRectangle, this.Camera, geometryType),
                          mousePosition.X, mousePosition.Y, renderers);
             }
@@ -40,7 +40,7 @@ namespace CSharpGL
         {
             var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
 
-            lock (this.synHbj)
+            lock (this.synObj)
             {
                 // render objects.
                 {
