@@ -34,6 +34,7 @@ namespace CSharpGL
             rootObject.Children.AddRange(objects);
             this.rootObject = rootObject;
             var cursor = UICursor.CreateDefault();
+            cursor.Enabled = false;
             this.cursorRoot.Children.Add(cursor);
             this.Cursor = cursor;
         }
