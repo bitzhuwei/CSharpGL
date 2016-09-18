@@ -156,7 +156,7 @@ namespace CSharpGL.Demos
                         new vec3(-2.0f, 4.0f, -4.0f),
                         new vec3( 4.0f, 0.0f, -4.0f)
                     };
-                    Bezier2DRenderer pickableRenderer = Bezier2DRenderer.Create(points);
+                    Bezier1DRenderer pickableRenderer = Bezier1DRenderer.Create(points, BezierType.Surface);
                     pickableRenderer.Initialize();
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
@@ -168,7 +168,7 @@ namespace CSharpGL.Demos
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Bezier2D, renderer);
                 }
-                this.SelectedModel = GeometryModel.Bezier1D;
+                this.SelectedModel = GeometryModel.Bezier2D;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
