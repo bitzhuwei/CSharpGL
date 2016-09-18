@@ -14,7 +14,6 @@
             mat4 view = camera.GetViewMatrix();
 
             //  Set the projection matrix.(projection and view matrix actually.)
-            OpenGL.LoadIdentity();
             OpenGL.MultMatrixf((projection * view).ToArray());
         }
     }

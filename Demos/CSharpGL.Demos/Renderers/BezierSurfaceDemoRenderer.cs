@@ -110,6 +110,7 @@ namespace CSharpGL.Demos
         {
             //  Set the projection matrix.(projection and view matrix actually.)
             OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
+            OpenGL.LoadIdentity();
             arg.Camera.LegacyProjection();
 
             //  Set the modelview matrix.(just model matrix actually.)
