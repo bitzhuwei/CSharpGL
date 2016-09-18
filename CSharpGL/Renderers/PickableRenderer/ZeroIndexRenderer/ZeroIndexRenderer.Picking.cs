@@ -294,7 +294,7 @@ namespace CSharpGL
                     break;
 
                 case DrawMode.Patches:
-                    // not know what to do for now
+                    // TODO: not know what to do for now
                     break;
 
                 case DrawMode.QuadStrip:
