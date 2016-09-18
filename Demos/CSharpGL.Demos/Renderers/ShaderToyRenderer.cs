@@ -1,5 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     partial class ShaderToyRenderer : Renderer
     {
         public ShaderToyRenderer()

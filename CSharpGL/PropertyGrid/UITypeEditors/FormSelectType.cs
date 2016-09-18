@@ -14,6 +14,7 @@ namespace CSharpGL
 
         private readonly Type baseType;
         private readonly bool forceReload;
+        private Func<Type, bool> addtionalFilter;
 
         /// <summary>
         /// Select a type from all types that derived from specified base type.
@@ -21,12 +22,21 @@ namespace CSharpGL
         /// <param name="baseType">base type.</param>
         /// <param name="forceReload">reload types that derived from specified base type.
         /// <para>Set this to true if new assemblies loaded or old assemblies removed.</para></param>
-        public FormSelectType(Type baseType, bool forceReload = false)
+        /// <param name="addtionalFilter">addtional filter.</param>
+        public FormSelectType(Type baseType, bool forceReload = false, Func<Type, bool> addtionalFilter = null)
         {
             InitializeComponent();
 
             this.baseType = baseType;
             this.forceReload = forceReload;
+            if (addtionalFilter == null)
+            {
+                this.addtionalFilter = x => !x.IsAbstract;
+            }
+            else
+            {
+                this.addtionalFilter = addtionalFilter;
+            }
 
             this.Text = string.Format("Select type derived from {0}", baseType);
         }
@@ -37,7 +47,7 @@ namespace CSharpGL
 
             if (this.forceReload)
             {
-                typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
+                typeList = this.baseType.GetAllDerivedTypes(this.addtionalFilter);
                 if (dict.ContainsKey(this.baseType))
                 { dict[this.baseType] = typeList; }
                 else
@@ -49,7 +59,7 @@ namespace CSharpGL
                 { typeList = dict[this.baseType]; }
                 else
                 {
-                    typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
+                    typeList = this.baseType.GetAllDerivedTypes(this.addtionalFilter);
                     dict.Add(this.baseType, typeList);
                 }
             }

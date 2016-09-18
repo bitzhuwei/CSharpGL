@@ -3,6 +3,7 @@
     /// <summary>
     /// Raycast Volume Rendering Demo.
     /// </summary>
+    [DemoRenderer]
     partial class RaycastVolumeRenderer : RendererBase
     {
         private Renderer backfaceRenderer;

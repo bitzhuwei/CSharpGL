@@ -2,6 +2,7 @@
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     internal class ParticleSimulatorRenderer : RendererBase
     {
         private ParticleRenderer particleRenderer;

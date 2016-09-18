@@ -3,6 +3,7 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     internal class PointSpriteRenderer : Renderer
     {
         private Texture spriteTexture;

@@ -2,6 +2,7 @@
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     partial class ShaderToyRenderer
     {
         private static readonly IBufferable staticBufferable = new Cube();

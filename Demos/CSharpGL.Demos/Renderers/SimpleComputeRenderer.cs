@@ -3,6 +3,7 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     internal class SimpleComputeRenderer : Renderer
     {
         private ShaderProgram computeProgram;

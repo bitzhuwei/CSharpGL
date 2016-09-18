@@ -14,7 +14,9 @@
             this RendererBase renderer,
             params Script[] scripts)
         {
-            return WrapToSceneObject(renderer, "", scripts);
+            string name = string.Format("{0}", renderer);
+
+            return WrapToSceneObject(renderer, name, scripts);
         }
 
         /// <summary>
@@ -30,7 +32,7 @@
         {
             var obj = new SceneObject();
             obj.Renderer = renderer;
-            obj.Name = string.IsNullOrEmpty(name) ? string.Format("{0}", renderer) : name;
+            obj.Name = name;
             obj.Scripts.AddRange(scripts);
 
             return obj;

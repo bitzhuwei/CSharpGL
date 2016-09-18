@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 
-namespace CSharpGL
+namespace CSharpGL.Demos
 {
     /// <summary>
     ///
     /// </summary>
+    [DemoRenderer]
     public class BezierCurveDemoRenderer : RendererBase
     {
         static private vec3[] points = new vec3[]{

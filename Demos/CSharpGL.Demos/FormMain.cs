@@ -121,9 +121,9 @@ namespace CSharpGL.Demos
             (new Form21ConditionalRendering()).Show();
         }
 
-        private void btn22BezierCurve_Click(object sender, EventArgs e)
+        private void btn23SingleRenderer_Click(object sender, EventArgs e)
         {
-            (new Form22BezierCurve()).Show();
+            (new Form23SingleRenderer()).Show();
         }
     }
 }

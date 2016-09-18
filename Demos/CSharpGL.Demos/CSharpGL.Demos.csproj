@@ -56,6 +56,16 @@
     <Compile Include="22BezierCurve\Form22BezierCurve.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="23SingleRenderer\DemoRendererFactory.cs" />
+    <Compile Include="23SingleRenderer\Form23SingleRenderer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="23SingleRenderer\Form23SingleRenderer.Designer.cs">
+      <DependentUpon>Form23SingleRenderer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="23SingleRenderer\Form23SingleRenderer.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="21ConditionalRendering\Form21ConditionalRendering.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +152,7 @@
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <None Include="readme.md" />
     <None Include="Resources\readme.md" />
+    <Compile Include="DemoRendererAttribute.cs" />
     <Compile Include="Renderers\BezierCurveDemoRenderer.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />

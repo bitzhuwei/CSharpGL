@@ -2,6 +2,7 @@
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     partial class ShaderToyRenderer
     {
         private float timeElapsingSpeed = 1.0f;

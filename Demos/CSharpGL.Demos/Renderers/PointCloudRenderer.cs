@@ -1,4 +1,4 @@
-namespace CSharpGL
+namespace CSharpGL.Demos
 {
     using System.Drawing;
     using System.IO;
@@ -6,6 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Renderer of PointCloud
     /// </summary>
+    [DemoRenderer]
     public partial class PointCloudRenderer : CSharpGL.Renderer
     {
         // you can replace PointCloudModel with IBufferable in the method's parameter.

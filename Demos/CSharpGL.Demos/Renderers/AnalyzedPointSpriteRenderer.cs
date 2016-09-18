@@ -4,6 +4,7 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     internal class AnalyzedPointSpriteRenderer : Renderer
     {
 

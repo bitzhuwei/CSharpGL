@@ -2,6 +2,7 @@
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     partial class ShaderToyRenderer
     {
         protected override void DoInitialize()

@@ -1,4 +1,4 @@
-namespace CSharpGL
+namespace CSharpGL.Demos
 {
     using System.Drawing;
     using System.IO;

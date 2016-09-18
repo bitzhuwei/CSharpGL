@@ -6,6 +6,7 @@ namespace CSharpGL.Demos
     /// <summary>
     /// demostrates how to perform conditional rendering.
     /// </summary>
+    [DemoRenderer]
     internal class ConditionalRenderer : RendererBase
     {
         private const int xside = 5, yside = 5, zside = 5;

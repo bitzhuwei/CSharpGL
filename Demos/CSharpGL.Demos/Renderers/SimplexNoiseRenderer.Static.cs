@@ -2,6 +2,7 @@
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     partial class SimplexNoiseRenderer
     {
         private static readonly IBufferable staticBufferable = new Sphere(1, 180, 360);
