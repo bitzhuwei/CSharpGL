@@ -57,11 +57,11 @@
         {
             if (this.EnableCapacity)
             {
-                return string.Format("Enable glCullFace({0});", this.Mode);
+                return string.Format("Enabled glCullFace({0});", this.Mode);
             }
             else
             {
-                return string.Format("Disable glCullFace({0});", this.Mode);
+                return string.Format("Disabled glCullFace({0});", this.Mode);
             }
         }
 

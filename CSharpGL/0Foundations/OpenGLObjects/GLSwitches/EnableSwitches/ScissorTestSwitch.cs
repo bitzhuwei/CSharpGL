@@ -69,12 +69,12 @@
         {
             if (this.EnableCapacity)
             {
-                return string.Format("Enable glScissor({0}, {1}, {2}, {3});",
+                return string.Format("Enabled glScissor({0}, {1}, {2}, {3});",
                     X, Y, Width, Height);
             }
             else
             {
-                return string.Format("Disable glScissor({0}, {1}, {2}, {3});",
+                return string.Format("Disabled glScissor({0}, {1}, {2}, {3});",
                     X, Y, Width, Height);
             }
         }
