@@ -47,5 +47,12 @@ namespace CSharpGL
             this.CurveWidth = new LineWidthSwitch(3.0f);
             this.CurveColor = Color.Red;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="controlPoints"></param>
+        public abstract void Setup(UnmanagedArray<vec3> controlPoints);
+
     }
 }

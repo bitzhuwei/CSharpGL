@@ -100,7 +100,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="controlPoints"></param>
-        public void Setup(UnmanagedArray<vec3> controlPoints)
+        public override void Setup(UnmanagedArray<vec3> controlPoints)
         {
             OpenGL.Map1f(OpenGL.GL_MAP1_VERTEX_3, //生成的数据类型
               minU, //u值的下界
