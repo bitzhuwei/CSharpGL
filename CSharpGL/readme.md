@@ -20,7 +20,7 @@ For more information and demonstrations please check (http://bitzhuwei.github.io
 6. LineStippleSwitch and PolygonStippleSwitch.
 7. Bezier curve rendering with legacy OpenGL.
 8. Color-coded picking intergrated in Scene.
-9. VertexAttributeBufferPtr supports tesselatoin shaders.
+9. VertexAttributeBufferPtr supports tessellation shaders.
 
 ## v1.0.6.5:
 1. Uniform/Texture/AtomicCounter/PixelUnpack Buffer.

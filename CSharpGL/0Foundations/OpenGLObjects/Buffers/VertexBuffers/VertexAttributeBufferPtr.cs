@@ -248,12 +248,12 @@ namespace CSharpGL
             for (uint i = 0; i < locationCount; i++)
             {
                 glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
-                if (patchVertexes > 0)
+                if (patchVertexes > 0)// tessellation shading.
                 { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
                 // 启用
                 // enable this VBO.
                 glEnableVertexAttribArray(loc + i);
-                if (divisor > 0)
+                if (divisor > 0)// instanced rendering.
                 {
                     // TODO: what if this is mat4? ...
                     glVertexAttribDivisor(loc + i, divisor);
