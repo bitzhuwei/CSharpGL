@@ -10,13 +10,13 @@
         /// <summary>
         ///
         /// </summary>
-        public PolygonModeSwitch() : this(PolygonModes.Filled) { }
+        public PolygonModeSwitch() : this(PolygonMode.Fill) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="mode"></param>
-        public PolygonModeSwitch(PolygonModes mode)
+        public PolygonModeSwitch(PolygonMode mode)
         {
             this.Mode = mode;
         }
@@ -47,19 +47,19 @@
         {
             if (originalPolygonMode[0] == originalPolygonMode[1])
             {
-                OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
+                OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonMode)(originalPolygonMode[0]));
             }
             else
             {
                 //TODO: not tested yet
-                OpenGL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)originalPolygonMode[0]);
-                OpenGL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)originalPolygonMode[1]);
+                OpenGL.PolygonMode(PolygonModeFaces.Front, (PolygonMode)originalPolygonMode[0]);
+                OpenGL.PolygonMode(PolygonModeFaces.Back, (PolygonMode)originalPolygonMode[1]);
             }
         }
 
         /// <summary>
         ///
         /// </summary>
-        public PolygonModes Mode { get; set; }
+        public PolygonMode Mode { get; set; }
     }
 }

@@ -66,23 +66,23 @@ namespace CSharpGL
             switch (geometryType)
             {
                 case GeometryType.Point:
-                    polygonModeSwitch.Mode = PolygonModes.Points;
+                    polygonModeSwitch.Mode = PolygonMode.Point;
                     break;
 
                 case GeometryType.Line:
-                    polygonModeSwitch.Mode = PolygonModes.Lines;
+                    polygonModeSwitch.Mode = PolygonMode.Line;
                     break;
 
                 case GeometryType.Triangle:
-                    polygonModeSwitch.Mode = PolygonModes.Filled;
+                    polygonModeSwitch.Mode = PolygonMode.Fill;
                     break;
 
                 case GeometryType.Quad:
-                    polygonModeSwitch.Mode = PolygonModes.Filled;
+                    polygonModeSwitch.Mode = PolygonMode.Fill;
                     break;
 
                 case GeometryType.Polygon:
-                    polygonModeSwitch.Mode = PolygonModes.Filled;
+                    polygonModeSwitch.Mode = PolygonMode.Fill;
                     break;
 
                 default:

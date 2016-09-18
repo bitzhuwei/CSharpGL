@@ -20,7 +20,7 @@
             }
         }
 
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
 
         /// <summary>
         /// Renderer that supports color-coded rendering.

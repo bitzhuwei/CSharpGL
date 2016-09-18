@@ -24,21 +24,21 @@
     /// <summary>
     /// The Polygon mode.
     /// </summary>
-    public enum PolygonModes : uint
+    public enum PolygonMode : uint
     {
         /// <summary>
         /// Render as points.
         /// </summary>
-        Points = OpenGL.GL_POINT,
+        Point = OpenGL.GL_POINT,
 
         /// <summary>
         /// Render as lines.
         /// </summary>
-        Lines = OpenGL.GL_LINE,
+        Line = OpenGL.GL_LINE,
 
         /// <summary>
-        /// Render as filled.
+        /// Render as filled(surface).
         /// </summary>
-        Filled = OpenGL.GL_FILL
+        Fill = OpenGL.GL_FILL
     }
 }

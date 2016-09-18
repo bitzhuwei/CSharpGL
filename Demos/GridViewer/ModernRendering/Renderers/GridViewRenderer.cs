@@ -25,7 +25,7 @@ namespace GridViewer
             if (this.RenderGrid)
             {
                 this.SetUniform("renderingWireframe", false);
-                this.polygonModeSwitch.Mode = PolygonModes.Filled;
+                this.polygonModeSwitch.Mode = PolygonMode.Fill;
                 this.polygonModeSwitch.On();
                 base.DoRender(arg);
                 this.polygonModeSwitch.Off();
@@ -34,7 +34,7 @@ namespace GridViewer
             if (this.renderWireframe)
             {
                 this.SetUniform("renderingWireframe", true);
-                this.polygonModeSwitch.Mode = PolygonModes.Lines;
+                this.polygonModeSwitch.Mode = PolygonMode.Line;
                 this.polygonModeSwitch.On();
                 this.polygonOffsetSwitch.On();
                 base.DoRender(arg);

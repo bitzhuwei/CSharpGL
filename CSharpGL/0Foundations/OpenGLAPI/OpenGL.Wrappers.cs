@@ -1140,7 +1140,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="face">The faces this applies to (front, back or both).</param>
         /// <param name="mode">The mode to set to (points, lines, or filled).</param>
-        public static void PolygonMode(PolygonModeFaces face, PolygonModes mode)
+        public static void PolygonMode(PolygonModeFaces face, PolygonMode mode)
         {
             OpenGL.PolygonMode((uint)face, (uint)mode);
         }

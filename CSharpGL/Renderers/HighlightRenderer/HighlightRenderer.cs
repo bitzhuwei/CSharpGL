@@ -30,7 +30,7 @@
             this.positionNameInIBufferable = positionNameInIBufferable;
             this.UniformVariables.Add(new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
             this.UniformVariables.Add(this.uniformMVP);
-            this.SwitchList.Add(new PolygonModeSwitch(PolygonModes.Lines));
+            this.SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
             this.SwitchList.Add(new LineWidthSwitch(10.0f));
             this.SwitchList.Add(new PointSizeSwitch(20.0f));
             this.SwitchList.Add(new PolygonOffsetFillSwitch());

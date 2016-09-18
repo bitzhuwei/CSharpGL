@@ -45,7 +45,7 @@ namespace CSharpGL.Demos
 
         public Color CurveColor { get; set; }
 
-        public DrawMode CurveDrawMode { get; set; }
+        public PolygonMode MeshMode { get; set; }
 
         public bool RenderCurve { get; set; }
 
@@ -65,7 +65,7 @@ namespace CSharpGL.Demos
             this.CurveColor = Color.Red;
             this.ControLPointDrawMode = DrawMode.Points;
             this.RenderControlPoints = true;
-            this.CurveDrawMode = DrawMode.Patches;
+            this.MeshMode = PolygonMode.Line;
             this.RenderCurve = true;
             this.MinPercent = 0;
             this.MaxPercent = 100;
@@ -127,11 +127,11 @@ namespace CSharpGL.Demos
                 OpenGL.Color(color.x, color.y, color.z, color.w);
                 this.CurveWidth.On();
                 //使用画线的方式来连接点
-                OpenGL.Begin(this.CurveDrawMode);
                 // 计算网格  
-                OpenGL.EvalMesh2(OpenGL.GL_LINE, this.MinPercent, this.MaxPercent, this.MinPercent, this.MaxPercent);
+                OpenGL.EvalMesh2(
+                    (uint)this.MeshMode,
+                    this.MinPercent, this.MaxPercent, this.MinPercent, this.MaxPercent);
 
-                OpenGL.End();
                 this.CurveWidth.Off();
             }
 

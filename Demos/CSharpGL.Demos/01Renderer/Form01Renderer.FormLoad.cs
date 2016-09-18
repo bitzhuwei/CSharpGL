@@ -118,7 +118,7 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(lineWidthSwitch);
                         GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
                         pickableRenderer.SwitchList.Add(pointSizeSwitch);
-                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
                         //GLSwitch blendSwitch = new BlendSwitch();
                         //pickableRenderer.SwitchList.Add(blendSwitch);
