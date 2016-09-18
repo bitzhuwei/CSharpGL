@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class BezierCurveRenderer : RendererBase
     {
         private unsafe UnmanagedArray<vec3> controlPoints;
         private int numOfPoints;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="numOfPoints"></param>
+        /// <param name="controlPoints"></param>
         public BezierCurveRenderer(int numOfPoints, UnmanagedArray<vec3> controlPoints)
         {
             this.numOfPoints = numOfPoints;
             this.controlPoints = controlPoints;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         protected override void DoInitialize()
         {
             //设置贝塞尔曲线，这个函数其实只需要调用一次，可以放在SetupRC中设置
@@ -39,19 +43,33 @@ namespace CSharpGL
             OpenGL.End();
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
             OpenGL.LoadIdentity();
-            //使用正交投影
+
+            mat4 projection = arg.Camera.GetProjectionMatrix();
+            mat4 view = arg.Camera.GetViewMatrix();
+            float width = arg.CanvasRect.Width;
+            float height = arg.CanvasRect.Height;
+
+            //  Set the projection matrix.
             OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
+
+            //  Load the identity.
             OpenGL.LoadIdentity();
+            ////  Create a perspective transformation.
+            //OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
+            mat4 projectionMatrix = glm.perspective(glm.radians(60.0f), width / height, 0.01f, 100.0f);
+            OpenGL.MultMatrixf((projection * view).ToArray());
 
-            OpenGL.Ortho(-10.0f, 10.0f, -10.0f, 10.0f, -100, 100);
-
+            //  Set the modelview matrix.
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
             //this.LegacyTransform();
             OpenGL.Color(1.0f, 0, 0, 1.0f);
-
 
             //画控制点
             OpenGL.PointSize(2.5f);

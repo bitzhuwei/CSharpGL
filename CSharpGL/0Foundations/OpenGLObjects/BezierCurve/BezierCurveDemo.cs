@@ -1,49 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BezierCurveDemo : RendererBase
     {
-        const int numOfPoints = 4;
+
+        static private vec3[] points = new vec3[]{
+             new vec3(-4.0f, 0.0f, 0.0f),
+             new vec3(-6.0f, 4.0f, 0.0f),
+             new vec3(6.0f, -4.0f, 0.0f),
+             new vec3(4.0f, 0.0f, 0.0f),
+        };
+
+        private static vec3 lengths;
+
+        static BezierCurveDemo()
+        {
+            BoundingBox box = points.Move2Center();
+            lengths = box.MaxPosition - box.MinPosition;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BezierCurveDemo()
+        {
+            this.Lengths = lengths;
+        }
+
         /// <summary>
         /// TODO: dispose this ...
         /// </summary>
 
         protected override void DoInitialize()
         {
-            UnmanagedArray<vec3> controlPoints = new UnmanagedArray<vec3>(numOfPoints);
+            UnmanagedArray<vec3> controlPoints = new UnmanagedArray<vec3>(points.Length);
             unsafe
             {
                 var array = (vec3*)controlPoints.Header.ToPointer();
-                array[0] = new vec3(-4.0f, 0.0f, 0.0f);
-                array[1] = new vec3(-6.0f, 4.0f, 0.0f);
-                array[2] = new vec3(6.0f, -4.0f, 0.0f);
-                array[3] = new vec3(4.0f, 0.0f, 0.0f);
+                for (int i = 0; i < points.Length; i++)
+                {
+                    array[i] = points[i];
+                }
             }
             //设置贝塞尔曲线，这个函数其实只需要调用一次，可以放在SetupRC中设置
             OpenGL.Map1f(OpenGL.GL_MAP1_VERTEX_3, //生成的数据类型
              0.0f, //u值的下界
               100.0f, //u值的上界
                3, //顶点在数据中的间隔，x,y,z所以间隔是3
-                numOfPoints, //u方向上的阶，即控制点的个数
+                controlPoints.Length, //u方向上的阶，即控制点的个数
                  controlPoints.Header//指向控制点数据的指针
                  );
             controlPoints.Dispose();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            OpenGL.LoadIdentity();
-            //使用正交投影
+            //  Set the projection matrix.(projection and view matrix actually.)
             OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
-            OpenGL.LoadIdentity();
+            arg.Camera.LegacyProjection();
 
-            OpenGL.Ortho(-10.0f, 10.0f, -10.0f, 10.0f, -100, 100);
-
+            //  Set the modelview matrix.(just model matrix actually.)
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
+            OpenGL.LoadIdentity();
+            this.LegacyTransform();
+
             //this.LegacyTransform();
             //必须在绘制顶点之前开启
             OpenGL.Enable(OpenGL.GL_MAP1_VERTEX_3);

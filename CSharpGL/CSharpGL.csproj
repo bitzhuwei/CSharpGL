@@ -121,6 +121,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IViewCamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IPerspectiveCamera.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Camera\ICamera.Resize.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Camera\ICamera.LegacyProjection.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\ColorMaskSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\DepthMaskSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\LineStippleSwitch.cs" />

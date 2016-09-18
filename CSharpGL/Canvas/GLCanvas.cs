@@ -157,7 +157,7 @@ namespace CSharpGL
             {
                 try
                 {
-                    DesignModeRender();
+                    DesignModeRendering();
                 }
                 catch (Exception)
                 {
@@ -183,7 +183,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected virtual void DesignModeRender()
+        protected virtual void DesignModeRendering()
         {
             // Sky blue fore background.
             //OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);

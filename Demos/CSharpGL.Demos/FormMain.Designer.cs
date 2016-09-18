@@ -50,6 +50,7 @@
             this.btn20GLSceneCanvas = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
+            this.btn22BezierCurve = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -361,12 +362,27 @@
             this.btn21ConditionalRendering.UseVisualStyleBackColor = true;
             this.btn21ConditionalRendering.Click += new System.EventHandler(this.btn21ConditionalRendering_Click);
             // 
+            // btn22BezierCurve
+            // 
+            this.btn22BezierCurve.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn22BezierCurve.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn22BezierCurve.Location = new System.Drawing.Point(7, 750);
+            this.btn22BezierCurve.Margin = new System.Windows.Forms.Padding(2);
+            this.btn22BezierCurve.Name = "btn22BezierCurve";
+            this.btn22BezierCurve.Size = new System.Drawing.Size(575, 30);
+            this.btn22BezierCurve.TabIndex = 0;
+            this.btn22BezierCurve.Text = "22 Bezier Curve";
+            this.btn22BezierCurve.UseVisualStyleBackColor = true;
+            this.btn22BezierCurve.Click += new System.EventHandler(this.btn22BezierCurve_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 793);
             this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.btn22BezierCurve);
             this.Controls.Add(this.btn21ConditionalRendering);
             this.Controls.Add(this.btn20GLSceneCanvas);
             this.Controls.Add(this.btn19PointCloud);
@@ -420,5 +436,6 @@
         private System.Windows.Forms.Button btn20GLSceneCanvas;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btn21ConditionalRendering;
+        private System.Windows.Forms.Button btn22BezierCurve;
     }
 }

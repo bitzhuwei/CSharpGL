@@ -71,10 +71,10 @@
         }
 
         /// <summary>
-        ///
+        /// Run legacy model transform.(from model space to world space)
         /// </summary>
         /// <param name="model"></param>
-        internal static void LegacyTransform(this IModelSpace model)
+        public static void LegacyTransform(this IModelSpace model)
         {
             OpenGL.Translate(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
             OpenGL.Scale(model.Scale.x, model.Scale.y, model.Scale.z);

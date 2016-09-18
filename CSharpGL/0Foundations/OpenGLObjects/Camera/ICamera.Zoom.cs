@@ -2,11 +2,9 @@
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// TODO:摄像机的perspective和ortho视角，是否应该同时变化？
-    /// </summary>
     public static partial class CameraHelper
     {
+        /// TODO:摄像机的perspective和ortho视角，是否应该同时变化？
         /// <summary>
         /// Zoom camera to fit in specified <paramref name="boundingBox"/>.
         /// </summary>
