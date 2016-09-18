@@ -8,7 +8,7 @@ namespace CSharpGL
     public partial class Bezier1DRenderer : PointsRenderer
     {
         /// <summary>
-        /// 
+        /// Creates a renderer that renders a 1D evaluator(a bezier curve) and its control points.
         /// </summary>
         /// <param name="controlPoints"></param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Rendering a 1D evaluator(a bezier curve) and its control points.
         /// </summary>
         /// <param name="controlPoints"></param>
         /// <param name="bufferable"></param>
@@ -53,9 +53,9 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            this.Evaluator1DRenderer.Initialize();
-
             base.DoInitialize();
+
+            this.Evaluator1DRenderer.Initialize();
         }
 
         /// <summary>
