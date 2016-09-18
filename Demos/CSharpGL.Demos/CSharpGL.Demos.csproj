@@ -135,6 +135,7 @@
     <None Include="readme.md" />
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
+    <Compile Include="Renderers\BezierSurfaceDemoRenderer.cs" />
     <Compile Include="Renderers\Bezier2DCurveDemoRenderer.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />

@@ -18,6 +18,10 @@ namespace CSharpGL.Demos
             {
                 renderer = new Bezier2DCurveDemoRenderer();
             }
+            else if (rendererType == typeof(BezierSurfaceDemoRenderer))
+            {
+                renderer = new BezierSurfaceDemoRenderer();
+            }
             else if (rendererType == typeof(ConditionalRenderer))
             {
                 renderer = ConditionalRenderer.Create();
