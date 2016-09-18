@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -28,13 +29,15 @@ namespace CSharpGL
         /// </summary>
         public EvaluatorRenderer(IList<vec3> controlPoints, vec3 lengths)
         {
-            var array = new UnmanagedArray<vec3>(controlPoints.Count);
+            vec3[] points = controlPoints.ToArray();
+            BoundingBox box = points.Move2Center();
+            var array = new UnmanagedArray<vec3>(points.Length);
             unsafe
             {
                 var pointer = (vec3*)array.Header.ToPointer();
                 for (int i = 0; i < array.Length; i++)
                 {
-                    pointer[i] = controlPoints[i];
+                    pointer[i] = points[i];
                 }
             }
             this.controlPoints = array;
