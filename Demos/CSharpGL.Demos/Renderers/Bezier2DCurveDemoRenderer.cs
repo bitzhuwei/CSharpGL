@@ -8,6 +8,9 @@ namespace CSharpGL.Demos
     [DemoRenderer]
     public class Bezier2DCurveDemoRenderer : RendererBase
     {
+        private float minU = 0;
+        private float maxU = 100;
+
         static private vec3[] points = new vec3[]{
              new vec3(-4.0f, 0.0f, 0.0f),
              new vec3(-6.0f, 4.0f, 0.0f),
@@ -82,14 +85,13 @@ namespace CSharpGL.Demos
                     array[i] = points[i];
                 }
             }
-            //设置贝塞尔曲线，这个函数其实只需要调用一次，可以放在SetupRC中设置
             OpenGL.Map1f(OpenGL.GL_MAP1_VERTEX_3, //生成的数据类型
-             0.0f, //u值的下界
-              100.0f, //u值的上界
-               3, //顶点在数据中的间隔，x,y,z所以间隔是3
+                minU, //u值的下界
+                maxU, //u值的上界
+                3, //顶点在数据中的间隔，x,y,z所以间隔是3
                 controlPoints.Length, //u方向上的阶，即控制点的个数
-                 controlPoints.Header//指向控制点数据的指针
-                 );
+                controlPoints.Header//指向控制点数据的指针
+                );
             controlPoints.Dispose();
         }
 
