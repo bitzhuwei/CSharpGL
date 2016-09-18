@@ -85,15 +85,6 @@
     <Compile Include="18PickingInScene\Form18PickingInScene.Picking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="19PointCloud\Form19PointCloud.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="19PointCloud\Form19PointCloud.Designer.cs">
-      <DependentUpon>Form19PointCloud.cs</DependentUpon>
-    </Compile>
-    <Compile Include="19PointCloud\Form19PointCloud.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="11IFontTexture\Form11IFontTexture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -421,9 +412,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="07PointSprite\Form07PointSprite.resx">
       <DependentUpon>Form07PointSprite.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="19PointCloud\Form19PointCloud.resx">
-      <DependentUpon>Form19PointCloud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="11IFontTexture\Form11IFontTexture.resx">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
