@@ -2,7 +2,6 @@
 
 namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     internal class OrderDependentTransparencyRenderer : PickableRenderer
     {
         public static OrderDependentTransparencyRenderer Create(IBufferable model, string position, string color)

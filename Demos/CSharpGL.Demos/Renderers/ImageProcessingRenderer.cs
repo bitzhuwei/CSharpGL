@@ -4,7 +4,6 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     internal class ImageProcessingRenderer : RendererBase
     {
         private ShaderProgram computeProgram;

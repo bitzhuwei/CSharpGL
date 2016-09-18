@@ -3,7 +3,6 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     internal class OrderIndependentTransparencyRenderer : RendererBase
     {
         private PickableRenderer buildListsRenderer;
