@@ -19,7 +19,8 @@ namespace CSharpGL
         /// Select a type from all types that derived from specified base type.
         /// </summary>
         /// <param name="baseType">base type.</param>
-        /// <param name="forceReload">reload types that derived from specified base type.</param>
+        /// <param name="forceReload">reload types that derived from specified base type.
+        /// <para>Set this to true if new assemblies loaded or old assemblies removed.</para></param>
         public FormSelectType(Type baseType, bool forceReload = false)
         {
             InitializeComponent();
