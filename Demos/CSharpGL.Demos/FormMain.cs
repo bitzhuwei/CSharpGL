@@ -76,11 +76,6 @@ namespace CSharpGL.Demos
             (new Form12Billboard()).Show();
         }
 
-        private void btn13SimplexNoise_Click(object sender, EventArgs e)
-        {
-            (new Form13SimplexNoise()).Show();
-        }
-
         private void btn15UIRenderer_Click(object sender, EventArgs e)
         {
             (new Form15UIRenderer()).Show();

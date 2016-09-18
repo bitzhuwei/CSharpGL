@@ -155,15 +155,6 @@
     <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />
-    <Compile Include="13SimplexNoise\Form13SimplexNoise.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="13SimplexNoise\Form13SimplexNoise.Designer.cs">
-      <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
-    </Compile>
-    <Compile Include="13SimplexNoise\Form13SimplexNoise.FormLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="18PickingInScene\DragParam.cs" />
     <Compile Include="01Renderer\Form01Renderer.cs">
       <SubType>Form</SubType>
@@ -333,7 +324,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Simple.config" />
-    <None Include="13SimplexNoise\readme.md" />
     <None Include="shaders\SimplexNoise.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -417,9 +407,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="15UIRenderer\Form15UIRenderer.resx">
       <DependentUpon>Form15UIRenderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="13SimplexNoise\Form13SimplexNoise.resx">
-      <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>

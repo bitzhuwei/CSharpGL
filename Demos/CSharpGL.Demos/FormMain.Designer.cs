@@ -40,7 +40,6 @@
             this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
             this.btn12Billboard = new System.Windows.Forms.Button();
-            this.btn13SimplexNoise = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn17UpdateTexture = new System.Windows.Forms.Button();
@@ -220,20 +219,6 @@
             this.btn12Billboard.UseVisualStyleBackColor = true;
             this.btn12Billboard.Click += new System.EventHandler(this.btn12Billboard_Click);
             // 
-            // btn13SimplexNoise
-            // 
-            this.btn13SimplexNoise.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn13SimplexNoise.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn13SimplexNoise.Location = new System.Drawing.Point(7, 442);
-            this.btn13SimplexNoise.Margin = new System.Windows.Forms.Padding(2);
-            this.btn13SimplexNoise.Name = "btn13SimplexNoise";
-            this.btn13SimplexNoise.Size = new System.Drawing.Size(575, 30);
-            this.btn13SimplexNoise.TabIndex = 0;
-            this.btn13SimplexNoise.Text = "13 SimplexNoise";
-            this.btn13SimplexNoise.UseVisualStyleBackColor = true;
-            this.btn13SimplexNoise.Click += new System.EventHandler(this.btn13SimplexNoise_Click);
-            // 
             // btn15UIRenderer
             // 
             this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -359,7 +344,6 @@
             this.Controls.Add(this.btn17UpdateTexture);
             this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
-            this.Controls.Add(this.btn13SimplexNoise);
             this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btn10RaycastVolumeRenderer);
@@ -394,7 +378,6 @@
         private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
         private System.Windows.Forms.Button btn11IFontTexture;
         private System.Windows.Forms.Button btn12Billboard;
-        private System.Windows.Forms.Button btn13SimplexNoise;
         private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn17UpdateTexture;
