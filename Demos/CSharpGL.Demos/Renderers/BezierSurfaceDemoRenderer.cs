@@ -97,8 +97,7 @@ namespace CSharpGL.Demos
                 3, // v方向上的阶
                 controlPoints.Header); //控制点数组
             controlPoints.Dispose();
-            //启用求值器
-            OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
+            //OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
             //从0到10映射一个包含10个点的网格
             OpenGL.MapGrid2f(10, 0.0f, 10.0f, 10, 0.0f, 10.0f);
         }
@@ -120,13 +119,15 @@ namespace CSharpGL.Demos
 
             if (this.RenderCurve)
             {
-                //必须在绘制顶点之前开启
-                OpenGL.Enable(OpenGL.GL_MAP1_VERTEX_3);
 
                 vec4 color = this.CurveColor.ToVec4();
                 OpenGL.Color(color.x, color.y, color.z, color.w);
                 this.CurveWidth.On();
-                //使用画线的方式来连接点
+
+                //启用求值器
+                //必须在绘制顶点之前开启
+                OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
+                OpenGL.Enable(OpenGL.GL_AUTO_NORMAL);
                 // 计算网格  
                 OpenGL.EvalMesh2(
                     (uint)this.MeshMode,
