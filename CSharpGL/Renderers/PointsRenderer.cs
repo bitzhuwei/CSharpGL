@@ -16,14 +16,14 @@ namespace CSharpGL
         public static PointsRenderer Create(Points model)
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Points.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Points.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"shaders\Points.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"shaders\Points.frag"), ShaderType.FragmentShader);
             var map = new CSharpGL.PropertyNameMap();
             map.Add("in_Position", Points.strposition);
             var renderer = new PointsRenderer(model, shaderCodes, map, Points.strposition);
             renderer.Lengths = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
-            //renderer.switchList.Add(new PointSizeSwitch(10));
+            renderer.switchList.Add(new PointSizeSwitch(10));
 
             return renderer;
         }
