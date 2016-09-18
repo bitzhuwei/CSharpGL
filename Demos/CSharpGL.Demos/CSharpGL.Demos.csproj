@@ -181,12 +181,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\ImageProcessingRenderer.cs" />
-    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.Designer.cs">
-      <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
-    </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,9 +192,6 @@
     </Compile>
     <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Designer.cs">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
-    </Compile>
-    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.Load.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
       <SubType>Form</SubType>
@@ -392,9 +383,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="05ParticleSimulator\Form05ParticleSimulator.resx">
-      <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>

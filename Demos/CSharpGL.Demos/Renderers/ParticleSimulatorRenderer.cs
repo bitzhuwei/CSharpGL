@@ -8,6 +8,10 @@ namespace CSharpGL.Demos
         private ParticleRenderer particleRenderer;
         private ParticleComputeRenderer particleComputeRenderer;
 
+        public ParticleSimulatorRenderer()
+        {
+            this.Lengths = new vec3(5, 5, 5);
+        }
         protected override void DoInitialize()
         {
             {

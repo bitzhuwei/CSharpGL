@@ -31,11 +31,6 @@ namespace CSharpGL.Demos
             (new Form02OrderIndependentTransparency()).Show();
         }
 
-        private void btn05ParticleSimulator_Click(object sender, EventArgs e)
-        {
-            (new Form05ParticleSimulator()).Show();
-        }
-
         private void btn06ImageProcessing_Click(object sender, EventArgs e)
         {
             (new Form06ImageProcessing()).Show();
