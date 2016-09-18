@@ -7,15 +7,14 @@ namespace CSharpGL
 {
     public class BezierCurveDemo : RendererBase
     {
-        int numOfPoints = 4;
+        const int numOfPoints = 4;
         /// <summary>
         /// TODO: dispose this ...
         /// </summary>
-        UnmanagedArray<vec3> controlPoints;
 
         protected override void DoInitialize()
         {
-            controlPoints = new UnmanagedArray<vec3>(4);
+            UnmanagedArray<vec3> controlPoints = new UnmanagedArray<vec3>(numOfPoints);
             unsafe
             {
                 var array = (vec3*)controlPoints.Header.ToPointer();
@@ -32,8 +31,7 @@ namespace CSharpGL
                 numOfPoints, //u方向上的阶，即控制点的个数
                  controlPoints.Header//指向控制点数据的指针
                  );
-
-
+            controlPoints.Dispose();
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -53,6 +51,7 @@ namespace CSharpGL
             OpenGL.Color(1.0f, 0, 0, 1.0f);
             //使用画线的方式来连接点
             OpenGL.Begin(OpenGL.GL_LINE_STRIP);
+            //OpenGL.Begin(OpenGL.GL_TRIANGLES);
             for (int i = 0; i <= 100; i++)
             {
                 OpenGL.EvalCoord1f((float)i);
