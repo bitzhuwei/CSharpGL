@@ -26,34 +26,20 @@ namespace CSharpGL.Demos
             lengths = box.MaxPosition - box.MinPosition;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public PointSizeSwitch PointSize { get; private set; }
 
-        /// <summary>
-        ///
-        /// </summary>
         public Color PointColor { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
+        public DrawMode ControLPointDrawMode { get; set; }
+
         public bool RenderControlPoints { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
         public LineWidthSwitch CurveWidth { get; private set; }
 
-        /// <summary>
-        ///
-        /// </summary>
         public Color CurveColor { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
+        public DrawMode CurveDrawMode { get; set; }
+
         public bool RenderCurve { get; set; }
 
         public float MinPercent { get; set; }
@@ -84,7 +70,9 @@ namespace CSharpGL.Demos
             this.CurveWidth = new LineWidthSwitch(3.0f);
             this.PointColor = Color.Aqua;
             this.CurveColor = Color.Red;
+            this.ControLPointDrawMode = DrawMode.Points;
             this.RenderControlPoints = true;
+            this.CurveDrawMode = DrawMode.LineStrip;
             this.RenderCurve = true;
             this.MinPercent = 0;
             this.MaxPercent = 100;
@@ -140,7 +128,7 @@ namespace CSharpGL.Demos
                 OpenGL.Color(color.x, color.y, color.z, color.w);
                 this.CurveWidth.On();
                 //使用画线的方式来连接点
-                OpenGL.Begin(OpenGL.GL_LINE_STRIP);
+                OpenGL.Begin(this.CurveDrawMode);
                 //OpenGL.Begin(OpenGL.GL_TRIANGLES);
                 float granularity = this.Granularity;
                 for (float i = this.MinPercent; i <= this.MaxPercent; i += granularity)
@@ -157,7 +145,7 @@ namespace CSharpGL.Demos
                 vec4 color = this.PointColor.ToVec4();
                 OpenGL.Color(color.x, color.y, color.z, color.w);
                 this.PointSize.On();
-                OpenGL.Begin(OpenGL.GL_POINTS);
+                OpenGL.Begin(this.ControLPointDrawMode);
                 for (int i = 0; i < points.Length; ++i)
                 {
                     OpenGL.Vertex(points[i].x, points[i].y, points[i].z);
