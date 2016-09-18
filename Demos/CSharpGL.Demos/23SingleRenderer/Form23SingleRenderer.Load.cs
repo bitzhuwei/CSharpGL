@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
         {
             {
                 var camera = new Camera(
-                    new vec3(5, 4, 3) * 4, new vec3(0, 0, 0), new vec3(0, 1, 0),
+                    new vec3(3, 4, 5) * 4, new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
