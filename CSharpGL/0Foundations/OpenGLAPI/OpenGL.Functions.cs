@@ -1436,97 +1436,97 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glIsEnabled", SetLastError = true)]
         public static extern byte IsEnabled(uint cap);
 
-        ///// <summary>
-        ///// This function determines whether a specified value is a display list.
-        ///// </summary>
-        ///// <param name="list">The value to test.</param>
-        ///// <returns>TRUE if it is a list, FALSE otherwise.</returns>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIsList", SetLastError = true)]
-        //public static extern byte IsList(uint list);
+        /// <summary>
+        /// This function determines whether a specified value is a display list.
+        /// </summary>
+        /// <param name="list">The value to test.</param>
+        /// <returns>TRUE if it is a list, FALSE otherwise.</returns>
+        [DllImport(Win32.opengl32, EntryPoint = "glIsList", SetLastError = true)]
+        public static extern byte IsList(uint list);
 
-        ///// <summary>
-        ///// Determine if a name corresponds	to a texture.
-        ///// </summary>
-        ///// <param name="texture">Specifies a value that may be the name of a texture.</param>
-        ///// <returns>True if texture is a texture object.</returns>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIsTexture", SetLastError = true)]
-        //public static extern byte IsTexture(uint texture);
+        /// <summary>
+        /// Determine if a name corresponds	to a texture.
+        /// </summary>
+        /// <param name="texture">Specifies a value that may be the name of a texture.</param>
+        /// <returns>True if texture is a texture object.</returns>
+        [DllImport(Win32.opengl32, EntryPoint = "glIsTexture", SetLastError = true)]
+        public static extern byte IsTexture(uint texture);
 
-        ///// <summary>
-        ///// This function sets a parameter of the lighting model.
-        ///// </summary>
-        ///// <param name="pname">The name of the parameter.</param>
-        ///// <param name="param">The parameter to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightModelf", SetLastError = true)]
-        //public static extern void LightModelf(uint pname, float param);
+        /// <summary>
+        /// This function sets a parameter of the lighting model.
+        /// </summary>
+        /// <param name="pname">The name of the parameter.</param>
+        /// <param name="param">The parameter to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightModelf", SetLastError = true)]
+        public static extern void LightModelf(uint pname, float param);
 
-        ///// <summary>
-        ///// This function sets a parameter of the lighting model.
-        ///// </summary>
-        ///// <param name="pname">The name of the parameter.</param>
-        ///// <param name="parameters">The parameter to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightModelfv", SetLastError = true)]
-        //public static extern void LightModelfv(uint pname, float[] parameters);
+        /// <summary>
+        /// This function sets a parameter of the lighting model.
+        /// </summary>
+        /// <param name="pname">The name of the parameter.</param>
+        /// <param name="parameters">The parameter to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightModelfv", SetLastError = true)]
+        public static extern void LightModelfv(uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// This function sets a parameter of the lighting model.
-        ///// </summary>
-        ///// <param name="pname">The name of the parameter.</param>
-        ///// <param name="param">The parameter to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightModeli", SetLastError = true)]
-        //public static extern void LightModeli(uint pname, int param);
+        /// <summary>
+        /// This function sets a parameter of the lighting model.
+        /// </summary>
+        /// <param name="pname">The name of the parameter.</param>
+        /// <param name="param">The parameter to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightModeli", SetLastError = true)]
+        public static extern void LightModeli(uint pname, int param);
 
-        ///// <summary>
-        ///// This function sets a parameter of the lighting model.
-        ///// </summary>
-        ///// <param name="pname">The name of the parameter.</param>
-        ///// <param name="parameters">The parameter to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightModeliv", SetLastError = true)]
-        //public static extern void LightModeliv(uint pname, int[] parameters);
+        /// <summary>
+        /// This function sets a parameter of the lighting model.
+        /// </summary>
+        /// <param name="pname">The name of the parameter.</param>
+        /// <param name="parameters">The parameter to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightModeliv", SetLastError = true)]
+        public static extern void LightModeliv(uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Set the parameter (pname) of the light 'light'.
-        ///// </summary>
-        ///// <param name="light">The light you wish to set parameters for.</param>
-        ///// <param name="pname">The parameter you want to set.</param>
-        ///// <param name="param">The value that you want to set the parameter to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightf", SetLastError = true)]
-        //public static extern void Lightf(uint light, uint pname, float param);
+        /// <summary>
+        /// Set the parameter (pname) of the light 'light'.
+        /// </summary>
+        /// <param name="light">The light you wish to set parameters for.</param>
+        /// <param name="pname">The parameter you want to set.</param>
+        /// <param name="param">The value that you want to set the parameter to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightf", SetLastError = true)]
+        public static extern void Lightf(uint light, uint pname, float param);
 
-        ///// <summary>
-        ///// Set the parameter (pname) of the light 'light'.
-        ///// </summary>
-        ///// <param name="light">The light you wish to set parameters for.</param>
-        ///// <param name="pname">The parameter you want to set.</param>
-        ///// <param name="parameters">The value that you want to set the parameter to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightfv", SetLastError = true)]
-        //public static extern void Lightfv(uint light, uint pname, float[] parameters);
+        /// <summary>
+        /// Set the parameter (pname) of the light 'light'.
+        /// </summary>
+        /// <param name="light">The light you wish to set parameters for.</param>
+        /// <param name="pname">The parameter you want to set.</param>
+        /// <param name="parameters">The value that you want to set the parameter to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightfv", SetLastError = true)]
+        public static extern void Lightfv(uint light, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Set the parameter (pname) of the light 'light'.
-        ///// </summary>
-        ///// <param name="light">The light you wish to set parameters for.</param>
-        ///// <param name="pname">The parameter you want to set.</param>
-        ///// <param name="param">The value that you want to set the parameter to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLighti", SetLastError = true)]
-        //public static extern void Lighti(uint light, uint pname, int param);
+        /// <summary>
+        /// Set the parameter (pname) of the light 'light'.
+        /// </summary>
+        /// <param name="light">The light you wish to set parameters for.</param>
+        /// <param name="pname">The parameter you want to set.</param>
+        /// <param name="param">The value that you want to set the parameter to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLighti", SetLastError = true)]
+        public static extern void Lighti(uint light, uint pname, int param);
 
-        ///// <summary>
-        ///// Set the parameter (pname) of the light 'light'.
-        ///// </summary>
-        ///// <param name="light">The light you wish to set parameters for.</param>
-        ///// <param name="pname">The parameter you want to set.</param>
-        ///// <param name="parameters">The parameters.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLightiv", SetLastError = true)]
-        //public static extern void Lightiv(uint light, uint pname, int[] parameters);
+        /// <summary>
+        /// Set the parameter (pname) of the light 'light'.
+        /// </summary>
+        /// <param name="light">The light you wish to set parameters for.</param>
+        /// <param name="pname">The parameter you want to set.</param>
+        /// <param name="parameters">The parameters.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLightiv", SetLastError = true)]
+        public static extern void Lightiv(uint light, uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Specify the line stipple pattern.
-        ///// </summary>
-        ///// <param name="factor">Specifies a multiplier for each bit in the line stipple pattern.  If factor is 3, for example, each bit in the pattern is used three times before the next	bit in the pattern is used. factor is clamped to the range	[1, 256] and defaults to 1.</param>
-        ///// <param name="pattern">Specifies a 16-bit integer whose bit	pattern determines which fragments of a line will be drawn when	the line is rasterized.	 Bit zero is used first; the default pattern is all 1's.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLineStipple", SetLastError = true)]
-        //public static extern void LineStipple(int factor, ushort pattern);
+        /// <summary>
+        /// Specify the line stipple pattern.
+        /// </summary>
+        /// <param name="factor">Specifies a multiplier for each bit in the line stipple pattern.  If factor is 3, for example, each bit in the pattern is used three times before the next	bit in the pattern is used. factor is clamped to the range	[1, 256] and defaults to 1.</param>
+        /// <param name="pattern">Specifies a 16-bit integer whose bit	pattern determines which fragments of a line will be drawn when	the line is rasterized.	 Bit zero is used first; the default pattern is all 1's.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLineStipple", SetLastError = true)]
+        public static extern void LineStipple(int factor, ushort pattern);
 
         /// <summary>
         /// Set's the current width of lines.
@@ -1548,34 +1548,34 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glLoadIdentity", SetLastError = true)]
         public static extern void LoadIdentity();
 
-        ///// <summary>
-        ///// Replace the current matrix with the specified matrix.
-        ///// </summary>
-        ///// <param name="m">Specifies a pointer to 16 consecutive values, which are used as the elements of a 4x4 column-major matrix.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLoadMatrixd", SetLastError = true)]
-        //public static extern void LoadMatrixd(double[] m);
+        /// <summary>
+        /// Replace the current matrix with the specified matrix.
+        /// </summary>
+        /// <param name="m">Specifies a pointer to 16 consecutive values, which are used as the elements of a 4x4 column-major matrix.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLoadMatrixd", SetLastError = true)]
+        public static extern void LoadMatrixd(double[] m);
 
-        ///// <summary>
-        ///// Replace the current matrix with the specified matrix.
-        ///// </summary>
-        ///// <param name="m">Specifies a pointer to 16 consecutive values, which are used as the elements of a 4x4 column-major matrix.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLoadMatrixf", SetLastError = true)]
-        //public static extern void LoadMatrixf(float[] m);
+        /// <summary>
+        /// Replace the current matrix with the specified matrix.
+        /// </summary>
+        /// <param name="m">Specifies a pointer to 16 consecutive values, which are used as the elements of a 4x4 column-major matrix.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLoadMatrixf", SetLastError = true)]
+        public static extern void LoadMatrixf(float[] m);
 
-        ///// <summary>
-        ///// This function replaces the name at the top of the selection names stack
-        ///// with 'name'.
-        ///// </summary>
-        ///// <param name="name">The name to replace it with.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLoadName", SetLastError = true)]
-        //public static extern void LoadName(uint name);
+        /// <summary>
+        /// This function replaces the name at the top of the selection names stack
+        /// with 'name'.
+        /// </summary>
+        /// <param name="name">The name to replace it with.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLoadName", SetLastError = true)]
+        public static extern void LoadName(uint name);
 
-        ///// <summary>
-        ///// Specify a logical pixel operation for color index rendering.
-        ///// </summary>
-        ///// <param name="opcode">Specifies a symbolic constant	that selects a logical operation.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glLogicOp", SetLastError = true)]
-        //public static extern void LogicOp(uint opcode);
+        /// <summary>
+        /// Specify a logical pixel operation for color index rendering.
+        /// </summary>
+        /// <param name="opcode">Specifies a symbolic constant	that selects a logical operation.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glLogicOp", SetLastError = true)]
+        public static extern void LogicOp(uint opcode);
 
         /// <summary>
         /// Defines a 1D evaluator.
