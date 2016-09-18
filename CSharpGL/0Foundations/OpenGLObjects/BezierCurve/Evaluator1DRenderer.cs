@@ -58,13 +58,8 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            OpenGL.Map1f(OpenGL.GL_MAP1_VERTEX_3, //生成的数据类型
-                minU, //u值的下界
-                maxU, //u值的上界
-                3, //顶点在数据中的间隔，x,y,z所以间隔是3
-                controlPoints.Length, //u方向上的阶，即控制点的个数
-                controlPoints.Header//指向控制点数据的指针
-                );
+            this.Setup(this.controlPoints);
+
             controlPoints.Dispose();
         }
 
@@ -99,6 +94,21 @@ namespace CSharpGL
             OpenGL.End();
 
             this.CurveWidth.Off();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="controlPoints"></param>
+        public void Setup(UnmanagedArray<vec3> controlPoints)
+        {
+            OpenGL.Map1f(OpenGL.GL_MAP1_VERTEX_3, //生成的数据类型
+              minU, //u值的下界
+              maxU, //u值的上界
+              3, //顶点在数据中的间隔，x,y,z所以间隔是3
+              controlPoints.Length, //u方向上的阶，即控制点的个数
+              controlPoints.Header//指向控制点数据的指针
+              );
         }
     }
 }
