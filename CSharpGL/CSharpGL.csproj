@@ -104,7 +104,9 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\BezierCurve\BezierCurveRenderer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\BezierCurve\EvaluatorRenderer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\BezierCurve\Evaluator1DRenderer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\BezierCurve\Evaluator2DRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBuffer.cs" />
