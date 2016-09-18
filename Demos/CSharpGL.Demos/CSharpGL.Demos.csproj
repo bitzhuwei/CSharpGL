@@ -187,12 +187,6 @@
     <Compile Include="05ParticleSimulator\Form05ParticleSimulator.Designer.cs">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </Compile>
-    <Compile Include="04SimpleCompute\Form04SimpleCompute.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="04SimpleCompute\Form04SimpleCompute.Designer.cs">
-      <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
-    </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,9 +200,6 @@
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </Compile>
     <Compile Include="05ParticleSimulator\Form05ParticleSimulator.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="04SimpleCompute\Form04SimpleCompute.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
@@ -404,9 +395,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="05ParticleSimulator\Form05ParticleSimulator.resx">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="04SimpleCompute\Form04SimpleCompute.resx">
-      <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>

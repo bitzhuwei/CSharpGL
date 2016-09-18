@@ -31,7 +31,6 @@
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
             this.btnForm01Renderer = new System.Windows.Forms.Button();
             this.btn02OriderIndependentTransparency = new System.Windows.Forms.Button();
-            this.btnForm04SimpleCompute = new System.Windows.Forms.Button();
             this.btnForm05ParticleSimulator = new System.Windows.Forms.Button();
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
@@ -90,20 +89,6 @@
             this.btn02OriderIndependentTransparency.Text = "Form02 Orider-Independent Transparency";
             this.btn02OriderIndependentTransparency.UseVisualStyleBackColor = true;
             this.btn02OriderIndependentTransparency.Click += new System.EventHandler(this.btn02OrderIndependentTransparency_Click);
-            // 
-            // btnForm04SimpleCompute
-            // 
-            this.btnForm04SimpleCompute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnForm04SimpleCompute.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm04SimpleCompute.Location = new System.Drawing.Point(7, 133);
-            this.btnForm04SimpleCompute.Margin = new System.Windows.Forms.Padding(2);
-            this.btnForm04SimpleCompute.Name = "btnForm04SimpleCompute";
-            this.btnForm04SimpleCompute.Size = new System.Drawing.Size(575, 30);
-            this.btnForm04SimpleCompute.TabIndex = 0;
-            this.btnForm04SimpleCompute.Text = "Form04 SimpleCompute";
-            this.btnForm04SimpleCompute.UseVisualStyleBackColor = true;
-            this.btnForm04SimpleCompute.Click += new System.EventHandler(this.btn04SimpleCompute_Click);
             // 
             // btnForm05ParticleSimulator
             // 
@@ -336,7 +321,6 @@
             this.Controls.Add(this.btnForm07PointSprite);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btnForm05ParticleSimulator);
-            this.Controls.Add(this.btnForm04SimpleCompute);
             this.Controls.Add(this.btn02OriderIndependentTransparency);
             this.Controls.Add(this.btnForm01Renderer);
             this.Controls.Add(this.btnForm00GLCanvas);
@@ -353,7 +337,6 @@
         private System.Windows.Forms.Button btnForm00GLCanvas;
         private System.Windows.Forms.Button btnForm01Renderer;
         private System.Windows.Forms.Button btn02OriderIndependentTransparency;
-        private System.Windows.Forms.Button btnForm04SimpleCompute;
         private System.Windows.Forms.Button btnForm05ParticleSimulator;
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07PointSprite;

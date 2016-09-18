@@ -100,7 +100,7 @@ namespace CSharpGL
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            List<Type> typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
+            List<Type> typeList = this.baseType.GetAllDerivedTypes(this.addtionalFilter);
             dict[this.baseType] = typeList;
             this.lstType.Items.Clear();
             foreach (var item in typeList)
