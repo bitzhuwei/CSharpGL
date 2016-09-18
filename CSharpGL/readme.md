@@ -17,6 +17,10 @@ For more information and demonstrations please check (http://bitzhuwei.github.io
 3. fix: remove framebuffer object in ColorCodedPicking.
 4.. `BufferPtr` supports bind/unbind and abstract Target property.
 5. `Renderer` always renders with its own index buffer.
+6. LineStippleSwitch and PolygonStippleSwitch.
+7. Bezier curve rendering with legacy OpenGL.
+8. Color-coded picking intergrated in Scene.
+9. VertexAttributeBufferPtr supports tesselatoin shaders.
 
 ## v1.0.6.5:
 1. Uniform/Texture/AtomicCounter/PixelUnpack Buffer.
