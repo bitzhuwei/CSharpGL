@@ -59,8 +59,8 @@ namespace CSharpGL
             this.fullname = this.GetType().FullName;
         }
 
-        private bool showingCursor = true;
-        private bool showSystemCursor = true;
+        //private bool showingCursor = true;
+        //private bool showSystemCursor = true;
 
         ///// <summary>
         ///// show/hide system's cursor.
