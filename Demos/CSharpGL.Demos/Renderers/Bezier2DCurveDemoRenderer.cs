@@ -56,7 +56,9 @@ namespace CSharpGL.Demos
         /// </summary>
         public bool RenderCurve { get; set; }
 
-        public int SomeCount { get; set; }
+        public int MinPercent { get; set; }
+
+        public int MaxPercent { get; set; }
 
         /// <summary>
         ///
@@ -70,7 +72,8 @@ namespace CSharpGL.Demos
             this.CurveColor = Color.Red;
             this.RenderControlPoints = true;
             this.RenderCurve = true;
-            this.SomeCount = 100;
+            this.MinPercent = 0;
+            this.MaxPercent = 100;
         }
 
         /// <summary>
@@ -124,7 +127,7 @@ namespace CSharpGL.Demos
                 //使用画线的方式来连接点
                 OpenGL.Begin(OpenGL.GL_LINE_STRIP);
                 //OpenGL.Begin(OpenGL.GL_TRIANGLES);
-                for (int i = 0; i <= this.SomeCount; i++)
+                for (int i = this.MinPercent; i <= this.MaxPercent; i++)
                 {
                     OpenGL.EvalCoord1f((float)i);
                 }
