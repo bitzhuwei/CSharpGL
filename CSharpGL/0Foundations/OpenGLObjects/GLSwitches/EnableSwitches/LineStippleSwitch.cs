@@ -6,9 +6,10 @@
     public class LineStippleSwitch : EnableSwitch
     {
         /// <summary>
-        ///
+        /// Dashed line.
         /// </summary>
-        /// <param name="mode"></param>
+        /// <param name="factor"></param>
+        /// <param name="pattern"></param>
         public LineStippleSwitch(int factor, ushort pattern)
             : base(OpenGL.GL_LINE_STIPPLE, true)
         {
@@ -16,7 +17,7 @@
         }
 
         /// <summary>
-        ///
+        /// Dashed line.
         /// </summary>
         /// <param name="factor"></param>
         /// <param name="pattern"></param>
