@@ -53,7 +53,7 @@ namespace CSharpGL
                     header[i] = bufferHeader[i];
                 }
             }
-            this.EvaluatorRenderer.Setup(array);
+            this.Evaluator.Setup(array);
             array.Dispose();
             this.PositionBufferPtr.UnmapBuffer();
         }

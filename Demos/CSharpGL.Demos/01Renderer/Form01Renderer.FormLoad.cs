@@ -132,7 +132,7 @@ namespace CSharpGL.Demos
                         new vec3(6.0f, -4.0f, 0.0f),
                         new vec3(4.0f, 0.0f, 0.0f),
                     };
-                    Bezier1DRenderer pickableRenderer = Bezier1DRenderer.Create(points);
+                    Bezier1DRenderer pickableRenderer = Bezier1DRenderer.Create(points, BezierType.Curve);
                     pickableRenderer.Initialize();
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
@@ -168,7 +168,7 @@ namespace CSharpGL.Demos
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Bezier2D, renderer);
                 }
-                this.SelectedModel = GeometryModel.Tetrahedron;
+                this.SelectedModel = GeometryModel.Bezier1D;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
