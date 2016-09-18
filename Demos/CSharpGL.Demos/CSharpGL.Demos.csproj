@@ -142,6 +142,7 @@
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <None Include="readme.md" />
     <None Include="Resources\readme.md" />
+    <Compile Include="Renderers\BezierCurveDemoRenderer.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />

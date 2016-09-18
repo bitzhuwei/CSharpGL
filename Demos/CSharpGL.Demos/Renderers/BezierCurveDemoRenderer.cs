@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public class BezierCurveDemo : RendererBase
+    public class BezierCurveDemoRenderer : RendererBase
     {
         static private vec3[] points = new vec3[]{
              new vec3(-4.0f, 0.0f, 0.0f),
@@ -16,7 +16,7 @@ namespace CSharpGL
 
         private static vec3 lengths;
 
-        static BezierCurveDemo()
+        static BezierCurveDemoRenderer()
         {
             BoundingBox box = points.Move2Center();
             lengths = box.MaxPosition - box.MinPosition;
@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public BezierCurveDemo()
+        public BezierCurveDemoRenderer()
         {
             this.Lengths = lengths;
             this.PointSize = new PointSizeSwitch(10.0f);

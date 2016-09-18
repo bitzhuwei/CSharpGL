@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var renderer = new BezierCurveDemo();
+                var renderer = new BezierCurveDemoRenderer();
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject("Bezier Curve Demo");
                 {
