@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
             Sphere,
             Teapot,
             Bezier1D,
-            //Bezier2D,
+            Bezier2D,
         }
 
         private GeometryModel selectedModel = GeometryModel.BigDipper;

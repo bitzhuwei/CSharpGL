@@ -144,6 +144,30 @@ namespace CSharpGL.Demos
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Bezier1D, renderer);
                 }
+                {
+                    var points = new List<vec3>(){
+                        new vec3(  -4.0f, 0.0f, 4.0f),
+                        new vec3(-2.0f, 4.0f, 4.0f),
+                        new vec3( 4.0f, 0.0f, 4.0f ),
+                        new vec3(  -4.0f, 0.0f, 0.0f),
+                        new vec3(-2.0f, 4.0f, 0.0f),
+                        new vec3( 4.0f, 0.0f, 0.0f),
+                        new vec3(  -4.0f, 0.0f, -4.0f),
+                        new vec3(-2.0f, 4.0f, -4.0f),
+                        new vec3( 4.0f, 0.0f, -4.0f)
+                    };
+                    Bezier2DRenderer pickableRenderer = Bezier2DRenderer.Create(points);
+                    pickableRenderer.Initialize();
+                    var bufferable = pickableRenderer.Model;
+                    var highlightRenderer = new HighlightRenderer(
+                        bufferable, Points.strposition);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", "Bezier2D");
+                    highlightRenderer.Initialize();
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
+                    renderer.Initialize();
+                    this.rendererDict.Add(GeometryModel.Bezier2D, renderer);
+                }
                 this.SelectedModel = GeometryModel.Tetrahedron;
             }
             {
