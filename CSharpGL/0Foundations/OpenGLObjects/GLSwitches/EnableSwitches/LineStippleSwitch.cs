@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// Dashed line.
@@ -8,13 +9,13 @@
         /// <summary>
         /// Dashed line.
         /// </summary>
-        public LineStippleSwitch() : this(1, 0x0101) { }
+        public LineStippleSwitch() : this(1, 0x0F0F) { }
 
         /// <summary>
         /// Dashed line.
         /// </summary>
-        /// <param name="factor"></param>
-        /// <param name="pattern"></param>
+        /// <param name="factor">factor in 'void glLineStipple(int factor, ushort pattern);'.</param>
+        /// <param name="pattern">pattern in 'void glLineStipple(int factor, ushort pattern);'.</param>
         public LineStippleSwitch(int factor, ushort pattern)
             : base(OpenGL.GL_LINE_STIPPLE, true)
         {
@@ -68,13 +69,15 @@
         }
 
         /// <summary>
-        ///
+        /// factor in 'void glLineStipple(int factor, ushort pattern);'.
         /// </summary>
+        [Description("factor in 'void glLineStipple(int factor, ushort pattern);'")]
         public int Factor { get; set; }
 
         /// <summary>
-        ///
+        /// pattern in 'void glLineStipple(int factor, ushort pattern);'.
         /// </summary>
+        [Description("It's supported to udpate this value with hexadecimal format(such as 0x0101).")]
         public ushort Pattern { get; set; }
     }
 }
