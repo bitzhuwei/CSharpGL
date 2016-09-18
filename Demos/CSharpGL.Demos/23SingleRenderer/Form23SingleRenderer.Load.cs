@@ -40,6 +40,8 @@ namespace CSharpGL.Demos
                 }
                 this.scene.RootObject.Children.Add(obj);
                 this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());
+                var frmProperty = new FormProperyGrid(renderer);
+                frmProperty.Show();
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
