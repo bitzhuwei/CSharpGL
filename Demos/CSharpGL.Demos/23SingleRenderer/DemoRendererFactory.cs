@@ -14,9 +14,9 @@ namespace CSharpGL.Demos
                 int particleCount = 10000;
                 renderer = AnalyzedPointSpriteRenderer.Create(particleCount);
             }
-            else if (rendererType == typeof(BezierCurveDemoRenderer))
+            else if (rendererType == typeof(Bezier2DCurveDemoRenderer))
             {
-                renderer = new BezierCurveDemoRenderer();
+                renderer = new Bezier2DCurveDemoRenderer();
             }
             else if (rendererType == typeof(ConditionalRenderer))
             {
