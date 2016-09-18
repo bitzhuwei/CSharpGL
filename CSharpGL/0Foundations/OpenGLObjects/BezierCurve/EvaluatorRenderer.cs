@@ -9,17 +9,17 @@ namespace CSharpGL
     public abstract class EvaluatorRenderer : RendererBase
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected unsafe UnmanagedArray<vec3> controlPoints;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public LineWidthSwitch CurveWidth { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Color CurveColor { get; set; }
 

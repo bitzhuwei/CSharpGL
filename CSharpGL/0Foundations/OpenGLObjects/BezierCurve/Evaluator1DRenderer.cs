@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 
 namespace CSharpGL
 {
@@ -8,24 +7,23 @@ namespace CSharpGL
     /// </summary>
     public class Evaluator1DRenderer : EvaluatorRenderer
     {
-
-        private float minU = 0;
-        private float maxU = 100;
+        private const float minU = 0;
+        private const float maxU = 100;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DrawMode CurveDrawMode { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float MinPercent { get; set; }
 
         private float granularity = 1.0f;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float Granularity
         {
@@ -40,7 +38,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public float MaxPercent { get; set; }
 
@@ -90,15 +88,15 @@ namespace CSharpGL
             vec4 color = this.CurveColor.ToVec4();
             OpenGL.Color(color.x, color.y, color.z, color.w);
             this.CurveWidth.On();
-            //使用画线的方式来连接点
+
             OpenGL.Begin(this.CurveDrawMode);
-            //OpenGL.Begin(OpenGL.GL_TRIANGLES);
             float granularity = this.Granularity;
             for (float i = this.MinPercent; i <= this.MaxPercent; i += granularity)
             {
                 OpenGL.EvalCoord1f((float)i);
             }
             OpenGL.End();
+
             this.CurveWidth.Off();
         }
     }

@@ -9,10 +9,10 @@ namespace CSharpGL
     public class Evaluator2DRenderer : EvaluatorRenderer
     {
 
-        private float minU = 0;
-        private float maxU = 100;
-        private float minV = 0;
-        private float maxV = 100;
+        private const int minU = 0;
+        private const int maxU = 100;
+        private const int minV = 0;
+        private const int maxV = 100;
 
         /// <summary>
         /// 
@@ -22,12 +22,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public int MinPercent { get; set; }
+        public ivec2 MinPercent { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int MaxPercent { get; set; }
+        public ivec2 MaxPercent { get; set; }
 
         /// <summary>
         /// This is a 1D evaluator, i.e a bezier curve.
@@ -35,8 +35,8 @@ namespace CSharpGL
         public Evaluator2DRenderer(IList<vec3> controlPoints, vec3 lengths)
             : base(controlPoints, lengths)
         {
-            this.MinPercent = 0;
-            this.MaxPercent = 100;
+            this.MinPercent = new ivec2(minU, minV);
+            this.MaxPercent = new ivec2(maxU, maxV);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace CSharpGL
             // 计算网格  
             OpenGL.EvalMesh2(
                 (uint)this.MeshMode,
-                this.MinPercent, this.MaxPercent, this.MinPercent, this.MaxPercent);
+                this.MinPercent.x, this.MaxPercent.x, this.MinPercent.y, this.MaxPercent.y);
 
             this.CurveWidth.Off();
         }
