@@ -4,6 +4,9 @@
     partial class SimplexNoiseRenderer : Renderer
     {
         public SimplexNoiseRenderer()
-            : base(staticBufferable, staticShaderCodes, staticPropertyNameMap) { }
+            : base(staticBufferable, staticShaderCodes, staticPropertyNameMap)
+        {
+            this.Lengths = staticBufferable.Lengths;
+        }
     }
 }
