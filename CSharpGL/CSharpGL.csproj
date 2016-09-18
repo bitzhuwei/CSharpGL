@@ -104,6 +104,8 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="Renderers\BezierRenderers\Bezier2DRenderer.cs" />
+    <Compile Include="Renderers\BezierRenderers\Bezier2DRenderer.MovePosition.cs" />
     <Compile Include="Renderers\BezierRenderers\Bezier1DRenderer.MovePosition.cs" />
     <Compile Include="Renderers\BezierRenderers\Bezier1DRenderer.cs" />
     <Compile Include="Renderers\BezierRenderers\EvaluatorRenderer.cs" />

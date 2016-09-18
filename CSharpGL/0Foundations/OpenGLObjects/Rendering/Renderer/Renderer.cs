@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="model"/>.</param>
+        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="Model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
         public Renderer(IBufferable model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)

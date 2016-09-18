@@ -83,7 +83,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        private void Setup(UnmanagedArray<vec3> controlPoints)
+        public void Setup(UnmanagedArray<vec3> controlPoints)
         {
             OpenGL.Map2f(OpenGL.GL_MAP2_VERTEX_3, //生成的数据类型
                    minU, // u的下界
