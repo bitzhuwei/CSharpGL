@@ -12,12 +12,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="controlPoints"></param>
         /// <param name="lengths"></param>
-        public Bezier1DRenderer(IList<vec3> controlPoints, vec3 lengths)
+        public Bezier1DRenderer(IList<vec3> controlPoints)//, vec3 lengths)
         {
-            this.Evaluator1DRenderer = new Evaluator1DRenderer(controlPoints, lengths);
+            this.Evaluator1DRenderer = new Evaluator1DRenderer(controlPoints);//, lengths);
             var points = new Points(controlPoints);
             this.ControlPointsRenderer = PointsRenderer.Create(points);
-            this.Lengths = points.Lengths;
         }
 
         /// <summary>
@@ -49,6 +48,25 @@ namespace CSharpGL
             this.ControlPointsRenderer.Render(arg);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public override vec3 Lengths
+        {
+            get
+            {
+                PointsRenderer controlPointsRenderer = this.ControlPointsRenderer;
+                if (controlPointsRenderer != null) { return controlPointsRenderer.Lengths; }
+                else { return new vec3(0, 0, 0); }
+            }
+            set
+            {
+                PointsRenderer controlPointsRenderer = this.ControlPointsRenderer;
+                if (controlPointsRenderer != null) { controlPointsRenderer.Lengths = value; }
+                Evaluator1DRenderer evaluator1DRenderer = this.Evaluator1DRenderer;
+                if (evaluator1DRenderer != null) { evaluator1DRenderer.Lengths = value; }
+            }
+        }
         /// <summary>
         ///
         /// </summary>

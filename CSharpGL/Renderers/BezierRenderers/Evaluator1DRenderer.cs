@@ -45,8 +45,8 @@ namespace CSharpGL
         /// <summary>
         /// This is a 1D evaluator, i.e a bezier curve.
         /// </summary>
-        public Evaluator1DRenderer(IList<vec3> controlPoints, vec3 lengths)
-            : base(controlPoints, lengths)
+        public Evaluator1DRenderer(IList<vec3> controlPoints)//, vec3 lengths)
+            : base(controlPoints)//, lengths)
         {
             this.CurveDrawMode = DrawMode.LineStrip;
             this.MinPercent = 0;

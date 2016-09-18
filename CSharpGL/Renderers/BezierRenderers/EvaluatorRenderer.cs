@@ -27,7 +27,7 @@ namespace CSharpGL
         /// <summary>
         /// This is a 1D evaluator, i.e a bezier curve.
         /// </summary>
-        public EvaluatorRenderer(IList<vec3> controlPoints, vec3 lengths)
+        public EvaluatorRenderer(IList<vec3> controlPoints)//, vec3 lengths)
         {
             vec3[] points = controlPoints.ToArray();
             BoundingBox box = points.Move2Center();
@@ -41,7 +41,9 @@ namespace CSharpGL
                 }
             }
             this.controlPoints = array;
-            this.Lengths = lengths;
+            this.Lengths = box.MaxPosition - box.MinPosition;
+            this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
+
             this.CurveWidth = new LineWidthSwitch(3.0f);
             this.CurveColor = Color.Red;
         }

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -124,6 +124,15 @@ namespace CSharpGL.Demos
                         //pickableRenderer.SwitchList.Add(blendSwitch);
                     }
                     this.rendererDict.Add(key, renderer);
+                }
+                {
+                    var points = new List<vec3>(){
+                        new vec3(-4.0f, 0.0f, 0.0f),
+                        new vec3(-6.0f, 4.0f, 0.0f),
+                        new vec3(6.0f, -4.0f, 0.0f),
+                        new vec3(4.0f, 0.0f, 0.0f),
+                    };
+                    var bezier1DRenderer = new Bezier1DRenderer(points);
                 }
                 this.SelectedModel = GeometryModel.Tetrahedron;
             }

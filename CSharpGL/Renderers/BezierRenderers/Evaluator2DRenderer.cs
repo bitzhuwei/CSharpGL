@@ -30,8 +30,9 @@ namespace CSharpGL
         /// <summary>
         /// This is a 1D evaluator, i.e a bezier curve.
         /// </summary>
-        public Evaluator2DRenderer(IList<vec3> controlPoints, vec3 lengths)
-            : base(controlPoints, lengths)
+        /// <param name="controlPoints"></param>
+        public Evaluator2DRenderer(IList<vec3> controlPoints)//, vec3 lengths)
+            : base(controlPoints)//, lengths)
         {
             this.MeshMode = PolygonMode.Line;
             this.MinPercent = new ivec2(minU, minV);

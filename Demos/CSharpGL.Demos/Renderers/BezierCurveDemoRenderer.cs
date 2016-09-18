@@ -15,14 +15,14 @@ namespace CSharpGL.Demos
              new vec3(4.0f, 0.0f, 0.0f),
         };
 
-        private static vec3 lengths;
+        //private static vec3 lengths;
         private Evaluator1DRenderer evaluator1DRenderer;
 
-        static BezierCurveDemoRenderer()
-        {
-            BoundingBox box = points.Move2Center();
-            lengths = box.MaxPosition - box.MinPosition;
-        }
+        //static BezierCurveDemoRenderer()
+        //{
+        //    BoundingBox box = points.Move2Center();
+        //    lengths = box.MaxPosition - box.MinPosition;
+        //}
 
         public PointSizeSwitch PointSize { get; private set; }
 
@@ -37,12 +37,12 @@ namespace CSharpGL.Demos
         /// </summary>
         public BezierCurveDemoRenderer()
         {
-            this.Lengths = lengths;
+            //this.Lengths = lengths;
             this.PointSize = new PointSizeSwitch(10.0f);
             this.PointColor = Color.Aqua;
             this.PointDrawMode = DrawMode.Points;
             this.RenderControlPoints = true;
-            this.evaluator1DRenderer = new Evaluator1DRenderer(points, lengths);
+            this.evaluator1DRenderer = new Evaluator1DRenderer(points);//, lengths);
         }
 
         /// <summary>
