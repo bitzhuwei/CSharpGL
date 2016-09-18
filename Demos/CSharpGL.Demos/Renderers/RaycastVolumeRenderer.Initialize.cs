@@ -52,7 +52,8 @@ namespace CSharpGL.Demos
                 this.volume3DTexture.ToSamplerValue());
             var clearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
-            this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());
+            //this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());
+            this.raycastRenderer.SetUniform("backgroundColor", new vec4(0.4f, 0.8f, 1.0f, 1.0f));
         }
 
         private Framebuffer InitFramebuffer(int texWidth, int texHeight)

@@ -61,11 +61,6 @@ namespace CSharpGL.Demos
             //(new Form09UIRenderer()).Show();
         }
 
-        private void btn10RaycastVolumeRenderer_Click(object sender, EventArgs e)
-        {
-            (new Form10RaycastVolumeRenderer()).Show();
-        }
-
         private void btn11IFontTexture_Click(object sender, EventArgs e)
         {
             (new Form11IFontTexture()).Show();

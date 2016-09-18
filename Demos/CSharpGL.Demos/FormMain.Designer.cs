@@ -37,7 +37,6 @@
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
             this.btnForm08AnalyzedPointSprite = new System.Windows.Forms.Button();
             this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
-            this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
             this.btn12Billboard = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
@@ -176,20 +175,6 @@
             this.btnForm09TextBoxRenderer.Text = "Form09 UIRendere (obsolete)";
             this.btnForm09TextBoxRenderer.UseVisualStyleBackColor = true;
             this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btn09UIRenderer_Click);
-            // 
-            // btn10RaycastVolumeRenderer
-            // 
-            this.btn10RaycastVolumeRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn10RaycastVolumeRenderer.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn10RaycastVolumeRenderer.Location = new System.Drawing.Point(7, 339);
-            this.btn10RaycastVolumeRenderer.Margin = new System.Windows.Forms.Padding(2);
-            this.btn10RaycastVolumeRenderer.Name = "btn10RaycastVolumeRenderer";
-            this.btn10RaycastVolumeRenderer.Size = new System.Drawing.Size(575, 30);
-            this.btn10RaycastVolumeRenderer.TabIndex = 0;
-            this.btn10RaycastVolumeRenderer.Text = "10 RaycastVolumeRenderer";
-            this.btn10RaycastVolumeRenderer.UseVisualStyleBackColor = true;
-            this.btn10RaycastVolumeRenderer.Click += new System.EventHandler(this.btn10RaycastVolumeRenderer_Click);
             // 
             // btn11IFontTexture
             // 
@@ -346,7 +331,6 @@
             this.Controls.Add(this.btn15UIRenderer);
             this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11IFontTexture);
-            this.Controls.Add(this.btn10RaycastVolumeRenderer);
             this.Controls.Add(this.btnForm09TextBoxRenderer);
             this.Controls.Add(this.btnForm08AnalyzedPointSprite);
             this.Controls.Add(this.btnForm07PointSprite);
@@ -375,7 +359,6 @@
         private System.Windows.Forms.Button btnForm07PointSprite;
         private System.Windows.Forms.Button btnForm08AnalyzedPointSprite;
         private System.Windows.Forms.Button btnForm09TextBoxRenderer;
-        private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
         private System.Windows.Forms.Button btn11IFontTexture;
         private System.Windows.Forms.Button btn12Billboard;
         private System.Windows.Forms.Button btn15UIRenderer;
