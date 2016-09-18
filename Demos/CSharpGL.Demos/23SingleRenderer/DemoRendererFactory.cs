@@ -18,28 +18,15 @@ namespace CSharpGL.Demos
             {
                 renderer = new BezierCurveDemoRenderer();
             }
-            else if (rendererType == typeof(BillboardRenderer))
-            {
-                renderer = BillboardRenderer.Create(new BillboardModel());
-            }
             else if (rendererType == typeof(ConditionalRenderer))
             {
                 renderer = ConditionalRenderer.Create();
-            }
-            else if (rendererType == typeof(GroundRenderer))
-            {
-                int squreCountPerLine = 20;
-                renderer = GroundRenderer.Create(new GroundModel(squreCountPerLine));
             }
             else if (rendererType == typeof(ImageProcessingRenderer))
             {
                 renderer = new ImageProcessingRenderer();
             }
-            else if (rendererType == typeof(MovableRenderer))
-            {
-                renderer = MovableRenderer.Create(new Teapot());
-            }
-            else if (rendererType == typeof(BezierCurveDemoRenderer))
+            else if (rendererType == typeof(OrderDependentTransparencyRenderer))
             {
                 IBufferable bufferable = new Teapot();
                 renderer = OrderDependentTransparencyRenderer.Create(bufferable, "position", "color");

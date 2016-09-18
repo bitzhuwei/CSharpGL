@@ -4,7 +4,6 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     internal class BillboardRenderer : Renderer
     {
         public static BillboardRenderer Create(IBufferable model)
