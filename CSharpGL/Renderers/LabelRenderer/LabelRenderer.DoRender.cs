@@ -23,9 +23,9 @@
             }
             if (textRecord.IsMarked())
             {
-                if (this.model != null)
+                if (this.Model != null)
                 {
-                    (this.model as TextModel).SetText(this.text, this.fontTexture);
+                    (this.Model as TextModel).SetText(this.text, this.fontTexture);
                 }
             }
             if (discardTransparencyRecord.IsMarked())

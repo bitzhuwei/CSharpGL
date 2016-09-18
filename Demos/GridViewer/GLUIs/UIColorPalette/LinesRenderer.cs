@@ -49,7 +49,7 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBufferPtr = this.model.GetProperty(LinesModel.position, null);
+            this.positionBufferPtr = this.Model.GetProperty(LinesModel.position, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)

@@ -35,7 +35,7 @@
         /// <summary>
         /// model data that can be transfermed into OpenGL Buffer's pointer.
         /// </summary>
-        protected IBufferable model;
+        public IBufferable Model { get; protected set; }
 
         /// <summary>
         /// All shader codes needed for this renderer.
@@ -43,7 +43,7 @@
         protected ShaderCode[] shaderCodes;
 
         /// <summary>
-        /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="model"/>.
+        /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="Model"/>.
         /// </summary>
         protected PropertyNameMap propertyNameMap;
 
@@ -62,7 +62,7 @@
             //this.RotationAngle = 0;// this is not needed.
             this.RotationAxis = new vec3(1, 0, 0);
 
-            this.model = model;
+            this.Model = model;
             this.shaderCodes = shaderCodes;
             this.propertyNameMap = propertyNameMap;
             this.switchList.AddRange(switches);

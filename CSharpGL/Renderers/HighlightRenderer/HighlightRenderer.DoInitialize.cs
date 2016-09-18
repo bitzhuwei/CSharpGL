@@ -20,7 +20,7 @@ namespace CSharpGL
 
             // init property buffer objects.
             VertexAttributeBufferPtr positionBufferPtr = null;
-            IBufferable bufferable = this.model;
+            IBufferable bufferable = this.Model;
             VertexAttributeBufferPtr[] propertyBufferPtrs;
             {
                 var list = new List<VertexAttributeBufferPtr>();

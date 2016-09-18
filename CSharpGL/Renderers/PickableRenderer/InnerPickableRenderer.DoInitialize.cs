@@ -11,7 +11,7 @@ namespace CSharpGL
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
             VertexAttributeBufferPtr positionBufferPtr = null;
-            IBufferable bufferable = this.model;
+            IBufferable bufferable = this.Model;
             VertexAttributeBufferPtr[] propertyBufferPtrs;
             {
                 var list = new List<VertexAttributeBufferPtr>();

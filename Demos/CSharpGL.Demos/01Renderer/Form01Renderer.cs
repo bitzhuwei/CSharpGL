@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
                     {
                         this.pickableRendererPropertyGrid.DisplayObject(this.rendererDict[value].PickableRenderer);
                         this.highlightRendererPropertyGrid.DisplayObject(this.rendererDict[value].Highlighter);
-                        this.frmIndexBufferPtrBoard.SetTarget(this.rendererDict[value].PickableRenderer.IndexBufferPtr);
+                        //this.frmIndexBufferPtrBoard.SetTarget(this.rendererDict[value].PickableRenderer.IndexBufferPtr);
                     }
 
                     //this.cameraUpdated = true;
@@ -87,7 +87,9 @@ namespace CSharpGL.Demos
         private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} {1} FPS: {2}", this.Name,
-                this.rendererDict[this.selectedModel].PickableRenderer.IndexBufferPtr.Mode, this.glCanvas1.FPS.ToShortString());
+                //this.rendererDict[this.selectedModel].PickableRenderer.IndexBufferPtr.Mode, 
+             this.rendererDict[this.selectedModel].PickableRenderer,
+                this.glCanvas1.FPS.ToShortString());
         }
 
         public Color ClearColor { get; set; }
@@ -127,7 +129,7 @@ namespace CSharpGL.Demos
             {
                 if (renderScene)
                 {
-                    ColorCodedPicking.Render4Picking(arg, this.rendererDict[this.selectedModel].PickableRenderer);
+                    ColorCodedPicking.Render4Picking(arg, this.rendererDict[this.selectedModel].PickableRenderer as IColorCodedPicking);
                 }
             }
             else if (renderMode == RenderModes.Render)
