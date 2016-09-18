@@ -96,6 +96,11 @@ namespace CSharpGL
             // Other conditions
             switch (typeOfMode)
             {
+                case GeometryType.Point:
+                    pickedGeometry.Indexes = new uint[] { lastVertexId, };
+                    pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId, 1);
+                    break;
+
                 case GeometryType.Line:
                     pickedGeometry.Indexes = new uint[] { lastVertexId - 1, lastVertexId, };
                     pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 1, 2);
