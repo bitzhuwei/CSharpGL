@@ -419,9 +419,6 @@
     <EmbeddedResource Include="21ConditionalRendering\Form21ConditionalRendering.resx">
       <DependentUpon>Form21ConditionalRendering.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="20GLSceneCanvas\Form20GLSceneCanvas.resx">
-      <DependentUpon>Form20GLSceneCanvas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="07PointSprite\Form07PointSprite.resx">
       <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </EmbeddedResource>
