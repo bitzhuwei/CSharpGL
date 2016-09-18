@@ -26,6 +26,7 @@ namespace CSharpGL.Demos
         };
 
         private static vec3 lengths;
+        private Evaluator2DRenderer evaluator2DRenderer;
 
         static BezierSurfaceDemoRenderer()
         {
@@ -41,18 +42,6 @@ namespace CSharpGL.Demos
 
         public bool RenderControlPoints { get; set; }
 
-        public LineWidthSwitch CurveWidth { get; private set; }
-
-        public Color CurveColor { get; set; }
-
-        public PolygonMode MeshMode { get; set; }
-
-        public bool RenderCurve { get; set; }
-
-        public int MinPercent { get; set; }
-
-        public int MaxPercent { get; set; }
-
         /// <summary>
         ///
         /// </summary>
@@ -60,15 +49,10 @@ namespace CSharpGL.Demos
         {
             this.Lengths = lengths;
             this.PointSize = new PointSizeSwitch(10.0f);
-            this.CurveWidth = new LineWidthSwitch(3.0f);
             this.PointColor = Color.Aqua;
-            this.CurveColor = Color.Red;
             this.ControLPointDrawMode = DrawMode.Points;
             this.RenderControlPoints = true;
-            this.MeshMode = PolygonMode.Line;
-            this.RenderCurve = true;
-            this.MinPercent = 0;
-            this.MaxPercent = 100;
+            this.evaluator2DRenderer = new Evaluator2DRenderer(points, lengths);
         }
 
         /// <summary>
@@ -77,29 +61,7 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
-            UnmanagedArray<vec3> controlPoints = new UnmanagedArray<vec3>(points.Length);
-            unsafe
-            {
-                var array = (vec3*)controlPoints.Header.ToPointer();
-                for (int i = 0; i < points.Length; i++)
-                {
-                    array[i] = points[i];
-                }
-            }
-            OpenGL.Map2f(OpenGL.GL_MAP2_VERTEX_3, //生成的数据类型
-                minU, // u的下界
-                maxU, //u的上界
-                3, //数据中点的间隔
-                3, //u方向上的阶
-                minV, //v的下界
-                maxV, //v的上界
-                9, // 控制点之间的间隔
-                3, // v方向上的阶
-                controlPoints.Header); //控制点数组
-            controlPoints.Dispose();
-            //OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
-            //从0到10映射一个包含10个点的网格
-            OpenGL.MapGrid2f(10, 0.0f, 10.0f, 10, 0.0f, 10.0f);
+            this.evaluator2DRenderer.Initialize();
         }
 
         /// <summary>
@@ -118,25 +80,6 @@ namespace CSharpGL.Demos
             OpenGL.LoadIdentity();
             this.LegacyTransform();
 
-            if (this.RenderCurve)
-            {
-
-                vec4 color = this.CurveColor.ToVec4();
-                OpenGL.Color(color.x, color.y, color.z, color.w);
-                this.CurveWidth.On();
-
-                //启用求值器
-                //必须在绘制顶点之前开启
-                OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
-                OpenGL.Enable(OpenGL.GL_AUTO_NORMAL);
-                // 计算网格  
-                OpenGL.EvalMesh2(
-                    (uint)this.MeshMode,
-                    this.MinPercent, this.MaxPercent, this.MinPercent, this.MaxPercent);
-
-                this.CurveWidth.Off();
-            }
-
             if (this.RenderControlPoints)
             {
                 //画控制点
@@ -151,6 +94,8 @@ namespace CSharpGL.Demos
                 OpenGL.End();
                 this.PointSize.Off();
             }
+
+            this.evaluator2DRenderer.Render(arg);
         }
     }
 }

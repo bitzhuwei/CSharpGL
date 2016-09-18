@@ -35,6 +35,7 @@ namespace CSharpGL
         public Evaluator2DRenderer(IList<vec3> controlPoints, vec3 lengths)
             : base(controlPoints, lengths)
         {
+            this.MeshMode = PolygonMode.Line;
             this.MinPercent = new ivec2(minU, minV);
             this.MaxPercent = new ivec2(maxU, maxV);
         }
