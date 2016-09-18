@@ -39,6 +39,7 @@ namespace CSharpGL.Demos
                     obj.Children.Add(boxObj);
                 }
                 this.scene.RootObject.Children.Add(obj);
+                this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,

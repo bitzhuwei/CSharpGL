@@ -141,15 +141,6 @@
     <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
-    <Compile Include="14ShaderToy\Form14ShaderToy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="14ShaderToy\Form14ShaderToy.Designer.cs">
-      <DependentUpon>Form14ShaderToy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="14ShaderToy\Form14ShaderToy.FormLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
     <Compile Include="Renderers\PointCloudRenderer.cs" />
@@ -335,7 +326,6 @@
     <None Include="shaders\Ground.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="14ShaderToy\readme.md" />
     <None Include="shaders\ShaderToy.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -427,9 +417,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="15UIRenderer\Form15UIRenderer.resx">
       <DependentUpon>Form15UIRenderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="14ShaderToy\Form14ShaderToy.resx">
-      <DependentUpon>Form14ShaderToy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="13SimplexNoise\Form13SimplexNoise.resx">
       <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
