@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     public partial class PickableRenderer : IColorCodedPicking
     {
@@ -13,13 +14,15 @@
                 if (renderer != null)
                 { return this.innerPickableRenderer.MVP; }
                 else
-                { return mat4.identity(); }
+                { throw new Exception("InnerPickableRenderer is null!"); }
             }
             set
             {
                 InnerPickableRenderer renderer = this.innerPickableRenderer;
                 if (renderer != null)
                 { this.innerPickableRenderer.MVP = value; }
+                else
+                { throw new Exception("InnerPickableRenderer is null!"); }
             }
         }
 
@@ -34,13 +37,15 @@
                 if (renderer != null)
                 { return this.innerPickableRenderer.PickingBaseId; }
                 else
-                { return 0; }
+                { throw new Exception("InnerPickableRenderer is null!"); }
             }
             set
             {
                 InnerPickableRenderer renderer = this.innerPickableRenderer;
                 if (renderer != null)
                 { this.innerPickableRenderer.PickingBaseId = value; }
+                else
+                { throw new Exception("InnerPickableRenderer is null!"); }
             }
         }
 
@@ -54,7 +59,7 @@
             if (renderer != null)
             { return this.innerPickableRenderer.GetVertexCount(); }
             else
-            { return 0; }
+            { throw new Exception("InnerPickableRenderer is null!"); }
         }
 
         /// <summary>
@@ -74,7 +79,7 @@
             if (renderer != null)
             { return this.innerPickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y); }
             else
-            { return null; }
+            { throw new Exception("InnerPickableRenderer is null!"); }
         }
     }
 }
