@@ -1951,12 +1951,12 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glPolygonOffset", SetLastError = true)]
         public static extern void PolygonOffset(float factor, float units);
 
-        ///// <summary>
-        ///// Set the polygon stippling pattern.
-        ///// </summary>
-        ///// <param name="mask">Specifies a pointer to a 32x32 stipple pattern that will be unpacked from memory in the same way that glDrawPixels unpacks pixels.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPolygonStipple", SetLastError = true)]
-        //public static extern void PolygonStipple(byte[] mask);
+        /// <summary>
+        /// Set the polygon stippling pattern.
+        /// </summary>
+        /// <param name="mask">Specifies a pointer to a 32x32 stipple pattern that will be unpacked from memory in the same way that glDrawPixels unpacks pixels.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPolygonStipple", SetLastError = true)]
+        public static extern void PolygonStipple(byte[] mask);
 
         /// <summary>
         /// This function restores the attribute stack to the state it was when
