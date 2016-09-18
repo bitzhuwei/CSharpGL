@@ -74,9 +74,6 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
-    <EmbeddedResource Include="PropertyGrid\UITypeEditors\FormSelectType.resx">
-      <DependentUpon>FormSelectType.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\cursor_gold.png" />
     <Content Include="Canvas\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
