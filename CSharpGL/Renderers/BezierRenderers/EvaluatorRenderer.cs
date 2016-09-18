@@ -49,10 +49,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="controlPoints"></param>
         public abstract void Setup(UnmanagedArray<vec3> controlPoints);
-
     }
 }

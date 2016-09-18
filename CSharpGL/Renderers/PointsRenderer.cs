@@ -1,7 +1,6 @@
 namespace CSharpGL
 {
     using System.Drawing;
-    using System.IO;
 
     /// <summary>
     /// Rendering points.
@@ -9,7 +8,7 @@ namespace CSharpGL
     public partial class PointsRenderer : PickableRenderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -29,7 +28,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferable"></param>
         /// <param name="shaderCodes"></param>
@@ -42,7 +41,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(CSharpGL.RenderEventArgs arg)
@@ -68,8 +67,9 @@ namespace CSharpGL
 
         private UpdatingRecord pointColorRecord = new UpdatingRecord();
         private vec3 pointColor = new vec3(1, 0, 1);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Color PointColor
         {

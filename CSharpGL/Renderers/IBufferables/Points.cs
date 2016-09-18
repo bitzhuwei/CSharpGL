@@ -11,12 +11,12 @@ namespace CSharpGL
         private vec3[] pointPositions;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 WorldPosition { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public vec3 Lengths { get; private set; }
 
@@ -34,7 +34,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string strposition = "position";
 
@@ -43,7 +43,7 @@ namespace CSharpGL
         private CSharpGL.IndexBufferPtr indexBufferPtr;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
@@ -74,7 +74,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public CSharpGL.IndexBufferPtr GetIndex()
@@ -88,11 +88,11 @@ namespace CSharpGL
             }
             return indexBufferPtr;
         }
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return true; }
-
     }
 }

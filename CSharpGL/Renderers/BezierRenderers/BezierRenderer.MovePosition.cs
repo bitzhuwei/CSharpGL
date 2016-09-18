@@ -6,7 +6,6 @@ namespace CSharpGL
 {
     public partial class BezierRenderer
     {
-
         /// <summary>
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
@@ -22,6 +21,7 @@ namespace CSharpGL
 
             UpdateEvaluator();
         }
+
         /// <summary>
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
