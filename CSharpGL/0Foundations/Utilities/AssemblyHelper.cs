@@ -29,6 +29,7 @@ namespace CSharpGL
                 var list = from item in asm.GetTypes()
                            where baseType.IsAssignableFrom(item)
                            && (addtionalFilter == null || (addtionalFilter(item)))
+                           orderby item.FullName
                            select item;
                 foreach (var item in list.Distinct())
                 {
