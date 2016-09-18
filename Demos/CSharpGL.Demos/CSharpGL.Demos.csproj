@@ -473,9 +473,6 @@
     <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.resx">
       <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="23SingleRenderer\Form23SingleRenderer.resx">
-      <DependentUpon>Form23SingleRenderer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
     </EmbeddedResource>
