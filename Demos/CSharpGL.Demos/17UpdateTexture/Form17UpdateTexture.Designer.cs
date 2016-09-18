@@ -47,7 +47,6 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.glCanvas1.ShowSystemCursor = true;
             this.glCanvas1.Size = new System.Drawing.Size(568, 386);
             this.glCanvas1.TabIndex = 0;
             // 

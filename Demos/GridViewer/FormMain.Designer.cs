@@ -660,8 +660,8 @@
             // 
             // propertyGrid1
             // 
-            this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGrid1.Location = new System.Drawing.Point(0, 21);
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(2);
@@ -676,7 +676,6 @@
             this.scientificCanvas.Name = "scientificCanvas";
             this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.scientificCanvas.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.scientificCanvas.ShowSystemCursor = true;
             this.scientificCanvas.Size = new System.Drawing.Size(638, 515);
             this.scientificCanvas.TabIndex = 0;
             // 

@@ -43,14 +43,13 @@
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(10, 26);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.glCanvas1.ShowSystemCursor = true;
             this.glCanvas1.Size = new System.Drawing.Size(568, 402);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);

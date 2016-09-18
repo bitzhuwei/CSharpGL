@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
         private void Form_Load(object sender, EventArgs e)
         {
             {
-                this.glCanvas1.ShowSystemCursor = false;
+                //this.glCanvas1.ShowSystemCursor = false;
             }
             {
                 var camera = new Camera(
