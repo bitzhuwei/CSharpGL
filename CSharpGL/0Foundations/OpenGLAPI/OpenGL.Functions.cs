@@ -860,64 +860,64 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glEndList", SetLastError = true)]
         //public static extern void EndList();
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
 
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1d", SetLastError = true)]
-        //public static extern void EvalCoord1d(double u);
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1d", SetLastError = true)]
+        public static extern void EvalCoord1d(double u);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1dv", SetLastError = true)]
-        //public static extern void EvalCoord1dv(double[] u);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1dv", SetLastError = true)]
+        public static extern void EvalCoord1dv(double[] u);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1f", SetLastError = true)]
-        //public static extern void EvalCoord1f(float u);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1f", SetLastError = true)]
+        public static extern void EvalCoord1f(float u);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1fv", SetLastError = true)]
-        //public static extern void EvalCoord1fv(float[] u);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1fv", SetLastError = true)]
+        public static extern void EvalCoord1fv(float[] u);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        ///// <param name="v">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2d", SetLastError = true)]
-        //public static extern void EvalCoord2d(double u, double v);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        /// <param name="v">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2d", SetLastError = true)]
+        public static extern void EvalCoord2d(double u, double v);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2dv", SetLastError = true)]
-        //public static extern void EvalCoord2dv(double[] u);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2dv", SetLastError = true)]
+        public static extern void EvalCoord2dv(double[] u);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        ///// <param name="v">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2f", SetLastError = true)]
-        //public static extern void EvalCoord2f(float u, float v);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        /// <param name="v">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2f", SetLastError = true)]
+        public static extern void EvalCoord2f(float u, float v);
 
-        ///// <summary>
-        ///// Evaluate from the current evaluator.
-        ///// </summary>
-        ///// <param name="u">Domain coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2fv", SetLastError = true)]
-        //public static extern void EvalCoord2fv(float[] u);
+        /// <summary>
+        /// Evaluate from the current evaluator.
+        /// </summary>
+        /// <param name="u">Domain coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2fv", SetLastError = true)]
+        public static extern void EvalCoord2fv(float[] u);
 
         ///// <summary>
         ///// Evaluates a 'mesh' from the current evaluators.
@@ -1577,104 +1577,104 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glLogicOp", SetLastError = true)]
         //public static extern void LogicOp(uint opcode);
 
-        ///// <summary>
-        ///// Defines a 1D evaluator.
-        ///// </summary>
-        ///// <param name="target">What the control points represent (e.g. MAP1_VERTEX_3).</param>
-        ///// <param name="u1">Range of the variable 'u'.</param>
-        ///// <param name="u2">Range of the variable 'u'.</param>
-        ///// <param name="stride">Offset between beginning of one control point, and beginning of next.</param>
-        ///// <param name="order">The degree plus one, should agree with the number of control points.</param>
-        ///// <param name="points">The data for the points.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMap1d", SetLastError = true)]
-        //public static extern void Map1d(uint target, double u1, double u2, int stride, int order, double[] points);
+        /// <summary>
+        /// Defines a 1D evaluator.
+        /// </summary>
+        /// <param name="target">What the control points represent (e.g. MAP1_VERTEX_3).</param>
+        /// <param name="u1">Range of the variable 'u'.</param>
+        /// <param name="u2">Range of the variable 'u'.</param>
+        /// <param name="stride">Offset between beginning of one control point, and beginning of next.</param>
+        /// <param name="order">The degree plus one, should agree with the number of control points.</param>
+        /// <param name="points">The data for the points.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMap1d", SetLastError = true)]
+        public static extern void Map1d(uint target, double u1, double u2, int stride, int order, IntPtr points);
 
-        ///// <summary>
-        ///// Defines a 1D evaluator.
-        ///// </summary>
-        ///// <param name="target">What the control points represent (e.g. MAP1_VERTEX_3).</param>
-        ///// <param name="u1">Range of the variable 'u'.</param>
-        ///// <param name="u2">Range of the variable 'u'.</param>
-        ///// <param name="stride">Offset between beginning of one control point, and beginning of next.</param>
-        ///// <param name="order">The degree plus one, should agree with the number of control points.</param>
-        ///// <param name="points">The data for the points.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMap1f", SetLastError = true)]
-        //public static extern void Map1f(uint target, float u1, float u2, int stride, int order, float[] points);
+        /// <summary>
+        /// Defines a 1D evaluator.
+        /// </summary>
+        /// <param name="target">What the control points represent (e.g. MAP1_VERTEX_3).</param>
+        /// <param name="u1">Range of the variable 'u'.</param>
+        /// <param name="u2">Range of the variable 'u'.</param>
+        /// <param name="stride">Offset between beginning of one control point, and beginning of next.</param>
+        /// <param name="order">The degree plus one, should agree with the number of control points.</param>
+        /// <param name="points">The data for the points.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMap1f", SetLastError = true)]
+        public static extern void Map1f(uint target, float u1, float u2, int stride, int order, IntPtr points);
 
-        ///// <summary>
-        ///// Defines a 2D evaluator.
-        ///// </summary>
-        ///// <param name="target">What the control points represent (e.g. MAP2_VERTEX_3).</param>
-        ///// <param name="u1">Range of the variable 'u'.</param>
-        ///// <param name="u2">Range of the variable 'u.</param>
-        ///// <param name="ustride">Offset between beginning of one control point and the next.</param>
-        ///// <param name="uorder">The degree plus one.</param>
-        ///// <param name="v1">Range of the variable 'v'.</param>
-        ///// <param name="v2">Range of the variable 'v'.</param>
-        ///// <param name="vstride">Offset between beginning of one control point and the next.</param>
-        ///// <param name="vorder">The degree plus one.</param>
-        ///// <param name="points">The data for the points.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMap2d", SetLastError = true)]
-        //public static extern void Map2d(uint target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double[] points);
+        /// <summary>
+        /// Defines a 2D evaluator.
+        /// </summary>
+        /// <param name="target">What the control points represent (e.g. MAP2_VERTEX_3).</param>
+        /// <param name="u1">Range of the variable 'u'.</param>
+        /// <param name="u2">Range of the variable 'u.</param>
+        /// <param name="ustride">Offset between beginning of one control point and the next.</param>
+        /// <param name="uorder">The degree plus one.</param>
+        /// <param name="v1">Range of the variable 'v'.</param>
+        /// <param name="v2">Range of the variable 'v'.</param>
+        /// <param name="vstride">Offset between beginning of one control point and the next.</param>
+        /// <param name="vorder">The degree plus one.</param>
+        /// <param name="points">The data for the points.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMap2d", SetLastError = true)]
+        public static extern void Map2d(uint target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, IntPtr points);
 
-        ///// <summary>
-        ///// Defines a 2D evaluator.
-        ///// </summary>
-        ///// <param name="target">What the control points represent (e.g. MAP2_VERTEX_3).</param>
-        ///// <param name="u1">Range of the variable 'u'.</param>
-        ///// <param name="u2">Range of the variable 'u.</param>
-        ///// <param name="ustride">Offset between beginning of one control point and the next.</param>
-        ///// <param name="uorder">The degree plus one.</param>
-        ///// <param name="v1">Range of the variable 'v'.</param>
-        ///// <param name="v2">Range of the variable 'v'.</param>
-        ///// <param name="vstride">Offset between beginning of one control point and the next.</param>
-        ///// <param name="vorder">The degree plus one.</param>
-        ///// <param name="points">The data for the points.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMap2f", SetLastError = true)]
-        //public static extern void Map2f(uint target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float[] points);
+        /// <summary>
+        /// Defines a 2D evaluator.
+        /// </summary>
+        /// <param name="target">What the control points represent (e.g. MAP2_VERTEX_3).</param>
+        /// <param name="u1">Range of the variable 'u'.</param>
+        /// <param name="u2">Range of the variable 'u.</param>
+        /// <param name="ustride">Offset between beginning of one control point and the next.</param>
+        /// <param name="uorder">The degree plus one.</param>
+        /// <param name="v1">Range of the variable 'v'.</param>
+        /// <param name="v2">Range of the variable 'v'.</param>
+        /// <param name="vstride">Offset between beginning of one control point and the next.</param>
+        /// <param name="vorder">The degree plus one.</param>
+        /// <param name="points">The data for the points.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMap2f", SetLastError = true)]
+        public static extern void Map2f(uint target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, IntPtr points);
 
-        ///// <summary>
-        ///// This function defines a grid that goes from u1 to u1 in n steps, evenly spaced.
-        ///// </summary>
-        ///// <param name="un">Number of steps.</param>
-        ///// <param name="u1">Range of variable 'u'.</param>
-        ///// <param name="u2">Range of variable 'u'.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMapGrid1d", SetLastError = true)]
-        //public static extern void MapGrid1d(int un, double u1, double u2);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="un"></param>
-        ///// <param name="u1"></param>
-        ///// <param name="u2"></param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMapGrid1f", SetLastError = true)]
-        //public static extern void MapGrid1f(int un, float u1, float u2);
+        /// <summary>
+        /// This function defines a grid that goes from u1 to u1 in n steps, evenly spaced.
+        /// </summary>
+        /// <param name="un">Number of steps.</param>
+        /// <param name="u1">Range of variable 'u'.</param>
+        /// <param name="u2">Range of variable 'u'.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMapGrid1d", SetLastError = true)]
+        public static extern void MapGrid1d(int un, double u1, double u2);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="un"></param>
+        /// <param name="u1"></param>
+        /// <param name="u2"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMapGrid1f", SetLastError = true)]
+        public static extern void MapGrid1f(int un, float u1, float u2);
 
-        ///// <summary>
-        ///// This function defines a grid that goes from u1 to u1 in n steps, evenly spaced,
-        ///// and the same for v.
-        ///// </summary>
-        ///// <param name="un">Number of steps.</param>
-        ///// <param name="u1">Range of variable 'u'.</param>
-        ///// <param name="u2">Range of variable 'u'.</param>
-        ///// <param name="vn">Number of steps.</param>
-        ///// <param name="v1">Range of variable 'v'.</param>
-        ///// <param name="v2">Range of variable 'v'.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMapGrid2d", SetLastError = true)]
-        //public static extern void MapGrid2d(int un, double u1, double u2, int vn, double v1, double v2);
+        /// <summary>
+        /// This function defines a grid that goes from u1 to u1 in n steps, evenly spaced,
+        /// and the same for v.
+        /// </summary>
+        /// <param name="un">Number of steps.</param>
+        /// <param name="u1">Range of variable 'u'.</param>
+        /// <param name="u2">Range of variable 'u'.</param>
+        /// <param name="vn">Number of steps.</param>
+        /// <param name="v1">Range of variable 'v'.</param>
+        /// <param name="v2">Range of variable 'v'.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMapGrid2d", SetLastError = true)]
+        public static extern void MapGrid2d(int un, double u1, double u2, int vn, double v1, double v2);
 
-        ///// <summary>
-        ///// This function defines a grid that goes from u1 to u1 in n steps, evenly spaced,
-        ///// and the same for v.
-        ///// </summary>
-        ///// <param name="un">Number of steps.</param>
-        ///// <param name="u1">Range of variable 'u'.</param>
-        ///// <param name="u2">Range of variable 'u'.</param>
-        ///// <param name="vn">Number of steps.</param>
-        ///// <param name="v1">Range of variable 'v'.</param>
-        ///// <param name="v2">Range of variable 'v'.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMapGrid2f", SetLastError = true)]
-        //public static extern void MapGrid2f(int un, float u1, float u2, int vn, float v1, float v2);
+        /// <summary>
+        /// This function defines a grid that goes from u1 to u1 in n steps, evenly spaced,
+        /// and the same for v.
+        /// </summary>
+        /// <param name="un">Number of steps.</param>
+        /// <param name="u1">Range of variable 'u'.</param>
+        /// <param name="u2">Range of variable 'u'.</param>
+        /// <param name="vn">Number of steps.</param>
+        /// <param name="v1">Range of variable 'v'.</param>
+        /// <param name="v2">Range of variable 'v'.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMapGrid2f", SetLastError = true)]
+        public static extern void MapGrid2f(int un, float u1, float u2, int vn, float v1, float v2);
 
         ///// <summary>
         ///// This function sets a material parameter.
