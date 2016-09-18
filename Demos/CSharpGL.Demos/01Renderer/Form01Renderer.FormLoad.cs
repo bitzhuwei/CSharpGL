@@ -132,7 +132,7 @@ namespace CSharpGL.Demos
                         new vec3(6.0f, -4.0f, 0.0f),
                         new vec3(4.0f, 0.0f, 0.0f),
                     };
-                    Bezier1DRenderer pickableRenderer = Bezier1DRenderer.Create(points, BezierType.Curve);
+                    BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Curve);
                     pickableRenderer.Initialize();
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
@@ -156,7 +156,7 @@ namespace CSharpGL.Demos
                         new vec3(-2.0f, 4.0f, -4.0f),
                         new vec3( 4.0f, 0.0f, -4.0f)
                     };
-                    Bezier1DRenderer pickableRenderer = Bezier1DRenderer.Create(points, BezierType.Surface);
+                    BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
                     pickableRenderer.Initialize();
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(

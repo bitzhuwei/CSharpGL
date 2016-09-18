@@ -3,16 +3,16 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Rendering a 1D evaluator(a bezier curve) and its control points.
+    /// Rendering a evaluator(a bezier curve or surface) and its control points.
     /// </summary>
-    public partial class Bezier1DRenderer : PointsRenderer
+    public partial class BezierRenderer : PointsRenderer
     {
         /// <summary>
-        /// Creates a renderer that renders a 1D evaluator(a bezier curve) and its control points.
+        /// Creates a renderer that renders a evaluator(a bezier curve or surface) and its control points.
         /// </summary>
         /// <param name="controlPoints"></param>
         /// <returns></returns>
-        public static Bezier1DRenderer Create(IList<vec3> controlPoints, BezierType type)
+        public static BezierRenderer Create(IList<vec3> controlPoints, BezierType type)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.vert"), ShaderType.VertexShader);
@@ -20,7 +20,7 @@ namespace CSharpGL
             var map = new CSharpGL.PropertyNameMap();
             map.Add("in_Position", Points.strposition);
             var model = new Points(controlPoints);
-            var renderer = new Bezier1DRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
+            var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
             renderer.Lengths = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
             renderer.switchList.Add(new PointSizeSwitch(10));
@@ -29,7 +29,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Rendering a 1D evaluator(a bezier curve) and its control points.
+        /// Rendering a evaluator(a bezier curve or surface) and its control points.
         /// </summary>
         /// <param name="controlPoints"></param>
         /// <param name="bufferable"></param>
@@ -37,7 +37,7 @@ namespace CSharpGL
         /// <param name="propertyNameMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        private Bezier1DRenderer(IList<vec3> controlPoints, BezierType type, Points bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
+        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
             base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
             switch (type)
@@ -54,7 +54,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Rendering a 1D evaluator(a bezier curve).
+        /// Rendering a evaluator(a bezier curve or surface).
         /// </summary>
         public EvaluatorRenderer Evaluator { get; private set; }
 

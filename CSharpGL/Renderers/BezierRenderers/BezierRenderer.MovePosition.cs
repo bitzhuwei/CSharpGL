@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace CSharpGL
 {
-    public partial class Bezier1DRenderer
+    public partial class BezierRenderer
     {
 
         /// <summary>
