@@ -132,9 +132,9 @@ namespace CSharpGL.Demos
                         new vec3(6.0f, -4.0f, 0.0f),
                         new vec3(4.0f, 0.0f, 0.0f),
                     };
-                    var pickableRenderer = new Bezier1DRenderer(points);
+                    Bezier1DRenderer pickableRenderer = Bezier1DRenderer.Create(points);
                     pickableRenderer.Initialize();
-                    var bufferable = pickableRenderer.ControlPointsRenderer.Model;
+                    var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
                         bufferable, Points.strposition);
                     highlightRenderer.Name = string.Format("Highlight: [{0}]", "Bezier1D");
@@ -142,7 +142,7 @@ namespace CSharpGL.Demos
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
                     renderer.Initialize();
-                    this.rendererDict.Add("Bezier1D", renderer);
+                    this.rendererDict.Add(GeometryModel.Bezier1D, renderer);
                 }
                 this.SelectedModel = GeometryModel.Tetrahedron;
             }

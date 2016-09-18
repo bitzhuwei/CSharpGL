@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnScreen,
+        public virtual void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
             if (positionIndexes == null) { return; }
@@ -38,7 +38,7 @@ namespace CSharpGL
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnScreen,
+        public virtual void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
             if (positionIndexes == null) { return; }

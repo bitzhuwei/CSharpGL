@@ -6,6 +6,7 @@ namespace CSharpGL
 {
     public partial class Bezier1DRenderer
     {
+
         /// <summary>
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
@@ -15,14 +16,12 @@ namespace CSharpGL
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePosition(Point differenceOnScreen,
-            mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
+        public override void MovePositions(Point differenceOnScreen, mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
-            this.ControlPointsRenderer.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
+            base.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
 
             UpdateEvaluator();
         }
-
         /// <summary>
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
@@ -32,18 +31,18 @@ namespace CSharpGL
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnScreen,
+        public override void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
-            this.ControlPointsRenderer.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
+            base.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
 
             UpdateEvaluator();
         }
 
         private void UpdateEvaluator()
         {
-            IntPtr pointer = this.ControlPointsRenderer.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
-            int length = this.ControlPointsRenderer.PositionBufferPtr.Length;
+            IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
+            int length = this.PositionBufferPtr.Length;
             var array = new UnmanagedArray<vec3>(length);
             unsafe
             {
@@ -56,7 +55,7 @@ namespace CSharpGL
             }
             this.Evaluator1DRenderer.Setup(array);
             array.Dispose();
-            this.ControlPointsRenderer.PositionBufferPtr.UnmapBuffer();
+            this.PositionBufferPtr.UnmapBuffer();
         }
     }
 }
