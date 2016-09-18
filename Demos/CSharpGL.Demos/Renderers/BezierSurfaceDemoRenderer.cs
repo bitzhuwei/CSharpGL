@@ -8,11 +8,6 @@ namespace CSharpGL.Demos
     [DemoRenderer]
     public class BezierSurfaceDemoRenderer : RendererBase
     {
-        private float minU = 0;
-        private float maxU = 100;
-        private float minV = 0;
-        private float maxV = 100;
-
         static private vec3[] points = new vec3[]{
             new vec3(  -4.0f, 0.0f, 4.0f),
             new vec3(-2.0f, 4.0f, 4.0f),

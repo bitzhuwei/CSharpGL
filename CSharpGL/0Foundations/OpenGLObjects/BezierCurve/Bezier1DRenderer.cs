@@ -1,38 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CSharpGL
 {
-    public class Bezier1DRenderer : PickableRenderer
+    /// <summary>
+    /// Rendering a 1D evaluator(a bezier curve) and its control points.
+    /// </summary>
+    public partial class Bezier1DRenderer : RendererBase, IColorCodedPicking
     {
         /// <summary>
-        /// Gets a renderer that renders a bitmap in a square.
+        /// Rendering a 1D evaluator(a bezier curve) and its control points.
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="controlPoints"></param>
         /// <param name="lengths"></param>
-        /// <returns></returns>
-        public static Bezier1DRenderer Create(IBufferable model, vec3 lengths)
+        public Bezier1DRenderer(IList<vec3> controlPoints, vec3 lengths)
         {
-            var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.Bezier1DRenderer.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.Bezier1DRenderer.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
-            map.Add("in_Position", Square.strPosition);
-            map.Add("in_TexCoord", Square.strTexCoord);
-            var renderer = new Bezier1DRenderer(model, shaderCodes, map, Square.strPosition);
-            renderer.Lengths = lengths;
-
-            return renderer;
+            this.Evaluator1DRenderer = new Evaluator1DRenderer(controlPoints, lengths);
+            var points = new Points(controlPoints);
+            this.ControlPointsRenderer = PointsRenderer.Create(points);
+            this.Lengths = points.Lengths;
         }
 
-        public Bezier1DRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
-        { }
+        /// <summary>
+        /// Rendering a 1D evaluator(a bezier curve).
+        /// </summary>
+        public Evaluator1DRenderer Evaluator1DRenderer { get; private set; }
 
+        /// <summary>
+        /// Rendering a 1D evaluator's control points.
+        /// </summary>
+        public PointsRenderer ControlPointsRenderer { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void DoInitialize()
+        {
+            this.Evaluator1DRenderer.Initialize();
+            this.ControlPointsRenderer.Initialize();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            this.Evaluator1DRenderer.Render(arg);
+            this.ControlPointsRenderer.Render(arg);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override vec3 WorldPosition
+        {
+            get
+            {
+                PointsRenderer controlPointsRenderer = this.ControlPointsRenderer;
+                if (controlPointsRenderer != null) { return controlPointsRenderer.WorldPosition; }
+                else { return new vec3(0, 0, 0); }
+            }
+            set
+            {
+                PointsRenderer controlPointsRenderer = this.ControlPointsRenderer;
+                if (controlPointsRenderer != null) { controlPointsRenderer.WorldPosition = value; }
+                Evaluator1DRenderer evaluator1DRenderer = this.Evaluator1DRenderer;
+                if (evaluator1DRenderer != null) { evaluator1DRenderer.WorldPosition = value; }
+            }
+        }
     }
 }

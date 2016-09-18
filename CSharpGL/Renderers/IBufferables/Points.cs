@@ -20,6 +20,10 @@ namespace CSharpGL
         /// </summary>
         public vec3 Lengths { get; private set; }
 
+        /// <summary>
+        /// Some Points
+        /// </summary>
+        /// <param name="pointPositions"></param>
         public Points(IList<vec3> pointPositions)
         {
             vec3[] positions = pointPositions.ToArray();
@@ -38,6 +42,12 @@ namespace CSharpGL
 
         private CSharpGL.IndexBufferPtr indexBufferPtr;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public CSharpGL.VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if ((bufferName == strposition))
@@ -63,6 +73,10 @@ namespace CSharpGL
             throw new System.ArgumentException("bufferName");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public CSharpGL.IndexBufferPtr GetIndex()
         {
             if ((indexBufferPtr == null))

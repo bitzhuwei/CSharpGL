@@ -5,17 +5,25 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public partial class BezierCurveRenderer
+    public partial class Bezier1DRenderer
     {
         /// <summary>
         /// 
         /// </summary>
-        public mat4 MVP { get; set; }
+        public mat4 MVP
+        {
+            get { return this.ControlPointsRenderer.MVP; }
+            set { this.ControlPointsRenderer.MVP = value; }
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public uint PickingBaseId { get; set; }
+        public uint PickingBaseId
+        {
+            get { return this.ControlPointsRenderer.PickingBaseId; }
+            set { this.ControlPointsRenderer.PickingBaseId = value; }
+        }
 
         /// <summary>
         /// 
@@ -23,7 +31,7 @@ namespace CSharpGL
         /// <returns></returns>
         public uint GetVertexCount()
         {
-            return (uint)this.ControlPoints.Length;
+            return (uint)this.ControlPointsRenderer.GetVertexCount();
         }
 
         /// <summary>
@@ -36,7 +44,7 @@ namespace CSharpGL
         /// <returns></returns>
         public PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y)
         {
-            throw new System.NotImplementedException();
+            return this.ControlPointsRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
         }
     }
 }
