@@ -1,11 +1,12 @@
-﻿namespace CSharpGL
+﻿using System.Drawing;
+
+namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class BezierCurveDemo : RendererBase
     {
-
         static private vec3[] points = new vec3[]{
              new vec3(-4.0f, 0.0f, 0.0f),
              new vec3(-6.0f, 4.0f, 0.0f),
@@ -22,11 +23,47 @@
         }
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        public PointSizeSwitch PointSize { get; private set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public Color PointColor { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool RenderControlPoints { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public LineWidthSwitch CurveWidth { get; private set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public Color CurveColor { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool RenderCurve { get; set; }
+
+        /// <summary>
+        ///
         /// </summary>
         public BezierCurveDemo()
         {
             this.Lengths = lengths;
+            this.PointSize = new PointSizeSwitch(10.0f);
+            this.CurveWidth = new LineWidthSwitch(3.0f);
+            this.PointColor = Color.Aqua;
+            this.CurveColor = Color.Red;
+            this.RenderControlPoints = true;
+            this.RenderCurve = true;
         }
 
         /// <summary>
@@ -56,7 +93,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
@@ -70,31 +107,39 @@
             OpenGL.LoadIdentity();
             this.LegacyTransform();
 
-            //this.LegacyTransform();
-            //必须在绘制顶点之前开启
-            OpenGL.Enable(OpenGL.GL_MAP1_VERTEX_3);
-
-            OpenGL.Color(1.0f, 0, 0, 1.0f);
-            //使用画线的方式来连接点
-            OpenGL.Begin(OpenGL.GL_LINE_STRIP);
-            //OpenGL.Begin(OpenGL.GL_TRIANGLES);
-            for (int i = 0; i <= 100; i++)
+            if (this.RenderCurve)
             {
-                OpenGL.EvalCoord1f((float)i);
+                //必须在绘制顶点之前开启
+                OpenGL.Enable(OpenGL.GL_MAP1_VERTEX_3);
+
+                vec4 color = this.CurveColor.ToVec4();
+                OpenGL.Color(color.x, color.y, color.z, color.w);
+                this.CurveWidth.On();
+                //使用画线的方式来连接点
+                OpenGL.Begin(OpenGL.GL_LINE_STRIP);
+                //OpenGL.Begin(OpenGL.GL_TRIANGLES);
+                for (int i = 0; i <= 100; i++)
+                {
+                    OpenGL.EvalCoord1f((float)i);
+                }
+                OpenGL.End();
+                this.CurveWidth.Off();
             }
-            OpenGL.End();
-            ////画控制点
-            //OpenGL.PointSize(2.5f);
-            //OpenGL.Begin(OpenGL.GL_POINTS);
-            //unsafe
-            //{
-            //    var array = (vec3*)controlPoints.Header.ToPointer();
-            //    for (int i = 0; i < numOfPoints; ++i)
-            //    {
-            //        OpenGL.Vertex(array[i].x, array[i].y, array[i].z);
-            //    }
-            //}
-            //OpenGL.End();
+
+            if (this.RenderControlPoints)
+            {
+                //画控制点
+                vec4 color = this.PointColor.ToVec4();
+                OpenGL.Color(color.x, color.y, color.z, color.w);
+                this.PointSize.On();
+                OpenGL.Begin(OpenGL.GL_POINTS);
+                for (int i = 0; i < points.Length; ++i)
+                {
+                    OpenGL.Vertex(points[i].x, points[i].y, points[i].z);
+                }
+                OpenGL.End();
+                this.PointSize.Off();
+            }
         }
     }
 }
