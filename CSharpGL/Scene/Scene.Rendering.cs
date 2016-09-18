@@ -8,7 +8,7 @@ namespace CSharpGL
         private object synObj = new object();
 
         /// <summary>
-        /// Pick 
+        /// Pick
         /// </summary>
         /// <param name="clientRectangle">viewport.</param>
         /// <param name="mousePosition">mouse position.</param>

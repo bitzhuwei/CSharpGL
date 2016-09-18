@@ -23,7 +23,7 @@ namespace CSharpGL
         protected static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected static OpenGL.glPatchParameteri glPatchParameteri;
 

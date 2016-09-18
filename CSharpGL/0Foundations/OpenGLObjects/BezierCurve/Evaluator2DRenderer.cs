@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 
 namespace CSharpGL
 {
@@ -8,24 +7,23 @@ namespace CSharpGL
     /// </summary>
     public class Evaluator2DRenderer : EvaluatorRenderer
     {
-
         private const int minU = 0;
         private const int maxU = 100;
         private const int minV = 0;
         private const int maxV = 100;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PolygonMode MeshMode { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ivec2 MinPercent { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ivec2 MaxPercent { get; set; }
 
@@ -84,13 +82,12 @@ namespace CSharpGL
             //必须在绘制顶点之前开启
             OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
             OpenGL.Enable(OpenGL.GL_AUTO_NORMAL);
-            // 计算网格  
+            // 计算网格
             OpenGL.EvalMesh2(
                 (uint)this.MeshMode,
                 this.MinPercent.x, this.MaxPercent.x, this.MinPercent.y, this.MaxPercent.y);
 
             this.CurveWidth.Off();
         }
-
     }
 }

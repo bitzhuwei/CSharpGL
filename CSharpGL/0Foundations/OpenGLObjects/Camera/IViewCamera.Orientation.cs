@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static partial class CameraHelper
     {

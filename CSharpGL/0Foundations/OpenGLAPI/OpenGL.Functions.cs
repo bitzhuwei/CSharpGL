@@ -1649,6 +1649,7 @@ namespace CSharpGL
         /// <param name="u2">Range of variable 'u'.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glMapGrid1d", SetLastError = true)]
         public static extern void MapGrid1d(int un, double u1, double u2);
+
         /// <summary>
         ///
         /// </summary>
