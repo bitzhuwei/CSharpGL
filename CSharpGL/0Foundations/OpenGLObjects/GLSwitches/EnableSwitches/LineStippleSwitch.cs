@@ -8,6 +8,11 @@
         /// <summary>
         /// Dashed line.
         /// </summary>
+        public LineStippleSwitch() : this(1, 0x0101) { }
+
+        /// <summary>
+        /// Dashed line.
+        /// </summary>
         /// <param name="factor"></param>
         /// <param name="pattern"></param>
         public LineStippleSwitch(int factor, ushort pattern)
@@ -41,11 +46,11 @@
         {
             if (this.EnableCapacity)
             {
-                return string.Format("Enabled glLineStipple({0}, 0x{1});", this.Factor, this.Pattern.ToString("X"));
+                return string.Format("Enabled glLineStipple({0}, 0x{1:X4});", this.Factor, this.Pattern);
             }
             else
             {
-                return string.Format("Disabled glLineStipple({0}, 0x{1});", this.Factor, this.Pattern.ToString("X"));
+                return string.Format("Disabled glLineStipple({0}, 0x{1:X4});", this.Factor, this.Pattern);
             }
         }
 
