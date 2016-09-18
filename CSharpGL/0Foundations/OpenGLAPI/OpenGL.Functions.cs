@@ -1953,6 +1953,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Set the polygon stippling pattern.
+        /// <para>https://www.opengl.org/sdk/docs/man2/xhtml/glPolygonStipple.xml</para>
         /// </summary>
         /// <param name="mask">Specifies a pointer to a 32x32 stipple pattern that will be unpacked from memory in the same way that glDrawPixels unpacks pixels.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glPolygonStipple", SetLastError = true)]
