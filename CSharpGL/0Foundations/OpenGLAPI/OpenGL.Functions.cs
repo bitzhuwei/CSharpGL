@@ -854,14 +854,15 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glEnd", SetLastError = true)]
         public static extern void End();
 
-        ///// <summary>
-        ///// Ends the current display list compilation.
-        ///// </summary>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEndList", SetLastError = true)]
-        //public static extern void EndList();
+        /// <summary>
+        /// Ends the current display list compilation.
+        /// </summary>
+        [DllImport(Win32.opengl32, EntryPoint = "glEndList", SetLastError = true)]
+        public static extern void EndList();
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
 
@@ -870,6 +871,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1dv", SetLastError = true)]
@@ -877,6 +879,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1f", SetLastError = true)]
@@ -884,6 +887,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord1fv", SetLastError = true)]
@@ -891,6 +895,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         /// <param name="v">Domain coordinate.</param>
@@ -899,6 +904,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2dv", SetLastError = true)]
@@ -906,6 +912,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         /// <param name="v">Domain coordinate.</param>
@@ -914,54 +921,55 @@ namespace CSharpGL
 
         /// <summary>
         /// Evaluate from the current evaluator.
+        /// <para>Calls glVertex() inside.</para>
         /// </summary>
         /// <param name="u">Domain coordinate.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEvalCoord2fv", SetLastError = true)]
         public static extern void EvalCoord2fv(float[] u);
 
-        ///// <summary>
-        ///// Evaluates a 'mesh' from the current evaluators.
-        ///// </summary>
-        ///// <param name="mode">Drawing mode, can be POINT or LINE.</param>
-        ///// <param name="i1">Beginning of range.</param>
-        ///// <param name="i2">End of range.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalMesh1", SetLastError = true)]
-        //public static extern void EvalMesh1(uint mode, int i1, int i2);
+        /// <summary>
+        /// Evaluates a 'mesh' from the current evaluators.
+        /// </summary>
+        /// <param name="mode">Drawing mode, can be POINT or LINE.</param>
+        /// <param name="i1">Beginning of range.</param>
+        /// <param name="i2">End of range.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalMesh1", SetLastError = true)]
+        public static extern void EvalMesh1(uint mode, int i1, int i2);
 
-        ///// <summary>
-        ///// Evaluates a 'mesh' from the current evaluators.
-        ///// </summary>
-        ///// <param name="mode">Drawing mode, fill, point or line.</param>
-        ///// <param name="i1">Beginning of range.</param>
-        ///// <param name="i2">End of range.</param>
-        ///// <param name="j1">Beginning of range.</param>
-        ///// <param name="j2">End of range.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalMesh2", SetLastError = true)]
-        //public static extern void EvalMesh2(uint mode, int i1, int i2, int j1, int j2);
+        /// <summary>
+        /// Evaluates a 'mesh' from the current evaluators.
+        /// </summary>
+        /// <param name="mode">Drawing mode, fill, point or line.</param>
+        /// <param name="i1">Beginning of range.</param>
+        /// <param name="i2">End of range.</param>
+        /// <param name="j1">Beginning of range.</param>
+        /// <param name="j2">End of range.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalMesh2", SetLastError = true)]
+        public static extern void EvalMesh2(uint mode, int i1, int i2, int j1, int j2);
 
-        ///// <summary>
-        ///// Generate and evaluate a single point in a mesh.
-        ///// </summary>
-        ///// <param name="i">The integer value for grid domain variable i.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalPoint1", SetLastError = true)]
-        //public static extern void EvalPoint1(int i);
+        /// <summary>
+        /// Generate and evaluate a single point in a mesh.
+        /// </summary>
+        /// <param name="i">The integer value for grid domain variable i.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalPoint1", SetLastError = true)]
+        public static extern void EvalPoint1(int i);
 
-        ///// <summary>
-        ///// Generate and evaluate a single point in a mesh.
-        ///// </summary>
-        ///// <param name="i">The integer value for grid domain variable i.</param>
-        ///// <param name="j">The integer value for grid domain variable j.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEvalPoint2", SetLastError = true)]
-        //public static extern void EvalPoint2(int i, int j);
+        /// <summary>
+        /// Generate and evaluate a single point in a mesh.
+        /// </summary>
+        /// <param name="i">The integer value for grid domain variable i.</param>
+        /// <param name="j">The integer value for grid domain variable j.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEvalPoint2", SetLastError = true)]
+        public static extern void EvalPoint2(int i, int j);
 
-        ///// <summary>
-        ///// This function sets the feedback buffer, that will receive feedback data.
-        ///// </summary>
-        ///// <param name="size">Size of the buffer.</param>
-        ///// <param name="type">Type of data in the buffer.</param>
-        ///// <param name="buffer">The buffer itself.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glFeedbackBuffer", SetLastError = true)]
-        //public static extern void FeedbackBuffer(int size, uint type, float[] buffer);
+        /// <summary>
+        /// This function sets the feedback buffer, that will receive feedback data.
+        /// </summary>
+        /// <param name="size">Size of the buffer.</param>
+        /// <param name="type">Type of data in the buffer.</param>
+        /// <param name="buffer">The buffer itself.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glFeedbackBuffer", SetLastError = true)]
+        public static extern void FeedbackBuffer(int size, uint type, float[] buffer);
 
         /// <summary>
         /// This function is similar to flush, but in a sense does it more, as it
