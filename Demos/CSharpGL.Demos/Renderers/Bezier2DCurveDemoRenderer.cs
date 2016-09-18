@@ -56,9 +56,23 @@ namespace CSharpGL.Demos
         /// </summary>
         public bool RenderCurve { get; set; }
 
-        public int MinPercent { get; set; }
+        public float MinPercent { get; set; }
 
-        public int MaxPercent { get; set; }
+        private float granularity = 1.0f;
+
+        public float Granularity
+        {
+            get { return granularity; }
+            set
+            {
+                if (value < 0.01f)
+                { granularity = 0.01f; }
+                else
+                { granularity = value; }
+            }
+        }
+
+        public float MaxPercent { get; set; }
 
         /// <summary>
         ///
@@ -74,6 +88,7 @@ namespace CSharpGL.Demos
             this.RenderCurve = true;
             this.MinPercent = 0;
             this.MaxPercent = 100;
+            this.Granularity = 1.0f;
         }
 
         /// <summary>
@@ -127,7 +142,8 @@ namespace CSharpGL.Demos
                 //使用画线的方式来连接点
                 OpenGL.Begin(OpenGL.GL_LINE_STRIP);
                 //OpenGL.Begin(OpenGL.GL_TRIANGLES);
-                for (int i = this.MinPercent; i <= this.MaxPercent; i++)
+                float granularity = this.Granularity;
+                for (float i = this.MinPercent; i <= this.MaxPercent; i += granularity)
                 {
                     OpenGL.EvalCoord1f((float)i);
                 }
