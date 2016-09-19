@@ -13,26 +13,26 @@
         public HighlightedPickableRenderer(HighlightRenderer highlighter,
             PickableRenderer pickableRenderer)
         {
-            this.Highlighter = highlighter;
             this.PickableRenderer = pickableRenderer;
+            this.Highlighter = highlighter;
         }
 
         protected override void DoInitialize()
         {
-            this.Highlighter.Initialize();
             this.PickableRenderer.Initialize();
+            this.Highlighter.Initialize();
         }
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.Highlighter.Render(arg);
             this.PickableRenderer.Render(arg);
+            this.Highlighter.Render(arg);
         }
 
         protected override void DisposeUnmanagedResources()
         {
-            this.Highlighter.Dispose();
             this.PickableRenderer.Dispose();
+            this.Highlighter.Dispose();
         }
 
         /// <summary>
