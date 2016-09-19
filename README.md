@@ -67,8 +67,8 @@ A demo is shown as below:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <RendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
-  <VertexAttribute NameInShader="in_Position" NameInModel="position" PropertyType="vec3" />
-  <VertexAttribute NameInShader="in_TexCoord" NameInModel="texCoord" PropertyType="vec2" />
+  <VertexAttribute NameInShader="in_Position" NameInModel="position" AttributeType="vec3" />
+  <VertexAttribute NameInShader="in_TexCoord" NameInModel="texCoord" AttributeType="vec2" />
 </RendererGenerator>
 ```
 # :question:Support or Contact
