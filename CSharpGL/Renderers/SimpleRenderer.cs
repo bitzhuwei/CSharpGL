@@ -10,6 +10,16 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        public static SimpleRenderer Create(BigDipper model)
+        {
+            return Create(model, model.Lengths, BigDipper.position);
+        }
+
+        /// <summary>
+        /// create an Axis' renderer.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public static SimpleRenderer Create(Axis model)
         {
             return Create(model, model.Lengths, Axis.strPosition);

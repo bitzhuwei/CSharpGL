@@ -22,6 +22,14 @@ namespace CSharpGL
         private VertexAttributeBufferPtr colorBufferPtr;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public BigDipper()
+        {
+            this.Lengths = BigDipperModel.Length;
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="bufferName"></param>
@@ -121,5 +129,10 @@ namespace CSharpGL
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return true; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Lengths { get; private set; }
     }
 }

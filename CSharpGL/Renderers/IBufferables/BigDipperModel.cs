@@ -9,6 +9,8 @@
         internal static readonly vec3[] positions;
         internal static readonly vec3[] colors;
 
+        public static vec3 Length { get; private set; }
+
         static BigDipperModel()
         {
             positions = new vec3[11];
@@ -23,7 +25,8 @@
             positions[8] = new vec3(6.1f, 4.2f, 0);
             positions[9] = new vec3(6.2f, 3.9f, 0);
             positions[10] = new vec3(6.4f, 3.9f, 0);
-            positions.Move2Center();
+            BoundingBox box = positions.Move2Center();
+            BigDipperModel.Length = box.MaxPosition - box.MinPosition;
 
             colors = new vec3[11];
             colors[0] = new vec3(1, 0, 0);
