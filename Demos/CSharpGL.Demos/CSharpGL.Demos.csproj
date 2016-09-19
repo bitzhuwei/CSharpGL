@@ -139,6 +139,7 @@
     <Compile Include="Renderers\BezierCurveDemoRenderer.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
+    <Compile Include="Renderers\EmitNormalLineRenderer.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
