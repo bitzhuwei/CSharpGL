@@ -21,15 +21,17 @@ namespace CSharpGL
             IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
+                mat4 modelMatrix = this.GetModelMatrix();
+                mat4 modelViewMatrix = viewMatrix * modelMatrix;
                 var array = (vec3*)pointer.ToPointer();
                 foreach (var index in positionIndexes)
                 {
                     vec3 windowPos = glm.project(array[index],
-                        viewMatrix, projectionMatrix, viewport);
+                        modelViewMatrix, projectionMatrix, viewport);
                     var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X,
                         windowPos.y + differenceOnScreen.Y, windowPos.z);
                     array[index] = glm.unProject(newWindowPos,
-                        viewMatrix, projectionMatrix, viewport);
+                        modelViewMatrix, projectionMatrix, viewport);
                 }
             }
             this.PositionBufferPtr.UnmapBuffer();
@@ -50,15 +52,17 @@ namespace CSharpGL
             IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
+                mat4 modelMatrix = this.GetModelMatrix();
+                mat4 modelViewMatrix = viewMatrix * modelMatrix;
                 var array = (vec3*)pointer.ToPointer();
                 foreach (var index in positionIndexes)
                 {
                     vec3 windowPos = glm.project(array[index],
-                        viewMatrix, projectionMatrix, viewport);
+                        modelViewMatrix, projectionMatrix, viewport);
                     var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X,
                         windowPos.y + differenceOnScreen.Y, windowPos.z);
                     array[index] = glm.unProject(newWindowPos,
-                        viewMatrix, projectionMatrix, viewport);
+                        modelViewMatrix, projectionMatrix, viewport);
                 }
             }
             this.PositionBufferPtr.UnmapBuffer();
