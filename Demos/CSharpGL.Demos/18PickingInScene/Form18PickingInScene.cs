@@ -8,12 +8,16 @@ namespace CSharpGL.Demos
     public partial class Form18PickingInScene : Form
     {
 
+        public RenderModes RenderMode { get; set; }
+
         public Form18PickingInScene()
         {
             InitializeComponent();
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+
+            this.RenderMode = RenderModes.Render;
 
             Application.Idle += Application_Idle;
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
@@ -30,7 +34,7 @@ namespace CSharpGL.Demos
 
             Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
 
-            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, mousePosition);
+            this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, mousePosition);
 
             //// Cross cursor shows where the mouse is.
             //OpenGL.DrawText(mousePosition.X - offset.X,
@@ -44,17 +48,21 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'x')
+            if (e.KeyChar == '1')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
             }
-            else if (e.KeyChar == 'z')
+            else if (e.KeyChar == '2')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
             }
-
+            else if (e.KeyChar == '3')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this);
+                frmPropertyGrid.Show();
+            }
         }
     }
 }

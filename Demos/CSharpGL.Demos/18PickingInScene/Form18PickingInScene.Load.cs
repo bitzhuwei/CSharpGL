@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -100,6 +101,13 @@ namespace CSharpGL.Demos
                 this.glCanvas1.MouseDown += glCanvas1_MouseDown;
                 this.glCanvas1.MouseMove += glCanvas1_MouseMove;
                 this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            }
+            {
+                var builder = new StringBuilder();
+                builder.AppendLine("1: Scene's property grid.");
+                builder.AppendLine("2: Canvas' property grid.");
+                builder.AppendLine("3: Form's property grid.");
+                MessageBox.Show(builder.ToString());
             }
         }
     }
