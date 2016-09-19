@@ -19,7 +19,7 @@ namespace CSharpGL
         {
             base.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
 
-            UpdateEvaluator();
+            this.needsUpdating = true;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace CSharpGL
         {
             base.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
 
-            UpdateEvaluator();
+            this.needsUpdating = true;
         }
 
         private void UpdateEvaluator()
