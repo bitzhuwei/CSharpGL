@@ -27,13 +27,11 @@ namespace CSharpGL.Demos
                 // build several models
                 Random random = new Random();
                 var bufferables = new IBufferable[]{
-                    new BigDipper(),
                     new Chain(new ChainModel(random.Next(7, 100), 5, 5)),
                     new Tetrahedron(),
                 };
                 var keys = new GeometryModel[]
                 {
-                    GeometryModel.BigDipper,
                     GeometryModel.Chain,
                     GeometryModel.Tetrahedron,
                 };
@@ -47,7 +45,6 @@ namespace CSharpGL.Demos
                 var shaderCodesGroup = new ShaderCode[][]
                 {
                     simpleShader,
-                    simpleShader,
                     emitNormalLineShader,
                 };
                 var simpleShaderPropertyNameMap = new PropertyNameMap();
@@ -59,12 +56,10 @@ namespace CSharpGL.Demos
                 var propertyNameMaps = new PropertyNameMap[]
                 {
                     simpleShaderPropertyNameMap,
-                    simpleShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                 };
                 var positionNameInIBufferables = new string[]
                 {
-                    "position",
                     "position",
                     "position",
                 };
@@ -83,7 +78,7 @@ namespace CSharpGL.Demos
                         bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
-                    if (i > 1)
+                    if (i > 0)
                     {
                         pickableRenderer.SetUniform("normalLength", 0.5f);
                         pickableRenderer.SetUniform("showModel", true);
@@ -104,6 +99,19 @@ namespace CSharpGL.Demos
                         //pickableRenderer.SwitchList.Add(blendSwitch);
                     }
                     this.rendererDict.Add(key, renderer);
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
+                    pickableRenderer.Initialize();
+                    var bufferable = pickableRenderer.Model;
+                    var highlightRenderer = new HighlightRenderer(
+                        bufferable, Points.strposition);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.BigDipper);
+                    highlightRenderer.Initialize();
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
+                    renderer.Initialize();
+                    this.rendererDict.Add(GeometryModel.BigDipper, renderer);
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6, radius: 1.0f));
