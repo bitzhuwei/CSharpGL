@@ -39,7 +39,6 @@ namespace CSharpGL.Demos
                     }
 
                     //this.cameraUpdated = true;
-                    this.UpdateMVP(this.rendererDict[this.selectedModel]);
                 }
             }
         }
@@ -94,21 +93,9 @@ namespace CSharpGL.Demos
 
         public Color ClearColor { get; set; }
 
-        private RenderModes renderMode;
         private readonly object synObj = new object();
 
-        public RenderModes RenderMode
-        {
-            get { return renderMode; }
-            set
-            {
-                if (value != renderMode)
-                {
-                    renderMode = value;
-                    this.UpdateMVP(this.rendererDict[this.selectedModel]);
-                }
-            }
-        }
+        public RenderModes RenderMode { get; set; }
 
         public Color TextColor { get; set; }
 
@@ -116,7 +103,7 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
-                RenderersDraw(this.renderMode);
+                RenderersDraw(this.RenderMode);
 
                 DrawText(e);
             }
@@ -159,12 +146,6 @@ namespace CSharpGL.Demos
             HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
             if (renderer != null)
             {
-                //if (cameraUpdated)
-                {
-                    UpdateMVP(renderer);
-                    //cameraUpdated = false;
-                }
-
                 renderer.Render(arg);
             }
         }
@@ -226,32 +207,10 @@ namespace CSharpGL.Demos
         private const float fontSize = 20.0f;
         private Font font = new Font("Courier New", fontSize);
 
-        private void UpdateMVP(HighlightedPickableRenderer renderer)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMatrix();
-            mat4 viewMatrix = camera.GetViewMatrix();
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            if (this.RenderMode == RenderModes.ColorCodedPicking)
-            {
-            }
-            else if (this.RenderMode == RenderModes.Render)
-            {
-                //renderer.PickableRenderer.SetUniform("projectionMatrix", projectionMatrix);
-                //renderer.PickableRenderer.SetUniform("viewMatrix", viewMatrix);
-                //renderer.PickableRenderer.SetUniform("modelMatrix", modelMatrix);
-            }
-            else
-            { throw new NotImplementedException(); }
-        }
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             camera.MouseWheel(e.Delta);
             //cameraUpdated = true;
-            this.UpdateMVP(this.rendererDict[this.selectedModel]);
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
@@ -276,7 +235,6 @@ namespace CSharpGL.Demos
             if (camera != null)
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-                this.UpdateMVP(this.rendererDict[this.selectedModel]);
 
                 this.uiRoot.Size = this.glCanvas1.Size;
             }
