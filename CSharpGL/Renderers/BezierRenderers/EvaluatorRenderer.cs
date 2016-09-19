@@ -42,7 +42,8 @@ namespace CSharpGL
             }
             this.controlPoints = array;
             this.Lengths = box.MaxPosition - box.MinPosition;
-            this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
+            // TODO: not needed. Why?
+            //this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
 
             this.CurveWidth = new LineWidthSwitch(3.0f);
             this.CurveColor = Color.Red;
