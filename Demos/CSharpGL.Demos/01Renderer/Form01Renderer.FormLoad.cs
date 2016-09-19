@@ -24,34 +24,16 @@ namespace CSharpGL.Demos
                 this.camera = camera;
             }
             {
-                // build several models
-                var bufferable = new Tetrahedron();
-                var positionNameInIBufferable = "position";
-                var highlightRenderer = new HighlightRenderer(bufferable, positionNameInIBufferable);
+                EmitNormalLineRenderer pickableRenderer = EmitNormalLineRenderer.Create(new Tetrahedron(), Tetrahedron.strPosition, Tetrahedron.strNormal);
+                pickableRenderer.Initialize();
+                var bufferable = pickableRenderer.Model;
+                var highlightRenderer = new HighlightRenderer(
+                    bufferable, Points.strposition);
                 highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Tetrahedron);
                 highlightRenderer.Initialize();
-                var pickableRenderer = EmitNormalLineRenderer.Create(bufferable, Tetrahedron.strPosition, Tetrahedron.strNormal, positionNameInIBufferable);
-                pickableRenderer.Name = string.Format("Pickable: [{0}]", GeometryModel.Tetrahedron);
-                pickableRenderer.Initialize();
-                {
-                    pickableRenderer.SetUniform("normalLength", 0.5f);
-                    pickableRenderer.SetUniform("showModel", true);
-                    pickableRenderer.SetUniform("showNormal", false);
-                }
-
                 HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                     highlightRenderer, pickableRenderer);
                 renderer.Initialize();
-                {
-                    GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                    pickableRenderer.SwitchList.Add(lineWidthSwitch);
-                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                    pickableRenderer.SwitchList.Add(pointSizeSwitch);
-                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
-                    pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                    //GLSwitch blendSwitch = new BlendSwitch();
-                    //pickableRenderer.SwitchList.Add(blendSwitch);
-                }
                 this.rendererDict.Add(GeometryModel.Tetrahedron, renderer);
             }
             {

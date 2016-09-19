@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class EmitNormalLineRenderer : PickableRenderer
     {
-        public static EmitNormalLineRenderer Create(IBufferable model, string position, string normal, string positionNameInIBufferable)
+        public static EmitNormalLineRenderer Create(IBufferable model, string position, string normal)
         {
             var shaderCodes = new ShaderCode[3];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
@@ -17,8 +17,12 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add("in_Position", position);
             map.Add("in_Normal", normal);
-            var ground = new EmitNormalLineRenderer(model, shaderCodes, map, positionNameInIBufferable);
-            return ground;
+            var renderer = new EmitNormalLineRenderer(model, shaderCodes, map, position);
+            renderer.SetUniform("normalLength", 0.5f);
+            renderer.SetUniform("showModel", true);
+            renderer.SetUniform("showNormal", false);
+
+            return renderer;
         }
 
         public Color LineColor { get; set; }
@@ -43,7 +47,7 @@ namespace CSharpGL.Demos
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             this.SetUniform("modelMatrix", model);
-            this.SetUniform("lineColor", this.LineColor.ToVec3());
+
             base.DoRender(arg);
         }
     }
