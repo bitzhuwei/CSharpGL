@@ -46,11 +46,12 @@ namespace CSharpGL
             var array = new UnmanagedArray<vec3>(length);
             unsafe
             {
+                mat4 modelMatrix = this.GetModelMatrix();
                 var header = (vec3*)array.Header.ToPointer();
                 var bufferHeader = (vec3*)pointer.ToPointer();
                 for (int i = 0; i < length; i++)
                 {
-                    header[i] = bufferHeader[i];
+                    header[i] = new vec3(modelMatrix * new vec4(bufferHeader[i], 1.0f));
                 }
             }
             this.Evaluator.Setup(array);

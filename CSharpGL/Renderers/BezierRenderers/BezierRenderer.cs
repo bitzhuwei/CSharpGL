@@ -81,6 +81,10 @@ namespace CSharpGL
             switch (arg.RenderMode)
             {
                 case RenderModes.Render:
+                    if (this.modelMatrixRecord.IsMarked())
+                    {
+                        this.UpdateEvaluator();
+                    }
                     this.Evaluator.Render(arg);
                     break;
 
