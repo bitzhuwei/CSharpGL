@@ -33,32 +33,32 @@ namespace CSharpGL.Demos
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Chain());
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Chain));
+                        pickableRenderer, Chain.position, GeometryModel.Chain));
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.BigDipper));
+                        pickableRenderer, BigDipper.position, GeometryModel.BigDipper));
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6, radius: 1.0f));
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Axis));
+                        pickableRenderer, Axis.strPosition, GeometryModel.Axis));
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Cube(new vec3(5, 4, 3)));
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Cube));
+                        pickableRenderer, Cube.strPosition, GeometryModel.Cube));
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Sphere));
+                        pickableRenderer, Sphere.strPosition, GeometryModel.Sphere));
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Teapot());
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Teapot));
+                        pickableRenderer, Teapot.strPosition, GeometryModel.Teapot));
                 }
                 {
                     var points = new List<vec3>(){
@@ -69,7 +69,7 @@ namespace CSharpGL.Demos
                     };
                     BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Curve);
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Bezier1D));
+                        pickableRenderer, Points.strposition, GeometryModel.Bezier1D));
                 }
                 {
                     var points = new List<vec3>(){
@@ -85,7 +85,7 @@ namespace CSharpGL.Demos
                     };
                     BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
                     list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
-                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Bezier2D));
+                        pickableRenderer, Points.strposition, GeometryModel.Bezier2D));
                 }
 
                 foreach (var item in list)
