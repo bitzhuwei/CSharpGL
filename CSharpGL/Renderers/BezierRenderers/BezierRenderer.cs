@@ -70,6 +70,7 @@ namespace CSharpGL
             base.DoInitialize();
 
             this.Evaluator.Initialize();
+            this.UpdateEvaluator();
         }
 
         /// <summary>

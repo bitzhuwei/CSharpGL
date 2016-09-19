@@ -3,60 +3,59 @@
   <Class Name="CSharpGL.RendererBase" Collapsed="true">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAADCAgQAEAAAAAgQQAAAAgAAAABAAAgAQAAA=</HashCode>
-      <FileName>OpenGLObjects\ModernRendering\RendererBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAgAAAAAAgAAEABAABAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Rendering\RendererBase.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.Renderer" Collapsed="true">
     <Position X="4.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABIAAAAQAAAEAAwAEAAABjAAAQEgAAAAQSQA=</HashCode>
-      <FileName>OpenGLObjects\ModernRendering\Renderer.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.UIRenderer" Collapsed="true">
     <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACIAUQBAAAgAQYAAIAAgAAAAAAgAEAAACgAAAQAAA=</HashCode>
-      <FileName>GLControls\UIRenderer.cs</FileName>
+      <HashCode>AAACIAMQBAAAgAQYAAKFQgAAAAAAgAEAAACAAAAWAAA=</HashCode>
+      <FileName>UIRendering\UIRenderer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.PickableRenderer" Collapsed="true">
     <Position X="0.5" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAQAAAAAAAAAABwAAAAAAgAAAgBAAAAAQAAA=</HashCode>
-      <FileName>PickableRenderer\PickableRenderer.cs</FileName>
+      <HashCode>AIAAAAAAAQAAgAAAAAIAAwAAAIAAhABAABAAAAAQAAg=</HashCode>
+      <FileName>Renderers\PickableRenderer\PickableRenderer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.HighlightRenderer" Collapsed="true">
     <Position X="8" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAEAAAAAAAAAEgAAAAAAAAIAgwgACAAAAAA=</HashCode>
-      <FileName>HighlightRenderer\HighlightRenderer.cs</FileName>
+      <HashCode>AAAAAAEAAAEAAAAAAAAAEgAAAAAAgAIAAwgACAAAAAA=</HashCode>
+      <FileName>Renderers\HighlightRenderer\HighlightRenderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.OneIndexRenderer" Collapsed="true">
     <Position X="3" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAABAUAgAAAAAIAAgAABjAEAAAEAAIgAgAAAhAABAA=</HashCode>
-      <FileName>PickableRenderer\OneIndexRenderer\OneIndexRenderer.cs</FileName>
+      <HashCode>AAAABAUAgAAAAAIAAgAABCAEAAAEBAIgAgAAAhAABAA=</HashCode>
+      <FileName>Renderers\PickableRenderer\OneIndexRenderer\OneIndexRenderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.ZeroIndexRenderer" Collapsed="true">
     <Position X="5.5" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAABAQAgAAAAAIAAAAABAAEAAAEAAIgAgAAAAAIBAA=</HashCode>
-      <FileName>PickableRenderer\ZeroIndexRenderer\ZeroIndexRenderer.cs</FileName>
+      <HashCode>AAAABAQAgAAAAAIAAAAAAAAEAAAEBAIgAgAAAAAIBAA=</HashCode>
+      <FileName>Renderers\PickableRenderer\ZeroIndexRenderer\ZeroIndexRenderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.InnerPickableRenderer" Collapsed="true">
     <Position X="4.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AACAAAEAARAECgEAEAAABwAABAAAgAAAwBAACAAAAAA=</HashCode>
-      <FileName>PickableRenderer\InnerPickableRenderer.ColorCodedRender.cs</FileName>
+      <HashCode>AACAAAGAARAECgEAEAAAAwAABAAAhAAAQBAAAAAAAAg=</HashCode>
+      <FileName>Renderers\PickableRenderer\InnerPickableRenderer.ColorCodedRender.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
