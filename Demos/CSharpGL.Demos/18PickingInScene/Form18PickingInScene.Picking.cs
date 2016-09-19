@@ -11,10 +11,12 @@ namespace CSharpGL.Demos
         private HighlightedPickableRenderer pickedRenderer;
         private DragParam dragParam;
         private Point lastMousePosition;
+        private Point lastMouseDownPosition;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
             this.lastMousePosition = e.Location;
+            this.lastMouseDownPosition = e.Location;
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -119,7 +121,19 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
+
+                if (this.pickedGeometry != null && this.lastMouseDownPosition == e.Location)
+                {
+                    var frm = new FormProperyGrid(this.pickedGeometry.From);
+                    frm.Show();
+                }
                 this.dragParam = null;
+                HighlightedPickableRenderer renderer = this.pickedRenderer;
+                if (renderer != null)
+                {
+                    renderer.Highlighter.ClearHighlightIndexes();
+                    this.pickedRenderer = null;
+                }
             }
 
             this.lastMousePosition = e.Location;
