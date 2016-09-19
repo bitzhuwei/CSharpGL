@@ -70,7 +70,7 @@ namespace CSharpGL
             base.DoInitialize();
 
             this.Evaluator.Initialize();
-            this.UpdateEvaluator();
+            //this.UpdateEvaluator();
         }
 
         private bool needsUpdating = false;
