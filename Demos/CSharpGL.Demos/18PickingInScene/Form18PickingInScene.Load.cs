@@ -100,22 +100,19 @@ namespace CSharpGL.Demos
                 list.Add(pickableRenderer);
             }
             {
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis());
-                pickableRenderer.Initialize();
-                list.Add(pickableRenderer);
-            }
-            {
                 SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }
             {
                 SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Chain());
+                pickableRenderer.SwitchList.Add(new LineWidthSwitch(5));
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }
             {
                 SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
+                pickableRenderer.SwitchList.Add(new LineWidthSwitch(5));
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }
