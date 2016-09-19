@@ -205,7 +205,6 @@
     <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Renderers\HighlightedPickableRenderer.cs" />
     <Compile Include="Renderers\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.cs">
       <SubType>Form</SubType>

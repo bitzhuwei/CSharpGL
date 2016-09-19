@@ -1,4 +1,4 @@
-﻿namespace CSharpGL.Demos
+﻿namespace CSharpGL
 {
     /// <summary>
     /// 高亮显示拾取的图元。
@@ -17,6 +17,9 @@
             this.PickableRenderer = pickableRenderer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             this.Highlighter.Initialize();
@@ -28,12 +31,19 @@
             this.PickableRenderer.Scale = this.PickableRenderer.Scale;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
             this.Highlighter.Render(arg);
             this.PickableRenderer.Render(arg);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DisposeUnmanagedResources()
         {
             this.Highlighter.Dispose();
@@ -135,6 +145,9 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public uint PickingBaseId
         {
             get
@@ -147,11 +160,17 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public uint GetVertexCount()
         {
             return this.PickableRenderer.GetVertexCount();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y)
         {
             PickedGeometry result = this.PickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
