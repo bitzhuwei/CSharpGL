@@ -24,118 +24,55 @@ namespace CSharpGL.Demos
                 this.camera = camera;
             }
             {
-                EmitNormalLineRenderer pickableRenderer = EmitNormalLineRenderer.Create(new Tetrahedron(), Tetrahedron.strPosition, Tetrahedron.strNormal);
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Tetrahedron);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Tetrahedron, renderer);
-            }
-            {
-                Random random = new Random();
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Chain());
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Chain);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Chain, renderer);
-            }
-            {
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.BigDipper);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.BigDipper, renderer);
-            }
-            {
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6, radius: 1.0f));
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Axis);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Axis, renderer);
-            }
-            {
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Cube(new vec3(5, 4, 3)));
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Cube);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Cube, renderer);
-            }
-            {
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Sphere);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Sphere, renderer);
-            }
-            {
-                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Teapot());
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Teapot);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Teapot, renderer);
-            }
-            {
-                var points = new List<vec3>(){
+                List<Tuple<PickableRenderer, string, GeometryModel>> list = new List<Tuple<PickableRenderer, string, GeometryModel>>();
+                {
+                    EmitNormalLineRenderer pickableRenderer = EmitNormalLineRenderer.Create(new Tetrahedron(), Tetrahedron.strPosition, Tetrahedron.strNormal);
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Tetrahedron));
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Chain());
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Chain));
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.BigDipper));
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6, radius: 1.0f));
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Axis));
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Cube(new vec3(5, 4, 3)));
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Cube));
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Sphere));
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Teapot());
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Teapot));
+                }
+                {
+                    var points = new List<vec3>(){
                         new vec3(-4.0f, 0.0f, 0.0f),
                         new vec3(-6.0f, 4.0f, 0.0f),
                         new vec3(6.0f, -4.0f, 0.0f),
                         new vec3(4.0f, 0.0f, 0.0f),
                     };
-                BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Curve);
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Bezier1D);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Bezier1D, renderer);
-            }
-            {
-                var points = new List<vec3>(){
+                    BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Curve);
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Bezier1D));
+                }
+                {
+                    var points = new List<vec3>(){
                         new vec3(  -4.0f, 0.0f, 4.0f),
                         new vec3(-2.0f, 4.0f, 4.0f),
                         new vec3( 4.0f, 0.0f, 4.0f ),
@@ -146,17 +83,21 @@ namespace CSharpGL.Demos
                         new vec3(-2.0f, 4.0f, -4.0f),
                         new vec3( 4.0f, 0.0f, -4.0f)
                     };
-                BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
-                pickableRenderer.Initialize();
-                var bufferable = pickableRenderer.Model;
-                var highlightRenderer = new HighlightRenderer(
-                    bufferable, Points.strposition);
-                highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Bezier2D);
-                highlightRenderer.Initialize();
-                HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                    highlightRenderer, pickableRenderer);
-                renderer.Initialize();
-                this.rendererDict.Add(GeometryModel.Bezier2D, renderer);
+                    BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
+                    list.Add(new Tuple<PickableRenderer, string, GeometryModel>(
+                        pickableRenderer, Tetrahedron.strPosition, GeometryModel.Bezier2D));
+                }
+
+                foreach (var item in list)
+                {
+                    var bufferable = item.Item1.Model;
+                    var highlightRenderer = new HighlightRenderer(bufferable, item.Item2);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", item.Item3);
+                    var renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, item.Item1);
+                    renderer.Initialize();
+                    this.rendererDict.Add(item.Item3, renderer);
+                }
             }
 
             this.SelectedModel = GeometryModel.Tetrahedron;

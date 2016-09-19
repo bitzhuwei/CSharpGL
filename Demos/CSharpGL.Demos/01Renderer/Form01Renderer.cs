@@ -192,20 +192,7 @@ namespace CSharpGL.Demos
                 //this.uiText.Text = "";
                 this.uiText.Enabled = false;
             }
-            {
-                // Cross cursor shows where the mouse is.
-                OpenGL.DrawText(mousePosition.X - offset.X,
-                    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
-                    Color.Red, "Courier New", crossCursorSize, "o");
-            }
         }
-
-        private const float crossCursorSize = 40.0f;
-
-        private Point offset = new Point(13, 11);
-
-        private const float fontSize = 20.0f;
-        private Font font = new Font("Courier New", fontSize);
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {

@@ -18,7 +18,6 @@ namespace CSharpGL
             return string.Format("{0} vertexes, {1} indexes", Positions.Length, Indexes.Length);
         }
 
-        private Random random = new Random();
 
         /// <summary>
         /// 链条。若干个点用直线连接起来。
@@ -29,6 +28,7 @@ namespace CSharpGL
         /// <param name="height">点的范围（高度）</param>
         public ChainModel(int pointCount = 10, int length = 5, int width = 5, int height = 5)
         {
+            var random = new Random();
             var positions = new vec3[pointCount];
             for (int i = 0; i < pointCount; i++)
             {
