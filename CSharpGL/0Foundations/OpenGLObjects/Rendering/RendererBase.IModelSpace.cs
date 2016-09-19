@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     public abstract partial class RendererBase
     {
@@ -12,6 +13,7 @@
         /// <summary>
         /// Position in world space.
         /// </summary>
+        [Category(strRenderer)]
         public virtual vec3 WorldPosition
         {
             get { return worldPosition; }
@@ -30,6 +32,7 @@
         /// <summary>
         ///
         /// </summary>
+        [Category(strRenderer)]
         public virtual float RotationAngle
         {
             get { return rotationAngle; }
@@ -48,6 +51,7 @@
         /// <summary>
         ///
         /// </summary>
+        [Category(strRenderer)]
         public virtual vec3 RotationAxis
         {
             get { return rotationAxis; }
@@ -66,6 +70,7 @@
         /// <summary>
         ///
         /// </summary>
+        [Category(strRenderer)]
         public virtual vec3 Scale
         {
             get { return scale; }
@@ -82,6 +87,7 @@
         /// <summary>
         ///
         /// </summary>
+        [Category(strRenderer)]
         public virtual vec3 Lengths { get; set; }
     }
 }

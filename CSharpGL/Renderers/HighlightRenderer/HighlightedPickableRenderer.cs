@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// 高亮显示拾取的图元。
@@ -148,6 +149,7 @@
         /// <summary>
         /// 
         /// </summary>
+        [Browsable(false)]
         public uint PickingBaseId
         {
             get

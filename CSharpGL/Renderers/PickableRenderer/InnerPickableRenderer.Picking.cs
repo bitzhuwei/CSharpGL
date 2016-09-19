@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace CSharpGL
@@ -13,6 +14,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Browsable(false)]
         public uint PickingBaseId { get; set; }
 
         /// <summary>
