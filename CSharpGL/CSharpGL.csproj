@@ -213,6 +213,7 @@
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
+    <Compile Include="Renderers\PickableRenderer\PickableRenderer.IModelSpace.cs" />
     <Compile Include="Renderers\PointsRenderer.cs" />
     <Compile Include="Renderers\SimpleRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
