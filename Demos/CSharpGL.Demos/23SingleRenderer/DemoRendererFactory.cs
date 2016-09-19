@@ -18,6 +18,11 @@ namespace CSharpGL.Demos
             {
                 renderer = ConditionalRenderer.Create();
             }
+            else if (rendererType == typeof(EmitNormalLineRenderer))
+            {
+                var model = new Tetrahedron();
+                renderer = EmitNormalLineRenderer.Create(model, Tetrahedron.strPosition, Tetrahedron.strNormal, model.Lengths);
+            }
             else if (rendererType == typeof(ImageProcessingRenderer))
             {
                 renderer = new ImageProcessingRenderer();

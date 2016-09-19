@@ -6,9 +6,10 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 
     /// </summary>
+    [DemoRenderer]
     internal class EmitNormalLineRenderer : PickableRenderer
     {
-        public static EmitNormalLineRenderer Create(IBufferable model, string position, string normal)
+        public static EmitNormalLineRenderer Create(IBufferable model, string position, string normal, vec3 lengths)
         {
             var shaderCodes = new ShaderCode[3];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
@@ -20,7 +21,8 @@ namespace CSharpGL.Demos
             var renderer = new EmitNormalLineRenderer(model, shaderCodes, map, position);
             renderer.SetUniform("normalLength", 0.5f);
             renderer.SetUniform("showModel", true);
-            renderer.SetUniform("showNormal", false);
+            renderer.SetUniform("showNormal", true);
+            renderer.Lengths = lengths;
 
             return renderer;
         }
