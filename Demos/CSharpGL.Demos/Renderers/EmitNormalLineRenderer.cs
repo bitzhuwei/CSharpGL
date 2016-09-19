@@ -4,7 +4,7 @@ using System.IO;
 namespace CSharpGL.Demos
 {
     /// <summary>
-    /// 正方形
+    /// 
     /// </summary>
     internal class EmitNormalLineRenderer : PickableRenderer
     {
