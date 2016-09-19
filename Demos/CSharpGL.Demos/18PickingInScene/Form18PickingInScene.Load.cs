@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -47,56 +48,27 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                SimpleRenderer tetrahedron = SimpleRenderer.Create(new Tetrahedron());
-                tetrahedron.Initialize();
-                tetrahedron.WorldPosition = new vec3(5, 2, 5);
-                SceneObject obj = tetrahedron.WrapToSceneObject("Tetrahedron");
+                List<PickableRenderer> list = GetPickableRenderers();
+                const float distance = 10;
+                int sideCount = (int)Math.Sqrt(list.Count) + 1;
+                float x = -sideCount * distance / 2;
+                float z = -sideCount * distance / 2;
+                for (int i = 0; i < list.Count; i++)
                 {
-                    BoundingBoxRenderer boxRenderer = tetrahedron.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Tetrahedron box");
-                    obj.Children.Add(boxObj);
+                    PickableRenderer item = list[i];
+                    item.WorldPosition = new vec3(x, 2, z);
+                    SceneObject obj = item.WrapToSceneObject();
+                    {
+                        BoundingBoxRenderer boxRenderer = item.GetBoundingBoxRenderer();
+                        SceneObject boxObj = boxRenderer.WrapToSceneObject();
+                        obj.Children.Add(boxObj);
+                    }
+                    this.scene.RootObject.Children.Add(obj);
+
+                    x += distance;
+                    if (i % sideCount == sideCount - 1)
+                    { z += distance; x = -sideCount * distance / 2; }
                 }
-                obj.Scripts.Add(new UpdatingBoxScript("Tetrahedron box"));
-                this.scene.RootObject.Children.Add(obj);
-            }
-            {
-                SimpleRenderer teapot = SimpleRenderer.Create(new Teapot());
-                teapot.Initialize();
-                teapot.WorldPosition = new vec3(-5, 2, 5);
-                SceneObject obj = teapot.WrapToSceneObject("Teapot");
-                {
-                    BoundingBoxRenderer boxRenderer = teapot.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Teapot box");
-                    obj.Children.Add(boxObj);
-                }
-                obj.Scripts.Add(new UpdatingBoxScript("Teapot box"));
-                this.scene.RootObject.Children.Add(obj);
-            }
-            {
-                SimpleRenderer axis = SimpleRenderer.Create(new Axis());
-                axis.Initialize();
-                axis.WorldPosition = new vec3(5, 2, -5);
-                SceneObject obj = axis.WrapToSceneObject("Axis");
-                {
-                    BoundingBoxRenderer boxRenderer = axis.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Axis box");
-                    obj.Children.Add(boxObj);
-                }
-                obj.Scripts.Add(new UpdatingBoxScript("Axis box"));
-                this.scene.RootObject.Children.Add(obj);
-            }
-            {
-                SimpleRenderer sphere = SimpleRenderer.Create(new Sphere());
-                sphere.Initialize();
-                sphere.WorldPosition = new vec3(-5, 2, -5);
-                SceneObject obj = sphere.WrapToSceneObject("Sphere");
-                {
-                    BoundingBoxRenderer boxRenderer = sphere.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Sphere box");
-                    obj.Children.Add(boxObj);
-                }
-                obj.Scripts.Add(new UpdatingBoxScript("Sphere box"));
-                this.scene.RootObject.Children.Add(obj);
             }
             {
                 this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -110,6 +82,80 @@ namespace CSharpGL.Demos
                 builder.AppendLine("3: Form's property grid.");
                 MessageBox.Show(builder.ToString());
             }
+        }
+
+        private List<PickableRenderer> GetPickableRenderers()
+        {
+            List<PickableRenderer> list = new List<PickableRenderer>();
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Tetrahedron());
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Teapot());
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis());
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Chain());
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6, radius: 1.0f));
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Cube(new vec3(5, 4, 3)));
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                var points = new List<vec3>(){
+                        new vec3(-4.0f, 0.0f, 0.0f),
+                        new vec3(-6.0f, 4.0f, 0.0f),
+                        new vec3(6.0f, -4.0f, 0.0f),
+                        new vec3(4.0f, 0.0f, 0.0f),
+                    };
+                BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Curve);
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                // note: the points are not centered at (0, 0, 0). Thus the renderer will not be placed at (0, 0, 0).
+                var points = new List<vec3>(){
+                        new vec3(  -4.0f, 0.0f, 4.0f),
+                        new vec3(-2.0f, 4.0f, 4.0f),
+                        new vec3( 4.0f, 0.0f, 4.0f ),
+                        new vec3(  -4.0f, 0.0f, 0.0f),
+                        new vec3(-2.0f, 4.0f, 0.0f),
+                        new vec3( 4.0f, 0.0f, 0.0f),
+                        new vec3(  -4.0f, 0.0f, -4.0f),
+                        new vec3(-2.0f, 4.0f, -4.0f),
+                        new vec3( 4.0f, 0.0f, -4.0f)
+                    };
+                BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            return list;
         }
     }
 }
