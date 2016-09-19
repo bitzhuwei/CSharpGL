@@ -30,14 +30,12 @@ namespace CSharpGL.Demos
                     new BigDipper(),
                     new Chain(new ChainModel(random.Next(7, 100), 5, 5)),
                     new Tetrahedron(),
-                    new Cube(),
                 };
                 var keys = new GeometryModel[]
                 {
                     GeometryModel.BigDipper,
                     GeometryModel.Chain,
                     GeometryModel.Tetrahedron,
-                    GeometryModel.Cube,
                 };
                 ShaderCode[] simpleShader = new ShaderCode[2];
                 simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
@@ -51,7 +49,6 @@ namespace CSharpGL.Demos
                     simpleShader,
                     simpleShader,
                     emitNormalLineShader,
-                    emitNormalLineShader,
                 };
                 var simpleShaderPropertyNameMap = new PropertyNameMap();
                 simpleShaderPropertyNameMap.Add("in_Position", "position");
@@ -64,11 +61,9 @@ namespace CSharpGL.Demos
                     simpleShaderPropertyNameMap,
                     simpleShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
-                    emitNormalLineShaderPropertyNameMap,
                 };
                 var positionNameInIBufferables = new string[]
                 {
-                    "position",
                     "position",
                     "position",
                     "position",
@@ -122,6 +117,19 @@ namespace CSharpGL.Demos
                         highlightRenderer, pickableRenderer);
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Axis, renderer);
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Cube(new vec3(5, 4, 3)));
+                    pickableRenderer.Initialize();
+                    var bufferable = pickableRenderer.Model;
+                    var highlightRenderer = new HighlightRenderer(
+                        bufferable, Points.strposition);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Cube);
+                    highlightRenderer.Initialize();
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
+                    renderer.Initialize();
+                    this.rendererDict.Add(GeometryModel.Cube, renderer);
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
