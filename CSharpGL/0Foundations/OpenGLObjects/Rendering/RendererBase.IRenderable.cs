@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     public abstract partial class RendererBase
     {
@@ -17,10 +18,9 @@
         /// <summary>
         /// Already initialized.
         /// </summary>
-        public bool IsInitialized
-        {
-            get { return isInitialized; }
-        }
+        [Category(strRenderer)]
+        [Description("Is this renderer initialized or not?")]
+        public bool IsInitialized { get { return isInitialized; } }
 
         /// <summary>
         /// Initialize all stuff related to OpenGL.
