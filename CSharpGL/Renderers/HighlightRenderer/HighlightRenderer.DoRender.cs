@@ -3,7 +3,7 @@
     public partial class HighlightRenderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)

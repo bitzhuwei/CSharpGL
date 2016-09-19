@@ -8,7 +8,7 @@
         private InnerPickableRenderer innerPickableRenderer;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string PositionNameInIBufferable { get { return this.innerPickableRenderer.PositionNameInIBufferable; } }
 

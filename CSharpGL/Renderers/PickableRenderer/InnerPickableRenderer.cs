@@ -5,9 +5,8 @@
     /// </summary>
     abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string PositionNameInIBufferable { get; private set; }
 

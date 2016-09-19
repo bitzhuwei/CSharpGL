@@ -18,7 +18,6 @@ namespace CSharpGL
             return string.Format("{0} vertexes, {1} indexes", Positions.Length, Indexes.Length);
         }
 
-
         /// <summary>
         /// 链条。若干个点用直线连接起来。
         /// </summary>
