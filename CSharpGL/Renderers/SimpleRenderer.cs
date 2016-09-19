@@ -3,7 +3,7 @@
     /// <summary>
     /// Renders a model provided by CSharpGL.
     /// </summary>
-    public partial class SimpleRenderer : Renderer
+    public partial class SimpleRenderer : PickableRenderer
     {
         /// <summary>
         /// create an Axis' renderer.
@@ -12,7 +12,7 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Axis model)
         {
-            return Create(model, model.Lengths);
+            return Create(model, model.Lengths, Axis.strPosition);
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Cube model)
         {
-            return Create(model, model.Lengths);
+            return Create(model, model.Lengths, Cube.strPosition);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Tetrahedron model)
         {
-            return Create(model, model.Lengths);
+            return Create(model, model.Lengths, Tetrahedron.strPosition);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Sphere model)
         {
-            return Create(model, model.Lengths);
+            return Create(model, model.Lengths, Sphere.strPosition);
         }
 
         /// <summary>
@@ -52,10 +52,10 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Teapot model)
         {
-            return Create(model, model.Lengths);
+            return Create(model, model.Lengths, Teapot.strPosition);
         }
 
-        internal static SimpleRenderer Create(IBufferable model, vec3 lengths)
+        internal static SimpleRenderer Create(IBufferable model, vec3 lengths, string positionNameInIBufferable)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
@@ -63,7 +63,7 @@
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
-            var tetrahedron = new SimpleRenderer(model, shaderCodes, map);
+            var tetrahedron = new SimpleRenderer(model, shaderCodes, map, positionNameInIBufferable);
             tetrahedron.Lengths = lengths;
             return tetrahedron;
         }
@@ -74,10 +74,11 @@
         /// <param name="model"></param>
         /// <param name="shaderCodes"></param>
         /// <param name="propertyNameMap"></param>
+        /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
         private SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, propertyNameMap, switches)
+            PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(model, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
         }
 
