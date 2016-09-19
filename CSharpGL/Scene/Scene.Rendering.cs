@@ -12,9 +12,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="clientRectangle">viewport.</param>
         /// <param name="mousePosition">mouse position.</param>
-        /// <param name="geometryType">target's geometry type.</param>
+        /// <param name="pickingGeometryType">target's geometry type.</param>
         /// <returns></returns>
-        public PickedGeometry ColorCodedPicking(Rectangle clientRectangle, Point mousePosition, GeometryType geometryType)
+        public PickedGeometry ColorCodedPicking(Rectangle clientRectangle, Point mousePosition, GeometryType pickingGeometryType)
         {
             PickedGeometry result = null;
             lock (this.synObj)
@@ -23,7 +23,7 @@ namespace CSharpGL
                                  where item.Renderer is IColorCodedPicking
                                  select item.Renderer as IColorCodedPicking).ToArray();
                 result = CSharpGL.ColorCodedPicking.Pick(new RenderEventArgs(
-                         RenderModes.ColorCodedPicking, clientRectangle, this.Camera, geometryType),
+                         RenderModes.ColorCodedPicking, clientRectangle, this.Camera, pickingGeometryType),
                          mousePosition.X, mousePosition.Y, renderers);
             }
 
@@ -36,9 +36,9 @@ namespace CSharpGL
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="mousePosition">mouse position in window coordinate system.</param>
-        public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition)
+        public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition, GeometryType pickingGeometryType = GeometryType.Point)
         {
-            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
+            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera, pickingGeometryType);
 
             lock (this.synObj)
             {

@@ -13,6 +13,14 @@ namespace CSharpGL.Demos
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (var item in Enum.GetValues(typeof(GeometryType)))
+            {
+                this.cmbPickingGeometryType.Items.Add(item);
+            }
+            foreach (var item in Enum.GetValues(typeof(RenderModes)))
+            {
+                this.cmbRenderMode.Items.Add(item);
+            }
             {
                 //this.glCanvas1.ShowSystemCursor = false;
             }

@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
 
             Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
 
-            this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, mousePosition);
+            this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, mousePosition, this.PickingGeometryType);
 
             //// Cross cursor shows where the mouse is.
             //OpenGL.DrawText(mousePosition.X - offset.X,
@@ -63,6 +63,16 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid(this);
                 frmPropertyGrid.Show();
             }
+        }
+
+        private void cmbPickingGeometryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.PickingGeometryType = (GeometryType)this.cmbPickingGeometryType.SelectedItem;
+        }
+
+        private void cmbRenderMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.RenderMode = (RenderModes)this.cmbRenderMode.SelectedItem;
         }
     }
 }

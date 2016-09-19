@@ -24,7 +24,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.PickableRenderer" Collapsed="true">
-    <Position X="13.75" Y="3.25" Width="1.75" />
+    <Position X="15" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAQAAgAAAAAIAAwAAAIAAhABAABAAAAAQAAg=</HashCode>
       <FileName>Renderers\PickableRenderer\PickableRenderer.cs</FileName>
@@ -75,7 +75,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.BoundingBoxRenderer" Collapsed="true">
-    <Position X="10.25" Y="4.75" Width="2" />
+    <Position X="10.25" Y="3.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAMAAAAAAgAgEAAAAAAAEAAAAA=</HashCode>
       <FileName>Renderers\BoundingBoxRenderer\BoundingBoxRenderer.cs</FileName>
