@@ -9,7 +9,15 @@
         {
             get
             {
-                return base.WorldPosition;
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    return innerPickableRenderer.WorldPosition;
+                }
+                else
+                {
+                    return new vec3(0, 0, 0);
+                }
             }
             set
             {
@@ -18,8 +26,6 @@
                 {
                     innerPickableRenderer.WorldPosition = value;
                 }
-
-                base.WorldPosition = value;
             }
         }
 
@@ -30,7 +36,15 @@
         {
             get
             {
-                return base.Lengths;
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    return innerPickableRenderer.Lengths;
+                }
+                else
+                {
+                    return new vec3(0, 0, 0);
+                }
             }
             set
             {
@@ -39,8 +53,6 @@
                 {
                     innerPickableRenderer.Lengths = value;
                 }
-
-                base.Lengths = value;
             }
         }
 
@@ -51,7 +63,15 @@
         {
             get
             {
-                return base.RotationAngle;
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    return innerPickableRenderer.RotationAngle;
+                }
+                else
+                {
+                    return 0.0f;
+                }
             }
             set
             {
@@ -60,8 +80,6 @@
                 {
                     innerPickableRenderer.RotationAngle = value;
                 }
-
-                base.RotationAngle = value;
             }
         }
 
@@ -72,7 +90,15 @@
         {
             get
             {
-                return base.RotationAxis;
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    return innerPickableRenderer.RotationAxis;
+                }
+                else
+                {
+                    return new vec3(0, 0, 0);
+                }
             }
             set
             {
@@ -81,8 +107,6 @@
                 {
                     innerPickableRenderer.RotationAxis = value;
                 }
-
-                base.RotationAxis = value;
             }
         }
 
@@ -93,7 +117,15 @@
         {
             get
             {
-                return base.Scale;
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    return innerPickableRenderer.Scale;
+                }
+                else
+                {
+                    return new vec3(0, 0, 0);
+                }
             }
             set
             {
@@ -102,8 +134,6 @@
                 {
                     innerPickableRenderer.Scale = value;
                 }
-
-                base.Scale = value;
             }
         }
     }
