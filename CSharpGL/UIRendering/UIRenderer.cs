@@ -17,6 +17,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Category(strRenderer)]
+        [Description("OpenGL switches.")]
         public GLSwitchList SwitchList
         {
             get { return switchList; }
@@ -53,6 +55,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Category(strRenderer)]
+        [Description("Renderer that actrually renders something.")]
         public RendererBase Renderer { get; protected set; }
 
         /// <summary>
@@ -76,36 +80,49 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        protected const string strUIRenderer = "UIRenderer";
+
+        /// <summary>
+        ///
+        /// </summary>
+        [Category(strUIRenderer)]
         public System.Windows.Forms.AnchorStyles Anchor { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
         public System.Windows.Forms.Padding Margin { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
         public System.Drawing.Point Location { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
         public System.Drawing.Size Size { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Browsable(false)]
+        [Category(strUIRenderer)]
         public System.Drawing.Size ParentLastSize { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
         public int zNear { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
         public int zFar { get; set; }
 
         /// <summary>
@@ -170,14 +187,19 @@ namespace CSharpGL
             }
         }
 
+        const string strTreeNode = "TreeNode";
         /// <summary>
         ///
         /// </summary>
+        [Category(strTreeNode)]
+        [Description("Self.")]
         public UIRenderer Self { get { return this; } }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strTreeNode)]
+        [Description("Parent UI Renderer.")]
         public UIRenderer Parent { get; set; }
 
         //ChildList<UIRenderer> children;
@@ -185,7 +207,9 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Category(strTreeNode)]
         [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
+        [Description("Children UI Renderers.")]
         public ChildList<UIRenderer> Children { get; private set; }
     }
 }

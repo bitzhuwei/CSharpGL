@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 
 namespace CSharpGL
 {
@@ -17,6 +18,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
+        [Description("Displaying text.")]
         public string Text
         {
             get { return content; }
@@ -32,6 +35,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Category(strUIRenderer)]
+        [Description("Blend mode.")]
         public BlendSwitch BlendSwitch
         {
             get { return blendSwitch; }
@@ -43,6 +48,8 @@ namespace CSharpGL
         /// <summary>
         /// Text's color.
         /// </summary>
+        [Category(strUIRenderer)]
+        [Description("Text color.")]
         public Color TextColor
         {
             get { return textColor.ToColor(); }

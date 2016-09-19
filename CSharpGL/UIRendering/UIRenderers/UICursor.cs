@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -55,6 +56,8 @@ namespace CSharpGL
         /// <summary>
         /// in percentage(0.00 ~ 1.00). FocalPoint.X ranges from 0(left) to 1(right). FocalPoint.Y ranges from 0(bottom) to 1(top)
         /// </summary>
+        [Category(strUIRenderer)]
+        [Description("Focal point of cursor.")]
         public PointF FocalPoint { get; set; }
 
         /// <summary>
