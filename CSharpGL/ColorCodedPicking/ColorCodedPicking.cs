@@ -242,8 +242,8 @@ namespace CSharpGL
                     {
                         Pixel pixel = array[index++];
                         // This is when (x, y) is not on background and some primitive is picked.
-                        if (pixel.r != byte.MaxValue || pixel.g != byte.MaxValue
-                            || pixel.b != byte.MaxValue || pixel.a != byte.MaxValue)
+                        if (pixel.a != byte.MaxValue || pixel.b != byte.MaxValue
+                    || pixel.g != byte.MaxValue || pixel.r != byte.MaxValue)
                         {
                             /* // This is how is vertexID coded into color in vertex shader.
                              * 	int objectID = gl_VertexID;
@@ -285,8 +285,8 @@ namespace CSharpGL
                 var array = (Pixel*)codedColor.Header.ToPointer();
                 Pixel pixel = array[0];
                 // This is when (x, y) is not on background and some primitive is picked.
-                if (pixel.r != byte.MaxValue || pixel.g != byte.MaxValue
-                    || pixel.b != byte.MaxValue || pixel.a != byte.MaxValue)
+                if (pixel.a != byte.MaxValue || pixel.b != byte.MaxValue
+                    || pixel.g != byte.MaxValue || pixel.r != byte.MaxValue)
                 {
                     /* // This is how is vertexID coded into color in vertex shader.
                      * 	int objectID = gl_VertexID;
