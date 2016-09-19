@@ -71,7 +71,6 @@ namespace CSharpGL.Demos
                 for (int i = 0; i < list.Count; i++)
                 {
                     PickableRenderer item = list[i];
-                    item.WorldPosition = new vec3(x, 2, z);
                     SceneObject obj;
                     if (useHighlightedPickingEffect)
                     {
@@ -80,10 +79,12 @@ namespace CSharpGL.Demos
                         highlightRenderer.Name = string.Format("Highlight: [{0}]", item);
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
+                        renderer.WorldPosition = new vec3(x, 2, z);
                         obj = renderer.WrapToSceneObject();
                     }
                     else
                     {
+                        item.WorldPosition = new vec3(x, 2, z);
                         obj = item.WrapToSceneObject();
                     }
                     {

@@ -70,8 +70,10 @@ namespace CSharpGL
             base.DoInitialize();
 
             this.Evaluator.Initialize();
-            //this.UpdateEvaluator();
+            this.UpdateEvaluator();
         }
+
+        private bool needsUpdating = false;
 
         /// <summary>
         ///
@@ -82,9 +84,10 @@ namespace CSharpGL
             switch (arg.RenderMode)
             {
                 case RenderModes.Render:
-                    if (this.modelMatrixRecord.IsMarked())
+                    if (this.needsUpdating)
                     {
                         this.UpdateEvaluator();
+                        this.needsUpdating = false;
                     }
                     this.Evaluator.Render(arg);
                     break;
@@ -98,6 +101,82 @@ namespace CSharpGL
             }
 
             base.DoRender(arg);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override vec3 WorldPosition
+        {
+            get
+            {
+                return base.WorldPosition;
+            }
+            set
+            {
+                if (base.WorldPosition != value)
+                {
+                    this.needsUpdating = true;
+                }
+                base.WorldPosition = value;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override float RotationAngle
+        {
+            get
+            {
+                return base.RotationAngle;
+            }
+            set
+            {
+                if (base.RotationAngle != value)
+                {
+                    this.needsUpdating = true;
+                }
+                base.RotationAngle = value;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override vec3 RotationAxis
+        {
+            get
+            {
+                return base.RotationAxis;
+            }
+            set
+            {
+                if (base.RotationAxis != value)
+                {
+                    this.needsUpdating = true;
+                }
+                base.RotationAxis = value;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override vec3 Scale
+        {
+            get
+            {
+                return base.Scale;
+            }
+            set
+            {
+                if (base.Scale != value)
+                {
+                    this.needsUpdating = true;
+                }
+                base.Scale = value;
+            }
         }
     }
 }
