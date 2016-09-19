@@ -93,7 +93,6 @@ namespace CSharpGL.Demos
                 {
                     var bufferable = item.Item1.Model;
                     var highlightRenderer = new HighlightRenderer(bufferable, item.Item2);
-                    highlightRenderer.Name = string.Format("Highlight: [{0}]", item.Item3);
                     var renderer = new HighlightedPickableRenderer(
                         highlightRenderer, item.Item1);
                     renderer.Initialize();

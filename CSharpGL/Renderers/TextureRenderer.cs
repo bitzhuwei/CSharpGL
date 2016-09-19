@@ -49,5 +49,14 @@ namespace CSharpGL
             bitmap.Dispose();
             this.SetUniform("tex", texture.ToSamplerValue());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0} for rendering Cursor.", base.ToString());
+        }
     }
 }

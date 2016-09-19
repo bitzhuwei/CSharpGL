@@ -25,8 +25,6 @@
                 new PropertyNameMap("in_Position", positionNameInIBufferable),
                 switches)
         {
-            this.Name = this.GetType().Name;
-
             this.positionNameInIBufferable = positionNameInIBufferable;
             this.UniformVariables.Add(new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
             this.UniformVariables.Add(this.uniformMVP);
@@ -35,6 +33,16 @@
             this.SwitchList.Add(new PointSizeSwitch(20.0f));
             this.SwitchList.Add(new PolygonOffsetFillSwitch());
             this.SwitchList.Add(new PolygonOffsetPointSwitch());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+            return string.Format("{0} highlighting: {1} vertexes.", base.ToString(), indexBufferPtr.ElementCount);
         }
     }
 }

@@ -72,7 +72,6 @@ namespace CSharpGL.Demos
                 propertyNameMap.Add("uv", "uv");
                 var pickableRenderer = new PickableRenderer(
                     bufferable, simpleShader, propertyNameMap, "position");
-                pickableRenderer.Name = string.Format("Pickable: [{0}]", this.GetType().Name);
                 pickableRenderer.Initialize();
                 pickableRenderer.SetUniform("output_image",
                     this.outputTexture.ToSamplerValue());

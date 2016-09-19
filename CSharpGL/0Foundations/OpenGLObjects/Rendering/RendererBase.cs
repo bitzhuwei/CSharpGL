@@ -13,7 +13,11 @@ namespace CSharpGL
     {
         private readonly object synObj = new object();
 
-        const string strRenderer = "Renderer";
+        /// <summary>
+        ///
+        /// </summary>
+        protected const string strRenderer = "Renderer";
+
         /// <summary>
         /// binding object.
         /// </summary>
@@ -28,12 +32,6 @@ namespace CSharpGL
         [Category(strRenderer)]
         [Description("Render this or not.")]
         public bool Enabled { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strRenderer)]
-        public string Name { get; set; }
 
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
@@ -51,7 +49,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("[{0}]: [{1}]", this.Id, this.Name);
+            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
         }
 
         /// <summary>
@@ -63,7 +61,6 @@ namespace CSharpGL
         {
             this.Enabled = true;
             this.Id = idCounter++;
-            this.Name = string.Format("{0}: {1}", this.Id, this.GetType().Name);
         }
     }
 }

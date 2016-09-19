@@ -27,7 +27,6 @@ namespace CSharpGL.Demos
                 IBufferable bufferable = new Teapot();
                 var renderer = new OrderIndependentTransparencyRenderer(
                     bufferable, Teapot.strPosition, Teapot.strNormal);
-                renderer.Name = "OIT Renderer";
                 renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.RootObject.Children.Add(obj);

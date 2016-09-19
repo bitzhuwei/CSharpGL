@@ -109,5 +109,14 @@ namespace CSharpGL
                 return new vec3(this.GetModelMatrix() * new vec4(this.Lengths / 2, 1.0f));
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0} min:{1}, max:{2}", base.ToString(), this.MinPosition, this.MaxPosition);
+        }
     }
 }

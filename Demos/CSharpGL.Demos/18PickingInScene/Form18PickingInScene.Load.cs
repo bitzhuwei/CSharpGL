@@ -76,7 +76,6 @@ namespace CSharpGL.Demos
                     {
                         var bufferable = item.Model;
                         var highlightRenderer = new HighlightRenderer(bufferable, item.PositionNameInIBufferable);
-                        highlightRenderer.Name = string.Format("Highlight: [{0}]", item);
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
                         renderer.WorldPosition = new vec3(x, 2, z);

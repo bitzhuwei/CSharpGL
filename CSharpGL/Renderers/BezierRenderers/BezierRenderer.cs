@@ -178,5 +178,14 @@ namespace CSharpGL
                 base.Scale = value;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0} Evaluator: {1}", base.ToString(), this.Evaluator);
+        }
     }
 }

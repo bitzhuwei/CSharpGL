@@ -13,7 +13,6 @@ namespace CSharpGL.Demos
             map.Add("in_Position", position);
             map.Add("in_Color", color);
             var renderer = new OrderDependentTransparencyRenderer(model, shaderCodes, map, position, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
-            renderer.Name = "Order-Dependent Transparent Renderer";
 
             return renderer;
         }

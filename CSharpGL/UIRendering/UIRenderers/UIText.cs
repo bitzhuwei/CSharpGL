@@ -73,7 +73,6 @@ namespace CSharpGL
             else
             { this.fontTexture = fontTexture; }
 
-            this.Name = this.GetType().Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.TextModel.vert"), ShaderType.VertexShader);
