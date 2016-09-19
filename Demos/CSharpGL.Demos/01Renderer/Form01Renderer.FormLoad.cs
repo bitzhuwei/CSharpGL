@@ -104,12 +104,6 @@ namespace CSharpGL.Demos
             this.SelectedModel = GeometryModel.Bezier2D;
 
             {
-                var frmBulletinBoard = new FormBulletinBoard();
-                //frmBulletinBoard.Dump = true;
-                frmBulletinBoard.Show();
-                this.pickedGeometryBoard = frmBulletinBoard;
-            }
-            {
                 var UIRoot = new UIRoot();
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
@@ -127,6 +121,12 @@ namespace CSharpGL.Demos
                 uiText.Text = "";
                 uiRoot.Children.Add(uiText);
                 this.uiText = uiText;
+            }
+            {
+                var frmBulletinBoard = new FormBulletinBoard();
+                //frmBulletinBoard.Dump = true;
+                frmBulletinBoard.Show();
+                this.pickedGeometryBoard = frmBulletinBoard;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.rendererDict[this.SelectedModel].PickableRenderer);
