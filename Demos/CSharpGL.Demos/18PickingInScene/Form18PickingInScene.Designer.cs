@@ -64,6 +64,7 @@
             // 
             // cmbPickingGeometryType
             // 
+            this.cmbPickingGeometryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPickingGeometryType.FormattingEnabled = true;
             this.cmbPickingGeometryType.Location = new System.Drawing.Point(155, 12);
             this.cmbPickingGeometryType.Name = "cmbPickingGeometryType";
@@ -73,6 +74,7 @@
             // 
             // cmbRenderMode
             // 
+            this.cmbRenderMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRenderMode.FormattingEnabled = true;
             this.cmbRenderMode.Location = new System.Drawing.Point(365, 12);
             this.cmbRenderMode.Name = "cmbRenderMode";
