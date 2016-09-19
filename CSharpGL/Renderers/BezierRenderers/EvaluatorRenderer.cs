@@ -45,7 +45,7 @@ namespace CSharpGL
             // TODO: not needed. Why?
             //this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
 
-            this.CurveWidth = new LineWidthSwitch(3.0f);
+            this.CurveWidth = new LineWidthSwitch(2.0f);
             this.CurveColor = Color.Red;
         }
 
