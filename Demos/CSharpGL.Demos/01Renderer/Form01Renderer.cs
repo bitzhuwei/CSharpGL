@@ -239,9 +239,9 @@ namespace CSharpGL.Demos
             }
             else if (this.RenderMode == RenderModes.Render)
             {
-                renderer.PickableRenderer.SetUniform("projectionMatrix", projectionMatrix);
-                renderer.PickableRenderer.SetUniform("viewMatrix", viewMatrix);
-                renderer.PickableRenderer.SetUniform("modelMatrix", modelMatrix);
+                //renderer.PickableRenderer.SetUniform("projectionMatrix", projectionMatrix);
+                //renderer.PickableRenderer.SetUniform("viewMatrix", viewMatrix);
+                //renderer.PickableRenderer.SetUniform("modelMatrix", modelMatrix);
             }
             else
             { throw new NotImplementedException(); }
