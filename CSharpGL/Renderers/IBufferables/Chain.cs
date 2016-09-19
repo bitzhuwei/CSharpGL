@@ -7,13 +7,21 @@ namespace CSharpGL
     /// 北斗七星
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
-    internal class Chain : IBufferable
+    public class Chain : IBufferable
     {
         private ChainModel model;
 
-        public Chain(ChainModel model)
+        /// <summary>
+        /// 链条。若干个点用直线连接起来。
+        /// </summary>
+        /// <param name="pointCount">有多少个点</param>
+        /// <param name="length">点的范围（长度）</param>
+        /// <param name="width">点的范围（宽度）</param>
+        /// <param name="height">点的范围（高度）</param>
+        public Chain(int pointCount = 10, int length = 5, int width = 5, int height = 5)
         {
-            this.model = model;
+            this.model = new ChainModel(pointCount, length, width, height);
+            this.Lengths = model.Lengths;
         }
 
         public const string position = "position";
@@ -93,5 +101,7 @@ namespace CSharpGL
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return true; }
 
+
+        public vec3 Lengths { get; private set; }
     }
 }

@@ -6,7 +6,17 @@
     public partial class SimpleRenderer : PickableRenderer
     {
         /// <summary>
-        /// create an Axis' renderer.
+        /// create an BigDipper's renderer.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static SimpleRenderer Create(Chain model)
+        {
+            return Create(model, model.Lengths, Chain.position);
+        }
+
+        /// <summary>
+        /// create an BigDipper's renderer.
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

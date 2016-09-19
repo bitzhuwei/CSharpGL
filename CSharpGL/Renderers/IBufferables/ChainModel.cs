@@ -11,6 +11,8 @@ namespace CSharpGL
         public vec3[] Colors { get; protected set; }
         public uint[] Indexes { get; protected set; }
 
+        public vec3 Lengths { get; private set; }
+
         public override string ToString()
         {
             return string.Format("{0} vertexes, {1} indexes", Positions.Length, Indexes.Length);
@@ -36,7 +38,8 @@ namespace CSharpGL
                 point.z = (float)random.NextDouble() * height;
                 positions[i] = point;
             }
-            positions.Move2Center();
+            BoundingBox box = positions.Move2Center();
+            this.Lengths = box.MaxPosition - box.MinPosition;
             this.Positions = positions;
 
             this.Colors = new vec3[pointCount];
