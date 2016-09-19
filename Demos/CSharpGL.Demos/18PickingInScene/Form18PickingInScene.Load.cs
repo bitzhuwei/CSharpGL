@@ -80,7 +80,7 @@ namespace CSharpGL.Demos
                 builder.AppendLine("1: Scene's property grid.");
                 builder.AppendLine("2: Canvas' property grid.");
                 builder.AppendLine("3: Form's property grid.");
-                MessageBox.Show(builder.ToString());
+                //MessageBox.Show(builder.ToString());
             }
         }
 

@@ -2,6 +2,8 @@
 {
     public partial class PickableRenderer
     {
+        // 教训：必须永远对this.Property进行读写，否则会引起奇怪的bug。
+        // 这是因为this.Property可能被其他地方引用，若this.Property不变，那么其他地方就不会收到通知。
         /// <summary>
         ///
         /// </summary>
@@ -9,15 +11,7 @@
         {
             get
             {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    return innerPickableRenderer.WorldPosition;
-                }
-                else
-                {
-                    return new vec3(0, 0, 0);
-                }
+                return base.WorldPosition;
             }
             set
             {
@@ -26,6 +20,8 @@
                 {
                     innerPickableRenderer.WorldPosition = value;
                 }
+
+                base.WorldPosition = value;
             }
         }
 
@@ -36,15 +32,7 @@
         {
             get
             {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    return innerPickableRenderer.Lengths;
-                }
-                else
-                {
-                    return new vec3(0, 0, 0);
-                }
+                return base.Lengths;
             }
             set
             {
@@ -53,6 +41,8 @@
                 {
                     innerPickableRenderer.Lengths = value;
                 }
+
+                base.Lengths = value;
             }
         }
 
@@ -63,15 +53,7 @@
         {
             get
             {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    return innerPickableRenderer.RotationAngle;
-                }
-                else
-                {
-                    return 0.0f;
-                }
+                return base.RotationAngle;
             }
             set
             {
@@ -80,6 +62,8 @@
                 {
                     innerPickableRenderer.RotationAngle = value;
                 }
+
+                base.RotationAngle = value;
             }
         }
 
@@ -90,15 +74,7 @@
         {
             get
             {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    return innerPickableRenderer.RotationAxis;
-                }
-                else
-                {
-                    return new vec3(0, 0, 0);
-                }
+                return base.RotationAxis;
             }
             set
             {
@@ -107,6 +83,8 @@
                 {
                     innerPickableRenderer.RotationAxis = value;
                 }
+
+                base.RotationAxis = value;
             }
         }
 
@@ -117,15 +95,7 @@
         {
             get
             {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    return innerPickableRenderer.Scale;
-                }
-                else
-                {
-                    return new vec3(0, 0, 0);
-                }
+                return base.Scale;
             }
             set
             {
@@ -134,6 +104,8 @@
                 {
                     innerPickableRenderer.Scale = value;
                 }
+
+                base.Scale = value;
             }
         }
     }
