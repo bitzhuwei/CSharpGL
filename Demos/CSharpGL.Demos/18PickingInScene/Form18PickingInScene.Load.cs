@@ -151,6 +151,7 @@ namespace CSharpGL.Demos
                         new vec3(-2.0f, 4.0f, -4.0f),
                         new vec3( 4.0f, 0.0f, -4.0f)
                     };
+                points.Move2Center();
                 BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
