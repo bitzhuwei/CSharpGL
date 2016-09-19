@@ -31,7 +31,6 @@ namespace CSharpGL.Demos
                     new Chain(new ChainModel(random.Next(7, 100), 5, 5)),
                     new Tetrahedron(),
                     new Cube(),
-                    new Sphere(),
                 };
                 var keys = new GeometryModel[]
                 {
@@ -39,7 +38,6 @@ namespace CSharpGL.Demos
                     GeometryModel.Chain,
                     GeometryModel.Tetrahedron,
                     GeometryModel.Cube,
-                    GeometryModel.Sphere,
                 };
                 ShaderCode[] simpleShader = new ShaderCode[2];
                 simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
@@ -52,7 +50,6 @@ namespace CSharpGL.Demos
                 {
                     simpleShader,
                     simpleShader,
-                    emitNormalLineShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
                 };
@@ -68,11 +65,9 @@ namespace CSharpGL.Demos
                     simpleShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
-                    emitNormalLineShaderPropertyNameMap,
                 };
                 var positionNameInIBufferables = new string[]
                 {
-                    "position",
                     "position",
                     "position",
                     "position",
@@ -116,7 +111,7 @@ namespace CSharpGL.Demos
                     this.rendererDict.Add(key, renderer);
                 }
                 {
-                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6));
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6, radius: 1.0f));
                     pickableRenderer.Initialize();
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
@@ -127,6 +122,19 @@ namespace CSharpGL.Demos
                         highlightRenderer, pickableRenderer);
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Axis, renderer);
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Sphere());
+                    pickableRenderer.Initialize();
+                    var bufferable = pickableRenderer.Model;
+                    var highlightRenderer = new HighlightRenderer(
+                        bufferable, Points.strposition);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Sphere);
+                    highlightRenderer.Initialize();
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
+                    renderer.Initialize();
+                    this.rendererDict.Add(GeometryModel.Sphere, renderer);
                 }
                 {
                     SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Teapot());
