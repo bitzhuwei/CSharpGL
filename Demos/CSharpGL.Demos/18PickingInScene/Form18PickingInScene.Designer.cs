@@ -29,29 +29,20 @@
         private void InitializeComponent()
         {
             this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
-            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPickingGeometryType = new System.Windows.Forms.ComboBox();
             this.cmbRenderMode = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.lblColor = new System.Windows.Forms.Label();
+            this.lblDrawText = new System.Windows.Forms.Label();
+            this.lblReadColor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // openTextureDlg
             // 
             this.openTextureDlg.Filter = "True Type Font File(*.TTF;*.OTF)|*.TTF;*.OTF";
-            // 
-            // glCanvas1
-            // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(10, 38);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(970, 614);
-            this.glCanvas1.TabIndex = 0;
             // 
             // label1
             // 
@@ -91,11 +82,58 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Render Mode:";
             // 
+            // glCanvas1
+            // 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.glCanvas1.Location = new System.Drawing.Point(10, 73);
+            this.glCanvas1.Name = "glCanvas1";
+            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
+            this.glCanvas1.Size = new System.Drawing.Size(970, 579);
+            this.glCanvas1.TabIndex = 0;
+            // 
+            // lblColor
+            // 
+            this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblColor.Location = new System.Drawing.Point(10, 35);
+            this.lblColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(48, 16);
+            this.lblColor.TabIndex = 5;
+            // 
+            // lblDrawText
+            // 
+            this.lblDrawText.AutoSize = true;
+            this.lblDrawText.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblDrawText.Location = new System.Drawing.Point(10, 54);
+            this.lblDrawText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDrawText.Name = "lblDrawText";
+            this.lblDrawText.Size = new System.Drawing.Size(72, 16);
+            this.lblDrawText.TabIndex = 6;
+            this.lblDrawText.Text = "DrawText";
+            // 
+            // lblReadColor
+            // 
+            this.lblReadColor.AutoSize = true;
+            this.lblReadColor.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblReadColor.Location = new System.Drawing.Point(63, 35);
+            this.lblReadColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReadColor.Name = "lblReadColor";
+            this.lblReadColor.Size = new System.Drawing.Size(120, 16);
+            this.lblReadColor.TabIndex = 7;
+            this.lblReadColor.Text = "Color At Mouse";
+            // 
             // Form18PickingInScene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 662);
+            this.Controls.Add(this.lblColor);
+            this.Controls.Add(this.lblDrawText);
+            this.Controls.Add(this.lblReadColor);
             this.Controls.Add(this.cmbRenderMode);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbPickingGeometryType);
@@ -119,5 +157,8 @@
         private System.Windows.Forms.ComboBox cmbPickingGeometryType;
         private System.Windows.Forms.ComboBox cmbRenderMode;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblColor;
+        private System.Windows.Forms.Label lblDrawText;
+        private System.Windows.Forms.Label lblReadColor;
     }
 }

@@ -12,6 +12,7 @@ namespace CSharpGL.Demos
         private DragParam dragParam;
         private Point lastMousePosition;
         private Point lastMouseDownPosition;
+        public GeometryType PickingGeometryType { get; set; }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -76,6 +77,8 @@ namespace CSharpGL.Demos
             }
             else
             {
+                UpdateColorInformationAtMouse(e.X, e.Y);
+
                 //PickedGeometry pickedGeometry = RunPicking(
                 //    new RenderEventArgs(
                 //        RenderModes.ColorCodedPicking,
@@ -139,6 +142,17 @@ namespace CSharpGL.Demos
             this.lastMousePosition = e.Location;
         }
 
-        public GeometryType PickingGeometryType { get; set; }
+
+        private void UpdateColorInformationAtMouse(int x, int y)
+        {
+            //this.RenderersDraw(this.RenderMode, true, false);
+            Color c = OpenGL.ReadPixel(x, this.glCanvas1.Height - y - 1);
+            c = Color.FromArgb(255, c);
+            this.lblColor.BackColor = c;
+            string content = string.Format(
+                "{0} @ {1}", c,
+                new Point(x, this.glCanvas1.Height - y - 1));
+            this.lblReadColor.Text = content;
+        }
     }
 }

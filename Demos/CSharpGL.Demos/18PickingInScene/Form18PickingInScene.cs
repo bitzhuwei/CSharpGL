@@ -36,15 +36,56 @@ namespace CSharpGL.Demos
 
             this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, mousePosition, this.PickingGeometryType);
 
+            this.DrawText(e);
             //// Cross cursor shows where the mouse is.
             //OpenGL.DrawText(mousePosition.X - offset.X,
             //    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
             //    Color.Red, "Courier New", crossCursorSize, "o");
         }
 
-        private const float crossCursorSize = 40.0f;
-
-        private Point offset = new Point(13, 11);
+        private void DrawText(PaintEventArgs e)
+        {
+            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
+            PickedGeometry pickedGeometry = this.pickedGeometry;
+            if (pickedGeometry != null)
+            {
+                string content = string.Format("[index: {0}]",
+                    pickedGeometry.Indexes.PrintArray());
+                //SizeF size = e.Graphics.MeasureString(content, font);
+                Size size = this.uiText.Size;
+                // make sure the text be displayed.
+                int x = mousePosition.X - (size.Width / 2);
+                if (x + (size.Width) >= this.glCanvas1.Width)
+                { x = this.glCanvas1.Width - size.Width; }
+                else if (x < 0)
+                { x = 0; }
+                // make sure the text be displayed.
+                int y = this.glCanvas1.Height - mousePosition.Y - 1;
+                if (y + size.Height + 1 >= this.glCanvas1.Height)
+                { y = this.glCanvas1.Height - 15 - 5; }
+                else if (y < 15) { if (y > 0) { y += 15; } else { y = 15; } }
+                else { y += 15; }
+                //OpenGL.DrawText(x, y,
+                //    this.TextColor, "Courier New", fontSize,
+                //    content);
+                this.lblDrawText.Text = content;
+                Padding margin = this.uiText.Margin;
+                margin.Left = x; margin.Bottom = y;
+                this.uiText.Margin = margin;
+                this.uiText.Text = content;
+                this.uiText.Enabled = true;
+            }
+            else
+            {
+                //OpenGL.DrawText(mousePosition.X,
+                //    this.glCanvas1.Height - mousePosition.Y - 1,
+                //    this.TextColor, "Courier New", fontSize,
+                //    "");
+                this.lblDrawText.Text = "";
+                //this.uiText.Text = "";
+                this.uiText.Enabled = false;
+            }
+        }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {

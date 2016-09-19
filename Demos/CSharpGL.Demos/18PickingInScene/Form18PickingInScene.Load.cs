@@ -10,6 +10,7 @@ namespace CSharpGL.Demos
     public partial class Form18PickingInScene
     {
         private Scene scene;
+        private UIText uiText;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -41,6 +42,15 @@ namespace CSharpGL.Demos
               new Padding(3, 3, 3, 3), new Size(128, 128));
                 uiAxis.Initialize();
                 this.scene.UIRoot.Children.Add(uiAxis);
+            }
+            {
+                var font = new Font("Courier New", 32);
+                var uiText = new UIText(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(0, 0, 0, 0), new Size(250, 20), -100, 100,
+                   font.GetFontBitmap("[index: 0123456789]").GetFontTexture());
+                uiText.Text = "";
+                this.uiText = uiText;
+                this.scene.UIRoot.Children.Add(uiText);
             }
             {
                 GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));
