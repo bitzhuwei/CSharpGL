@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
                 var highlightRenderer = new HighlightRenderer(bufferable, positionNameInIBufferable);
                 highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Tetrahedron);
                 highlightRenderer.Initialize();
-                var pickableRenderer = EmitNormalLineRenderer.Create(bufferable, positionNameInIBufferable);
+                var pickableRenderer = EmitNormalLineRenderer.Create(bufferable, Tetrahedron.strPosition, Tetrahedron.strNormal, positionNameInIBufferable);
                 pickableRenderer.Name = string.Format("Pickable: [{0}]", GeometryModel.Tetrahedron);
                 pickableRenderer.Initialize();
                 {

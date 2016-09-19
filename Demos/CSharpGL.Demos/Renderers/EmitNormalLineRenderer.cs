@@ -8,15 +8,15 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class EmitNormalLineRenderer : PickableRenderer
     {
-        public static EmitNormalLineRenderer Create(IBufferable model, string positionNameInIBufferable)
+        public static EmitNormalLineRenderer Create(IBufferable model, string position, string normal, string positionNameInIBufferable)
         {
             var shaderCodes = new ShaderCode[3];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
             shaderCodes[2] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
-            map.Add("in_Position", "position");
-            map.Add("in_Normal", "normal");
+            map.Add("in_Position", position);
+            map.Add("in_Normal", normal);
             var ground = new EmitNormalLineRenderer(model, shaderCodes, map, positionNameInIBufferable);
             return ground;
         }
