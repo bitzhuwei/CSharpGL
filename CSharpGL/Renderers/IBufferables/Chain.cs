@@ -24,10 +24,22 @@ namespace CSharpGL
             this.Lengths = model.Lengths;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string position = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string color = "color";
         private Dictionary<string, VertexAttributeBufferPtr> propertyBufferPtrDict = new Dictionary<string, VertexAttributeBufferPtr>();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
@@ -80,6 +92,10 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)
@@ -101,7 +117,9 @@ namespace CSharpGL
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return true; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 Lengths { get; private set; }
     }
 }
