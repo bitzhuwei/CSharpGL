@@ -46,7 +46,7 @@ namespace CSharpGL
             // init index buffer
             OneIndexBufferPtr indexBufferPtr;
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt,
+                using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
                      DrawMode.Points, // any mode is OK as we'll update it later in other place.
                      BufferUsage.DynamicDraw))
                 {

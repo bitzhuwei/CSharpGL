@@ -19,15 +19,15 @@ namespace CSharpGL
 
             switch (indexBufferPtr.Type)
             {
-                case IndexElementType.UnsignedByte:
+                case IndexElementType.UByte:
                     this.RestartIndex = byte.MaxValue;
                     break;
 
-                case IndexElementType.UnsighedShort:
+                case IndexElementType.UShort:
                     this.RestartIndex = ushort.MaxValue;
                     break;
 
-                case IndexElementType.UnsignedInt:
+                case IndexElementType.UInt:
                     this.RestartIndex = uint.MaxValue;
                     break;
 

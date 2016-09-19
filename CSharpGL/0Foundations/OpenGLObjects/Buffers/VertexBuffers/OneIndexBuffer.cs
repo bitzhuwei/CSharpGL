@@ -36,15 +36,15 @@ namespace CSharpGL
         {
             switch (this.Type)
             {
-                case IndexElementType.UnsignedByte:
+                case IndexElementType.UByte:
                     this.array = new UnmanagedArray<byte>(elementCount);
                     break;
 
-                case IndexElementType.UnsighedShort:
+                case IndexElementType.UShort:
                     this.array = new UnmanagedArray<ushort>(elementCount);
                     break;
 
-                case IndexElementType.UnsignedInt:
+                case IndexElementType.UInt:
                     this.array = new UnmanagedArray<uint>(elementCount);
                     break;
 
@@ -80,17 +80,17 @@ namespace CSharpGL
         /// <summary>
         /// byte
         /// </summary>
-        UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
+        UByte = OpenGL.GL_UNSIGNED_BYTE,
 
         /// <summary>
         /// ushort
         /// </summary>
-        UnsighedShort = OpenGL.GL_UNSIGNED_SHORT,
+        UShort = OpenGL.GL_UNSIGNED_SHORT,
 
         /// <summary>
         /// uint
         /// </summary>
-        UnsignedInt = OpenGL.GL_UNSIGNED_INT,
+        UInt = OpenGL.GL_UNSIGNED_INT,
     }
 
     //public static class OneIndexBufferHelper

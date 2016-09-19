@@ -95,7 +95,7 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     buffer.Create(indices.Length);
                     unsafe

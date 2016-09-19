@@ -126,7 +126,7 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UnsighedShort, DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UShort, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     ushort[] faces = model.GetFaces();
                     buffer.Create(faces.Length);

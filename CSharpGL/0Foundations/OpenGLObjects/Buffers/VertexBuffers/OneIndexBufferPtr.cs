@@ -65,15 +65,15 @@ namespace CSharpGL
             IntPtr offset;
             switch (this.Type)
             {
-                case IndexElementType.UnsignedByte:
+                case IndexElementType.UByte:
                     offset = new IntPtr(this.FirstIndex * sizeof(byte));
                     break;
 
-                case IndexElementType.UnsighedShort:
+                case IndexElementType.UShort:
                     offset = new IntPtr(this.FirstIndex * sizeof(ushort));
                     break;
 
-                case IndexElementType.UnsignedInt:
+                case IndexElementType.UInt:
                     offset = new IntPtr(this.FirstIndex * sizeof(uint));
                     break;
 
@@ -118,15 +118,15 @@ namespace CSharpGL
             string type = string.Empty;
             switch (this.Type)
             {
-                case IndexElementType.UnsignedByte:
+                case IndexElementType.UByte:
                     type = "byte";
                     break;
 
-                case IndexElementType.UnsighedShort:
+                case IndexElementType.UShort:
                     type = "ushort";
                     break;
 
-                case IndexElementType.UnsignedInt:
+                case IndexElementType.UInt:
                     type = "uint";
                     break;
 

@@ -9,7 +9,7 @@ namespace CSharpGL
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.Lines, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Lines, BufferUsage.StaticDraw))
             {
                 buffer.Create(8);
                 unsafe

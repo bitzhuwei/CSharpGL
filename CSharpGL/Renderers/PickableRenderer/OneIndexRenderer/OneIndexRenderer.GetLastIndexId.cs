@@ -90,7 +90,7 @@ namespace CSharpGL
                 + recognizedPrimitiveIndex1.IndexIdList.Count)
             { throw new Exception(); }
 
-            using (var indexBuffer = new OneIndexBuffer(IndexElementType.UnsignedInt, drawMode, BufferUsage.StaticDraw))
+            using (var indexBuffer = new OneIndexBuffer(IndexElementType.UInt, drawMode, BufferUsage.StaticDraw))
             {
                 indexBuffer.Create(
                     recognizedPrimitiveIndex0.IndexIdList.Count

@@ -123,7 +123,7 @@ namespace GridViewer
             if (this.indexBufferPtr != null) { return this.indexBufferPtr; }
 
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
-            using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.QuadStrip, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.QuadStrip, BufferUsage.StaticDraw))
             {
                 buffer.Create(vertexCount + (this.pipeline.Count - 1));
                 var array = (uint*)buffer.Header.ToPointer();

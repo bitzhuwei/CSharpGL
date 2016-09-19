@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
                     {
                         this.pickableRendererPropertyGrid.DisplayObject(this.rendererDict[value].PickableRenderer);
                         this.highlightRendererPropertyGrid.DisplayObject(this.rendererDict[value].Highlighter);
-                        //this.frmIndexBufferPtrBoard.SetTarget(this.rendererDict[value].PickableRenderer.IndexBufferPtr);
+                        this.frmIndexBufferPtrBoard.SetTarget(this.rendererDict[value].PickableRenderer.IndexBufferPtr);
                     }
 
                     //this.cameraUpdated = true;

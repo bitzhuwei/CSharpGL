@@ -35,7 +35,7 @@
             {
                 var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
                 if (indexBufferPtr == null)
-                { return IndexElementType.UnsignedInt; }
+                { return IndexElementType.UInt; }
                 else
                 { return indexBufferPtr.Type; }
             }

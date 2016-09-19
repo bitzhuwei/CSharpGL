@@ -100,7 +100,7 @@ namespace CSharpGL
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt,
+                using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
                      this.model.mode, BufferUsage.StaticDraw))
                 {
                     buffer.Create(this.model.indexes.Length);

@@ -381,9 +381,6 @@
     <EmbeddedResource Include="15UIRenderer\Form15UIRenderer.resx">
       <DependentUpon>Form15UIRenderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
-      <DependentUpon>Form01Renderer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>

@@ -151,7 +151,7 @@
             {
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedByte, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.indexes.Length);
                         unsafe
@@ -171,7 +171,7 @@
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    using (var buffer = new OneIndexBuffer(IndexElementType.UnsighedShort, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    using (var buffer = new OneIndexBuffer(IndexElementType.UShort, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.indexes.Length);
                         unsafe
@@ -191,7 +191,7 @@
                 }
                 else
                 {
-                    using (var buffer = new OneIndexBuffer(IndexElementType.UnsignedInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
                         buffer.Create(model.indexes.Length);
                         unsafe
