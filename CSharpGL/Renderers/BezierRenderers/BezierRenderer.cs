@@ -78,7 +78,19 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.Evaluator.Render(arg);
+            switch (arg.RenderMode)
+            {
+                case RenderModes.Render:
+                    this.Evaluator.Render(arg);
+                    break;
+
+                case RenderModes.ColorCodedPicking:
+                    // nothing to render.
+                    break;
+
+                default:
+                    throw new System.NotImplementedException();
+            }
 
             base.DoRender(arg);
         }
