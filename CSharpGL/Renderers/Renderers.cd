@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="CSharpGL.RendererBase" Collapsed="true">
-    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAAAAAAAgAAAAAAgAAEABAABAAAAAA=</HashCode>
+      <HashCode>AAACCACAACCggYAEAAIAAgQSCIAAgABEABAARgAQAAg=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Rendering\RendererBase.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.Renderer" Collapsed="true">
-    <Position X="4.25" Y="1.75" Width="1.5" />
+    <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEEQoABAAAAAyAAQFABwAMAAARjAAA0EgIAAARSAA=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.UIRenderer" Collapsed="true">
-    <Position X="10.5" Y="1.75" Width="1.5" />
+    <Position X="23" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACIAMQBAAAgAQYAAKFQgAAAAAAgAEAAACAAAAWAAA=</HashCode>
       <FileName>UIRendering\UIRenderer.cs</FileName>
@@ -23,7 +24,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.PickableRenderer" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Position X="13.75" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAQAAgAAAAAIAAwAAAIAAhABAABAAAAAQAAg=</HashCode>
       <FileName>Renderers\PickableRenderer\PickableRenderer.cs</FileName>
@@ -31,7 +32,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.HighlightRenderer" Collapsed="true">
-    <Position X="8" Y="3.25" Width="1.75" />
+    <Position X="0.5" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAEAAAAAAAAAEgAAAAAAgAIAAwgACAAAAAA=</HashCode>
       <FileName>Renderers\HighlightRenderer\HighlightRenderer.cs</FileName>
@@ -58,6 +59,77 @@
       <FileName>Renderers\PickableRenderer\InnerPickableRenderer.ColorCodedRender.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.BezierRenderer" Collapsed="true">
+    <Position X="13" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAQAAAAAAAAAAAgAAAAAAgEAAAAAAACAAAAA=</HashCode>
+      <FileName>Renderers\BezierRenderers\BezierRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.PointsRenderer" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAABAAAAAAAAAAAAAAAAgEAAAAAAAAAAEAA=</HashCode>
+      <FileName>Renderers\PointsRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.BoundingBoxRenderer" Collapsed="true">
+    <Position X="10.25" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAMAAAAAAgAgEAAAAAAAEAAAAA=</HashCode>
+      <FileName>Renderers\BoundingBoxRenderer\BoundingBoxRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.LabelRenderer" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICUAAggEAAAAAAAAAAAAAgAAAAAAgEAIAAAACAAAASA=</HashCode>
+      <FileName>Renderers\LabelRenderer\LabelRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.SimpleRenderer" Collapsed="true">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Renderers\SimpleRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.TextureRenderer" Collapsed="true">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Renderers\TextureRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.UIAxis" Collapsed="true">
+    <Position X="24.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIRendering\UIRenderers\UIAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.UICursor" Collapsed="true">
+    <Position X="26.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAIAAAAgAAAAAAAAAAAABA=</HashCode>
+      <FileName>UIRendering\UIRenderers\UICursor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.UIRoot" Collapsed="true">
+    <Position X="22" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAQgAAIAAAAAAAAAAA=</HashCode>
+      <FileName>UIRendering\UIRenderers\UIRoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.UIText" Collapsed="true">
+    <Position X="19.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAECAgAAAAAAAAAIAAAACgAAAAAAgAAAAAAACAAIAAI=</HashCode>
+      <FileName>UIRendering\UIRenderers\UIText.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

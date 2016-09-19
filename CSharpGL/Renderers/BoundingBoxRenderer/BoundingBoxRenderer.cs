@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// Renders a bounding box.
     /// </summary>
-    public class BoundingBoxRenderer : Renderer, IBoundingBox
+    public class BoundingBoxRenderer : PickableRenderer, IBoundingBox
     {
         /// <summary>
         /// get a bounding box renderer.
@@ -23,7 +23,7 @@ namespace CSharpGL
                 @"Resources\BoundingBox.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
-            var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
+            var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, BoundingBoxModel.strPosition, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
             result.WorldPosition = originalWorldPosition;
             result.Lengths = lengths;
             return result;
@@ -35,10 +35,11 @@ namespace CSharpGL
         /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
         /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="bufferable"/>.</param>
+        /// <param name="positionNameInIBufferable"></param>
         ///<param name="switches">OpenGL switches.</param>
         private BoundingBoxRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, switches)
+            PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
             this.BoundingBoxColor = Color.White;
         }
