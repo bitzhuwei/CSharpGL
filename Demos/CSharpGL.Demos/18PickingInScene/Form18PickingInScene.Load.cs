@@ -50,9 +50,11 @@ namespace CSharpGL.Demos
             {
                 List<PickableRenderer> list = GetPickableRenderers();
                 const float distance = 10;
-                int sideCount = (int)Math.Sqrt(list.Count) + 1;
+                float sideCount = (float)Math.Sqrt(list.Count);
+                int sideCounti = (int)sideCount;
                 float x = -sideCount * distance / 2;
                 float z = -sideCount * distance / 2;
+                //float x = 0, z = 0;
                 for (int i = 0; i < list.Count; i++)
                 {
                     PickableRenderer item = list[i];
@@ -66,7 +68,7 @@ namespace CSharpGL.Demos
                     this.scene.RootObject.Children.Add(obj);
 
                     x += distance;
-                    if (i % sideCount == sideCount - 1)
+                    if (i % sideCounti == sideCounti - 1)
                     { z += distance; x = -sideCount * distance / 2; }
                 }
             }
@@ -151,7 +153,6 @@ namespace CSharpGL.Demos
                         new vec3(-2.0f, 4.0f, -4.0f),
                         new vec3( 4.0f, 0.0f, -4.0f)
                     };
-                points.Move2Center();
                 BezierRenderer pickableRenderer = BezierRenderer.Create(points, BezierType.Surface);
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
