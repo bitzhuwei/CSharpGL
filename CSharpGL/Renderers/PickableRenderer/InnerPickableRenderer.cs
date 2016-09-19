@@ -20,11 +20,17 @@
             }
         }
 
+        /// <summary>
+        /// who owns this innter pickable renderer?
+        /// </summary>
+        internal IColorCodedPicking Owner { get; set; }
+
         private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
 
         /// <summary>
         /// Renderer that supports color-coded rendering.
         /// </summary>
+        /// <param name="owner">who owns this innter pickable renderer?</param>
         /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
         /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="bufferable"/>.</param>
@@ -35,12 +41,8 @@
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
-            {
-                this.positionNameInIBufferable = positionNameInIBufferable;
-            }
-            {
-                this.switchList.Add(polygonModeSwitch);
-            }
+            this.positionNameInIBufferable = positionNameInIBufferable;
+            this.switchList.Add(polygonModeSwitch);
             {
                 float min, max;
                 OpenGL.LineWidthRange(out min, out max);

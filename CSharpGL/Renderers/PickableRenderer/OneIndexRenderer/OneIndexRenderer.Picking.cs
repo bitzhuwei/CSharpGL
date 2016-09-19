@@ -79,7 +79,7 @@ namespace CSharpGL
         private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.From = this;
+            pickedGeometry.From = this.Owner;
             pickedGeometry.GeometryType = GeometryType.Line;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.Indexes = new uint[] { searcher.Search(arg, x, y, lastIndexId, this), };
@@ -91,7 +91,7 @@ namespace CSharpGL
         private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.From = this;
+            pickedGeometry.From = this.Owner;
             pickedGeometry.GeometryType = GeometryType.Line;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.Indexes = searcher.Search(arg, x, y, lastIndexId, this);
@@ -112,7 +112,7 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = typeOfMode;
             pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
+            pickedGeometry.From = this.Owner;
             pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
 
@@ -137,7 +137,7 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = GeometryType.Point;
             pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
+            pickedGeometry.From = this.Owner;
             pickedGeometry.Indexes = new uint[] { lastVertexId, };
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
 

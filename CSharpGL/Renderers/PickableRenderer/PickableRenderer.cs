@@ -22,6 +22,7 @@
         {
             var innerPickableRenderer = InnerPickableRendererFactory.GetRenderer(
                 bufferable, propertyNameMap, positionNameInIBufferable);
+            innerPickableRenderer.Owner = this;
             this.innerPickableRenderer = innerPickableRenderer;
         }
     }
