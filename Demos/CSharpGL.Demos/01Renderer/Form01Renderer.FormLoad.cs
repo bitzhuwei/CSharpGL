@@ -32,7 +32,6 @@ namespace CSharpGL.Demos
                     new Tetrahedron(),
                     new Cube(),
                     new Sphere(),
-                    new Teapot(),
                 };
                 var keys = new GeometryModel[]
                 {
@@ -41,7 +40,6 @@ namespace CSharpGL.Demos
                     GeometryModel.Tetrahedron,
                     GeometryModel.Cube,
                     GeometryModel.Sphere,
-                    GeometryModel.Teapot,
                 };
                 ShaderCode[] simpleShader = new ShaderCode[2];
                 simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
@@ -54,7 +52,6 @@ namespace CSharpGL.Demos
                 {
                     simpleShader,
                     simpleShader,
-                    emitNormalLineShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
@@ -72,11 +69,9 @@ namespace CSharpGL.Demos
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
-                    emitNormalLineShaderPropertyNameMap,
                 };
                 var positionNameInIBufferables = new string[]
                 {
-                    "position",
                     "position",
                     "position",
                     "position",
@@ -132,6 +127,19 @@ namespace CSharpGL.Demos
                         highlightRenderer, pickableRenderer);
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Axis, renderer);
+                }
+                {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Teapot());
+                    pickableRenderer.Initialize();
+                    var bufferable = pickableRenderer.Model;
+                    var highlightRenderer = new HighlightRenderer(
+                        bufferable, Points.strposition);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Teapot);
+                    highlightRenderer.Initialize();
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
+                    renderer.Initialize();
+                    this.rendererDict.Add(GeometryModel.Teapot, renderer);
                 }
                 {
                     var points = new List<vec3>(){
