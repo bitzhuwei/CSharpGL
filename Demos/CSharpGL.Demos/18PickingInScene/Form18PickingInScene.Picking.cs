@@ -8,6 +8,7 @@ namespace CSharpGL.Demos
     public partial class Form18PickingInScene
     {
         private PickedGeometry pickedGeometry;
+        private HighlightedPickableRenderer pickedRenderer;
         private DragParam dragParam;
         private Point lastMousePosition;
 
@@ -56,7 +57,15 @@ namespace CSharpGL.Demos
                         current.X - dragParam.lastMousePositionOnScreen.X,
                         current.Y - dragParam.lastMousePositionOnScreen.Y);
                     dragParam.lastMousePositionOnScreen = current;
-                    (this.pickedGeometry.From as PickableRenderer).MovePositions(
+                    PickableRenderer renderer = null;
+                    {
+                        var tmp = this.pickedGeometry.From as HighlightedPickableRenderer;
+                        if (tmp != null) { renderer = tmp.PickableRenderer; }
+                    }
+
+                    if (renderer == null) { renderer = this.pickedGeometry.From as PickableRenderer; }
+
+                    renderer.MovePositions(
                         differenceOnScreen,
                         dragParam.viewMatrix, dragParam.projectionMatrix,
                         dragParam.viewport,
@@ -76,10 +85,22 @@ namespace CSharpGL.Demos
                     e.Location, this.PickingGeometryType);
                 if (pickedGeometry != null)
                 {
+                    var renderer = pickedGeometry.From as HighlightedPickableRenderer;
+                    if (renderer != null)
+                    {
+                        renderer.Highlighter.SetHighlightIndexes(
+                            this.PickingGeometryType.ToDrawMode(), pickedGeometry.Indexes);
+                        this.pickedRenderer = renderer;
+                    }
                     this.glCanvas1.Cursor = Cursors.Hand;
                 }
                 else
                 {
+                    HighlightedPickableRenderer renderer = this.pickedRenderer;
+                    if (renderer != null)
+                    {
+                        renderer.Highlighter.ClearHighlightIndexes();
+                    }
                     this.glCanvas1.Cursor = Cursors.Default;
                 }
                 this.pickedGeometry = pickedGeometry;

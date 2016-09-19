@@ -154,7 +154,13 @@
 
         public PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y)
         {
-            return this.PickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
+            PickedGeometry result = this.PickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
+            if (result != null)
+            {
+                result.From = this;
+            }
+
+            return result;
         }
     }
 }
