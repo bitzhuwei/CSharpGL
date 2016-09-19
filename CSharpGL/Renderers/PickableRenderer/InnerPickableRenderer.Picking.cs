@@ -11,15 +11,6 @@ namespace CSharpGL
         protected UniformMat4 uniformmMVP4Picking = new UniformMat4("MVP");
 
         /// <summary>
-        /// uniform mat4 VMP; (in shader)
-        /// </summary>
-        public mat4 MVP
-        {
-            get { return uniformmMVP4Picking.Value; }
-            set { uniformmMVP4Picking.Value = value; }
-        }
-
-        /// <summary>
         ///
         /// </summary>
         public uint PickingBaseId { get; set; }

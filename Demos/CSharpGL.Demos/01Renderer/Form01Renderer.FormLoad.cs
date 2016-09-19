@@ -168,7 +168,7 @@ namespace CSharpGL.Demos
                     renderer.Initialize();
                     this.rendererDict.Add(GeometryModel.Bezier2D, renderer);
                 }
-                this.SelectedModel = GeometryModel.Bezier2D;
+                this.SelectedModel = GeometryModel.Tetrahedron;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();

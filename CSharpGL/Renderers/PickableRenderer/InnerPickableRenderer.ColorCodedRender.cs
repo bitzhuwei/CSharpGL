@@ -15,6 +15,12 @@ namespace CSharpGL
             program.SetUniform("pickingBaseId",
                 temporaryIndexBufferPtr == null ? (int)this.PickingBaseId : 0);
             UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
+            {
+                mat4 projection = arg.Camera.GetProjectionMatrix();
+                mat4 view = arg.Camera.GetViewMatrix();
+                mat4 model = this.GetModelMatrix();
+                uniformmMVP4Picking.Value = projection * view * model;
+            }
             bool mvpUpdated = uniformmMVP4Picking.Updated;
             if (mvpUpdated) { uniformmMVP4Picking.SetUniform(program); }
 

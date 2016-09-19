@@ -156,7 +156,6 @@ namespace CSharpGL.Demos
             {
                 // prepare pickable elements
                 PickableRenderer pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
-                pickable.MVP = this.camera.GetProjectionMatrix() * this.camera.GetViewMatrix();
 
                 PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
                     arg, x, y,

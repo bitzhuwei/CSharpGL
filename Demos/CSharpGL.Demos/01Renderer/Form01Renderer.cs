@@ -236,7 +236,6 @@ namespace CSharpGL.Demos
 
             if (this.RenderMode == RenderModes.ColorCodedPicking)
             {
-                renderer.PickableRenderer.MVP = mvp;
             }
             else if (this.RenderMode == RenderModes.Render)
             {

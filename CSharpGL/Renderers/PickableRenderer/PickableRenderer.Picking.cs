@@ -5,29 +5,6 @@ namespace CSharpGL
     public partial class PickableRenderer : IColorCodedPicking
     {
         /// <summary>
-        /// uniform mat4 VMP; (in shader)
-        /// </summary>
-        public mat4 MVP
-        {
-            get
-            {
-                InnerPickableRenderer renderer = this.innerPickableRenderer;
-                if (renderer != null)
-                { return this.innerPickableRenderer.MVP; }
-                else
-                { throw new Exception("InnerPickableRenderer is null!"); }
-            }
-            set
-            {
-                InnerPickableRenderer renderer = this.innerPickableRenderer;
-                if (renderer != null)
-                { this.innerPickableRenderer.MVP = value; }
-                else
-                { throw new Exception("InnerPickableRenderer is null!"); }
-            }
-        }
-
-        /// <summary>
         ///
         /// </summary>
         public uint PickingBaseId

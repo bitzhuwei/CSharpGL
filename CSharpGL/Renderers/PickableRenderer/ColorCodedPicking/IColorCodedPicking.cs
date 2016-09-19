@@ -6,11 +6,6 @@
     public interface IColorCodedPicking : IRenderable
     {
         /// <summary>
-        ///
-        /// </summary>
-        mat4 MVP { get; set; }
-
-        /// <summary>
         /// Gets how many primitived have been rendered till now during color coded rendering.
         /// </summary>
         uint PickingBaseId { get; set; }
