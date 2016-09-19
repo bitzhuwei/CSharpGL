@@ -11,6 +11,7 @@ namespace CSharpGL.Demos
     {
         private Scene scene;
         private UIText uiText;
+        private FormBulletinBoard pickedGeometryBoard;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -21,6 +22,12 @@ namespace CSharpGL.Demos
             foreach (var item in Enum.GetValues(typeof(RenderModes)))
             {
                 this.cmbRenderMode.Items.Add(item);
+            }
+            {
+                var frmBulletinBoard = new FormBulletinBoard();
+                //frmBulletinBoard.Dump = true;
+                frmBulletinBoard.Show();
+                this.pickedGeometryBoard = frmBulletinBoard;
             }
             {
                 //this.glCanvas1.ShowSystemCursor = false;

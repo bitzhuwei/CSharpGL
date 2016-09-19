@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
     public partial class Form18PickingInScene
     {
         private PickedGeometry pickedGeometry;
-        private HighlightedPickableRenderer pickedRenderer;
+        private HighlightedPickableRenderer highlightedRenderer;
         private DragParam dragParam;
         private Point lastMousePosition;
         private Point lastMouseDownPosition;
@@ -90,22 +90,42 @@ namespace CSharpGL.Demos
                     e.Location, this.PickingGeometryType);
                 if (pickedGeometry != null)
                 {
+                    PickableRenderer pickableRenderer = null;
                     var renderer = pickedGeometry.From as HighlightedPickableRenderer;
                     if (renderer != null)
                     {
                         renderer.Highlighter.SetHighlightIndexes(
                             this.PickingGeometryType.ToDrawMode(), pickedGeometry.Indexes);
-                        this.pickedRenderer = renderer;
+                        this.highlightedRenderer = renderer;
+                        pickableRenderer = renderer.PickableRenderer;
                     }
+                    else
+                    {
+                        pickableRenderer = pickedGeometry.From as PickableRenderer;
+                    }
+
+                    FormBulletinBoard bulletinBoard = this.pickedGeometryBoard;
+                    if ((bulletinBoard != null) && (!bulletinBoard.IsDisposed))
+                    {
+                        ICamera camera = this.scene.Camera;
+                        mat4 projection = camera.GetProjectionMatrix();
+                        mat4 view = camera.GetViewMatrix();
+                        mat4 model = pickableRenderer.GetModelMatrix();
+                        this.pickedGeometryBoard.SetContent(pickedGeometry.ToString(
+                            projection, view, model));
+                    }
+
                     this.glCanvas1.Cursor = Cursors.Hand;
                 }
                 else
                 {
-                    HighlightedPickableRenderer renderer = this.pickedRenderer;
+                    HighlightedPickableRenderer renderer = this.highlightedRenderer;
                     if (renderer != null)
                     {
                         renderer.Highlighter.ClearHighlightIndexes();
                     }
+                    this.pickedGeometryBoard.SetContent("picked nothing.");
+
                     this.glCanvas1.Cursor = Cursors.Default;
                 }
                 this.pickedGeometry = pickedGeometry;
@@ -125,18 +145,32 @@ namespace CSharpGL.Demos
             {
                 // move vertex
 
-                if (this.pickedGeometry != null && this.lastMouseDownPosition == e.Location)
+                PickedGeometry geometry = this.pickedGeometry;
+                if (geometry != null && this.lastMouseDownPosition == e.Location)
                 {
-                    var frm = new FormProperyGrid(this.pickedGeometry.From);
+                    var frm = new FormProperyGrid(geometry.From);
                     frm.Show();
+                    var frmIndexBufferPtrBoard = new FormIndexBufferPtrBoard();
+                    HighlightedPickableRenderer renderer = this.highlightedRenderer;
+                    if (renderer != null)
+                    {
+                        frmIndexBufferPtrBoard.SetTarget(renderer.PickableRenderer.IndexBufferPtr);
+                    }
+                    else
+                    {
+                        frmIndexBufferPtrBoard.SetTarget((geometry.From as PickableRenderer).IndexBufferPtr);
+                    }
+                    frmIndexBufferPtrBoard.Show();
+                }
+                {
+                    HighlightedPickableRenderer renderer = this.highlightedRenderer;
+                    if (renderer != null)
+                    {
+                        renderer.Highlighter.ClearHighlightIndexes();
+                        this.highlightedRenderer = null;
+                    }
                 }
                 this.dragParam = null;
-                HighlightedPickableRenderer renderer = this.pickedRenderer;
-                if (renderer != null)
-                {
-                    renderer.Highlighter.ClearHighlightIndexes();
-                    this.pickedRenderer = null;
-                }
             }
 
             this.lastMousePosition = e.Location;

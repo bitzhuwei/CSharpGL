@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
-
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -87,6 +87,8 @@ namespace CSharpGL.Demos
             }
         }
 
+        private readonly Object synObj = new Object();
+
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '1')
@@ -103,6 +105,19 @@ namespace CSharpGL.Demos
             {
                 var frmPropertyGrid = new FormProperyGrid(this);
                 frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == '4')
+            {
+                if (dlgSaveFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    lock (synObj)
+                    {
+                        string filename = dlgSaveFile.FileName;
+                        Bitmap bitmap = Save2PictureHelper.ScreenShot(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                        bitmap.Save(filename);
+                        Process.Start("explorer", "/select, " + filename);
+                    }
+                }
             }
         }
 

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPickingGeometryType = new System.Windows.Forms.ComboBox();
             this.cmbRenderMode = new System.Windows.Forms.ComboBox();
@@ -37,12 +36,9 @@
             this.lblColor = new System.Windows.Forms.Label();
             this.lblDrawText = new System.Windows.Forms.Label();
             this.lblReadColor = new System.Windows.Forms.Label();
+            this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // openTextureDlg
-            // 
-            this.openTextureDlg.Filter = "True Type Font File(*.TTF;*.OTF)|*.TTF;*.OTF";
             // 
             // label1
             // 
@@ -126,6 +122,13 @@
             this.lblReadColor.TabIndex = 7;
             this.lblReadColor.Text = "Color At Mouse";
             // 
+            // dlgSaveFile
+            // 
+            this.dlgSaveFile.DefaultExt = "png";
+            this.dlgSaveFile.FileName = "*.png";
+            this.dlgSaveFile.Filter = "(*.png)|*.png";
+            this.dlgSaveFile.RestoreDirectory = true;
+            // 
             // Form18PickingInScene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -152,7 +155,6 @@
         #endregion
 
         private GLCanvas glCanvas1;
-        private System.Windows.Forms.OpenFileDialog openTextureDlg;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPickingGeometryType;
         private System.Windows.Forms.ComboBox cmbRenderMode;
@@ -160,5 +162,6 @@
         private System.Windows.Forms.Label lblColor;
         private System.Windows.Forms.Label lblDrawText;
         private System.Windows.Forms.Label lblReadColor;
+        private System.Windows.Forms.SaveFileDialog dlgSaveFile;
     }
 }
