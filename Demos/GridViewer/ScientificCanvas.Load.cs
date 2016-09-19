@@ -16,7 +16,7 @@ namespace GridViewer
             this.cameraManipulater = cameraManipulater;
 
             this.Scene = new Scene(camera, this);
-            this.Scene.Cursor.Enabled = false;
+            //this.Scene.Cursor.Enabled = false;
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(128, 128));

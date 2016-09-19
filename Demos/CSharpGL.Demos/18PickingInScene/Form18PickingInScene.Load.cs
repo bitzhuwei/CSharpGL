@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
                 rotator.StepLength = 0.5f;
                 rotator.Bind(camera, this.glCanvas1);
                 var scene = new Scene(camera, this.glCanvas1);
-                scene.Cursor.Enabled = false;
+                //scene.Cursor.Enabled = false;
                 this.scene = scene;
                 this.glCanvas1.Resize += scene.Resize;
             }

@@ -52,13 +52,13 @@ namespace CSharpGL
                 // render regular UI.
                 this.UIRoot.Render(arg);
 
-                // render cursor.
-                UICursor cursor = this.Cursor;
-                if (cursor != null && cursor.Enabled)
-                {
-                    cursor.UpdatePosition(mousePosition);
-                    this.cursorRoot.Render(arg);
-                }
+                //// render cursor.
+                //UICursor cursor = this.Cursor;
+                //if (cursor != null && cursor.Enabled)
+                //{
+                //    cursor.UpdatePosition(mousePosition);
+                //    this.cursorRoot.Render(arg);
+                //}
             }
         }
 

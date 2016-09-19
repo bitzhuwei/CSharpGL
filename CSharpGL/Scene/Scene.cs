@@ -12,7 +12,7 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Scene
     {
-        private UIRoot cursorRoot = new UIRoot();
+        //private UIRoot cursorRoot = new UIRoot();
         private UIRoot uiRoot = new UIRoot();
         private SceneRootObject rootObject;
 
@@ -33,10 +33,10 @@ namespace CSharpGL
             var rootObject = new SceneRootObject(this);
             rootObject.Children.AddRange(objects);
             this.rootObject = rootObject;
-            var cursor = UICursor.CreateDefault();
-            cursor.Enabled = false;
-            this.cursorRoot.Children.Add(cursor);
-            this.Cursor = cursor;
+            //var cursor = UICursor.CreateDefault();
+            //cursor.Enabled = false;
+            //this.cursorRoot.Children.Add(cursor);
+            //this.Cursor = cursor;
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace CSharpGL
         /// </summary>
         public Color ClearColor { get; set; }
 
-        /// <summary>
-        /// OpenGL UI for cursor.
-        /// </summary>
-        public UICursor Cursor { get; set; }
+        ///// <summary>
+        ///// OpenGL UI for cursor.
+        ///// </summary>
+        //public UICursor Cursor { get; set; }
 
         /// <summary>
         /// Root object of all objects to be rendered in the scene.
@@ -82,7 +82,7 @@ namespace CSharpGL
             this.Camera.Resize(control.Width, control.Height);
 
             this.uiRoot.Size = control.Size;
-            this.cursorRoot.Size = control.Size;
+            //this.cursorRoot.Size = control.Size;
         }
     }
 }
