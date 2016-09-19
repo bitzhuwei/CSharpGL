@@ -104,28 +104,6 @@ namespace CSharpGL.Demos
             this.lastMousePosition = e.Location;
         }
 
-        private PickedGeometry RunPicking(RenderEventArgs arg, int x, int y)
-        {
-            lock (this.synObj)
-            {
-                var list = new List<PickableRenderer>();
-                foreach (var item in this.scene.RootObject)
-                {
-                    var renderer = item.Renderer as PickableRenderer;
-                    if (renderer != null)
-                    {
-                        list.Add(renderer);
-                    }
-                }
-                PickedGeometry result = ColorCodedPicking.Pick(
-                        new RenderEventArgs(RenderModes.ColorCodedPicking, this.glCanvas1.ClientRectangle, this.scene.Camera, GeometryType.Point),
-                        x, y, list.ToArray());
-                return result;
-            }
-        }
-
-        private object synObj = new object();
-
         public GeometryType PickingGeometryType { get; set; }
     }
 }
