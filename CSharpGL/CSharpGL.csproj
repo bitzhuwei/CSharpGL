@@ -209,6 +209,7 @@
     <Compile Include="FontTexture\FontTexture.cs" />
     <Compile Include="FontTexture\FontTextureHelper.cs" />
     <Compile Include="Renderers\BoundingBoxRenderer\BoundingBoxRenderer.FromIModelSpace.cs" />
+    <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.DoRender.cs" />
     <Compile Include="Renderers\IBufferables\Points.cs" />
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />

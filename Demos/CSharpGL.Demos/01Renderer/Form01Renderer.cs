@@ -239,7 +239,6 @@ namespace CSharpGL.Demos
             }
             else if (this.RenderMode == RenderModes.Render)
             {
-                renderer.Highlighter.MVP = mvp;
                 renderer.PickableRenderer.SetUniform("projectionMatrix", projectionMatrix);
                 renderer.PickableRenderer.SetUniform("viewMatrix", viewMatrix);
                 renderer.PickableRenderer.SetUniform("modelMatrix", modelMatrix);

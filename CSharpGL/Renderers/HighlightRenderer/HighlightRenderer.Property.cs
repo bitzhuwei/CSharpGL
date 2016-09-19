@@ -45,20 +45,5 @@
         ///
         /// </summary>
         protected UniformMat4 uniformMVP = new UniformMat4("MVP");
-
-        /// <summary>
-        ///
-        /// </summary>
-        public mat4 MVP
-        {
-            get { return this.uniformMVP.Value; }
-            set
-            {
-                if (value != this.uniformMVP.Value)
-                {
-                    this.uniformMVP.Value = value;
-                }
-            }
-        }
     }
 }
