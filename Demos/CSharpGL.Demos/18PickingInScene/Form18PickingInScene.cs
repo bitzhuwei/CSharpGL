@@ -130,5 +130,13 @@ namespace CSharpGL.Demos
         {
             this.RenderMode = (RenderModes)this.cmbRenderMode.SelectedItem;
         }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            this.scene.Dispose();
+            this.bulletinBoard.Close();
+        }
     }
 }

@@ -104,14 +104,14 @@ namespace CSharpGL.Demos
                         pickableRenderer = pickedGeometry.From as PickableRenderer;
                     }
 
-                    FormBulletinBoard bulletinBoard = this.pickedGeometryBoard;
+                    FormBulletinBoard bulletinBoard = this.bulletinBoard;
                     if ((bulletinBoard != null) && (!bulletinBoard.IsDisposed))
                     {
                         ICamera camera = this.scene.Camera;
                         mat4 projection = camera.GetProjectionMatrix();
                         mat4 view = camera.GetViewMatrix();
                         mat4 model = pickableRenderer.GetModelMatrix();
-                        this.pickedGeometryBoard.SetContent(pickedGeometry.ToString(
+                        this.bulletinBoard.SetContent(pickedGeometry.ToString(
                             projection, view, model));
                     }
 
@@ -124,7 +124,7 @@ namespace CSharpGL.Demos
                     {
                         renderer.Highlighter.ClearHighlightIndexes();
                     }
-                    this.pickedGeometryBoard.SetContent("picked nothing.");
+                    this.bulletinBoard.SetContent("picked nothing.");
 
                     this.glCanvas1.Cursor = Cursors.Default;
                 }

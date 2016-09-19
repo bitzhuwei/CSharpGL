@@ -10,10 +10,11 @@ namespace CSharpGL
     /// Manages a scene to be rendered and updated.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public partial class Scene
+    public partial class Scene : IDisposable
     {
         //private UIRoot cursorRoot = new UIRoot();
         private UIRoot uiRoot = new UIRoot();
+
         private SceneRootObject rootObject;
 
         /// <summary>
