@@ -52,8 +52,9 @@ namespace CSharpGL.Demos
 
         private UpdatingRecord pointColorRecord = new UpdatingRecord();
         private vec3 pointColor = new vec3(1, 0, 1);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Color PointColor
         {

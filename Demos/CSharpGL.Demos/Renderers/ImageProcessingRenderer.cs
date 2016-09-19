@@ -176,12 +176,12 @@ namespace CSharpGL.Demos
                 }
                 return indexBufferPtr;
             }
+
             /// <summary>
             /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
             /// </summary>
             /// <returns></returns>
             public bool UsesZeroIndexBuffer() { return true; }
-
         }
 
         internal void SwitchDisplayImage(bool forward)

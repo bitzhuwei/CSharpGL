@@ -1,7 +1,6 @@
 namespace CSharpGL
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Model of random points.
@@ -61,11 +60,11 @@ namespace CSharpGL
             }
             return indexBufferPtr;
         }
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return true; }
-
     }
 }

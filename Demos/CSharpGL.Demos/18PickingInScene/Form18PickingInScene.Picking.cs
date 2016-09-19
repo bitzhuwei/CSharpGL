@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -175,7 +173,6 @@ namespace CSharpGL.Demos
 
             this.lastMousePosition = e.Location;
         }
-
 
         private void UpdateColorInformationAtMouse(int x, int y)
         {

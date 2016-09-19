@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 
 namespace CSharpGL.Demos
@@ -7,7 +6,6 @@ namespace CSharpGL.Demos
     [DemoRenderer]
     internal class AnalyzedPointSpriteRenderer : Renderer
     {
-
         public static AnalyzedPointSpriteRenderer Create(int particleCount)
         {
             var shaderCodes = new ShaderCode[2];
@@ -109,6 +107,7 @@ namespace CSharpGL.Demos
 
                 return indexBufferPtr;
             }
+
             /// <summary>
             /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
             /// </summary>

@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL.Demos
 {
-    class UpdatingBoxScript : Script
+    internal class UpdatingBoxScript : Script
     {
         private string boxName;
+
         public UpdatingBoxScript(string boxName)
         {
             this.boxName = boxName;
         }
+
         public void UpdateBoundingBox()
         {
             BoundingBox box = GetBoundingBox();

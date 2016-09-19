@@ -7,7 +7,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form18PickingInScene : Form
     {
-
         public RenderModes RenderMode { get; set; }
 
         public Form18PickingInScene()

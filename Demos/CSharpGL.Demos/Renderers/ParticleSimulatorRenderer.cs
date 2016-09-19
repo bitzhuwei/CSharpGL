@@ -12,6 +12,7 @@ namespace CSharpGL.Demos
         {
             this.Lengths = new vec3(5, 5, 5);
         }
+
         protected override void DoInitialize()
         {
             {

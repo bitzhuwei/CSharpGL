@@ -166,6 +166,4 @@ namespace CSharpGL.Demos
             this.headTexture.Dispose();
         }
     }
-
-
 }
