@@ -72,6 +72,7 @@ namespace CSharpGL.Demos
                         pickableRenderer, Points.strposition, GeometryModel.Bezier1D));
                 }
                 {
+                    // note: the points are not centered at (0, 0, 0). Thus the renderer will not be placed at (0, 0, 0).
                     var points = new List<vec3>(){
                         new vec3(  -4.0f, 0.0f, 4.0f),
                         new vec3(-2.0f, 4.0f, 4.0f),
@@ -100,7 +101,7 @@ namespace CSharpGL.Demos
                 }
             }
 
-            this.SelectedModel = GeometryModel.Tetrahedron;
+            this.SelectedModel = GeometryModel.Bezier2D;
 
             {
                 var frmBulletinBoard = new FormBulletinBoard();
