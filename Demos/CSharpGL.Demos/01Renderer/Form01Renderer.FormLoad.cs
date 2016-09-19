@@ -27,7 +27,6 @@ namespace CSharpGL.Demos
                 // build several models
                 Random random = new Random();
                 var bufferables = new IBufferable[]{
-                    new Axis(),
                     new BigDipper(),
                     new Chain(new ChainModel(random.Next(7, 100), 5, 5)),
                     new Tetrahedron(),
@@ -37,7 +36,6 @@ namespace CSharpGL.Demos
                 };
                 var keys = new GeometryModel[]
                 {
-                    GeometryModel.Axis,
                     GeometryModel.BigDipper,
                     GeometryModel.Chain,
                     GeometryModel.Tetrahedron,
@@ -56,7 +54,6 @@ namespace CSharpGL.Demos
                 {
                     simpleShader,
                     simpleShader,
-                    simpleShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
@@ -72,7 +69,6 @@ namespace CSharpGL.Demos
                 {
                     simpleShaderPropertyNameMap,
                     simpleShaderPropertyNameMap,
-                    simpleShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
@@ -80,7 +76,6 @@ namespace CSharpGL.Demos
                 };
                 var positionNameInIBufferables = new string[]
                 {
-                    "position",
                     "position",
                     "position",
                     "position",
@@ -103,7 +98,7 @@ namespace CSharpGL.Demos
                         bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
-                    if (i > 2)
+                    if (i > 1)
                     {
                         pickableRenderer.SetUniform("normalLength", 0.5f);
                         pickableRenderer.SetUniform("showModel", true);
@@ -126,6 +121,19 @@ namespace CSharpGL.Demos
                     this.rendererDict.Add(key, renderer);
                 }
                 {
+                    SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Axis(partCount: 6));
+                    pickableRenderer.Initialize();
+                    var bufferable = pickableRenderer.Model;
+                    var highlightRenderer = new HighlightRenderer(
+                        bufferable, Points.strposition);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Axis);
+                    highlightRenderer.Initialize();
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
+                    renderer.Initialize();
+                    this.rendererDict.Add(GeometryModel.Axis, renderer);
+                }
+                {
                     var points = new List<vec3>(){
                         new vec3(-4.0f, 0.0f, 0.0f),
                         new vec3(-6.0f, 4.0f, 0.0f),
@@ -137,7 +145,7 @@ namespace CSharpGL.Demos
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
                         bufferable, Points.strposition);
-                    highlightRenderer.Name = string.Format("Highlight: [{0}]", "Bezier1D");
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Bezier1D);
                     highlightRenderer.Initialize();
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
@@ -161,7 +169,7 @@ namespace CSharpGL.Demos
                     var bufferable = pickableRenderer.Model;
                     var highlightRenderer = new HighlightRenderer(
                         bufferable, Points.strposition);
-                    highlightRenderer.Name = string.Format("Highlight: [{0}]", "Bezier2D");
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", GeometryModel.Bezier2D);
                     highlightRenderer.Initialize();
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
