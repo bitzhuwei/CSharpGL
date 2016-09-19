@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public partial class PickableRenderer : IColorCodedPicking
+    public partial class PickableRenderer
     {
         /// <summary>
         ///
@@ -12,18 +12,16 @@ namespace CSharpGL
             get
             {
                 InnerPickableRenderer renderer = this.innerPickableRenderer;
-                if (renderer != null)
-                { return this.innerPickableRenderer.PickingBaseId; }
-                else
-                { throw new Exception("InnerPickableRenderer is null!"); }
+                if (renderer == null) { throw new Exception("InnerPickableRenderer is null!"); }
+
+                return renderer.PickingBaseId;
             }
             set
             {
                 InnerPickableRenderer renderer = this.innerPickableRenderer;
-                if (renderer != null)
-                { this.innerPickableRenderer.PickingBaseId = value; }
-                else
-                { throw new Exception("InnerPickableRenderer is null!"); }
+                if (renderer == null) { throw new Exception("InnerPickableRenderer is null!"); }
+
+                renderer.PickingBaseId = value;
             }
         }
 
@@ -34,10 +32,9 @@ namespace CSharpGL
         public uint GetVertexCount()
         {
             InnerPickableRenderer renderer = this.innerPickableRenderer;
-            if (renderer != null)
-            { return this.innerPickableRenderer.GetVertexCount(); }
-            else
-            { throw new Exception("InnerPickableRenderer is null!"); }
+            if (renderer == null) { throw new Exception("InnerPickableRenderer is null!"); }
+
+            return renderer.GetVertexCount();
         }
 
         /// <summary>
@@ -54,10 +51,15 @@ namespace CSharpGL
             int x, int y)
         {
             InnerPickableRenderer renderer = this.innerPickableRenderer;
-            if (renderer != null)
-            { return this.innerPickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y); }
-            else
-            { throw new Exception("InnerPickableRenderer is null!"); }
+            if (renderer == null) { throw new Exception("InnerPickableRenderer is null!"); }
+
+            PickedGeometry result = this.innerPickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
+            if (result != null)
+            {
+                result.From = this;
+            }
+
+            return result;
         }
     }
 }

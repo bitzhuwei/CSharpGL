@@ -24,11 +24,6 @@
             }
         }
 
-        /// <summary>
-        /// who owns this innter pickable renderer?
-        /// </summary>
-        internal IColorCodedPicking Owner { get; set; }
-
         private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
 
         /// <summary>

@@ -36,6 +36,7 @@ namespace CSharpGL
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="mousePosition">mouse position in window coordinate system.</param>
+        /// <param name="pickingGeometryType"></param>
         public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition, GeometryType pickingGeometryType = GeometryType.Point)
         {
             var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera, pickingGeometryType);
