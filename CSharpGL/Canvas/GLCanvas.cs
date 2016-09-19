@@ -374,6 +374,15 @@ namespace CSharpGL
 
         #region ICanvas
 
+        ///// <summary>
+        ///// ivec2(width, height)
+        ///// </summary>
+        //ivec2 Size
+        //{
+        //    get { return new ivec2(this.Width, this.Height); }
+        //    set { this.Width = value.x; this.Height = value.y; }
+        //}
+
         /// <summary>
         /// repaint this canvas' content.
         /// </summary>

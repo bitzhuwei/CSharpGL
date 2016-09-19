@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharpGL
@@ -63,6 +64,17 @@ namespace CSharpGL
         ///
         /// </summary>
         int TimerTriggerInterval { get; set; }
+
+        // ivec2(width, height)
+        /// <summary>
+        /// 
+        /// </summary>
+        Size Size { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Rectangle ClientRectangle { get; }
 
         /// <summary>
         ///

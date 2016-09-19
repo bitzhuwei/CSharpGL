@@ -65,13 +65,15 @@ namespace CSharpGL.Demos
             }
             else
             {
-                PickedGeometry pickedGeometry = RunPicking(
-                    new RenderEventArgs(
-                        RenderModes.ColorCodedPicking,
-                        this.glCanvas1.ClientRectangle,
-                        this.scene.Camera, this.PickingGeometryType),
-                    e.X, e.Y);
-
+                //PickedGeometry pickedGeometry = RunPicking(
+                //    new RenderEventArgs(
+                //        RenderModes.ColorCodedPicking,
+                //        this.glCanvas1.ClientRectangle,
+                //        this.scene.Camera, this.PickingGeometryType),
+                //    e.X, e.Y);
+                PickedGeometry pickedGeometry = this.scene.ColorCodedPicking(
+                    this.scene.Canvas.ClientRectangle,
+                    e.Location, this.PickingGeometryType);
                 if (pickedGeometry != null)
                 {
                     this.glCanvas1.Cursor = Cursors.Hand;
