@@ -63,6 +63,7 @@
             {
                 Highlighter.WorldPosition = value;
                 PickableRenderer.WorldPosition = value;
+                base.WorldPosition = value;
             }
         }
 
@@ -79,6 +80,7 @@
             {
                 Highlighter.Lengths = value;
                 PickableRenderer.Lengths = value;
+                base.Lengths = value;
             }
         }
 
@@ -95,6 +97,7 @@
             {
                 Highlighter.RotationAngle = value;
                 PickableRenderer.RotationAngle = value;
+                base.RotationAngle = value;
             }
         }
 
@@ -111,6 +114,7 @@
             {
                 Highlighter.RotationAxis = value;
                 PickableRenderer.RotationAxis = value;
+                base.RotationAxis = value;
             }
         }
 
@@ -127,6 +131,7 @@
             {
                 Highlighter.Scale = value;
                 PickableRenderer.Scale = value;
+                base.Scale = value;
             }
         }
     }
