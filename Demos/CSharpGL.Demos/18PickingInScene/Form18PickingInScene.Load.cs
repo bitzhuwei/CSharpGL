@@ -20,6 +20,7 @@ namespace CSharpGL.Demos
                     new vec3(15, 5, 0), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new FirstPerspectiveManipulater();
+                rotator.StepLength = 0.5f;
                 rotator.Bind(camera, this.glCanvas1);
                 var scene = new Scene(camera, this.glCanvas1);
                 scene.Cursor.Enabled = false;
