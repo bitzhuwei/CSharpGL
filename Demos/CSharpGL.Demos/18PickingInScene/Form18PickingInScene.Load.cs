@@ -56,6 +56,11 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
+                bool useHighlightedPickingEffect = false;
+                if (MessageBox.Show("Use highlighted picking effect?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    useHighlightedPickingEffect = true;
+                }
                 List<PickableRenderer> list = GetPickableRenderers();
                 const float distance = 10;
                 float sideCount = (float)Math.Sqrt(list.Count);
@@ -67,7 +72,20 @@ namespace CSharpGL.Demos
                 {
                     PickableRenderer item = list[i];
                     item.WorldPosition = new vec3(x, 2, z);
-                    SceneObject obj = item.WrapToSceneObject();
+                    SceneObject obj;
+                    if (useHighlightedPickingEffect)
+                    {
+                        var bufferable = item.Model;
+                        var highlightRenderer = new HighlightRenderer(bufferable, item.PositionNameInIBufferable);
+                        highlightRenderer.Name = string.Format("Highlight: [{0}]", item);
+                        var renderer = new HighlightedPickableRenderer(
+                            highlightRenderer, item);
+                        obj = renderer.WrapToSceneObject();
+                    }
+                    else
+                    {
+                        obj = item.WrapToSceneObject();
+                    }
                     {
                         BoundingBoxRenderer boxRenderer = item.GetBoundingBoxRenderer();
                         SceneObject boxObj = boxRenderer.WrapToSceneObject();

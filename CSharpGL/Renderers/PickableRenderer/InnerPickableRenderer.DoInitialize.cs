@@ -21,7 +21,7 @@ namespace CSharpGL
                      item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
 
-                    if (item.NameInIBufferable == positionNameInIBufferable)
+                    if (item.NameInIBufferable == this.PositionNameInIBufferable)
                     {
                         positionBufferPtr = new VertexAttributeBufferPtr(
                             "in_Position",// in_Postion same with in the PickingShader.vert shader

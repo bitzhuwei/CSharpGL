@@ -3,7 +3,7 @@
     /// <summary>
     /// 高亮显示拾取的图元。
     /// </summary>
-    public class HighlightedPickableRenderer : RendererBase
+    public class HighlightedPickableRenderer : RendererBase, IColorCodedPicking
     {
         /// <summary>
         /// 高亮显示拾取的图元。
@@ -133,6 +133,28 @@
                 PickableRenderer.Scale = value;
                 base.Scale = value;
             }
+        }
+
+        public uint PickingBaseId
+        {
+            get
+            {
+                return this.PickableRenderer.PickingBaseId;
+            }
+            set
+            {
+                this.PickableRenderer.PickingBaseId = value;
+            }
+        }
+
+        public uint GetVertexCount()
+        {
+            return this.PickableRenderer.GetVertexCount();
+        }
+
+        public PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return this.PickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
         }
     }
 }

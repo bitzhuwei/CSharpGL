@@ -8,6 +8,11 @@
         private InnerPickableRenderer innerPickableRenderer;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public string PositionNameInIBufferable { get { return this.innerPickableRenderer.PositionNameInIBufferable; } }
+
+        /// <summary>
         /// 支持"拾取"的渲染器
         /// </summary>
         /// <param name="bufferable">一种渲染方式</param>

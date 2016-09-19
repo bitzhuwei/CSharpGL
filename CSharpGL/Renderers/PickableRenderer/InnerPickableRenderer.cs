@@ -5,7 +5,11 @@
     /// </summary>
     abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
     {
-        protected string positionNameInIBufferable;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PositionNameInIBufferable { get; private set; }
 
         /// <summary>
         /// Position buffer pointer.
@@ -40,7 +44,7 @@
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
-            this.positionNameInIBufferable = positionNameInIBufferable;
+            this.PositionNameInIBufferable = positionNameInIBufferable;
             this.switchList.Add(polygonModeSwitch);
             {
                 float min, max;
