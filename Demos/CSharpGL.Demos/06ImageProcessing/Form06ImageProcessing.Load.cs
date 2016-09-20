@@ -33,8 +33,8 @@ namespace CSharpGL.Demos
             }
             {
                 var builder = new StringBuilder();
-                builder.AppendLine("S: Scene's property grid.");
-                builder.AppendLine("C: Canvas' property grid.");
+                builder.AppendLine("1: Scene's property grid.");
+                builder.AppendLine("2: Canvas' property grid.");
                 MessageBox.Show(builder.ToString());
             }
         }

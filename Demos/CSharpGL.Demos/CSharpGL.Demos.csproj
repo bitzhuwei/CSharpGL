@@ -357,15 +357,6 @@
     <EmbeddedResource Include="18PickingInScene\Form18PickingInScene.resx">
       <DependentUpon>Form18PickingInScene.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="17UpdateTexture\Form17UpdateTexture.resx">
-      <DependentUpon>Form17UpdateTexture.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="16ArcBallManipulater\Form16ArcBallManipulater.resx">
-      <DependentUpon>Form16ArcBallManipulater.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="15UIRenderer\Form15UIRenderer.resx">
-      <DependentUpon>Form15UIRenderer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>

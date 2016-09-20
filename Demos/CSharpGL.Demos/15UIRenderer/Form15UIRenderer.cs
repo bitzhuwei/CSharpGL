@@ -59,12 +59,12 @@ namespace CSharpGL.Demos
                 this.glText.BlendSwitch.DestFactor = dest;
                 this.UpdateLabel();
             }
-            else if (e.KeyChar == 's')
+            else if (e.KeyChar == '1')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
             }
-            else if (e.KeyChar == 'c')
+            else if (e.KeyChar == '2')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();

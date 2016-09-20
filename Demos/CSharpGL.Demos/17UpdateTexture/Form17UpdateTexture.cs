@@ -104,7 +104,7 @@ namespace CSharpGL.Demos
                     this.renderer.SetUniform("original", original);
                 }
             }
-            else if (e.KeyChar == 'c')
+            else if (e.KeyChar == '2')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
