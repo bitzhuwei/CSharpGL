@@ -37,7 +37,7 @@
             var model = new TextModel(maxCharCount);
             var renderer = new Renderer(model, shaderCodes, map);
 
-            this.model = model;
+            this.textModel = model;
             this.Renderer = renderer;
         }
 

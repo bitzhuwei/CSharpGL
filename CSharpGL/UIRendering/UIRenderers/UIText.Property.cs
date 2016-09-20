@@ -5,11 +5,12 @@ namespace CSharpGL
 {
     public partial class UIText
     {
-        private TextModel model;
+        private TextModel textModel;
 
         private IFontTexture fontTexture;
 
         private string text = string.Empty;
+        private UpdatingRecord textRecord = new UpdatingRecord();
 
         /// <summary>
         ///
@@ -21,8 +22,11 @@ namespace CSharpGL
             get { return text; }
             set
             {
-                if (this.model != null) { this.model.SetText(value, this.fontTexture); }
-                this.text = value;
+                if (value != this.text)
+                {
+                    this.text = value;
+                    this.textRecord.Mark();
+                }
             }
         }
 

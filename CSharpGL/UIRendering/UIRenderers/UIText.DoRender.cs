@@ -26,6 +26,15 @@ namespace CSharpGL
                 renderer.SetUniform("textColor", this.textColor);
                 this.textColorRecord.CancelMark();
             }
+            if (this.textRecord.IsMarked())
+            {
+                TextModel textModel = this.textModel;
+                if (textModel != null)
+                {
+                    textModel.SetText(this.text, this.fontTexture);
+                    this.textRecord.CancelMark();
+                }
+            }
 
             blendSwitch.On();
 
