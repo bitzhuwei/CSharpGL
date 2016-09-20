@@ -36,11 +36,6 @@ namespace CSharpGL.Demos
             (new Form07PointSprite()).Show();
         }
 
-        private void btn08AnalyzedPointSprite_Click(object sender, EventArgs e)
-        {
-            (new Form08AnalyzedPointSprite()).Show();
-        }
-
         private void btn11IFontTexture_Click(object sender, EventArgs e)
         {
             (new Form11IFontTexture()).Show();
