@@ -42,11 +42,17 @@ namespace CSharpGL
         private void UpdateEvaluator()
         {
             IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
+            if (pointer == IntPtr.Zero)// this happens when not glMakeCurrent().
+            {
+                //this.PositionBufferPtr.Unbind();
+                return;
+            }
+
             int length = this.PositionBufferPtr.Length;
+            mat4 modelMatrix = this.GetModelMatrix();
             var array = new UnmanagedArray<vec3>(length);
             unsafe
             {
-                mat4 modelMatrix = this.GetModelMatrix();
                 var header = (vec3*)array.Header.ToPointer();
                 var bufferHeader = (vec3*)pointer.ToPointer();
                 for (int i = 0; i < length; i++)
