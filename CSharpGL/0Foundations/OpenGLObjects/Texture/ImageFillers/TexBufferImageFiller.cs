@@ -27,8 +27,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="target"></param>
-        public override void Fill(TextureTarget target)
+        public override void Fill()
         {
             OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, bufferPtr.BufferId);
         }

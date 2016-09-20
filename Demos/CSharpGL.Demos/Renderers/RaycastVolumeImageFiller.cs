@@ -32,8 +32,7 @@ namespace CSharpGL.Demos
         /// <summary>
         ///
         /// </summary>
-        /// <param name="target"></param>
-        public override void Fill(TextureTarget target)
+        public override void Fill()
         {
             var data = new UnmanagedArray<byte>(width * height * depth);
             unsafe

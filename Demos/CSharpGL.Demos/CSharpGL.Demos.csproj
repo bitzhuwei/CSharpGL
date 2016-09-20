@@ -136,6 +136,7 @@
     <None Include="readme.md" />
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
+    <Compile Include="Renderers\Water\CubeMapImageFiller.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.DoRenderer.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.cs" />

@@ -157,7 +157,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\IModelSpace.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexStorageImageFiller.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexStorage2DImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\NullSampler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\SamplerParameters.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\Sampler.IDisposable.cs" />

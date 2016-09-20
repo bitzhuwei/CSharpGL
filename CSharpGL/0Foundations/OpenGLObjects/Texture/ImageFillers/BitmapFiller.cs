@@ -15,6 +15,7 @@ namespace CSharpGL
         private int border;
         private uint format;
         private uint type;
+        private TextureTarget target;
 
         /// <summary>
         /// build texture's content with Bitmap.
@@ -25,8 +26,9 @@ namespace CSharpGL
         /// <param name="border">0</param>
         /// <param name="format">OpenGL.GL_BGRA etc.</param>
         /// <param name="type">OpenGL.GL_UNSIGNED_BYTE etc.</param>
+        /// <param name="target2d">true for 2D; false for 1D.</param>
         public BitmapFiller(System.Drawing.Bitmap bitmap,
-            int level, uint internalformat, int border, uint format, uint type)
+            int level, uint internalformat, int border, uint format, uint type, bool target2d = true)
         {
             this.bitmap = bitmap;
             this.level = level;
@@ -34,13 +36,13 @@ namespace CSharpGL
             this.border = border;
             this.format = format;
             this.type = type;
+            this.target = target2d ? TextureTarget.Texture2D : TextureTarget.Texture1D;
         }
 
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
-        /// <param name="target"></param>
-        public override void Fill(TextureTarget target)
+        public override void Fill()
         {
             // generate texture.
             //  Lock the image bits (so that we can pass them to OGL).

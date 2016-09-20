@@ -5,11 +5,13 @@ namespace CSharpGL.Demos
 {
     internal partial class WaterRenderer
     {
+        private Texture cubeMap;
+
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            this.SetUniform("factor", 100.0f);
+            //var cubeMap=new Texture(TextureTarget.TextureCubeMap)
         }
     }
 }

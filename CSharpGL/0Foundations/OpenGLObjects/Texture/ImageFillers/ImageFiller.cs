@@ -8,7 +8,6 @@
         /// <summary>
         /// build texture's content.
         /// </summary>
-        /// <param name="target"></param>
-        public abstract void Fill(TextureTarget target);
+        public abstract void Fill();
     }
 }

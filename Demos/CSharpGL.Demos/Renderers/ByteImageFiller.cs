@@ -8,7 +8,8 @@
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
-        /// <param name="bitmap"></param>
+        /// <param name="content"></param>
+        /// <param name="width"></param>
         public ByteImageFiller(byte[] content, int width)
         {
             this.content = content;
@@ -18,8 +19,7 @@
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
-        /// <param name="target"></param>
-        public override void Fill(TextureTarget target)
+        public override void Fill()
         {
             OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
             OpenGL.TexImage1D((uint)TextureTarget.Texture1D, 0, OpenGL.GL_RGBA8, this.width, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, content);

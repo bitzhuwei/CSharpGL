@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
             }
             {
                 var texture = new Texture(TextureTarget.Texture2D,
-                    new TexStorageImageFiller(8, OpenGL.GL_RGBA32F, 512, 512),
+                    new TexStorage2DImageFiller(8, OpenGL.GL_RGBA32F, 512, 512),
                     new NullSampler());
                 texture.Initialize();
                 this.intermediateTexture = texture;
@@ -57,7 +57,7 @@ namespace CSharpGL.Demos
             {
                 // This is the texture that the compute program will write into
                 var texture = new Texture(TextureTarget.Texture2D,
-           new TexStorageImageFiller(8, OpenGL.GL_RGBA32F, 512, 512),
+           new TexStorage2DImageFiller(8, OpenGL.GL_RGBA32F, 512, 512),
            new NullSampler());
                 texture.Initialize();
                 this.outputTexture = texture;
