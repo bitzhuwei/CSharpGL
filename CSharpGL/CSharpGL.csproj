@@ -248,6 +248,10 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\IViewCamera.Orientation.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="Manipulaters\IMouseHandler.cs" />
+    <Compile Include="Renderers\TextRenderer\TextRenderer.cs" />
+    <Compile Include="Renderers\TextRenderer\TextRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\TextRenderer\TextRenderer.DoRender.cs" />
+    <Compile Include="Renderers\TextRenderer\TextRenderer.Property.cs" />
     <Compile Include="Renderers\TextureRenderer.cs" />
     <Compile Include="Scene\Scene.IDisposable.cs" />
     <Compile Include="Scene\Scene.Rendering.cs" />
