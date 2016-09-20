@@ -196,6 +196,11 @@ namespace CSharpGL.Demos
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }
+            {
+                SimplexNoiseRenderer pickableRenderer = SimplexNoiseRenderer.Create();
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
             return list;
         }
     }
