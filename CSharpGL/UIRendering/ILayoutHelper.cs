@@ -19,9 +19,9 @@ namespace CSharpGL
         {
             float halfWidth = uiRenderer.Size.Width / 2.0f;
             float halfHeight = uiRenderer.Size.Height / 2.0f;
-            float halfLength = Math.Max(halfWidth, halfHeight);
-            halfLength = Math.Max(halfLength, Math.Abs(uiRenderer.zNear));
-            halfLength = Math.Max(halfLength, Math.Abs(uiRenderer.zFar));
+            //float halfDepth = Math.Max(halfWidth, halfHeight);
+            //halfDepth = Math.Max(halfDepth, Math.Abs(uiRenderer.zNear));
+            //halfDepth = Math.Max(halfDepth, Math.Abs(uiRenderer.zFar));
             return glm.ortho(-halfWidth, halfWidth, -halfHeight, halfHeight,
                 uiRenderer.zNear, uiRenderer.zFar);
         }

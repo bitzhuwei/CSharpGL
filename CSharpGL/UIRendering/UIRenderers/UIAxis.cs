@@ -41,8 +41,7 @@ namespace CSharpGL
             vec3 position = (camera.Position - camera.Target).normalize();
             mat4 view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
             float length = Math.Max(this.Size.Width, this.Size.Height);
-            mat4 model = glm.scale(mat4.identity(),
-                new vec3(length, length, length));
+            mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("projectionMatrix", projection);
             renderer.SetUniform("viewMatrix", view);
