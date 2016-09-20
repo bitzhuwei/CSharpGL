@@ -33,6 +33,7 @@
                 bool discard = this.DiscardTransparency;
                 this.SetUniform("discardTransparency", discard);
                 this.blendSwitch.Enabled = discard;
+                discardTransparencyRecord.CancelMark();
             }
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));
