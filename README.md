@@ -1,7 +1,8 @@
 # :art:Welcome to CSharpGL
 [CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) 
 
-[CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a pure independent C# DLL that allows for modern OpenGL rendering in an Object-Oriented way. It meets common requirements in OpenGL rendering such as:
+[CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents.  
+CSharpGL is inspired by [SharpGL](https://github.com/dwmkerr/sharpgl).
 ## :rocket:Modern Rendering
 High-efficiency rendering of massive vertexes is supported by Object-Oriented modern rendering using GLSL shaders and vertex buffer objects.  
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.png?raw=true)
