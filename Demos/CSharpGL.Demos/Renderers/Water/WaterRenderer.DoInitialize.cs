@@ -9,7 +9,6 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
-            base.DoInitialize();
         }
 
     }

@@ -9,7 +9,6 @@
             //mat4 model = this.GetModelMatrix();
             //this.SetUniform("mvp", projection * view * model);
 
-            base.DoRender(arg);
         }
     }
 }
