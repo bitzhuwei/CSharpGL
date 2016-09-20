@@ -9,9 +9,11 @@ namespace CSharpGL.Demos
         WaterBackgroundRenderer backgroundRenderer;
         WaterTextureRenderer textureRenderer;
 
-        private WaterRenderer()
+        private WaterRenderer(int sideLength)
         {
-
+            this.waterInnerRenderer = WaterInnerRenderer.Create(sideLength);
+            this.backgroundRenderer = WaterBackgroundRenderer.Create(sideLength);
+            this.textureRenderer = WaterTextureRenderer.Create(sideLength);
         }
 
     }
