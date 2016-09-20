@@ -30,19 +30,30 @@ namespace CSharpGL
             return result;
         }
 
+        // <param name="mousePosition">mouse position in window coordinate system.</param>
         /// <summary>
         ///
         /// </summary>
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
-        /// <param name="mousePosition">mouse position in window coordinate system.</param>
+        /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
-        public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition, GeometryType pickingGeometryType = GeometryType.Point)
+        public void Render(RenderModes renderMode, Rectangle clientRectangle,
+            //Point mousePosition, 
+            bool autoClear = true,
+            GeometryType pickingGeometryType = GeometryType.Point)
         {
             var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera, pickingGeometryType);
 
             lock (this.synObj)
             {
+                if (autoClear)
+                {
+                    vec4 clearColor = this.ClearColor.ToVec4();
+                    OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+
+                    OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+                }
                 // render objects.
                 {
                     SceneObject obj = this.RootObject;

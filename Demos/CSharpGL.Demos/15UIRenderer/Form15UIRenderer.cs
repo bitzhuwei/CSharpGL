@@ -32,21 +32,16 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
-
-            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, mousePosition);
+            //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
+            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
 
             //// Cross cursor shows where the mouse is.
             //OpenGL.DrawText(mousePosition.X - offset.X,
             //    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
             //    Color.Red, "Courier New", crossCursorSize, "o");
         }
-
-        private const float crossCursorSize = 40.0f;
-
-        private Point offset = new Point(13, 11);
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {

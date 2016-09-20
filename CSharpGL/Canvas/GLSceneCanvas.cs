@@ -194,14 +194,14 @@ namespace CSharpGL
         /// </summary>
         private void DoOpenGLDraw(PaintEventArgs e)
         {
-            vec4 clearColor = this.Scene.ClearColor.ToVec4();
-            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+            //vec4 clearColor = this.Scene.ClearColor.ToVec4();
+            //OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
 
             //  Clear the color and depth buffer.
-            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            this.Scene.Render(RenderModes.Render, this.ClientRectangle,
-                this.PointToClient(Control.MousePosition));
+            this.Scene.Render(RenderModes.Render, this.ClientRectangle);
+            //this.PointToClient(Control.MousePosition));
         }
 
         /// <summary>

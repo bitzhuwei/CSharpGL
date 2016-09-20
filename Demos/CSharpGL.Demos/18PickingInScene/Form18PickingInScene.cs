@@ -29,11 +29,10 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
-
-            this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, mousePosition, this.PickingGeometryType);
+            //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
+            this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, true, this.PickingGeometryType);
 
             this.DrawText(e);
             //// Cross cursor shows where the mouse is.

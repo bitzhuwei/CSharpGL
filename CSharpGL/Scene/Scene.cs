@@ -40,19 +40,27 @@ namespace CSharpGL
             //this.Cursor = cursor;
         }
 
+        private const string strScene = "Scene";
+
         /// <summary>
         /// camera of the scene.
         /// </summary>
+        [Category(strScene)]
+        [Description("camera of the scene.")]
         public ICamera Camera { get; private set; }
 
         /// <summary>
         /// Canvas that this scene binds to.
         /// </summary>
+        [Category(strScene)]
+        [Description("Canvas that this scene binds to.")]
         public ICanvas Canvas { get; set; }
 
         /// <summary>
         /// background color.
         /// </summary>
+        [Category(strScene)]
+        [Description("background color.")]
         public Color ClearColor { get; set; }
 
         ///// <summary>
@@ -63,11 +71,15 @@ namespace CSharpGL
         /// <summary>
         /// Root object of all objects to be rendered in the scene.
         /// </summary>
+        [Category(strScene)]
+        [Description("Root object of all objects to be rendered in the scene.")]
         public SceneRootObject RootObject { get { return rootObject; } }
 
         /// <summary>
         /// hosts all UI renderers.
         /// </summary>
+        [Category(strScene)]
+        [Description("hosts all UI renderers.")]
         public UIRoot UIRoot { get { return this.uiRoot; } }
 
         /// <summary>

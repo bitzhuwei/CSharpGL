@@ -155,6 +155,9 @@
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <Compile Include="Renderers\Water\CubeMapImageFiller.cs" />
+    <Compile Include="Renderers\Water\WaterTextureRenderer.cs" />
+    <Compile Include="Renderers\Water\WaterTextureRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\Water\WaterTextureRenderer.DoRenderer.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.DoRenderer.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.cs" />
