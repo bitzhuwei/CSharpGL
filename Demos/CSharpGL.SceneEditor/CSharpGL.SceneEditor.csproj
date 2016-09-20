@@ -90,15 +90,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Satellite.cs" />
     <Compile Include="Scripts\Planet.cs" />
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormProperyGrid.resx">
-      <DependentUpon>FormProperyGrid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSceneObjectListMonitor.resx">
-      <DependentUpon>FormSceneObjectListMonitor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

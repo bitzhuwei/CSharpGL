@@ -123,33 +123,6 @@
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
     <None Include="readme.md" />
-    <EmbeddedResource Include="FormUpdateIntermediateStructure.resx">
-      <DependentUpon>FormUpdateIntermediateStructure.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInsertIntermediateStructure.resx">
-      <DependentUpon>FormInsertIntermediateStructure.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUpdateStructureField.resx">
-      <DependentUpon>FormUpdateStructureField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUpdateShaderField.resx">
-      <DependentUpon>FormUpdateShaderField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUpdateVertexShaderField.resx">
-      <DependentUpon>FormUpdateVertexShaderField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInsertVertexShaderField.resx">
-      <DependentUpon>FormInsertVertexShaderField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInsertStructureField.resx">
-      <DependentUpon>FormInsertStructureField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInsertShaderField.resx">
-      <DependentUpon>FormInsertShaderField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
