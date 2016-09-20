@@ -16,8 +16,11 @@ namespace CSharpGL.Demos
         private static float[] xy_texCoords = { 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f };
         private static uint[] xy_indices = { 0, 1, 2, 1, 3, 2 };
 
+        private float halfExtent;
+
         public PlaneModel(float halfExtend)
         {
+            this.halfExtent = halfExtend;
         }
 
         public const string strPosition = "position";
@@ -44,7 +47,7 @@ namespace CSharpGL.Demos
                             var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < xy_vertices.Length; i++)
                             {
-                                array[i] = xy_vertices[i];
+                                array[i] = xy_vertices[i] * this.halfExtent;
                             }
                         }
 
