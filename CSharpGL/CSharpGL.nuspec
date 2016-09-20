@@ -10,7 +10,7 @@
     <iconUrl>https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/CSharpGL.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <summary>:art:CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents. Inspired by SharpGL.</summary>
+    <summary>CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents. Inspired by SharpGL.</summary>
     <releaseNotes></releaseNotes>
     <copyright>Copyright © bitzhuwei 2016</copyright>
     <tags>OpenGL C# GLSL Shader text picking 3D WinForms Graphics glm matrix UI Scene Label PropertyGrid</tags>
