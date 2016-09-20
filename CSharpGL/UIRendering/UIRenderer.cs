@@ -94,11 +94,26 @@ namespace CSharpGL
         [Category(strILayout)]
         public System.Windows.Forms.Padding Margin { get; set; }
 
+
+        private System.Drawing.Point location;
+        bool locationUpdated = false;
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [Category(strILayout)]
-        public System.Drawing.Point Location { get; set; }
+        [ReadOnly(true)]
+        public System.Drawing.Point Location
+        {
+            get { return location; }
+            set
+            {
+                if (location != value)
+                {
+                    location = value;
+                    locationUpdated = true;
+                }
+            }
+        }
 
         /// <summary>
         ///
@@ -146,8 +161,12 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.viewportSwitch.X = this.Location.X;
-            this.viewportSwitch.Y = this.Location.Y;
+            if (this.locationUpdated)
+            {
+                this.viewportSwitch.X = this.Location.X;
+                this.viewportSwitch.Y = this.Location.Y;
+                this.locationUpdated = false;
+            }
             this.viewportSwitch.Width = this.Size.Width;
             this.viewportSwitch.Height = this.Size.Height;
             this.scissorTestSwitch.X = this.Location.X;
