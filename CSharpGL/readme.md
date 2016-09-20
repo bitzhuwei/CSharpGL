@@ -9,7 +9,7 @@ For more information and demonstrations please check (http://bitzhuwei.github.io
 1. More switces(DepthMask, ColorMask, StencilMask).
 2. Query object supports conditional rendering.
 3. fix: remove framebuffer object in ColorCodedPicking.
-4.. `BufferPtr` supports bind/unbind and abstract Target property.
+4. `BufferPtr` supports bind/unbind and abstract Target property.
 5. `Renderer` always renders with its own index buffer.
 6. LineStippleSwitch and PolygonStippleSwitch.
 7. Bezier curve rendering with legacy OpenGL.
