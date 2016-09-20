@@ -211,7 +211,6 @@
     <Compile Include="Renderers\SimplexNoiseRenderer.Dispose.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer.DoRender.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\SimplexNoiseRenderer.Static.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>

@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
             }
             else if (rendererType == typeof(SimplexNoiseRenderer))
             {
-                renderer = new SimplexNoiseRenderer();
+                renderer = SimplexNoiseRenderer.Create();
             }
             else if (rendererType == typeof(UpdatingTextureRenderer))
             {
