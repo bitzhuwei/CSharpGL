@@ -7,7 +7,7 @@ namespace CSharpGL
     /// </summary>
     public class ClearColorSwitch : GLSwitch
     {
-        private vec4 clearColor = new vec4();
+        private vec3 clearColor = new vec3();
 
         /// <summary>
         ///
@@ -17,7 +17,7 @@ namespace CSharpGL
             get
             {
                 return Color.FromArgb(
-                    (int)(clearColor.w * 255),
+                    (int)(alpha * 255),
                     (int)(clearColor.x * 255),
                     (int)(clearColor.y * 255),
                     (int)(clearColor.z * 255));
@@ -27,8 +27,18 @@ namespace CSharpGL
                 this.clearColor.x = value.R / 255.0f;
                 this.clearColor.y = value.G / 255.0f;
                 this.clearColor.z = value.B / 255.0f;
-                this.clearColor.w = value.A / 255.0f;
             }
+        }
+
+        private float alpha = 1.0f;
+
+        /// <summary>
+        /// Alpha value.
+        /// </summary>
+        public float Alpha
+        {
+            get { return alpha; }
+            set { alpha = value; }
         }
 
         /// <summary>
@@ -40,9 +50,11 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="clearColor"></param>
-        public ClearColorSwitch(Color clearColor)
+        /// <param name="alpha"></param>
+        public ClearColorSwitch(Color clearColor, float alpha = 1.0f)
         {
             this.ClearColor = clearColor;
+            this.alpha = alpha;
         }
 
         private float[] original = new float[4];
@@ -53,7 +65,7 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("glClearColor({0}, {1}, {2}, {3});",
-                clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                clearColor.x, clearColor.y, clearColor.z, alpha);
         }
 
         /// <summary>
@@ -63,7 +75,7 @@ namespace CSharpGL
         {
             OpenGL.GetFloat(GetTarget.ColorClearValue, original);
 
-            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, alpha);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
         }
 

@@ -4,11 +4,19 @@ in vec2 passUV;
 
 uniform sampler2D fontTexture;
 uniform vec3 textColor = vec3(1, 1, 1);
+uniform bool discardTransparency = true;
 
 out vec4 color;
 
 void main(void)
 {
 	vec4 textureColor = texture(fontTexture, passUV);
+	
+	if (discardTransparency)
+	{
+		// TODO: this reduce effect on glyph's edge.
+		if (textureColor.r < 0.1f) { discard; }
+	}
+
 	color = vec4(textColor, textureColor.r);
 }

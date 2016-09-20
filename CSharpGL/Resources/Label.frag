@@ -5,6 +5,7 @@ in vec2 passUV;
 uniform sampler2D fontTexture;
 uniform vec3 textColor = vec3(1, 1, 1);
 uniform bool discardTransparency = true;
+
 out vec4 color;
 
 void main(void)
