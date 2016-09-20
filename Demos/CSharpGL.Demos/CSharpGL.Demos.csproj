@@ -369,9 +369,6 @@
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.resx">
-      <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.resx">
       <DependentUpon>Form08AnalyzedPointSprite.cs</DependentUpon>
     </EmbeddedResource>
