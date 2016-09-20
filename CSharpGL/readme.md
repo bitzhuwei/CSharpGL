@@ -21,6 +21,10 @@ For more information and demonstrations please check (http://bitzhuwei.github.io
 7. Bezier curve rendering with legacy OpenGL.
 8. Color-coded picking intergrated in Scene.
 9. VertexAttributeBufferPtr supports tessellation shaders.
+10. Remove self defined cursor in scene.
+11. fix: Inner pickable Renderer akes model matrix into consideration when moving vertex's positions t.
+12. Remove mat4 MVP in IColorCodedPicking.
+13. fix: missed the condition of picking a point when rendering GL_POINTS.
 
 ## v1.0.6.5:
 1. Uniform/Texture/AtomicCounter/PixelUnpack Buffer.
