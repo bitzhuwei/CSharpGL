@@ -135,6 +135,9 @@
     <None Include="readme.md" />
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
+    <Compile Include="Renderers\Water\WaterRenderer.DoRenderer.cs" />
+    <Compile Include="Renderers\Water\WaterRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\Water\WaterRenderer.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
     <Compile Include="Renderers\EmitNormalLineRenderer.cs" />
@@ -403,6 +406,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\EmitNormalLine.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\water\Background.frag.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\water\Background.vert.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\water\Water.frag.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\water\Water.vert.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\water\WaterTexture.frag.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\water\WaterTexture.vert.glsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
