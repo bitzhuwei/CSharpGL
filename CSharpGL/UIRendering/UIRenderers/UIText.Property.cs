@@ -15,7 +15,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
         [Description("Displaying text.")]
         public string Text
         {
@@ -35,7 +34,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
         [Description("Blend mode.")]
         public BlendSwitch BlendSwitch
         {
@@ -48,7 +46,6 @@ namespace CSharpGL
         /// <summary>
         /// Text's color.
         /// </summary>
-        [Category(strUIRenderer)]
         [Description("Text color.")]
         public Color TextColor
         {

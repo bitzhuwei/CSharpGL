@@ -80,49 +80,49 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected const string strUIRenderer = "UIRenderer";
+        protected const string strILayout = "ILayout";
 
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public System.Windows.Forms.AnchorStyles Anchor { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public System.Windows.Forms.Padding Margin { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public System.Drawing.Point Location { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public System.Drawing.Size Size { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [Browsable(false)]
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public System.Drawing.Size ParentLastSize { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public int zNear { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [Category(strUIRenderer)]
+        [Category(strILayout)]
         public int zFar { get; set; }
 
         /// <summary>
