@@ -94,11 +94,11 @@ namespace CSharpGL
         [Category(strILayout)]
         public System.Windows.Forms.Padding Margin { get; set; }
 
-
         private System.Drawing.Point location;
-        bool locationUpdated = false;
+        private bool locationUpdated = false;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [Category(strILayout)]
         [ReadOnly(true)]
@@ -115,11 +115,25 @@ namespace CSharpGL
             }
         }
 
+        private System.Drawing.Size size;
+        private bool sizeUpdated = false;
+
         /// <summary>
         ///
         /// </summary>
         [Category(strILayout)]
-        public System.Drawing.Size Size { get; set; }
+        public System.Drawing.Size Size
+        {
+            get { return size; }
+            set
+            {
+                if (value != size)
+                {
+                    size = value;
+                    sizeUpdated = true;
+                }
+            }
+        }
 
         /// <summary>
         ///
@@ -165,14 +179,18 @@ namespace CSharpGL
             {
                 this.viewportSwitch.X = this.Location.X;
                 this.viewportSwitch.Y = this.Location.Y;
+                this.scissorTestSwitch.X = this.Location.X;
+                this.scissorTestSwitch.Y = this.Location.Y;
                 this.locationUpdated = false;
             }
-            this.viewportSwitch.Width = this.Size.Width;
-            this.viewportSwitch.Height = this.Size.Height;
-            this.scissorTestSwitch.X = this.Location.X;
-            this.scissorTestSwitch.Y = this.Location.Y;
-            this.scissorTestSwitch.Width = this.Size.Width;
-            this.scissorTestSwitch.Height = this.Size.Height;
+            if (this.sizeUpdated)
+            {
+                this.viewportSwitch.Width = this.Size.Width;
+                this.viewportSwitch.Height = this.Size.Height;
+                this.scissorTestSwitch.Width = this.Size.Width;
+                this.scissorTestSwitch.Height = this.Size.Height;
+                this.sizeUpdated = false;
+            }
 
             this.viewportSwitch.On();
             this.scissorTestSwitch.On();
@@ -206,7 +224,8 @@ namespace CSharpGL
             }
         }
 
-        const string strTreeNode = "TreeNode";
+        private const string strTreeNode = "TreeNode";
+
         /// <summary>
         ///
         /// </summary>
