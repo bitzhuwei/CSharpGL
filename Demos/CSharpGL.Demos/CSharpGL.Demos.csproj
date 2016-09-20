@@ -165,9 +165,9 @@
     <Compile Include="Renderers\Water\WaterTextureRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\Water\WaterBackgroundRenderer.DoRenderer.cs" />
     <Compile Include="Renderers\Water\WaterTextureRenderer.DoRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterInnerRenderer.DoRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterInnerRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\Water\WaterInnerRenderer.cs" />
+    <Compile Include="Renderers\Water\WaterPlaneRenderer.DoRenderer.cs" />
+    <Compile Include="Renderers\Water\WaterPlaneRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\Water\WaterPlaneRenderer.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\ByteImageFiller.cs" />
     <Compile Include="Renderers\EmitNormalLineRenderer.cs" />

@@ -4,7 +4,7 @@
     {
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.waterInnerRenderer.Render(arg);
+            this.waterPlaneRenderer.Render(arg);
             this.backgroundRenderer.Render(arg);
             this.textureRenderer.Render(arg);
         }

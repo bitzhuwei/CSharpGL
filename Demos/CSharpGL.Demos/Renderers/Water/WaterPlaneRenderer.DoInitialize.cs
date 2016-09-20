@@ -4,7 +4,7 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
-    internal partial class WaterInnerRenderer
+    internal partial class WaterPlaneRenderer
     {
         private Texture cubeMap;
 

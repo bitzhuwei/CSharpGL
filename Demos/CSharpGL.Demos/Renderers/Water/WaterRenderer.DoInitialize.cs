@@ -9,7 +9,7 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
-            this.waterInnerRenderer.Initialize();
+            this.waterPlaneRenderer.Initialize();
             this.backgroundRenderer.Initialize();
             this.textureRenderer.Initialize();
         }

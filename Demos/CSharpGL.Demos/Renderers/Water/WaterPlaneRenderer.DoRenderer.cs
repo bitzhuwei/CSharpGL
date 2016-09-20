@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    internal partial class WaterInnerRenderer
+    internal partial class WaterPlaneRenderer
     {
         protected override void DoRender(RenderEventArgs arg)
         {

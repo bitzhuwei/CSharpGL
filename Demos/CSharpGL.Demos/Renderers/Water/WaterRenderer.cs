@@ -5,13 +5,13 @@ namespace CSharpGL.Demos
 {
     internal partial class WaterRenderer : RendererBase
     {
-        WaterInnerRenderer waterInnerRenderer;
+        WaterPlaneRenderer waterPlaneRenderer;
         WaterBackgroundRenderer backgroundRenderer;
         WaterTextureRenderer textureRenderer;
 
         private WaterRenderer(int sideLength)
         {
-            this.waterInnerRenderer = WaterInnerRenderer.Create(sideLength);
+            this.waterPlaneRenderer = WaterPlaneRenderer.Create(sideLength);
             this.backgroundRenderer = WaterBackgroundRenderer.Create(sideLength);
             this.textureRenderer = WaterTextureRenderer.Create(sideLength);
         }
