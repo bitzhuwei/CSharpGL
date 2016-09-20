@@ -91,10 +91,17 @@ namespace CSharpGL.Demos
                                 {
                                     if (i % 2 == 0)
                                     {
-                                        array[i] = new vec3(
-                                            (float)(random.NextDouble() * 2 - 1) * factor,
-                                            (float)(random.NextDouble() * 2 - 1) * factor,
-                                            (float)(random.NextDouble() * 2 - 1) * factor);
+                                        while (true)
+                                        {
+                                            var x = (float)(random.NextDouble() * 2 - 1) * factor;
+                                            var y = (float)(random.NextDouble() * 2 - 1) * factor;
+                                            var z = (float)(random.NextDouble() * 2 - 1) * factor;
+                                            if (y < 0 && x * x + y * y + z * z >= factor * factor)
+                                            {
+                                                array[i] = new vec3(x, y, z);
+                                                break;
+                                            }
+                                        }
                                     }
                                     else
                                     {
