@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("CSharpGL")]
 [assembly: AssemblyDescription(
-@"CSharpGL is a pure C# project that allows for modern OpenGL rendering in an Object-Oriented way. For more information please check (http://bitzhuwei.github.io/CSharpGL/)")]
+@"CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents. Inspired by SharpGL. For more information please check (http://bitzhuwei.github.io/CSharpGL/)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("bitzhuwei")]
 [assembly: AssemblyProduct("CSharpGL")]
