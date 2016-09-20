@@ -58,7 +58,7 @@ namespace CSharpGL
         }
     }
 
-    public class CubeMapImages : IEnumerable<Tuple<uint, Bitmap>>
+    public class CubeMapImages : IEnumerable<Tuple<uint, Bitmap>>, IDisposable
     {
         private Bitmap PositiveX;
         private Bitmap NegativeX;
@@ -92,6 +92,14 @@ namespace CSharpGL
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public void Dispose()
+        {
+            foreach (var item in this)
+            {
+                item.Item2.Dispose();
+            }
         }
     }
 }

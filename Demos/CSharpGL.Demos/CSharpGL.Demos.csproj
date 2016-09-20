@@ -134,6 +134,24 @@
     <Compile Include="Models\PointCloudModel.cs" />
     <Compile Include="Models\TexturedRectangleModel.cs" />
     <None Include="readme.md" />
+    <None Include="Resources\data\water_neg_x.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\data\water_neg_y.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\data\water_neg_z.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\data\water_pos_x.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\data\water_pos_y.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\data\water_pos_z.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <Compile Include="Renderers\Water\CubeMapImageFiller.cs" />
