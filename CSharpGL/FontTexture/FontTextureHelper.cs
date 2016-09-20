@@ -17,7 +17,7 @@
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
         {
             var texture = new Texture(
-                BindTextureTarget.Texture2D,
+                TextureTarget.Texture2D,
                 fontBitmap.GlyphBitmap,
                 parameters, mipmapFiltering);
             texture.Initialize();

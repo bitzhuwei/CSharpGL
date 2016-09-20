@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
             }
             {
                 // This is the texture that the compute program will write into
-                var texture = new Texture(BindTextureTarget.Texture2D,
+                var texture = new Texture(TextureTarget.Texture2D,
                     new TexStorageImageFiller(8, OpenGL.GL_RGBA32F, 256, 256),
                     new NullSampler());
                 texture.Initialize();

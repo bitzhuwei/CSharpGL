@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public void Initialize(uint unit, BindTextureTarget target)
+        public void Initialize(uint unit, TextureTarget target)
         {
             if (!this.initialized)
             {
@@ -38,7 +38,7 @@ namespace CSharpGL
             }
         }
 
-        private void DoInitialize(uint unit, BindTextureTarget target)
+        private void DoInitialize(uint unit, TextureTarget target)
         {
             var ids = new uint[1];
             OpenGL.GenSamplers(1, ids);
@@ -62,7 +62,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="unit">OpenGL.GL_TEXTURE0 etc.</param>
         /// <param name="target"></param>
-        public override void Bind(uint unit, BindTextureTarget target)
+        public override void Bind(uint unit, TextureTarget target)
         {
             if (!this.initialized) { this.Initialize(unit, target); }
 

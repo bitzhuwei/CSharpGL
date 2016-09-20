@@ -81,7 +81,7 @@ namespace CSharpGL.Demos
         private Texture initVol3DTex(string filename, int width, int height, int depth)
         {
             var texture = new Texture(
-                BindTextureTarget.Texture3D,
+                TextureTarget.Texture3D,
                 new RaycastVolumeImageFiller(filename, width, height, depth),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Linear, TextureFilter.Linear));
             texture.Initialize();
@@ -94,7 +94,7 @@ namespace CSharpGL.Demos
             if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
 
             var texture = new Texture(
-                BindTextureTarget.Texture2D,
+                TextureTarget.Texture2D,
                 new NullImageFiller(width, height, OpenGL.GL_RGBA16F, OpenGL.GL_RGBA, OpenGL.GL_FLOAT),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
             texture.Initialize();
@@ -111,7 +111,7 @@ namespace CSharpGL.Demos
                 tff = br.ReadBytes((int)fs.Length);
             }
             var texture = new Texture(
-                BindTextureTarget.Texture1D,
+                TextureTarget.Texture1D,
                 new ByteImageFiller(tff, 256),
                 new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
             texture.Initialize();

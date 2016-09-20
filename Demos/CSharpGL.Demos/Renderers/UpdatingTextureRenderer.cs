@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
             {
                 graphics.Clear(Color.Red);
             }
-            var texture = new Texture(BindTextureTarget.Texture2D, bitmap, new SamplerParameters());
+            var texture = new Texture(TextureTarget.Texture2D, bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();
             this.texture = texture;

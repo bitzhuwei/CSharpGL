@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="unit">OpenGL.GL_TEXTURE0 etc.</param>
         /// <param name="target"></param>
-        public abstract void Bind(uint unit, BindTextureTarget target);
+        public abstract void Bind(uint unit, TextureTarget target);
 
         ///// <summary>
         /////

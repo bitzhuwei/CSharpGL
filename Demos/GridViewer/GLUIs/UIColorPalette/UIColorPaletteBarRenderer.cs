@@ -40,13 +40,13 @@ namespace GridViewer
             base.DoInitialize();
 
             Bitmap bitmap = this.codedColors.GetBitmap(1024);
-            var texture = new Texture(BindTextureTarget.Texture1D, bitmap, new SamplerParameters());
+            var texture = new Texture(TextureTarget.Texture1D, bitmap, new SamplerParameters());
             this.codedColors = null;
             texture.Initialize();
             this.Sampler = texture;
             bitmap.Dispose();
             var renderer = this.Renderer as Renderer;
-            renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
+            renderer.SetUniform("codedColorSampler", new samplerValue(TextureTarget.Texture1D,
                 texture.Id, OpenGL.GL_TEXTURE0));
         }
 

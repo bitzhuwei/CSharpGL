@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="imageBuilder"></param>
         /// <param name="samplerBuilder"></param>
         public Texture(
-            BindTextureTarget target,
+            TextureTarget target,
             ImageFiller imageBuilder,
             SamplerBase samplerBuilder)
         {
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="bitmap"></param>
         /// <param name="samplerBuilder"></param>
-        public Texture(BindTextureTarget target,
+        public Texture(TextureTarget target,
             Bitmap bitmap,
             SamplerBase samplerBuilder)
             : this(target, new BitmapFiller(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE), samplerBuilder)
@@ -49,7 +49,7 @@ namespace CSharpGL
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         public Texture(
-            BindTextureTarget target,
+            TextureTarget target,
             ImageFiller imageBuilder,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
@@ -65,7 +65,7 @@ namespace CSharpGL
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
         public Texture(
-            BindTextureTarget target,
+            TextureTarget target,
             Bitmap bitmap,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)

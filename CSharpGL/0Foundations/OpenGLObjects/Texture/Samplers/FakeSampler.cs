@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="unit">OpenGL.GL_TEXTURE0 etc.</param>
         /// <param name="target"></param>
-        public override void Bind(uint unit, BindTextureTarget target)
+        public override void Bind(uint unit, TextureTarget target)
         {
             /* Clamping to edges is important to prevent artifacts when scaling */
             OpenGL.TexParameteri((uint)target, OpenGL.GL_TEXTURE_WRAP_R, (int)this.parameters.wrapR);

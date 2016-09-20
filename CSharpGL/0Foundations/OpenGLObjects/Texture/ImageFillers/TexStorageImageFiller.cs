@@ -30,27 +30,27 @@
         ///
         /// </summary>
         /// <param name="target"></param>
-        public override void Fill(BindTextureTarget target)
+        public override void Fill(TextureTarget target)
         {
             switch (target)
             {
-                case BindTextureTarget.Unknown:
+                case TextureTarget.Unknown:
                     break;
 
-                case BindTextureTarget.Texture1D:
+                case TextureTarget.Texture1D:
                     break;
 
-                case BindTextureTarget.Texture2D:
+                case TextureTarget.Texture2D:
                     OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, levels, internalFormat, width, height);
                     break;
 
-                case BindTextureTarget.Texture3D:
+                case TextureTarget.Texture3D:
                     break;
 
-                case BindTextureTarget.TextureCubeMap:
+                case TextureTarget.TextureCubeMap:
                     break;
 
-                case BindTextureTarget.TextureBuffer:
+                case TextureTarget.TextureBuffer:
                     break;
 
                 default:

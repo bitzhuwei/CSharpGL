@@ -33,9 +33,9 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Fill(BindTextureTarget target)
+        public override void Fill(TextureTarget target)
         {
-            OpenGL.TexImage2D((uint)BindTextureTarget.Texture2D, 0,
+            OpenGL.TexImage2D((uint)TextureTarget.Texture2D, 0,
                 internalFormat,// OpenGL.GL_RGBA,
                 width, height, 0,
                 this.format,// OpenGL.GL_RGBA,

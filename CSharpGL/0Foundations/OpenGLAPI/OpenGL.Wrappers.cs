@@ -1624,7 +1624,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="textureId"></param>
-        public static void BindTexture(BindTextureTarget target, uint textureId)
+        public static void BindTexture(TextureTarget target, uint textureId)
         {
             OpenGL.BindTexture((uint)target, textureId);
         }

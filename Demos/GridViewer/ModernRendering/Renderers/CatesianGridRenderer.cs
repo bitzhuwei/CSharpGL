@@ -33,7 +33,7 @@ namespace GridViewer
             base.DoInitialize();
 
             this.SetUniform("colorCodeSampler", new samplerValue(
-                BindTextureTarget.Texture1D, this.codedColorSampler.Id, OpenGL.GL_TEXTURE0));
+                TextureTarget.Texture1D, this.codedColorSampler.Id, OpenGL.GL_TEXTURE0));
         }
 
         protected override void DoRender(RenderEventArgs arg)

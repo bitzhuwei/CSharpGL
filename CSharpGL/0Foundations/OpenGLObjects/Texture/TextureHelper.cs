@@ -21,11 +21,11 @@ namespace CSharpGL
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
             OpenGL.BindTexture((uint)texture.Target, texture.Id);
-            if (texture.Target == BindTextureTarget.Texture1D)
+            if (texture.Target == TextureTarget.Texture1D)
             {
                 OpenGL.TexImage1D((uint)texture.Target, 0, (int)OpenGL.GL_RGBA, bitmapData.Width, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
             }
-            else if (texture.Target == BindTextureTarget.Texture2D)
+            else if (texture.Target == TextureTarget.Texture2D)
             {
                 OpenGL.TexImage2D((uint)texture.Target, 0, (int)OpenGL.GL_RGBA, bitmapData.Width, bitmapData.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
             }

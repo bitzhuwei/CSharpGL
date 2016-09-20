@@ -14,7 +14,7 @@
         /// <returns></returns>
         public static Texture DumpBufferTexture(this BufferPtr bufferPtr, uint internalFormat, bool autoDispose)
         {
-            var texture = new Texture(BindTextureTarget.TextureBuffer,
+            var texture = new Texture(TextureTarget.TextureBuffer,
                 new TexBufferImageFiller(internalFormat, bufferPtr, autoDispose),
                 new NullSampler());
             texture.Initialize();

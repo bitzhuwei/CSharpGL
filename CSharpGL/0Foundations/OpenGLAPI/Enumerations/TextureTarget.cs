@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies the target to which the texture is bound. Must be either GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, or GL_TEXTURE_CUBE_MAP.
     /// </summary>
-    public enum BindTextureTarget : uint
+    public enum TextureTarget : uint
     {
         /// <summary>
         ///

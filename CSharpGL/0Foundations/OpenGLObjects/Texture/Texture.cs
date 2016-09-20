@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// binding target of this texture.
         /// </summary>
-        public BindTextureTarget Target { get; private set; }
+        public TextureTarget Target { get; private set; }
 
         /// <summary>
         /// texture's id/name.
@@ -65,7 +65,7 @@ namespace CSharpGL
                 { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
                 activeTexture(this.ActiveTexture);
                 OpenGL.GenTextures(1, id);
-                BindTextureTarget target = this.Target;
+                TextureTarget target = this.Target;
                 OpenGL.BindTexture(target, id[0]);
                 this.Sampler.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, target);
                 this.ImageFiller.Fill(target);

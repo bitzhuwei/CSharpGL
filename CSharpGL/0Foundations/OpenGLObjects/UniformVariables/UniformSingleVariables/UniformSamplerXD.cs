@@ -67,9 +67,9 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public BindTextureTarget Target
+        public TextureTarget Target
         {
-            get { return (BindTextureTarget)target; }
+            get { return (TextureTarget)target; }
             set { target = (uint)value; }
         }
 
@@ -101,7 +101,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="textureId"></param>
         /// <param name="activeTextureIndex">OpenGL.GL_TEXTURE0 etc</param>
-        public samplerValue(BindTextureTarget target, uint textureId, uint activeTextureIndex)
+        public samplerValue(TextureTarget target, uint textureId, uint activeTextureIndex)
         {
             this.target = (uint)target;
             this.textureId = textureId;
@@ -113,7 +113,7 @@ namespace CSharpGL
         internal static samplerValue Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            BindTextureTarget target = (BindTextureTarget)Enum.Parse(typeof(BindTextureTarget), parts[1]);
+            TextureTarget target = (TextureTarget)Enum.Parse(typeof(TextureTarget), parts[1]);
             uint textureId = uint.Parse(parts[3]);
             uint activeTextureIndex = uint.Parse(parts[5]);
 
@@ -198,7 +198,7 @@ namespace CSharpGL
         void ILoadFromString.Load(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            BindTextureTarget target = (BindTextureTarget)Enum.Parse(typeof(BindTextureTarget), parts[1]);
+            TextureTarget target = (TextureTarget)Enum.Parse(typeof(TextureTarget), parts[1]);
             uint textureId = uint.Parse(parts[3]);
             uint activeTextureIndex = uint.Parse(parts[5]);
             this.target = (uint)target;

@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
             this.buildListsRenderer.Initialize();
             this.resolve_lists.Initialize();
             {
-                var texture = new Texture(BindTextureTarget.Texture2D,
+                var texture = new Texture(TextureTarget.Texture2D,
                     new NullImageFiller(MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, OpenGL.GL_R32UI, OpenGL.GL_RED_INTEGER, OpenGL.GL_UNSIGNED_BYTE),
                     new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
                 texture.Initialize();
