@@ -83,9 +83,9 @@
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
-            var tetrahedron = new SimpleRenderer(model, shaderCodes, map, positionNameInIBufferable);
-            tetrahedron.Lengths = lengths;
-            return tetrahedron;
+            var renderer = new SimpleRenderer(model, shaderCodes, map, positionNameInIBufferable);
+            renderer.Lengths = lengths;
+            return renderer;
         }
 
         /// <summary>
