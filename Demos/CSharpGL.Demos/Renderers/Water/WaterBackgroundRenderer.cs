@@ -3,9 +3,9 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
-    internal partial class WaterGroundRenderer : Renderer
+    internal partial class WaterBackgroundRenderer : Renderer
     {
-        public static WaterGroundRenderer Create(int length)
+        public static WaterBackgroundRenderer Create(int length)
         {
             var model = new Sphere(length / 2.0f + 0.5f);
             var shaderCodes = new ShaderCode[2];
@@ -14,13 +14,13 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             map.Add("a_normal", PlaneModel.strNormal);
-            var renderer = new WaterGroundRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            var renderer = new WaterBackgroundRenderer(model, shaderCodes, map, new PointSpriteSwitch());
             renderer.Lengths = new vec3(length + 1, length + 1, length + 1);
 
             return renderer;
         }
 
-        private WaterGroundRenderer(
+        private WaterBackgroundRenderer(
             IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)

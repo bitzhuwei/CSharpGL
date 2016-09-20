@@ -4,7 +4,7 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
-    internal partial class WaterGroundRenderer
+    internal partial class WaterBackgroundRenderer
     {
 
         protected override void DoInitialize()
