@@ -5,17 +5,17 @@ namespace CSharpGL.Demos
 {
     internal partial class WaterGroundRenderer : Renderer
     {
-        public static WaterGroundRenderer Create(int sideLength)
+        public static WaterGroundRenderer Create(int length)
         {
-            var model = new PlaneModel(sideLength / 2);
+            var model = new Sphere(length / 2.0f + 0.5f);
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\water\WaterTexture.vert.glsl"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\WaterTexture.frag.glsl"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.vert.glsl"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.frag.glsl"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("a_vertex", PlaneModel.strPosition);
-            map.Add("a_texCoord", PlaneModel.strTexCoord);
+            map.Add("a_normal", PlaneModel.strNormal);
             var renderer = new WaterGroundRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.Lengths = new vec3(sideLength, 0, sideLength);
+            renderer.Lengths = new vec3(length + 1, length + 1, length + 1);
 
             return renderer;
         }
