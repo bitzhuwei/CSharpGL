@@ -31,7 +31,8 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             {
-                var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\particleSimulator.comp"), ShaderType.ComputeShader);
+                // particleSimulator.comp is also OK.
+                var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\ParticleSimulatorRenderer\particleSimulator-fountain.comp"), ShaderType.ComputeShader);
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {

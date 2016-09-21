@@ -311,7 +311,7 @@
     <None Include="shaders\SimplexNoise.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\particleSimulator-fountain.comp">
+    <None Include="shaders\ParticleSimulatorRenderer\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ImageProcessingRenderer\ImageProcessing.comp">
@@ -332,13 +332,13 @@
     <None Include="shaders\SimpleComputeRenderer\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\particleSimulator.frag">
+    <None Include="shaders\ParticleSimulatorRenderer\particleSimulator.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\particleSimulator.vert">
+    <None Include="shaders\ParticleSimulatorRenderer\particleSimulator.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\particleSimulator.comp">
+    <None Include="shaders\ParticleSimulatorRenderer\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\SimpleComputeRenderer\compute.comp">
