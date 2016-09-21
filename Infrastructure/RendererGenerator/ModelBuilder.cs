@@ -82,7 +82,7 @@ namespace RendererGenerator
             else
             {
                 // using (var buffer = new OneIndexBuffer<uint>(this.model.mode, BufferUsage.StaticDraw))
-                var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new OneIndexBuffer<uint>({0}.{1}, BufferUsage.StaticDraw))", dataStructure.DrawMode.GetType().Name, dataStructure.DrawMode));
+                var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, {0}.{1}, BufferUsage.StaticDraw))", dataStructure.DrawMode.GetType().Name, dataStructure.DrawMode));
                 ifStatement.TrueStatements.Add(usingBegin);
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    buffer.Create();"));
@@ -148,7 +148,7 @@ namespace RendererGenerator
                         new CodePrimitiveExpression(null)));
                 ifStatement.TrueStatements.Add(ifStatement2);
                 // using (var buffer = new PropertyBuffer<vec3>(varNameInShader))
-                var usingBegin = new CodeSnippetStatement(string.Format("                    using(var buffer = new PropertyBuffer<{0}>({1}))", item.AttributeType, varNameInShader));
+                var usingBegin = new CodeSnippetStatement(string.Format("                    using(var buffer = new VertexAttributeBuffer<{0}>({1}))", item.AttributeType, varNameInShader));
                 ifStatement2.TrueStatements.Add(usingBegin);
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of using"));
                 var create = new CodeSnippetStatement("                        buffer.Create();");
@@ -162,7 +162,7 @@ namespace RendererGenerator
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            // TODO: set array's values: array[0] = ...;")));
                 // }
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        }// end of unsafe"));
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        {0} = buffer.GetBufferPtr() as PropertyBufferPtr;", item.BufferPtrName)));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        {0} = buffer.GetBufferPtr();", item.BufferPtrName)));
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    }// end of using"));
                 ifStatement.TrueStatements.Add(new CodeMethodReturnStatement(
                     new CodeVariableReferenceExpression(item.BufferPtrName)));
