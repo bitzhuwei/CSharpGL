@@ -32,7 +32,7 @@ namespace GridViewer
                         array[gridIndex].BLB = this.DataSource.Position + this.DataSource.PointBLB(I, J, K);
                     }
                 }
-                ptr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                ptr = buffer.GetBufferPtr();
             }
 
             return ptr;

@@ -72,7 +72,7 @@
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -90,7 +90,7 @@
                             colorArray[0] = CubeModel.color;
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return colorBufferPtr;
@@ -108,7 +108,7 @@
                             normalArray[0] = CubeModel.normal;
                         }
 
-                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return normalBufferPtr;

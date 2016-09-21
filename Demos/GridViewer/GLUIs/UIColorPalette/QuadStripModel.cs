@@ -77,7 +77,7 @@ namespace GridViewer
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -102,7 +102,7 @@ namespace GridViewer
                             }
                         }
 
-                        texCoordBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        texCoordBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return texCoordBufferPtr;
@@ -128,7 +128,7 @@ namespace GridViewer
                             }
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return colorBufferPtr;

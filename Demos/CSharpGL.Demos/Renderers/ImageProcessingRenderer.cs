@@ -136,7 +136,7 @@ namespace CSharpGL.Demos
                                 array[2] = new vec3(1.0f, 1.0f, 0.5f);
                                 array[3] = new vec3(-1.0f, 1.0f, 0.5f);
                             }
-                            positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                            positionBufferPtr = buffer.GetBufferPtr();
                         }
                     }
                     return positionBufferPtr;
@@ -156,7 +156,7 @@ namespace CSharpGL.Demos
                                 array[2] = new vec2(0, 0);
                                 array[3] = new vec2(1, 0);
                             }
-                            uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                            uvBufferPtr = buffer.GetBufferPtr();
                         }
                     }
                     return uvBufferPtr;

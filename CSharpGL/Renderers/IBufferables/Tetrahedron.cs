@@ -50,7 +50,7 @@
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -71,7 +71,7 @@
                             }
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return colorBufferPtr;
@@ -92,7 +92,7 @@
                             }
                         }
 
-                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return normalBufferPtr;

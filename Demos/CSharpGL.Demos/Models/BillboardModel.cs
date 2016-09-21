@@ -30,7 +30,7 @@
                                 array[i] = positions[i];
                             }
                         }
-                        positionBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBuffer = buffer.GetBufferPtr();
                     }
                 }
                 return positionBuffer;

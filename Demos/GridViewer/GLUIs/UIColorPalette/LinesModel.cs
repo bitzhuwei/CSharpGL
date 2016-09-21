@@ -61,7 +61,7 @@ namespace GridViewer
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;

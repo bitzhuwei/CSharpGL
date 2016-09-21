@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
                             0);
                     }
                 }
-                var ptr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                var ptr = buffer.GetBufferPtr();
                 this.VelocityBufferPtr = ptr;
             }
 

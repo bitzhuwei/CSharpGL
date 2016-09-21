@@ -47,7 +47,7 @@ namespace CSharpGL
                     {
                         buffer.Create(maxCharCount);
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
 
@@ -61,7 +61,7 @@ namespace CSharpGL
                     {
                         buffer.Create(maxCharCount);
 
-                        uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        uvBufferPtr = buffer.GetBufferPtr();
                     }
                 }
 

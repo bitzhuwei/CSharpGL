@@ -86,7 +86,7 @@ namespace GridViewer
                     }
                     this.Lengths = max - min;
 
-                    positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                    positionBufferPtr = buffer.GetBufferPtr();
                 }
 
                 return positionBufferPtr;
@@ -107,7 +107,7 @@ namespace GridViewer
                         array[i] = new vec3(x, x, x);
                     }
 
-                    brightnessBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                    brightnessBufferPtr = buffer.GetBufferPtr();
                 }
 
                 return brightnessBufferPtr;

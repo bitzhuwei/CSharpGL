@@ -70,7 +70,7 @@
                                 array[i] = model.positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -90,7 +90,7 @@
                                 array[i] = model.normals[i];
                             }
                         }
-                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return normalBufferPtr;
@@ -110,7 +110,7 @@
                                 array[i] = model.colors[i];
                             }
                         }
-                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return colorBufferPtr;
@@ -130,7 +130,7 @@
                                 array[i] = model.uv[i];
                             }
                         }
-                        uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        uvBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return uvBufferPtr;

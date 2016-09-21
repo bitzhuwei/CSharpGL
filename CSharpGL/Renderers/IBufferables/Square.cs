@@ -53,7 +53,7 @@
                                 array[i] = model.positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -73,7 +73,7 @@
                                 array[i] = model.texCoords[i];
                             }
                         }
-                        uvBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        uvBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return uvBufferPtr;

@@ -27,7 +27,7 @@ namespace GridViewer
                         array[gridIndex].SetCoord(textures[gridIndex]);
                     }
                 }
-                ptr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                ptr = buffer.GetBufferPtr();
             }
 
             return ptr;

@@ -60,7 +60,7 @@
                                 array[i] = boundingBox[i] - 0.5f;
                             }
                         }
-                        positionBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBuffer = buffer.GetBufferPtr();
                     }
                 }
                 return positionBuffer;
@@ -80,7 +80,7 @@
                                 array[i] = boundingBox[i];
                             }
                         }
-                        colorBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBuffer = buffer.GetBufferPtr();
                     }
                 }
                 return colorBuffer;

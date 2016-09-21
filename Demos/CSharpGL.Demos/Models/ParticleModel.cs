@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
 
@@ -79,7 +79,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        velocityBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        velocityBufferPtr = buffer.GetBufferPtr();
                     }
                 }
 

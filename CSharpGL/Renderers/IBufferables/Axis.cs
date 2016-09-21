@@ -59,7 +59,7 @@ namespace CSharpGL
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -81,7 +81,7 @@ namespace CSharpGL
                             }
                         }
 
-                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return colorBufferPtr;

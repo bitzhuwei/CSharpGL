@@ -65,7 +65,7 @@
                                 array[i] = positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -86,7 +86,7 @@
                                 array[i] = normals[i];
                             }
                         }
-                        colorBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        colorBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return colorBufferPtr;
@@ -107,7 +107,7 @@
                                 array[i] = normals[i];
                             }
                         }
-                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return normalBufferPtr;

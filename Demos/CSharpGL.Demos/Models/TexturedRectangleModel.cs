@@ -41,7 +41,7 @@
                                 array[i] = positions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -61,7 +61,7 @@
                                 array[i] = texCoords[i];
                             }
                         }
-                        texCoordBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        texCoordBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return texCoordBufferPtr;

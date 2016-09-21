@@ -43,7 +43,7 @@ namespace CSharpGL
                                 array[i] = this.pointPositions[i];
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }// end of using
                 }
                 return positionBufferPtr;

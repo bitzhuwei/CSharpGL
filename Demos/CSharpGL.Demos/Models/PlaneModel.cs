@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return positionBufferPtr;
@@ -73,7 +73,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        normalBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        normalBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return normalBufferPtr;
@@ -95,7 +95,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        tangentBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        tangentBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return tangentBufferPtr;
@@ -117,7 +117,7 @@ namespace CSharpGL.Demos
                             }
                         }
 
-                        texCoordBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        texCoordBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return texCoordBufferPtr;

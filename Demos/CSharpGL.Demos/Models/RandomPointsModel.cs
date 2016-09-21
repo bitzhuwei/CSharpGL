@@ -41,7 +41,7 @@ namespace CSharpGL
                                 array[i] = (new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()) - new vec3(0.5f, 0.5f, 0.5f)) * this.Lengths;
                             }
                         }
-                        positionBufferPtr = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBufferPtr = buffer.GetBufferPtr();
                     }// end of using
                 }
                 return positionBufferPtr;

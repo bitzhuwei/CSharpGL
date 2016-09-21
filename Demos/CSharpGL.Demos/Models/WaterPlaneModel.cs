@@ -44,7 +44,7 @@
                                 }
                             }
                         }
-                        positionBuffer = buffer.GetBufferPtr() as VertexAttributeBufferPtr;
+                        positionBuffer = buffer.GetBufferPtr();
                     }
                 }
                 return positionBuffer;
