@@ -5,7 +5,7 @@
 现代OpenGL的渲染是建立在GLSL的shader基础上的。Shader工作在OpenGL渲染管线的各自的阶段上。这些阶段如何施展全看你的shader怎么写。
 ## Buffer
 `Buffer` and `BufferPtr` 是对OpenGL的Buffer对象的封装。一个Buffer对象本质上是从CPU内存上传到GPU内存的一个数组。
-OpenGL中执行渲染的指令是`glDrawArrays()`和`glDrawElemtns()`以及他们的高级变种版本。如果你想从零开始学OpenGL，也许可以首先围绕这两个指令开始。
+OpenGL中执行渲染的指令是`glDrawArrays()`和`glDrawElements()`以及他们的高级变种版本。如果你想从零开始学OpenGL，也许可以首先围绕这两个指令开始。
 ## 摄像机
 摄像机(Camera)是在世界坐标系下的一个特殊的物体。  
 `Camera`把模型的坐标从世界坐标系转换到camera/view/eye坐标系。
@@ -27,7 +27,7 @@ A shader is a small(maybe not that small) piece of C-like code that executes on 
 Moddern OpenGL rendering is built on GLSL shader. Shaders works on their own stage in OpenGL rendering pipeline. It's all up to you how that stage works.
 ## Buffer
 `Buffer` and `BufferPtr` wraps buffer object in OpenGL. A buffer object is essentially an array uploaded to GPU memory from CPU memory.  
-The actual rendering command in OpenGL is `glDrawArrays()` and `glDrawElemtns()` and their advanced versions. If you want to learn OpenGL from scratch, maybe your first choise is to focus on these two commands.  
+The actual rendering command in OpenGL is `glDrawArrays()` and `glDrawElements()` and their advanced versions. If you want to learn OpenGL from scratch, maybe your first choise is to focus on these two commands.  
 ## Camera
 Camera is a special object in world space.  
 `Camera` transforms object's world coordinate to camera/view/eye coordiate.
