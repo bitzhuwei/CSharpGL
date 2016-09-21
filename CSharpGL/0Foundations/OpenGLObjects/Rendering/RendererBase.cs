@@ -19,7 +19,7 @@ namespace CSharpGL
         protected const string strRenderer = "Renderer";
 
         /// <summary>
-        /// binding object.
+        /// binding scene object.
         /// </summary>
         [Category(strRenderer)]
         [Description("binding object.")]
