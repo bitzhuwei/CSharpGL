@@ -14,15 +14,17 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add("a_vertex", WaterPlaneModel.strPosition);
             var renderer = new WaterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.textureRenderer = WaterTextureRenderer.Create(waterPlaneLength);
+            renderer.waterTextureRenderer = WaterTextureRenderer.Create(waterPlaneLength);
             renderer.backgroundRenderer = WaterBackgroundRenderer.Create(waterPlaneLength);
             renderer.Lengths = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
+            renderer.waterPlaneLength = waterPlaneLength;
 
             return renderer;
         }
 
-        private WaterTextureRenderer textureRenderer;
+        private WaterTextureRenderer waterTextureRenderer;
         private WaterBackgroundRenderer backgroundRenderer;
+        private int waterPlaneLength;
 
         private WaterRenderer(
             IBufferable bufferable, ShaderCode[] shaderCodes,

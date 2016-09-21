@@ -12,13 +12,14 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
 
-            this.textureRenderer.Initialize();
+            this.waterTextureRenderer.Initialize();
             this.backgroundRenderer.Initialize();
 
             this.cubeMap = GetCubeMapTexture();
 
+            this.SetUniform("u_waterPlaneLength", (float)this.waterPlaneLength);
             this.SetUniform("u_cubemap", this.cubeMap.ToSamplerValue());
-            this.SetUniform("u_waterTexture", this.textureRenderer.MirrorTexture.ToSamplerValue());
+            this.SetUniform("u_waterTexture", this.waterTextureRenderer.MirrorTexture.ToSamplerValue());
 
         }
 
