@@ -149,7 +149,7 @@ namespace CSharpGL.CSSLGenetator
                 }
             }
 
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             foreach (var item in shaderFieldList)
             {
                 map.Add(item.FieldName, item.FieldName);
@@ -177,7 +177,7 @@ namespace CSharpGL.CSSLGenetator
                 }
             }
 
-            PropertyNameMap map = new PropertyNameMap();
+            AttributeNameMap map = new AttributeNameMap();
             foreach (var item in shaderFieldList)
             {
                 map.Add(item.FieldName, item.FieldName);

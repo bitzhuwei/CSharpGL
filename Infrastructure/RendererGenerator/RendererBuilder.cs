@@ -112,7 +112,7 @@ namespace RendererGenerator
                 method.Statements.Add(new CodeSnippetStatement(string.Format("            {0}[1] = new {1}(File.ReadAllText(@\"shaders\\{2}.frag\"), {3}.{4});", shaderCodes, typeof(ShaderCode).Name, dataStructure.TargetName, ShaderType.VertexShader.GetType().Name, ShaderType.FragmentShader)));
             }
             {
-                // var map = new PropertyNameMap();
+                // var map = new AttributeNameMap();
                 method.Statements.Add(new CodeVariableDeclarationStatement("var", "map",
                     new CodeObjectCreateExpression(typeof(AttributeNameMap))));
                 // map.Add("in_Position", GroundModel.strPosition);

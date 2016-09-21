@@ -481,9 +481,9 @@ namespace CSharpGL.CSSLGenetator
                 files.Add(csslMainFullname);
                 this.currentFile.GenerateCSSLMain(csslMainFullname);
             }
-            if (this.chkPropertyNameMap.Checked)
+            if (this.chkAttributeNameMap.Checked)
             {
-                var propertyNameMapFullname = Path.Combine(directory, this.currentFile.ShaderName + ".PropertyNameMap.xml");
+                var propertyNameMapFullname = Path.Combine(directory, this.currentFile.ShaderName + ".AttributeNameMap.xml");
                 files.Add(propertyNameMapFullname);
                 this.currentFile.GenerateProperyNameMap(propertyNameMapFullname);
             }

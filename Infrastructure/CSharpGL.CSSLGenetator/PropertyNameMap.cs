@@ -14,7 +14,7 @@ namespace CSharpGL.CSSLGenetator
     /// 策略B：如果没有，或者map中有的名字不存在， 就说明此map不完整，即OpenGL开发者和APP开发者没有完全协商。
     /// 现在选择策略A。
     /// </summary>
-    public class PropertyNameMap : IEnumerable<PropertyNameMap.NamePair>
+    public class AttributeNameMap : IEnumerable<AttributeNameMap.NamePair>
     {
         private List<string> namesInShader = new List<string>();
         private List<string> namesInIBufferable = new List<string>();
@@ -27,7 +27,7 @@ namespace CSharpGL.CSSLGenetator
         /// 策略B：如果没有，或者map中有的名字不存在， 就说明此map不完整，即OpenGL开发者和APP开发者没有完全协商。
         /// 现在选择策略A。
         /// </summary>
-        public PropertyNameMap() { }
+        public AttributeNameMap() { }
 
         /// <summary>
         /// 持有从<see cref="IBufferable"/>到GLSL中in/uniform变量名的对应关系。
@@ -39,7 +39,7 @@ namespace CSharpGL.CSSLGenetator
         /// </summary>
         /// <param name="nameInShader"></param>
         /// <param name="nameInIBufferable"></param>
-        public PropertyNameMap(string nameInShader, string nameInIBufferable)
+        public AttributeNameMap(string nameInShader, string nameInIBufferable)
         {
             this.Add(nameInShader, nameInIBufferable);
         }
@@ -54,7 +54,7 @@ namespace CSharpGL.CSSLGenetator
         /// </summary>
         /// <param name="nameInShaders"></param>
         /// <param name="nameInIBufferables"></param>
-        public PropertyNameMap(string[] nameInShaders, string[] nameInIBufferables)
+        public AttributeNameMap(string[] nameInShaders, string[] nameInIBufferables)
         {
             if (nameInShaders == null || nameInIBufferables == null
                 || nameInShaders.Length != nameInIBufferables.Length)
@@ -74,7 +74,7 @@ namespace CSharpGL.CSSLGenetator
 
         public XElement ToXElement()
         {
-            XElement result = new XElement(typeof(PropertyNameMap).Name,
+            XElement result = new XElement(typeof(AttributeNameMap).Name,
                 from nameInShader in this.namesInShader
                 join nameInIBufferable in this.namesInIBufferable
                 on this.namesInShader.IndexOf(nameInShader) equals this.namesInIBufferable.IndexOf(nameInIBufferable)
@@ -84,11 +84,11 @@ namespace CSharpGL.CSSLGenetator
             return result;
         }
 
-        public static PropertyNameMap Parse(XElement xElement)
+        public static AttributeNameMap Parse(XElement xElement)
         {
-            if (xElement.Name != typeof(PropertyNameMap).Name) { throw new Exception(); }
+            if (xElement.Name != typeof(AttributeNameMap).Name) { throw new Exception(); }
 
-            PropertyNameMap result = new PropertyNameMap();
+            AttributeNameMap result = new AttributeNameMap();
 
             foreach (var item in xElement.Elements(typeof(NamePair).Name))
             {
