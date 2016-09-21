@@ -1,6 +1,5 @@
 ﻿namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     partial class RaycastVolumeRenderer
     {
         protected override void DoRender(RenderEventArgs arg)

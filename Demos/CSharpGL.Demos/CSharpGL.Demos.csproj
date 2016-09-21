@@ -173,13 +173,12 @@
     <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
     <Compile Include="Renderers\PointCloudRenderer.cs" />
-    <Compile Include="Renderers\RaycastVolumeImageFiller.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer.Render.cs" />
+    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeImageFiller.cs" />
+    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.Render.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.Dispose.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoRender.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.Static.cs" />
     <Compile Include="Renderers\ConditionalRenderer.cs" />
     <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
@@ -233,9 +232,9 @@
     <Compile Include="12Billboard\Form12Billboard.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Renderers\RaycastVolumeRenderer.Initialize.cs" />
+    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.Initialize.cs" />
     <Compile Include="Models\RaycastModel.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer.cs" />
+    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.cs" />
     <Compile Include="Models\BillboardModel.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.Dispose.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.DoRender.cs" />

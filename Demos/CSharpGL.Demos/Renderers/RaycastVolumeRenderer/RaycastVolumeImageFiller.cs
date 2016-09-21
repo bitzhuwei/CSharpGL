@@ -6,7 +6,6 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 3D texture builder of Raycast Volume Rendering Demo.
     /// </summary>
-    [DemoRenderer]
     internal class RaycastVolumeImageFiller : ImageFiller
     {
         private string filename;
