@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("position", PointSpriteModel.strposition);
             var model = new PointSpriteModel(particleCount);
             var renderer = new PointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
         }
 
         public PointSpriteRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
         }

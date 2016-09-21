@@ -37,7 +37,7 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\QuadStripTexture.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\QuadStripTexture.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", QuadStripModel.position);
             map.Add("in_TexCoord", QuadStripModel.texCoord);
 
@@ -46,7 +46,7 @@ namespace GridViewer
         }
 
         private QuadStripRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
         }

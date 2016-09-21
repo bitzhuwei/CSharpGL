@@ -67,7 +67,7 @@ namespace CSharpGL.Demos
                 ShaderCode[] simpleShader = new ShaderCode[2];
                 simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.vert"), ShaderType.VertexShader);
                 simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.frag"), ShaderType.FragmentShader);
-                var propertyNameMap = new PropertyNameMap();
+                var propertyNameMap = new AttributeNameMap();
                 propertyNameMap.Add("vert", "position");
                 propertyNameMap.Add("uv", "uv");
                 var pickableRenderer = new PickableRenderer(

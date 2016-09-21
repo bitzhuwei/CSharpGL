@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RandomPoints.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RandomPoints.frag"), ShaderType.FragmentShader);
-            var map = new CSharpGL.PropertyNameMap();
+            var map = new CSharpGL.AttributeNameMap();
             map.Add("in_Position", RandomPointsModel.position);
             var renderer = new RandomPointsRenderer(model, shaderCodes, map);
             renderer.Lengths = model.Lengths;
@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
             return renderer;
         }
 
-        private RandomPointsRenderer(CSharpGL.IBufferable bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.PropertyNameMap propertyNameMap, params GLSwitch[] switches) :
+        private RandomPointsRenderer(CSharpGL.IBufferable bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap propertyNameMap, params GLSwitch[] switches) :
             base(bufferable, shaderCodes, propertyNameMap, switches)
         {
         }

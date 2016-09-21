@@ -24,7 +24,7 @@
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\Label.frag"), ShaderType.FragmentShader);
 
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", TextModel.strPosition);
             map.Add("in_UV", TextModel.strUV);
 
@@ -46,7 +46,7 @@
         /// <param name="propertyNameMap"></param>
         /// <param name="switches"></param>
         private LabelRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
         }

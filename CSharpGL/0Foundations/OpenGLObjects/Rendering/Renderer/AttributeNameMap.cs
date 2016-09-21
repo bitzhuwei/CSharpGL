@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
     /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
     /// </summary>
-    public class PropertyNameMap : IEnumerable<PropertyNameMap.NamePair>
+    public class AttributeNameMap : IEnumerable<AttributeNameMap.NamePair>
     {
         private List<string> namesInShader = new List<string>();
         private List<string> namesInIBufferable = new List<string>();
@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
         /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
         /// </summary>
-        public PropertyNameMap() { }
+        public AttributeNameMap() { }
 
         /// <summary>
         /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
@@ -31,9 +31,9 @@ namespace CSharpGL
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
         /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
         /// </summary>
-        /// <param name="nameInShader"></param>
-        /// <param name="nameInIBufferable"></param>
-        public PropertyNameMap(string nameInShader, string nameInIBufferable)
+        /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
+        /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
+        public AttributeNameMap(string nameInShader, string nameInIBufferable)
         {
             this.Add(nameInShader, nameInIBufferable);
         }
@@ -44,9 +44,9 @@ namespace CSharpGL
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
         /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
         /// </summary>
-        /// <param name="nameInShaders"></param>
-        /// <param name="nameInIBufferables"></param>
-        public PropertyNameMap(string[] nameInShaders, string[] nameInIBufferables)
+        /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
+        /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
+        public AttributeNameMap(string[] nameInShaders, string[] nameInIBufferables)
         {
             if (nameInShaders == null || nameInIBufferables == null
                 || nameInShaders.Length != nameInIBufferables.Length)
@@ -61,8 +61,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="nameInShader"></param>
-        /// <param name="nameInIBufferable"></param>
+        /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
+        /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
         public void Add(string nameInShader, string nameInIBufferable)
         {
             this.namesInShader.Add(nameInShader);
@@ -75,7 +75,7 @@ namespace CSharpGL
         /// <returns></returns>
         public XElement ToXElement()
         {
-            XElement result = new XElement(typeof(PropertyNameMap).Name,
+            XElement result = new XElement(typeof(AttributeNameMap).Name,
                 from nameInShader in this.namesInShader
                 join nameInIBufferable in this.namesInIBufferable
                 on this.namesInShader.IndexOf(nameInShader) equals this.namesInIBufferable.IndexOf(nameInIBufferable)
@@ -90,11 +90,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="xElement"></param>
         /// <returns></returns>
-        public static PropertyNameMap Parse(XElement xElement)
+        public static AttributeNameMap Parse(XElement xElement)
         {
-            if (xElement.Name != typeof(PropertyNameMap).Name) { throw new Exception(); }
+            if (xElement.Name != typeof(AttributeNameMap).Name) { throw new Exception(); }
 
-            PropertyNameMap result = new PropertyNameMap();
+            AttributeNameMap result = new AttributeNameMap();
 
             foreach (var item in xElement.Elements(typeof(NamePair).Name))
             {

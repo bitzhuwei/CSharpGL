@@ -17,19 +17,19 @@ namespace CSharpGL
         /// <returns></returns>
         public static InnerPickableRenderer GetRenderer(
             this IBufferable bufferable,
-            PropertyNameMap propertyNameMap,
+            AttributeNameMap propertyNameMap,
             string positionNameInIBufferable,
             params GLSwitch[] switches)
         {
             if (bufferable == null || propertyNameMap == null || string.IsNullOrEmpty(positionNameInIBufferable))
             { throw new ArgumentNullException(); }
 
-            PropertyNameMap map = null;
+            AttributeNameMap map = null;
             foreach (var item in propertyNameMap)
             {
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {
-                    map = new PropertyNameMap();
+                    map = new AttributeNameMap();
                     map.Add(item.VarNameInShader, item.NameInIBufferable);
                     break;
                 }

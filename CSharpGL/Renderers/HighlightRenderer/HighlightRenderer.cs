@@ -22,7 +22,7 @@
             string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, HighlightShaderHelper.GetHighlightShaderCode(),
-                new PropertyNameMap("in_Position", positionNameInIBufferable),
+                new AttributeNameMap("in_Position", positionNameInIBufferable),
                 switches)
         {
             this.positionNameInIBufferable = positionNameInIBufferable;

@@ -21,7 +21,7 @@
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
         public PickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable,
+            AttributeNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {

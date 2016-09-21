@@ -84,7 +84,7 @@ namespace RendererGenerator
             method.Parameters.Add(bufferable);
             var shaderCode = new CodeParameterDeclarationExpression(typeof(ShaderCode[]), shaderCodes);
             method.Parameters.Add(shaderCode);
-            var map = new CodeParameterDeclarationExpression(typeof(PropertyNameMap), "propertyNameMap");
+            var map = new CodeParameterDeclarationExpression(typeof(AttributeNameMap), "propertyNameMap");
             method.Parameters.Add(map);
             var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLSwitch).Name)), "switches");
             method.Parameters.Add(last);
@@ -114,7 +114,7 @@ namespace RendererGenerator
             {
                 // var map = new PropertyNameMap();
                 method.Statements.Add(new CodeVariableDeclarationStatement("var", "map",
-                    new CodeObjectCreateExpression(typeof(PropertyNameMap))));
+                    new CodeObjectCreateExpression(typeof(AttributeNameMap))));
                 // map.Add("in_Position", GroundModel.strPosition);
                 foreach (var item in dataStructure.PropertyList)
                 {

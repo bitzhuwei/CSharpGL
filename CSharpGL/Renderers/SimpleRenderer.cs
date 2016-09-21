@@ -80,7 +80,7 @@
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
             var renderer = new SimpleRenderer(model, shaderCodes, map, positionNameInIBufferable);
@@ -97,7 +97,7 @@
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
         private SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
         }

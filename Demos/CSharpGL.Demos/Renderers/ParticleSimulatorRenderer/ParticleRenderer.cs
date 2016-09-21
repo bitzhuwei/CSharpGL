@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
         public VertexAttributeBufferPtr VelocityBufferPtr { get; private set; }
 
         public ParticleRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         { }
 

@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLineRenderer\EmitNormalLine.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLineRenderer\EmitNormalLine.geom"), ShaderType.GeometryShader);
             shaderCodes[2] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLineRenderer\EmitNormalLine.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", position);
             map.Add("in_Normal", normal);
             var renderer = new EmitNormalLineRenderer(model, shaderCodes, map, position);
@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
         public Color LineColor { get; set; }
 
         private EmitNormalLineRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
             this.LineColor = Color.White;

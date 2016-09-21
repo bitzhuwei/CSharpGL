@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             string positionName, string normalName)
         {
             {
-                var map = new PropertyNameMap();
+                var map = new AttributeNameMap();
                 map.Add("position", positionName);
                 map.Add("normal", normalName);
                 var build_lists = new ShaderCode[2];
@@ -41,7 +41,7 @@ namespace CSharpGL.Demos
                 this.buildListsRenderer = new PickableRenderer(model, build_lists, map, positionName);
             }
             {
-                var map = new PropertyNameMap();
+                var map = new AttributeNameMap();
                 map.Add("position", positionName);
                 var resolve_lists = new ShaderCode[2];
                 resolve_lists[0] = new ShaderCode(File.ReadAllText(@"shaders\OIT\resolve_lists.vert"), ShaderType.VertexShader);

@@ -57,7 +57,7 @@ namespace CSharpGL
         /// <summary>
         /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="Model"/>.
         /// </summary>
-        protected PropertyNameMap propertyNameMap;
+        protected AttributeNameMap propertyNameMap;
 
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
@@ -67,7 +67,7 @@ namespace CSharpGL
         /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="Model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
         public Renderer(IBufferable model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
         {
             //this.OriginalWorldPosition = new vec3(0, 0, 0);// this is not needed.
             this.Scale = new vec3(1, 1, 1);

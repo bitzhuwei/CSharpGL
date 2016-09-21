@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ParticleSimulatorRenderer\particleSimulator.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ParticleSimulatorRenderer\particleSimulator.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
+                var map = new AttributeNameMap();
                 map.Add("position", ParticleModel.strPosition);
                 var particleRenderer = new ParticleRenderer(bufferable, shaderCodes, map, new DepthTestSwitch(false), new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One));
                 particleRenderer.Initialize();

@@ -21,7 +21,7 @@ namespace CSharpGL
 @"Resources.SquareRenderer.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.SquareRenderer.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", Square.strPosition);
             map.Add("in_TexCoord", Square.strTexCoord);
             var model = new Square();
@@ -31,7 +31,7 @@ namespace CSharpGL
         }
 
         private TextureRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         { }
 

@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\water\WaterTexture.vert.glsl"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\WaterTexture.frag.glsl"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             map.Add("a_texCoord", PlaneModel.strTexCoord);
             var renderer = new WaterTextureRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CCW), new ClearColorSwitch(Color.Black, 0), new ViewportSwitch(0, 0, TEXTURE_SIZE, TEXTURE_SIZE));
@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
 
         private WaterTextureRenderer(
             IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
         }

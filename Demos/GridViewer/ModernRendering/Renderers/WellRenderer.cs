@@ -28,7 +28,7 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Well.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Well.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", WellModel.strPosition);
             map.Add("in_Brightness", WellModel.strBrightness);
             var renderer = new WellRenderer(model, shaderCodes, map);
@@ -43,7 +43,7 @@ namespace GridViewer
         /// <param name="propertyNameMap"></param>
         /// <param name="switches"></param>
         private WellRenderer(WellModel model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
         }

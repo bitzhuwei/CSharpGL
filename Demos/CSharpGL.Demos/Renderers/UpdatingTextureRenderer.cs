@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\UpdatingTexture.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\UpdatingTexture.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Position", TexturedRectangleModel.strPosition);
             map.Add("in_TexCoord", TexturedRectangleModel.strTexCoord);
             var renderer = new UpdatingTextureRenderer(model, shaderCodes, map);
@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
         }
 
         private UpdatingTextureRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         { }
 

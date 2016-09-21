@@ -13,7 +13,7 @@ namespace GridViewer
         public GridViewModel Grid { get; private set; }
 
         protected GridViewRenderer(vec3 originalWorldPosition, GridViewModel model, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
             this.WorldPosition = originalWorldPosition;

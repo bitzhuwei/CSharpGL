@@ -3,7 +3,7 @@
     public class BuildInRenderer : Renderer
     {
         public BuildInRenderer(vec3 lengths, IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
             this.Lengths = lengths;

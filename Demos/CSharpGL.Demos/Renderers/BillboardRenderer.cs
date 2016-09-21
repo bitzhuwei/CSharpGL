@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\billboard.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\billboard.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
+            var map = new AttributeNameMap();
             map.Add("in_Positions", BillboardModel.strPosition);
             var billboardRenderer = new BillboardRenderer(model, shaderCodes, map);
             return billboardRenderer;
@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
         public BillboardType Type { get; set; }
 
         private BillboardRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
             this.Width = 1.0f; this.Height = 0.125f;

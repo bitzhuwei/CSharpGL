@@ -34,7 +34,7 @@
         /// <param name="positionNameInIBufferable">Name of buffer that describes model's position.</param>
         ///<param name="switches">OpenGL switches.</param>
         internal InnerPickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable,
+            AttributeNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
