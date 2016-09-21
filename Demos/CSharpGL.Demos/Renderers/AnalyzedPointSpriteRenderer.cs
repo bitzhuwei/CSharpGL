@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("position", "position");
-            var model = new BillboardModel(particleCount);
+            var model = new AnalyzedPointSpriteModel(particleCount);
             var renderer = new AnalyzedPointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
             renderer.Lengths = model.Lengths;
 
@@ -44,9 +44,9 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
         }
 
-        private class BillboardModel : IBufferable
+        private class AnalyzedPointSpriteModel : IBufferable
         {
-            public BillboardModel(int particleCount)
+            public AnalyzedPointSpriteModel(int particleCount)
             {
                 this.particleCount = particleCount;
             }
