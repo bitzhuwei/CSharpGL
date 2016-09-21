@@ -4,9 +4,12 @@
     {
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.waterPlaneRenderer.Render(arg);
-            this.backgroundRenderer.Render(arg);
-            this.textureRenderer.Render(arg);
+            //mat4 projection = arg.Camera.GetProjectionMatrix();
+            //mat4 view = arg.Camera.GetViewMatrix();
+            //mat4 model = this.GetModelMatrix();
+            //this.SetUniform("mvp", projection * view * model);
+
+            base.DoRender(arg);
         }
     }
 }
