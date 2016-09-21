@@ -21,16 +21,16 @@ OpenGL是个状态机。`GLSwitch`就是控制其状态的。
 纹理、帧缓存、查询对象等等，在你学会上述内容之后就仅仅是一些很简单的概念而已。
 
 # Foundations
-OpenGL concepts lays in this folder. All basic OpenGL knowledge included in CSharpGL are wrapped into types(enum, interface, struct, class). It exists in type's names, method's names, inheritance relationships, and all comments.
+OpenGL concepts lay in this folder. All basic OpenGL knowledge included in CSharpGL are wrapped into types(enum, interface, struct, class). It exists in type's names, method's names, inheritance relationships, and all comments.
 ## Shader
 A shader is a small(maybe not that small) piece of C-like code that executes on GPU.  
-Moddern OpenGL rendering is built on GLSL shader. Shaders works on their own stage in OpenGL rendering pipeline. It's all up to you how that stage works.
+Modern OpenGL rendering is built on GLSL shader. Shaders works on their own stages in OpenGL rendering pipeline. It's all up to you how these stages work.
 ## Buffer
-`Buffer` and `BufferPtr` wraps buffer object in OpenGL. A buffer object is essentially an array uploaded to GPU memory from CPU memory.  
-The actual rendering command in OpenGL is `glDrawArrays()` and `glDrawElements()` and their advanced versions. If you want to learn OpenGL from scratch, maybe your first choise is to focus on these two commands.  
+`Buffer`, `BufferPtr` and their subtypes wrap all kinds of buffer object in OpenGL. A buffer object is essentially an array uploaded to GPU memory from CPU memory.  
+The actual rendering command in OpenGL is `glDrawArrays()` and `glDrawElements()` and their advanced versions. If you want to learn OpenGL from scratch, maybe it's a good choice to focus on these two commands.  
 ## Camera
 Camera is a special object in world space.  
-`Camera` transforms object's world coordinate to camera/view/eye coordiate.
+`Camera` transforms object's coordinates from world coordinate system to camera/view/eye coordiate system.
 ## Uniform Variable
 `UniformVariable` wraps uniform variables in shader like `uniform vec3 vPosition;`. `UniformVariable` is used in `Renderer` to setup uniform variable's value.
 ## OpenGL switch
@@ -38,6 +38,6 @@ OpenGL works as a state machine. `GLSwitch` controls one of states in OpenGL.
 For example, `LineWidthSwitch` controls line's width. It sets line's width to specified value before rendering, and reset it to original value after rendering.  
 This could prevent future bugs about forgetting to reset to original state.
 ## Rendering
-`Renderer` renders a model with VBO and shaders. `IBufferable` provides model's data. `ShaderCode` provides shader code. `AttributeNameMap` provides mapping relations between model data and shader's variables. Different kinds of `GLSwitch`es and uniform variables are supported.
+`Renderer` renders a model with VBOs and shaders. `IBufferable` provides model's data. `ShaderCode` provides shader code. `AttributeNameMap` provides mapping relations between model data and shader's variables. Different kinds of `GLSwitch`es and uniform variables are supported.
 ## Other stuff
 Texture, framebuffer and query object are simple concepts after you've learnt everything metioned above.
