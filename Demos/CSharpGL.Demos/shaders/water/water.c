@@ -122,47 +122,8 @@ GLUSvoid reshape(GLUSint width, GLUSint height)
 
 GLUSvoid renderWater(GLUSfloat passedTime)
 {
-	static WaveParameters waveParameters[NUMBERWAVES];
-	static WaveDirections waveDirections[NUMBERWAVES];
-
-	static GLfloat overallSteepness = 0.2f;
-
-	memset(waveParameters, 0, sizeof(waveParameters));
-	memset(waveDirections, 0, sizeof(waveDirections));
-
-	// Waves can be faded in and out.
-
-	// Wave One
-	waveParameters[0].speed = 1.0f;
-	waveParameters[0].amplitude = 0.01f;
-	waveParameters[0].wavelength = 4.0f;
-	waveParameters[0].steepness = overallSteepness / (waveParameters[0].wavelength * waveParameters[0].amplitude * (GLfloat)NUMBERWAVES);
-	waveDirections[0].x = +1.0f;
-	waveDirections[0].z = +1.0f;
-
-	// Wave Two
-	waveParameters[1].speed = 0.5f;
-	waveParameters[1].amplitude = 0.02f;
-	waveParameters[1].wavelength = 3.0f;
-	waveParameters[1].steepness = overallSteepness / (waveParameters[1].wavelength * waveParameters[1].amplitude * (GLfloat)NUMBERWAVES);
-	waveDirections[1].x = +1.0f;
-	waveDirections[1].z = +0.0f;
-
-	// Wave Three
-	waveParameters[2].speed = 0.1f;
-	waveParameters[2].amplitude = 0.015f;
-	waveParameters[2].wavelength = 2.0f;
-	waveParameters[2].steepness = overallSteepness / (waveParameters[1].wavelength * waveParameters[1].amplitude * (GLfloat)NUMBERWAVES);
-	waveDirections[2].x = -0.1f;
-	waveDirections[2].z = -0.2f;
-
-	// Wave Four
-	waveParameters[3].speed = 1.1f;
-	waveParameters[3].amplitude = 0.008f;
-	waveParameters[3].wavelength = 1.0f;
-	waveParameters[3].steepness = overallSteepness / (waveParameters[1].wavelength * waveParameters[1].amplitude * (GLfloat)NUMBERWAVES);
-	waveDirections[3].x = -0.2f;
-	waveDirections[3].z = -0.1f;
+	//static WaveParameters waveParameters[NUMBERWAVES];
+	//static WaveDirections waveDirections[NUMBERWAVES];
 
 	glUseProgram(g_program.program);
 
@@ -185,15 +146,11 @@ GLUSboolean update(GLUSfloat time)
 {
 	//static GLfloat passedTime = 0.0f;
 
-	//static GLUSfloat angle = 0.0f;
-
 	GLfloat inverseViewMatrix[16];
 
-	glusMatrix4x4LookAtf(g_viewMatrix, 0.0f, 1.0f, 0.0f, (GLfloat) 0.5f * sinf(angle), 1.0f, -(GLfloat) 0.5f * cosf(angle), 0.0f, 1.0f, 0.0f);
-
-	glusMatrix4x4Copyf(inverseViewMatrix, g_viewMatrix, GLUS_TRUE);
-	glusMatrix4x4InverseRigidBodyf(inverseViewMatrix);
-	glusMatrix4x4ExtractMatrix3x3f(g_inverseViewNormalMatrix, inverseViewMatrix);
+	//glusMatrix4x4Copyf(inverseViewMatrix, g_viewMatrix, GLUS_TRUE);
+	//glusMatrix4x4InverseRigidBodyf(inverseViewMatrix);
+	//glusMatrix4x4ExtractMatrix3x3f(g_inverseViewNormalMatrix, inverseViewMatrix);
 
 	// Render the background
 	renderBackground(g_viewMatrix);

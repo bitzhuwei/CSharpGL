@@ -18,12 +18,12 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
 
             passedTime += deltaTime;
-            angle += 2.0f * (float)Math.PI / 120.0f * deltaTime;
+            //angle += 2.0f * (float)Math.PI / 120.0f * deltaTime;
         }
         static float passedTime = 0.0f;
         static float deltaTime = 0.1f;//todo: experimental value.
 
-        static float angle = 0.0f;
+        //static float angle = 0.0f;
 
         const int NUMBERWAVES = 4;
         static float overallSteepness = 0.2f;
