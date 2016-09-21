@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <summary>
         /// build texture's content with Bitmap.
         /// </summary>
-        /// <param name="bitmap"></param>
+        /// <param name="images"></param>
         /// <param name="level">0</param>
         /// <param name="internalformat">OpenGL.GL_RGBA etc.</param>
         /// <param name="border">0</param>
@@ -58,6 +58,9 @@ namespace CSharpGL
         }
     }
 
+    /// <summary>
+    /// maintains 6 images for cube map.
+    /// </summary>
     public class CubemapImages : IEnumerable<Tuple<uint, Bitmap>>, IDisposable
     {
         private Bitmap PositiveX;
@@ -67,6 +70,15 @@ namespace CSharpGL
         private Bitmap PositiveZ;
         private Bitmap NegativeZ;
 
+        /// <summary>
+        /// maintains 6 images for cube map.
+        /// </summary>
+        /// <param name="positiveX"></param>
+        /// <param name="negativeX"></param>
+        /// <param name="positiveY"></param>
+        /// <param name="negativeY"></param>
+        /// <param name="positiveZ"></param>
+        /// <param name="negativeZ"></param>
         public CubemapImages(Bitmap positiveX, Bitmap negativeX, Bitmap positiveY, Bitmap negativeY, Bitmap positiveZ, Bitmap negativeZ)
         {
             // TODO: Complete member initialization
@@ -78,7 +90,10 @@ namespace CSharpGL
             this.NegativeZ = negativeZ;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<Tuple<uint, Bitmap>> GetEnumerator()
         {
             yield return new Tuple<uint, Bitmap>(OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_X, this.PositiveX);

@@ -16,9 +16,16 @@ namespace CSharpGL
         // data structure for rendering.
 
         /// <summary>
-        ///
+        /// Vertex Array Object.
         /// </summary>
         protected VertexArrayObject vertexArrayObject;
+
+        /// <summary>
+        /// Vertex Array Object.
+        /// </summary>
+        [Category(strRenderer)]
+        [Description("Vertex Array Object.")]
+        public VertexArrayObject VertexArrayObject { get { return this.vertexArrayObject; } }
 
         /// <summary>
         ///

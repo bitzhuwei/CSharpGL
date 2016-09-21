@@ -184,8 +184,8 @@
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />
     <Compile Include="18PickingInScene\DragParam.cs" />
-    <Compile Include="Renderers\ParticleComputeRenderer.cs" />
-    <Compile Include="Renderers\ParticleRenderer.cs" />
+    <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleComputeRenderer.cs" />
+    <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleRenderer.cs" />
     <Compile Include="Models\ParticleModel.cs" />
     <Compile Include="06ImageProcessing\Form06ImageProcessing.cs">
       <SubType>Form</SubType>
@@ -264,7 +264,7 @@
     <Compile Include="00GLCanvas\Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Renderers\ParticleSimulatorRenderer.cs" />
+    <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleSimulatorRenderer.cs" />
     <Compile Include="Renderers\SimpleComputeRenderer.cs" />
     <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />

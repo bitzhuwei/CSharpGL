@@ -4,7 +4,6 @@ namespace CSharpGL.Demos
 {
     internal class ParticleRenderer : Renderer
     {
-        public VertexArrayObject VertexArrayObject { get; private set; }
         public VertexAttributeBufferPtr PositionBufferPtr { get; private set; }
         public VertexAttributeBufferPtr VelocityBufferPtr { get; private set; }
 
@@ -39,7 +38,6 @@ namespace CSharpGL.Demos
             }
 
             this.PositionBufferPtr = this.Model.GetProperty(ParticleModel.strPosition, null);
-            this.VertexArrayObject = this.vertexArrayObject;
         }
 
         protected override void DisposeUnmanagedResources()
