@@ -16,6 +16,7 @@ namespace CSharpGL.Demos
 
         const int TEXTURE_SIZE = 1024;
         private Framebuffer framebuffer;
+        private ViewportSwitch viewportSwitch;
 
         protected override void DoInitialize()
         {
@@ -55,6 +56,8 @@ namespace CSharpGL.Demos
                 this.switchList.Add(new ClearColorSwitch(Color.Black, 0));
                 //new CullFaceSwitch( CullFaceMode.Back)
             }
+
+            this.viewportSwitch = new ViewportSwitch(0, 0, TEXTURE_SIZE, TEXTURE_SIZE);
         }
     }
 }

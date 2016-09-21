@@ -153,10 +153,8 @@ GLUSboolean update(GLUSfloat time)
 	//glusMatrix4x4ExtractMatrix3x3f(g_inverseViewNormalMatrix, inverseViewMatrix);
 
 	// Render the background
-	renderBackground(g_viewMatrix);
 
 	// Render the water texture
-	renderWaterTexture(passedTime);
 
 	// Render the water scene
 	renderWater(passedTime);

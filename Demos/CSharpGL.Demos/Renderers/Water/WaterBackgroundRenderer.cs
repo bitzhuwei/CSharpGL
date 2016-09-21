@@ -5,6 +5,7 @@ namespace CSharpGL.Demos
 {
     internal partial class WaterBackgroundRenderer : Renderer
     {
+        public float passedTime;
         public static WaterBackgroundRenderer Create(int waterPlaneLength)
         {
             var model = new Sphere(waterPlaneLength / 2.0f + 0.5f);

@@ -6,6 +6,7 @@ namespace CSharpGL.Demos
     internal partial class WaterTextureRenderer : Renderer
     {
         private int waterPlaneLength;
+        public float passedTime;
         public static WaterTextureRenderer Create(int waterPlaneLength)
         {
             var model = new PlaneModel(waterPlaneLength / 2);
@@ -15,7 +16,7 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             map.Add("a_texCoord", PlaneModel.strTexCoord);
-            var renderer = new WaterTextureRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            var renderer = new WaterTextureRenderer(model, shaderCodes, map);
             renderer.Lengths = new vec3(waterPlaneLength, 0, waterPlaneLength);
             renderer.waterPlaneLength = waterPlaneLength;
 
