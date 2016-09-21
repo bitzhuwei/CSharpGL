@@ -38,15 +38,9 @@ namespace CSharpGL.Demos
                 this.ground = ground;
             }
             {
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
-                map.Add("in_Position", "position");
-                map.Add("in_Color", "color");
-                var teapotRenderer = new Renderer(new Teapot(), shaderCodes, map);
-                teapotRenderer.Initialize();
-                this.teapotRenderer = teapotRenderer;
+                SimpleRenderer renderer = SimpleRenderer.Create(new Teapot());
+                renderer.Initialize();
+                this.teapotRenderer = renderer;
             }
             {
                 var UIRoot = new UIRoot();
