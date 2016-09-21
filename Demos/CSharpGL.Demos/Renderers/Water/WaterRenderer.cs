@@ -24,14 +24,14 @@ namespace CSharpGL.Demos
 
         private WaterTextureRenderer waterTextureRenderer;
 
-        internal WaterTextureRenderer WaterTextureRenderer
+        public WaterTextureRenderer WaterTextureRenderer
         {
             get { return waterTextureRenderer; }
         }
 
         private WaterBackgroundRenderer backgroundRenderer;
 
-        internal WaterBackgroundRenderer BackgroundRenderer
+        public WaterBackgroundRenderer BackgroundRenderer
         {
             get { return backgroundRenderer; }
         }

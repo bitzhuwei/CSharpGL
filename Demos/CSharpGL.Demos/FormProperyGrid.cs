@@ -19,7 +19,7 @@ namespace CSharpGL.Demos
             if (!this.IsDisposed)
             {
                 this.propertyGrid1.SelectedObject = obj;
-                this.Text = string.Format("{0}", obj);
+                this.Text = string.Format("{0} - {1}", obj, obj != null ? obj.GetType().FullName : "");
             }
         }
     }
