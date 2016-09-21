@@ -134,15 +134,15 @@ namespace CSharpGL.Demos
             // Bind linked-list buffer for write
             OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
-            mat4 model = mat4.identity();
-            mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMatrix();
+            mat4 view = arg.Camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
             this.buildListsRenderer.SetUniform("model_matrix", model);
             this.buildListsRenderer.SetUniform("view_matrix", view);
             this.buildListsRenderer.SetUniform("projection_matrix", projection);
-            this.resolve_lists.SetUniform("model_matrix", model);
-            this.resolve_lists.SetUniform("view_matrix", view);
             this.resolve_lists.SetUniform("projection_matrix", projection);
+            this.resolve_lists.SetUniform("view_matrix", view);
+            this.resolve_lists.SetUniform("model_matrix", model);
 
             // first pass
             this.buildListsRenderer.Render(arg);

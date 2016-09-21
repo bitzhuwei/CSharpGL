@@ -25,12 +25,12 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            mat4 model = mat4.identity();
-            mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMatrix();
-            this.SetUniform("modelMatrix", model);
-            this.SetUniform("viewMatrix", view);
+            mat4 view = arg.Camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
             this.SetUniform("projectionMatrix", projection);
+            this.SetUniform("viewMatrix", view);
+            this.SetUniform("modelMatrix", model);
 
             base.DoRender(arg);
         }
