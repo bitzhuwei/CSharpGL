@@ -323,10 +323,10 @@
     <None Include="shaders\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\build_lists.frag">
+    <None Include="shaders\OIT\build_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\build_lists.vert">
+    <None Include="shaders\OIT\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\computeReset.comp">
@@ -356,10 +356,10 @@
     <None Include="shaders\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\resolve_lists.frag">
+    <None Include="shaders\OIT\resolve_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\resolve_lists.vert">
+    <None Include="shaders\OIT\resolve_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Simple.frag">
