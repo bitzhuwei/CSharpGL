@@ -23,7 +23,7 @@ namespace CSharpGL
 
         private CSharpGL.IndexBufferPtr indexBufferPtr;
 
-        public CSharpGL.VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public CSharpGL.VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if ((bufferName == position))
             {
@@ -49,7 +49,7 @@ namespace CSharpGL
             throw new System.ArgumentException("bufferName");
         }
 
-        public CSharpGL.IndexBufferPtr GetIndex()
+        public CSharpGL.IndexBufferPtr GetIndexBufferPtr()
         {
             if ((indexBufferPtr == null))
             {

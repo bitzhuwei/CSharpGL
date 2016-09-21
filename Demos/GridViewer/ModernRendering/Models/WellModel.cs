@@ -49,7 +49,7 @@ namespace GridViewer
             this.pipeline = pipeline;
         }
 
-        public unsafe VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public unsafe VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -118,7 +118,7 @@ namespace GridViewer
             }
         }
 
-        public unsafe IndexBufferPtr GetIndex()
+        public unsafe IndexBufferPtr GetIndexBufferPtr()
         {
             if (this.indexBufferPtr != null) { return this.indexBufferPtr; }
 

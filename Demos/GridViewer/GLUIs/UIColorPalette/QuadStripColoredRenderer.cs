@@ -58,8 +58,8 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBufferPtr = this.Model.GetProperty(QuadStripColoredModel.position, null);
-            this.colorBufferPtr = this.Model.GetProperty(QuadStripColoredModel.color, null);
+            this.positionBufferPtr = this.Model.GetVertexAttributeBufferPtr(QuadStripColoredModel.position, null);
+            this.colorBufferPtr = this.Model.GetVertexAttributeBufferPtr(QuadStripColoredModel.color, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)

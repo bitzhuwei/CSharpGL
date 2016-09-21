@@ -13,7 +13,7 @@
 		    0.5f,  0.5f, 0.0f,
         };
 
-        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -41,7 +41,7 @@
             }
         }
 
-        public IndexBufferPtr GetIndex()
+        public IndexBufferPtr GetIndexBufferPtr()
         {
             if (indexBufferPtr == null)
             {

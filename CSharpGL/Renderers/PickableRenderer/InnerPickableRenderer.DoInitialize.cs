@@ -17,7 +17,7 @@ namespace CSharpGL
                 var list = new List<VertexAttributeBufferPtr>();
                 foreach (var item in propertyNameMap)
                 {
-                    VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
+                    VertexAttributeBufferPtr bufferPtr = bufferable.GetVertexAttributeBufferPtr(
                      item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
 
@@ -41,7 +41,7 @@ namespace CSharpGL
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
             // init index buffer.
-            IndexBufferPtr indexBufferPtr = bufferable.GetIndex();
+            IndexBufferPtr indexBufferPtr = bufferable.GetIndexBufferPtr();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
             var ptr = indexBufferPtr as OneIndexBufferPtr;

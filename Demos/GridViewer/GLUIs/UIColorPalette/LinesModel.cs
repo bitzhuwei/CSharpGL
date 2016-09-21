@@ -41,7 +41,7 @@ namespace GridViewer
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
@@ -76,7 +76,7 @@ namespace GridViewer
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBufferPtr GetIndex()
+        public IndexBufferPtr GetIndexBufferPtr()
         {
             if (indexBufferPtr == null)
             {
@@ -91,6 +91,7 @@ namespace GridViewer
         }
 
         private IndexBufferPtr indexBufferPtr = null;
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>

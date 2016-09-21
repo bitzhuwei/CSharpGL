@@ -26,7 +26,7 @@ namespace RendererGenerator
             modelType.Comments.Add(new CodeCommentStatement(string.Format("Model of {0}", dataStructure.TargetName), true));
             modelType.Comments.Add(new CodeCommentStatement("</summary>", true));
             BuildFields(modelType, dataStructure);
-            BuildGetProperty(modelType, dataStructure);
+            BuildGetVertexAttributeBufferPtr(modelType, dataStructure);
             BuildGetIndex(modelType, dataStructure);
 
             var parserNamespace = new CodeNamespace("CSharpGL");
@@ -107,7 +107,7 @@ namespace RendererGenerator
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             method.ReturnType = new CodeTypeReference(typeof(IndexBufferPtr));
-            method.Name = "GetIndex";
+            method.Name = "GetIndexBufferPtr";
             return method;
         }
 
@@ -116,11 +116,11 @@ namespace RendererGenerator
         /// </summary>
         /// <param name="modelType"></param>
         /// <param name="dataStructure"></param>
-        private void BuildGetProperty(CodeTypeDeclaration modelType, DataStructure dataStructure)
+        private void BuildGetVertexAttributeBufferPtr(CodeTypeDeclaration modelType, DataStructure dataStructure)
         {
             //public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
-            var method = GetPropertyDeclaration();
-            GetPropertyBody(method, dataStructure);
+            var method = GetVertexAttributeBufferPtrDeclaration();
+            GetVertexAttributeBufferPtrBody(method, dataStructure);
 
             modelType.Members.Add(method);
         }
@@ -129,7 +129,7 @@ namespace RendererGenerator
         /// body of public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         /// </summary>
         /// <param name="method"></param>
-        private void GetPropertyBody(CodeMemberMethod method, DataStructure dataStructure)
+        private void GetVertexAttributeBufferPtrBody(CodeMemberMethod method, DataStructure dataStructure)
         {
             foreach (var item in dataStructure.PropertyList)
             {
@@ -187,12 +187,12 @@ namespace RendererGenerator
         /// public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         /// </summary>
         /// <returns></returns>
-        private CodeMemberMethod GetPropertyDeclaration()
+        private CodeMemberMethod GetVertexAttributeBufferPtrDeclaration()
         {
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             method.ReturnType = new CodeTypeReference(typeof(VertexAttributeBufferPtr));
-            method.Name = "GetProperty";
+            method.Name = "GetVertexAttributeBufferPtr";
             var parameter0 = new CodeParameterDeclarationExpression(typeof(string), bufferName);
             method.Parameters.Add(parameter0);
             var parameter1 = new CodeParameterDeclarationExpression(typeof(string), varNameInShader);

@@ -119,7 +119,7 @@ namespace CSharpGL.Demos
             private VertexAttributeBufferPtr uvBufferPtr;
             private IndexBufferPtr indexBufferPtr;
 
-            public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+            public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
             {
                 if (bufferName == strposition)
                 {
@@ -165,7 +165,7 @@ namespace CSharpGL.Demos
                 { throw new NotImplementedException(); }
             }
 
-            public IndexBufferPtr GetIndex()
+            public IndexBufferPtr GetIndexBufferPtr()
             {
                 if (indexBufferPtr == null)
                 {

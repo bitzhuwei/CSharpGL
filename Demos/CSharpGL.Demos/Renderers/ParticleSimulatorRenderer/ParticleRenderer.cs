@@ -37,7 +37,7 @@ namespace CSharpGL.Demos
                 this.VelocityBufferPtr = ptr;
             }
 
-            this.PositionBufferPtr = this.Model.GetProperty(ParticleModel.strPosition, null);
+            this.PositionBufferPtr = this.Model.GetVertexAttributeBufferPtr(ParticleModel.strPosition, null);
         }
 
         protected override void DisposeUnmanagedResources()

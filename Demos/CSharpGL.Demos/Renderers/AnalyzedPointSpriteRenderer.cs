@@ -58,7 +58,7 @@ namespace CSharpGL.Demos
             private Random random = new Random();
             private const float a = 5, b = 4, c = 3;
 
-            public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+            public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
@@ -94,7 +94,7 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBufferPtr GetIndex()
+            public IndexBufferPtr GetIndexBufferPtr()
             {
                 if (indexBufferPtr == null)
                 {

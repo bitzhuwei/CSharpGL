@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
@@ -91,7 +91,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBufferPtr GetIndex()
+        public IndexBufferPtr GetIndexBufferPtr()
         {
             if (indexBufferPtr == null)
             {

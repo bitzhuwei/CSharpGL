@@ -26,7 +26,7 @@ namespace CSharpGL
                 var list = new List<VertexAttributeBufferPtr>();
                 foreach (var item in propertyNameMap)
                 {
-                    VertexAttributeBufferPtr bufferPtr = bufferable.GetProperty(
+                    VertexAttributeBufferPtr bufferPtr = bufferable.GetVertexAttributeBufferPtr(
                                item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
                     if (item.NameInIBufferable == positionNameInIBufferable)

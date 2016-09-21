@@ -51,12 +51,16 @@ namespace GridViewer
             this.defaultBlockPropertyIndex = defaultBlockPropertyIndex;
         }
 
-        public abstract VertexAttributeBufferPtr GetProperty(string bufferName, string varNameInShader);
-
-        public abstract IndexBufferPtr GetIndex();
-
         public abstract void UpdateColor(GridBlockProperty property);
 
+        #region IBuffrable
+
+        public abstract VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader);
+
+        public abstract IndexBufferPtr GetIndexBufferPtr();
+
         public abstract bool UsesZeroIndexBuffer();
+
+        #endregion IBuffrable
     }
 }
