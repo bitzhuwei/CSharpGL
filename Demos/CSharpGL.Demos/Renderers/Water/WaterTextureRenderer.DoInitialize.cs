@@ -52,10 +52,6 @@ namespace CSharpGL.Demos
                 this.SetUniform("u_projectionMatrix", projection);
                 this.SetUniform("u_waterPlaneLength", (float)this.waterPlaneLength);
             }
-            {
-                this.switchList.Add(new ClearColorSwitch(Color.Black, 0));
-                //new CullFaceSwitch( CullFaceMode.Back)
-            }
 
             this.viewportSwitch = new ViewportSwitch(0, 0, TEXTURE_SIZE, TEXTURE_SIZE);
         }

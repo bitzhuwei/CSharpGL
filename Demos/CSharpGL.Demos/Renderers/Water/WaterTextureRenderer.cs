@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 
 namespace CSharpGL.Demos
@@ -16,7 +17,7 @@ namespace CSharpGL.Demos
             var map = new PropertyNameMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             map.Add("a_texCoord", PlaneModel.strTexCoord);
-            var renderer = new WaterTextureRenderer(model, shaderCodes, map);
+            var renderer = new WaterTextureRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CCW), new ClearColorSwitch(Color.Black, 0), new ViewportSwitch(0, 0, TEXTURE_SIZE, TEXTURE_SIZE));
             renderer.Lengths = new vec3(waterPlaneLength, 0, waterPlaneLength);
             renderer.waterPlaneLength = waterPlaneLength;
 

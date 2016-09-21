@@ -7,18 +7,17 @@
         {
             UpdateWaves();
 
-            this.viewportSwitch.On();
+            //this.viewportSwitch.On();
             this.framebuffer.Bind();
             OpenGL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             this.SetUniform("u_passedTime", this.passedTime);
             this.SetUniform("u_waveParameters", ToFloat(waveParameters));
             this.SetUniform("u_waveDirections", ToFloat(waveDirections));
-            OpenGL.FrontFace(OpenGL.GL_CCW);
 
             base.DoRender(arg);
 
             this.framebuffer.Unbind();
-            this.viewportSwitch.Off();
+            //this.viewportSwitch.Off();
         }
 
         const int NUMBERWAVES = 4;

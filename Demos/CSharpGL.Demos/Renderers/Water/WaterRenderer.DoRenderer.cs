@@ -23,8 +23,6 @@ namespace CSharpGL.Demos
             this.waterTextureRenderer.passedTime = passedTime;
             this.waterTextureRenderer.Render(arg);
 
-            OpenGL.FrontFace(OpenGL.GL_CCW);
-
             base.DoRender(arg);
 
             passedTime += deltaTime;
