@@ -120,8 +120,8 @@ namespace CSharpGL.Demos
         private Renderer InitRaycastRenderer()
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\raycasting.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\raycasting.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", RaycastModel.strposition);
             map.Add("boundingBox", RaycastModel.strcolor);
@@ -135,8 +135,8 @@ namespace CSharpGL.Demos
         private Renderer InitBackfaceRenderer()
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\backface.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\backface.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\backface.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\backface.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", RaycastModel.strposition);
             map.Add("boundingBox", RaycastModel.strcolor);
