@@ -133,13 +133,6 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\ColorMaskSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\DepthMaskSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\LineStippleSwitch.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Dispose.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.DoInitialize.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.DoRender.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Property.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.UniformArrays.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\ComputeRenderer.Uniforms.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Limits.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Parameter.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\RenderbufferType.cs" />
@@ -179,7 +172,6 @@
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Rendering\ComputeRenderer\readme.md" />
     <Content Include="0Foundations\readme.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
