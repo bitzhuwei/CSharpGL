@@ -183,9 +183,9 @@ GLUSvoid renderWater(GLUSfloat passedTime)
 
 GLUSboolean update(GLUSfloat time)
 {
-	static GLfloat passedTime = 0.0f;
+	//static GLfloat passedTime = 0.0f;
 
-	static GLUSfloat angle = 0.0f;
+	//static GLUSfloat angle = 0.0f;
 
 	GLfloat inverseViewMatrix[16];
 
@@ -203,10 +203,6 @@ GLUSboolean update(GLUSfloat time)
 
 	// Render the water scene
 	renderWater(passedTime);
-
-	passedTime += time;
-
-	angle += 2.0f * GLUS_PI / 120.0f * time;
 
 	return GLUS_TRUE;
 }

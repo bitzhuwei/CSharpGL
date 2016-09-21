@@ -1,4 +1,5 @@
-﻿namespace CSharpGL.Demos
+﻿using System;
+namespace CSharpGL.Demos
 {
     internal partial class WaterRenderer
     {
@@ -8,14 +9,19 @@
 
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
+            mat4 inverseView = glm.inverse(view);
             //mat4 model = this.GetModelMatrix();
             this.SetUniform("u_projectionMatrix", projection);
             this.SetUniform("u_viewMatrix", view);
             this.SetUniform("u_inverseViewNormalMatrix", new mat3(new vec3(view[0]), new vec3(view[1]), new vec3(view[2])));
 
             base.DoRender(arg);
+
+            passedTime += deltaTime;
+            angle += 2.0f * (float)Math.PI / 120.0f * deltaTime;
         }
         static float passedTime = 0.0f;
+        static float deltaTime = 0.1f;//todo: experimental value.
 
         static float angle = 0.0f;
 
