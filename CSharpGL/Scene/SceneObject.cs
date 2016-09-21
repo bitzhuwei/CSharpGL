@@ -40,9 +40,9 @@ namespace CSharpGL
                 RendererBase renderer = this.renderer;
                 if (renderer != value)
                 {
-                    if (renderer != null) { renderer.Tag = null; }
+                    if (renderer != null) { renderer.BindingSceneObject = null; }
 
-                    if (value != null) { value.Tag = this; }
+                    if (value != null) { value.BindingSceneObject = this; }
 
                     this.renderer = value;
                 }

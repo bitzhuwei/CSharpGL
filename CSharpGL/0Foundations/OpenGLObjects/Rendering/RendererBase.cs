@@ -24,7 +24,7 @@ namespace CSharpGL
         [Category(strRenderer)]
         [Description("binding object.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public object Tag { get; set; }
+        public object BindingSceneObject { get; set; }
 
         /// <summary>
         /// Render this or not.
