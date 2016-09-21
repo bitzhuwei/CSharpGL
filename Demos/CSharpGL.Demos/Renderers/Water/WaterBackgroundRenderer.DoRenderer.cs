@@ -7,6 +7,7 @@
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             //mat4 model = this.GetModelMatrix();
+            this.SetUniform("u_projectionMatrix", projection);
             this.SetUniform("u_modelViewMatrix", view);
 
             OpenGL.FrontFace(OpenGL.GL_CW);

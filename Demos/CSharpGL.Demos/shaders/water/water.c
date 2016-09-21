@@ -42,36 +42,7 @@ static GLuint g_cubemap;
 
 GLUSboolean init(GLUSvoid)
 {
-	GLUStgaimage image;
-
 	GLuint waterTexture;
-
-	g_projectionMatrixLocation = glGetUniformLocation(g_program.program, "u_projectionMatrix");
-	g_viewMatrixLocation = glGetUniformLocation(g_program.program, "u_viewMatrix");
-	g_inverseViewNormalMatrixLocation = glGetUniformLocation(g_program.program, "u_inverseViewNormalMatrix");
-
-	g_waterPlaneLengthLocation = glGetUniformLocation(g_program.program, "u_waterPlaneLength");
-
-	g_cubemapLocation = glGetUniformLocation(g_program.program, "u_cubemap");
-
-	g_waterTextureLocation = glGetUniformLocation(g_program.program, "u_waterTexture");
-
-	g_passedTimeLocation = glGetUniformLocation(g_program.program, "u_passedTime");
-
-	g_waveParametersLocation = glGetUniformLocation(g_program.program, "u_waveParameters");
-	g_waveDirectionsLocation = glGetUniformLocation(g_program.program, "u_waveDirections");
-
-	g_vertexLocation = glGetAttribLocation(g_program.program, "a_vertex");
-
-	//
-
-	waterTexture = initWaterTexture((GLUSfloat)WATER_PLANE_LENGTH);
-
-	//
-
-	initBackground();
-
-	//
 
 	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
