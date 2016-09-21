@@ -44,6 +44,11 @@
         ///
         /// </summary>
         TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ShaderStorageBuffer = OpenGL.GL_SHADER_STORAGE_BUFFER,
     }
 
     ///// <summary>

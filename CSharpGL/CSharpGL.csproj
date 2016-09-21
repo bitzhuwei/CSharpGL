@@ -105,6 +105,8 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\FrontFaceSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierType.cs" />

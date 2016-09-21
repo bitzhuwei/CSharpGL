@@ -1,4 +1,5 @@
-﻿namespace CSharpGL.Demos
+﻿using System.IO;
+namespace CSharpGL.Demos
 {
     /// <summary>
     /// Raycast Volume Rendering Demo.
@@ -8,6 +9,9 @@
 
         public static RayTracingComputeRenderer Create()
         {
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\raytrace.comp.glsl"), ShaderType.ComputeShader);
+
             throw new System.NotImplementedException();
         }
 

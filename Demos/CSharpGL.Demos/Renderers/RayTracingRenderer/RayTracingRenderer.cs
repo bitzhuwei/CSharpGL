@@ -1,4 +1,5 @@
-﻿namespace CSharpGL.Demos
+﻿using System.IO;
+namespace CSharpGL.Demos
 {
     /// <summary>
     /// Raycast Volume Rendering Demo.
@@ -55,9 +56,16 @@
         {
 		    new PointLight(new float[]{0.0f, 5.0f, -5.0f, 1.0f}, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f }),
         };
+        private RayTracingComputeRenderer computeRenderer;
 
         public static RayTracingRenderer Create()
         {
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\fullscreen.vert.glsl"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\texture.frag.glsl"), ShaderType.FragmentShader);
+            var map = new AttributeNameMap();
+            IBufferable model = null;
+            var renderer = new RayTracingRenderer(model, shaderCodes, map);
             throw new System.NotImplementedException();
         }
 
@@ -114,6 +122,7 @@
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, switches)
         {
+            this.computeRenderer = RayTracingComputeRenderer.Create();
         }
     }
 }
