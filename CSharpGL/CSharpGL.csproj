@@ -106,6 +106,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\FrontFaceSwitch.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierType.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.MovePosition.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.cs" />
