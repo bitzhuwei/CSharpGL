@@ -10,7 +10,7 @@
             this.SetUniform("u_projectionMatrix", projection);
             this.SetUniform("u_modelViewMatrix", view);
 
-            OpenGL.FrontFace(OpenGL.GL_CW);
+            //OpenGL.FrontFace(OpenGL.GL_CW);
 
             base.DoRender(arg);
         }

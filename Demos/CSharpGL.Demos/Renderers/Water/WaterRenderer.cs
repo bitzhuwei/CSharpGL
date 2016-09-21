@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\Water.frag.glsl"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("a_vertex", WaterPlaneModel.strPosition);
-            var renderer = new WaterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            var renderer = new WaterRenderer(model, shaderCodes, map);
             renderer.waterTextureRenderer = WaterTextureRenderer.Create(waterPlaneLength);
             renderer.backgroundRenderer = WaterBackgroundRenderer.Create(waterPlaneLength);
             renderer.Lengths = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
