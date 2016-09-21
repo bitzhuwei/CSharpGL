@@ -94,7 +94,7 @@
             {
                 using (var buffer = new ZeroIndexBuffer(this.model.GetDrawModel(), 0, this.model.positions.Length))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

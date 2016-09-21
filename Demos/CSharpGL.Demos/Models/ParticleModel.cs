@@ -97,7 +97,7 @@ namespace CSharpGL.Demos
             {
                 using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, particleCount))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

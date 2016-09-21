@@ -140,7 +140,7 @@ namespace GridViewer
                     }
                 }
 
-                this.indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                this.indexBufferPtr = buffer.GetBufferPtr();
             }
 
             return this.indexBufferPtr;

@@ -121,7 +121,7 @@ namespace CSharpGL
                             array[i] = indexes[i];
                         }
                     }
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

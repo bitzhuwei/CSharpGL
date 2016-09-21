@@ -150,7 +150,7 @@ namespace GridViewer
                 using (var buffer = new ZeroIndexBuffer(
                     DrawMode.QuadStrip, 0, (this.quadCount + 1) * 2))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

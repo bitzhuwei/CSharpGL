@@ -47,7 +47,7 @@
             {
                 using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleStrip, 0, 4))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

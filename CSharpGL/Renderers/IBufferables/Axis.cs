@@ -112,7 +112,7 @@ namespace CSharpGL
                             array[i] = this.model.indexes[i];
                         }
                     }
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

@@ -83,7 +83,7 @@ namespace GridViewer
                 using (var buffer = new ZeroIndexBuffer(
                     DrawMode.Lines, 0, this.markerCount * 2))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

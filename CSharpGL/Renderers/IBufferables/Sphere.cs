@@ -166,7 +166,7 @@
                             }
                         }
 
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                        indexBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 else if (model.positions.Length < ushort.MaxValue)
@@ -186,7 +186,7 @@
                             }
                         }
 
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                        indexBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 else
@@ -203,7 +203,7 @@
                             }
                         }
 
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                        indexBufferPtr = buffer.GetBufferPtr();
                     }
                 }
             }

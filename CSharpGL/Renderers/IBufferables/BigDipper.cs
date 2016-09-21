@@ -98,7 +98,7 @@ namespace CSharpGL
                 using (var buffer = new ZeroIndexBuffer(
                     DrawMode.LineStrip, 0, BigDipperModel.positions.Length))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
                 //using (var buffer = new OneIndexBuffer<uint>(
                 //    DrawMode.Lines, BufferUsage.StaticDraw))
@@ -115,7 +115,7 @@ namespace CSharpGL
                 //        array[4] = uint.MaxValue;
                 //        array[10] = uint.MaxValue;
                 //    }
-                //    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                //    indexBufferPtr = buffer.GetBufferPtr();
                 //}
             }
 

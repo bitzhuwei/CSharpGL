@@ -174,7 +174,7 @@ namespace CSharpGL
                 using (var buffer = new ZeroIndexBuffer(
                     DrawMode.Lines, 0, positions.Length))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

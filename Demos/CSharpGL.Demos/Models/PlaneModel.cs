@@ -143,7 +143,7 @@ namespace CSharpGL.Demos
                             array[i] = xy_indices[i];
                         }
                     }
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr();
                 }
             }
 

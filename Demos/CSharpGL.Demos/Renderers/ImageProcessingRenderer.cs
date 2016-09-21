@@ -171,7 +171,7 @@ namespace CSharpGL.Demos
                 {
                     using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleFan, 0, 4))
                     {
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                        indexBufferPtr = buffer.GetBufferPtr();
                     }
                 }
                 return indexBufferPtr;

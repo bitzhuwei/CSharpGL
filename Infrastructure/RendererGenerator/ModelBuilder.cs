@@ -76,7 +76,7 @@ namespace RendererGenerator
                 var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new ZeroIndexBuffer({0}.{1}, 0, ))", dataStructure.DrawMode.GetType().Name, dataStructure.DrawMode));
                 ifStatement.TrueStatements.Add(usingBegin);
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
-                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr();")));
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
             }
             else
@@ -95,7 +95,7 @@ namespace RendererGenerator
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        // TODO: set array's values: array[0] = ...;")));
                 // }
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    }// end of unsafe"));
-                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr();")));
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
             }
             method.Statements.Add(new CodeMethodReturnStatement(
