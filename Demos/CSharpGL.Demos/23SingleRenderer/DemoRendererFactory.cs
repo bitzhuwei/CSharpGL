@@ -85,6 +85,10 @@ namespace CSharpGL.Demos
                 var model = new TexturedRectangleModel();
                 renderer = UpdatingTextureRenderer.Create(model);
             }
+            else if (rendererType == typeof(WaterRenderer))
+            {
+                renderer = WaterRenderer.Create(waterPlaneLength: 4);
+            }
 
             return renderer;
         }

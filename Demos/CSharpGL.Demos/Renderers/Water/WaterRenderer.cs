@@ -3,6 +3,7 @@ using System.IO;
 
 namespace CSharpGL.Demos
 {
+    [DemoRenderer]
     internal partial class WaterRenderer : Renderer
     {
         public static WaterRenderer Create(int waterPlaneLength)
