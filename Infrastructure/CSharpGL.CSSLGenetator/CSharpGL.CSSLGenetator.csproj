@@ -114,7 +114,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="PropertyNameMap.cs" />
     <Compile Include="ShaderField.cs" />
     <Compile Include="ShaderFieldList.cs" />
     <Compile Include="FragmentShaderFieldList.cs" />
@@ -142,6 +141,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
+      <Project>{115ab8f1-a732-4fad-8f16-f8c9e4da02a1}</Project>
+      <Name>CSharpGL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpGL.CSSL\CSharpGL.CSSL.csproj">
       <Project>{3b520e1d-aab3-440a-b112-4b310e7c94df}</Project>
       <Name>CSharpGL.CSSL</Name>
