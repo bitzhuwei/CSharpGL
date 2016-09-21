@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
         {
             {
                 var shaderCode = new ShaderCode(File.ReadAllText(
-                    @"shaders\ImageProcessing.comp"), ShaderType.ComputeShader);
+                    @"shaders\ImageProcessingRenderer\ImageProcessing.comp"), ShaderType.ComputeShader);
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {
@@ -65,8 +65,8 @@ namespace CSharpGL.Demos
             {
                 var bufferable = new ImageProcessingModel();
                 ShaderCode[] simpleShader = new ShaderCode[2];
-                simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessing.vert"), ShaderType.VertexShader);
-                simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessing.frag"), ShaderType.FragmentShader);
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.frag"), ShaderType.FragmentShader);
                 var propertyNameMap = new PropertyNameMap();
                 propertyNameMap.Add("vert", "position");
                 propertyNameMap.Add("uv", "uv");

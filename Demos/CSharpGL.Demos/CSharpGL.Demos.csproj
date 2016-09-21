@@ -314,13 +314,13 @@
     <None Include="shaders\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\ImageProcessing.comp">
+    <None Include="shaders\ImageProcessingRenderer\ImageProcessing.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\ImageProcessing.frag">
+    <None Include="shaders\ImageProcessingRenderer\ImageProcessing.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\ImageProcessing.vert">
+    <None Include="shaders\ImageProcessingRenderer\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\OIT\build_lists.frag">
