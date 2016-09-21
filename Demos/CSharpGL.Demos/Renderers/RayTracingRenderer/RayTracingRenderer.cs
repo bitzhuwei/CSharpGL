@@ -71,9 +71,9 @@ namespace CSharpGL.Demos
 
         internal struct Material
         {
-            public float[] emissiveColor;//= new float[4];
-            public float[] diffuseColor;//= new float[4];
-            public float[] specularColor;// = new float[4];
+            public vec4 emissiveColor;//= new float[4];
+            public vec4 diffuseColor;//= new float[4];
+            public vec4 specularColor;// = new float[4];
             public float shininess;
             public float alpha;
             public float reflectivity;
@@ -82,8 +82,10 @@ namespace CSharpGL.Demos
             public Material(float[] emissiveColor, float[] diffuseColor, float[] specularColor,
                 float shininess, float alpha, float reflectivity, float padding)
             {
-                this.emissiveColor = emissiveColor; this.diffuseColor = diffuseColor;
-                this.specularColor = specularColor; this.shininess = shininess;
+                this.emissiveColor = new vec4(emissiveColor[0], emissiveColor[1], emissiveColor[2], emissiveColor[3]);
+                this.diffuseColor = new vec4(diffuseColor[0], diffuseColor[1], diffuseColor[2], diffuseColor[3]);
+                this.specularColor = new vec4(specularColor[0], specularColor[1], specularColor[2], specularColor[3]);
+                this.shininess = shininess;
                 this.alpha = alpha; this.reflectivity = reflectivity;
                 this.padding = padding;
             }
@@ -91,30 +93,30 @@ namespace CSharpGL.Demos
 
         internal struct Sphere
         {
-            public float[] center;//= new float[4];
+            public vec4 center;//= new float[4];
             public float radius;
-            public float[] padding;//= new float[3];
+            public vec3 padding;//= new float[3];
             public Material material;
 
             public Sphere(float[] center, float radius, float[] padding, Material material)
             {
-                this.center = center;
+                this.center = new vec4(center[0], center[1], center[2], center[3]);
                 this.radius = radius;
-                this.padding = padding;
+                this.padding = new vec3(padding[0], padding[1], padding[2]);
                 this.material = material;
             }
         }
 
         internal struct PointLight
         {
-            public float[] position;//[4];
+            public vec4 position;//[4];
 
-            public float[] color;//[4];
+            public vec4 color;//[4];
 
             public PointLight(float[] position, float[] color)
             {
-                this.position = position;
-                this.color = color;
+                this.position = new vec4(position[0], position[1], position[2], position[3]);
+                this.color = new vec4(color[0], color[1], color[2], color[3]);
             }
         }
 

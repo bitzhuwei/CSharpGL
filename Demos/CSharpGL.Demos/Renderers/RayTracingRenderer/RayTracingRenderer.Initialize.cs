@@ -7,6 +7,11 @@ namespace CSharpGL.Demos
     {
         private Texture texture;
         private ShaderProgram computeProgram;
+        private ShaderStorageBufferPtr g_directionSSBO;
+        private ShaderStorageBufferPtr g_positionSSBO;
+        private ShaderStorageBufferPtr g_stackSSBO;
+        private ShaderStorageBufferPtr g_sphereSSBO;
+        private ShaderStorageBufferPtr g_pointLightSSBO;
 
         protected override void DoInitialize()
         {
@@ -27,7 +32,71 @@ namespace CSharpGL.Demos
                 this.computeProgram = shaderCodes.CreateProgram();
                 g_directionBuffer.glusRaytracePerspectivef(
                     DIRECTION_BUFFER_PADDING, 30.0f, WIDTH, HEIGHT);
-
+                using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))
+                {
+                    buffer.Create(g_directionBuffer.Length);
+                    unsafe
+                    {
+                        var array = (float*)buffer.Header.ToPointer();
+                        for (int i = 0; i < g_directionBuffer.Length; i++)
+                        {
+                            array[i] = g_directionBuffer[i];
+                        }
+                    }
+                    this.g_directionSSBO = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                }
+                using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))
+                {
+                    buffer.Create(g_positionBuffer.Length);
+                    unsafe
+                    {
+                        var array = (float*)buffer.Header.ToPointer();
+                        for (int i = 0; i < g_positionBuffer.Length; i++)
+                        {
+                            array[i] = g_positionBuffer[i];
+                        }
+                    }
+                    this.g_positionSSBO = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                }
+                using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))
+                {
+                    buffer.Create(g_stackBuffer.Length);
+                    unsafe
+                    {
+                        var array = (float*)buffer.Header.ToPointer();
+                        for (int i = 0; i < g_stackBuffer.Length; i++)
+                        {
+                            array[i] = g_stackBuffer[i];
+                        }
+                    }
+                    this.g_stackSSBO = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                }
+                using (var buffer = new ShaderStorageBuffer<Sphere>(BufferUsage.StaticDraw))
+                {
+                    buffer.Create(g_sphereBuffer.Length);
+                    unsafe
+                    {
+                        var array = (Sphere*)buffer.Header.ToPointer();
+                        for (int i = 0; i < g_sphereBuffer.Length; i++)
+                        {
+                            array[i] = g_sphereBuffer[i];
+                        }
+                    }
+                    this.g_sphereSSBO = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                }
+                using (var buffer = new ShaderStorageBuffer<PointLight>(BufferUsage.StaticDraw))
+                {
+                    buffer.Create(g_lightBuffer.Length);
+                    unsafe
+                    {
+                        var array = (PointLight*)buffer.Header.ToPointer();
+                        for (int i = 0; i < g_lightBuffer.Length; i++)
+                        {
+                            array[i] = g_lightBuffer[i];
+                        }
+                    }
+                    this.g_pointLightSSBO = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                }
             }
         }
 
