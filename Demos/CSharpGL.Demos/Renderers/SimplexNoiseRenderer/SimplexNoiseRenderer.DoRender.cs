@@ -2,7 +2,6 @@
 
 namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     partial class SimplexNoiseRenderer
     {
         private float timeElapsingSpeed = 1.0f;

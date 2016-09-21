@@ -3,7 +3,6 @@ using System.Drawing;
 
 namespace CSharpGL.Demos
 {
-    [DemoRenderer]
     partial class SimplexNoiseRenderer
     {
         protected override void DoInitialize()
