@@ -22,7 +22,8 @@ namespace CSharpGL.Demos
             this.backgroundRenderer.SetUniform("u_cubemap", this.cubeMap.ToSamplerValue());
             this.SetUniform("u_waterTexture", this.waterTextureRenderer.MirrorTexture.ToSamplerValue());
 
-            OpenGL.Enable(OpenGL.GL_CULL_FACE);
+            // display back faces only.
+            this.cullfaceSwitch = new CullFaceSwitch(CullFaceMode.Back);
         }
 
         private Texture GetCubeMapTexture()
@@ -34,19 +35,19 @@ namespace CSharpGL.Demos
                new Bitmap(@"Resources\data\water_neg_y.png"),
                new Bitmap(@"Resources\data\water_pos_z.png"),
                new Bitmap(@"Resources\data\water_neg_z.png"));
-            var cubeMapFiller = new CubemapImageFiller(cubeMapImages, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE);
-            var cubeMap = new Texture(TextureTarget.TextureCubeMap, cubeMapFiller,
+            var cubemapFiller = new CubemapImageFiller(cubeMapImages, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE);
+            var cubemapTexture = new Texture(TextureTarget.TextureCubeMap, cubemapFiller,
                 new SamplerParameters(
                     TextureWrapping.ClampToEdge,
                     TextureWrapping.ClampToEdge,
                     TextureWrapping.ClampToEdge,
                     TextureFilter.Linear,
                     TextureFilter.Linear));
-            cubeMap.ActiveTexture = OpenGL.GL_TEXTURE0;
-            cubeMap.Initialize();
+            cubemapTexture.ActiveTexture = OpenGL.GL_TEXTURE0;
+            cubemapTexture.Initialize();
 
             cubeMapImages.Dispose();
-            return cubeMap;
+            return cubemapTexture;
         }
     }
 }

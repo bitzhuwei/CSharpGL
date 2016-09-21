@@ -37,6 +37,7 @@ namespace CSharpGL.Demos
         }
 
         private int waterPlaneLength;
+        private CullFaceSwitch cullfaceSwitch;
 
         private WaterRenderer(
             IBufferable bufferable, ShaderCode[] shaderCodes,

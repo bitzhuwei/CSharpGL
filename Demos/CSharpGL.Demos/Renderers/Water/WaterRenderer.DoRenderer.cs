@@ -16,6 +16,8 @@ namespace CSharpGL.Demos
             this.SetUniform("u_waveParameters", WaterTextureRenderer.ToFloat(WaterTextureRenderer.waveParameters));
             this.SetUniform("u_waveDirections", WaterTextureRenderer.ToFloat(WaterTextureRenderer.waveDirections));
 
+            this.cullfaceSwitch.On();
+
             this.backgroundRenderer.passedTime = passedTime;
             this.backgroundRenderer.Render(arg);
 
@@ -23,6 +25,8 @@ namespace CSharpGL.Demos
             this.waterTextureRenderer.Render(arg);
 
             base.DoRender(arg);
+
+            this.cullfaceSwitch.Off();
 
             passedTime += deltaTime;
             //angle += 2.0f * (float)Math.PI / 120.0f * deltaTime;

@@ -94,22 +94,22 @@
     }
 
     /// <summary>
-    ///
+    /// Display front/back faces?
     /// </summary>
     public enum CullFaceMode : uint
     {
         /// <summary>
-        ///
+        /// Display front faces only.
         /// </summary>
         Front = OpenGL.GL_FRONT,
 
         /// <summary>
-        ///
+        /// Display back faces only.
         /// </summary>
         Back = OpenGL.GL_BACK,
 
         /// <summary>
-        ///
+        /// Display both front and back faces.
         /// </summary>
         FrontAndBack = OpenGL.GL_FRONT_AND_BACK,
     }
