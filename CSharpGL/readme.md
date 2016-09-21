@@ -16,7 +16,7 @@ For more information and demonstrations please check (http://bitzhuwei.github.io
 8. Color-coded picking intergrated in Scene.
 9. VertexAttributeBufferPtr supports tessellation shaders.
 10. Remove self defined cursor in scene.
-11. fix: Inner pickable Renderer akes model matrix into consideration when moving vertex's positions t.
+11. fix: Inner pickable Renderer akes model matrix into consideration when moving vertex's positions.
 12. Remove mat4 MVP in IColorCodedPicking.
 13. fix: missed the condition of picking a point when rendering GL_POINTS.
 
