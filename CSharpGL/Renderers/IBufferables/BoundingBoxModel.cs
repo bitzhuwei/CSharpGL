@@ -24,6 +24,9 @@ namespace CSharpGL
     /// </summary>
     public partial class BoundingBoxModel : IBufferable
     {
+        /// <summary>
+        /// eight vertexes.
+        /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
             new vec3(-1, -1, -1),// 0
@@ -36,6 +39,9 @@ namespace CSharpGL
             new vec3(+1, +1, +1),// 7
         };
 
+        /// <summary>
+        /// render in GL_QUADS.
+        /// </summary>
         private static readonly byte[] indexes = new byte[24]
         {
             1, 3, 7, 5, 0, 4, 6, 2,
@@ -52,10 +58,6 @@ namespace CSharpGL
         private IndexBufferPtr indexBufferPtr = null;
         private vec3 lengths;
 
-        ///// <summary>
-        ///// bounding box's model.
-        ///// </summary>
-        //public BoundingBoxModel() { }
         /// <summary>
         /// bounding box.
         /// </summary>
