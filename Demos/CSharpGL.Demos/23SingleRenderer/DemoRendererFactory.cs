@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
             }
             else if (rendererType == typeof(ShaderToyRenderer))
             {
-                renderer = new ShaderToyRenderer();
+                renderer = ShaderToyRenderer.Create();
             }
             else if (rendererType == typeof(SimpleComputeRenderer))
             {

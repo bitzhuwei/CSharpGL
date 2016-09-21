@@ -175,11 +175,11 @@
     <Compile Include="Renderers\PointCloudRenderer.cs" />
     <Compile Include="Renderers\RaycastVolumeImageFiller.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.Render.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer.Dispose.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer.DoRender.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer.Static.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.Dispose.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoRender.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.Static.cs" />
     <Compile Include="Renderers\ConditionalRenderer.cs" />
     <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
