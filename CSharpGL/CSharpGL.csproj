@@ -250,6 +250,7 @@
     <Compile Include="Renderers\TextureRenderer.cs" />
     <Compile Include="Scene\Scene.IDisposable.cs" />
     <Compile Include="Scene\Scene.Rendering.cs" />
+    <Compile Include="Scene\SceneGroupObject.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneRootObject.cs" />
