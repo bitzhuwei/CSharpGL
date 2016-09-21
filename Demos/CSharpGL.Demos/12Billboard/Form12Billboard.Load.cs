@@ -31,13 +31,13 @@ namespace CSharpGL.Demos
                 obj.Renderer = ground;
                 this.scene.RootObject.Children.Add(obj);
             }
-            //MovableRenderer movableRenderer;
             {
-                movableRenderer = MovableRenderer.Create(new Teapot());
-                //movableRenderer.Initialize();
+                SimpleRenderer movableRenderer = SimpleRenderer.Create(new Teapot());
+                movableRenderer.RotationAxis = new vec3(0, 1, 0);
                 movableRenderer.Scale = new vec3(0.1f, 0.1f, 0.1f);
-                var obj = new SceneObject();
-                obj.Renderer = movableRenderer;
+                SceneObject obj = movableRenderer.WrapToSceneObject();
+
+                this.movableRenderer = movableRenderer;
                 this.scene.RootObject.Children.Add(obj);
             }
             {
@@ -77,7 +77,7 @@ namespace CSharpGL.Demos
 
         private string[] timerEnabledSign = { "-", "/", "|", "\\", };
         private int timerEnableSignIndex = 0;
-        private MovableRenderer movableRenderer;
+        private RendererBase movableRenderer;
 
         private void timer1_Tick(object sender, EventArgs e)
         {

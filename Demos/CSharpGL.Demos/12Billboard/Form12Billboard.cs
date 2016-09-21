@@ -41,28 +41,28 @@ namespace CSharpGL.Demos
                 vec3 front = camera.GetFront();
                 front.y = 0;
                 this.position += deltaDistance * front.normalize();
-                this.movableRenderer.SetDirection(front);
+                SetDirection(this.movableRenderer, front);
             }
             else if (e.KeyChar == 's')
             {
                 vec3 back = camera.GetBack();
                 back.y = 0;
                 this.position += deltaDistance * back.normalize();
-                this.movableRenderer.SetDirection(back);
+                SetDirection(this.movableRenderer, back);
             }
             else if (e.KeyChar == 'a')
             {
                 vec3 left = camera.GetLeft();
                 left.y = 0;
                 this.position += deltaDistance * left.normalize();
-                this.movableRenderer.SetDirection(left);
+                SetDirection(this.movableRenderer, left);
             }
             else if (e.KeyChar == 'd')
             {
                 vec3 right = camera.GetRight();
                 right.y = 0;
                 this.position += deltaDistance * right.normalize();
-                this.movableRenderer.SetDirection(right);
+                SetDirection(this.movableRenderer, right);
             }
             else if (e.KeyChar == 'r')
             {
@@ -72,6 +72,17 @@ namespace CSharpGL.Demos
             this.movableRenderer.WorldPosition = this.position;
 
             this.lblCubePosition.Text = string.Format("Cube Pos: {0}", this.position);
+        }
+
+
+        internal void SetDirection(IRenderable renderer, vec3 direction)
+        {
+            direction.y = 0;
+            direction = direction.normalize();
+            float cosRadian = direction.dot(new vec3(1, 0, 0));
+            float radian = (float)Math.Acos(cosRadian);
+            if (direction.z > 0) { radian = -radian; }
+            renderer.RotationAngle = radian;
         }
     }
 }
