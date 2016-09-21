@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
         }
 
         static float passedTime = 0.0f;
-        static float deltaTime = 0.1f;//todo: experimental value.
+        static float deltaTime = 1f;//todo: experimental value.
 
         //static float angle = 0.0f;
 
