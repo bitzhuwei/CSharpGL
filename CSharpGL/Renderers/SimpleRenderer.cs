@@ -93,12 +93,12 @@
         /// </summary>
         /// <param name="model"></param>
         /// <param name="shaderCodes"></param>
-        /// <param name="propertyNameMap"></param>
+        /// <param name="attributeNameMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
         private SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(model, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
+            AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
         }
 

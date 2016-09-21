@@ -40,11 +40,11 @@ namespace GridViewer
         /// </summary>
         /// <param name="model"></param>
         /// <param name="shaderCodes"></param>
-        /// <param name="propertyNameMap"></param>
+        /// <param name="attributeNameMap"></param>
         /// <param name="switches"></param>
         private WellRenderer(WellModel model, ShaderCode[] shaderCodes,
-            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, propertyNameMap, switches)
+            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         {
         }
 

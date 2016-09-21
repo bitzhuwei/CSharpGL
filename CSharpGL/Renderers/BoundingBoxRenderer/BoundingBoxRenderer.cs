@@ -51,11 +51,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="bufferable"/>.</param>
+        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="bufferable"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
         private BoundingBoxRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, switches)
+            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
+            : base(bufferable, shaderCodes, attributeNameMap, switches)
         {
             this.BoundingBoxColor = Color.White;
         }

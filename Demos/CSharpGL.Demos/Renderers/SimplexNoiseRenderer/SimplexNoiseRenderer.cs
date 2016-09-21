@@ -20,8 +20,8 @@ namespace CSharpGL.Demos
         }
 
         private SimplexNoiseRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(model, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
+            AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
         }
     }

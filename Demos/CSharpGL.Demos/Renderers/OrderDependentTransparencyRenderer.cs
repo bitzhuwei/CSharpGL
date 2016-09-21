@@ -18,9 +18,9 @@ namespace CSharpGL.Demos
         }
 
         private OrderDependentTransparencyRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            AttributeNameMap propertyNameMap, string positionNameInIBufferable,
+            AttributeNameMap attributeNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
+            : base(bufferable, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         { }
 
         protected override void DoRender(RenderEventArgs arg)

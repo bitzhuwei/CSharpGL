@@ -32,11 +32,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferable"></param>
         /// <param name="shaderCodes"></param>
-        /// <param name="propertyNameMap"></param>
+        /// <param name="attributeNameMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        public PointsRenderer(Points bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap propertyNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
-            base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
+        public PointsRenderer(Points bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
+            base(bufferable, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
         }
 

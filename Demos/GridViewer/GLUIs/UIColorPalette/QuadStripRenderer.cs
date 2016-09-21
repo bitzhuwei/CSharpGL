@@ -46,8 +46,8 @@ namespace GridViewer
         }
 
         private QuadStripRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            AttributeNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, switches)
+            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
+            : base(bufferable, shaderCodes, attributeNameMap, switches)
         {
         }
 
