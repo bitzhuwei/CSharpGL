@@ -30,7 +30,6 @@
         /// </summary>
         public int PrimCount { get; private set; }
 
-
         /// <summary>
         /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
         /// Uploads this buffer to GPU memory and gets its pointer.
@@ -63,6 +62,5 @@
 
             return bufferPtr;
         }
-
     }
 }

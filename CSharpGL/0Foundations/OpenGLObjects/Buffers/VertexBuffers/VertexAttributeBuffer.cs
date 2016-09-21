@@ -55,7 +55,6 @@
         /// </summary>
         public int PatchVertexes { get; set; }
 
-
         private VertexAttributeBufferPtr bufferPtr = null;
 
         /// <summary>
