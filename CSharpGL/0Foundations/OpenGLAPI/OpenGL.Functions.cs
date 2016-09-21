@@ -1018,9 +1018,12 @@ namespace CSharpGL
         //public static extern void Fogiv(uint pname, int[] parameters);
 
         /// <summary>
-        /// This function sets what defines a front face.
+        /// This function sets what defines a front face. Counter ClockWise by default.
+        /// <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
         /// </summary>
-        /// <param name="mode">Winding mode, counter clockwise by default.</param>
+        /// <param name="mode">Winding mode, counter clockwise by default.
+        /// <para>GL_CCW 表示窗口坐标上投影多边形的顶点顺序为逆时针方向的表面为正面。</para>
+        /// <para>GL_CW 表示顶点顺序为顺时针方向的表面为正面。</para></param>
         [DllImport(Win32.opengl32, EntryPoint = "glFrontFace", SetLastError = true)]
         public static extern void FrontFace(uint mode);
 
