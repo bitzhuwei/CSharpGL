@@ -350,10 +350,10 @@
     <None Include="shaders\SimpleComputeRenderer\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\Transparent.frag">
+    <None Include="shaders\ODT\Transparent.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\Transparent.vert">
+    <None Include="shaders\ODT\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\OIT\resolve_lists.frag">
