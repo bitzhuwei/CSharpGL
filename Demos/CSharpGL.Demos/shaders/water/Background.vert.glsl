@@ -4,7 +4,7 @@ uniform mat4 u_projectionMatrix;
 uniform mat4 u_modelViewMatrix;
 
 in vec4 a_vertex;
-in vec3 a_normal;
+//in vec3 a_normal;
 
 out vec3 v_ray;
 
