@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 namespace CSharpGL.Demos
 {
     /// <summary>
@@ -56,7 +57,6 @@ namespace CSharpGL.Demos
         {
 		    new PointLight(new float[]{0.0f, 5.0f, -5.0f, 1.0f}, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f }),
         };
-        private RayTracingComputeRenderer computeRenderer;
 
         public static RayTracingRenderer Create()
         {
@@ -122,7 +122,124 @@ namespace CSharpGL.Demos
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, switches)
         {
-            this.computeRenderer = RayTracingComputeRenderer.Create();
         }
+    }
+
+    public static class FloatBufferHelper
+    {
+        public static bool glusRaytracePerspectivef(this float[] directionBuffer, byte padding, float fovy, int width, int height)
+        {
+            int i, k;
+
+            float aspect;
+
+            float yExtend;
+            float xExtend;
+
+            float xStep;
+            float yStep;
+
+            if (directionBuffer == null || width <= 0 || height <= 0)
+            {
+                return false;
+            }
+
+            aspect = (float)width / (float)height;
+
+            yExtend = (float)Math.Tan((fovy * 0.5f) * Math.PI / 180.0f);
+            xExtend = yExtend * aspect;
+
+            xStep = xExtend / ((float)(width) * 0.5f);
+            yStep = yExtend / ((float)(height) * 0.5f);
+
+            for (i = 0; i < width * height; i++)
+            {
+                directionBuffer[i * (3 + padding) + 0] = -xExtend + xStep * 0.5f + xStep * (float)(i % width);
+                directionBuffer[i * (3 + padding) + 1] = -yExtend + yStep * 0.5f + yStep * (float)(i / width);
+                directionBuffer[i * (3 + padding) + 2] = -1.0f;
+
+                for (k = 0; k < padding; k++)
+                {
+                    directionBuffer[i * (3 + padding) + 3 + k] = 0.0f;
+                }
+
+                float x = directionBuffer[i * (3 + padding) + 0];
+                float y = directionBuffer[i * (3 + padding) + 1];
+                float z = directionBuffer[i * (3 + padding) + 2];
+                vec3 normalized = (new vec3(x, y, z)).normalize();
+                directionBuffer[i * (3 + padding) + 0] = normalized.x;
+                directionBuffer[i * (3 + padding) + 1] = normalized.y;
+                directionBuffer[i * (3 + padding) + 2] = normalized.z;
+            }
+
+            return true;
+        }
+
+        public static unsafe void glusRaytraceLookAtf(this float[] positionBuffer, float[] directionBuffer, float[] originDirectionBuffer, byte padding, int width, int height, float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ)
+        {
+            //float forward[3], side[3], up[3];
+            //float rotation[9];
+            vec3 forward, side, up;
+            float[] rotation;
+            int i, k;
+
+            forward = new vec3(centerX - eyeX, centerY - eyeY, centerZ - eyeZ);
+            forward = forward.normalize();
+
+            up = new vec3(upX, upY, upZ);
+
+            side = forward.cross(up);
+            side = side.normalize();
+
+            up = side.cross(forward);
+
+            mat3 matrix = new mat3(side, up, -forward);
+            rotation = matrix.ToArray();
+
+            for (i = 0; i < width * height; i++)
+            {
+                positionBuffer[i * 4 + 0] = eyeX;
+                positionBuffer[i * 4 + 1] = eyeY;
+                positionBuffer[i * 4 + 2] = eyeZ;
+                positionBuffer[i * 4 + 3] = 1.0f;
+
+                //glusMatrix3x3MultiplyVector3f(&directionBuffer[i * (3 + padding)], rotation, &originDirectionBuffer[i * (3 + padding)]);
+                float[] result = new float[3];
+                result[0] = directionBuffer[i * (3 + padding) + 0];
+                result[1] = directionBuffer[i * (3 + padding) + 1];
+                result[2] = directionBuffer[i * (3 + padding) + 2];
+                float[] vector = new float[3];
+                vector[0] = originDirectionBuffer[i * (3 + padding) + 0];
+                vector[1] = originDirectionBuffer[i * (3 + padding) + 1];
+                vector[2] = originDirectionBuffer[i * (3 + padding) + 2];
+                glusMatrix3x3MultiplyVector3f(result, rotation, vector);
+                directionBuffer[i * (3 + padding) + 0] = result[0];
+                directionBuffer[i * (3 + padding) + 1] = result[1];
+                directionBuffer[i * (3 + padding) + 2] = result[2];
+
+                for (k = 0; k < padding; k++)
+                {
+                    directionBuffer[i * (3 + padding) + 3 + k] = originDirectionBuffer[i * (3 + padding) + 3 + k];
+                }
+            }
+        }
+
+        public static void glusMatrix3x3MultiplyVector3f(this float[] result, float[] matrix, float[] vector)
+        {
+            int i;
+
+            float[] temp = new float[3];
+
+            for (i = 0; i < 3; i++)
+            {
+                temp[i] = matrix[i] * vector[0] + matrix[3 + i] * vector[1] + matrix[6 + i] * vector[2];
+            }
+
+            for (i = 0; i < 3; i++)
+            {
+                result[i] = temp[i];
+            }
+        }
+
     }
 }

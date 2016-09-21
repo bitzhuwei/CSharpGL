@@ -6,6 +6,7 @@ namespace CSharpGL.Demos
     partial class RayTracingRenderer
     {
         private Texture texture;
+        private ShaderProgram computeProgram;
 
         protected override void DoInitialize()
         {
@@ -18,6 +19,16 @@ namespace CSharpGL.Demos
                     TextureFilter.Linear, TextureFilter.Linear));
             texture.Initialize();
             this.texture = texture;
+            this.SetUniform("u_texture", texture.ToSamplerValue());
+
+            {
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\raytrace.comp.glsl"), ShaderType.ComputeShader);
+                this.computeProgram = shaderCodes.CreateProgram();
+                g_directionBuffer.glusRaytracePerspectivef(
+                    DIRECTION_BUFFER_PADDING, 30.0f, WIDTH, HEIGHT);
+
+            }
         }
 
     }
