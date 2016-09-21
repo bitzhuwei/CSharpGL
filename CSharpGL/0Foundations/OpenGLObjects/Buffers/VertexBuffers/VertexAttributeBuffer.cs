@@ -55,11 +55,39 @@
         /// </summary>
         public int PatchVertexes { get; set; }
 
+
+        private VertexAttributeBufferPtr bufferPtr = null;
+
         /// <summary>
-        ///
+        /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+        /// Uploads this buffer to GPU memory and gets its pointer.
+        /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
         /// <returns></returns>
-        protected override BufferPtr Upload2GPU()
+        public VertexAttributeBufferPtr GetBufferPtr()
+        {
+            if (bufferPtr == null)
+            {
+                if (glGenBuffers == null)
+                {
+                    glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
+                    glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+                    glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
+                }
+
+                bufferPtr = Upload2GPU();
+            }
+
+            return bufferPtr;
+        }
+
+        /// <summary>
+        /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+        /// Uploads this buffer to GPU memory and gets its pointer.
+        /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+        /// </summary>
+        /// <returns></returns>
+        protected VertexAttributeBufferPtr Upload2GPU()
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);

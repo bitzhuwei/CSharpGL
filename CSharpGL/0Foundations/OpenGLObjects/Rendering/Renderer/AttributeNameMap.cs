@@ -46,15 +46,15 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
-        public AttributeNameMap(string[] nameInShaders, string[] nameInIBufferables)
+        public AttributeNameMap(string[] nameInShader, string[] nameInIBufferable)
         {
-            if (nameInShaders == null || nameInIBufferables == null
-                || nameInShaders.Length != nameInIBufferables.Length)
+            if (nameInShader == null || nameInIBufferable == null
+                || nameInShader.Length != nameInIBufferable.Length)
             { throw new ArgumentException(); }
 
-            for (int i = 0; i < nameInShaders.Length; i++)
+            for (int i = 0; i < nameInShader.Length; i++)
             {
-                this.Add(nameInShaders[i], nameInIBufferables[i]);
+                this.Add(nameInShader[i], nameInIBufferable[i]);
             }
         }
 

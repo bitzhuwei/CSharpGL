@@ -25,7 +25,7 @@
         ///
         /// </summary>
         /// <returns></returns>
-        protected override BufferPtr Upload2GPU()
+        protected override IndependentBufferPtr Upload2GPU()
         {
             if (glGetUniformBlockIndex == null)
             {

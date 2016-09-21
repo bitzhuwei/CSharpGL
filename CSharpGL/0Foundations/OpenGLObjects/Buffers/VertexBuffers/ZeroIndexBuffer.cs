@@ -45,7 +45,7 @@
         ///
         /// </summary>
         /// <returns></returns>
-        protected override BufferPtr Upload2GPU()
+        protected override IndexBufferPtr Upload2GPU()
         {
             ZeroIndexBufferPtr bufferPtr = new ZeroIndexBufferPtr(
                  this.Mode, this.FirstVertex, this.VertexCount);
