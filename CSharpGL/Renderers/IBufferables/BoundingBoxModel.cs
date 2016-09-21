@@ -2,18 +2,45 @@
 
 namespace CSharpGL
 {
+    //
+    //        2-------------------3
+    //      / .                  /|
+    //     /  .                 / |
+    //    /   .                /  |
+    //   /    .               /   |
+    //  /     .              /    |
+    // 6--------------------7     |
+    // |      .             |     |
+    // |      0.............|.....1
+    // |     .              |    /
+    // |    .               |   /
+    // |   .                |  /
+    // |  .                 | /
+    // | .                  |/
+    // 4 -------------------5
+    //
     /// <summary>
     /// bounding box's model.
     /// </summary>
     public partial class BoundingBoxModel : IBufferable
     {
-        private vec3[] positions = new vec3[]
+        private static readonly vec3[] positions = new vec3[]
         {
-            new vec3(1, 1, 1),   new vec3(-1, 1, 1),
-            new vec3(1, 1, -1),  new vec3(-1, 1, -1),
-            new vec3(1, -1, -1), new vec3(-1, -1, -1),
-            new vec3(1, -1, 1),  new vec3(-1, -1, 1),
-            new vec3(1, 1, 1),   new vec3(-1, 1, 1),
+            new vec3(-1, -1, -1),// 0
+            new vec3(-1, -1, +1),// 1
+            new vec3(-1, +1, -1),// 2
+            new vec3(-1, +1, +1),// 3
+            new vec3(+1, -1, -1),// 4
+            new vec3(+1, -1, +1),// 5
+            new vec3(+1, +1, -1),// 6
+            new vec3(+1, +1, +1),// 7
+        };
+
+        private static readonly byte[] indexes = new byte[24]
+        {
+            1, 3, 7, 5, 0, 4, 6, 2,
+            2, 6, 7, 3, 0, 1, 5, 4,
+            4, 5, 7, 6, 0, 2, 3, 1,
         };
 
         /// <summary>
@@ -81,9 +108,17 @@ namespace CSharpGL
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(
-                    DrawMode.QuadStrip, 0, positions.Length))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.Quads, BufferUsage.StaticDraw))
                 {
+                    buffer.Create(indexes.Length);
+                    unsafe
+                    {
+                        var array = (byte*)buffer.Header.ToPointer();
+                        for (int i = 0; i < indexes.Length; i++)
+                        {
+                            array[i] = indexes[i];
+                        }
+                    }
                     indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }
             }
@@ -95,6 +130,6 @@ namespace CSharpGL
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
-        public bool UsesZeroIndexBuffer() { return true; }
+        public bool UsesZeroIndexBuffer() { return false; }
     }
 }
