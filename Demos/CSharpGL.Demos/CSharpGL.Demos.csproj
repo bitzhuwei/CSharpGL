@@ -329,7 +329,7 @@
     <None Include="shaders\OIT\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\computeReset.comp">
+    <None Include="shaders\SimpleComputeRenderer\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\particleSimulator.frag">
@@ -341,13 +341,13 @@
     <None Include="shaders\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\compute.comp">
+    <None Include="shaders\SimpleComputeRenderer\compute.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\compute.frag">
+    <None Include="shaders\SimpleComputeRenderer\compute.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\compute.vert">
+    <None Include="shaders\SimpleComputeRenderer\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Transparent.frag">
