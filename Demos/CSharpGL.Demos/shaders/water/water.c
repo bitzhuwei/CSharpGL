@@ -69,25 +69,6 @@ GLUSboolean init(GLUSvoid)
 
 	glUseProgram(g_program.program);
 
-	glUniform1f(g_waterPlaneLengthLocation, (GLUSfloat)WATER_PLANE_LENGTH);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, g_cubemap);
-	glUniform1i(g_cubemapLocation, 0);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, waterTexture);
-	glUniform1i(g_waterTextureLocation, 1);
-
-	glGenVertexArrays(1, &g_vao);
-	glBindVertexArray(g_vao);
-
-	glBindBuffer(GL_ARRAY_BUFFER, g_verticesVBO);
-	glVertexAttribPointer(g_vertexLocation, 4, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(g_vertexLocation);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, g_indicesVBO);
-
 	//
 
 	initBackground();
@@ -120,48 +101,6 @@ GLUSvoid reshape(GLUSint width, GLUSint height)
 	glUniformMatrix4fv(g_projectionMatrixLocation, 1, GL_FALSE, g_projectionMatrix);
 }
 
-GLUSvoid renderWater(GLUSfloat passedTime)
-{
-	//static WaveParameters waveParameters[NUMBERWAVES];
-	//static WaveDirections waveDirections[NUMBERWAVES];
-
-	glUseProgram(g_program.program);
-
-	glUniformMatrix4fv(g_viewMatrixLocation, 1, GL_FALSE, g_viewMatrix);
-	glUniformMatrix3fv(g_inverseViewNormalMatrixLocation, 1, GL_FALSE, g_inverseViewNormalMatrix);
-
-	glUniform1f(g_passedTimeLocation, passedTime);
-
-	glUniform4fv(g_waveParametersLocation, 4 * NUMBERWAVES, (GLfloat*)waveParameters);
-	glUniform2fv(g_waveDirectionsLocation, 2 * NUMBERWAVES, (GLfloat*)waveDirections);
-
-	glBindVertexArray(g_vao);
-
-	glFrontFace(GL_CCW);
-
-	glDrawElements(GL_TRIANGLE_STRIP, WATER_PLANE_LENGTH * (WATER_PLANE_LENGTH - 1) * 2, GL_UNSIGNED_INT, 0);
-}
-
-GLUSboolean update(GLUSfloat time)
-{
-	//static GLfloat passedTime = 0.0f;
-
-	GLfloat inverseViewMatrix[16];
-
-	//glusMatrix4x4Copyf(inverseViewMatrix, g_viewMatrix, GLUS_TRUE);
-	//glusMatrix4x4InverseRigidBodyf(inverseViewMatrix);
-	//glusMatrix4x4ExtractMatrix3x3f(g_inverseViewNormalMatrix, inverseViewMatrix);
-
-	// Render the background
-
-	// Render the water texture
-
-	// Render the water scene
-	renderWater(passedTime);
-
-	return GLUS_TRUE;
-}
-
 /**
  * Main entry point.
  */
@@ -171,8 +110,6 @@ int main(int argc, char* argv[])
 	glusWindowSetInitFunc(init);
 
 	glusWindowSetReshapeFunc(reshape);
-
-	glusWindowSetUpdateFunc(update);
 
 
 	return 0;

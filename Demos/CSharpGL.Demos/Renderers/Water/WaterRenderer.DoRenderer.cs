@@ -13,6 +13,9 @@ namespace CSharpGL.Demos
             this.SetUniform("u_projectionMatrix", projection);
             this.SetUniform("u_viewMatrix", view);
             this.SetUniform("u_inverseViewNormalMatrix", new mat3(new vec3(view[0]), new vec3(view[1]), new vec3(view[2])));
+            this.SetUniform("u_passedTime", passedTime);
+            this.SetUniform("u_waveParameters", WaterTextureRenderer.ToFloat(WaterTextureRenderer.waveParameters));
+            this.SetUniform("u_waveDirections", WaterTextureRenderer.ToFloat(WaterTextureRenderer.waveDirections));
 
             this.backgroundRenderer.passedTime = passedTime;
             this.backgroundRenderer.Render(arg);
@@ -20,11 +23,14 @@ namespace CSharpGL.Demos
             this.waterTextureRenderer.passedTime = passedTime;
             this.waterTextureRenderer.Render(arg);
 
+            OpenGL.FrontFace(OpenGL.GL_CCW);
+
             base.DoRender(arg);
 
             passedTime += deltaTime;
             //angle += 2.0f * (float)Math.PI / 120.0f * deltaTime;
         }
+
         static float passedTime = 0.0f;
         static float deltaTime = 0.1f;//todo: experimental value.
 

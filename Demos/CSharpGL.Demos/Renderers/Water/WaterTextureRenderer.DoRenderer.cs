@@ -23,8 +23,8 @@
 
         const int NUMBERWAVES = 4;
         static float overallSteepness = 0.2f;
-        static WaveParameters[] waveParameters = new WaveParameters[NUMBERWAVES];
-        static WaveDirections[] waveDirections = new WaveDirections[NUMBERWAVES];
+        public static WaveParameters[] waveParameters = new WaveParameters[NUMBERWAVES];
+        public static WaveDirections[] waveDirections = new WaveDirections[NUMBERWAVES];
 
         private void UpdateWaves()
         {
@@ -63,7 +63,7 @@
             waveDirections[3].z = -0.1f;
         }
 
-        static float[] ToFloat(WaveParameters[] items)
+        public static float[] ToFloat(WaveParameters[] items)
         {
             var result = new float[items.Length * 4];
             for (int i = 0; i < items.Length; i++)
@@ -75,7 +75,7 @@
             }
             return result;
         }
-        static float[] ToFloat(WaveDirections[] items)
+        public static float[] ToFloat(WaveDirections[] items)
         {
             var result = new float[items.Length * 2];
             for (int i = 0; i < items.Length; i++)
