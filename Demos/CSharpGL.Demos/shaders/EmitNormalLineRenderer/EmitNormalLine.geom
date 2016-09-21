@@ -19,6 +19,8 @@ uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
 uniform bool showModel = true;
 uniform bool showNormal = true;
+uniform float factor1 = 50.0f;
+uniform float factor2 = 10.0f;
 
 void main(void)
 {
@@ -46,32 +48,32 @@ void main(void)
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v0);
                 EmitVertex();
                 vec4 v1 = target;
-                if (target.x > position.x) { v1.x += normalLength / 30.0f; }
-                else { v1.x -= normalLength / 10.0f; }
+                if (target.x > position.x) { v1.x += normalLength / factor1; }
+                else { v1.x -= normalLength / factor2; }
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v1);
                 EmitVertex();
                 vec4 v2 = position;
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v2);
                 EmitVertex();
                 vec4 v3 = target;
-                if (target.y > position.y) { v3.y += normalLength / 30.0f; }
-                else { v3.y -= normalLength / 10.0f; }
+                if (target.y > position.y) { v3.y += normalLength / factor1; }
+                else { v3.y -= normalLength / factor2; }
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v3);
                 EmitVertex();
                 vec4 v4 = position;
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v4);
                 EmitVertex();
                 vec4 v5 = target;
-                if (target.z > position.z) { v5.z += normalLength / 30.0f; }
-                else { v5.z -= normalLength / 10.0f; }
+                if (target.z > position.z) { v5.z += normalLength / factor1; }
+                else { v5.z -= normalLength / factor2; }
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v5);
                 EmitVertex();
                 vec4 v6 = position;
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v6);
                 EmitVertex();
                 vec4 v7 = target;
-                if (target.x > position.x) { v7.x += normalLength / 30.0f; }
-                else { v7.x -= normalLength / 10.0f; }
+                if (target.x > position.x) { v7.x += normalLength / factor1; }
+                else { v7.x -= normalLength / factor2; }
                 gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v7);
                 EmitVertex();
             }
