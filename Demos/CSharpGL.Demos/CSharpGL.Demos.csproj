@@ -180,8 +180,8 @@
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ConditionalRenderer.cs" />
     <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
-    <Compile Include="shaders\Simple.cssl.cs" />
-    <Compile Include="shaders\Simple.main.cs" />
+    <Compile Include="shaders\How2UseCSSL\Simple.cssl.cs" />
+    <Compile Include="shaders\How2UseCSSL\Simple.main.cs" />
     <Compile Include="18PickingInScene\DragParam.cs" />
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleComputeRenderer.cs" />
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleRenderer.cs" />
@@ -304,7 +304,7 @@
     <None Include="shaders\ShaderToy.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\Simple.config" />
+    <None Include="shaders\How2UseCSSL\Simple.config" />
     <None Include="shaders\SimplexNoise.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -362,10 +362,10 @@
     <None Include="shaders\OIT\resolve_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\Simple.frag">
+    <None Include="shaders\How2UseCSSL\Simple.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\Simple.vert">
+    <None Include="shaders\How2UseCSSL\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
@@ -490,7 +490,7 @@
     <Content Include="Resources\data\water_pos_z.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="shaders\Simple.PropertyNameMap.xml" />
+    <Content Include="shaders\How2UseCSSL\Simple.PropertyNameMap.xml" />
     <Content Include="shaders\water\background.c" />
     <Content Include="shaders\water\water.c" />
     <Content Include="shaders\water\waterTexture.c" />
