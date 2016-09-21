@@ -37,7 +37,7 @@
         {
             OpenGL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
-            OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, Mode);
+            OpenGL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, (uint)this.Mode);
         }
 
         /// <summary>
@@ -47,13 +47,13 @@
         {
             if (originalPolygonMode[0] == originalPolygonMode[1])
             {
-                OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonMode)(originalPolygonMode[0]));
+                OpenGL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, (uint)(originalPolygonMode[0]));
             }
             else
             {
                 //TODO: not tested yet
-                OpenGL.PolygonMode(PolygonModeFaces.Front, (PolygonMode)originalPolygonMode[0]);
-                OpenGL.PolygonMode(PolygonModeFaces.Back, (PolygonMode)originalPolygonMode[1]);
+                OpenGL.PolygonMode(OpenGL.GL_FRONT, (uint)originalPolygonMode[0]);
+                OpenGL.PolygonMode(OpenGL.GL_BACK, (uint)originalPolygonMode[1]);
             }
         }
 
