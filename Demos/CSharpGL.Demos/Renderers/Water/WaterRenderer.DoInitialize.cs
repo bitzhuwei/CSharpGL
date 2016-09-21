@@ -21,6 +21,7 @@ namespace CSharpGL.Demos
             this.SetUniform("u_cubemap", this.cubeMap.ToSamplerValue());
             this.SetUniform("u_waterTexture", this.waterTextureRenderer.MirrorTexture.ToSamplerValue());
 
+            OpenGL.Enable(OpenGL.GL_CULL_FACE);
         }
 
         private Texture GetCubeMapTexture()
