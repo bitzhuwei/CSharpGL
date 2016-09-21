@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
@@ -6,8 +7,10 @@
     public partial class Renderer : RendererBase
     {
         /// <summary>
-        /// algorithm for rendering.
+        /// Shader Program that does the rendering algorithm.
         /// </summary>
+        [Category(strRenderer)]
+        [Description("Shader Program that does the rendering algorithm.")]
         public ShaderProgram Program { get; protected set; }
 
         // data structure for rendering.
@@ -35,6 +38,8 @@
         /// <summary>
         /// model data that can be transfermed into OpenGL Buffer's pointer.
         /// </summary>
+        [Category(strRenderer)]
+        [Description("model data that can be transfermed into OpenGL Buffer's pointer.")]
         public IBufferable Model { get; protected set; }
 
         /// <summary>

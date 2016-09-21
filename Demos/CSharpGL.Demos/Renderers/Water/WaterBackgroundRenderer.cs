@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
         public float passedTime;
         public static WaterBackgroundRenderer Create(int waterPlaneLength)
         {
-            var model = new Sphere(waterPlaneLength / 2.0f + 0.5f);
+            var model = new Sphere(waterPlaneLength / 2.0f + 0.5f, 20, 80);
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.vert.glsl"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.frag.glsl"), ShaderType.FragmentShader);

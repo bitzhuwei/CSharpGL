@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace CSharpGL.Demos
 {
@@ -24,7 +23,19 @@ namespace CSharpGL.Demos
         }
 
         private WaterTextureRenderer waterTextureRenderer;
+
+        internal WaterTextureRenderer WaterTextureRenderer
+        {
+            get { return waterTextureRenderer; }
+        }
+
         private WaterBackgroundRenderer backgroundRenderer;
+
+        internal WaterBackgroundRenderer BackgroundRenderer
+        {
+            get { return backgroundRenderer; }
+        }
+
         private int waterPlaneLength;
 
         private WaterRenderer(
@@ -33,6 +44,5 @@ namespace CSharpGL.Demos
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
         }
-
     }
 }
