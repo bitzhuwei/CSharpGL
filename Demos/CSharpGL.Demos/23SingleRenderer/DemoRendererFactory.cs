@@ -20,8 +20,8 @@ namespace CSharpGL.Demos
             }
             else if (rendererType == typeof(EmitNormalLineRenderer))
             {
-                var model = new Tetrahedron();
-                renderer = EmitNormalLineRenderer.Create(model, Tetrahedron.strPosition, Tetrahedron.strNormal, model.Lengths);
+                var model = new Teapot();
+                renderer = EmitNormalLineRenderer.Create(model, Teapot.strPosition, Teapot.strNormal, model.Lengths);
             }
             else if (rendererType == typeof(ImageProcessingRenderer))
             {
