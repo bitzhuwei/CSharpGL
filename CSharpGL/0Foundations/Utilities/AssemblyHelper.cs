@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
 using System.Windows.Forms;
 
 namespace CSharpGL
@@ -26,14 +26,21 @@ namespace CSharpGL
             Assembly[] assemblies = AssemblyHelper.GetAssemblies(Application.ExecutablePath);
             foreach (var asm in assemblies)
             {
-                var list = from item in asm.GetTypes()
-                           where baseType.IsAssignableFrom(item)
-                           && (addtionalFilter == null || (addtionalFilter(item)))
-                           orderby item.FullName
-                           select item;
-                foreach (var item in list.Distinct())
+                try
                 {
-                    result.Add(item);
+                    var list = from item in asm.GetTypes()
+                               where baseType.IsAssignableFrom(item)
+                               && (addtionalFilter == null || (addtionalFilter(item)))
+                               orderby item.FullName
+                               select item;
+                    foreach (var item in list.Distinct())
+                    {
+                        result.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(string.Format("Assembly Helper: {0}", ex));
                 }
             }
 
