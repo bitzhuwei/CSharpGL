@@ -2,7 +2,6 @@
 {
     internal partial class WaterTextureRenderer
     {
-
         protected override void DoRender(RenderEventArgs arg)
         {
             UpdateWaves();
@@ -20,8 +19,8 @@
             //this.viewportSwitch.Off();
         }
 
-        const int NUMBERWAVES = 4;
-        static float overallSteepness = 0.2f;
+        private const int NUMBERWAVES = 4;
+        private static float overallSteepness = 0.2f;
         public static WaveParameters[] waveParameters = new WaveParameters[NUMBERWAVES];
         public static WaveDirections[] waveDirections = new WaveDirections[NUMBERWAVES];
 
@@ -74,6 +73,7 @@
             }
             return result;
         }
+
         public static float[] ToFloat(WaveDirections[] items)
         {
             var result = new float[items.Length * 2];
@@ -86,14 +86,15 @@
         }
     }
 
-    struct WaveParameters
+    internal struct WaveParameters
     {
         public float speed;
         public float amplitude;
         public float wavelength;
         public float steepness;
     }
-    struct WaveDirections
+
+    internal struct WaveDirections
     {
         public float x;
         public float z;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 
 namespace CSharpGL.Demos
@@ -8,6 +7,7 @@ namespace CSharpGL.Demos
     {
         private int waterPlaneLength;
         public float passedTime;
+
         public static WaterTextureRenderer Create(int waterPlaneLength)
         {
             var model = new PlaneModel(waterPlaneLength / 2);
@@ -30,6 +30,5 @@ namespace CSharpGL.Demos
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
         }
-
     }
 }

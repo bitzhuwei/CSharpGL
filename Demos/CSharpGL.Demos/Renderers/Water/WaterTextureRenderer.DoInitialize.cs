@@ -1,12 +1,7 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     internal partial class WaterTextureRenderer
     {
-
         private Texture mirrorTexture;
 
         public Texture MirrorTexture
@@ -14,7 +9,7 @@ namespace CSharpGL.Demos
             get { return mirrorTexture; }
         }
 
-        const int TEXTURE_SIZE = 1024;
+        private const int TEXTURE_SIZE = 1024;
         private Framebuffer framebuffer;
         private ViewportSwitch viewportSwitch;
 

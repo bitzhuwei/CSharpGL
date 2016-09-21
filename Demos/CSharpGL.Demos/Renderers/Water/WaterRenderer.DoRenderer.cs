@@ -1,5 +1,4 @@
-﻿using System;
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     internal partial class WaterRenderer
     {
@@ -29,14 +28,9 @@ namespace CSharpGL.Demos
             this.cullfaceSwitch.Off();
 
             passedTime += deltaTime;
-            //angle += 2.0f * (float)Math.PI / 120.0f * deltaTime;
         }
 
-        static float passedTime = 0.0f;
-        static float deltaTime = 1f;//todo: experimental value.
-
-        //static float angle = 0.0f;
-
+        private static float passedTime = 0.0f;
+        private static float deltaTime = 1f;//todo: experimental value.
     }
-
 }

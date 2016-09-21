@@ -1,11 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace CSharpGL.Demos
 {
     internal partial class WaterBackgroundRenderer : Renderer
     {
         public float passedTime;
+
         public static WaterBackgroundRenderer Create(int waterPlaneLength)
         {
             var model = new Sphere(waterPlaneLength / 2.0f + 0.5f, 20, 80);
@@ -27,6 +27,5 @@ namespace CSharpGL.Demos
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
         }
-
     }
 }
