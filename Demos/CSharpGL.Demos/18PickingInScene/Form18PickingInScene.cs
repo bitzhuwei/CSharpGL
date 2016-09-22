@@ -35,10 +35,6 @@ namespace CSharpGL.Demos
             this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, true, this.PickingGeometryType);
 
             this.DrawText(e);
-            //// Cross cursor shows where the mouse is.
-            //OpenGL.DrawText(mousePosition.X - offset.X,
-            //    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
-            //    Color.Red, "Courier New", crossCursorSize, "o");
         }
 
         private void DrawText(PaintEventArgs e)
