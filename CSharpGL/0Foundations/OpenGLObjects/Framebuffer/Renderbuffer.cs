@@ -58,6 +58,43 @@
         /// </summary>
         public int Width { get; set; }
 
+        ///// <summary>
+        ///// Bind a named renderbuffer object.
+        ///// </summary>
+        //public void Bind()
+        //{
+        //    glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, this.Id);
+        //}
+
+        //  TODO: We should be able to just use the code below - however we
+        //  get invalid dimension issues at the moment, so recreate for now.
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="format"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        //public void Resize(uint format, int width, int height, bool autoBind = true)
+        //{
+        //    if (autoBind)
+        //    {
+        //        glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, this.Id);
+        //    }
+        //    glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, format, width, height);
+        //    if (autoBind)
+        //    {
+        //        glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, 0);
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Unbind this renderbuffer object.
+        ///// </summary>
+        //public void Unbind()
+        //{
+        //    glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, 0);
+        //}
+
         /// <summary>
         ///
         /// </summary>

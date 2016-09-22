@@ -68,15 +68,6 @@ namespace CSharpGL.Demos
             return framebuffer;
         }
 
-        private void checkFramebufferStatus()
-        {
-            uint complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER);
-            if (complete != OpenGL.GL_FRAMEBUFFER_COMPLETE)
-            {
-                throw new Exception("framebuffer is not complete");
-            }
-        }
-
         private Texture initVol3DTex(string filename, int width, int height, int depth)
         {
             var texture = new Texture(

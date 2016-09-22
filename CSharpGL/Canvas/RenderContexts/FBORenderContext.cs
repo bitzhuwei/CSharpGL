@@ -113,15 +113,9 @@ namespace CSharpGL
 
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.
+            ////  Resize the render buffer storage.
+            //this.framebuffer.Resize(width, height);
 
-            /*
-            //  Resize the render buffer storage.
-            GL.GetDelegateFor<GL.glBindRenderbufferEXT(GL.GL_RENDERBUFFER, colourRenderBufferId);
-            GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
-            GL.GetDelegateFor<GL.glBindRenderbufferEXT(GL.GL_RENDERBUFFER, depthRenderBufferId);
-            GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);
-            var complete = GL.CheckFramebufferStatusEXT(GL.GL_FRAMEBUFFER_EXT);
-            */
             this.framebuffer.Dispose();
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             this.framebuffer = framebuffer;

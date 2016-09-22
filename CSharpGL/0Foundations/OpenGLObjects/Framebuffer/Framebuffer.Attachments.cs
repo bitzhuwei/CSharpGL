@@ -196,5 +196,27 @@ namespace CSharpGL
             glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, OpenGL.GL_RENDERBUFFER, renderbuffer.Id);
             this.depthBuffer = renderbuffer;
         }
+
+        //  TODO: We should be able to just use the code below - however we
+        //  get invalid dimension issues at the moment, so recreate for now.
+        ///// <summary>
+        ///// resize this framebuffer.
+        ///// </summary>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        //public void Resize(int width, int height)
+        //{
+        //    //glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
+        //    //glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
+        //    //glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
+        //    //glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, width, height);
+        //    //var complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER);
+        //    this.depthBuffer.Resize(OpenGL.GL_DEPTH_ATTACHMENT, width, height);
+        //    foreach (var item in this.colorBufferList)
+        //    {
+        //        item.Resize(OpenGL.GL_RGBA, width, height);
+        //    }
+        //    this.CheckCompleteness();
+        //}
     }
 }

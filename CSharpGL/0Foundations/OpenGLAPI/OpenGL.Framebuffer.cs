@@ -50,10 +50,10 @@
         public delegate bool glIsRenderbufferEXT(uint renderbuffer);
 
         /// <summary>
-        ///
+        /// bind a named renderbuffer object.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="renderbuffer"></param>
+        /// <param name="target">Specifies the target to which the renderbuffer object is bound. The symbolic constant must be GL_RENDERBUFFER.</param>
+        /// <param name="renderbuffer">Specifies the name of a renderbuffer object.</param>
         public delegate void glBindRenderbufferEXT(uint target, uint renderbuffer);
 
         /// <summary>
