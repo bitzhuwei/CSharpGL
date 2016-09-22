@@ -36,7 +36,6 @@
             this.btn12Billboard = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
-            this.btn17UpdateTexture = new System.Windows.Forms.Button();
             this.btn18PickingInScene = new System.Windows.Forms.Button();
             this.btn20GLSceneCanvas = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -47,7 +46,7 @@
             // 
             // btnForm00GLCanvas
             // 
-            this.btnForm00GLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnForm00GLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm00GLCanvas.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm00GLCanvas.Location = new System.Drawing.Point(7, 30);
@@ -61,7 +60,7 @@
             // 
             // btn02OriderIndependentTransparency
             // 
-            this.btn02OriderIndependentTransparency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn02OriderIndependentTransparency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn02OriderIndependentTransparency.Font = new System.Drawing.Font("宋体", 12F);
             this.btn02OriderIndependentTransparency.Location = new System.Drawing.Point(7, 404);
@@ -75,7 +74,7 @@
             // 
             // btnForm06ImageProcessing
             // 
-            this.btnForm06ImageProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnForm06ImageProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm06ImageProcessing.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm06ImageProcessing.Location = new System.Drawing.Point(7, 438);
@@ -89,7 +88,7 @@
             // 
             // btnForm07PointSprite
             // 
-            this.btnForm07PointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnForm07PointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm07PointSprite.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm07PointSprite.Location = new System.Drawing.Point(7, 132);
@@ -103,7 +102,7 @@
             // 
             // btn11IFontTexture
             // 
-            this.btn11IFontTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn11IFontTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn11IFontTexture.Font = new System.Drawing.Font("宋体", 12F);
             this.btn11IFontTexture.Location = new System.Drawing.Point(7, 200);
@@ -117,7 +116,7 @@
             // 
             // btn12Billboard
             // 
-            this.btn12Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn12Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn12Billboard.Font = new System.Drawing.Font("宋体", 12F);
             this.btn12Billboard.Location = new System.Drawing.Point(7, 234);
@@ -131,7 +130,7 @@
             // 
             // btn15UIRenderer
             // 
-            this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn15UIRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btn15UIRenderer.Location = new System.Drawing.Point(7, 268);
@@ -145,7 +144,7 @@
             // 
             // btn16ArcBallManipulater
             // 
-            this.btn16ArcBallManipulater.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn16ArcBallManipulater.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn16ArcBallManipulater.Font = new System.Drawing.Font("宋体", 12F);
             this.btn16ArcBallManipulater.Location = new System.Drawing.Point(7, 98);
@@ -157,23 +156,9 @@
             this.btn16ArcBallManipulater.UseVisualStyleBackColor = true;
             this.btn16ArcBallManipulater.Click += new System.EventHandler(this.btn16ArcBallManipulater_Click);
             // 
-            // btn17UpdateTexture
-            // 
-            this.btn17UpdateTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn17UpdateTexture.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn17UpdateTexture.Location = new System.Drawing.Point(7, 166);
-            this.btn17UpdateTexture.Margin = new System.Windows.Forms.Padding(2);
-            this.btn17UpdateTexture.Name = "btn17UpdateTexture";
-            this.btn17UpdateTexture.Size = new System.Drawing.Size(575, 30);
-            this.btn17UpdateTexture.TabIndex = 0;
-            this.btn17UpdateTexture.Text = "17 UpdateTexture";
-            this.btn17UpdateTexture.UseVisualStyleBackColor = true;
-            this.btn17UpdateTexture.Click += new System.EventHandler(this.btn17UpdateTexture_Click);
-            // 
             // btn18PickingInScene
             // 
-            this.btn18PickingInScene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn18PickingInScene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn18PickingInScene.Font = new System.Drawing.Font("宋体", 12F);
             this.btn18PickingInScene.Location = new System.Drawing.Point(7, 302);
@@ -187,7 +172,7 @@
             // 
             // btn20GLSceneCanvas
             // 
-            this.btn20GLSceneCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn20GLSceneCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn20GLSceneCanvas.Font = new System.Drawing.Font("宋体", 12F);
             this.btn20GLSceneCanvas.Location = new System.Drawing.Point(7, 336);
@@ -215,7 +200,7 @@
             // 
             // btn21ConditionalRendering
             // 
-            this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn21ConditionalRendering.Font = new System.Drawing.Font("宋体", 12F);
             this.btn21ConditionalRendering.Location = new System.Drawing.Point(7, 370);
@@ -229,7 +214,7 @@
             // 
             // btn23SingleRenderer
             // 
-            this.btn23SingleRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn23SingleRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn23SingleRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btn23SingleRenderer.Location = new System.Drawing.Point(7, 64);
@@ -243,7 +228,7 @@
             // 
             // btn24GreyFilter
             // 
-            this.btn24GreyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn24GreyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn24GreyFilter.Font = new System.Drawing.Font("宋体", 12F);
             this.btn24GreyFilter.Location = new System.Drawing.Point(7, 472);
@@ -265,7 +250,6 @@
             this.Controls.Add(this.btn21ConditionalRendering);
             this.Controls.Add(this.btn20GLSceneCanvas);
             this.Controls.Add(this.btn18PickingInScene);
-            this.Controls.Add(this.btn17UpdateTexture);
             this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
             this.Controls.Add(this.btn12Billboard);
@@ -294,7 +278,6 @@
         private System.Windows.Forms.Button btn12Billboard;
         private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
-        private System.Windows.Forms.Button btn17UpdateTexture;
         private System.Windows.Forms.Button btn18PickingInScene;
         private System.Windows.Forms.Button btn20GLSceneCanvas;
         private System.Windows.Forms.LinkLabel linkLabel1;

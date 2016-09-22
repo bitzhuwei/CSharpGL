@@ -52,14 +52,13 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
 
-            var texture = new Texture(TextureTarget.Texture2D,
-              new NullImageFiller(100, 100, OpenGL.GL_RGBA, OpenGL.GL_BGR, OpenGL.GL_UNSIGNED_BYTE),
-              new SamplerParameters(
-                  TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
-                  TextureFilter.Linear, TextureFilter.Linear));
-            texture.Initialize();
-            this.SetUniform("u_texture", texture.ToSamplerValue());
-            this.texture = texture;
+            var bitmap = new Bitmap(100, 100);
+            using (var g = Graphics.FromImage(bitmap))
+            {
+                g.Clear(Color.Red);
+            }
+            this.SetupTexture(bitmap);
+            bitmap.Dispose();
         }
 
         protected override void DoRender(RenderEventArgs arg)

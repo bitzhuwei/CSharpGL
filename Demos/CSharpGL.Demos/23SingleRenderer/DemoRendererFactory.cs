@@ -84,11 +84,6 @@ namespace CSharpGL.Demos
             {
                 renderer = SimplexNoiseRenderer.Create();
             }
-            else if (rendererType == typeof(UpdatingTextureRenderer))
-            {
-                var model = new TexturedRectangleModel();
-                renderer = UpdatingTextureRenderer.Create(model);
-            }
             else if (rendererType == typeof(WaterRenderer))
             {
                 renderer = WaterRenderer.Create(waterPlaneLength: 4);

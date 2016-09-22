@@ -111,15 +111,6 @@
     <Compile Include="18PickingInScene\Form18PickingInScene.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="17UpdateTexture\Form17UpdateTexture.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="17UpdateTexture\Form17UpdateTexture.Designer.cs">
-      <DependentUpon>Form17UpdateTexture.cs</DependentUpon>
-    </Compile>
-    <Compile Include="17UpdateTexture\Form17UpdateTexture.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,7 +185,6 @@
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ConditionalRenderer.cs" />
-    <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\How2UseCSSL\Simple.cssl.cs" />
     <Compile Include="shaders\How2UseCSSL\Simple.main.cs" />
     <Compile Include="18PickingInScene\DragParam.cs" />
