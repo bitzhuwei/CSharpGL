@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
-            base.Initialize();
+            base.DoInitialize();
 
             var texture = new Texture(TextureTarget.Texture2D,
                 new NullImageFiller(WIDTH, HEIGHT, OpenGL.GL_RGBA8, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE),
