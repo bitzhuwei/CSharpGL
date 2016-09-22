@@ -14,17 +14,17 @@ namespace CSharpGL
         vec3 WorldPosition { get; set; }
 
         /// <summary>
-        ///
+        /// Rotation angle in degree.
         /// </summary>
         float RotationAngle { get; set; }
 
         /// <summary>
-        ///
+        /// Rotation axis.
         /// </summary>
         vec3 RotationAxis { get; set; }
 
         /// <summary>
-        ///
+        /// Scale factor.
         /// </summary>
         vec3 Scale { get; set; }
 
