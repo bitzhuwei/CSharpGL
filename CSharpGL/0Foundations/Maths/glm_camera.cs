@@ -238,13 +238,13 @@ namespace CSharpGL
         /// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
         /// </summary>
         /// <param name="m">The m.</param>
-        /// <param name="angle">The angle.</param>
+        /// <param name="angleDegree">ANgle in Degree.</param>
         /// <param name="v">The v.</param>
         /// <returns></returns>
-        public static mat4 rotate(mat4 m, float angle, vec3 v)
+        public static mat4 rotate(mat4 m, float angleDegree, vec3 v)
         {
-            float c = cos(angle);
-            float s = sin(angle);
+            float c = cos((float)(angleDegree * Math.PI / 180.0));
+            float s = sin((float)(angleDegree * Math.PI / 180.0));
 
             vec3 axis = v.normalize();
             vec3 temp = (1.0f - c) * axis;
@@ -273,12 +273,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="angle"></param>
+        /// <param name="angleDegree">ANgle in Degree.</param>
         /// <param name="v"></param>
         /// <returns></returns>
-        public static mat4 rotate(float angle, vec3 v)
+        public static mat4 rotate(float angleDegree, vec3 v)
         {
-            return rotate(mat4.identity(), angle, v);
+            return rotate(mat4.identity(), angleDegree, v);
         }
 
         /// <summary>

@@ -58,12 +58,12 @@ namespace CSharpGL
         /// <para>在目前的旋转状态下继续旋转一次，即所有的旋转操作都会（按照发生顺序）生效。</para>
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="angle"></param>
+        /// <param name="angleDegree">Angle in Degree.</param>
         /// <param name="axis"></param>
-        public static void Rotate(this IModelSpace model, float angle, vec3 axis)
+        public static void Rotate(this IModelSpace model, float angleDegree, vec3 axis)
         {
             mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
-            mat4 newRotationMatrix = glm.rotate(angle, axis);
+            mat4 newRotationMatrix = glm.rotate(angleDegree, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
             Quaternion quaternion = latestRotationMatrix.ToQuaternion();
             float latestAngle;

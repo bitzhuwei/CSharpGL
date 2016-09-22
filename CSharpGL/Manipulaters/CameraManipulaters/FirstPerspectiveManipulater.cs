@@ -39,7 +39,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public FirstPerspectiveManipulater()
-            : this(0.1f, 0.002f, 0.002f, MouseButtons.Right) { }
+            : this(6f, 0.12f, 0.12f, MouseButtons.Right) { }
 
         /// <summary>
         ///

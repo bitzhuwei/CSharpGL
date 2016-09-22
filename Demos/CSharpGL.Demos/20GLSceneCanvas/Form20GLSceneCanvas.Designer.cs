@@ -28,24 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CSharpGL.FirstPerspectiveManipulater firstPerspectiveManipulater1 = new CSharpGL.FirstPerspectiveManipulater();
             this.glSceneCanvas1 = new CSharpGL.GLSceneCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glSceneCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // glSceneCanvas1
             // 
-            firstPerspectiveManipulater1.BackKey = 's';
-            firstPerspectiveManipulater1.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
-            firstPerspectiveManipulater1.DownKey = 'e';
-            firstPerspectiveManipulater1.FrontKey = 'w';
-            firstPerspectiveManipulater1.HorizontalRotationSpeed = 0.002F;
-            firstPerspectiveManipulater1.LeftKey = 'a';
-            firstPerspectiveManipulater1.RightKey = 'd';
-            firstPerspectiveManipulater1.StepLength = 0.1F;
-            firstPerspectiveManipulater1.UpKey = 'q';
-            firstPerspectiveManipulater1.VerticalRotationSpeed = 0.002F;
-            this.glSceneCanvas1.CameraManipulater = firstPerspectiveManipulater1;
             this.glSceneCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glSceneCanvas1.Location = new System.Drawing.Point(0, 0);
             this.glSceneCanvas1.Name = "glSceneCanvas1";

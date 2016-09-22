@@ -79,10 +79,10 @@ namespace CSharpGL.Demos
         {
             direction.y = 0;
             direction = direction.normalize();
-            float cosRadian = direction.dot(new vec3(1, 0, 0));
+            float cosRadian = direction.dot(new vec3(1, 0, 0));// (1, 0, 0) is teapot's default direction.
             float radian = (float)Math.Acos(cosRadian);
             if (direction.z > 0) { radian = -radian; }
-            renderer.RotationAngle = radian;
+            renderer.RotationAngle = (float)(radian * 180.0 / Math.PI);
         }
     }
 }

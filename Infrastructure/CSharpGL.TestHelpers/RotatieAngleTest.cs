@@ -3,14 +3,14 @@ using System.IO;
 
 namespace CSharpGL.TestHelpers
 {
-    public static class QuaternionTest
+    public static class RotatieAngleTest
     {
         /// <summary>
-        /// This test shows that glm.rotate() and Quaternion.ToRotationMatrix() give the same result.
+        /// This test shows in what unit(degree or radian) does glRotatef() and glm.rotate() use.
         /// </summary>
         public static void Test()
         {
-            using (var writer = new StreamWriter("test-quaternion.txt"))
+            using (var writer = new StreamWriter("test-rotationAngle.txt"))
             {
                 int length = 5;
                 for (int degreeAngle = 1; degreeAngle < 361; degreeAngle++)
@@ -21,16 +21,18 @@ namespace CSharpGL.TestHelpers
                         {
                             for (int z = -length; z < length; z++)
                             {
-                                var quaternion = new Quaternion(degreeAngle, new vec3(x, y, z));
-                                mat3 matrix1 = quaternion.ToRotationMatrix();
-                                //mat4 tmp = glm.rotate((float)(degreeAngle * Math.PI / 180.0f), new vec3(x, y, z));
-                                mat4 tmp = glm.rotate(degreeAngle, new vec3(x, y, z));
-                                mat3 matrix2 = tmp.to_mat3();
+                                OpenGL.MatrixMode(OpenGL.GL_MODELVIEW_MATRIX);
+                                OpenGL.LoadIdentity();
+                                OpenGL.Rotatef(degreeAngle, x, y, z);
+                                float[] matrix1 = new float[16];
+                                OpenGL.GetFloat(GetTarget.ModelviewMatix, matrix1);
+                                mat4 matrix2 = glm.rotate(degreeAngle, new vec3(x, y, z));
+                                //mat4 matrix2 = glm.rotate((float)(degreeAngle * Math.PI / 180.0), new vec3(x, y, z));
                                 writer.WriteLine("====================");
                                 writer.WriteLine("{3}° x[{0}] y[{1}] z[{2}]", x, y, z, degreeAngle);
-                                writer.WriteLine(matrix1.ToArray().PrintVectors(3, ",", ";" + Environment.NewLine));
+                                writer.WriteLine(matrix1.PrintVectors(4, ",", ";" + Environment.NewLine));
                                 writer.WriteLine("------------");
-                                writer.WriteLine(matrix2.ToArray().PrintVectors(3, ",", ";" + Environment.NewLine));
+                                writer.WriteLine(matrix2.ToArray().PrintVectors(4, ",", ";" + Environment.NewLine));
                                 //}
                             }
                         }
