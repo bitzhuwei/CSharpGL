@@ -243,8 +243,8 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 rotate(mat4 m, float angleDegree, vec3 v)
         {
-            float c = cos((float)(angleDegree * Math.PI / 180.0));
-            float s = sin((float)(angleDegree * Math.PI / 180.0));
+            float c = (float)Math.Cos(angleDegree * Math.PI / 180.0);
+            float s = (float)Math.Sin(angleDegree * Math.PI / 180.0);
 
             vec3 axis = v.normalize();
             vec3 temp = (1.0f - c) * axis;
