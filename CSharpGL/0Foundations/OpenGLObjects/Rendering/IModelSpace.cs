@@ -65,10 +65,12 @@ namespace CSharpGL
             mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
             mat4 newRotationMatrix = glm.rotate(angle, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
-            vec4 quaternion = latestRotationMatrix.GetQuaternion();
-            float lastestAngle = (float)(Math.Acos(quaternion.w) * 2);
-            model.RotationAxis = (new vec3(quaternion.x, quaternion.y, quaternion.z)).normalize();
-            model.RotationAngle = lastestAngle;
+            Quaternion quaternion = latestRotationMatrix.ToQuaternion();
+            float latestAngle;
+            vec3 latestAxis;
+            quaternion.Parse(out latestAngle, out latestAxis);
+            model.RotationAngle = latestAngle;
+            model.RotationAxis = latestAxis;
         }
 
         /// <summary>

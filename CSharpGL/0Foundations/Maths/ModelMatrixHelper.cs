@@ -13,7 +13,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="matrix"></param>
         /// <returns></returns>
-        public static Quaternion GetQuaternion(this mat4 matrix)
+        public static Quaternion ToQuaternion(this mat4 matrix)
         {
             return (matrix.to_mat3().ToQuaternion());
         }

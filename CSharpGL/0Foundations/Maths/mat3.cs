@@ -315,5 +315,80 @@ namespace CSharpGL
             }
             return builder.ToString();
         }
+
+        /// <summary>
+        /// Transform this matrix to a <see cref="Quaternion"/>.
+        /// </summary>
+        /// <returns></returns>
+        public Quaternion ToQuaternion()
+        {
+            // input matrix.
+            float m11 = this.col0.x, m12 = this.col1.x, m13 = this.col2.x;
+            float m21 = this.col0.y, m22 = this.col1.y, m23 = this.col2.y;
+            float m31 = this.col0.z, m32 = this.col1.z, m33 = this.col2.z;
+            // output quaternion
+            float x = 0, y = 0, z = 0, w = 0;
+            // detect biggest in w, x, y, z.
+            float fourWSquaredMinus1 = +m11 + m22 + m33;
+            float fourXSquaredMinus1 = +m11 - m22 - m33;
+            float fourYSquaredMinus1 = -m11 + m22 - m33;
+            float fourZSquaredMinus1 = -m11 - m22 + m33;
+            int biggestIndex = 0;
+            float biggest = fourWSquaredMinus1;
+            if (fourXSquaredMinus1 > biggest)
+            {
+                biggest = fourXSquaredMinus1;
+                biggestIndex = 1;
+            }
+            if (fourYSquaredMinus1 > biggest)
+            {
+                biggest = fourYSquaredMinus1;
+                biggestIndex = 2;
+            }
+            if (fourZSquaredMinus1 > biggest)
+            {
+                biggest = fourZSquaredMinus1;
+                biggestIndex = 3;
+            }
+            // sqrt and division
+            float biggestVal = (float)(Math.Sqrt(biggest + 1) * 0.5);
+            float mult = 0.25f / biggestVal;
+            // get output
+            switch (biggestIndex)
+            {
+                case 0:
+                    w = biggestVal;
+                    x = (m23 - m32) * mult;
+                    y = (m31 - m13) * mult;
+                    z = (m12 - m21) * mult;
+                    break;
+
+                case 1:
+                    x = biggestVal;
+                    w = (m23 - m32) * mult;
+                    y = (m12 + m21) * mult;
+                    z = (m31 + m13) * mult;
+                    break;
+
+                case 2:
+                    y = biggestVal;
+                    w = (m31 - m13) * mult;
+                    x = (m12 + m21) * mult;
+                    z = (m23 + m32) * mult;
+                    break;
+
+                case 3:
+                    z = biggestVal;
+                    w = (m12 - m21) * mult;
+                    x = (m31 + m13) * mult;
+                    y = (m23 + m32) * mult;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return new Quaternion(w, x, y, z);
+        }
     }
 }
