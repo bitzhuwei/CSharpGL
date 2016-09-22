@@ -84,7 +84,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}°, <{1}, {2}, {3}>", w * 180.0f / Math.PI, x, y, z);
+            return string.Format("{0}°, <{1}, {2}, {3}>", Math.Acos(w) * 2 * 180.0f / Math.PI, x, y, z);
         }
     }
 }
