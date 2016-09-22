@@ -33,7 +33,7 @@ namespace CSharpGL
         /// <param name="bindingMouseButtons"></param>
         public ArcBallManipulater(MouseButtons bindingMouseButtons = MouseButtons.Left)
         {
-            this.MouseSensitivity = 0.1f;
+            this.MouseSensitivity = 1f;
             this.BindingMouseButtons = bindingMouseButtons;
 
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
