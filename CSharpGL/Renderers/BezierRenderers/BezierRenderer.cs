@@ -125,19 +125,19 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override float RotationAngle
+        public override float RotationRadianAngle
         {
             get
             {
-                return base.RotationAngle;
+                return base.RotationRadianAngle;
             }
             set
             {
-                if (base.RotationAngle != value)
+                if (base.RotationRadianAngle != value)
                 {
                     this.needsUpdating = true;
                 }
-                base.RotationAngle = value;
+                base.RotationRadianAngle = value;
             }
         }
 

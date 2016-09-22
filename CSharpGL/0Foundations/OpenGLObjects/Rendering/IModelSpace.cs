@@ -14,17 +14,17 @@ namespace CSharpGL
         vec3 WorldPosition { get; set; }
 
         /// <summary>
-        ///
+        /// Rotation angle in radian.
         /// </summary>
-        float RotationAngle { get; set; }
+        float RotationRadianAngle { get; set; }
 
         /// <summary>
-        ///
+        /// Rotation axis.
         /// </summary>
         vec3 RotationAxis { get; set; }
 
         /// <summary>
-        ///
+        /// Scale factor.
         /// </summary>
         vec3 Scale { get; set; }
 
@@ -48,7 +48,7 @@ namespace CSharpGL
         {
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
-            matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
+            matrix = glm.rotate(matrix, model.RotationRadianAngle, model.RotationAxis);
             return matrix;
         }
 
@@ -62,14 +62,14 @@ namespace CSharpGL
         /// <param name="axis"></param>
         public static void Rotate(this IModelSpace model, float angle, vec3 axis)
         {
-            mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
+            mat4 currentRotationMatrix = glm.rotate(model.RotationRadianAngle, model.RotationAxis);
             mat4 newRotationMatrix = glm.rotate(angle, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
             Quaternion quaternion = latestRotationMatrix.ToQuaternion();
             float latestAngle;
             vec3 latestAxis;
             quaternion.Parse(out latestAngle, out latestAxis);
-            model.RotationAngle = latestAngle;
+            model.RotationRadianAngle = latestAngle;
             model.RotationAxis = latestAxis;
         }
 
@@ -101,7 +101,7 @@ namespace CSharpGL
         {
             OpenGL.Translate(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
             OpenGL.Scale(model.Scale.x, model.Scale.y, model.Scale.z);
-            OpenGL.Rotate(model.RotationAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+            OpenGL.Rotate(model.RotationRadianAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
         }
     }
 }
