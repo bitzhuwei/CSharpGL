@@ -13,7 +13,7 @@ namespace CSharpGL.TestHelpers
             using (var writer = new StreamWriter("test-quaternion.txt"))
             {
                 int length = 5;
-                for (int degreeAngle = 1; degreeAngle < 361; degreeAngle++)
+                for (int angleDegree = 1; angleDegree < 361; angleDegree++)
                 {
                     for (int x = -length; x < length; x++)
                     {
@@ -21,13 +21,13 @@ namespace CSharpGL.TestHelpers
                         {
                             for (int z = -length; z < length; z++)
                             {
-                                var quaternion = new Quaternion(degreeAngle, new vec3(x, y, z));
+                                var quaternion = new Quaternion(angleDegree, new vec3(x, y, z));
                                 mat3 matrix1 = quaternion.ToRotationMatrix();
-                                //mat4 tmp = glm.rotate((float)(degreeAngle * Math.PI / 180.0f), new vec3(x, y, z));
-                                mat4 tmp = glm.rotate(degreeAngle, new vec3(x, y, z));
+                                //mat4 tmp = glm.rotate((float)(angleDegree * Math.PI / 180.0f), new vec3(x, y, z));
+                                mat4 tmp = glm.rotate(angleDegree, new vec3(x, y, z));
                                 mat3 matrix2 = tmp.to_mat3();
                                 writer.WriteLine("====================");
-                                writer.WriteLine("{3}° x[{0}] y[{1}] z[{2}]", x, y, z, degreeAngle);
+                                writer.WriteLine("{3}° x[{0}] y[{1}] z[{2}]", x, y, z, angleDegree);
                                 writer.WriteLine(matrix1.ToArray().PrintVectors(3, ",", ";" + Environment.NewLine));
                                 writer.WriteLine("------------");
                                 writer.WriteLine(matrix2.ToArray().PrintVectors(3, ",", ";" + Environment.NewLine));
@@ -48,7 +48,7 @@ namespace CSharpGL.TestHelpers
             using (var writer = new StreamWriter("test-quaternion2.txt"))
             {
                 int length = 5;
-                for (int degreeAngle = 1; degreeAngle < 361; degreeAngle++)
+                for (int angleDegree = 1; angleDegree < 361; angleDegree++)
                 {
                     for (int x = -length; x < length; x++)
                     {
@@ -56,11 +56,11 @@ namespace CSharpGL.TestHelpers
                         {
                             for (int z = -length; z < length; z++)
                             {
-                                var quaternion = new Quaternion(degreeAngle, new vec3(x, y, z));
+                                var quaternion = new Quaternion(angleDegree, new vec3(x, y, z));
                                 mat3 matrix1 = quaternion.ToRotationMatrix();
                                 Quaternion quaternion2 = matrix1.ToQuaternion();
                                 writer.WriteLine("====================");
-                                writer.WriteLine("{3}° x[{0}] y[{1}] z[{2}]", x, y, z, degreeAngle);
+                                writer.WriteLine("{3}° x[{0}] y[{1}] z[{2}]", x, y, z, angleDegree);
                                 writer.WriteLine(quaternion);
                                 writer.WriteLine("------------");
                                 writer.WriteLine(quaternion2);

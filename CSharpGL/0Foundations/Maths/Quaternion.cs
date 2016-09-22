@@ -43,12 +43,12 @@ namespace CSharpGL
         /// <summary>
         /// Quaternion from a rotation angle and axis.
         /// </summary>
-        /// <param name="degreeAngle"></param>
+        /// <param name="angleDegree"></param>
         /// <param name="axis"></param>
-        public Quaternion(float degreeAngle, vec3 axis)
+        public Quaternion(float angleDegree, vec3 axis)
         {
             vec3 normalized = axis.normalize();
-            double radian = degreeAngle * Math.PI / 180.0;
+            double radian = angleDegree * Math.PI / 180.0;
             double halfRadian = radian / 2.0;
             this.w = (float)Math.Cos(halfRadian);
             float sin = (float)Math.Sin(halfRadian);
@@ -82,11 +82,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="degreeAngle"></param>
+        /// <param name="angleDegree"></param>
         /// <param name="axis"></param>
-        public void Parse(out float degreeAngle, out vec3 axis)
+        public void Parse(out float angleDegree, out vec3 axis)
         {
-            degreeAngle = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
+            angleDegree = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
             axis = (new vec3(x, y, z)).normalize();
         }
 
