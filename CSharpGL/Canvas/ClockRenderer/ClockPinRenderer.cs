@@ -48,7 +48,7 @@ namespace CSharpGL
 
             {
                 float secondAngle = ((float)now.Second) / 60.0f * 360.0f * speed;
-                this.RotationRadianAngle = secondAngle;
+                this.RotationAngleDegree = secondAngle;
                 OpenGL.LoadIdentity();
                 this.LegacyTransform();
 
@@ -66,7 +66,7 @@ namespace CSharpGL
             }
             {
                 float minuteAngle = ((float)(now.Minute * 60 + now.Second)) / (60.0f * 60.0f) * 360.0f * speed;
-                this.RotationRadianAngle = minuteAngle;
+                this.RotationAngleDegree = minuteAngle;
                 OpenGL.LoadIdentity();
                 this.LegacyTransform();
 
@@ -84,7 +84,7 @@ namespace CSharpGL
             }
             {
                 float hourAngle = ((float)((now.Hour * 60 + now.Minute) * 60 + now.Second)) / (12.0f * 60.0f * 60.0f) * 360.0f * speed;
-                this.RotationRadianAngle = hourAngle;
+                this.RotationAngleDegree = hourAngle;
                 OpenGL.LoadIdentity();
                 this.LegacyTransform();
 

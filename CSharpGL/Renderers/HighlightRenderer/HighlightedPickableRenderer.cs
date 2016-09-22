@@ -29,7 +29,7 @@ namespace CSharpGL
             this.Highlighter.WorldPosition = this.PickableRenderer.WorldPosition;
             this.Highlighter.Lengths = this.PickableRenderer.Lengths;
             this.PickableRenderer.RotationAxis = this.PickableRenderer.RotationAxis;
-            this.PickableRenderer.RotationRadianAngle = this.PickableRenderer.RotationRadianAngle;
+            this.PickableRenderer.RotationAngleDegree = this.PickableRenderer.RotationAngleDegree;
             this.PickableRenderer.Scale = this.PickableRenderer.Scale;
         }
 
@@ -99,17 +99,17 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override float RotationRadianAngle
+        public override float RotationAngleDegree
         {
             get
             {
-                return PickableRenderer.RotationRadianAngle;
+                return PickableRenderer.RotationAngleDegree;
             }
             set
             {
-                Highlighter.RotationRadianAngle = value;
-                PickableRenderer.RotationRadianAngle = value;
-                base.RotationRadianAngle = value;
+                Highlighter.RotationAngleDegree = value;
+                PickableRenderer.RotationAngleDegree = value;
+                base.RotationAngleDegree = value;
             }
         }
 
