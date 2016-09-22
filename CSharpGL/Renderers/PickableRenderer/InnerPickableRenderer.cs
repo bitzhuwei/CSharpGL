@@ -17,7 +17,7 @@
         {
             get
             {
-                VertexAttributeBufferPtr[] pointers = this.propertyBufferPtrs;
+                VertexAttributeBufferPtr[] pointers = this.vertexAttributeBufferPtrs;
                 if (pointers == null || pointers.Length < 0) { return null; }
                 else { return pointers[0]; }
             }

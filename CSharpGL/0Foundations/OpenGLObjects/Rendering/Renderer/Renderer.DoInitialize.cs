@@ -15,7 +15,7 @@ namespace CSharpGL
 
             // init property buffer objects.
             IBufferable bufferable = this.Model;
-            VertexAttributeBufferPtr[] propertyBufferPtrs;
+            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
             {
                 var list = new List<VertexAttributeBufferPtr>();
                 foreach (var item in this.attributeNameMap)
@@ -25,7 +25,7 @@ namespace CSharpGL
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
                     list.Add(bufferPtr);
                 }
-                propertyBufferPtrs = list.ToArray();
+                vertexAttributeBufferPtrs = list.ToArray();
             }
 
             // init index buffer.
@@ -40,12 +40,12 @@ namespace CSharpGL
             }
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, propertyBufferPtrs);
+            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, vertexAttributeBufferPtrs);
             vertexArrayObject.Create(program);
 
             // sets fields.
             this.Program = program;
-            this.propertyBufferPtrs = propertyBufferPtrs;
+            this.vertexAttributeBufferPtrs = vertexAttributeBufferPtrs;
             this.indexBufferPtr = indexBufferPtr;
             this.vertexArrayObject = vertexArrayObject;
         }

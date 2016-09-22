@@ -12,7 +12,7 @@ namespace CSharpGL
 
             VertexAttributeBufferPtr positionBufferPtr = null;
             IBufferable bufferable = this.Model;
-            VertexAttributeBufferPtr[] propertyBufferPtrs;
+            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
             {
                 var list = new List<VertexAttributeBufferPtr>();
                 foreach (var item in this.attributeNameMap)
@@ -33,7 +33,7 @@ namespace CSharpGL
                     }
                     list.Add(bufferPtr);
                 }
-                propertyBufferPtrs = list.ToArray();
+                vertexAttributeBufferPtrs = list.ToArray();
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
@@ -57,7 +57,7 @@ namespace CSharpGL
 
             // sets fields.
             this.Program = program;
-            this.propertyBufferPtrs = new VertexAttributeBufferPtr[] { positionBufferPtr };
+            this.vertexAttributeBufferPtrs = new VertexAttributeBufferPtr[] { positionBufferPtr };
             this.indexBufferPtr = indexBufferPtr;
             this.vertexArrayObject = vertexArrayObject;
         }

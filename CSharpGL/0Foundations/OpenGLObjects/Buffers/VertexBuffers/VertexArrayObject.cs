@@ -35,20 +35,21 @@ namespace CSharpGL
         /// <para>VAO is used to reduce draw-call.</para>
         /// </summary>
         /// <param name="indexBufferPtr">index buffer pointer that used to invoke draw command.</param>
-        /// <param name="propertyBufferPtrs">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params VertexAttributeBufferPtr[] propertyBufferPtrs)
+        /// <param name="vertexAttributeBufferPtrs">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
+        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params VertexAttributeBufferPtr[] vertexAttributeBufferPtrs)
         {
             if (indexBufferPtr == null)
             {
                 throw new ArgumentNullException("indexBufferPtr");
             }
-            if (propertyBufferPtrs == null || propertyBufferPtrs.Length == 0)
-            {
-                throw new ArgumentNullException("propertyBufferPtrs");
-            }
+            // Zero vertex attribute is allowed in GLSL.
+            //if (vertexAttributeBufferPtrs == null || vertexAttributeBufferPtrs.Length == 0)
+            //{
+            //    throw new ArgumentNullException("vertexAttributeBufferPtrs");
+            //}
 
             this.IndexBufferPtr = indexBufferPtr;
-            this.VertexAttributeBufferPtrs = propertyBufferPtrs;
+            this.VertexAttributeBufferPtrs = vertexAttributeBufferPtrs;
         }
 
         /// <summary>
@@ -162,10 +163,10 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
-                        VertexAttributeBufferPtr[] propertyBufferPtrs = this.VertexAttributeBufferPtrs;
-                        if (propertyBufferPtrs != null)
+                        VertexAttributeBufferPtr[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
+                        if (vertexAttributeBufferPtrs != null)
                         {
-                            foreach (var item in propertyBufferPtrs)
+                            foreach (var item in vertexAttributeBufferPtrs)
                             {
                                 item.Dispose();
                             }

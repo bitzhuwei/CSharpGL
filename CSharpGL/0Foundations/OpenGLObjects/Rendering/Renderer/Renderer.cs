@@ -30,7 +30,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected VertexAttributeBufferPtr[] propertyBufferPtrs;
+        protected VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
 
         /// <summary>
         ///

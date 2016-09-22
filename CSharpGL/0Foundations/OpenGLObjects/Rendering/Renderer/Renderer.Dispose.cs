@@ -11,9 +11,9 @@
             {
                 this.vertexArrayObject.Dispose();
             }
-            if (this.propertyBufferPtrs != null)
+            if (this.vertexAttributeBufferPtrs != null)
             {
-                foreach (var item in this.propertyBufferPtrs) { item.Dispose(); }
+                foreach (var item in this.vertexAttributeBufferPtrs) { item.Dispose(); }
             }
             if (this.indexBufferPtr != null)
             {
