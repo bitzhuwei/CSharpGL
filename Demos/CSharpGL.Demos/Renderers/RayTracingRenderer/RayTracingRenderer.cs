@@ -66,7 +66,7 @@ namespace CSharpGL.Demos
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\fullscreen.vert.glsl"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\texture.frag.glsl"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
-            IBufferable model = new ZeroAttributeModel();
+            IBufferable model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
             var renderer = new RayTracingRenderer(model, shaderCodes, map);
 
             return renderer;
@@ -127,36 +127,6 @@ namespace CSharpGL.Demos
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, switches)
         {
-        }
-    }
-
-    public class ZeroAttributeModel : IBufferable
-    {
-
-
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
-        {
-            throw new Exception("No vertex attribute buffer for this model!");
-        }
-
-        public IndexBufferPtr GetIndexBufferPtr()
-        {
-            if (this.indexBufferPtr == null)
-            {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleStrip, 0, 4))
-                {
-                    this.indexBufferPtr = buffer.GetBufferPtr();
-                }
-            }
-
-            return this.indexBufferPtr;
-        }
-
-        IndexBufferPtr indexBufferPtr;
-
-        public bool UsesZeroIndexBuffer()
-        {
-            return true;
         }
     }
 
