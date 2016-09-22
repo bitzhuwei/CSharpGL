@@ -15,7 +15,6 @@ namespace CSharpGL
         /// Position in world space.
         /// </summary>
         [Category(strRenderer)]
-        [Description("Position in world space.")]
         public virtual vec3 WorldPosition
         {
             get { return worldPosition; }
@@ -29,21 +28,20 @@ namespace CSharpGL
             }
         }
 
-        private float rotationAngleDegree;
+        private float rotationAngle;
 
         /// <summary>
-        /// Rotation angle in degree.
+        ///
         /// </summary>
         [Category(strRenderer)]
-        [Description("Rotation angle in degree.")]
-        public virtual float RotationAngleDegree
+        public virtual float RotationRadianAngle
         {
-            get { return rotationAngleDegree; }
+            get { return rotationAngle; }
             set
             {
-                if (rotationAngleDegree != value)
+                if (rotationAngle != value)
                 {
-                    rotationAngleDegree = value;
+                    rotationAngle = value;
                     modelMatrixRecord.Mark();
                 }
             }
@@ -52,10 +50,9 @@ namespace CSharpGL
         private vec3 rotationAxis = new vec3(0, 1, 0);
 
         /// <summary>
-        /// Rotation axis.
+        ///
         /// </summary>
         [Category(strRenderer)]
-        [Description("Rotation axis.")]
         public virtual vec3 RotationAxis
         {
             get { return rotationAxis; }
@@ -72,10 +69,9 @@ namespace CSharpGL
         private vec3 scale = new vec3(1, 1, 1);
 
         /// <summary>
-        /// Scale factor.
+        ///
         /// </summary>
         [Category(strRenderer)]
-        [Description("Scale factor.")]
         public virtual vec3 Scale
         {
             get { return scale; }
@@ -90,10 +86,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Length in X/Y/Z axis.
+        ///
         /// </summary>
         [Category(strRenderer)]
-        [Description("Length in X/Y/Z axis.")]
         public virtual vec3 Lengths { get; set; }
     }
 }

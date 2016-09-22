@@ -39,29 +39,29 @@ namespace CSharpGL
         /// <summary>
         /// This function applies a rotation transformation to the current matrix.
         /// </summary>
-        /// <param name="angleDegree">The angle to rotate.</param>
+        /// <param name="radianAngle">The angle to rotate.</param>
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Rotate(double angleDegree, double x, double y, double z)
+        public static void Rotate(double radianAngle, double x, double y, double z)
         {
-            OpenGL.Rotated(angleDegree, x, y, z);
+            OpenGL.Rotated(radianAngle, x, y, z);
         }
 
         /// <summary>
         /// This function applies a rotation transformation to the current matrix.
         /// </summary>
-        /// <param name="angleDegree">The angle to rotate.</param>
+        /// <param name="radianAngle">The angle to rotate.</param>
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Rotate(float angleDegree, float x, float y, float z)
+        public static void Rotate(float radianAngle, float x, float y, float z)
         {
-            OpenGL.Rotatef(angleDegree, x, y, z);
+            OpenGL.Rotatef(radianAngle, x, y, z);
         }
 
         /// <summary>

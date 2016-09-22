@@ -14,9 +14,9 @@ namespace CSharpGL
         vec3 WorldPosition { get; set; }
 
         /// <summary>
-        /// Rotation angle in degree.
+        /// Rotation angle in radian.
         /// </summary>
-        float RotationAngleDegree { get; set; }
+        float RotationRadianAngle { get; set; }
 
         /// <summary>
         /// Rotation axis.
@@ -48,7 +48,7 @@ namespace CSharpGL
         {
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
-            matrix = glm.rotate(matrix, model.RotationAngleDegree, model.RotationAxis);
+            matrix = glm.rotate(matrix, model.RotationRadianAngle, model.RotationAxis);
             return matrix;
         }
 
@@ -58,18 +58,18 @@ namespace CSharpGL
         /// <para>在目前的旋转状态下继续旋转一次，即所有的旋转操作都会（按照发生顺序）生效。</para>
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="angleDegree"></param>
+        /// <param name="angle"></param>
         /// <param name="axis"></param>
-        public static void Rotate(this IModelSpace model, float angleDegree, vec3 axis)
+        public static void Rotate(this IModelSpace model, float angle, vec3 axis)
         {
-            mat4 currentRotationMatrix = glm.rotate(model.RotationAngleDegree, model.RotationAxis);
-            mat4 newRotationMatrix = glm.rotate(angleDegree, axis);
+            mat4 currentRotationMatrix = glm.rotate(model.RotationRadianAngle, model.RotationAxis);
+            mat4 newRotationMatrix = glm.rotate(angle, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
             Quaternion quaternion = latestRotationMatrix.ToQuaternion();
-            float latestAngleDegree;
+            float latestAngle;
             vec3 latestAxis;
-            quaternion.Parse(out latestAngleDegree, out latestAxis);
-            model.RotationAngleDegree = latestAngleDegree;
+            quaternion.Parse(out latestAngle, out latestAxis);
+            model.RotationRadianAngle = latestAngle;
             model.RotationAxis = latestAxis;
         }
 
@@ -101,7 +101,7 @@ namespace CSharpGL
         {
             OpenGL.Translate(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
             OpenGL.Scale(model.Scale.x, model.Scale.y, model.Scale.z);
-            OpenGL.Rotate(model.RotationAngleDegree, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+            OpenGL.Rotate(model.RotationRadianAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
         }
     }
 }

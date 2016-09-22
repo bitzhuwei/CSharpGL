@@ -55,7 +55,7 @@
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.RotationAngleDegree += 3.0f;
+            this.RotationRadianAngle += 3.0f;
             OpenGL.LoadIdentity();
             this.LegacyTransform();
 

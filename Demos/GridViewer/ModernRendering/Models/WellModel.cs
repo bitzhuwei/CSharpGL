@@ -157,7 +157,7 @@ namespace GridViewer
 
         public vec3 WorldPosition { get; set; }
 
-        public float RotationAngleDegree { get; set; }
+        public float RotationRadianAngle { get; set; }
 
         public vec3 RotationAxis { get; set; }
 
