@@ -27,5 +27,18 @@ namespace CSharpGL
         [Category(strRenderer)]
         [Description("index buffer(glDrawArrays or glDrawElements).")]
         public IndexBufferPtr IndexBufferPtr { get { return this.indexBufferPtr; } }
+
+        /// <summary>
+        ///  Vertex attribute buffers.
+        /// </summary>
+        [Category(strRenderer)]
+        [Description("Vertex attribute buffers.")]
+        public IEnumerable<VertexAttributeBufferPtr> VertexAttributeBufferPtrs
+        {
+            get
+            {
+                return this.vertexAttributeBufferPtrs;
+            }
+        }
     }
 }

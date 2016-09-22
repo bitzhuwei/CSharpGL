@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Renderer that supports color-coded rendering.
@@ -18,8 +19,12 @@
             get
             {
                 VertexAttributeBufferPtr[] pointers = this.vertexAttributeBufferPtrs;
-                if (pointers == null || pointers.Length < 0) { return null; }
-                else { return pointers[0]; }
+                if (pointers == null || pointers.Length < 0)
+                {
+                    throw new Exception("Vertex attribute buffers are not readly!");
+                }
+
+                return pointers[0];
             }
         }
 

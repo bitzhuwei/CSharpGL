@@ -28,7 +28,7 @@ namespace CSharpGL
         public VertexArrayObject VertexArrayObject { get { return this.vertexArrayObject; } }
 
         /// <summary>
-        ///
+        /// Vertex attribute buffers.
         /// </summary>
         protected VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
 
