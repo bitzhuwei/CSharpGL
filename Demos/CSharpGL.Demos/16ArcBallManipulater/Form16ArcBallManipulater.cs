@@ -52,9 +52,8 @@ namespace CSharpGL.Demos
                 Quaternion quaternion = matrix3.ToQuaternion();
                 float degreeAngle; vec3 axis;
                 quaternion.Parse(out degreeAngle, out axis);
-                //this.teapotRenderer.RotationAngleDegree = degreeAngle;
-                //this.teapotRenderer.RotationAxis = axis;
-                this.teapotRenderer.SetUniform("modelMatrix", model);
+                this.teapotRenderer.RotationAngleDegree = (float)(degreeAngle * Math.PI / 180.0);
+                this.teapotRenderer.RotationAxis = axis;
                 this.teapotRenderer.Render(arg);
             }
             {

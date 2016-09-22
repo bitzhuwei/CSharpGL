@@ -11,6 +11,7 @@ namespace CSharpGL.Demos
         private UIRoot uiRoot;
         private UIAxis uiAxis;
         private GreyFilterRenderer renderer;
+        private ArcBallManipulater arcballManipulater;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -22,6 +23,9 @@ namespace CSharpGL.Demos
                 var cameraManipulater = new SatelliteManipulater();
                 cameraManipulater.Bind(camera, this.glCanvas1);
                 this.cameraManipulater = cameraManipulater;
+                var arcballManipulater = new ArcBallManipulater();
+                arcballManipulater.Bind(camera, this.glCanvas1);
+                this.arcballManipulater = arcballManipulater;
             }
             {
                 GreyFilterRenderer renderer = GreyFilterRenderer.Create();
