@@ -388,7 +388,7 @@ namespace CSharpGL
                     break;
             }
 
-            return new Quaternion(w, x, y, z);
+            return new Quaternion(w, -x, -y, -z);
         }
     }
 }
