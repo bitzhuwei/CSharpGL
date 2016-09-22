@@ -33,8 +33,10 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array"></param>
         /// <param name="components">2, 3, or 4.</param>
+        /// <param name="componentSeparator"></param>
+        /// <param name="vectorSeparator"></param>
         /// <returns></returns>
-        public static string PrintVectors(this float[] array, int components = 3)
+        public static string PrintVectors(this float[] array, int components = 3, string componentSeparator = ",", string vectorSeparator = "\r\n")
         {
             if (components < 1) { throw new ArgumentOutOfRangeException("components"); }
 
@@ -48,12 +50,12 @@ namespace CSharpGL
                 counter++;
                 if (counter % components == 0)
                 {
-                    builder.Append("; ");
+                    builder.Append(vectorSeparator);
                     counter = 0;
                 }
                 else
                 {
-                    builder.Append(", ");
+                    builder.Append(componentSeparator);
                 }
             }
 
