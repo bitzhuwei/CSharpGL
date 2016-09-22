@@ -80,6 +80,17 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="degreeAngle"></param>
+        /// <param name="axis"></param>
+        public void Parse(out float degreeAngle, out vec3 axis)
+        {
+            degreeAngle = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
+            axis = (new vec3(x, y, z)).normalize();
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
