@@ -29,6 +29,7 @@ namespace CSharpGL.Demos
             {
                 var shaderCodes = new ShaderCode[] { new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\raytrace.comp.glsl"), ShaderType.ComputeShader), };
                 this.computeProgram = shaderCodes.CreateProgram();
+                this.computeProgram.Bind();
                 g_directionBuffer.glusRaytracePerspectivef(
                     DIRECTION_BUFFER_PADDING, 30.0f, WIDTH, HEIGHT);
                 using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))

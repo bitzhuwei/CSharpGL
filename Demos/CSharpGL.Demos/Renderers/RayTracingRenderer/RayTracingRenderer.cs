@@ -2,10 +2,12 @@
 using System.IO;
 namespace CSharpGL.Demos
 {
+    // this demo failed to work.
+    // translated from (https://github.com/McNopper/OpenGL/blob/db83062dc673750dd1720c5d581aa3c89460a94b/GLUS/src/glus_matrix.c)
     /// <summary>
     /// Raycast Volume Rendering Demo.
     /// </summary>
-    [DemoRenderer]
+    //[DemoRenderer]
     partial class RayTracingRenderer : Renderer
     {
         private const int WIDTH = 640;
