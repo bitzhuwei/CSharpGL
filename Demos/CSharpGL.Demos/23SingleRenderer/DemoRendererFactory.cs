@@ -93,6 +93,10 @@ namespace CSharpGL.Demos
             {
                 renderer = WaterRenderer.Create(waterPlaneLength: 4);
             }
+            else if (rendererType == typeof(ZeroAttributeRenderer))
+            {
+                renderer = ZeroAttributeRenderer.Create();
+            }
 
             return renderer;
         }
