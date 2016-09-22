@@ -1,4 +1,6 @@
-﻿namespace CSharpGL
+﻿using System;
+
+namespace CSharpGL
 {
     /// <summary>
     /// gets model's original size.
@@ -48,6 +50,25 @@
             matrix = glm.scale(matrix, model.Scale);
             matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
             return matrix;
+        }
+
+        /// <summary>
+        /// Rotate this model based on all previous rotation actions.
+        /// Thus all rotations will take part in model's rotation result.
+        /// <para>在目前的旋转状态下继续旋转一次，即所有的旋转操作都会（按照发生顺序）生效。</para>
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="angle"></param>
+        /// <param name="axis"></param>
+        public static void Rotate(this IModelSpace model, float angle, vec3 axis)
+        {
+            mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
+            mat4 newRotationMatrix = glm.rotate(angle, axis);
+            mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
+            vec4 quaternion = latestRotationMatrix.GetQuaternion();
+            float lastestAngle = (float)(Math.Acos(quaternion.w) * 2);
+            model.RotationAxis = (new vec3(quaternion.x, quaternion.y, quaternion.z)).normalize();
+            model.RotationAngle = lastestAngle;
         }
 
         /// <summary>
