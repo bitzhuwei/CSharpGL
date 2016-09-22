@@ -8,10 +8,10 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// model data that can be transfermed into OpenGL Buffer's pointer.
+        /// model data that can be transfermed into OpenGL Buffer Objects.
         /// </summary>
         [Category(strRenderer)]
-        [Description("model data that can be transfermed into OpenGL Buffer's pointer.")]
+        [Description("model data that can be transfermed into OpenGL Buffer Objects.")]
         public IBufferable Model { get; private set; }
 
         /// <summary>
