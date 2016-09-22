@@ -54,7 +54,6 @@ namespace CSharpGL.Demos
                 quaternion.Parse(out angleDegree, out axis);
                 this.teapotRenderer.RotationAngle = angleDegree;
                 this.teapotRenderer.RotationAxis = axis;
-                //this.teapotRenderer.SetUniform("modelMatrix", model);
                 this.teapotRenderer.Render(arg);
             }
             {
