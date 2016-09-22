@@ -38,16 +38,7 @@ namespace CSharpGL.Demos
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
             {
-                mat4 projection = arg.Camera.GetProjectionMatrix();
-                mat4 view = arg.Camera.GetViewMatrix();
-                mat4 model = this.arcballManipulater.GetRotationMatrix();
-                this.renderer.SetUniform("projectionMatrix", projection);
-                this.renderer.SetUniform("viewMatrix", view);
-                this.renderer.SetUniform("modelMatrix", model);
                 this.renderer.Render(arg);
-            }
-            {
-                //this.ground.Render(arg);
             }
             {
                 UIRoot uiRoot = this.uiRoot;

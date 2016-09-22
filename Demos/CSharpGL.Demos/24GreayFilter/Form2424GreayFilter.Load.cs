@@ -11,7 +11,6 @@ namespace CSharpGL.Demos
         private UIRoot uiRoot;
         private UIAxis uiAxis;
         private GreyFilterRenderer renderer;
-        private Renderer ground;
         private ArcBallManipulater arcballManipulater;
 
         private void Form_Load(object sender, EventArgs e)
@@ -27,14 +26,6 @@ namespace CSharpGL.Demos
                 var arcballManipulater = new ArcBallManipulater();
                 arcballManipulater.Bind(camera, this.glCanvas1);
                 this.arcballManipulater = arcballManipulater;
-            }
-            {
-                const int gridsPer2Unit = 20;
-                const int scale = 2;
-                GroundRenderer ground = GroundRenderer.Create(new GroundModel(gridsPer2Unit * scale));
-                ground.Initialize();
-                ground.Scale = new vec3(scale, scale, scale);
-                this.ground = ground;
             }
             {
                 GreyFilterRenderer renderer = GreyFilterRenderer.Create();
