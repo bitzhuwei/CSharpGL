@@ -48,8 +48,8 @@ namespace CSharpGL
         public Quaternion(float degreeAngle, vec3 axis)
         {
             vec3 normalized = axis.normalize();
-            float radian = (float)(degreeAngle * Math.PI / 180.0f);
-            float halfRadian = radian / 2.0f;
+            double radian = degreeAngle * Math.PI / 180.0;
+            double halfRadian = radian / 2.0;
             this.w = (float)Math.Cos(halfRadian);
             float sin = (float)Math.Sin(halfRadian);
             this.x = sin * normalized.x;
