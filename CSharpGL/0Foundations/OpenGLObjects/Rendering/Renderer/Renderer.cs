@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+
 namespace CSharpGL
 {
     /// <summary>
@@ -21,13 +22,6 @@ namespace CSharpGL
         protected VertexArrayObject vertexArrayObject;
 
         /// <summary>
-        /// Vertex Array Object.
-        /// </summary>
-        [Category(strRenderer)]
-        [Description("Vertex Array Object.")]
-        public VertexArrayObject VertexArrayObject { get { return this.vertexArrayObject; } }
-
-        /// <summary>
         /// Vertex attribute buffers.
         /// </summary>
         protected VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
@@ -41,13 +35,6 @@ namespace CSharpGL
         ///
         /// </summary>
         protected GLSwitchList switchList = new GLSwitchList();
-
-        /// <summary>
-        /// model data that can be transfermed into OpenGL Buffer's pointer.
-        /// </summary>
-        [Category(strRenderer)]
-        [Description("model data that can be transfermed into OpenGL Buffer's pointer.")]
-        public IBufferable Model { get; protected set; }
 
         /// <summary>
         /// All shader codes needed for this renderer.

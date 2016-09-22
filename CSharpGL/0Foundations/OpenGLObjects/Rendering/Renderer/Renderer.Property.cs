@@ -6,6 +6,14 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
+
+        /// <summary>
+        /// model data that can be transfermed into OpenGL Buffer's pointer.
+        /// </summary>
+        [Category(strRenderer)]
+        [Description("model data that can be transfermed into OpenGL Buffer's pointer.")]
+        public IBufferable Model { get; private set; }
+
         /// <summary>
         ///
         /// </summary>
@@ -40,5 +48,12 @@ namespace CSharpGL
                 return this.vertexAttributeBufferPtrs;
             }
         }
+
+        /// <summary>
+        /// Vertex Array Object.
+        /// </summary>
+        [Category(strRenderer)]
+        [Description("Vertex Array Object.")]
+        public VertexArrayObject VertexArrayObject { get { return this.vertexArrayObject; } }
     }
 }
