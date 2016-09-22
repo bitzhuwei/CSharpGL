@@ -31,7 +31,7 @@ namespace CSharpGL
         {
             if (activeTexture == null)
             { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            activeTexture(value.ActiveTextureIndex + OpenGL.GL_TEXTURE0);
+            activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
             OpenGL.BindTexture(value.target, value.TextureId);
             this.Location = program.SetUniform(VarName, value.activeTextureIndex);
@@ -45,7 +45,7 @@ namespace CSharpGL
         {
             if (activeTexture == null)
             { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            activeTexture(value.ActiveTextureIndex + OpenGL.GL_TEXTURE0);
+            activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
             OpenGL.BindTexture(value.target, 0);
             //base.ResetUniform(program);
             //if (glActiveTexture == null)

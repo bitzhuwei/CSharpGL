@@ -25,7 +25,7 @@
             for (int i = 0; i < this.Value.Length; i++)
             {
                 samplerValue value = this.Value[i];
-                activeTexture(value.ActiveTextureIndex + OpenGL.GL_TEXTURE0);
+                activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
                 //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.value[i].TextureId);
                 OpenGL.BindTexture(value.target, value.TextureId);
                 // TODO: assign the first location or last?
