@@ -27,8 +27,7 @@ namespace CSharpGL.Demos
             this.SetUniform("u_texture", texture.ToSamplerValue());
 
             {
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\raytrace.comp.glsl"), ShaderType.ComputeShader);
+                var shaderCodes = new ShaderCode[] { new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\raytrace.comp.glsl"), ShaderType.ComputeShader), };
                 this.computeProgram = shaderCodes.CreateProgram();
                 g_directionBuffer.glusRaytracePerspectivef(
                     DIRECTION_BUFFER_PADDING, 30.0f, WIDTH, HEIGHT);
