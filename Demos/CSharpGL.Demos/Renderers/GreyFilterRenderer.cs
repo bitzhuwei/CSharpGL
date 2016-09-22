@@ -55,6 +55,7 @@ namespace CSharpGL.Demos
             using (var g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.Red);
+                g.DrawString("CSharpGL", new Font("宋体", 18F), new SolidBrush(Color.Gold), new PointF(0, 40));
             }
             this.SetupTexture(bitmap);
             bitmap.Dispose();

@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
                 this.renderer.Render(arg);
             }
             {
-                this.ground.Render(arg);
+                //this.ground.Render(arg);
             }
             {
                 UIRoot uiRoot = this.uiRoot;

@@ -311,12 +311,6 @@
     <None Include="shaders\RayTracingRenderer\texture.frag.glsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\UpdatingTexture.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\UpdatingTexture.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="shaders\Ground.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -395,6 +389,9 @@
     </None>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="24GreayFilter\Form2424GreayFilter.resx">
+      <DependentUpon>Form2424GreayFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
