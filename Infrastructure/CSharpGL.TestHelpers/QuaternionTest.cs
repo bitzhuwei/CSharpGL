@@ -5,6 +5,9 @@ namespace CSharpGL.TestHelpers
 {
     public static class QuaternionTest
     {
+        /// <summary>
+        /// This test shows that glm.rotate() and Quaternion.ToRotationMatrix() give the same result.
+        /// </summary>
         public static void Test()
         {
             using (var writer = new StreamWriter("test-quaternion.txt"))
