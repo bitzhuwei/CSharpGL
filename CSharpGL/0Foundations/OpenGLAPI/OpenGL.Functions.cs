@@ -2343,24 +2343,24 @@ namespace CSharpGL
         /// <summary>
         /// This function applies a rotation transformation to the current matrix.
         /// </summary>
-        /// <param name="radianAngle">The angle to rotate.</param>
+        /// <param name="angle">The angle to rotate.</param>
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.opengl32, EntryPoint = "glRotated", SetLastError = true)]
-        public static extern void Rotated(double radianAngle, double x, double y, double z);
+        public static extern void Rotated(double angle, double x, double y, double z);
 
         /// <summary>
         /// This function applies a rotation transformation to the current matrix.
         /// </summary>
-        /// <param name="radianAngle">The angle to rotate.</param>
+        /// <param name="angle">The angle to rotate.</param>
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.opengl32, EntryPoint = "glRotatef", SetLastError = true)]
-        public static extern void Rotatef(float radianAngle, float x, float y, float z);
+        public static extern void Rotatef(float angle, float x, float y, float z);
 
         /// <summary>
         /// This function applies a scale transformation to the current matrix.

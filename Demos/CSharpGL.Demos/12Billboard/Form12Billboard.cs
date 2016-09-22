@@ -82,7 +82,7 @@ namespace CSharpGL.Demos
             float cosRadian = direction.dot(new vec3(1, 0, 0));
             float radian = (float)Math.Acos(cosRadian);
             if (direction.z > 0) { radian = -radian; }
-            renderer.RotationRadianAngle = radian;
+            renderer.RotationAngle = radian;
         }
     }
 }

@@ -48,12 +48,7 @@ namespace CSharpGL.Demos
 
             {
                 mat4 model = this.arcballManipulater.GetRotationMatrix();
-                mat3 matrix3 = model.to_mat3();
-                Quaternion quaternion = matrix3.ToQuaternion();
-                float degreeAngle; vec3 axis;
-                quaternion.Parse(out degreeAngle, out axis);
-                this.teapotRenderer.RotationRadianAngle = (float)(degreeAngle * Math.PI / 180.0);
-                this.teapotRenderer.RotationAxis = axis;
+                this.teapotRenderer.SetUniform("modelMatrix", model);
                 this.teapotRenderer.Render(arg);
             }
             {
