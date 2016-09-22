@@ -56,7 +56,7 @@ namespace CSharpGL
             return new samplerValue(
                 texture.Target,
                 texture.Id,
-                texture.ActiveTexture);
+                texture.ActiveTextureIndex);
         }
     }
 }

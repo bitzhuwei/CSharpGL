@@ -41,7 +41,6 @@ namespace CSharpGL.Demos
                     TextureWrapping.ClampToEdge,
                     TextureFilter.Linear,
                     TextureFilter.Linear));
-            cubemapTexture.ActiveTexture = OpenGL.GL_TEXTURE0;
             cubemapTexture.Initialize();
 
             cubeMapImages.Dispose();

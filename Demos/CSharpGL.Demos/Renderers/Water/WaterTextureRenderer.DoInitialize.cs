@@ -26,7 +26,7 @@
                         TextureWrapping.Repeat,
                         TextureFilter.Linear,
                         TextureFilter.Linear));
-                texture.ActiveTexture = OpenGL.GL_TEXTURE1;
+                texture.ActiveTextureIndex = 1;
                 texture.Initialize();
                 this.mirrorTexture = texture;
             }

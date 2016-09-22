@@ -24,8 +24,6 @@ namespace CSharpGL
             this.Target = target;
             this.ImageFiller = imageBuilder;
             this.Sampler = samplerBuilder;
-
-            this.ActiveTexture = OpenGL.GL_TEXTURE0;
         }
 
         /// <summary>

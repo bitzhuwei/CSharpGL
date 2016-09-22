@@ -7,10 +7,11 @@ namespace CSharpGL
     /// </summary>
     public partial class Texture : IDisposable
     {
+        /// OpenGL.GL_TEXTURE0(= 0x84C0 = 33984)
         /// <summary>
-        /// OpenGL.GL_TEXTURE0(= 0x84C0 = 33984) etc.
+        /// 0 means OpenGL.GL_TEXTURE0, 1 means OpenGL.GL_TEXTURE1, ...
         /// </summary>
-        public uint ActiveTexture { get; set; }
+        public uint ActiveTextureIndex { get; set; }
 
         /// <summary>
         /// binding target of this texture.
@@ -63,11 +64,11 @@ namespace CSharpGL
             {
                 if (activeTexture == null)
                 { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-                activeTexture(this.ActiveTexture);
+                activeTexture(this.ActiveTextureIndex + OpenGL.GL_TEXTURE0);
                 OpenGL.GenTextures(1, id);
                 TextureTarget target = this.Target;
                 OpenGL.BindTexture(target, id[0]);
-                this.Sampler.Bind(this.ActiveTexture - OpenGL.GL_TEXTURE0, target);
+                this.Sampler.Bind(this.ActiveTextureIndex, target);
                 this.ImageFiller.Fill();
                 OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
                 //this.SamplerBuilder.Unbind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
@@ -93,7 +94,7 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("ActiveTexture{0}, Target:{1}, Id:{2}",
-                this.ActiveTexture - OpenGL.GL_TEXTURE0, this.Target, this.Id);
+                this.ActiveTextureIndex, this.Target, this.Id);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace GridViewer
             bitmap.Dispose();
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("codedColorSampler", new samplerValue(TextureTarget.Texture1D,
-                texture.Id, OpenGL.GL_TEXTURE0));
+                texture.Id, 0));
         }
 
         protected override void DoRender(RenderEventArgs arg)
