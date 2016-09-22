@@ -10,34 +10,34 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public float x;
+        private float x;
 
         /// <summary>
         ///
         /// </summary>
-        public float y;
+        private float y;
 
         /// <summary>
         ///
         /// </summary>
-        public float z;
+        private float z;
 
         /// <summary>
         ///
         /// </summary>
-        public float w;
+        private float w;
 
-        /// <summary>
-        /// Quaternion
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        /// <param name="w"></param>
-        public Quaternion(float x, float y, float z, float w)
-        {
-            this.x = x; this.y = y; this.z = z; this.w = w;
-        }
+        ///// <summary>
+        ///// Quaternion
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        ///// <param name="w"></param>
+        //public Quaternion(float x, float y, float z, float w)
+        //{
+        //    this.x = x; this.y = y; this.z = z; this.w = w;
+        //}
 
         /// <summary>
         /// Quaternion from a rotation angle and axis.
