@@ -15,10 +15,10 @@ namespace CSharpGL.Demos
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
-            map.Add("a_vertex", TexturedRectangleModel.strPosition);
-            map.Add("a_texCoord", TexturedRectangleModel.strTexCoord);
-            //var model = new GreyFilterModel();
-            var model = new TexturedRectangleModel();
+            map.Add("a_vertex", GreyFilterModel.strPosition);
+            map.Add("a_texCoord", GreyFilterModel.strTexCoord);
+            var model = new GreyFilterModel();
+            //var model = new TexturedRectangleModel();
             var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
             renderer.Lengths = new vec3(1, 1, 1);// model.Lengths;
 
