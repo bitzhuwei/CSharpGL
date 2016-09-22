@@ -80,5 +80,10 @@ namespace CSharpGL.Demos
         {
             (new Form23SingleRenderer()).Show();
         }
+
+        private void btn24GreyFilter_Click(object sender, EventArgs e)
+        {
+            (new Form2424GreayFilter()).Show();
+        }
     }
 }

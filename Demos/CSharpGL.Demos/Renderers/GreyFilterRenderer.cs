@@ -8,17 +8,19 @@ namespace CSharpGL.Demos
     internal class GreyFilterRenderer : Renderer
     {
         private Texture texture;
-        public static GreyFilterRenderer Create(int particleCount)
+
+        public static GreyFilterRenderer Create()
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
-            map.Add("a_vertex", "position");
-            map.Add("a_texCoord", "position");
-            var model = new GreyFilterModel();
+            map.Add("a_vertex", TexturedRectangleModel.strPosition);
+            map.Add("a_texCoord", TexturedRectangleModel.strTexCoord);
+            //var model = new GreyFilterModel();
+            var model = new TexturedRectangleModel();
             var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.Lengths = model.Lengths;
+            renderer.Lengths = new vec3(1, 1, 1);// model.Lengths;
 
             return renderer;
         }
@@ -49,6 +51,15 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            var texture = new Texture(TextureTarget.Texture2D,
+              new NullImageFiller(100, 100, OpenGL.GL_RGBA, OpenGL.GL_BGR, OpenGL.GL_UNSIGNED_BYTE),
+              new SamplerParameters(
+                  TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
+                  TextureFilter.Linear, TextureFilter.Linear));
+            texture.Initialize();
+            this.SetUniform("u_texture", texture.ToSamplerValue());
+            this.texture = texture;
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -63,8 +74,8 @@ namespace CSharpGL.Demos
 
         private class GreyFilterModel : IBufferable
         {
-            static vec2[] positions = new vec2[] { new vec2(-1, -1), new vec2(1, -1), new vec2(-1, 1), new vec2(1, 1), };
-            static vec2[] texCoords = new vec2[] { new vec2(0, 0), new vec2(1, 0), new vec2(0, 1), new vec2(1, 1), };
+            private static vec2[] positions = new vec2[] { new vec2(-1, -1), new vec2(1, -1), new vec2(-1, 1), new vec2(1, 1), };
+            private static vec2[] texCoords = new vec2[] { new vec2(0, 0), new vec2(1, 0), new vec2(0, 1), new vec2(1, 1), };
 
             public const string strPosition = "position";
             private VertexAttributeBufferPtr positionBufferPtr = null;
@@ -79,7 +90,7 @@ namespace CSharpGL.Demos
                     if (positionBufferPtr == null)
                     {
                         using (var buffer = new VertexAttributeBuffer<vec4>(
-                            varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                            varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw))
                         {
                             buffer.Create(positions.Length);
                             unsafe
@@ -102,7 +113,7 @@ namespace CSharpGL.Demos
                     if (texCoordBufferPtr == null)
                     {
                         using (var buffer = new VertexAttributeBuffer<vec2>(
-                            varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                            varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
                         {
                             buffer.Create(texCoords.Length);
                             unsafe
