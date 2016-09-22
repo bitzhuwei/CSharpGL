@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
                 SceneObject obj = renderer.WrapToSceneObject();
                 {
                     BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject("bounding box");
                     obj.Children.Add(boxObj);
                 }
                 this.scene.RootObject.Children.Add(obj);
