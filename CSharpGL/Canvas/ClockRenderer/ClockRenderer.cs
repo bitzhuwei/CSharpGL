@@ -40,15 +40,15 @@
             }
         }
 
-        public override float RotationAngle
+        public override float RotationAngleDegree
         {
             //get { return this.circleRenderer.RotationAngle; }
             set
             {
-                this.circleRenderer.RotationAngle = value;
-                this.markRenderer.RotationAngle = value;
-                this.pinRenderer.RotationAngle = value;
-                base.RotationAngle = value;
+                this.circleRenderer.RotationAngleDegree = value;
+                this.markRenderer.RotationAngleDegree = value;
+                this.pinRenderer.RotationAngleDegree = value;
+                base.RotationAngleDegree = value;
             }
         }
 

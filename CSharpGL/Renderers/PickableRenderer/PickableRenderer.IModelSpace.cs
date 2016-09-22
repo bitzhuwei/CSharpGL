@@ -49,21 +49,21 @@
         /// <summary>
         ///
         /// </summary>
-        public override float RotationAngle
+        public override float RotationAngleDegree
         {
             get
             {
-                return base.RotationAngle;
+                return base.RotationAngleDegree;
             }
             set
             {
                 InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
                 if (innerPickableRenderer != null)
                 {
-                    innerPickableRenderer.RotationAngle = value;
+                    innerPickableRenderer.RotationAngleDegree = value;
                 }
 
-                base.RotationAngle = value;
+                base.RotationAngleDegree = value;
             }
         }
 

@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
                 float angleDegree;
                 vec3 axis;
                 quaternion.Parse(out angleDegree, out axis);
-                this.teapotRenderer.RotationAngle = angleDegree;
+                this.teapotRenderer.RotationAngleDegree = angleDegree;
                 this.teapotRenderer.RotationAxis = axis;
                 this.teapotRenderer.Render(arg);
             }

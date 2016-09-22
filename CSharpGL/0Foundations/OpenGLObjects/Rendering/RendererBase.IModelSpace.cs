@@ -36,7 +36,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderer)]
         [Description("Rotation angle in degree.")]
-        public virtual float RotationAngle
+        public virtual float RotationAngleDegree
         {
             get { return rotationAngle; }
             set

@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotation angle in degree.
         /// </summary>
-        float RotationAngle { get; set; }
+        float RotationAngleDegree { get; set; }
 
         /// <summary>
         /// Rotation axis.
@@ -48,7 +48,7 @@ namespace CSharpGL
         {
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
-            matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
+            matrix = glm.rotate(matrix, model.RotationAngleDegree, model.RotationAxis);
             return matrix;
         }
 
@@ -62,14 +62,14 @@ namespace CSharpGL
         /// <param name="axis"></param>
         public static void Rotate(this IModelSpace model, float angleDegree, vec3 axis)
         {
-            mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
+            mat4 currentRotationMatrix = glm.rotate(model.RotationAngleDegree, model.RotationAxis);
             mat4 newRotationMatrix = glm.rotate(angleDegree, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
             Quaternion quaternion = latestRotationMatrix.ToQuaternion();
             float latestAngle;
             vec3 latestAxis;
             quaternion.Parse(out latestAngle, out latestAxis);
-            model.RotationAngle = latestAngle;
+            model.RotationAngleDegree = latestAngle;
             model.RotationAxis = latestAxis;
         }
 
@@ -101,7 +101,7 @@ namespace CSharpGL
         {
             OpenGL.Translate(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
             OpenGL.Scale(model.Scale.x, model.Scale.y, model.Scale.z);
-            OpenGL.Rotate(model.RotationAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+            OpenGL.Rotate(model.RotationAngleDegree, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
         }
     }
 }
