@@ -10,6 +10,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        private float w;
+
+        /// <summary>
+        ///
+        /// </summary>
         private float x;
 
         /// <summary>
@@ -21,11 +26,6 @@ namespace CSharpGL
         ///
         /// </summary>
         private float z;
-
-        /// <summary>
-        ///
-        /// </summary>
-        private float w;
 
         /// <summary>
         /// Quaternion
@@ -80,7 +80,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="degreeAngle"></param>
         /// <param name="axis"></param>
