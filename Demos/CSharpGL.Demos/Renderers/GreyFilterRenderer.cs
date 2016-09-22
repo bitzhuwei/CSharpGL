@@ -89,16 +89,16 @@ namespace CSharpGL.Demos
                 {
                     if (positionBufferPtr == null)
                     {
-                        using (var buffer = new VertexAttributeBuffer<vec4>(
-                            varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw))
+                        using (var buffer = new VertexAttributeBuffer<vec3>(
+                            varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                         {
                             buffer.Create(positions.Length);
                             unsafe
                             {
-                                var array = (vec4*)buffer.Header.ToPointer();
+                                var array = (vec3*)buffer.Header.ToPointer();
                                 for (int i = 0; i < positions.Length; i++)
                                 {
-                                    array[i] = new vec4(positions[i].x, positions[i].y, 0, 1);
+                                    array[i] = new vec3(positions[i].x, positions[i].y, 0);
                                 }
                             }
 
