@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -10,9 +7,24 @@ namespace CSharpGL
     /// </summary>
     public struct Quaternion
     {
+        /// <summary>
+        ///
+        /// </summary>
         public float x;
+
+        /// <summary>
+        ///
+        /// </summary>
         public float y;
+
+        /// <summary>
+        ///
+        /// </summary>
         public float z;
+
+        /// <summary>
+        ///
+        /// </summary>
         public float w;
 
         /// <summary>
@@ -45,7 +57,20 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Transform this quaternion to equivalent matrix.
+        /// </summary>
+        /// <returns></returns>
+        public mat3 ToRotationMatrix()
+        {
+            vec3 col0 = new vec3(w * w + x * x - y * y - z * z, 2 * x * y - 2 * w * z, 2 * x * z + 2 * w * y);
+            vec3 col1 = new vec3(2 * x * y + 2 * w * z, w * w + y * y - x * x - z * z, 2 * y * z - 2 * w * x);
+            vec3 col2 = new vec3(2 * x * z - 2 * w * y, 2 * y * z + 2 * w * x, w * w + z * z - x * x - y * y);
+
+            return new mat3(col0, col1, col2);
+        }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
