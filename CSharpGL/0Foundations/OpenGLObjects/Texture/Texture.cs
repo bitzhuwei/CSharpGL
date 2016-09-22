@@ -8,7 +8,7 @@ namespace CSharpGL
     public partial class Texture : IDisposable
     {
         /// <summary>
-        /// OpenGL.GL_TEXTURE0 etc.
+        /// OpenGL.GL_TEXTURE0(= 0x84C0 = 33984) etc.
         /// </summary>
         public uint ActiveTexture { get; set; }
 
