@@ -84,6 +84,7 @@
     <Compile Include="0Foundations\Maths\dvec2.cs" />
     <Compile Include="0Foundations\Maths\dvec3.cs" />
     <Compile Include="0Foundations\Maths\dvec4.cs" />
+    <Compile Include="0Foundations\Maths\Quaternion.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\FrontFaceMode.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\TextureTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\QueryTarget.cs" />

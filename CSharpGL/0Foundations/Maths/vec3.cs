@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace CSharpGL
 {
@@ -289,9 +290,17 @@ namespace CSharpGL
         /// <returns></returns>
         public vec3 normalize()
         {
-            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+            float frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+            if (frt == 0.0f)
+            {
+                Debug.WriteLine("Zero vec3 being normalized!");
 
-            return new vec3(x / frt, y / frt, z / frt);
+                return new vec3(0, 0, 0);
+            }
+            else
+            {
+                return new vec3(x / frt, y / frt, z / frt);
+            }
         }
 
         /// <summary>

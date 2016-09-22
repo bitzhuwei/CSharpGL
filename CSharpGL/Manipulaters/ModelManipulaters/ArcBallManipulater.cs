@@ -109,10 +109,10 @@ namespace CSharpGL
                 }
 
                 this._endPosition = GetArcBallPosition(e.X, e.Y);
-                var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.length() * _endPosition.length());
-                if (cosAngle > 1.0f) { cosAngle = 1.0f; }
-                else if (cosAngle < -1) { cosAngle = -1.0f; }
-                var angle = MouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
+                var cosRadian = _startPosition.dot(_endPosition) / (_startPosition.length() * _endPosition.length());
+                if (cosRadian > 1.0f) { cosRadian = 1.0f; }
+                else if (cosRadian < -1) { cosRadian = -1.0f; }
+                float angle = MouseSensitivity * (float)(Math.Acos(cosRadian) / Math.PI * 180);
                 _normalVector = _startPosition.cross(_endPosition).normalize();
                 if (!
                     ((_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 0)
