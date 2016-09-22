@@ -64,15 +64,15 @@ namespace CSharpGL
         {
             vec3 col0 = new vec3(
                 2 * (x * x + w * w) - 1,
-                2 * x * y - 2 * w * z,
-                2 * x * z + 2 * w * y);
-            vec3 col1 = new vec3(
                 2 * x * y + 2 * w * z,
+                2 * x * z - 2 * w * y);
+            vec3 col1 = new vec3(
+                2 * x * y - 2 * w * z,
                 2 * (y * y + w * w) - 1,
-                2 * y * z - 2 * w * x);
+                2 * y * z + 2 * w * x);
             vec3 col2 = new vec3(
-                2 * x * z - 2 * w * y,
-                2 * y * z + 2 * w * x,
+                2 * x * z + 2 * w * y,
+                2 * y * z - 2 * w * x,
                 2 * (z * z + w * w) - 1);
 
             return new mat3(col0, col1, col2);
