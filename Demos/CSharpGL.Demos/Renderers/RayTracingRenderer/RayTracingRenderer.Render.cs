@@ -27,6 +27,8 @@
                 this.computeProgram.Bind();
                 OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(WIDTH / g_localSize, HEIGHT / g_localSize, 1);
 
+                mat4 mvp = arg.Camera.GetProjectionMatrix() * arg.Camera.GetViewMatrix();
+                this.SetUniform("mvp", mvp);
                 base.DoRender(arg);
             }
         }

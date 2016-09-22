@@ -1,6 +1,7 @@
 #version 430 core
 
 out vec2 v_texCoord;
+uniform mat4 mvp;
 
 void main(void)
 {
@@ -9,5 +10,5 @@ void main(void)
 
 	v_texCoord = texCoord[gl_VertexID];
 
-	gl_Position = vertices[gl_VertexID];
+	gl_Position = mvp * vertices[gl_VertexID];
 }
