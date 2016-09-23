@@ -9,14 +9,13 @@ namespace CSharpGL.Demos
 {
     public partial class Form16ArcBallManipulater : Form
     {
-        private ArcBallManipulater arcballManipulater;
         private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(
-                    new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0),
+                    new vec3(5, 3, 4), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 this.camera = camera;
                 var scene = new Scene(camera, this.glCanvas1);
@@ -26,9 +25,7 @@ namespace CSharpGL.Demos
                 var cameraManipulater = new SatelliteManipulater();
                 cameraManipulater.Bind(camera, this.glCanvas1);
                 this.cameraManipulater = cameraManipulater;
-                var arcballManipulater = new ArcBallManipulater();
-                arcballManipulater.Bind(camera, this.glCanvas1);
-                this.arcballManipulater = arcballManipulater;
+
             }
             {
                 const int gridsPer2Unit = 20;
@@ -48,10 +45,13 @@ namespace CSharpGL.Demos
                 SimpleRenderer renderer = SimpleRenderer.Create(new Teapot());
                 //renderer.Initialize();// not needed to call initizlize() explicitly.
                 SceneObject obj = renderer.WrapToSceneObject();
-                obj.Scripts.Add(new ArcballScript(this.arcballManipulater));
+                var arcballManipulater = new ArcBallManipulater();
+                arcballManipulater.Bind(camera, this.glCanvas1);
+                obj.Scripts.Add(new ArcballScript(arcballManipulater));
                 {
                     BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
                     var boxObj = box.WrapToSceneObject();
+                    boxObj.Scripts.Add(new ArcballScript(arcballManipulater));
                     obj.Children.Add(boxObj);
                 }
                 this.scene.RootObject.Children.Add(obj);
