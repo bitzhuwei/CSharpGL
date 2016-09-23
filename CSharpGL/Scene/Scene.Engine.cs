@@ -100,11 +100,14 @@ namespace CSharpGL
 
         private void UpdateObject(SceneObject sceneObject)
         {
-            sceneObject.Update();
-            SceneObject[] array = sceneObject.Children.ToArray();
-            foreach (var child in array)
+            if (sceneObject.Enabled)
             {
-                UpdateObject(child);
+                sceneObject.Update();
+                SceneObject[] array = sceneObject.Children.ToArray();
+                foreach (var child in array)
+                {
+                    UpdateObject(child);
+                }
             }
         }
     }

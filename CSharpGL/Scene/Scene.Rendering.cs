@@ -20,7 +20,7 @@ namespace CSharpGL
             lock (this.synObj)
             {
                 var renderers = (from item in this.RootObject
-                                 where item.Renderer is IColorCodedPicking
+                                 where (item != null && item.Enabled && item.Renderer is IColorCodedPicking && item.Renderer.Enabled)
                                  select item.Renderer as IColorCodedPicking).ToArray();
                 result = CSharpGL.ColorCodedPicking.Pick(new RenderEventArgs(
                          RenderModes.ColorCodedPicking, clientRectangle, this.Camera, pickingGeometryType),
@@ -39,7 +39,7 @@ namespace CSharpGL
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
         public void Render(RenderModes renderMode, Rectangle clientRectangle,
-            //Point mousePosition, 
+            //Point mousePosition,
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
@@ -75,11 +75,14 @@ namespace CSharpGL
 
         private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
         {
-            sceneObject.Render(arg);
-            SceneObject[] array = sceneObject.Children.ToArray();
-            foreach (SceneObject child in array)
+            if (sceneObject.Enabled)
             {
-                RenderObject(child, arg);
+                sceneObject.Render(arg);
+                SceneObject[] array = sceneObject.Children.ToArray();
+                foreach (SceneObject child in array)
+                {
+                    RenderObject(child, arg);
+                }
             }
         }
     }

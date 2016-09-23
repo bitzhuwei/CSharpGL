@@ -97,13 +97,10 @@ namespace CSharpGL
         /// </summary>
         public void Update()
         {
-            if (this.Enabled)
+            ScriptList scripts = this.Scripts;
+            foreach (Script script in scripts)
             {
-                ScriptList scripts = this.Scripts;
-                foreach (Script script in scripts)
-                {
-                    script.Update();
-                }
+                script.Update();
             }
         }
 
@@ -150,14 +147,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public void Render(RenderEventArgs arg)
         {
-            if (this.Enabled)
+            //RendererComponent renderer = this.RendererComponent;
+            RendererBase renderer = this.Renderer;
+            if (renderer != null)
             {
-                //RendererComponent renderer = this.RendererComponent;
-                RendererBase renderer = this.Renderer;
-                if (renderer != null)
-                {
-                    renderer.Render(arg);
-                }
+                renderer.Render(arg);
             }
         }
 
