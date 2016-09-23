@@ -75,15 +75,15 @@ namespace CSharpGL
             float yz = y * z;
             vec3 col0 = new vec3(
                 2 * (xx + ww) - 1,
-                2 * xy + 2 * wz,
-                2 * xz - 2 * wy);
+                2 * (xy + wz),
+                2 * (xz - wy));
             vec3 col1 = new vec3(
-                2 * xy - 2 * wz,
+                2 * (xy - wz),
                 2 * (yy + ww) - 1,
-                2 * yz + 2 * wx);
+                2 * (yz + wx));
             vec3 col2 = new vec3(
-                2 * xz + 2 * wy,
-                2 * yz - 2 * wx,
+                2 * (xz + wy),
+                2 * (yz - wx),
                 2 * (zz + ww) - 1);
 
             return new mat3(col0, col1, col2);
