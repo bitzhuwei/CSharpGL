@@ -28,10 +28,6 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.scene);
-                frmPropertyGrid.Show();
-            }
-            {
                 var builder = new StringBuilder();
                 builder.AppendLine("1: Scene's property grid.");
                 builder.AppendLine("2: Canvas' property grid.");
