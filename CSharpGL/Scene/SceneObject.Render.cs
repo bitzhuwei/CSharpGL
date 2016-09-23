@@ -1,7 +1,14 @@
-﻿namespace CSharpGL
+﻿using System;
+
+namespace CSharpGL
 {
     public partial class SceneObject
     {
+        /// <summary>
+        /// Occurs before this object and all of its children's rendering.
+        /// </summary>
+        public event EventHandler BeforeRendering;
+
         /// <summary>
         ///
         /// </summary>
@@ -15,5 +22,10 @@
                 renderer.Render(arg);
             }
         }
+
+        /// <summary>
+        /// Occurs after this object and all of its children's rendering.
+        /// </summary>
+        public event EventHandler AfterRendering;
     }
 }
