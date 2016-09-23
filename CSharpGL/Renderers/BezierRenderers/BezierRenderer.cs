@@ -34,13 +34,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="controlPoints"></param>
         /// <param name="type"></param>
-        /// <param name="bufferable"></param>
+        /// <param name="model"></param>
         /// <param name="shaderCodes"></param>
         /// <param name="attributeNameMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
-            base(bufferable, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
+            base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
             switch (type)
             {

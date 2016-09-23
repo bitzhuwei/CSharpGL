@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static BoundingBoxRenderer Create(vec3 lengths, vec3 originalWorldPosition = new vec3())
         {
-            var bufferable = new BoundingBoxModel(lengths);
+            var model = new BoundingBoxModel(lengths);
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\BoundingBox.vert"), ShaderType.VertexShader);
@@ -40,7 +40,7 @@ namespace CSharpGL
                 @"Resources\BoundingBox.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
-            var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
+            var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
             result.WorldPosition = originalWorldPosition;
             result.Lengths = lengths;
             return result;
@@ -49,13 +49,13 @@ namespace CSharpGL
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
-        /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
+        /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="bufferable"/>.</param>
+        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
-        private BoundingBoxRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private BoundingBoxRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         {
             this.BoundingBoxColor = Color.White;
         }

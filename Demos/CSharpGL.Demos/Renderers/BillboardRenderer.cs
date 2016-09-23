@@ -48,9 +48,9 @@ namespace CSharpGL.Demos
 
         public BillboardType Type { get; set; }
 
-        private BillboardRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private BillboardRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         {
             this.Width = 1.0f; this.Height = 0.125f;
             this.Percentage = new vec2(0.2f, 0.05f);

@@ -30,9 +30,9 @@ namespace CSharpGL
             return renderer;
         }
 
-        private TextureRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private TextureRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         { }
 
         protected override void DoInitialize()

@@ -80,15 +80,15 @@ namespace RendererGenerator
             var method = new CodeConstructor();
             method.Attributes = MemberAttributes.Private;
             method.Name = dataStructure.RendererName;
-            var bufferable = new CodeParameterDeclarationExpression(typeof(IBufferable), "bufferable");
-            method.Parameters.Add(bufferable);
+            var model = new CodeParameterDeclarationExpression(typeof(IBufferable), "model");
+            method.Parameters.Add(model);
             var shaderCode = new CodeParameterDeclarationExpression(typeof(ShaderCode[]), shaderCodes);
             method.Parameters.Add(shaderCode);
             var map = new CodeParameterDeclarationExpression(typeof(AttributeNameMap), "propertyNameMap");
             method.Parameters.Add(map);
             var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLSwitch).Name)), "switches");
             method.Parameters.Add(last);
-            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("bufferable"));
+            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("model"));
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression(shaderCodes));
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("propertyNameMap"));
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("switches"));

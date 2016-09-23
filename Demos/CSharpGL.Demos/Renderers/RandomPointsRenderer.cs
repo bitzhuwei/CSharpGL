@@ -22,8 +22,8 @@ namespace CSharpGL.Demos
             return renderer;
         }
 
-        private RandomPointsRenderer(CSharpGL.IBufferable bufferable, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, params GLSwitch[] switches) :
-            base(bufferable, shaderCodes, attributeNameMap, switches)
+        private RandomPointsRenderer(CSharpGL.IBufferable model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, params GLSwitch[] switches) :
+            base(model, shaderCodes, attributeNameMap, switches)
         {
         }
 

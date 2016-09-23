@@ -15,13 +15,13 @@
         /// <summary>
         /// 高亮显示指定的图元。
         /// </summary>
-        /// <param name="bufferable">一种渲染方式</param>
+        /// <param name="model">一种渲染方式</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
-        public HighlightRenderer(IBufferable bufferable,
+        public HighlightRenderer(IBufferable model,
             string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(bufferable, HighlightShaderHelper.GetHighlightShaderCode(),
+            : base(model, HighlightShaderHelper.GetHighlightShaderCode(),
                 new AttributeNameMap("in_Position", positionNameInIBufferable),
                 switches)
         {

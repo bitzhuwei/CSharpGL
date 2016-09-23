@@ -40,9 +40,9 @@ namespace CSharpGL.Demos
         private CullFaceSwitch cullfaceSwitch;
 
         private WaterRenderer(
-            IBufferable bufferable, ShaderCode[] shaderCodes,
+            IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         {
         }
     }

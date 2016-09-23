@@ -48,9 +48,9 @@ namespace GridViewer
             return renderer;
         }
 
-        private QuadStripColoredRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private QuadStripColoredRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         {
         }
 

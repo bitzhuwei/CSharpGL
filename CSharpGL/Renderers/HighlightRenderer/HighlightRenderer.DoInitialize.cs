@@ -20,15 +20,15 @@ namespace CSharpGL
 
             // init property buffer objects.
             VertexAttributeBufferPtr positionBufferPtr = null;
-            IBufferable bufferable = this.Model;
+            IBufferable model = this.Model;
             VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
             {
                 var list = new List<VertexAttributeBufferPtr>();
                 foreach (var item in this.attributeNameMap)
                 {
-                    VertexAttributeBufferPtr bufferPtr = bufferable.GetVertexAttributeBufferPtr(
+                    VertexAttributeBufferPtr bufferPtr = model.GetVertexAttributeBufferPtr(
                                item.NameInIBufferable, item.VarNameInShader);
-                    if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", bufferable)); }
+                    if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     if (item.NameInIBufferable == positionNameInIBufferable)
                     {
                         positionBufferPtr = new VertexAttributeBufferPtr(

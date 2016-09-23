@@ -24,9 +24,9 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                Teapot bufferable = new Teapot();
+                Teapot model = new Teapot();
                 var renderer = new OrderIndependentTransparencyRenderer(
-                    bufferable, bufferable.Lengths, Teapot.strPosition, Teapot.strNormal);
+                    model, model.Lengths, Teapot.strPosition, Teapot.strNormal);
                 SceneObject obj = renderer.WrapToSceneObject();
                 {
                     BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();

@@ -90,8 +90,8 @@ namespace CSharpGL.Demos
                     SceneObject obj;
                     if (useHighlightedPickingEffect)
                     {
-                        var bufferable = item.Model;
-                        var highlightRenderer = new HighlightRenderer(bufferable, item.PositionNameInIBufferable);
+                        var model = item.Model;
+                        var highlightRenderer = new HighlightRenderer(model, item.PositionNameInIBufferable);
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
                         renderer.WorldPosition = new vec3(x, 2, z);

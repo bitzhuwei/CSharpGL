@@ -29,9 +29,9 @@ namespace CSharpGL.Demos
 
         public Color LineColor { get; set; }
 
-        private EmitNormalLineRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private EmitNormalLineRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
             this.LineColor = Color.White;
         }

@@ -24,9 +24,9 @@ namespace CSharpGL.Demos
             return new SimpleComputeRenderer(new SimpleCompute(), shaderCodes, map);
         }
 
-        private SimpleComputeRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private SimpleComputeRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         { }
 
         protected override void DoInitialize()

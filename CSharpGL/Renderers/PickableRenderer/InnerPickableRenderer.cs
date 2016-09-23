@@ -33,15 +33,15 @@ namespace CSharpGL
         /// <summary>
         /// Renderer that supports color-coded rendering.
         /// </summary>
-        /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
+        /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="bufferable"/>.</param>
+        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
         /// <param name="positionNameInIBufferable">Name of buffer that describes model's position.</param>
         ///<param name="switches">OpenGL switches.</param>
-        internal InnerPickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        internal InnerPickableRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, attributeNameMap, switches)
+            : base(model, shaderCodes, attributeNameMap, switches)
         {
             this.PositionNameInIBufferable = positionNameInIBufferable;
             this.switchList.Add(polygonModeSwitch);

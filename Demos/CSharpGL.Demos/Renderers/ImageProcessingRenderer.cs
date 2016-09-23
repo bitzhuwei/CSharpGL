@@ -63,7 +63,7 @@ namespace CSharpGL.Demos
                 this.outputTexture = texture;
             }
             {
-                var bufferable = new ImageProcessingModel();
+                var model = new ImageProcessingModel();
                 ShaderCode[] simpleShader = new ShaderCode[2];
                 simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.vert"), ShaderType.VertexShader);
                 simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.frag"), ShaderType.FragmentShader);
@@ -71,7 +71,7 @@ namespace CSharpGL.Demos
                 propertyNameMap.Add("vert", "position");
                 propertyNameMap.Add("uv", "uv");
                 var pickableRenderer = new PickableRenderer(
-                    bufferable, simpleShader, propertyNameMap, "position");
+                    model, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Initialize();
                 pickableRenderer.SetUniform("output_image",
                     this.outputTexture.ToSamplerValue());
