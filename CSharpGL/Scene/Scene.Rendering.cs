@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Linq;
 
 namespace CSharpGL
@@ -77,12 +78,14 @@ namespace CSharpGL
         {
             if (sceneObject.Enabled)
             {
+                sceneObject.DoBeforeRendering();
                 sceneObject.Render(arg);
                 SceneObject[] array = sceneObject.Children.ToArray();
                 foreach (SceneObject child in array)
                 {
                     RenderObject(child, arg);
                 }
+                sceneObject.DoAfterRendering();
             }
         }
     }
