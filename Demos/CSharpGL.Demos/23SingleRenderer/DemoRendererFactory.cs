@@ -29,13 +29,13 @@ namespace CSharpGL.Demos
             }
             else if (rendererType == typeof(OrderDependentTransparencyRenderer))
             {
-                Teapot model = new Teapot();
-                renderer = OrderDependentTransparencyRenderer.Create(model, model.Lengths, "position", "color");
+                var model = new Teapot();
+                renderer = OrderDependentTransparencyRenderer.Create(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
             }
             else if (rendererType == typeof(OrderIndependentTransparencyRenderer))
             {
-                Teapot model = new Teapot();
-                renderer = new OrderIndependentTransparencyRenderer(model, model.Lengths, "position", "color");
+                var model = new Teapot();
+                renderer = new OrderIndependentTransparencyRenderer(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
             }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {
