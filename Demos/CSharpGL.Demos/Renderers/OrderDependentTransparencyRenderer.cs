@@ -4,7 +4,7 @@ namespace CSharpGL.Demos
 {
     internal class OrderDependentTransparencyRenderer : PickableRenderer
     {
-        public static OrderDependentTransparencyRenderer Create(IBufferable model, string position, string color)
+        public static OrderDependentTransparencyRenderer Create(IBufferable model, vec3 lengths, string position, string color)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ODT\Transparent.vert"), ShaderType.VertexShader);
@@ -13,6 +13,7 @@ namespace CSharpGL.Demos
             map.Add("in_Position", position);
             map.Add("in_Color", color);
             var renderer = new OrderDependentTransparencyRenderer(model, shaderCodes, map, position, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            renderer.Lengths = lengths;
 
             return renderer;
         }

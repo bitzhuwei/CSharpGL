@@ -28,7 +28,7 @@ namespace CSharpGL.Demos
             get { return cullFaceSwitch; }
         }
 
-        public OrderIndependentTransparencyRenderer(IBufferable model,
+        public OrderIndependentTransparencyRenderer(IBufferable model, vec3 lengths,
             string positionName, string normalName)
         {
             {
@@ -52,6 +52,7 @@ namespace CSharpGL.Demos
                 this.depthTestSwitch = new DepthTestSwitch(false);
                 this.cullFaceSwitch = new CullFaceSwitch(false);
             }
+            this.Lengths = lengths;
         }
 
         protected override void DoInitialize()
@@ -83,8 +84,8 @@ namespace CSharpGL.Demos
                 this.headClearBufferPtr = buffer.GetBufferPtr() as PixelUnpackBufferPtr;
             }
             // Create the atomic counter buffer
+            using (var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy, false))
             {
-                var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy, false);
                 buffer.Create(1);
                 this.atomicCountBufferPtr = buffer.GetBufferPtr() as AtomicCounterBufferPtr;
             }
@@ -164,6 +165,20 @@ namespace CSharpGL.Demos
             this.linkedListTexture.Dispose();
             this.atomicCountBufferPtr.Dispose();
             this.headTexture.Dispose();
+        }
+
+        public override vec3 Lengths
+        {
+            get
+            {
+                return base.Lengths;
+            }
+            set
+            {
+                this.buildListsRenderer.Lengths = value;
+                this.resolve_lists.Lengths = value;
+                base.Lengths = value;
+            }
         }
     }
 }
