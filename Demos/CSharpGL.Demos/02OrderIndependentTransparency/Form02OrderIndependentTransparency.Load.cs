@@ -24,11 +24,15 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                IBufferable bufferable = new Teapot();
+                Teapot bufferable = new Teapot();
                 var renderer = new OrderIndependentTransparencyRenderer(
-                    bufferable, Teapot.strPosition, Teapot.strNormal);
-                renderer.Initialize();
+                    bufferable, bufferable.Lengths, Teapot.strPosition, Teapot.strNormal);
                 SceneObject obj = renderer.WrapToSceneObject();
+                {
+                    BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
+                    SceneObject boxObj = box.WrapToSceneObject();
+                    obj.Children.Add(boxObj);
+                }
                 this.scene.RootObject.Children.Add(obj);
             }
 
