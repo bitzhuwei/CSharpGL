@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +50,7 @@
       <DependentUpon>FontBuilder.cs</DependentUpon>
     </Compile>
     <Compile Include="matHelper.cs" />
+    <Compile Include="UnamangedArrayTest.cs" />
     <Compile Include="RotatieAngleTest.cs" />
     <Compile Include="QuaternionTest.cs" />
     <Compile Include="SceneObjectFactory.cs" />
