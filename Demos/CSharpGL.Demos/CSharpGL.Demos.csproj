@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
     <Compile Include="24GreayFilter\Form2424GreayFilter.cs">
       <SubType>Form</SubType>
     </Compile>
