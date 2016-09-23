@@ -253,6 +253,7 @@
     <Compile Include="Renderers\TextRenderer\TextRenderer.Property.cs" />
     <Compile Include="Renderers\TextureRenderer.cs" />
     <Compile Include="Scene\Scene.IDisposable.cs" />
+    <Compile Include="Scene\Scene.Picking.cs" />
     <Compile Include="Scene\Scene.Rendering.cs" />
     <Compile Include="Scene\SceneObject.Render.cs" />
     <Compile Include="Scene\Time.cs" />
