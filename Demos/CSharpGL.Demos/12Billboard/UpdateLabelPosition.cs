@@ -14,7 +14,7 @@
             this.TargetRenderer = targetRenderer;
         }
 
-        protected override void DoUpdate(double elapsedTime)
+        protected override void DoUpdate()
         {
             if (this.renderer == null)
             {

@@ -41,12 +41,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="elapsedTime"></param>
-        protected virtual void DoUpdate(double elapsedTime) { }
+        protected virtual void DoUpdate() { }
 
-        internal void Update(double elapsedTime)
+        internal void Update()
         {
-            this.DoUpdate(elapsedTime);
+            this.DoUpdate();
         }
 
         /// <summary>

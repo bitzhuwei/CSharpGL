@@ -30,7 +30,7 @@ namespace GridViewer
             this.target = labelPosition as IModelSpace;
         }
 
-        protected override void DoUpdate(double elapsedTime)
+        protected override void DoUpdate()
         {
             if (this.self == null)
             {

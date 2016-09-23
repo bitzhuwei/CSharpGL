@@ -16,7 +16,7 @@
             this.arcballManipulater = arcballManipulater;
         }
 
-        protected override void DoUpdate(double elapsedTime)
+        protected override void DoUpdate()
         {
             mat4 model = this.arcballManipulater.GetRotationMatrix();
             Quaternion quaternion = model.ToQuaternion();

@@ -18,7 +18,7 @@ namespace CSharpGL.SceneEditor.Scripts
         /// </summary>
         public double RevolutionPeriod { get; set; }
 
-        protected override void DoUpdate(double elapsedTime)
+        protected override void DoUpdate()
         {
             if (this.renderer == null)
             {
@@ -26,7 +26,7 @@ namespace CSharpGL.SceneEditor.Scripts
                 this.planetTransform = this.BindingObject.Parent.Renderer as IModelSpace;
             }
 
-            double deltaAngle = elapsedTime * Math.PI * 2 / this.RevolutionPeriod;
+            double deltaAngle = Time.DeltaTime.TotalMilliseconds * Math.PI * 2 / this.RevolutionPeriod;
             double newAngle = this.currentAngle + deltaAngle;
             var position = new vec3(
                 (float)(this.RevolutionRadius * Math.Cos(newAngle)),

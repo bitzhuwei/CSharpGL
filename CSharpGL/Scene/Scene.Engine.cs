@@ -54,6 +54,7 @@ namespace CSharpGL
 
             this.currentCycle = 0;
             this.maxCycle = maxCycle;
+            Time.Set();
             timer.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；
             this.running = true;
         }
@@ -78,7 +79,7 @@ namespace CSharpGL
         /// </summary>
         public void UpdateOnce()
         {
-            this.UpdateObject(this.RootObject, 0);
+            this.UpdateObject(this.RootObject);
         }
 
         private void Tick(object sender, System.Timers.ElapsedEventArgs e)
@@ -87,8 +88,9 @@ namespace CSharpGL
                 || this.currentCycle < this.maxCycle)// not reached last cycle yet
             {
                 this.currentCycle++;
+                Time.Update();
                 SceneObject obj = this.rootObject;
-                UpdateObject(obj, interval);
+                UpdateObject(obj);
             }
             else
             {
@@ -96,13 +98,13 @@ namespace CSharpGL
             }
         }
 
-        private void UpdateObject(SceneObject sceneObject, double interval)
+        private void UpdateObject(SceneObject sceneObject)
         {
-            sceneObject.Update(interval);
+            sceneObject.Update();
             SceneObject[] array = sceneObject.Children.ToArray();
             foreach (var child in array)
             {
-                UpdateObject(child, interval);
+                UpdateObject(child);
             }
         }
     }

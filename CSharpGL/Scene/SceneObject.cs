@@ -95,15 +95,14 @@ namespace CSharpGL
         /// <summary>
         /// Update scene object's state.
         /// </summary>
-        /// <param name="elapsedTime">elapsed time (in milliseconds)</param>
-        public void Update(double elapsedTime)
+        public void Update()
         {
             if (this.Enabled)
             {
                 ScriptList scripts = this.Scripts;
                 foreach (Script script in scripts)
                 {
-                    script.Update(elapsedTime);
+                    script.Update();
                 }
             }
         }
