@@ -63,18 +63,28 @@ namespace CSharpGL
         /// <returns></returns>
         public mat3 ToRotationMatrix()
         {
+            float ww = w * w;
+            float xx = x * x;
+            float yy = y * y;
+            float zz = z * z;
+            float wx = w * x;
+            float wy = w * y;
+            float wz = w * z;
+            float xy = x * y;
+            float xz = x * z;
+            float yz = y * z;
             vec3 col0 = new vec3(
-                2 * (x * x + w * w) - 1,
-                2 * x * y + 2 * w * z,
-                2 * x * z - 2 * w * y);
+                2 * (xx + ww) - 1,
+                2 * xy + 2 * wz,
+                2 * xz - 2 * wy);
             vec3 col1 = new vec3(
-                2 * x * y - 2 * w * z,
-                2 * (y * y + w * w) - 1,
-                2 * y * z + 2 * w * x);
+                2 * xy - 2 * wz,
+                2 * (yy + ww) - 1,
+                2 * yz + 2 * wx);
             vec3 col2 = new vec3(
-                2 * x * z + 2 * w * y,
-                2 * y * z - 2 * w * x,
-                2 * (z * z + w * w) - 1);
+                2 * xz + 2 * wy,
+                2 * yz - 2 * wx,
+                2 * (zz + ww) - 1);
 
             return new mat3(col0, col1, col2);
         }

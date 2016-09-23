@@ -42,6 +42,7 @@ namespace CSharpGL.TestHelpers
         }
 
         /// <summary>
+        /// quternion -> matrix -> quaternion.
         /// </summary>
         public static void Test2()
         {
