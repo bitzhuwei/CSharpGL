@@ -59,7 +59,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// stop running.
+        /// stop running scripts.
         /// </summary>
         public void Stop()
         {
