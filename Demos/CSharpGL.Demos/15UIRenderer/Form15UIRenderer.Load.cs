@@ -32,7 +32,6 @@ namespace CSharpGL.Demos
             {
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
-                glText.Initialize();
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.Text = "The quick brown fox jumps over the lazy dog!";
                 this.glText = glText;
@@ -41,7 +40,6 @@ namespace CSharpGL.Demos
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                uiAxis.Initialize();
                 this.scene.UIRoot.Children.Add(uiAxis);
 
                 this.UpdateLabel();
