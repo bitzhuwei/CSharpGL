@@ -25,8 +25,6 @@ namespace CSharpGL.Demos
                 const int scale = 2;
                 var ground = GroundRenderer.Create(new GroundModel(gridsPer2Unit * scale));
                 ground.Scale = new vec3(scale, scale, scale);
-                //ground.Initialize();
-                //this.ground = ground;
                 var obj = new SceneObject();
                 obj.Renderer = ground;
                 this.scene.RootObject.Children.Add(obj);
@@ -42,7 +40,6 @@ namespace CSharpGL.Demos
             }
             {
                 BillboardRenderer billboardRenderer = BillboardRenderer.Create(new BillboardModel());
-                //billboardRenderer.Initialize();
                 var obj = new SceneObject();
                 obj.Renderer = billboardRenderer;
                 var updatePosition = new UpdateBillboardPosition(movableRenderer);
@@ -59,7 +56,6 @@ namespace CSharpGL.Demos
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                //uiAxis.Initialize();
                 this.scene.UIRoot.Children.Add(uiAxis);
             }
             {

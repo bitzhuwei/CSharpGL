@@ -25,7 +25,6 @@ namespace CSharpGL.Demos
             {
                 const int particleCount = 10000;
                 PointSpriteRenderer renderer = PointSpriteRenderer.Create(particleCount);
-                renderer.Initialize();
                 this.renderer = renderer;
                 SceneObject obj = renderer.WrapToSceneObject();
                 {
@@ -38,7 +37,6 @@ namespace CSharpGL.Demos
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                uiAxis.Initialize();
                 this.scene.UIRoot.Children.Add(uiAxis);
             }
             {
