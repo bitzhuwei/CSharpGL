@@ -22,7 +22,7 @@ namespace CSharpGL
             AttributeNameMap map = GetMap(buildIn);
             vec3 lengths = GetLengths(buildIn);
             var renderer = new BuildInRenderer(lengths, model, shaderCodes, map);
-            renderer.Initialize();
+            //renderer.Initialize();
 
             SceneObject obj = renderer.WrapToSceneObject();
 

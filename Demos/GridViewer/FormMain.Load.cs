@@ -14,10 +14,8 @@ namespace GridViewer
             {
                 SceneObject groundObj = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Ground);
                 {
-                    BoundingBoxRenderer boxRenderer =
-                    (groundObj.Renderer as IModelSpace).GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject(
-                        new ModelScaleScript());
+                    BoundingBoxRenderer boxRenderer = groundObj.Renderer.GetBoundingBoxRenderer();
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript());
                     groundObj.Children.Add(boxObj);
                 }
                 this.scientificCanvas.Scene.RootObject.Children.Add(groundObj);
@@ -30,8 +28,7 @@ namespace GridViewer
                 SceneObject axisObj = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Axis);
                 {
                     BoundingBoxRenderer boxRenderer = axisObj.Renderer.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject(
-                        new ModelScaleScript());
+                    SceneObject boxObj = boxRenderer.WrapToSceneObject(new ModelScaleScript());
                     axisObj.Children.Add(boxObj);
                 }
                 this.scientificCanvas.Scene.RootObject.Children.Add(axisObj);

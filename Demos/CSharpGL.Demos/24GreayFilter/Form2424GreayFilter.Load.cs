@@ -26,12 +26,7 @@ namespace CSharpGL.Demos
             }
             {
                 GreyFilterRenderer renderer = GreyFilterRenderer.Create();
-                SceneObject obj = renderer.WrapToSceneObject();
-                {
-                    BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
-                    SceneObject boxObj = box.WrapToSceneObject();
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
             }

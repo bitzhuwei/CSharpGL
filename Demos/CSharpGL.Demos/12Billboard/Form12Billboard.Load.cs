@@ -33,22 +33,17 @@ namespace CSharpGL.Demos
                 SimpleRenderer movableRenderer = SimpleRenderer.Create(new Teapot());
                 movableRenderer.RotationAxis = new vec3(0, 1, 0);
                 movableRenderer.Scale = new vec3(0.1f, 0.1f, 0.1f);
-                SceneObject obj = movableRenderer.WrapToSceneObject();
-
                 this.movableRenderer = movableRenderer;
+                SceneObject obj = movableRenderer.WrapToSceneObject();
                 this.scene.RootObject.Children.Add(obj);
             }
             {
                 BillboardRenderer billboardRenderer = BillboardRenderer.Create(new BillboardModel());
-                var obj = new SceneObject();
-                obj.Renderer = billboardRenderer;
-                var updatePosition = new UpdateBillboardPosition(movableRenderer);
-                obj.Scripts.Add(updatePosition);
+                SceneObject obj = billboardRenderer.WrapToSceneObject(new UpdateBillboardPosition(movableRenderer));
                 this.scene.RootObject.Children.Add(obj);
             }
             {
                 LabelRenderer labelRenderer = LabelRenderer.Create();
-                labelRenderer.Initialize();
                 labelRenderer.Text = "Teapot - CSharpGL";
                 SceneObject obj = labelRenderer.WrapToSceneObject(new UpdateLabelPosition(movableRenderer));
                 this.scene.RootObject.Children.Add(obj);

@@ -26,12 +26,7 @@ namespace CSharpGL.Demos
                 const int particleCount = 10000;
                 PointSpriteRenderer renderer = PointSpriteRenderer.Create(particleCount);
                 this.renderer = renderer;
-                SceneObject obj = renderer.WrapToSceneObject();
-                {
-                    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("PointSprite box");
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
             }
             {

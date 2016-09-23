@@ -31,21 +31,14 @@ namespace CSharpGL.Demos
                 const int scale = 2;
                 GroundRenderer renderer = GroundRenderer.Create(new GroundModel(gridsPer2Unit * scale));
                 renderer.Scale = new vec3(scale, scale, scale);
-                //renderer.Initialize();// not needed to call initizlize() explicitly.
-                SceneObject obj = renderer.WrapToSceneObject();
-                {
-                    BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
-                    var boxObj = box.WrapToSceneObject();
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
             }
             {
-                SimpleRenderer renderer = SimpleRenderer.Create(new Teapot());
-                //renderer.Initialize();// not needed to call initizlize() explicitly.
-                SceneObject obj = renderer.WrapToSceneObject();
                 var arcballManipulater = new ArcBallManipulater();
                 arcballManipulater.Bind(this.scene.Camera, this.glCanvas1);
+                SimpleRenderer renderer = SimpleRenderer.Create(new Teapot());
+                SceneObject obj = renderer.WrapToSceneObject();
                 obj.Scripts.Add(new ArcballScript(arcballManipulater));
                 {
                     BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();

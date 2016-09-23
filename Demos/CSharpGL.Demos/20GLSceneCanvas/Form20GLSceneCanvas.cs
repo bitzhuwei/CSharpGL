@@ -25,22 +25,12 @@ namespace CSharpGL.Demos
             {
                 var ground = GroundRenderer.Create(new GroundModel(20));
                 ground.Scale = new vec3(10, 10, 10);
-                SceneObject obj = ground.WrapToSceneObject("ground");
-                {
-                    BoundingBoxRenderer box = ground.GetBoundingBoxRenderer();
-                    SceneObject boxObj = box.WrapToSceneObject("box");
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = ground.WrapToSceneObject(name: "ground", generateBoundingBox: true);
                 this.glSceneCanvas1.Scene.RootObject.Children.Add(obj);
             }
             {
                 SimpleRenderer axis = SimpleRenderer.Create(new Axis());
-                SceneObject obj = axis.WrapToSceneObject("Axis");
-                {
-                    BoundingBoxRenderer box = axis.GetBoundingBoxRenderer();
-                    SceneObject boxObj = box.WrapToSceneObject("box");
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = axis.WrapToSceneObject(name: "Axis", generateBoundingBox: true);
                 this.glSceneCanvas1.Scene.RootObject.Children.Add(obj);
             }
         }

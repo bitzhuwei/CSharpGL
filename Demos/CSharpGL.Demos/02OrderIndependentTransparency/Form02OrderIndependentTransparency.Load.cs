@@ -28,11 +28,6 @@ namespace CSharpGL.Demos
                 var renderer = new OrderIndependentTransparencyRenderer(
                     model, model.Lengths, Teapot.strPosition, Teapot.strNormal);
                 SceneObject obj = renderer.WrapToSceneObject();
-                {
-                    BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
-                    SceneObject boxObj = box.WrapToSceneObject();
-                    obj.Children.Add(boxObj);
-                }
                 this.scene.RootObject.Children.Add(obj);
             }
 

@@ -63,12 +63,7 @@ namespace CSharpGL.Demos
                 ground.Initialize();
                 ground.Scale = new vec3(20, 20, 20);
                 ground.WorldPosition = new vec3(0, 0, 0);
-                SceneObject obj = ground.WrapToSceneObject("Ground");
-                {
-                    BoundingBoxRenderer boxRenderer = ground.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("Ground box");
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = ground.WrapToSceneObject(name: "Ground", generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
             }
             {
@@ -95,17 +90,12 @@ namespace CSharpGL.Demos
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
                         renderer.WorldPosition = new vec3(x, 2, z);
-                        obj = renderer.WrapToSceneObject();
+                        obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                     }
                     else
                     {
                         item.WorldPosition = new vec3(x, 2, z);
-                        obj = item.WrapToSceneObject();
-                    }
-                    {
-                        BoundingBoxRenderer boxRenderer = item.GetBoundingBoxRenderer();
-                        SceneObject boxObj = boxRenderer.WrapToSceneObject();
-                        obj.Children.Add(boxObj);
+                        obj = item.WrapToSceneObject(generateBoundingBox: true);
                     }
                     this.scene.RootObject.Children.Add(obj);
 

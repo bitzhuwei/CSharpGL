@@ -31,12 +31,7 @@ namespace CSharpGL.Demos
             if (frmSelectRenderer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 RendererBase renderer = DemoRendererFactory.Create(frmSelectRenderer.SelectedType);
-                SceneObject obj = renderer.WrapToSceneObject();
-                {
-                    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
-                    SceneObject boxObj = boxRenderer.WrapToSceneObject("bounding box");
-                    obj.Children.Add(boxObj);
-                }
+                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
                 this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());
                 var frmProperty = new FormProperyGrid(renderer);

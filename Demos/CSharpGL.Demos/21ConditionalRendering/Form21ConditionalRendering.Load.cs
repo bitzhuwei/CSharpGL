@@ -25,12 +25,7 @@ namespace CSharpGL.Demos
             {
                 var renderer = ConditionalRenderer.Create();
                 renderer.Initialize();
-                SceneObject obj = renderer.WrapToSceneObject("Conditional Renderer Demo");
-                //{
-                //    BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
-                //    SceneObject boxObj = boxRenderer.WrapToSceneObject("Conditional Renderer Demo box");
-                //    obj.Children.Add(boxObj);
-                //}
+                SceneObject obj = renderer.WrapToSceneObject(name: "Conditional Renderer Demo");
                 this.scene.RootObject.Children.Add(obj);
 
                 this.conditionalRenderer = renderer;
