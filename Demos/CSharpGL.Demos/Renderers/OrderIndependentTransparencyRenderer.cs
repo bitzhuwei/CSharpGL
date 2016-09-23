@@ -65,13 +65,12 @@ namespace CSharpGL.Demos
                     new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
                 texture.Initialize();
                 this.headTexture = texture;
-            }
-            {
                 OpenGL.BindImageTexture(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
-
-                // Create buffer for clearing the head pointer texture
-                //var buffer = new IndependentBuffer<uint>(BufferTarget.PixelUnpackBuffer, BufferUsage.StaticDraw, false);
-                var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw, false);
+            }
+            // Create buffer for clearing the head pointer texture
+            //var buffer = new IndependentBuffer<uint>(BufferTarget.PixelUnpackBuffer, BufferUsage.StaticDraw, false);
+            using (var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw, false))
+            {
                 buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
                 unsafe
                 {
@@ -95,7 +94,7 @@ namespace CSharpGL.Demos
                 var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed);
                 const int elementCount = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3;
                 buffer.Create(elementCount);
-                BufferPtr bufferPtr = buffer.GetBufferPtr();
+                IndependentBufferPtr bufferPtr = buffer.GetBufferPtr();
                 const bool autoDispose = true;
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose);
                 texture.Initialize();
