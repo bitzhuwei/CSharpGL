@@ -72,14 +72,15 @@ namespace CSharpGL.Demos
             using (var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw, false))
             {
                 buffer.Create(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
-                unsafe
-                {
-                    var array = (uint*)buffer.Header.ToPointer();
-                    for (int i = 0; i < MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT; i++)
-                    {
-                        array[i] = 0;
-                    }
-                }
+                // NOTE: not all initial values are zero in this unmanged array.
+                //unsafe
+                //{
+                //    var array = (uint*)buffer.Header.ToPointer();
+                //    for (int i = 0; i < MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT; i++)
+                //    {
+                //        array[i] = 0;
+                //    }
+                //}
                 this.headClearBufferPtr = buffer.GetBufferPtr() as PixelUnpackBufferPtr;
             }
             // Create the atomic counter buffer
