@@ -5,6 +5,14 @@ CSharpGL is inspired by SharpGL.
 For more information and demonstrations please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.7:
+1. fix: glm.rotate(angle, axis) uses angle in degrees(same as glRotatef() in legacy OpenGL).
+2. Tranform between matrix and (angle+axis) via Quaternion.
+3. VAO with no vertex attribute buffer is allowed.
+4. `ShaderStorageBuffer` 'is an' `IndependentBuffer`.
+5. `CubemapImageFiller` for creating a cubemap texture.
+6. `FrontFaceSwitch`.
+
 ## v1.0.6.6:
 1. More switces(DepthMask, ColorMask, StencilMask).
 2. Query object supports conditional rendering.
