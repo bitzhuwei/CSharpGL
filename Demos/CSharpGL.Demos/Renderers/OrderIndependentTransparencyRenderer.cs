@@ -89,16 +89,14 @@ namespace CSharpGL.Demos
                 buffer.Create(1);
                 this.atomicCountBufferPtr = buffer.GetBufferPtr() as AtomicCounterBufferPtr;
             }
+            // Bind it to a texture (for use as a TBO)
+            using (var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed: false))
             {
-                // Bind it to a texture (for use as a TBO)
-                const bool noDataCopyed = false;
-                var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed);
-                const int elementCount = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3;
-                buffer.Create(elementCount);
+                buffer.Create(elementCount: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
                 IndependentBufferPtr bufferPtr = buffer.GetBufferPtr();
-                const bool autoDispose = true;
-                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose);
+                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
                 texture.Initialize();
+                bufferPtr.Dispose();// dispose it ASAP.
                 this.linkedListTexture = texture;
             }
             {
