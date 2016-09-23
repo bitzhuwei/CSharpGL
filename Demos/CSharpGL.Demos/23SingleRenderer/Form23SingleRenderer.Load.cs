@@ -31,7 +31,6 @@ namespace CSharpGL.Demos
             if (frmSelectRenderer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 RendererBase renderer = DemoRendererFactory.Create(frmSelectRenderer.SelectedType);
-                renderer.Initialize();
                 SceneObject obj = renderer.WrapToSceneObject();
                 {
                     BoundingBoxRenderer boxRenderer = renderer.GetBoundingBoxRenderer();
@@ -46,7 +45,6 @@ namespace CSharpGL.Demos
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                uiAxis.Initialize();
                 this.scene.UIRoot.Children.Add(uiAxis);
             }
             {
