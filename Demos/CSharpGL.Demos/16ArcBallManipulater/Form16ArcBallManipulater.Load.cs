@@ -20,6 +20,7 @@ namespace CSharpGL.Demos
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 this.camera = camera;
                 var scene = new Scene(camera, this.glCanvas1);
+                scene.ClearColor = Color.SkyBlue;
                 this.glCanvas1.Resize += scene.Resize;
                 this.scene = scene;
                 var cameraManipulater = new SatelliteManipulater();
