@@ -17,7 +17,6 @@ namespace CSharpGL.Demos
                 var camera = new Camera(
                     new vec3(5, 3, 4), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                this.camera = camera;
                 var scene = new Scene(camera, this.glCanvas1);
                 scene.ClearColor = Color.SkyBlue;
                 this.glCanvas1.Resize += scene.Resize;
@@ -46,7 +45,7 @@ namespace CSharpGL.Demos
                 //renderer.Initialize();// not needed to call initizlize() explicitly.
                 SceneObject obj = renderer.WrapToSceneObject();
                 var arcballManipulater = new ArcBallManipulater();
-                arcballManipulater.Bind(camera, this.glCanvas1);
+                arcballManipulater.Bind(this.scene.Camera, this.glCanvas1);
                 obj.Scripts.Add(new ArcballScript(arcballManipulater));
                 {
                     BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();

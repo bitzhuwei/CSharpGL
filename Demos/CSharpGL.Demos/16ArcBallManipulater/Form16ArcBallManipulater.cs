@@ -7,7 +7,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form16ArcBallManipulater : Form
     {
-        private Camera camera;
         private SatelliteManipulater cameraManipulater;
 
         public Form16ArcBallManipulater()
@@ -40,8 +39,6 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
-
             this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
 
             // render 'o' as a circle.
