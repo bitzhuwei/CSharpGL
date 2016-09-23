@@ -17,9 +17,8 @@ namespace CSharpGL.Demos
             map.Add("a_vertex", GreyFilterModel.strPosition);
             map.Add("a_texCoord", GreyFilterModel.strTexCoord);
             var model = new GreyFilterModel();
-            //var model = new TexturedRectangleModel();
             var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.Lengths = new vec3(1, 1, 1);// model.Lengths;
+            renderer.Lengths = model.Lengths;
 
             return renderer;
         }

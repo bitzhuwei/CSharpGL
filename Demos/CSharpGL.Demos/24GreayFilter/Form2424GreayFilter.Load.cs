@@ -8,37 +8,37 @@ namespace CSharpGL.Demos
 {
     public partial class Form2424GreayFilter : Form
     {
-        private UIRoot uiRoot;
-        private UIAxis uiAxis;
         private GreyFilterRenderer renderer;
+        private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(
-                    new vec3(-3, -2, -5) * 0.5f, new vec3(0, 0, 0), new vec3(0, -1, 0),
-                    CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                this.camera = camera;
+                   new vec3(-3, -2, -5) * 0.5f, new vec3(0, 0, 0), new vec3(0, -1, 0),
+                   CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var cameraManipulater = new SatelliteManipulater();
                 cameraManipulater.Bind(camera, this.glCanvas1);
                 this.cameraManipulater = cameraManipulater;
+                this.scene = new Scene(camera, this.glCanvas1);
+                this.scene.ClearColor = Color.SkyBlue;
+                this.glCanvas1.Resize += this.scene.Resize;
             }
             {
                 GreyFilterRenderer renderer = GreyFilterRenderer.Create();
-                renderer.Initialize();
+                SceneObject obj = renderer.WrapToSceneObject();
+                {
+                    BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
+                    SceneObject boxObj = box.WrapToSceneObject();
+                    obj.Children.Add(boxObj);
+                }
+                this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
             }
             {
-                var UIRoot = new UIRoot();
-                UIRoot.Initialize();
-                this.uiRoot = UIRoot;
-
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                uiAxis.Initialize();
-                this.uiAxis = uiAxis;
-
-                UIRoot.Children.Add(uiAxis);
+                this.scene.UIRoot.Children.Add(uiAxis);
             }
             {
                 var builder = new StringBuilder();
