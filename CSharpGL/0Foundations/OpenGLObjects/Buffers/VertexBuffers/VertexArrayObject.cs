@@ -91,6 +91,9 @@ namespace CSharpGL
                     item.Standby(shaderProgram);
                 }
             }
+            IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
+            indexBufferPtr.Bind();
+
             this.Unbind();// this vertex array object has recorded all stand-by actions.
         }
 
