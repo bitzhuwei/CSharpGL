@@ -255,6 +255,7 @@
     <Compile Include="Scene\Scene.IDisposable.cs" />
     <Compile Include="Scene\Scene.Picking.cs" />
     <Compile Include="Scene\Scene.Rendering.cs" />
+    <Compile Include="Scene\SceneObject.IModelSpace.cs" />
     <Compile Include="Scene\SceneObject.Render.cs" />
     <Compile Include="Scene\Time.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
