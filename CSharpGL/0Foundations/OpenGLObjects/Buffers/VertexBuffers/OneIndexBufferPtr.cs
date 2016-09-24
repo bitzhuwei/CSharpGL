@@ -57,22 +57,6 @@ namespace CSharpGL
         public IndexElementType Type { get; private set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public void Bind()
-        {
-            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Unbind()
-        {
-            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
-        }
-
-        /// <summary>
         ///
         /// </summary>
         /// <param name="arg"></param>
@@ -96,7 +80,7 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
-            //glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             uint mode = 0;
             if (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point
@@ -122,7 +106,7 @@ namespace CSharpGL
                 glDrawElementsInstanced(mode, this.ElementCount, (uint)this.Type, offset, primCount);
             }
 
-            //glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
         /// <summary>
