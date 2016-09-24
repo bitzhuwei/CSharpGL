@@ -68,7 +68,7 @@ namespace CSharpGL
         /// <para>The whole process of binding is also the process of rendering.</para>
         /// </summary>
         /// <param name="shaderProgram"></param>
-        public void Create(ShaderProgram shaderProgram)
+        public void Initialize(ShaderProgram shaderProgram)
         {
             if (this.Id != 0)
             { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }

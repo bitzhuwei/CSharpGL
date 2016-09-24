@@ -41,7 +41,7 @@ namespace CSharpGL
 
             // init VAO.
             var vertexArrayObject = new VertexArrayObject(indexBufferPtr, vertexAttributeBufferPtrs);
-            vertexArrayObject.Create(program);
+            vertexArrayObject.Initialize(program);
 
             // sets fields.
             this.Program = program;
