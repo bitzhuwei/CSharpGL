@@ -10,12 +10,12 @@ namespace CSharpGL
         /// <summary>
         /// Pick
         /// </summary>
-        /// <param name="clientRectangle">viewport.</param>
         /// <param name="mousePosition">mouse position.</param>
         /// <param name="pickingGeometryType">target's geometry type.</param>
         /// <returns></returns>
-        public PickedGeometry ColorCodedPicking(Rectangle clientRectangle, Point mousePosition, GeometryType pickingGeometryType)
+        public PickedGeometry ColorCodedPicking(Point mousePosition, GeometryType pickingGeometryType)
         {
+            Rectangle clientRectangle = this.Canvas.ClientRectangle;
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
             Rectangle rect = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);

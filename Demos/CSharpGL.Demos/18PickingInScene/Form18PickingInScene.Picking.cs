@@ -84,7 +84,6 @@ namespace CSharpGL.Demos
                 //        this.scene.Camera, this.PickingGeometryType),
                 //    e.X, e.Y);
                 PickedGeometry pickedGeometry = this.scene.ColorCodedPicking(
-                    this.scene.Canvas.ClientRectangle,
                     e.Location, this.PickingGeometryType);
                 if (pickedGeometry != null)
                 {
