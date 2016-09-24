@@ -55,14 +55,23 @@ namespace CSharpGL
         {
             if (sceneObject.Enabled)
             {
-                sceneObject.DoBeforeRendering();
+                //sceneObject.DoBeforeRendering();
+                GLSwitch[] switchArray = sceneObject.GroupSwitchList.ToArray();
+                for (int i = 0; i < switchArray.Length; i++)
+                {
+                    switchArray[i].On();
+                }
                 sceneObject.Render(arg);
                 SceneObject[] array = sceneObject.Children.ToArray();
                 foreach (SceneObject child in array)
                 {
                     RenderObject(child, arg);
                 }
-                sceneObject.DoAfterRendering();
+                //sceneObject.DoAfterRendering();
+                for (int i = switchArray.Length - 1; i >= 0; i--)
+                {
+                    switchArray[i].Off();
+                }
             }
         }
     }

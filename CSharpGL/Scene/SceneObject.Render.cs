@@ -1,25 +1,30 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class SceneObject
     {
-        /// <summary>
-        /// Occurs before this object and all of its children's rendering.
-        /// </summary>
-        public event EventHandler BeforeRendering;
+        private GLSwitchList groupSwitchList = new GLSwitchList();
 
         /// <summary>
-        /// Occurs before this object and all of its children's rendering.
+        /// Turn on before rendering something and turn off after rendering.
         /// </summary>
-        internal void DoBeforeRendering()
-        {
-            EventHandler handler = this.BeforeRendering;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
-        }
+        public GLSwitchList GroupSwitchList { get { return groupSwitchList; } }
+
+        ///// <summary>
+        ///// Occurs before this object and all of its children's rendering.
+        ///// </summary>
+        //public event EventHandler BeforeRendering;
+
+        ///// <summary>
+        ///// Occurs before this object and all of its children's rendering.
+        ///// </summary>
+        //internal void DoBeforeRendering()
+        //{
+        //    EventHandler handler = this.BeforeRendering;
+        //    if (handler != null)
+        //    {
+        //        handler(this, new EventArgs());
+        //    }
+        //}
 
         /// <summary>
         ///
@@ -27,7 +32,6 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public void Render(RenderEventArgs arg)
         {
-            //RendererComponent renderer = this.RendererComponent;
             RendererBase renderer = this.Renderer;
             if (renderer != null)
             {
@@ -35,21 +39,21 @@ namespace CSharpGL
             }
         }
 
-        /// <summary>
-        /// Occurs after this object and all of its children's rendering.
-        /// </summary>
-        public event EventHandler AfterRendering;
+        ///// <summary>
+        ///// Occurs after this object and all of its children's rendering.
+        ///// </summary>
+        //public event EventHandler AfterRendering;
 
-        /// <summary>
-        /// Occurs after this object and all of its children's rendering.
-        /// </summary>
-        internal void DoAfterRendering()
-        {
-            EventHandler handler = this.AfterRendering;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
-        }
+        ///// <summary>
+        ///// Occurs after this object and all of its children's rendering.
+        ///// </summary>
+        //internal void DoAfterRendering()
+        //{
+        //    EventHandler handler = this.AfterRendering;
+        //    if (handler != null)
+        //    {
+        //        handler(this, new EventArgs());
+        //    }
+        //}
     }
 }
