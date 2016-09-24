@@ -25,9 +25,7 @@ namespace CSharpGL
         /// <param name="objects">Objects to be rendered</param>
         public Scene(Camera camera, ICanvas canvas, params SceneObject[] objects)
         {
-            if (camera == null) { throw new ArgumentNullException(); }
-
-            if (canvas == null) { throw new ArgumentNullException(); }
+            if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
             this.Camera = camera;
             this.Canvas = canvas;
