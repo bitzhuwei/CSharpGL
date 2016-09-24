@@ -33,10 +33,8 @@ namespace CSharpGL
                     OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
                 }
                 // render objects.
-                {
-                    SceneObject obj = this.RootObject;
-                    this.RenderObject(obj, arg);
-                }
+                SceneObject obj = this.RootObject;
+                this.RenderObject(obj, arg);
 
                 // render regular UI.
                 this.UIRoot.Render(arg);

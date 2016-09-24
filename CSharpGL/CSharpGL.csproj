@@ -255,14 +255,14 @@
     <Compile Include="Scene\Scene.IDisposable.cs" />
     <Compile Include="Scene\Scene.Picking.cs" />
     <Compile Include="Scene\Scene.Rendering.cs" />
-    <Compile Include="Scene\SceneObject.IModelSpace.cs" />
-    <Compile Include="Scene\SceneObject.Render.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObject.IModelSpace.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObject.Render.cs" />
     <Compile Include="Scene\Time.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
-    <Compile Include="Scene\SceneRootObject.cs" />
-    <Compile Include="Scene\SceneObjectHelper.cs" />
-    <Compile Include="Scene\SceneObject.IDisposable.cs" />
+    <Compile Include="Scene\SceneObjects\SceneRootObject.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObjectHelper.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObject.IDisposable.cs" />
     <Compile Include="Canvas\BoundedClockRenderer.cs" />
     <Compile Include="Canvas\ICanvas.cs">
       <SubType>Code</SubType>
@@ -364,11 +364,11 @@
     </Compile>
     <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Scene.cs" />
-    <Compile Include="Scene\SceneObject.cs" />
-    <Compile Include="Scene\SceneObject.IEnumerable.cs" />
-    <Compile Include="Scene\SceneObject.ITreeNode.cs" />
-    <Compile Include="Scene\ScriptList.cs" />
-    <Compile Include="Scene\Script.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObject.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObject.IEnumerable.cs" />
+    <Compile Include="Scene\SceneObjects\SceneObject.ITreeNode.cs" />
+    <Compile Include="Scene\SceneObjects\ScriptList.cs" />
+    <Compile Include="Scene\SceneObjects\Script.cs" />
     <Compile Include="0Foundations\DataStructrues\NoisyArray.cs" />
     <Compile Include="0Foundations\Utilities\TypeHelper.cs" />
     <Compile Include="0Foundations\DataStructrues\ComponentList.cs" />
