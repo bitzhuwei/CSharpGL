@@ -254,7 +254,6 @@ namespace CSharpGL
                 glEnableVertexAttribArray(loc + i);
                 if (divisor > 0)// instanced rendering.
                 {
-                    // TODO: what if this is mat4? ...
                     glVertexAttribDivisor(loc + i, divisor);
                 }
             }
