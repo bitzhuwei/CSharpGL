@@ -231,12 +231,6 @@ namespace CSharpGL
             if (location < 0) { throw new ArgumentException(); }
 
             uint loc = (uint)location;
-            // 选中此VBO
-            // select this VBO.
-            //glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
-            glBindBuffer((uint)this.Target, this.BufferId);
-            // 指定格式
-            // set up data format.
             int locationCount;
             int dataSize;
             uint dataType;
@@ -245,8 +239,13 @@ namespace CSharpGL
             this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
             int patchVertexes = this.PatchVertexes;
             uint divisor = this.InstancedDivisor;
+            // 选中此VBO
+            // select this VBO.
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             for (uint i = 0; i < locationCount; i++)
             {
+                // 指定格式
+                // set up data format.
                 glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
                 if (patchVertexes > 0)// tessellation shading.
                 { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
@@ -259,6 +258,7 @@ namespace CSharpGL
                     glVertexAttribDivisor(loc + i, divisor);
                 }
             }
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
         }
     }
 }
