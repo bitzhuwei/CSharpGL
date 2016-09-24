@@ -27,7 +27,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="program"></param>
-        public override void SetUniform(ShaderProgram program)
+        protected override void DoSetUniform(ShaderProgram program)
         {
             if (activeTexture == null)
             { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
@@ -37,23 +37,23 @@ namespace CSharpGL
             this.Location = program.SetUniform(VarName, value.activeTextureIndex);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        public override void ResetUniform(ShaderProgram program)
-        {
-            if (activeTexture == null)
-            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
-            OpenGL.BindTexture(value.target, 0);
-            //base.ResetUniform(program);
-            //if (glActiveTexture == null)
-            //{ glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            //glActiveTexture(value.ActiveTextureIndex);
-            ////OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
-            //OpenGL.BindTexture(value.target, 0);
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        //public override void ResetUniform(ShaderProgram program)
+        //{
+        //    if (activeTexture == null)
+        //    { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+        //    activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
+        //    OpenGL.BindTexture(value.target, 0);
+        //    //base.ResetUniform(program);
+        //    //if (glActiveTexture == null)
+        //    //{ glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+        //    //glActiveTexture(value.ActiveTextureIndex);
+        //    ////OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+        //    //OpenGL.BindTexture(value.target, 0);
+        //}
     }
 
     /// <summary>

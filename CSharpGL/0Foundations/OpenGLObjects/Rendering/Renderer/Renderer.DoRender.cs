@@ -5,7 +5,7 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
-        private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
+        //private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
 
         //private Stack<UniformArrayVariable> uniformArrayVariableStack = new Stack<UniformArrayVariable>();
         /// <summary>
@@ -26,7 +26,7 @@ namespace CSharpGL
 
             SwithesOff();
 
-            ResetUniformValues(program);
+            //ResetUniformValues(program);
             // 解绑shader
             program.Unbind();
         }
@@ -51,27 +51,32 @@ namespace CSharpGL
             }
         }
 
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void ResetUniformValues(ShaderProgram program)
-        {
-            //while (uniformArrayVariableStack.Count > 0)
-            //{
-            //    UniformArrayVariable item = uniformArrayVariableStack.Pop();
-            //    item.ResetUniform(program);
-            //}
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //private void ResetUniformValues(ShaderProgram program)
+        //{
+        //    //while (uniformArrayVariableStack.Count > 0)
+        //    //{
+        //    //    UniformArrayVariable item = uniformArrayVariableStack.Pop();
+        //    //    item.ResetUniform(program);
+        //    //}
 
-            while (uniformVariableStack.Count > 0)
-            {
-                UniformVariable item = uniformVariableStack.Pop();
-                item.ResetUniform(program);
-            }
-        }
+        //    while (uniformVariableStack.Count > 0)
+        //    {
+        //        UniformVariable item = uniformVariableStack.Pop();
+        //        item.ResetUniform(program);
+        //    }
+        //}
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void SetUniformValues(ShaderProgram program)
         {
-            var updatedUniforms = (from item in this.uniformVariables where item.Updated select item).ToArray();
-            foreach (var item in updatedUniforms) { item.SetUniform(program); uniformVariableStack.Push(item); }
+            //var updatedUniforms = (from item in this.uniformVariables where item.Updated select item).ToArray();
+            //foreach (var item in updatedUniforms) { item.DoSetUniform(program); uniformVariableStack.Push(item); }
+            UniformVariable[] array = this.uniformVariables.ToArray();
+            foreach (var item in array)
+            {
+                item.SetUniform(program);
+            }
         }
     }
 }

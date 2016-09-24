@@ -21,8 +21,7 @@ namespace CSharpGL
                 mat4 model = this.GetModelMatrix();
                 uniformmMVP4Picking.Value = projection * view * model;
             }
-            bool mvpUpdated = uniformmMVP4Picking.Updated;
-            if (mvpUpdated) { uniformmMVP4Picking.SetUniform(program); }
+            uniformmMVP4Picking.SetUniform(program);
 
             PickingSwitchesOn();
             GLSwitch primitiveRestartIndexSwitch = null;
@@ -43,7 +42,7 @@ namespace CSharpGL
             }
             PickingSwitchesOff();
 
-            if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
+            //if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
 
             // 解绑shader
             program.Unbind();

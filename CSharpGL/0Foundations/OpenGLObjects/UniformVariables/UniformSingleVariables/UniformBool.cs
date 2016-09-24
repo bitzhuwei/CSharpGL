@@ -22,9 +22,10 @@
         ///
         /// </summary>
         /// <param name="program"></param>
-        public override void SetUniform(ShaderProgram program)
+        protected override void DoSetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniform(VarName, value ? 1 : 0);
+            this.Updated = false;
         }
     }
 }
