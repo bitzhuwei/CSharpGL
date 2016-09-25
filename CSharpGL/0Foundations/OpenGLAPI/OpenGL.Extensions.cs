@@ -5295,14 +5295,23 @@ namespace CSharpGL
         public delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         /// <param name="uniformBlockIndex"></param>
         /// <param name="pname"></param>
         /// <param name="pointer"></param>
         /// <returns></returns>
-        public delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, IntPtr pointer);
+        public delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, uint[] pointer);
+
+        public const uint GL_UNIFORM_BLOCK_BINDING = 0x8A3F;
+        public const uint GL_UNIFORM_BLOCK_DATA_SIZE = 0x8A40;
+        public const uint GL_UNIFORM_BLOCK_NAME_LENGTH = 0x8A41;
+        public const uint GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS = 0x8A42;
+        public const uint GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES = 0x8A43;
+        public const uint GL_UNIFORM_BLOCK_REFERENCED_BY_VERTEX_SHADER = 0x8A44;
+        public const uint GL_UNIFORM_BLOCK_REFERENCED_BY_GEOMETRY_SHADER = 0x8A45;
+        public const uint GL_UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER = 0x8A46;
 
         /// <summary>
         ///

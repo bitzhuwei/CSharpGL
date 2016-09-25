@@ -10,6 +10,7 @@ namespace CSharpGL
     // block name is 'Uniforms'.
     /// <summary>
     /// A uiform block in shader.
+    /// <para>https://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt</para>
     /// </summary>
     public class UniformBlock<T> : UniformSingleVariableBase where T : struct, IEquatable<T>
     {
@@ -104,9 +105,29 @@ namespace CSharpGL
                 glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
             }
 
-            uint uboIndex = glGetUniformBlockIndex(program.ShaderProgramObject, this.VarName);
+            uint uboIndex = glGetUniformBlockIndex(program.ProgramId, this.VarName);
+            var uboSize = new uint[1];
+            glGetActiveUniformBlockiv(program.ProgramId, uboIndex, OpenGL.GL_UNIFORM_BLOCK_DATA_SIZE, uboSize);
+            UniformBufferPtr result = null;
+            using (var buffer = new UniformBuffer<byte>(BufferUsage.StaticDraw, noDataCopyed: false))
+            {
+                byte[] bytes = this.value.ToBytes();
+                buffer.Create(bytes.Length);
+                unsafe
+                {
+                    var array = (byte*)buffer.Header.ToPointer();
+                    for (int i = 0; i < bytes.Length; i++)
+                    {
+                        array[i] = bytes[i];
+                    }
+                }
 
-            throw new System.NotImplementedException();
+                result = buffer.GetBufferPtr() as UniformBufferPtr;
+            }
+
+            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
+
+            return result;
         }
 
         private UniformBufferPtr uniformBufferPtr = null;

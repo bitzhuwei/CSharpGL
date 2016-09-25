@@ -43,9 +43,9 @@ namespace CSharpGL
                 IntPtr ptr = Win32.wglGetCurrentContext();
                 if (ptr != IntPtr.Zero)
                 {
-                    glDeleteProgram(this.ShaderProgramObject);
+                    glDeleteProgram(this.ProgramId);
                 }
-                this.ShaderProgramObject = 0;
+                this.ProgramId = 0;
             } // end if
 
             this.disposedValue = true;

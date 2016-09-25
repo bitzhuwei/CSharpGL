@@ -71,29 +71,29 @@ namespace CSharpGL
                 glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
             }
 
-            uint program = glCreateProgram();
+            uint programId = glCreateProgram();
 
             foreach (var item in shaders)
             {
-                glAttachShader(program, item.ShaderObject);
+                glAttachShader(programId, item.ShaderObject);
             }
 
-            glLinkProgram(program);
+            glLinkProgram(programId);
 
-            if (this.GetLinkStatus(program) == false)
+            if (this.GetLinkStatus(programId) == false)
             {
-                string log = this.GetInfoLog(program);
+                string log = this.GetInfoLog(programId);
                 throw new Exception(
                     string.Format("Failed to compile shader with ID {0}: {1}",
-                        program, log));
+                        programId, log));
             }
 
             foreach (var item in shaders)
             {
-                glDetachShader(program, item.ShaderObject);
+                glDetachShader(programId, item.ShaderObject);
             }
 
-            this.ShaderProgramObject = program;
+            this.ProgramId = programId;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace CSharpGL
             int location;
             if (!attributeNamesToLocations.TryGetValue(attributeName, out location))
             {
-                location = glGetAttribLocation(this.ShaderProgramObject, attributeName);
+                location = glGetAttribLocation(this.ProgramId, attributeName);
                 if (location < 0)
                 {
                     Debug.WriteLine(string.Format("Failed to getAttribLocation for [{0}]", attributeName));
@@ -126,7 +126,7 @@ namespace CSharpGL
         /// </summary>
         public void Bind()
         {
-            glUseProgram(this.ShaderProgramObject);
+            glUseProgram(this.ProgramId);
         }
 
         /// <summary>
@@ -869,7 +869,7 @@ namespace CSharpGL
             int location;
             if (!uniformNamesToLocations.TryGetValue(uniformName, out location))
             {
-                location = glGetUniformLocation(this.ShaderProgramObject, uniformName);
+                location = glGetUniformLocation(this.ProgramId, uniformName);
                 if (location < 0)
                 { Debug.WriteLine(string.Format("No uniform found for the name [{0}]", uniformName)); }
 
@@ -883,7 +883,7 @@ namespace CSharpGL
         /// <summary>
         /// Gets the shader program object.
         /// </summary>
-        public uint ShaderProgramObject { get; protected set; }
+        public uint ProgramId { get; protected set; }
 
         /// <summary>
         /// A mapping of uniform names to locations. This allows us to very easily specify
