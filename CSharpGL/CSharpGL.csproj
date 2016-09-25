@@ -111,6 +111,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\FrontFaceSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierType.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.MovePosition.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.cs" />

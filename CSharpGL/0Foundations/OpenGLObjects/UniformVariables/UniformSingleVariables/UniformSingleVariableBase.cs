@@ -1,12 +1,12 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// shader中的一个uniform变量。
+    /// A uiform variable in shader.
     /// </summary>
     public abstract class UniformSingleVariableBase : UniformVariable
     {
         /// <summary>
-        /// shader中的一个uniform变量。
+        /// A uiform variable in shader.
         /// </summary>
         /// <param name="varName"></param>
         public UniformSingleVariableBase(string varName) : base(varName) { }

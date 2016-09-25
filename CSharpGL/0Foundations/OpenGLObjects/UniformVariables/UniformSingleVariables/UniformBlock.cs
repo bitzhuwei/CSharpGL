@@ -3,9 +3,9 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// A uiform variable in shader.
+    /// A uiform block in shader.
     /// </summary>
-    public abstract class UniformSingleVariable<T> : UniformSingleVariableBase where T : struct, IEquatable<T>
+    public abstract class UniformBlock<T> : UniformSingleVariableBase where T : struct, IEquatable<T>
     {
         /// <summary>
         ///
@@ -32,14 +32,14 @@ namespace CSharpGL
         /// A uiform variable in shader.
         /// </summary>
         /// <param name="varName"></param>
-        public UniformSingleVariable(string varName) : base(varName) { }
+        public UniformBlock(string varName) : base(varName) { }
 
         /// <summary>
         /// A uiform variable in shader.
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
-        public UniformSingleVariable(string varName, T value) : base(varName) { this.Value = value; }
+        public UniformBlock(string varName, T value) : base(varName) { this.Value = value; }
 
         /// <summary>
         ///
