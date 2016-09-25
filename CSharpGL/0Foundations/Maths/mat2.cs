@@ -18,8 +18,14 @@ namespace CSharpGL
         //    return new mat2(col0, col1);
         //}
 
+        /// <summary>
+        /// Don't change the order of col0, col1 appears!
+        /// </summary>
         internal vec2 col0;
 
+        /// <summary>
+        /// Don't change the order of col0, col1 appears!
+        /// </summary>
         internal vec2 col1;
 
         /// <summary>

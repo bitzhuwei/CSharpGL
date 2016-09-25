@@ -10,17 +10,17 @@ namespace CSharpGL
     public struct uvec3 : IEquatable<uvec3>, ILoadFromString
     {
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public uint x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public uint y;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public uint z;
 

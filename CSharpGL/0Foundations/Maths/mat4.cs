@@ -20,12 +20,24 @@ namespace CSharpGL
         //    return new mat4(col0, col1, col2, col3);
         //}
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2, col3 appears!
+        /// </summary>
         internal vec4 col0;
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2, col3 appears!
+        /// </summary>
         internal vec4 col1;
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2, col3 appears!
+        /// </summary>
         internal vec4 col2;
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2, col3 appears!
+        /// </summary>
         internal vec4 col3;
 
         /// <summary>

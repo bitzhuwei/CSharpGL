@@ -11,24 +11,24 @@ namespace CSharpGL
     public struct ivec4 : IEquatable<ivec4>, ILoadFromString
     {
         /// <summary>
-        ///
-        /// </summary>
-        public int w;
-
-        /// <summary>
-        ///
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
         public int x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
         public int y;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
         public int z;
+
+        /// <summary>
+        /// Don't change the order of x, y, z, w appears!
+        /// </summary>
+        public int w;
 
         /// <summary>
         ///

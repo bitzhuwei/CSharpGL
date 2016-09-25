@@ -10,12 +10,12 @@ namespace CSharpGL
     public struct vec2 : IEquatable<vec2>, ILoadFromString
     {
         /// <summary>
-        ///
+        /// Don't change the order of x, y appears!
         /// </summary>
         public float x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y appears!
         /// </summary>
         public float y;
 

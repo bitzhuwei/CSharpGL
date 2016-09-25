@@ -19,10 +19,19 @@ namespace CSharpGL
         //    return new mat3(col0, col1, col2);
         //}
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2 appears!
+        /// </summary>
         internal vec3 col0;
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2 appears!
+        /// </summary>
         internal vec3 col1;
 
+        /// <summary>
+        /// Don't change the order of col0, col1, col2 appears!
+        /// </summary>
         internal vec3 col2;
 
         /// <summary>

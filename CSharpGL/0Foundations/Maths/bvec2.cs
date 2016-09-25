@@ -10,12 +10,12 @@ namespace CSharpGL
     public struct bvec2 : IEquatable<bvec2>, ILoadFromString
     {
         /// <summary>
-        ///
+        /// Don't change the order of x, y appears!
         /// </summary>
         public bool x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y appears!
         /// </summary>
         public bool y;
 

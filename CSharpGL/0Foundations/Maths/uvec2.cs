@@ -10,12 +10,12 @@ namespace CSharpGL
     public struct uvec2 : IEquatable<uvec2>, ILoadFromString
     {
         /// <summary>
-        ///
+        /// Don't change the order of x, y appears!
         /// </summary>
         public uint x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y appears!
         /// </summary>
         public uint y;
 

@@ -11,24 +11,24 @@ namespace CSharpGL
     public struct bvec4 : IEquatable<bvec4>, ILoadFromString
     {
         /// <summary>
-        ///
-        /// </summary>
-        public bool w;
-
-        /// <summary>
-        ///
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
         public bool x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
         public bool y;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
         public bool z;
+
+        /// <summary>
+        /// Don't change the order of x, y, z, w appears!
+        /// </summary>
+        public bool w;
 
         /// <summary>
         ///

@@ -10,17 +10,17 @@ namespace CSharpGL
     public struct dvec3 : IEquatable<dvec3>, ILoadFromString
     {
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public double x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public double y;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public double z;
 

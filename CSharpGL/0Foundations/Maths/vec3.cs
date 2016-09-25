@@ -11,17 +11,17 @@ namespace CSharpGL
     public struct vec3 : IEquatable<vec3>, ILoadFromString
     {
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public float x;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public float y;
 
         /// <summary>
-        ///
+        /// Don't change the order of x, y, z appears!
         /// </summary>
         public float z;
 
