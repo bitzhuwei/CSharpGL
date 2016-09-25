@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class ByteArrayHelper
     {
@@ -38,7 +33,7 @@ namespace CSharpGL
         /// <param name="bytes"></param>
         /// <param name="result"></param>
         /// <param name="startIndex"></param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetStruct<T>(this byte[] bytes, out T result, int startIndex = 0) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(bytes, GCHandleType.Pinned);

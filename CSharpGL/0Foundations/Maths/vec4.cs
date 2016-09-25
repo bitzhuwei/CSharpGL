@@ -13,11 +13,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public float w;
-
-        /// <summary>
-        ///
-        /// </summary>
         public float x;
 
         /// <summary>
@@ -29,6 +24,11 @@ namespace CSharpGL
         ///
         /// </summary>
         public float z;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public float w;
 
         /// <summary>
         ///

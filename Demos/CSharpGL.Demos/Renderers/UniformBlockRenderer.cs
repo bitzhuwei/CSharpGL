@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL.Demos
 {
@@ -54,20 +55,19 @@ namespace CSharpGL.Demos
             this.groundRenderer.Render(arg);
         }
 
+        [StructLayout(LayoutKind.Sequential)]
         struct Uniforms : IEquatable<Uniforms>
         {
-            public vec3 col3;
-            public float last;
+            public vec4 col3;
 
             public Uniforms(mat4 modelMatrix)
             {
-                this.col3 = new vec3(modelMatrix[3]);
-                this.last = modelMatrix[3].w;
+                this.col3 = modelMatrix[3];
             }
 
             public bool Equals(Uniforms other)
             {
-                return this.col3 == other.col3 && this.last == other.last;
+                return this.col3 == other.col3;
             }
         }
     }
