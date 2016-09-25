@@ -56,6 +56,9 @@ namespace CSharpGL.Demos
             this.groundRenderer.Render(arg);
         }
 
+        /// <summary>
+        /// mapping to the uniform block 'Uniforms' in GLSL shader.
+        /// </summary>
         struct Uniforms : IEquatable<Uniforms>
         {
             public mat4 projection;
