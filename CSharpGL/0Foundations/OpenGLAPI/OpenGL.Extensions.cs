@@ -5295,6 +5295,16 @@ namespace CSharpGL
         public delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="uniformBlockIndex"></param>
+        /// <param name="pname"></param>
+        /// <param name="pointer"></param>
+        /// <returns></returns>
+        public delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, IntPtr pointer);
+
+        /// <summary>
         ///
         /// </summary>
         public const uint GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT = 0x8A34;

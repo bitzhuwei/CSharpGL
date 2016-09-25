@@ -8,6 +8,7 @@
     public class UniformBuffer<T> : IndependentBuffer<T> where T : struct
     {
         internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
+        internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
         internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
         internal static OpenGL.glBindBufferBase glBindBufferBase;
 
@@ -30,6 +31,7 @@
             if (glGetUniformBlockIndex == null)
             {
                 glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
+                glGetActiveUniformBlockiv = OpenGL.GetDelegateFor<OpenGL.glGetActiveUniformBlockiv>();
                 glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
                 glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
             }
