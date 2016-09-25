@@ -194,6 +194,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Specify a plane against which all geometry is clipped.
+        /// <para>https://www.opengl.org/sdk/docs/man2/xhtml/glClipPlane.xml</para>
         /// </summary>
         /// <param name="plane">Specifies which clipping plane is being positioned. Symbolic names of the form OpenGL.CLIP_PLANEi, where i is an integer between 0 and OpenGL.MAX_CLIP_PLANES -1, are accepted.</param>
         /// <param name="equation">Specifies the address of an	array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
