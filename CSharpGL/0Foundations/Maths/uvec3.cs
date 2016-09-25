@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -7,21 +8,25 @@ namespace CSharpGL
     /// Represents a three dimensional vector.
     /// </summary>
     [TypeConverter(typeof(StructTypeConverter<uvec3>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct uvec3 : IEquatable<uvec3>, ILoadFromString
     {
         /// <summary>
-        /// Don't change the order of x, y, z appears!
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(uint) * 0)]
         public uint x;
 
         /// <summary>
-        /// Don't change the order of x, y, z appears!
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(uint) * 1)]
         public uint y;
 
         /// <summary>
-        /// Don't change the order of x, y, z appears!
+        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(uint) * 2)]
         public uint z;
 
         /// <summary>
