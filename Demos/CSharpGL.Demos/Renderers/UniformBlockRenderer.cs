@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniformBlock("Uniforms", new Uniforms(projection, view, model));
+            this.SetUniform("Uniforms", new Uniforms(projection, view, model));
 
             base.DoRender(arg);
 
