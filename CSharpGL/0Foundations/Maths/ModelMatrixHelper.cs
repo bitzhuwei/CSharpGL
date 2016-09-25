@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// treat <see cref="mat4"/> as a matrix that transform object from model's space to world's space.

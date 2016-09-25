@@ -10,12 +10,12 @@ namespace CSharpGL
     public struct dvec2 : IEquatable<dvec2>, ILoadFromString
     {
         /// <summary>
-        /// Don't change the order of x, y appears! 
+        /// Don't change the order of x, y appears!
         /// </summary>
         public double x;
 
         /// <summary>
-        /// Don't change the order of x, y appears! 
+        /// Don't change the order of x, y appears!
         /// </summary>
         public double y;
 
