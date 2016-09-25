@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -7,6 +8,7 @@ namespace CSharpGL
     /// Represents a 4x4 matrix.
     /// </summary>
     [TypeConverter(typeof(StructTypeConverter<mat4>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct mat4 : IEquatable<mat4>, ILoadFromString
     {
         //internal static mat4 Parse(string value)
@@ -23,21 +25,25 @@ namespace CSharpGL
         /// <summary>
         /// Don't change the order of col0, col1, col2, col3 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 4 * 0)]
         internal vec4 col0;
 
         /// <summary>
         /// Don't change the order of col0, col1, col2, col3 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 4 * 1)]
         internal vec4 col1;
 
         /// <summary>
         /// Don't change the order of col0, col1, col2, col3 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 4 * 2)]
         internal vec4 col2;
 
         /// <summary>
         /// Don't change the order of col0, col1, col2, col3 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 4 * 3)]
         internal vec4 col3;
 
         /// <summary>
