@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing.Design;
 
 namespace CSharpGL
 {
@@ -7,6 +8,7 @@ namespace CSharpGL
     /// VAO是用来管理VBO的。可以进一步减少DrawCall。
     /// <para>VAO is used to reduce draw-call.</para>
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public sealed class VertexArrayObject : IDisposable
     {
         private const string strVertexArrayObject = "Vertex Array Object";

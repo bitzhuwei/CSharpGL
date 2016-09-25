@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 namespace CSharpGL
 {
     /// <summary>
@@ -14,6 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// Position buffer pointer.
         /// </summary>
+        [Browsable(false)]
         internal VertexAttributeBufferPtr PositionBufferPtr
         {
             get

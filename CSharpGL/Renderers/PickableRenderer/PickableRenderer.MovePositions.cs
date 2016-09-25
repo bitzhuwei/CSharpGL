@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 
@@ -9,6 +10,7 @@ namespace CSharpGL
         /// <summary>
         /// Position buffer.
         /// </summary>
+        [Browsable(false)]
         public VertexAttributeBufferPtr PositionBufferPtr { get { return this.innerPickableRenderer.PositionBufferPtr; } }
 
         /// <summary>

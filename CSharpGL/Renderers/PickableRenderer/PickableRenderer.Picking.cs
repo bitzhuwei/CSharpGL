@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace CSharpGL
 {
@@ -7,6 +8,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Browsable(false)]
         public uint PickingBaseId
         {
             get

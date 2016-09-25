@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// 支持"拾取"的渲染器
@@ -10,6 +11,7 @@
         /// <summary>
         ///
         /// </summary>
+        [Browsable(false)]
         public string PositionNameInIBufferable { get { return this.innerPickableRenderer.PositionNameInIBufferable; } }
 
         /// <summary>
