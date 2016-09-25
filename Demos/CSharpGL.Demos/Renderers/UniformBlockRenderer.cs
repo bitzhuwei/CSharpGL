@@ -48,8 +48,6 @@ namespace CSharpGL.Demos
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
             mat4 model = this.GetModelMatrix();
             this.SetUniformBlock("Uniforms", new Uniforms(projection, view, model));
 
