@@ -84,6 +84,10 @@ namespace CSharpGL.Demos
             {
                 renderer = SimplexNoiseRenderer.Create();
             }
+            else if (rendererType == typeof(UniformBlockRenderer))
+            {
+                renderer = UniformBlockRenderer.Create();
+            }
             else if (rendererType == typeof(WaterRenderer))
             {
                 renderer = WaterRenderer.Create(waterPlaneLength: 4);
