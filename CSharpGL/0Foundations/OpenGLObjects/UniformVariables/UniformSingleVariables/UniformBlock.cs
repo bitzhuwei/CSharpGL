@@ -63,7 +63,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="program"></param>
         protected override void DoSetUniform(ShaderProgram program)
