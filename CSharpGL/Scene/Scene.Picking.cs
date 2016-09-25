@@ -24,7 +24,7 @@ namespace CSharpGL
             lock (this.synObj)
             {
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.Camera, pickingGeometryType);
-                List<IColorCodedPicking> pickedRendererList = Render4Picking(arg);
+                List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
 
                 List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, clientRectangle.Height);
 
@@ -37,7 +37,7 @@ namespace CSharpGL
 
                     uint stageVertexId = tuple.Item2;
                     PickedGeometry pickedGeometry = GetPickGeometry(arg,
-                        x, y, stageVertexId, pickedRendererList);
+                        x, y, stageVertexId, pickableRendererList);
                     if (pickedGeometry != null)
                     {
                         result.Add(new Tuple<Point, PickedGeometry>(tuple.Item1, pickedGeometry));
