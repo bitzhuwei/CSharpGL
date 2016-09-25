@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -8,21 +9,22 @@ namespace CSharpGL
     /// Represents a three dimensional vector.
     /// </summary>
     [TypeConverter(typeof(StructTypeConverter<vec3>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct vec3 : IEquatable<vec3>, ILoadFromString
     {
         /// <summary>
-        /// Don't change the order of x, y, z appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 0)]
         public float x;
 
         /// <summary>
-        /// Don't change the order of x, y, z appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 1)]
         public float y;
 
         /// <summary>
-        /// Don't change the order of x, y, z appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 2)]
         public float z;
 
         private static readonly char[] separator = new char[] { ' ', ',' };
