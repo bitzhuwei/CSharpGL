@@ -8,6 +8,9 @@ namespace CSharpGL
     {
         #region IModelSpace
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected const string strModelSpace = "Model Space";
         /// <summary>
         /// Position in world space.

@@ -20,7 +20,7 @@
         /// </summary>
         public int MaxClipPlanes { get { return maxClipPlanes; } }
 
-        private uint planeIndex;
+        //private uint planeIndex;
 
         /// <summary>
         /// Specifies which clipping plane is being positioned. Symbolic names of the form GL_CLIP_PLANEi, where i is an integer between 0 and GL_MAX_CLIP_PLANES -1 , are accepted.
@@ -29,7 +29,7 @@
         /// </summary>
         public uint PlaneIndex
         {
-            get { return planeIndex; }
+            get { return this.Capacity - OpenGL.GL_CLIP_PLANE0; }
             set
             {
                 if (value >= maxClipPlanes)
@@ -39,7 +39,6 @@
                 }
                 else
                 {
-                    planeIndex = value;
                     this.Capacity = OpenGL.GL_CLIP_PLANE0 + value;
                 }
             }
@@ -140,7 +139,7 @@
 
             if (this.enableCapacityWhenSwitchOn)
             {
-                OpenGL.ClipPlane(OpenGL.GL_CLIP_PLANE0 + this.planeIndex, this.equation);
+                OpenGL.ClipPlane(this.Capacity, this.equation);
             }
         }
     }
