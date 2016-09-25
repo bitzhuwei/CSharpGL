@@ -16,7 +16,7 @@ namespace CSharpGL
     {
         internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
         internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
-        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
+        //internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
         internal static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace CSharpGL
             {
                 glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
                 glGetActiveUniformBlockiv = OpenGL.GetDelegateFor<OpenGL.glGetActiveUniformBlockiv>();
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
+                //glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
                 glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
             }
 
