@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -7,16 +8,17 @@ namespace CSharpGL
     /// Represents a two dimensional vector.
     /// </summary>
     [TypeConverter(typeof(StructTypeConverter<bvec2>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct bvec2 : IEquatable<bvec2>, ILoadFromString
     {
         /// <summary>
-        /// Don't change the order of x, y appears!
         /// </summary>
+        [FieldOffset(sizeof(bool) * 0)]
         public bool x;
 
         /// <summary>
-        /// Don't change the order of x, y appears!
         /// </summary>
+        [FieldOffset(sizeof(bool) * 1)]
         public bool y;
 
         /// <summary>
