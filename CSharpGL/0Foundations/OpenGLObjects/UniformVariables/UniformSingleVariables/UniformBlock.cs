@@ -41,13 +41,13 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// A uiform variable in shader.
+        /// A uiform block in shader.
         /// </summary>
         /// <param name="blockName"></param>
         public UniformBlock(string blockName) : base(blockName) { }
 
         /// <summary>
-        /// A uiform variable in shader.
+        /// A uiform block in shader.
         /// </summary>
         /// <param name="blockName"></param>
         /// <param name="value"></param>
