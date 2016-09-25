@@ -157,6 +157,7 @@
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
+    <Compile Include="Renderers\UniformBlockRenderer.cs" />
     <Compile Include="Renderers\ZeroAttributeRenderer.cs" />
     <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.cs" />
     <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.Initialize.cs" />
@@ -295,6 +296,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\RaycastVolumeRenderer\raycasting.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\UniformBlockRenderer\UniformBlock.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\UniformBlockRenderer\UniformBlock.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ZeroAttributeRenderer\ZeroAttribute.vert">
