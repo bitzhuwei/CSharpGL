@@ -1,7 +1,9 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// specify a plane against which all geometry is clipped.
+    /// <para>you can't use glClipPlane and vertex programs together.</para>
     /// </summary>
     public class ClipPlaneSwitch : EnableSwitch
     {
@@ -16,8 +18,9 @@
         }
 
         /// <summary>
-        ///
+        /// you can't use glClipPlane and vertex programs together.
         /// </summary>
+        [Description("you can't use glClipPlane and vertex programs together.")]
         public int MaxClipPlanes { get { return maxClipPlanes; } }
 
         //private uint planeIndex;
