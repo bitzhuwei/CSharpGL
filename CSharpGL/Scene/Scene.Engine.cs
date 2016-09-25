@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -19,8 +20,10 @@ namespace CSharpGL
         private System.Timers.Timer timer;
 
         /// <summary>
-        /// whether this scene's objects are being updated now.
+        /// whether this scene's objects' scripts are being updated now.
         /// </summary>
+        [Category(strScene)]
+        [Description("whether this scene's objects' scripts are being updated now.")]
         public bool Running
         {
             get { return running; }
