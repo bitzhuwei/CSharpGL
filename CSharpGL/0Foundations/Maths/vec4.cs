@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -8,26 +9,31 @@ namespace CSharpGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [TypeConverter(typeof(StructTypeConverter<vec4>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct vec4 : IEquatable<vec4>, ILoadFromString
     {
         /// <summary>
         /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 0)]
         public float x;
 
         /// <summary>
         /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 1)]
         public float y;
 
         /// <summary>
         /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 2)]
         public float z;
 
         /// <summary>
         /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 3)]
         public float w;
 
         /// <summary>
