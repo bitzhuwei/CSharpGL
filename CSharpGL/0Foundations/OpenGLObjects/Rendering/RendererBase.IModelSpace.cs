@@ -4,6 +4,13 @@ namespace CSharpGL
 {
     public abstract partial class RendererBase
     {
+        #region IModelSpace
+
+        /// <summary>
+        ///
+        /// </summary>
+        protected const string strModelSpace = "Model Space";
+
         /// <summary>
         /// records whether modelMatrix is updated.
         /// </summary>
@@ -14,7 +21,7 @@ namespace CSharpGL
         /// <summary>
         /// Position in world space.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strModelSpace)]
         [Description("Position in world space.")]
         public virtual vec3 WorldPosition
         {
@@ -34,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotation angle in degree.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strModelSpace)]
         [Description("Rotation angle in degree.")]
         public virtual float RotationAngleDegree
         {
@@ -54,7 +61,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotation axis.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strModelSpace)]
         [Description("Rotation axis.")]
         public virtual vec3 RotationAxis
         {
@@ -74,7 +81,7 @@ namespace CSharpGL
         /// <summary>
         /// Scale factor.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strModelSpace)]
         [Description("Scale factor.")]
         public virtual vec3 Scale
         {
@@ -92,8 +99,10 @@ namespace CSharpGL
         /// <summary>
         /// Length in X/Y/Z axis.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strModelSpace)]
         [Description("Length in X/Y/Z axis.")]
         public virtual vec3 Lengths { get; set; }
+
+        #endregion IModelSpace
     }
 }

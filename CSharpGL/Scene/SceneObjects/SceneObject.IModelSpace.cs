@@ -8,10 +8,11 @@ namespace CSharpGL
     {
         #region IModelSpace
 
+        protected const string strModelSpace = "Model Space";
         /// <summary>
         /// Position in world space.
         /// </summary>
-        [Category(strSceneObject)]
+        [Category(strModelSpace)]
         [Description("Position in world space.")]
         public vec3 WorldPosition
         {
@@ -32,7 +33,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotation angle in degree.
         /// </summary>
-        [Category(strSceneObject)]
+        [Category(strModelSpace)]
         [Description("Rotation angle in degree.")]
         public float RotationAngleDegree
         {
@@ -53,7 +54,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotation axis.
         /// </summary>
-        [Category(strSceneObject)]
+        [Category(strModelSpace)]
         [Description("Rotation axis.")]
         public vec3 RotationAxis
         {
@@ -74,7 +75,7 @@ namespace CSharpGL
         /// <summary>
         /// Scale factor.
         /// </summary>
-        [Category(strSceneObject)]
+        [Category(strModelSpace)]
         [Description("Scale factor.")]
         public vec3 Scale
         {
@@ -95,7 +96,7 @@ namespace CSharpGL
         /// <summary>
         /// Length in X/Y/Z axis.
         /// </summary>
-        [Category(strSceneObject)]
+        [Category(strModelSpace)]
         [Description("Length in X/Y/Z axis.")]
         public vec3 Lengths
         {
