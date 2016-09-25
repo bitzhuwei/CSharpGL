@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
             mat4 view = arg.Camera.GetViewMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            this.SetUniformBlock("Uniforms", new Uniforms(this.WorldPosition, this.Scale.x));
+            this.SetUniformBlock("Uniforms", new Uniforms(this.GetModelMatrix()));
 
             base.DoRender(arg);
 
@@ -56,18 +56,16 @@ namespace CSharpGL.Demos
 
         struct Uniforms : IEquatable<Uniforms>
         {
-            public vec3 translation;
-            public float scale;
+            public vec3 col3;
 
-            public Uniforms(vec3 translation, float scale)
+            public Uniforms(mat4 modelMatrix)
             {
-                this.translation = translation;
-                this.scale = scale;
+                this.col3 = new vec3(modelMatrix[3]);
             }
 
             public bool Equals(Uniforms other)
             {
-                return this.translation == other.translation && this.scale == other.scale;
+                return this.col3 == other.col3;
             }
         }
     }

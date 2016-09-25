@@ -2,8 +2,7 @@
 
 // vert and frag shader share a block of uniforms named 'Uniforms'
 uniform Uniforms {
-    vec3 translation;
-	float scale;
+	vec3 col03;
 };
 
 in vec3 vPos;
@@ -16,10 +15,7 @@ uniform mat4 viewMatrix;
 void main(void) {
  
     mat4 modelMatrix = mat4(1.0f);
-	modelMatrix[3].xyz = translation;
-	modelMatrix[0].x = scale;
-	modelMatrix[1].y = scale;
-	modelMatrix[2].z = scale;
+	modelMatrix[3].xyz = col03;
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPos, 1.0);
 
 	fColor = vColor;
