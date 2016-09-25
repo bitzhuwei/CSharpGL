@@ -23,15 +23,22 @@ namespace CSharpGL.Demos
             return renderer;
         }
 
+        private GroundRenderer groundRenderer;
+
         private UniformBlockRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, switches)
         {
+            var groundRenderer = GroundRenderer.Create(new GroundModel(20));
+            groundRenderer.Scale = new vec3(10, 10, 10);
+            this.groundRenderer = groundRenderer;
         }
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            this.groundRenderer.Initialize();
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -43,6 +50,8 @@ namespace CSharpGL.Demos
             this.SetUniformBlock("Uniforms", new Uniforms(this.WorldPosition, this.Scale.x));
 
             base.DoRender(arg);
+
+            this.groundRenderer.Render(arg);
         }
 
         struct Uniforms : IEquatable<Uniforms>
