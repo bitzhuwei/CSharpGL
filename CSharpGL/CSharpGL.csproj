@@ -178,6 +178,8 @@
     <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
     <Content Include="0Foundations\readme.md" />
+    <Compile Include="0Foundations\Utilities\StructHelper.cs" />
+    <None Include="0Foundations\Utilities\ByteArrayHelper..cs" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs" />

@@ -6,37 +6,40 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System
+namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ByteArrayHelper
     {
-        /// <summary>
-        /// 从给定的字节数组解析得到指定的struct对象。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="bytes"></param>
-        /// <param name="result"></param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void GetStruct<T>(this byte[] bytes, out T result) where T : struct
-        {
-            //GCHandle pinned = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            //IntPtr addr = pinned.AddrOfPinnedObject();
-            //result = (T)Marshal.PtrToStructure(addr, typeof(T));
-            ////Marshal.PtrToStructure(pinned.AddrOfPinnedObject(), result);
-            //pinned.Free();
-            //another way to do this
-            GetStruct<T>(bytes, 0, out result);
-        }
+        ///// <summary>
+        ///// 从给定的字节数组解析得到指定的struct对象。
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <param name="bytes"></param>
+        ///// <param name="result"></param>
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void GetStruct<T>(this byte[] bytes, out T result) where T : struct
+        //{
+        //    //GCHandle pinned = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+        //    //IntPtr addr = pinned.AddrOfPinnedObject();
+        //    //result = (T)Marshal.PtrToStructure(addr, typeof(T));
+        //    ////Marshal.PtrToStructure(pinned.AddrOfPinnedObject(), result);
+        //    //pinned.Free();
+        //    //another way to do this
+        //    GetStruct<T>(bytes, 0, out result);
+        //}
 
         /// <summary>
         /// 从给定的字节数组解析得到指定的struct对象。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
-        /// <param name="startIndex"></param>
         /// <param name="result"></param>
+        /// <param name="startIndex"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void GetStruct<T>(this byte[] bytes, int startIndex, out T result) where T : struct
+        public static void GetStruct<T>(this byte[] bytes, out T result, int startIndex = 0) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(bytes, GCHandleType.Pinned);
             IntPtr addr = Marshal.UnsafeAddrOfPinnedArrayElement(bytes, startIndex);

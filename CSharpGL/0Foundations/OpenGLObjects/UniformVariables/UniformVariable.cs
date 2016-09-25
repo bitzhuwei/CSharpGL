@@ -19,7 +19,7 @@
 
         /// <summary>
         /// 标识此uniform变量是否已更新（若为true，则需要在render前一刻提交到GPU）
-        /// <para>Set uniform's value to GPU if true; otherwise nothing to do.</para>
+        /// <para>If true, set uniform's value to GPU; otherwise nothing needed to do.</para>
         /// </summary>
         public bool Updated { get { return updated; } set { updated = value; } }
 
