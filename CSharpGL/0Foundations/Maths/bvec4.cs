@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -8,26 +9,27 @@ namespace CSharpGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [TypeConverter(typeof(StructTypeConverter<bvec4>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct bvec4 : IEquatable<bvec4>, ILoadFromString
     {
         /// <summary>
-        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(bool) * 0)]
         public bool x;
 
         /// <summary>
-        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(bool) * 1)]
         public bool y;
 
         /// <summary>
-        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(bool) * 2)]
         public bool z;
 
         /// <summary>
-        /// Don't change the order of x, y, z, w appears!
         /// </summary>
+        [FieldOffset(sizeof(bool) * 3)]
         public bool w;
 
         /// <summary>
