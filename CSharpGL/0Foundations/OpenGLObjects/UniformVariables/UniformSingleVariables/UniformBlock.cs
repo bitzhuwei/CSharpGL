@@ -13,6 +13,11 @@ namespace CSharpGL
     /// </summary>
     public class UniformBlock<T> : UniformSingleVariableBase where T : struct, IEquatable<T>
     {
+        internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
+        internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
+        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
+        internal static OpenGL.glBindBufferBase glBindBufferBase;
+
         /// <summary>
         ///
         /// </summary>
@@ -91,6 +96,16 @@ namespace CSharpGL
         /// <returns></returns>
         private UniformBufferPtr Initialize(ShaderProgram program)
         {
+            if (glGetUniformBlockIndex == null)
+            {
+                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
+                glGetActiveUniformBlockiv = OpenGL.GetDelegateFor<OpenGL.glGetActiveUniformBlockiv>();
+                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
+                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
+            }
+
+            uint uboIndex = glGetUniformBlockIndex(program.ShaderProgramObject, this.VarName);
+
             throw new System.NotImplementedException();
         }
 

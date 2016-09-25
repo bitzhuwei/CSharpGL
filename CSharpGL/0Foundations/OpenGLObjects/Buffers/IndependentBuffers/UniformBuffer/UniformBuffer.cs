@@ -7,10 +7,6 @@
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class UniformBuffer<T> : IndependentBuffer<T> where T : struct
     {
-        internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
-        internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
-        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
-        internal static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
         ///
@@ -28,14 +24,6 @@
         /// <returns></returns>
         protected override IndependentBufferPtr Upload2GPU()
         {
-            if (glGetUniformBlockIndex == null)
-            {
-                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
-                glGetActiveUniformBlockiv = OpenGL.GetDelegateFor<OpenGL.glGetActiveUniformBlockiv>();
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
-                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
-            }
-
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
             const uint target = OpenGL.GL_UNIFORM_BUFFER;
