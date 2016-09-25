@@ -34,17 +34,20 @@
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Font = new System.Drawing.Font("宋体", 12F);
             this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
+            this.propertyGrid1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(712, 681);
+            this.propertyGrid1.Size = new System.Drawing.Size(534, 545);
             this.propertyGrid1.TabIndex = 0;
             // 
             // FormProperyGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 681);
+            this.ClientSize = new System.Drawing.Size(534, 545);
             this.Controls.Add(this.propertyGrid1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormProperyGrid";
             this.Text = "FormPropertyGrid";
             this.ResumeLayout(false);
