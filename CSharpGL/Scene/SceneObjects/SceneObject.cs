@@ -16,7 +16,7 @@ namespace CSharpGL
         IEnumerable<SceneObject>, // enumerates self and all children objects recursively.
         IDisposable
     {
-        private const string strSceneObject = "Scene Object";
+        protected const string strSceneObject = "Scene Object";
 
         /// <summary>
         /// Name.

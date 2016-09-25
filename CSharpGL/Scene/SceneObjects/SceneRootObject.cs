@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// Root object to be rendered in a scene.
@@ -16,6 +17,8 @@
         /// <summary>
         /// Which scene is this object in?
         /// </summary>
+        [Category(strSceneObject)]
+        [Description("Which scene is this object in?")]
         public Scene BindingScene { get; private set; }
     }
 }

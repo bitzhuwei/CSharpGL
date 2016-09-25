@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     public partial class SceneObject
     {
@@ -7,6 +8,8 @@
         /// <summary>
         /// Turn on before rendering something and turn off after rendering.
         /// </summary>
+        [Category(strSceneObject)]
+        [Description("Turn on before rendering something and turn off after rendering.")]
         public GLSwitchList GroupSwitchList { get { return groupSwitchList; } }
 
         ///// <summary>
