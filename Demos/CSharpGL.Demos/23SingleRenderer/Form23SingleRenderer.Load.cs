@@ -27,6 +27,7 @@ namespace CSharpGL.Demos
 
             var frmSelectRenderer = new FormSelectType(typeof(RendererBase), false,
                 x => !x.IsAbstract && x.GetCustomAttributes(typeof(DemoRendererAttribute), true).Length > 0);
+            frmSelectRenderer.StartPosition = FormStartPosition.CenterScreen;
             frmSelectRenderer.Size = new Size(600, 500);
             if (frmSelectRenderer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
