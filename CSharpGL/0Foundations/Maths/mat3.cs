@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -7,6 +8,7 @@ namespace CSharpGL
     /// Represents a 3x3 matrix.
     /// </summary>
     [TypeConverter(typeof(StructTypeConverter<mat3>))]
+    [StructLayout(LayoutKind.Explicit)]
     public struct mat3 : IEquatable<mat3>, ILoadFromString
     {
         //internal static mat3 Parse(string value)
@@ -22,16 +24,19 @@ namespace CSharpGL
         /// <summary>
         /// Don't change the order of col0, col1, col2 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 3 * 0)]
         internal vec3 col0;
 
         /// <summary>
         /// Don't change the order of col0, col1, col2 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 3 * 1)]
         internal vec3 col1;
 
         /// <summary>
         /// Don't change the order of col0, col1, col2 appears!
         /// </summary>
+        [FieldOffset(sizeof(float) * 3 * 2)]
         internal vec3 col2;
 
         /// <summary>
