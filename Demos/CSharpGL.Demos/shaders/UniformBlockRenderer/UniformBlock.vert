@@ -3,6 +3,7 @@
 // vert and frag shader share a block of uniforms named 'Uniforms'
 uniform Uniforms {
 	vec3 col03;
+	float last;
 };
 
 in vec3 vPos;
@@ -16,7 +17,15 @@ void main(void) {
  
     mat4 modelMatrix = mat4(1.0f);
 	modelMatrix[3].xyz = col03;
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPos, 1.0);
+	if (last == 0.0f)
+	{
+	    fColor = vec3(1,1,1);
+	}
+	else
+	{
+	    fColor = vColor;
+		modelMatrix[3].w = last;
+	}
 
-	fColor = vColor;
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPos, 1.0);
 }
