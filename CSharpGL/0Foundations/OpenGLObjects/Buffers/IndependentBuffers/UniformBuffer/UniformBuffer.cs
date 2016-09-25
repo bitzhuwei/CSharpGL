@@ -7,7 +7,6 @@
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class UniformBuffer<T> : IndependentBuffer<T> where T : struct
     {
-
         /// <summary>
         ///
         /// </summary>
