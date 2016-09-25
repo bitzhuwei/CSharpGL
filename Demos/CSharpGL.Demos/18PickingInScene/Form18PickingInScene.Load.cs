@@ -114,6 +114,7 @@ namespace CSharpGL.Demos
                 builder.AppendLine("1: Scene's property grid.");
                 builder.AppendLine("2: Canvas' property grid.");
                 builder.AppendLine("3: Form's property grid.");
+                builder.AppendLine("4: Save to bitmap file.");
                 MessageBox.Show(builder.ToString());
             }
         }

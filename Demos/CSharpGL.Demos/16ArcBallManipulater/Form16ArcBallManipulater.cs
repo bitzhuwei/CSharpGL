@@ -18,16 +18,26 @@ namespace CSharpGL.Demos
             //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
-            //this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '2')
+            if (e.KeyChar == '1')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == '2')
             {
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == '3')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this);
                 frmPropertyGrid.Show();
             }
         }
