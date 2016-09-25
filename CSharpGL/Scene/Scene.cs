@@ -95,5 +95,14 @@ namespace CSharpGL
             this.uiRoot.Size = control.Size;
             //this.cursorRoot.Size = control.Size;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0}", this.Running ? "Scripts running" : "Scripts not running");
+        }
     }
 }
