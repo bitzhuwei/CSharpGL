@@ -21,6 +21,8 @@ namespace CSharpGL.Demos
             map.Add("vPos", Teapot.strPosition);
             map.Add("vColor", Teapot.strColor);
             var renderer = new UniformBlockRenderer(model, shaderCodes, map);
+            renderer.Lengths = model.Lengths;
+
             return renderer;
         }
 
@@ -55,14 +57,13 @@ namespace CSharpGL.Demos
             this.groundRenderer.Render(arg);
         }
 
-        [StructLayout(LayoutKind.Sequential)]
         struct Uniforms : IEquatable<Uniforms>
         {
-            public vec4 col3;
+            public mat4 col3;
 
             public Uniforms(mat4 modelMatrix)
             {
-                this.col3 = modelMatrix[3];
+                this.col3 = modelMatrix;
             }
 
             public bool Equals(Uniforms other)
