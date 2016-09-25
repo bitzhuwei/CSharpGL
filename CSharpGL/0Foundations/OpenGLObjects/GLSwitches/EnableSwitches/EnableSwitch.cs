@@ -35,8 +35,6 @@
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         public EnableSwitch(uint capacity, bool enableCapacity)
         {
-            byte original = OpenGL.IsEnabled(capacity);
-
             this.Init(capacity, enableCapacity);
         }
 
