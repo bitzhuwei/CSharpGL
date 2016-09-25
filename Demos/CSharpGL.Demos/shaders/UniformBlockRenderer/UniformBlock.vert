@@ -6,7 +6,7 @@ uniform Uniforms {
 	float scale;
 };
 
-in vec2 vPos;
+in vec3 vPos;
 in vec3 vColor;
 out vec3 fColor;
 uniform mat4 projectionMatrix;
