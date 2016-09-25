@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace CSharpGL
 {
@@ -75,7 +76,7 @@ namespace CSharpGL
         /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
         /// <para>Mapping variable's name in vertex shader.</para>
         /// </summary>
-        public string VarNameInVertexShader { get; set; }
+        public string VarNameInVertexShader { get; private set; }
 
         /// <summary>
         /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
@@ -218,6 +219,7 @@ namespace CSharpGL
         /// <summary>
         /// How many vertexes makes a patch? No patch if PatchVertexes is 0.
         /// </summary>
+        [ReadOnly(true)]
         public int PatchVertexes { get; set; }
 
         /// <summary>
