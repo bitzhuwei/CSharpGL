@@ -49,7 +49,27 @@
         }
 
         /// <summary>
-        ///
+        /// Gets the transposed matrix.
+        /// <para>获取转置矩阵。</para>
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public static mat4 transpose(mat4 m)
+        {
+            vec4 col0 = m.col0;
+            vec4 col1 = m.col1;
+            vec4 col2 = m.col2;
+            vec4 col3 = m.col3;
+            return new mat4(
+                new vec4(col0.x, col1.x, col2.x, col3.x),
+                new vec4(col0.y, col1.y, col2.y, col3.y),
+                new vec4(col0.z, col1.z, col2.z, col3.z),
+                new vec4(col0.w, col1.w, col2.w, col3.w)
+                );
+        }
+        /// <summary>
+        /// Gets the reversed matrix.
+        /// <para>获取逆矩阵。</para>
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
