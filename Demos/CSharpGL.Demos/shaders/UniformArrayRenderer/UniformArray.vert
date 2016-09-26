@@ -1,8 +1,7 @@
 ﻿#version 330 core
 
-// vert and frag shader share a block of uniforms named 'Uniforms'
 uniform mat4 projectionMatrix;
-uniform float viewMatrix[16];
+uniform float viewMatrix[16];// test uniform array variable.
 uniform mat4 modelMatrix;
 
 in vec3 vPos;

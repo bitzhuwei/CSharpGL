@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view.ToArray());
+            this.SetUniform("viewMatrix", view.ToArray());// test uniform array variable.
             this.SetUniform("modelMatrix", model);
 
             base.DoRender(arg);
