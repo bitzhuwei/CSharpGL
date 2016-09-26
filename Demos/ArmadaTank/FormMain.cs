@@ -12,6 +12,12 @@ namespace ArmadaTank
 
             Application.Idle += Application_Idle;
             this.Load += FormMain_Load;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+        }
+
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
+        {
+            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
         }
 
         private void Application_Idle(object sender, EventArgs e)
