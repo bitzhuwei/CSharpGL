@@ -5281,6 +5281,121 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        public const uint GL_UNIFORM_BUFFER_BINDING = 0x8A28;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_BUFFER_START = 0x8A29;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_BUFFER_SIZE = 0x8A2A;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_VERTEX_UNIFORM_BLOCKS = 0x8A2B;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_GEOMETRY_UNIFORM_BLOCKS = 0x8A2C;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_FRAGMENT_UNIFORM_BLOCKS = 0x8A2D;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_COMBINED_UNIFORM_BLOCKS = 0x8A2E;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_UNIFORM_BUFFER_BINDINGS = 0x8A2F;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_UNIFORM_BLOCK_SIZE = 0x8A30;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS = 0x8A31;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS = 0x8A32;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS = 0x8A33;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT = 0x8A34;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH = 0x8A35;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_UNIFORM_BLOCKS = 0x8A36;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_TYPE = 0x8A37;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_SIZE = 0x8A38;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_NAME_LENGTH = 0x8A39;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_BLOCK_INDEX = 0x8A3A;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_OFFSET = 0x8A3B;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_ARRAY_STRIDE = 0x8A3C;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_MATRIX_STRIDE = 0x8A3D;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UNIFORM_IS_ROW_MAJOR = 0x8A3E;
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="program"></param>
         /// <param name="uniformBlockIndex"></param>
         /// <param name="uniformBlockBinding"></param>
@@ -5343,11 +5458,6 @@ namespace CSharpGL
         ///
         /// </summary>
         public const uint GL_UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER = 0x8A46;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const uint GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT = 0x8A34;
 
         /// <summary>
         ///
