@@ -1,4 +1,4 @@
-# :art:Welcome to CSharpGL
+# :art:C? Sharp GL!
 [CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) 
 
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents.  
