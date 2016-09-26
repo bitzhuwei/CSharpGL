@@ -16,20 +16,21 @@
             return (matrix.to_mat3().ToQuaternion());
         }
 
-        /// <summary>
-        /// Gets scale factor in specified <paramref name="matrix"/>.
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns></returns>
-        public static vec3 GetScale(this mat4 matrix)
-        {
-            vec3 result = new vec3(
-                matrix.col0.x,
-                matrix.col1.y,
-                matrix.col2.z
-                );
-            return result;
-        }
+        //  this method is wrong.
+        ///// <summary>
+        ///// Gets scale factor in specified <paramref name="matrix"/>.
+        ///// </summary>
+        ///// <param name="matrix"></param>
+        ///// <returns></returns>
+        //public static vec3 GetScale(this mat4 matrix)
+        //{
+        //    vec3 result = new vec3(
+        //        matrix.col0.x,
+        //        matrix.col1.y,
+        //        matrix.col2.z
+        //        );
+        //    return result;
+        //}
 
         /// <summary>
         /// Gets translate factor in specified <paramref name="matrix"/>.
