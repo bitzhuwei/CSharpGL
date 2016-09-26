@@ -67,6 +67,7 @@
                 new vec4(col0.w, col1.w, col2.w, col3.w)
                 );
         }
+
         /// <summary>
         /// Gets the reversed matrix.
         /// <para>获取逆矩阵。</para>
