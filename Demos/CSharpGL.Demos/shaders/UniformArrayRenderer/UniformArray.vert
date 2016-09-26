@@ -1,8 +1,8 @@
 ﻿#version 330 core
 
 // vert and frag shader share a block of uniforms named 'Uniforms'
-uniform float projectionMatrix[16];
-uniform mat4 viewMatrix;
+uniform mat4 projectionMatrix;
+uniform float viewMatrix[16];
 uniform mat4 modelMatrix;
 
 in vec3 vPos;
@@ -11,12 +11,12 @@ out vec3 fColor;
 
 void main(void) {
 
-    mat4 projection = mat4(
-		vec4(projectionMatrix[0], projectionMatrix[1], projectionMatrix[2], projectionMatrix[3]),
-		vec4(projectionMatrix[4], projectionMatrix[5], projectionMatrix[6], projectionMatrix[7]),
-		vec4(projectionMatrix[8], projectionMatrix[9], projectionMatrix[10], projectionMatrix[11]),
-		vec4(projectionMatrix[12], projectionMatrix[13], projectionMatrix[14], projectionMatrix[15]));
-	gl_Position = projection * viewMatrix * modelMatrix * vec4(vPos, 1.0);
+    mat4 view = mat4(
+		vec4(viewMatrix[0], viewMatrix[1], viewMatrix[2], viewMatrix[3]),
+		vec4(viewMatrix[4], viewMatrix[5], viewMatrix[6], viewMatrix[7]),
+		vec4(viewMatrix[8], viewMatrix[9], viewMatrix[10], viewMatrix[11]),
+		vec4(viewMatrix[12], viewMatrix[13], viewMatrix[14], viewMatrix[15]));
+	gl_Position = projectionMatrix * view * modelMatrix * vec4(vPos, 1.0);
 	
 	fColor = vColor;
 }
