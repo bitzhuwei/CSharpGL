@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -139,9 +141,15 @@ namespace CSharpGL
             if (variableDict == null)
             {
                 variableDict = new Dictionary<Type, Type>();
-                var types = AssemblyHelper.GetAllDerivedTypes(
-                    typeof(UniformSingleVariableBase), x => !x.IsAbstract && !x.IsGenericType);
-                foreach (var item in types)
+                Type baseType = typeof(CSharpGL.UniformSingleVariableBase);
+                Assembly asm = Assembly.GetAssembly(baseType);
+                var types = from item in asm.GetTypes()
+                            where (baseType.IsAssignableFrom(item)
+                                 && (!item.IsAbstract)
+                                 && (!item.IsGenericType))
+                            orderby item.FullName
+                            select item;
+                foreach (Type item in types)
                 {
                     try
                     {
