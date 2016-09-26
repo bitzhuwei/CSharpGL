@@ -34,6 +34,7 @@
         }
 
         private uint lastMode;
+
         /// <summary>
         ///
         /// </summary>

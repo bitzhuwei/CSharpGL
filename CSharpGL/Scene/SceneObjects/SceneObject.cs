@@ -17,7 +17,7 @@ namespace CSharpGL
         IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected const string strSceneObject = "Scene Object";
 

@@ -6,7 +6,6 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
-
         /// <summary>
         /// model data that can be transfermed into OpenGL Buffer Objects.
         /// </summary>

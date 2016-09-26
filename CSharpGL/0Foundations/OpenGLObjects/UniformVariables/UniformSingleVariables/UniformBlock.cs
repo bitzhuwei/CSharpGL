@@ -11,11 +11,13 @@ namespace CSharpGL
     /// <summary>
     /// A uiform block in shader.
     /// <para>https://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt</para>
+    /// <para>http://blog.csdn.net/csxiaoshui/article/details/32101977</para>
     /// </summary>
     public class UniformBlock<T> : UniformSingleVariable<T> where T : struct, IEquatable<T>
     {
         internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
         internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
+
         //internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
         internal static OpenGL.glBindBufferBase glBindBufferBase;
 

@@ -91,7 +91,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<Tuple<uint, Bitmap>> GetEnumerator()
@@ -157,6 +157,5 @@ namespace CSharpGL
         } // end sub
 
         #endregion IDisposable
-
     }
 }

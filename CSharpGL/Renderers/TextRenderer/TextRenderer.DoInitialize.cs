@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Drawing;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public partial class TextRenderer
     {

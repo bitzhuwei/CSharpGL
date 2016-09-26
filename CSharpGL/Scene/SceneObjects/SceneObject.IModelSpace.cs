@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace CSharpGL
@@ -9,9 +8,10 @@ namespace CSharpGL
         #region IModelSpace
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected const string strModelSpace = "Model Space";
+
         /// <summary>
         /// Position in world space.
         /// </summary>

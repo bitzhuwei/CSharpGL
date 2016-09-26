@@ -67,12 +67,12 @@ namespace CSharpGL
 
         // ivec2(width, height)
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Size Size { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Rectangle ClientRectangle { get; }
 
