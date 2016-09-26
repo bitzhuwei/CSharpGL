@@ -168,7 +168,7 @@ namespace CSharpGL
             }
             else
             {
-                // it's a uniform block.
+                // it's a uniform block.(The only non-abstract generic sub-type of UniformSingleVariableBase)
                 return new UniformBlock<T>(varNameInShader);
                 //throw new Exception(string.Format(
                 //"UniformVariable type [{0}] doesn't exists or not included in the variableDict!",
