@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -636,21 +638,34 @@ namespace CSharpGL
         {
             Type t = value.GetType().GetElementType();
             Type varType;
-
             if (variableArrayDict == null)
             {
                 variableArrayDict = new Dictionary<Type, Type>();
-                var types = AssemblyHelper.GetAllDerivedTypes(
-                    typeof(UniformArrayVariableBase), x => !x.IsAbstract);
-                foreach (var item in types)
+                Type baseType = typeof(CSharpGL.UniformArrayVariableBase);
+                Assembly asm = Assembly.GetAssembly(baseType);
+                var types = from item in asm.GetTypes()
+                            where (baseType.IsAssignableFrom(item)
+                                 && (!item.IsAbstract)
+                                 && (!item.IsGenericType))
+                            orderby item.FullName
+                            select item;
+                foreach (Type item in types)
                 {
-                    try
+                    // example: variableDict.Add(typeof(int), typeof(UniformInt32));
+                    bool found = false;
+                    foreach (PropertyInfo propertyInfo in item.GetProperties())
                     {
-                        // example: variableArrayDict.Add(typeof(float), typeof(UniformFloatArray));
-                        variableArrayDict.Add(item.BaseType.GetGenericArguments()[0], item);
+                        if (propertyInfo.GetCustomAttributes(typeof(UniformValueAttribute), true).Count() > 0)
+                        {
+                            // example: variableArrayDict.Add(typeof(float), typeof(UniformFloatArray));
+                            variableArrayDict.Add(item.BaseType.GetGenericArguments()[0], item);
+                            found = true;
+                            break;
+                        }
                     }
-                    catch (Exception)
+                    if (!found)
                     {
+                        throw new Exception(string.Format("No property in [{0}] is marked with [{1}].", item, typeof(UniformValueAttribute)));
                     }
                 }
             }

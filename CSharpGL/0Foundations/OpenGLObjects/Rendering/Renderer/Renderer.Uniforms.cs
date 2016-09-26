@@ -154,7 +154,20 @@ namespace CSharpGL
                     try
                     {
                         // example: variableDict.Add(typeof(int), typeof(UniformInt32));
-                        variableDict.Add(item.GetProperty("Value").PropertyType, item);
+                        bool found = false;
+                        foreach (PropertyInfo propertyInfo in item.GetProperties())
+                        {
+                            if (propertyInfo.GetCustomAttributes(typeof(UniformValueAttribute), true).Count() > 0)
+                            {
+                                variableDict.Add(propertyInfo.PropertyType, item);
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            throw new Exception(string.Format("No property in [{0}] is marked with [{1}].", item, typeof(UniformValueAttribute)));
+                        }
                     }
                     catch (Exception)
                     {

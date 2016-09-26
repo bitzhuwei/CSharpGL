@@ -15,6 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// Don't rename this property because its used in Renderer.GetVariable&lt;T&gt;(T value, string varNameInShader).
         /// </summary>
+        [UniformValueAttribute]
         public T Value
         {
             get { return this.value; }

@@ -14,6 +14,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [UniformValueAttribute]
         public NoisyArray<T> Value
         {
             get { return this.array; }
