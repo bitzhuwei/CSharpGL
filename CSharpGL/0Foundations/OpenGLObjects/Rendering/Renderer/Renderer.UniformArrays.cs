@@ -313,10 +313,10 @@ namespace CSharpGL
             {
                 //int location = Program.GetUniformLocation(varNameInShader);
                 //if (location < 0)
-                {
-                    //throw new Exception(string.Format(
-                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
-                }
+                //{
+                //throw new Exception(string.Format(
+                //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
+                //}
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformFloatArray;
                 variable.Value = new NoisyArray<float>(value);
