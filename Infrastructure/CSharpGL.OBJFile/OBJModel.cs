@@ -15,7 +15,7 @@ namespace CSharpGL.OBJFile
         /// <summary>
         /// All triangles in this *.obj file.
         /// </summary>
-        public Triangle[] Triangles { get; private set; }
+        public OBJFace[] Triangles { get; private set; }
 
         public const string strPosition = "Position";
         public const string strTexCoord = "TexCoord";
@@ -141,13 +141,13 @@ namespace CSharpGL.OBJFile
         }
     }
 
-    public class Triangle
+    public class OBJFace
     {
         public uint VertexIndex0 { get; set; }
         public uint VertexIndex1 { get; set; }
         public uint VertexIndex2 { get; set; }
 
-        public Triangle(uint vertexIndex0, uint vertexIndex1, uint vertexIndex2)
+        public OBJFace(uint vertexIndex0, uint vertexIndex1, uint vertexIndex2)
         {
             this.VertexIndex0 = vertexIndex0;
             this.VertexIndex1 = vertexIndex1;
@@ -156,7 +156,7 @@ namespace CSharpGL.OBJFile
 
         public override string ToString()
         {
-            return string.Format("Triangle Indexes:[{0}, {1}, {2}]", this.VertexIndex0, this.VertexIndex1, this.VertexIndex2);
+            return string.Format("f:[{0}, {1}, {2}]", this.VertexIndex0, this.VertexIndex1, this.VertexIndex2);
         }
     }
 }
