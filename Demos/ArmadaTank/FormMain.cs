@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSharpGL;
+using System;
 using System.Windows.Forms;
-using CSharpGL;
 
 namespace ArmadaTank
 {
@@ -18,9 +11,10 @@ namespace ArmadaTank
             InitializeComponent();
 
             Application.Idle += Application_Idle;
+            this.Load += FormMain_Load;
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("Armada Tank FPS: {0}", this.glCanvas1.FPS.ToShortString());
         }
