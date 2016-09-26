@@ -32,6 +32,7 @@ namespace CSharpGL.Demos
             if (frmSelectRenderer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 RendererBase renderer = DemoRendererFactory.Create(frmSelectRenderer.SelectedType);
+                if (renderer == null) { throw new Exception("Please add this renderer type to Factory."); }
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
                 this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());

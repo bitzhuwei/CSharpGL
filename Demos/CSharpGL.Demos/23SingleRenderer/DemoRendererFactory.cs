@@ -84,6 +84,10 @@ namespace CSharpGL.Demos
             {
                 renderer = SimplexNoiseRenderer.Create();
             }
+            else if (rendererType == typeof(UniformArrayRenderer))
+            {
+                renderer = UniformArrayRenderer.Create();
+            }
             else if (rendererType == typeof(UniformBlockRenderer))
             {
                 renderer = UniformBlockRenderer.Create();
