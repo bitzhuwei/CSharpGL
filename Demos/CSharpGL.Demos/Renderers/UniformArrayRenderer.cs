@@ -15,8 +15,8 @@ namespace CSharpGL.Demos
         {
             var model = new Teapot();
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\UniformBlockRenderer\UniformBlock.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\UniformBlockRenderer\UniformBlock.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\UniformArrayRenderer\UniformArray.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\UniformArrayRenderer\UniformArray.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("vPos", Teapot.strPosition);
             map.Add("vColor", Teapot.strColor);
