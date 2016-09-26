@@ -331,7 +331,7 @@
     <Compile Include="Renderers\IBufferables\TextModel.cs" />
     <Compile Include="UIRendering\UIRenderers\UIText.Property.cs" />
     <Compile Include="UIRendering\UIRenderers\UIText.DoRender.cs" />
-    <Compile Include="UIRendering\UIRenderers\dasf.cs" />
+    <Compile Include="UIRendering\UIRenderers\UIText.DoInitialize.cs" />
     <Compile Include="UIRendering\UIRenderers\UIText.cs" />
     <Compile Include="UIRendering\UIRenderers\UIRoot.cs" />
     <Compile Include="UIRendering\ILayoutHelper.cs" />
