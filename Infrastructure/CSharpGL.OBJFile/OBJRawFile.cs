@@ -179,7 +179,8 @@ namespace CSharpGL.OBJFile
                 for (int i = 1; i < 4; i++)
                 {
                     string[] indexes = parts[i].Split('/');
-                    int position = int.Parse(indexes[0]); int normal = int.Parse(indexes[1]);
+                    int position = int.Parse(indexes[0]);
+                    int normal = int.Parse(indexes[2]);
                     result[i - 1] = new VertexInfo() { position = position, normal = normal, uv = -1 };
                 }
             }
