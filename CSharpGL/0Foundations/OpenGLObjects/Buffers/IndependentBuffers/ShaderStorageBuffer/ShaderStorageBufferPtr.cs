@@ -5,6 +5,9 @@
     /// </summary>
     public class ShaderStorageBufferPtr : IndependentBufferPtr
     {
+        private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
+        static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
+
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
@@ -23,6 +26,24 @@
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
+            if (glShaderStorageBlockBinding == null)
+            {
+                glShaderStorageBlockBinding = OpenGL.GetDelegateFor<OpenGL.glShaderStorageBlockBinding>();
+                glGetProgramResourceIndex = OpenGL.GetDelegateFor<OpenGL.glGetProgramResourceIndex>();
+            }
+        }
+
+        /// <summary>
+        /// Bind this uniform buffer object and a uniform block to the same binding point.
+        /// </summary>
+        /// <param name="program">shader program.</param>
+        /// <param name="storageBlockName">name of buffer block in shader.</param>
+        /// <param name="storageBlockBindingPoint">binding point maintained by OpenGL context.</param>
+        public void Binding(ShaderProgram program, string storageBlockName, uint storageBlockBindingPoint)
+        {
+            uint storageBlockIndex = glGetProgramResourceIndex(program.ProgramId, OpenGL.GL_SHADER_STORAGE_BLOCK, storageBlockName);
+            glBindBufferBase(OpenGL.GL_SHADER_STORAGE_BUFFER, storageBlockBindingPoint, this.BufferId);
+            glShaderStorageBlockBinding(program.ProgramId, storageBlockIndex, storageBlockBindingPoint);
         }
     }
 }
