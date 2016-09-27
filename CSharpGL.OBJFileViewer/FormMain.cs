@@ -13,7 +13,7 @@ namespace CSharpGL.OBJFileViewer
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
         }
 
-        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
+        private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
         }

@@ -31,7 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.打开OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.纹理OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.保存SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.另存为AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +73,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.glCanvas1 = new CSharpGL.GLCanvas();
             this.OpenOBJFileDlg = new System.Windows.Forms.OpenFileDialog();
+            this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
@@ -94,7 +96,8 @@
             // 文件FToolStripMenuItem
             // 
             this.文件FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.打开OToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.纹理OToolStripMenuItem,
             this.toolStripSeparator,
             this.保存SToolStripMenuItem,
             this.另存为AToolStripMenuItem,
@@ -107,15 +110,25 @@
             this.文件FToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.文件FToolStripMenuItem.Text = "文件(&F)";
             // 
-            // 打开OToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.打开OToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("打开OToolStripMenuItem.Image")));
-            this.打开OToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
-            this.打开OToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
-            this.打开OToolStripMenuItem.Text = "打开(&O)";
-            this.打开OToolStripMenuItem.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
+            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
+            this.toolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(194, 26);
+            this.toolStripMenuItem1.Text = "打开(&O)";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
+            // 
+            // 纹理OToolStripMenuItem
+            // 
+            this.纹理OToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("纹理OToolStripMenuItem.Image")));
+            this.纹理OToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.纹理OToolStripMenuItem.Name = "纹理OToolStripMenuItem";
+            this.纹理OToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.纹理OToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.纹理OToolStripMenuItem.Text = "纹理(&T)";
+            this.纹理OToolStripMenuItem.Click += new System.EventHandler(this.纹理OToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
@@ -447,6 +460,10 @@
             // 
             this.OpenOBJFileDlg.Filter = "(*.obj)|*.obj";
             // 
+            // openTextureDlg
+            // 
+            this.openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -476,7 +493,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private GLCanvas glCanvas1;
         private System.Windows.Forms.ToolStripMenuItem 文件FToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 打开OToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 纹理OToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem 保存SToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 另存为AToolStripMenuItem;
@@ -514,6 +531,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton 帮助LToolStripButton;
         private System.Windows.Forms.OpenFileDialog OpenOBJFileDlg;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.OpenFileDialog openTextureDlg;
     }
 }
 
