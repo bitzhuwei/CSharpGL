@@ -57,7 +57,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\OBJModelRenderer.cs" />
-    <Compile Include="Renderers\ObjModelAdpater.cs" />
+    <Compile Include="Renderers\OBJModelAdpater.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,9 +80,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="shaders\ObjFile.frag" />
-    <None Include="shaders\ObjFile.geom" />
-    <None Include="shaders\ObjFile.vert" />
+    <None Include="shaders\OBJModel.frag" />
+    <None Include="shaders\OBJModel.geom" />
+    <None Include="shaders\OBJModel.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
