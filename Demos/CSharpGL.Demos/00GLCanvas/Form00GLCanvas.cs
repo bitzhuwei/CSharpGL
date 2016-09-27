@@ -64,6 +64,9 @@ namespace CSharpGL.Demos
             //content.Add(string.Format("Framebuffer Default Layers: {0}", Framebuffer.DefaultLayers()));
             //content.Add(string.Format("Framebuffer Default Samples: {0}", Framebuffer.DefaultSamples()));
             //content.Add(string.Format("Framebuffer Default Fixed Sample Locations: {0}", Framebuffer.DefaultFixedSampleLocations()));
+            var maxUniformBufferBindings = new int[1];
+            OpenGL.GetInteger(OpenGL.GL_MAX_UNIFORM_BUFFER_BINDINGS, maxUniformBufferBindings);
+            content.Add(string.Format("Max Uniform Buffer Bindings: {0}", maxUniformBufferBindings[0]));
             return content;
         }
     }
