@@ -5,6 +5,8 @@
     /// </summary>
     public class UniformBufferPtr : IndependentBufferPtr
     {
+        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
+
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
@@ -23,6 +25,22 @@
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
+            if (glUniformBlockBinding == null)
+            {
+                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
+            }
+        }
+
+        /// <summary>
+        /// Bind this uniform buffer object and a uniform block to the same binding point.
+        /// </summary>
+        /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
+        /// <param name="uniformBlockBindingPoint">binding point maintained by OpenGL context.</param>
+        /// <param name="program">shader program.</param>
+        public void Binding(ShaderProgram program, uint uniformBlockIndex, uint uniformBlockBindingPoint)
+        {
+            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uniformBlockBindingPoint, this.BufferId);
+            glUniformBlockBinding(program.ProgramId, uniformBlockIndex, uniformBlockBindingPoint);
         }
     }
 }
