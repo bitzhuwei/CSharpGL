@@ -9,7 +9,7 @@ namespace CSharpGL.Demos
     {
         private Scene scene;
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(
