@@ -189,6 +189,7 @@
             this.编辑EToolStripMenuItem.Name = "编辑EToolStripMenuItem";
             this.编辑EToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.编辑EToolStripMenuItem.Text = "编辑(&E)";
+            this.编辑EToolStripMenuItem.Visible = false;
             // 
             // 撤消UToolStripMenuItem
             // 
