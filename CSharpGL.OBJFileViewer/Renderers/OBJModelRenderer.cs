@@ -6,7 +6,7 @@ namespace CSharpGL.OBJFileViewer
     using System.IO;
 
     /// <summary>
-    /// 一个<see cref="OBJModelRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// Renders one of the models in a *.obj file.
     /// </summary>
     public class OBJModelRenderer : Renderer
     {
@@ -27,16 +27,16 @@ namespace CSharpGL.OBJFileViewer
             map.Add("in_Position", OBJModelAdpater.strin_Position);
             map.Add("in_uv", OBJModelAdpater.strin_uv);
             //map.Add("in_Normal", OBJModelAdpater.strin_Normal);
-            var renderer = new OBJModelRenderer(model, shaderCodes, map);
-            renderer.bitmap = bitmap;
+            var renderer = new OBJModelRenderer(bitmap, model, shaderCodes, map);
 
             return renderer;
         }
 
-        private OBJModelRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private OBJModelRenderer(Bitmap bitmap, IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, switches)
         {
+            this.bitmap = bitmap;
         }
 
         protected override void DoInitialize()
