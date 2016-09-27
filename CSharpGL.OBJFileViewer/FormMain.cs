@@ -14,6 +14,7 @@ namespace CSharpGL.OBJFileViewer
 
         private void Application_Idle(object sender, System.EventArgs e)
         {
+            this.Text = string.Format("CSharpGL.OBJViewer - {0}", this.lastfilename);
         }
     }
 }

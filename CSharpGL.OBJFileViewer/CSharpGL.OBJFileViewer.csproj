@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormMain.AddOBJFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Load.cs">
       <SubType>Form</SubType>
     </Compile>
