@@ -156,6 +156,7 @@
     <None Include="Resources\Gets.data.from.CSharpGL.Data.at.my.github.and.copy.it.here.md" />
     <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
+    <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
     <Compile Include="Renderers\UniformArrayRenderer.cs" />
     <Compile Include="Renderers\BufferBlockRenderer.cs" />
