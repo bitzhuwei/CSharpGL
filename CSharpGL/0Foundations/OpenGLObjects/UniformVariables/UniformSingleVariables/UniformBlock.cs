@@ -98,7 +98,10 @@ namespace CSharpGL
                 result = buffer.GetBufferPtr() as UniformBufferPtr;
             }
 
-            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
+            //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
+            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, 0, result.BufferId);
+            glUniformBlockBinding(program.ProgramId, uboIndex, 0);
+            result.Unbind();
 
             return result;
         }
