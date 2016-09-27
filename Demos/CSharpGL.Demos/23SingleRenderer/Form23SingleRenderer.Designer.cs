@@ -53,7 +53,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form23SingleRenderer";
             this.Text = "Form21ConditionalRendering";
-            this.Load += new System.EventHandler(this.Form_Load);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
