@@ -4,7 +4,7 @@ using System;
 namespace CSharpGL.OBJFileViewer
 {
     /// <summary>
-    /// Transform *.obj model to vertex buffers.
+    /// Transform one of the models in a *.obj file to vertex buffers.
     /// </summary>
     internal class OBJModelAdpater : IBufferable
     {
