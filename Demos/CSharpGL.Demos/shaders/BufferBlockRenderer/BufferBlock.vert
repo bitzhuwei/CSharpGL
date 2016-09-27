@@ -1,10 +1,10 @@
 ﻿#version 430 core
 
 
-layout (std140, binding = 0) buffer PositionBuffer {
+layout (std430, binding = 0) buffer PositionBuffer {
     vec4 positions[];
 };
-layout (std140, binding = 1) buffer ColorBuffer {
+layout (std430, binding = 1) buffer ColorBuffer {
 	vec4 colors[];
 };
 
