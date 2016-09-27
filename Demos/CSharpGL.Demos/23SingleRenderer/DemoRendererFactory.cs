@@ -14,6 +14,10 @@ namespace CSharpGL.Demos
                 int particleCount = 10000;
                 renderer = AnalyzedPointSpriteRenderer.Create(particleCount);
             }
+            else if (rendererType == typeof(BufferBlockRenderer))
+            {
+                renderer = BufferBlockRenderer.Create();
+            }
             else if (rendererType == typeof(ConditionalRenderer))
             {
                 renderer = ConditionalRenderer.Create();

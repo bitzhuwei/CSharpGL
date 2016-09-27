@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace CSharpGL.Demos
 {
@@ -24,7 +23,7 @@ namespace CSharpGL.Demos
         }
 
         private GroundRenderer groundRenderer;
-        private ShaderStorageBufferPtr shaderStorageBufferPtr;
+        //private ShaderStorageBufferPtr shaderStorageBufferPtr;
         private const int vertexCount = 3;
 
         private BufferBlockRenderer(IBufferable model, ShaderCode[] shaderCodes,
@@ -39,21 +38,40 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             base.DoInitialize();
-            using (var buffer = new ShaderStorageBuffer<VertexData>(BufferUsage.StaticDraw))
+            using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
                 buffer.Create(3);
                 unsafe
                 {
-                    var array = (VertexData*)buffer.Header.ToPointer();
-                    array[0] = new VertexData(new vec3(-1, -1, -1));
-                    array[1] = new VertexData(new vec3(-1, -1, +1));
-                    array[2] = new VertexData(new vec3(-1, +1, -1));
+                    var array = (vec4*)buffer.Header.ToPointer();
+                    array[0] = new vec4(-1, -1, -1, 1);
+                    array[1] = new vec4(-1, -1, +1, 1);
+                    array[2] = new vec4(-1, +1, -1, 1);
                 }
                 var bufferPtr = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
-                bufferPtr.Binding(this.Program, typeof(VertexData).Name, 0);
+                bufferPtr.Binding(this.Program, "PositionBuffer", 0);
                 bufferPtr.Unbind();
-                this.shaderStorageBufferPtr = bufferPtr;
+                //this.shaderStorageBufferPtr = bufferPtr;
             }
+            using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
+            {
+                buffer.Create(3);
+                unsafe
+                {
+                    var array = (vec4*)buffer.Header.ToPointer();
+                    array[0] = new vec4(+1, +0, +0, 0);
+                    array[1] = new vec4(+0, +1, +0, 0);
+                    array[2] = new vec4(+0, +0, +1, 0);
+                    //array[0] = new vec3(new vec3(0, 0, 0));
+                    //array[1] = new vec3(new vec3(1, 1, +1));
+                    //array[2] = new vec3(new vec3(0, +1, 0));
+                }
+                var bufferPtr = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                bufferPtr.Binding(this.Program, "ColorBuffer", 1);
+                bufferPtr.Unbind();
+                //this.shaderStorageBufferPtr = bufferPtr;
+            }
+
             this.groundRenderer.Initialize();
         }
 
@@ -69,25 +87,6 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
 
             this.groundRenderer.Render(arg);
-        }
-
-        /// <summary>
-        /// mapping to the buffer block 'VertexData' in GLSL shader.
-        /// </summary>
-        private struct VertexData : IEquatable<VertexData>
-        {
-            private vec3 position;
-            //vec3 normal;
-
-            public VertexData(vec3 position)
-            {
-                this.position = position;
-            }
-
-            public bool Equals(VertexData other)
-            {
-                return this.position == other.position;
-            }
         }
     }
 }
