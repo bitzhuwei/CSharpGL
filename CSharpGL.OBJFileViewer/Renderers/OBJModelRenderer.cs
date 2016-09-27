@@ -2,6 +2,7 @@ namespace CSharpGL.OBJFileViewer
 {
     using CSharpGL;
     using CSharpGL.OBJFile;
+    using System.Drawing;
     using System.IO;
 
     /// <summary>
@@ -9,12 +10,14 @@ namespace CSharpGL.OBJFileViewer
     /// </summary>
     public class OBJModelRenderer : Renderer
     {
+        private Bitmap bitmap;
+        private Texture texture;
         /// <summary>
         ///
         /// </summary>
         /// <param name="singleModel"></param>
         /// <returns></returns>
-        public static OBJModelRenderer Create(OBJModel singleModel)
+        public static OBJModelRenderer Create(OBJModel singleModel, Bitmap bitmap)
         {
             var model = new OBJModelAdpater(singleModel);
             var shaderCodes = new ShaderCode[2];
@@ -22,9 +25,10 @@ namespace CSharpGL.OBJFileViewer
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ObjFile.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", OBJModelAdpater.strin_Position);
-            map.Add("in_Color", OBJModelAdpater.strin_Color);
+            map.Add("in_uv", OBJModelAdpater.strin_uv);
             //map.Add("in_Normal", OBJModelAdpater.strin_Normal);
             var renderer = new OBJModelRenderer(model, shaderCodes, map);
+            renderer.bitmap = bitmap;
 
             return renderer;
         }
@@ -38,6 +42,15 @@ namespace CSharpGL.OBJFileViewer
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            var texture = new Texture(TextureTarget.Texture2D, this.bitmap,
+                new SamplerParameters(
+                    TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
+                    TextureFilter.Linear, TextureFilter.Linear));
+            texture.Initialize();
+            this.SetUniform("tex", texture);
+
+            this.texture = texture;
         }
 
         protected override void DoRender(RenderEventArgs arg)

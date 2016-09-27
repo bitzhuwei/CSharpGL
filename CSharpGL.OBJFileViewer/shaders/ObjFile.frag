@@ -1,12 +1,14 @@
 #version 150 core
 
-in vec4 pass_Color;
+in vec2 pass_uv;
 out vec4 out_Color;
+
+uniform sampler2D tex;
 
 void main(void)
 {
     // TODO: this is where you should start with fragment shader. Only ASCII code are welcome.
-    out_Color = pass_Color;
+    out_Color = texture(tex, pass_uv);
     // this is where your fragment shader ends.
 }
 
