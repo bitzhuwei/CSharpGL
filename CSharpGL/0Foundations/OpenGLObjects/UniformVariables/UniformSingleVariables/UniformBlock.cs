@@ -17,9 +17,9 @@ namespace CSharpGL
     {
         internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
         internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
-        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
-        internal static OpenGL.glBindBufferRange glBindBufferRange;
-        internal static OpenGL.glBindBufferBase glBindBufferBase;
+        //internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
+        //internal static OpenGL.glBindBufferRange glBindBufferRange;
+        //internal static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
         /// A uiform block in shader.
@@ -73,9 +73,6 @@ namespace CSharpGL
             {
                 glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
                 glGetActiveUniformBlockiv = OpenGL.GetDelegateFor<OpenGL.glGetActiveUniformBlockiv>();
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
-                glBindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>();
-                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
             }
 
             uint uboIndex = glGetUniformBlockIndex(program.ProgramId, this.VarName);
@@ -99,8 +96,9 @@ namespace CSharpGL
             }
 
             //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
-            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, 0, result.BufferId);
-            glUniformBlockBinding(program.ProgramId, uboIndex, 0);
+            //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, 0, result.BufferId);
+            //glUniformBlockBinding(program.ProgramId, uboIndex, 0);
+            result.Binding(program, uboIndex, 0);
             result.Unbind();
 
             return result;
