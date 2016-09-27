@@ -17,7 +17,8 @@ namespace CSharpGL.OBJFileViewer
         /// </summary>
         /// <param name="singleModel"></param>
         /// <returns></returns>
-        public static OBJModelRenderer Create(OBJModel singleModel, Bitmap bitmap)
+        public static OBJModelRenderer Create(OBJModel singleModel)
+        //, Bitmap bitmap)
         {
             var model = new OBJModelAdpater(singleModel);
             var shaderCodes = new ShaderCode[2];
@@ -27,32 +28,38 @@ namespace CSharpGL.OBJFileViewer
             map.Add("in_Position", OBJModelAdpater.strin_Position);
             map.Add("in_uv", OBJModelAdpater.strin_uv);
             //map.Add("in_Normal", OBJModelAdpater.strin_Normal);
-            var renderer = new OBJModelRenderer(bitmap, model, shaderCodes, map);
+            var renderer = new OBJModelRenderer(model, shaderCodes, map);
 
             return renderer;
         }
 
-        private OBJModelRenderer(Bitmap bitmap, IBufferable model, ShaderCode[] shaderCodes,
+        private OBJModelRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, switches)
         {
-            this.bitmap = bitmap;
         }
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            var texture = new Texture(TextureTarget.Texture2D, this.bitmap,
-                new SamplerParameters(
-                    TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
-                    TextureFilter.Linear, TextureFilter.Linear));
-            texture.Initialize();
-            this.SetUniform("tex", texture);
-
-            this.texture = texture;
+            this.SetTexture(this.bitmap);
         }
 
+        public void SetTexture(Bitmap bitmap)
+        {
+            if (bitmap != null)
+            {
+                var texture = new Texture(TextureTarget.Texture2D, this.bitmap,
+                    new SamplerParameters(
+                        TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
+                        TextureFilter.Linear, TextureFilter.Linear));
+                texture.Initialize();
+                this.SetUniform("tex", texture);
+
+                this.texture = texture;
+            }
+        }
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace CSharpGL.OBJFile
 {
-    public class OBJFile
+    public class OBJRawFile
     {
         private List<OBJModel> models = new List<OBJModel>();
 
@@ -14,9 +14,9 @@ namespace CSharpGL.OBJFile
             //set { models = value; }
         }
 
-        public static OBJFile Load(string filename)
+        public static OBJRawFile Load(string filename)
         {
-            OBJFile file = new OBJFile();
+            OBJRawFile file = new OBJRawFile();
 
             LoadModels(filename, file);
             GenNormals(file);
@@ -25,7 +25,7 @@ namespace CSharpGL.OBJFile
             return file;
         }
 
-        private static void OrganizeModels(OBJFile file)
+        private static void OrganizeModels(OBJRawFile file)
         {
             List<OBJModel> models = new List<OBJModel>();
             foreach (var model in file.models)
@@ -82,7 +82,7 @@ namespace CSharpGL.OBJFile
             return result;
         }
 
-        private static void GenNormals(OBJFile file)
+        private static void GenNormals(OBJRawFile file)
         {
             foreach (var model in file.models)
             {
@@ -129,7 +129,7 @@ namespace CSharpGL.OBJFile
             }
         }
 
-        private static void LoadModels(string filename, OBJFile file)
+        private static void LoadModels(string filename, OBJRawFile file)
         {
             using (var sr = new StreamReader(filename))
             {

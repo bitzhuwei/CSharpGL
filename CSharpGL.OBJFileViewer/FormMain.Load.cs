@@ -27,15 +27,6 @@ namespace CSharpGL.OBJFileViewer
                 this.glCanvas1.Resize += this.scene.Resize;
             }
 
-            //{
-            //    RendererBase renderer = DemoRendererFactory.Create(frmSelectRenderer.SelectedType);
-            //    if (renderer == null) { throw new Exception("Please add this renderer type to Factory."); }
-            //    SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
-            //    this.scene.RootObject.Children.Add(obj);
-            //    this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());
-            //    var frmProperty = new FormProperyGrid(renderer);
-            //    frmProperty.Show();
-            //}
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));

@@ -71,6 +71,7 @@
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.OpenOBJFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
@@ -441,6 +442,10 @@
             this.glCanvas1.Size = new System.Drawing.Size(860, 517);
             this.glCanvas1.TabIndex = 3;
             // 
+            // OpenOBJFileDlg
+            // 
+            this.OpenOBJFileDlg.Filter = "(*.obj)|*.obj";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -507,6 +512,7 @@
         private System.Windows.Forms.ToolStripButton 粘贴PToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton 帮助LToolStripButton;
+        private System.Windows.Forms.OpenFileDialog OpenOBJFileDlg;
     }
 }
 

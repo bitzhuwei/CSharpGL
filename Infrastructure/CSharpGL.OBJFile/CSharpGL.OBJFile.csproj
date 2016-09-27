@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OBJFile.cs" />
+    <Compile Include="OBJRawFile.cs" />
     <Compile Include="OBJModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
