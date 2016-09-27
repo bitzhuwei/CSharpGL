@@ -5,6 +5,9 @@
     /// </summary>
     public abstract class IndependentBufferPtr : BufferPtr
     {
+        internal static OpenGL.glBindBufferRange glBindBufferRange;
+        internal static OpenGL.glBindBufferBase glBindBufferBase;
+
         /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>
@@ -14,6 +17,11 @@
         internal IndependentBufferPtr(uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
+            if (glBindBufferRange == null)
+            {
+                glBindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>();
+                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
+            }
         }
 
         /// <summary>
