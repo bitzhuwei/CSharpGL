@@ -16,7 +16,7 @@ void main(void)
     // TODO: this is where you should start with vertex shader. Only ASCII code are welcome.
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
     pass_uv = in_uv;
-	pass_Normal = in_Normal;
+	//pass_Normal = in_Normal;
     // this is where your vertex shader ends.
 }
 

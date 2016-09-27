@@ -20,8 +20,8 @@ namespace CSharpGL.OBJFileViewer
         {
             var model = new OBJModelAdpater(singleModel);
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ObjFile.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ObjFile.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\OBJModel.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\OBJModel.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", OBJModelAdpater.strin_Position);
             map.Add("in_uv", OBJModelAdpater.strin_uv);

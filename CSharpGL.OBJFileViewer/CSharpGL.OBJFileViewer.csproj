@@ -83,9 +83,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="shaders\OBJModel.frag" />
-    <None Include="shaders\OBJModel.geom" />
-    <None Include="shaders\OBJModel.vert" />
+    <None Include="shaders\OBJModel.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\OBJModel.geom">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\OBJModel.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="teapot_0.obj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
