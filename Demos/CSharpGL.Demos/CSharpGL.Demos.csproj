@@ -158,6 +158,7 @@
     <Compile Include="DemoRendererAttribute.cs" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
     <Compile Include="Renderers\UniformArrayRenderer.cs" />
+    <Compile Include="Renderers\BufferBlockRenderer.cs" />
     <Compile Include="Renderers\UniformBlockRenderer.cs" />
     <Compile Include="Renderers\ZeroAttributeRenderer.cs" />
     <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.cs" />
@@ -303,6 +304,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\UniformArrayRenderer\UniformArray.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\BufferBlockRenderer\BufferBlock.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\BufferBlockRenderer\BufferBlock.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\UniformBlockRenderer\UniformBlock.frag">
