@@ -10,8 +10,6 @@ namespace CSharpGL.OBJFileViewer
     /// </summary>
     public class OBJModelRenderer : Renderer
     {
-        private Bitmap bitmap;
-        private Texture texture;
         /// <summary>
         ///
         /// </summary>
@@ -42,22 +40,18 @@ namespace CSharpGL.OBJFileViewer
         protected override void DoInitialize()
         {
             base.DoInitialize();
-
-            this.SetTexture(this.bitmap);
         }
 
         public void SetTexture(Bitmap bitmap)
         {
             if (bitmap != null)
             {
-                var texture = new Texture(TextureTarget.Texture2D, this.bitmap,
+                var texture = new Texture(TextureTarget.Texture2D, bitmap,
                     new SamplerParameters(
                         TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
                         TextureFilter.Linear, TextureFilter.Linear));
                 texture.Initialize();
                 this.SetUniform("tex", texture);
-
-                this.texture = texture;
             }
         }
         protected override void DoRender(RenderEventArgs arg)
