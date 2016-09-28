@@ -9,14 +9,26 @@ namespace CSharpGL.Demos
     {
         private double interval;
 
+        private int GetUCount(double interval)
+        {
+            int uCount = (int)(Math.PI / interval);
+            return uCount;
+        }
+
+        private int GetVCount(double interval)
+        {
+            int vCount = (int)(Math.PI * 2 / interval / 10.0);
+            return vCount;
+        }
+
         public KleinBottleModel(double interval = 0.02)
         {
             this.interval = interval;
             bool initialized = false;
             vec3 max = new vec3();
             vec3 min = new vec3();
-            int uCount = (int)(Math.PI / interval);
-            int vCount = (int)(Math.PI * 2 / interval);
+            int uCount = GetUCount(interval);
+            int vCount = GetVCount(interval);
             for (int uIndex = 0; uIndex < uCount; uIndex++)
             {
                 for (int vIndex = 0; vIndex < vCount; vIndex++)
@@ -70,8 +82,8 @@ namespace CSharpGL.Demos
                 bool initialized = false;
                 vec3 max = new vec3();
                 vec3 min = new vec3();
-                int uCount = (int)(Math.PI / interval);
-                int vCount = (int)(Math.PI * 2 / interval);
+                int uCount = GetUCount(interval);
+                int vCount = GetVCount(interval);
                 buffer.Create(uCount * vCount);
                 unsafe
                 {
@@ -130,8 +142,8 @@ namespace CSharpGL.Demos
         {
             if (indexBufferPtr == null)
             {
-                int uCount = (int)(Math.PI / interval);
-                int vCount = (int)(Math.PI * 2 / interval);
+                int uCount = GetUCount(interval);
+                int vCount = GetVCount(interval);
                 using (var buffer = new ZeroIndexBuffer(
                     DrawMode.Points, 0, uCount * vCount))
                 {
