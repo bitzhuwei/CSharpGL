@@ -247,7 +247,7 @@ For more information and demonstrations please check (http://bitzhuwei.github.io
 1. Modern rendering(Shader+VBO).
 2. Color-coded-picking of primitives in a VBO.
 3. Highlight picked primitives.
-4. Draw text using glRasterPos() and CallList.
-5. PolygonOffsetSwitch.
-6. UILayout.
+4. Draw text using `glRasterPos()` and `CallList`.
+5. `PolygonOffsetSwitch`.
+6. `ILayout` supports layout UI element in an OpenGL canvas.
 
