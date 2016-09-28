@@ -130,6 +130,7 @@
     <Compile Include="15UIRenderer\Form15UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\KleinBottleModel.cs" />
     <Compile Include="Models\PlaneModel.cs" />
     <Compile Include="Models\WaterPlaneModel.cs" />
     <Compile Include="Models\RandomPointsModel.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
+    <Compile Include="Renderers\KleinBottleRenderer\KleinBottleRenderer.cs" />
     <Compile Include="Renderers\UniformArrayRenderer.cs" />
     <Compile Include="Renderers\BufferBlockRenderer.cs" />
     <Compile Include="Renderers\UniformBlockRenderer.cs" />
@@ -281,6 +283,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\GreyFilterRenderer\GreyFilter.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\KleinBottleRenderer\KleinBottle.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\KleinBottleRenderer\KleinBottle.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\RandomPoints.frag">

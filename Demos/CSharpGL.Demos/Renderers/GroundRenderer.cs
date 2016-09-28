@@ -15,8 +15,8 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Ground.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", GroundModel.strPosition);
-            var ground = new GroundRenderer(model, shaderCodes, map);
-            return ground;
+            var renderer = new GroundRenderer(model, shaderCodes, map);
+            return renderer;
         }
 
         public Color LineColor { get; set; }

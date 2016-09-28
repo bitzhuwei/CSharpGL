@@ -31,6 +31,10 @@ namespace CSharpGL.Demos
             {
                 renderer = new ImageProcessingRenderer();
             }
+            else if (rendererType == typeof(KleinBottleRenderer))
+            {
+                renderer = KleinBottleRenderer.Create(new KleinBottleModel());
+            }
             else if (rendererType == typeof(OrderDependentTransparencyRenderer))
             {
                 var model = new Teapot();
