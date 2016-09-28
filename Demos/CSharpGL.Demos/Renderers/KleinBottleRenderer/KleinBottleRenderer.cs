@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             var map = new AttributeNameMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
             var renderer = new KleinBottleRenderer(model, shaderCodes, map);
-            renderer.Lengths = new vec3(1, 1, 1);
+            renderer.Lengths = model.Lengths;
 
             return renderer;
         }

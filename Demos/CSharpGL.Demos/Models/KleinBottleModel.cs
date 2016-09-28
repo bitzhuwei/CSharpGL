@@ -12,6 +12,33 @@ namespace CSharpGL.Demos
         public KleinBottleModel(double interval = 0.02)
         {
             this.interval = interval;
+            bool initialized = false;
+            vec3 max = new vec3();
+            vec3 min = new vec3();
+            int uCount = (int)(Math.PI / interval);
+            int vCount = (int)(Math.PI * 2 / interval);
+            for (int uIndex = 0; uIndex < uCount; uIndex++)
+            {
+                for (int vIndex = 0; vIndex < vCount; vIndex++)
+                {
+                    double u = Math.PI * uIndex / uCount;
+                    double v = Math.PI * 2 * vIndex / vCount;
+                    var position = GetPosition(u, v);
+
+                    if (!initialized)
+                    {
+                        max = position;
+                        min = position;
+                        initialized = true;
+                    }
+                    else
+                    {
+                        position.UpdateMax(ref max);
+                        position.UpdateMin(ref min);
+                    }
+                }
+            }
+            this.Lengths = max - min;
         }
 
         public const string strPosition = "position";
@@ -54,8 +81,8 @@ namespace CSharpGL.Demos
                     {
                         for (int vIndex = 0; vIndex < vCount; vIndex++)
                         {
-                            double u = interval * uIndex / uCount * Math.PI;
-                            double v = interval * vIndex / vCount * Math.PI * 2;
+                            double u = Math.PI * uIndex / uCount;
+                            double v = Math.PI * 2 * vIndex / vCount;
                             var position = GetPosition(u, v);
 
                             if (!initialized)
@@ -72,7 +99,7 @@ namespace CSharpGL.Demos
                             array[index++] = position;
                         }
                     }
-                    this.Lengths = max - min;
+                    //this.Lengths = max - min;
                     vec3 worldPosition = max / 2.0f + min / 2.0f;
                     for (int i = 0; i < index; i++)
                     {
