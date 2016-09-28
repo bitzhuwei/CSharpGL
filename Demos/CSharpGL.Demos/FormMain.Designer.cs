@@ -38,7 +38,6 @@
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn18PickingInScene = new System.Windows.Forms.Button();
             this.btn20GLSceneCanvas = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.btn24GreyFilter = new System.Windows.Forms.Button();
@@ -46,13 +45,13 @@
             // 
             // btnForm00GLCanvas
             // 
-            this.btnForm00GLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btnForm00GLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm00GLCanvas.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm00GLCanvas.Location = new System.Drawing.Point(7, 30);
-            this.btnForm00GLCanvas.Margin = new System.Windows.Forms.Padding(2);
+            this.btnForm00GLCanvas.Location = new System.Drawing.Point(12, 11);
+            this.btnForm00GLCanvas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnForm00GLCanvas.Name = "btnForm00GLCanvas";
-            this.btnForm00GLCanvas.Size = new System.Drawing.Size(575, 30);
+            this.btnForm00GLCanvas.Size = new System.Drawing.Size(767, 38);
             this.btnForm00GLCanvas.TabIndex = 0;
             this.btnForm00GLCanvas.Text = "Form00 GLCanvas";
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
@@ -60,13 +59,13 @@
             // 
             // btn02OriderIndependentTransparency
             // 
-            this.btn02OriderIndependentTransparency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn02OriderIndependentTransparency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn02OriderIndependentTransparency.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn02OriderIndependentTransparency.Location = new System.Drawing.Point(7, 370);
-            this.btn02OriderIndependentTransparency.Margin = new System.Windows.Forms.Padding(2);
+            this.btn02OriderIndependentTransparency.Location = new System.Drawing.Point(12, 435);
+            this.btn02OriderIndependentTransparency.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn02OriderIndependentTransparency.Name = "btn02OriderIndependentTransparency";
-            this.btn02OriderIndependentTransparency.Size = new System.Drawing.Size(575, 30);
+            this.btn02OriderIndependentTransparency.Size = new System.Drawing.Size(767, 38);
             this.btn02OriderIndependentTransparency.TabIndex = 0;
             this.btn02OriderIndependentTransparency.Text = "Form02 Orider-Independent Transparency";
             this.btn02OriderIndependentTransparency.UseVisualStyleBackColor = true;
@@ -74,13 +73,13 @@
             // 
             // btnForm06ImageProcessing
             // 
-            this.btnForm06ImageProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btnForm06ImageProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm06ImageProcessing.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm06ImageProcessing.Location = new System.Drawing.Point(7, 404);
-            this.btnForm06ImageProcessing.Margin = new System.Windows.Forms.Padding(2);
+            this.btnForm06ImageProcessing.Location = new System.Drawing.Point(12, 478);
+            this.btnForm06ImageProcessing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnForm06ImageProcessing.Name = "btnForm06ImageProcessing";
-            this.btnForm06ImageProcessing.Size = new System.Drawing.Size(575, 30);
+            this.btnForm06ImageProcessing.Size = new System.Drawing.Size(767, 38);
             this.btnForm06ImageProcessing.TabIndex = 0;
             this.btnForm06ImageProcessing.Text = "Form06 ImageProcessing";
             this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
@@ -88,13 +87,13 @@
             // 
             // btnForm07PointSprite
             // 
-            this.btnForm07PointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btnForm07PointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm07PointSprite.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm07PointSprite.Location = new System.Drawing.Point(7, 132);
-            this.btnForm07PointSprite.Margin = new System.Windows.Forms.Padding(2);
+            this.btnForm07PointSprite.Location = new System.Drawing.Point(12, 138);
+            this.btnForm07PointSprite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnForm07PointSprite.Name = "btnForm07PointSprite";
-            this.btnForm07PointSprite.Size = new System.Drawing.Size(575, 30);
+            this.btnForm07PointSprite.Size = new System.Drawing.Size(767, 38);
             this.btnForm07PointSprite.TabIndex = 0;
             this.btnForm07PointSprite.Text = "Form07 PointSprite";
             this.btnForm07PointSprite.UseVisualStyleBackColor = true;
@@ -102,13 +101,13 @@
             // 
             // btn11IFontTexture
             // 
-            this.btn11IFontTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn11IFontTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn11IFontTexture.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn11IFontTexture.Location = new System.Drawing.Point(7, 166);
-            this.btn11IFontTexture.Margin = new System.Windows.Forms.Padding(2);
+            this.btn11IFontTexture.Location = new System.Drawing.Point(12, 181);
+            this.btn11IFontTexture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn11IFontTexture.Name = "btn11IFontTexture";
-            this.btn11IFontTexture.Size = new System.Drawing.Size(575, 30);
+            this.btn11IFontTexture.Size = new System.Drawing.Size(767, 38);
             this.btn11IFontTexture.TabIndex = 0;
             this.btn11IFontTexture.Text = "11 FontTexture";
             this.btn11IFontTexture.UseVisualStyleBackColor = true;
@@ -116,13 +115,13 @@
             // 
             // btn12Billboard
             // 
-            this.btn12Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn12Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn12Billboard.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn12Billboard.Location = new System.Drawing.Point(7, 200);
-            this.btn12Billboard.Margin = new System.Windows.Forms.Padding(2);
+            this.btn12Billboard.Location = new System.Drawing.Point(12, 223);
+            this.btn12Billboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn12Billboard.Name = "btn12Billboard";
-            this.btn12Billboard.Size = new System.Drawing.Size(575, 30);
+            this.btn12Billboard.Size = new System.Drawing.Size(767, 38);
             this.btn12Billboard.TabIndex = 0;
             this.btn12Billboard.Text = "12 Billboard";
             this.btn12Billboard.UseVisualStyleBackColor = true;
@@ -130,13 +129,13 @@
             // 
             // btn15UIRenderer
             // 
-            this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn15UIRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn15UIRenderer.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn15UIRenderer.Location = new System.Drawing.Point(7, 234);
-            this.btn15UIRenderer.Margin = new System.Windows.Forms.Padding(2);
+            this.btn15UIRenderer.Location = new System.Drawing.Point(12, 265);
+            this.btn15UIRenderer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn15UIRenderer.Name = "btn15UIRenderer";
-            this.btn15UIRenderer.Size = new System.Drawing.Size(575, 30);
+            this.btn15UIRenderer.Size = new System.Drawing.Size(767, 38);
             this.btn15UIRenderer.TabIndex = 0;
             this.btn15UIRenderer.Text = "15 UIenderer";
             this.btn15UIRenderer.UseVisualStyleBackColor = true;
@@ -144,13 +143,13 @@
             // 
             // btn16ArcBallManipulater
             // 
-            this.btn16ArcBallManipulater.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn16ArcBallManipulater.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn16ArcBallManipulater.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn16ArcBallManipulater.Location = new System.Drawing.Point(7, 98);
-            this.btn16ArcBallManipulater.Margin = new System.Windows.Forms.Padding(2);
+            this.btn16ArcBallManipulater.Location = new System.Drawing.Point(12, 95);
+            this.btn16ArcBallManipulater.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn16ArcBallManipulater.Name = "btn16ArcBallManipulater";
-            this.btn16ArcBallManipulater.Size = new System.Drawing.Size(575, 30);
+            this.btn16ArcBallManipulater.Size = new System.Drawing.Size(767, 38);
             this.btn16ArcBallManipulater.TabIndex = 0;
             this.btn16ArcBallManipulater.Text = "16 ArcBall Manipulater";
             this.btn16ArcBallManipulater.UseVisualStyleBackColor = true;
@@ -158,13 +157,13 @@
             // 
             // btn18PickingInScene
             // 
-            this.btn18PickingInScene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn18PickingInScene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn18PickingInScene.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn18PickingInScene.Location = new System.Drawing.Point(7, 268);
-            this.btn18PickingInScene.Margin = new System.Windows.Forms.Padding(2);
+            this.btn18PickingInScene.Location = new System.Drawing.Point(12, 308);
+            this.btn18PickingInScene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn18PickingInScene.Name = "btn18PickingInScene";
-            this.btn18PickingInScene.Size = new System.Drawing.Size(575, 30);
+            this.btn18PickingInScene.Size = new System.Drawing.Size(767, 38);
             this.btn18PickingInScene.TabIndex = 0;
             this.btn18PickingInScene.Text = "18 PickingInScene";
             this.btn18PickingInScene.UseVisualStyleBackColor = true;
@@ -172,41 +171,27 @@
             // 
             // btn20GLSceneCanvas
             // 
-            this.btn20GLSceneCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn20GLSceneCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn20GLSceneCanvas.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn20GLSceneCanvas.Location = new System.Drawing.Point(7, 302);
-            this.btn20GLSceneCanvas.Margin = new System.Windows.Forms.Padding(2);
+            this.btn20GLSceneCanvas.Location = new System.Drawing.Point(12, 351);
+            this.btn20GLSceneCanvas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn20GLSceneCanvas.Name = "btn20GLSceneCanvas";
-            this.btn20GLSceneCanvas.Size = new System.Drawing.Size(575, 30);
+            this.btn20GLSceneCanvas.Size = new System.Drawing.Size(767, 38);
             this.btn20GLSceneCanvas.TabIndex = 0;
             this.btn20GLSceneCanvas.Text = "20 GLSceneCanvas";
             this.btn20GLSceneCanvas.UseVisualStyleBackColor = true;
             this.btn20GLSceneCanvas.Click += new System.EventHandler(this.btn20GLSceneCanvas_Click);
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(15, 42);
-            this.linkLabel1.Location = new System.Drawing.Point(12, 9);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(567, 19);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Gets data from https://github.com/bitzhuwei/CSharpGL.Data and copy it to \'Resourc" +
-    "es\\data\\\'\'";
-            this.linkLabel1.UseCompatibleTextRendering = true;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // btn21ConditionalRendering
             // 
-            this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn21ConditionalRendering.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn21ConditionalRendering.Location = new System.Drawing.Point(7, 336);
-            this.btn21ConditionalRendering.Margin = new System.Windows.Forms.Padding(2);
+            this.btn21ConditionalRendering.Location = new System.Drawing.Point(12, 393);
+            this.btn21ConditionalRendering.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn21ConditionalRendering.Name = "btn21ConditionalRendering";
-            this.btn21ConditionalRendering.Size = new System.Drawing.Size(575, 30);
+            this.btn21ConditionalRendering.Size = new System.Drawing.Size(767, 38);
             this.btn21ConditionalRendering.TabIndex = 0;
             this.btn21ConditionalRendering.Text = "21 Conditional Rendering";
             this.btn21ConditionalRendering.UseVisualStyleBackColor = true;
@@ -214,13 +199,13 @@
             // 
             // btn23SingleRenderer
             // 
-            this.btn23SingleRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn23SingleRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn23SingleRenderer.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn23SingleRenderer.Location = new System.Drawing.Point(7, 64);
-            this.btn23SingleRenderer.Margin = new System.Windows.Forms.Padding(2);
+            this.btn23SingleRenderer.Location = new System.Drawing.Point(12, 53);
+            this.btn23SingleRenderer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn23SingleRenderer.Name = "btn23SingleRenderer";
-            this.btn23SingleRenderer.Size = new System.Drawing.Size(575, 30);
+            this.btn23SingleRenderer.Size = new System.Drawing.Size(767, 38);
             this.btn23SingleRenderer.TabIndex = 0;
             this.btn23SingleRenderer.Text = "23 Single Renderer";
             this.btn23SingleRenderer.UseVisualStyleBackColor = true;
@@ -228,13 +213,13 @@
             // 
             // btn24GreyFilter
             // 
-            this.btn24GreyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn24GreyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn24GreyFilter.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn24GreyFilter.Location = new System.Drawing.Point(7, 438);
-            this.btn24GreyFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.btn24GreyFilter.Location = new System.Drawing.Point(12, 521);
+            this.btn24GreyFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn24GreyFilter.Name = "btn24GreyFilter";
-            this.btn24GreyFilter.Size = new System.Drawing.Size(575, 30);
+            this.btn24GreyFilter.Size = new System.Drawing.Size(767, 38);
             this.btn24GreyFilter.TabIndex = 0;
             this.btn24GreyFilter.Text = "Form24 Grey Filter";
             this.btn24GreyFilter.UseVisualStyleBackColor = true;
@@ -242,10 +227,9 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 502);
-            this.Controls.Add(this.linkLabel1);
+            this.ClientSize = new System.Drawing.Size(791, 628);
             this.Controls.Add(this.btn23SingleRenderer);
             this.Controls.Add(this.btn21ConditionalRendering);
             this.Controls.Add(this.btn20GLSceneCanvas);
@@ -259,12 +243,11 @@
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btn02OriderIndependentTransparency);
             this.Controls.Add(this.btnForm00GLCanvas);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CSharpGL Test/Demo Panel - http://bitzhuwei.cnblogs.com";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -280,7 +263,6 @@
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn18PickingInScene;
         private System.Windows.Forms.Button btn20GLSceneCanvas;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
         private System.Windows.Forms.Button btn24GreyFilter;
