@@ -111,6 +111,8 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\AccumBufferSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\DitherSwitch.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\LogicOperationSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\FrontFaceSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />

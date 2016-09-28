@@ -15,8 +15,8 @@
         /// <summary>
         ///
         /// </summary>
-        /// <param name="sourceFactor"></param>
-        /// <param name="destFactor"></param>
+        /// <param name="alphaTestFunc"></param>
+        /// <param name="alphaTestReferenceValue"></param>
         public AlphaFuncSwitch(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue)
             : base(OpenGL.GL_ALPHA_TEST, true)
         {
