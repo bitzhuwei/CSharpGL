@@ -50,7 +50,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="clearColor"></param>
-        /// <param name="alpha"></param>
+        /// <param name="alpha">Ranges between [0, 1.0].</param>
         public ClearColorSwitch(Color clearColor, float alpha = 1.0f)
         {
             this.ClearColor = clearColor;
