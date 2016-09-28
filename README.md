@@ -52,6 +52,8 @@ Particle's speed and position is updated by compute shader.
 ![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.png?raw=true)  
 A spheroid.  
 ![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite2.png?raw=true)
+## Generated Klein Bottle.
+![Klein Bottle](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/KleinBottle.png?raw=true)
 ## Earth.
 An earth model that singly rotates same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
 ![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
