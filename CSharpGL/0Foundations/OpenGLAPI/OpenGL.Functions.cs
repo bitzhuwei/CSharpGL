@@ -7,38 +7,38 @@ namespace CSharpGL
     {
         #region The OpenGL DLL Functions.
 
-        ///// <summary>
-        ///// Set the Accumulation Buffer operation.
-        ///// </summary>
-        ///// <param name="op">Operation of the buffer.</param>
-        ///// <param name="value">Reference value.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glAccum", SetLastError = true)]
-        //public static extern void Accum(uint op, float value);
+        /// <summary>
+        /// Set the Accumulation Buffer operation.
+        /// </summary>
+        /// <param name="op">Operation of the buffer.</param>
+        /// <param name="value">Reference value.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glAccum", SetLastError = true)]
+        public static extern void Accum(uint op, float value);
 
-        ///// <summary>
-        ///// Specify the Alpha Test function.
-        ///// </summary>
-        ///// <param name="func">Specifies the alpha comparison function. Symbolic constants OpenGL.NEVER, OpenGL.LESS, OpenGL.EQUAL, OpenGL.LEQUAL, OpenGL.GREATER, OpenGL.NOTEQUAL, OpenGL.GEQUAL and OpenGL.ALWAYS are accepted. The initial value is OpenGL.ALWAYS.</param>
-        ///// <param name="ref_notkeword">Specifies the reference	value that incoming alpha values are compared to. This value is clamped to the range 0	through	1, where 0 represents the lowest possible alpha value and 1 the highest possible value. The initial reference value is 0.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glAlphaFunc", SetLastError = true)]
-        //public static extern void AlphaFunc(uint func, float ref_notkeword);
+        /// <summary>
+        /// Specify the Alpha Test function.
+        /// </summary>
+        /// <param name="func">Specifies the alpha comparison function. Symbolic constants OpenGL.NEVER, OpenGL.LESS, OpenGL.EQUAL, OpenGL.LEQUAL, OpenGL.GREATER, OpenGL.NOTEQUAL, OpenGL.GEQUAL and OpenGL.ALWAYS are accepted. The initial value is OpenGL.ALWAYS.</param>
+        /// <param name="ref_notkeword">Specifies the reference	value that incoming alpha values are compared to. This value is clamped to the range 0	through	1, where 0 represents the lowest possible alpha value and 1 the highest possible value. The initial reference value is 0.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glAlphaFunc", SetLastError = true)]
+        public static extern void AlphaFunc(uint func, float ref_notkeword);
 
-        ///// <summary>
-        ///// Determine if textures are loaded in texture memory.
-        ///// </summary>
-        ///// <param name="n">Specifies the number of textures to be queried.</param>
-        ///// <param name="textures">Specifies an array containing the names of the textures to be queried.</param>
-        ///// <param name="residences">Specifies an array in which the texture residence status is returned. The residence status of a texture named by an element of textures is returned in the corresponding element of residences.</param>
-        ///// <returns></returns>
-        //[DllImport(Win32.opengl32, EntryPoint = "glAreTexturesResident", SetLastError = true)]
-        //public static extern byte AreTexturesResident(int n, uint[] textures, byte[] residences);
+        /// <summary>
+        /// Determine if textures are loaded in texture memory.
+        /// </summary>
+        /// <param name="n">Specifies the number of textures to be queried.</param>
+        /// <param name="textures">Specifies an array containing the names of the textures to be queried.</param>
+        /// <param name="residences">Specifies an array in which the texture residence status is returned. The residence status of a texture named by an element of textures is returned in the corresponding element of residences.</param>
+        /// <returns></returns>
+        [DllImport(Win32.opengl32, EntryPoint = "glAreTexturesResident", SetLastError = true)]
+        public static extern byte AreTexturesResident(int n, uint[] textures, byte[] residences);
 
-        ///// <summary>
-        ///// Render a vertex using the specified vertex array element.
-        ///// </summary>
-        ///// <param name="i">Specifies an index	into the enabled vertex	data arrays.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glArrayElement", SetLastError = true)]
-        //public static extern void ArrayElement(int i);
+        /// <summary>
+        /// Render a vertex using the specified vertex array element.
+        /// </summary>
+        /// <param name="i">Specifies an index	into the enabled vertex	data arrays.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glArrayElement", SetLastError = true)]
+        public static extern void ArrayElement(int i);
 
         /// <summary>
         ///
@@ -80,18 +80,18 @@ namespace CSharpGL
             glBindSamplerFunc(target, sampler);
         }
 
-        ///// <summary>
-        ///// Draw a bitmap.
-        ///// </summary>
-        ///// <param name="width">Specify the pixel width	of the bitmap image.</param>
-        ///// <param name="height">Specify the pixel height of the bitmap image.</param>
-        ///// <param name="xorig">Specify	the location of	the origin in the bitmap image. The origin is measured from the lower left corner of the bitmap, with right and up being the positive axes.</param>
-        ///// <param name="yorig">Specify	the location of	the origin in the bitmap image. The origin is measured from the lower left corner of the bitmap, with right and up being the positive axes.</param>
-        ///// <param name="xmove">Specify	the x and y offsets to be added	to the current	raster position	after the bitmap is drawn.</param>
-        ///// <param name="ymove">Specify	the x and y offsets to be added	to the current	raster position	after the bitmap is drawn.</param>
-        ///// <param name="bitmap">Specifies the address of the bitmap image.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glBitmap", SetLastError = true)]
-        //public static extern void Bitmap(int width, int height, float xorig, float yorig, float xmove, float ymove, byte[] bitmap);
+        /// <summary>
+        /// Draw a bitmap.
+        /// </summary>
+        /// <param name="width">Specify the pixel width	of the bitmap image.</param>
+        /// <param name="height">Specify the pixel height of the bitmap image.</param>
+        /// <param name="xorig">Specify	the location of	the origin in the bitmap image. The origin is measured from the lower left corner of the bitmap, with right and up being the positive axes.</param>
+        /// <param name="yorig">Specify	the location of	the origin in the bitmap image. The origin is measured from the lower left corner of the bitmap, with right and up being the positive axes.</param>
+        /// <param name="xmove">Specify	the x and y offsets to be added	to the current	raster position	after the bitmap is drawn.</param>
+        /// <param name="ymove">Specify	the x and y offsets to be added	to the current	raster position	after the bitmap is drawn.</param>
+        /// <param name="bitmap">Specifies the address of the bitmap image.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glBitmap", SetLastError = true)]
+        public static extern void Bitmap(int width, int height, float xorig, float yorig, float xmove, float ymove, byte[] bitmap);
 
         /// <summary>
         /// This function sets the current blending function.
@@ -101,30 +101,30 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glBlendFunc", SetLastError = true)]
         public static extern void BlendFunc(uint sfactor, uint dfactor);
 
-        ///// <summary>
-        ///// This function calls a certain display list.
-        ///// </summary>
-        ///// <param name="list">The display list to call.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCallList", SetLastError = true)]
-        //public static extern void CallList(uint list);
+        /// <summary>
+        /// This function calls a certain display list.
+        /// </summary>
+        /// <param name="list">The display list to call.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCallList", SetLastError = true)]
+        public static extern void CallList(uint list);
 
-        ///// <summary>
-        ///// Execute	a list of display lists.
-        ///// </summary>
-        ///// <param name="n">Specifies the number of display lists to be executed.</param>
-        ///// <param name="type">Specifies the type of values in lists. Symbolic constants OpenGL.BYTE, OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.UNSIGNED_SHORT, OpenGL.INT, OpenGL.UNSIGNED_INT, OpenGL.FLOAT, OpenGL.2_BYTES, OpenGL.3_BYTES and OpenGL.4_BYTES are accepted.</param>
-        ///// <param name="lists">Specifies the address of an array of name offsets in the display list. The pointer type is void because the offsets can be bytes, shorts, ints, or floats, depending on the value of type.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCallLists", SetLastError = true)]
-        //public static extern void CallLists(int n, uint type, IntPtr lists);
+        /// <summary>
+        /// Execute	a list of display lists.
+        /// </summary>
+        /// <param name="n">Specifies the number of display lists to be executed.</param>
+        /// <param name="type">Specifies the type of values in lists. Symbolic constants OpenGL.BYTE, OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.UNSIGNED_SHORT, OpenGL.INT, OpenGL.UNSIGNED_INT, OpenGL.FLOAT, OpenGL.2_BYTES, OpenGL.3_BYTES and OpenGL.4_BYTES are accepted.</param>
+        /// <param name="lists">Specifies the address of an array of name offsets in the display list. The pointer type is void because the offsets can be bytes, shorts, ints, or floats, depending on the value of type.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCallLists", SetLastError = true)]
+        public static extern void CallLists(int n, uint type, IntPtr lists);
 
-        ///// <summary>
-        ///// Execute	a list of display lists. Automatically uses the GL_UNSIGNED_INT version of the function.
-        ///// </summary>
-        ///// <param name="n">The number of lists.</param>
-        ///// <param name="type"></param>
-        ///// <param name="lists">The lists.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCallLists", SetLastError = true)]
-        //public static extern void CallLists(int n, uint type, uint[] lists);
+        /// <summary>
+        /// Execute	a list of display lists. Automatically uses the GL_UNSIGNED_INT version of the function.
+        /// </summary>
+        /// <param name="n">The number of lists.</param>
+        /// <param name="type"></param>
+        /// <param name="lists">The lists.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCallLists", SetLastError = true)]
+        public static extern void CallLists(int n, uint type, uint[] lists);
 
         /// <summary>
         /// Execute	a list of display lists. Automatically uses the GL_UNSIGNED_BYTE version of the function.
@@ -508,87 +508,87 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glColorMask", SetLastError = true)]
         public static extern void ColorMask(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable);
 
-        ///// <summary>
-        ///// Cause a material color to track the current color.
-        ///// </summary>
-        ///// <param name="face">Specifies whether front, back, or both front and back material parameters should track the current color. Accepted values are OpenGL.FRONT, OpenGL.BACK, and OpenGL.FRONT_AND_BACK. The initial value is OpenGL.FRONT_AND_BACK.</param>
-        ///// <param name="mode">Specifies which	of several material parameters track the current color. Accepted values are	OpenGL.EMISSION, OpenGL.AMBIENT, OpenGL.DIFFUSE, OpenGL.SPECULAR and OpenGL.AMBIENT_AND_DIFFUSE. The initial value is OpenGL.AMBIENT_AND_DIFFUSE.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glColorMaterial", SetLastError = true)]
-        //public static extern void ColorMaterial(uint face, uint mode);
+        /// <summary>
+        /// Cause a material color to track the current color.
+        /// </summary>
+        /// <param name="face">Specifies whether front, back, or both front and back material parameters should track the current color. Accepted values are OpenGL.FRONT, OpenGL.BACK, and OpenGL.FRONT_AND_BACK. The initial value is OpenGL.FRONT_AND_BACK.</param>
+        /// <param name="mode">Specifies which	of several material parameters track the current color. Accepted values are	OpenGL.EMISSION, OpenGL.AMBIENT, OpenGL.DIFFUSE, OpenGL.SPECULAR and OpenGL.AMBIENT_AND_DIFFUSE. The initial value is OpenGL.AMBIENT_AND_DIFFUSE.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glColorMaterial", SetLastError = true)]
+        public static extern void ColorMaterial(uint face, uint mode);
 
-        ///// <summary>
-        ///// Define an array of colors.
-        ///// </summary>
-        ///// <param name="size">Specifies the number	of components per color. Must be 3	or 4.</param>
-        ///// <param name="type">Specifies the data type of each color component in the array. Symbolic constants OpenGL.BYTE, OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.UNSIGNED_SHORT, OpenGL.INT, OpenGL.UNSIGNED_INT, OpenGL.FLOAT and OpenGL.DOUBLE are accepted.</param>
-        ///// <param name="stride">Specifies the byte offset between consecutive colors. If stride is 0, (the initial value), the colors are understood to be tightly packed in the array.</param>
-        ///// <param name="pointer">Specifies a pointer to the first component of the first color element in the array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glColorPointer", SetLastError = true)]
-        //public static extern void ColorPointer(int size, uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// Define an array of colors.
+        /// </summary>
+        /// <param name="size">Specifies the number	of components per color. Must be 3	or 4.</param>
+        /// <param name="type">Specifies the data type of each color component in the array. Symbolic constants OpenGL.BYTE, OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.UNSIGNED_SHORT, OpenGL.INT, OpenGL.UNSIGNED_INT, OpenGL.FLOAT and OpenGL.DOUBLE are accepted.</param>
+        /// <param name="stride">Specifies the byte offset between consecutive colors. If stride is 0, (the initial value), the colors are understood to be tightly packed in the array.</param>
+        /// <param name="pointer">Specifies a pointer to the first component of the first color element in the array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glColorPointer", SetLastError = true)]
+        public static extern void ColorPointer(int size, uint type, int stride, IntPtr pointer);
 
-        ///// <summary>
-        ///// Copy pixels in	the frame buffer.
-        ///// </summary>
-        ///// <param name="x">Specify the window coordinates of the lower left corner of the rectangular region of pixels to be copied.</param>
-        ///// <param name="y">Specify the window coordinates of the lower left corner of the rectangular region of pixels to be copied.</param>
-        ///// <param name="width">Specify the dimensions of the rectangular region of pixels to be copied. Both must be nonnegative.</param>
-        ///// <param name="height">Specify the dimensions of the rectangular region of pixels to be copied. Both must be nonnegative.</param>
-        ///// <param name="type">Specifies whether color values, depth values, or stencil values are to be copied. Symbolic constants OpenGL.COLOR, OpenGL.DEPTH, and OpenGL.STENCIL are accepted.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCopyPixels", SetLastError = true)]
-        //public static extern void CopyPixels(int x, int y, int width, int height, uint type);
+        /// <summary>
+        /// Copy pixels in	the frame buffer.
+        /// </summary>
+        /// <param name="x">Specify the window coordinates of the lower left corner of the rectangular region of pixels to be copied.</param>
+        /// <param name="y">Specify the window coordinates of the lower left corner of the rectangular region of pixels to be copied.</param>
+        /// <param name="width">Specify the dimensions of the rectangular region of pixels to be copied. Both must be nonnegative.</param>
+        /// <param name="height">Specify the dimensions of the rectangular region of pixels to be copied. Both must be nonnegative.</param>
+        /// <param name="type">Specifies whether color values, depth values, or stencil values are to be copied. Symbolic constants OpenGL.COLOR, OpenGL.DEPTH, and OpenGL.STENCIL are accepted.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCopyPixels", SetLastError = true)]
+        public static extern void CopyPixels(int x, int y, int width, int height, uint type);
 
-        ///// <summary>
-        ///// Copy pixels into a 1D texture image.
-        ///// </summary>
-        ///// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
-        ///// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
-        ///// <param name="internalFormat">Specifies the internal format of the texture.</param>
-        ///// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="width">Specifies the width of the texture image. Must be 0 or 2^n = (2 * border) for some integer n. The height of the texture image is 1.</param>
-        ///// <param name="border">Specifies the width of the border. Must be either 0 or 1.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCopyTexImage1D", SetLastError = true)]
-        //public static extern void CopyTexImage1D(uint target, int level, uint internalFormat, int x, int y, int width, int border);
+        /// <summary>
+        /// Copy pixels into a 1D texture image.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="internalFormat">Specifies the internal format of the texture.</param>
+        /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="width">Specifies the width of the texture image. Must be 0 or 2^n = (2 * border) for some integer n. The height of the texture image is 1.</param>
+        /// <param name="border">Specifies the width of the border. Must be either 0 or 1.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCopyTexImage1D", SetLastError = true)]
+        public static extern void CopyTexImage1D(uint target, int level, uint internalFormat, int x, int y, int width, int border);
 
-        ///// <summary>
-        ///// Copy pixels into a	2D texture image.
-        ///// </summary>
-        ///// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
-        ///// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
-        ///// <param name="internalFormat">Specifies the internal format of the texture.</param>
-        ///// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="width">Specifies the width of the texture image.</param>
-        ///// <param name="height">Specifies the height of the texture image.</param>
-        ///// <param name="border">Specifies the width of the border. Must be either 0 or 1.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCopyTexImage2D", SetLastError = true)]
-        //public static extern void CopyTexImage2D(uint target, int level, uint internalFormat, int x, int y, int width, int height, int border);
+        /// <summary>
+        /// Copy pixels into a	2D texture image.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="internalFormat">Specifies the internal format of the texture.</param>
+        /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="width">Specifies the width of the texture image.</param>
+        /// <param name="height">Specifies the height of the texture image.</param>
+        /// <param name="border">Specifies the width of the border. Must be either 0 or 1.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCopyTexImage2D", SetLastError = true)]
+        public static extern void CopyTexImage2D(uint target, int level, uint internalFormat, int x, int y, int width, int height, int border);
 
-        ///// <summary>
-        ///// Copy a one-dimensional texture subimage.
-        ///// </summary>
-        ///// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
-        ///// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
-        ///// <param name="xoffset">Specifies the texel offset within the texture array.</param>
-        ///// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="width">Specifies the width of the texture image.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCopyTexSubImage1D", SetLastError = true)]
-        //public static extern void CopyTexSubImage1D(uint target, int level, int xoffset, int x, int y, int width);
+        /// <summary>
+        /// Copy a one-dimensional texture subimage.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="xoffset">Specifies the texel offset within the texture array.</param>
+        /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="width">Specifies the width of the texture image.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCopyTexSubImage1D", SetLastError = true)]
+        public static extern void CopyTexSubImage1D(uint target, int level, int xoffset, int x, int y, int width);
 
-        ///// <summary>
-        ///// Copy a two-dimensional texture subimage.
-        ///// </summary>
-        ///// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
-        ///// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
-        ///// <param name="xoffset">Specifies the texel offset within the texture array.</param>
-        ///// <param name="yoffset">Specifies the texel offset within the texture array.</param>
-        ///// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
-        ///// <param name="width">Specifies the width of the texture image.</param>
-        ///// <param name="height">Specifies the height of the texture image.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glCopyTexSubImage2D", SetLastError = true)]
-        //public static extern void CopyTexSubImage2D(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
+        /// <summary>
+        /// Copy a two-dimensional texture subimage.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="xoffset">Specifies the texel offset within the texture array.</param>
+        /// <param name="yoffset">Specifies the texel offset within the texture array.</param>
+        /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="y">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
+        /// <param name="width">Specifies the width of the texture image.</param>
+        /// <param name="height">Specifies the height of the texture image.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glCopyTexSubImage2D", SetLastError = true)]
+        public static extern void CopyTexSubImage2D(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
 
         /// <summary>
         /// Specify whether front- or back-facing facets can be culled.
@@ -597,13 +597,13 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glCullFace", SetLastError = true)]
         public static extern void CullFace(uint mode);
 
-        ///// <summary>
-        ///// This function deletes a list, or a range of lists.
-        ///// </summary>
-        ///// <param name="list">The list to delete.</param>
-        ///// <param name="range">The range of lists (often just 1).</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDeleteLists", SetLastError = true)]
-        //public static extern void DeleteLists(uint list, int range);
+        /// <summary>
+        /// This function deletes a list, or a range of lists.
+        /// </summary>
+        /// <param name="list">The list to delete.</param>
+        /// <param name="range">The range of lists (often just 1).</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDeleteLists", SetLastError = true)]
+        public static extern void DeleteLists(uint list, int range);
 
         /// <summary>
         /// This function deletes a set of Texture objects.
@@ -732,12 +732,12 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glDrawArrays", SetLastError = true)]
         public static extern void DrawArrays(uint mode, int first, int count);
 
-        ///// <summary>
-        ///// Specify which color buffers are to be drawn into.
-        ///// </summary>
-        ///// <param name="mode">Specifies up to	four color buffers to be drawn into. Symbolic constants OpenGL.NONE, OpenGL.FRONT_LEFT, OpenGL.FRONT_RIGHT,	OpenGL.BACK_LEFT, OpenGL.BACK_RIGHT, OpenGL.FRONT, OpenGL.BACK, OpenGL.LEFT, OpenGL.RIGHT, OpenGL.FRONT_AND_BACK, and OpenGL.AUXi, where i is between 0 and (OpenGL.AUX_BUFFERS - 1), are accepted (OpenGL.AUX_BUFFERS is not the upper limit; use glGet to query the number of	available aux buffers.)  The initial value is OpenGL.FRONT for single- buffered contexts, and OpenGL.BACK for double-buffered contexts.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDrawBuffer", SetLastError = true)]
-        //public static extern void DrawBuffer(uint mode);
+        /// <summary>
+        /// Specify which color buffers are to be drawn into.
+        /// </summary>
+        /// <param name="mode">Specifies up to	four color buffers to be drawn into. Symbolic constants OpenGL.NONE, OpenGL.FRONT_LEFT, OpenGL.FRONT_RIGHT,	OpenGL.BACK_LEFT, OpenGL.BACK_RIGHT, OpenGL.FRONT, OpenGL.BACK, OpenGL.LEFT, OpenGL.RIGHT, OpenGL.FRONT_AND_BACK, and OpenGL.AUXi, where i is between 0 and (OpenGL.AUX_BUFFERS - 1), are accepted (OpenGL.AUX_BUFFERS is not the upper limit; use glGet to query the number of	available aux buffers.)  The initial value is OpenGL.FRONT for single- buffered contexts, and OpenGL.BACK for double-buffered contexts.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawBuffer", SetLastError = true)]
+        public static extern void DrawBuffer(uint mode);
 
         /// <summary>
         /// Render primitives from array data.
@@ -749,91 +749,91 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
         public static extern void DrawElements(uint mode, int count, uint type, IntPtr indices);
 
-        ///// <summary>
-        ///// Render primitives from array data.
-        ///// </summary>
-        ///// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-        ///// <param name="count">Specifies the number of elements to be rendered.</param>
-        ///// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
-        //[DllImport(Win32.OpenGL32, EntryPoint = "glDrawElements", SetLastError = true)]
-        //public static extern void DrawElements(uint mode, int count, uint type, uint[] indices);
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
+        public static extern void DrawElements(uint mode, int count, uint type, uint[] indices);
 
-        ///// <summary>
-        ///// Draws a rectangle of pixel data at the current raster position.
-        ///// </summary>
-        ///// <param name="width">Width of pixel data.</param>
-        ///// <param name="height">Height of pixel data.</param>
-        ///// <param name="format">Format of pixel data.</param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels">Pixel data buffer.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
-        //public static extern void DrawPixels(int width, int height, uint format, uint type, float[] pixels);
+        /// <summary>
+        /// Draws a rectangle of pixel data at the current raster position.
+        /// </summary>
+        /// <param name="width">Width of pixel data.</param>
+        /// <param name="height">Height of pixel data.</param>
+        /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
+        /// <param name="pixels">Pixel data buffer.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
+        public static extern void DrawPixels(int width, int height, uint format, uint type, float[] pixels);
 
-        ///// <summary>
-        ///// Draws a rectangle of pixel data at the current raster position.
-        ///// </summary>
-        ///// <param name="width">Width of pixel data.</param>
-        ///// <param name="height">Height of pixel data.</param>
-        ///// <param name="format">Format of pixel data.</param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels">Pixel data buffer.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
-        //public static extern void DrawPixels(int width, int height, uint format, uint type, uint[] pixels);
+        /// <summary>
+        /// Draws a rectangle of pixel data at the current raster position.
+        /// </summary>
+        /// <param name="width">Width of pixel data.</param>
+        /// <param name="height">Height of pixel data.</param>
+        /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
+        /// <param name="pixels">Pixel data buffer.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
+        public static extern void DrawPixels(int width, int height, uint format, uint type, uint[] pixels);
 
-        ///// <summary>
-        ///// Draws a rectangle of pixel data at the current raster position.
-        ///// </summary>
-        ///// <param name="width">Width of pixel data.</param>
-        ///// <param name="height">Height of pixel data.</param>
-        ///// <param name="format">Format of pixel data.</param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels">Pixel data buffer.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
-        //public static extern void DrawPixels(int width, int height, uint format, uint type, ushort[] pixels);
+        /// <summary>
+        /// Draws a rectangle of pixel data at the current raster position.
+        /// </summary>
+        /// <param name="width">Width of pixel data.</param>
+        /// <param name="height">Height of pixel data.</param>
+        /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
+        /// <param name="pixels">Pixel data buffer.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
+        public static extern void DrawPixels(int width, int height, uint format, uint type, ushort[] pixels);
 
-        ///// <summary>
-        ///// Draws a rectangle of pixel data at the current raster position.
-        ///// </summary>
-        ///// <param name="width">Width of pixel data.</param>
-        ///// <param name="height">Height of pixel data.</param>
-        ///// <param name="format">Format of pixel data.</param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels">Pixel data buffer.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
-        //public static extern void DrawPixels(int width, int height, uint format, uint type, byte[] pixels);
+        /// <summary>
+        /// Draws a rectangle of pixel data at the current raster position.
+        /// </summary>
+        /// <param name="width">Width of pixel data.</param>
+        /// <param name="height">Height of pixel data.</param>
+        /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
+        /// <param name="pixels">Pixel data buffer.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
+        public static extern void DrawPixels(int width, int height, uint format, uint type, byte[] pixels);
 
-        ///// <summary>
-        ///// Draws a rectangle of pixel data at the current raster position.
-        ///// </summary>
-        ///// <param name="width">Width of pixel data.</param>
-        ///// <param name="height">Height of pixel data.</param>
-        ///// <param name="format">Format of pixel data.</param>
-        ///// <param name="type">The GL data type.</param>
-        ///// <param name="pixels">Pixel data buffer.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
-        //public static extern void DrawPixels(int width, int height, uint format, uint type, IntPtr pixels);
+        /// <summary>
+        /// Draws a rectangle of pixel data at the current raster position.
+        /// </summary>
+        /// <param name="width">Width of pixel data.</param>
+        /// <param name="height">Height of pixel data.</param>
+        /// <param name="format">Format of pixel data.</param>
+        /// <param name="type">The GL data type.</param>
+        /// <param name="pixels">Pixel data buffer.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawPixels", SetLastError = true)]
+        public static extern void DrawPixels(int width, int height, uint format, uint type, IntPtr pixels);
 
-        ///// <summary>
-        ///// Flag edges as either boundary or nonboundary.
-        ///// </summary>
-        ///// <param name="flag">Specifies the current edge flag	value, either OpenGL.TRUE or OpenGL.FALSE. The initial value is OpenGL.TRUE.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEdgeFlag", SetLastError = true)]
-        //public static extern void EdgeFlag(byte flag);
+        /// <summary>
+        /// Flag edges as either boundary or nonboundary.
+        /// </summary>
+        /// <param name="flag">Specifies the current edge flag	value, either OpenGL.TRUE or OpenGL.FALSE. The initial value is OpenGL.TRUE.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEdgeFlag", SetLastError = true)]
+        public static extern void EdgeFlag(byte flag);
 
-        ///// <summary>
-        ///// Define an array of edge flags.
-        ///// </summary>
-        ///// <param name="stride">Specifies the byte offset between consecutive edge flags. If stride is	0 (the initial value), the edge	flags are understood to	be tightly packed in the array.</param>
-        ///// <param name="pointer">Specifies a pointer to the first edge flag in the array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEdgeFlagPointer", SetLastError = true)]
-        //public static extern void EdgeFlagPointer(int stride, int[] pointer);
+        /// <summary>
+        /// Define an array of edge flags.
+        /// </summary>
+        /// <param name="stride">Specifies the byte offset between consecutive edge flags. If stride is	0 (the initial value), the edge	flags are understood to	be tightly packed in the array.</param>
+        /// <param name="pointer">Specifies a pointer to the first edge flag in the array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEdgeFlagPointer", SetLastError = true)]
+        public static extern void EdgeFlagPointer(int stride, int[] pointer);
 
-        ///// <summary>
-        ///// Flag edges as either boundary or nonboundary.
-        ///// </summary>
-        ///// <param name="flag">Specifies a pointer to an array that contains a single boolean element,	which replaces the current edge	flag value.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEdgeFlagv", SetLastError = true)]
-        //public static extern void EdgeFlagv(byte[] flag);
+        /// <summary>
+        /// Flag edges as either boundary or nonboundary.
+        /// </summary>
+        /// <param name="flag">Specifies a pointer to an array that contains a single boolean element,	which replaces the current edge	flag value.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEdgeFlagv", SetLastError = true)]
+        public static extern void EdgeFlagv(byte[] flag);
 
         /// <summary>
         /// Call this function to enable an OpenGL capability.
@@ -842,12 +842,12 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glEnable", SetLastError = true)]
         public static extern void Enable(uint cap);
 
-        ///// <summary>
-        ///// This function enables one of the client state arrays, such as a vertex array.
-        ///// </summary>
-        ///// <param name="array">The array to enable.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glEnableClientState", SetLastError = true)]
-        //public static extern void EnableClientState(uint array);
+        /// <summary>
+        /// This function enables one of the client state arrays, such as a vertex array.
+        /// </summary>
+        /// <param name="array">The array to enable.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glEnableClientState", SetLastError = true)]
+        public static extern void EnableClientState(uint array);
         /// <summary>
         ///
         /// </summary>
@@ -986,37 +986,37 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glFlush", SetLastError = true)]
         public static extern void Flush();
 
-        ///// <summary>
-        ///// Sets a fog parameter.
-        ///// </summary>
-        ///// <param name="pname">The parameter to set.</param>
-        ///// <param name="param">The value to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glFogf", SetLastError = true)]
-        //public static extern void Fogf(uint pname, float param);
+        /// <summary>
+        /// Sets a fog parameter.
+        /// </summary>
+        /// <param name="pname">The parameter to set.</param>
+        /// <param name="param">The value to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glFogf", SetLastError = true)]
+        public static extern void Fogf(uint pname, float param);
 
-        ///// <summary>
-        ///// Sets a fog parameter.
-        ///// </summary>
-        ///// <param name="pname">The parameter to set.</param>
-        ///// <param name="parameters">The values to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glFogfv", SetLastError = true)]
-        //public static extern void Fogfv(uint pname, float[] parameters);
+        /// <summary>
+        /// Sets a fog parameter.
+        /// </summary>
+        /// <param name="pname">The parameter to set.</param>
+        /// <param name="parameters">The values to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glFogfv", SetLastError = true)]
+        public static extern void Fogfv(uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Sets a fog parameter.
-        ///// </summary>
-        ///// <param name="pname">The parameter to set.</param>
-        ///// <param name="param">The value to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glFogi", SetLastError = true)]
-        //public static extern void Fogi(uint pname, int param);
+        /// <summary>
+        /// Sets a fog parameter.
+        /// </summary>
+        /// <param name="pname">The parameter to set.</param>
+        /// <param name="param">The value to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glFogi", SetLastError = true)]
+        public static extern void Fogi(uint pname, int param);
 
-        ///// <summary>
-        ///// Sets a fog parameter.
-        ///// </summary>
-        ///// <param name="pname">The parameter to set.</param>
-        ///// <param name="parameters">The values to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glFogiv", SetLastError = true)]
-        //public static extern void Fogiv(uint pname, int[] parameters);
+        /// <summary>
+        /// Sets a fog parameter.
+        /// </summary>
+        /// <param name="pname">The parameter to set.</param>
+        /// <param name="parameters">The values to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glFogiv", SetLastError = true)]
+        public static extern void Fogiv(uint pname, int[] parameters);
 
         /// <summary>
         /// This function sets what defines a front face. Counter ClockWise by default.
@@ -1088,13 +1088,13 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glGetBooleanv", SetLastError = true)]
         public static extern void GetBooleanv(uint pname, byte[] parameters);
 
-        ///// <summary>
-        ///// Return the coefficients of the specified clipping plane.
-        ///// </summary>
-        ///// <param name="plane">Specifies a	clipping plane.	 The number of clipping planes depends on the implementation, but at least six clipping planes are supported. They are identified by symbolic names of the form OpenGL.CLIP_PLANEi where 0 Less Than i Less Than OpenGL.MAX_CLIP_PLANES.</param>
-        ///// <param name="equation">Returns four double-precision values that are the coefficients of the plane equation of plane in eye coordinates. The initial value is (0, 0, 0, 0).</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetClipPlane", SetLastError = true)]
-        //public static extern void GetClipPlane(uint plane, double[] equation);
+        /// <summary>
+        /// Return the coefficients of the specified clipping plane.
+        /// </summary>
+        /// <param name="plane">Specifies a	clipping plane.	 The number of clipping planes depends on the implementation, but at least six clipping planes are supported. They are identified by symbolic names of the form OpenGL.CLIP_PLANEi where 0 Less Than i Less Than OpenGL.MAX_CLIP_PLANES.</param>
+        /// <param name="equation">Returns four double-precision values that are the coefficients of the plane equation of plane in eye coordinates. The initial value is (0, 0, 0, 0).</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetClipPlane", SetLastError = true)]
+        public static extern void GetClipPlane(uint plane, double[] equation);
 
         /// <summary>
         /// This function queries OpenGL for data, and puts it in the buffer supplied.
@@ -1127,107 +1127,107 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glGetIntegerv", SetLastError = true)]
         public static extern void GetIntegerv(uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Return light source parameter values.
-        ///// </summary>
-        ///// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form OpenGL.LIGHTi where i ranges from 0 to the value of OpenGL.GL_MAX_LIGHTS - 1.</param>
-        ///// <param name="pname">Specifies a light source parameter for light.</param>
-        ///// <param name="parameters">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetLightfv", SetLastError = true)]
-        //public static extern void GetLightfv(uint light, uint pname, float[] parameters);
+        /// <summary>
+        /// Return light source parameter values.
+        /// </summary>
+        /// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form OpenGL.LIGHTi where i ranges from 0 to the value of OpenGL.GL_MAX_LIGHTS - 1.</param>
+        /// <param name="pname">Specifies a light source parameter for light.</param>
+        /// <param name="parameters">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetLightfv", SetLastError = true)]
+        public static extern void GetLightfv(uint light, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Return light source parameter values.
-        ///// </summary>
-        ///// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form OpenGL.LIGHTi where i ranges from 0 to the value of OpenGL.GL_MAX_LIGHTS - 1.</param>
-        ///// <param name="pname">Specifies a light source parameter for light.</param>
-        ///// <param name="parameters">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetLightiv", SetLastError = true)]
-        //public static extern void GetLightiv(uint light, uint pname, int[] parameters);
+        /// <summary>
+        /// Return light source parameter values.
+        /// </summary>
+        /// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form OpenGL.LIGHTi where i ranges from 0 to the value of OpenGL.GL_MAX_LIGHTS - 1.</param>
+        /// <param name="pname">Specifies a light source parameter for light.</param>
+        /// <param name="parameters">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetLightiv", SetLastError = true)]
+        public static extern void GetLightiv(uint light, uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Return evaluator parameters.
-        ///// </summary>
-        ///// <param name="target">Specifies the symbolic name of a map.</param>
-        ///// <param name="query">Specifies which parameter to return.</param>
-        ///// <param name="v">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetMapdv", SetLastError = true)]
-        //public static extern void GetMapdv(uint target, uint query, double[] v);
+        /// <summary>
+        /// Return evaluator parameters.
+        /// </summary>
+        /// <param name="target">Specifies the symbolic name of a map.</param>
+        /// <param name="query">Specifies which parameter to return.</param>
+        /// <param name="v">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetMapdv", SetLastError = true)]
+        public static extern void GetMapdv(uint target, uint query, double[] v);
 
-        ///// <summary>
-        ///// Return evaluator parameters.
-        ///// </summary>
-        ///// <param name="target">Specifies the symbolic name of a map.</param>
-        ///// <param name="query">Specifies which parameter to return.</param>
-        ///// <param name="v">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetMapfv", SetLastError = true)]
-        //public static extern void GetMapfv(uint target, uint query, float[] v);
+        /// <summary>
+        /// Return evaluator parameters.
+        /// </summary>
+        /// <param name="target">Specifies the symbolic name of a map.</param>
+        /// <param name="query">Specifies which parameter to return.</param>
+        /// <param name="v">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetMapfv", SetLastError = true)]
+        public static extern void GetMapfv(uint target, uint query, float[] v);
 
-        ///// <summary>
-        ///// Return evaluator parameters.
-        ///// </summary>
-        ///// <param name="target">Specifies the symbolic name of a map.</param>
-        ///// <param name="query">Specifies which parameter to return.</param>
-        ///// <param name="v">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetMapiv", SetLastError = true)]
-        //public static extern void GetMapiv(uint target, uint query, int[] v);
+        /// <summary>
+        /// Return evaluator parameters.
+        /// </summary>
+        /// <param name="target">Specifies the symbolic name of a map.</param>
+        /// <param name="query">Specifies which parameter to return.</param>
+        /// <param name="v">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetMapiv", SetLastError = true)]
+        public static extern void GetMapiv(uint target, uint query, int[] v);
 
-        ///// <summary>
-        ///// Return material parameters.
-        ///// </summary>
-        ///// <param name="face">Specifies which of the two materials is being queried. OpenGL.FRONT or OpenGL.BACK are accepted, representing the front and back materials, respectively.</param>
-        ///// <param name="pname">Specifies the material parameter to return.</param>
-        ///// <param name="parameters">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetMaterialfv", SetLastError = true)]
-        //public static extern void GetMaterialfv(uint face, uint pname, float[] parameters);
+        /// <summary>
+        /// Return material parameters.
+        /// </summary>
+        /// <param name="face">Specifies which of the two materials is being queried. OpenGL.FRONT or OpenGL.BACK are accepted, representing the front and back materials, respectively.</param>
+        /// <param name="pname">Specifies the material parameter to return.</param>
+        /// <param name="parameters">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetMaterialfv", SetLastError = true)]
+        public static extern void GetMaterialfv(uint face, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Return material parameters.
-        ///// </summary>
-        ///// <param name="face">Specifies which of the two materials is being queried. OpenGL.FRONT or OpenGL.BACK are accepted, representing the front and back materials, respectively.</param>
-        ///// <param name="pname">Specifies the material parameter to return.</param>
-        ///// <param name="parameters">Returns the requested data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetMaterialiv", SetLastError = true)]
-        //public static extern void GetMaterialiv(uint face, uint pname, int[] parameters);
+        /// <summary>
+        /// Return material parameters.
+        /// </summary>
+        /// <param name="face">Specifies which of the two materials is being queried. OpenGL.FRONT or OpenGL.BACK are accepted, representing the front and back materials, respectively.</param>
+        /// <param name="pname">Specifies the material parameter to return.</param>
+        /// <param name="parameters">Returns the requested data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetMaterialiv", SetLastError = true)]
+        public static extern void GetMaterialiv(uint face, uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Return the specified pixel map.
-        ///// </summary>
-        ///// <param name="map">Specifies the	name of	the pixel map to return.</param>
-        ///// <param name="values">Returns the pixel map	contents.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetPixelMapfv", SetLastError = true)]
-        //public static extern void GetPixelMapfv(uint map, float[] values);
+        /// <summary>
+        /// Return the specified pixel map.
+        /// </summary>
+        /// <param name="map">Specifies the	name of	the pixel map to return.</param>
+        /// <param name="values">Returns the pixel map	contents.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetPixelMapfv", SetLastError = true)]
+        public static extern void GetPixelMapfv(uint map, float[] values);
 
-        ///// <summary>
-        ///// Return the specified pixel map.
-        ///// </summary>
-        ///// <param name="map">Specifies the	name of	the pixel map to return.</param>
-        ///// <param name="values">Returns the pixel map	contents.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetPixelMapuiv", SetLastError = true)]
-        //public static extern void GetPixelMapuiv(uint map, uint[] values);
+        /// <summary>
+        /// Return the specified pixel map.
+        /// </summary>
+        /// <param name="map">Specifies the	name of	the pixel map to return.</param>
+        /// <param name="values">Returns the pixel map	contents.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetPixelMapuiv", SetLastError = true)]
+        public static extern void GetPixelMapuiv(uint map, uint[] values);
 
-        ///// <summary>
-        ///// Return the specified pixel map.
-        ///// </summary>
-        ///// <param name="map">Specifies the	name of	the pixel map to return.</param>
-        ///// <param name="values">Returns the pixel map	contents.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetPixelMapusv", SetLastError = true)]
-        //public static extern void GetPixelMapusv(uint map, ushort[] values);
+        /// <summary>
+        /// Return the specified pixel map.
+        /// </summary>
+        /// <param name="map">Specifies the	name of	the pixel map to return.</param>
+        /// <param name="values">Returns the pixel map	contents.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetPixelMapusv", SetLastError = true)]
+        public static extern void GetPixelMapusv(uint map, ushort[] values);
 
-        ///// <summary>
-        ///// Return the address of the specified pointer.
-        ///// </summary>
-        ///// <param name="pname">Specifies the array or buffer pointer to be returned.</param>
-        ///// <param name="parameters">Returns the pointer value specified by parameters.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetPointerv", SetLastError = true)]
-        //public static extern void GetPointerv(uint pname, int[] parameters);
+        /// <summary>
+        /// Return the address of the specified pointer.
+        /// </summary>
+        /// <param name="pname">Specifies the array or buffer pointer to be returned.</param>
+        /// <param name="parameters">Returns the pointer value specified by parameters.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetPointerv", SetLastError = true)]
+        public static extern void GetPointerv(uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Return the polygon stipple pattern.
-        ///// </summary>
-        ///// <param name="mask">Returns the stipple pattern. The initial value is all 1's.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetPolygonStipple", SetLastError = true)]
-        //public static extern void GetPolygonStipple(byte[] mask);
+        /// <summary>
+        /// Return the polygon stipple pattern.
+        /// </summary>
+        /// <param name="mask">Returns the stipple pattern. The initial value is all 1's.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetPolygonStipple", SetLastError = true)]
+        public static extern void GetPolygonStipple(byte[] mask);
 
         /// <summary>
         /// Return a string	describing the current GL connection.
@@ -1237,50 +1237,50 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glGetString", SetLastError = true)]
         private unsafe static extern sbyte* glGetString(uint name);
 
-        ///// <summary>
-        ///// Return texture environment parameters.
-        ///// </summary>
-        ///// <param name="target">Specifies a texture environment.  Must be OpenGL.TEXTURE_ENV.</param>
-        ///// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
-        ///// <param name="parameters">Returns the requested	data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexEnvfv", SetLastError = true)]
-        //public static extern void GetTexEnvfv(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// Return texture environment parameters.
+        /// </summary>
+        /// <param name="target">Specifies a texture environment.  Must be OpenGL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="parameters">Returns the requested	data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexEnvfv", SetLastError = true)]
+        public static extern void GetTexEnvfv(uint target, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Return texture environment parameters.
-        ///// </summary>
-        ///// <param name="target">Specifies a texture environment.  Must be OpenGL.TEXTURE_ENV.</param>
-        ///// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
-        ///// <param name="parameters">Returns the requested	data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexEnviv", SetLastError = true)]
-        //public static extern void GetTexEnviv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// Return texture environment parameters.
+        /// </summary>
+        /// <param name="target">Specifies a texture environment.  Must be OpenGL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="parameters">Returns the requested	data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexEnviv", SetLastError = true)]
+        public static extern void GetTexEnviv(uint target, uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        ///// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexGendv", SetLastError = true)]
-        //public static extern void GetTexGendv(uint coord, uint pname, double[] parameters);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
+        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexGendv", SetLastError = true)]
+        public static extern void GetTexGendv(uint coord, uint pname, double[] parameters);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        ///// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexGenfv", SetLastError = true)]
-        //public static extern void GetTexGenfv(uint coord, uint pname, float[] parameters);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
+        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexGenfv", SetLastError = true)]
+        public static extern void GetTexGenfv(uint coord, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        ///// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexGeniv", SetLastError = true)]
-        //public static extern void GetTexGeniv(uint coord, uint pname, int[] parameters);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
+        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexGeniv", SetLastError = true)]
+        public static extern void GetTexGeniv(uint coord, uint pname, int[] parameters);
 
         /// <summary>
         /// Return a texture image.
@@ -1293,43 +1293,43 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glGetTexImage", SetLastError = true)]
         public static extern void GetTexImage(uint target, int level, uint format, uint type, IntPtr pixels);
 
-        ///// <summary>
-        ///// Return texture parameter values for a specific level of detail.
-        ///// </summary>
-        ///// <param name="target">Specifies the	symbolic name of the target texture.</param>
-        ///// <param name="level">Specifies the level-of-detail	number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
-        ///// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
-        ///// <param name="parameters">Returns the requested	data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexLevelParameterfv", SetLastError = true)]
-        //public static extern void GetTexLevelParameterfv(uint target, int level, uint pname, float[] parameters);
+        /// <summary>
+        /// Return texture parameter values for a specific level of detail.
+        /// </summary>
+        /// <param name="target">Specifies the	symbolic name of the target texture.</param>
+        /// <param name="level">Specifies the level-of-detail	number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
+        /// <param name="parameters">Returns the requested	data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexLevelParameterfv", SetLastError = true)]
+        public static extern void GetTexLevelParameterfv(uint target, int level, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Return texture parameter values for a specific level of detail.
-        ///// </summary>
-        ///// <param name="target">Specifies the	symbolic name of the target texture.</param>
-        ///// <param name="level">Specifies the level-of-detail	number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
-        ///// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
-        ///// <param name="parameters">Returns the requested	data.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexLevelParameteriv", SetLastError = true)]
-        //public static extern void GetTexLevelParameteriv(uint target, int level, uint pname, int[] parameters);
+        /// <summary>
+        /// Return texture parameter values for a specific level of detail.
+        /// </summary>
+        /// <param name="target">Specifies the	symbolic name of the target texture.</param>
+        /// <param name="level">Specifies the level-of-detail	number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
+        /// <param name="parameters">Returns the requested	data.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexLevelParameteriv", SetLastError = true)]
+        public static extern void GetTexLevelParameteriv(uint target, int level, uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Return texture parameter values.
-        ///// </summary>
-        ///// <param name="target">Specifies the symbolic name of the target texture.</param>
-        ///// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
-        ///// <param name="parameters">Returns the texture parameters.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexParameterfv", SetLastError = true)]
-        //public static extern void GetTexParameterfv(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// Return texture parameter values.
+        /// </summary>
+        /// <param name="target">Specifies the symbolic name of the target texture.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
+        /// <param name="parameters">Returns the texture parameters.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexParameterfv", SetLastError = true)]
+        public static extern void GetTexParameterfv(uint target, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Return texture parameter values.
-        ///// </summary>
-        ///// <param name="target">Specifies the symbolic name of the target texture.</param>
-        ///// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
-        ///// <param name="parameters">Returns the texture parameters.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGetTexParameteriv", SetLastError = true)]
-        //public static extern void GetTexParameteriv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// Return texture parameter values.
+        /// </summary>
+        /// <param name="target">Specifies the symbolic name of the target texture.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
+        /// <param name="parameters">Returns the texture parameters.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glGetTexParameteriv", SetLastError = true)]
+        public static extern void GetTexParameteriv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         /// Specify implementation-specific hints.
@@ -1339,106 +1339,106 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glHint", SetLastError = true)]
         public static extern void Hint(uint target, uint mode);
 
-        ///// <summary>
-        ///// Control	the writing of individual bits in the color	index buffers.
-        ///// </summary>
-        ///// <param name="mask">Specifies a bit	mask to	enable and disable the writing of individual bits in the color index buffers. Initially, the mask is all 1's.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexMask", SetLastError = true)]
-        //public static extern void IndexMask(uint mask);
+        /// <summary>
+        /// Control	the writing of individual bits in the color	index buffers.
+        /// </summary>
+        /// <param name="mask">Specifies a bit	mask to	enable and disable the writing of individual bits in the color index buffers. Initially, the mask is all 1's.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexMask", SetLastError = true)]
+        public static extern void IndexMask(uint mask);
 
-        ///// <summary>
-        ///// Define an array of color indexes.
-        ///// </summary>
-        ///// <param name="type">Specifies the data type of each color index in the array.  Symbolic constants OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.INT, OpenGL.FLOAT, and OpenGL.DOUBLE are accepted.</param>
-        ///// <param name="stride">Specifies the byte offset between consecutive color indexes.  If stride is 0 (the initial value), the color indexes are understood	to be tightly packed in the array.</param>
-        ///// <param name="pointer">Specifies a pointer to the first index in the array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexPointer", SetLastError = true)]
-        //public static extern void IndexPointer(uint type, int stride, int[] pointer);
+        /// <summary>
+        /// Define an array of color indexes.
+        /// </summary>
+        /// <param name="type">Specifies the data type of each color index in the array.  Symbolic constants OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.INT, OpenGL.FLOAT, and OpenGL.DOUBLE are accepted.</param>
+        /// <param name="stride">Specifies the byte offset between consecutive color indexes.  If stride is 0 (the initial value), the color indexes are understood	to be tightly packed in the array.</param>
+        /// <param name="pointer">Specifies a pointer to the first index in the array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexPointer", SetLastError = true)]
+        public static extern void IndexPointer(uint type, int stride, int[] pointer);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexd", SetLastError = true)]
-        //public static extern void Indexd(double c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexd", SetLastError = true)]
+        public static extern void Indexd(double c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexdv", SetLastError = true)]
-        //public static extern void Indexdv(double[] c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexdv", SetLastError = true)]
+        public static extern void Indexdv(double[] c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexf", SetLastError = true)]
-        //public static extern void Indexf(float c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexf", SetLastError = true)]
+        public static extern void Indexf(float c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexfv", SetLastError = true)]
-        //public static extern void Indexfv(float[] c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexfv", SetLastError = true)]
+        public static extern void Indexfv(float[] c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexi", SetLastError = true)]
-        //public static extern void Indexi(int c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexi", SetLastError = true)]
+        public static extern void Indexi(int c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexiv", SetLastError = true)]
-        //public static extern void Indexiv(int[] c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexiv", SetLastError = true)]
+        public static extern void Indexiv(int[] c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexs", SetLastError = true)]
-        //public static extern void Indexs(short c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexs", SetLastError = true)]
+        public static extern void Indexs(short c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexsv", SetLastError = true)]
-        //public static extern void Indexsv(short[] c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexsv", SetLastError = true)]
+        public static extern void Indexsv(short[] c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexub", SetLastError = true)]
-        //public static extern void Indexub(byte c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexub", SetLastError = true)]
+        public static extern void Indexub(byte c);
 
-        ///// <summary>
-        ///// Set the current color index.
-        ///// </summary>
-        ///// <param name="c">Specifies the new value for the current color index.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glIndexubv", SetLastError = true)]
-        //public static extern void Indexubv(byte[] c);
+        /// <summary>
+        /// Set the current color index.
+        /// </summary>
+        /// <param name="c">Specifies the new value for the current color index.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glIndexubv", SetLastError = true)]
+        public static extern void Indexubv(byte[] c);
 
-        ///// <summary>
-        ///// This function initialises the select buffer names.
-        ///// </summary>
-        //[DllImport(Win32.opengl32, EntryPoint = "glInitNames", SetLastError = true)]
-        //public static extern void InitNames();
+        /// <summary>
+        /// This function initialises the select buffer names.
+        /// </summary>
+        [DllImport(Win32.opengl32, EntryPoint = "glInitNames", SetLastError = true)]
+        public static extern void InitNames();
 
-        ///// <summary>
-        ///// Simultaneously specify and enable several interleaved arrays.
-        ///// </summary>
-        ///// <param name="format">Specifies the type of array to enable.</param>
-        ///// <param name="stride">Specifies the offset in bytes between each aggregate array element.</param>
-        ///// <param name="pointer">The array.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glInterleavedArrays", SetLastError = true)]
-        //public static extern void InterleavedArrays(uint format, int stride, int[] pointer);
+        /// <summary>
+        /// Simultaneously specify and enable several interleaved arrays.
+        /// </summary>
+        /// <param name="format">Specifies the type of array to enable.</param>
+        /// <param name="stride">Specifies the offset in bytes between each aggregate array element.</param>
+        /// <param name="pointer">The array.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glInterleavedArrays", SetLastError = true)]
+        public static extern void InterleavedArrays(uint format, int stride, int[] pointer);
 
         /// <summary>
         /// Use this function to query if a certain OpenGL function is enabled or not.
@@ -1689,41 +1689,41 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glMapGrid2f", SetLastError = true)]
         public static extern void MapGrid2f(int un, float u1, float u2, int vn, float v1, float v2);
 
-        ///// <summary>
-        ///// This function sets a material parameter.
-        ///// </summary>
-        ///// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
-        ///// <param name="pname">What parameter you want to set.</param>
-        ///// <param name="param">The value to set 'pname' to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMaterialf", SetLastError = true)]
-        //public static extern void Materialf(uint face, uint pname, float param);
+        /// <summary>
+        /// This function sets a material parameter.
+        /// </summary>
+        /// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
+        /// <param name="pname">What parameter you want to set.</param>
+        /// <param name="param">The value to set 'pname' to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMaterialf", SetLastError = true)]
+        public static extern void Materialf(uint face, uint pname, float param);
 
-        ///// <summary>
-        ///// This function sets a material parameter.
-        ///// </summary>
-        ///// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
-        ///// <param name="pname">What parameter you want to set.</param>
-        ///// <param name="parameters">The value to set 'pname' to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMaterialfv", SetLastError = true)]
-        //public static extern void Materialfv(uint face, uint pname, float[] parameters);
+        /// <summary>
+        /// This function sets a material parameter.
+        /// </summary>
+        /// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
+        /// <param name="pname">What parameter you want to set.</param>
+        /// <param name="parameters">The value to set 'pname' to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMaterialfv", SetLastError = true)]
+        public static extern void Materialfv(uint face, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// This function sets a material parameter.
-        ///// </summary>
-        ///// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
-        ///// <param name="pname">What parameter you want to set.</param>
-        ///// <param name="param">The value to set 'pname' to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMateriali", SetLastError = true)]
-        //public static extern void Materiali(uint face, uint pname, int param);
+        /// <summary>
+        /// This function sets a material parameter.
+        /// </summary>
+        /// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
+        /// <param name="pname">What parameter you want to set.</param>
+        /// <param name="param">The value to set 'pname' to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMateriali", SetLastError = true)]
+        public static extern void Materiali(uint face, uint pname, int param);
 
-        ///// <summary>
-        ///// This function sets a material parameter.
-        ///// </summary>
-        ///// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
-        ///// <param name="pname">What parameter you want to set.</param>
-        ///// <param name="parameters">The value to set 'pname' to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMaterialiv", SetLastError = true)]
-        //public static extern void Materialiv(uint face, uint pname, int[] parameters);
+        /// <summary>
+        /// This function sets a material parameter.
+        /// </summary>
+        /// <param name="face">What faces is this parameter for (i.e front/back etc).</param>
+        /// <param name="pname">What parameter you want to set.</param>
+        /// <param name="parameters">The value to set 'pname' to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMaterialiv", SetLastError = true)]
+        public static extern void Materialiv(uint face, uint pname, int[] parameters);
 
         /// <summary>
         /// Set the current matrix mode (the matrix that matrix operations will be
@@ -1733,12 +1733,12 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glMatrixMode", SetLastError = true)]
         public static extern void MatrixMode(uint mode);
 
-        ///// <summary>
-        ///// Multiply the current matrix with the specified matrix.
-        ///// </summary>
-        ///// <param name="m">Points to 16 consecutive values that are used as the elements of a 4x4 column-major matrix.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glMultMatrixd", SetLastError = true)]
-        //public static extern void MultMatrixd(double[] m);
+        /// <summary>
+        /// Multiply the current matrix with the specified matrix.
+        /// </summary>
+        /// <param name="m">Points to 16 consecutive values that are used as the elements of a 4x4 column-major matrix.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMultMatrixd", SetLastError = true)]
+        public static extern void MultMatrixd(double[] m);
 
         /// <summary>
         /// Multiply the current matrix with the specified matrix.
@@ -1747,111 +1747,111 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glMultMatrixf", SetLastError = true)]
         public static extern void MultMatrixf(float[] m);
 
-        ///// <summary>
-        ///// This function starts compiling a new display list.
-        ///// </summary>
-        ///// <param name="list">The list to compile.</param>
-        ///// <param name="mode">Either COMPILE or COMPILE_AND_EXECUTE.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNewList", SetLastError = true)]
-        //public static extern void NewList(uint list, uint mode);
+        /// <summary>
+        /// This function starts compiling a new display list.
+        /// </summary>
+        /// <param name="list">The list to compile.</param>
+        /// <param name="mode">Either COMPILE or COMPILE_AND_EXECUTE.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNewList", SetLastError = true)]
+        public static extern void NewList(uint list, uint mode);
 
-        ///// <summary>
-        ///// Set the current normal.
-        ///// </summary>
-        ///// <param name="nx">Normal Coordinate.</param>
-        ///// <param name="ny">Normal Coordinate.</param>
-        ///// <param name="nz">Normal Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3b", SetLastError = true)]
-        //public static extern void Normal3b(byte nx, byte ny, byte nz);
+        /// <summary>
+        /// Set the current normal.
+        /// </summary>
+        /// <param name="nx">Normal Coordinate.</param>
+        /// <param name="ny">Normal Coordinate.</param>
+        /// <param name="nz">Normal Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3b", SetLastError = true)]
+        public static extern void Normal3b(byte nx, byte ny, byte nz);
 
-        ///// <summary>
-        ///// This function sets the current normal.
-        ///// </summary>
-        ///// <param name="v">The normal.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3bv", SetLastError = true)]
-        //public static extern void Normal3bv(byte[] v);
+        /// <summary>
+        /// This function sets the current normal.
+        /// </summary>
+        /// <param name="v">The normal.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3bv", SetLastError = true)]
+        public static extern void Normal3bv(byte[] v);
 
-        ///// <summary>
-        ///// Set the current normal.
-        ///// </summary>
-        ///// <param name="nx">Normal Coordinate.</param>
-        ///// <param name="ny">Normal Coordinate.</param>
-        ///// <param name="nz">Normal Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3d", SetLastError = true)]
-        //public static extern void Normal3d(double nx, double ny, double nz);
+        /// <summary>
+        /// Set the current normal.
+        /// </summary>
+        /// <param name="nx">Normal Coordinate.</param>
+        /// <param name="ny">Normal Coordinate.</param>
+        /// <param name="nz">Normal Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3d", SetLastError = true)]
+        public static extern void Normal3d(double nx, double ny, double nz);
 
-        ///// <summary>
-        ///// This function sets the current normal.
-        ///// </summary>
-        ///// <param name="v">The normal.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3dv", SetLastError = true)]
-        //public static extern void Normal3dv(double[] v);
+        /// <summary>
+        /// This function sets the current normal.
+        /// </summary>
+        /// <param name="v">The normal.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3dv", SetLastError = true)]
+        public static extern void Normal3dv(double[] v);
 
-        ///// <summary>
-        ///// Set the current normal.
-        ///// </summary>
-        ///// <param name="nx">Normal Coordinate.</param>
-        ///// <param name="ny">Normal Coordinate.</param>
-        ///// <param name="nz">Normal Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3f", SetLastError = true)]
-        //public static extern void Normal3f(float nx, float ny, float nz);
+        /// <summary>
+        /// Set the current normal.
+        /// </summary>
+        /// <param name="nx">Normal Coordinate.</param>
+        /// <param name="ny">Normal Coordinate.</param>
+        /// <param name="nz">Normal Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3f", SetLastError = true)]
+        public static extern void Normal3f(float nx, float ny, float nz);
 
-        ///// <summary>
-        ///// This function sets the current normal.
-        ///// </summary>
-        ///// <param name="v">The normal.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3fv", SetLastError = true)]
-        //public static extern void Normal3fv(float[] v);
+        /// <summary>
+        /// This function sets the current normal.
+        /// </summary>
+        /// <param name="v">The normal.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3fv", SetLastError = true)]
+        public static extern void Normal3fv(float[] v);
 
-        ///// <summary>
-        ///// Set the current normal.
-        ///// </summary>
-        ///// <param name="nx">Normal Coordinate.</param>
-        ///// <param name="ny">Normal Coordinate.</param>
-        ///// <param name="nz">Normal Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3i", SetLastError = true)]
-        //public static extern void Normal3i(int nx, int ny, int nz);
+        /// <summary>
+        /// Set the current normal.
+        /// </summary>
+        /// <param name="nx">Normal Coordinate.</param>
+        /// <param name="ny">Normal Coordinate.</param>
+        /// <param name="nz">Normal Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3i", SetLastError = true)]
+        public static extern void Normal3i(int nx, int ny, int nz);
 
-        ///// <summary>
-        ///// This function sets the current normal.
-        ///// </summary>
-        ///// <param name="v">The normal.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3iv", SetLastError = true)]
-        //public static extern void Normal3iv(int[] v);
+        /// <summary>
+        /// This function sets the current normal.
+        /// </summary>
+        /// <param name="v">The normal.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3iv", SetLastError = true)]
+        public static extern void Normal3iv(int[] v);
 
-        ///// <summary>
-        ///// Set the current normal.
-        ///// </summary>
-        ///// <param name="nx">Normal Coordinate.</param>
-        ///// <param name="ny">Normal Coordinate.</param>
-        ///// <param name="nz">Normal Coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3s", SetLastError = true)]
-        //public static extern void Normal3s(short nx, short ny, short nz);
+        /// <summary>
+        /// Set the current normal.
+        /// </summary>
+        /// <param name="nx">Normal Coordinate.</param>
+        /// <param name="ny">Normal Coordinate.</param>
+        /// <param name="nz">Normal Coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3s", SetLastError = true)]
+        public static extern void Normal3s(short nx, short ny, short nz);
 
-        ///// <summary>
-        ///// This function sets the current normal.
-        ///// </summary>
-        ///// <param name="v">The normal.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormal3sv", SetLastError = true)]
-        //public static extern void Normal3sv(short[] v);
+        /// <summary>
+        /// This function sets the current normal.
+        /// </summary>
+        /// <param name="v">The normal.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormal3sv", SetLastError = true)]
+        public static extern void Normal3sv(short[] v);
 
-        ///// <summary>
-        ///// Set's the pointer to the normal array.
-        ///// </summary>
-        ///// <param name="type">The type of data.</param>
-        ///// <param name="stride">The space in bytes between each normal.</param>
-        ///// <param name="pointer">The normals.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormalPointer", SetLastError = true)]
-        //public static extern void NormalPointer(uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// Set's the pointer to the normal array.
+        /// </summary>
+        /// <param name="type">The type of data.</param>
+        /// <param name="stride">The space in bytes between each normal.</param>
+        /// <param name="pointer">The normals.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormalPointer", SetLastError = true)]
+        public static extern void NormalPointer(uint type, int stride, IntPtr pointer);
 
-        ///// <summary>
-        ///// Set's the pointer to the normal array.
-        ///// </summary>
-        ///// <param name="type">The type of data.</param>
-        ///// <param name="stride">The space in bytes between each normal.</param>
-        ///// <param name="pointer">The normals.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glNormalPointer", SetLastError = true)]
-        //public static extern void NormalPointer(uint type, int stride, float[] pointer);
+        /// <summary>
+        /// Set's the pointer to the normal array.
+        /// </summary>
+        /// <param name="type">The type of data.</param>
+        /// <param name="stride">The space in bytes between each normal.</param>
+        /// <param name="pointer">The normals.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glNormalPointer", SetLastError = true)]
+        public static extern void NormalPointer(uint type, int stride, float[] pointer);
 
         /// <summary>
         /// This function creates an orthographic projection matrix (i.e one with no
@@ -1867,39 +1867,39 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glOrtho", SetLastError = true)]
         public static extern void Ortho(double left, double right, double bottom, double top, double zNear, double zFar);
 
-        ///// <summary>
-        ///// Place a marker in the feedback buffer.
-        ///// </summary>
-        ///// <param name="token">Specifies a marker value to be placed in the feedback buffer following a OpenGL.PASS_THROUGH_TOKEN.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPassThrough", SetLastError = true)]
-        //public static extern void PassThrough(float token);
+        /// <summary>
+        /// Place a marker in the feedback buffer.
+        /// </summary>
+        /// <param name="token">Specifies a marker value to be placed in the feedback buffer following a OpenGL.PASS_THROUGH_TOKEN.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPassThrough", SetLastError = true)]
+        public static extern void PassThrough(float token);
 
-        ///// <summary>
-        ///// Set up pixel transfer maps.
-        ///// </summary>
-        ///// <param name="map">Specifies a symbolic	map name.</param>
-        ///// <param name="mapsize">Specifies the size of the map being defined.</param>
-        ///// <param name="values">Specifies an	array of mapsize values.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPixelMapfv", SetLastError = true)]
-        //public static extern void PixelMapfv(uint map, int mapsize, float[] values);
+        /// <summary>
+        /// Set up pixel transfer maps.
+        /// </summary>
+        /// <param name="map">Specifies a symbolic	map name.</param>
+        /// <param name="mapsize">Specifies the size of the map being defined.</param>
+        /// <param name="values">Specifies an	array of mapsize values.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPixelMapfv", SetLastError = true)]
+        public static extern void PixelMapfv(uint map, int mapsize, float[] values);
 
-        ///// <summary>
-        ///// Set up pixel transfer maps.
-        ///// </summary>
-        ///// <param name="map">Specifies a symbolic	map name.</param>
-        ///// <param name="mapsize">Specifies the size of the map being defined.</param>
-        ///// <param name="values">Specifies an	array of mapsize values.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPixelMapuiv", SetLastError = true)]
-        //public static extern void PixelMapuiv(uint map, int mapsize, uint[] values);
+        /// <summary>
+        /// Set up pixel transfer maps.
+        /// </summary>
+        /// <param name="map">Specifies a symbolic	map name.</param>
+        /// <param name="mapsize">Specifies the size of the map being defined.</param>
+        /// <param name="values">Specifies an	array of mapsize values.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPixelMapuiv", SetLastError = true)]
+        public static extern void PixelMapuiv(uint map, int mapsize, uint[] values);
 
-        ///// <summary>
-        ///// Set up pixel transfer maps.
-        ///// </summary>
-        ///// <param name="map">Specifies a symbolic	map name.</param>
-        ///// <param name="mapsize">Specifies the size of the map being defined.</param>
-        ///// <param name="values">Specifies an	array of mapsize values.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPixelMapusv", SetLastError = true)]
-        //public static extern void PixelMapusv(uint map, int mapsize, ushort[] values);
+        /// <summary>
+        /// Set up pixel transfer maps.
+        /// </summary>
+        /// <param name="map">Specifies a symbolic	map name.</param>
+        /// <param name="mapsize">Specifies the size of the map being defined.</param>
+        /// <param name="values">Specifies an	array of mapsize values.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPixelMapusv", SetLastError = true)]
+        public static extern void PixelMapusv(uint map, int mapsize, ushort[] values);
 
         /// <summary>
         /// Set pixel storage modes.
@@ -1917,29 +1917,29 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glPixelStorei", SetLastError = true)]
         public static extern void PixelStorei(uint pname, int param);
 
-        ///// <summary>
-        ///// Set pixel transfer modes.
-        ///// </summary>
-        ///// <param name="pname">Specifies the symbolic name of the pixel transfer parameter to be set.</param>
-        ///// <param name="param">Specifies the value that pname is set to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPixelTransferf", SetLastError = true)]
-        //public static extern void PixelTransferf(uint pname, float param);
+        /// <summary>
+        /// Set pixel transfer modes.
+        /// </summary>
+        /// <param name="pname">Specifies the symbolic name of the pixel transfer parameter to be set.</param>
+        /// <param name="param">Specifies the value that pname is set to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPixelTransferf", SetLastError = true)]
+        public static extern void PixelTransferf(uint pname, float param);
 
-        ///// <summary>
-        ///// Set pixel transfer modes.
-        ///// </summary>
-        ///// <param name="pname">Specifies the symbolic name of the pixel transfer parameter to be set.</param>
-        ///// <param name="param">Specifies the value that pname is set to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPixelTransferi", SetLastError = true)]
-        //public static extern void PixelTransferi(uint pname, int param);
+        /// <summary>
+        /// Set pixel transfer modes.
+        /// </summary>
+        /// <param name="pname">Specifies the symbolic name of the pixel transfer parameter to be set.</param>
+        /// <param name="param">Specifies the value that pname is set to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPixelTransferi", SetLastError = true)]
+        public static extern void PixelTransferi(uint pname, int param);
 
-        ///// <summary>
-        ///// Specify	the pixel zoom factors.
-        ///// </summary>
-        ///// <param name="xfactor">Specify the x and y zoom factors for pixel write operations.</param>
-        ///// <param name="yfactor">Specify the x and y zoom factors for pixel write operations.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPixelZoom", SetLastError = true)]
-        //public static extern void PixelZoom(float xfactor, float yfactor);
+        /// <summary>
+        /// Specify	the pixel zoom factors.
+        /// </summary>
+        /// <param name="xfactor">Specify the x and y zoom factors for pixel write operations.</param>
+        /// <param name="yfactor">Specify the x and y zoom factors for pixel write operations.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPixelZoom", SetLastError = true)]
+        public static extern void PixelZoom(float xfactor, float yfactor);
 
         /// <summary>
         /// The size of points to be rasterised.
@@ -1979,11 +1979,11 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glPopAttrib", SetLastError = true)]
         public static extern void PopAttrib();
 
-        ///// <summary>
-        ///// Pop the client attribute stack.
-        ///// </summary>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPopClientAttrib", SetLastError = true)]
-        //public static extern void PopClientAttrib();
+        /// <summary>
+        /// Pop the client attribute stack.
+        /// </summary>
+        [DllImport(Win32.opengl32, EntryPoint = "glPopClientAttrib", SetLastError = true)]
+        public static extern void PopClientAttrib();
 
         /// <summary>
         /// Restore the previously saved state of the current matrix stack.
@@ -1991,20 +1991,20 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glPopMatrix", SetLastError = true)]
         public static extern void PopMatrix();
 
-        ///// <summary>
-        ///// This takes the top name off the selection names stack.
-        ///// </summary>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPopName", SetLastError = true)]
-        //public static extern void PopName();
+        /// <summary>
+        /// This takes the top name off the selection names stack.
+        /// </summary>
+        [DllImport(Win32.opengl32, EntryPoint = "glPopName", SetLastError = true)]
+        public static extern void PopName();
 
-        ///// <summary>
-        ///// Set texture residence priority.
-        ///// </summary>
-        ///// <param name="n">Specifies the number of textures to be prioritized.</param>
-        ///// <param name="textures">Specifies an array containing the names of the textures to be prioritized.</param>
-        ///// <param name="priorities">Specifies	an array containing the	texture priorities. A priority given in an element of priorities applies to the	texture	named by the corresponding element of textures.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPrioritizeTextures", SetLastError = true)]
-        //public static extern void PrioritizeTextures(int n, uint[] textures, float[] priorities);
+        /// <summary>
+        /// Set texture residence priority.
+        /// </summary>
+        /// <param name="n">Specifies the number of textures to be prioritized.</param>
+        /// <param name="textures">Specifies an array containing the names of the textures to be prioritized.</param>
+        /// <param name="priorities">Specifies	an array containing the	texture priorities. A priority given in an element of priorities applies to the	texture	named by the corresponding element of textures.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPrioritizeTextures", SetLastError = true)]
+        public static extern void PrioritizeTextures(int n, uint[] textures, float[] priorities);
 
         /// <summary>
         /// Save the current state of the attribute groups specified by 'mask'.
@@ -2013,12 +2013,12 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glPushAttrib", SetLastError = true)]
         public static extern void PushAttrib(uint mask);
 
-        ///// <summary>
-        ///// Push the client attribute stack.
-        ///// </summary>
-        ///// <param name="mask">Specifies a mask that indicates	which attributes to save.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPushClientAttrib", SetLastError = true)]
-        //public static extern void PushClientAttrib(uint mask);
+        /// <summary>
+        /// Push the client attribute stack.
+        /// </summary>
+        /// <param name="mask">Specifies a mask that indicates	which attributes to save.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPushClientAttrib", SetLastError = true)]
+        public static extern void PushClientAttrib(uint mask);
 
         /// <summary>
         /// Save the current state of the current matrix stack.
@@ -2026,42 +2026,42 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glPushMatrix", SetLastError = true)]
         public static extern void PushMatrix();
 
-        ///// <summary>
-        ///// This function adds a new name to the selection buffer.
-        ///// </summary>
-        ///// <param name="name">The name to add.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPushName", SetLastError = true)]
-        //public static extern void PushName(uint name);
+        /// <summary>
+        /// This function adds a new name to the selection buffer.
+        /// </summary>
+        /// <param name="name">The name to add.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPushName", SetLastError = true)]
+        public static extern void PushName(uint name);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2d", SetLastError = true)]
-        //public static extern void RasterPos2d(double x, double y);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2d", SetLastError = true)]
+        public static extern void RasterPos2d(double x, double y);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2dv", SetLastError = true)]
-        //public static extern void RasterPos2dv(double[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2dv", SetLastError = true)]
+        public static extern void RasterPos2dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2f", SetLastError = true)]
-        //public static extern void RasterPos2f(float x, float y);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2f", SetLastError = true)]
+        public static extern void RasterPos2f(float x, float y);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2fv", SetLastError = true)]
-        //public static extern void RasterPos2fv(float[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2fv", SetLastError = true)]
+        public static extern void RasterPos2fv(float[] v);
 
         /// <summary>
         /// This function sets the current raster position.
@@ -2071,159 +2071,159 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2i", SetLastError = true)]
         public static extern void RasterPos2i(int x, int y);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2iv", SetLastError = true)]
-        //public static extern void RasterPos2iv(int[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2iv", SetLastError = true)]
+        public static extern void RasterPos2iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2s", SetLastError = true)]
-        //public static extern void RasterPos2s(short x, short y);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2s", SetLastError = true)]
+        public static extern void RasterPos2s(short x, short y);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos2sv", SetLastError = true)]
-        //public static extern void RasterPos2sv(short[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos2sv", SetLastError = true)]
+        public static extern void RasterPos2sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3d", SetLastError = true)]
-        //public static extern void RasterPos3d(double x, double y, double z);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3d", SetLastError = true)]
+        public static extern void RasterPos3d(double x, double y, double z);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3dv", SetLastError = true)]
-        //public static extern void RasterPos3dv(double[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3dv", SetLastError = true)]
+        public static extern void RasterPos3dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3f", SetLastError = true)]
-        //public static extern void RasterPos3f(float x, float y, float z);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3f", SetLastError = true)]
+        public static extern void RasterPos3f(float x, float y, float z);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3fv", SetLastError = true)]
-        //public static extern void RasterPos3fv(float[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3fv", SetLastError = true)]
+        public static extern void RasterPos3fv(float[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3i", SetLastError = true)]
-        //public static extern void RasterPos3i(int x, int y, int z);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3i", SetLastError = true)]
+        public static extern void RasterPos3i(int x, int y, int z);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3iv", SetLastError = true)]
-        //public static extern void RasterPos3iv(int[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3iv", SetLastError = true)]
+        public static extern void RasterPos3iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3s", SetLastError = true)]
-        //public static extern void RasterPos3s(short x, short y, short z);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3s", SetLastError = true)]
+        public static extern void RasterPos3s(short x, short y, short z);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos3sv", SetLastError = true)]
-        //public static extern void RasterPos3sv(short[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos3sv", SetLastError = true)]
+        public static extern void RasterPos3sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        ///// <param name="w">W coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4d", SetLastError = true)]
-        //public static extern void RasterPos4d(double x, double y, double z, double w);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        /// <param name="w">W coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4d", SetLastError = true)]
+        public static extern void RasterPos4d(double x, double y, double z, double w);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4dv", SetLastError = true)]
-        //public static extern void RasterPos4dv(double[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4dv", SetLastError = true)]
+        public static extern void RasterPos4dv(double[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        ///// <param name="w">W coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4f", SetLastError = true)]
-        //public static extern void RasterPos4f(float x, float y, float z, float w);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        /// <param name="w">W coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4f", SetLastError = true)]
+        public static extern void RasterPos4f(float x, float y, float z, float w);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4fv", SetLastError = true)]
-        //public static extern void RasterPos4fv(float[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4fv", SetLastError = true)]
+        public static extern void RasterPos4fv(float[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        ///// <param name="w">W coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4i", SetLastError = true)]
-        //public static extern void RasterPos4i(int x, int y, int z, int w);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        /// <param name="w">W coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4i", SetLastError = true)]
+        public static extern void RasterPos4i(int x, int y, int z, int w);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4iv", SetLastError = true)]
-        //public static extern void RasterPos4iv(int[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4iv", SetLastError = true)]
+        public static extern void RasterPos4iv(int[] v);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="x">X coordinate.</param>
-        ///// <param name="y">Y coordinate.</param>
-        ///// <param name="z">Z coordinate.</param>
-        ///// <param name="w">W coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4s", SetLastError = true)]
-        //public static extern void RasterPos4s(short x, short y, short z, short w);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        /// <param name="w">W coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4s", SetLastError = true)]
+        public static extern void RasterPos4s(short x, short y, short z, short w);
 
-        ///// <summary>
-        ///// This function sets the current raster position.
-        ///// </summary>
-        ///// <param name="v">The coordinate.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRasterPos4sv", SetLastError = true)]
-        //public static extern void RasterPos4sv(short[] v);
+        /// <summary>
+        /// This function sets the current raster position.
+        /// </summary>
+        /// <param name="v">The coordinate.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRasterPos4sv", SetLastError = true)]
+        public static extern void RasterPos4sv(short[] v);
 
         /// <summary>
         /// Select	a color	buffer source for pixels.
@@ -2258,88 +2258,88 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glReadPixels", SetLastError = true)]
         public static extern void ReadPixels(int x, int y, int width, int height, uint format, uint type, IntPtr pixels);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates (top-left and bottom-right).
-        ///// </summary>
-        ///// <param name="x1">Top-Left X value.</param>
-        ///// <param name="y1">Top-Left Y value.</param>
-        ///// <param name="x2">Bottom-Right X Value.</param>
-        ///// <param name="y2">Bottom-Right Y Value.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRectd", SetLastError = true)]
-        //public static extern void Rectd(double x1, double y1, double x2, double y2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates (top-left and bottom-right).
+        /// </summary>
+        /// <param name="x1">Top-Left X value.</param>
+        /// <param name="y1">Top-Left Y value.</param>
+        /// <param name="x2">Bottom-Right X Value.</param>
+        /// <param name="y2">Bottom-Right Y Value.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRectd", SetLastError = true)]
+        public static extern void Rectd(double x1, double y1, double x2, double y2);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates, expressed as arrays, e.g
-        ///// Rect(new float[] {0, 0}, new float[] {10, 10});
-        ///// </summary>
-        ///// <param name="v1">Top-Left point.</param>
-        ///// <param name="v2">Bottom-Right point.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRectdv", SetLastError = true)]
-        //public static extern void Rectdv(double[] v1, double[] v2);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="x1"></param>
-        ///// <param name="y1"></param>
-        ///// <param name="x2"></param>
-        ///// <param name="y2"></param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRectf", SetLastError = true)]
-        //public static extern void Rectf(float x1, float y1, float x2, float y2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates, expressed as arrays, e.g
+        /// Rect(new float[] {0, 0}, new float[] {10, 10});
+        /// </summary>
+        /// <param name="v1">Top-Left point.</param>
+        /// <param name="v2">Bottom-Right point.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRectdv", SetLastError = true)]
+        public static extern void Rectdv(double[] v1, double[] v2);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRectf", SetLastError = true)]
+        public static extern void Rectf(float x1, float y1, float x2, float y2);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates, expressed as arrays, e.g
-        ///// Rect(new float[] {0, 0}, new float[] {10, 10});
-        ///// </summary>
-        ///// <param name="v1">Top-Left point.</param>
-        ///// <param name="v2">Bottom-Right point.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRectfv", SetLastError = true)]
-        //public static extern void Rectfv(float[] v1, float[] v2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates, expressed as arrays, e.g
+        /// Rect(new float[] {0, 0}, new float[] {10, 10});
+        /// </summary>
+        /// <param name="v1">Top-Left point.</param>
+        /// <param name="v2">Bottom-Right point.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRectfv", SetLastError = true)]
+        public static extern void Rectfv(float[] v1, float[] v2);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates (top-left and bottom-right).
-        ///// </summary>
-        ///// <param name="x1">Top-Left X value.</param>
-        ///// <param name="y1">Top-Left Y value.</param>
-        ///// <param name="x2">Bottom-Right X Value.</param>
-        ///// <param name="y2">Bottom-Right Y Value.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRecti", SetLastError = true)]
-        //public static extern void Recti(int x1, int y1, int x2, int y2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates (top-left and bottom-right).
+        /// </summary>
+        /// <param name="x1">Top-Left X value.</param>
+        /// <param name="y1">Top-Left Y value.</param>
+        /// <param name="x2">Bottom-Right X Value.</param>
+        /// <param name="y2">Bottom-Right Y Value.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRecti", SetLastError = true)]
+        public static extern void Recti(int x1, int y1, int x2, int y2);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates, expressed as arrays, e.g
-        ///// Rect(new float[] {0, 0}, new float[] {10, 10});
-        ///// </summary>
-        ///// <param name="v1">Top-Left point.</param>
-        ///// <param name="v2">Bottom-Right point.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRectiv", SetLastError = true)]
-        //public static extern void Rectiv(int[] v1, int[] v2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates, expressed as arrays, e.g
+        /// Rect(new float[] {0, 0}, new float[] {10, 10});
+        /// </summary>
+        /// <param name="v1">Top-Left point.</param>
+        /// <param name="v2">Bottom-Right point.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRectiv", SetLastError = true)]
+        public static extern void Rectiv(int[] v1, int[] v2);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates (top-left and bottom-right).
-        ///// </summary>
-        ///// <param name="x1">Top-Left X value.</param>
-        ///// <param name="y1">Top-Left Y value.</param>
-        ///// <param name="x2">Bottom-Right X Value.</param>
-        ///// <param name="y2">Bottom-Right Y Value.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRects", SetLastError = true)]
-        //public static extern void Rects(short x1, short y1, short x2, short y2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates (top-left and bottom-right).
+        /// </summary>
+        /// <param name="x1">Top-Left X value.</param>
+        /// <param name="y1">Top-Left Y value.</param>
+        /// <param name="x2">Bottom-Right X Value.</param>
+        /// <param name="y2">Bottom-Right Y Value.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRects", SetLastError = true)]
+        public static extern void Rects(short x1, short y1, short x2, short y2);
 
-        ///// <summary>
-        ///// Draw a rectangle from two coordinates, expressed as arrays, e.g
-        ///// Rect(new float[] {0, 0}, new float[] {10, 10});
-        ///// </summary>
-        ///// <param name="v1">Top-Left point.</param>
-        ///// <param name="v2">Bottom-Right point.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRectsv", SetLastError = true)]
-        //public static extern void Rectsv(short[] v1, short[] v2);
+        /// <summary>
+        /// Draw a rectangle from two coordinates, expressed as arrays, e.g
+        /// Rect(new float[] {0, 0}, new float[] {10, 10});
+        /// </summary>
+        /// <param name="v1">Top-Left point.</param>
+        /// <param name="v2">Bottom-Right point.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glRectsv", SetLastError = true)]
+        public static extern void Rectsv(short[] v1, short[] v2);
 
-        ///// <summary>
-        ///// This function sets the current render mode (render, feedback or select).
-        ///// </summary>
-        ///// <param name="mode">The Render mode (RENDER, SELECT or FEEDBACK).</param>
-        ///// <returns>The hits that selection or feedback caused..</returns>
-        //[DllImport(Win32.opengl32, EntryPoint = "glRenderMode", SetLastError = true)]
-        //public static extern int RenderMode(uint mode);
+        /// <summary>
+        /// This function sets the current render mode (render, feedback or select).
+        /// </summary>
+        /// <param name="mode">The Render mode (RENDER, SELECT or FEEDBACK).</param>
+        /// <returns>The hits that selection or feedback caused..</returns>
+        [DllImport(Win32.opengl32, EntryPoint = "glRenderMode", SetLastError = true)]
+        public static extern int RenderMode(uint mode);
 
         /// <summary>
         /// This function applies a rotation transformation to the current matrix.
@@ -2394,13 +2394,13 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glScissor", SetLastError = true)]
         public static extern void Scissor(int x, int y, int width, int height);
 
-        ///// <summary>
-        ///// This function sets the current select buffer.
-        ///// </summary>
-        ///// <param name="size">The size of the buffer you are passing.</param>
-        ///// <param name="buffer">The buffer itself.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glSelectBuffer", SetLastError = true)]
-        //public static extern void SelectBuffer(int size, uint[] buffer);
+        /// <summary>
+        /// This function sets the current select buffer.
+        /// </summary>
+        /// <param name="size">The size of the buffer you are passing.</param>
+        /// <param name="buffer">The buffer itself.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glSelectBuffer", SetLastError = true)]
+        public static extern void SelectBuffer(int size, uint[] buffer);
 
         /// <summary>
         /// Select flat or smooth shading.
@@ -2430,14 +2430,14 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glStencilMask", SetLastError = true)]
         public static extern void StencilMask(uint mask);
 
-        ///// <summary>
-        ///// This function sets the stencil buffer operation.
-        ///// </summary>
-        ///// <param name="fail">Fail operation.</param>
-        ///// <param name="zfail">Depth fail component.</param>
-        ///// <param name="zpass">Depth pass component.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glStencilOp", SetLastError = true)]
-        //public static extern void StencilOp(uint fail, uint zfail, uint zpass);
+        /// <summary>
+        /// This function sets the stencil buffer operation.
+        /// </summary>
+        /// <param name="fail">Fail operation.</param>
+        /// <param name="zfail">Depth fail component.</param>
+        /// <param name="zpass">Depth pass component.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glStencilOp", SetLastError = true)]
+        public static extern void StencilOp(uint fail, uint zfail, uint zpass);
 
         /// <summary>
         /// This function sets the current texture coordinates.
@@ -2695,25 +2695,25 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glTexCoord4sv", SetLastError = true)]
         public static extern void TexCoord4sv(short[] v);
 
-        ///// <summary>
-        ///// This function sets the texture coord array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per set.</param>
-        ///// <param name="type">The type of data.</param>
-        ///// <param name="stride">The number of bytes between coords.</param>
-        ///// <param name="pointer">The coords.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoordPointer", SetLastError = true)]
-        //public static extern void TexCoordPointer(int size, uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// This function sets the texture coord array.
+        /// </summary>
+        /// <param name="size">The number of coords per set.</param>
+        /// <param name="type">The type of data.</param>
+        /// <param name="stride">The number of bytes between coords.</param>
+        /// <param name="pointer">The coords.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoordPointer", SetLastError = true)]
+        public static extern void TexCoordPointer(int size, uint type, int stride, IntPtr pointer);
 
-        ///// <summary>
-        ///// This function sets the texture coord array.
-        ///// </summary>
-        ///// <param name="size">The number of coords per set.</param>
-        ///// <param name="type">The type of data.</param>
-        ///// <param name="stride">The number of bytes between coords.</param>
-        ///// <param name="pointer">The coords.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexCoordPointer", SetLastError = true)]
-        //public static extern void TexCoordPointer(int size, uint type, int stride, float[] pointer);
+        /// <summary>
+        /// This function sets the texture coord array.
+        /// </summary>
+        /// <param name="size">The number of coords per set.</param>
+        /// <param name="type">The type of data.</param>
+        /// <param name="stride">The number of bytes between coords.</param>
+        /// <param name="pointer">The coords.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexCoordPointer", SetLastError = true)]
+        public static extern void TexCoordPointer(int size, uint type, int stride, float[] pointer);
 
         /// <summary>
         /// Set texture environment parameters.
@@ -2751,50 +2751,50 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glTexEnviv", SetLastError = true)]
         public static extern void TexEnviv(uint target, uint pname, int[] parameters);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        ///// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexGend", SetLastError = true)]
-        //public static extern void TexGend(uint coord, uint pname, double param);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
+        /// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexGend", SetLastError = true)]
+        public static extern void TexGend(uint coord, uint pname, double param);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
-        ///// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexGendv", SetLastError = true)]
-        //public static extern void TexGendv(uint coord, uint pname, double[] parameters);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
+        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexGendv", SetLastError = true)]
+        public static extern void TexGendv(uint coord, uint pname, double[] parameters);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        ///// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexGenf", SetLastError = true)]
-        //public static extern void TexGenf(uint coord, uint pname, float param);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
+        /// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexGenf", SetLastError = true)]
+        public static extern void TexGenf(uint coord, uint pname, float param);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
-        ///// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexGenfv", SetLastError = true)]
-        //public static extern void TexGenfv(uint coord, uint pname, float[] parameters);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
+        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexGenfv", SetLastError = true)]
+        public static extern void TexGenfv(uint coord, uint pname, float[] parameters);
 
-        ///// <summary>
-        ///// Control the generation of texture coordinates.
-        ///// </summary>
-        ///// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        ///// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        ///// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexGeni", SetLastError = true)]
-        //public static extern void TexGeni(uint coord, uint pname, int param);
+        /// <summary>
+        /// Control the generation of texture coordinates.
+        /// </summary>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
+        /// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexGeni", SetLastError = true)]
+        public static extern void TexGeni(uint coord, uint pname, int param);
 
         ///// <summary>
         ///// Set texture environment parameters.
@@ -2865,14 +2865,14 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glTexParameterf", SetLastError = true)]
         public static extern void TexParameterf(uint target, uint pname, float param);
 
-        ///// <summary>
-        /////	This function sets the parameters for the currently binded texture object.
-        ///// </summary>
-        ///// <param name="target">The type of texture you are setting the parameter to, e.g. TEXTURE_2D</param>
-        ///// <param name="pname">The parameter to set.</param>
-        ///// <param name="parameters">The value to set it to.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glTexParameterfv", SetLastError = true)]
-        //public static extern void TexParameterfv(uint target, uint pname, float[] parameters);
+        /// <summary>
+        ///	This function sets the parameters for the currently binded texture object.
+        /// </summary>
+        /// <param name="target">The type of texture you are setting the parameter to, e.g. TEXTURE_2D</param>
+        /// <param name="pname">The parameter to set.</param>
+        /// <param name="parameters">The value to set it to.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glTexParameterfv", SetLastError = true)]
+        public static extern void TexParameterfv(uint target, uint pname, float[] parameters);
 
         /// <summary>
         ///	This function sets the parameters for the currently binded texture object.
