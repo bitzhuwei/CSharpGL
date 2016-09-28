@@ -18,6 +18,12 @@ namespace CSharpGL
         {
             InitializeComponent();
 
+            this.cmbDrawMode.Items.Clear();
+            foreach (var item in Enum.GetValues(typeof(CSharpGL.DrawMode)))
+            {
+                this.cmbDrawMode.Items.Add((CSharpGL.DrawMode)item);
+            }
+
             if (indexBufferPtr != null)
             {
                 this.SetTarget(indexBufferPtr);
@@ -41,6 +47,17 @@ namespace CSharpGL
 
         private void UpdateUI(IndexBufferPtrController indexBufferPtrController)
         {
+            int index = -1;
+            foreach (var item in this.cmbDrawMode.Items)
+            {
+                index++;
+                if ((DrawMode)item == indexBufferPtrController.IndexBufferPtr.Mode)
+                {
+                    this.cmbDrawMode.SelectedIndex = index;
+                    break;
+                }
+            }
+
             if (indexBufferPtrController is ZeroIndexBufferPtrController)
             {
                 this.lblFirst.Text = "First Vertex:";
@@ -111,10 +128,17 @@ namespace CSharpGL
             this.lblCountValue.Text = this.trackCount.Value.ToString();
             this.Text = string.Format("{0}", this.controller);
         }
+
+        private void cmbDrawMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.controller.IndexBufferPtr.Mode = ((DrawMode)this.cmbDrawMode.SelectedItem);
+        }
     }
 
     internal abstract class IndexBufferPtrController
     {
+        public abstract IndexBufferPtr IndexBufferPtr { get; }
+
         public abstract int First();
 
         public abstract int Count();
@@ -127,6 +151,11 @@ namespace CSharpGL
     internal class ZeroIndexBufferPtrController : IndexBufferPtrController
     {
         private ZeroIndexBufferPtr indexBufferPtr;
+
+        public override IndexBufferPtr IndexBufferPtr
+        {
+            get { return this.indexBufferPtr; }
+        }
 
         public ZeroIndexBufferPtrController(ZeroIndexBufferPtr indexBufferPtr)
         {
@@ -161,6 +190,11 @@ namespace CSharpGL
 
     internal class OneIndexBufferPtrController : IndexBufferPtrController
     {
+        public override IndexBufferPtr IndexBufferPtr
+        {
+            get { return this.indexBufferPtr; }
+        }
+
         private OneIndexBufferPtr indexBufferPtr;
 
         public OneIndexBufferPtrController(OneIndexBufferPtr indexBufferPtr)
