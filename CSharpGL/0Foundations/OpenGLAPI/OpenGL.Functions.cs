@@ -151,15 +151,15 @@ namespace CSharpGL
             OpenGL.Clear((uint)mask);
         }
 
-        ///// <summary>
-        ///// Specify clear values for the accumulation buffer.
-        ///// </summary>
-        ///// <param name="red">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
-        ///// <param name="green">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
-        ///// <param name="blue">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
-        ///// <param name="alpha">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glClearAccum", SetLastError = true)]
-        //public static extern void ClearAccum(float red, float green, float blue, float alpha);
+        /// <summary>
+        /// Specify clear values for the accumulation buffer.
+        /// </summary>
+        /// <param name="red">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
+        /// <param name="green">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
+        /// <param name="blue">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
+        /// <param name="alpha">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glClearAccum", SetLastError = true)]
+        public static extern void ClearAccum(float red, float green, float blue, float alpha);
 
         /// <summary>
         /// This function sets the color that the drawing buffer is 'cleared' to.
