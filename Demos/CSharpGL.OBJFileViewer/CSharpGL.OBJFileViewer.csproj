@@ -98,11 +98,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
+    <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
       <Project>{115ab8f1-a732-4fad-8f16-f8c9e4da02a1}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure\CSharpGL.OBJFile\CSharpGL.OBJFile.csproj">
+    <ProjectReference Include="..\..\Infrastructure\CSharpGL.OBJFile\CSharpGL.OBJFile.csproj">
       <Project>{a4786bfc-c25f-4887-a90e-b367031e9c41}</Project>
       <Name>CSharpGL.OBJFile</Name>
     </ProjectReference>

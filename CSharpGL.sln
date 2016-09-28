@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaTank", "Demos\ArmadaT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.OBJFile", "Infrastructure\CSharpGL.OBJFile\CSharpGL.OBJFile.csproj", "{A4786BFC-C25F-4887-A90E-B367031E9C41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.OBJFileViewer", "CSharpGL.OBJFileViewer\CSharpGL.OBJFileViewer.csproj", "{9B85C173-40AC-4673-BB0D-1446B52C029C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.OBJFileViewer", "Demos\CSharpGL.OBJFileViewer\CSharpGL.OBJFileViewer.csproj", "{9B85C173-40AC-4673-BB0D-1446B52C029C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
