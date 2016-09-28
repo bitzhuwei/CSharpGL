@@ -26,8 +26,11 @@ namespace CSharpGL
         public static T GetDelegateFor<T>() where T : class
         {
             //  Get the type of the extension function.
-            Type delegateType = typeof(T);
+            return GetDelegateFor(delegateType: typeof(T)) as T;
+        }
 
+        private static Delegate GetDelegateFor(Type delegateType)
+        {
             //  Get the name of the extension function.
             string name = delegateType.Name;
 
@@ -70,8 +73,7 @@ namespace CSharpGL
                 //  Add to the dictionary.
                 extensionFunctions.Add(name, del);
             }
-
-            return del as T;
+            return del;
         }
 
         /// <summary>

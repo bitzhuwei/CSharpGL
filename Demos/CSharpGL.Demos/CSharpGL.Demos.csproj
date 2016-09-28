@@ -136,26 +136,6 @@
     <Compile Include="Models\RandomPointsModel.cs" />
     <Compile Include="Models\PointCloudModel.cs" />
     <None Include="readme.md" />
-    <None Include="Resources\data\water_neg_x.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\data\water_neg_y.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\data\water_neg_z.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\data\water_pos_x.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\data\water_pos_y.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\data\water_pos_z.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Gets.data.from.CSharpGL.Data.at.my.github.and.copy.it.here.md" />
-    <None Include="Resources\readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
