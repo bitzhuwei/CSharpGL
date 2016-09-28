@@ -54,29 +54,22 @@ namespace CSharpGL.Demos
                     {
                         for (int vIndex = 0; vIndex < vCount; vIndex++)
                         {
-                            if (index >= 49298)
+                            double u = interval * uIndex / uCount * Math.PI;
+                            double v = interval * vIndex / vCount * Math.PI * 2;
+                            var position = GetPosition(u, v);
+
+                            if (!initialized)
                             {
-                                Console.WriteLine("asdf");
+                                max = position;
+                                min = position;
+                                initialized = true;
                             }
                             else
                             {
-                                double u = interval * uIndex / uCount * Math.PI;
-                                double v = interval * vIndex / vCount * Math.PI * 2;
-                                var position = GetPosition(u, v);
-
-                                if (!initialized)
-                                {
-                                    max = position;
-                                    min = position;
-                                    initialized = true;
-                                }
-                                else
-                                {
-                                    position.UpdateMax(ref max);
-                                    position.UpdateMin(ref min);
-                                }
-                                array[index++] = position;
+                                position.UpdateMax(ref max);
+                                position.UpdateMin(ref min);
                             }
+                            array[index++] = position;
                         }
                     }
                     this.Lengths = max - min;
