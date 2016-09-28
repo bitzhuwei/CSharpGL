@@ -69,7 +69,7 @@
         }
 
         /// <summary>
-        /// Gets the reversed matrix.
+        /// Gets the inversed matrix.
         /// <para>获取逆矩阵。</para>
         /// </summary>
         /// <param name="m"></param>

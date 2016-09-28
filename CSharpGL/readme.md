@@ -5,6 +5,13 @@ CSharpGL is inspired by SharpGL.
 For more information and demonstrations please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.6.8:
+1. `UniformVariable` need not to reset.
+2. `ClipPlaneSwitch` only works in Legacy OpenGL.
+3. `UniformBlock<T>` supports uniform block in GLSL.
+4. fix: Fields of `vec4` layout in the order `x, y, z, w` to match that in GLSL.
+5. `glm.inverse()` and `glm.transpose()`.
+
 ## v1.0.6.7:
 1. fix: glm.rotate(angle, axis) uses angle in degrees(same as glRotatef() in legacy OpenGL).
 2. Tranform between matrix and (angle+axis) via Quaternion.
