@@ -30,10 +30,10 @@ namespace CSharpGL
         /// <summary>
         /// Quaternion
         /// </summary>
+        /// <param name="w"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        /// <param name="w"></param>
         internal Quaternion(float w, float x, float y, float z)
         {
             this.w = w;
