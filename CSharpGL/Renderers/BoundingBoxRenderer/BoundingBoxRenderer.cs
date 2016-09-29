@@ -28,9 +28,8 @@ namespace CSharpGL
         /// get a bounding box renderer.
         /// </summary>
         /// <param name="lengths">bounding box's length at x, y, z direction.</param>
-        /// <param name="originalWorldPosition"></param>
         /// <returns></returns>
-        public static BoundingBoxRenderer Create(vec3 lengths, vec3 originalWorldPosition = new vec3())
+        public static BoundingBoxRenderer Create(vec3 lengths)
         {
             var model = new BoundingBoxModel(lengths);
             var shaderCodes = new ShaderCode[2];
@@ -41,7 +40,6 @@ namespace CSharpGL
             var map = new AttributeNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
-            result.WorldPosition = originalWorldPosition;
             result.Lengths = lengths;
             return result;
         }
