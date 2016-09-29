@@ -17,8 +17,7 @@ namespace CSharpGL
         {
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(
                 model.Lengths);
-            const float lineWidth = 1.0f;
-            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth));
+            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth: 1.0f));
             boxRenderer.CopyModelSpaceStateFrom(model);
 
             return boxRenderer;
@@ -31,9 +30,37 @@ namespace CSharpGL
         /// <returns></returns>
         public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace[] models)
         {
-            var rectangles = from item in models select item.GetBoundingBox() as IBoundingBox;
+            if (models == null) { throw new System.ArgumentNullException(); }
 
-            return GetBoundingBoxRenderer(rectangles);
+            vec3 max = new vec3();
+            vec3 min = new vec3();
+            {
+                bool initialized = false;
+                foreach (var model in models)
+                {
+                    if (!initialized)
+                    {
+                        model.GetMaxMinPosition(out max, out min);
+                        initialized = true;
+                    }
+                    else
+                    {
+                        vec3 tmpMax, tmpMin;
+                        model.GetMaxMinPosition(out tmpMax, out tmpMin);
+                        tmpMax.UpdateMax(ref max);
+                        tmpMin.UpdateMin(ref min);
+                    }
+                }
+            }
+
+            vec3 lengths = max - min;
+            vec3 worldPosition = max / 2.0f + min / 2.0f;
+            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(
+                 lengths);
+            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth: 1.0f));
+            boxRenderer.WorldPosition = worldPosition;
+
+            return boxRenderer;
         }
 
         /// <summary>

@@ -38,6 +38,21 @@
     public static class IModelSpaceHelper
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="maxPosition"></param>
+        /// <param name="minPosition"></param>
+        public static void GetMaxMinPosition(this IModelSpace model, out vec3 maxPosition, out vec3 minPosition)
+        {
+            if (model == null) { throw new System.ArgumentNullException(); }
+
+            vec3 lengths = model.Lengths * model.Scale;
+            maxPosition = model.WorldPosition + lengths;
+            minPosition = model.WorldPosition - lengths;
+        }
+
+        /// <summary>
         /// Copy <see cref="IModelSpace"/> state from specified <paramref name="source"/>.
         /// </summary>
         /// <param name="dest"></param>
