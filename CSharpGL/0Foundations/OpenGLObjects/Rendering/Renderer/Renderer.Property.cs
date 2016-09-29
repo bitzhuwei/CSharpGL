@@ -7,6 +7,13 @@ namespace CSharpGL
     public partial class Renderer
     {
         /// <summary>
+        /// Shader Program that does the rendering algorithm.
+        /// </summary>
+        [Category(strRenderer)]
+        [Description("Shader Program that does the rendering algorithm.")]
+        public ShaderProgram Program { get; protected set; }
+
+        /// <summary>
         /// model data that can be transfermed into OpenGL Buffer Objects.
         /// </summary>
         [Category(strRenderer)]
