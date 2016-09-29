@@ -647,7 +647,6 @@ namespace CSharpGL
                             where (baseType.IsAssignableFrom(item)
                                  && (!item.IsAbstract)
                                  && (!item.IsGenericType))
-                            orderby item.FullName
                             select item;
                 foreach (Type item in types)
                 {
