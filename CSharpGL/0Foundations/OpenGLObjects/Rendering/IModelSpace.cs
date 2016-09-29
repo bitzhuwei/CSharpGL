@@ -38,6 +38,22 @@
     public static class IModelSpaceHelper
     {
         /// <summary>
+        /// Copy <see cref="IModelSpace"/> state from specified <paramref name="source"/>.
+        /// </summary>
+        /// <param name="dest"></param>
+        /// <param name="source"></param>
+        public static void CopyModelSpaceStateFrom(this IModelSpace dest, IModelSpace source)
+        {
+            if (dest == null || source == null) { throw new System.ArgumentNullException(); }
+
+            dest.Lengths = source.Lengths;
+            dest.RotationAngleDegree = source.RotationAngleDegree;
+            dest.RotationAxis = source.RotationAxis;
+            dest.Scale = source.Scale;
+            dest.WorldPosition = source.WorldPosition;
+        }
+
+        /// <summary>
         /// Get model matrix that transform model from model space to world space.
         /// </summary>
         /// <param name="model"></param>

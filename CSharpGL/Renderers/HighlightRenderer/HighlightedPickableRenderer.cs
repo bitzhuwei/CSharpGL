@@ -26,11 +26,7 @@ namespace CSharpGL
         {
             this.Highlighter.Initialize();
             this.PickableRenderer.Initialize();
-            this.Highlighter.WorldPosition = this.PickableRenderer.WorldPosition;
-            this.Highlighter.Lengths = this.PickableRenderer.Lengths;
-            this.PickableRenderer.RotationAxis = this.PickableRenderer.RotationAxis;
-            this.PickableRenderer.RotationAngleDegree = this.PickableRenderer.RotationAngleDegree;
-            this.PickableRenderer.Scale = this.PickableRenderer.Scale;
+            this.Highlighter.CopyModelSpaceStateFrom(this.PickableRenderer);
         }
 
         /// <summary>

@@ -90,6 +90,7 @@ namespace CSharpGL.Demos
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
                         renderer.WorldPosition = new vec3(x, 2, z);
+                        renderer.Initialize();
                         obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                     }
                     else
@@ -189,6 +190,13 @@ namespace CSharpGL.Demos
             }
             {
                 SimplexNoiseRenderer pickableRenderer = SimplexNoiseRenderer.Create();
+                pickableRenderer.Initialize();
+                list.Add(pickableRenderer);
+            }
+            {
+                KleinBottleRenderer pickableRenderer = KleinBottleRenderer.Create(new KleinBottleModel());
+                pickableRenderer.Scale = new vec3(0.1f, 0.1f, 0.1f);
+                pickableRenderer.UniformColor = Color.Blue;
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }
