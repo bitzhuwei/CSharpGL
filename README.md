@@ -49,9 +49,7 @@ Particle's speed and position is updated by compute shader.
 ![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
 ## Point Sprite.
 10000 particles with a sphere inside a cube.
-![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.png?raw=true)  
-A spheroid.  
-![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite2.png?raw=true)
+![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.png?raw=true)
 ## Generated Klein Bottle.
 ![Klein Bottle](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/KleinBottle.png?raw=true)
 ## Earth.
