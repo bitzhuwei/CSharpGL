@@ -27,7 +27,13 @@ namespace CSharpGL
         /// <returns></returns>
         public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace model)
         {
-            return GetBoundingBoxRenderer(model.GetBoundingBox());
+            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(
+                model.Lengths);
+            const float lineWidth = 1.0f;
+            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth));
+            boxRenderer.CopyModelSpaceStateFrom(model);
+
+            return boxRenderer;
         }
 
         /// <summary>
