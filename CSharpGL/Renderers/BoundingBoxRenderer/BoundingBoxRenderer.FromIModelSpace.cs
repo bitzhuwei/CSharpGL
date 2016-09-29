@@ -8,17 +8,6 @@ namespace CSharpGL
     /// </summary>
     public static class BoundingBoxRendererHelper
     {
-        /// <summary>
-        /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="models"/>.
-        /// </summary>
-        /// <param name="models"></param>
-        /// <returns></returns>
-        public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace[] models)
-        {
-            var rectangles = from item in models select item.GetBoundingBox() as IBoundingBox;
-
-            return GetBoundingBoxRenderer(rectangles);
-        }
 
         /// <summary>
         /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="model"/>.
@@ -34,6 +23,18 @@ namespace CSharpGL
             boxRenderer.CopyModelSpaceStateFrom(model);
 
             return boxRenderer;
+        }
+
+        /// <summary>
+        /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="models"/>.
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace[] models)
+        {
+            var rectangles = from item in models select item.GetBoundingBox() as IBoundingBox;
+
+            return GetBoundingBoxRenderer(rectangles);
         }
 
         /// <summary>
