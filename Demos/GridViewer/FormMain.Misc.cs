@@ -1,6 +1,4 @@
-﻿using CSharpGL;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords;
 
@@ -17,29 +15,28 @@ namespace GridViewer
             return inputData;
         }
 
-        private BoundingBoxRenderer GetBoundingBoxRenderer(params SceneObject[] objects)
-        {
-            var rectangles = new List<IBoundingBox>();
-            foreach (var item in objects)
-            {
-                rectangles.AddRange(GetAllRectangle3Ds(item));
-            }
-            return rectangles.GetBoundingBoxRenderer();
-        }
+        //private BoundingBoxRenderer GetBoundingBoxRenderer(params SceneObject[] objects)
+        //{
+        //    var rectangles = new List<IBoundingBox>();
+        //    foreach (var item in objects)
+        //    {
+        //        rectangles.AddRange(GetAllRectangle3Ds(item));
+        //    }
+        //    return rectangles.GetBoundingBoxRenderer();
+        //}
 
-        private IEnumerable<IBoundingBox> GetAllRectangle3Ds(SceneObject obj)
-        {
-            var item = obj.Renderer as IBoundingBox;
-            if (item != null) { yield return item; }
+        //private IEnumerable<IBoundingBox> GetAllRectangle3Ds(SceneObject obj)
+        //{
+        //    var item = obj.Renderer as IBoundingBox;
+        //    if (item != null) { yield return item; }
 
-            foreach (var child in obj.Children)
-            {
-                foreach (var renderer in GetAllRectangle3Ds(child))
-                {
-                    yield return renderer;
-                }
-            }
-        }
-
+        //    foreach (var child in obj.Children)
+        //    {
+        //        foreach (var renderer in GetAllRectangle3Ds(child))
+        //        {
+        //            yield return renderer;
+        //        }
+        //    }
+        //}
     }
 }
