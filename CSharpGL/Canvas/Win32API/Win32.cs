@@ -80,11 +80,6 @@ namespace CSharpGL
         /// </summary>
         internal const string opengl32 = "opengl32.dll";
 
-        ///// <summary>
-        ///// internal const string Glu32 = "Glu32.dll"
-        ///// </summary>
-        //internal const string Glu32 = "Glu32.dll";
-
         #region Kernel32 Functions
 
         [DllImport(kernel32, SetLastError = true)]
