@@ -7,21 +7,25 @@
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            if (this.vertexArrayObject != null)
+            VertexArrayObject vao = this.vertexArrayObject;
+            if (vao != null)
             {
-                this.vertexArrayObject.Dispose();
+                vao.Dispose();
             }
-            if (this.vertexAttributeBufferPtrs != null)
+            VertexAttributeBufferPtr[] vbos = this.vertexAttributeBufferPtrs;
+            if (vbos != null)
             {
-                foreach (var item in this.vertexAttributeBufferPtrs) { item.Dispose(); }
+                foreach (var item in vbos) { item.Dispose(); }
             }
-            if (this.indexBufferPtr != null)
+            IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+            if (indexBufferPtr != null)
             {
-                this.indexBufferPtr.Dispose();
+                indexBufferPtr.Dispose();
             }
-            if (this.Program != null)
+            ShaderProgram program = this.Program;
+            if (program != null)
             {
-                this.Program.Dispose();
+                program.Dispose();
             }
         }
     }
