@@ -123,7 +123,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetModelMatrix() * new vec4(this.Lengths / 2, 1.0f));
+                return new vec3(this.GetModelMatrix() * new vec4(-this.Lengths / 2, 1.0f));
             }
         }
 
