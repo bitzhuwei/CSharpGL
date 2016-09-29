@@ -7,7 +7,7 @@ namespace CSharpGL.Demos
     /// Klein bottle.
     /// </summary>
     [DemoRenderer]
-    internal class KleinBottleRenderer : Renderer
+    internal class KleinBottleRenderer : PickableRenderer
     {
         public static KleinBottleRenderer Create(KleinBottleModel model)
         {
@@ -16,15 +16,15 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
-            var renderer = new KleinBottleRenderer(model, shaderCodes, map);
+            var renderer = new KleinBottleRenderer(model, shaderCodes, map, KleinBottleModel.strPosition);
             renderer.Lengths = model.Lengths;
 
             return renderer;
         }
 
         private KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
             this.switchList.Add(new PointSizeSwitch(3));
         }
