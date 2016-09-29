@@ -13,7 +13,7 @@ namespace CSharpGL
             // init shader program.
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
-            // init property buffer objects.
+            // init vertex attribute buffer objects.
             IBufferable model = this.Model;
             VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
             {
