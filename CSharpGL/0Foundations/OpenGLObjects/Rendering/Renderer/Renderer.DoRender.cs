@@ -17,11 +17,12 @@
             program.Bind();
             SetUniformValues(program);
 
-            SwitchesOn();
+            GLSwitch[] switchList = this.switchList.ToArray();
+            SwitchesOn(switchList);
 
             this.vertexArrayObject.Render(arg, program);
 
-            SwithesOff();
+            SwithesOff(switchList);
 
             //ResetUniformValues(program);
             // 解绑shader
@@ -29,22 +30,22 @@
         }
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void SwitchesOn()
+        private void SwitchesOn(GLSwitch[] switchList)
         {
-            int count = this.switchList.Count;
+            int count = switchList.Length;
             for (int i = 0; i < count; i++)
             {
-                this.switchList[i].On();
+                switchList[i].On();
             }
         }
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void SwithesOff()
+        private void SwithesOff(GLSwitch[] switchList)
         {
-            int count = this.switchList.Count;
+            int count = switchList.Length;
             for (int i = count - 1; i >= 0; i--)
             {
-                this.switchList[i].Off();
+                switchList[i].Off();
             }
         }
 
