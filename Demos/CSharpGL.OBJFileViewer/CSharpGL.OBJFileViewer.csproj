@@ -92,7 +92,6 @@
     <None Include="shaders\OBJModel.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="teapot_0.obj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
