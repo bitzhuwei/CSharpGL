@@ -65,6 +65,7 @@ namespace CSharpGL
             var program = new ShaderProgram();
             Shader shader = shaderCode.CreateShader();
             program.Initialize(shader);
+
             shader.Dispose();
 
             return program;
@@ -80,7 +81,9 @@ namespace CSharpGL
             var program = new ShaderProgram();
             var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
             program.Initialize(shaders);
+
             foreach (var item in shaders) { item.Dispose(); }
+
             return program;
         }
     }
