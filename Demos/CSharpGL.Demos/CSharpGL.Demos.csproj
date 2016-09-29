@@ -404,6 +404,9 @@
     <EmbeddedResource Include="24GreayFilter\Form2424GreayFilter.resx">
       <DependentUpon>Form2424GreayFilter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProperyGrid.resx">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </EmbeddedResource>

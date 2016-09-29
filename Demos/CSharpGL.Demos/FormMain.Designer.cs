@@ -53,7 +53,7 @@
             this.btnForm00GLCanvas.Name = "btnForm00GLCanvas";
             this.btnForm00GLCanvas.Size = new System.Drawing.Size(767, 38);
             this.btnForm00GLCanvas.TabIndex = 0;
-            this.btnForm00GLCanvas.Text = "Form00 GLCanvas";
+            this.btnForm00GLCanvas.Text = "00 GLCanvas";
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
             this.btnForm00GLCanvas.Click += new System.EventHandler(this.btn00GLCanvas_Click);
             // 
@@ -67,7 +67,7 @@
             this.btn02OriderIndependentTransparency.Name = "btn02OriderIndependentTransparency";
             this.btn02OriderIndependentTransparency.Size = new System.Drawing.Size(767, 38);
             this.btn02OriderIndependentTransparency.TabIndex = 0;
-            this.btn02OriderIndependentTransparency.Text = "Form02 Orider-Independent Transparency";
+            this.btn02OriderIndependentTransparency.Text = "02 Orider-Independent Transparency";
             this.btn02OriderIndependentTransparency.UseVisualStyleBackColor = true;
             this.btn02OriderIndependentTransparency.Click += new System.EventHandler(this.btn02OrderIndependentTransparency_Click);
             // 
@@ -81,7 +81,7 @@
             this.btnForm06ImageProcessing.Name = "btnForm06ImageProcessing";
             this.btnForm06ImageProcessing.Size = new System.Drawing.Size(767, 38);
             this.btnForm06ImageProcessing.TabIndex = 0;
-            this.btnForm06ImageProcessing.Text = "Form06 ImageProcessing";
+            this.btnForm06ImageProcessing.Text = "06 ImageProcessing";
             this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
             this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btn06ImageProcessing_Click);
             // 
@@ -95,7 +95,7 @@
             this.btnForm07PointSprite.Name = "btnForm07PointSprite";
             this.btnForm07PointSprite.Size = new System.Drawing.Size(767, 38);
             this.btnForm07PointSprite.TabIndex = 0;
-            this.btnForm07PointSprite.Text = "Form07 PointSprite";
+            this.btnForm07PointSprite.Text = "07 PointSprite";
             this.btnForm07PointSprite.UseVisualStyleBackColor = true;
             this.btnForm07PointSprite.Click += new System.EventHandler(this.btn07PointSprite_Click);
             // 
