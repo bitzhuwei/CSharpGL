@@ -17,7 +17,14 @@ namespace CSharpGL
         public static object CreateInstance(this Type type)
         {
             if (type == null)
-            { throw new ArgumentNullException(); }
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (type.IsAbstract)
+            {
+                throw new Exception(string.Format("Cannot create instance for abstract type [{0}].", type));
+            }
 
             object obj;
             if (type.IsValueType)
