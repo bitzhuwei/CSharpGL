@@ -8,7 +8,6 @@ namespace CSharpGL
     /// </summary>
     public static class BoundingBoxRendererHelper
     {
-
         /// <summary>
         /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="model"/>.
         /// </summary>
