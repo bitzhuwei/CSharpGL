@@ -28,6 +28,16 @@ namespace CSharpGL
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
+        public static BoundingBoxRenderer GetBoundingBoxRenderer(this IEnumerable<IModelSpace> models)
+        {
+            return GetBoundingBoxRenderer(models.ToArray());
+        }
+
+        /// <summary>
+        /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="models"/>.
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
         public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace[] models)
         {
             if (models == null) { throw new System.ArgumentNullException(); }
@@ -53,7 +63,7 @@ namespace CSharpGL
                 }
             }
 
-            vec3 lengths = max - min;
+            vec3 lengths = (max - min);
             vec3 worldPosition = max / 2.0f + min / 2.0f;
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(
                  lengths);
@@ -63,78 +73,78 @@ namespace CSharpGL
             return boxRenderer;
         }
 
-        /// <summary>
-        /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangles"/>.
-        /// </summary>
-        /// <param name="rectangles"></param>
-        /// <returns></returns>
-        public static BoundingBoxRenderer GetBoundingBoxRenderer(this  IEnumerable<IBoundingBox> rectangles)
-        {
-            IBoundingBox rect = null;
-            bool initialized = false;
-            foreach (var item in rectangles)
-            {
-                if (!initialized)
-                {
-                    rect = item;
-                    initialized = true;
-                }
-                else
-                {
-                    rect = rect.Union(item);
-                }
-            }
+        ///// <summary>
+        ///// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangles"/>.
+        ///// </summary>
+        ///// <param name="rectangles"></param>
+        ///// <returns></returns>
+        //public static BoundingBoxRenderer GetBoundingBoxRenderer(this  IEnumerable<IBoundingBox> rectangles)
+        //{
+        //    IBoundingBox rect = null;
+        //    bool initialized = false;
+        //    foreach (var item in rectangles)
+        //    {
+        //        if (!initialized)
+        //        {
+        //            rect = item;
+        //            initialized = true;
+        //        }
+        //        else
+        //        {
+        //            rect = rect.Union(item);
+        //        }
+        //    }
 
-            if (!initialized)
-            {
-                rect = new BoundingBox();
-            }
+        //    if (!initialized)
+        //    {
+        //        rect = new BoundingBox();
+        //    }
 
-            BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(rect);
+        //    BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(rect);
 
-            return boxRenderer;
-        }
+        //    return boxRenderer;
+        //}
 
-        /// <summary>
-        /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangles"/>.
-        /// </summary>
-        /// <param name="rectangles"></param>
-        /// <returns></returns>
-        public static BoundingBoxRenderer GetBoundingBoxRenderer(this  IBoundingBox[] rectangles)
-        {
-            IBoundingBox rect;
-            if (rectangles.Length > 0)
-            {
-                rect = rectangles[0];
-                for (int i = 1; i < rectangles.Length; i++)
-                {
-                    rect = rect.Union(rectangles[i]);
-                }
-            }
-            else
-            {
-                rect = new BoundingBox();
-            }
+        ///// <summary>
+        ///// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangles"/>.
+        ///// </summary>
+        ///// <param name="rectangles"></param>
+        ///// <returns></returns>
+        //public static BoundingBoxRenderer GetBoundingBoxRenderer(this  IBoundingBox[] rectangles)
+        //{
+        //    IBoundingBox rect;
+        //    if (rectangles.Length > 0)
+        //    {
+        //        rect = rectangles[0];
+        //        for (int i = 1; i < rectangles.Length; i++)
+        //        {
+        //            rect = rect.Union(rectangles[i]);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        rect = new BoundingBox();
+        //    }
 
-            BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(rect);
+        //    BoundingBoxRenderer boxRenderer = GetBoundingBoxRenderer(rect);
 
-            return boxRenderer;
-        }
+        //    return boxRenderer;
+        //}
 
-        /// <summary>
-        /// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangle"/>.
-        /// </summary>
-        /// <param name="rectangle"></param>
-        /// <returns></returns>
-        public static BoundingBoxRenderer GetBoundingBoxRenderer(this IBoundingBox rectangle)
-        {
-            vec3 lengths = rectangle.MaxPosition - rectangle.MinPosition;
-            vec3 originalWorldPosition = rectangle.MaxPosition / 2 + rectangle.MinPosition / 2;
-            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, originalWorldPosition);
-            const float lineWidth = 1.0f;
-            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth));
+        ///// <summary>
+        ///// Gets a <see cref="BoundingBoxRenderer"/> that wraps specified <paramref name="rectangle"/>.
+        ///// </summary>
+        ///// <param name="rectangle"></param>
+        ///// <returns></returns>
+        //public static BoundingBoxRenderer GetBoundingBoxRenderer(this IBoundingBox rectangle)
+        //{
+        //    vec3 lengths = rectangle.MaxPosition - rectangle.MinPosition;
+        //    vec3 originalWorldPosition = rectangle.MaxPosition / 2 + rectangle.MinPosition / 2;
+        //    BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, originalWorldPosition);
+        //    const float lineWidth = 1.0f;
+        //    boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth));
 
-            return boxRenderer;
-        }
+        //    return boxRenderer;
+        //}
     }
 }

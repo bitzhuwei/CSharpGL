@@ -38,7 +38,7 @@
     public static class IModelSpaceHelper
     {
         /// <summary>
-        /// 
+        /// Gets max and min position of the AABB box that wraps specified <paramref name="model"/>.
         /// </summary>
         /// <param name="model"></param>
         /// <param name="maxPosition"></param>
@@ -48,8 +48,8 @@
             if (model == null) { throw new System.ArgumentNullException(); }
 
             vec3 lengths = model.Lengths * model.Scale;
-            maxPosition = model.WorldPosition + lengths;
-            minPosition = model.WorldPosition - lengths;
+            maxPosition = model.WorldPosition + lengths / 2.0f;
+            minPosition = model.WorldPosition - lengths / 2.0f;
         }
 
         /// <summary>
@@ -111,11 +111,11 @@
         {
             vec3 max, min;
             {
-                vec3 position = model.WorldPosition + model.Lengths / 2;
+                vec3 position = model.WorldPosition + model.Lengths * model.Scale / 2;
                 max = position;
             }
             {
-                vec3 position = model.WorldPosition - model.Lengths / 2;
+                vec3 position = model.WorldPosition - model.Lengths * model.Scale / 2;
                 min = position;
             }
 

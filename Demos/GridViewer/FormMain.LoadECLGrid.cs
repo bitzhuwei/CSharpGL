@@ -39,9 +39,9 @@ namespace GridViewer
 
                 SceneObject gridObj = GetCatesianGridObj(grid, gridProperties, fileName);
                 SceneObject[] wellObjects = GetWellObjects(inputData, grid, fileName);
-                var list = new List<IBoundingBox>();
-                list.Add((gridObj.Renderer as IModelSpace).GetBoundingBox());
-                list.AddRange((from item in wellObjects select (item.Renderer as IModelSpace).GetBoundingBox()).ToArray());
+                var list = new List<IModelSpace>();
+                list.Add(gridObj.Renderer);
+                list.AddRange(from item in wellObjects select item.Renderer);
                 BoundingBoxRenderer boxRenderer = list.GetBoundingBoxRenderer();
                 SceneObject mainObj = boxRenderer.WrapToSceneObject(
                     string.Format("CatesianGrid: {0}", fileName),
@@ -50,6 +50,7 @@ namespace GridViewer
                 mainObj.Children.AddRange(wellObjects);
 
                 this.scientificCanvas.Scene.RootObject.Children.Add(mainObj);
+                this.scientificCanvas.Scene.Camera.ZoomCamera(boxRenderer.GetBoundingBox());
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
                 this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;
