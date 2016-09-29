@@ -2,37 +2,55 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
   <Class Name="CSharpGL.Buffer">
     <Position X="11.75" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>BAIAAAAEACAAAAAEAQwAAAREAAAAAkAAAAAAAgAAAAA=</HashCode>
+      <HashCode>BAAAAAAEACAAAAAEAQgAAAREAAAAAkAAAAAAAgAAAAA=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Buffers\Buffer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.IndexBuffer">
-    <Position X="5.25" Y="6" Width="4.75" />
+    <Position X="5.25" Y="4" Width="4.75" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAoAAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.OneIndexBuffer">
-    <Position X="7.25" Y="8.25" Width="7.25" />
+    <Position X="7.25" Y="7" Width="7.25" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAA=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.ZeroIndexBuffer">
-    <Position X="0.5" Y="8.25" Width="6" />
+    <Position X="0.5" Y="7" Width="6" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.VertexAttributeBuffer&lt;T&gt;">
-    <Position X="15.25" Y="6" Width="10.25" />
+    <Position X="15.25" Y="4" Width="10.25" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAgAAAAAAAAAAAAAAAAAAAEAAAAAAIAAgBAA=</HashCode>
+      <HashCode>AAIAAAAAAgAAAAAAAAQAAAAAAAAAAEAAAAAAIAAgBAA=</HashCode>
       <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
