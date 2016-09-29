@@ -16,8 +16,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            //GL.ClearColor(0, 0, 0, 0);
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
@@ -41,9 +39,6 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-
-            //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
         }
     }
