@@ -2,6 +2,23 @@
 {
     public static partial class glm
     {
+
+        /// <summary>
+        /// Gets the transposed matrix.
+        /// <para>获取转置矩阵。</para>
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public static mat2 transpose(mat2 m)
+        {
+            vec2 col0 = m.col0;
+            vec2 col1 = m.col1;
+            return new mat2(
+                new vec2(col0.x, col1.x),
+                new vec2(col0.y, col1.y)
+                );
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -20,6 +37,24 @@
                 +m[0][0] * OneOverDeterminant);
 
             return Inverse;
+        }
+
+        /// <summary>
+        /// Gets the transposed matrix.
+        /// <para>获取转置矩阵。</para>
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public static mat3 transpose(mat3 m)
+        {
+            vec3 col0 = m.col0;
+            vec3 col1 = m.col1;
+            vec3 col2 = m.col2;
+            return new mat3(
+                new vec3(col0.x, col1.x, col2.x),
+                new vec3(col0.y, col1.y, col2.y),
+                new vec3(col0.z, col1.z, col2.z)
+                );
         }
 
         /// <summary>
