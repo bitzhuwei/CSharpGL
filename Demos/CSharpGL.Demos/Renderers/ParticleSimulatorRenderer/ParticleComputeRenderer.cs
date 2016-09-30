@@ -53,7 +53,7 @@ namespace CSharpGL.Demos
                 //OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER,
                 //    64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
                 //OpenGL.BindBufferBase(BindBufferBaseTarget.UniformBuffer, 0, attractor_buffer[0]);
-                var buffer = new UniformBuffer<vec4>(BufferUsage.DynamicCopy, true);
+                var buffer = new UniformBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed: true);
                 buffer.Create(elementCount: 64);
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 ptr.Bind();
