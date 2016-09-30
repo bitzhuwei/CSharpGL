@@ -137,23 +137,23 @@ namespace CSharpGL
             glUseProgram(0);
         }
 
-        private bool GetLinkStatus(uint program)
+        private bool GetLinkStatus(uint programId)
         {
             int[] parameters = new int[] { 0 };
-            glGetProgramiv(program, OpenGL.GL_LINK_STATUS, parameters);
+            glGetProgramiv(programId, OpenGL.GL_LINK_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
-        private string GetInfoLog(uint program)
+        private string GetInfoLog(uint programId)
         {
             //  Get the info log length.
             int[] infoLength = new int[] { 0 };
-            glGetProgramiv(program, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
+            glGetProgramiv(programId, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
             int bufSize = infoLength[0];
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(program, bufSize, IntPtr.Zero, il);
+            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(programId, bufSize, IntPtr.Zero, il);
 
             string log = il.ToString();
             return log;

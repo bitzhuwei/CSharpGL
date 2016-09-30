@@ -292,7 +292,7 @@
         /// </summary>
         /// <param name="location"></param>
         /// <param name="v0"></param>
-        public delegate void glUniform1ui(int location, uint v0);
+        internal delegate void glUniform1ui(int location, uint v0);
 
         /// <summary>
         ///
@@ -300,7 +300,7 @@
         /// <param name="location"></param>
         /// <param name="v0"></param>
         /// <param name="v1"></param>
-        public delegate void glUniform2ui(int location, uint v0, uint v1);
+        internal delegate void glUniform2ui(int location, uint v0, uint v1);
 
         /// <summary>
         ///
@@ -309,7 +309,7 @@
         /// <param name="v0"></param>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
-        public delegate void glUniform3ui(int location, uint v0, uint v1, uint v2);
+        internal delegate void glUniform3ui(int location, uint v0, uint v1, uint v2);
 
         /// <summary>
         ///
@@ -319,7 +319,7 @@
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <param name="v3"></param>
-        public delegate void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
+        internal delegate void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
 
         /// <summary>
         ///
@@ -327,7 +327,7 @@
         /// <param name="location"></param>
         /// <param name="count"></param>
         /// <param name="value"></param>
-        public delegate void glUniform1uiv(int location, int count, uint[] value);
+        internal delegate void glUniform1uiv(int location, int count, uint[] value);
 
         /// <summary>
         ///
@@ -335,7 +335,7 @@
         /// <param name="location"></param>
         /// <param name="count"></param>
         /// <param name="value"></param>
-        public delegate void glUniform2uiv(int location, int count, uint[] value);
+        internal delegate void glUniform2uiv(int location, int count, uint[] value);
 
         /// <summary>
         ///
@@ -343,7 +343,7 @@
         /// <param name="location"></param>
         /// <param name="count"></param>
         /// <param name="value"></param>
-        public delegate void glUniform3uiv(int location, int count, uint[] value);
+        internal delegate void glUniform3uiv(int location, int count, uint[] value);
 
         /// <summary>
         ///
@@ -351,7 +351,7 @@
         /// <param name="location"></param>
         /// <param name="count"></param>
         /// <param name="value"></param>
-        public delegate void glUniform4uiv(int location, int count, uint[] value);
+        internal delegate void glUniform4uiv(int location, int count, uint[] value);
 
         ///// <summary>
         /////

@@ -43,7 +43,7 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                glDeleteShader(ShaderId);
+                glDeleteShader(this.ShaderId);
                 ShaderId = 0;
             } // end if
 
