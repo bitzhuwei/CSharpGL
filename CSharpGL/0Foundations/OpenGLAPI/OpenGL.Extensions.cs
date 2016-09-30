@@ -5411,7 +5411,7 @@ namespace CSharpGL
         /// <param name="program"></param>
         /// <param name="uniformBlockName"></param>
         /// <returns></returns>
-        public delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
+        internal delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
 
         /// <summary>
         ///
@@ -5421,7 +5421,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="pointer"></param>
         /// <returns></returns>
-        public delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, uint[] pointer);
+        internal delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, uint[] pointer);
 
         /// <summary>
         ///
