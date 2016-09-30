@@ -45,6 +45,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strScene)]
         [Description("camera of the scene.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public ICamera Camera { get; private set; }
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strScene)]
         [Description("Canvas that this scene binds to.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public ICanvas Canvas { get; set; }
 
         /// <summary>

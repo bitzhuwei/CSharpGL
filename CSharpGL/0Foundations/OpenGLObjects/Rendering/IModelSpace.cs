@@ -1,9 +1,12 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+using System.Drawing.Design;
+namespace CSharpGL
 {
     /// <summary>
     /// gets model's original size.
     /// transform a model from model's sapce to world's space.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface IModelSpace
     {
         /// <summary>
