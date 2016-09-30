@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace CSharpGL
@@ -7,6 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// OpenGL Canvas.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface ICanvas
     {
         /// <summary>

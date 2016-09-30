@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <param name="camera">Camera of the scene</param>
         /// <param name="canvas">Canvas that this scene binds to.</param>
         /// <param name="objects">Objects to be rendered</param>
-        public Scene(Camera camera, ICanvas canvas, params SceneObject[] objects)
+        public Scene(ICamera camera, ICanvas canvas, params SceneObject[] objects)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
