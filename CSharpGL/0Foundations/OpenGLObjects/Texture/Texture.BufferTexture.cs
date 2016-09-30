@@ -29,8 +29,7 @@
             buffer.Create(elementCount);
             BufferPtr bufferPtr = buffer.GetBufferPtr();
 
-            const bool autoDispose = true;
-            return bufferPtr.DumpBufferTexture(internalFormat, autoDispose);
+            return bufferPtr.DumpBufferTexture(internalFormat, autoDispose: true);
         }
     }
 }

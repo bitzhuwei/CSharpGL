@@ -632,7 +632,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="n">Number of textures to delete.</param>
         /// <param name="samplers">The array containing the names of the textures to delete.</param>
-        public delegate void glDeleteSamplers(int n, uint[] samplers);
+        internal delegate void glDeleteSamplers(int n, uint[] samplers);
 
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
 
