@@ -36,33 +36,33 @@ namespace CSharpGL
             }
 
             //  Create the OpenGL shader object.
-            uint shaderObject = glCreateShader(shaderType);
+            uint shaderId = glCreateShader(shaderType);
 
             //  Set the shader source.
-            glShaderSource(shaderObject, 1, new[] { source }, new[] { source.Length });
+            glShaderSource(shaderId, 1, new[] { source }, new[] { source.Length });
             //  Compile the shader object.
-            glCompileShader(shaderObject);
+            glCompileShader(shaderId);
 
             //  Now that we've compiled the shader, check it's compilation status. If it's not compiled properly, we're
             //  going to throw an exception.
-            if (GetCompileStatus(shaderObject) == false)
+            if (GetCompileStatus(shaderId) == false)
             {
-                string log = this.GetInfoLog(shaderObject);
+                string log = this.GetInfoLog(shaderId);
                 throw new Exception(
-                    string.Format("Failed to compile shader with ID {0}: {1}", shaderObject, log));
+                    string.Format("Failed to compile shader with ID {0}: {1}", shaderId, log));
             }
 
-            this.ShaderObject = shaderObject;
+            this.ShaderId = shaderId;
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        private bool GetCompileStatus(uint shaderObject)
+        private bool GetCompileStatus(uint shaderId)
         {
             int[] parameters = new int[] { 0 };
-            glGetShaderiv(shaderObject, OpenGL.GL_COMPILE_STATUS, parameters);
+            glGetShaderiv(shaderId, OpenGL.GL_COMPILE_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
@@ -70,16 +70,16 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        private string GetInfoLog(uint shaderObject)
+        private string GetInfoLog(uint shaderId)
         {
             //  Get the info log length.
             int[] infoLength = new int[] { 0 };
-            glGetShaderiv(shaderObject, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
+            glGetShaderiv(shaderId, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
             int bufSize = infoLength[0];
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            glGetShaderInfoLog(shaderObject, bufSize, IntPtr.Zero, il);
+            glGetShaderInfoLog(shaderId, bufSize, IntPtr.Zero, il);
             string log = il.ToString();
             return log;
         }
@@ -87,6 +87,6 @@ namespace CSharpGL
         /// <summary>
         /// Gets the shader object.
         /// </summary>
-        public uint ShaderObject { get; private set; }
+        public uint ShaderId { get; private set; }
     }
 }

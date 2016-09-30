@@ -75,7 +75,7 @@ namespace CSharpGL
 
             foreach (var item in shaders)
             {
-                glAttachShader(programId, item.ShaderObject);
+                glAttachShader(programId, item.ShaderId);
             }
 
             glLinkProgram(programId);
@@ -90,7 +90,7 @@ namespace CSharpGL
 
             foreach (var item in shaders)
             {
-                glDetachShader(programId, item.ShaderObject);
+                glDetachShader(programId, item.ShaderId);
             }
 
             this.ProgramId = programId;
