@@ -5,7 +5,7 @@
     /// </summary>
     public class UniformBufferPtr : IndependentBufferPtr
     {
-        internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
+        private static OpenGL.glUniformBlockBinding glUniformBlockBinding;
 
         /// <summary>
         /// Target that this buffer should bind to.

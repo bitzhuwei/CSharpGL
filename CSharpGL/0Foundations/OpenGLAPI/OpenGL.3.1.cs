@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="first"></param>
         /// <param name="count"></param>
         /// <param name="primcount"></param>
-        public delegate void glDrawArraysInstanced(uint mode, int first, int count, int primcount);
+        internal delegate void glDrawArraysInstanced(uint mode, int first, int count, int primcount);
 
         /// <summary>
         ///
@@ -24,7 +24,7 @@ namespace CSharpGL
         /// <param name="type"></param>
         /// <param name="indices"></param>
         /// <param name="primcount"></param>
-        public delegate void glDrawElementsInstanced(uint mode, int count, uint type, IntPtr indices, int primcount);
+        internal delegate void glDrawElementsInstanced(uint mode, int count, uint type, IntPtr indices, int primcount);
 
         /// <summary>
         ///

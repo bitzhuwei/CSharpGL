@@ -70,28 +70,28 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="buffer"></param>
-        public delegate void glBindBuffer(uint target, uint buffer);
+        internal delegate void glBindBuffer(uint target, uint buffer);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="buffers"></param>
-        public delegate void glDeleteBuffers(int n, uint[] buffers);
+        internal delegate void glDeleteBuffers(int n, uint[] buffers);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="buffers"></param>
-        public delegate void glGenBuffers(int n, uint[] buffers);
+        internal delegate void glGenBuffers(int n, uint[] buffers);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        public delegate bool glIsBuffer(uint buffer);
+        internal delegate bool glIsBuffer(uint buffer);
 
         /// <summary>
         ///
@@ -126,7 +126,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="access"></param>
         /// <returns></returns>
-        public delegate IntPtr glMapBuffer(uint target, uint access);
+        internal delegate IntPtr glMapBuffer(uint target, uint access);
 
         /// <summary>
         ///
@@ -136,14 +136,14 @@ namespace CSharpGL
         /// <param name="length"></param>
         /// <param name="access"></param>
         /// <returns></returns>
-        public delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
+        internal delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
 
         /// <summary>
         /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        public delegate bool glUnmapBuffer(uint target);
+        internal delegate bool glUnmapBuffer(uint target);
 
         ///// <summary>
         /////

@@ -11,27 +11,27 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected static OpenGL.glVertexAttribPointer glVertexAttribPointer;
+        internal static OpenGL.glVertexAttribPointer glVertexAttribPointer;
 
         /// <summary>
         ///
         /// </summary>
-        protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
+        internal static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
 
         /// <summary>
         ///
         /// </summary>
-        protected static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
+        internal static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
 
         /// <summary>
         ///
         /// </summary>
-        protected static OpenGL.glPatchParameteri glPatchParameteri;
+        internal static OpenGL.glPatchParameteri glPatchParameteri;
 
         /// <summary>
         /// TODO: temporary field here. not know where to use it yet.
         /// </summary>
-        protected static OpenGL.glPatchParameterfv glPatchParameterfv;
+        internal static OpenGL.glPatchParameterfv glPatchParameterfv;
 
         /// <summary>
         /// Target that this buffer should bind to.

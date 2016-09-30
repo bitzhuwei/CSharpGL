@@ -107,7 +107,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="index"></param>
-        public delegate void glEnableVertexAttribArray(uint index);
+        internal delegate void glEnableVertexAttribArray(uint index);
 
         ///// <summary>
         /////
@@ -694,7 +694,7 @@ namespace CSharpGL
         /// <param name="normalized"></param>
         /// <param name="stride"></param>
         /// <param name="pointer"></param>
-        public delegate void glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+        internal delegate void glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
 
         //  Constants
         ///// <summary>

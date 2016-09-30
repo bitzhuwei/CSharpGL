@@ -3730,21 +3730,21 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="array"></param>
-        public delegate void glBindVertexArray(uint array);
+        internal delegate void glBindVertexArray(uint array);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="arrays"></param>
-        public delegate void glDeleteVertexArrays(int n, uint[] arrays);
+        internal delegate void glDeleteVertexArrays(int n, uint[] arrays);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="arrays"></param>
-        public delegate void glGenVertexArrays(int n, uint[] arrays);
+        internal delegate void glGenVertexArrays(int n, uint[] arrays);
 
         /// <summary>
         ///
@@ -4700,7 +4700,7 @@ namespace CSharpGL
         /// <param name="program">The name of a program object whose resources to query.</param>
         /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
         /// <param name="name">The name of the resource to query the index of.</param>
-        public delegate uint glGetProgramResourceIndex(uint program, uint programInterface, string name);
+        internal delegate uint glGetProgramResourceIndex(uint program, uint programInterface, string name);
         /// <summary>
         /// Query the name of an indexed resource within a program
         /// </summary>
@@ -4748,7 +4748,7 @@ namespace CSharpGL
         /// <param name="program">The name of the program containing the block whose binding to change.</param>
         /// <param name="storageBlockIndex">The index storage block within the program.</param>
         /// <param name="storageBlockBinding">The index storage block binding to associate with the specified storage block.</param>
-        public delegate void glShaderStorageBlockBinding(uint program, uint storageBlockIndex, uint storageBlockBinding);
+        internal delegate void glShaderStorageBlockBinding(uint program, uint storageBlockIndex, uint storageBlockBinding);
 
         //  Constants
         /// <summary>
@@ -5403,7 +5403,7 @@ namespace CSharpGL
         /// <param name="program"></param>
         /// <param name="uniformBlockIndex"></param>
         /// <param name="uniformBlockBinding"></param>
-        public delegate void glUniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
+        internal delegate void glUniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
 
         /// <summary>
         ///
@@ -5509,14 +5509,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="pname">Specifies the name of the parameter to set.</param>
         /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
-        public delegate void glPatchParameteri(uint pname, int value);
+        internal delegate void glPatchParameteri(uint pname, int value);
 
         /// <summary>
         /// specifies the parameters for patch primitives
         /// </summary>
         /// <param name="pname">Specifies the name of the parameter to set.</param>
         /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
-        public delegate void glPatchParameterfv(uint pname, float[] values);
+        internal delegate void glPatchParameterfv(uint pname, float[] values);
 
         /// <summary>
         ///

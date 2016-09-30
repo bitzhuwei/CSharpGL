@@ -6,7 +6,7 @@
     public class ShaderStorageBufferPtr : IndependentBufferPtr
     {
         private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
-        static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
+        private static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
 
         /// <summary>
         /// Target that this buffer should bind to.

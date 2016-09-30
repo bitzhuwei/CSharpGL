@@ -92,9 +92,4 @@ namespace CSharpGL
         /// </summary>
         UInt = OpenGL.GL_UNSIGNED_INT,
     }
-
-    //public static class OneIndexBufferHelper
-    //{
-    //    public static
-    //}
 }
