@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace CSharpGL
@@ -13,6 +14,7 @@ namespace CSharpGL
     [DefaultEvent("OpenGLDraw")]
     [Description("A canvas for OpenGL rendering.")]
     //[ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
+    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class GLCanvas :
         UserControl,
         ISupportInitialize,

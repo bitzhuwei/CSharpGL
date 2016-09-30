@@ -54,7 +54,7 @@ namespace CSharpGL
         [Category(strScene)]
         [Description("Canvas that this scene binds to.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public ICanvas Canvas { get; set; }
+        public ICanvas Canvas { get; private set; }
 
         /// <summary>
         /// background color.
