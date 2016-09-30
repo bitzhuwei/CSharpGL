@@ -136,9 +136,9 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.buildListsRenderer.SetUniform("model_matrix", model);
-            this.buildListsRenderer.SetUniform("view_matrix", view);
             this.buildListsRenderer.SetUniform("projection_matrix", projection);
+            this.buildListsRenderer.SetUniform("view_matrix", view);
+            this.buildListsRenderer.SetUniform("model_matrix", model);
             this.resolve_lists.SetUniform("projection_matrix", projection);
             this.resolve_lists.SetUniform("view_matrix", view);
             this.resolve_lists.SetUniform("model_matrix", model);
