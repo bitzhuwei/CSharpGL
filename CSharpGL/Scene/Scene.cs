@@ -73,6 +73,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strScene)]
         [Description("Root object of all objects to be rendered in the scene.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public SceneRootObject RootObject { get { return rootObject; } }
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strScene)]
         [Description("hosts all UI renderers.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public UIRoot UIRoot { get { return this.uiRoot; } }
 
         /// <summary>
