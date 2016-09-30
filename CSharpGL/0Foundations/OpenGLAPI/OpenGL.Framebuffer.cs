@@ -11,7 +11,7 @@
         /// <param name="target">The target of the operation, which must be GL_READ_FRAMEBUFFER​, GL_DRAW_FRAMEBUFFER​ or GL_FRAMEBUFFER​.</param>
         /// <param name="pname">A token indicating the parameter to be modified.</param>
         /// <param name="param">The new value for the parameter named pname​.</param>
-        public delegate void glFramebufferParameteri(uint target, uint pname, int param);
+        internal delegate void glFramebufferParameteri(uint target, uint pname, int param);
 
         /// <summary>
         /// Retrieve a named parameter from a framebuffer
@@ -54,7 +54,7 @@
         /// </summary>
         /// <param name="target">Specifies the target to which the renderbuffer object is bound. The symbolic constant must be GL_RENDERBUFFER.</param>
         /// <param name="renderbuffer">Specifies the name of a renderbuffer object.</param>
-        public delegate void glBindRenderbufferEXT(uint target, uint renderbuffer);
+        internal delegate void glBindRenderbufferEXT(uint target, uint renderbuffer);
 
         /// <summary>
         ///
@@ -68,7 +68,7 @@
         /// </summary>
         /// <param name="n"></param>
         /// <param name="renderbuffers"></param>
-        public delegate void glGenRenderbuffersEXT(uint n, uint[] renderbuffers);
+        internal delegate void glGenRenderbuffersEXT(uint n, uint[] renderbuffers);
 
         /// <summary>
         ///
@@ -77,7 +77,7 @@
         /// <param name="internalformat"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public delegate void glRenderbufferStorageEXT(uint target, uint internalformat, int width, int height);
+        internal delegate void glRenderbufferStorageEXT(uint target, uint internalformat, int width, int height);
 
         /// <summary>
         ///
@@ -99,7 +99,7 @@
         /// </summary>
         /// <param name="target"></param>
         /// <param name="framebuffer"></param>
-        public delegate void glBindFramebufferEXT(uint target, uint framebuffer);
+        internal delegate void glBindFramebufferEXT(uint target, uint framebuffer);
 
         /// <summary>
         ///
@@ -113,14 +113,14 @@
         /// </summary>
         /// <param name="n"></param>
         /// <param name="framebuffers"></param>
-        public delegate void glGenFramebuffersEXT(uint n, uint[] framebuffers);
+        internal delegate void glGenFramebuffersEXT(uint n, uint[] framebuffers);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        public delegate uint glCheckFramebufferStatusEXT(uint target);
+        internal delegate uint glCheckFramebufferStatusEXT(uint target);
 
         /// <summary>
         ///
@@ -140,7 +140,7 @@
         /// <param name="textarget"></param>
         /// <param name="texture"></param>
         /// <param name="level"></param>
-        public delegate void glFramebufferTexture2DEXT(uint target, uint attachment, uint textarget, uint texture, int level);
+        internal delegate void glFramebufferTexture2DEXT(uint target, uint attachment, uint textarget, uint texture, int level);
 
         /// <summary>
         ///
@@ -160,7 +160,7 @@
         /// <param name="attachment"></param>
         /// <param name="renderbuffertarget"></param>
         /// <param name="renderbuffer"></param>
-        public delegate void glFramebufferRenderbufferEXT(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
+        internal delegate void glFramebufferRenderbufferEXT(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
 
         /// <summary>
         ///
