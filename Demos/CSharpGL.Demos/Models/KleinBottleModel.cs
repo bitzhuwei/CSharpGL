@@ -58,6 +58,13 @@ namespace CSharpGL.Demos
 
         private IndexBufferPtr indexBufferPtr = null;
 
+        /// <summary>
+        /// 获取指定的顶点属性缓存。
+        /// <para>Gets specified vertex buffer object.</para>
+        /// </summary>
+        /// <param name="bufferName">buffer name(Gets this name from 'strPosition' etc.</param>
+        /// <param name="varNameInShader">name in vertex shader like `in vec3 in_Position;`.</param>
+        /// <returns>Vertex Buffer Object.</returns>
         public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
@@ -76,6 +83,8 @@ namespace CSharpGL.Demos
 
         private VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)
         {
+            VertexAttributeBufferPtr positionBufferPtr = null;
+
             using (var buffer = new VertexAttributeBuffer<vec3>(
                 varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
             {
