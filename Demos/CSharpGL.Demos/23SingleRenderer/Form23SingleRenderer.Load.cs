@@ -20,7 +20,6 @@ namespace CSharpGL.Demos
                 this.camera = camera;
                 this.rotator = rotator;
                 var scene = new Scene(camera, this.glCanvas1);
-                scene.ClearColor = Color.SkyBlue;
                 this.scene = scene;
                 this.glCanvas1.Resize += this.scene.Resize;
             }

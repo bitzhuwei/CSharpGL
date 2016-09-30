@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
         {
             {
                 // particleSimulator.comp is also OK.
-                var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\ParticleSimulatorRenderer\particleSimulator-fountain.comp"), ShaderType.ComputeShader);
+                var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\ParticleSimulatorRenderer\particleSimulator.comp"), ShaderType.ComputeShader);
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {
