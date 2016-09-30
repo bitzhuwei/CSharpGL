@@ -63,7 +63,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="shader"></param>
-        public delegate void glCompileShader(uint shader);
+        internal delegate void glCompileShader(uint shader);
 
         /// <summary>
         ///
@@ -76,7 +76,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public delegate uint glCreateShader(uint type);
+        internal delegate uint glCreateShader(uint type);
 
         /// <summary>
         ///
@@ -88,7 +88,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="shader"></param>
-        public delegate void glDeleteShader(uint shader);
+        internal delegate void glDeleteShader(uint shader);
 
         /// <summary>
         ///
@@ -170,7 +170,7 @@ namespace CSharpGL
         /// <param name="shader"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetShaderiv(uint shader, uint pname, int[] parameters);
+        internal delegate void glGetShaderiv(uint shader, uint pname, int[] parameters);
 
         /// <summary>
         ///
@@ -179,7 +179,7 @@ namespace CSharpGL
         /// <param name="bufSize"></param>
         /// <param name="length"></param>
         /// <param name="infoLog"></param>
-        public delegate void glGetShaderInfoLog(uint shader, int bufSize, IntPtr length, StringBuilder infoLog);
+        internal delegate void glGetShaderInfoLog(uint shader, int bufSize, IntPtr length, StringBuilder infoLog);
 
         /// <summary>
         ///
@@ -275,7 +275,7 @@ namespace CSharpGL
         /// <param name="source"></param>
         /// <param name="length"></param>
         [UnmanagedFunctionPointer(CallingConvention.StdCall, ThrowOnUnmappableChar = true)]
-        public delegate void glShaderSource(uint shader, int count, string[] source, int[] length);
+        internal delegate void glShaderSource(uint shader, int count, string[] source, int[] length);
 
         /// <summary>
         ///
