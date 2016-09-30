@@ -12,34 +12,34 @@ namespace CSharpGL
         /// </summary>
         /// <param name="n"></param>
         /// <param name="ids"></param>
-        public delegate void glGenQueries(int n, uint[] ids);
+        internal delegate void glGenQueries(int n, uint[] ids);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="ids"></param>
-        public delegate void glDeleteQueries(int n, uint[] ids);
+        internal delegate void glDeleteQueries(int n, uint[] ids);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public delegate bool glIsQuery(uint id);
+        internal delegate bool glIsQuery(uint id);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="id"></param>
-        public delegate void glBeginQuery(uint target, uint id);
+        internal delegate void glBeginQuery(uint target, uint id);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
-        public delegate void glEndQuery(uint target);
+        internal delegate void glEndQuery(uint target);
 
         /// <summary>
         ///
@@ -47,7 +47,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetQueryiv(uint target, uint pname, int[] parameters);
+        internal delegate void glGetQueryiv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         ///
@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <param name="id"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetQueryObjectiv(uint id, uint pname, int[] parameters);
+        internal delegate void glGetQueryObjectiv(uint id, uint pname, int[] parameters);
 
         /// <summary>
         ///
@@ -63,7 +63,7 @@ namespace CSharpGL
         /// <param name="id"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetQueryObjectuiv(uint id, uint pname, uint[] parameters);
+        internal delegate void glGetQueryObjectuiv(uint id, uint pname, uint[] parameters);
 
         /// <summary>
         ///
