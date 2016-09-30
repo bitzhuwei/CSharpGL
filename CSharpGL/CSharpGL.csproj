@@ -114,6 +114,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\DitherSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\LogicOperationSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\FrontFaceSwitch.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.SetUniforms.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
