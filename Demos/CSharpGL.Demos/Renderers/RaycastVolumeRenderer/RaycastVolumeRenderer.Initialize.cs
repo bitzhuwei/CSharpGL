@@ -44,11 +44,11 @@ namespace CSharpGL.Demos
             this.raycastRenderer.SetUniform("ScreenSize", new vec2(viewport[2], viewport[3]));
             this.raycastRenderer.SetUniform("StepSize", g_stepSize);
             this.raycastRenderer.SetUniform("TransferFunc",
-                this.transferFunc1DTexture.ToSamplerValue());
+                this.transferFunc1DTexture);
             this.raycastRenderer.SetUniform("ExitPoints",
-                this.backface2DTexture.ToSamplerValue());
+                this.backface2DTexture);
             this.raycastRenderer.SetUniform("VolumeTex",
-                this.volume3DTexture.ToSamplerValue());
+                this.volume3DTexture);
             var clearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
             //this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());

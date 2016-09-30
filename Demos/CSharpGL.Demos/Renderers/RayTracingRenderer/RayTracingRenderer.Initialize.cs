@@ -24,7 +24,7 @@ namespace CSharpGL.Demos
                     TextureFilter.Linear, TextureFilter.Linear));
             texture.Initialize();
             this.texture = texture;
-            this.SetUniform("u_texture", texture.ToSamplerValue());
+            this.SetUniform("u_texture", texture);
 
             {
                 var shaderCodes = new ShaderCode[] { new ShaderCode(File.ReadAllText(@"shaders\RayTracingRenderer\raytrace.comp.glsl"), ShaderType.ComputeShader), };

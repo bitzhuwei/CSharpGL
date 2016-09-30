@@ -10,7 +10,7 @@
             base.DoInitialize();
 
             var renderer = this.Renderer as Renderer;
-            renderer.SetUniform("fontTexture", this.fontTexture.TextureObj.ToSamplerValue());
+            renderer.SetUniform("fontTexture", this.fontTexture.TextureObj);
         }
     }
 }

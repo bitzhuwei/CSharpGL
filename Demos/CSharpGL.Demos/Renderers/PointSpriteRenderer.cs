@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
                 this.spriteTexture = texture;
             }
             base.DoInitialize();
-            this.SetUniform("spriteTexture", this.spriteTexture.ToSamplerValue());
+            this.SetUniform("spriteTexture", this.spriteTexture);
             this.SetUniform("factor", 100.0f);
         }
 
@@ -158,7 +158,7 @@ namespace CSharpGL.Demos
             bitmap.Dispose();
             Texture old = this.spriteTexture;
             this.spriteTexture = texture;
-            this.SetUniform("sprite_texture", texture.ToSamplerValue());
+            this.SetUniform("sprite_texture", texture);
 
             old.Dispose();
         }

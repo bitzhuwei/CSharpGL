@@ -13,8 +13,7 @@
             //this.SetUniform("pixelScale", (float)viewport[2]);
             //this.SetUniform("fontHeight", (float)fontResource.FontHeight);
             //this.SetUniform("textColor", new vec3(1, 0, 0));
-            this.SetUniform("fontTexture",
-                this.fontTexture.TextureObj.ToSamplerValue());
+            this.SetUniform("fontTexture", this.fontTexture.TextureObj);
         }
     }
 }

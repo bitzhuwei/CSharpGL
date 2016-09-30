@@ -9,7 +9,7 @@
         {
             base.DoInitialize();
 
-            this.SetUniform("fontTexture", this.fontTexture.TextureObj.ToSamplerValue());
+            this.SetUniform("fontTexture", this.fontTexture.TextureObj);
         }
     }
 }

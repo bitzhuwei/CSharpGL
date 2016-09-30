@@ -56,7 +56,7 @@ namespace CSharpGL.Demos
             }
             base.DoInitialize();
 
-            this.SetUniform("output_image", this.outputImage.ToSamplerValue());
+            this.SetUniform("output_image", this.outputImage);
         }
 
         private uint maxX;

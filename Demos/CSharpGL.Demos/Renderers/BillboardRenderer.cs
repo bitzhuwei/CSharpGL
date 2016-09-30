@@ -65,7 +65,7 @@ namespace CSharpGL.Demos
             var texture = new Texture(TextureTarget.Texture2D, bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();
-            this.SetUniform("myTextureSampler", texture.ToSamplerValue());
+            this.SetUniform("myTextureSampler", texture);
         }
 
         protected override void DoRender(RenderEventArgs arg)

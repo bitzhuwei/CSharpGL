@@ -74,7 +74,7 @@ namespace CSharpGL.Demos
                     model, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Initialize();
                 pickableRenderer.SetUniform("output_image",
-                    this.outputTexture.ToSamplerValue());
+                    this.outputTexture);
                 this.renderer = pickableRenderer;
             }
         }
@@ -192,19 +192,19 @@ namespace CSharpGL.Demos
                 {
                     case CurrentDisplayImage.Input:
                         this.renderer.SetUniform("output_image",
-                            this.intermediateTexture.ToSamplerValue());
+                            this.intermediateTexture);
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
 
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
-                            this.outputTexture.ToSamplerValue());
+                            this.outputTexture);
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
 
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
-                            this.inputTexture.ToSamplerValue());
+                            this.inputTexture);
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
 
@@ -218,19 +218,19 @@ namespace CSharpGL.Demos
                 {
                     case CurrentDisplayImage.Input:
                         this.renderer.SetUniform("output_image",
-                            this.outputTexture.ToSamplerValue());
+                            this.outputTexture);
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
 
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
-                            this.inputTexture.ToSamplerValue());
+                            this.inputTexture);
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
 
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
-                            this.intermediateTexture.ToSamplerValue());
+                            this.intermediateTexture);
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
 

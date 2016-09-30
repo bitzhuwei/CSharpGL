@@ -16,9 +16,9 @@ namespace CSharpGL.Demos
             this.cubeMap = GetCubeMapTexture();
 
             this.SetUniform("u_waterPlaneLength", (float)this.waterPlaneLength);
-            this.SetUniform("u_cubemap", this.cubeMap.ToSamplerValue());
-            this.backgroundRenderer.SetUniform("u_cubemap", this.cubeMap.ToSamplerValue());
-            this.SetUniform("u_waterTexture", this.waterTextureRenderer.MirrorTexture.ToSamplerValue());
+            this.SetUniform("u_cubemap", this.cubeMap);
+            this.backgroundRenderer.SetUniform("u_cubemap", this.cubeMap);
+            this.SetUniform("u_waterTexture", this.waterTextureRenderer.MirrorTexture);
 
             // display back faces only.
             this.cullfaceSwitch = new CullFaceSwitch(CullFaceMode.Back);

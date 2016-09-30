@@ -47,7 +47,7 @@ namespace CSharpGL
             var texture = new Texture(TextureTarget.Texture2D, bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();
-            this.SetUniform("tex", texture.ToSamplerValue());
+            this.SetUniform("tex", texture);
         }
 
         /// <summary>

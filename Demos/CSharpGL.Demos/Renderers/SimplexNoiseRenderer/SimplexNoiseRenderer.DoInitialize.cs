@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
             var texture = new Texture(TextureTarget.Texture1D, bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();
-            this.SetUniform("sunColor", texture.ToSamplerValue());
+            this.SetUniform("sunColor", texture);
         }
     }
 }

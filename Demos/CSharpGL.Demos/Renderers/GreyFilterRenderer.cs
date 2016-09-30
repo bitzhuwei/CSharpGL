@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
                     TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
                     TextureFilter.Linear, TextureFilter.Linear));
             texture.Initialize();
-            this.SetUniform("u_texture", texture.ToSamplerValue());
+            this.SetUniform("u_texture", texture);
             this.texture = texture;
         }
 
