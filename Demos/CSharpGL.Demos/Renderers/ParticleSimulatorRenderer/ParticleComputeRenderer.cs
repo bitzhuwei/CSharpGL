@@ -36,16 +36,14 @@ namespace CSharpGL.Demos
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {
-                const bool autoDispose = false;
                 BufferPtr bufferPtr = this.positionBufferPtr;
-                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose);
+                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
-                const bool autoDispose = false;
                 BufferPtr bufferPtr = this.velocityBufferPtr;
-                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose);
+                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.velocityTexture = texture;
             }
@@ -56,7 +54,7 @@ namespace CSharpGL.Demos
                 //    64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
                 //OpenGL.BindBufferBase(BindBufferBaseTarget.UniformBuffer, 0, attractor_buffer[0]);
                 var buffer = new UniformBuffer<vec4>(BufferUsage.DynamicCopy, true);
-                buffer.Create(64);
+                buffer.Create(elementCount: 64);
                 var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
                 ptr.Bind();
                 OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, ptr.BufferId);
