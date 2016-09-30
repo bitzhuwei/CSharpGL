@@ -48,12 +48,16 @@ namespace CSharpGL.Demos
                 this.velocityTexture = texture;
             }
             {
-                var buffer = new UniformBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed: true);
-                buffer.Create(elementCount: 64);
-                var ptr = buffer.GetBufferPtr() as IndependentBufferPtr;
-                ptr.Bind();
-                OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, ptr.BufferId);
-                this.attractorBufferPtr = ptr;
+                IndependentBufferPtr bufferPtr = null;
+                using (var buffer = new UniformBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed: true))
+                {
+                    buffer.Create(elementCount: 64);
+                    bufferPtr = buffer.GetBufferPtr();
+                }
+                bufferPtr.Bind();
+                OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, bufferPtr.BufferId);
+                this.attractorBufferPtr = bufferPtr;
+                bufferPtr.Unbind();
             }
         }
 
