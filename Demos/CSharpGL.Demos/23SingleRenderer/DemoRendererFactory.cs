@@ -1,53 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Text;
 
 namespace CSharpGL.Demos
 {
     internal class DemoRendererFactory
     {
-        public static RendererBase Create(Type rendererType)
+        public static RendererTransporter Create(Type rendererType)
         {
-            RendererBase renderer = null;
+            RendererTransporter result = null;
             if (rendererType == typeof(AnalyzedPointSpriteRenderer))
             {
-                int particleCount = 10000;
-                renderer = AnalyzedPointSpriteRenderer.Create(particleCount);
+                RendererBase renderer = AnalyzedPointSpriteRenderer.Create(particleCount: 10000);
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(BufferBlockRenderer))
             {
-                renderer = BufferBlockRenderer.Create();
+                RendererBase renderer = BufferBlockRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(ConditionalRenderer))
             {
-                renderer = ConditionalRenderer.Create();
+                RendererBase renderer = ConditionalRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(EmitNormalLineRenderer))
             {
                 var model = new Teapot();
-                renderer = EmitNormalLineRenderer.Create(model, Teapot.strPosition, Teapot.strNormal, model.Lengths);
+                RendererBase renderer = EmitNormalLineRenderer.Create(model, Teapot.strPosition, Teapot.strNormal, model.Lengths);
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(ImageProcessingRenderer))
             {
-                renderer = new ImageProcessingRenderer();
+                RendererBase renderer = new ImageProcessingRenderer();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(KleinBottleRenderer))
             {
-                renderer = KleinBottleRenderer.Create(new KleinBottleModel());
+                RendererBase renderer = KleinBottleRenderer.Create(new KleinBottleModel());
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(OrderDependentTransparencyRenderer))
             {
                 var model = new Teapot();
-                renderer = OrderDependentTransparencyRenderer.Create(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
+                RendererBase renderer = OrderDependentTransparencyRenderer.Create(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(OrderIndependentTransparencyRenderer))
             {
                 var model = new Teapot();
-                renderer = new OrderIndependentTransparencyRenderer(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
+                RendererBase renderer = new OrderIndependentTransparencyRenderer(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {
-                renderer = new ParticleSimulatorRenderer();
+                RendererBase renderer = new ParticleSimulatorRenderer();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(PointCloudRenderer))
             {
@@ -65,51 +84,82 @@ namespace CSharpGL.Demos
                         list.Add(new vec3(x, y, z));
                     }
                 }
-                renderer = PointCloudRenderer.Create(new PointCloudModel(list));
+                RendererBase renderer = PointCloudRenderer.Create(new PointCloudModel(list));
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(PointSpriteRenderer))
             {
                 const int particleCount = 10000;
-                renderer = PointSpriteRenderer.Create(particleCount);
+                RendererBase renderer = PointSpriteRenderer.Create(particleCount);
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(RaycastVolumeRenderer))
             {
-                renderer = new RaycastVolumeRenderer();
+                RendererBase renderer = new RaycastVolumeRenderer();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(RayTracingRenderer))
             {
-                renderer = RayTracingRenderer.Create();
+                RendererBase renderer = RayTracingRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(ShaderToyRenderer))
             {
-                renderer = ShaderToyRenderer.Create();
+                RendererBase renderer = ShaderToyRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(SimpleComputeRenderer))
             {
-                renderer = SimpleComputeRenderer.Create();
+                RendererBase renderer = SimpleComputeRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(SimplexNoiseRenderer))
             {
-                renderer = SimplexNoiseRenderer.Create();
+                RendererBase renderer = SimplexNoiseRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(UniformArrayRenderer))
             {
-                renderer = UniformArrayRenderer.Create();
+                RendererBase renderer = UniformArrayRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(UniformBlockRenderer))
             {
-                renderer = UniformBlockRenderer.Create();
+                RendererBase renderer = UniformBlockRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(WaterRenderer))
             {
-                renderer = WaterRenderer.Create(waterPlaneLength: 4);
+                RendererBase renderer = WaterRenderer.Create(waterPlaneLength: 4);
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
             else if (rendererType == typeof(ZeroAttributeRenderer))
             {
-                renderer = ZeroAttributeRenderer.Create();
+                RendererBase renderer = ZeroAttributeRenderer.Create();
+                string tip = GetDefaultTip();
+                result = new RendererTransporter(renderer, tip, Color.Black);
             }
 
-            return renderer;
+            return result;
+        }
+
+        private static string GetDefaultTip()
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine("1: Scene's property grid.");
+            builder.AppendLine("2: Canvas' property grid.");
+
+            return builder.ToString();
         }
     }
 }

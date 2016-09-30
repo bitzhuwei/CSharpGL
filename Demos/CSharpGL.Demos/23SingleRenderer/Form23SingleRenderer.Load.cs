@@ -30,12 +30,16 @@ namespace CSharpGL.Demos
             frmSelectRenderer.Size = new Size(600, 500);
             if (frmSelectRenderer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                RendererBase renderer = DemoRendererFactory.Create(frmSelectRenderer.SelectedType);
-                if (renderer == null) { throw new Exception("Please add this renderer type to Factory."); }
-                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
+                RendererTransporter transporter = DemoRendererFactory.Create(frmSelectRenderer.SelectedType);
+                if (transporter == null)
+                {
+                    throw new Exception(string.Format(
+                        "Please add this renderer type [{0}] to Factory.", frmSelectRenderer.SelectedType));
+                }
+                SceneObject obj = transporter.Renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
-                this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());
-                var frmProperty = new FormProperyGrid(renderer);
+                this.scene.Camera.ZoomCamera(transporter.Renderer.GetBoundingBox());
+                var frmProperty = new FormProperyGrid(transporter.Renderer);
                 frmProperty.Show();
             }
             {
