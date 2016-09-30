@@ -98,7 +98,7 @@ namespace CSharpGL.Demos
             this.computeProgram.Dispose();
             this.positionTexture.Dispose();
             this.velocityTexture.Dispose();
-            attractorBufferPtr.Dispose();
+            this.attractorBufferPtr.Dispose();
         }
     }
 }
