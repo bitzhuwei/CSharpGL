@@ -186,6 +186,14 @@ namespace CSharpGL
 
             stopWatch.Stop();
 
+            {
+                ErrorCode error = (ErrorCode)OpenGL.GetError();
+                if (error != ErrorCode.NoError)
+                {
+                    Debug.WriteLine(string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error));
+                }
+            }
+
             this.FPS = 1000.0 / stopWatch.Elapsed.TotalMilliseconds;
         }
 

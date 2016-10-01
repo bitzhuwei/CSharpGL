@@ -18,13 +18,6 @@ namespace CSharpGL.Demos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
-            {
-                ErrorCode error = (ErrorCode)OpenGL.GetError();
-                if (error != ErrorCode.NoError)
-                {
-                    Debug.WriteLine(string.Format("OpenGL error: {0}", error));
-                }
-            }
             Debug.Close();
             Debug.Listeners.Clear();
         }
