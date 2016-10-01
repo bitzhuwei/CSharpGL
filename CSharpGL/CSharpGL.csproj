@@ -551,10 +551,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Rendering\IRenderable.cs" />
     <Compile Include="Canvas\RenderContexts\DIBSection.cs" />
     <Compile Include="Canvas\RenderContexts\FBORenderContext.cs" />
-    <Compile Include="Canvas\RenderContexts\GLVersion.cs" />
     <Compile Include="Canvas\RenderContexts\HiddenWindowRenderContext.cs" />
     <Compile Include="Canvas\RenderContexts\RenderContext.cs" />
-    <Compile Include="Canvas\RenderContexts\VersionAttribute.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
