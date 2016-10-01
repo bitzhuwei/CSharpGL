@@ -100,6 +100,10 @@ namespace CSharpGL.Demos
             {
                 renderer = UniformBlockRenderer.Create();
             }
+            else if (rendererType == typeof(UniformStructRenderer))
+            {
+                renderer = UniformStructRenderer.Create();
+            }
             else if (rendererType == typeof(WaterRenderer))
             {
                 renderer = WaterRenderer.Create(waterPlaneLength: 4);

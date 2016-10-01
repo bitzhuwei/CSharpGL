@@ -142,6 +142,7 @@
     <Compile Include="Renderers\KleinBottleRenderer\KleinBottleRenderer.cs" />
     <Compile Include="Renderers\UniformArrayRenderer.cs" />
     <Compile Include="Renderers\BufferBlockRenderer.cs" />
+    <Compile Include="Renderers\UniformStructRenderer.cs" />
     <Compile Include="Renderers\UniformBlockRenderer.cs" />
     <Compile Include="Renderers\ZeroAttributeRenderer.cs" />
     <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.cs" />
@@ -287,6 +288,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\RaycastVolumeRenderer\raycasting.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\UniformStructRenderer\UniformStruct.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\UniformStructRenderer\UniformStruct.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\UniformArrayRenderer\UniformArray.frag">
