@@ -1,6 +1,5 @@
 ﻿#version 330 core
 
-// vert and frag shader share a block of uniforms named 'Uniforms'
 struct Uniforms {
     mat4 projection;
     mat4 view;
