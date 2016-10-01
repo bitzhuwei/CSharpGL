@@ -11,7 +11,6 @@ namespace CSharpGL
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
         /// </summary>
-        /// <param name="openGLVersion">The desired OpenGL version.</param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitDepth">The bit depth.</param>

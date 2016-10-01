@@ -31,8 +31,8 @@ namespace CSharpGL
         /// </summary>
         protected readonly bool designMode;
 
-        private EventHandler mouseEnter;
-        private EventHandler mouseLeave;
+        //private EventHandler mouseEnter;
+        //private EventHandler mouseLeave;
 
         /// <summary>
         /// Creats render context and supports OpenGL rendering.
@@ -49,12 +49,12 @@ namespace CSharpGL
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
             this.designMode = this.DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
 
-            if (!this.designMode)
-            {
-                //this.mouseEnter = GLCanvas_MouseEnter;
-                this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
-                this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
-            }
+            //if (!this.designMode)
+            //{
+            //    //this.mouseEnter = GLCanvas_MouseEnter;
+            //    this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
+            //    this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
+            //}
             {
                 var camera = new Camera(
                     new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0),
@@ -68,40 +68,40 @@ namespace CSharpGL
             }
         }
 
-        private bool showingCursor = true;
-        private bool showSystemCursor = true;
+        //private bool showingCursor = true;
+        //private bool showSystemCursor = true;
 
-        /// <summary>
-        /// show/hide system's cursor.
-        /// </summary>
-        [Category("CSharpGL")]
-        [Description("show/hide system's cursor.")]
-        public bool ShowSystemCursor
-        {
-            get { return (this.showSystemCursor); }
-            set
-            {
-                this.showSystemCursor = value;
-                if (!this.designMode)
-                {
-                    if ((this.showingCursor) && (!value))
-                    {
-                        this.MouseEnter += mouseEnter;
-                        this.MouseLeave += mouseLeave;
-                        ShowCursor(0);
-                    }
-                    else if ((!this.showingCursor) && (value))
-                    {
-                        this.MouseEnter -= mouseEnter;
-                        this.MouseLeave -= mouseLeave;
-                        ShowCursor(1);
-                    }
-                }
-            }
-        }
+        ///// <summary>
+        ///// show/hide system's cursor.
+        ///// </summary>
+        //[Category("CSharpGL")]
+        //[Description("show/hide system's cursor.")]
+        //public bool ShowSystemCursor
+        //{
+        //    get { return (this.showSystemCursor); }
+        //    set
+        //    {
+        //        this.showSystemCursor = value;
+        //        if (!this.designMode)
+        //        {
+        //            if ((this.showingCursor) && (!value))
+        //            {
+        //                this.MouseEnter += mouseEnter;
+        //                this.MouseLeave += mouseLeave;
+        //                ShowCursor(0);
+        //            }
+        //            else if ((!this.showingCursor) && (value))
+        //            {
+        //                this.MouseEnter -= mouseEnter;
+        //                this.MouseLeave -= mouseLeave;
+        //                ShowCursor(1);
+        //            }
+        //        }
+        //    }
+        //}
 
-        [DllImport("user32.dll", EntryPoint = "ShowCursor", CharSet = CharSet.Auto)]
-        private extern static void ShowCursor(int status);
+        //[DllImport("user32.dll", EntryPoint = "ShowCursor", CharSet = CharSet.Auto)]
+        //private extern static void ShowCursor(int status);
 
         #region ISupportInitialize 成员
 

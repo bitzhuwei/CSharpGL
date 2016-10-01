@@ -38,7 +38,6 @@
             this.glSceneCanvas1.Location = new System.Drawing.Point(0, 0);
             this.glSceneCanvas1.Name = "glSceneCanvas1";
             this.glSceneCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.glSceneCanvas1.ShowSystemCursor = true;
             this.glSceneCanvas1.Size = new System.Drawing.Size(578, 417);
             this.glSceneCanvas1.TabIndex = 0;
             this.glSceneCanvas1.Load += new System.EventHandler(this.glSceneCanvas1_Load);
