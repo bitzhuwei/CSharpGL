@@ -658,7 +658,6 @@
             this.scientificCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scientificCanvas.Location = new System.Drawing.Point(0, 0);
             this.scientificCanvas.Name = "scientificCanvas";
-            this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.scientificCanvas.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.scientificCanvas.Size = new System.Drawing.Size(638, 515);
             this.scientificCanvas.TabIndex = 0;

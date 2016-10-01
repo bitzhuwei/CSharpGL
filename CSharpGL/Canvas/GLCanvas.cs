@@ -117,7 +117,7 @@ namespace CSharpGL
             var renderContext = new FBORenderContext();
 
             //  Create the render context.
-            renderContext.Create(OpenGLVersion, Width, Height, 32, null);
+            renderContext.Create(Width, Height, 32, null);
 
             this.renderContext = renderContext;
 
@@ -282,36 +282,36 @@ namespace CSharpGL
         [Category("CSharpGL")]
         public double FPS { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the desired OpenGL version.
-        /// </summary>
-        /// <value>
-        /// The desired OpenGL version.
-        /// </value>
-        [Description("The desired OpenGL version for the control. Only works in design mode."), Category("CSharpGL")]
-        public GLVersion OpenGLVersion
-        {
-            get { return openGLVersion; }
-            set
-            {
-                if (this.designMode)
-                {
-                    openGLVersion = value;
-                    //if (openGLVersion != value)
-                    //{
-                    //    openGLVersion = value;
+        ///// <summary>
+        ///// Gets or sets the desired OpenGL version.
+        ///// </summary>
+        ///// <value>
+        ///// The desired OpenGL version.
+        ///// </value>
+        //[Description("The desired OpenGL version for the control. Only works in design mode."), Category("CSharpGL")]
+        //public GLVersion OpenGLVersion
+        //{
+        //    get { return openGLVersion; }
+        //    set
+        //    {
+        //        if (this.designMode)
+        //        {
+        //            openGLVersion = value;
+        //            //if (openGLVersion != value)
+        //            //{
+        //            //    openGLVersion = value;
 
-                    //    this.DestroyRenderContext();
-                    //    this.CreateRenderContext();
-                    //}
-                }
-            }
-        }
+        //            //    this.DestroyRenderContext();
+        //            //    this.CreateRenderContext();
+        //            //}
+        //        }
+        //    }
+        //}
 
-        /// <summary>
-        /// The default desired OpenGL version.
-        /// </summary>
-        private GLVersion openGLVersion = GLVersion.OpenGL2_1;
+        ///// <summary>
+        ///// The default desired OpenGL version.
+        ///// </summary>
+        //private GLVersion openGLVersion = GLVersion.OpenGL2_1;
 
         /// <summary>
         /// Gets or sets the render trigger.

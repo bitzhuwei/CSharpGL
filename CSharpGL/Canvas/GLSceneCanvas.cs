@@ -125,7 +125,7 @@ namespace CSharpGL
             var renderContext = new FBORenderContext();
 
             //  Create the render context.
-            renderContext.Create(OpenGLVersion, Width, Height, 32, null);
+            renderContext.Create(Width, Height, 32, null);
 
             this.renderContext = renderContext;
 

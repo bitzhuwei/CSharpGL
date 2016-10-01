@@ -16,16 +16,12 @@ namespace CSharpGL
         /// <param name="bitDepth">The bit depth.</param>
         /// <param name="parameter">The extra parameter.</param>
         /// <returns></returns>
-        public virtual bool Create(GLVersion openGLVersion, int width, int height, int bitDepth, object parameter)
+        public virtual bool Create(int width, int height, int bitDepth, object parameter)
         {
             //  Set the width, height and bit depth.
             this.Width = width;
             this.Height = height;
             this.BitDepth = bitDepth;
-
-            //  For now, assume we're going to be able to create the requested OpenGL version.
-            this.RequestedGLVersion = openGLVersion;
-            this.CreatedGLVersion = openGLVersion;
 
             return true;
         }
@@ -79,15 +75,5 @@ namespace CSharpGL
         /// </summary>
         /// <value>The bit depth.</value>
         public int BitDepth { get; protected set; }
-
-        /// <summary>
-        /// Gets the OpenGL version that was requested when creating the render context.
-        /// </summary>
-        public GLVersion RequestedGLVersion { get; protected set; }
-
-        /// <summary>
-        /// Gets the OpenGL version that is supported by the render context, compare to <see cref="RequestedGLVersion"/>.
-        /// </summary>
-        public GLVersion CreatedGLVersion { get; protected set; }
     }
 }

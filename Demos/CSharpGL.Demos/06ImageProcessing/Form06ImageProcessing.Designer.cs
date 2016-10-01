@@ -41,7 +41,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(10, 26);
             this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(568, 402);
             this.glCanvas1.TabIndex = 0;

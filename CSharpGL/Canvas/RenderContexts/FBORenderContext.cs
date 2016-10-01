@@ -49,10 +49,10 @@ namespace CSharpGL
         /// <param name="bitDepth"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool Create(GLVersion openGLVersion, int width, int height, int bitDepth, object parameter)
+        public override bool Create(int width, int height, int bitDepth, object parameter)
         {
             //  Call the base class.
-            base.Create(openGLVersion, width, height, bitDepth, parameter);
+            base.Create(width, height, bitDepth, parameter);
 
             // Create frame buffer object.
             Framebuffer framebuffer = CreateFramebuffer(width, height);

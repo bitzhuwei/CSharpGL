@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSharpGL
 {
@@ -16,10 +17,10 @@ namespace CSharpGL
         /// <param name="bitDepth">The bit depth.</param>
         /// <param name="parameter">The parameter</param>
         /// <returns></returns>
-        public override bool Create(GLVersion openGLVersion, int width, int height, int bitDepth, object parameter)
+        public override bool Create(int width, int height, int bitDepth, object parameter)
         {
             //  Call the base.
-            base.Create(openGLVersion, width, height, bitDepth, parameter);
+            base.Create(width, height, bitDepth, parameter);
 
             // Create a new window class, as basic as possible.
             if (!this.CreateBasicRenderContext(width, height, bitDepth)) { return false; }
@@ -108,12 +109,6 @@ namespace CSharpGL
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
-            var requestedVersionNumber = VersionAttribute.GetVersionAttribute(this.RequestedGLVersion);
-            if (requestedVersionNumber.IsAtLeastVersion(3, 0) == false)
-            {
-                this.CreatedGLVersion = this.RequestedGLVersion;
-                return;
-            }
 
             //  Now the none-trivial case. We must use the WGL_ARB_create_context extension to
             //  attempt to create a 3.0+ context.
@@ -121,8 +116,8 @@ namespace CSharpGL
             {
                 int[] attributes =
                 {
-                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,
-                    OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
+                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
+                    OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, 1,
                     OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
 #if DEBUG
                     OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
@@ -135,10 +130,9 @@ namespace CSharpGL
                 Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
                 this.RenderContextHandle = hrc;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //  TODO: can we actually get the real version?
-                this.CreatedGLVersion = GLVersion.OpenGL2_1;
+                Debug.WriteLine(ex);
             }
         }
 
