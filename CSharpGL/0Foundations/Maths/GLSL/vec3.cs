@@ -295,7 +295,7 @@ namespace CSharpGL
             float frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
             if (frt == 0.0f)
             {
-                Debug.WriteLine("Zero vec3 being normalized!");
+                //Debug.WriteLine("Zero vec3 being normalized!");
 
                 return new vec3(0, 0, 0);
             }

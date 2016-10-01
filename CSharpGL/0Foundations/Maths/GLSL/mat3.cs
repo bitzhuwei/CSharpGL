@@ -402,7 +402,14 @@ namespace CSharpGL
                     break;
             }
 
-            return new Quaternion(w, -x, -y, -z);
+            if (x == 0.0f && y == 0.0f && z == 0.0f)
+            {
+                return new Quaternion(1, 1, 1, 1);
+            }
+            else
+            {
+                return new Quaternion(w, -x, -y, -z);
+            }
         }
     }
 }

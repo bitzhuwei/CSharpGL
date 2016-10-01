@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSharpGL
 {
@@ -37,6 +38,10 @@ namespace CSharpGL
         internal Quaternion(float w, float x, float y, float z)
         {
             this.w = w;
+            if (x == 0.0f && y == 0.0f && z == 0.0f)
+            {
+                Debug.WriteLine("Quaternion with axis not well defined!");
+            }
             this.x = x; this.y = y; this.z = z;
         }
 
@@ -47,6 +52,11 @@ namespace CSharpGL
         /// <param name="axis"></param>
         public Quaternion(float angleDegree, vec3 axis)
         {
+            if (axis.x == 0.0f && axis.y == 0.0f && axis.z == 0.0f)
+            {
+                Debug.WriteLine("Quaternion with axis not well defined!");
+            }
+
             vec3 normalized = axis.normalize();
             double radian = angleDegree * Math.PI / 180.0;
             double halfRadian = radian / 2.0;
