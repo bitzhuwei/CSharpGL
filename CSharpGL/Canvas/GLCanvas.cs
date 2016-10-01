@@ -126,7 +126,7 @@ namespace CSharpGL
             //  Set the most basic OpenGL styles.
             OpenGL.ShadeModel(OpenGL.GL_SMOOTH);
             OpenGL.ClearDepth(1.0f);
-            OpenGL.Enable(OpenGL.GL_DEPTH_TEST);
+            OpenGL.Enable(OpenGL.GL_DEPTH_TEST);// depth test is disabled by default.
             OpenGL.DepthFunc(OpenGL.GL_LEQUAL);
             OpenGL.Hint(OpenGL.GL_PERSPECTIVE_CORRECTION_HINT, OpenGL.GL_NICEST);
             if (this.designMode)
