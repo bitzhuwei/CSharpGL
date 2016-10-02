@@ -63,10 +63,10 @@ namespace CSharpGL
                 this.lblFirst.Text = "First Vertex:";
                 this.lblCount.Text = "Vertex Count:";
                 this.trackFirst.Minimum = 0;
-                this.trackFirst.Maximum = indexBufferPtrController.Count();
+                this.trackFirst.Maximum = indexBufferPtrController.OriginalCount();
                 this.trackFirst.Value = indexBufferPtrController.First();
                 this.trackCount.Minimum = 0;
-                this.trackCount.Maximum = indexBufferPtrController.Count();
+                this.trackCount.Maximum = indexBufferPtrController.OriginalCount();
                 this.trackCount.Value = indexBufferPtrController.Count();
                 this.lblFirstValue.Text = this.trackFirst.Value.ToString();
                 this.lblCountValue.Text = this.trackCount.Value.ToString();
@@ -77,10 +77,10 @@ namespace CSharpGL
                 this.lblFirst.Text = "First Index:";
                 this.lblCount.Text = "Element Count:";
                 this.trackFirst.Minimum = 0;
-                this.trackFirst.Maximum = indexBufferPtrController.Count();
+                this.trackFirst.Maximum = indexBufferPtrController.OriginalCount();
                 this.trackFirst.Value = indexBufferPtrController.First();
                 this.trackCount.Minimum = 0;
-                this.trackCount.Maximum = indexBufferPtrController.Count();
+                this.trackCount.Maximum = indexBufferPtrController.OriginalCount();
                 this.trackCount.Value = indexBufferPtrController.Count();
                 this.lblFirstValue.Text = this.trackFirst.Value.ToString();
                 this.lblCountValue.Text = this.trackCount.Value.ToString();
@@ -143,6 +143,8 @@ namespace CSharpGL
 
         public abstract int Count();
 
+        public abstract int OriginalCount();
+
         public abstract void SetFirst(int value);
 
         internal abstract void SetCount(int value);
@@ -166,8 +168,12 @@ namespace CSharpGL
         {
             return this.indexBufferPtr.FirstVertex;
         }
-
         public override int Count()
+        {
+            return this.indexBufferPtr.VertexCount;
+        }
+
+        public override int OriginalCount()
         {
             return this.indexBufferPtr.OriginalVertexCount;
         }
@@ -208,6 +214,11 @@ namespace CSharpGL
         }
 
         public override int Count()
+        {
+            return this.indexBufferPtr.ElementCount;
+        }
+
+        public override int OriginalCount()
         {
             return indexBufferPtr.Length;
         }
