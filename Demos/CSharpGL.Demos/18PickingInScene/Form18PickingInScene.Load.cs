@@ -196,7 +196,6 @@ namespace CSharpGL.Demos
             {
                 KleinBottleRenderer pickableRenderer = KleinBottleRenderer.Create(new KleinBottleModel());
                 pickableRenderer.Scale = new vec3(0.1f, 0.1f, 0.1f);
-                pickableRenderer.UniformColor = Color.Blue;
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }

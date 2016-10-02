@@ -56,6 +56,9 @@ namespace CSharpGL.Demos
         public const string strPosition = "position";
         private VertexAttributeBufferPtr positionBufferPtr;
 
+        public const string strColor = "color";
+        private VertexAttributeBufferPtr colorBufferPtr;
+
         private IndexBufferPtr indexBufferPtr = null;
 
         /// <summary>
@@ -75,9 +78,53 @@ namespace CSharpGL.Demos
                 }
                 return this.positionBufferPtr;
             }
+            else if (bufferName == strColor)
+            {
+                if (this.colorBufferPtr == null)
+                {
+                    this.colorBufferPtr = GetColorBufferPtr(varNameInShader);
+                }
+                return this.colorBufferPtr;
+            }
             else
             {
                 throw new ArgumentException();
+            }
+        }
+
+        private VertexAttributeBufferPtr GetColorBufferPtr(string varNameInShader)
+        {
+            VertexAttributeBufferPtr colorBufferPtr = null;
+
+            using (var buffer = new VertexAttributeBuffer<vec3>(
+                varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+            {
+                int uCount = GetUCount(interval);
+                int vCount = GetVCount(interval);
+                buffer.Create(uCount * vCount);
+                unsafe
+                {
+                    var random = new Random();
+                    int index = 0;
+                    var array = (vec3*)buffer.Header.ToPointer();
+                    for (int uIndex = 0; uIndex < uCount; uIndex++)
+                    {
+                        for (int vIndex = 0; vIndex < vCount; vIndex++)
+                        {
+                            double u = Math.PI * uIndex / uCount;
+                            double v = Math.PI * 2 * vIndex / vCount;
+
+                            array[index++] = new vec3(
+                                (float)random.NextDouble(),
+                                (float)random.NextDouble(),
+                                (float)random.NextDouble());
+                        }
+                    }
+                }
+
+                colorBufferPtr = buffer.GetBufferPtr();
+
+                return colorBufferPtr;
             }
         }
 

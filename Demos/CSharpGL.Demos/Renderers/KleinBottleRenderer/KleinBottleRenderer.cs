@@ -16,6 +16,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
+            map.Add("in_Color", KleinBottleModel.strColor);
             var renderer = new KleinBottleRenderer(model, shaderCodes, map, KleinBottleModel.strPosition);
             renderer.Lengths = model.Lengths;
 
@@ -33,13 +34,13 @@ namespace CSharpGL.Demos
             base.DoInitialize();
         }
 
-        private vec3 uniformColor = new vec3(1, 1, 1);
+        //private vec3 uniformColor = new vec3(1, 1, 1);
 
-        public Color UniformColor
-        {
-            get { return uniformColor.ToColor(); }
-            set { uniformColor = value.ToVec3(); }
-        }
+        //public Color UniformColor
+        //{
+        //    get { return uniformColor.ToColor(); }
+        //    set { uniformColor = value.ToVec3(); }
+        //}
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();
@@ -48,7 +49,7 @@ namespace CSharpGL.Demos
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             this.SetUniform("modelMatrix", model);
-            this.SetUniform("uniformColor", this.uniformColor);
+            //this.SetUniform("uniformColor", this.uniformColor);
 
             base.DoRender(arg);
         }
