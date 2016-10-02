@@ -16,8 +16,7 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
-                        item.VertexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(i, value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -35,8 +34,7 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
-                        item.VertexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(i, value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -54,8 +52,7 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
-                        item.VertexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(i, value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -73,8 +70,7 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
-                        item.VertexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(i, value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -92,8 +88,7 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
-                        item.VertexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(i, value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -111,8 +106,7 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
-                        item.VertexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(i, value);
                         lastIndexIdList.Add(item);
                     }
                 }
