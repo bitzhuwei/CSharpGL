@@ -1,5 +1,5 @@
 # Object-Oriented Modern OpenGL Wrapper in C\#  
-[CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) | [CSharpGL Wiki](https://github.com/bitzhuwei/CSharpGL/wiki/CSharpGL---Wiki-Contents)  
+[CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) | [CSharpGL Wiki](https://github.com/bitzhuwei/CSharpGL/wiki)  
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents.  
 CSharpGL is inspired by [SharpGL](https://github.com/dwmkerr/sharpgl).
 ## :rocket:Modern Rendering
