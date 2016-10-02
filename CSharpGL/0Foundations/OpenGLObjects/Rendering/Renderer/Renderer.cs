@@ -47,11 +47,6 @@
         public Renderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeNameMap attributeNameMap, params GLSwitch[] switches)
         {
-            //this.OriginalWorldPosition = new vec3(0, 0, 0);// this is not needed.
-            this.Scale = new vec3(1, 1, 1);
-            //this.RotationAngle = 0;// this is not needed.
-            this.RotationAxis = new vec3(1, 0, 0);
-
             this.Model = model;
             this.shaderCodes = shaderCodes;
             this.attributeNameMap = attributeNameMap;
