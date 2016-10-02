@@ -149,24 +149,54 @@ namespace CSharpGL.Demos
 
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
-                using (var buffer = new ZeroIndexBuffer(
-                    DrawMode.Points, 0, uCount * vCount))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineStrip, BufferUsage.StaticDraw))
                 {
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    int count = (uCount + 1) * vCount + (vCount + 1) * uCount;
+                    buffer.Create(count);
+                    int index = 0;
+                    unsafe
+                    {
+                        var array = (uint*)buffer.Header.ToPointer();
+                        // vertical lines.
+                        for (int i = 0; i < vCount; i++)
+                        {
+                            for (int j = 0; j < uCount; j++)
+                            {
+                                array[index++] = (uint)(i + j * vCount);
+                            }
+                            array[index++] = uint.MaxValue;// primitive restart index.
+                        }
+                        // horizontal lines.
+                        for (int i = 0; i < uCount; i++)
+                        {
+                            for (int j = 0; j < vCount; j++)
+                            {
+                                array[index++] = (uint)(j + i * vCount);
+                            }
+                            array[index++] = uint.MaxValue;// primitive restart index.
+                        }
+                    }
+
+                    this.indexBufferPtr = buffer.GetBufferPtr();
                 }
+                //using (var buffer = new ZeroIndexBuffer(
+                //    DrawMode.Points, 0, uCount * vCount))
+                //{
+                //    indexBufferPtr = buffer.GetBufferPtr();
+                //}
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
         /// <returns></returns>
-        public bool UsesZeroIndexBuffer() { return true; }
+        public bool UsesZeroIndexBuffer() { return false; }
     }
 }
