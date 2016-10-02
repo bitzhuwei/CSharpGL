@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
                         this.scene.Camera.GetProjectionMatrix(),
                         this.scene.Camera.GetViewMatrix(),
                         new Point(e.X, glCanvas1.Height - e.Y - 1));
-                    dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes);
+                    dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
                     this.dragParam = dragParam;
                 }
             }
@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
                         differenceOnScreen,
                         dragParam.viewMatrix, dragParam.projectionMatrix,
                         dragParam.viewport,
-                        dragParam.pickedIndexes);
+                        dragParam.pickedVertexIds);
                 }
             }
             else
@@ -86,7 +86,7 @@ namespace CSharpGL.Demos
                     if (renderer != null)
                     {
                         renderer.Highlighter.SetHighlightIndexes(
-                            this.PickingGeometryType.ToDrawMode(), pickedGeometry.Indexes);
+                            this.PickingGeometryType.ToDrawMode(), pickedGeometry.VertexIds);
                         this.highlightedRenderer = renderer;
                         pickableRenderer = renderer.PickableRenderer;
                     }

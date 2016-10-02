@@ -5,7 +5,7 @@ namespace CSharpGL.Demos
 {
     internal class DragParam
     {
-        public List<uint> pickedIndexes = new List<uint>();
+        public List<uint> pickedVertexIds = new List<uint>();
         public mat4 projectionMatrix;
         public mat4 viewMatrix;
         public Point lastMousePositionOnScreen;
@@ -24,14 +24,14 @@ namespace CSharpGL.Demos
            IEnumerable<uint> indexes)
             : this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
         {
-            this.pickedIndexes.AddRange(indexes);
+            this.pickedVertexIds.AddRange(indexes);
         }
 
         public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen,
             params uint[] indexes)
             : this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
         {
-            this.pickedIndexes.AddRange(indexes);
+            this.pickedVertexIds.AddRange(indexes);
         }
 
         public override string ToString()

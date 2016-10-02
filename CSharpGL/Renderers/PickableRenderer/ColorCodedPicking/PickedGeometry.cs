@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// Gets or sets indexes of this primitive's vertexes' index in the VBO.
         /// </summary>
-        public uint[] Indexes { get; set; }
+        public uint[] VertexIds { get; set; }
 
         /// <summary>
         /// The last vertex's id that constructs the picked primitive.
@@ -53,7 +53,7 @@ namespace CSharpGL
 
             vec3[] positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
-            uint[] indexes = this.Indexes;
+            uint[] indexes = this.VertexIds;
             var worldPos = new vec4[positions.Length];
             var viewPos = new vec4[positions.Length];
             var projectionPos = new vec4[positions.Length];
@@ -153,7 +153,7 @@ namespace CSharpGL
 
             vec3[] positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
-            uint[] indexes = this.Indexes;
+            uint[] indexes = this.VertexIds;
 
             builder.Append("Positions in Model Space:");
             builder.AppendLine();

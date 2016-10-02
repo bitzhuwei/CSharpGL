@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
             if (pickedGeometry != null)
             {
                 string content = string.Format("[index: {0}]",
-                    pickedGeometry.Indexes.PrintArray());
+                    pickedGeometry.VertexIds.PrintArray());
                 //SizeF size = e.Graphics.MeasureString(content, font);
                 Size size = this.uiText.Size;
                 // make sure the text be displayed.

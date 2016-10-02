@@ -19,7 +19,7 @@
         /// <summary>
         /// Gets or sets indexes of this primitive's vertexes' index in the VBO.
         /// </summary>
-        uint[] Indexes { get; set; }
+        uint[] VertexIds { get; set; }
 
         /// <summary>
         /// The scene's element from which this <see cref="IPickedGeometry"/>'s instance is picked.
