@@ -26,7 +26,6 @@ namespace CSharpGL.Demos
             AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
         {
-            this.switchList.Add(new PointSizeSwitch(3));
         }
 
         protected override void DoInitialize()

@@ -153,7 +153,7 @@ namespace CSharpGL.Demos
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineStrip, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineLoop, BufferUsage.StaticDraw))
                 {
                     int count = (uCount + 1) * vCount + (vCount + 1) * uCount;
                     buffer.Create(count);
