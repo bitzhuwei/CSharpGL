@@ -113,7 +113,7 @@ namespace CSharpGL
             pickedGeometry.GeometryType = typeOfMode;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
-            pickedGeometry.Indexes = lastIndexId.VertexIdList.ToArray();
+            pickedGeometry.Indexes = lastIndexId.VertexIdList;
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
 
             return pickedGeometry;

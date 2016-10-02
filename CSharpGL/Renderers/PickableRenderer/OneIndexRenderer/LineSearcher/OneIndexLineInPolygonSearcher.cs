@@ -10,17 +10,17 @@ namespace CSharpGL
             RecognizedPrimitiveInfo lastIndexId,
             OneIndexRenderer modernRenderer)
         {
-            List<uint> indexList = lastIndexId.VertexIdList;
-            if (indexList.Count < 3) { throw new ArgumentException(); }
+            uint[] indexList = lastIndexId.VertexIdList;
+            if (indexList.Length < 3) { throw new ArgumentException(); }
 
             OneIndexBufferPtr indexBufferPtr = null;
             using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineLoop, BufferUsage.StaticDraw))
             {
-                buffer.Create(indexList.Count);
+                buffer.Create(indexList.Length);
                 unsafe
                 {
                     var array = (uint*)buffer.Header.ToPointer();
-                    for (int i = 0; i < indexList.Count; i++)
+                    for (int i = 0; i < indexList.Length; i++)
                     {
                         array[i] = indexList[i];
                     }
@@ -35,11 +35,11 @@ namespace CSharpGL
             indexBufferPtr.Dispose();
 
             if (id == indexList[0])
-            { return new uint[] { indexList[indexList.Count - 1], id, }; }
+            { return new uint[] { indexList[indexList.Length - 1], id, }; }
             else
             {
                 uint[] result = null;
-                for (int i = 1; i < indexList.Count; i++)
+                for (int i = 1; i < indexList.Length; i++)
                 {
                     if (id == indexList[i])
                     {

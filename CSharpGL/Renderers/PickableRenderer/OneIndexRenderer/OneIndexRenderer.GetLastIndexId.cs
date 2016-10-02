@@ -85,17 +85,17 @@ namespace CSharpGL
                 recognizedPrimitiveIndex0, recognizedPrimitiveIndex1, drawMode,
                 out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
-                recognizedPrimitiveIndex0.VertexIdList.Count
+                recognizedPrimitiveIndex0.VertexIdList.Length
                 + 1
-                + recognizedPrimitiveIndex1.VertexIdList.Count)
+                + recognizedPrimitiveIndex1.VertexIdList.Length)
             { throw new Exception(); }
 
             using (var indexBuffer = new OneIndexBuffer(IndexElementType.UInt, drawMode, BufferUsage.StaticDraw))
             {
                 indexBuffer.Create(
-                    recognizedPrimitiveIndex0.VertexIdList.Count
+                    recognizedPrimitiveIndex0.VertexIdList.Length
                     + 1
-                    + recognizedPrimitiveIndex1.VertexIdList.Count);
+                    + recognizedPrimitiveIndex1.VertexIdList.Length);
                 unsafe
                 {
                     var array = (uint*)indexBuffer.Header.ToPointer();

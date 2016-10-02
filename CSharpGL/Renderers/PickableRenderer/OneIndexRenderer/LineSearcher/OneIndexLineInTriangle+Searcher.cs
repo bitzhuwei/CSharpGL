@@ -10,8 +10,8 @@ namespace CSharpGL
             RecognizedPrimitiveInfo lastIndexId,
             OneIndexRenderer modernRenderer)
         {
-            List<uint> indexList = lastIndexId.VertexIdList;
-            if (indexList.Count != 3) { throw new ArgumentException(); }
+            uint[] indexList = lastIndexId.VertexIdList;
+            if (indexList.Length != 3) { throw new ArgumentException(); }
 
             //if (indexList[0] == indexList[1]) { return new uint[] { indexList[0], indexList[2], }; }
             //else if (indexList[0] == indexList[2]) { return new uint[] { indexList[0], indexList[1], }; }
