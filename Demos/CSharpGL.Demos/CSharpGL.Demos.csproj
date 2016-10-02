@@ -187,7 +187,7 @@
     <Compile Include="06ImageProcessing\Form06ImageProcessing.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Renderers\ImageProcessingRenderer.cs" />
+    <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingRenderer.cs" />
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
