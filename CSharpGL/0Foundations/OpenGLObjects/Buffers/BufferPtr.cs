@@ -135,13 +135,15 @@ namespace CSharpGL
         /// Stop reading/writing buffer.
         /// </summary>
         /// <param name="unbind"></param>
-        public virtual void UnmapBuffer(bool unbind = true)
+        public virtual bool UnmapBuffer(bool unbind = true)
         {
-            glUnmapBuffer((uint)this.Target);
+            bool result = glUnmapBuffer((uint)this.Target);
             if (unbind)
             {
                 glBindBuffer((uint)this.Target, 0);
             }
+
+            return result;
         }
     }
 }

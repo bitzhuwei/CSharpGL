@@ -98,9 +98,10 @@ namespace CSharpGL
         /// <para>need to do nothing.</para>
         /// </summary>
         /// <param name="unbind"></param>
-        public override void UnmapBuffer(bool unbind = true)
+        public override bool UnmapBuffer(bool unbind = true)
         {
             // need to do nothing.
+            return true;
         }
 
         /// <summary>
