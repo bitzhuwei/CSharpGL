@@ -23,6 +23,13 @@ namespace CSharpGL
             int x, int y)
         {
             if (lastIndexIdList == null || lastIndexIdList.Count == 0) { return null; }
+#if DEBUG
+            SameLengths(lastIndexIdList);
+#endif
+            if (lastIndexIdList[0].VertexIdList.Length == 1)// picking a point.
+            {
+                return lastIndexIdList[0];
+            }
 
             int current = 0;
 #if DEBUG
@@ -48,6 +55,18 @@ namespace CSharpGL
             }
 
             return lastIndexIdList[current];
+        }
+
+        private void SameLengths(List<RecognizedPrimitiveInfo> lastIndexIdList)
+        {
+            int length = lastIndexIdList[0].VertexIdList.Length;
+            for (int i = 0; i < lastIndexIdList.Count; i++)
+            {
+                if (lastIndexIdList[i].VertexIdList.Length != length)
+                {
+                    throw new Exception("This should not happen!");
+                }
+            }
         }
 
         private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> lastIndexIdList)
