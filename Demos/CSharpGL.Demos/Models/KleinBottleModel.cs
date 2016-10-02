@@ -200,9 +200,9 @@ namespace CSharpGL.Demos
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineLoop, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineStrip, BufferUsage.StaticDraw))
                 {
-                    int count = (uCount + 1) * vCount + (vCount + 1) * uCount;
+                    int count = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
                     buffer.Create(count);
                     int index = 0;
                     unsafe
@@ -224,6 +224,7 @@ namespace CSharpGL.Demos
                             {
                                 array[index++] = (uint)(j + i * vCount);
                             }
+                            array[index++] = (uint)(0 + i * vCount);
                             array[index++] = uint.MaxValue;// primitive restart index.
                         }
                     }
