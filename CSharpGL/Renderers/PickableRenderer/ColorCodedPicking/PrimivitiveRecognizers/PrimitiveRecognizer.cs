@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -86,36 +85,5 @@ namespace CSharpGL
         protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex);
 
         protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex);
-    }
-
-    internal class RecognizedPrimitiveInfo
-    {
-        private uint index;
-
-        public RecognizedPrimitiveInfo(uint lastVertexId, uint index, params uint[] indexIds)
-        {
-            this.LastVertexId = lastVertexId;
-            this.index = index;
-            this.VertexIdList = new List<uint>();
-            this.VertexIdList.AddRange(indexIds);
-        }
-
-        public uint LastVertexId { get; set; }
-
-        public List<uint> VertexIdList { get; set; }
-
-        public override string ToString()
-        {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < this.VertexIdList.Count - 1; i++)
-            {
-                builder.Append(this.VertexIdList[i]); builder.Append(", ");
-            }
-
-            builder.Append(this.VertexIdList[this.VertexIdList.Count - 1]);
-            builder.AppendFormat(" | index buffer[{0}] is <{1}>", index, LastVertexId);
-
-            return builder.ToString();
-        }
     }
 }

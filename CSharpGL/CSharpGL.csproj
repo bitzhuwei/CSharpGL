@@ -51,6 +51,7 @@
     <Content Include="FontTexture\readme.md" />
     <Content Include="Renderers\IBufferables\AxisModel2.jpg" />
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
+    <Content Include="Renderers\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.jpg" />
     <Content Include="UIRendering\readme.md" />
     <Content Include="Renderers\IBufferables\readme.md" />
     <Content Include="Renderers\HighlightRenderer\readme.md" />
@@ -228,6 +229,7 @@
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
     <Compile Include="Renderers\IBufferables\ZeroAttributeModel.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.Property.cs" />
+    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.cs" />
     <Compile Include="Renderers\PickableRenderer\PickableRenderer.IModelSpace.cs" />
     <Compile Include="Renderers\PointsRenderer.cs" />
     <Compile Include="Renderers\SimpleRenderer.cs" />
