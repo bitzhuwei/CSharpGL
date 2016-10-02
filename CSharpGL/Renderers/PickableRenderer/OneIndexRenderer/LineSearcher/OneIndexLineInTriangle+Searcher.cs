@@ -7,10 +7,10 @@ namespace CSharpGL
     {
         internal override uint[] Search(RenderEventArgs arg,
             int x, int y,
-            RecognizedPrimitiveIndex lastIndexId,
+            RecognizedPrimitiveInfo lastIndexId,
             OneIndexRenderer modernRenderer)
         {
-            List<uint> indexList = lastIndexId.IndexIdList;
+            List<uint> indexList = lastIndexId.VertexIdList;
             if (indexList.Count != 3) { throw new ArgumentException(); }
 
             //if (indexList[0] == indexList[1]) { return new uint[] { indexList[0], indexList[2], }; }

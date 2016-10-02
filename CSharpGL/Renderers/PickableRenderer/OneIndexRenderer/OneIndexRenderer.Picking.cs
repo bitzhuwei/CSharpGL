@@ -15,7 +15,7 @@ namespace CSharpGL
             { return null; }
 
             // 找到 lastIndexId
-            RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIdOfPickedGeometry(
+            RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(
                 arg, lastVertexId, x, y);
             if (lastIndexId == null)
             {
@@ -76,7 +76,7 @@ namespace CSharpGL
             }
         }
 
-        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo lastIndexId, OneIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
@@ -88,7 +88,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveIndex lastIndexId, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo lastIndexId, OneIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
@@ -107,13 +107,13 @@ namespace CSharpGL
         /// <param name="lastIndexId"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        private PickedGeometry PickWhateverItIs(uint stageVertexId, RecognizedPrimitiveIndex lastIndexId, GeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(uint stageVertexId, RecognizedPrimitiveInfo lastIndexId, GeometryType typeOfMode)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = typeOfMode;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
-            pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
+            pickedGeometry.Indexes = lastIndexId.VertexIdList.ToArray();
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
 
             return pickedGeometry;
@@ -144,15 +144,15 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private RecognizedPrimitiveIndex GetLastIndexIdOfPickedGeometry(
+        private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
             RenderEventArgs arg,
             uint lastVertexId, int x, int y)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(arg, lastVertexId);
+            List<RecognizedPrimitiveInfo> lastIndexIdList = GetLastIndexIdList(arg, lastVertexId);
 
             if (lastIndexIdList.Count == 0) { return null; }
 
-            RecognizedPrimitiveIndex lastIndexId = null;
+            RecognizedPrimitiveInfo lastIndexId = null;
             if (arg.PickingGeometryType == GeometryType.Point)
             {
                 lastIndexId = lastIndexIdList[0];
@@ -183,7 +183,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs arg, uint lastVertexId)
+        private List<RecognizedPrimitiveInfo> GetLastIndexIdList(RenderEventArgs arg, uint lastVertexId)
         {
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.RenderMode == RenderModes.ColorCodedPicking
@@ -195,7 +195,7 @@ namespace CSharpGL
 
             var bufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
-            List<RecognizedPrimitiveIndex> lastIndexIdList = null;
+            List<RecognizedPrimitiveInfo> lastIndexIdList = null;
             if (glSwitch == null)
             { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr); }
             else

@@ -13,10 +13,10 @@ namespace CSharpGL
         /// <param name="pointer"></param>
         /// <param name="oneIndexBufferPtr"></param>
         /// <returns></returns>
-        public List<RecognizedPrimitiveIndex> Recognize(
+        public List<RecognizedPrimitiveInfo> Recognize(
          uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr)
         {
-            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
+            var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
             switch (oneIndexBufferPtr.Type)
             {
                 case IndexElementType.UByte:
@@ -38,11 +38,11 @@ namespace CSharpGL
             return lastIndexIdList;
         }
 
-        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList);
+        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList);
 
-        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList);
+        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList);
 
-        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList);
+        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList);
 
         /// <summary>
         /// 识别出以<paramref name="lastVertexId"/>结尾的图元。
@@ -53,10 +53,10 @@ namespace CSharpGL
         /// <param name="oneIndexBufferPtr"></param>
         /// <param name="primitiveRestartIndex"></param>
         /// <returns></returns>
-        public List<RecognizedPrimitiveIndex> Recognize(
+        public List<RecognizedPrimitiveInfo> Recognize(
             uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, uint primitiveRestartIndex)
         {
-            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
+            var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
             if (lastVertexId != primitiveRestartIndex)
             {
                 switch (oneIndexBufferPtr.Type)
@@ -81,42 +81,39 @@ namespace CSharpGL
             return lastIndexIdList;
         }
 
-        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex);
+        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex);
 
-        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex);
+        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex);
 
-        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex);
+        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex);
     }
 
-    internal class RecognizedPrimitiveIndex
+    internal class RecognizedPrimitiveInfo
     {
-        private uint Index;
+        private uint index;
 
-        public RecognizedPrimitiveIndex(uint lastIndexId, uint index, params uint[] indexIds)
+        public RecognizedPrimitiveInfo(uint lastVertexId, uint index, params uint[] indexIds)
         {
-            //if (indexIDs.Length == 0) { throw new ArgumentException(); }
-            //if (indexIDs[indexIDs.Length - 1] != lastIndexId) { throw new ArgumentException(); }
-
-            this.LastIndexId = lastIndexId;
-            this.Index = index;
-            this.IndexIdList = new List<uint>();
-            this.IndexIdList.AddRange(indexIds);
+            this.LastVertexId = lastVertexId;
+            this.index = index;
+            this.VertexIdList = new List<uint>();
+            this.VertexIdList.AddRange(indexIds);
         }
 
-        public uint LastIndexId { get; set; }
+        public uint LastVertexId { get; set; }
 
-        public List<uint> IndexIdList { get; set; }
+        public List<uint> VertexIdList { get; set; }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < this.IndexIdList.Count - 1; i++)
+            for (int i = 0; i < this.VertexIdList.Count - 1; i++)
             {
-                builder.Append(this.IndexIdList[i]); builder.Append(", ");
+                builder.Append(this.VertexIdList[i]); builder.Append(", ");
             }
 
-            builder.Append(this.IndexIdList[this.IndexIdList.Count - 1]);
-            builder.AppendFormat(" | index[{0}] is [{1}]", Index, LastIndexId);
+            builder.Append(this.VertexIdList[this.VertexIdList.Count - 1]);
+            builder.AppendFormat(" | index buffer[{0}] is <{1}>", index, LastVertexId);
 
             return builder.ToString();
         }

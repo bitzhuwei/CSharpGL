@@ -17,9 +17,9 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveIndex GetLastIndexId(
+        private RecognizedPrimitiveInfo GetLastIndexId(
             RenderEventArgs arg,
-            List<RecognizedPrimitiveIndex> lastIndexIdList,
+            List<RecognizedPrimitiveInfo> lastIndexIdList,
             int x, int y)
         {
             if (lastIndexIdList == null || lastIndexIdList.Count == 0) { return null; }
@@ -50,14 +50,14 @@ namespace CSharpGL
             return lastIndexIdList[current];
         }
 
-        private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveIndex> lastIndexIdList)
+        private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> lastIndexIdList)
         {
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
             if (glSwitch != null)
             {
                 foreach (var lastIndexId in lastIndexIdList)
                 {
-                    foreach (var indexId in lastIndexId.IndexIdList)
+                    foreach (var indexId in lastIndexId.VertexIdList)
                     {
                         if (indexId == glSwitch.RestartIndex) { throw new Exception(); }
                     }
@@ -75,8 +75,8 @@ namespace CSharpGL
         /// <param name="lastIndex0"></param>
         /// <param name="lastIndex1"></param>
         private void AssembleIndexBuffer(
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex1,
+            RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
+            RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
             DrawMode drawMode,
             out OneIndexBufferPtr oneIndexBufferPtr,
             out uint lastIndex0, out uint lastIndex1)
@@ -85,17 +85,17 @@ namespace CSharpGL
                 recognizedPrimitiveIndex0, recognizedPrimitiveIndex1, drawMode,
                 out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
-                recognizedPrimitiveIndex0.IndexIdList.Count
+                recognizedPrimitiveIndex0.VertexIdList.Count
                 + 1
-                + recognizedPrimitiveIndex1.IndexIdList.Count)
+                + recognizedPrimitiveIndex1.VertexIdList.Count)
             { throw new Exception(); }
 
             using (var indexBuffer = new OneIndexBuffer(IndexElementType.UInt, drawMode, BufferUsage.StaticDraw))
             {
                 indexBuffer.Create(
-                    recognizedPrimitiveIndex0.IndexIdList.Count
+                    recognizedPrimitiveIndex0.VertexIdList.Count
                     + 1
-                    + recognizedPrimitiveIndex1.IndexIdList.Count);
+                    + recognizedPrimitiveIndex1.VertexIdList.Count);
                 unsafe
                 {
                     var array = (uint*)indexBuffer.Header.ToPointer();
@@ -119,14 +119,14 @@ namespace CSharpGL
         /// <param name="lastIndex1"></param>
         /// <returns></returns>
         private List<uint> ArrangeIndexes(
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex1,
+            RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
+            RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
             DrawMode drawMode,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> sameIndexList = new List<uint>();
-            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex0.IndexIdList);
-            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex1.IndexIdList);
+            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex0.VertexIdList);
+            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex1.VertexIdList);
             array0.Sort(); array1.Sort();
             int p0 = 0, p1 = 0;
             while (p0 < array0.Count && p1 < array1.Count)

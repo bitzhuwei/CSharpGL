@@ -5,7 +5,7 @@ namespace CSharpGL
 {
     internal class QuadStripRecognizer : PrimitiveRecognizer
     {
-        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -17,18 +17,18 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
-                        item.IndexIdList.Add(array[i - 2]);
-                        item.IndexIdList.Add(array[i - 3]);
-                        item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
+                        item.VertexIdList.Add(array[i - 2]);
+                        item.VertexIdList.Add(array[i - 3]);
+                        item.VertexIdList.Add(array[i - 1]);
+                        item.VertexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
             }
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -40,18 +40,18 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
-                        item.IndexIdList.Add(array[i - 2]);
-                        item.IndexIdList.Add(array[i - 3]);
-                        item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
+                        item.VertexIdList.Add(array[i - 2]);
+                        item.VertexIdList.Add(array[i - 3]);
+                        item.VertexIdList.Add(array[i - 1]);
+                        item.VertexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
             }
         }
 
-        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -63,18 +63,18 @@ namespace CSharpGL
                     var value = array[i];
                     if (value == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
-                        item.IndexIdList.Add(array[i - 2]);
-                        item.IndexIdList.Add(array[i - 3]);
-                        item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
+                        item.VertexIdList.Add(array[i - 2]);
+                        item.VertexIdList.Add(array[i - 3]);
+                        item.VertexIdList.Add(array[i - 1]);
+                        item.VertexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
             }
         }
 
-        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -98,18 +98,18 @@ namespace CSharpGL
                         && array[i - 2] != primitiveRestartIndex
                         )
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
-                        item.IndexIdList.Add(array[i - 2]);
-                        item.IndexIdList.Add(array[i - 3]);
-                        item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
+                        item.VertexIdList.Add(array[i - 2]);
+                        item.VertexIdList.Add(array[i - 3]);
+                        item.VertexIdList.Add(array[i - 1]);
+                        item.VertexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
             }
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -133,18 +133,18 @@ namespace CSharpGL
                         && array[i - 2] != primitiveRestartIndex
                         )
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
-                        item.IndexIdList.Add(array[i - 2]);
-                        item.IndexIdList.Add(array[i - 3]);
-                        item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
+                        item.VertexIdList.Add(array[i - 2]);
+                        item.VertexIdList.Add(array[i - 3]);
+                        item.VertexIdList.Add(array[i - 1]);
+                        item.VertexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
             }
         }
 
-        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -168,11 +168,11 @@ namespace CSharpGL
                         && array[i - 2] != primitiveRestartIndex
                         )
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
-                        item.IndexIdList.Add(array[i - 2]);
-                        item.IndexIdList.Add(array[i - 3]);
-                        item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(value);
+                        var item = new RecognizedPrimitiveInfo(lastVertexId, i);
+                        item.VertexIdList.Add(array[i - 2]);
+                        item.VertexIdList.Add(array[i - 3]);
+                        item.VertexIdList.Add(array[i - 1]);
+                        item.VertexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
