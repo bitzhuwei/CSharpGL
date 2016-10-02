@@ -139,6 +139,7 @@
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
+    <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingComputeRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\InnerImageProcessingRenderer.cs" />
     <Compile Include="Renderers\KleinBottleRenderer\KleinBottleRenderer.cs" />
     <Compile Include="Renderers\UniformArrayRenderer.cs" />
