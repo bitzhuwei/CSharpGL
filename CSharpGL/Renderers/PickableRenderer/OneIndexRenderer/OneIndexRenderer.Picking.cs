@@ -80,7 +80,7 @@ namespace CSharpGL
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
-            pickedGeometry.GeometryType = GeometryType.Line;
+            pickedGeometry.GeometryType = GeometryType.Point;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.Indexes = new uint[] { searcher.Search(arg, x, y, lastIndexId, this), };
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
