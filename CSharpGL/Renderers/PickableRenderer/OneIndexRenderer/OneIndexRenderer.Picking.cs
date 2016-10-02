@@ -152,15 +152,7 @@ namespace CSharpGL
 
             if (lastIndexIdList.Count == 0) { return null; }
 
-            RecognizedPrimitiveInfo lastIndexId = null;
-            if (arg.PickingGeometryType == GeometryType.Point)
-            {
-                lastIndexId = lastIndexIdList[0];
-            }
-            else
-            {
-                lastIndexId = GetLastIndexId(arg, lastIndexIdList, x, y);
-            }
+            RecognizedPrimitiveInfo lastIndexId = GetLastIndexId(arg, lastIndexIdList, x, y);
 
             return lastIndexId;
         }
