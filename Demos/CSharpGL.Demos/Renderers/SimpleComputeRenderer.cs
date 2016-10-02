@@ -7,7 +7,7 @@ namespace CSharpGL.Demos
     internal class SimpleComputeRenderer : Renderer
     {
         private ShaderProgram computeProgram;
-        private ShaderProgram resetProgram;
+        private ShaderProgram computeResetProgram;
 
         //private uint[] output_image = new uint[1];
         private Texture outputImage;
@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
             {
                 // Initialize our resetProgram
                 var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\SimpleComputeRenderer\computeReset.comp"), ShaderType.ComputeShader);
-                this.resetProgram = shaderCode.CreateProgram();
+                this.computeResetProgram = shaderCode.CreateProgram();
             }
             {
                 // This is the texture that the compute program will write into
@@ -89,10 +89,10 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             // reset image
-            resetProgram.Bind();
+            computeResetProgram.Bind();
             OpenGL.BindImageTexture(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(maxX, maxY, maxZ);
-            resetProgram.Unbind();
+            computeResetProgram.Unbind();
 
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
@@ -112,7 +112,7 @@ namespace CSharpGL.Demos
 
         protected override void DisposeUnmanagedResources()
         {
-            resetProgram.Dispose();
+            computeResetProgram.Dispose();
             computeProgram.Dispose();
             this.outputImage.Dispose();
         }
