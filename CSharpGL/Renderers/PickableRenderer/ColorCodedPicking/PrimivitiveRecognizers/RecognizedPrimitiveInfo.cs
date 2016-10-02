@@ -21,28 +21,28 @@ namespace CSharpGL
             if (vertexIds.Length < 1) { throw new Exception("This should not happen!"); }
 
             this.index = index;
-            this.VertexIdList = vertexIds;
+            this.VertexIds = vertexIds;
         }
 
         /// <summary>
         /// last vertex' id of picked geometry.
         /// </summary>
-        public uint LastVertexId { get { return this.VertexIdList[this.VertexIdList.Length - 1]; } }
+        public uint LastVertexId { get { return this.VertexIds[this.VertexIds.Length - 1]; } }
 
         /// <summary>
         /// All vertexs' ids of picked geometry.
         /// </summary>
-        public uint[] VertexIdList { get; private set; }
+        public uint[] VertexIds { get; private set; }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < this.VertexIdList.Length - 1; i++)
+            for (int i = 0; i < this.VertexIds.Length - 1; i++)
             {
-                builder.Append(this.VertexIdList[i]); builder.Append(", ");
+                builder.Append(this.VertexIds[i]); builder.Append(", ");
             }
 
-            builder.Append(this.VertexIdList[this.VertexIdList.Length - 1]);
+            builder.Append(this.VertexIds[this.VertexIds.Length - 1]);
             builder.AppendFormat(" | index buffer[{0}] is <{1}>", index, LastVertexId);
 
             return builder.ToString();

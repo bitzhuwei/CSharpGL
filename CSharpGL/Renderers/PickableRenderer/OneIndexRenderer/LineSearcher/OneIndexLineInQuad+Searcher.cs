@@ -10,7 +10,7 @@ namespace CSharpGL
             RecognizedPrimitiveInfo lastIndexId,
             OneIndexRenderer modernRenderer)
         {
-            uint[] indexList = lastIndexId.VertexIdList;
+            uint[] indexList = lastIndexId.VertexIds;
             if (indexList.Length != 4) { throw new ArgumentException(); }
 
             OneIndexBufferPtr indexBufferPtr = null;

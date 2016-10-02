@@ -26,7 +26,7 @@ namespace CSharpGL
 #if DEBUG
             SameLengths(lastIndexIdList);
 #endif
-            if (lastIndexIdList[0].VertexIdList.Length == 1)// picking a point.
+            if (lastIndexIdList[0].VertexIds.Length == 1)// picking a point.
             {
                 return lastIndexIdList[0];
             }
@@ -59,10 +59,10 @@ namespace CSharpGL
 
         private void SameLengths(List<RecognizedPrimitiveInfo> lastIndexIdList)
         {
-            int length = lastIndexIdList[0].VertexIdList.Length;
+            int length = lastIndexIdList[0].VertexIds.Length;
             for (int i = 0; i < lastIndexIdList.Count; i++)
             {
-                if (lastIndexIdList[i].VertexIdList.Length != length)
+                if (lastIndexIdList[i].VertexIds.Length != length)
                 {
                     throw new Exception("This should not happen!");
                 }
@@ -76,7 +76,7 @@ namespace CSharpGL
             {
                 foreach (var lastIndexId in lastIndexIdList)
                 {
-                    foreach (var indexId in lastIndexId.VertexIdList)
+                    foreach (var indexId in lastIndexId.VertexIds)
                     {
                         if (indexId == glSwitch.RestartIndex) { throw new Exception(); }
                     }
@@ -104,17 +104,17 @@ namespace CSharpGL
                 recognizedPrimitiveIndex0, recognizedPrimitiveIndex1, drawMode,
                 out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
-                recognizedPrimitiveIndex0.VertexIdList.Length
+                recognizedPrimitiveIndex0.VertexIds.Length
                 + 1
-                + recognizedPrimitiveIndex1.VertexIdList.Length)
+                + recognizedPrimitiveIndex1.VertexIds.Length)
             { throw new Exception(); }
 
             using (var indexBuffer = new OneIndexBuffer(IndexElementType.UInt, drawMode, BufferUsage.StaticDraw))
             {
                 indexBuffer.Create(
-                    recognizedPrimitiveIndex0.VertexIdList.Length
+                    recognizedPrimitiveIndex0.VertexIds.Length
                     + 1
-                    + recognizedPrimitiveIndex1.VertexIdList.Length);
+                    + recognizedPrimitiveIndex1.VertexIds.Length);
                 unsafe
                 {
                     var array = (uint*)indexBuffer.Header.ToPointer();
@@ -144,8 +144,8 @@ namespace CSharpGL
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> sameIndexList = new List<uint>();
-            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex0.VertexIdList);
-            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex1.VertexIdList);
+            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex0.VertexIds);
+            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex1.VertexIds);
             array0.Sort(); array1.Sort();
             int p0 = 0, p1 = 0;
             while (p0 < array0.Count && p1 < array1.Count)
