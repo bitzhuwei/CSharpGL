@@ -8,8 +8,23 @@ namespace CSharpGL.Demos
     {
         private string textureFilename;
         private Texture inputTexture;
+
+        public Texture InputTexture
+        {
+            get { return inputTexture; }
+        }
         private Texture intermediateTexture;
+
+        public Texture IntermediateTexture
+        {
+            get { return intermediateTexture; }
+        }
         private Texture outputTexture;
+
+        public Texture OutputTexture
+        {
+            get { return outputTexture; }
+        }
 
         public static InnerImageProcessingRenderer Create(string textureFilename = @"Textures\edgeDetection.bmp")
         {
@@ -35,6 +50,8 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
+            base.DoInitialize();
+
             {
                 Bitmap bitmap = new System.Drawing.Bitmap(this.textureFilename);
                 if (bitmap.Width != 512 || bitmap.Height != 512)
@@ -72,10 +89,8 @@ namespace CSharpGL.Demos
                 texture.Initialize();
                 this.outputTexture = texture;
             }
-            {
-                this.SetUniform("output_image",
-                    this.outputTexture);
-            }
+
+            this.SetUniform("output_image", this.outputTexture);
         }
 
         protected override void DoRender(RenderEventArgs arg)
