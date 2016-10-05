@@ -56,7 +56,7 @@ namespace CSharpGL.Demos
         public const string strPosition = "position";
         private VertexAttributeBufferPtr positionBufferPtr;
 
-        public const string strColor = "color";
+        public const string strTexCoord = "texCoord";
         private VertexAttributeBufferPtr colorBufferPtr;
 
         private IndexBufferPtr indexBufferPtr = null;
@@ -78,11 +78,11 @@ namespace CSharpGL.Demos
                 }
                 return this.positionBufferPtr;
             }
-            else if (bufferName == strColor)
+            else if (bufferName == strTexCoord)
             {
                 if (this.colorBufferPtr == null)
                 {
-                    this.colorBufferPtr = GetColorBufferPtr(varNameInShader);
+                    this.colorBufferPtr = GetTexCoordBufferPtr(varNameInShader);
                 }
                 return this.colorBufferPtr;
             }
@@ -92,32 +92,27 @@ namespace CSharpGL.Demos
             }
         }
 
-        private VertexAttributeBufferPtr GetColorBufferPtr(string varNameInShader)
+        private VertexAttributeBufferPtr GetTexCoordBufferPtr(string varNameInShader)
         {
             VertexAttributeBufferPtr colorBufferPtr = null;
 
-            using (var buffer = new VertexAttributeBuffer<vec3>(
-                varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+            using (var buffer = new VertexAttributeBuffer<vec2>(
+                varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
                 buffer.Create(uCount * vCount);
                 unsafe
                 {
-                    var random = new Random();
                     int index = 0;
-                    var array = (vec3*)buffer.Header.ToPointer();
+                    var array = (vec2*)buffer.Header.ToPointer();
                     for (int uIndex = 0; uIndex < uCount; uIndex++)
                     {
                         for (int vIndex = 0; vIndex < vCount; vIndex++)
                         {
-                            double u = Math.PI * uIndex / uCount;
-                            double v = Math.PI * 2 * vIndex / vCount;
-
-                            array[index++] = new vec3(
-                                (float)random.NextDouble(),
-                                (float)random.NextDouble(),
-                                (float)random.NextDouble());
+                            array[index++] = new vec2(
+                                (float)uIndex / (float)uCount,
+                                (float)vIndex / (float)vCount);
                         }
                     }
                 }

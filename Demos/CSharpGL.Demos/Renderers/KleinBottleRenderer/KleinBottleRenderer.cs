@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.frag"), ShaderType.FragmentShader);
             var map = new AttributeNameMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
-            map.Add("in_Color", KleinBottleModel.strColor);
+            map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
             var renderer = new KleinBottleRenderer(model, shaderCodes, map, KleinBottleModel.strPosition);
             renderer.Lengths = model.Lengths;
 
@@ -33,6 +33,13 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            var bitmap = new Bitmap(@"Resources\data\KleinBottle.png");
+            var texture = new Texture(TextureTarget.Texture2D,
+                bitmap, new SamplerParameters());
+            texture.Initialize();
+            bitmap.Dispose();
+            this.SetUniform("tex", texture);
         }
 
         //private vec3 uniformColor = new vec3(1, 1, 1);

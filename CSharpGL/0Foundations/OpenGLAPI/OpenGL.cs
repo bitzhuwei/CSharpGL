@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace CSharpGL
@@ -94,5 +95,20 @@ namespace CSharpGL
         /// <returns></returns>
         [DllImport("libGL.so", EntryPoint = "glXGetProcAddress")]
         internal static extern IntPtr glxGetProcAddress(string s);
+
+        /// <summary>
+        /// Check if error exists.
+        /// </summary>
+        public static void CheckError()
+        {
+            ErrorCode error = (ErrorCode)OpenGL.GetError();
+            if (error != ErrorCode.NoError)
+            {
+                //var stack = new StackTrace();
+                //StackFrame frame = stack.GetFrame(1);
+
+                Debug.WriteLine(string.Format("OpenGL error: {0}", error));
+            }
+        }
     }
 }
