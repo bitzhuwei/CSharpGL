@@ -306,7 +306,7 @@ namespace CSharpGL
         public static mat4 translate(mat4 m, vec3 v)
         {
             mat4 result = m;
-            result[3] = m[0] * v[0] + m[1] * v[1] + m[2] * v[2] + m[3];
+            result.col3 = m.col0 * v.x + m.col1 * v.y + m.col2 * v.z + m.col3;
             return result;
         }
 
@@ -358,6 +358,4 @@ namespace CSharpGL
             return new vec3(obj);
         }
     }
-
-    // ReSharper restore InconsistentNaming
 }
