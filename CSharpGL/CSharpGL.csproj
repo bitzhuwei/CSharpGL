@@ -81,6 +81,7 @@
     <Content Include="readme.md" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox2D.cs" />
+    <Content Include="0Foundations\Maths\glm_camera.2D.cs" />
     <Compile Include="0Foundations\Maths\ModelMatrixHelper.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec3.cs" />
