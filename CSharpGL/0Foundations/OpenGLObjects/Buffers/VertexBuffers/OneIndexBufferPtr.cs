@@ -62,7 +62,24 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public override void Render(RenderEventArgs arg)
         {
+            int primCount = this.PrimCount;
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+
+            uint mode = 0;
             IntPtr offset;
+            if (arg.RenderMode == RenderModes.ColorCodedPicking
+                && arg.PickingGeometryType == GeometryType.Point
+                && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
+            {
+                // this may render points that should not appear.
+                // so need to select by another picking.
+                mode = (uint)DrawMode.Points;
+            }
+            else
+            {
+                mode = (uint)this.Mode;
+            }
+
             switch (this.Type)
             {
                 case IndexElementType.UByte:
@@ -80,24 +97,9 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
-            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            uint mode = 0;
-            if (arg.RenderMode == RenderModes.ColorCodedPicking
-                && arg.PickingGeometryType == GeometryType.Point
-                && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
-            {
-                // this may render points that should not appear.
-                // so need to select by another picking.
-                mode = (uint)DrawMode.Points;
-            }
-            else
-            {
-                mode = (uint)this.Mode;
-            }
 
-            int primCount = this.PrimCount;
-            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
-            else if (primCount == 1)
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            if (primCount == 1)
             {
                 OpenGL.DrawElements(mode, this.ElementCount, (uint)this.Type, offset);
             }
@@ -105,7 +107,6 @@ namespace CSharpGL
             {
                 glDrawElementsInstanced(mode, this.ElementCount, (uint)this.Type, offset, primCount);
             }
-
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
