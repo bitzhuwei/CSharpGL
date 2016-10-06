@@ -165,7 +165,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 
 为了简单，本例中的Klein Bottle，我们只给它一条顶点属性，即必不可少的位置。等学会了这个，今后再加其他的属性（颜色、法线等等）就可以触类旁通了。
 
-提供顶点属性缓存的是`IBufferable.GetVertexAttributeBufferPtr (string bufferName, string varNameInShader string bufferName, string varNameInShader);`这个方法。根据`bufferName`，这个方法提供用户需要的缓存对象。下面就是实现这个方法的框架结构。
+提供顶点属性缓存的是`IBufferable.GetVertexAttributeBufferPtr (string bufferName, string varNameInShader);`这个方法。根据`bufferName`，这个方法提供用户需要的缓存对象。下面就是实现这个方法的框架结构。
 
 <div class="cnblogs_code">
 <pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">public</span> VertexAttributeBufferPtr GetVertexAttributeBufferPtr(<span style="color: #0000ff;">string</span> bufferName, <span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
