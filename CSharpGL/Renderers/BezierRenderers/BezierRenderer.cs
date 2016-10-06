@@ -18,7 +18,7 @@ namespace CSharpGL
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.frag"), ShaderType.FragmentShader);
-            var map = new CSharpGL.AttributeNameMap();
+            var map = new CSharpGL.AttributeMap();
             map.Add("in_Position", Points.strposition);
             var model = new Points(controlPoints);
             var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
@@ -36,11 +36,11 @@ namespace CSharpGL
         /// <param name="type"></param>
         /// <param name="model"></param>
         /// <param name="shaderCodes"></param>
-        /// <param name="attributeNameMap"></param>
+        /// <param name="attributeMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches) :
-            base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches) :
+            base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
             switch (type)
             {

@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("a_vertex", GreyFilterModel.strPosition);
             map.Add("a_texCoord", GreyFilterModel.strTexCoord);
             var model = new GreyFilterModel();
@@ -25,8 +25,8 @@ namespace CSharpGL.Demos
 
         private GreyFilterRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
         }
 

@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ZeroAttributeRenderer\ZeroAttribute.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ZeroAttributeRenderer\ZeroAttribute.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();// no items in this map.
+            var map = new AttributeMap();// no items in this map.
             var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
             var renderer = new ZeroAttributeRenderer(model, shaderCodes, map, new PointSpriteSwitch());
             renderer.Lengths = new vec3(2.05f, 2.05f, 0.01f);
@@ -21,8 +21,8 @@ namespace CSharpGL.Demos
 
         private ZeroAttributeRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
         }
 

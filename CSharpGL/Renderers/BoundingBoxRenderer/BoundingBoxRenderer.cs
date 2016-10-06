@@ -37,7 +37,7 @@ namespace CSharpGL
                 @"Resources\BoundingBox.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\BoundingBox.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
             result.Lengths = lengths;
@@ -49,11 +49,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
+        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
         private BoundingBoxRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
             this.BoundingBoxColor = Color.White;
         }

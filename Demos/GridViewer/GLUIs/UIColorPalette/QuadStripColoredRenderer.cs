@@ -39,7 +39,7 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\QuadStripColor.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\QuadStripColor.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("in_Position", QuadStripColoredModel.position);
             map.Add("in_Color", QuadStripColoredModel.color);
 
@@ -49,8 +49,8 @@ namespace GridViewer
         }
 
         private QuadStripColoredRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
         }
 

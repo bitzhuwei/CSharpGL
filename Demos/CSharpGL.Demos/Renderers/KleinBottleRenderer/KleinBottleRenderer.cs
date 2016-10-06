@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
             var renderer = new KleinBottleRenderer(model, shaderCodes, map, KleinBottleModel.strPosition);
@@ -24,8 +24,8 @@ namespace CSharpGL.Demos
         }
 
         private KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+            AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
             this.switchList.Add(new LineWidthSwitch(3));
         }

@@ -72,7 +72,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkUniformNameMap = new System.Windows.Forms.CheckBox();
-            this.chkAttributeNameMap = new System.Windows.Forms.CheckBox();
+            this.chkAttributeMap = new System.Windows.Forms.CheckBox();
             this.chkMain = new System.Windows.Forms.CheckBox();
             this.chkCSSL = new System.Windows.Forms.CheckBox();
             this.btnSaveAndGenerate = new System.Windows.Forms.Button();
@@ -447,7 +447,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chkUniformNameMap);
-            this.groupBox1.Controls.Add(this.chkAttributeNameMap);
+            this.groupBox1.Controls.Add(this.chkAttributeMap);
             this.groupBox1.Controls.Add(this.chkMain);
             this.groupBox1.Controls.Add(this.chkCSSL);
             this.groupBox1.Controls.Add(this.btnSaveAndGenerate);
@@ -468,15 +468,15 @@
             this.chkUniformNameMap.Text = "*.UniformNameMap.xml";
             this.chkUniformNameMap.UseVisualStyleBackColor = true;
             // 
-            // chkAttributeNameMap
+            // chkAttributeMap
             // 
-            this.chkAttributeNameMap.AutoSize = true;
-            this.chkAttributeNameMap.Location = new System.Drawing.Point(214, 24);
-            this.chkAttributeNameMap.Name = "chkAttributeNameMap";
-            this.chkAttributeNameMap.Size = new System.Drawing.Size(197, 19);
-            this.chkAttributeNameMap.TabIndex = 4;
-            this.chkAttributeNameMap.Text = "*.AttributeNameMap.xml";
-            this.chkAttributeNameMap.UseVisualStyleBackColor = true;
+            this.chkAttributeMap.AutoSize = true;
+            this.chkAttributeMap.Location = new System.Drawing.Point(214, 24);
+            this.chkAttributeMap.Name = "chkAttributeMap";
+            this.chkAttributeMap.Size = new System.Drawing.Size(197, 19);
+            this.chkAttributeMap.TabIndex = 4;
+            this.chkAttributeMap.Text = "*.AttributeMap.xml";
+            this.chkAttributeMap.UseVisualStyleBackColor = true;
             // 
             // chkMain
             // 
@@ -594,7 +594,7 @@
         private System.Windows.Forms.CheckBox chkMain;
         private System.Windows.Forms.CheckBox chkCSSL;
         private System.Windows.Forms.CheckBox chkUniformNameMap;
-        private System.Windows.Forms.CheckBox chkAttributeNameMap;
+        private System.Windows.Forms.CheckBox chkAttributeMap;
         private System.Windows.Forms.Button btnSaveAndGenerate;
     }
 }

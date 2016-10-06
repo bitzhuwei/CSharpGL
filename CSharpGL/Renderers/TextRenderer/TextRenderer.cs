@@ -21,7 +21,7 @@
 @"Resources.TextModel.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.TextModel.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("position", TextModel.strPosition);
             map.Add("uv", TextModel.strUV);
             var model = new TextModel(maxCharCount);
@@ -36,11 +36,11 @@
         /// </summary>
         /// <param name="model"></param>
         /// <param name="shaderCodes"></param>
-        /// <param name="attributeNameMap"></param>
+        /// <param name="attributeMap"></param>
         /// <param name="switches"></param>
         private TextRenderer(TextModel model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
             this.textModel = model;
         }

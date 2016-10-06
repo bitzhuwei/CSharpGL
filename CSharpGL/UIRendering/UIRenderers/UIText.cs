@@ -31,7 +31,7 @@
 @"Resources.TextModel.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.TextModel.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("position", TextModel.strPosition);
             map.Add("uv", TextModel.strUV);
             var model = new TextModel(maxCharCount);

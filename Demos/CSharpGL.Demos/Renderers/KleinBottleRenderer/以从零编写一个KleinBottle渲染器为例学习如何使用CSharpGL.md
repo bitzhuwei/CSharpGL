@@ -263,8 +263,8 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 <pre><span style="color: #008080;"> 1</span>     <span style="color: #0000ff;">class</span><span style="color: #000000;"> KleinBottleRenderer : Renderer
 </span><span style="color: #008080;"> 2</span> <span style="color: #000000;">    {
 </span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">private</span><span style="color: #000000;"> KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-</span><span style="color: #008080;"> 4</span>             AttributeNameMap attributeNameMap, <span style="color: #0000ff;">params</span><span style="color: #000000;"> GLSwitch[] switches)
-</span><span style="color: #008080;"> 5</span>             : <span style="color: #0000ff;">base</span><span style="color: #000000;">(model, shaderCodes, attributeNameMap, switches)
+</span><span style="color: #008080;"> 4</span>             AttributeMap attributeMap, <span style="color: #0000ff;">params</span><span style="color: #000000;"> GLSwitch[] switches)
+</span><span style="color: #008080;"> 5</span>             : <span style="color: #0000ff;">base</span><span style="color: #000000;">(model, shaderCodes, attributeMap, switches)
 </span><span style="color: #008080;"> 6</span> <span style="color: #000000;">        {
 </span><span style="color: #008080;"> 7</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 设定点的大小。</span>
 <span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">this</span>.switchList.Add(<span style="color: #0000ff;">new</span> PointSizeSwitch(<span style="color: #800080;">3</span><span style="color: #000000;">));
@@ -284,7 +284,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </span><span style="color: #008080;"> 5</span>             <span style="color: #0000ff;">var</span> shaderCodes = <span style="color: #0000ff;">new</span> ShaderCode[<span style="color: #800080;">2</span><span style="color: #000000;">];
 </span><span style="color: #008080;"> 6</span>             shaderCodes[<span style="color: #800080;">0</span>] = <span style="color: #0000ff;">new</span> ShaderCode(File.ReadAllText(<span style="color: #800000;">@"</span><span style="color: #800000;">shaders\KleinBottle.vert</span><span style="color: #800000;">"</span><span style="color: #000000;">), ShaderType.VertexShader);
 </span><span style="color: #008080;"> 7</span>             shaderCodes[<span style="color: #800080;">1</span>] = <span style="color: #0000ff;">new</span> ShaderCode(File.ReadAllText(<span style="color: #800000;">@"</span><span style="color: #800000;">shaders\KleinBottle.frag</span><span style="color: #800000;">"</span><span style="color: #000000;">), ShaderType.FragmentShader);
-</span><span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">var</span> map = <span style="color: #0000ff;">new</span><span style="color: #000000;"> AttributeNameMap();
+</span><span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">var</span> map = <span style="color: #0000ff;">new</span><span style="color: #000000;"> AttributeMap();
 </span><span style="color: #008080;"> 9</span>             map.Add(<span style="color: #800000;">"</span><span style="color: #800000;">in_Position</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in vertex shader.</span>
 <span style="color: #008080;">10</span> KleinBottleModel.strPosition <span style="color: #008000;">//</span><span style="color: #008000;"> buffer name in model.</span>
 <span style="color: #008080;">11</span> <span style="color: #000000;">);
@@ -296,7 +296,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </div>
 
 &nbsp;
- 你注意到这里有个`AttributeNameMap`对象，它指定了shader中的in属性与`IBufferable`模型中的顶点属性的对应关系。有了这个map，`Renderer`才能把shader和模型关联起来。
+ 你注意到这里有个`AttributeMap`对象，它指定了shader中的in属性与`IBufferable`模型中的顶点属性的对应关系。有了这个map，`Renderer`才能把shader和模型关联起来。
 ## Override渲染功能
 
 对于每个具体的Renderer，或多或少都有各自的特殊设定。因此需要override DoRender();方法。此方法完成了真正执行渲染的功能。

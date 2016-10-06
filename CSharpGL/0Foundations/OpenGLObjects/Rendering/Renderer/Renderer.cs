@@ -35,21 +35,21 @@
         /// <summary>
         /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="Model"/>.
         /// </summary>
-        protected AttributeNameMap attributeNameMap;
+        protected AttributeMap attributeMap;
 
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="attributeNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="Model"/>.</param>
+        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="Model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
         public Renderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
         {
             this.Model = model;
             this.shaderCodes = shaderCodes;
-            this.attributeNameMap = attributeNameMap;
+            this.attributeMap = attributeMap;
             this.switchList.AddRange(switches);
         }
     }

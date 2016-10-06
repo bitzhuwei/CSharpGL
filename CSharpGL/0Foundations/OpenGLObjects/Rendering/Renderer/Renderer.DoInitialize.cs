@@ -18,7 +18,7 @@ namespace CSharpGL
             VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
             {
                 var list = new List<VertexAttributeBufferPtr>();
-                foreach (var item in this.attributeNameMap)
+                foreach (var item in this.attributeMap)
                 {
                     VertexAttributeBufferPtr bufferPtr = model.GetVertexAttributeBufferPtr(
                         item.NameInIBufferable, item.VarNameInShader);

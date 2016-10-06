@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\UniformArrayRenderer\UniformArray.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\UniformArrayRenderer\UniformArray.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("vPos", Teapot.strPosition);
             map.Add("vColor", Teapot.strColor);
             var renderer = new UniformArrayRenderer(model, shaderCodes, map);
@@ -29,8 +29,8 @@ namespace CSharpGL.Demos
         private GroundRenderer groundRenderer;
 
         private UniformArrayRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
             var groundRenderer = GroundRenderer.Create(new GroundModel(20));
             groundRenderer.Scale = new vec3(10, 10, 10);

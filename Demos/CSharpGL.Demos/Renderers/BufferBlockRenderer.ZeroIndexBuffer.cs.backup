@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\BufferBlockRenderer\BufferBlock.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\BufferBlockRenderer\BufferBlock.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();// no vertex attribute.
+            var map = new AttributeMap();// no vertex attribute.
             var renderer = new BufferBlockRenderer(model, shaderCodes, map);
             renderer.Lengths = new vec3(2, 2, 2);// model.Lengths;
 
@@ -27,8 +27,8 @@ namespace CSharpGL.Demos
         private const int vertexCount = 3;
 
         private BufferBlockRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
             var groundRenderer = GroundRenderer.Create(new GroundModel(20));
             groundRenderer.Scale = new vec3(10, 10, 10);

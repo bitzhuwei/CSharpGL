@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\SimplexNoise.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\SimplexNoise.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("in_Position", Sphere.strPosition);
             var renderer = new SimplexNoiseRenderer(model, shaderCodes, map, Sphere.strPosition);
             renderer.Lengths = model.Lengths;
@@ -20,8 +20,8 @@ namespace CSharpGL.Demos
         }
 
         private SimplexNoiseRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, string positionNameInIBufferable, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+            AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
         }
     }

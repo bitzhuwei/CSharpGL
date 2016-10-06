@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AttributeNameMap>
+<AttributeMap>
   <NamePair VarNameInShader="in_Position" NameInIBufferable="in_Position" />
   <NamePair VarNameInShader="in_Color" NameInIBufferable="in_Color" />
-</AttributeNameMap>
+</AttributeMap>

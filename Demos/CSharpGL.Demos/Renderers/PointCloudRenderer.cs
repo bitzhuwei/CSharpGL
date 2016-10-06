@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointCloud.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointCloud.frag"), ShaderType.FragmentShader);
-            var map = new CSharpGL.AttributeNameMap();
+            var map = new CSharpGL.AttributeMap();
             map.Add("in_Position", PointCloudModel.position);
             var renderer = new PointCloudRenderer(model, shaderCodes, map);
             renderer.Lengths = model.Lengths;
@@ -24,8 +24,8 @@ namespace CSharpGL.Demos
             return renderer;
         }
 
-        private PointCloudRenderer(CSharpGL.IBufferable model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeNameMap attributeNameMap, params GLSwitch[] switches) :
-            base(model, shaderCodes, attributeNameMap, switches)
+        private PointCloudRenderer(CSharpGL.IBufferable model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, params GLSwitch[] switches) :
+            base(model, shaderCodes, attributeMap, switches)
         {
         }
 

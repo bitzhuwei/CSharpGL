@@ -19,7 +19,7 @@ namespace CSharpGL
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\BuildInSceneObject.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\BuildInSceneObject.frag"), ShaderType.FragmentShader);
             IBufferable model = GetModel(buildIn);
-            AttributeNameMap map = GetMap(buildIn);
+            AttributeMap map = GetMap(buildIn);
             vec3 lengths = GetLengths(buildIn);
             var renderer = new BuildInRenderer(lengths, model, shaderCodes, map);
             //renderer.Initialize();
@@ -58,9 +58,9 @@ namespace CSharpGL
             return lengths;
         }
 
-        private static AttributeNameMap GetMap(BuildInSceneObject buildIn)
+        private static AttributeMap GetMap(BuildInSceneObject buildIn)
         {
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
 
             switch (buildIn)
             {

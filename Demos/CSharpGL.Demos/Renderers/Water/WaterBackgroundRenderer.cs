@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.vert.glsl"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.frag.glsl"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             //map.Add("a_normal", PlaneModel.strNormal);
             var renderer = new WaterBackgroundRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CW));
@@ -23,8 +23,8 @@ namespace CSharpGL.Demos
 
         private WaterBackgroundRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, switches)
+            AttributeMap attributeMap, params GLSwitch[] switches)
+            : base(model, shaderCodes, attributeMap, switches)
         {
         }
     }

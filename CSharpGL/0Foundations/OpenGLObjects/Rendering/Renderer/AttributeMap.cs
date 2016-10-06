@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
     /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
     /// </summary>
-    public class AttributeNameMap : IEnumerable<AttributeNameMap.NamePair>
+    public class AttributeMap : IEnumerable<AttributeMap.NamePair>
     {
         private List<string> namesInShader = new List<string>();
         private List<string> namesInIBufferable = new List<string>();
@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
         /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="Renderer"/>.</para>
         /// </summary>
-        public AttributeNameMap() { }
+        public AttributeMap() { }
 
         /// <summary>
         /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
@@ -33,7 +33,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
-        public AttributeNameMap(string nameInShader, string nameInIBufferable)
+        public AttributeMap(string nameInShader, string nameInIBufferable)
         {
             this.Add(nameInShader, nameInIBufferable);
         }
@@ -46,7 +46,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
-        public AttributeNameMap(string[] nameInShader, string[] nameInIBufferable)
+        public AttributeMap(string[] nameInShader, string[] nameInIBufferable)
         {
             if (nameInShader == null || nameInIBufferable == null
                 || nameInShader.Length != nameInIBufferable.Length)
@@ -75,7 +75,7 @@ namespace CSharpGL
         /// <returns></returns>
         public XElement ToXElement()
         {
-            XElement result = new XElement(typeof(AttributeNameMap).Name,
+            XElement result = new XElement(typeof(AttributeMap).Name,
                 from nameInShader in this.namesInShader
                 join nameInIBufferable in this.namesInIBufferable
                 on this.namesInShader.IndexOf(nameInShader) equals this.namesInIBufferable.IndexOf(nameInIBufferable)
@@ -90,11 +90,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="xElement"></param>
         /// <returns></returns>
-        public static AttributeNameMap Parse(XElement xElement)
+        public static AttributeMap Parse(XElement xElement)
         {
-            if (xElement.Name != typeof(AttributeNameMap).Name) { throw new Exception(); }
+            if (xElement.Name != typeof(AttributeMap).Name) { throw new Exception(); }
 
-            AttributeNameMap result = new AttributeNameMap();
+            AttributeMap result = new AttributeMap();
 
             foreach (var item in xElement.Elements(typeof(NamePair).Name))
             {

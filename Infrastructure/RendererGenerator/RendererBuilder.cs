@@ -84,13 +84,13 @@ namespace RendererGenerator
             method.Parameters.Add(model);
             var shaderCode = new CodeParameterDeclarationExpression(typeof(ShaderCode[]), shaderCodes);
             method.Parameters.Add(shaderCode);
-            var map = new CodeParameterDeclarationExpression(typeof(AttributeNameMap), "propertyNameMap");
+            var map = new CodeParameterDeclarationExpression(typeof(AttributeMap), "attributeMap");
             method.Parameters.Add(map);
             var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLSwitch).Name)), "switches");
             method.Parameters.Add(last);
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("model"));
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression(shaderCodes));
-            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("propertyNameMap"));
+            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("attributeMap"));
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("switches"));
 
             rendererType.Members.Add(method);
@@ -112,9 +112,9 @@ namespace RendererGenerator
                 method.Statements.Add(new CodeSnippetStatement(string.Format("            {0}[1] = new {1}(File.ReadAllText(@\"shaders\\{2}.frag\"), {3}.{4});", shaderCodes, typeof(ShaderCode).Name, dataStructure.TargetName, ShaderType.VertexShader.GetType().Name, ShaderType.FragmentShader)));
             }
             {
-                // var map = new AttributeNameMap();
+                // var map = new AttributeMap();
                 method.Statements.Add(new CodeVariableDeclarationStatement("var", "map",
-                    new CodeObjectCreateExpression(typeof(AttributeNameMap))));
+                    new CodeObjectCreateExpression(typeof(AttributeMap))));
                 // map.Add("in_Position", GroundModel.strPosition);
                 foreach (var item in dataStructure.PropertyList)
                 {

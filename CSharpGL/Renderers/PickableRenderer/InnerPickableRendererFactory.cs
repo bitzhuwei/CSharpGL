@@ -11,25 +11,25 @@ namespace CSharpGL
         /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableRenderer"/>
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="attributeNameMap"></param>
+        /// <param name="attributeMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
         /// <returns></returns>
         public static InnerPickableRenderer GetRenderer(
             this IBufferable model,
-            AttributeNameMap attributeNameMap,
+            AttributeMap attributeMap,
             string positionNameInIBufferable,
             params GLSwitch[] switches)
         {
-            if (model == null || attributeNameMap == null || string.IsNullOrEmpty(positionNameInIBufferable))
+            if (model == null || attributeMap == null || string.IsNullOrEmpty(positionNameInIBufferable))
             { throw new ArgumentNullException(); }
 
-            AttributeNameMap map = null;
-            foreach (var item in attributeNameMap)
+            AttributeMap map = null;
+            foreach (var item in attributeMap)
             {
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {
-                    map = new AttributeNameMap();
+                    map = new AttributeMap();
                     map.Add(item.VarNameInShader, item.NameInIBufferable);
                     break;
                 }

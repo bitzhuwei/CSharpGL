@@ -9,7 +9,7 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ODT\Transparent.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ODT\Transparent.frag"), ShaderType.FragmentShader);
-            var map = new AttributeNameMap();
+            var map = new AttributeMap();
             map.Add("in_Position", position);
             map.Add("in_Color", color);
             var renderer = new OrderDependentTransparencyRenderer(model, shaderCodes, map, position, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
@@ -19,9 +19,9 @@ namespace CSharpGL.Demos
         }
 
         private OrderDependentTransparencyRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, string positionNameInIBufferable,
+            AttributeMap attributeMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
 
         protected override void DoRender(RenderEventArgs arg)
