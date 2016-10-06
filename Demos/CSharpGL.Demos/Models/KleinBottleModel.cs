@@ -94,10 +94,10 @@ namespace CSharpGL.Demos
 
         private VertexAttributeBufferPtr GetTexCoordBufferPtr(string varNameInShader)
         {
-            VertexAttributeBufferPtr colorBufferPtr = null;
+            VertexAttributeBufferPtr texCoordBufferPtr = null;
 
-            using (var buffer = new VertexAttributeBuffer<vec2>(
-                varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
+            using (var buffer = new VertexAttributeBuffer<float>(
+                varNameInShader, VertexAttributeConfig.Float, BufferUsage.StaticDraw))
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
@@ -105,21 +105,19 @@ namespace CSharpGL.Demos
                 unsafe
                 {
                     int index = 0;
-                    var array = (vec2*)buffer.Header.ToPointer();
+                    var array = (float*)buffer.Header.ToPointer();
                     for (int uIndex = 0; uIndex < uCount; uIndex++)
                     {
                         for (int vIndex = 0; vIndex < vCount; vIndex++)
                         {
-                            array[index++] = new vec2(
-                                (float)uIndex / (float)uCount,
-                                (float)vIndex / (float)vCount);
+                            array[index++] = (float)uIndex / (float)uCount;
                         }
                     }
                 }
 
-                colorBufferPtr = buffer.GetBufferPtr();
+                texCoordBufferPtr = buffer.GetBufferPtr();
 
-                return colorBufferPtr;
+                return texCoordBufferPtr;
             }
         }
 

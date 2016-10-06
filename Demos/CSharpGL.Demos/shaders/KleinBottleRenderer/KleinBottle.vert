@@ -1,9 +1,9 @@
 ﻿#version 150 core
 
 in vec3 in_Position;
-in vec2 in_TexCoord;
+in float in_TexCoord;
 
-out vec2 passTexCoord;
+out float passTexCoord;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;

@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             var bitmap = new Bitmap(@"Resources\data\KleinBottle.png");
-            var texture = new Texture(TextureTarget.Texture2D,
+            var texture = new Texture(TextureTarget.Texture1D,
                 bitmap, new SamplerParameters());
             texture.Initialize();
             bitmap.Dispose();

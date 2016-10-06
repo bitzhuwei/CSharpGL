@@ -1,8 +1,8 @@
 ﻿#version 150 core
 
-in vec2 passTexCoord;
+in float passTexCoord;
 
-uniform sampler2D tex;
+uniform sampler1D tex;
 
 out vec4 out_Color;
 
