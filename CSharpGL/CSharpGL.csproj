@@ -543,7 +543,7 @@
     <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\IListEditor.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\IBufferable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\AttributeNameMap.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\AttributeMap.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\ShaderCode.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariable.cs" />
     <Compile Include="0Foundations\Maths\glm_camera.cs" />
