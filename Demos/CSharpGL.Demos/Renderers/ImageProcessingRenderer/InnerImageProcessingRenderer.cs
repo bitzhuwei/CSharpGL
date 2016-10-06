@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             ShaderCode[] simpleShader = new ShaderCode[2];
             simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.vert"), ShaderType.VertexShader);
             simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.frag"), ShaderType.FragmentShader);
-            var propertyNameMap = new AttributeNameMap();
+            var propertyNameMap = new AttributeMap();
             propertyNameMap.Add("vert", "position");
             propertyNameMap.Add("uv", "uv");
             var renderer = new InnerImageProcessingRenderer(
@@ -43,9 +43,9 @@ namespace CSharpGL.Demos
         }
 
         private InnerImageProcessingRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeNameMap attributeNameMap, string positionNameInIBufferable,
+            AttributeMap attributeMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(model, shaderCodes, attributeNameMap, positionNameInIBufferable, switches)
+            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
 
         protected override void DoInitialize()
