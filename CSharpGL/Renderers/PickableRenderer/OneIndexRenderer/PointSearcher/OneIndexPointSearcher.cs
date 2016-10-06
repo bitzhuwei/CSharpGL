@@ -4,7 +4,7 @@
     {
         internal abstract uint Search(RenderEventArgs arg,
             int x, int y,
-            RecognizedPrimitiveInfo lastIndexId,
+            RecognizedPrimitiveInfo primitiveInfo,
             OneIndexRenderer modernRenderer);
     }
 }

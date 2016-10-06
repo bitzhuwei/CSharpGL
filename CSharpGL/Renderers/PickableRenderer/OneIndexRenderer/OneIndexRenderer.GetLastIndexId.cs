@@ -13,34 +13,34 @@ namespace CSharpGL
         /// 返回此图元的最后一个索引在<see cref="IndexBufferPtr"/>中的索引（位置）。
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="lastIndexIdList"></param>
+        /// <param name="primitiveInfoList"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexId(
             RenderEventArgs arg,
-            List<RecognizedPrimitiveInfo> lastIndexIdList,
+            List<RecognizedPrimitiveInfo> primitiveInfoList,
             int x, int y)
         {
-            if (lastIndexIdList == null || lastIndexIdList.Count == 0) { return null; }
+            if (primitiveInfoList == null || primitiveInfoList.Count == 0) { return null; }
 #if DEBUG
-            SameLengths(lastIndexIdList);
+            SameLengths(primitiveInfoList);
 #endif
-            if (lastIndexIdList[0].VertexIds.Length == 1)// picking a point.
+            if (primitiveInfoList[0].VertexIds.Length == 1)// picking a point.
             {
-                return lastIndexIdList[0];
+                return primitiveInfoList[0];
             }
 
             int current = 0;
 #if DEBUG
-            NoPrimitiveRestartIndex(lastIndexIdList);
+            NoPrimitiveRestartIndex(primitiveInfoList);
 #endif
-            for (int i = 1; i < lastIndexIdList.Count; i++)
+            for (int i = 1; i < primitiveInfoList.Count; i++)
             {
                 OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
-                    lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
+                    primitiveInfoList[current], primitiveInfoList[i], this.indexBufferPtr.Mode,
                     out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
                 uint pickedIndex = Pick(arg, twoPrimitivesIndexBufferPtr,
                     x, y);
@@ -54,27 +54,27 @@ namespace CSharpGL
                 { throw new Exception("This should not happen!"); }
             }
 
-            return lastIndexIdList[current];
+            return primitiveInfoList[current];
         }
 
-        private void SameLengths(List<RecognizedPrimitiveInfo> lastIndexIdList)
+        private void SameLengths(List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = lastIndexIdList[0].VertexIds.Length;
-            for (int i = 0; i < lastIndexIdList.Count; i++)
+            int length = primitiveInfoList[0].VertexIds.Length;
+            for (int i = 0; i < primitiveInfoList.Count; i++)
             {
-                if (lastIndexIdList[i].VertexIds.Length != length)
+                if (primitiveInfoList[i].VertexIds.Length != length)
                 {
                     throw new Exception("This should not happen!");
                 }
             }
         }
 
-        private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> lastIndexIdList)
+        private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
             if (glSwitch != null)
             {
-                foreach (var lastIndexId in lastIndexIdList)
+                foreach (var lastIndexId in primitiveInfoList)
                 {
                     foreach (var indexId in lastIndexId.VertexIds)
                     {

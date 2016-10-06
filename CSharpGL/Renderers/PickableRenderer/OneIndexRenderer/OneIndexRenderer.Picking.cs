@@ -76,25 +76,25 @@ namespace CSharpGL
             }
         }
 
-        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo lastIndexId, OneIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
             pickedGeometry.GeometryType = GeometryType.Point;
             pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.VertexIds = new uint[] { searcher.Search(arg, x, y, lastIndexId, this), };
+            pickedGeometry.VertexIds = new uint[] { searcher.Search(arg, x, y, primitiveInfo, this), };
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
 
             return pickedGeometry;
         }
 
-        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo lastIndexId, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
             pickedGeometry.GeometryType = GeometryType.Line;
             pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.VertexIds = searcher.Search(arg, x, y, lastIndexId, this);
+            pickedGeometry.VertexIds = searcher.Search(arg, x, y, primitiveInfo, this);
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
 
             return pickedGeometry;
@@ -104,16 +104,16 @@ namespace CSharpGL
         /// 是三角形，就pick一个三角形；是四边形，就pick一个四边形，是多边形，就pick一个多边形。
         /// </summary>
         /// <param name="stageVertexId"></param>
-        /// <param name="lastIndexId"></param>
+        /// <param name="primitiveInfo"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        private PickedGeometry PickWhateverItIs(uint stageVertexId, RecognizedPrimitiveInfo lastIndexId, GeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, GeometryType typeOfMode)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = typeOfMode;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
-            pickedGeometry.VertexIds = lastIndexId.VertexIds;
+            pickedGeometry.VertexIds = primitiveInfo.VertexIds;
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
 
             return pickedGeometry;
@@ -148,11 +148,11 @@ namespace CSharpGL
             RenderEventArgs arg,
             uint lastVertexId, int x, int y)
         {
-            List<RecognizedPrimitiveInfo> lastIndexIdList = GetLastIndexIdList(arg, lastVertexId);
+            List<RecognizedPrimitiveInfo> primitiveInfoList = GetLastIndexIdList(arg, lastVertexId);
 
-            if (lastIndexIdList.Count == 0) { return null; }
+            if (primitiveInfoList.Count == 0) { return null; }
 
-            RecognizedPrimitiveInfo lastIndexId = GetLastIndexId(arg, lastIndexIdList, x, y);
+            RecognizedPrimitiveInfo lastIndexId = GetLastIndexId(arg, primitiveInfoList, x, y);
 
             return lastIndexId;
         }
@@ -187,14 +187,14 @@ namespace CSharpGL
 
             var bufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
-            List<RecognizedPrimitiveInfo> lastIndexIdList = null;
+            List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glSwitch == null)
-            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr); }
             else
-            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr, glSwitch.RestartIndex); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr, glSwitch.RestartIndex); }
             bufferPtr.UnmapBuffer();
 
-            return lastIndexIdList;
+            return primitiveInfoList;
         }
     }
 }

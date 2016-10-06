@@ -7,10 +7,10 @@ namespace CSharpGL
     {
         internal override uint Search(RenderEventArgs arg,
             int x, int y,
-            RecognizedPrimitiveInfo lastIndexId,
+            RecognizedPrimitiveInfo primitiveInfo,
             OneIndexRenderer modernRenderer)
         {
-            uint[] indexList = lastIndexId.VertexIds;
+            uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length != 3) { throw new ArgumentException(); }
 
             OneIndexBufferPtr indexBufferPtr = null;
