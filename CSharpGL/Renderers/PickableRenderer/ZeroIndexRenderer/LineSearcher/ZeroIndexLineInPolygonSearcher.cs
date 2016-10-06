@@ -16,7 +16,7 @@
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
             modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
-            uint id = ColorCodedPicking.ReadPixel(x, y, arg.CanvasRect.Height);
+            uint id = ColorCodedPicking.ReadPixel(x, arg.CanvasRect.Height - y - 1);
 
             indexBufferPtr.Dispose();
 
