@@ -43,7 +43,7 @@ Simple edge-detection implemented by compute shader.
 ## Particle Simulator using Compute Shader.
 Particle's speed and position is updated by compute shader.  
 ![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true)  
-![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.jpg?raw=true)
+![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles2.gif?raw=true)
 ## Order-Dependent Transparency VS Order-Independent Transparency.
 ![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
 ## Point Sprite.
