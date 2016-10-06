@@ -20,19 +20,21 @@ namespace CSharpGL
         /// <param name="indexes">要高亮显示的图元的索引。</param>
         public void SetHighlightIndexes(DrawMode mode, params uint[] indexes)
         {
-            var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
             int indexesLength = indexes.Length;
             if (indexesLength > this.maxElementCount)
             {
+                IndexBufferPtr original = this.indexBufferPtr;
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
-                    indexBufferPtr.Mode, BufferUsage.DynamicDraw))
+                    mode, BufferUsage.DynamicDraw))
                 {
                     buffer.Create(indexesLength);
-                    indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                    this.indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
                 }
                 this.maxElementCount = indexesLength;
+                original.Dispose();
             }
 
+            var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
             IntPtr pointer = indexBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
             unsafe
             {
