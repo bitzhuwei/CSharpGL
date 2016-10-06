@@ -262,6 +262,7 @@
     <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
     <None Include="shaders\GreyFilterRenderer\GreyFilter.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

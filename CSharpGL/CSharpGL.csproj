@@ -190,6 +190,8 @@
     <Compile Include="0Foundations\Utilities\ByteArrayHelper..cs" />
     <Content Include="0Foundations\OpenGLObjects\Rendering\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Rendering\Renderer\readme.md" />
+    <Content Include="0Foundations\Rendering Pipeline Overview%28渲染管道概览%29.md" />
+    <Content Include="0Foundations\Maths\讲讲清楚OpenGL坐标变换.md" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs" />
