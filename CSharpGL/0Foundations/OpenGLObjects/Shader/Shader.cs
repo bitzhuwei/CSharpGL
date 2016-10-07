@@ -49,7 +49,7 @@ namespace CSharpGL
             {
                 string log = this.GetInfoLog(shaderId);
                 throw new Exception(
-                    string.Format("Failed to compile shader with ID {0}: {1}", shaderId, log));
+                    string.Format("Failed to compile shader with ID {0}: {1}", shaderId.ToString(), log));
             }
 
             this.ShaderId = shaderId;

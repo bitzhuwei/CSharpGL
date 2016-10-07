@@ -104,7 +104,7 @@ namespace CSharpGL
                 if (error != ErrorCode.NoError)
                 {
                     throw new Exception(string.Format(
-                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
+                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId.ToString()));
                 }
             }
             this.PositionBufferPtr.UnmapBuffer();
@@ -139,7 +139,7 @@ namespace CSharpGL
                     if (error != ErrorCode.NoError)
                     {
                         Debug.WriteLine(string.Format(
-                            "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId));
+                            "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId.ToString()));
                     }
                 }
                 this.PositionBufferPtr.UnmapBuffer(false);

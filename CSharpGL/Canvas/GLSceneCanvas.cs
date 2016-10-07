@@ -30,6 +30,7 @@ namespace CSharpGL
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
+        private readonly string fullname;
 
         //private EventHandler mouseEnter;
         //private EventHandler mouseLeave;
@@ -66,6 +67,7 @@ namespace CSharpGL
                 //rotator.Bind(camera, this);
                 this.CameraManipulater = rotator;
             }
+            this.fullname = this.GetType().FullName;
         }
 
         //private bool showingCursor = true;
@@ -190,7 +192,7 @@ namespace CSharpGL
                 ErrorCode error = (ErrorCode)OpenGL.GetError();
                 if (error != ErrorCode.NoError)
                 {
-                    Debug.WriteLine(string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error));
+                    Debug.WriteLine(string.Format("{0}: OpenGL error: {1}", this.fullname, error));
                 }
             }
 

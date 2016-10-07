@@ -85,7 +85,7 @@ namespace CSharpGL
                 string log = this.GetInfoLog(programId);
                 throw new Exception(
                     string.Format("Failed to compile shader with ID {0}: {1}",
-                        programId, log));
+                        programId.ToString(), log));
             }
 
             foreach (var item in shaders)
