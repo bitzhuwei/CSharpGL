@@ -15,9 +15,9 @@ namespace CSharpGL
             builder.Append(string.Format("public static partial class OpenGL"));
             builder.Append(("{"));
             builder.AppendLine();
-            FieldInfo[] fieldsInfo = type.GetFields(System.Reflection.BindingFlags.Public | BindingFlags.Static);
+            FieldInfo[] fieldsInfo = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
             var orderedList = from item in fieldsInfo
-                              orderby uint.Parse(item.GetValue(null).ToString())
+                              orderby item.Name
                               select item;
             foreach (var item in orderedList)
             {
@@ -34,7 +34,7 @@ namespace CSharpGL
             builder.Append(string.Format("public static partial class OpenGL"));
             builder.Append(("{"));
             builder.AppendLine();
-            MethodInfo[] methodInfo = type.GetMethods();
+            MethodInfo[] methodInfo = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
             var orderedList = from item in methodInfo
                               orderby item.Name
                               select item;
@@ -53,7 +53,7 @@ namespace CSharpGL
             builder.Append(string.Format("public static partial class OpenGL"));
             builder.Append(("{"));
             builder.AppendLine();
-            Type[] methodInfo = type.GetNestedTypes();
+            Type[] methodInfo = type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
             var orderedList = from item in methodInfo
                               orderby item.Name
                               select item;
