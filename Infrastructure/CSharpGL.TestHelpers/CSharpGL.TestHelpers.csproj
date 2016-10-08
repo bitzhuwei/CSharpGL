@@ -54,6 +54,7 @@
     <Compile Include="RotatieAngleTest.cs" />
     <Compile Include="QuaternionTest.cs" />
     <Compile Include="SceneObjectFactory.cs" />
+    <Compile Include="OpenGLHelper.cs" />
     <Compile Include="vecHelper.cs" />
     <Content Include="readme.md" />
     <Compile Include="BlendFactorHelper.cs" />
