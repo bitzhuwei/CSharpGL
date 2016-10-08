@@ -46,5 +46,24 @@ namespace CSharpGL
             builder.Append(("}"));
             System.IO.File.WriteAllText("OpenGL.methods.cs", builder.ToString());
         }
+        public static void DumpDelegates()
+        {
+            Type type = typeof(OpenGL);
+            var builder = new StringBuilder();
+            builder.Append(string.Format("public static partial class OpenGL"));
+            builder.Append(("{"));
+            builder.AppendLine();
+            Type[] methodInfo = type.GetNestedTypes();
+            var orderedList = from item in methodInfo
+                              orderby item.Name
+                              select item;
+            foreach (var item in orderedList)
+            {
+                builder.AppendLine(string.Format("    {0};",
+                    item));
+            }
+            builder.Append(("}"));
+            System.IO.File.WriteAllText("OpenGL.delegates.cs", builder.ToString());
+        }
     }
 }
