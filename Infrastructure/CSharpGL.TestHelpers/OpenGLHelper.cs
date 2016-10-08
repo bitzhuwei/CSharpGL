@@ -8,11 +8,12 @@ namespace CSharpGL
 {
     public static class OpenGLHelper
     {
-        public static void Dump()
+        public static void DumpConstants()
         {
             Type type = typeof(OpenGL);
             var builder = new StringBuilder();
-            builder.Append(string.Format("OpenGL constants:"));
+            builder.Append(string.Format("public static partial class OpenGL"));
+            builder.Append(("{"));
             builder.AppendLine();
             FieldInfo[] fieldsInfo = type.GetFields(System.Reflection.BindingFlags.Public | BindingFlags.Static);
             var orderedList = from item in fieldsInfo
@@ -20,10 +21,30 @@ namespace CSharpGL
                               select item;
             foreach (var item in orderedList)
             {
-                builder.AppendLine(string.Format("{0} = 0x{1:X};", item.Name, item.GetValue(null)));
+                builder.AppendLine(string.Format("    {0} {1} = 0x{2:X};", item.FieldType.Name, item.Name, item.GetValue(null)));
             }
-            builder.AppendLine("================END================");
-            System.IO.File.WriteAllText("OpenGL.txt", builder.ToString());
+            builder.Append(("}"));
+            System.IO.File.WriteAllText("OpenGL.constants.cs", builder.ToString());
+        }
+
+        public static void DumpMethods()
+        {
+            Type type = typeof(OpenGL);
+            var builder = new StringBuilder();
+            builder.Append(string.Format("public static partial class OpenGL"));
+            builder.Append(("{"));
+            builder.AppendLine();
+            MethodInfo[] methodInfo = type.GetMethods();
+            var orderedList = from item in methodInfo
+                              orderby item.Name
+                              select item;
+            foreach (var item in orderedList)
+            {
+                builder.AppendLine(string.Format("    {0};",
+                    item));
+            }
+            builder.Append(("}"));
+            System.IO.File.WriteAllText("OpenGL.methods.cs", builder.ToString());
         }
     }
 }
