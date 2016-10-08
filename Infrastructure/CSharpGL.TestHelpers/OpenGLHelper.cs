@@ -16,10 +16,10 @@ namespace CSharpGL
             builder.Append(("{"));
             builder.AppendLine();
             FieldInfo[] fieldsInfo = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-            var orderedList = from item in fieldsInfo
-                              orderby item.Name
-                              select item;
-            foreach (var item in orderedList)
+            var list = from item in fieldsInfo
+                       orderby item.Name
+                       select item;
+            foreach (var item in list)
             {
                 builder.AppendLine(string.Format("    {0} {1} = 0x{2:X};", item.FieldType.Name, item.Name, item.GetValue(null)));
             }
@@ -35,10 +35,10 @@ namespace CSharpGL
             builder.Append(("{"));
             builder.AppendLine();
             MethodInfo[] methodInfo = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-            var orderedList = from item in methodInfo
-                              orderby item.Name
-                              select item;
-            foreach (var item in orderedList)
+            var list = from item in methodInfo
+                       orderby item.Name
+                       select item;
+            foreach (var item in list)
             {
                 builder.AppendLine(string.Format("    {0};",
                     item));
@@ -54,10 +54,10 @@ namespace CSharpGL
             builder.Append(("{"));
             builder.AppendLine();
             Type[] methodInfo = type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-            var orderedList = from item in methodInfo
-                              orderby item.Name
-                              select item;
-            foreach (var item in orderedList)
+            var list = from item in methodInfo
+                       orderby item.Name
+                       select item;
+            foreach (var item in list)
             {
                 builder.AppendLine(string.Format("    {0};",
                     item));
