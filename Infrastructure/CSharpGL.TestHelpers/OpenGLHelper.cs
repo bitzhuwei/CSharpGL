@@ -40,8 +40,7 @@ namespace CSharpGL
                        select item;
             foreach (var item in list)
             {
-                builder.AppendLine(string.Format("    {0};",
-                    item));
+                builder.AppendLine(string.Format("    {0};", item));
             }
             builder.Append(("}"));
             System.IO.File.WriteAllText("OpenGL.methods.cs", builder.ToString());
@@ -59,8 +58,7 @@ namespace CSharpGL
                        select item;
             foreach (var item in list)
             {
-                builder.AppendLine(string.Format("    {0};",
-                    item));
+                builder.AppendLine(string.Format("    {0};", item));
             }
             builder.Append(("}"));
             System.IO.File.WriteAllText("OpenGL.delegates.cs", builder.ToString());
