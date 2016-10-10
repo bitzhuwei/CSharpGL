@@ -113,6 +113,7 @@ namespace CSharpGL
 
         private static vec3[] GeneratePositions(int partCount)
         {
+            const float tail = -0.5f;// xyz cross
             var positions = new vec3[3 * (3 + 2 * partCount)];
             const float stickLength = 0.68f;
             const float r1 = 0.08f;
@@ -120,7 +121,7 @@ namespace CSharpGL
             int index = 0;
             {
                 // x axis
-                positions[index++] = new vec3(0, 0, 0);
+                positions[index++] = new vec3(tail, 0, 0);
                 for (int i = 0; i < partCount; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
@@ -140,7 +141,7 @@ namespace CSharpGL
             }
             {
                 // y axis
-                positions[index++] = new vec3(0, 0, 0);
+                positions[index++] = new vec3(0, tail, 0);
                 for (int i = 0; i < partCount; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
@@ -160,7 +161,7 @@ namespace CSharpGL
             }
             {
                 // z axis
-                positions[index++] = new vec3(0, 0, 0);
+                positions[index++] = new vec3(0, 0, tail);
                 for (int i = 0; i < partCount; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
