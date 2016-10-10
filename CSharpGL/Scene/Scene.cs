@@ -91,10 +91,10 @@ namespace CSharpGL
         /// <param name="e"></param>
         public void Resize(object sender, EventArgs e)
         {
-            var control = sender as Control;
+            var control = sender as ICanvas;
             if (control == null) { throw new ArgumentException(); }
 
-            this.Camera.Resize(control.Width, control.Height);
+            this.Camera.Resize(control.Size.Width, control.Size.Height);
 
             this.uiRoot.Size = control.Size;
             //this.cursorRoot.Size = control.Size;
