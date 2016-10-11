@@ -6,14 +6,8 @@ namespace CSharpGL
     /// Renderer  that supports UI layout.
     /// 支持2D UI布局的渲染器
     /// </summary>
-    public partial class UIRenderer : RendererBase
+    public partial class UIRenderer : RendererBase, ILayout<UIRenderer>, ILayoutEvent
     {
-
-        /// <summary>
-        /// Manages how this <see cref="UIRenderer"/> layouts.
-        /// </summary>
-        public LayoutManager<UIRenderer> LayoutManager { get; private set; }
-
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
         private GLSwitchList switchList = new GLSwitchList();
@@ -47,7 +41,10 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
         {
-            this.LayoutManager = new LayoutManager<UIRenderer>(this, anchor, margin, size, zNear, zFar);
+            this.Children = new ChildList<UIRenderer>(this);// new ILayoutList(this);
+
+            this.Anchor = anchor; this.Margin = margin;
+            this.Size = size; this.zNear = zNear; this.zFar = zFar;
         }
 
         /// <summary>

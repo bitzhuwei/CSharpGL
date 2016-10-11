@@ -24,7 +24,7 @@ namespace GridViewer
                 //// display this UI control's area.
                 //uiAxis.SwitchList.Add(new ClearColorSwitch());
                 this.Axis = uiAxis;
-                this.Scene.UIRoot.LayoutManager.Children.Add(uiAxis.LayoutManager);
+                this.Scene.UIRoot.Children.Add(uiAxis);
             }
             {
                 var uiColorPalette = new UIColorPaletteRenderer(100,
@@ -33,7 +33,7 @@ namespace GridViewer
                     new Padding(148, 10, 60, 10 + 40), new Size(400, 40), -100, 100);
                 uiColorPalette.Initialize();
                 this.ColorPalette = uiColorPalette;
-                this.Scene.UIRoot.LayoutManager.Children.Add(uiColorPalette.LayoutManager);
+                this.Scene.UIRoot.Children.Add(uiColorPalette);
             }
             this.Resize += this.Scene.Resize;
             this.OpenGLDraw += ScientificCanvas_OpenGLDraw;

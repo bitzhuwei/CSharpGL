@@ -15,7 +15,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="uiRenderer"></param>
         /// <returns></returns>
-        public static mat4 GetOrthoProjection(this UIRenderer uiRenderer)
+        public static mat4 GetOrthoProjection(this ILayout<UIRenderer> uiRenderer)
         {
             float halfWidth = uiRenderer.Size.Width / 2.0f;
             float halfHeight = uiRenderer.Size.Height / 2.0f;

@@ -31,7 +31,7 @@ namespace CSharpGL
             this.Location = new System.Drawing.Point(viewport[0], viewport[1]);
             this.Size = new System.Drawing.Size(viewport[2], viewport[3]);
 
-            ILayoutHelper.Layout(this.LayoutManager);
+            ILayoutHelper.Layout(this);
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace CSharpGL
         protected override void DoRender(RenderEventArgs arg)
         {
             this.Layout();
-            foreach (var item in this.LayoutManager.Children)
+            foreach (var item in this.Children)
             {
-                RenderUIRenderer(item.Owner, arg);
+                RenderUIRenderer(item, arg);
             }
         }
 
@@ -66,10 +66,10 @@ namespace CSharpGL
             //            { throw new Exception(string.Format("Maybe circular reference in UI tree!")); }
             //#endif
             renderer.Render(arg);
-            LayoutManager<UIRenderer>[] array = renderer.LayoutManager.Children.ToArray();
+            UIRenderer[] array = renderer.Children.ToArray();
             foreach (var item in array)
             {
-                RenderUIRenderer(item.Owner, arg);
+                RenderUIRenderer(item, arg);
             }
             //#if DEBUG
             //            stackLevel--;
