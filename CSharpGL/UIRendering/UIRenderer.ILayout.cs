@@ -1,15 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
-    public partial class ViewPort
+    /// <summary>
+    /// Renderer  that supports UI layout.
+    /// 支持2D UI布局的渲染器
+    /// </summary>
+    public partial class UIRenderer
     {
+        /// <summary>
+        /// triggered before layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
+        /// </summary>
+        public event EventHandler BeforeLayout;
+
+        /// <summary>
+        /// triggered after layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
+        /// </summary>
+        public event EventHandler AfterLayout;
+
+        void ILayoutEvent.DoBeforeLayout()
+        {
+            EventHandler BeforeLayout = this.BeforeLayout;
+            if (BeforeLayout != null)
+            {
+                BeforeLayout(this, null);
+            }
+        }
+
+        void ILayoutEvent.DoAfterLayout()
+        {
+            EventHandler AfterLayout = this.AfterLayout;
+            if (AfterLayout != null)
+            {
+                AfterLayout(this, null);
+            }
+        }
 
         /// <summary>
         ///
@@ -95,14 +122,14 @@ namespace CSharpGL
         /// </summary>
         [Category(strTreeNode)]
         [Description("Self.")]
-        public ViewPort Self { get { return this; } }
+        public UIRenderer Self { get { return this; } }
 
         /// <summary>
         ///
         /// </summary>
         [Category(strTreeNode)]
         [Description("Parent UI Renderer.")]
-        public ViewPort Parent { get; set; }
+        public UIRenderer Parent { get; set; }
 
         //ChildList<UIRenderer> children;
 
@@ -110,9 +137,8 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strTreeNode)]
-        [Editor(typeof(IListEditor<ViewPort>), typeof(UITypeEditor))]
+        [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
         [Description("Children UI Renderers.")]
-        public ChildList<ViewPort> Children { get; private set; }
-
+        public ChildList<UIRenderer> Children { get; private set; }
     }
 }

@@ -276,7 +276,10 @@
     <Compile Include="Scene\SceneObjects\SceneObject.IModelSpace.cs" />
     <Compile Include="Scene\SceneObjects\SceneObject.Render.cs" />
     <Compile Include="Scene\Time.cs" />
+    <Compile Include="Scene\ViewPort.cs" />
+    <Compile Include="Scene\ViewPort.ILayout.cs" />
     <Compile Include="UIRendering\ILayoutEvent.cs" />
+    <Compile Include="UIRendering\UIRenderer.ILayout.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneObjects\SceneRootObject.cs" />

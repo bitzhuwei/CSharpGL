@@ -6,8 +6,16 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class ViewPort : ILayout
+    /// <summary>
+    /// 
+    /// </summary>
+    public partial class ViewPort : ILayout<ViewPort>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="camera"></param>
         public ViewPort(Rectangle rect, ICamera camera)
         {
             this.Rect = rect;
@@ -24,110 +32,5 @@ namespace CSharpGL
         /// </summary>
         public ICamera Camera { get; private set; }
 
-        public System.Windows.Forms.AnchorStyles Anchor
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public System.Windows.Forms.Padding Margin
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Point Location
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Size Size
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Size ParentLastSize
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int zNear
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int zFar
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public UIRenderer Self
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public UIRenderer Parent
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public ChildList<UIRenderer> Children
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }
