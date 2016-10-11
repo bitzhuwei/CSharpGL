@@ -11,11 +11,11 @@ namespace CSharpGL
     public static class ILayoutHelper
     {
         /// <summary>
-        /// Gets projection matrix for <see cref="ILayout"/> to layout controls in OpenGL canvas.
+        /// Gets projection matrix for <see cref="ILayout&lt;T&gt;"/> to layout controls in OpenGL canvas.
         /// </summary>
         /// <param name="uiRenderer"></param>
         /// <returns></returns>
-        public static mat4 GetOrthoProjection(this ILayout uiRenderer)
+        public static mat4 GetOrthoProjection(this ILayout<UIRenderer> uiRenderer)
         {
             float halfWidth = uiRenderer.Size.Width / 2.0f;
             float halfHeight = uiRenderer.Size.Height / 2.0f;
@@ -39,9 +39,9 @@ namespace CSharpGL
         /// <para>(0, 0)</para>
         /// </summary>
         /// <param name="uiRenderer"></param>
-        internal static void Layout(this ILayout uiRenderer)
+        internal static void Layout(this ILayout<UIRenderer> uiRenderer)
         {
-            ILayout parent = uiRenderer.Parent;
+            ILayout<UIRenderer> parent = uiRenderer.Parent;
             if (parent != null)
             {
                 uiRenderer.Self.DoBeforeLayout();
@@ -75,7 +75,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="currentNode"></param>
         /// <param name="parent"></param>
-        private static void NonRootNodeLayout(ILayout currentNode, ILayout parent)
+        private static void NonRootNodeLayout(ILayout<UIRenderer> currentNode, ILayout<UIRenderer> parent)
         {
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)

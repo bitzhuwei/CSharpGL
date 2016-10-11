@@ -4,7 +4,7 @@
     /// Supports layout UI element in an OpenGL canvas.
     /// 实现在OpenGL画布上的UI布局
     /// </summary>
-    public interface ILayout : ITreeNode<UIRenderer>
+    public interface ILayout<T> : ITreeNode<T> where T : ITreeNode<T>
     {
         //event EventHandler afterLayout;
 
