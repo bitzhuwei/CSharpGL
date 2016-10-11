@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Renderer  that supports UI layout.
     /// 支持2D UI布局的渲染器
     /// </summary>
-    public class UIRenderer : RendererBase, ILayout<UIRenderer>
+    public class UIRenderer : RendererBase, ILayout<UIRenderer>, ILayoutEvent
     {
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// </summary>
         public event EventHandler AfterLayout;
 
-        internal void DoBeforeLayout()
+        void ILayoutEvent.DoBeforeLayout()
         {
             EventHandler BeforeLayout = this.BeforeLayout;
             if (BeforeLayout != null)
@@ -43,7 +43,7 @@ namespace CSharpGL
             }
         }
 
-        internal void DoAfterLayout()
+        void ILayoutEvent.DoAfterLayout()
         {
             EventHandler AfterLayout = this.AfterLayout;
             if (AfterLayout != null)

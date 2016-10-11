@@ -38,25 +38,28 @@ namespace CSharpGL
         /// <para>   |-----------------&gt;x</para>
         /// <para>(0, 0)</para>
         /// </summary>
-        /// <param name="uiRenderer"></param>
-        internal static void Layout(this ILayout<UIRenderer> uiRenderer)
+        /// <param name="node"></param>
+        internal static void Layout(this ILayout<UIRenderer> node)
         {
-            ILayout<UIRenderer> parent = uiRenderer.Parent;
+            ILayout<UIRenderer> parent = node.Parent;
             if (parent != null)
             {
-                uiRenderer.Self.DoBeforeLayout();
-                NonRootNodeLayout(uiRenderer, parent);
-                uiRenderer.Self.DoAfterLayout();
+                ILayoutEvent layoutEvent = node.Self;
+                if (layoutEvent != null)
+                { layoutEvent.DoBeforeLayout(); }
+                NonRootNodeLayout(node, parent);
+                if (layoutEvent != null)
+                { layoutEvent.DoAfterLayout(); }
             }
 
-            foreach (var item in uiRenderer.Children)
+            foreach (var item in node.Children)
             {
                 item.Layout();
             }
 
             if (parent != null)
             {
-                uiRenderer.ParentLastSize = parent.Size;
+                node.ParentLastSize = parent.Size;
             }
         }
 
