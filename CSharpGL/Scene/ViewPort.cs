@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public partial class ViewPort : ILayout<ViewPort>
+    public partial class ViewPort : ILayout<ViewPort>, ILayoutEvent
     {
         /// <summary>
         /// 
@@ -31,6 +31,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         public ICamera Camera { get; private set; }
+
 
     }
 }

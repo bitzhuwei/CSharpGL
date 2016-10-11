@@ -278,7 +278,7 @@
     <Compile Include="Scene\Time.cs" />
     <Compile Include="Scene\ViewPort.cs" />
     <Compile Include="Scene\ViewPort.ILayout.cs" />
-    <Compile Include="UIRendering\ILayoutEvent.cs" />
+    <Compile Include="Layout\ILayoutEvent.cs" />
     <Compile Include="UIRendering\UIRenderer.ILayout.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
@@ -351,11 +351,11 @@
     <Compile Include="UIRendering\UIRenderers\UIText.DoInitialize.cs" />
     <Compile Include="UIRendering\UIRenderers\UIText.cs" />
     <Compile Include="UIRendering\UIRenderers\UIRoot.cs" />
-    <Compile Include="UIRendering\ILayoutHelper.cs" />
+    <Compile Include="Layout\ILayoutHelper.cs" />
     <Compile Include="UIRendering\UIRenderers\UIAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UIRendering\ILayout.cs">
+    <Compile Include="Layout\ILayout.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UIRendering\UIRenderer.cs" />

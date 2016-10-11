@@ -1,15 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     public partial class ViewPort
     {
+        /// <summary>
+        /// triggered before layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
+        /// </summary>
+        public event EventHandler BeforeLayout;
+
+        /// <summary>
+        /// triggered after layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
+        /// </summary>
+        public event EventHandler AfterLayout;
+
+        void ILayoutEvent.DoBeforeLayout()
+        {
+            EventHandler BeforeLayout = this.BeforeLayout;
+            if (BeforeLayout != null)
+            {
+                BeforeLayout(this, null);
+            }
+        }
+
+        void ILayoutEvent.DoAfterLayout()
+        {
+            EventHandler AfterLayout = this.AfterLayout;
+            if (AfterLayout != null)
+            {
+                AfterLayout(this, null);
+            }
+        }
 
         /// <summary>
         ///
@@ -113,6 +136,5 @@ namespace CSharpGL
         [Editor(typeof(IListEditor<ViewPort>), typeof(UITypeEditor))]
         [Description("Children UI Renderers.")]
         public ChildList<ViewPort> Children { get; private set; }
-
     }
 }
