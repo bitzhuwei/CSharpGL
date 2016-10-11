@@ -31,7 +31,7 @@ namespace CSharpGL
         /// children in <see cref="ITreeNode&lt;T&gt;"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public ChildList(T parent = default(T))
+        public ChildList(T parent)
         {
             this.Parent = parent;
         }

@@ -11,11 +11,6 @@ namespace CSharpGL
     public partial class UIRenderer
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public LayoutManager<UIRenderer> LayoutManager { get; private set; }
-
-        /// <summary>
         /// triggered before layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
         /// </summary>
         public event EventHandler BeforeLayout
@@ -34,13 +29,13 @@ namespace CSharpGL
         }
 
 
-        void ILayoutEvent.DoBeforeLayout()
+        internal void DoBeforeLayout()
         {
             ILayoutEvent innerEvent = this.LayoutManager;
             innerEvent.DoBeforeLayout();
         }
 
-        void ILayoutEvent.DoAfterLayout()
+        internal void DoAfterLayout()
         {
             ILayoutEvent innerEvent = this.LayoutManager;
             innerEvent.DoAfterLayout();
@@ -88,7 +83,6 @@ namespace CSharpGL
             set { this.LayoutManager.Location = value; }
         }
 
-        private System.Drawing.Size size;
         private bool sizeUpdated
         {
             get { return this.LayoutManager.sizeUpdated; }
@@ -130,47 +124,10 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strILayout)]
-        public int zFar { get; set; }
-
-        private const string strTreeNode = "TreeNode";
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strTreeNode)]
-        [Description("Self.")]
-        public UIRenderer Self { get { return this; } }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strTreeNode)]
-        [Description("Parent UI Renderer.")]
-        public UIRenderer Parent
+        public int zFar
         {
-            get { return this.LayoutManager.Parent.Owner; }
-            set { this.LayoutManager.Parent.Owner = value; }
-        }
-
-        //ChildList<UIRenderer> children;
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strTreeNode)]
-        [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
-        [Description("Children UI Renderers.")]
-        public ChildList<UIRenderer> Children
-        {
-            get
-            {
-                var list = new ChildList<UIRenderer>();
-                foreach (var item in this.LayoutManager.Children)
-                {
-                    list.Add(item.Owner);
-                }
-                return list;
-            }
+            get { return this.LayoutManager.zFar; }
+            set { this.LayoutManager.zFar = value; }
         }
     }
 }

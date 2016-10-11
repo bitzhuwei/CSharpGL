@@ -61,10 +61,10 @@ namespace CSharpGL
         private void DisposeUI(UIRenderer uiRenderer)
         {
             uiRenderer.Dispose();
-            UIRenderer[] array = uiRenderer.Children.ToArray();
-            foreach (UIRenderer child in array)
+            LayoutManager<UIRenderer>[] array = uiRenderer.LayoutManager.Children.ToArray();
+            foreach (var child in array)
             {
-                DisposeUI(child);
+                DisposeUI(child.Owner);
             }
         }
     }

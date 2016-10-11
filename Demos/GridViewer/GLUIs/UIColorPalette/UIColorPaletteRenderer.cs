@@ -83,7 +83,7 @@ namespace GridViewer
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                 zNear, zFar);
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
-                this.Children.Add(bar);
+                this.LayoutManager.Children.Add(bar.LayoutManager);
                 this.colorPaletteBar = bar;
             }
             // color bar using vec3 color(hidden as default state)
@@ -96,7 +96,7 @@ namespace GridViewer
                     new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                     zNear, zFar);
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
-                this.Children.Add(bar);
+                this.LayoutManager.Children.Add(bar.LayoutManager);
                 this.colorPaletteBar2 = bar;
                 bar.Enabled = false;
             }
@@ -108,7 +108,7 @@ namespace GridViewer
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 2),
                 zNear, zFar);
                 //markers.SwitchList.Add(new ClearColorSwitch(Color.Red));
-                this.Children.Add(markers);
+                this.LayoutManager.Children.Add(markers.LayoutManager);
                 this.markers = markers;
             }
             // labels that display values(float values)
@@ -130,7 +130,7 @@ namespace GridViewer
                     //label.SwitchList.Add(new ClearColorSwitch(Color.Green));
                     label.Text = ((float)i).ToShortString();
                     label.BeforeLayout += label_beforeLayout;
-                    this.Children.Add(label);
+                    this.LayoutManager.Children.Add(label.LayoutManager);
                     this.labelList.Add(label);
                 }
                 this.currentMarkersCount = 2;
@@ -141,9 +141,9 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            foreach (var item in this.Children)
+            foreach (var item in this.LayoutManager.Children)
             {
-                item.Initialize();
+                item.Owner.Initialize();
             }
 
             this.SetCodedColor(-100, 100, 200);
