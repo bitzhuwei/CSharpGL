@@ -8,6 +8,17 @@
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
 
+        private bool enabled = true;
+
+        /// <summary>
+        /// Does this viewport take part in rendering?
+        /// </summary>
+        public bool Enabled
+        {
+            get { return enabled; }
+            set { enabled = value; }
+        }
+
         /// <summary>
         ///
         /// </summary>

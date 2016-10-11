@@ -17,6 +17,8 @@ namespace CSharpGL
 
         private SceneRootObject rootObject;
 
+        private ViewPort rootViewPort;
+
         /// <summary>
         /// Manages a scene to be rendered and updated.
         /// </summary>
@@ -32,6 +34,9 @@ namespace CSharpGL
             var rootObject = new SceneRootObject(this);
             rootObject.Children.AddRange(objects);
             this.rootObject = rootObject;
+            this.rootViewPort = new ViewPort(camera,
+                AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
+                new Padding(0, 0, 0, 0), canvas.Size);
             //var cursor = UICursor.CreateDefault();
             //cursor.Enabled = false;
             //this.cursorRoot.Children.Add(cursor);
@@ -74,7 +79,15 @@ namespace CSharpGL
         [Category(strScene)]
         [Description("Root object of all objects to be rendered in the scene.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public SceneRootObject RootObject { get { return rootObject; } }
+        public SceneRootObject RootObject { get { return this.rootObject; } }
+
+        /// <summary>
+        /// Root object of all viewports to be rendered in the scene.
+        /// </summary>
+        [Category(strScene)]
+        [Description("Root object of all viewports to be rendered in the scene.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+        public ViewPort RootViewPort { get { return this.rootViewPort; } }
 
         /// <summary>
         /// hosts all UI renderers.

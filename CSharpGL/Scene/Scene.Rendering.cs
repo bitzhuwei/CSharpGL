@@ -7,6 +7,29 @@ namespace CSharpGL
     {
         private object synObj = new object();
 
+        public void Render(RenderModes renderMode,
+            bool autoClear = true,
+            GeometryType pickingGeometryType = GeometryType.Point)
+        {
+            this.RenderViewPort(this.rootViewPort, renderMode, autoClear, pickingGeometryType);
+        }
+
+        private void RenderViewPort(ViewPort viewPort, RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType)
+        {
+            if (viewPort.Enabled)
+            {
+                // render self.
+                viewPort.On();
+                this.Render(renderMode, new Rectangle(viewPort.Location, viewPort.Size), autoClear, pickingGeometryType);
+                viewPort.Off();
+                // render children viewport.
+                foreach (var item in viewPort.Children)
+                {
+                    this.RenderViewPort(item, renderMode, autoClear, pickingGeometryType);
+                }
+            }
+        }
+
         // <param name="mousePosition">mouse position in window coordinate system.</param>
         /// <summary>
         ///
