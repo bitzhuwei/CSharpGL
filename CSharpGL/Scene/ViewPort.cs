@@ -1,37 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public partial class ViewPort : ILayout<ViewPort>, ILayoutEvent
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rect"></param>
-        /// <param name="camera"></param>
-        public ViewPort(Rectangle rect, ICamera camera)
-        {
-            this.Rect = rect;
-            this.Camera = camera;
-        }
+        private ViewportSwitch viewportSwitch;
+        private ScissorTestSwitch scissorTestSwitch;
 
         /// <summary>
-        /// 
-        /// </summary>
-        public Rectangle Rect { get; set; }
-
-        /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICamera Camera { get; private set; }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="anchor"></param>
+        /// <param name="margin"></param>
+        /// <param name="size"></param>
+        public ViewPort(ICamera camera,
+            System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
+            System.Drawing.Size size)
+        {
+            this.Children = new ChildList<ViewPort>(this);// new ILayoutList(this);
 
+            this.Camera = camera;
+            this.Anchor = anchor;
+            this.Margin = margin;
+            this.Size = size;
+        }
+
+        private bool isInitialized = false;
+
+        /// <summary>
+        ///
+        /// </summary>
+        private void Initialize()
+        {
+            if (!this.isInitialized)
+            {
+                this.viewportSwitch = new ViewportSwitch();
+                this.scissorTestSwitch = new ScissorTestSwitch();
+                this.isInitialized = true;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void On()
+        {
+            if (!this.isInitialized) { this.Initialize(); }
+
+            if (this.locationUpdated)
+            {
+                this.viewportSwitch.X = this.Location.X;
+                this.viewportSwitch.Y = this.Location.Y;
+                this.scissorTestSwitch.X = this.Location.X;
+                this.scissorTestSwitch.Y = this.Location.Y;
+                this.locationUpdated = false;
+            }
+            if (this.sizeUpdated)
+            {
+                this.viewportSwitch.Width = this.Size.Width;
+                this.viewportSwitch.Height = this.Size.Height;
+                this.scissorTestSwitch.Width = this.Size.Width;
+                this.scissorTestSwitch.Height = this.Size.Height;
+                this.sizeUpdated = false;
+            }
+
+            this.viewportSwitch.On();
+            this.scissorTestSwitch.On();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void Off()
+        {
+            if (!this.isInitialized) { this.Initialize(); }
+
+            this.scissorTestSwitch.Off();
+            this.viewportSwitch.Off();
+        }
     }
 }
