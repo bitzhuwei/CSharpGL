@@ -98,6 +98,13 @@ namespace CSharpGL
             this.viewportSwitch.Off();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderMode"></param>
+        /// <param name="autoClear"></param>
+        /// <param name="pickingGeometryType"></param>
+        /// <param name="scene"></param>
         public virtual void Render(RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType, Scene scene)
         {
             this.On();
