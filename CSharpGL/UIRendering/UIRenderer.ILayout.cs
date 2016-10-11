@@ -11,39 +11,31 @@ namespace CSharpGL
     public partial class UIRenderer
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public LayoutManager<UIRenderer> LayoutManager { get; private set; }
-
-        /// <summary>
         /// triggered before layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
         /// </summary>
-        public event EventHandler BeforeLayout
-        {
-            add { this.LayoutManager.BeforeLayout += value; }
-            remove { this.LayoutManager.BeforeLayout -= value; }
-        }
+        public event EventHandler BeforeLayout;
 
         /// <summary>
         /// triggered after layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
         /// </summary>
-        public event EventHandler AfterLayout
-        {
-            add { this.LayoutManager.AfterLayout += value; }
-            remove { this.LayoutManager.AfterLayout -= value; }
-        }
-
+        public event EventHandler AfterLayout;
 
         void ILayoutEvent.DoBeforeLayout()
         {
-            ILayoutEvent innerEvent = this.LayoutManager;
-            innerEvent.DoBeforeLayout();
+            EventHandler BeforeLayout = this.BeforeLayout;
+            if (BeforeLayout != null)
+            {
+                BeforeLayout(this, null);
+            }
         }
 
         void ILayoutEvent.DoAfterLayout()
         {
-            ILayoutEvent innerEvent = this.LayoutManager;
-            innerEvent.DoAfterLayout();
+            EventHandler AfterLayout = this.AfterLayout;
+            if (AfterLayout != null)
+            {
+                AfterLayout(this, null);
+            }
         }
 
         /// <summary>
@@ -55,27 +47,16 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strILayout)]
-        public System.Windows.Forms.AnchorStyles Anchor
-        {
-            get { return this.LayoutManager.Anchor; }
-            set { this.LayoutManager.Anchor = value; }
-        }
+        public System.Windows.Forms.AnchorStyles Anchor { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [Category(strILayout)]
-        public System.Windows.Forms.Padding Margin
-        {
-            get { return this.LayoutManager.Margin; }
-            set { this.LayoutManager.Margin = value; }
-        }
+        public System.Windows.Forms.Padding Margin { get; set; }
 
-        private bool locationUpdated
-        {
-            get { return this.LayoutManager.locationUpdated; }
-            set { this.LayoutManager.locationUpdated = value; }
-        }
+        private System.Drawing.Point location;
+        private bool locationUpdated = false;
 
         /// <summary>
         ///
@@ -84,16 +65,19 @@ namespace CSharpGL
         [ReadOnly(true)]
         public System.Drawing.Point Location
         {
-            get { return this.LayoutManager.Location; }
-            set { this.LayoutManager.Location = value; }
+            get { return location; }
+            set
+            {
+                if (location != value)
+                {
+                    location = value;
+                    locationUpdated = true;
+                }
+            }
         }
 
         private System.Drawing.Size size;
-        private bool sizeUpdated
-        {
-            get { return this.LayoutManager.sizeUpdated; }
-            set { this.LayoutManager.sizeUpdated = value; }
-        }
+        private bool sizeUpdated = false;
 
         /// <summary>
         ///
@@ -101,8 +85,15 @@ namespace CSharpGL
         [Category(strILayout)]
         public System.Drawing.Size Size
         {
-            get { return this.LayoutManager.Size; }
-            set { this.LayoutManager.Size = value; }
+            get { return size; }
+            set
+            {
+                if (value != size)
+                {
+                    size = value;
+                    sizeUpdated = true;
+                }
+            }
         }
 
         /// <summary>
@@ -110,21 +101,13 @@ namespace CSharpGL
         /// </summary>
         [Browsable(false)]
         [Category(strILayout)]
-        public System.Drawing.Size ParentLastSize
-        {
-            get { return this.LayoutManager.ParentLastSize; }
-            set { this.LayoutManager.ParentLastSize = value; }
-        }
+        public System.Drawing.Size ParentLastSize { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [Category(strILayout)]
-        public int zNear
-        {
-            get { return this.LayoutManager.zNear; }
-            set { this.LayoutManager.zNear = value; }
-        }
+        public int zNear { get; set; }
 
         /// <summary>
         ///
@@ -146,11 +129,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strTreeNode)]
         [Description("Parent UI Renderer.")]
-        public UIRenderer Parent
-        {
-            get { return this.LayoutManager.Parent.Owner; }
-            set { this.LayoutManager.Parent.Owner = value; }
-        }
+        public UIRenderer Parent { get; set; }
 
         //ChildList<UIRenderer> children;
 
@@ -160,17 +139,6 @@ namespace CSharpGL
         [Category(strTreeNode)]
         [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
         [Description("Children UI Renderers.")]
-        public ChildList<UIRenderer> Children
-        {
-            get
-            {
-                var list = new ChildList<UIRenderer>();
-                foreach (var item in this.LayoutManager.Children)
-                {
-                    list.Add(item.Owner);
-                }
-                return list;
-            }
-        }
+        public ChildList<UIRenderer> Children { get; private set; }
     }
 }
