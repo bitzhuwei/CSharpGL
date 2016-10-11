@@ -39,12 +39,12 @@ namespace CSharpGL
         /// <para>(0, 0)</para>
         /// </summary>
         /// <param name="node"></param>
-        internal static void Layout(this ILayout<UIRenderer> node)
+        internal static void Layout<T>(this ILayout<T> node) where T : ILayout<T>
         {
-            ILayout<UIRenderer> parent = node.Parent;
+            ILayout<T> parent = node.Parent;
             if (parent != null)
             {
-                ILayoutEvent layoutEvent = node.Self;
+                var layoutEvent = node.Self as ILayoutEvent;
                 if (layoutEvent != null)
                 { layoutEvent.DoBeforeLayout(); }
                 NonRootNodeLayout(node, parent);
@@ -78,7 +78,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="currentNode"></param>
         /// <param name="parent"></param>
-        private static void NonRootNodeLayout(ILayout<UIRenderer> currentNode, ILayout<UIRenderer> parent)
+        private static void NonRootNodeLayout<T>(ILayout<T> currentNode, ILayout<T> parent) where T : ITreeNode<T>
         {
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
