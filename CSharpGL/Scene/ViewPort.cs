@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Drawing;
+namespace CSharpGL
 {
     /// <summary>
     ///
@@ -95,6 +96,13 @@
 
             this.scissorTestSwitch.Off();
             this.viewportSwitch.Off();
+        }
+
+        public virtual void Render(RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType, Scene scene)
+        {
+            this.On();
+            scene.Render(renderMode, autoClear, pickingGeometryType);
+            this.Off();
         }
     }
 }

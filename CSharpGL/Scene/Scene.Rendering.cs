@@ -7,6 +7,12 @@ namespace CSharpGL
     {
         private object synObj = new object();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderMode"></param>
+        /// <param name="autoClear"></param>
+        /// <param name="pickingGeometryType"></param>
         public void Render(RenderModes renderMode,
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
@@ -14,14 +20,20 @@ namespace CSharpGL
             this.RenderViewPort(this.rootViewPort, renderMode, autoClear, pickingGeometryType);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewPort"></param>
+        /// <param name="renderMode"></param>
+        /// <param name="autoClear"></param>
+        /// <param name="pickingGeometryType"></param>
         private void RenderViewPort(ViewPort viewPort, RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType)
         {
             if (viewPort.Enabled)
             {
                 // render self.
-                viewPort.On();
-                this.Render(renderMode, new Rectangle(viewPort.Location, viewPort.Size), autoClear, pickingGeometryType);
-                viewPort.Off();
+                viewPort.Render(renderMode, autoClear, pickingGeometryType, this);
+
                 // render children viewport.
                 foreach (var item in viewPort.Children)
                 {
