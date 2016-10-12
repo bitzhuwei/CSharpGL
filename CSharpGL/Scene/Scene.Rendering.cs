@@ -20,7 +20,7 @@ namespace CSharpGL
             lock (this.synObj)
             {
                 this.rootViewPort.Layout();
-                this.RenderViewPort(this.rootViewPort, renderMode, autoClear, pickingGeometryType);
+                this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, renderMode, autoClear, pickingGeometryType);
             }
         }
 
@@ -28,10 +28,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="viewPort"></param>
+        /// <param name="clientRectangle"></param>
         /// <param name="renderMode"></param>
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
-        private void RenderViewPort(ViewPort viewPort, RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType)
+        private void RenderViewPort(ViewPort viewPort, Rectangle clientRectangle, RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType)
         {
             if (viewPort.Enabled)
             {
@@ -39,14 +40,14 @@ namespace CSharpGL
                 if (viewPort.Visiable)
                 {
                     viewPort.On();
-                    this.Render(viewPort, renderMode, viewPort.Rect, viewPort.ClearColor, autoClear, pickingGeometryType);
+                    this.Render(viewPort, clientRectangle, renderMode, autoClear, pickingGeometryType);
                     viewPort.Off();
                 }
 
                 // render children viewport.
                 foreach (ViewPort item in viewPort.Children)
                 {
-                    this.RenderViewPort(item, renderMode, autoClear, pickingGeometryType);
+                    this.RenderViewPort(item, clientRectangle, renderMode, autoClear, pickingGeometryType);
                 }
             }
         }
@@ -56,14 +57,13 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="viewPort"></param>
-        /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
+        /// <param name="renderMode"></param>
         /// <param name="clearColor"></param>
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
-        private void Render(ViewPort viewPort, RenderModes renderMode, Rectangle clientRectangle,
-            //Point mousePosition,
-            Color clearColor,
+        private void Render(ViewPort viewPort, Rectangle clientRectangle,
+            RenderModes renderMode,
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
@@ -71,7 +71,7 @@ namespace CSharpGL
 
             if (autoClear)
             {
-                vec4 color = clearColor.ToVec4();
+                vec4 color = viewPort.ClearColor.ToVec4();
                 OpenGL.ClearColor(color.x, color.y, color.z, color.w);
 
                 OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
