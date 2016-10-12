@@ -50,11 +50,11 @@ namespace GridViewer
                 mainObj.Children.AddRange(wellObjects);
 
                 this.scientificCanvas.Scene.RootObject.Children.Add(mainObj);
-                this.scientificCanvas.Scene.Camera.ZoomCamera(boxRenderer.GetBoundingBox());
+                this.scientificCanvas.Scene.FirstCamera.ZoomCamera(boxRenderer.GetBoundingBox());
 
-                vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
-                this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.Position;
-                this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
+                vec3 back = this.scientificCanvas.Scene.FirstCamera.GetBack();
+                this.scientificCanvas.Scene.FirstCamera.Target = -grid.DataSource.Position;
+                this.scientificCanvas.Scene.FirstCamera.Position = this.scientificCanvas.Scene.FirstCamera.Target + back;
                 this.scientificCanvas.ColorPalette.SetCodedColor(axisMin, axisMax, step);
 
                 // update tree node.

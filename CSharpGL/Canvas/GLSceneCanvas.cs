@@ -378,7 +378,7 @@ namespace CSharpGL
                 if (this.cameraManipulater != null)
                 { this.cameraManipulater.Unbind(); }
                 this.cameraManipulater = value;
-                value.Bind(this.Scene.Camera, this);
+                value.Bind(this.Scene.FirstCamera, this);
             }
         }
 

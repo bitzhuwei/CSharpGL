@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
         private void glSceneCanvas1_Load(object sender, EventArgs e)
         {
             {
-                this.glSceneCanvas1.Scene.Camera.Position = new vec3(5, 4, 3);
+                this.glSceneCanvas1.Scene.FirstCamera.Position = new vec3(5, 4, 3);
             }
             {
                 const int size = 128;

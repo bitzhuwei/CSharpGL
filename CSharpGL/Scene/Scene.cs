@@ -28,7 +28,6 @@ namespace CSharpGL
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
-            this.Camera = camera;
             this.Canvas = canvas;
             {
                 this.rootUI = new SceneRootUI();
@@ -39,7 +38,7 @@ namespace CSharpGL
                 this.rootObject = rootObject;
             }
             {
-                var rootViewPort = new SceneRootViewPort(null,
+                var rootViewPort = new SceneRootViewPort(
                      AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top, new Padding(0, 0, 0, 0), canvas.Size);
                 rootViewPort.Children.Add(new ViewPort(camera,
                     AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
@@ -62,7 +61,7 @@ namespace CSharpGL
             var control = sender as ICanvas;
             if (control == null) { throw new ArgumentException(); }
 
-            this.Camera.Resize(control.Size.Width, control.Size.Height);
+            this.FirstCamera.Resize(control.Size.Width, control.Size.Height);
             this.rootViewPort.Size = control.Size;
 
             this.rootUI.Size = control.Size;

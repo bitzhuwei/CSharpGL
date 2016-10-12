@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 if (renderer == null) { throw new Exception("Please add this renderer type to Factory."); }
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
-                this.scene.Camera.ZoomCamera(renderer.GetBoundingBox());
+                this.scene.FirstCamera.ZoomCamera(renderer.GetBoundingBox());
                 var frmProperty = new FormProperyGrid(renderer);
                 frmProperty.Show();
             }

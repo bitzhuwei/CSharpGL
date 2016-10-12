@@ -23,7 +23,7 @@ namespace CSharpGL
 
             lock (this.synObj)
             {
-                var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.Camera, pickingGeometryType);
+                var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
                 List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
 
                 List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, clientRectangle.Height);

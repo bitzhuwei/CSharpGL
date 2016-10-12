@@ -29,8 +29,8 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     var dragParam = new DragParam(
-                        this.scene.Camera.GetProjectionMatrix(),
-                        this.scene.Camera.GetViewMatrix(),
+                        this.scene.FirstCamera.GetProjectionMatrix(),
+                        this.scene.FirstCamera.GetViewMatrix(),
                         new Point(e.X, glCanvas1.Height - e.Y - 1));
                     dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
                     this.dragParam = dragParam;
@@ -98,7 +98,7 @@ namespace CSharpGL.Demos
                     FormBulletinBoard bulletinBoard = this.bulletinBoard;
                     if ((bulletinBoard != null) && (!bulletinBoard.IsDisposed))
                     {
-                        ICamera camera = this.scene.Camera;
+                        ICamera camera = this.scene.FirstCamera;
                         mat4 projection = camera.GetProjectionMatrix();
                         mat4 view = camera.GetViewMatrix();
                         mat4 model = pickableRenderer.GetModelMatrix();

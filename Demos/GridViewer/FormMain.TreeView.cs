@@ -198,7 +198,7 @@ namespace GridViewer
             var max = transform.Lengths / 2;
             var min = -max;
             IBoundingBox translatedBox = new BoundingBox(min + position, max + position);
-            this.scientificCanvas.Scene.Camera.ZoomCamera(translatedBox);
+            this.scientificCanvas.Scene.FirstCamera.ZoomCamera(translatedBox);
 
             this.scientificCanvas.Invalidate();
         }

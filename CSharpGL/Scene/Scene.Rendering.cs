@@ -55,6 +55,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="camera"></param>
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="autoClear"></param>

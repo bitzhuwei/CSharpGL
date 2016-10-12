@@ -78,9 +78,9 @@ namespace GridViewer
         private void Application_Idle(object sender, EventArgs e)
         {
             this.lblCameraInfo.Text = string.Format("eye{0}, center:{1}, up:{2}",
-                this.scientificCanvas.Scene.Camera.Position,
-                this.scientificCanvas.Scene.Camera.Target,
-                this.scientificCanvas.Scene.Camera.UpVector);
+                this.scientificCanvas.Scene.FirstCamera.Position,
+                this.scientificCanvas.Scene.FirstCamera.Target,
+                this.scientificCanvas.Scene.FirstCamera.UpVector);
         }
     }
 }

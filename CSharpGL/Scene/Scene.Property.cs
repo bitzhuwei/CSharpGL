@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
     public partial class Scene
     {
-
         private const string strScene = "Scene";
 
         /// <summary>
@@ -19,7 +14,28 @@ namespace CSharpGL
         [Category(strScene)]
         [Description("camera of the scene.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public ICamera Camera { get; private set; }
+        public ICamera FirstCamera
+        {
+            get
+            {
+                return GetCamera(this.rootViewPort);
+            }
+        }
+
+        private ICamera GetCamera(ViewPort viewport)
+        {
+            if (viewport.Camera != null) { return viewport.Camera; }
+
+            foreach (var item in viewport.Children)
+            {
+                ICamera camera = GetCamera(item);
+                if (camera != null)
+                {
+                    return camera;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Canvas that this scene binds to.
@@ -64,6 +80,5 @@ namespace CSharpGL
         [Description("hosts all UI renderers.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public SceneRootUI RootUI { get { return this.rootUI; } }
-
     }
 }
