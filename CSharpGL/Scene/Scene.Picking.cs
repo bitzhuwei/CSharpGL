@@ -42,7 +42,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="viewPort"></param>
         /// <param name="pickingRect">rect in OpenGL's window coordinate system.(Left Down is (0, 0)), size).</param>
-        /// <param name="clientRectangle"></param>
+        /// <param name="clientRectangle">whole canvas' rectangle.</param>
         /// <param name="pickingGeometryType"></param>
         /// <returns></returns>
         private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort viewPort, Rectangle pickingRect, Rectangle clientRectangle, GeometryType pickingGeometryType)
@@ -118,6 +118,8 @@ namespace CSharpGL
         /// <returns></returns>
         private List<IColorCodedPicking> Render4Picking(RenderEventArgs arg)
         {
+            arg.UsingViewPort.On();
+
             // record clear color
             var originalClearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
@@ -134,6 +136,8 @@ namespace CSharpGL
             RenderPickableObject(this.rootObject, arg, ref renderedVertexCount, pickedRendererList);
 
             OpenGL.Flush();
+
+            arg.UsingViewPort.Off();
 
             return pickedRendererList;
         }
