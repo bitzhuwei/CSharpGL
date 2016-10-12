@@ -63,6 +63,16 @@ namespace CSharpGL
         public Rectangle Rect { get { return new Rectangle(this.location, this.size); } }
 
         /// <summary>
+        /// Indicates whether speicifed <paramref name="point"/> is in this view port's area.
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public bool Contains(Point point)
+        {
+            return this.Rect.Contains(point);
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="camera"></param>
