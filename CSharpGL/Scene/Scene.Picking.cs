@@ -18,15 +18,15 @@ namespace CSharpGL
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
-            Rectangle rect = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
-            if (!PickedSomething(rect, clientRectangle)) { return null; }
+            Rectangle rect = new Rectangle(mousePosition.X, clientRectangle.Height - mousePosition.Y - 1, 1, 1);
+            if (!PickedSomething(rect)) { return null; }
 
             lock (this.synObj)
             {
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
                 List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
 
-                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, clientRectangle.Height);
+                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect);
 
                 var result = new List<Tuple<Point, PickedGeometry>>();
                 foreach (var tuple in stageVertexIdList)
@@ -50,14 +50,14 @@ namespace CSharpGL
             return null;
         }
 
-        private static unsafe bool PickedSomething(Rectangle rect, Rectangle rectangle)
+        private static unsafe bool PickedSomething(Rectangle rect)
         {
             if (rect.Width <= 0 || rect.Height <= 0) { return false; }
 
             bool result = false;
             using (var codedColor = new UnmanagedArray<byte>(rect.Width * rect.Height))
             {
-                OpenGL.ReadPixels(rect.X, rectangle.Height - rect.Y - 1, rect.Width, rect.Height,
+                OpenGL.ReadPixels(rect.X, rect.Y, rect.Width, rect.Height,
                     OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (byte*)codedColor.Header.ToPointer();
@@ -170,17 +170,15 @@ namespace CSharpGL
         /// <para>Read pixels in specified rect and get the VertexIds they represent.</para>
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="canvasHeight"></param>
         /// <returns></returns>
-        private static unsafe List<Tuple<Point, uint>> ReadPixels(
-            Rectangle target, int canvasHeight)
+        private static unsafe List<Tuple<Point, uint>> ReadPixels(Rectangle target)
         {
             var result = new List<Tuple<Point, uint>>();
 
             // get coded color.
             using (var codedColor = new UnmanagedArray<Pixel>(target.Width * target.Height))
             {
-                OpenGL.ReadPixels(target.X, canvasHeight - target.Y - 1, target.Width, target.Height,
+                OpenGL.ReadPixels(target.X, target.Y, target.Width, target.Height,
                     OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (Pixel*)codedColor.Header.ToPointer();
