@@ -20,14 +20,14 @@ namespace CSharpGL
 
             Rectangle target = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
             Rectangle target2 = new Rectangle(mousePosition.X, clientRectangle.Height - mousePosition.Y - 1, 1, 1);
-            if (!PickedSomething(target, target2, clientRectangle.Height)) { return null; }
+            if (!PickedSomething(target, target2)) { return null; }
 
             lock (this.synObj)
             {
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
                 List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
 
-                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(target, target2, clientRectangle.Height);
+                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(target, target2);
 
                 var result = new List<Tuple<Point, PickedGeometry>>();
                 foreach (var tuple in stageVertexIdList)
@@ -51,7 +51,7 @@ namespace CSharpGL
             return null;
         }
 
-        private static unsafe bool PickedSomething(Rectangle target, Rectangle target2, int height)
+        private static unsafe bool PickedSomething(Rectangle target, Rectangle target2)
         {
             if (target.Width <= 0 || target.Height <= 0) { return false; }
 
@@ -174,7 +174,7 @@ namespace CSharpGL
         /// <param name="canvasHeight"></param>
         /// <returns></returns>
         private static unsafe List<Tuple<Point, uint>> ReadPixels(
-            Rectangle target, Rectangle target2, int canvasHeight)
+            Rectangle target, Rectangle target2)
         {
             var result = new List<Tuple<Point, uint>>();
 
