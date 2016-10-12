@@ -42,7 +42,7 @@ namespace CSharpGL
 
                 // Dispose unmanaged resources.
                 this.DisposeObject(this.rootObject);
-                this.DisposeUI(this.UIRoot);
+                this.DisposeUI(this.RootUI);
             } // end if
 
             this.disposedValue = true;

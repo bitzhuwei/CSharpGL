@@ -35,12 +35,12 @@ namespace CSharpGL.Demos
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.Text = "The quick brown fox jumps over the lazy dog!";
                 this.glText = glText;
-                this.scene.UIRoot.Children.Add(glText);
+                this.scene.RootUI.Children.Add(glText);
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                this.scene.UIRoot.Children.Add(uiAxis);
+                this.scene.RootUI.Children.Add(uiAxis);
 
                 this.UpdateLabel();
             }

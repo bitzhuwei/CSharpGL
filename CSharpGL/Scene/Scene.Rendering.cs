@@ -71,7 +71,7 @@ namespace CSharpGL
                 this.RenderObject(obj, arg);
 
                 // render regular UI.
-                this.UIRoot.Render(arg);
+                this.RootUI.Render(arg);
 
                 //// render cursor.
                 //UICursor cursor = this.Cursor;

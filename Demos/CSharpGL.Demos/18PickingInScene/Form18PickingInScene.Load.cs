@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
               new Padding(3, 3, 3, 3), new Size(128, 128));
                 uiAxis.Initialize();
-                this.scene.UIRoot.Children.Add(uiAxis);
+                this.scene.RootUI.Children.Add(uiAxis);
             }
             {
                 var font = new Font("Courier New", 32);
@@ -56,7 +56,7 @@ namespace CSharpGL.Demos
                    font.GetFontBitmap("[index: 0123456789]").GetFontTexture());
                 uiText.Text = "";
                 this.uiText = uiText;
-                this.scene.UIRoot.Children.Add(uiText);
+                this.scene.RootUI.Children.Add(uiText);
             }
             {
                 GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));

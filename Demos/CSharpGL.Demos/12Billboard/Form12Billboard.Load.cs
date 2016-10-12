@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
-                this.scene.UIRoot.Children.Add(uiAxis);
+                this.scene.RootUI.Children.Add(uiAxis);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);

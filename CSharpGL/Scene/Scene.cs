@@ -13,7 +13,7 @@ namespace CSharpGL
     public partial class Scene : IDisposable
     {
         //private UIRoot cursorRoot = new UIRoot();
-        private UIRoot uiRoot = new UIRoot();
+        private UIRoot rootUI = new UIRoot();
 
         private SceneRootObject rootObject;
 
@@ -95,7 +95,7 @@ namespace CSharpGL
         [Category(strScene)]
         [Description("hosts all UI renderers.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public UIRoot UIRoot { get { return this.uiRoot; } }
+        public UIRoot RootUI { get { return this.rootUI; } }
 
         /// <summary>
         /// Please bind this method to Control.Resize event.
@@ -109,7 +109,7 @@ namespace CSharpGL
 
             this.Camera.Resize(control.Size.Width, control.Size.Height);
 
-            this.uiRoot.Size = control.Size;
+            this.rootUI.Size = control.Size;
             //this.cursorRoot.Size = control.Size;
         }
 

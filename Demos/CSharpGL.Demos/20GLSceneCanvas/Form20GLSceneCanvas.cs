@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
                 const int size = 128;
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(size, size));
-                this.glSceneCanvas1.Scene.UIRoot.Children.Add(uiAxis);
+                this.glSceneCanvas1.Scene.RootUI.Children.Add(uiAxis);
             }
             {
                 var ground = GroundRenderer.Create(new GroundModel(20));
