@@ -58,7 +58,7 @@ namespace CSharpGL
             bool result = false;
             using (var codedColor = new UnmanagedArray<byte>(target.Width * target.Height))
             {
-                OpenGL.ReadPixels(target.X, height - target.Y - 1, target.Width, target.Height,
+                OpenGL.ReadPixels(target.X, target2.Y, target.Width, target.Height,
                     OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (byte*)codedColor.Header.ToPointer();
@@ -181,7 +181,7 @@ namespace CSharpGL
             // get coded color.
             using (var codedColor = new UnmanagedArray<Pixel>(target.Width * target.Height))
             {
-                OpenGL.ReadPixels(target.X, canvasHeight - target.Y - 1, target.Width, target.Height,
+                OpenGL.ReadPixels(target.X, target2.Y, target.Width, target.Height,
                     OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (Pixel*)codedColor.Header.ToPointer();
