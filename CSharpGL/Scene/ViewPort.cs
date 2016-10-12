@@ -63,7 +63,7 @@ namespace CSharpGL
         public Rectangle Rect { get { return new Rectangle(this.location, this.size); } }
 
         /// <summary>
-        /// Indicates whether speicifed <paramref name="point"/> is in this view port's area.
+        /// Indicates whether speicifed <paramref name="point"/>(Left Down is (0, 0)) is in this view port's area.
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>

@@ -154,7 +154,12 @@ namespace CSharpGL.Demos
                     }
                     else
                     {
-                        frmIndexBufferPtrBoard.SetTarget((geometry.From as PickableRenderer).IndexBufferPtr);
+                        var tmp = geometry.From as PickableRenderer;
+                        if (tmp != null)
+                        {
+                            frmIndexBufferPtrBoard.SetTarget(tmp.IndexBufferPtr);
+                            //frmIndexBufferPtrBoard.SetTarget((geometry.From as PickableRenderer).IndexBufferPtr);
+                        }
                     }
                     frmIndexBufferPtrBoard.Show();
                 }

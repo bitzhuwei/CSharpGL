@@ -20,13 +20,14 @@ namespace CSharpGL
             // if mouse is out of window's area, nothing picked.
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
-            mousePosition.Y = clientRectangle.Height - mousePosition.Y - 1;// now mousePosition is in OpenGL's window cooridnate system.
+            int x = mousePosition.X;
+            int y = clientRectangle.Height - mousePosition.Y - 1;// now (x, y) is in OpenGL's window cooridnate system.
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
             foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
             {
                 if (item.Visiable && item.Enabled && item.Contains(mousePosition))
                 {
-                    allPickedGeometrys = ColorCodedPicking(item, mousePosition, clientRectangle, pickingGeometryType);
+                    allPickedGeometrys = ColorCodedPicking(item, new Rectangle(x, y, 1, 1), clientRectangle, pickingGeometryType);
 
                     break;
                 }
@@ -35,14 +36,20 @@ namespace CSharpGL
             return allPickedGeometrys;
         }
 
-        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort item, Point mousePosition, Rectangle clientRectangle, GeometryType pickingGeometryType)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="rect">rect in OpenGL's window coordinate system.(Left Down is (0, 0)), size).</param>
+        /// <param name="clientRectangle"></param>
+        /// <param name="pickingGeometryType"></param>
+        /// <returns></returns>
+        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort item, Rectangle rect, Rectangle clientRectangle, GeometryType pickingGeometryType)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
 
             int height = clientRectangle.Height;
 
-            // rect in OpenGL's window coordinate system.
-            Rectangle rect = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
             // if depth buffer is valid in specified rect, then maybe something is picked.
             if (DepthBufferValid(rect))
             {
