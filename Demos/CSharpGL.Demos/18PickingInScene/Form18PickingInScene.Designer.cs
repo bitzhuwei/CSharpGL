@@ -43,9 +43,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(16, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 12);
+            this.label1.Size = new System.Drawing.Size(183, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Picking Geometry Type:";
             // 
@@ -53,9 +54,10 @@
             // 
             this.cmbPickingGeometryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPickingGeometryType.FormattingEnabled = true;
-            this.cmbPickingGeometryType.Location = new System.Drawing.Point(155, 12);
+            this.cmbPickingGeometryType.Location = new System.Drawing.Point(207, 15);
+            this.cmbPickingGeometryType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbPickingGeometryType.Name = "cmbPickingGeometryType";
-            this.cmbPickingGeometryType.Size = new System.Drawing.Size(121, 20);
+            this.cmbPickingGeometryType.Size = new System.Drawing.Size(160, 23);
             this.cmbPickingGeometryType.TabIndex = 2;
             this.cmbPickingGeometryType.SelectedIndexChanged += new System.EventHandler(this.cmbPickingGeometryType_SelectedIndexChanged);
             // 
@@ -63,50 +65,51 @@
             // 
             this.cmbRenderMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRenderMode.FormattingEnabled = true;
-            this.cmbRenderMode.Location = new System.Drawing.Point(365, 12);
+            this.cmbRenderMode.Location = new System.Drawing.Point(487, 15);
+            this.cmbRenderMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbRenderMode.Name = "cmbRenderMode";
-            this.cmbRenderMode.Size = new System.Drawing.Size(121, 20);
+            this.cmbRenderMode.Size = new System.Drawing.Size(160, 23);
             this.cmbRenderMode.TabIndex = 4;
             this.cmbRenderMode.SelectedIndexChanged += new System.EventHandler(this.cmbRenderMode_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(282, 15);
+            this.label2.Location = new System.Drawing.Point(376, 19);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Render Mode:";
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(10, 73);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 91);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(970, 579);
+            this.glCanvas1.Size = new System.Drawing.Size(1293, 724);
             this.glCanvas1.TabIndex = 0;
             // 
             // lblColor
             // 
             this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblColor.Location = new System.Drawing.Point(10, 35);
-            this.lblColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColor.Location = new System.Drawing.Point(13, 44);
             this.lblColor.Name = "lblColor";
-            this.lblColor.Size = new System.Drawing.Size(48, 16);
+            this.lblColor.Size = new System.Drawing.Size(64, 20);
             this.lblColor.TabIndex = 5;
             // 
             // lblDrawText
             // 
             this.lblDrawText.AutoSize = true;
             this.lblDrawText.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblDrawText.Location = new System.Drawing.Point(10, 54);
-            this.lblDrawText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDrawText.Location = new System.Drawing.Point(13, 68);
             this.lblDrawText.Name = "lblDrawText";
-            this.lblDrawText.Size = new System.Drawing.Size(72, 16);
+            this.lblDrawText.Size = new System.Drawing.Size(89, 20);
             this.lblDrawText.TabIndex = 6;
             this.lblDrawText.Text = "DrawText";
             // 
@@ -114,10 +117,9 @@
             // 
             this.lblReadColor.AutoSize = true;
             this.lblReadColor.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblReadColor.Location = new System.Drawing.Point(63, 35);
-            this.lblReadColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReadColor.Location = new System.Drawing.Point(84, 44);
             this.lblReadColor.Name = "lblReadColor";
-            this.lblReadColor.Size = new System.Drawing.Size(120, 16);
+            this.lblReadColor.Size = new System.Drawing.Size(149, 20);
             this.lblReadColor.TabIndex = 7;
             this.lblReadColor.Text = "Color At Mouse";
             // 
@@ -130,9 +132,9 @@
             // 
             // Form18PickingInScene
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 662);
+            this.ClientSize = new System.Drawing.Size(1319, 828);
             this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblDrawText);
             this.Controls.Add(this.lblReadColor);
@@ -141,8 +143,9 @@
             this.Controls.Add(this.cmbPickingGeometryType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form18PickingInScene";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form18PickingInScene";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

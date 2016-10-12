@@ -58,14 +58,14 @@ namespace CSharpGL.Demos
                 this.uiText = uiText;
                 this.scene.RootUI.Children.Add(uiText);
             }
-            {
-                GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));
-                ground.Initialize();
-                ground.Scale = new vec3(20, 20, 20);
-                ground.WorldPosition = new vec3(0, 0, 0);
-                SceneObject obj = ground.WrapToSceneObject(name: "Ground", generateBoundingBox: true);
-                this.scene.RootObject.Children.Add(obj);
-            }
+            //{
+            //    GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));
+            //    ground.Initialize();
+            //    ground.Scale = new vec3(20, 20, 20);
+            //    ground.WorldPosition = new vec3(0, 0, 0);
+            //    SceneObject obj = ground.WrapToSceneObject(name: "Ground", generateBoundingBox: true);
+            //    this.scene.RootObject.Children.Add(obj);
+            //}
             {
                 bool useHighlightedPickingEffect = false;
                 if (MessageBox.Show("Use highlighted picking effect?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
