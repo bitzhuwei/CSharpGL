@@ -57,7 +57,7 @@ namespace CSharpGL
                     foreach (Tuple<Point, uint> tuple in stageVertexIdList)
                     {
                         int x = tuple.Item1.X;
-                        int y = height - tuple.Item1.Y - 1;// turn back to windows coordinate system.
+                        int y = tuple.Item1.Y;
                         //if (x < 0 || clientRectangle.Width <= x || y < 0 || clientRectangle.Height <= y) { continue; }
 
                         uint stageVertexId = tuple.Item2;

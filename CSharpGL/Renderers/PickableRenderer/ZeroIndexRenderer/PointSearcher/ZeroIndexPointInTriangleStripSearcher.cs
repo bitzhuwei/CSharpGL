@@ -32,7 +32,7 @@ namespace CSharpGL
             }
 
             modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
-            uint id = ColorCodedPicking.ReadPixel(x, arg.CanvasRect.Height - y - 1);
+            uint id = ColorCodedPicking.ReadPixel(x, y);
 
             indexBufferPtr.Dispose();
 
