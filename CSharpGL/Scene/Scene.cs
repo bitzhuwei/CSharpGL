@@ -63,6 +63,7 @@ namespace CSharpGL
             if (control == null) { throw new ArgumentException(); }
 
             this.Camera.Resize(control.Size.Width, control.Size.Height);
+            this.rootViewPort.Size = control.Size;
 
             this.rootUI.Size = control.Size;
             //this.rootCursor.Size = control.Size;

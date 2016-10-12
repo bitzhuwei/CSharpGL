@@ -13,7 +13,7 @@ namespace GridViewer
             //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             //Point mousePosition = this.PointToClient(Control.MousePosition);
-            this.Scene.Render(RenderModes.Render, this.ClientRectangle);//, mousePosition);
+            this.Scene.Render(RenderModes.Render);//, mousePosition);
         }
     }
 }

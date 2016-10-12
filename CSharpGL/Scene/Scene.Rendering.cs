@@ -17,7 +17,11 @@ namespace CSharpGL
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
-            this.RenderViewPort(this.rootViewPort, renderMode, autoClear, pickingGeometryType);
+            lock (this.synObj)
+            {
+                this.rootViewPort.Layout();
+                this.RenderViewPort(this.rootViewPort, renderMode, autoClear, pickingGeometryType);
+            }
         }
 
         /// <summary>
@@ -32,7 +36,12 @@ namespace CSharpGL
             if (viewPort.Enabled)
             {
                 // render self.
-                viewPort.Render(renderMode, autoClear, pickingGeometryType, this);
+                if (viewPort.Visiable)
+                {
+                    viewPort.On();
+                    this.Render(viewPort.Camera, renderMode, new Rectangle(viewPort.Location, viewPort.Size), autoClear, pickingGeometryType);
+                    viewPort.Off();
+                }
 
                 // render children viewport.
                 foreach (var item in viewPort.Children)
@@ -50,37 +59,34 @@ namespace CSharpGL
         /// <param name="clientRectangle"></param>
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
-        public void Render(RenderModes renderMode, Rectangle clientRectangle,
+        private void Render(ICamera camera, RenderModes renderMode, Rectangle clientRectangle,
             //Point mousePosition,
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
-            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera, pickingGeometryType);
+            var arg = new RenderEventArgs(renderMode, clientRectangle, camera, pickingGeometryType);
 
-            lock (this.synObj)
+            if (autoClear)
             {
-                if (autoClear)
-                {
-                    vec4 clearColor = this.ClearColor.ToVec4();
-                    OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                vec4 clearColor = this.ClearColor.ToVec4();
+                OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
 
-                    OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-                }
-                // render objects.
-                SceneObject obj = this.RootObject;
-                this.RenderObject(obj, arg);
-
-                // render regular UI.
-                this.RootUI.Render(arg);
-
-                //// render cursor.
-                //UICursor cursor = this.Cursor;
-                //if (cursor != null && cursor.Enabled)
-                //{
-                //    cursor.UpdatePosition(mousePosition);
-                //    this.rootCursor.Render(arg);
-                //}
+                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
             }
+            // render objects.
+            SceneObject obj = this.RootObject;
+            this.RenderObject(obj, arg);
+
+            // render regular UI.
+            this.RootUI.Render(arg);
+
+            //// render cursor.
+            //UICursor cursor = this.Cursor;
+            //if (cursor != null && cursor.Enabled)
+            //{
+            //    cursor.UpdatePosition(mousePosition);
+            //    this.rootCursor.Render(arg);
+            //}
         }
 
         private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)

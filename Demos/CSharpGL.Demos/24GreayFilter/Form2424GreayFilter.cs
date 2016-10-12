@@ -27,7 +27,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
+            this.scene.Render(RenderModes.Render);
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)

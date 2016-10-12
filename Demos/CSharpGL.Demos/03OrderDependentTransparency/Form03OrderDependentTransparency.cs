@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
             //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
-            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
+            this.scene.Render(RenderModes.Render);
         }
 
         private Form02OrderIndependentTransparency form02;

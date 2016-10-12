@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
-            this.scene.Render(this.RenderMode, this.glCanvas1.ClientRectangle, true, this.PickingGeometryType);
+            this.scene.Render(renderMode: this.RenderMode, autoClear: true, pickingGeometryType: this.PickingGeometryType);
 
             this.DrawText(e);
         }

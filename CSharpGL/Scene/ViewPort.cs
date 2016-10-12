@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Drawing;
 using System.Drawing.Design;
+
 namespace CSharpGL
 {
     /// <summary>
@@ -84,7 +84,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        private void On()
+        public void On()
         {
             if (!this.isInitialized) { this.Initialize(); }
 
@@ -112,29 +112,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        private void Off()
+        public void Off()
         {
             if (!this.isInitialized) { this.Initialize(); }
 
             this.scissorTestSwitch.Off();
             this.viewportSwitch.Off();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="renderMode"></param>
-        /// <param name="autoClear"></param>
-        /// <param name="pickingGeometryType"></param>
-        /// <param name="scene"></param>
-        public virtual void Render(RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType, Scene scene)
-        {
-            if (this.enabled && this.visiable)
-            {
-                this.On();
-                scene.Render(renderMode, autoClear, pickingGeometryType);
-                this.Off();
-            }
         }
     }
 }
