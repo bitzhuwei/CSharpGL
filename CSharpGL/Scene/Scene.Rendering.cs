@@ -39,7 +39,7 @@ namespace CSharpGL
                 if (viewPort.Visiable)
                 {
                     viewPort.On();
-                    this.Render(viewPort.Camera, renderMode, new Rectangle(viewPort.Location, viewPort.Size), autoClear, pickingGeometryType);
+                    this.Render(viewPort.Camera, renderMode, new Rectangle(viewPort.Location, viewPort.Size), viewPort.ClearColor, autoClear, pickingGeometryType);
                     viewPort.Off();
                 }
 
@@ -58,10 +58,12 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
+        /// <param name="clearColor"></param>
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
         private void Render(ICamera camera, RenderModes renderMode, Rectangle clientRectangle,
             //Point mousePosition,
+            Color clearColor,
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
@@ -69,8 +71,8 @@ namespace CSharpGL
 
             if (autoClear)
             {
-                vec4 clearColor = this.ClearColor.ToVec4();
-                OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                vec4 color = clearColor.ToVec4();
+                OpenGL.ClearColor(color.x, color.y, color.z, color.w);
 
                 OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
             }

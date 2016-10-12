@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -46,6 +47,13 @@ namespace CSharpGL
         [Description("camera of the view port.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public ICamera Camera { get; private set; }
+
+        /// <summary>
+        /// background color.
+        /// </summary>
+        [Category(viewport)]
+        [Description("background color.")]
+        public Color ClearColor { get; set; }
 
         /// <summary>
         ///

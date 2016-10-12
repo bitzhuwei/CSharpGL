@@ -46,11 +46,31 @@ namespace CSharpGL
         public ICanvas Canvas { get; private set; }
 
         /// <summary>
-        /// background color.
+        /// Gets root view port's background color./Sets all viewports' background color.
         /// </summary>
         [Category(strScene)]
-        [Description("background color.")]
-        public Color ClearColor { get; set; }
+        [Description("Gets root view port's background color./Sets all viewports' background color.")]
+        public Color ClearColor
+        {
+            get
+            {
+                return this.rootViewPort.ClearColor;
+            }
+            set
+            {
+                SetClearColor(this.rootViewPort, value);
+            }
+        }
+
+        private void SetClearColor(ViewPort viewport, Color value)
+        {
+            if (viewport != null) { viewport.ClearColor = value; }
+
+            foreach (var item in viewport.Children)
+            {
+                SetClearColor(item, value);
+            }
+        }
 
         ///// <summary>
         ///// OpenGL UI for cursor.
