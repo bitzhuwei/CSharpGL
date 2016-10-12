@@ -23,11 +23,12 @@ namespace CSharpGL
             int x = mousePosition.X;
             int y = clientRectangle.Height - mousePosition.Y - 1;// now (x, y) is in OpenGL's window cooridnate system.
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
+            var pickingRect = new Rectangle(x, y, 1, 1);
             foreach (ViewPort viewPort in this.rootViewPort.DFSEnumerateRecursively())
             {
                 if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(mousePosition))
                 {
-                    allPickedGeometrys = ColorCodedPicking(viewPort, new Rectangle(x, y, 1, 1), clientRectangle, pickingGeometryType);
+                    allPickedGeometrys = ColorCodedPicking(viewPort, pickingRect, clientRectangle, pickingGeometryType);
 
                     break;
                 }
