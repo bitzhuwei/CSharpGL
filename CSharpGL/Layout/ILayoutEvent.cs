@@ -14,7 +14,6 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        bool DoAfterLayout();
+        void DoAfterLayout();
     }
 }

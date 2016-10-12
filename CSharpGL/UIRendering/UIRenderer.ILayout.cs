@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// triggered after layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
         /// </summary>
-        public event EventHandler<CancelEventArgs> AfterLayout;
+        public event EventHandler AfterLayout;
 
         bool ILayoutEvent.DoBeforeLayout()
         {
@@ -33,17 +33,13 @@ namespace CSharpGL
             return cancelTreeLayout;
         }
 
-        bool ILayoutEvent.DoAfterLayout()
+        void ILayoutEvent.DoAfterLayout()
         {
-            bool cancelTreeLayout = false;
-            EventHandler<CancelEventArgs> AfterLayout = this.AfterLayout;
+            EventHandler AfterLayout = this.AfterLayout;
             if (AfterLayout != null)
             {
-                CancelEventArgs arg = new CancelEventArgs();
-                AfterLayout(this, arg);
-                cancelTreeLayout = arg.Cancel;
+                AfterLayout(this, EventArgs.Empty);
             }
-            return cancelTreeLayout;
         }
 
         /// <summary>
