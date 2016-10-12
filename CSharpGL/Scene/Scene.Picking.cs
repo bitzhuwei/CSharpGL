@@ -10,30 +10,35 @@ namespace CSharpGL
         /// <summary>
         /// Pick
         /// </summary>
-        /// <param name="mousePosition">mouse position.</param>
+        /// <param name="mousePosition">mouse position in windows coordinate system.(Left Up is (0, 0))</param>
         /// <param name="pickingGeometryType">target's geometry type.</param>
         /// <returns></returns>
         public PickedGeometry ColorCodedPicking(Point mousePosition, GeometryType pickingGeometryType)
         {
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
+            // if mouse is out of window's area, nothing picked.
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
-            Rectangle target = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
-            Rectangle target2 = new Rectangle(mousePosition.X, clientRectangle.Height - mousePosition.Y - 1, 1, 1);
-            if (!PickedSomething(target2)) { return null; }
+            int height = clientRectangle.Height;
+
+            // rect in OpenGL's window coordinate system.
+            Rectangle rect = new Rectangle(mousePosition.X, height - mousePosition.Y - 1, 1, 1);
+            if (!PickedSomething(rect)) // if depth buffer is invalid in specified rect, nothing picked.
+            { return null; }
 
             lock (this.synObj)
             {
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
+                // Render all PickableRenderers for color-coded picking.
                 List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
-
-                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(target, target2);
-
+                // Read pixels in specified rect and get the VertexIds they represent.
+                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect);
+                // Get all picked geometrys.
                 var result = new List<Tuple<Point, PickedGeometry>>();
                 foreach (var tuple in stageVertexIdList)
                 {
                     int x = tuple.Item1.X;
-                    int y = tuple.Item1.Y;
+                    int y = height - tuple.Item1.Y - 1;// turn back to windows coordinate system.
                     //if (x < 0 || clientRectangle.Width <= x || y < 0 || clientRectangle.Height <= y) { continue; }
 
                     uint stageVertexId = tuple.Item2;
@@ -51,14 +56,19 @@ namespace CSharpGL
             return null;
         }
 
-        private static unsafe bool PickedSomething(Rectangle target2)
+        /// <summary>
+        /// Maybe something is picked because depth buffer is valid.
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <returns></returns>
+        private static unsafe bool PickedSomething(Rectangle rect)
         {
-            if (target2.Width <= 0 || target2.Height <= 0) { return false; }
+            if (rect.Width <= 0 || rect.Height <= 0) { return false; }
 
             bool result = false;
-            using (var codedColor = new UnmanagedArray<byte>(target2.Width * target2.Height))
+            using (var codedColor = new UnmanagedArray<byte>(rect.Width * rect.Height))
             {
-                OpenGL.ReadPixels(target2.X, target2.Y, target2.Width, target2.Height,
+                OpenGL.ReadPixels(rect.X, rect.Y, rect.Width, rect.Height,
                     OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (byte*)codedColor.Header.ToPointer();
@@ -75,6 +85,11 @@ namespace CSharpGL
             return result;
         }
 
+        /// <summary>
+        /// Render all <see cref="PickableRenderer"/>s for color-coded picking.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
         private List<IColorCodedPicking> Render4Picking(RenderEventArgs arg)
         {
             // record clear color
@@ -168,20 +183,18 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// <para>Read pixels in specified rect and get the VertexIds they represent.</para>
+        /// Read pixels in specified rect and get the VertexIds they represent.
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="canvasHeight"></param>
         /// <returns></returns>
-        private static unsafe List<Tuple<Point, uint>> ReadPixels(
-            Rectangle target, Rectangle target2)
+        private static unsafe List<Tuple<Point, uint>> ReadPixels(Rectangle target)
         {
             var result = new List<Tuple<Point, uint>>();
 
             // get coded color.
             using (var codedColor = new UnmanagedArray<Pixel>(target.Width * target.Height))
             {
-                OpenGL.ReadPixels(target.X, target2.Y, target.Width, target.Height,
+                OpenGL.ReadPixels(target.X, target.Y, target.Width, target.Height,
                     OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (Pixel*)codedColor.Header.ToPointer();
