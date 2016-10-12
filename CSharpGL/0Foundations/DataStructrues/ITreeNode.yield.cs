@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<T> DFSEnumerateRecursively<T>(ITreeNode<T> treeNode)
+        public static IEnumerable<T> DFSEnumerateRecursively<T>(this ITreeNode<T> treeNode)
             where T : ITreeNode<T>
         {
             yield return treeNode.Self;
@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<T> BFSEnumerateNonRecursively<T>(ITreeNode<T> treeNode)
+        public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode<T> treeNode)
             where T : ITreeNode<T>
         {
             var stack = new Stack<ITreeNode<T>>();

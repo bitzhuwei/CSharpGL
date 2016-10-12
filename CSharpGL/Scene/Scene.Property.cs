@@ -18,23 +18,13 @@ namespace CSharpGL
         {
             get
             {
-                return GetCamera(this.rootViewPort);
-            }
-        }
-
-        private ICamera GetCamera(ViewPort viewport)
-        {
-            if (viewport.Camera != null) { return viewport.Camera; }
-
-            foreach (var item in viewport.Children)
-            {
-                ICamera camera = GetCamera(item);
-                if (camera != null)
+                foreach (var item in this.rootViewPort.DFSEnumerateRecursively())
                 {
-                    return camera;
+                    if (item.Camera != null) { return item.Camera; }
                 }
+
+                return null;
             }
-            return null;
         }
 
         /// <summary>
@@ -58,17 +48,10 @@ namespace CSharpGL
             }
             set
             {
-                SetClearColor(this.rootViewPort, value);
-            }
-        }
-
-        private void SetClearColor(ViewPort viewport, Color value)
-        {
-            if (viewport != null) { viewport.ClearColor = value; }
-
-            foreach (var item in viewport.Children)
-            {
-                SetClearColor(item, value);
+                foreach (var item in this.rootViewPort.DFSEnumerateRecursively())
+                {
+                    item.ClearColor = value;
+                }
             }
         }
 
