@@ -13,29 +13,37 @@ namespace CSharpGL
         /// <summary>
         /// triggered before layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
         /// </summary>
-        public event EventHandler BeforeLayout;
+        public event EventHandler<CancelEventArgs> BeforeLayout;
 
         /// <summary>
         /// triggered after layout in <see cref="ILayout&lt;T&gt;"/>.Layout().
         /// </summary>
-        public event EventHandler AfterLayout;
+        public event EventHandler<CancelEventArgs> AfterLayout;
 
-        void ILayoutEvent.DoBeforeLayout()
+        bool ILayoutEvent.DoBeforeLayout()
         {
-            EventHandler BeforeLayout = this.BeforeLayout;
+            bool cancelTreeLayout = false;
+            EventHandler<CancelEventArgs> BeforeLayout = this.BeforeLayout;
             if (BeforeLayout != null)
             {
-                BeforeLayout(this, null);
+                CancelEventArgs arg = new CancelEventArgs();
+                BeforeLayout(this, arg);
+                cancelTreeLayout = arg.Cancel;
             }
+            return cancelTreeLayout;
         }
 
-        void ILayoutEvent.DoAfterLayout()
+        bool ILayoutEvent.DoAfterLayout()
         {
-            EventHandler AfterLayout = this.AfterLayout;
+            bool cancelTreeLayout = false;
+            EventHandler<CancelEventArgs> AfterLayout = this.AfterLayout;
             if (AfterLayout != null)
             {
-                AfterLayout(this, null);
+                CancelEventArgs arg = new CancelEventArgs();
+                AfterLayout(this, arg);
+                cancelTreeLayout = arg.Cancel;
             }
+            return cancelTreeLayout;
         }
 
         /// <summary>

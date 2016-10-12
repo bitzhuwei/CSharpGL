@@ -154,7 +154,7 @@ namespace GridViewer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void label_beforeLayout(object sender, EventArgs e)
+        private void label_beforeLayout(object sender, CancelEventArgs e)
         {
             int count = currentMarkersCount - 1;
             var label = sender as UIText;

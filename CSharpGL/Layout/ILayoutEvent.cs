@@ -8,11 +8,13 @@
         /// <summary>
         /// 
         /// </summary>
-        void DoBeforeLayout();
+        /// <returns></returns>
+        bool DoBeforeLayout();
 
         /// <summary>
         /// 
         /// </summary>
-        void DoAfterLayout();
+        /// <returns></returns>
+        bool DoAfterLayout();
     }
 }
