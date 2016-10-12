@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
@@ -6,23 +8,43 @@ namespace CSharpGL
     /// </summary>
     public partial class ViewPort : ILayout<ViewPort>, ILayoutEvent
     {
+        private const string viewport = "View Port";
+
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
 
         private bool enabled = true;
 
         /// <summary>
-        /// Does this viewport take part in rendering?
+        /// Does this viewport and all its children take part in rendering?
         /// </summary>
+        [Category(viewport)]
+        [Description("Does this viewport and all its children take part in rendering?")]
         public bool Enabled
         {
             get { return enabled; }
             set { enabled = value; }
         }
 
+        private bool visiable = true;
+
+        /// <summary>
+        /// Does this viewport take part in rendering?
+        /// </summary>
+        [Category(viewport)]
+        [Description("Does this viewport take part in rendering?")]
+        public bool Visiable
+        {
+            get { return visiable; }
+            set { visiable = value; }
+        }
+
         /// <summary>
         ///
         /// </summary>
+        [Category(viewport)]
+        [Description("camera of the view port.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public ICamera Camera { get; private set; }
 
         /// <summary>
@@ -107,9 +129,12 @@ namespace CSharpGL
         /// <param name="scene"></param>
         public virtual void Render(RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType, Scene scene)
         {
-            this.On();
-            scene.Render(renderMode, autoClear, pickingGeometryType);
-            this.Off();
+            if (this.enabled && this.visiable)
+            {
+                this.On();
+                scene.Render(renderMode, autoClear, pickingGeometryType);
+                this.Off();
+            }
         }
     }
 }
