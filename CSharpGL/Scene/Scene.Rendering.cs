@@ -39,7 +39,7 @@ namespace CSharpGL
                 if (viewPort.Visiable)
                 {
                     viewPort.On();
-                    this.Render(viewPort.Camera, renderMode, new Rectangle(viewPort.Location, viewPort.Size), viewPort.ClearColor, autoClear, pickingGeometryType);
+                    this.Render(viewPort.Camera, renderMode, viewPort.Rect, viewPort.ClearColor, autoClear, pickingGeometryType);
                     viewPort.Off();
                 }
 

@@ -56,6 +56,13 @@ namespace CSharpGL
         public Color ClearColor { get; set; }
 
         /// <summary>
+        /// Rectangle area of this view port.
+        /// </summary>
+        [Category(viewport)]
+        [Description("Rectangle area of this view port.")]
+        public Rectangle Rect { get { return new Rectangle(this.location, this.size); } }
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="camera"></param>
