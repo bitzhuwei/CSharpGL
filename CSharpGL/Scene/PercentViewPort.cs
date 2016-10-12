@@ -62,7 +62,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public void On()
+        private void On()
         {
             if (!this.isInitialized) { this.Initialize(); }
 
@@ -90,7 +90,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public void Off()
+        private void Off()
         {
             if (!this.isInitialized) { this.Initialize(); }
 

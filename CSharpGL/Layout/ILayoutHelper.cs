@@ -44,10 +44,15 @@ namespace CSharpGL
             ILayout<T> parent = node.Parent;
             if (parent != null)
             {
+                bool cancelTreeLayout = false;
+
                 var layoutEvent = node.Self as ILayoutEvent;
                 if (layoutEvent != null)
-                { layoutEvent.DoBeforeLayout(); }
-                NonRootNodeLayout(node, parent);
+                { cancelTreeLayout = layoutEvent.DoBeforeLayout(); }
+
+                if (!cancelTreeLayout)
+                { NonRootNodeLayout(node, parent); }
+
                 if (layoutEvent != null)
                 { layoutEvent.DoAfterLayout(); }
             }
