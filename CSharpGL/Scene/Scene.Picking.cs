@@ -18,15 +18,15 @@ namespace CSharpGL
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
-            Rectangle rect = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
-            if (!PickedSomething(rect, clientRectangle.Height)) { return null; }
+            Rectangle target = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
+            if (!PickedSomething(target, clientRectangle.Height)) { return null; }
 
             lock (this.synObj)
             {
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
                 List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
 
-                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, clientRectangle.Height);
+                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(target, clientRectangle.Height);
 
                 var result = new List<Tuple<Point, PickedGeometry>>();
                 foreach (var tuple in stageVertexIdList)
@@ -50,14 +50,14 @@ namespace CSharpGL
             return null;
         }
 
-        private static unsafe bool PickedSomething(Rectangle rect, int height)
+        private static unsafe bool PickedSomething(Rectangle target, int height)
         {
-            if (rect.Width <= 0 || rect.Height <= 0) { return false; }
+            if (target.Width <= 0 || target.Height <= 0) { return false; }
 
             bool result = false;
-            using (var codedColor = new UnmanagedArray<byte>(rect.Width * rect.Height))
+            using (var codedColor = new UnmanagedArray<byte>(target.Width * target.Height))
             {
-                OpenGL.ReadPixels(rect.X, height - rect.Y - 1, rect.Width, rect.Height,
+                OpenGL.ReadPixels(target.X, height - target.Y - 1, target.Width, target.Height,
                     OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (byte*)codedColor.Header.ToPointer();
