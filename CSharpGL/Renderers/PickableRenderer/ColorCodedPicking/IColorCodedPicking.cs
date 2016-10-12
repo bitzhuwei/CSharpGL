@@ -22,8 +22,8 @@
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
-        /// <param name="x">mouse position</param>
-        /// <param name="y">mouse position</param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y);
     }

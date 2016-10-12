@@ -10,8 +10,8 @@ namespace CSharpGL
         /// <summary>
         /// Screen shot of OpenGL canvas.
         /// </summary>
-        /// <param name="x">左下角坐标为(0, 0)</param>
-        /// <param name="y">左下角坐标为(0, 0)</param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="width">宽度</param>
         /// <param name="height">高度</param>
         public static Bitmap ScreenShot(int x, int y, int width, int height)

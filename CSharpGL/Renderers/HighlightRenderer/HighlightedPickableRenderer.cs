@@ -168,8 +168,13 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <returns></returns>
         public PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y)
         {
             PickedGeometry result = this.PickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);

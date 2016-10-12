@@ -179,8 +179,8 @@ namespace CSharpGL
         /// get picked geometry.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="x">mouse position</param>
-        /// <param name="y">mouse position</param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="stageVertexId"></param>
         /// <param name="pickableRendererList"></param>
         /// <returns></returns>

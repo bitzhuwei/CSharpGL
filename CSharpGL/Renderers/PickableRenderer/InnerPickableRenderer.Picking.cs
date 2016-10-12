@@ -31,6 +31,14 @@ namespace CSharpGL
             return vertexCount;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <returns></returns>
         public abstract PickedGeometry GetPickedGeometry(
             RenderEventArgs arg,
             uint stageVertexId,

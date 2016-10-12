@@ -7,6 +7,14 @@ namespace CSharpGL
     // check http://www.cnblogs.com/bitzhuwei/p/CSharpGL-18-Picking-of-OneIndexBuffer.html
     partial class OneIndexRenderer
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <returns></returns>
         public override PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId,
             int x, int y)
         {
@@ -76,6 +84,17 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="lastVertexId"></param>
+        /// <param name="primitiveInfo"></param>
+        /// <param name="searcher"></param>
+        /// <returns></returns>
         private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
@@ -88,6 +107,17 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="lastVertexId"></param>
+        /// <param name="primitiveInfo"></param>
+        /// <param name="searcher"></param>
+        /// <returns></returns>
         private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
@@ -144,6 +174,14 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="lastVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
             RenderEventArgs arg,
             uint lastVertexId, int x, int y)
@@ -157,6 +195,14 @@ namespace CSharpGL
             return lastIndexId;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="twoPrimitivesIndexBufferPtr"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <returns></returns>
         private uint Pick(RenderEventArgs arg, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
             int x, int y)
         {

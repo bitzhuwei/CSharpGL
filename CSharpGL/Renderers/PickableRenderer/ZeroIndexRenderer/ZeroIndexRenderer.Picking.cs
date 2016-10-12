@@ -4,6 +4,14 @@ namespace CSharpGL
 {
     partial class ZeroIndexRenderer
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <returns></returns>
         public override PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId,
             int x, int y)
         {
@@ -64,6 +72,16 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="lastVertexId"></param>
+        /// <param name="searcher"></param>
+        /// <returns></returns>
         private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, ZeroIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
@@ -162,8 +180,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>

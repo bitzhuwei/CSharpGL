@@ -8,8 +8,8 @@ namespace CSharpGL
         /// 在三角形图元中拾取指定位置的Point
         /// </summary>
         /// <param name="arg">渲染参数</param>
-        /// <param name="x">指定位置</param>
-        /// <param name="y">指定位置</param>
+        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
+        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId">三角形图元的最后一个顶点</param>
         /// <param name="modernRenderer">目标Renderer</param>
         /// <returns></returns>
