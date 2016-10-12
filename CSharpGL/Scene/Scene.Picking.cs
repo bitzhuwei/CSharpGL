@@ -19,7 +19,7 @@ namespace CSharpGL
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
             Rectangle rect = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
-            if (!PickedSomething(rect, clientRectangle)) { return null; }
+            if (!PickedSomething(rect, clientRectangle.Height)) { return null; }
 
             lock (this.synObj)
             {
@@ -50,14 +50,14 @@ namespace CSharpGL
             return null;
         }
 
-        private static unsafe bool PickedSomething(Rectangle rect, Rectangle rectangle)
+        private static unsafe bool PickedSomething(Rectangle rect, int height)
         {
             if (rect.Width <= 0 || rect.Height <= 0) { return false; }
 
             bool result = false;
             using (var codedColor = new UnmanagedArray<byte>(rect.Width * rect.Height))
             {
-                OpenGL.ReadPixels(rect.X, rectangle.Height - rect.Y - 1, rect.Width, rect.Height,
+                OpenGL.ReadPixels(rect.X, height - rect.Y - 1, rect.Width, rect.Height,
                     OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (byte*)codedColor.Header.ToPointer();
