@@ -5,14 +5,14 @@ namespace CSharpGL
     /// <summary>
     /// root UI for opengl.
     /// </summary>
-    public class UIRoot : UIRenderer
+    public class SceneRootUI : UIRenderer
     {
         /// <summary>
         /// root UI for opengl.
         /// </summary>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIRoot(int zNear = -100, int zFar = 100)
+        public SceneRootUI(int zNear = -100, int zFar = 100)
             : base(
             System.Windows.Forms.AnchorStyles.Left |
             System.Windows.Forms.AnchorStyles.Right |

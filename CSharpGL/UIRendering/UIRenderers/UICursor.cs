@@ -12,7 +12,7 @@ namespace CSharpGL
     {
         /// <summary>
         /// crates default cursor.
-        /// Note: put this as the last one of <see cref="UIRoot"/>'s children.
+        /// Note: put this as the last one of <see cref="SceneRootUI"/>'s children.
         /// </summary>
         /// <returns></returns>
         public static UICursor CreateDefault()
@@ -22,7 +22,7 @@ namespace CSharpGL
 
         /// <summary>
         /// opengl UI for Cursor.
-        /// Note: put this as the last one of <see cref="UIRoot"/>'s children.
+        /// Note: put this as the last one of <see cref="SceneRootUI"/>'s children.
         /// </summary>
         /// <param name="focalPoint">in percentage(0.00 ~ 1.00).<paramref name="focalPoint"/>.X ranges from 0(left) to 1(right). <paramref name="focalPoint"/>.Y ranges from 0(bottom) to 1(top).</param>
         /// <param name="size"></param>

@@ -78,7 +78,7 @@ namespace CSharpGL
                 //if (cursor != null && cursor.Enabled)
                 //{
                 //    cursor.UpdatePosition(mousePosition);
-                //    this.cursorRoot.Render(arg);
+                //    this.rootCursor.Render(arg);
                 //}
             }
         }

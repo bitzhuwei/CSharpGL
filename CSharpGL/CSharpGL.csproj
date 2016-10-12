@@ -276,13 +276,14 @@
     <Compile Include="Scene\SceneObjects\SceneObject.IModelSpace.cs" />
     <Compile Include="Scene\SceneObjects\SceneObject.Render.cs" />
     <Compile Include="Scene\Time.cs" />
+    <Compile Include="Scene\SceneRootViewPort.cs" />
     <Compile Include="Scene\ViewPort.cs" />
     <Compile Include="Scene\ViewPort.ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
     <Compile Include="UIRendering\UIRenderer.ILayout.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />
-    <Compile Include="Scene\SceneObjects\SceneRootObject.cs" />
+    <Compile Include="Scene\SceneRootObject.cs" />
     <Compile Include="Scene\SceneObjects\SceneObjectHelper.cs" />
     <Compile Include="Scene\SceneObjects\SceneObject.IDisposable.cs" />
     <Compile Include="Canvas\BoundedClockRenderer.cs" />
@@ -350,7 +351,7 @@
     <Compile Include="UIRendering\UIRenderers\UIText.DoRender.cs" />
     <Compile Include="UIRendering\UIRenderers\UIText.DoInitialize.cs" />
     <Compile Include="UIRendering\UIRenderers\UIText.cs" />
-    <Compile Include="UIRendering\UIRenderers\UIRoot.cs" />
+    <Compile Include="Scene\SceneRootUI.cs" />
     <Compile Include="Layout\ILayoutHelper.cs" />
     <Compile Include="UIRendering\UIRenderers\UIAxis.cs">
       <SubType>Code</SubType>
@@ -627,6 +628,7 @@
     <Compile Include="0Foundations\Utilities\PositionHelper.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray.cs" />
     <Compile Include="0Foundations\DataStructrues\ITreeNode.ChildList.cs" />
+    <Compile Include="Scene\Scene.Property.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
