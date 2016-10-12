@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="mousePosition">mouse position in Windows coordinate system.(Left Up is (0, 0))</param>
         /// <param name="pickingGeometryType">target's geometry type.</param>
         /// <returns></returns>
-        public List<Tuple<Point, PickedGeometry>> ColorCodedPicking(Point mousePosition, GeometryType pickingGeometryType)
+        public List<Tuple<Point, PickedGeometry>> Pick(Point mousePosition, GeometryType pickingGeometryType)
         {
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             // if mouse is out of window's area, nothing picked.

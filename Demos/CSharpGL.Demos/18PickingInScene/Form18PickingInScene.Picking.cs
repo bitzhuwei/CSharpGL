@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
             {
                 UpdateColorInformationAtMouse(e.X, e.Y);
 
-                List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.ColorCodedPicking(
+                List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
                     e.Location, this.PickingGeometryType);
                 PickedGeometry pickedGeometry = null;
                 if (allPickedGeometrys != null && allPickedGeometrys.Count > 0)
