@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace CSharpGL
@@ -50,7 +51,7 @@ namespace CSharpGL
                     using (var graphics = Graphics.FromImage(bitmap))
                     {
                         Color clearColor = Color.FromArgb(0, 0, 0, 0);
-                        foreach (var item in fontBitmap.GlyphInfoDictionary)
+                        foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.GlyphInfoDictionary)
                         {
                             if (item.Key == ' ' || item.Key == '\t' || item.Key == '\r' || item.Key == '\n') { continue; }
 

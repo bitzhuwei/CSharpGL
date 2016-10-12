@@ -24,7 +24,7 @@ namespace CSharpGL
                 mat4 modelMatrix = this.GetModelMatrix();
                 mat4 modelViewMatrix = viewMatrix * modelMatrix;
                 var array = (vec3*)pointer.ToPointer();
-                foreach (var index in positionIndexes)
+                foreach (uint index in positionIndexes)
                 {
                     vec3 windowPos = glm.project(array[index],
                         modelViewMatrix, projectionMatrix, viewport);
@@ -55,7 +55,7 @@ namespace CSharpGL
                 mat4 modelMatrix = this.GetModelMatrix();
                 mat4 modelViewMatrix = viewMatrix * modelMatrix;
                 var array = (vec3*)pointer.ToPointer();
-                foreach (var index in positionIndexes)
+                foreach (uint index in positionIndexes)
                 {
                     vec3 windowPos = glm.project(array[index],
                         modelViewMatrix, projectionMatrix, viewport);

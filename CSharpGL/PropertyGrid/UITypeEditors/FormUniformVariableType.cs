@@ -44,7 +44,7 @@ namespace CSharpGL
                 { typeList = cachedList; }
             }
 
-            foreach (var item in typeList)
+            foreach (Type item in typeList)
             {
                 this.lstType.Items.Add(item);
             }
@@ -88,7 +88,7 @@ namespace CSharpGL
             List<Type> typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
             cachedList = typeList;
             this.lstType.Items.Clear();
-            foreach (var item in typeList)
+            foreach (Type item in typeList)
             {
                 this.lstType.Items.Add(item);
             }

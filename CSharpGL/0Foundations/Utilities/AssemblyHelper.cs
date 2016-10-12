@@ -24,7 +24,7 @@ namespace CSharpGL
             //if (addtionalFilter == null) { addtionalFilter = x => !x.IsAbstract; }
             var result = new List<Type>();
             Assembly[] assemblies = AssemblyHelper.GetAssemblies(Application.ExecutablePath);
-            foreach (var asm in assemblies)
+            foreach (Assembly asm in assemblies)
             {
                 try
                 {
@@ -33,7 +33,7 @@ namespace CSharpGL
                                && (addtionalFilter == null || (addtionalFilter(item)))
                                orderby item.FullName
                                select item;
-                    foreach (var item in list.Distinct())
+                    foreach (Type item in list.Distinct())
                     {
                         result.Add(item);
                     }
@@ -90,7 +90,7 @@ namespace CSharpGL
                     if (!asmPaths.Contains(path))
                     { asmPaths.Add(path); result.Add(asm); }
                     var referenced = from item in asm.GetReferencedAssemblies() select item;
-                    foreach (var item in referenced.Distinct())
+                    foreach (AssemblyName item in referenced.Distinct())
                     {
                         if (!asmPaths.Contains(item.FullName))
                         {

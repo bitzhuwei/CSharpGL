@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -31,7 +32,7 @@ namespace CSharpGL
             {
                 int maxWidth = 0, maxHeight = 0;
                 int currentX = leftMargin, currentY = 0;
-                foreach (var item in fontBitmap.GlyphInfoDictionary)
+                foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.GlyphInfoDictionary)
                 {
                     if (currentX + item.Value.width < sideLength)
                     {

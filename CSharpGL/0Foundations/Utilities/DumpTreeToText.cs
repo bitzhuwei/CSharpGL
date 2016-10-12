@@ -27,7 +27,7 @@ namespace CSharpGL
         {
             builder.AppendLine(GetPreMarks(tree) + tree.Self.ToString());
             tabSpace++;
-            foreach (var item in tree.Children)
+            foreach (T item in tree.Children)
             {
                 GetBuilder(builder, item, ref tabSpace);
             }

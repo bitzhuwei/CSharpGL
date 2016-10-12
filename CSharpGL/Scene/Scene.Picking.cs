@@ -22,7 +22,7 @@ namespace CSharpGL
 
             mousePosition.Y = clientRectangle.Height - mousePosition.Y - 1;// now mousePosition is in OpenGL's window cooridnate system.
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
-            foreach (var item in this.rootViewPort.DFSEnumerateRecursively())
+            foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
             {
                 if (item.Visiable && item.Enabled && item.Contains(mousePosition))
                 {
@@ -54,7 +54,7 @@ namespace CSharpGL
                     // Read pixels in specified rect and get the VertexIds they represent.
                     List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect);
                     // Get all picked geometrys.
-                    foreach (var tuple in stageVertexIdList)
+                    foreach (Tuple<Point, uint> tuple in stageVertexIdList)
                     {
                         int x = tuple.Item1.X;
                         int y = height - tuple.Item1.Y - 1;// turn back to windows coordinate system.
@@ -190,7 +190,7 @@ namespace CSharpGL
             List<IColorCodedPicking> pickableRendererList)
         {
             PickedGeometry pickedGeometry = null;
-            foreach (var item in pickableRendererList)
+            foreach (IColorCodedPicking item in pickableRendererList)
             {
                 pickedGeometry = item.GetPickedGeometry(arg, stageVertexId, x, y);
 

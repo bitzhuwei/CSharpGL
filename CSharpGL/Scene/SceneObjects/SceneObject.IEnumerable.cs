@@ -13,7 +13,7 @@ namespace CSharpGL
         public IEnumerator<SceneObject> GetEnumerator()
         {
             var enumerable = ITreeNodeHelper.DFSEnumerateRecursively(this);
-            foreach (var item in enumerable)
+            foreach (SceneObject item in enumerable)
             {
                 yield return item;
             }

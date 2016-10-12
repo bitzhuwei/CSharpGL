@@ -73,7 +73,7 @@ namespace CSharpGL
 
             uint programId = glCreateProgram();
 
-            foreach (var item in shaders)
+            foreach (Shader item in shaders)
             {
                 glAttachShader(programId, item.ShaderId);
             }
@@ -88,7 +88,7 @@ namespace CSharpGL
                         programId.ToString(), log));
             }
 
-            foreach (var item in shaders)
+            foreach (Shader item in shaders)
             {
                 glDetachShader(programId, item.ShaderId);
             }

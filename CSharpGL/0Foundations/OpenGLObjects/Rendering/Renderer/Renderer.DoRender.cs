@@ -71,7 +71,7 @@
             //var updatedUniforms = (from item in this.uniformVariables where item.Updated select item).ToArray();
             //foreach (var item in updatedUniforms) { item.DoSetUniform(program); uniformVariableStack.Push(item); }
             UniformVariable[] array = this.uniformVariables.ToArray();
-            foreach (var item in array)
+            foreach (UniformVariable item in array)
             {
                 item.SetUniform(program);
             }

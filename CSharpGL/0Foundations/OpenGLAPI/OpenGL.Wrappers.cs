@@ -1177,14 +1177,14 @@ namespace CSharpGL
                 if (debugProcDictCount > maxDebugProcDictCount)
                 {
                     List<IntPtr> unusedRCList = new List<IntPtr>();
-                    foreach (var item in rc2dcDict)
+                    foreach (KeyValuePair<IntPtr, IntPtr> item in rc2dcDict)
                     {
                         if (!Win32.wglMakeCurrent(item.Value, item.Key))// 这种检测方式可行吗？
                         {
                             unusedRCList.Add(item.Key);
                         }
                     }
-                    foreach (var item in unusedRCList)
+                    foreach (IntPtr item in unusedRCList)
                     {
                         rc2ProcDict.Remove(item);
                         rc2dcDict.Remove(item);

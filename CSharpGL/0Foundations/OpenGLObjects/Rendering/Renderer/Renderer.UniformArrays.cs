@@ -20,7 +20,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -46,7 +46,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -72,7 +72,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -98,7 +98,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -124,7 +124,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -150,7 +150,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -176,7 +176,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -202,7 +202,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -228,7 +228,7 @@ namespace CSharpGL
             value = null;
             bool gotUniform = false;
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -255,7 +255,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -298,7 +298,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -341,7 +341,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -384,7 +384,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -427,7 +427,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -470,7 +470,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -513,7 +513,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -556,7 +556,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -599,7 +599,7 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {

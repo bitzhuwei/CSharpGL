@@ -88,7 +88,7 @@ namespace CSharpGL
             VertexAttributeBufferPtr[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
             if (vertexAttributeBufferPtrs != null)
             {
-                foreach (var item in vertexAttributeBufferPtrs)
+                foreach (VertexAttributeBufferPtr item in vertexAttributeBufferPtrs)
                 {
                     item.Standby(shaderProgram);
                 }
@@ -177,7 +177,7 @@ namespace CSharpGL
                         VertexAttributeBufferPtr[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
                         if (vertexAttributeBufferPtrs != null)
                         {
-                            foreach (var item in vertexAttributeBufferPtrs)
+                            foreach (VertexAttributeBufferPtr item in vertexAttributeBufferPtrs)
                             {
                                 item.Dispose();
                             }

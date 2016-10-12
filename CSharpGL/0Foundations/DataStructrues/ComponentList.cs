@@ -112,7 +112,7 @@ namespace CSharpGL
         /// <param name="items"></param>
         public void AddRange(IEnumerable<TComponent> items)
         {
-            foreach (var item in items)
+            foreach (TComponent item in items)
             {
                 item.BindingObject = this.bindingObject;
             }
@@ -121,7 +121,7 @@ namespace CSharpGL
             EventHandler<AddItemEventArgs<TComponent>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
             {
-                foreach (var item in items)
+                foreach (TComponent item in items)
                 {
                     ItemAdded(this, new AddItemEventArgs<TComponent>(item));
                 }
@@ -133,10 +133,10 @@ namespace CSharpGL
         /// </summary>
         public void Clear()
         {
-            var array = this.list.ToArray();
+            TComponent[] array = this.list.ToArray();
             list.Clear();
 
-            foreach (var item in array)
+            foreach (TComponent item in array)
             {
                 item.BindingObject = default(TBinding);
             }
@@ -144,7 +144,7 @@ namespace CSharpGL
             EventHandler<RemoveItemEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
             {
-                foreach (var item in array)
+                foreach (TComponent item in array)
                 {
                     ItemRemoved(this, new RemoveItemEventArgs<TComponent>(item));
                 }

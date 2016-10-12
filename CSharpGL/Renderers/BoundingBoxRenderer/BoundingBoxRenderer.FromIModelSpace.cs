@@ -45,7 +45,7 @@ namespace CSharpGL
             vec3 min = new vec3();
             {
                 bool initialized = false;
-                foreach (var model in models)
+                foreach (IModelSpace model in models)
                 {
                     if (!initialized)
                     {
@@ -80,7 +80,7 @@ namespace CSharpGL
         //{
         //    IBoundingBox rect = null;
         //    bool initialized = false;
-        //    foreach (var item in rectangles)
+        //    foreach (IBoundingBox item in rectangles)
         //    {
         //        if (!initialized)
         //        {

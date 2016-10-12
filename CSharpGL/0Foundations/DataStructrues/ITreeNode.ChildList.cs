@@ -116,12 +116,12 @@ namespace CSharpGL
         /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
         public void AddRange(IEnumerable<T> items)
         {
-            foreach (var item in items)
+            foreach (T item in items)
             {
                 item.Parent = this.Parent;
             }
             list.AddRange(items);
-            foreach (var item in items)
+            foreach (T item in items)
             {
                 //item.RefreshRelativeTransform();
             }
@@ -129,7 +129,7 @@ namespace CSharpGL
             EventHandler<AddItemEventArgs<T>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
             {
-                foreach (var item in items)
+                foreach (T item in items)
                 {
                     ItemAdded(this, new AddItemEventArgs<T>(item));
                 }
@@ -141,10 +141,10 @@ namespace CSharpGL
         /// </summary>
         public void Clear()
         {
-            var array = this.list.ToArray();
+            T[] array = this.list.ToArray();
             this.list.Clear();
 
-            foreach (var item in array)
+            foreach (T item in array)
             {
                 item.Parent = default(T);
                 //item.RefreshRelativeTransform();
@@ -153,7 +153,7 @@ namespace CSharpGL
             EventHandler<RemoveItemEventArgs<T>> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
             {
-                foreach (var item in array)
+                foreach (T item in array)
                 {
                     ItemRemoved(this, new RemoveItemEventArgs<T>(item));
                 }

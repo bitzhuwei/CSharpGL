@@ -25,7 +25,7 @@ namespace CSharpGL
             { throw new ArgumentNullException(); }
 
             AttributeMap map = null;
-            foreach (var item in attributeMap)
+            foreach (AttributeMap.NamePair item in attributeMap)
             {
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {

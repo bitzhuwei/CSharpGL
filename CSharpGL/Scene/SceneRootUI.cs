@@ -48,7 +48,7 @@ namespace CSharpGL
         protected override void DoRender(RenderEventArgs arg)
         {
             this.Layout();
-            foreach (var item in this.Children)
+            foreach (UIRenderer item in this.Children)
             {
                 RenderUIRenderer(item, arg);
             }
@@ -67,7 +67,7 @@ namespace CSharpGL
             //#endif
             renderer.Render(arg);
             UIRenderer[] array = renderer.Children.ToArray();
-            foreach (var item in array)
+            foreach (UIRenderer item in array)
             {
                 RenderUIRenderer(item, arg);
             }

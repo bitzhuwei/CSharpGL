@@ -82,7 +82,7 @@ namespace CSharpGL
             var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
             program.Initialize(shaders);
 
-            foreach (var item in shaders) { item.Dispose(); }
+            foreach (Shader item in shaders) { item.Dispose(); }
 
             return program;
         }

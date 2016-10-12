@@ -152,7 +152,7 @@ namespace CSharpGL
         /// <returns></returns>
         public SceneObject FindChild(string name)
         {
-            foreach (var item in this.Children)
+            foreach (SceneObject item in this.Children)
             {
                 if (item.Name == name)
                 {

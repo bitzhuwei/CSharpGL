@@ -26,7 +26,7 @@ namespace CSharpGL
 
             value = default(T);
             bool gotUniform = false;
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
@@ -52,7 +52,7 @@ namespace CSharpGL
 
         //    bool gotUniform = false;
         //    bool updated = false;
-        //    foreach (var item in this.uniformVariables)
+        //    foreach (UniformVariable item in this.uniformVariables)
         //    {
         //        if (item.VarName == blockName)
         //        {
@@ -111,7 +111,7 @@ namespace CSharpGL
 
             bool gotUniform = false;
             bool updated = false;
-            foreach (var item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {

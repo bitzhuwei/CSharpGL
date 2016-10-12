@@ -15,7 +15,10 @@
             VertexAttributeBufferPtr[] vbos = this.vertexAttributeBufferPtrs;
             if (vbos != null)
             {
-                foreach (var item in vbos) { item.Dispose(); }
+                foreach (VertexAttributeBufferPtr item in vbos)
+                {
+                    item.Dispose();
+                }
             }
             IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
             if (indexBufferPtr != null)

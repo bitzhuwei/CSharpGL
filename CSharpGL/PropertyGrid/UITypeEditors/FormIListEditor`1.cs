@@ -24,7 +24,7 @@ namespace CSharpGL
 
             if (list != null)
             {
-                foreach (var item in list)
+                foreach (T item in list)
                 {
                     this.lstMember.Items.Add(item);
                 }

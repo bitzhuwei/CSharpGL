@@ -35,7 +35,7 @@ namespace CSharpGL.SceneEditor
         private void InitializeNodeContextMenuStrip()
         {
             string[] names = Enum.GetNames(typeof(BuildInSceneObject));
-            foreach (var item in names)
+            foreach (string item in names)
             {
                 this.addSceneObjectToolStripMenuItem.DropDownItems.Add(item, null,
                     this.addSceneObjectToolStripMenuItem_Click);

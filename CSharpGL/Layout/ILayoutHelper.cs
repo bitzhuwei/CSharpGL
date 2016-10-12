@@ -57,7 +57,7 @@ namespace CSharpGL
                 { layoutEvent.DoAfterLayout(); }
             }
 
-            foreach (var item in node.Children)
+            foreach (T item in node.Children)
             {
                 item.Layout();
             }

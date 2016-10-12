@@ -44,7 +44,7 @@ namespace CSharpGL
                 }
 
                 // render children viewport.
-                foreach (var item in viewPort.Children)
+                foreach (ViewPort item in viewPort.Children)
                 {
                     this.RenderViewPort(item, renderMode, autoClear, pickingGeometryType);
                 }

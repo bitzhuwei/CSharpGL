@@ -42,7 +42,7 @@ namespace CSharpGL
         /// </summary>
         public override void Fill()
         {
-            foreach (var item in this.images)
+            foreach (Tuple<uint, Bitmap> item in this.images)
             {
                 uint target = item.Item1;
                 Bitmap image = item.Item2;
@@ -147,7 +147,7 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                foreach (var item in this)
+                foreach (Tuple<uint, Bitmap> item in this)
                 {
                     item.Item2.Dispose();
                 }

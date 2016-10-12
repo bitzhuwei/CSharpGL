@@ -107,7 +107,7 @@ namespace CSharpGL
             {
                 sceneObject.Update();
                 SceneObject[] array = sceneObject.Children.ToArray();
-                foreach (var child in array)
+                foreach (SceneObject child in array)
                 {
                     UpdateObject(child);
                 }

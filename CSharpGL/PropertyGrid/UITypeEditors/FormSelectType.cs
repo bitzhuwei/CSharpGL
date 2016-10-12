@@ -64,7 +64,7 @@ namespace CSharpGL
                 }
             }
 
-            foreach (var item in typeList)
+            foreach (Type item in typeList)
             {
                 this.lstType.Items.Add(item);
             }
@@ -103,7 +103,7 @@ namespace CSharpGL
             List<Type> typeList = this.baseType.GetAllDerivedTypes(this.addtionalFilter);
             dict[this.baseType] = typeList;
             this.lstType.Items.Clear();
-            foreach (var item in typeList)
+            foreach (Type item in typeList)
             {
                 this.lstType.Items.Add(item);
             }

@@ -19,7 +19,7 @@ namespace CSharpGL
             InitializeComponent();
 
             this.cmbDrawMode.Items.Clear();
-            foreach (var item in Enum.GetValues(typeof(CSharpGL.DrawMode)))
+            foreach (object item in Enum.GetValues(typeof(CSharpGL.DrawMode)))
             {
                 this.cmbDrawMode.Items.Add((CSharpGL.DrawMode)item);
             }
@@ -48,7 +48,7 @@ namespace CSharpGL
         private void UpdateUI(IndexBufferPtrController indexBufferPtrController)
         {
             int index = -1;
-            foreach (var item in this.cmbDrawMode.Items)
+            foreach (object item in this.cmbDrawMode.Items)
             {
                 index++;
                 if ((DrawMode)item == indexBufferPtrController.IndexBufferPtr.Mode)

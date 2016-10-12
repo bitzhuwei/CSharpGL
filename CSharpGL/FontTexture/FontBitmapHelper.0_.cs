@@ -41,7 +41,7 @@ namespace CSharpGL
                 using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
                 {
                     bool odd = false;
-                    foreach (var item in fontBitmap.GlyphInfoDictionary.Values)
+                    foreach (GlyphInfo item in fontBitmap.GlyphInfoDictionary.Values)
                     {
                         graphics.DrawRectangle(
                             odd ? Pens.Green : Pens.Blue,

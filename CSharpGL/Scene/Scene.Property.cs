@@ -18,7 +18,7 @@ namespace CSharpGL
         {
             get
             {
-                foreach (var item in this.rootViewPort.DFSEnumerateRecursively())
+                foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
                 {
                     if (item.Camera != null) { return item.Camera; }
                 }
@@ -48,7 +48,7 @@ namespace CSharpGL
             }
             set
             {
-                foreach (var item in this.rootViewPort.DFSEnumerateRecursively())
+                foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
                 {
                     item.ClearColor = value;
                 }

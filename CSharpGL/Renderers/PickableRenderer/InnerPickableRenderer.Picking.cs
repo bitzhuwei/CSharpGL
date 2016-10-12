@@ -67,11 +67,12 @@ namespace CSharpGL
 
         internal PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
         {
-            foreach (var item in this.switchList)
+            foreach (GLSwitch item in this.switchList)
             {
-                if (item is PrimitiveRestartSwitch)
+                var target = item as PrimitiveRestartSwitch;
+                if (target != null)
                 {
-                    return item as PrimitiveRestartSwitch;
+                    return target;
                 }
             }
 

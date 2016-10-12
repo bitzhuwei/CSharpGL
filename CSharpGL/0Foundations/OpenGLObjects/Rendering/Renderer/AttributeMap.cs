@@ -96,7 +96,7 @@ namespace CSharpGL
 
             AttributeMap result = new AttributeMap();
 
-            foreach (var item in xElement.Elements(typeof(NamePair).Name))
+            foreach (XElement item in xElement.Elements(typeof(NamePair).Name))
             {
                 var pair = NamePair.Parse(item);
                 result.namesInShader.Add(pair.VarNameInShader);
