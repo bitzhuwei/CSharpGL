@@ -8,52 +8,70 @@ namespace CSharpGL
     public partial class Scene
     {
         /// <summary>
-        /// Pick
+        /// Get geometry at specified <paramref name="mousePosition"/> with specified <paramref name="pickingGeometryType"/>.
+        /// <para>Returns null when <paramref name="mousePosition"/> is out of this scene's area or there's no active(visible and enabled) viewport.</para>
         /// </summary>
-        /// <param name="mousePosition">mouse position in windows coordinate system.(Left Up is (0, 0))</param>
+        /// <param name="mousePosition">mouse position in Windows coordinate system.(Left Up is (0, 0))</param>
         /// <param name="pickingGeometryType">target's geometry type.</param>
         /// <returns></returns>
-        public PickedGeometry ColorCodedPicking(Point mousePosition, GeometryType pickingGeometryType)
+        public List<Tuple<Point, PickedGeometry>> ColorCodedPicking(Point mousePosition, GeometryType pickingGeometryType)
         {
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             // if mouse is out of window's area, nothing picked.
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
 
+            mousePosition.Y = clientRectangle.Height - mousePosition.Y - 1;// now mousePosition is in OpenGL's window cooridnate system.
+            List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
+            foreach (var item in this.rootViewPort.DFSEnumerateRecursively())
+            {
+                if (item.Visiable && item.Enabled && item.Contains(mousePosition))
+                {
+                    allPickedGeometrys = ColorCodedPicking(mousePosition, clientRectangle, pickingGeometryType);
+
+                    break;
+                }
+            }
+
+            return allPickedGeometrys;
+        }
+
+        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(Point mousePosition, Rectangle clientRectangle, GeometryType pickingGeometryType)
+        {
+            var result = new List<Tuple<Point, PickedGeometry>>();
+
             int height = clientRectangle.Height;
 
             // rect in OpenGL's window coordinate system.
-            Rectangle rect = new Rectangle(mousePosition.X, height - mousePosition.Y - 1, 1, 1);
-            if (!PickedSomething(rect)) // if depth buffer is invalid in specified rect, nothing picked.
-            { return null; }
-
-            lock (this.synObj)
+            Rectangle rect = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
+            // if depth buffer is valid in specified rect, then maybe something is picked.
+            if (DepthBufferValid(rect))
             {
-                var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
-                // Render all PickableRenderers for color-coded picking.
-                List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
-                // Read pixels in specified rect and get the VertexIds they represent.
-                List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect);
-                // Get all picked geometrys.
-                var result = new List<Tuple<Point, PickedGeometry>>();
-                foreach (var tuple in stageVertexIdList)
+                lock (this.synObj)
                 {
-                    int x = tuple.Item1.X;
-                    int y = height - tuple.Item1.Y - 1;// turn back to windows coordinate system.
-                    //if (x < 0 || clientRectangle.Width <= x || y < 0 || clientRectangle.Height <= y) { continue; }
-
-                    uint stageVertexId = tuple.Item2;
-                    PickedGeometry pickedGeometry = GetPickGeometry(arg,
-                        x, y, stageVertexId, pickableRendererList);
-                    if (pickedGeometry != null)
+                    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
+                    // Render all PickableRenderers for color-coded picking.
+                    List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
+                    // Read pixels in specified rect and get the VertexIds they represent.
+                    List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect);
+                    // Get all picked geometrys.
+                    foreach (var tuple in stageVertexIdList)
                     {
-                        result.Add(new Tuple<Point, PickedGeometry>(tuple.Item1, pickedGeometry));
+                        int x = tuple.Item1.X;
+                        int y = height - tuple.Item1.Y - 1;// turn back to windows coordinate system.
+                        //if (x < 0 || clientRectangle.Width <= x || y < 0 || clientRectangle.Height <= y) { continue; }
+
+                        uint stageVertexId = tuple.Item2;
+                        PickedGeometry pickedGeometry = GetPickGeometry(arg,
+                           x, y, stageVertexId, pickableRendererList);
+                        if (pickedGeometry != null)
+                        {
+                            result.Add(new Tuple<Point, PickedGeometry>(new Point(x, y), pickedGeometry));
+                        }
                     }
                 }
-
-                if (result.Count > 0) { return result[0].Item2; }
             }
 
-            return null;
+            return result;
         }
 
         /// <summary>
@@ -61,7 +79,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="rect"></param>
         /// <returns></returns>
-        private static unsafe bool PickedSomething(Rectangle rect)
+        private static unsafe bool DepthBufferValid(Rectangle rect)
         {
             if (rect.Width <= 0 || rect.Height <= 0) { return false; }
 

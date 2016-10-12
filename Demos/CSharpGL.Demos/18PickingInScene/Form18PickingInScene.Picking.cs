@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -77,8 +78,12 @@ namespace CSharpGL.Demos
             {
                 UpdateColorInformationAtMouse(e.X, e.Y);
 
-                PickedGeometry pickedGeometry = this.scene.ColorCodedPicking(
+                List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.ColorCodedPicking(
                     e.Location, this.PickingGeometryType);
+                PickedGeometry pickedGeometry = null;
+                if (allPickedGeometrys != null && allPickedGeometrys.Count > 0)
+                { pickedGeometry = allPickedGeometrys[0].Item2; }
+
                 if (pickedGeometry != null)
                 {
                     PickableRenderer pickableRenderer = null;
