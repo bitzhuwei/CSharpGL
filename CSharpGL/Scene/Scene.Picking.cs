@@ -26,7 +26,7 @@ namespace CSharpGL
             {
                 if (item.Visiable && item.Enabled && item.Contains(mousePosition))
                 {
-                    allPickedGeometrys = ColorCodedPicking(mousePosition, clientRectangle, pickingGeometryType);
+                    allPickedGeometrys = ColorCodedPicking(item, mousePosition, clientRectangle, pickingGeometryType);
 
                     break;
                 }
@@ -35,7 +35,7 @@ namespace CSharpGL
             return allPickedGeometrys;
         }
 
-        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(Point mousePosition, Rectangle clientRectangle, GeometryType pickingGeometryType)
+        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort item, Point mousePosition, Rectangle clientRectangle, GeometryType pickingGeometryType)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
 
@@ -48,7 +48,7 @@ namespace CSharpGL
             {
                 lock (this.synObj)
                 {
-                    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, this.FirstCamera, pickingGeometryType);
+                    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, item.Camera, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.
                     List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
                     // Read pixels in specified rect and get the VertexIds they represent.
