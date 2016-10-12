@@ -26,21 +26,21 @@ namespace CSharpGL
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
         /// <param name="renderMode">render mode.</param>
-        /// <param name="viewport"></param>
-        /// <param name="camera">camera used during rendering.</param>
+        /// <param name="canvasRect"></param>
+        /// <param name="viewPort">camera used during rendering.</param>
         /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <paramref name="renderMode"/> is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.</param>
-        public RenderEventArgs(RenderModes renderMode, Rectangle viewport, ICamera camera, GeometryType pickingGeometryType = GeometryType.Point)
+        public RenderEventArgs(RenderModes renderMode, Rectangle canvasRect, ViewPort viewPort, GeometryType pickingGeometryType = GeometryType.Point)
         {
             this.RenderMode = renderMode;
-            this.CanvasRect = viewport;
-            this.Camera = camera;
+            this.CanvasRect = canvasRect;
+            this.UsingViewPort = viewPort;
             this.PickingGeometryType = pickingGeometryType;
         }
 
         /// <summary>
         /// Gets camera used during rendering.
         /// </summary>
-        public ICamera Camera { get; private set; }
+        public ICamera Camera { get { return this.UsingViewPort.Camera; } }
 
         /// <summary>
         /// Gets render mode.
@@ -56,6 +56,11 @@ namespace CSharpGL
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when render mode is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.
         /// </summary>
         public GeometryType PickingGeometryType { get; private set; }
+
+        /// <summary>
+        /// Gets view port used during rendering.
+        /// </summary>
+        public ViewPort UsingViewPort { get; set; }
     }
 
     /// <summary>

@@ -23,11 +23,11 @@ namespace CSharpGL
             int x = mousePosition.X;
             int y = clientRectangle.Height - mousePosition.Y - 1;// now (x, y) is in OpenGL's window cooridnate system.
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
-            foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
+            foreach (ViewPort viewPort in this.rootViewPort.DFSEnumerateRecursively())
             {
-                if (item.Visiable && item.Enabled && item.Contains(mousePosition))
+                if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(mousePosition))
                 {
-                    allPickedGeometrys = ColorCodedPicking(item, new Rectangle(x, y, 1, 1), clientRectangle, pickingGeometryType);
+                    allPickedGeometrys = ColorCodedPicking(viewPort, new Rectangle(x, y, 1, 1), clientRectangle, pickingGeometryType);
 
                     break;
                 }
@@ -39,27 +39,27 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="rect">rect in OpenGL's window coordinate system.(Left Down is (0, 0)), size).</param>
+        /// <param name="viewPort"></param>
+        /// <param name="pickingRect">rect in OpenGL's window coordinate system.(Left Down is (0, 0)), size).</param>
         /// <param name="clientRectangle"></param>
         /// <param name="pickingGeometryType"></param>
         /// <returns></returns>
-        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort item, Rectangle rect, Rectangle clientRectangle, GeometryType pickingGeometryType)
+        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort viewPort, Rectangle pickingRect, Rectangle clientRectangle, GeometryType pickingGeometryType)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
 
             int height = clientRectangle.Height;
 
             // if depth buffer is valid in specified rect, then maybe something is picked.
-            if (DepthBufferValid(rect))
+            if (DepthBufferValid(pickingRect))
             {
                 lock (this.synObj)
                 {
-                    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, item.Camera, pickingGeometryType);
+                    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, viewPort, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.
                     List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
                     // Read pixels in specified rect and get the VertexIds they represent.
-                    List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect);
+                    List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(pickingRect);
                     // Get all picked geometrys.
                     foreach (Tuple<Point, uint> tuple in stageVertexIdList)
                     {
@@ -84,16 +84,16 @@ namespace CSharpGL
         /// <summary>
         /// Maybe something is picked because depth buffer is valid.
         /// </summary>
-        /// <param name="rect"></param>
+        /// <param name="pickingRect"></param>
         /// <returns></returns>
-        private static unsafe bool DepthBufferValid(Rectangle rect)
+        private static unsafe bool DepthBufferValid(Rectangle pickingRect)
         {
-            if (rect.Width <= 0 || rect.Height <= 0) { return false; }
+            if (pickingRect.Width <= 0 || pickingRect.Height <= 0) { return false; }
 
             bool result = false;
-            using (var codedColor = new UnmanagedArray<byte>(rect.Width * rect.Height))
+            using (var codedColor = new UnmanagedArray<byte>(pickingRect.Width * pickingRect.Height))
             {
-                OpenGL.ReadPixels(rect.X, rect.Y, rect.Width, rect.Height,
+                OpenGL.ReadPixels(pickingRect.X, pickingRect.Y, pickingRect.Width, pickingRect.Height,
                     OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (byte*)codedColor.Header.ToPointer();

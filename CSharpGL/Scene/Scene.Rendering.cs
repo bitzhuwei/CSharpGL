@@ -39,7 +39,7 @@ namespace CSharpGL
                 if (viewPort.Visiable)
                 {
                     viewPort.On();
-                    this.Render(viewPort.Camera, renderMode, viewPort.Rect, viewPort.ClearColor, autoClear, pickingGeometryType);
+                    this.Render(viewPort, renderMode, viewPort.Rect, viewPort.ClearColor, autoClear, pickingGeometryType);
                     viewPort.Off();
                 }
 
@@ -55,19 +55,19 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="camera"></param>
+        /// <param name="viewPort"></param>
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="clearColor"></param>
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
-        private void Render(ICamera camera, RenderModes renderMode, Rectangle clientRectangle,
+        private void Render(ViewPort viewPort, RenderModes renderMode, Rectangle clientRectangle,
             //Point mousePosition,
             Color clearColor,
             bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
-            var arg = new RenderEventArgs(renderMode, clientRectangle, camera, pickingGeometryType);
+            var arg = new RenderEventArgs(renderMode, clientRectangle, viewPort, pickingGeometryType);
 
             if (autoClear)
             {
