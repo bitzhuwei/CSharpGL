@@ -71,12 +71,22 @@ namespace CSharpGL
         {
             var arg = new RenderEventArgs(renderMode, clientRectangle, viewPort, pickingGeometryType);
 
-            if (autoClear)
+            if (renderMode == RenderModes.ColorCodedPicking)
             {
-                vec4 color = viewPort.ClearColor.ToVec4();
+                var color = new vec4(1, 1, 1, 1);
                 OpenGL.ClearColor(color.x, color.y, color.z, color.w);
 
                 OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+            }
+            else
+            {
+                if (autoClear)
+                {
+                    vec4 color = viewPort.ClearColor.ToVec4();
+                    OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+
+                    OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+                }
             }
             // render objects.
             SceneObject obj = this.RootObject;
