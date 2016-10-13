@@ -79,8 +79,6 @@ namespace CSharpGL.Demos
             }
             else
             {
-                UpdateColorInformationAtMouse(e.X, e.Y);
-
                 if (this.controlDown)
                 {
                     List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
@@ -132,6 +130,8 @@ namespace CSharpGL.Demos
                     this.pickedGeometry = pickedGeometry;
                 }
             }
+
+            UpdateColorInformationAtMouse(e.X, e.Y);
 
             this.lastMousePosition = e.Location;
         }
