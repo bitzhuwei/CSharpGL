@@ -1,4 +1,4 @@
-# Object-Oriented OpenGL Wrapper in C\#  
+# Object-Oriented OpenGL in C\#  
 [CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) | [CSharpGL Wiki](https://github.com/bitzhuwei/CSharpGL/wiki)  
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and offers general demostrations and documents.  
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.png?raw=true)
