@@ -79,10 +79,10 @@ namespace CSharpGL.Demos
             }
             else
             {
+                UpdateColorInformationAtMouse(e.X, e.Y);
+
                 if (this.controlDown)
                 {
-                    UpdateColorInformationAtMouse(e.X, e.Y);
-
                     List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
                         e.Location, this.PickingGeometryType);
                     PickedGeometry pickedGeometry = null;
@@ -190,8 +190,9 @@ namespace CSharpGL.Demos
             c = Color.FromArgb(255, c);
             this.lblColor.BackColor = c;
             string content = string.Format(
-                "{0} @ {1}", c,
-                new Point(x, this.glCanvas1.Height - y - 1));
+                @"{0} @ Winform[{1}]\OpenGL[{2}]", c,
+                new Point(x, this.glCanvas1.Height - y - 1),
+                new Point(x, y));
             this.lblReadColor.Text = content;
         }
     }

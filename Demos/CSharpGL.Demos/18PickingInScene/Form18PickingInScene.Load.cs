@@ -164,31 +164,31 @@ namespace CSharpGL.Demos
         private void leftViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            ViewPort parent = viewPort.Parent;
+            Size parentSize = viewPort.Parent.Size;
             viewPort.Location = new Point(0 + 1, 0 + 1);
-            viewPort.Size = new Size(parent.Size.Width / 2 - 2, parent.Size.Height / 2 - 2);
+            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
 
         private void frontViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            ViewPort parent = viewPort.Parent;
-            viewPort.Location = new Point(parent.Size.Width / 2 + 1, parent.Size.Height / 2 + 1);
-            viewPort.Size = new Size(parent.Size.Width / 2 - 2, parent.Size.Height / 2 - 2);
+            Size parentSize = viewPort.Parent.Size;
+            viewPort.Location = new Point(parentSize.Width / 2 + 1, parentSize.Height / 2 + 1);
+            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
 
         private void topViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            ViewPort parent = viewPort.Parent;
-            viewPort.Location = new Point(0 + 1, parent.Size.Height / 2 + 1);
-            viewPort.Size = new Size(parent.Size.Width / 2 - 2, parent.Size.Height / 2 - 2);
+            Size parentSize = viewPort.Parent.Size;
+            viewPort.Location = new Point(0 + 1, parentSize.Height / 2 + 1);
+            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
 
         private void perspectiveViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            ViewPort parentSize = viewPort.Parent.Size;
+            Size parentSize = viewPort.Parent.Size;
             viewPort.Location = new Point(parentSize.Width / 2 + 1, 0 + 1);
             viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
