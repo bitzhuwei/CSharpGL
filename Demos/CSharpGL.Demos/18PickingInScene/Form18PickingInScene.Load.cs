@@ -41,6 +41,7 @@ namespace CSharpGL.Demos
                 var scene = new Scene(camera, this.glCanvas1);
                 //scene.Cursor.Enabled = false;
                 this.scene = scene;
+                //scene.RootViewPort.Children[0].Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
                 this.glCanvas1.Resize += scene.Resize;
             }
             {
@@ -116,6 +117,7 @@ namespace CSharpGL.Demos
                 builder.AppendLine("2: Canvas' property grid.");
                 builder.AppendLine("3: Form's property grid.");
                 builder.AppendLine("4: Save to bitmap file.");
+                builder.AppendLine("Ctrl+Mouse: Picking.");
                 MessageBox.Show(builder.ToString());
             }
         }
