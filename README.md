@@ -1,27 +1,11 @@
-# Object-Oriented Modern OpenGL Wrapper in C\#  
+# Object-Oriented OpenGL Wrapper in C\#  
 [CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) | [CSharpGL Wiki](https://github.com/bitzhuwei/CSharpGL/wiki)  
-[CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents.  
+[CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and offers general demostrations and documents.  
 CSharpGL is inspired by [SharpGL](https://github.com/dwmkerr/sharpgl).
-## :rocket:Modern Rendering
-High-efficiency rendering of massive vertexes is supported by Object-Oriented modern rendering using GLSL shaders and vertex buffer objects.  
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.png?raw=true)
 ## :stars:GLCanvas
 A winform control that supports drag-drop and wraps initialization of creating OpenGL context.
-![raycast-volume-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLCanvas.gif?raw=true)
-## :car:Uniform Variables
-structs support setting values for uniform variables in GLSL shader.
-![edit-uniform-value](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/edit-uniform-value.jpg?raw=true)
-## :cancer:GLSwitch
-Wraps OpenGL commands like 
-```
-glEnable(GL_BLEND);
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA);
-...
-glDisable(GL_BLEND);
-```
-or
-``glLineWidth(2.0f);``
-![GLSwitch](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLSwitch.jpg?raw=true)
+![GLCanvas](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLCanvas.gif?raw=true)
 ## :pushpin:Color-Coded Picking
 `IColorCodedPicking` supports picking primitives in multiple vertex buffer objects using Mouse.  
 ![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
