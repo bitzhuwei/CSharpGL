@@ -92,6 +92,10 @@ namespace CSharpGL.Demos
             {
                 renderer = SimplexNoiseRenderer.Create();
             }
+            else if (rendererType == typeof(TrefoilKnotRenderer))
+            {
+                renderer = TrefoilKnotRenderer.Create(new TrefoilKnotModel());
+            }
             else if (rendererType == typeof(UniformArrayRenderer))
             {
                 renderer = UniformArrayRenderer.Create();
