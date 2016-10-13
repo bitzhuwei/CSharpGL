@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form2424GreayFilter : Form
+    public partial class Form25Light : Form
     {
         private GreyFilterRenderer renderer;
         private Scene scene;

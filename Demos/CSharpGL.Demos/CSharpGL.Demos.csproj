@@ -47,13 +47,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
-    <Compile Include="24GreayFilter\Form2424GreayFilter.cs">
+    <Compile Include="25Light\Form25Light.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="24GreayFilter\Form2424GreayFilter.Designer.cs">
-      <DependentUpon>Form2424GreayFilter.cs</DependentUpon>
+    <Compile Include="25Light\Form25Light.Designer.cs">
+      <DependentUpon>Form25Light.cs</DependentUpon>
     </Compile>
-    <Compile Include="24GreayFilter\Form2424GreayFilter.Load.cs">
+    <Compile Include="25Light\Form25Light.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="24GreayFilter\Form24GreayFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="24GreayFilter\Form24GreayFilter.Designer.cs">
+      <DependentUpon>Form24GreayFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="24GreayFilter\Form24GreayFilter.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="18PickingInScene\UpdatingBoxScript.cs" />
@@ -413,9 +422,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="18PickingInScene\Form18PickingInScene.resx">
       <DependentUpon>Form18PickingInScene.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="24GreayFilter\Form2424GreayFilter.resx">
-      <DependentUpon>Form2424GreayFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form2424GreayFilter
+    partial class Form25Light
     {
         /// <summary>
         /// Required designer variable.

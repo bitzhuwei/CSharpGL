@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form2424GreayFilter : Form
+    public partial class Form24GreayFilter : Form
     {
         private SatelliteManipulater cameraManipulater;
 
-        public Form2424GreayFilter()
+        public Form24GreayFilter()
         {
             InitializeComponent();
 

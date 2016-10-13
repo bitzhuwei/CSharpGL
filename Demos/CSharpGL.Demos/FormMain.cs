@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
 
         private void btn24GreyFilter_Click(object sender, EventArgs e)
         {
-            (new Form2424GreayFilter()).Show();
+            (new Form24GreayFilter()).Show();
         }
     }
 }
