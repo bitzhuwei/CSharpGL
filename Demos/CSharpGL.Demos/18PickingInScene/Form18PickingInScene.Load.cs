@@ -45,6 +45,15 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += scene.Resize;
             }
             {
+                // top
+                var camera = new Camera(
+                new vec3(0, 0, 15), new vec3(0, 0, 0), new vec3(0, 1, 0),
+                CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.AfterLayout += topViewPort_AfterLayout;
+                this.scene.RootViewPort.Children.Add(viewPort);
+            }
+            {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
               new Padding(3, 3, 3, 3), new Size(128, 128));
                 uiAxis.Initialize();
@@ -120,6 +129,14 @@ namespace CSharpGL.Demos
                 builder.AppendLine("Ctrl+Mouse: Picking.");
                 MessageBox.Show(builder.ToString());
             }
+        }
+
+        void topViewPort_AfterLayout(object sender, EventArgs e)
+        {
+            var viewPort = sender as ViewPort;
+            var parent = viewPort.Parent;
+            viewPort.Location = new Point(0, parent.Size.Height / 2);
+            viewPort.Size = new Size(parent.Size.Width / 2, parent.Size.Height / 2);
         }
 
         private List<PickableRenderer> GetPickableRenderers()
