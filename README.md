@@ -1,7 +1,6 @@
 # Object-Oriented OpenGL Wrapper in C\#  
 [CSharpGL @ nuget](https://www.nuget.org/packages/CSharpGL) | [CSharpGL Wiki](https://github.com/bitzhuwei/CSharpGL/wiki)  
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and offers general demostrations and documents.  
-CSharpGL is inspired by [SharpGL](https://github.com/dwmkerr/sharpgl).
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.png?raw=true)
 ## :stars:GLCanvas
 A winform control that supports drag-drop and wraps initialization of creating OpenGL context.
@@ -38,7 +37,7 @@ Particle's speed and position is updated by compute shader.
 ## Earth.
 An earth model that singly rotates same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
 ![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
-## :id::100:Billboard and ``LabelRenderer``
+## :id::100:Billboard and `LabelRenderer`
 Billboard can be used to display health-bar, damage numbers in game application.
 ``LabelRenderer`` renders a string at specified position which always faces camera.  
 ![billboard-health-bar-text](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/billboard-health-bar-text.png?raw=true)
