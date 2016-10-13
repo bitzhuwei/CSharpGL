@@ -11,25 +11,24 @@ namespace CSharpGL.Demos
         public Point lastMousePositionOnScreen;
         public vec4 viewport;
 
-        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen)
+        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, Point lastMousePositionOnScreen)
         {
             this.projectionMatrix = projectionMatrix;
             this.viewMatrix = viewMatrix;
             this.lastMousePositionOnScreen = lastMousePositionOnScreen;
-            var viewport = new int[4]; OpenGL.GetInteger(GetTarget.Viewport, viewport);
-            this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
+            this.viewport = viewport;
         }
 
-        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen,
+        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, Point lastMousePositionOnScreen,
            IEnumerable<uint> indexes)
-            : this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
+            : this(projectionMatrix, viewMatrix, viewport, lastMousePositionOnScreen)
         {
             this.pickedVertexIds.AddRange(indexes);
         }
 
-        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen,
+        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, Point lastMousePositionOnScreen,
             params uint[] indexes)
-            : this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
+            : this(projectionMatrix, viewMatrix, viewport, lastMousePositionOnScreen)
         {
             this.pickedVertexIds.AddRange(indexes);
         }

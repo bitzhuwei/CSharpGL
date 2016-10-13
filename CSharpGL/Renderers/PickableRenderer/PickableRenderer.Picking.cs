@@ -58,7 +58,7 @@ namespace CSharpGL
             PickedGeometry result = this.innerPickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y);
             if (result != null)
             {
-                result.From = this;
+                result.FromRenderer = this;
             }
 
             return result;

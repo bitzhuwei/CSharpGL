@@ -24,7 +24,7 @@
         /// <summary>
         /// The scene's element from which this <see cref="IPickedGeometry"/>'s instance is picked.
         /// </summary>
-        IColorCodedPicking From { get; set; }
+        IColorCodedPicking FromRenderer { get; set; }
 
         /// <summary>
         /// The last vertex's id that constructs the picked primitive.

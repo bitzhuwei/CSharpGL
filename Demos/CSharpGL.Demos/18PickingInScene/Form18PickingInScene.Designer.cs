@@ -55,7 +55,7 @@
             this.cmbPickingGeometryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPickingGeometryType.FormattingEnabled = true;
             this.cmbPickingGeometryType.Location = new System.Drawing.Point(207, 15);
-            this.cmbPickingGeometryType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbPickingGeometryType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbPickingGeometryType.Name = "cmbPickingGeometryType";
             this.cmbPickingGeometryType.Size = new System.Drawing.Size(160, 23);
             this.cmbPickingGeometryType.TabIndex = 2;
@@ -66,7 +66,7 @@
             this.cmbRenderMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRenderMode.FormattingEnabled = true;
             this.cmbRenderMode.Location = new System.Drawing.Point(487, 15);
-            this.cmbRenderMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbRenderMode.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRenderMode.Name = "cmbRenderMode";
             this.cmbRenderMode.Size = new System.Drawing.Size(160, 23);
             this.cmbRenderMode.TabIndex = 4;
@@ -84,11 +84,11 @@
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(13, 91);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(5);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(1293, 724);

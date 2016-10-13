@@ -59,7 +59,6 @@ namespace CSharpGL
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="renderMode"></param>
-        /// <param name="clearColor"></param>
         /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
         private void Render(ViewPort viewPort, Rectangle clientRectangle,

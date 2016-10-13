@@ -9,6 +9,10 @@ namespace CSharpGL
     public class PickedGeometry : IPickedGeometry
     {
         /// <summary>
+        /// This geometry is picked from which view port?
+        /// </summary>
+        public ViewPort FromViewPort { get; set; }
+        /// <summary>
         ///
         /// </summary>
         public string ErrorInfo { get; set; }
@@ -35,9 +39,30 @@ namespace CSharpGL
         public uint StageVertexId { get; set; }
 
         /// <summary>
-        /// The element that this picked primitive belongs to.
+        /// The renderer that this picked primitive belongs to.
         /// </summary>
-        public virtual IColorCodedPicking From { get; set; }
+        public virtual IColorCodedPicking FromRenderer { get; set; }
+
+        //public PickedGeometry() { }
+        /// <summary>
+        /// The color-coded picking result.
+        /// <para>Representing a primitive(point, line, triangle, quad, polygon).</para>
+        /// </summary>
+        /// <param name="fromViewPort"></param>
+        /// <param name="geometryType"></param>
+        /// <param name="positions"></param>
+        /// <param name="vertexIds"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="fromRenderer"></param>
+        public PickedGeometry(ViewPort fromViewPort, GeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IColorCodedPicking fromRenderer)
+        {
+            this.FromViewPort = fromViewPort;
+            this.GeometryType = geometryType;
+            this.Positions = positions;
+            this.VertexIds = vertexIds;
+            this.StageVertexId = stageVertexId;
+            this.FromRenderer = fromRenderer;
+        }
 
         /// <summary>
         ///
@@ -139,7 +164,7 @@ namespace CSharpGL
 
             builder.AppendFormat("Stage Vertex ID: {0}", this.StageVertexId);
             builder.AppendLine();
-            builder.AppendFormat("From: {0}", this.From);
+            builder.AppendFormat("From: {0}", this.FromRenderer);
             builder.AppendLine();
 
             if (!string.IsNullOrEmpty(this.ErrorInfo))

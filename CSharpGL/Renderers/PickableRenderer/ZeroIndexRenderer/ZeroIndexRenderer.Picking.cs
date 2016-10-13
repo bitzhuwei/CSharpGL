@@ -26,11 +26,11 @@ namespace CSharpGL
                 DrawMode mode = this.indexBufferPtr.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
-                { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
                     if (this.OnPrimitiveTest(lastVertexId, mode))
-                    { return PickPoint(stageVertexId, lastVertexId); }
+                    { return PickPoint(arg, stageVertexId, lastVertexId); }
                     else
                     { return null; }
                 }
@@ -48,7 +48,7 @@ namespace CSharpGL
                 DrawMode mode = this.indexBufferPtr.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (geometryType == typeOfMode)
-                { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
                 else
                 {
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
@@ -65,7 +65,7 @@ namespace CSharpGL
                 DrawMode mode = this.indexBufferPtr.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == geometryType)// I want what it is
-                { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
                 else
                 { return null; }
                 //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
@@ -84,91 +84,91 @@ namespace CSharpGL
         /// <returns></returns>
         private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, ZeroIndexPointSearcher searcher)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.From = this;
-            pickedGeometry.GeometryType = GeometryType.Line;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.VertexIds = new uint[] { searcher.Search(arg, x, y, lastVertexId, this), };
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            var vertexIds = new uint[] { searcher.Search(arg, x, y, lastVertexId, this), };
+            vec3[] positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Line, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
 
-        private PickedGeometry PickWhateverItIs(uint stageVertexId, uint lastVertexId, DrawMode mode, GeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(RenderEventArgs arg, uint stageVertexId, uint lastVertexId, DrawMode mode, GeometryType typeOfMode)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.GeometryType = typeOfMode;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
+            //PickedGeometry pickedGeometry = new PickedGeometry();
+            //pickedGeometry.GeometryType = typeOfMode;
+            //pickedGeometry.StageVertexId = stageVertexId;
+            //pickedGeometry.FromRenderer = this;
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
             if (vertexCount == -1) { vertexCount = this.PositionBufferPtr.Length; }
+
+            uint[] vertexIds; vec3[] positions;
+
             if (lastVertexId == 0 && vertexCount == 2)
             {
                 // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
-                PickingLastLineInLineLoop(pickedGeometry);
-                return pickedGeometry;
-            }
+                PickingLastLineInLineLoop(out vertexIds, out positions);
 
-            // Other conditions
-            switch (typeOfMode)
+            }
+            else
             {
-                case GeometryType.Point:
-                    pickedGeometry.VertexIds = new uint[] { lastVertexId, };
-                    pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId, 1);
-                    break;
+                // Other conditions
+                switch (typeOfMode)
+                {
+                    case GeometryType.Point:
+                        vertexIds = new uint[] { lastVertexId, };
+                        positions = FillPickedGeometrysPosition(lastVertexId, 1);
+                        break;
 
-                case GeometryType.Line:
-                    pickedGeometry.VertexIds = new uint[] { lastVertexId - 1, lastVertexId, };
-                    pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 1, 2);
-                    break;
+                    case GeometryType.Line:
+                        vertexIds = new uint[] { lastVertexId - 1, lastVertexId, };
+                        positions = FillPickedGeometrysPosition(lastVertexId - 1, 2);
+                        break;
 
-                case GeometryType.Triangle:
-                    if (mode == DrawMode.TriangleFan)
-                    {
-                        pickedGeometry.VertexIds = new uint[] { 0, lastVertexId - 1, lastVertexId, };
-                        pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
-                    }
-                    else if (mode == DrawMode.TrianglesAdjacency || mode == DrawMode.TriangleStripAdjacency)
-                    {
-                        pickedGeometry.VertexIds = new uint[] { lastVertexId - 4, lastVertexId - 2, lastVertexId, };
-                        pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
-                    }
-                    else
-                    {
-                        pickedGeometry.VertexIds = new uint[] { lastVertexId - 2, lastVertexId - 1, lastVertexId, };
-                        pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 2, 3);
-                    }
-                    break;
+                    case GeometryType.Triangle:
+                        if (mode == DrawMode.TriangleFan)
+                        {
+                            vertexIds = new uint[] { 0, lastVertexId - 1, lastVertexId, };
+                            positions = FillPickedGeometrysPosition(vertexIds);
+                        }
+                        else if (mode == DrawMode.TrianglesAdjacency || mode == DrawMode.TriangleStripAdjacency)
+                        {
+                            vertexIds = new uint[] { lastVertexId - 4, lastVertexId - 2, lastVertexId, };
+                            positions = FillPickedGeometrysPosition(vertexIds);
+                        }
+                        else
+                        {
+                            vertexIds = new uint[] { lastVertexId - 2, lastVertexId - 1, lastVertexId, };
+                            positions = FillPickedGeometrysPosition(lastVertexId - 2, 3);
+                        }
+                        break;
 
-                case GeometryType.Quad:
-                    pickedGeometry.VertexIds = new uint[] { lastVertexId - 3, lastVertexId - 2, lastVertexId - 1, lastVertexId, };
-                    pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 3, 4);
-                    break;
+                    case GeometryType.Quad:
+                        vertexIds = new uint[] { lastVertexId - 3, lastVertexId - 2, lastVertexId - 1, lastVertexId, };
+                        positions = FillPickedGeometrysPosition(lastVertexId - 3, 4);
+                        break;
 
-                case GeometryType.Polygon:
-                    pickedGeometry.VertexIds = new uint[vertexCount];
-                    for (uint i = 0; i < vertexCount; i++)
-                    { pickedGeometry.VertexIds[i] = lastVertexId + i; }
-                    pickedGeometry.Positions = FillPickedGeometrysPosition(0, vertexCount);
-                    break;
+                    case GeometryType.Polygon:
+                        vertexIds = new uint[vertexCount];
+                        for (uint i = 0; i < vertexCount; i++)
+                        { vertexIds[i] = lastVertexId + i; }
+                        positions = FillPickedGeometrysPosition(0, vertexCount);
+                        break;
 
-                default:
-                    throw new NotImplementedException();
+                    default:
+                        throw new NotImplementedException();
+                }
             }
 
+            PickedGeometry pickedGeometry = new PickedGeometry(arg.UsingViewPort, typeOfMode, positions, vertexIds, stageVertexId, this);
             return pickedGeometry;
         }
 
-        private PickedGeometry PickPoint(uint stageVertexId, uint lastVertexId)
+        private PickedGeometry PickPoint(RenderEventArgs arg, uint stageVertexId, uint lastVertexId)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.GeometryType = GeometryType.Point;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
-            pickedGeometry.VertexIds = new uint[] { lastVertexId, };
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            var vertexIds = new uint[] { lastVertexId, };
+            var positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -188,12 +188,9 @@ namespace CSharpGL
         private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId,
             int x, int y, uint lastVertexId, ZeroIndexLineSearcher searcher)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.From = this;
-            pickedGeometry.GeometryType = GeometryType.Line;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.VertexIds = searcher.Search(arg, x, y, lastVertexId, this);
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            var vertexIds = searcher.Search(arg, x, y, lastVertexId, this);
+            var positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Line, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -355,12 +352,12 @@ namespace CSharpGL
             return result;
         }
 
-        private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
+        private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
             var offsets = new int[vertexCount] { (this.PositionBufferPtr.Length - 1) * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength, 0, };
-            pickedGeometry.Positions = new vec3[vertexCount];
-            pickedGeometry.VertexIds = new uint[vertexCount];
+            vertexIds = new uint[vertexCount];
+            positions = new vec3[vertexCount];
             this.PositionBufferPtr.Bind();
             for (int i = 0; i < vertexCount; i++)
             {
@@ -371,10 +368,10 @@ namespace CSharpGL
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
-                    pickedGeometry.Positions[i] = array[0];
+                    positions[i] = array[0];
                 }
                 this.PositionBufferPtr.UnmapBuffer(false);
-                pickedGeometry.VertexIds[i] = (uint)offsets[i] / (uint)(this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
+                vertexIds[i] = (uint)offsets[i] / (uint)(this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
             }
             this.PositionBufferPtr.Unbind();
         }

@@ -41,11 +41,11 @@ namespace CSharpGL
             {
                 // 获取pickedGeometry
                 if (typeOfMode == GeometryType.Point)
-                { return PickWhateverItIs(stageVertexId, lastIndexId, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
                     if (this.OnPrimitiveTest(lastVertexId, mode))
-                    { return PickPoint(stageVertexId, lastVertexId); }
+                    { return PickPoint(arg, stageVertexId, lastVertexId); }
                     else
                     { return null; }
                 }
@@ -62,7 +62,7 @@ namespace CSharpGL
             {
                 // 获取pickedGeometry
                 if (geometryType == typeOfMode)
-                { return PickWhateverItIs(stageVertexId, lastIndexId, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else
                 {
                     OneIndexLineSearcher searcher = GetLineSearcher(mode);
@@ -77,7 +77,7 @@ namespace CSharpGL
             else
             {
                 if (typeOfMode == geometryType)// I want what it is
-                { return PickWhateverItIs(stageVertexId, lastIndexId, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else
                 { return null; }
                 //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
@@ -97,12 +97,9 @@ namespace CSharpGL
         /// <returns></returns>
         private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.From = this;
-            pickedGeometry.GeometryType = GeometryType.Point;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.VertexIds = new uint[] { searcher.Search(arg, x, y, primitiveInfo, this), };
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            var vertexIds = new uint[] { searcher.Search(arg, x, y, primitiveInfo, this), };
+            vec3[] positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -120,12 +117,9 @@ namespace CSharpGL
         /// <returns></returns>
         private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.From = this;
-            pickedGeometry.GeometryType = GeometryType.Line;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.VertexIds = searcher.Search(arg, x, y, primitiveInfo, this);
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            var vertexIds = searcher.Search(arg, x, y, primitiveInfo, this);
+            vec3[] positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Line, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -133,18 +127,16 @@ namespace CSharpGL
         /// <summary>
         /// 是三角形，就pick一个三角形；是四边形，就pick一个四边形，是多边形，就pick一个多边形。
         /// </summary>
+        /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="primitiveInfo"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        private PickedGeometry PickWhateverItIs(uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, GeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(RenderEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, GeometryType typeOfMode)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.GeometryType = typeOfMode;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
-            pickedGeometry.VertexIds = primitiveInfo.VertexIds;
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            uint[] vertexIds = primitiveInfo.VertexIds;
+            vec3[] positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, typeOfMode, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -162,14 +154,11 @@ namespace CSharpGL
             return true;
         }
 
-        private PickedGeometry PickPoint(uint stageVertexId, uint lastVertexId)
+        private PickedGeometry PickPoint(RenderEventArgs arg, uint stageVertexId, uint lastVertexId)
         {
-            PickedGeometry pickedGeometry = new PickedGeometry();
-            pickedGeometry.GeometryType = GeometryType.Point;
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
-            pickedGeometry.VertexIds = new uint[] { lastVertexId, };
-            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.VertexIds);
+            var vertexIds = new uint[] { lastVertexId, };
+            vec3[] positions = FillPickedGeometrysPosition(vertexIds);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }

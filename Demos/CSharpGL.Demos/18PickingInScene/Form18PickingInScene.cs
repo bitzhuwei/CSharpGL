@@ -16,6 +16,9 @@ namespace CSharpGL.Demos
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
+            this.glCanvas1.KeyDown += glCanvas1_KeyDown;
+            this.glCanvas1.KeyUp += glCanvas1_KeyUp;
+
             this.RenderMode = RenderModes.Render;
 
             Application.Idle += Application_Idle;
@@ -29,7 +32,8 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             this.scene.Render(renderMode: this.RenderMode, autoClear: true, pickingGeometryType: this.PickingGeometryType);
@@ -82,6 +86,7 @@ namespace CSharpGL.Demos
         }
 
         private readonly Object synObj = new Object();
+        private bool controlDown;
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -131,6 +136,22 @@ namespace CSharpGL.Demos
 
             this.scene.Dispose();
             this.bulletinBoard.Close();
+        }
+
+        private void glCanvas1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode & Keys.LButton) == Keys.LButton)
+            {
+                this.controlDown = true;
+            }
+        }
+
+        private void glCanvas1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode & Keys.LButton) == Keys.LButton)
+            {
+                this.controlDown = false;
+            }
         }
     }
 }
