@@ -5,6 +5,16 @@ CSharpGL is inspired by SharpGL.
 For more information and demonstrations please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.7.0:
+1. DitherSwitch\LogicOperationSwitch\AlphaFuncSwitch.
+2. Support uniform struct.
+3. Remove opengl version attribute in `GLCanvas`.
+4. fix: return first `lastIndexId` object when picking a point.
+5. Generic `ILayout<T>` separated from `UIRenderer`.
+6. `ViewPort` supports `ILayout<ViewPort>`(tree layout). `Scene` supports multiple view ports.
+7. `ViewPort` integrated in picking.
+8. Use opengl window coordinate system in piccking.
+
 ## v1.0.6.8:
 1. `UniformVariable` need not to reset.
 2. `ClipPlaneSwitch` only works in Legacy OpenGL.
