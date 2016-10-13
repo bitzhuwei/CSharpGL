@@ -35,7 +35,6 @@ namespace CSharpGL.Demos
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             this.scene.Render(this.RenderMode, this.PickingGeometryType);
 
             this.DrawText(e);

@@ -18,10 +18,13 @@ namespace CSharpGL.Demos
             {
                 this.cmbPickingGeometryType.Items.Add(item);
             }
+            this.cmbPickingGeometryType.SelectedIndex = 0;
             foreach (var item in Enum.GetValues(typeof(RenderModes)))
             {
                 this.cmbRenderMode.Items.Add(item);
             }
+            this.cmbRenderMode.SelectedIndex = 0;
+
             {
                 var frmBulletinBoard = new FormBulletinBoard();
                 //frmBulletinBoard.Dump = true;
