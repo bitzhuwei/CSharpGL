@@ -40,7 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Pick primitives in specified <paramref name="viewPort"/>.
         /// </summary>
         /// <param name="viewPort"></param>
         /// <param name="pickingRect">rect in OpenGL's window coordinate system.(Left Down is (0, 0)), size).</param>
@@ -50,8 +50,6 @@ namespace CSharpGL
         private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort viewPort, Rectangle pickingRect, Rectangle clientRectangle, GeometryType pickingGeometryType)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
-
-            int height = clientRectangle.Height;
 
             // if depth buffer is valid in specified rect, then maybe something is picked.
             if (DepthBufferValid(pickingRect))
