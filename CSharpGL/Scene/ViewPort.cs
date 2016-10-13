@@ -4,8 +4,9 @@ using System.Drawing.Design;
 
 namespace CSharpGL
 {
+    // http://www.cnblogs.com/bitzhuwei/p/CSharpGL-35-render-scene-to-multiple-view-port.html
     /// <summary>
-    ///
+    /// Render scene to an area of canvas.
     /// </summary>
     public partial class ViewPort : ILayout<ViewPort>, ILayoutEvent
     {
@@ -21,7 +22,7 @@ namespace CSharpGL
         /// </summary>
         [Category(viewport)]
         [Description("Does this viewport and all its children take part in rendering?")]
-        public bool Enabled
+        public virtual bool Enabled
         {
             get { return enabled; }
             set { enabled = value; }
@@ -34,14 +35,14 @@ namespace CSharpGL
         /// </summary>
         [Category(viewport)]
         [Description("Does this viewport take part in rendering?")]
-        public bool Visiable
+        public virtual bool Visiable
         {
             get { return visiable; }
             set { visiable = value; }
         }
 
         /// <summary>
-        ///
+        /// Camera used to look at scene when rendering in this view port.
         /// </summary>
         [Category(viewport)]
         [Description("camera of the view port.")]
@@ -49,7 +50,7 @@ namespace CSharpGL
         public ICamera Camera { get; private set; }
 
         /// <summary>
-        /// background color.
+        /// background color in this view port's area.
         /// </summary>
         [Category(viewport)]
         [Description("background color.")]
@@ -65,7 +66,7 @@ namespace CSharpGL
         /// <summary>
         /// Indicates whether speicifed <paramref name="point"/>(Left Down is (0, 0)) is in this view port's area.
         /// </summary>
-        /// <param name="point"></param>
+        /// <param name="point">point's position in OpenGL coordinate(Left Down is (0, 0)).</param>
         /// <returns></returns>
         public bool Contains(Point point)
         {
@@ -73,7 +74,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// Render scene to an area of canvas.
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="anchor"></param>
@@ -107,7 +108,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// limit rendering area.
         /// </summary>
         public void On()
         {
@@ -135,7 +136,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// cancel limitation.
         /// </summary>
         public void Off()
         {

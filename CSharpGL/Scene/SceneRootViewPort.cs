@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// Root view port that should never take part in rendering.
@@ -16,7 +17,22 @@
             System.Drawing.Size size)
             : base(null, anchor, margin, size)
         {
-            this.Visiable = false;
+        }
+
+        /// <summary>
+        /// Does this viewport take part in rendering?
+        /// </summary>
+        [Category("Scene Root View Port")]
+        [Description("Does this viewport take part in rendering?")]
+        public override bool Visiable
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+            }
         }
     }
 }
