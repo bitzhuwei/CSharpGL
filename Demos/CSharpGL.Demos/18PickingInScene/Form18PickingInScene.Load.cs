@@ -41,7 +41,7 @@ namespace CSharpGL.Demos
                 var scene = new Scene(camera, this.glCanvas1);
                 //scene.Cursor.Enabled = false;
                 this.scene = scene;
-                //scene.RootViewPort.Children[0].Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
+                scene.RootViewPort.Children[0].Anchor = AnchorStyles.Right | AnchorStyles.Top;
                 this.glCanvas1.Resize += scene.Resize;
             }
             {

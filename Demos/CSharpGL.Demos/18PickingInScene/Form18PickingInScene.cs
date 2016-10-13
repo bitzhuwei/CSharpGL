@@ -51,14 +51,14 @@ namespace CSharpGL.Demos
                     pickedGeometry.VertexIds.PrintArray());
                 //SizeF size = e.Graphics.MeasureString(content, font);
                 Size size = this.uiText.Size;
-                // make sure the text be displayed.
-                int x = mousePosition.X - (size.Width / 2);
+                // make sure the text displayed.
+                int x = mousePosition.X - (size.Width / 2) - pickedGeometry.FromViewPort.Location.X;
                 if (x + (size.Width) >= this.glCanvas1.Width)
                 { x = this.glCanvas1.Width - size.Width; }
                 else if (x < 0)
                 { x = 0; }
-                // make sure the text be displayed.
-                int y = this.glCanvas1.Height - mousePosition.Y - 1;
+                // make sure the text displayed.
+                int y = this.glCanvas1.Height - mousePosition.Y - 1 - pickedGeometry.FromViewPort.Location.Y;
                 if (y + size.Height + 1 >= this.glCanvas1.Height)
                 { y = this.glCanvas1.Height - 15 - 5; }
                 else if (y < 15) { if (y > 0) { y += 15; } else { y = 15; } }
