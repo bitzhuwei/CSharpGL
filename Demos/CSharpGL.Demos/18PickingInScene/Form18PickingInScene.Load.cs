@@ -32,6 +32,7 @@ namespace CSharpGL.Demos
                 //this.glCanvas1.ShowSystemCursor = false;
             }
             {
+                // default(perspective)
                 var camera = new Camera(
                     new vec3(15, 5, 0), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
@@ -41,7 +42,9 @@ namespace CSharpGL.Demos
                 var scene = new Scene(camera, this.glCanvas1);
                 //scene.Cursor.Enabled = false;
                 this.scene = scene;
-                scene.RootViewPort.Children[0].Anchor = AnchorStyles.Right | AnchorStyles.Top;
+                ViewPort viewPort = scene.RootViewPort.Children[0];
+                viewPort.BeforeLayout += viewPort_BeforeLayout;
+                viewPort.AfterLayout += perspectiveViewPort_AfterLayout;
                 this.glCanvas1.Resize += scene.Resize;
             }
             {
@@ -50,7 +53,28 @@ namespace CSharpGL.Demos
                 new vec3(0, 0, 15), new vec3(0, 0, 0), new vec3(0, 1, 0),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.BeforeLayout += viewPort_BeforeLayout;
                 viewPort.AfterLayout += topViewPort_AfterLayout;
+                this.scene.RootViewPort.Children.Add(viewPort);
+            }
+            {
+                // front
+                var camera = new Camera(
+                new vec3(0, 15, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
+                CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.BeforeLayout += viewPort_BeforeLayout;
+                viewPort.AfterLayout += frontViewPort_AfterLayout;
+                this.scene.RootViewPort.Children.Add(viewPort);
+            }
+            {
+                // left
+                var camera = new Camera(
+                new vec3(-15, 0, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
+                CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.BeforeLayout += viewPort_BeforeLayout;
+                viewPort.AfterLayout += leftViewPort_AfterLayout;
                 this.scene.RootViewPort.Children.Add(viewPort);
             }
             {
@@ -131,12 +155,41 @@ namespace CSharpGL.Demos
             }
         }
 
+        void viewPort_BeforeLayout(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        void leftViewPort_AfterLayout(object sender, EventArgs e)
+        {
+            var viewPort = sender as ViewPort;
+            var parent = viewPort.Parent;
+            viewPort.Location = new Point(0 + 1, 0 + 1);
+            viewPort.Size = new Size(parent.Size.Width / 2 - 2, parent.Size.Height / 2 - 2);
+        }
+
+        void frontViewPort_AfterLayout(object sender, EventArgs e)
+        {
+            var viewPort = sender as ViewPort;
+            var parent = viewPort.Parent;
+            viewPort.Location = new Point(parent.Size.Width / 2 + 1, parent.Size.Height / 2 + 1);
+            viewPort.Size = new Size(parent.Size.Width / 2 - 2, parent.Size.Height / 2 - 2);
+        }
+
         void topViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
             var parent = viewPort.Parent;
-            viewPort.Location = new Point(0, parent.Size.Height / 2);
-            viewPort.Size = new Size(parent.Size.Width / 2, parent.Size.Height / 2);
+            viewPort.Location = new Point(0 + 1, parent.Size.Height / 2 + 1);
+            viewPort.Size = new Size(parent.Size.Width / 2 - 2, parent.Size.Height / 2 - 2);
+        }
+
+        void perspectiveViewPort_AfterLayout(object sender, EventArgs e)
+        {
+            var viewPort = sender as ViewPort;
+            var parentSize = viewPort.Parent.Size;
+            viewPort.Location = new Point(parentSize.Width / 2 + 1, 0 + 1);
+            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
 
         private List<PickableRenderer> GetPickableRenderers()
@@ -193,13 +246,13 @@ namespace CSharpGL.Demos
             {
                 // note: the points are not centered at (0, 0, 0). Thus the renderer will not be placed at (0, 0, 0).
                 var points = new List<vec3>(){
-                        new vec3(  -4.0f, 0.0f, 4.0f),
-                        new vec3(-2.0f, 4.0f, 4.0f),
-                        new vec3( 4.0f, 0.0f, 4.0f ),
-                        new vec3(  -4.0f, 0.0f, 0.0f),
-                        new vec3(-2.0f, 4.0f, 0.0f),
-                        new vec3( 4.0f, 0.0f, 0.0f),
-                        new vec3(  -4.0f, 0.0f, -4.0f),
+                        new vec3(-4.0f, 0.0f,  4.0f),
+                        new vec3(-2.0f, 4.0f,  4.0f),
+                        new vec3( 4.0f, 0.0f,  4.0f),
+                        new vec3(-4.0f, 0.0f,  0.0f),
+                        new vec3(-2.0f, 4.0f,  0.0f),
+                        new vec3( 4.0f, 0.0f,  0.0f),
+                        new vec3(-4.0f, 0.0f, -4.0f),
                         new vec3(-2.0f, 4.0f, -4.0f),
                         new vec3( 4.0f, 0.0f, -4.0f)
                     };

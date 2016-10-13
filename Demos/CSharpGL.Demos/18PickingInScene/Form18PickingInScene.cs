@@ -71,7 +71,7 @@ namespace CSharpGL.Demos
                 margin.Left = x; margin.Bottom = y;
                 this.uiText.Margin = margin;
                 this.uiText.Text = content;
-                this.uiText.Enabled = true;
+                this.uiText.Enabled = false;// invalid for now.
             }
             else
             {
