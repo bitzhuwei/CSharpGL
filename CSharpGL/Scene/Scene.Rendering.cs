@@ -8,7 +8,7 @@ namespace CSharpGL
         private object synObj = new object();
 
         /// <summary>
-        /// 
+        /// Render this scene.
         /// </summary>
         /// <param name="renderMode"></param>
         /// <param name="autoClear"></param>
@@ -19,13 +19,15 @@ namespace CSharpGL
         {
             lock (this.synObj)
             {
+                // update view port's location and size.
                 this.rootViewPort.Layout();
+                // render scene in every view port.
                 this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, renderMode, autoClear, pickingGeometryType);
             }
         }
 
         /// <summary>
-        /// 
+        /// render scene in every view port.
         /// </summary>
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
@@ -36,12 +38,13 @@ namespace CSharpGL
         {
             if (viewPort.Enabled)
             {
-                // render self.
+                // render in this view port.
                 if (viewPort.Visiable)
                 {
-                    viewPort.On();
+                    viewPort.On();// limit rendering area.
+                    // render scene in this view port.
                     this.Render(viewPort, clientRectangle, renderMode, autoClear, pickingGeometryType);
-                    viewPort.Off();
+                    viewPort.Off();// cancel limitation.
                 }
 
                 // render children viewport.
@@ -54,7 +57,7 @@ namespace CSharpGL
 
         // <param name="mousePosition">mouse position in window coordinate system.</param>
         /// <summary>
-        ///
+        /// Render scene in specified <paramref name="viewPort"/>.
         /// </summary>
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
@@ -91,6 +94,11 @@ namespace CSharpGL
             //}
         }
 
+        /// <summary>
+        /// render object recursively.
+        /// </summary>
+        /// <param name="sceneObject"></param>
+        /// <param name="arg"></param>
         private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
         {
             if (sceneObject.Enabled)
