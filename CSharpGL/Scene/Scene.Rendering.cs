@@ -11,10 +11,8 @@ namespace CSharpGL
         /// Render this scene.
         /// </summary>
         /// <param name="renderMode"></param>
-        /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
         public void Render(RenderModes renderMode,
-            bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
             lock (this.synObj)
@@ -22,7 +20,7 @@ namespace CSharpGL
                 // update view port's location and size.
                 this.rootViewPort.Layout();
                 // render scene in every view port.
-                this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, renderMode, autoClear, pickingGeometryType);
+                this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, renderMode, pickingGeometryType);
             }
         }
 
@@ -32,9 +30,8 @@ namespace CSharpGL
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="renderMode"></param>
-        /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
-        private void RenderViewPort(ViewPort viewPort, Rectangle clientRectangle, RenderModes renderMode, bool autoClear, GeometryType pickingGeometryType)
+        private void RenderViewPort(ViewPort viewPort, Rectangle clientRectangle, RenderModes renderMode, GeometryType pickingGeometryType)
         {
             if (viewPort.Enabled)
             {
@@ -43,14 +40,14 @@ namespace CSharpGL
                 {
                     viewPort.On();// limit rendering area.
                     // render scene in this view port.
-                    this.Render(viewPort, clientRectangle, renderMode, autoClear, pickingGeometryType);
+                    this.Render(viewPort, clientRectangle, renderMode, pickingGeometryType);
                     viewPort.Off();// cancel limitation.
                 }
 
                 // render children viewport.
                 foreach (ViewPort item in viewPort.Children)
                 {
-                    this.RenderViewPort(item, clientRectangle, renderMode, autoClear, pickingGeometryType);
+                    this.RenderViewPort(item, clientRectangle, renderMode, pickingGeometryType);
                 }
             }
         }
@@ -62,11 +59,9 @@ namespace CSharpGL
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
         /// <param name="renderMode"></param>
-        /// <param name="autoClear"></param>
         /// <param name="pickingGeometryType"></param>
         private void Render(ViewPort viewPort, Rectangle clientRectangle,
             RenderModes renderMode,
-            bool autoClear = true,
             GeometryType pickingGeometryType = GeometryType.Point)
         {
             var arg = new RenderEventArgs(renderMode, clientRectangle, viewPort, pickingGeometryType);
@@ -80,13 +75,10 @@ namespace CSharpGL
             }
             else
             {
-                if (autoClear)
-                {
-                    vec4 color = viewPort.ClearColor.ToVec4();
-                    OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+                vec4 color = viewPort.ClearColor.ToVec4();
+                OpenGL.ClearColor(color.x, color.y, color.z, color.w);
 
-                    OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-                }
+                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
             }
             // render objects.
             SceneObject obj = this.RootObject;
