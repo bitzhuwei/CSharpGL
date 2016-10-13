@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
             {
                 // top
                 var camera = new Camera(
-                new vec3(0, 0, 15), new vec3(0, 0, 0), new vec3(0, 1, 0),
+                new vec3(0, 0, 25), new vec3(0, 0, 0), new vec3(0, 1, 0),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
@@ -60,7 +60,7 @@ namespace CSharpGL.Demos
             {
                 // front
                 var camera = new Camera(
-                new vec3(0, 15, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
+                new vec3(0, 25, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
             {
                 // left
                 var camera = new Camera(
-                new vec3(-15, 0, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
+                new vec3(-25, 0, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
