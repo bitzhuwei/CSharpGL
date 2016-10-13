@@ -39,7 +39,7 @@ namespace CSharpGL
         /// <para>(0, 0)</para>
         /// </summary>
         /// <param name="node"></param>
-        internal static void Layout<T>(this ILayout<T> node) where T : ILayout<T>
+        public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>
         {
             ILayout<T> parent = node.Parent;
             if (parent != null)
