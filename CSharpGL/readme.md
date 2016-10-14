@@ -1,8 +1,6 @@
 ﻿# CSharpGL
-CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents.  
-CSharpGL is inspired by SharpGL.
-
-For more information and demonstrations please check (http://bitzhuwei.github.io/CSharpGL/)
+CSharpGL wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and offers general demostrations and documents.  
+For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
 ## v1.0.7.0:
