@@ -24,7 +24,6 @@
 
             SwithesOff(switchList);
 
-            //ResetUniformValues(program);
             // 解绑shader
             program.Unbind();
         }
@@ -48,22 +47,6 @@
                 switchList[i].Off();
             }
         }
-
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //private void ResetUniformValues(ShaderProgram program)
-        //{
-        //    //while (uniformArrayVariableStack.Count > 0)
-        //    //{
-        //    //    UniformArrayVariable item = uniformArrayVariableStack.Pop();
-        //    //    item.ResetUniform(program);
-        //    //}
-
-        //    while (uniformVariableStack.Count > 0)
-        //    {
-        //        UniformVariable item = uniformVariableStack.Pop();
-        //        item.ResetUniform(program);
-        //    }
-        //}
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void SetUniformValues(ShaderProgram program)
