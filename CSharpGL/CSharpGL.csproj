@@ -658,7 +658,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="0Foundations\Maths\readme.md" />
-    <Content Include="0Foundations\OpenGLAPI\readme.md" />
     <Content Include="PropertyGrid\TypeConverters\readme.md" />
     <Content Include="PropertyGrid\UITypeEditors\readme.md" />
   </ItemGroup>
