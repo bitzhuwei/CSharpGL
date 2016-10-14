@@ -39,7 +39,7 @@ namespace CSharpGL
         /// <para>(0, 0)</para>
         /// </summary>
         /// <param name="node"></param>
-        public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>
+        public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>, ILayoutEvent
         {
             ILayout<T> parent = node.Parent;
             if (parent != null)
@@ -47,14 +47,12 @@ namespace CSharpGL
                 bool cancelTreeLayout = false;
 
                 var layoutEvent = node.Self as ILayoutEvent;
-                if (layoutEvent != null)
-                { cancelTreeLayout = layoutEvent.DoBeforeLayout(); }
+                cancelTreeLayout = layoutEvent.DoBeforeLayout();
 
                 if (!cancelTreeLayout)
                 { NonRootNodeLayout(node, parent); }
 
-                if (layoutEvent != null)
-                { layoutEvent.DoAfterLayout(); }
+                layoutEvent.DoAfterLayout();
             }
 
             foreach (T item in node.Children)
