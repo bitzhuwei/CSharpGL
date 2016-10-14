@@ -105,28 +105,28 @@ namespace CSharpGL
         //    }
         //}
 
-        /// <summary>
-        /// traverse every item in the tree node non-recursively.
-        /// <para>Use this when <paramref name="treeNode"/>'s structure is NOT flat.</para>
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="treeNode"></param>
-        /// <returns></returns>
-        public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode<T> treeNode)
-            where T : ITreeNode<T>
-        {
-            var stack = new Stack<ITreeNode<T>>();
-            stack.Push(treeNode);
-            while (stack.Count > 0)
-            {
-                ITreeNode<T> current = stack.Pop();
-                foreach (T item in current.Children)
-                {
-                    stack.Push(item);
-                }
-                yield return current.Self;
-            }
-        }
+        ///// <summary>
+        ///// traverse every item in the tree node non-recursively.
+        ///// <para>Use this when <paramref name="treeNode"/>'s structure is NOT flat.</para>
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <param name="treeNode"></param>
+        ///// <returns></returns>
+        //public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode<T> treeNode)
+        //    where T : ITreeNode<T>
+        //{
+        //    var stack = new Stack<ITreeNode<T>>();
+        //    stack.Push(treeNode);
+        //    while (stack.Count > 0)
+        //    {
+        //        ITreeNode<T> current = stack.Pop();
+        //        foreach (T item in current.Children)
+        //        {
+        //            stack.Push(item);
+        //        }
+        //        yield return current.Self;
+        //    }
+        //}
     }
 
     /// <summary>
