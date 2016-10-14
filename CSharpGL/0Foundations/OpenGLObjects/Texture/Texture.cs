@@ -70,7 +70,7 @@ namespace CSharpGL
                 OpenGL.BindTexture(target, id[0]);
                 this.Sampler.Bind(this.ActiveTextureIndex, target);
                 this.ImageFiller.Fill();
-                OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
+                //OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
                 //this.SamplerBuilder.Unbind(OpenGL.GL_TEXTURE0 - OpenGL.GL_TEXTURE0, this.Target);
                 OpenGL.BindTexture(this.Target, 0);
                 this.initialized = true;

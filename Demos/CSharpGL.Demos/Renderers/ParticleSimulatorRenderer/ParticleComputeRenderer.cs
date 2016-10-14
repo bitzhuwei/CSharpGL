@@ -58,6 +58,7 @@ namespace CSharpGL.Demos
                 OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, bufferPtr.BufferId);
                 this.attractorBufferPtr = bufferPtr;
                 bufferPtr.Unbind();
+                OpenGL.CheckError();
             }
         }
 
