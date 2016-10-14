@@ -60,7 +60,7 @@ namespace CSharpGL
                     value[index++] = values[i].x ? 1 : 0;
                     value[index++] = values[i].y ? 1 : 0;
                 }
-                glUniform2iv(GetUniformLocation(uniformName), count, value);
+                glUniform2iv(location, count, value);
             }
             return location;
         }
@@ -84,7 +84,7 @@ namespace CSharpGL
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
                 }
-                glUniform2uiv(GetUniformLocation(uniformName), count, value);
+                glUniform2uiv(location, count, value);
             }
             return location;
         }
@@ -108,7 +108,7 @@ namespace CSharpGL
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
                 }
-                glUniform2iv(GetUniformLocation(uniformName), count, value);
+                glUniform2iv(location, count, value);
             }
             return location;
         }
@@ -132,7 +132,7 @@ namespace CSharpGL
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
                 }
-                glUniform2fv(GetUniformLocation(uniformName), count, value);
+                glUniform2fv(location, count, value);
             }
             return location;
         }
@@ -157,7 +157,7 @@ namespace CSharpGL
                     value[index++] = values[i].y ? 1 : 0;
                     value[index++] = values[i].z ? 1 : 0;
                 }
-                glUniform3iv(GetUniformLocation(uniformName), count, value);
+                glUniform3iv(location, count, value);
             }
             return location;
         }
@@ -182,7 +182,7 @@ namespace CSharpGL
                     value[index++] = values[i].y;
                     value[index++] = values[i].z;
                 }
-                glUniform3uiv(GetUniformLocation(uniformName), count, value);
+                glUniform3uiv(location, count, value);
             }
             return location;
         }
@@ -207,7 +207,7 @@ namespace CSharpGL
                     value[index++] = values[i].y;
                     value[index++] = values[i].z;
                 }
-                glUniform3iv(GetUniformLocation(uniformName), count, value);
+                glUniform3iv(location, count, value);
             }
             return location;
         }
@@ -232,7 +232,7 @@ namespace CSharpGL
                     value[index++] = values[i].y;
                     value[index++] = values[i].z;
                 }
-                glUniform3fv(GetUniformLocation(uniformName), count, value);
+                glUniform3fv(location, count, value);
             }
             return location;
         }
@@ -258,7 +258,7 @@ namespace CSharpGL
                     value[index++] = values[i].z ? 1 : 0;
                     value[index++] = values[i].w ? 1 : 0;
                 }
-                glUniform4iv(GetUniformLocation(uniformName), count, value);
+                glUniform4iv(location, count, value);
             }
             return location;
         }
@@ -284,7 +284,7 @@ namespace CSharpGL
                     value[index++] = values[i].z;
                     value[index++] = values[i].w;
                 }
-                glUniform4uiv(GetUniformLocation(uniformName), count, value);
+                glUniform4uiv(location, count, value);
             }
             return location;
         }
@@ -310,7 +310,7 @@ namespace CSharpGL
                     value[index++] = values[i].z;
                     value[index++] = values[i].w;
                 }
-                glUniform4iv(GetUniformLocation(uniformName), count, value);
+                glUniform4iv(location, count, value);
             }
             return location;
         }
@@ -336,7 +336,7 @@ namespace CSharpGL
                     value[index++] = values[i].z;
                     value[index++] = values[i].w;
                 }
-                glUniform4fv(GetUniformLocation(uniformName), count, value);
+                glUniform4fv(location, count, value);
             }
             return location;
         }
@@ -351,7 +351,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>(); }
-                glUniform1i(GetUniformLocation(uniformName), v0 ? 1 : 0);
+                glUniform1i(location, v0 ? 1 : 0);
             }
             return location;
         }
@@ -372,7 +372,7 @@ namespace CSharpGL
                 {
                     values[i] = v0[i] ? 1 : 0;
                 }
-                glUniform1iv(GetUniformLocation(uniformName), values.Length, values);
+                glUniform1iv(location, values.Length, values);
             }
             return location;
         }
@@ -387,7 +387,8 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform1ui == null) { glUniform1ui = OpenGL.GetDelegateFor<OpenGL.glUniform1ui>(); }
-                glUniform1ui(GetUniformLocation(uniformName), v0);
+                glUniform1ui(location, v0);
+                OpenGL.CheckError();
             }
             return location;
         }
@@ -403,7 +404,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform2ui == null) { glUniform2ui = OpenGL.GetDelegateFor<OpenGL.glUniform2ui>(); }
-                glUniform2ui(GetUniformLocation(uniformName), v0, v1);
+                glUniform2ui(location, v0, v1);
             }
             return location;
         }
@@ -420,7 +421,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform3ui == null) { glUniform3ui = OpenGL.GetDelegateFor<OpenGL.glUniform3ui>(); }
-                glUniform3ui(GetUniformLocation(uniformName), v0, v1, v2);
+                glUniform3ui(location, v0, v1, v2);
             }
             return location;
         }
@@ -438,7 +439,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform4ui == null) { glUniform4ui = OpenGL.GetDelegateFor<OpenGL.glUniform4ui>(); }
-                glUniform4ui(GetUniformLocation(uniformName), v0, v1, v2, v3);
+                glUniform4ui(location, v0, v1, v2, v3);
             }
             return location;
         }
@@ -469,7 +470,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>(); }
-                glUniform1i(GetUniformLocation(uniformName), v0);
+                glUniform1i(location, v0);
             }
             return location;
         }
@@ -485,7 +486,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform2i == null) { glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>(); }
-                glUniform2i(GetUniformLocation(uniformName), v0, v1);
+                glUniform2i(location, v0, v1);
             }
             return location;
         }
@@ -502,7 +503,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform3i == null) { glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>(); }
-                glUniform3i(GetUniformLocation(uniformName), v0, v1, v2);
+                glUniform3i(location, v0, v1, v2);
             }
             return location;
         }
@@ -520,7 +521,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform4i == null) { glUniform4i = OpenGL.GetDelegateFor<OpenGL.glUniform4i>(); }
-                glUniform4i(GetUniformLocation(uniformName), v0, v1, v2, v3);
+                glUniform4i(location, v0, v1, v2, v3);
             }
             return location;
         }
@@ -535,7 +536,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform1f == null) { glUniform1f = OpenGL.GetDelegateFor<OpenGL.glUniform1f>(); }
-                glUniform1f(GetUniformLocation(uniformName), v0);
+                glUniform1f(location, v0);
             }
             return location;
         }
@@ -551,7 +552,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform2f == null) { glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>(); }
-                glUniform2f(GetUniformLocation(uniformName), v0, v1);
+                glUniform2f(location, v0, v1);
             }
             return location;
         }
@@ -568,7 +569,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform3f == null) { glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>(); }
-                glUniform3f(GetUniformLocation(uniformName), v0, v1, v2);
+                glUniform3f(location, v0, v1, v2);
             }
             return location;
         }
