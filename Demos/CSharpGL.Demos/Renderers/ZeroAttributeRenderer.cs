@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();// no items in this map.
             var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
             var renderer = new ZeroAttributeRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.Lengths = new vec3(2.05f, 2.05f, 0.01f);
+            renderer.Size = new vec3(2.05f, 2.05f, 0.01f);
 
             return renderer;
         }

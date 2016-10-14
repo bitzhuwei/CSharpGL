@@ -84,7 +84,7 @@
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
             var renderer = new SimpleRenderer(model, shaderCodes, map, positionNameInIBufferable);
-            renderer.Lengths = lengths;
+            renderer.Size = lengths;
             return renderer;
         }
 

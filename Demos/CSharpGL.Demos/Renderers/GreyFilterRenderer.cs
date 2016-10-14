@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
             map.Add("a_texCoord", GreyFilterModel.strTexCoord);
             var model = new GreyFilterModel();
             var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.Lengths = model.Lengths;
+            renderer.Size = model.Lengths;
 
             return renderer;
         }

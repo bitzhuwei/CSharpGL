@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
             renderer.SetUniform("normalLength", 0.5f);
             renderer.SetUniform("showModel", true);
             renderer.SetUniform("showNormal", true);
-            renderer.Lengths = lengths;
+            renderer.Size = lengths;
 
             return renderer;
         }

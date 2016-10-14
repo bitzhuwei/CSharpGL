@@ -11,7 +11,7 @@ namespace CSharpGL
         public ClockMarkRenderer()
         {
             this.Scale = new vec3(1, 1, 1);
-            this.Lengths = new vec3(2, 2, 2);
+            this.Size = new vec3(2, 2, 2);
         }
 
         protected override void DoInitialize()

@@ -10,7 +10,7 @@ namespace CSharpGL.Demos
 
         public ParticleSimulatorRenderer()
         {
-            this.Lengths = new vec3(5, 5, 5);
+            this.Size = new vec3(5, 5, 5);
         }
 
         protected override void DoInitialize()

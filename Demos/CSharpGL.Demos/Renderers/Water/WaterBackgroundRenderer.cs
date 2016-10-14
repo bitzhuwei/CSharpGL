@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
             map.Add("a_vertex", PlaneModel.strPosition);
             //map.Add("a_normal", PlaneModel.strNormal);
             var renderer = new WaterBackgroundRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CW));
-            renderer.Lengths = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
+            renderer.Size = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
 
             return renderer;
         }

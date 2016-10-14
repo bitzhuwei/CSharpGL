@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\BufferBlockRenderer\BufferBlock.frag"), ShaderType.FragmentShader);
             var map = new AttributeMap();// no vertex attribute.
             var renderer = new BufferBlockRenderer(model, shaderCodes, map);
-            renderer.Lengths = new vec3(2, 2, 2);// model.Lengths;
+            renderer.Size = new vec3(2, 2, 2);// model.Lengths;
 
             return renderer;
         }

@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("in_Position", Sphere.strPosition);
             var renderer = new SimplexNoiseRenderer(model, shaderCodes, map, Sphere.strPosition);
-            renderer.Lengths = model.Lengths;
+            renderer.Size = model.Lengths;
 
             return renderer;
         }

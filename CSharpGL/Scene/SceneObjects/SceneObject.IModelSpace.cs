@@ -101,18 +101,18 @@ namespace CSharpGL
         /// </summary>
         [Category(strModelSpace)]
         [Description("Length in X/Y/Z axis.")]
-        public vec3 Lengths
+        public vec3 Size
         {
             get
             {
                 RendererBase renderer = this.renderer;
-                if (renderer != null) { return renderer.Lengths; }
+                if (renderer != null) { return renderer.Size; }
                 else { return new vec3(0, 0, 0); }
             }
             set
             {
                 RendererBase renderer = this.renderer;
-                if (renderer != null) { renderer.Lengths = value; }
+                if (renderer != null) { renderer.Size = value; }
                 else { throw new Exception(string.Format("No renderer for this scene object!")); }
             }
         }

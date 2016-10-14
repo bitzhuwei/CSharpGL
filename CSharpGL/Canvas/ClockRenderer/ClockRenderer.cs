@@ -11,7 +11,7 @@
             this.WorldPosition = worldPosition;
             const float factor = 0.5f;
             this.Scale = new vec3(factor, factor, factor);
-            this.Lengths = new vec3(2, 2, 2);
+            this.Size = new vec3(2, 2, 2);
         }
 
         protected override void DoInitialize()
@@ -76,15 +76,15 @@
             }
         }
 
-        public override vec3 Lengths
+        public override vec3 Size
         {
             //get { return this.circleRenderer.Lengths; }
             set
             {
-                this.circleRenderer.Lengths = value;
-                this.markRenderer.Lengths = value;
-                this.pinRenderer.Lengths = value;
-                base.Lengths = value;
+                this.circleRenderer.Size = value;
+                this.markRenderer.Size = value;
+                this.pinRenderer.Size = value;
+                base.Size = value;
             }
         }
     }

@@ -78,17 +78,17 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override vec3 Lengths
+        public override vec3 Size
         {
             get
             {
-                return PickableRenderer.Lengths;
+                return PickableRenderer.Size;
             }
             set
             {
-                Highlighter.Lengths = value;
-                PickableRenderer.Lengths = value;
-                base.Lengths = value;
+                Highlighter.Size = value;
+                PickableRenderer.Size = value;
+                base.Size = value;
             }
         }
 

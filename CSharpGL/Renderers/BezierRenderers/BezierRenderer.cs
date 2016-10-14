@@ -22,7 +22,7 @@ namespace CSharpGL
             map.Add("in_Position", Points.strposition);
             var model = new Points(controlPoints);
             var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
-            renderer.Lengths = model.Lengths;
+            renderer.Size = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
             renderer.switchList.Add(new PointSizeSwitch(10));
 

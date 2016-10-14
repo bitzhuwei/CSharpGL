@@ -28,21 +28,21 @@
         /// <summary>
         ///
         /// </summary>
-        public override vec3 Lengths
+        public override vec3 Size
         {
             get
             {
-                return base.Lengths;
+                return base.Size;
             }
             set
             {
                 InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
                 if (innerPickableRenderer != null)
                 {
-                    innerPickableRenderer.Lengths = value;
+                    innerPickableRenderer.Size = value;
                 }
 
-                base.Lengths = value;
+                base.Size = value;
             }
         }
 

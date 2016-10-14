@@ -40,7 +40,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
-            result.Lengths = lengths;
+            result.Size = lengths;
             return result;
         }
 
@@ -109,7 +109,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetModelMatrix() * new vec4(this.Lengths / 2, 1.0f));
+                return new vec3(this.GetModelMatrix() * new vec4(this.Size / 2, 1.0f));
             }
         }
 
@@ -121,7 +121,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetModelMatrix() * new vec4(-this.Lengths / 2, 1.0f));
+                return new vec3(this.GetModelMatrix() * new vec4(-this.Size / 2, 1.0f));
             }
         }
 

@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace model)
         {
-            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(model.Lengths);
+            BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(model.Size);
             boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth: 1.0f));
             boxRenderer.CopyModelSpaceStateFrom(model);
 

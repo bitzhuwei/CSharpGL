@@ -25,7 +25,7 @@
             this.Scale = new vec3(1, 1, 1);
             this.RotationAxis = new vec3(0, 1, 0);
 
-            this.Lengths = max - min;
+            this.Size = max - min;
         }
 
         #region IBoundingBox 成员

@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
                 this.depthTestSwitch = new DepthTestSwitch(false);
                 this.cullFaceSwitch = new CullFaceSwitch(false);
             }
-            this.Lengths = lengths;
+            this.Size = lengths;
         }
 
         protected override void DoInitialize()
@@ -165,17 +165,17 @@ namespace CSharpGL.Demos
             this.headTexture.Dispose();
         }
 
-        public override vec3 Lengths
+        public override vec3 Size
         {
             get
             {
-                return base.Lengths;
+                return base.Size;
             }
             set
             {
-                this.buildListsRenderer.Lengths = value;
-                this.resolve_lists.Lengths = value;
-                base.Lengths = value;
+                this.buildListsRenderer.Size = value;
+                this.resolve_lists.Size = value;
+                base.Size = value;
             }
         }
     }
