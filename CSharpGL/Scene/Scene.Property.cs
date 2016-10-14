@@ -18,7 +18,7 @@ namespace CSharpGL
         {
             get
             {
-                foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
+                foreach (ViewPort item in this.rootViewPort.Traverse(TraverseOrder.Pre))
                 {
                     if (item.Camera != null) { return item.Camera; }
                 }
@@ -48,7 +48,7 @@ namespace CSharpGL
             }
             set
             {
-                foreach (ViewPort item in this.rootViewPort.DFSEnumerateRecursively())
+                foreach (ViewPort item in this.rootViewPort.Traverse(TraverseOrder.Pre))
                 {
                     item.ClearColor = value;
                 }

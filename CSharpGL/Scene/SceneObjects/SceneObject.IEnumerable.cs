@@ -12,7 +12,7 @@ namespace CSharpGL
         /// <returns></returns>
         public IEnumerator<SceneObject> GetEnumerator()
         {
-            var enumerable = ITreeNodeHelper.DFSEnumerateRecursively(this);
+            var enumerable = ITreeNodeHelper.Traverse(this, TraverseOrder.Pre);
             foreach (SceneObject item in enumerable)
             {
                 yield return item;

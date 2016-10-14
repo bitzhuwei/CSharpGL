@@ -26,7 +26,7 @@ namespace CSharpGL
             Point position = new Point(x, y);
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
             var pickingRect = new Rectangle(x, y, 1, 1);
-            foreach (ViewPort viewPort in this.rootViewPort.DFSEnumerateRecursively())
+            foreach (ViewPort viewPort in this.rootViewPort.Traverse(TraverseOrder.Post))
             {
                 if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(position))
                 {
