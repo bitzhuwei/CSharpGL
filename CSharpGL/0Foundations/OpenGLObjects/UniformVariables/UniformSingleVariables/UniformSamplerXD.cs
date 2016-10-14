@@ -34,7 +34,7 @@ namespace CSharpGL
             activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
             OpenGL.BindTexture(value.target, value.TextureId);
-            this.Location = program.SetUniform(VarName, value.activeTextureIndex);
+            this.Location = program.SetUniform(VarName, (int)value.activeTextureIndex);
         }
 
         ///// <summary>

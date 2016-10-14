@@ -29,7 +29,7 @@
                 //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.value[i].TextureId);
                 OpenGL.BindTexture(value.target, value.TextureId);
                 // TODO: assign the first location or last?
-                this.Location = program.SetUniform(VarName, value.activeTextureIndex);
+                this.Location = program.SetUniform(VarName, (int)value.activeTextureIndex);
             }
         }
 

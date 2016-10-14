@@ -388,7 +388,6 @@ namespace CSharpGL
             {
                 if (glUniform1ui == null) { glUniform1ui = OpenGL.GetDelegateFor<OpenGL.glUniform1ui>(); }
                 glUniform1ui(location, v0);
-                OpenGL.CheckError();
             }
             return location;
         }
