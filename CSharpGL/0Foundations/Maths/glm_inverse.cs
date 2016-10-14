@@ -2,7 +2,6 @@
 {
     public static partial class glm
     {
-
         /// <summary>
         /// Gets the transposed matrix.
         /// <para>获取转置矩阵。</para>
@@ -20,7 +19,8 @@
         }
 
         /// <summary>
-        ///
+        /// Gets the inversed matrix.
+        /// <para>获取逆矩阵。</para>
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
@@ -58,7 +58,8 @@
         }
 
         /// <summary>
-        ///
+        /// Gets the inversed matrix.
+        /// <para>获取逆矩阵。</para>
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
