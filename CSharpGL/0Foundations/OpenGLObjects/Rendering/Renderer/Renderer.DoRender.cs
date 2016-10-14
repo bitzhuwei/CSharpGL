@@ -22,7 +22,7 @@
 
             this.vertexArrayObject.Render(arg, program);
 
-            SwithesOff(switchList);
+            SwitchesOff(switchList);
 
             // 解绑shader
             program.Unbind();
@@ -39,7 +39,7 @@
         }
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void SwithesOff(GLSwitch[] switchList)
+        private void SwitchesOff(GLSwitch[] switchList)
         {
             int count = switchList.Length;
             for (int i = count - 1; i >= 0; i--)
