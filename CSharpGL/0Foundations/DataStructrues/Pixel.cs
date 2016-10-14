@@ -1,30 +1,36 @@
 ﻿using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
     /// <summary>
     ///
     /// </summary>
+    [StructLayout(LayoutKind.Explicit)]
     public struct Pixel
     {
         /// <summary>
         ///
         /// </summary>
+        [FieldOffset(sizeof(byte) * 0)]
         public byte r;
 
         /// <summary>
         ///
         /// </summary>
+        [FieldOffset(sizeof(byte) * 1)]
         public byte g;
 
         /// <summary>
         ///
         /// </summary>
+        [FieldOffset(sizeof(byte) * 2)]
         public byte b;
 
         /// <summary>
         ///
         /// </summary>
+        [FieldOffset(sizeof(byte) * 3)]
         public byte a;
 
         /// <summary>
