@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
             using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
-                buffer.Create(vertexCount);
+                buffer.DoAlloc(vertexCount);
                 unsafe
                 {
                     var array = (vec4*)buffer.Header.ToPointer();
@@ -58,7 +58,7 @@ namespace CSharpGL.Demos
             }
             using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
-                buffer.Create(vertexCount);
+                buffer.DoAlloc(vertexCount);
                 unsafe
                 {
                     var array = (vec4*)buffer.Header.ToPointer();
@@ -109,7 +109,7 @@ namespace CSharpGL.Demos
             {
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Create(3 * 3);
+                    buffer.DoAlloc(3 * 3);
                     unsafe
                     {
                         var array = (uint*)buffer.Header.ToPointer();

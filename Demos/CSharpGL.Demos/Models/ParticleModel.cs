@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<vec4>(
                         varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy))
                     {
-                        buffer.Create(particleCount);
+                        buffer.DoAlloc(particleCount);
                         unsafe
                         {
                             var array = (vec4*)buffer.Header.ToPointer();
@@ -64,7 +64,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<vec4>(
                         varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy))
                     {
-                        buffer.Create(particleCount);
+                        buffer.DoAlloc(particleCount);
                         unsafe
                         {
                             var array = (vec4*)buffer.Header.ToPointer();

@@ -57,7 +57,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<CubeModel.CubePosition>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(1);
+                        buffer.DoAlloc(1);
                         unsafe
                         {
                             var positionArray = (CubeModel.CubePosition*)buffer.Header.ToPointer();
@@ -83,7 +83,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<CubeModel.CubeColor>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(1);
+                        buffer.DoAlloc(1);
                         unsafe
                         {
                             var colorArray = (CubeModel.CubeColor*)buffer.Header.ToPointer();
@@ -101,7 +101,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<CubeModel.CubeNormal>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(1);
+                        buffer.DoAlloc(1);
                         unsafe
                         {
                             var normalArray = (CubeModel.CubeNormal*)buffer.Header.ToPointer();
@@ -129,7 +129,7 @@
             {
                 using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Create(CubeModel.index.Length);
+                    buffer.DoAlloc(CubeModel.index.Length);
                     unsafe
                     {
                         var array = (byte*)buffer.Header.ToPointer();

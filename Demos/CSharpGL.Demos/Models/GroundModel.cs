@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(positions.Length);
+                        buffer.DoAlloc(positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();

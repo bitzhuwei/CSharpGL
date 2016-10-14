@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public override void Create(int elementCount)
+        public override void DoAlloc(int elementCount)
         {
             switch (this.Type)
             {

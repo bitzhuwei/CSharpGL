@@ -44,7 +44,7 @@ namespace CSharpGL
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(BigDipperModel.positions.Length);
+                        buffer.DoAlloc(BigDipperModel.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -66,7 +66,7 @@ namespace CSharpGL
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(BigDipperModel.colors.Length);
+                        buffer.DoAlloc(BigDipperModel.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();

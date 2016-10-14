@@ -27,7 +27,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec4>(varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.DynamicDraw))
                     {
-                        buffer.Create(this.SideLength * this.SideLength);
+                        buffer.DoAlloc(this.SideLength * this.SideLength);
                         unsafe
                         {
                             var pointer = (vec4*)buffer.Header.ToPointer();
@@ -61,7 +61,7 @@
             {
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                 {
-                    buffer.Create(this.SideLength * (this.SideLength - 1) * 2);
+                    buffer.DoAlloc(this.SideLength * (this.SideLength - 1) * 2);
                     unsafe
                     {
                         var pointer = (uint*)buffer.Header.ToPointer();

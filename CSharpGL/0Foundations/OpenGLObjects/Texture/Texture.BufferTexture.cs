@@ -26,7 +26,7 @@
         public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage, bool noDataCopyed = false) where T : struct
         {
             var buffer = new TextureBuffer<T>(usage, noDataCopyed);
-            buffer.Create(elementCount);
+            buffer.DoAlloc(elementCount);
             BufferPtr bufferPtr = buffer.GetBufferPtr();
 
             return bufferPtr.DumpBufferTexture(internalFormat, autoDispose: true);

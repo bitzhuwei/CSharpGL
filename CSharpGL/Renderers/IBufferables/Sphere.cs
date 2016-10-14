@@ -61,7 +61,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.positions.Length);
+                        buffer.DoAlloc(model.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -81,7 +81,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.normals.Length);
+                        buffer.DoAlloc(model.normals.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -101,7 +101,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.colors.Length);
+                        buffer.DoAlloc(model.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -121,7 +121,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.uv.Length);
+                        buffer.DoAlloc(model.uv.Length);
                         unsafe
                         {
                             var array = (vec2*)buffer.Header.ToPointer();
@@ -153,7 +153,7 @@
                 {
                     using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.indexes.Length);
+                        buffer.DoAlloc(model.indexes.Length);
                         unsafe
                         {
                             var indexArray = (byte*)buffer.Header.ToPointer();
@@ -173,7 +173,7 @@
                 {
                     using (var buffer = new OneIndexBuffer(IndexElementType.UShort, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.indexes.Length);
+                        buffer.DoAlloc(model.indexes.Length);
                         unsafe
                         {
                             var indexArray = (ushort*)buffer.Header.ToPointer();
@@ -193,7 +193,7 @@
                 {
                     using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.indexes.Length);
+                        buffer.DoAlloc(model.indexes.Length);
                         unsafe
                         {
                             var indexArray = (uint*)buffer.Header.ToPointer();

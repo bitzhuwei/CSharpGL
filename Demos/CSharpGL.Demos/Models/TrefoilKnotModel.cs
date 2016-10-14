@@ -89,7 +89,7 @@ namespace CSharpGL.Demos
                 varNameInShader, VertexAttributeConfig.Float, BufferUsage.StaticDraw))
             {
                 int uCount = GetUCount(interval);
-                buffer.Create(uCount);
+                buffer.DoAlloc(uCount);
                 unsafe
                 {
                     int index = 0;
@@ -117,7 +117,7 @@ namespace CSharpGL.Demos
                 vec3 max = new vec3();
                 vec3 min = new vec3();
                 int uCount = GetUCount(interval);
-                buffer.Create(uCount);
+                buffer.DoAlloc(uCount);
                 unsafe
                 {
                     int index = 0;

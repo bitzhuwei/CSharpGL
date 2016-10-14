@@ -101,7 +101,7 @@ namespace CSharpGL.Demos
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
-                buffer.Create(uCount * vCount);
+                buffer.DoAlloc(uCount * vCount);
                 unsafe
                 {
                     int index = 0;
@@ -133,7 +133,7 @@ namespace CSharpGL.Demos
                 vec3 min = new vec3();
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
-                buffer.Create(uCount * vCount);
+                buffer.DoAlloc(uCount * vCount);
                 unsafe
                 {
                     int index = 0;
@@ -196,7 +196,7 @@ namespace CSharpGL.Demos
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineStrip, BufferUsage.StaticDraw))
                 {
                     int count = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
-                    buffer.Create(count);
+                    buffer.DoAlloc(count);
                     int index = 0;
                     unsafe
                     {

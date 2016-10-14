@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
                 IndependentBufferPtr bufferPtr = null;
                 using (var buffer = new UniformBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed: true))
                 {
-                    buffer.Create(elementCount: 64);
+                    buffer.DoAlloc(elementCount: 64);
                     bufferPtr = buffer.GetBufferPtr();
                 }
                 bufferPtr.Bind();

@@ -25,7 +25,7 @@ namespace CSharpGL
             OneIndexBufferPtr indexBufferPtr = null;
             using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Points, BufferUsage.StaticDraw))
             {
-                buffer.Create(3);
+                buffer.DoAlloc(3);
                 unsafe
                 {
                     var array = (uint*)buffer.Header.ToPointer();

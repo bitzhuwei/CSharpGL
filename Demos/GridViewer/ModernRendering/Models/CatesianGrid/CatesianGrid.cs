@@ -45,7 +45,7 @@ namespace GridViewer
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.QuadStrip, BufferUsage.StaticDraw))
                 {
                     int dimSize = this.DataSource.DimenSize;
-                    buffer.Create(dimSize * 2 * (Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint)));
+                    buffer.DoAlloc(dimSize * 2 * (Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint)));
                     unsafe
                     {
                         var array = (HalfHexahedronIndex*)buffer.Header.ToPointer();

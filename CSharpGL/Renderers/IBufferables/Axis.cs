@@ -49,7 +49,7 @@ namespace CSharpGL
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(this.model.positions.Length);
+                        buffer.DoAlloc(this.model.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -71,7 +71,7 @@ namespace CSharpGL
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(this.model.colors.Length);
+                        buffer.DoAlloc(this.model.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -103,7 +103,7 @@ namespace CSharpGL
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
                      this.model.mode, BufferUsage.StaticDraw))
                 {
-                    buffer.Create(this.model.indexes.Length);
+                    buffer.DoAlloc(this.model.indexes.Length);
                     unsafe
                     {
                         var array = (uint*)buffer.Header.ToPointer();

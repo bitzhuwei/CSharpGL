@@ -40,7 +40,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(TetrahedronModel.position.Length);
+                        buffer.DoAlloc(TetrahedronModel.position.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -61,7 +61,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(TetrahedronModel.color.Length);
+                        buffer.DoAlloc(TetrahedronModel.color.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -82,7 +82,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(TetrahedronModel.normal.Length);
+                        buffer.DoAlloc(TetrahedronModel.normal.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -113,7 +113,7 @@
             {
                 using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Create(TetrahedronModel.index.Length);
+                    buffer.DoAlloc(TetrahedronModel.index.Length);
                     unsafe
                     {
                         var array = (byte*)buffer.Header.ToPointer();

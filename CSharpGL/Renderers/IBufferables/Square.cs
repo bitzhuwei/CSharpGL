@@ -44,7 +44,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.positions.Length);
+                        buffer.DoAlloc(model.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -64,7 +64,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
                     {
-                        buffer.Create(model.texCoords.Length);
+                        buffer.DoAlloc(model.texCoords.Length);
                         unsafe
                         {
                             var array = (vec2*)buffer.Header.ToPointer();

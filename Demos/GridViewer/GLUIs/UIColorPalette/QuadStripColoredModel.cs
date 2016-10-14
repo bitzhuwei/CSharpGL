@@ -60,7 +60,7 @@ namespace GridViewer
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create((this.quadCount + 1) * 2);
+                        buffer.DoAlloc((this.quadCount + 1) * 2);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -83,7 +83,7 @@ namespace GridViewer
                     using (var buffer = new VertexAttributeBuffer<vec3>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.Create((this.quadCount + 1) * 2);
+                        buffer.DoAlloc((this.quadCount + 1) * 2);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();

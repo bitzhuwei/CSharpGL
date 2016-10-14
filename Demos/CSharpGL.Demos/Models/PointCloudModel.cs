@@ -34,7 +34,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {// begin of using
-                        buffer.Create(this.pointPositions.Count);
+                        buffer.DoAlloc(this.pointPositions.Count);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();

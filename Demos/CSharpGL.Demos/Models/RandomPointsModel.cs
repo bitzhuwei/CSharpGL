@@ -31,7 +31,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {// begin of using
-                        buffer.Create(this.pointCount);
+                        buffer.DoAlloc(this.pointCount);
                         unsafe
                         {
                             var random = new Random();

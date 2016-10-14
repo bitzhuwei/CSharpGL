@@ -21,7 +21,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw))
                     {
-                        buffer.Create(positions.Length);
+                        buffer.DoAlloc(positions.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();

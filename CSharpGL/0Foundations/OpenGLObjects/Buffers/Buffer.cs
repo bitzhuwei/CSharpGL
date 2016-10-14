@@ -88,8 +88,12 @@ namespace CSharpGL
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public abstract void Create(int elementCount);
+        public abstract void DoAlloc(int elementCount);
 
+        public void Alloc(int elementCount)
+        {
+            //this.array = Create(elementCount);
+        }
         /// <summary>
         ///
         /// </summary>
