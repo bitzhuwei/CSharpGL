@@ -34,11 +34,13 @@ namespace CSharpGL
             this.Length = length;
         }
 
+        // Noisy array should not publish(make it `public`) this constructor
+        // because otherwise it would allow for modification of elements outside of this NoiseArray.
         /// <summary>
         /// Invoke ItemUpdated event when item is updated.
         /// </summary>
         /// <param name="array"></param>
-        public NoisyArray(T[] array)
+        internal NoisyArray(T[] array)
         {
             if (array == null) { throw new ArgumentNullException(); }
 
