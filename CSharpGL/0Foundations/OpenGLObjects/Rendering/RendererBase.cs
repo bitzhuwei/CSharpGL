@@ -12,15 +12,12 @@ namespace CSharpGL
     {
         private readonly object synObj = new object();
 
-        /// <summary>
-        ///
-        /// </summary>
-        protected const string strRenderer = "Renderer";
+        private const string strRendererBase = "RendererBase";
 
         /// <summary>
         /// binding scene object.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strRendererBase)]
         [Description("binding object.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public SceneObject BindingSceneObject { get; set; }
@@ -28,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// Render this or not.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strRendererBase)]
         [Description("Render this or not.")]
         public bool Enabled { get; set; }
 
@@ -36,7 +33,7 @@ namespace CSharpGL
         /// 为便于调试而设置的ID值，没有应用意义。
         /// <para>for debugging purpose only.</para>
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strRendererBase)]
         [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
         public int Id { get; private set; }
 

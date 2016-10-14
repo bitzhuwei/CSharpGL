@@ -6,6 +6,8 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
+        private const string strRenderer = "Renderer";
+
         /// <summary>
         /// Shader Program that does the rendering algorithm.
         /// </summary>

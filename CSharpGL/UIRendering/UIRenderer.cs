@@ -12,10 +12,12 @@ namespace CSharpGL
         private ScissorTestSwitch scissorTestSwitch;
         private GLSwitchList switchList = new GLSwitchList();
 
+        private const string strUIRenderer = "UIRenderer";
+
         /// <summary>
         ///
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strUIRenderer)]
         [Description("OpenGL switches.")]
         public GLSwitchList SwitchList
         {
@@ -25,7 +27,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strUIRenderer)]
         [Description("Renderer that actrually renders something.")]
         public RendererBase Renderer { get; protected set; }
 

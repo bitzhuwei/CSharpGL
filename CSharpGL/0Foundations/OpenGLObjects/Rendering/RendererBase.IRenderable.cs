@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <summary>
         /// Already initialized.
         /// </summary>
-        [Category(strRenderer)]
+        [Category(strRendererBase)]
         [Description("Is this renderer initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
