@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static vec3 Max(vec3 a, vec3 b)
+        private static vec3 Max(vec3 a, vec3 b)
         {
             vec3 result = a;
             if (result.x < b.x) { result.x = b.x; }
@@ -30,7 +30,7 @@ namespace CSharpGL
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static vec3 Min(vec3 a, vec3 b)
+        private static vec3 Min(vec3 a, vec3 b)
         {
             vec3 result = a;
             if (result.x > b.x) { result.x = b.x; }
@@ -124,37 +124,6 @@ namespace CSharpGL
             vec3 min = box.MinPosition;
             vec3 max = box.MaxPosition;
             {
-                if (min.x > point.x) { min.x = point.x; }
-                if (min.y > point.y) { min.y = point.y; }
-                if (min.z > point.z) { min.z = point.z; }
-                if (max.x < point.x) { max.x = point.x; }
-                if (max.y < point.y) { max.y = point.y; }
-                if (max.z < point.z) { max.z = point.z; }
-            }
-
-            return new BoundingBox(min, max);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="box"></param>
-        /// <returns></returns>
-        public static BoundingBox Union(this IBoundingBox box)
-        {
-            vec3 min = box.MinPosition;
-            vec3 max = box.MaxPosition;
-            {
-                vec3 point = box.MinPosition;
-                if (min.x > point.x) { min.x = point.x; }
-                if (min.y > point.y) { min.y = point.y; }
-                if (min.z > point.z) { min.z = point.z; }
-                if (max.x < point.x) { max.x = point.x; }
-                if (max.y < point.y) { max.y = point.y; }
-                if (max.z < point.z) { max.z = point.z; }
-            }
-            {
-                vec3 point = box.MaxPosition;
                 if (min.x > point.x) { min.x = point.x; }
                 if (min.y > point.y) { min.y = point.y; }
                 if (min.z > point.z) { min.z = point.z; }
