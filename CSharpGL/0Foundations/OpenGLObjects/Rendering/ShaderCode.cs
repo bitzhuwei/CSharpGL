@@ -3,12 +3,14 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// 各种类型的shader代码
+    /// 某种类型的shader代码。
+    /// <para>Some type of shader code.</para>
     /// </summary>
     public class ShaderCode
     {
         /// <summary>
-        /// 各种类型的shader代码
+        /// 某种类型的shader代码。
+        /// <para>Some type of shader code.</para>
         /// </summary>
         /// <param name="sourceCode"></param>
         /// <param name="shaderType"></param>
@@ -38,7 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// Create OpenGL shader object.
         /// </summary>
         /// <returns></returns>
         public Shader CreateShader()
@@ -56,7 +58,7 @@ namespace CSharpGL
     public static class ShaderCodesHelper
     {
         /// <summary>
-        /// Creates a shader program by a single shader.
+        /// Creates a shader program object by a single shader.
         /// </summary>
         /// <param name="shaderCode"></param>
         /// <returns></returns>
@@ -72,14 +74,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a shader program.
+        /// Creates a shader program by multiple shaders.
         /// </summary>
         /// <param name="shaderCodes"></param>
         /// <returns></returns>
         public static ShaderProgram CreateProgram(this ShaderCode[] shaderCodes)
         {
             var program = new ShaderProgram();
-            var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
+            Shader[] shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
             program.Initialize(shaders);
 
             foreach (Shader item in shaders) { item.Dispose(); }
