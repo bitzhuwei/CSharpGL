@@ -36,7 +36,7 @@
         /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
         /// <returns></returns>
-        protected abstract IndexBufferPtr Upload2GPU();
+        protected abstract IndexBufferPtr Upload2GraphicsCard();
 
         private IndexBufferPtr bufferPtr = null;
 
@@ -57,7 +57,7 @@
                     glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
                 }
 
-                bufferPtr = Upload2GPU();
+                bufferPtr = Upload2GraphicsCard();
             }
 
             return bufferPtr;

@@ -21,7 +21,7 @@
         ///
         /// </summary>
         /// <returns></returns>
-        protected override IndependentBufferPtr Upload2GPU()
+        protected override IndependentBufferPtr Upload2GraphicsCard()
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);

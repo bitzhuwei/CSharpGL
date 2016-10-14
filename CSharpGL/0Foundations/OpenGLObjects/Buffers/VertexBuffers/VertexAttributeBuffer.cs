@@ -74,7 +74,7 @@
                     glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
                 }
 
-                bufferPtr = Upload2GPU();
+                bufferPtr = Upload2GraphicsCard();
             }
 
             return bufferPtr;
@@ -86,7 +86,7 @@
         /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
         /// <returns></returns>
-        protected VertexAttributeBufferPtr Upload2GPU()
+        protected VertexAttributeBufferPtr Upload2GraphicsCard()
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);

@@ -60,7 +60,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override IndexBufferPtr Upload2GPU()
+        protected override IndexBufferPtr Upload2GraphicsCard()
         {
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
