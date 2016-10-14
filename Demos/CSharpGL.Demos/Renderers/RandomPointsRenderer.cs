@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             var map = new CSharpGL.AttributeMap();
             map.Add("in_Position", RandomPointsModel.position);
             var renderer = new RandomPointsRenderer(model, shaderCodes, map);
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
             //renderer.switchList.Add(new PointSizeSwitch(10));
             return renderer;
         }

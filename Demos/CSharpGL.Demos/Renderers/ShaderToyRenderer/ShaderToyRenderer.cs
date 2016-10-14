@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("in_Position", Cube.strPosition);
             var renderer = new ShaderToyRenderer(model, shaderCodes, map);
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
 
             return renderer;
         }

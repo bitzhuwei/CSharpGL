@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
             map.Add("in_Position", TrefoilKnotModel.strPosition);
             map.Add("in_TexCoord", TrefoilKnotModel.strTexCoord);
             var renderer = new TrefoilKnotRenderer(model, shaderCodes, map, TrefoilKnotModel.strPosition);
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
 
             return renderer;
         }

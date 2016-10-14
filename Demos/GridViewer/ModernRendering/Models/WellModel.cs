@@ -84,7 +84,7 @@ namespace GridViewer
                             array[index++] = tmp2;
                         }
                     }
-                    this.Size = max - min;
+                    this.ModelSize = max - min;
 
                     positionBufferPtr = buffer.GetBufferPtr();
                 }
@@ -153,7 +153,7 @@ namespace GridViewer
 
         public vec3 FirstNode { get; private set; }
 
-        public vec3 Size { get; set; }
+        public vec3 ModelSize { get; set; }
 
         public vec3 WorldPosition { get; set; }
 

@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
                 Math.Max(-box.MinPosition.z, box.MaxPosition.z)
                 );
             var self = this.BindingObject.Renderer as IModelSpace;
-            self.Size = max + max;
+            self.ModelSize = max + max;
 
             var childBox = this.BindingObject.FindChild(boxName);
             var boxRenderer = childBox.Renderer;

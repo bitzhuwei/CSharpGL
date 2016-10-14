@@ -31,7 +31,14 @@ namespace CSharpGL.Demos
         public vec2 Percentage
         {
             get { return percentage; }
-            set { percentageRecord.Set(ref percentage, value); }
+            set
+            {
+                if (value != this.percentage)
+                {
+                    this.percentage = value;
+                    this.percentageRecord.Mark();
+                }
+            }
         }
 
         private UpdatingRecord pixelSizeRecord = new UpdatingRecord();
@@ -43,7 +50,14 @@ namespace CSharpGL.Demos
         public ivec2 PixelSize
         {
             get { return pixelSize; }
-            set { pixelSizeRecord.Set(ref  pixelSize, value); }
+            set
+            {
+                if (value != this.pixelSize)
+                {
+                    this.pixelSize = value;
+                    this.pixelSizeRecord.Mark();
+                }
+            }
         }
 
         public BillboardType Type { get; set; }

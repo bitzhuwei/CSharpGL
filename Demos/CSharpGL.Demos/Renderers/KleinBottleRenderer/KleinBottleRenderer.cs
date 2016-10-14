@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
             map.Add("in_Position", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
             var renderer = new KleinBottleRenderer(model, shaderCodes, map, KleinBottleModel.strPosition);
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
 
             return renderer;
         }

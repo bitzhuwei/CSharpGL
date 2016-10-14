@@ -6,7 +6,7 @@
             AttributeMap attributeMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
-            this.Size = lengths;
+            this.ModelSize = lengths;
         }
 
         protected override void DoRender(RenderEventArgs arg)

@@ -52,20 +52,20 @@ namespace CSharpGL
             return this.updateTicks != this.uploadTicks;
         }
 
-        /// <summary>
-        /// Sets a new value to specified filed and mark the property.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="target"></param>
-        /// <param name="value"></param>
-        public void Set<T>(ref T target, T value)
-        {
-            if (!EqualityComparer<T>.Default.Equals(target, value))
-            {
-                target = value;
-                this.Mark();
-            }
-        }
+        ///// <summary>
+        ///// Sets a new value to specified filed and mark the property.
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <param name="target"></param>
+        ///// <param name="value"></param>
+        //public void Set<T>(ref T target, T value)
+        //{
+        //    if (!EqualityComparer<T>.Default.Equals(target, value))
+        //    {
+        //        target = value;
+        //        this.Mark();
+        //    }
+        //}
 
         /// <summary>
         ///

@@ -12,7 +12,7 @@ namespace CSharpGL
         public ClockCircleRenderer()
         {
             this.Scale = new vec3(1, 1, 1);
-            this.Size = new vec3(2, 2, 2);
+            this.ModelSize = new vec3(2, 2, 2);
         }
 
         protected override void DoInitialize()

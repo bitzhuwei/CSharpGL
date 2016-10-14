@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
             map.Add("vPos", Teapot.strPosition);
             map.Add("vColor", Teapot.strColor);
             var renderer = new UniformStructRenderer(model, shaderCodes, map);
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
 
             return renderer;
         }

@@ -41,7 +41,7 @@ namespace CSharpGL
                 }
             }
             this.controlPoints = array;
-            this.Size = box.MaxPosition - box.MinPosition;
+            this.ModelSize = box.MaxPosition - box.MinPosition;
             // TODO: not needed. Why?
             //this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
 

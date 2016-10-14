@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
             var renderer = new WaterRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CCW));
             renderer.waterTextureRenderer = WaterTextureRenderer.Create(waterPlaneLength);
             renderer.backgroundRenderer = WaterBackgroundRenderer.Create(waterPlaneLength);
-            renderer.Size = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
+            renderer.ModelSize = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
             renderer.waterPlaneLength = waterPlaneLength;
 
             return renderer;

@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <summary>
         /// Size in X/Y/Z axis.
         /// </summary>
-        vec3 Size { get; set; }
+        vec3 ModelSize { get; set; }
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ namespace CSharpGL
         {
             if (model == null) { throw new System.ArgumentNullException(); }
 
-            vec3 lengths = model.Size * model.Scale;
+            vec3 lengths = model.ModelSize * model.Scale;
             maxPosition = model.WorldPosition + lengths / 2.0f;
             minPosition = model.WorldPosition - lengths / 2.0f;
         }
@@ -64,7 +64,7 @@ namespace CSharpGL
         {
             if (dest == null || source == null) { throw new System.ArgumentNullException(); }
 
-            dest.Size = source.Size;
+            dest.ModelSize = source.ModelSize;
             dest.RotationAngleDegree = source.RotationAngleDegree;
             dest.RotationAxis = source.RotationAxis;
             dest.Scale = source.Scale;
@@ -114,11 +114,11 @@ namespace CSharpGL
         {
             vec3 max, min;
             {
-                vec3 position = model.WorldPosition + model.Size * model.Scale / 2;
+                vec3 position = model.WorldPosition + model.ModelSize * model.Scale / 2;
                 max = position;
             }
             {
-                vec3 position = model.WorldPosition - model.Size * model.Scale / 2;
+                vec3 position = model.WorldPosition - model.ModelSize * model.Scale / 2;
                 min = position;
             }
 

@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
             map.Add("position", PointSpriteModel.strposition);
             var model = new PointSpriteModel(particleCount);
             var renderer = new PointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
 
             return renderer;
         }

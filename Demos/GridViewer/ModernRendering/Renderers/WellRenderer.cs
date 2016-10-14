@@ -54,7 +54,7 @@ namespace GridViewer
 
             var model = this.Model as WellModel;
             this.WorldPosition = model.WorldPosition;
-            this.Size = model.Size;
+            this.ModelSize = model.ModelSize;
             this.firstNode = model.FirstNode;
         }
 

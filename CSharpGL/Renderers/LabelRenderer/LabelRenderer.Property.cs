@@ -63,7 +63,14 @@
         public int LabelHeight
         {
             get { return labelHeight; }
-            set { labelHeightRecord.Set(ref labelHeight, value); }
+            set
+            {
+                if (value != this.labelHeight)
+                {
+                    this.labelHeight = value;
+                    this.labelHeightRecord.Mark();
+                }
+            }
         }
 
         #endregion Height

@@ -101,7 +101,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strModelSpace)]
         [Description("Length in X/Y/Z axis.")]
-        public virtual vec3 Size { get; set; }
+        public virtual vec3 ModelSize { get; set; }
 
         #endregion IModelSpace
     }

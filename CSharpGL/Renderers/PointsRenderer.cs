@@ -20,7 +20,7 @@ namespace CSharpGL
             var map = new CSharpGL.AttributeMap();
             map.Add("in_Position", Points.strposition);
             var renderer = new PointsRenderer(model, shaderCodes, map, Points.strposition);
-            renderer.Size = model.Lengths;
+            renderer.ModelSize = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
             renderer.switchList.Add(new PointSizeSwitch(10));
 

@@ -53,7 +53,11 @@ namespace CSharpGL
             set
             {
                 vec3 color = value.ToVec3();
-                textColorRecord.Set(ref this.textColor, color);
+                if (color != this.textColor)
+                {
+                    this.textColor = color;
+                    this.textColorRecord.Mark();
+                }
             }
         }
     }
