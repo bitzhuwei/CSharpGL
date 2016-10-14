@@ -82,7 +82,7 @@ namespace CSharpGL
             using (var buffer = new UniformBuffer<byte>(BufferUsage.StaticDraw, noDataCopyed: false))
             {
                 byte[] bytes = this.value.ToBytes();
-                buffer.DoAlloc(bytes.Length);
+                buffer.Alloc(bytes.Length);
                 unsafe
                 {
                     var array = (byte*)buffer.Header.ToPointer();

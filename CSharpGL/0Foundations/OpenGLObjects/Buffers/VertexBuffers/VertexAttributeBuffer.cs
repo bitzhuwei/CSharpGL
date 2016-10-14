@@ -106,9 +106,9 @@
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public override void DoAlloc(int elementCount)
+        protected override UnmanagedArrayBase DoAlloc(int elementCount)
         {
-            this.array = new UnmanagedArray<T>(elementCount);
+            return new UnmanagedArray<T>(elementCount);
         }
     }
 }

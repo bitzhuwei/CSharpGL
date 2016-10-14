@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                     DIRECTION_BUFFER_PADDING, 30.0f, WIDTH, HEIGHT);
                 using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(g_directionBuffer.Length);
+                    buffer.Alloc(g_directionBuffer.Length);
                     unsafe
                     {
                         var array = (float*)buffer.Header.ToPointer();
@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
                 }
                 using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(g_positionBuffer.Length);
+                    buffer.Alloc(g_positionBuffer.Length);
                     unsafe
                     {
                         var array = (float*)buffer.Header.ToPointer();
@@ -60,7 +60,7 @@ namespace CSharpGL.Demos
                 }
                 using (var buffer = new ShaderStorageBuffer<float>(BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(g_stackBuffer.Length);
+                    buffer.Alloc(g_stackBuffer.Length);
                     unsafe
                     {
                         var array = (float*)buffer.Header.ToPointer();
@@ -73,7 +73,7 @@ namespace CSharpGL.Demos
                 }
                 using (var buffer = new ShaderStorageBuffer<Sphere>(BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(g_sphereBuffer.Length);
+                    buffer.Alloc(g_sphereBuffer.Length);
                     unsafe
                     {
                         var array = (Sphere*)buffer.Header.ToPointer();
@@ -86,7 +86,7 @@ namespace CSharpGL.Demos
                 }
                 using (var buffer = new ShaderStorageBuffer<PointLight>(BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(g_lightBuffer.Length);
+                    buffer.Alloc(g_lightBuffer.Length);
                     unsafe
                     {
                         var array = (PointLight*)buffer.Header.ToPointer();

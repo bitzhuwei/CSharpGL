@@ -51,7 +51,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.DoAlloc(boundingBox.Length);
+                        buffer.Alloc(boundingBox.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -71,7 +71,7 @@
                 {
                     using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.DoAlloc(boundingBox.Length);
+                        buffer.Alloc(boundingBox.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -97,7 +97,7 @@
             {
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(indices.Length);
+                    buffer.Alloc(indices.Length);
                     unsafe
                     {
                         var array = (uint*)buffer.Header.ToPointer();

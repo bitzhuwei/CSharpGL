@@ -14,7 +14,7 @@ namespace GridViewer
             using (var buffer = new VertexAttributeBuffer<HexahedronPosition>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
             {
                 int dimSize = this.DataSource.DimenSize;
-                buffer.DoAlloc(dimSize);
+                buffer.Alloc(dimSize);
                 unsafe
                 {
                     var array = (HexahedronPosition*)buffer.Header.ToPointer();

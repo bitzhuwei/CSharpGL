@@ -58,7 +58,7 @@ namespace GridViewer
                 using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                    buffer.DoAlloc(vertexCount);
+                    buffer.Alloc(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
                     int index = 0;
                     var max = new vec3(float.MinValue, float.MinValue, float.MinValue);
@@ -98,7 +98,7 @@ namespace GridViewer
                 using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                    buffer.DoAlloc(vertexCount);
+                    buffer.Alloc(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
                     var random = new Random();
                     for (int i = 0; i < buffer.Length; i++)
@@ -125,7 +125,7 @@ namespace GridViewer
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
             using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.QuadStrip, BufferUsage.StaticDraw))
             {
-                buffer.DoAlloc(vertexCount + (this.pipeline.Count - 1));
+                buffer.Alloc(vertexCount + (this.pipeline.Count - 1));
                 var array = (uint*)buffer.Header.ToPointer();
                 uint positionIndex = 0;
                 for (int i = 0; i < buffer.Length; i++)

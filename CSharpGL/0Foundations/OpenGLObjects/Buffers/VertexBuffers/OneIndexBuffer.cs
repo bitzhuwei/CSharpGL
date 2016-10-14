@@ -32,25 +32,29 @@ namespace CSharpGL
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public override void DoAlloc(int elementCount)
+        protected override UnmanagedArrayBase DoAlloc(int elementCount)
         {
+            UnmanagedArrayBase array = null;
+
             switch (this.Type)
             {
                 case IndexElementType.UByte:
-                    this.array = new UnmanagedArray<byte>(elementCount);
+                    array = new UnmanagedArray<byte>(elementCount);
                     break;
 
                 case IndexElementType.UShort:
-                    this.array = new UnmanagedArray<ushort>(elementCount);
+                    array = new UnmanagedArray<ushort>(elementCount);
                     break;
 
                 case IndexElementType.UInt:
-                    this.array = new UnmanagedArray<uint>(elementCount);
+                    array = new UnmanagedArray<uint>(elementCount);
                     break;
 
                 default:
                     throw new NotImplementedException();
             }
+
+            return array;
         }
 
         /// <summary>

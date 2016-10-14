@@ -41,7 +41,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<float>(
                         varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw))
                     {
-                        buffer.DoAlloc(xy_vertices.Length);
+                        buffer.Alloc(xy_vertices.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -63,7 +63,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<float>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.DoAlloc(xy_normals.Length);
+                        buffer.Alloc(xy_normals.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -85,7 +85,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<float>(
                         varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
-                        buffer.DoAlloc(xy_tangents.Length);
+                        buffer.Alloc(xy_tangents.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -107,7 +107,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new VertexAttributeBuffer<float>(
                         varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
                     {
-                        buffer.DoAlloc(xy_texCoords.Length);
+                        buffer.Alloc(xy_texCoords.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -134,7 +134,7 @@ namespace CSharpGL.Demos
             {
                 using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.DoAlloc(xy_indices.Length);
+                    buffer.Alloc(xy_indices.Length);
                     unsafe
                     {
                         var array = (uint*)buffer.Header.ToPointer();

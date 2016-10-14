@@ -18,7 +18,7 @@ namespace GridViewer
                 float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
 
                 int gridCellCount = this.DataSource.DimenSize;
-                buffer.DoAlloc(gridCellCount);
+                buffer.Alloc(gridCellCount);
                 unsafe
                 {
                     var array = (HexahedronTexCoord*)buffer.Header.ToPointer();

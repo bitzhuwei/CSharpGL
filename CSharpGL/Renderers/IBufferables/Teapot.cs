@@ -56,7 +56,7 @@
                         //}
                         //IBoundingBox box = pos.Move2Center();
                         //vec3 lengths = box.MaxPosition - box.MinPosition;
-                        buffer.DoAlloc(positions.Length);
+                        buffer.Alloc(positions.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -77,7 +77,7 @@
                     using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
-                        buffer.DoAlloc(normals.Length);
+                        buffer.Alloc(normals.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -98,7 +98,7 @@
                     using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
-                        buffer.DoAlloc(normals.Length);
+                        buffer.Alloc(normals.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -129,7 +129,7 @@
                 using (var buffer = new OneIndexBuffer(IndexElementType.UShort, DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     ushort[] faces = model.GetFaces();
-                    buffer.DoAlloc(faces.Length);
+                    buffer.Alloc(faces.Length);
                     unsafe
                     {
                         var array = (ushort*)buffer.Header.ToPointer();

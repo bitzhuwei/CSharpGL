@@ -36,9 +36,10 @@
         /// <para>No need to invoke this method for <see cref="ZeroIndexBuffer"/>.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public override void DoAlloc(int elementCount)
+        protected override UnmanagedArrayBase DoAlloc(int elementCount)
         {
             // no need to alloc memory for this buffer.
+            return null;
         }
 
         /// <summary>

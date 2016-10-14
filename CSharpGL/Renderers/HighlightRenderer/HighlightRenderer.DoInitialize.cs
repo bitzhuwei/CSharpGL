@@ -50,7 +50,7 @@ namespace CSharpGL
                      DrawMode.Points, // any mode is OK as we'll update it later in other place.
                      BufferUsage.DynamicDraw))
                 {
-                    buffer.DoAlloc(positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
+                    buffer.Alloc(positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
                     indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
                 }
                 this.maxElementCount = indexBufferPtr.ElementCount;
