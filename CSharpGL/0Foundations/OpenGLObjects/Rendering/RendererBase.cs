@@ -49,9 +49,8 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 用OpenGL初始化和渲染一个元素。
-        /// 只做初始化和渲染这两件事。
-        /// <para>Initialize and render something.</para>
+        /// 用OpenGL初始化和渲染一个模型。
+        /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
         public RendererBase()
         {
