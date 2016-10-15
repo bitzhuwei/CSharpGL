@@ -8,7 +8,7 @@ A winform control that supports drag-drop and wraps initialization of creating O
 ## :pushpin:Color-Coded Picking
 `IColorCodedPicking` supports picking primitives in multiple vertex buffer objects using Mouse.  
 ![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
-## :radio_button::ballot_box_with_check::white_square_button:GLControl & Text
+## :radio_button::ballot_box_with_check:`UIRenderer` & Text
 Rendering 'Control' at fixed position with fixed size.  
 For example, ``UIAxis`` renders an axis at left bottom corner.  
 All kinds of controls binds to specified border just like winform-control.  
