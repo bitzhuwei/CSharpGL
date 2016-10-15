@@ -157,7 +157,7 @@ namespace CSharpGL
             if ((pickable != null) && (sceneObject.Renderer.Enabled))
             {
                 pickable.PickingBaseId = renderedVertexCount;
-                sceneObject.Render(arg);
+                pickable.Render(arg);
                 uint rendered = renderedVertexCount + pickable.GetVertexCount();
                 if (renderedVertexCount <= rendered)
                 {
