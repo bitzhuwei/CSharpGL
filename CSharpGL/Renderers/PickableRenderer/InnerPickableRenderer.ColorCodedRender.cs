@@ -75,6 +75,7 @@ namespace CSharpGL
             switch (geometryType)
             {
                 case PickingGeometryType.None:
+                    // whatever it is.
                     polygonModeSwitch.Mode = PolygonMode.Point;
                     break;
 
