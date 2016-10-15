@@ -6,7 +6,7 @@
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking)
             {
-                ColorCodedRender(arg);
+                this.Render4Picking(arg);
             }
             else if (arg.RenderMode == RenderModes.Render)
             {

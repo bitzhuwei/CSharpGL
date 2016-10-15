@@ -18,6 +18,41 @@ namespace CSharpGL
         public uint PickingBaseId { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public void Render4Picking(RenderEventArgs arg)
+        {
+            UpdatePolygonMode(arg.PickingGeometryType);
+
+            ShaderProgram program = this.Program;
+
+            // 绑定shader
+            program.Bind();
+            program.SetUniform("pickingBaseId",
+                 (int)this.PickingBaseId);
+            UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
+            {
+                mat4 projection = arg.Camera.GetProjectionMatrix();
+                mat4 view = arg.Camera.GetViewMatrix();
+                mat4 model = this.GetModelMatrix();
+                uniformmMVP4Picking.Value = projection * view * model;
+            }
+            uniformmMVP4Picking.SetUniform(program);
+
+            PickingSwitchesOn();
+
+            this.vertexArrayObject.Render(arg, program);
+
+            PickingSwitchesOff();
+
+            //if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
+
+            // 解绑shader
+            program.Unbind();
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
@@ -66,7 +101,7 @@ namespace CSharpGL
             // restore clear color
             OpenGL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            this.ColorCodedRender(arg, indexBufferPtr);
+            this.Render4Picking(arg, indexBufferPtr);
 
             OpenGL.Flush();
 

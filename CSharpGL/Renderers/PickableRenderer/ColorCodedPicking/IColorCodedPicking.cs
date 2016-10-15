@@ -11,6 +11,12 @@
         uint PickingBaseId { get; set; }
 
         /// <summary>
+        /// Render for color-coded picking.
+        /// </summary>
+        /// <param name="arg"></param>
+        void Render4Picking(RenderEventArgs arg);
+
+        /// <summary>
         /// Gets vertices' count in this element's VBO representing positions.
         /// </summary>
         /// <returns></returns>

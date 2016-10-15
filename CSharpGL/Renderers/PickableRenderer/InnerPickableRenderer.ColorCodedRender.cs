@@ -4,7 +4,12 @@ namespace CSharpGL
 {
     partial class InnerPickableRenderer : IColorCodedPicking
     {
-        private void ColorCodedRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
+        /// <summary>
+        /// render with specified index buffer.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="temporaryIndexBufferPtr"></param>
+        private void Render4Picking(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 
@@ -12,8 +17,7 @@ namespace CSharpGL
 
             // 绑定shader
             program.Bind();
-            program.SetUniform("pickingBaseId",
-                temporaryIndexBufferPtr == null ? (int)this.PickingBaseId : 0);
+            program.SetUniform("pickingBaseId", 0);
             UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
             {
                 mat4 projection = arg.Camera.GetProjectionMatrix();

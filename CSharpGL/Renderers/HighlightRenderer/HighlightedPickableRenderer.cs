@@ -162,13 +162,22 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="arg"></param>
+        public void Render4Picking(RenderEventArgs arg)
+        {
+            this.PickableRenderer.Render4Picking(arg);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         public uint GetVertexCount()
         {
             return this.PickableRenderer.GetVertexCount();
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
