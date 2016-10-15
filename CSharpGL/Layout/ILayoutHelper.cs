@@ -44,6 +44,11 @@ namespace CSharpGL
             bool cancelTreeLayout = false;
 
             var layoutEvent = node.Self as ILayoutEvent;
+            if (layoutEvent == null)
+            {
+                throw new Exception(string.Format(
+                    "node.Self should not be null!"));
+            }
             cancelTreeLayout = layoutEvent.DoBeforeLayout();
 
             ILayout<T> parent = node.Parent;
