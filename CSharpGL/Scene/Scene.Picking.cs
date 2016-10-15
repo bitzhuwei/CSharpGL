@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="mousePosition">mouse position in Windows coordinate system.(Left Up is (0, 0))</param>
         /// <param name="pickingGeometryType">target's geometry type.</param>
         /// <returns></returns>
-        public List<Tuple<Point, PickedGeometry>> Pick(Point mousePosition, GeometryType pickingGeometryType)
+        public List<Tuple<Point, PickedGeometry>> Pick(Point mousePosition, PickingGeometryType pickingGeometryType)
         {
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             // if mouse is out of window's area, nothing picked.
@@ -47,7 +47,7 @@ namespace CSharpGL
         /// <param name="clientRectangle">whole canvas' rectangle.</param>
         /// <param name="pickingGeometryType"></param>
         /// <returns></returns>
-        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort viewPort, Rectangle pickingRect, Rectangle clientRectangle, GeometryType pickingGeometryType)
+        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort viewPort, Rectangle pickingRect, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
 
@@ -56,7 +56,7 @@ namespace CSharpGL
             {
                 lock (this.synObj)
                 {
-                    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, clientRectangle, viewPort, pickingGeometryType);
+                    var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.
                     List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
                     // Read pixels in specified rect and get the VertexIds they represent.

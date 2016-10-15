@@ -8,13 +8,13 @@
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (arg.RenderMode == RenderModes.ColorCodedPicking)
-            {
-                this.innerPickableRenderer.Render(arg);
-            }
-            else// if (arg.RenderMode == RenderModes.Render)
+            if (arg.PickingGeometryType == PickingGeometryType.None)
             {
                 base.DoRender(arg);
+            }
+            else
+            {
+                this.innerPickableRenderer.Render(arg);
             }
         }
     }

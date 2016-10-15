@@ -33,16 +33,16 @@ namespace CSharpGL
                 { return null; }
             }
 
-            GeometryType geometryType = arg.PickingGeometryType;
+            PickingGeometryType geometryType = arg.PickingGeometryType;
             DrawMode mode = this.indexBufferPtr.Mode;
-            GeometryType typeOfMode = mode.ToGeometryType();
+            PickingGeometryType typeOfMode = mode.ToGeometryType();
 
-            if (geometryType == GeometryType.Point)
+            if (geometryType == PickingGeometryType.Point)
             {
                 // 获取pickedGeometry
-                if (typeOfMode == GeometryType.Point)
+                if (typeOfMode == PickingGeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
-                else if (typeOfMode == GeometryType.Line)
+                else if (typeOfMode == PickingGeometryType.Line)
                 {
                     if (this.OnPrimitiveTest(lastVertexId, mode))
                     { return PickPoint(arg, stageVertexId, lastVertexId); }
@@ -58,7 +58,7 @@ namespace CSharpGL
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
             }
-            else if (geometryType == GeometryType.Line)
+            else if (geometryType == PickingGeometryType.Line)
             {
                 // 获取pickedGeometry
                 if (geometryType == typeOfMode)
@@ -99,7 +99,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { searcher.Search(arg, x, y, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Point, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, PickingGeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -119,7 +119,7 @@ namespace CSharpGL
         {
             var vertexIds = searcher.Search(arg, x, y, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Line, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, PickingGeometryType.Line, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -132,7 +132,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        private PickedGeometry PickWhateverItIs(RenderEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, GeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(RenderEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, PickingGeometryType typeOfMode)
         {
             uint[] vertexIds = primitiveInfo.VertexIds;
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -158,7 +158,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { lastVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, GeometryType.Point, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, PickingGeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -213,9 +213,8 @@ namespace CSharpGL
         private List<RecognizedPrimitiveInfo> GetLastIndexIdList(RenderEventArgs arg, uint lastVertexId)
         {
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
-                (arg.RenderMode == RenderModes.ColorCodedPicking
-                && arg.PickingGeometryType == GeometryType.Point
-                && this.indexBufferPtr.Mode.ToGeometryType() == GeometryType.Line) ?
+                (arg.PickingGeometryType == PickingGeometryType.Point
+                && this.indexBufferPtr.Mode.ToGeometryType() == PickingGeometryType.Line) ?
                 DrawMode.Points : this.indexBufferPtr.Mode);
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();

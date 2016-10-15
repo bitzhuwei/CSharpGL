@@ -29,9 +29,8 @@ namespace CSharpGL
         /// <param name="canvasRect"></param>
         /// <param name="viewPort">camera used during rendering.</param>
         /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <paramref name="renderMode"/> is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.</param>
-        public RenderEventArgs(RenderModes renderMode, Rectangle canvasRect, ViewPort viewPort, GeometryType pickingGeometryType = GeometryType.Point)
+        public RenderEventArgs(Rectangle canvasRect, ViewPort viewPort, PickingGeometryType pickingGeometryType = PickingGeometryType.Point)
         {
-            this.RenderMode = renderMode;
             this.CanvasRect = canvasRect;
             this.UsingViewPort = viewPort;
             this.PickingGeometryType = pickingGeometryType;
@@ -43,41 +42,18 @@ namespace CSharpGL
         public ICamera Camera { get { return this.UsingViewPort.Camera; } }
 
         /// <summary>
-        /// Gets render mode.
-        /// </summary>
-        public RenderModes RenderMode { get; private set; }
-
-        /// <summary>
         /// Gets canvas's rectangle.
         /// </summary>
         public Rectangle CanvasRect { get; set; }
 
         /// <summary>
-        /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when render mode is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.
+        /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
         /// </summary>
-        public GeometryType PickingGeometryType { get; private set; }
+        public PickingGeometryType PickingGeometryType { get; private set; }
 
         /// <summary>
         /// Gets view port used during rendering.
         /// </summary>
         public ViewPort UsingViewPort { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public enum RenderModes
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        Render,
-
-        /// <summary>
-        ///
-        /// </summary>
-        ColorCodedPicking,
-
-        //DesignMode,
     }
 }

@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
         private DragParam dragParam;
         private Point lastMousePosition;
         private Point lastMouseDownPosition;
-        public GeometryType PickingGeometryType { get; set; }
+        public PickingGeometryType PickingGeometryType { get; set; }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {

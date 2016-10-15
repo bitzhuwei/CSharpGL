@@ -7,8 +7,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form18PickingInScene : Form
     {
-        public RenderModes RenderMode { get; set; }
-
         public Form18PickingInScene()
         {
             InitializeComponent();
@@ -18,8 +16,6 @@ namespace CSharpGL.Demos
 
             this.glCanvas1.KeyDown += glCanvas1_KeyDown;
             this.glCanvas1.KeyUp += glCanvas1_KeyUp;
-
-            this.RenderMode = RenderModes.Render;
 
             Application.Idle += Application_Idle;
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
@@ -35,7 +31,7 @@ namespace CSharpGL.Demos
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            this.scene.Render(this.RenderMode, this.PickingGeometryType);
+            this.scene.Render(this.chkRenderMode.Checked ? CSharpGL.PickingGeometryType.None : this.PickingGeometryType);
 
             this.DrawText(e);
         }
@@ -121,12 +117,7 @@ namespace CSharpGL.Demos
 
         private void cmbPickingGeometryType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.PickingGeometryType = (GeometryType)this.cmbPickingGeometryType.SelectedItem;
-        }
-
-        private void cmbRenderMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.RenderMode = (RenderModes)this.cmbRenderMode.SelectedItem;
+            this.PickingGeometryType = (PickingGeometryType)this.cmbPickingGeometryType.SelectedItem;
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)

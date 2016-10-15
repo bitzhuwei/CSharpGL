@@ -535,7 +535,7 @@
     <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
       <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\GeometryType.cs" />
+    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\PickingGeometryType.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\GeometryTypeHelper.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IColorCodedPicking.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IColorCodedPickingHelper.cs" />

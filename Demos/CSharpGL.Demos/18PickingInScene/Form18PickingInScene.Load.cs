@@ -14,16 +14,11 @@ namespace CSharpGL.Demos
 
         private void Form_Load(object sender, EventArgs e)
         {
-            foreach (var item in Enum.GetValues(typeof(GeometryType)))
+            foreach (var item in Enum.GetValues(typeof(PickingGeometryType)))
             {
                 this.cmbPickingGeometryType.Items.Add(item);
             }
-            this.cmbPickingGeometryType.SelectedIndex = 0;
-            foreach (var item in Enum.GetValues(typeof(RenderModes)))
-            {
-                this.cmbRenderMode.Items.Add(item);
-            }
-            this.cmbRenderMode.SelectedIndex = 0;
+            this.cmbPickingGeometryType.SelectedIndex = 1;
 
             {
                 var frmBulletinBoard = new FormBulletinBoard();

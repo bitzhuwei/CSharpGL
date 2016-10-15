@@ -4,13 +4,13 @@
     {
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (arg.RenderMode == RenderModes.ColorCodedPicking)
-            {
-                this.Render4Picking(arg);
-            }
-            else if (arg.RenderMode == RenderModes.Render)
+            if (arg.PickingGeometryType == PickingGeometryType.None)
             {
                 base.DoRender(arg);
+            }
+            else
+            {
+                this.Render4Picking(arg);
             }
         }
     }

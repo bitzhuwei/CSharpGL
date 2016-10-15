@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render(RenderModes.Render);
+            this.scene.Render();
         }
 
         internal void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

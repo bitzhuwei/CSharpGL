@@ -10,17 +10,16 @@ namespace CSharpGL
         /// <summary>
         /// Render this scene.
         /// </summary>
-        /// <param name="renderMode"></param>
-        /// <param name="pickingGeometryType"></param>
-        public void Render(RenderModes renderMode,
-            GeometryType pickingGeometryType = GeometryType.Point)
+        /// <param name="pickingGeometryType">Specify type of primitive you want to pick or nothing to pick.</param>
+        public void Render(
+            PickingGeometryType pickingGeometryType = PickingGeometryType.None)
         {
             lock (this.synObj)
             {
                 // update view port's location and size.
                 this.rootViewPort.Layout();
                 // render scene in every view port.
-                this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, renderMode, pickingGeometryType);
+                this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, pickingGeometryType);
             }
         }
 
@@ -31,7 +30,7 @@ namespace CSharpGL
         /// <param name="clientRectangle"></param>
         /// <param name="renderMode"></param>
         /// <param name="pickingGeometryType"></param>
-        private void RenderViewPort(ViewPort viewPort, Rectangle clientRectangle, RenderModes renderMode, GeometryType pickingGeometryType)
+        private void RenderViewPort(ViewPort viewPort, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
             if (viewPort.Enabled)
             {
@@ -40,14 +39,14 @@ namespace CSharpGL
                 {
                     viewPort.On();// limit rendering area.
                     // render scene in this view port.
-                    this.Render(viewPort, clientRectangle, renderMode, pickingGeometryType);
+                    this.Render(viewPort, clientRectangle, pickingGeometryType);
                     viewPort.Off();// cancel limitation.
                 }
 
                 // render children viewport.
                 foreach (ViewPort item in viewPort.Children)
                 {
-                    this.RenderViewPort(item, clientRectangle, renderMode, pickingGeometryType);
+                    this.RenderViewPort(item, clientRectangle, pickingGeometryType);
                 }
             }
         }
@@ -58,15 +57,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
-        /// <param name="renderMode"></param>
         /// <param name="pickingGeometryType"></param>
-        private void Render(ViewPort viewPort, Rectangle clientRectangle,
-            RenderModes renderMode,
-            GeometryType pickingGeometryType = GeometryType.Point)
+        private void Render(ViewPort viewPort, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
-            var arg = new RenderEventArgs(renderMode, clientRectangle, viewPort, pickingGeometryType);
+            var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
 
-            if (renderMode == RenderModes.ColorCodedPicking)
+            if (pickingGeometryType != PickingGeometryType.None)// picking mode.
             {
                 var color = new vec4(1, 1, 1, 1);
                 OpenGL.ClearColor(color.x, color.y, color.z, color.w);

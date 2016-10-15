@@ -9,33 +9,33 @@ namespace CSharpGL
     {
         /// <summary>
         /// Get vertex count of specified geometry's type.
-        /// <para>returns -1 if type is <see cref="GeometryType.Polygon"/>.</para>
+        /// <para>returns -1 if type is <see cref="PickingGeometryType.Polygon"/>.</para>
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int GetVertexCount(this GeometryType type)
+        public static int GetVertexCount(this PickingGeometryType type)
         {
             int result = -1;
 
             switch (type)
             {
-                case GeometryType.Point:
+                case PickingGeometryType.Point:
                     result = 1;
                     break;
 
-                case GeometryType.Line:
+                case PickingGeometryType.Line:
                     result = 2;
                     break;
 
-                case GeometryType.Triangle:
+                case PickingGeometryType.Triangle:
                     result = 3;
                     break;
 
-                case GeometryType.Quad:
+                case PickingGeometryType.Quad:
                     result = 4;
                     break;
 
-                case GeometryType.Polygon:
+                case PickingGeometryType.Polygon:
                     result = -1;
                     break;
 
@@ -51,28 +51,28 @@ namespace CSharpGL
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static DrawMode ToDrawMode(this GeometryType type)
+        public static DrawMode ToDrawMode(this PickingGeometryType type)
         {
             DrawMode mode = DrawMode.Points;
             switch (type)
             {
-                case GeometryType.Point:
+                case PickingGeometryType.Point:
                     mode = DrawMode.Points;
                     break;
 
-                case GeometryType.Line:
+                case PickingGeometryType.Line:
                     mode = DrawMode.Lines;
                     break;
 
-                case GeometryType.Triangle:
+                case PickingGeometryType.Triangle:
                     mode = DrawMode.Triangles;
                     break;
 
-                case GeometryType.Quad:
+                case PickingGeometryType.Quad:
                     mode = DrawMode.Quads;
                     break;
 
-                case GeometryType.Polygon:
+                case PickingGeometryType.Polygon:
                     mode = DrawMode.Polygon;
                     break;
 

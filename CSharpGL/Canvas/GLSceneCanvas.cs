@@ -210,7 +210,7 @@ namespace CSharpGL
             //  Clear the color and depth buffer.
             //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            this.Scene.Render(RenderModes.Render);
+            this.Scene.Render();
             //this.PointToClient(Control.MousePosition));
         }
 

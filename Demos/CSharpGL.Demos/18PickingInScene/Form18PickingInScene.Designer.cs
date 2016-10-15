@@ -30,13 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPickingGeometryType = new System.Windows.Forms.ComboBox();
-            this.cmbRenderMode = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.glCanvas1 = new CSharpGL.GLCanvas();
             this.lblColor = new System.Windows.Forms.Label();
             this.lblDrawText = new System.Windows.Forms.Label();
             this.lblReadColor = new System.Windows.Forms.Label();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.chkRenderMode = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,31 +60,10 @@
             this.cmbPickingGeometryType.TabIndex = 2;
             this.cmbPickingGeometryType.SelectedIndexChanged += new System.EventHandler(this.cmbPickingGeometryType_SelectedIndexChanged);
             // 
-            // cmbRenderMode
-            // 
-            this.cmbRenderMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRenderMode.FormattingEnabled = true;
-            this.cmbRenderMode.Location = new System.Drawing.Point(487, 15);
-            this.cmbRenderMode.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbRenderMode.Name = "cmbRenderMode";
-            this.cmbRenderMode.Size = new System.Drawing.Size(160, 23);
-            this.cmbRenderMode.TabIndex = 4;
-            this.cmbRenderMode.SelectedIndexChanged += new System.EventHandler(this.cmbRenderMode_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(376, 19);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Render Mode:";
-            // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(13, 91);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(5);
@@ -130,16 +108,27 @@
             this.dlgSaveFile.Filter = "(*.png)|*.png";
             this.dlgSaveFile.RestoreDirectory = true;
             // 
+            // chkRenderMode
+            // 
+            this.chkRenderMode.AutoSize = true;
+            this.chkRenderMode.Checked = true;
+            this.chkRenderMode.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRenderMode.Location = new System.Drawing.Point(374, 15);
+            this.chkRenderMode.Name = "chkRenderMode";
+            this.chkRenderMode.Size = new System.Drawing.Size(117, 19);
+            this.chkRenderMode.TabIndex = 8;
+            this.chkRenderMode.Text = "Render Mode";
+            this.chkRenderMode.UseVisualStyleBackColor = true;
+            // 
             // Form18PickingInScene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1319, 828);
+            this.Controls.Add(this.chkRenderMode);
             this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblDrawText);
             this.Controls.Add(this.lblReadColor);
-            this.Controls.Add(this.cmbRenderMode);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbPickingGeometryType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
@@ -159,11 +148,10 @@
         private GLCanvas glCanvas1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPickingGeometryType;
-        private System.Windows.Forms.ComboBox cmbRenderMode;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblColor;
         private System.Windows.Forms.Label lblDrawText;
         private System.Windows.Forms.Label lblReadColor;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
+        private System.Windows.Forms.CheckBox chkRenderMode;
     }
 }

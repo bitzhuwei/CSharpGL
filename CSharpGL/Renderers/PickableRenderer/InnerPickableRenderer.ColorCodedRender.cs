@@ -70,27 +70,31 @@ namespace CSharpGL
             }
         }
 
-        private void UpdatePolygonMode(GeometryType geometryType)
+        private void UpdatePolygonMode(PickingGeometryType geometryType)
         {
             switch (geometryType)
             {
-                case GeometryType.Point:
+                case PickingGeometryType.None:
                     polygonModeSwitch.Mode = PolygonMode.Point;
                     break;
 
-                case GeometryType.Line:
+                case PickingGeometryType.Point:
+                    polygonModeSwitch.Mode = PolygonMode.Point;
+                    break;
+
+                case PickingGeometryType.Line:
                     polygonModeSwitch.Mode = PolygonMode.Line;
                     break;
 
-                case GeometryType.Triangle:
+                case PickingGeometryType.Triangle:
                     polygonModeSwitch.Mode = PolygonMode.Fill;
                     break;
 
-                case GeometryType.Quad:
+                case PickingGeometryType.Quad:
                     polygonModeSwitch.Mode = PolygonMode.Fill;
                     break;
 
-                case GeometryType.Polygon:
+                case PickingGeometryType.Polygon:
                     polygonModeSwitch.Mode = PolygonMode.Fill;
                     break;
 

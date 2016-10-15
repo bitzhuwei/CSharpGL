@@ -3,30 +3,35 @@
     /// <summary>
     /// Enumeration for geometry types.
     /// </summary>
-    public enum GeometryType
+    public enum PickingGeometryType
     {
         /// <summary>
-        /// a point.
+        /// Not picking.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Picking a point.
         /// </summary>
         Point,
 
         /// <summary>
-        /// a line.
+        /// Picking a line.
         /// </summary>
         Line,
 
         /// <summary>
-        /// a triangle.
+        /// Picking a triangle.
         /// </summary>
         Triangle,
 
         /// <summary>
-        /// a quad.
+        /// Picking a quad.
         /// </summary>
         Quad,
 
         /// <summary>
-        /// a polygon.
+        /// Picking a polygon.
         /// </summary>
         Polygon,
     }

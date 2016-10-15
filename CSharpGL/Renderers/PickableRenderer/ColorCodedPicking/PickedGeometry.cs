@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <summary>
         /// Gets or sets primitive's geometry type.
         /// </summary>
-        public GeometryType GeometryType { get; set; }
+        public PickingGeometryType GeometryType { get; set; }
 
         /// <summary>
         /// Gets or sets positions of this primitive's vertices.
@@ -54,7 +54,7 @@ namespace CSharpGL
         /// <param name="vertexIds"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="fromRenderer"></param>
-        public PickedGeometry(ViewPort fromViewPort, GeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IColorCodedPicking fromRenderer)
+        public PickedGeometry(ViewPort fromViewPort, PickingGeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IColorCodedPicking fromRenderer)
         {
             this.FromViewPort = fromViewPort;
             this.GeometryType = geometryType;
