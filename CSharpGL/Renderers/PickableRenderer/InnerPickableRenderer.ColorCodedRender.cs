@@ -28,11 +28,10 @@ namespace CSharpGL
             uniformmMVP4Picking.SetUniform(program);
 
             PickingSwitchesOn();
-            GLSwitch primitiveRestartIndexSwitch = null;
             var oneIndexBufferPtr = temporaryIndexBufferPtr as OneIndexBufferPtr;
             if (oneIndexBufferPtr != null)
             {
-                primitiveRestartIndexSwitch = new PrimitiveRestartSwitch(oneIndexBufferPtr);
+                GLSwitch primitiveRestartIndexSwitch = new PrimitiveRestartSwitch(oneIndexBufferPtr);
                 primitiveRestartIndexSwitch.On();
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
                 primitiveRestartIndexSwitch.Off();
