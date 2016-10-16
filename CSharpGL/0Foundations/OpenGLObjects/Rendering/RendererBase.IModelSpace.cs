@@ -145,6 +145,7 @@ namespace CSharpGL
 
         private long parentModelMatrixTicks;
 
+        // TODO: cascade model matrix not tested yet!
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
         /// </summary>
