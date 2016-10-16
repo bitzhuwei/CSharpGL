@@ -17,7 +17,7 @@ namespace GridViewer
             map.Add("in_uv", CatesianGrid.strColor);
             var renderer = new CatesianGridRenderer(originalWorldPosition, grid, shaderCodes, map, codedColorSampler);
             renderer.ModelSize = (grid.DataSource.SourceActiveBounds.MaxPosition - grid.DataSource.SourceActiveBounds.MinPosition).Abs();
-            renderer.WorldPosition = -grid.DataSource.Position;
+            renderer.SetWorldPosition(-grid.DataSource.Position);
             return renderer;
         }
 

@@ -23,7 +23,7 @@ namespace CSharpGL
             var model = new Points(controlPoints);
             var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
             renderer.ModelSize = model.Lengths;
-            renderer.WorldPosition = model.WorldPosition;
+            renderer.SetWorldPosition(model.WorldPosition);
             renderer.switchList.Add(new PointSizeSwitch(10));
 
             return renderer;
@@ -73,41 +73,28 @@ namespace CSharpGL
             //this.UpdateEvaluator();
         }
 
-        private bool needsUpdating = false;
-
+        //private bool needsUpdating = false;
+        private long worldPositionTicks;
+        private long scaleTicks;
+        private long rotateAngleTicks;
+        private long rotateAxisTicks;
         /// <summary>
         ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (this.needsUpdating)
+            long ticks = this.WorldPosition.UpdateTicks;
+            if (ticks != this.worldPositionTicks)
             {
                 this.UpdateEvaluator();
-                this.needsUpdating = false;
+                this.worldPositionTicks = ticks;
             }
+            // else if()
+
             this.Evaluator.Render(arg);
 
             base.DoRender(arg);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override vec3 WorldPosition
-        {
-            get
-            {
-                return base.WorldPosition;
-            }
-            set
-            {
-                if (base.WorldPosition != value)
-                {
-                    this.needsUpdating = true;
-                }
-                base.WorldPosition = value;
-            }
         }
 
         /// <summary>
@@ -123,7 +110,7 @@ namespace CSharpGL
             {
                 if (base.RotationAngleDegree != value)
                 {
-                    this.needsUpdating = true;
+                    //this.needsUpdating = true;
                 }
                 base.RotationAngleDegree = value;
             }
@@ -142,7 +129,7 @@ namespace CSharpGL
             {
                 if (base.RotationAxis != value)
                 {
-                    this.needsUpdating = true;
+                    //this.needsUpdating = true;
                 }
                 base.RotationAxis = value;
             }
@@ -161,7 +148,7 @@ namespace CSharpGL
             {
                 if (base.Scale != value)
                 {
-                    this.needsUpdating = true;
+                    //this.needsUpdating = true;
                 }
                 base.Scale = value;
             }

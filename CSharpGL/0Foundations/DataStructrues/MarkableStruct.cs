@@ -34,7 +34,7 @@ namespace CSharpGL
         /// Records time when is a property is updated and uploaded.
         /// </summary>
         /// <param name="value">value.</param>
-        public MarkableStruct(T value)
+        public MarkableStruct(T value = default(T))
         {
             this.Value = value;
         }

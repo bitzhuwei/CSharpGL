@@ -39,13 +39,13 @@ namespace CSharpGL.Demos
             }
             {
                 BillboardRenderer billboardRenderer = BillboardRenderer.Create(new BillboardModel());
-                SceneObject obj = billboardRenderer.WrapToSceneObject(new UpdateBillboardPosition(movableRenderer));
+                SceneObject obj = billboardRenderer.WrapToSceneObject(new UpdateBillboardPosition(this.movableRenderer));
                 this.scene.RootObject.Children.Add(obj);
             }
             {
                 LabelRenderer labelRenderer = LabelRenderer.Create();
                 labelRenderer.Text = "Teapot - CSharpGL";
-                SceneObject obj = labelRenderer.WrapToSceneObject(new UpdateLabelPosition(movableRenderer));
+                SceneObject obj = labelRenderer.WrapToSceneObject(new UpdateLabelPosition(this.movableRenderer));
                 this.scene.RootObject.Children.Add(obj);
             }
             {

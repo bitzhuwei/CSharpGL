@@ -135,7 +135,7 @@ namespace GridViewer
             CatesianGridRenderer renderer = CatesianGridRenderer.Create(
                 -grid.DataSource.Position, grid, this.scientificCanvas.ColorPalette.Sampler);
             //string caseFileName = System.IO.Path.GetFileName(fileName);
-            renderer.WorldPosition = -grid.DataSource.Position;
+            renderer.SetWorldPosition(-grid.DataSource.Position);
             renderer.Initialize();
             SceneObject gridObj = renderer.WrapToSceneObject(
                 new ModelScaleScript(),

@@ -94,7 +94,7 @@ namespace CSharpGL.Demos
                 GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));
                 ground.Initialize();
                 ground.Scale = new vec3(20, 20, 20);
-                ground.WorldPosition = new vec3(0, 0, 0);
+                ground.SetWorldPosition(new vec3(0, 0, 0));
                 SceneObject obj = ground.WrapToSceneObject(name: "Ground", generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
             }
@@ -121,13 +121,13 @@ namespace CSharpGL.Demos
                         var highlightRenderer = new HighlightRenderer(model, item.PositionNameInIBufferable);
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
-                        renderer.WorldPosition = new vec3(x, 2, z);
+                        renderer.SetWorldPosition(new vec3(x, 2, z));
                         renderer.Initialize();
                         obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                     }
                     else
                     {
-                        item.WorldPosition = new vec3(x, 2, z);
+                        item.SetWorldPosition(new vec3(x, 2, z));
                         obj = item.WrapToSceneObject(generateBoundingBox: true);
                     }
                     this.scene.RootObject.Children.Add(obj);

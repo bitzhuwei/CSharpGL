@@ -7,22 +7,27 @@
         /// <summary>
         ///
         /// </summary>
-        public override vec3 WorldPosition
+        public override MarkableStruct<vec3> WorldPosition
         {
             get
             {
                 return base.WorldPosition;
             }
-            set
-            {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    innerPickableRenderer.WorldPosition = value;
-                }
+        }
 
-                base.WorldPosition = value;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public override void SetWorldPosition(vec3 value)
+        {
+            InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+            if (innerPickableRenderer != null)
+            {
+                innerPickableRenderer.SetWorldPosition(value);
             }
+
+            base.SetWorldPosition(value);
         }
 
         /// <summary>

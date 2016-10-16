@@ -107,7 +107,7 @@ namespace CSharpGL
                 renderer = BoundingBoxRenderer.Create(lengths);
                 renderer.Initialize();
             }
-            renderer.WorldPosition = boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2;
+            renderer.SetWorldPosition(boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2);
             renderer.Scale = boundingBox.MaxPosition - boundingBox.MinPosition;
             renderer.BoundingBoxColor = color;
             renderer.Render(arg);

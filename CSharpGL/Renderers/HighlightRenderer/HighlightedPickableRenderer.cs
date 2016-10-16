@@ -61,18 +61,23 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override vec3 WorldPosition
+        public override MarkableStruct<vec3> WorldPosition
         {
             get
             {
                 return PickableRenderer.WorldPosition;
             }
-            set
-            {
-                Highlighter.WorldPosition = value;
-                PickableRenderer.WorldPosition = value;
-                base.WorldPosition = value;
-            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public override void SetWorldPosition(vec3 value)
+        {
+            this.Highlighter.SetWorldPosition(value);
+            this.PickableRenderer.SetWorldPosition(value);
+            base.SetWorldPosition(value);
         }
 
         /// <summary>

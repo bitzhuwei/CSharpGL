@@ -17,20 +17,24 @@ namespace CSharpGL
         /// </summary>
         [Category(strModelSpace)]
         [Description("Position in world space.")]
-        public vec3 WorldPosition
+        public MarkableStruct<vec3> WorldPosition
         {
             get
             {
                 RendererBase renderer = this.renderer;
                 if (renderer != null) { return renderer.WorldPosition; }
-                else { return new vec3(0, 0, 0); }
+                else { return null; }
             }
-            set
-            {
-                RendererBase renderer = this.renderer;
-                if (renderer != null) { renderer.WorldPosition = value; }
-                else { throw new Exception(string.Format("No renderer for this scene object!")); }
-            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetWorldPosition(vec3 value)
+        {
+            RendererBase renderer = this.renderer;
+            if (renderer != null) { renderer.SetWorldPosition(value); }
         }
 
         /// <summary>

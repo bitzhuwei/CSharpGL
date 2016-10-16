@@ -19,7 +19,7 @@ namespace CSharpGL.Demos
             map.Add("in_Position", PointCloudModel.position);
             var renderer = new PointCloudRenderer(model, shaderCodes, map);
             renderer.ModelSize = model.Lengths;
-            renderer.WorldPosition = model.WorldPosition;
+            renderer.SetWorldPosition(model.WorldPosition);
             //renderer.switchList.Add(new PointSizeSwitch(10));
             return renderer;
         }

@@ -12,7 +12,13 @@ namespace CSharpGL
         /// <summary>
         /// Position in world space.
         /// </summary>
-        vec3 WorldPosition { get; set; }
+        MarkableStruct<vec3> WorldPosition { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        void SetWorldPosition(vec3 value);
 
         /// <summary>
         /// Rotation angle in degree.
@@ -51,8 +57,8 @@ namespace CSharpGL
             if (model == null) { throw new System.ArgumentNullException(); }
 
             vec3 lengths = model.ModelSize * model.Scale;
-            maxPosition = model.WorldPosition + lengths / 2.0f;
-            minPosition = model.WorldPosition - lengths / 2.0f;
+            maxPosition = model.WorldPosition.Value + lengths / 2.0f;
+            minPosition = model.WorldPosition.Value - lengths / 2.0f;
         }
 
         /// <summary>
@@ -68,7 +74,7 @@ namespace CSharpGL
             dest.RotationAngleDegree = source.RotationAngleDegree;
             dest.RotationAxis = source.RotationAxis;
             dest.Scale = source.Scale;
-            dest.WorldPosition = source.WorldPosition;
+            dest.SetWorldPosition(source.WorldPosition.Value);
         }
 
         /// <summary>
@@ -78,7 +84,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 GetModelMatrix(this IModelSpace model)
         {
-            mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
+            mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition.Value);
             matrix = glm.scale(matrix, model.Scale);
             matrix = glm.rotate(matrix, model.RotationAngleDegree, model.RotationAxis);
             return matrix;
@@ -114,11 +120,11 @@ namespace CSharpGL
         {
             vec3 max, min;
             {
-                vec3 position = model.WorldPosition + model.ModelSize * model.Scale / 2;
+                vec3 position = model.WorldPosition.Value + model.ModelSize * model.Scale / 2;
                 max = position;
             }
             {
-                vec3 position = model.WorldPosition - model.ModelSize * model.Scale / 2;
+                vec3 position = model.WorldPosition.Value - model.ModelSize * model.Scale / 2;
                 min = position;
             }
 
@@ -131,7 +137,8 @@ namespace CSharpGL
         /// <param name="model"></param>
         public static void LegacyTransform(this IModelSpace model)
         {
-            OpenGL.Translate(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
+            vec3 value = model.WorldPosition.Value;
+            OpenGL.Translate(value.x, value.y, value.z);
             OpenGL.Scale(model.Scale.x, model.Scale.y, model.Scale.z);
             OpenGL.Rotate(model.RotationAngleDegree, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
         }

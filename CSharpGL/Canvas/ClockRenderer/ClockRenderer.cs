@@ -8,7 +8,7 @@
 
         public ClockRenderer(vec3 worldPosition)
         {
-            this.WorldPosition = worldPosition;
+            this.SetWorldPosition(worldPosition);
             const float factor = 0.5f;
             this.Scale = new vec3(factor, factor, factor);
             this.ModelSize = new vec3(2, 2, 2);
@@ -28,16 +28,20 @@
             pinRenderer.Render(arg);
         }
 
-        public override vec3 WorldPosition
+        public override MarkableStruct<vec3> WorldPosition
         {
-            //get { return this.circleRenderer.WorldPosition; }
-            set
+            get
             {
-                this.circleRenderer.WorldPosition = value;
-                this.markRenderer.WorldPosition = value;
-                this.pinRenderer.WorldPosition = value;
-                base.WorldPosition = value;
+                return base.WorldPosition;
             }
+        }
+
+        public override void SetWorldPosition(vec3 value)
+        {
+            this.circleRenderer.SetWorldPosition(value);
+            this.markRenderer.SetWorldPosition(value);
+            this.pinRenderer.SetWorldPosition(value);
+            base.SetWorldPosition(value);
         }
 
         public override float RotationAngleDegree

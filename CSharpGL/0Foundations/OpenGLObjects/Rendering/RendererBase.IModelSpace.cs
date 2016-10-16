@@ -16,25 +16,20 @@ namespace CSharpGL
         /// </summary>
         private UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
 
-        private vec3 worldPosition;
+        private MarkableStruct<vec3> worldPosition = new MarkableStruct<vec3>();
 
         /// <summary>
         /// Position in world space.
         /// </summary>
         [Category(strModelSpace)]
         [Description("Position in world space.")]
-        public virtual vec3 WorldPosition
-        {
-            get { return worldPosition; }
-            set
-            {
-                if (worldPosition != value)
-                {
-                    worldPosition = value;
-                    modelMatrixRecord.Mark();
-                }
-            }
-        }
+        public virtual MarkableStruct<vec3> WorldPosition { get { return this.worldPosition; } }
+
+        /// <summary>
+        /// Position in world space.
+        /// </summary>
+        /// <param name="value"></param>
+        public virtual void SetWorldPosition(vec3 value) { this.worldPosition.Value = value; }
 
         private float rotationAngle;
 
@@ -107,6 +102,11 @@ namespace CSharpGL
 
         private mat4 modelMatrix = mat4.identity();
 
+        private long worldPositionTicks;
+        private long scaleTicks;
+        private long rotateAngleTicks;
+        private long rotateAxisTicks;
+
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
         /// <para>This method will also cancel updated recording mark.</para>
@@ -116,17 +116,29 @@ namespace CSharpGL
         /// <returns></returns>
         public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
         {
-            bool result = false;
-            if (this.modelMatrixRecord.IsMarked())
+            bool updated = false;
+            {
+                long ticks;
+                {
+                    ticks = this.worldPosition.UpdateTicks;
+                    if (ticks != this.worldPositionTicks)
+                    {
+                        updated = true;
+                        this.worldPositionTicks = ticks;
+                    }
+                }
+                // if (...
+            }
+            if (this.modelMatrixRecord.IsMarked() || updated)
             {
                 this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
-                result = true;
+                updated = true;
             }
 
             modelMatrix = this.modelMatrix;
 
-            return result;
+            return updated;
         }
 
         /// <summary>
