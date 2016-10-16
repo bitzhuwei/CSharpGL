@@ -109,7 +109,8 @@ namespace CSharpGL
 
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
-        /// <para>Returns true if model matrix is updatd; otherwise return false.</para>
+        /// <para>This method will also cancel updated recording mark.</para>
+        /// <para>Returns true if model matrix is updated; otherwise return false.</para>
         /// </summary>
         /// <param name="modelMatrix">updated model matrix.</param>
         /// <returns></returns>
@@ -130,6 +131,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
+        /// <para>This method will also cancel updated recording mark.</para>
         /// </summary>
         /// <returns></returns>
         public mat4 GetUpdatedModelMatrix()
