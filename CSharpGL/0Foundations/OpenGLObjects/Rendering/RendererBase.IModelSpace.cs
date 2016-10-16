@@ -195,27 +195,27 @@ namespace CSharpGL
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    [Flags]
-    public enum ModelSpaceFactor
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        WorldPosition,
-        /// <summary>
-        /// 
-        /// </summary>
-        Scale,
-        /// <summary>
-        /// 
-        /// </summary>
-        RotationAngle,
-        /// <summary>
-        /// 
-        /// </summary>
-        RotationAxis,
-    }
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    //[Flags]
+    //public enum ModelSpaceFactor
+    //{
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    WorldPosition,
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    Scale,
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    RotationAngle,
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    RotationAxis,
+    //}
 }
