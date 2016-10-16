@@ -236,30 +236,14 @@ namespace CSharpGL
                     {
                         Pixel pixel = array[index++];
                         // This is when (x, y) is not on background and some primitive is picked.
-                        if (pixel.a != byte.MaxValue || pixel.b != byte.MaxValue
-                    || pixel.g != byte.MaxValue || pixel.r != byte.MaxValue)
+                        if (!pixel.IsWhite())
                         {
-                            /* // This is how is vertexID coded into color in vertex shader.
-                             * 	int objectID = gl_VertexID;
-                                codedColor = vec4(
-                                    float(objectID & 0xFF),
-                                    float((objectID >> 8) & 0xFF),
-                                    float((objectID >> 16) & 0xFF),
-                                    float((objectID >> 24) & 0xFF));
-                             */
-                            // get vertexID from coded color.
-                            // the vertexID is the last vertex that constructs the primitive.
-                            // see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
-                            uint shiftedR = (uint)pixel.r;
-                            uint shiftedG = (uint)pixel.g << 8;
-                            uint shiftedB = (uint)pixel.b << 16;
-                            uint shiftedA = (uint)pixel.a << 24;
-                            var vertexId = shiftedR + shiftedG + shiftedB + shiftedA;
-                            if (!vertexIdList.Contains(vertexId))
+                            uint stageVertexId = pixel.ToStageVertexId();
+                            if (!vertexIdList.Contains(stageVertexId))
                             {
                                 result.Add(new Tuple<Point, uint>(
-                                    new Point(target.X + xOffset, target.Y + yOffset), vertexId));
-                                vertexIdList.Add(vertexId);
+                                    new Point(target.X + xOffset, target.Y + yOffset), stageVertexId));
+                                vertexIdList.Add(stageVertexId);
                             }
                         }
                     }

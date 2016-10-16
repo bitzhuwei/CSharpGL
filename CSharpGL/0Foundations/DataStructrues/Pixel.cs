@@ -54,6 +54,39 @@ namespace CSharpGL
             return Color.FromArgb(a, r, g, b);
         }
 
+        // This is how is vertexID coded into color in vertex shader.
+        // int objectID = gl_VertexID;
+        // codedColor = vec4(
+        //     float(objectID & 0xFF),
+        //     float((objectID >> 8) & 0xFF),
+        //     float((objectID >> 16) & 0xFF),
+        //     float((objectID >> 24) & 0xFF));
+        /// <summary>
+        /// Gets stageVertexID from coded color.
+        /// The stageVertexID is the last vertex that constructs the primitive.
+        /// see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
+        /// </summary>
+        /// <returns></returns>
+        public uint ToStageVertexId()
+        {
+            uint shiftedR = (uint)this.r;
+            uint shiftedG = ((uint)this.g) << 8;
+            uint shiftedB = ((uint)this.b) << 16;
+            uint shiftedA = ((uint)this.a) << 24;
+            uint stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
+
+            return stageVertexId;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public bool IsWhite()
+        {
+            return this.r == byte.MaxValue && this.g == byte.MaxValue && this.b == byte.MaxValue && this.a == byte.MaxValue;
+        }
+
         /// <summary>
         ///
         /// </summary>

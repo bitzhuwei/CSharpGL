@@ -22,25 +22,9 @@
                 var array = (Pixel*)codedColor.Header.ToPointer();
                 Pixel pixel = array[0];
                 // This is when (x, y) is not on background and some primitive is picked.
-                if (pixel.a != byte.MaxValue || pixel.b != byte.MaxValue
-                    || pixel.g != byte.MaxValue || pixel.r != byte.MaxValue)
+                if (!pixel.IsWhite())
                 {
-                    /* // This is how is vertexID coded into color in vertex shader.
-                     * 	int objectID = gl_VertexID;
-                        codedColor = vec4(
-                            float(objectID & 0xFF),
-                            float((objectID >> 8) & 0xFF),
-                            float((objectID >> 16) & 0xFF),
-                            float((objectID >> 24) & 0xFF));
-                     */
-                    // get vertexID from coded color.
-                    // the vertexID is the last vertex that constructs the primitive.
-                    // see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
-                    uint shiftedR = (uint)pixel.r;
-                    uint shiftedG = (uint)pixel.g << 8;
-                    uint shiftedB = (uint)pixel.b << 16;
-                    uint shiftedA = (uint)pixel.a << 24;
-                    stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
+                    stageVertexId = pixel.ToStageVertexId();
                 }
             }
 
