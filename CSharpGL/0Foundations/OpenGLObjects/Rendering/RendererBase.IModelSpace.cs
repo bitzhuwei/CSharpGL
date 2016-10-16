@@ -11,6 +11,7 @@ namespace CSharpGL
         /// </summary>
         protected const string strModelSpace = "Model Space";
 
+        // todo: remove this.
         /// <summary>
         /// records whether modelMatrix is updated.
         /// </summary>
@@ -107,14 +108,7 @@ namespace CSharpGL
         private long rotateAngleTicks;
         private long rotateAxisTicks;
 
-        /// <summary>
-        /// Get model matrix that transform model from model space to world space.
-        /// <para>This method will also cancel updated recording mark.</para>
-        /// <para>Returns true if model matrix is updated; otherwise return false.</para>
-        /// </summary>
-        /// <param name="modelMatrix">updated model matrix.</param>
-        /// <returns></returns>
-        public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
+        public bool IsModelMatrixUpdated()
         {
             bool updated = false;
             {
@@ -129,11 +123,24 @@ namespace CSharpGL
                 }
                 // if (...
             }
+
+            return updated;
+        }
+        /// <summary>
+        /// Get model matrix that transform model from model space to world space.
+        /// <para>This method will also cancel updated recording mark.</para>
+        /// <para>Returns true if model matrix is updated; otherwise return false.</para>
+        /// </summary>
+        /// <param name="modelMatrix">updated model matrix.</param>
+        /// <returns></returns>
+        public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
+        {
+            bool updated = this.IsModelMatrixUpdated();
+
             if (this.modelMatrixRecord.IsMarked() || updated)
             {
                 this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
-                updated = true;
             }
 
             modelMatrix = this.modelMatrix;
