@@ -34,15 +34,12 @@ namespace CSharpGL
             {
                 primitiveRestartIndexSwitch = new PrimitiveRestartSwitch(oneIndexBufferPtr);
                 primitiveRestartIndexSwitch.On();
+                this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
+                primitiveRestartIndexSwitch.Off();
             }
-
+            else
             {
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
-            }
-
-            if (primitiveRestartIndexSwitch != null)
-            {
-                primitiveRestartIndexSwitch.Off();
             }
             PickingSwitchesOff();
 
