@@ -111,20 +111,6 @@ namespace CSharpGL
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
-        internal PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
-        {
-            foreach (GLSwitch item in this.switchList)
-            {
-                var target = item as PrimitiveRestartSwitch;
-                if (target != null)
-                {
-                    return target;
-                }
-            }
-
-            return null;
-        }
-
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
             int offset = (int)(firstIndex * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);

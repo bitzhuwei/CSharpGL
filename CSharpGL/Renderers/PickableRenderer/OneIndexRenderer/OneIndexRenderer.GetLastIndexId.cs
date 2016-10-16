@@ -74,11 +74,11 @@ namespace CSharpGL
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
             if (glSwitch != null)
             {
-                foreach (RecognizedPrimitiveInfo lastIndexId in primitiveInfoList)
+                foreach (RecognizedPrimitiveInfo info in primitiveInfoList)
                 {
-                    foreach (uint indexId in lastIndexId.VertexIds)
+                    foreach (uint vertexId in info.VertexIds)
                     {
-                        if (indexId == glSwitch.RestartIndex) { throw new Exception(); }
+                        if (vertexId == glSwitch.RestartIndex) { throw new Exception(); }
                     }
                 }
             }

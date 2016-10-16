@@ -31,10 +31,10 @@ namespace CSharpGL
             var oneIndexBufferPtr = temporaryIndexBufferPtr as OneIndexBufferPtr;
             if (oneIndexBufferPtr != null)
             {
-                GLSwitch primitiveRestartIndexSwitch = new PrimitiveRestartSwitch(oneIndexBufferPtr);
-                primitiveRestartIndexSwitch.On();
+                PrimitiveRestartSwitch glSwitch = this.GetPrimitiveRestartSwitch(oneIndexBufferPtr);
+                glSwitch.On();
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
-                primitiveRestartIndexSwitch.Off();
+                glSwitch.Off();
             }
             else
             {
@@ -98,6 +98,40 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        private PrimitiveRestartSwitch ubyteRestartIndexSwitch = null;
+        private PrimitiveRestartSwitch ushortRestartIndexSwitch = null;
+        private PrimitiveRestartSwitch uintRestartIndexSwitch = null;
+
+        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
+        {
+            PrimitiveRestartSwitch result = null;
+            switch (indexBufferPtr.Type)
+            {
+                case IndexElementType.UByte:
+                    if (this.ubyteRestartIndexSwitch == null)
+                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr); }
+                    result = this.ubyteRestartIndexSwitch;
+                    break;
+
+                case IndexElementType.UShort:
+                    if (this.ushortRestartIndexSwitch == null)
+                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr); }
+                    result = this.ushortRestartIndexSwitch;
+                    break;
+
+                case IndexElementType.UInt:
+                    if (this.uintRestartIndexSwitch == null)
+                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr); }
+                    result = this.uintRestartIndexSwitch;
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return result;
         }
     }
 }

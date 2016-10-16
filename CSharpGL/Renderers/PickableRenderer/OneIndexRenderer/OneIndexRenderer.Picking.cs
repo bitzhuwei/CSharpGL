@@ -8,7 +8,7 @@ namespace CSharpGL
     partial class OneIndexRenderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
@@ -85,7 +85,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
@@ -105,7 +105,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
@@ -164,7 +164,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
@@ -185,7 +185,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="twoPrimitivesIndexBufferPtr"></param>
@@ -229,6 +229,20 @@ namespace CSharpGL
             bufferPtr.UnmapBuffer();
 
             return primitiveInfoList;
+        }
+
+        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
+        {
+            foreach (GLSwitch item in this.switchList)
+            {
+                var target = item as PrimitiveRestartSwitch;
+                if (target != null)
+                {
+                    return target;
+                }
+            }
+
+            return null;
         }
     }
 }
