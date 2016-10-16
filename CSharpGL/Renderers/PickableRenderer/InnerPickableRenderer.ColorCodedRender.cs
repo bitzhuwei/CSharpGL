@@ -40,7 +40,7 @@ namespace CSharpGL
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
             }
 
-            if (oneIndexBufferPtr != null)
+            if (primitiveRestartIndexSwitch != null)
             {
                 primitiveRestartIndexSwitch.Off();
             }
