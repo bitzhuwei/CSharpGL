@@ -108,13 +108,13 @@ namespace CSharpGL
         //private long scaleTicks;
         //private long rotateAngleTicks;
         //private long rotateAxisTicks;
-        private long updatingTicks;
+        private long updatedTicks;
 
         /// <summary>
         /// Gets last tick when one of `IModelSpace` member is updated.
         /// </summary>
         /// <returns></returns>
-        public long GetLastUpdatingTicks()
+        public long GetLastUpdatedTicks()
         {
             long tick = this.worldPosition.UpdateTicks;
             {
@@ -135,14 +135,14 @@ namespace CSharpGL
         /// <returns></returns>
         public bool GetUpdatedModelMatrix(out mat4 modelMatrix)
         {
-            long lastUpdatingTicks = this.GetLastUpdatingTicks();
-            bool updated = (this.updatingTicks != lastUpdatingTicks);
+            long lastUpdatedTicks = this.GetLastUpdatedTicks();
+            bool updated = (this.updatedTicks != lastUpdatedTicks);
 
             if (this.modelMatrixRecord.IsMarked() || updated)
             {
                 this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
-                this.updatingTicks = lastUpdatingTicks;
+                this.updatedTicks = lastUpdatedTicks;
             }
 
             modelMatrix = this.modelMatrix;

@@ -81,7 +81,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            long ticks = this.GetLastUpdatingTicks();
+            long ticks = this.GetLastUpdatedTicks();
             if (this.needsUpdating || this.lastUpdatingTicks != ticks)
             {
                 this.UpdateEvaluator();
