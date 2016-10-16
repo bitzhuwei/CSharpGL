@@ -9,6 +9,9 @@ namespace CSharpGL
     {
         private T value;
 
+        /// <summary>
+        /// Kept value.
+        /// </summary>
         public T Value
         {
             get { return value; }
