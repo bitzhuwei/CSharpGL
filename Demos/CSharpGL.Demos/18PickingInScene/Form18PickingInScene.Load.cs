@@ -75,12 +75,12 @@ namespace CSharpGL.Demos
                 viewPort.AfterLayout += leftViewPort_AfterLayout;
                 this.scene.RootViewPort.Children.Add(viewPort);
             }
-            //{
-            //    var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
-            //  new Padding(3, 3, 3, 3), new Size(128, 128));
-            //    uiAxis.Initialize();
-            //    this.scene.RootUI.Children.Add(uiAxis);
-            //}
+            {
+                var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+              new Padding(3, 3, 3, 3), new Size(128, 128));
+                uiAxis.Initialize();
+                this.scene.RootUI.Children.Add(uiAxis);
+            }
             {
                 var font = new Font("Courier New", 32);
                 var uiText = new UIText(AnchorStyles.Left | AnchorStyles.Bottom,

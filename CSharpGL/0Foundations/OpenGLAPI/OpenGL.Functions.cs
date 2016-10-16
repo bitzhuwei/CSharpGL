@@ -701,13 +701,13 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glDepthMask", SetLastError = true)]
         public static extern void DepthMask(bool writable);
 
-        ///// <summary>
-        ///// Specify mapping of depth values from normalized device coordinates	to window coordinates.
-        ///// </summary>
-        ///// <param name="zNear">Specifies the mapping of the near clipping plane to window coordinates. The initial value is 0.</param>
-        ///// <param name="zFar">Specifies the mapping of the near clipping plane to window coordinates. The initial value is 1.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDepthRange", SetLastError = true)]
-        //public static extern void DepthRange(double zNear, double zFar);
+        /// <summary>
+        /// Specify mapping of depth values from normalized device coordinates	to window coordinates.
+        /// </summary>
+        /// <param name="zNear">Specifies the mapping of the near clipping plane to window coordinates. The initial value is 0.</param>
+        /// <param name="zFar">Specifies the mapping of the near clipping plane to window coordinates. The initial value is 1.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDepthRange", SetLastError = true)]
+        public static extern void DepthRange(double zNear, double zFar);
 
         /// <summary>
         /// Call this function to disable an OpenGL capability.
