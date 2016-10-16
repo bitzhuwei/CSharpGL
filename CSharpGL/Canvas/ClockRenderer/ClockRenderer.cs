@@ -56,16 +56,12 @@
             }
         }
 
-        public override vec3 RotationAxis
+        public override void SetRotationAxis(vec3 value)
         {
-            //get { return this.circleRenderer.RotationAxis; }
-            set
-            {
-                this.circleRenderer.RotationAxis = value;
-                this.markRenderer.RotationAxis = value;
-                this.pinRenderer.RotationAxis = value;
-                base.RotationAxis = value;
-            }
+            this.circleRenderer.SetRotationAxis(value);
+            this.markRenderer.SetRotationAxis(value);
+            this.pinRenderer.SetRotationAxis(value);
+            base.SetRotationAxis(value);
         }
 
         public override vec3 Scale

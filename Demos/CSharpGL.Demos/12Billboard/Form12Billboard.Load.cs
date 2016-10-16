@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
             }
             {
                 SimpleRenderer movableRenderer = SimpleRenderer.Create(new Teapot());
-                movableRenderer.RotationAxis = new vec3(0, 1, 0);
+                movableRenderer.SetRotationAxis(new vec3(0, 1, 0));
                 movableRenderer.Scale = new vec3(0.1f, 0.1f, 0.1f);
                 this.movableRenderer = movableRenderer;
                 SceneObject obj = movableRenderer.WrapToSceneObject();

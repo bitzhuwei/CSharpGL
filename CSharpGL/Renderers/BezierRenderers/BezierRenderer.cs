@@ -73,22 +73,20 @@ namespace CSharpGL
             //this.UpdateEvaluator();
         }
 
-        //private bool needsUpdating = false;
-        private long worldPositionTicks;
-        private long scaleTicks;
-        private long rotateAngleTicks;
-        private long rotateAxisTicks;
+        private bool needsUpdating = false;
+        private long lastUpdatingTicks;
         /// <summary>
         ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            long ticks = this.WorldPosition.UpdateTicks;
-            if (ticks != this.worldPositionTicks)
+            long ticks = this.GetLastUpdatingTicks();
+            if (this.needsUpdating || this.lastUpdatingTicks != ticks)
             {
                 this.UpdateEvaluator();
-                this.worldPositionTicks = ticks;
+                this.lastUpdatingTicks = ticks;
+                this.needsUpdating = false;
             }
             // else if()
 
@@ -113,25 +111,6 @@ namespace CSharpGL
                     //this.needsUpdating = true;
                 }
                 base.RotationAngleDegree = value;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override vec3 RotationAxis
-        {
-            get
-            {
-                return base.RotationAxis;
-            }
-            set
-            {
-                if (base.RotationAxis != value)
-                {
-                    //this.needsUpdating = true;
-                }
-                base.RotationAxis = value;
             }
         }
 

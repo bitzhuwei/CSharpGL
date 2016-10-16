@@ -73,24 +73,18 @@
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        public override vec3 RotationAxis
+        /// <param name="value"></param>
+        public override void SetRotationAxis(vec3 value)
         {
-            get
+            InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+            if (innerPickableRenderer != null)
             {
-                return base.RotationAxis;
+                innerPickableRenderer.SetRotationAxis(value);
             }
-            set
-            {
-                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-                if (innerPickableRenderer != null)
-                {
-                    innerPickableRenderer.RotationAxis = value;
-                }
 
-                base.RotationAxis = value;
-            }
+            base.SetRotationAxis(value);
         }
 
         /// <summary>

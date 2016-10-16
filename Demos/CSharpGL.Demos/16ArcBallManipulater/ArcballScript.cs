@@ -26,7 +26,7 @@
 
             RendererBase renderer = this.BindingObject.Renderer;
             renderer.RotationAngleDegree = angleDegree;
-            renderer.RotationAxis = axis;
+            renderer.SetRotationAxis(axis);
         }
     }
 }

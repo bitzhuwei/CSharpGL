@@ -63,20 +63,25 @@ namespace CSharpGL
         /// </summary>
         [Category(strModelSpace)]
         [Description("Rotation axis.")]
-        public vec3 RotationAxis
+        public MarkableStruct<vec3> RotationAxis
         {
             get
             {
                 RendererBase renderer = this.renderer;
                 if (renderer != null) { return renderer.RotationAxis; }
-                else { return new vec3(0, 0, 0); }
+                else { return null; }
             }
-            set
-            {
-                RendererBase renderer = this.renderer;
-                if (renderer != null) { renderer.RotationAxis = value; }
-                else { throw new Exception(string.Format("No renderer for this scene object!")); }
-            }
+        }
+
+        /// <summary>
+        /// Rotation axis.
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetRotationAxis(vec3 value)
+        {
+            RendererBase renderer = this.renderer;
+            if (renderer != null) { renderer.SetRotationAxis(value); }
+            else { throw new Exception(string.Format("No renderer for this scene object!")); }
         }
 
         /// <summary>

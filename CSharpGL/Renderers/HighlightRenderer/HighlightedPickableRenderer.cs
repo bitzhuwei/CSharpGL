@@ -70,7 +70,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="value"></param>
         public override void SetWorldPosition(vec3 value)
@@ -115,20 +115,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        public override vec3 RotationAxis
+        /// <param name="value"></param>
+        public override void SetRotationAxis(vec3 value)
         {
-            get
-            {
-                return PickableRenderer.RotationAxis;
-            }
-            set
-            {
-                Highlighter.RotationAxis = value;
-                PickableRenderer.RotationAxis = value;
-                base.RotationAxis = value;
-            }
+            this.Highlighter.SetRotationAxis(value);
+            this.PickableRenderer.SetRotationAxis(value);
+            base.SetRotationAxis(value);
         }
 
         /// <summary>

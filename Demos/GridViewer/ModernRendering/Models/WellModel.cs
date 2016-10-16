@@ -145,6 +145,7 @@ namespace GridViewer
 
             return this.indexBufferPtr;
         }
+
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>
@@ -155,7 +156,7 @@ namespace GridViewer
 
         public vec3 ModelSize { get; set; }
 
-        private MarkableStruct<vec3> worldPosition = new MarkableStruct<vec3>();
+        private MarkableStruct<vec3> worldPosition = new MarkableStruct<vec3>(new vec3(0, 0, 0));
         public MarkableStruct<vec3> WorldPosition { get { return this.worldPosition; } }
 
         public void SetWorldPosition(vec3 value)
@@ -165,7 +166,13 @@ namespace GridViewer
 
         public float RotationAngleDegree { get; set; }
 
-        public vec3 RotationAxis { get; set; }
+        private MarkableStruct<vec3> rotationAxis = new MarkableStruct<vec3>(new vec3(0, 1, 0));
+        public MarkableStruct<vec3> RotationAxis { get { return this.rotationAxis; } }
+
+        public void SetRotationAxis(vec3 value)
+        {
+            this.rotationAxis.Value = value;
+        }
 
         public vec3 Scale { get; set; }
     }

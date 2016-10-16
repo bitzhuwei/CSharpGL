@@ -1,10 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing.Design;
 
 namespace CSharpGL
 {
     /// <summary>
     /// Keeps a struct value and records the time when is it's udpated.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class MarkableStruct<T> where T : struct,IEquatable<T>
     {
         private T value;
@@ -34,7 +37,7 @@ namespace CSharpGL
         /// Records time when is a property is updated and uploaded.
         /// </summary>
         /// <param name="value">value.</param>
-        public MarkableStruct(T value = default(T))
+        public MarkableStruct(T value)
         {
             this.Value = value;
         }

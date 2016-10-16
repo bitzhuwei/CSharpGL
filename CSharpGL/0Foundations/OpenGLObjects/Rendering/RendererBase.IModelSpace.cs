@@ -17,7 +17,7 @@ namespace CSharpGL
         /// </summary>
         private UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
 
-        private MarkableStruct<vec3> worldPosition = new MarkableStruct<vec3>();
+        private MarkableStruct<vec3> worldPosition = new MarkableStruct<vec3>(new vec3(0, 0, 0));
 
         /// <summary>
         /// Position in world space.
@@ -52,24 +52,25 @@ namespace CSharpGL
             }
         }
 
-        private vec3 rotationAxis = new vec3(0, 1, 0);
+        private MarkableStruct<vec3> rotationAxis = new MarkableStruct<vec3>(new vec3(0, 1, 0));
 
         /// <summary>
         /// Rotation axis.
         /// </summary>
         [Category(strModelSpace)]
         [Description("Rotation axis.")]
-        public virtual vec3 RotationAxis
+        public virtual MarkableStruct<vec3> RotationAxis
         {
-            get { return rotationAxis; }
-            set
-            {
-                if (rotationAxis != value)
-                {
-                    rotationAxis = value;
-                    modelMatrixRecord.Mark();
-                }
-            }
+            get { return this.rotationAxis; }
+        }
+
+        /// <summary>
+        /// Rotation axis.
+        /// </summary>
+        /// <param name="value"></param>
+        public virtual void SetRotationAxis(vec3 value)
+        {
+            this.rotationAxis.Value = value;
         }
 
         private vec3 scale = new vec3(1, 1, 1);
@@ -103,29 +104,28 @@ namespace CSharpGL
 
         private mat4 modelMatrix = mat4.identity();
 
-        private long worldPositionTicks;
-        private long scaleTicks;
-        private long rotateAngleTicks;
-        private long rotateAxisTicks;
+        //private long worldPositionTicks;
+        //private long scaleTicks;
+        //private long rotateAngleTicks;
+        //private long rotateAxisTicks;
+        private long updatingTicks;
 
-        public bool IsModelMatrixUpdated()
+        /// <summary>
+        /// Gets last tick when one of `IModelSpace` member is updated.
+        /// </summary>
+        /// <returns></returns>
+        public long GetLastUpdatingTicks()
         {
-            bool updated = false;
+            long tick = this.worldPosition.UpdateTicks;
             {
-                long ticks;
-                {
-                    ticks = this.worldPosition.UpdateTicks;
-                    if (ticks != this.worldPositionTicks)
-                    {
-                        updated = true;
-                        this.worldPositionTicks = ticks;
-                    }
-                }
-                // if (...
+                long tmp;
+                tmp = this.rotationAxis.UpdateTicks;
+                if (tick < tmp) { tick = tmp; }
             }
 
-            return updated;
+            return tick;
         }
+
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
         /// <para>This method will also cancel updated recording mark.</para>
@@ -133,14 +133,16 @@ namespace CSharpGL
         /// </summary>
         /// <param name="modelMatrix">updated model matrix.</param>
         /// <returns></returns>
-        public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
+        public bool GetUpdatedModelMatrix(out mat4 modelMatrix)
         {
-            bool updated = this.IsModelMatrixUpdated();
+            long lastUpdatingTicks = this.GetLastUpdatingTicks();
+            bool updated = (this.updatingTicks != lastUpdatingTicks);
 
             if (this.modelMatrixRecord.IsMarked() || updated)
             {
                 this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
+                this.updatingTicks = lastUpdatingTicks;
             }
 
             modelMatrix = this.modelMatrix;

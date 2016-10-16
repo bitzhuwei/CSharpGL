@@ -14,7 +14,7 @@
             this.SetUniform("projection", arg.Camera.GetProjectionMatrix());
             this.SetUniform("view", arg.Camera.GetViewMatrix());
             mat4 model;
-            if (this.GeUpdatedModelMatrix(out model))
+            if (this.GetUpdatedModelMatrix(out model))
             {
                 this.SetUniform("model", model);
             }
