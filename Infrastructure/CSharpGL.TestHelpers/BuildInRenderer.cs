@@ -13,10 +13,10 @@
         {
             this.SetUniform("projection", arg.Camera.GetProjectionMatrix());
             this.SetUniform("view", arg.Camera.GetViewMatrix());
-            if (modelMatrixRecord.IsMarked())
+            mat4 model;
+            if (this.GeUpdatedModelMatrix(out model))
             {
-                this.SetUniform("model", this.GetModelMatrix());
-                modelMatrixRecord.CancelMark();
+                this.SetUniform("model", model);
             }
 
             base.DoRender(arg);

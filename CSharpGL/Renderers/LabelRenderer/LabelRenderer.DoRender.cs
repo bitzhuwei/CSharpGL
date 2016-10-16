@@ -11,11 +11,8 @@
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (this.modelMatrixRecord.IsMarked())
-            {
-                this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
-                this.modelMatrixRecord.CancelMark();
-            }
+            this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
+
             if (labelHeightRecord.IsMarked())
             {
                 this.SetUniform("labelHeight", this.LabelHeight);

@@ -108,10 +108,10 @@
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            if (this.modelMatrixRecord.IsMarked())
+            mat4 model;
+            if (this.GeUpdatedModelMatrix(out model))
             {
-                this.SetUniform("modelMatrix", this.GetModelMatrix());
-                this.modelMatrixRecord.CancelMark();
+                this.SetUniform("modelMatrix", model);
             }
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();

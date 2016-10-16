@@ -35,11 +35,10 @@ namespace CSharpGL.Demos
             mat4 view = arg.Camera.GetViewMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            if (this.modelMatrixRecord.IsMarked())
+            mat4 model;
+            if (this.GeUpdatedModelMatrix(out model))
             {
-                mat4 model = this.GetModelMatrix();
                 this.SetUniform("modelMatrix", model);
-                this.modelMatrixRecord.CancelMark();
             }
             if (this.pointColorRecord.IsMarked())
             {

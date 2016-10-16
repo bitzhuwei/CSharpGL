@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <summary>
         /// records whether modelMatrix is updated.
         /// </summary>
-        protected UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
+        private UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
 
         private vec3 worldPosition;
 
@@ -104,5 +104,27 @@ namespace CSharpGL
         public virtual vec3 ModelSize { get; set; }
 
         #endregion IModelSpace
+
+        private mat4 modelMatrix = mat4.identity();
+
+        /// <summary>
+        /// Get model matrix that transform model from model space to world space.
+        /// <para>Returns true if model matrix is updatd; otherwise return false.</para>
+        /// </summary>
+        /// <returns></returns>
+        public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
+        {
+            bool result = false;
+            if (this.modelMatrixRecord.IsMarked())
+            {
+                this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
+                this.modelMatrixRecord.CancelMark();
+                result = true;
+            }
+
+            modelMatrix = this.modelMatrix;
+
+            return result;
+        }
     }
 }
