@@ -106,7 +106,7 @@ namespace CSharpGL
 
         #endregion IModelSpace
 
-        private mat4 modelMatrix = mat4.identity();
+        private MarkableStruct<mat4> modelMatrix = new MarkableStruct<mat4>(mat4.identity());
         private mat4 cascadeModelMatrix = mat4.identity();
 
         /// <summary>
@@ -118,62 +118,40 @@ namespace CSharpGL
             return this.modelMatrixRecord.IsMarked();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="modelMatrix"></param>
-        /// <returns></returns>
-        public bool GetCascadeModelMatrix(out mat4 modelMatrix)
-        {
-            mat4 thisModel;
-            bool result = GetUpdatedModelMatrix(out thisModel);
-            SceneObject obj = this.BindingSceneObject;
-            if (obj != null)
-            {
-                RendererBase renderer = obj.Renderer;
-                if (renderer != null)
-                {
-                    // this requires scene objects to be rendered from parent to children.
-                    this.cascadeModelMatrix = renderer.cascadeModelMatrix * thisModel;
-                }
-            }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="modelMatrix"></param>
+        ///// <returns></returns>
+        //public bool GetCascadeModelMatrix(out mat4 modelMatrix)
+        //{
+        //    mat4 thisModel;
+        //    bool result = GetModelMatrix();
+        //    SceneObject obj = this.BindingSceneObject;
+        //    if (obj != null)
+        //    {
+        //        RendererBase renderer = obj.Renderer;
+        //        if (renderer != null)
+        //        {
+        //            // this requires scene objects to be rendered from parent to children.
+        //            this.cascadeModelMatrix = renderer.cascadeModelMatrix * thisModel;
+        //        }
+        //    }
 
-            modelMatrix = this.cascadeModelMatrix;
+        //    modelMatrix = this.cascadeModelMatrix;
 
-            return result;
-        }
-        /// <summary>
-        /// Get model matrix that transform model from model space to world space.
-        /// <para>This method will also cancel updated recording mark.</para>
-        /// <para>Returns true if model matrix is updated; otherwise return false.</para>
-        /// </summary>
-        /// <param name="modelMatrix">updated model matrix.</param>
-        /// <returns></returns>
-        public bool GetUpdatedModelMatrix(out mat4 modelMatrix)
-        {
-            bool result = false;
-            if (this.modelMatrixRecord.IsMarked())
-            {
-                this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
-                this.modelMatrixRecord.CancelMark();
-                result = true;
-            }
-
-            modelMatrix = this.modelMatrix;
-
-            return result;
-        }
+        //    return result;
+        //}
 
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
-        /// <para>This method will also cancel updated recording mark.</para>
         /// </summary>
         /// <returns></returns>
-        public mat4 GetUpdatedModelMatrix()
+        public MarkableStruct<mat4> GetModelMatrix()
         {
             if (this.modelMatrixRecord.IsMarked())
             {
-                this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
+                this.modelMatrix.Value = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
             }
 

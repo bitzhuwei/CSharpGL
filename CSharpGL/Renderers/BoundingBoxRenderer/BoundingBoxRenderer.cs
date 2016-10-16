@@ -78,6 +78,8 @@ namespace CSharpGL
             }
         }
 
+        private long modelTicks;
+
         /// <summary>
         ///
         /// </summary>
@@ -92,10 +94,11 @@ namespace CSharpGL
 
             this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMatrix());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
-            mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
             {
-                this.SetUniform("modelMatrix", model);
+                this.SetUniform("modelMatrix", model.Value);
+                this.modelTicks = model.UpdateTicks;
             }
 
             base.DoRender(arg);
@@ -109,7 +112,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetModelMatrix() * new vec4(this.ModelSize / 2, 1.0f));
+                return new vec3(this.GetModelMatrix().Value * new vec4(this.ModelSize / 2, 1.0f));
             }
         }
 
@@ -121,7 +124,7 @@ namespace CSharpGL
             get
             {
                 // NOTE: make sure this.ModelMatrix don't rotate.
-                return new vec3(this.GetModelMatrix() * new vec4(-this.ModelSize / 2, 1.0f));
+                return new vec3(this.GetModelMatrix().Value * new vec4(-this.ModelSize / 2, 1.0f));
             }
         }
 

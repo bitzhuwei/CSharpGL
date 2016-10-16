@@ -24,14 +24,20 @@ namespace CSharpGL.Demos
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
 
+        private long modelTicks;
+
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
+            {
+                this.SetUniform("modelMatrix", model.Value);
+                this.modelTicks = model.UpdateTicks;
+            }
 
             base.DoRender(arg);
         }

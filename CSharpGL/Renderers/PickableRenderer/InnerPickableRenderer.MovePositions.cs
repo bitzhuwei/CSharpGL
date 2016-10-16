@@ -21,7 +21,7 @@ namespace CSharpGL
             IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
-                mat4 modelMatrix = this.GetModelMatrix();
+                mat4 modelMatrix = this.GetModelMatrix().Value;
                 mat4 modelViewMatrix = viewMatrix * modelMatrix;
                 var array = (vec3*)pointer.ToPointer();
                 foreach (uint index in positionIndexes)
@@ -52,7 +52,7 @@ namespace CSharpGL
             IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
-                mat4 modelMatrix = this.GetModelMatrix();
+                mat4 modelMatrix = this.GetModelMatrix().Value;
                 mat4 modelViewMatrix = viewMatrix * modelMatrix;
                 var array = (vec3*)pointer.ToPointer();
                 foreach (uint index in positionIndexes)

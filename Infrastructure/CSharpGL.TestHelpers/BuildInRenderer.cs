@@ -9,14 +9,18 @@
             this.ModelSize = lengths;
         }
 
+        private long modelTicks;
+
         protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("projection", arg.Camera.GetProjectionMatrix());
             this.SetUniform("view", arg.Camera.GetViewMatrix());
-            mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
             {
-                this.SetUniform("model", model);
+                this.SetUniform("model", model.Value);
+                this.modelTicks = model.UpdateTicks;
             }
 
             base.DoRender(arg);

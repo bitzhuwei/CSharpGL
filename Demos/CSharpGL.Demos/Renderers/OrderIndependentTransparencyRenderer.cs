@@ -105,6 +105,8 @@ namespace CSharpGL.Demos
             OpenGL.ClearDepth(1.0f);
         }
 
+        private long modelTicks;
+
         protected override void DoRender(RenderEventArgs arg)
         {
             this.depthTestSwitch.On();
@@ -135,14 +137,17 @@ namespace CSharpGL.Demos
 
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
             this.buildListsRenderer.SetUniform("projection_matrix", projection);
             this.buildListsRenderer.SetUniform("view_matrix", view);
-            this.buildListsRenderer.SetUniform("model_matrix", model);
             this.resolve_lists.SetUniform("projection_matrix", projection);
             this.resolve_lists.SetUniform("view_matrix", view);
-            this.resolve_lists.SetUniform("model_matrix", model);
-
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
+            {
+                this.buildListsRenderer.SetUniform("model_matrix", model.Value);
+                this.resolve_lists.SetUniform("model_matrix", model.Value);
+                this.modelTicks = model.UpdateTicks;
+            }
             // first pass
             this.buildListsRenderer.Render(arg);
             // second pass

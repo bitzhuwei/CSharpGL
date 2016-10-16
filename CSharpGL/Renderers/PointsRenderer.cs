@@ -40,6 +40,8 @@ namespace CSharpGL
         {
         }
 
+        private long modelTicks;
+
         /// <summary>
         ///
         /// </summary>
@@ -50,10 +52,11 @@ namespace CSharpGL
             mat4 view = arg.Camera.GetViewMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
             {
-                this.SetUniform("modelMatrix", model);
+                this.SetUniform("modelMatrix", model.Value);
+                this.modelTicks = model.UpdateTicks;
             }
             if (this.pointColorRecord.IsMarked())
             {

@@ -49,7 +49,7 @@ namespace CSharpGL
             }
 
             int length = this.PositionBufferPtr.Length;
-            mat4 modelMatrix = this.GetModelMatrix();
+            mat4 modelMatrix = this.GetModelMatrix().Value;
             var array = new UnmanagedArray<vec3>(length);
             unsafe
             {

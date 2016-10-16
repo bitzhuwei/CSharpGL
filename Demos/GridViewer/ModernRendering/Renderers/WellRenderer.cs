@@ -66,7 +66,7 @@ namespace GridViewer
                 wellPipelineColorRecord.CancelMark();
             }
 
-            mat4 mvp = arg.Camera.GetProjectionMatrix() * arg.Camera.GetViewMatrix() * this.GetModelMatrix();
+            mat4 mvp = arg.Camera.GetProjectionMatrix() * arg.Camera.GetViewMatrix() * this.GetModelMatrix().Value;
             this.SetUniform("mvp", mvp);
 
             base.DoRender(arg);

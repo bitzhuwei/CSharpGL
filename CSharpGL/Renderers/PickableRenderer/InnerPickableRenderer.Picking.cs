@@ -35,7 +35,7 @@ namespace CSharpGL
             {
                 mat4 projection = arg.Camera.GetProjectionMatrix();
                 mat4 view = arg.Camera.GetViewMatrix();
-                mat4 model = this.GetModelMatrix();
+                mat4 model = this.GetModelMatrix().Value;
                 uniformmMVP4Picking.Value = projection * view * model;
             }
             uniformmMVP4Picking.SetUniform(program);

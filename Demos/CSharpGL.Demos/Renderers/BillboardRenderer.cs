@@ -82,6 +82,8 @@ namespace CSharpGL.Demos
             this.SetUniform("myTextureSampler", texture);
         }
 
+        private long modelTicks;
+
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();
@@ -90,10 +92,11 @@ namespace CSharpGL.Demos
                 view[0][0], view[1][0], view[2][0]));
             this.SetUniform("CameraUp_worldspace", new vec3(
                 view[0][1], view[1][1], view[2][1]));
-            mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
             {
                 this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
+                this.modelTicks = model.UpdateTicks;
             }
             //this.TargetRenderer.Position + this.Offset);
             this.SetUniform("BillboardSize", new vec2(this.Width, this.Height));

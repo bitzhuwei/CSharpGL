@@ -109,7 +109,7 @@ namespace CSharpGL.Demos
                             ICamera camera = this.scene.FirstCamera;
                             mat4 projection = camera.GetProjectionMatrix();
                             mat4 view = camera.GetViewMatrix();
-                            mat4 model = pickableRenderer.GetModelMatrix();
+                            mat4 model = pickableRenderer.GetModelMatrix().Value;
                             this.bulletinBoard.SetContent(pickedGeometry.ToString(
                                 projection, view, model));
                         }

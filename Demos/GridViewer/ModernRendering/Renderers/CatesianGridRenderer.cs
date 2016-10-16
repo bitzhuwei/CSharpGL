@@ -36,14 +36,17 @@ namespace GridViewer
                 TextureTarget.Texture1D, this.codedColorSampler.Id, 0));
         }
 
+        private long modelTicks;
+
         protected override void DoRender(RenderEventArgs arg)
         {
             this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMatrix());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
-            mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            MarkableStruct<mat4> model = this.GetModelMatrix();
+            if (this.modelTicks != model.UpdateTicks)
             {
-                this.SetUniform("modelMatrix", model);
+                this.SetUniform("modelMatrix", model.Value);
+                this.modelTicks = model.UpdateTicks;
             }
 
             base.DoRender(arg);
