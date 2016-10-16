@@ -23,7 +23,7 @@ namespace CSharpGL
             var model = new Points(controlPoints);
             var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
             renderer.ModelSize = model.Lengths;
-            renderer.SetWorldPosition(model.WorldPosition);
+            renderer.WorldPosition = model.WorldPosition;
             renderer.switchList.Add(new PointSizeSwitch(10));
 
             return renderer;
@@ -74,25 +74,40 @@ namespace CSharpGL
         }
 
         private bool needsUpdating = false;
-        private long lastUpdatingTicks;
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            long ticks = this.GetLastUpdatedTicks();
-            if (this.needsUpdating || this.lastUpdatingTicks != ticks)
+            if (this.needsUpdating)
             {
                 this.UpdateEvaluator();
-                this.lastUpdatingTicks = ticks;
                 this.needsUpdating = false;
             }
-            // else if()
-
             this.Evaluator.Render(arg);
 
             base.DoRender(arg);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override vec3 WorldPosition
+        {
+            get
+            {
+                return base.WorldPosition;
+            }
+            set
+            {
+                if (base.WorldPosition != value)
+                {
+                    this.needsUpdating = true;
+                }
+                base.WorldPosition = value;
+            }
         }
 
         /// <summary>
@@ -108,9 +123,28 @@ namespace CSharpGL
             {
                 if (base.RotationAngleDegree != value)
                 {
-                    //this.needsUpdating = true;
+                    this.needsUpdating = true;
                 }
                 base.RotationAngleDegree = value;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override vec3 RotationAxis
+        {
+            get
+            {
+                return base.RotationAxis;
+            }
+            set
+            {
+                if (base.RotationAxis != value)
+                {
+                    this.needsUpdating = true;
+                }
+                base.RotationAxis = value;
             }
         }
 
@@ -127,7 +161,7 @@ namespace CSharpGL
             {
                 if (base.Scale != value)
                 {
-                    //this.needsUpdating = true;
+                    this.needsUpdating = true;
                 }
                 base.Scale = value;
             }

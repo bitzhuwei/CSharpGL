@@ -17,7 +17,7 @@ namespace GridViewer
             map.Add("in_uv", CatesianGrid.strColor);
             var renderer = new CatesianGridRenderer(originalWorldPosition, grid, shaderCodes, map, codedColorSampler);
             renderer.ModelSize = (grid.DataSource.SourceActiveBounds.MaxPosition - grid.DataSource.SourceActiveBounds.MinPosition).Abs();
-            renderer.SetWorldPosition(-grid.DataSource.Position);
+            renderer.WorldPosition = -grid.DataSource.Position;
             return renderer;
         }
 
@@ -41,7 +41,7 @@ namespace GridViewer
             this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMatrix());
             this.SetUniform("viewMatrix", arg.Camera.GetViewMatrix());
             mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            if (this.GeUpdatedModelMatrix(out model))
             {
                 this.SetUniform("modelMatrix", model);
             }

@@ -17,24 +17,20 @@ namespace CSharpGL
         /// </summary>
         [Category(strModelSpace)]
         [Description("Position in world space.")]
-        public MarkableStruct<vec3> WorldPosition
+        public vec3 WorldPosition
         {
             get
             {
                 RendererBase renderer = this.renderer;
                 if (renderer != null) { return renderer.WorldPosition; }
-                else { return null; }
+                else { return new vec3(0, 0, 0); }
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public void SetWorldPosition(vec3 value)
-        {
-            RendererBase renderer = this.renderer;
-            if (renderer != null) { renderer.SetWorldPosition(value); }
+            set
+            {
+                RendererBase renderer = this.renderer;
+                if (renderer != null) { renderer.WorldPosition = value; }
+                else { throw new Exception(string.Format("No renderer for this scene object!")); }
+            }
         }
 
         /// <summary>
@@ -63,25 +59,20 @@ namespace CSharpGL
         /// </summary>
         [Category(strModelSpace)]
         [Description("Rotation axis.")]
-        public MarkableStruct<vec3> RotationAxis
+        public vec3 RotationAxis
         {
             get
             {
                 RendererBase renderer = this.renderer;
                 if (renderer != null) { return renderer.RotationAxis; }
-                else { return null; }
+                else { return new vec3(0, 0, 0); }
             }
-        }
-
-        /// <summary>
-        /// Rotation axis.
-        /// </summary>
-        /// <param name="value"></param>
-        public void SetRotationAxis(vec3 value)
-        {
-            RendererBase renderer = this.renderer;
-            if (renderer != null) { renderer.SetRotationAxis(value); }
-            else { throw new Exception(string.Format("No renderer for this scene object!")); }
+            set
+            {
+                RendererBase renderer = this.renderer;
+                if (renderer != null) { renderer.RotationAxis = value; }
+                else { throw new Exception(string.Format("No renderer for this scene object!")); }
+            }
         }
 
         /// <summary>

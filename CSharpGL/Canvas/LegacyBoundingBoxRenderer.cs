@@ -23,7 +23,7 @@
             this.MaxPosition = max;
 
             this.Scale = new vec3(1, 1, 1);
-            this.SetRotationAxis(new vec3(0, 1, 0));
+            this.RotationAxis = new vec3(0, 1, 0);
 
             this.ModelSize = max - min;
         }

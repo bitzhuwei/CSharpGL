@@ -18,7 +18,7 @@ namespace CSharpGL
         public ClockPinRenderer()
         {
             this.Scale = new vec3(1, 1, 1);
-            this.SetRotationAxis(new vec3(0, 0, -1));
+            this.RotationAxis = new vec3(0, 0, -1);
             this.ModelSize = new vec3(2, 2, 2);
         }
 

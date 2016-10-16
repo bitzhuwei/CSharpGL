@@ -46,9 +46,9 @@ namespace CSharpGL.Demos
             var result = new ConditionalRenderer();
             {
                 var wallRenderer = SimpleRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
-                wallRenderer.SetWorldPosition(new vec3(0, 0, 6));
+                wallRenderer.WorldPosition = new vec3(0, 0, 6);
                 var boxRenderer = SimpleRenderer.Create(new Cube(new vec3(unitLengths.x * 2, unitLengths.y * 2, 0.1f) * new vec3(xside, yside, zside)));
-                boxRenderer.SetWorldPosition(new vec3(0, 0, 6));
+                boxRenderer.WorldPosition = new vec3(0, 0, 6);
                 var query = new Query();
                 result.coupleList.Add(new Tuple<SimpleRenderer, RendererBase, Query>(boxRenderer, wallRenderer, query));
             }
@@ -64,11 +64,11 @@ namespace CSharpGL.Demos
                             (int)((float)(x + 1) / (float)xside * 255),
                             (int)((float)(y + 1) / (float)yside * 255),
                             (int)((float)(z + 1) / (float)zside * 255));
-                        renderer.SetWorldPosition(
+                        renderer.WorldPosition =
                             (new vec3(x, y, z) * unitLengths * scaleFactor)
-                            - (new vec3(xside - 1, yside - 1, zside - 1) * unitLengths * scaleFactor * 0.5f));
+                            - (new vec3(xside - 1, yside - 1, zside - 1) * unitLengths * scaleFactor * 0.5f);
                         var cubeRenderer = SimpleRenderer.Create(new Cube(unitLengths));
-                        cubeRenderer.SetWorldPosition(renderer.WorldPosition.Value);
+                        cubeRenderer.WorldPosition = renderer.WorldPosition;
                         var query = new Query();
                         result.coupleList.Add(new Tuple<SimpleRenderer, RendererBase, Query>(cubeRenderer, renderer, query));
                     }

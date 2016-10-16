@@ -7,27 +7,22 @@
         /// <summary>
         ///
         /// </summary>
-        public override MarkableStruct<vec3> WorldPosition
+        public override vec3 WorldPosition
         {
             get
             {
                 return base.WorldPosition;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public override void SetWorldPosition(vec3 value)
-        {
-            InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-            if (innerPickableRenderer != null)
+            set
             {
-                innerPickableRenderer.SetWorldPosition(value);
-            }
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    innerPickableRenderer.WorldPosition = value;
+                }
 
-            base.SetWorldPosition(value);
+                base.WorldPosition = value;
+            }
         }
 
         /// <summary>
@@ -73,18 +68,24 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        /// <param name="value"></param>
-        public override void SetRotationAxis(vec3 value)
+        public override vec3 RotationAxis
         {
-            InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
-            if (innerPickableRenderer != null)
+            get
             {
-                innerPickableRenderer.SetRotationAxis(value);
+                return base.RotationAxis;
             }
+            set
+            {
+                InnerPickableRenderer innerPickableRenderer = this.innerPickableRenderer;
+                if (innerPickableRenderer != null)
+                {
+                    innerPickableRenderer.RotationAxis = value;
+                }
 
-            base.SetRotationAxis(value);
+                base.RotationAxis = value;
+            }
         }
 
         /// <summary>

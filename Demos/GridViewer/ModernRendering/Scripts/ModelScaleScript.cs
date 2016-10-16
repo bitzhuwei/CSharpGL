@@ -46,7 +46,7 @@ namespace GridViewer
                 if (obj == null) { throw new Exception(); }
                 var transform = obj.Renderer as IModelSpace;
                 if (transform == null) { throw new Exception(); }
-                rootPosition = transform.WorldPosition.Value;
+                rootPosition = transform.WorldPosition;
                 stack.Push(obj);
             }
 
@@ -56,11 +56,11 @@ namespace GridViewer
                 var transform = obj.Renderer as IModelSpace;
                 if (transform != null)
                 {
-                    vec3 distance = transform.WorldPosition.Value - rootPosition;
+                    vec3 distance = transform.WorldPosition - rootPosition;
                     mat4 model = glm.translate(mat4.identity(), rootPosition);
                     model = glm.scale(model, factor);
                     model = glm.translate(model, distance);
-                    transform.SetWorldPosition(model.GetTranslate());
+                    transform.WorldPosition = model.GetTranslate();
                     transform.Scale = factor;
 
                     updated = true;

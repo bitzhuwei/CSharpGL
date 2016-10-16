@@ -75,12 +75,12 @@ namespace CSharpGL.Demos
                 viewPort.AfterLayout += leftViewPort_AfterLayout;
                 this.scene.RootViewPort.Children.Add(viewPort);
             }
-            {
-                var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
-              new Padding(3, 3, 3, 3), new Size(128, 128));
-                uiAxis.Initialize();
-                this.scene.RootUI.Children.Add(uiAxis);
-            }
+            //{
+            //    var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+            //  new Padding(3, 3, 3, 3), new Size(128, 128));
+            //    uiAxis.Initialize();
+            //    this.scene.RootUI.Children.Add(uiAxis);
+            //}
             {
                 var font = new Font("Courier New", 32);
                 var uiText = new UIText(AnchorStyles.Left | AnchorStyles.Bottom,
@@ -94,7 +94,7 @@ namespace CSharpGL.Demos
                 GroundRenderer ground = GroundRenderer.Create(new GroundModel(20));
                 ground.Initialize();
                 ground.Scale = new vec3(20, 20, 20);
-                ground.SetWorldPosition(new vec3(0, 0, 0));
+                ground.WorldPosition = new vec3(0, 0, 0);
                 SceneObject obj = ground.WrapToSceneObject(name: "Ground", generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
             }
@@ -121,13 +121,13 @@ namespace CSharpGL.Demos
                         var highlightRenderer = new HighlightRenderer(model, item.PositionNameInIBufferable);
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
-                        renderer.SetWorldPosition(new vec3(x, 2, z));
+                        renderer.WorldPosition = new vec3(x, 2, z);
                         renderer.Initialize();
                         obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                     }
                     else
                     {
-                        item.SetWorldPosition(new vec3(x, 2, z));
+                        item.WorldPosition = new vec3(x, 2, z);
                         obj = item.WrapToSceneObject(generateBoundingBox: true);
                     }
                     this.scene.RootObject.Children.Add(obj);

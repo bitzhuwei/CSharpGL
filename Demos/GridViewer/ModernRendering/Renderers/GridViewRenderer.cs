@@ -16,7 +16,7 @@ namespace GridViewer
             AttributeMap attributeMap, params GLSwitch[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
-            this.SetWorldPosition(originalWorldPosition);
+            this.WorldPosition = originalWorldPosition;
             this.Grid = model;
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace CSharpGL
@@ -59,22 +60,50 @@ namespace CSharpGL
         /// <param name="pickingGeometryType"></param>
         private void Render(ViewPort viewPort, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
-            var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
-
-            if (pickingGeometryType != PickingGeometryType.None)// picking mode.
+            if (pickingGeometryType == PickingGeometryType.None)
             {
-                var color = new vec4(1, 1, 1, 1);
-                OpenGL.ClearColor(color.x, color.y, color.z, color.w);
-
-                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+                RenderNormally(viewPort, clientRectangle);
             }
             else
             {
-                vec4 color = viewPort.ClearColor.ToVec4();
-                OpenGL.ClearColor(color.x, color.y, color.z, color.w);
-
-                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+                RenderColorCoded(viewPort, clientRectangle, pickingGeometryType);
             }
+        }
+
+        private void RenderColorCoded(ViewPort viewPort, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
+        {
+            var color = new vec4(1, 1, 1, 1);
+            OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+            var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
+            // render objects.
+            // Render all PickableRenderers for color-coded picking.
+            List<IPickable> pickableRendererList = Render4Picking(arg);
+
+            //// render regular UI.
+            //this.RootUI.Render(arg);
+
+            //// render cursor.
+            //UICursor cursor = this.Cursor;
+            //if (cursor != null && cursor.Enabled)
+            //{
+            //    cursor.UpdatePosition(mousePosition);
+            //    this.rootCursor.Render(arg);
+            //}
+
+        }
+
+        private void RenderNormally(ViewPort viewPort, Rectangle clientRectangle)
+        {
+            var arg = new RenderEventArgs(clientRectangle, viewPort, PickingGeometryType.None);
+
+            vec4 color = viewPort.ClearColor.ToVec4();
+            OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
             // render objects.
             SceneObject obj = this.RootObject;
             this.RenderObject(obj, arg);

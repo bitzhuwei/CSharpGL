@@ -109,7 +109,7 @@
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            if (this.GeUpdatedModelMatrix(out model))
             {
                 this.SetUniform("modelMatrix", model);
             }

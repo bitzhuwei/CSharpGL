@@ -19,7 +19,7 @@ namespace CSharpGL.Demos
             map.Add("in_Position", PointCloudModel.position);
             var renderer = new PointCloudRenderer(model, shaderCodes, map);
             renderer.ModelSize = model.Lengths;
-            renderer.SetWorldPosition(model.WorldPosition);
+            renderer.WorldPosition = model.WorldPosition;
             //renderer.switchList.Add(new PointSizeSwitch(10));
             return renderer;
         }
@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             mat4 model;
-            if (this.GetUpdatedModelMatrix(out model))
+            if (this.GeUpdatedModelMatrix(out model))
             {
                 this.SetUniform("modelMatrix", model);
             }

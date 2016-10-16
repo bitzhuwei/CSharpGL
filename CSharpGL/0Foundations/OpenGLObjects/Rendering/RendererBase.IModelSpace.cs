@@ -11,26 +11,30 @@ namespace CSharpGL
         /// </summary>
         protected const string strModelSpace = "Model Space";
 
-        // todo: remove this.
         /// <summary>
         /// records whether modelMatrix is updated.
         /// </summary>
         private UpdatingRecord modelMatrixRecord = new UpdatingRecord(true);
 
-        private MarkableStruct<vec3> worldPosition = new MarkableStruct<vec3>(new vec3(0, 0, 0));
+        private vec3 worldPosition;
 
         /// <summary>
         /// Position in world space.
         /// </summary>
         [Category(strModelSpace)]
         [Description("Position in world space.")]
-        public virtual MarkableStruct<vec3> WorldPosition { get { return this.worldPosition; } }
-
-        /// <summary>
-        /// Position in world space.
-        /// </summary>
-        /// <param name="value"></param>
-        public virtual void SetWorldPosition(vec3 value) { this.worldPosition.Value = value; }
+        public virtual vec3 WorldPosition
+        {
+            get { return worldPosition; }
+            set
+            {
+                if (worldPosition != value)
+                {
+                    worldPosition = value;
+                    modelMatrixRecord.Mark();
+                }
+            }
+        }
 
         private float rotationAngle;
 
@@ -52,25 +56,24 @@ namespace CSharpGL
             }
         }
 
-        private MarkableStruct<vec3> rotationAxis = new MarkableStruct<vec3>(new vec3(0, 1, 0));
+        private vec3 rotationAxis = new vec3(0, 1, 0);
 
         /// <summary>
         /// Rotation axis.
         /// </summary>
         [Category(strModelSpace)]
         [Description("Rotation axis.")]
-        public virtual MarkableStruct<vec3> RotationAxis
+        public virtual vec3 RotationAxis
         {
-            get { return this.rotationAxis; }
-        }
-
-        /// <summary>
-        /// Rotation axis.
-        /// </summary>
-        /// <param name="value"></param>
-        public virtual void SetRotationAxis(vec3 value)
-        {
-            this.rotationAxis.Value = value;
+            get { return rotationAxis; }
+            set
+            {
+                if (rotationAxis != value)
+                {
+                    rotationAxis = value;
+                    modelMatrixRecord.Mark();
+                }
+            }
         }
 
         private vec3 scale = new vec3(1, 1, 1);
@@ -104,28 +107,6 @@ namespace CSharpGL
 
         private mat4 modelMatrix = mat4.identity();
 
-        //private long worldPositionTicks;
-        //private long scaleTicks;
-        //private long rotateAngleTicks;
-        //private long rotateAxisTicks;
-        private long updatedTicks;
-
-        /// <summary>
-        /// Gets last tick when one of `IModelSpace` member is updated.
-        /// </summary>
-        /// <returns></returns>
-        public long GetLastUpdatedTicks()
-        {
-            long tick = this.worldPosition.UpdateTicks;
-            {
-                long tmp;
-                tmp = this.rotationAxis.UpdateTicks;
-                if (tick < tmp) { tick = tmp; }
-            }
-
-            return tick;
-        }
-
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
         /// <para>This method will also cancel updated recording mark.</para>
@@ -133,21 +114,19 @@ namespace CSharpGL
         /// </summary>
         /// <param name="modelMatrix">updated model matrix.</param>
         /// <returns></returns>
-        public bool GetUpdatedModelMatrix(out mat4 modelMatrix)
+        public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
         {
-            long lastUpdatedTicks = this.GetLastUpdatedTicks();
-            bool updated = (this.updatedTicks != lastUpdatedTicks);
-
-            if (this.modelMatrixRecord.IsMarked() || updated)
+            bool result = false;
+            if (this.modelMatrixRecord.IsMarked())
             {
                 this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
-                this.updatedTicks = lastUpdatedTicks;
+                result = true;
             }
 
             modelMatrix = this.modelMatrix;
 
-            return updated;
+            return result;
         }
 
         /// <summary>

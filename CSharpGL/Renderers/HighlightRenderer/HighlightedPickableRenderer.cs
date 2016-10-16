@@ -61,23 +61,18 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override MarkableStruct<vec3> WorldPosition
+        public override vec3 WorldPosition
         {
             get
             {
                 return PickableRenderer.WorldPosition;
             }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="value"></param>
-        public override void SetWorldPosition(vec3 value)
-        {
-            this.Highlighter.SetWorldPosition(value);
-            this.PickableRenderer.SetWorldPosition(value);
-            base.SetWorldPosition(value);
+            set
+            {
+                Highlighter.WorldPosition = value;
+                PickableRenderer.WorldPosition = value;
+                base.WorldPosition = value;
+            }
         }
 
         /// <summary>
@@ -115,14 +110,20 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        /// <param name="value"></param>
-        public override void SetRotationAxis(vec3 value)
+        public override vec3 RotationAxis
         {
-            this.Highlighter.SetRotationAxis(value);
-            this.PickableRenderer.SetRotationAxis(value);
-            base.SetRotationAxis(value);
+            get
+            {
+                return PickableRenderer.RotationAxis;
+            }
+            set
+            {
+                Highlighter.RotationAxis = value;
+                PickableRenderer.RotationAxis = value;
+                base.RotationAxis = value;
+            }
         }
 
         /// <summary>

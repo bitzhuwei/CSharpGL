@@ -8,7 +8,6 @@ namespace CSharpGL
     /// 用OpenGL初始化和渲染一个模型。
     /// <para>Initialize and render something with OpenGL.</para>
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class RendererBase : IRenderable, IDisposable
     {
         private readonly object synObj = new object();

@@ -8,7 +8,7 @@
 
         public ClockRenderer(vec3 worldPosition)
         {
-            this.SetWorldPosition(worldPosition);
+            this.WorldPosition = worldPosition;
             const float factor = 0.5f;
             this.Scale = new vec3(factor, factor, factor);
             this.ModelSize = new vec3(2, 2, 2);
@@ -28,20 +28,16 @@
             pinRenderer.Render(arg);
         }
 
-        public override MarkableStruct<vec3> WorldPosition
+        public override vec3 WorldPosition
         {
-            get
+            //get { return this.circleRenderer.WorldPosition; }
+            set
             {
-                return base.WorldPosition;
+                this.circleRenderer.WorldPosition = value;
+                this.markRenderer.WorldPosition = value;
+                this.pinRenderer.WorldPosition = value;
+                base.WorldPosition = value;
             }
-        }
-
-        public override void SetWorldPosition(vec3 value)
-        {
-            this.circleRenderer.SetWorldPosition(value);
-            this.markRenderer.SetWorldPosition(value);
-            this.pinRenderer.SetWorldPosition(value);
-            base.SetWorldPosition(value);
         }
 
         public override float RotationAngleDegree
@@ -56,12 +52,16 @@
             }
         }
 
-        public override void SetRotationAxis(vec3 value)
+        public override vec3 RotationAxis
         {
-            this.circleRenderer.SetRotationAxis(value);
-            this.markRenderer.SetRotationAxis(value);
-            this.pinRenderer.SetRotationAxis(value);
-            base.SetRotationAxis(value);
+            //get { return this.circleRenderer.RotationAxis; }
+            set
+            {
+                this.circleRenderer.RotationAxis = value;
+                this.markRenderer.RotationAxis = value;
+                this.pinRenderer.RotationAxis = value;
+                base.RotationAxis = value;
+            }
         }
 
         public override vec3 Scale

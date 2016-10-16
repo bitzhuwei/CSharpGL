@@ -19,20 +19,22 @@ namespace CSharpGL
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             // if mouse is out of window's area, nothing picked.
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
-
-            int x = mousePosition.X;
-            int y = clientRectangle.Height - mousePosition.Y - 1;
-            // now (x, y) is in OpenGL's window cooridnate system.
-            Point position = new Point(x, y);
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
-            var pickingRect = new Rectangle(x, y, 1, 1);
-            foreach (ViewPort viewPort in this.rootViewPort.Traverse(TraverseOrder.Post))
+            lock (this.synObj)
             {
-                if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(position))
+                int x = mousePosition.X;
+                int y = clientRectangle.Height - mousePosition.Y - 1;
+                // now (x, y) is in OpenGL's window cooridnate system.
+                Point position = new Point(x, y);
+                var pickingRect = new Rectangle(x, y, 1, 1);
+                foreach (ViewPort viewPort in this.rootViewPort.Traverse(TraverseOrder.Post))
                 {
-                    allPickedGeometrys = ColorCodedPicking(viewPort, pickingRect, clientRectangle, pickingGeometryType);
+                    if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(position))
+                    {
+                        allPickedGeometrys = ColorCodedPicking(viewPort, pickingRect, clientRectangle, pickingGeometryType);
 
-                    break;
+                        break;
+                    }
                 }
             }
 
@@ -54,7 +56,6 @@ namespace CSharpGL
             // if depth buffer is valid in specified rect, then maybe something is picked.
             if (DepthBufferValid(pickingRect))
             {
-                lock (this.synObj)
                 {
                     var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.

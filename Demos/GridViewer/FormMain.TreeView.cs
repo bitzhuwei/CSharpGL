@@ -194,7 +194,7 @@ namespace GridViewer
             if (obj == null) { return; }
             var transform = obj.Renderer as IModelSpace;
             if (transform == null) { return; }
-            vec3 position = transform.WorldPosition.Value;
+            vec3 position = transform.WorldPosition;
             var max = transform.ModelSize / 2;
             var min = -max;
             IBoundingBox translatedBox = new BoundingBox(min + position, max + position);

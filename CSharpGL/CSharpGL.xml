@@ -12510,6 +12510,22 @@
             records whether modelMatrix is updated.
             </summary>
         </member>
+        <member name="M:CSharpGL.RendererBase.GeUpdatedModelMatrix(CSharpGL.mat4@)">
+            <summary>
+            Get model matrix that transform model from model space to world space.
+            <para>This method will also cancel updated recording mark.</para>
+            <para>Returns true if model matrix is updated; otherwise return false.</para>
+            </summary>
+            <param name="modelMatrix">updated model matrix.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.RendererBase.GetUpdatedModelMatrix">
+            <summary>
+            Get model matrix that transform model from model space to world space.
+            <para>This method will also cancel updated recording mark.</para>
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CSharpGL.RendererBase.Initialize">
             <summary>
             Initialize all stuff related to OpenGL.
@@ -12896,18 +12912,24 @@
             Vertex Array Object.
             </summary>
         </member>
-        <member name="T:CSharpGL.IColorCodedPicking">
+        <member name="T:CSharpGL.IPickable">
             <summary>
             Scene element that implemented this interface will take part in color-coded picking.
             </summary>
         </member>
-        <member name="M:CSharpGL.IColorCodedPicking.GetVertexCount">
+        <member name="M:CSharpGL.IPickable.Render4Picking(CSharpGL.RenderEventArgs)">
+            <summary>
+            Render for color-coded picking.
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.IPickable.GetVertexCount">
             <summary>
             Gets vertices' count in this element's VBO representing positions.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.IColorCodedPicking.GetPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.IPickable.GetPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
             <summary>
             Get the geometry according to vertex's id.
             <para>Note: the <paramref name="stageVertexId"/> refers to the last vertex that constructs the geometry. And it's unique among all elements in a scene.</para>
@@ -12918,7 +12940,7 @@
             <param name="y">mouse position(Left Down is (0, 0)).</param>
             <returns></returns>
         </member>
-        <member name="P:CSharpGL.IColorCodedPicking.PickingBaseId">
+        <member name="P:CSharpGL.IPickable.PickingBaseId">
             <summary>
             Gets how many primitived have been rendered till now during color coded rendering.
             </summary>
@@ -12948,6 +12970,12 @@
             
              </summary>
              <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.PickableRenderer.Render4Picking(CSharpGL.RenderEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="arg"></param>
         </member>
         <member name="M:CSharpGL.PickableRenderer.GetVertexCount">
              <summary>
@@ -15482,20 +15510,26 @@
             
              </summary>
         </member>
+        <member name="M:CSharpGL.HighlightedPickableRenderer.Render4Picking(CSharpGL.RenderEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="arg"></param>
+        </member>
         <member name="M:CSharpGL.HighlightedPickableRenderer.GetVertexCount">
              <summary>
             
              </summary>
         </member>
         <member name="M:CSharpGL.HighlightedPickableRenderer.GetPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <returns></returns>
         </member>
         <member name="P:CSharpGL.HighlightedPickableRenderer.Highlighter">
             <summary>
@@ -17982,7 +18016,7 @@
             </summary>
             <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
         </member>
-        <member name="M:CSharpGL.Scene.Pick(System.Drawing.Point,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.Scene.Pick(System.Drawing.Point,CSharpGL.PickingGeometryType)">
             <summary>
             Get geometry at specified <paramref name="mousePosition"/> with specified <paramref name="pickingGeometryType"/>.
             <para>Returns null when <paramref name="mousePosition"/> is out of this scene's area or there's no active(visible and enabled) viewport.</para>
@@ -17991,7 +18025,7 @@
             <param name="pickingGeometryType">target's geometry type.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Scene.ColorCodedPicking(CSharpGL.ViewPort,System.Drawing.Rectangle,System.Drawing.Rectangle,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.Scene.ColorCodedPicking(CSharpGL.ViewPort,System.Drawing.Rectangle,System.Drawing.Rectangle,CSharpGL.PickingGeometryType)">
             <summary>
             Pick primitives in specified <paramref name="viewPort"/>.
             </summary>
@@ -18015,7 +18049,7 @@
             <param name="arg"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Scene.GetPickGeometry(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,System.Collections.Generic.List{CSharpGL.IColorCodedPicking})">
+        <member name="M:CSharpGL.Scene.GetPickGeometry(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,System.Collections.Generic.List{CSharpGL.IPickable})">
             <summary>
             get picked geometry.
             </summary>
@@ -18033,29 +18067,26 @@
             <param name="target"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Scene.Render(CSharpGL.RenderModes,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.Scene.Render(CSharpGL.PickingGeometryType)">
             <summary>
             Render this scene.
             </summary>
-            <param name="renderMode"></param>
-            <param name="pickingGeometryType"></param>
+            <param name="pickingGeometryType">Specify type of primitive you want to pick or nothing to pick.</param>
         </member>
-        <member name="M:CSharpGL.Scene.RenderViewPort(CSharpGL.ViewPort,System.Drawing.Rectangle,CSharpGL.RenderModes,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.Scene.RenderViewPort(CSharpGL.ViewPort,System.Drawing.Rectangle,CSharpGL.PickingGeometryType)">
             <summary>
             render scene in every view port.
             </summary>
             <param name="viewPort"></param>
             <param name="clientRectangle"></param>
-            <param name="renderMode"></param>
             <param name="pickingGeometryType"></param>
         </member>
-        <member name="M:CSharpGL.Scene.Render(CSharpGL.ViewPort,System.Drawing.Rectangle,CSharpGL.RenderModes,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.Scene.Render(CSharpGL.ViewPort,System.Drawing.Rectangle,CSharpGL.PickingGeometryType)">
             <summary>
             Render scene in specified <paramref name="viewPort"/>.
             </summary>
             <param name="viewPort"></param>
             <param name="clientRectangle"></param>
-            <param name="renderMode"></param>
             <param name="pickingGeometryType"></param>
         </member>
         <member name="M:CSharpGL.Scene.RenderObject(CSharpGL.SceneObject,CSharpGL.RenderEventArgs)">
@@ -19016,11 +19047,11 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PrimitiveRestartSwitch.#ctor(CSharpGL.OneIndexBufferPtr)">
+        <member name="M:CSharpGL.PrimitiveRestartSwitch.#ctor(CSharpGL.IndexElementType)">
              <summary>
             
              </summary>
-             <param name="indexBufferPtr"></param>
+             <param name="indexElementType"></param>
         </member>
         <member name="M:CSharpGL.PrimitiveRestartSwitch.ToString">
              <summary>
@@ -20186,6 +20217,13 @@
              <param name="positionNameInIBufferable">Name of buffer that describes model's position.</param>
             <param name="switches">OpenGL switches.</param>
         </member>
+        <member name="M:CSharpGL.InnerPickableRenderer.Render4Picking(CSharpGL.RenderEventArgs,CSharpGL.IndexBufferPtr)">
+            <summary>
+            render with specified index buffer.
+            </summary>
+            <param name="arg"></param>
+            <param name="temporaryIndexBufferPtr"></param>
+        </member>
         <member name="M:CSharpGL.InnerPickableRenderer.MovePositions(System.Drawing.Point,CSharpGL.mat4,CSharpGL.mat4,CSharpGL.vec4,System.Collections.Generic.IEnumerable{System.UInt32})">
             <summary>
             Move vertexes' position accroding to difference on screen.
@@ -20212,6 +20250,12 @@
             <summary>
             uniform mat4 VMP; (in shader)
             </summary>
+        </member>
+        <member name="M:CSharpGL.InnerPickableRenderer.Render4Picking(CSharpGL.RenderEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="arg"></param>
         </member>
         <member name="M:CSharpGL.InnerPickableRenderer.GetVertexCount">
              <summary>
@@ -20562,6 +20606,20 @@
              <param name="a"></param>
         </member>
         <member name="M:CSharpGL.Pixel.ToColor">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Pixel.ToStageVertexId">
+            <summary>
+            Gets stageVertexID from coded color.
+            The stageVertexID is the last vertex that constructs the primitive.
+            see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Pixel.IsWhite">
              <summary>
             
              </summary>
@@ -21419,42 +21477,42 @@
             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexRenderer.GetPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexRenderer.SearchPoint(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32,System.UInt32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexPointSearcher)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="primitiveInfo"></param>
-            <param name="searcher"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="primitiveInfo"></param>
+             <param name="searcher"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexRenderer.SearchLine(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32,System.UInt32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexLineSearcher)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="primitiveInfo"></param>
-            <param name="searcher"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="primitiveInfo"></param>
+             <param name="searcher"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.OneIndexRenderer.PickWhateverItIs(CSharpGL.RenderEventArgs,System.UInt32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.OneIndexRenderer.PickWhateverItIs(CSharpGL.RenderEventArgs,System.UInt32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.PickingGeometryType)">
             <summary>
             是三角形，就pick一个三角形；是四边形，就pick一个四边形，是多边形，就pick一个多边形。
             </summary>
@@ -21475,24 +21533,24 @@
             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexRenderer.GetLastIndexIdOfPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="lastVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="lastVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexRenderer.Pick(CSharpGL.RenderEventArgs,CSharpGL.OneIndexBufferPtr,System.Int32,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="twoPrimitivesIndexBufferPtr"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="twoPrimitivesIndexBufferPtr"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexRenderer.GetLastIndexIdList(CSharpGL.RenderEventArgs,System.UInt32)">
             <summary>
@@ -21861,13 +21919,13 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ColorCodedPicking.ReadPixel(System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ColorCodedPicking.ReadStageVertexId(System.Int32,System.Int32)">
             <summary>
             Gets stage vertex id by color coded picking machanism.
             Note: left bottom is(0, 0). This is different from Winform's left top being (0, 0).
             </summary>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
+            <param name="x">target pixel position(Left Down is (0, 0)).</param>
+            <param name="y">target pixel position(Left Down is (0, 0)).</param>
             <returns></returns>
         </member>
         <member name="T:CSharpGL.HighlightShaderHelper">
@@ -22840,34 +22898,39 @@
             
              </summary>
         </member>
-        <member name="T:CSharpGL.GeometryType">
+        <member name="T:CSharpGL.PickingGeometryType">
             <summary>
-            Enumeration for geometry types.
+            Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
             </summary>
         </member>
-        <member name="F:CSharpGL.GeometryType.Point">
+        <member name="F:CSharpGL.PickingGeometryType.None">
             <summary>
-            a point.
+            Not picking.
             </summary>
         </member>
-        <member name="F:CSharpGL.GeometryType.Line">
+        <member name="F:CSharpGL.PickingGeometryType.Point">
             <summary>
-            a line.
+            Picking a point.
             </summary>
         </member>
-        <member name="F:CSharpGL.GeometryType.Triangle">
+        <member name="F:CSharpGL.PickingGeometryType.Line">
             <summary>
-            a triangle.
+            Picking a line.
             </summary>
         </member>
-        <member name="F:CSharpGL.GeometryType.Quad">
+        <member name="F:CSharpGL.PickingGeometryType.Triangle">
             <summary>
-            a quad.
+            Picking a triangle.
             </summary>
         </member>
-        <member name="F:CSharpGL.GeometryType.Polygon">
+        <member name="F:CSharpGL.PickingGeometryType.Quad">
             <summary>
-            a polygon.
+            Picking a quad.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.PickingGeometryType.Polygon">
+            <summary>
+            Picking a polygon.
             </summary>
         </member>
         <member name="T:CSharpGL.GeometryTypesHelper">
@@ -22875,27 +22938,27 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.GeometryTypesHelper.GetVertexCount(CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.GeometryTypesHelper.GetVertexCount(CSharpGL.PickingGeometryType)">
             <summary>
             Get vertex count of specified geometry's type.
-            <para>returns -1 if type is <see cref="F:CSharpGL.GeometryType.Polygon"/>.</para>
+            <para>returns -1 if type is <see cref="F:CSharpGL.PickingGeometryType.Polygon"/>.</para>
             </summary>
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.GeometryTypesHelper.ToDrawMode(CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.GeometryTypesHelper.ToDrawMode(CSharpGL.PickingGeometryType)">
              <summary>
             
              </summary>
              <param name="type"></param>
              <returns></returns>
         </member>
-        <member name="T:CSharpGL.IColorCodedPickingHelper">
+        <member name="T:CSharpGL.IPickableHelper">
             <summary>
             This helps to get last vertex's id of picked primitive.
             </summary>
         </member>
-        <member name="M:CSharpGL.IColorCodedPickingHelper.GetLastVertexIdOfPickedGeometry(CSharpGL.IColorCodedPicking,System.UInt32,System.UInt32@)">
+        <member name="M:CSharpGL.IPickableHelper.GetLastVertexIdOfPickedGeometry(CSharpGL.IPickable,System.UInt32,System.UInt32@)">
             <summary>
             Returns last vertex's id of picked geometry if the geometry represented by <paramref name="stageVertexId"/> belongs to this <paramref name="element"/> instance.
             <para>Returns false if <paramref name="stageVertexId"/> the primitive is in some other element.</para>
@@ -22934,7 +22997,7 @@
         <member name="P:CSharpGL.IPickedGeometry.StageVertexId">
             <summary>
             The last vertex's id that constructs the picked primitive.
-            <para>This id is in scene's all <see cref="T:CSharpGL.IColorCodedPicking"/>s' order.</para>
+            <para>This id is in scene's all <see cref="T:CSharpGL.IPickable"/>s' order.</para>
             </summary>
         </member>
         <member name="T:CSharpGL.PickedGeometry">
@@ -22943,7 +23006,7 @@
             <para>Representing a primitive.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.PickedGeometry.#ctor(CSharpGL.ViewPort,CSharpGL.GeometryType,CSharpGL.vec3[],System.UInt32[],System.UInt32,CSharpGL.IColorCodedPicking)">
+        <member name="M:CSharpGL.PickedGeometry.#ctor(CSharpGL.ViewPort,CSharpGL.PickingGeometryType,CSharpGL.vec3[],System.UInt32[],System.UInt32,CSharpGL.IPickable)">
             <summary>
             The color-coded picking result.
             <para>Representing a primitive(point, line, triangle, quad, polygon).</para>
@@ -22998,7 +23061,7 @@
         <member name="P:CSharpGL.PickedGeometry.StageVertexId">
             <summary>
             The last vertex's id that constructs the picked primitive.
-            <para>This id is in scene's all <see cref="T:CSharpGL.IColorCodedPicking"/>s' order.</para>
+            <para>This id is in scene's all <see cref="T:CSharpGL.IPickable"/>s' order.</para>
             </summary>
         </member>
         <member name="P:CSharpGL.PickedGeometry.FromRenderer">
@@ -23036,7 +23099,7 @@
         </member>
         <member name="M:CSharpGL.PrimitiveModesHelper.ToGeometryType(CSharpGL.DrawMode)">
             <summary>
-            Convert <see cref="T:CSharpGL.DrawMode"/> to <see cref="T:CSharpGL.GeometryType"/>.
+            Convert <see cref="T:CSharpGL.DrawMode"/> to <see cref="T:CSharpGL.PickingGeometryType"/>.
             </summary>
             <param name="mode"></param>
             <returns></returns>
@@ -24596,23 +24659,17 @@
             Render event argument.
             </summary>
         </member>
-        <member name="M:CSharpGL.RenderEventArgs.#ctor(CSharpGL.RenderModes,System.Drawing.Rectangle,CSharpGL.ViewPort,CSharpGL.GeometryType)">
+        <member name="M:CSharpGL.RenderEventArgs.#ctor(System.Drawing.Rectangle,CSharpGL.ViewPort,CSharpGL.PickingGeometryType)">
             <summary>
             Initializes a new instance of the <see cref="T:CSharpGL.RenderEventArgs"/> class.
             </summary>
-            <param name="renderMode">render mode.</param>
             <param name="canvasRect"></param>
             <param name="viewPort">camera used during rendering.</param>
-            <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <paramref name="renderMode"/> is <see cref="F:CSharpGL.RenderModes.ColorCodedPicking"/>; otherwise useless.</param>
+            <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking; otherwise useless.</param>
         </member>
         <member name="P:CSharpGL.RenderEventArgs.Camera">
             <summary>
             Gets camera used during rendering.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RenderEventArgs.RenderMode">
-            <summary>
-            Gets render mode.
             </summary>
         </member>
         <member name="P:CSharpGL.RenderEventArgs.CanvasRect">
@@ -24622,28 +24679,13 @@
         </member>
         <member name="P:CSharpGL.RenderEventArgs.PickingGeometryType">
             <summary>
-            Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when render mode is <see cref="F:CSharpGL.RenderModes.ColorCodedPicking"/>; otherwise useless.
+            Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
             </summary>
         </member>
         <member name="P:CSharpGL.RenderEventArgs.UsingViewPort">
             <summary>
             Gets view port used during rendering.
             </summary>
-        </member>
-        <member name="T:CSharpGL.RenderModes">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.RenderModes.Render">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.RenderModes.ColorCodedPicking">
-             <summary>
-            
-             </summary>
         </member>
         <member name="T:CSharpGL.FBORenderContext">
             <summary>

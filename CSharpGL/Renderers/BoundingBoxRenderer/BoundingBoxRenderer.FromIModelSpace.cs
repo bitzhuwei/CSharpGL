@@ -66,7 +66,7 @@ namespace CSharpGL
             vec3 worldPosition = max / 2.0f + min / 2.0f;
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
             boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth: 1.0f));
-            boxRenderer.SetWorldPosition(worldPosition);
+            boxRenderer.WorldPosition = worldPosition;
 
             return boxRenderer;
         }

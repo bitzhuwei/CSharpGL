@@ -15,7 +15,7 @@
 
         protected override void DoUpdate()
         {
-            this.BindingObject.Renderer.SetWorldPosition(this.TargetRenderer.WorldPosition.Value + new vec3(0, 0.3f, 0));
+            this.BindingObject.Renderer.WorldPosition = this.TargetRenderer.WorldPosition + new vec3(0, 0.3f, 0);
         }
     }
 }

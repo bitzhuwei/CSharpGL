@@ -5,21 +5,13 @@
     /// </summary>
     public partial class LabelRenderer
     {
-        private long billboardCenter_worldspaceTicks;
         /// <summary>
         ///
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            {
-                long tick = this.WorldPosition.UpdateTicks;
-                if (tick != this.billboardCenter_worldspaceTicks)
-                {
-                    this.SetUniform("billboardCenter_worldspace", this.WorldPosition.Value);
-                    this.billboardCenter_worldspaceTicks = tick;
-                }
-            }
+            this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
 
             if (labelHeightRecord.IsMarked())
             {
