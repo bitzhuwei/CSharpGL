@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// 支持"拾取"的渲染器
     /// </summary>
-    public partial class PickableRenderer : Renderer, IColorCodedPicking
+    public partial class PickableRenderer : Renderer, IPickable
     {
         private InnerPickableRenderer innerPickableRenderer;
 

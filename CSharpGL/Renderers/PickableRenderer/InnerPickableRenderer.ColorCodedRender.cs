@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    partial class InnerPickableRenderer : IColorCodedPicking
+    partial class InnerPickableRenderer : IPickable
     {
         /// <summary>
         /// render with specified index buffer.

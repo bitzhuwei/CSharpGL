@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// 高亮显示拾取的图元。
     /// </summary>
-    public class HighlightedPickableRenderer : RendererBase, IColorCodedPicking
+    public class HighlightedPickableRenderer : RendererBase, IPickable
     {
         /// <summary>
         /// 高亮显示拾取的图元。

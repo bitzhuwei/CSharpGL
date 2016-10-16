@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Renderer that supports color-coded rendering.
     /// </summary>
-    abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
+    abstract partial class InnerPickableRenderer : Renderer, IPickable
     {
         /// <summary>
         ///

@@ -34,14 +34,14 @@ namespace CSharpGL
 
         /// <summary>
         /// The last vertex's id that constructs the picked primitive.
-        /// <para>This id is in scene's all <see cref="IColorCodedPicking"/>s' order.</para>
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para>
         /// </summary>
         public uint StageVertexId { get; set; }
 
         /// <summary>
         /// The renderer that this picked primitive belongs to.
         /// </summary>
-        public virtual IColorCodedPicking FromRenderer { get; set; }
+        public virtual IPickable FromRenderer { get; set; }
 
         //public PickedGeometry() { }
         /// <summary>
@@ -54,7 +54,7 @@ namespace CSharpGL
         /// <param name="vertexIds"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="fromRenderer"></param>
-        public PickedGeometry(ViewPort fromViewPort, PickingGeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IColorCodedPicking fromRenderer)
+        public PickedGeometry(ViewPort fromViewPort, PickingGeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IPickable fromRenderer)
         {
             this.FromViewPort = fromViewPort;
             this.GeometryType = geometryType;

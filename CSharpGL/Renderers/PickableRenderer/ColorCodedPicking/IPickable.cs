@@ -3,7 +3,7 @@
     /// <summary>
     /// Scene element that implemented this interface will take part in color-coded picking.
     /// </summary>
-    public interface IColorCodedPicking : IRenderable
+    public interface IPickable : IRenderable
     {
         /// <summary>
         /// Gets how many primitived have been rendered till now during color coded rendering.

@@ -58,7 +58,7 @@ namespace CSharpGL
                 {
                     var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.
-                    List<IColorCodedPicking> pickableRendererList = Render4Picking(arg);
+                    List<IPickable> pickableRendererList = Render4Picking(arg);
                     // Read pixels in specified rect and get the VertexIds they represent.
                     List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(pickingRect);
                     // Get all picked geometrys.
@@ -116,7 +116,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <returns></returns>
-        private List<IColorCodedPicking> Render4Picking(RenderEventArgs arg)
+        private List<IPickable> Render4Picking(RenderEventArgs arg)
         {
             arg.UsingViewPort.On();
 
@@ -132,7 +132,7 @@ namespace CSharpGL
             OpenGL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             uint renderedVertexCount = 0;
-            var pickedRendererList = new List<IColorCodedPicking>();
+            var pickedRendererList = new List<IPickable>();
             RenderPickableObject(this.rootObject, arg, ref renderedVertexCount, pickedRendererList);
 
             OpenGL.Flush();
@@ -142,7 +142,7 @@ namespace CSharpGL
             return pickedRendererList;
         }
 
-        private void RenderPickableObject(SceneObject sceneObject, RenderEventArgs arg, ref  uint renderedVertexCount, List<IColorCodedPicking> pickedRendererList)
+        private void RenderPickableObject(SceneObject sceneObject, RenderEventArgs arg, ref  uint renderedVertexCount, List<IPickable> pickedRendererList)
         {
             if ((sceneObject == null) || (!sceneObject.Enabled)) { return; }
 
@@ -153,7 +153,7 @@ namespace CSharpGL
                 switchArray[i].On();
             }
             // render self.
-            var pickable = sceneObject.Renderer as IColorCodedPicking;
+            var pickable = sceneObject.Renderer as IPickable;
             if ((pickable != null) && (sceneObject.Renderer.Enabled))
             {
                 pickable.PickingBaseId = renderedVertexCount;
@@ -199,10 +199,10 @@ namespace CSharpGL
         private static PickedGeometry GetPickGeometry(RenderEventArgs arg,
             int x, int y,
             uint stageVertexId,
-            List<IColorCodedPicking> pickableRendererList)
+            List<IPickable> pickableRendererList)
         {
             PickedGeometry pickedGeometry = null;
-            foreach (IColorCodedPicking item in pickableRendererList)
+            foreach (IPickable item in pickableRendererList)
             {
                 pickedGeometry = item.GetPickedGeometry(arg, stageVertexId, x, y);
 

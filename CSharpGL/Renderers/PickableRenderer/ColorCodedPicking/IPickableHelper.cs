@@ -3,7 +3,7 @@
     /// <summary>
     /// This helps to get last vertex's id of picked primitive.
     /// </summary>
-    public static class IColorCodedPickingHelper
+    public static class IPickableHelper
     {
         /// <summary>
         /// Returns last vertex's id of picked geometry if the geometry represented by <paramref name="stageVertexId"/> belongs to this <paramref name="element"/> instance.
@@ -13,7 +13,7 @@
         /// <param name="stageVertexId"></param>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        public static bool GetLastVertexIdOfPickedGeometry(this IColorCodedPicking element,
+        public static bool GetLastVertexIdOfPickedGeometry(this IPickable element,
             uint stageVertexId, out uint lastVertexId)
         {
             lastVertexId = uint.MaxValue;

@@ -24,11 +24,11 @@
         /// <summary>
         /// The scene's element from which this <see cref="IPickedGeometry"/>'s instance is picked.
         /// </summary>
-        IColorCodedPicking FromRenderer { get; set; }
+        IPickable FromRenderer { get; set; }
 
         /// <summary>
         /// The last vertex's id that constructs the picked primitive.
-        /// <para>This id is in scene's all <see cref="IColorCodedPicking"/>s' order.</para>
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para>
         /// </summary>
         uint StageVertexId { get; set; }
     }

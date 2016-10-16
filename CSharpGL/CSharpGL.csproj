@@ -537,8 +537,8 @@
     </Compile>
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\PickingGeometryType.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\GeometryTypeHelper.cs" />
-    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IColorCodedPicking.cs" />
-    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IColorCodedPickingHelper.cs" />
+    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IPickable.cs" />
+    <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IPickableHelper.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\IPickedGeometry.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\PickedGeometry.cs" />
     <Compile Include="Renderers\PickableRenderer\ColorCodedPicking\PickingShaderHelper.cs" />

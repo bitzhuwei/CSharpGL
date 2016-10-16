@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace CSharpGL
 {
-    partial class InnerPickableRenderer : IColorCodedPicking
+    partial class InnerPickableRenderer : IPickable
     {
         /// <summary>
         /// uniform mat4 VMP; (in shader)
