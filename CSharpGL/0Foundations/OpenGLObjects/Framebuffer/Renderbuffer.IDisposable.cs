@@ -2,7 +2,9 @@
 
 namespace CSharpGL
 {
-    //TODO: IDisposable
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Renderbuffer : IDisposable
     {
         /// <summary>

@@ -365,7 +365,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>(); }
-                //TODO: note tested yet.
+                //TODO: not tested yet.
                 var values = new int[v0.Length];
                 for (int i = 0; i < values.Length; i++)
                 {

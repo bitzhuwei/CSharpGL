@@ -20,7 +20,6 @@ namespace RendererGenerator
         /// <param name="attributeType"></param>
         public VertexAttribute(string nameInShader, string nameInModel, string attributeType)
         {
-            // TODO: Complete member initialization
             this.NameInShader = nameInShader;
             this.NameInModel = nameInModel;
             this.AttributeType = attributeType;
