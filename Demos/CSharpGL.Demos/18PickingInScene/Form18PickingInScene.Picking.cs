@@ -79,61 +79,86 @@ namespace CSharpGL.Demos
             }
             else
             {
-                if (this.controlDown)
-                {
-                    List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
-                        e.Location, this.PickingGeometryType);
-                    PickedGeometry pickedGeometry = null;
-                    if (allPickedGeometrys != null && allPickedGeometrys.Count > 0)
-                    { pickedGeometry = allPickedGeometrys[0].Item2; }
-
-                    if (pickedGeometry != null)
-                    {
-                        PickableRenderer pickableRenderer = null;
-                        var renderer = pickedGeometry.FromRenderer as HighlightedPickableRenderer;
-                        if (renderer != null)
-                        {
-                            renderer.Highlighter.SetHighlightIndexes(
-                                this.PickingGeometryType.ToDrawMode(), pickedGeometry.VertexIds);
-                            this.highlightedRenderer = renderer;
-                            pickableRenderer = renderer.PickableRenderer;
-                        }
-                        else
-                        {
-                            pickableRenderer = pickedGeometry.FromRenderer as PickableRenderer;
-                        }
-
-                        FormBulletinBoard bulletinBoard = this.bulletinBoard;
-                        if ((bulletinBoard != null) && (!bulletinBoard.IsDisposed))
-                        {
-                            ICamera camera = this.scene.FirstCamera;
-                            mat4 projection = camera.GetProjectionMatrix();
-                            mat4 view = camera.GetViewMatrix();
-                            mat4 model = pickableRenderer.GetModelMatrix().Value;
-                            this.bulletinBoard.SetContent(pickedGeometry.ToString(
-                                projection, view, model));
-                        }
-
-                        this.glCanvas1.Cursor = Cursors.Hand;
-                    }
-                    else
-                    {
-                        HighlightedPickableRenderer renderer = this.highlightedRenderer;
-                        if (renderer != null)
-                        {
-                            renderer.Highlighter.ClearHighlightIndexes();
-                        }
-                        this.bulletinBoard.SetContent("picked nothing.");
-
-                        this.glCanvas1.Cursor = Cursors.Default;
-                    }
-                    this.pickedGeometry = pickedGeometry;
-                }
+                MouseMoveFree(e);
             }
 
             UpdateColorInformationAtMouse(e.X, e.Y);
 
             this.lastMousePosition = e.Location;
+        }
+
+        private void MouseMoveFree(MouseEventArgs e)
+        {
+            if (this.controlDown)
+            {
+                ControlDown(e);
+            }
+            else
+            {
+                if (this.pickedGeometry != null)
+                {
+                    HighlightedPickableRenderer renderer = this.highlightedRenderer;
+                    if (renderer != null)
+                    {
+                        renderer.Highlighter.ClearHighlightIndexes();
+                    }
+                    this.bulletinBoard.SetContent("picked nothing.");
+
+                    this.glCanvas1.Cursor = Cursors.Default;
+                    this.pickedGeometry = null;
+                }
+            }
+        }
+
+        private void ControlDown(MouseEventArgs e)
+        {
+            List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
+                e.Location, this.PickingGeometryType);
+            PickedGeometry pickedGeometry = null;
+            if (allPickedGeometrys != null && allPickedGeometrys.Count > 0)
+            { pickedGeometry = allPickedGeometrys[0].Item2; }
+
+            if (pickedGeometry != null)
+            {
+                PickableRenderer pickableRenderer = null;
+                var renderer = pickedGeometry.FromRenderer as HighlightedPickableRenderer;
+                if (renderer != null)
+                {
+                    renderer.Highlighter.SetHighlightIndexes(
+                        this.PickingGeometryType.ToDrawMode(), pickedGeometry.VertexIds);
+                    this.highlightedRenderer = renderer;
+                    pickableRenderer = renderer.PickableRenderer;
+                }
+                else
+                {
+                    pickableRenderer = pickedGeometry.FromRenderer as PickableRenderer;
+                }
+
+                FormBulletinBoard bulletinBoard = this.bulletinBoard;
+                if ((bulletinBoard != null) && (!bulletinBoard.IsDisposed))
+                {
+                    ICamera camera = this.scene.FirstCamera;
+                    mat4 projection = camera.GetProjectionMatrix();
+                    mat4 view = camera.GetViewMatrix();
+                    mat4 model = pickableRenderer.GetModelMatrix().Value;
+                    this.bulletinBoard.SetContent(pickedGeometry.ToString(
+                        projection, view, model));
+                }
+
+                this.glCanvas1.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                HighlightedPickableRenderer renderer = this.highlightedRenderer;
+                if (renderer != null)
+                {
+                    renderer.Highlighter.ClearHighlightIndexes();
+                }
+                this.bulletinBoard.SetContent("picked nothing.");
+
+                this.glCanvas1.Cursor = Cursors.Default;
+            }
+            this.pickedGeometry = pickedGeometry;
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
