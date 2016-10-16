@@ -111,19 +111,19 @@ namespace CSharpGL
             {
                 case IndexElementType.UByte:
                     if (this.ubyteRestartIndexSwitch == null)
-                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr); }
+                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type); }
                     result = this.ubyteRestartIndexSwitch;
                     break;
 
                 case IndexElementType.UShort:
                     if (this.ushortRestartIndexSwitch == null)
-                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr); }
+                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type); }
                     result = this.ushortRestartIndexSwitch;
                     break;
 
                 case IndexElementType.UInt:
                     if (this.uintRestartIndexSwitch == null)
-                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr); }
+                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type); }
                     result = this.uintRestartIndexSwitch;
                     break;
 

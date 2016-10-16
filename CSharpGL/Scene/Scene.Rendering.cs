@@ -28,7 +28,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="viewPort"></param>
         /// <param name="clientRectangle"></param>
-        /// <param name="renderMode"></param>
         /// <param name="pickingGeometryType"></param>
         private void RenderViewPort(ViewPort viewPort, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {

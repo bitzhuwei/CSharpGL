@@ -25,11 +25,10 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        /// <param name="renderMode">render mode.</param>
         /// <param name="canvasRect"></param>
         /// <param name="viewPort">camera used during rendering.</param>
-        /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <paramref name="renderMode"/> is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.</param>
-        public RenderEventArgs(Rectangle canvasRect, ViewPort viewPort, PickingGeometryType pickingGeometryType = PickingGeometryType.Point)
+        /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking; otherwise useless.</param>
+        public RenderEventArgs(Rectangle canvasRect, ViewPort viewPort, PickingGeometryType pickingGeometryType)
         {
             this.CanvasRect = canvasRect;
             this.UsingViewPort = viewPort;

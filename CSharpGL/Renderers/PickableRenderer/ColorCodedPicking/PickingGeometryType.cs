@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Enumeration for geometry types.
+    /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
     /// </summary>
     public enum PickingGeometryType
     {

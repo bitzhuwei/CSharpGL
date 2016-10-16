@@ -10,14 +10,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="indexBufferPtr"></param>
-        public PrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
+        /// <param name="indexElementType"></param>
+        public PrimitiveRestartSwitch(IndexElementType indexElementType)
             : base(OpenGL.GL_PRIMITIVE_RESTART, true)
         {
-            if (indexBufferPtr == null)
-            { throw new ArgumentException(); }
-
-            switch (indexBufferPtr.Type)
+            switch (indexElementType)
             {
                 case IndexElementType.UByte:
                     this.RestartIndex = byte.MaxValue;

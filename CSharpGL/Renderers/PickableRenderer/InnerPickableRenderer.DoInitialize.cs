@@ -47,7 +47,7 @@ namespace CSharpGL
             var ptr = indexBufferPtr as OneIndexBufferPtr;
             if (ptr != null)
             {
-                GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr);
+                GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr.Type);
                 this.switchList.Add(glSwitch);
             }
 
