@@ -197,7 +197,7 @@ namespace CSharpGL
         {
             Render4InnerPicking(arg, twoPrimitivesIndexBufferPtr);
 
-            uint pickedIndex = ColorCodedPicking.ReadPixel(x, y);
+            uint pickedIndex = ColorCodedPicking.ReadStageVertexId(x, y);
 
             return pickedIndex;
         }
