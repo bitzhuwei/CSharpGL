@@ -36,6 +36,7 @@
             this.lblReadColor = new System.Windows.Forms.Label();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.chkRenderMode = new System.Windows.Forms.CheckBox();
+            this.lblPickingInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,6 +121,16 @@
             this.chkRenderMode.Text = "Render Mode";
             this.chkRenderMode.UseVisualStyleBackColor = true;
             // 
+            // lblPickingInfo
+            // 
+            this.lblPickingInfo.AutoSize = true;
+            this.lblPickingInfo.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblPickingInfo.Location = new System.Drawing.Point(516, 12);
+            this.lblPickingInfo.Name = "lblPickingInfo";
+            this.lblPickingInfo.Size = new System.Drawing.Size(149, 20);
+            this.lblPickingInfo.TabIndex = 6;
+            this.lblPickingInfo.Text = "Picking: false";
+            // 
             // Form18PickingInScene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -127,6 +138,7 @@
             this.ClientSize = new System.Drawing.Size(1319, 828);
             this.Controls.Add(this.chkRenderMode);
             this.Controls.Add(this.lblColor);
+            this.Controls.Add(this.lblPickingInfo);
             this.Controls.Add(this.lblDrawText);
             this.Controls.Add(this.lblReadColor);
             this.Controls.Add(this.cmbPickingGeometryType);
@@ -153,5 +165,6 @@
         private System.Windows.Forms.Label lblReadColor;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.CheckBox chkRenderMode;
+        private System.Windows.Forms.Label lblPickingInfo;
     }
 }
