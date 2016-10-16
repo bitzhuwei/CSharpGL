@@ -430,9 +430,6 @@
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="18PickingInScene\Form18PickingInScene.resx">
-      <DependentUpon>Form18PickingInScene.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
