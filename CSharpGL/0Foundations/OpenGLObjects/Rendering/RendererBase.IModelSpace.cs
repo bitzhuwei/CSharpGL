@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace CSharpGL
 {
@@ -106,7 +107,41 @@ namespace CSharpGL
         #endregion IModelSpace
 
         private mat4 modelMatrix = mat4.identity();
+        private mat4 cascadeModelMatrix = mat4.identity();
 
+        /// <summary>
+        /// Should this model matrix be updated?
+        /// </summary>
+        /// <returns></returns>
+        public bool IsModelMatrixMarked()
+        {
+            return this.modelMatrixRecord.IsMarked();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelMatrix"></param>
+        /// <returns></returns>
+        public bool GetCascadeModelMatrix(out mat4 modelMatrix)
+        {
+            mat4 thisModel;
+            bool result = GetUpdatedModelMatrix(out thisModel);
+            SceneObject obj = this.BindingSceneObject;
+            if (obj != null)
+            {
+                RendererBase renderer = obj.Renderer;
+                if (renderer != null)
+                {
+                    // this requires scene objects to be rendered from parent to children.
+                    this.cascadeModelMatrix = renderer.cascadeModelMatrix * thisModel;
+                }
+            }
+
+            modelMatrix = this.cascadeModelMatrix;
+
+            return result;
+        }
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
         /// <para>This method will also cancel updated recording mark.</para>
@@ -114,7 +149,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="modelMatrix">updated model matrix.</param>
         /// <returns></returns>
-        public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
+        public bool GetUpdatedModelMatrix(out mat4 modelMatrix)
         {
             bool result = false;
             if (this.modelMatrixRecord.IsMarked())
@@ -144,5 +179,29 @@ namespace CSharpGL
 
             return this.modelMatrix;
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Flags]
+    public enum ModelSpaceFactor
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        WorldPosition,
+        /// <summary>
+        /// 
+        /// </summary>
+        Scale,
+        /// <summary>
+        /// 
+        /// </summary>
+        RotationAngle,
+        /// <summary>
+        /// 
+        /// </summary>
+        RotationAxis,
     }
 }

@@ -91,7 +91,7 @@ namespace CSharpGL.Demos
             this.SetUniform("CameraUp_worldspace", new vec3(
                 view[0][1], view[1][1], view[2][1]));
             mat4 model;
-            if (this.GeUpdatedModelMatrix(out model))
+            if (this.GetUpdatedModelMatrix(out model))
             {
                 this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
             }
