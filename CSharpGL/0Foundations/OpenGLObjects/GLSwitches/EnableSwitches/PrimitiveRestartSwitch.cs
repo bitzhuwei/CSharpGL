@@ -66,6 +66,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public uint RestartIndex { get; set; }
+        public uint RestartIndex { get; private set; }
     }
 }
