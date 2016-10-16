@@ -19,22 +19,20 @@ namespace CSharpGL
             Rectangle clientRectangle = this.Canvas.ClientRectangle;
             // if mouse is out of window's area, nothing picked.
             if (mousePosition.X < 0 || clientRectangle.Width <= mousePosition.X || mousePosition.Y < 0 || clientRectangle.Height <= mousePosition.Y) { return null; }
-            List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
-            lock (this.synObj)
-            {
-                int x = mousePosition.X;
-                int y = clientRectangle.Height - mousePosition.Y - 1;
-                // now (x, y) is in OpenGL's window cooridnate system.
-                Point position = new Point(x, y);
-                var pickingRect = new Rectangle(x, y, 1, 1);
-                foreach (ViewPort viewPort in this.rootViewPort.Traverse(TraverseOrder.Post))
-                {
-                    if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(position))
-                    {
-                        allPickedGeometrys = ColorCodedPicking(viewPort, pickingRect, clientRectangle, pickingGeometryType);
 
-                        break;
-                    }
+            int x = mousePosition.X;
+            int y = clientRectangle.Height - mousePosition.Y - 1;
+            // now (x, y) is in OpenGL's window cooridnate system.
+            Point position = new Point(x, y);
+            var pickingRect = new Rectangle(x, y, 1, 1);
+            List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
+            foreach (ViewPort viewPort in this.rootViewPort.Traverse(TraverseOrder.Post))
+            {
+                if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(position))
+                {
+                    allPickedGeometrys = ColorCodedPicking(viewPort, pickingRect, clientRectangle, pickingGeometryType);
+
+                    break;
                 }
             }
 
@@ -54,8 +52,9 @@ namespace CSharpGL
             var result = new List<Tuple<Point, PickedGeometry>>();
 
             // if depth buffer is valid in specified rect, then maybe something is picked.
-            if (DepthBufferValid(pickingRect))
+            //if (DepthBufferValid(pickingRect))
             {
+                lock (this.synObj)
                 {
                     var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.
@@ -83,34 +82,34 @@ namespace CSharpGL
             return result;
         }
 
-        /// <summary>
-        /// Maybe something is picked because depth buffer is valid.
-        /// </summary>
-        /// <param name="pickingRect"></param>
-        /// <returns></returns>
-        private static unsafe bool DepthBufferValid(Rectangle pickingRect)
-        {
-            if (pickingRect.Width <= 0 || pickingRect.Height <= 0) { return false; }
+        ///// <summary>
+        ///// Maybe something is picked because depth buffer is valid.
+        ///// </summary>
+        ///// <param name="pickingRect"></param>
+        ///// <returns></returns>
+        //private static unsafe bool DepthBufferValid(Rectangle pickingRect)
+        //{
+        //    if (pickingRect.Width <= 0 || pickingRect.Height <= 0) { return false; }
 
-            bool result = false;
-            using (var codedColor = new UnmanagedArray<byte>(pickingRect.Width * pickingRect.Height))
-            {
-                OpenGL.ReadPixels(pickingRect.X, pickingRect.Y, pickingRect.Width, pickingRect.Height,
-                    OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
+        //    bool result = false;
+        //    using (var codedColor = new UnmanagedArray<byte>(pickingRect.Width * pickingRect.Height))
+        //    {
+        //        OpenGL.ReadPixels(pickingRect.X, pickingRect.Y, pickingRect.Width, pickingRect.Height,
+        //            OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
-                var array = (byte*)codedColor.Header.ToPointer();
-                for (int i = 0; i < codedColor.Length; i++)
-                {
-                    if (array[i] < byte.MaxValue)
-                    {
-                        result = true;
-                        break;
-                    }
-                }
-            }
+        //        var array = (byte*)codedColor.Header.ToPointer();
+        //        for (int i = 0; i < codedColor.Length; i++)
+        //        {
+        //            if (array[i] < byte.MaxValue)
+        //            {
+        //                result = true;
+        //                break;
+        //            }
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         /// <summary>
         /// Render all <see cref="PickableRenderer"/>s for color-coded picking.
