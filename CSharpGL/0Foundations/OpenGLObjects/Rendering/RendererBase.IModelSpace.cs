@@ -111,6 +111,7 @@ namespace CSharpGL
         /// Get model matrix that transform model from model space to world space.
         /// <para>Returns true if model matrix is updatd; otherwise return false.</para>
         /// </summary>
+        /// <param name="modelMatrix">updated model matrix.</param>
         /// <returns></returns>
         public bool GeUpdatedModelMatrix(out mat4 modelMatrix)
         {
@@ -125,6 +126,21 @@ namespace CSharpGL
             modelMatrix = this.modelMatrix;
 
             return result;
+        }
+
+        /// <summary>
+        /// Get model matrix that transform model from model space to world space.
+        /// </summary>
+        /// <returns></returns>
+        public mat4 GetUpdatedModelMatrix()
+        {
+            if (this.modelMatrixRecord.IsMarked())
+            {
+                this.modelMatrix = IModelSpaceHelper.GetModelMatrix(this);
+                this.modelMatrixRecord.CancelMark();
+            }
+
+            return this.modelMatrix;
         }
     }
 }
