@@ -25,7 +25,9 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add("in_Position", Axis.strPosition);
             map.Add("in_Color", Axis.strColor);
-            var renderer = new Renderer(new Axis(partCount, 0.5f), shaderCodes, map);
+            var axis = new Axis(partCount, 0.5f);
+            var renderer = new Renderer(axis, shaderCodes, map);
+            renderer.ModelSize = axis.ModelSize;
 
             this.Renderer = renderer;
         }
@@ -41,8 +43,10 @@ namespace CSharpGL
             vec3 position = (camera.Position - camera.Target).normalize();
             mat4 view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
             float length = Math.Max(this.Size.Width, this.Size.Height);
-            mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
             var renderer = this.Renderer as Renderer;
+            vec3 rendererSize = renderer.ModelSize;
+            vec3 scale = new vec3(length / rendererSize.x, length / rendererSize.y, length / rendererSize.z);
+            mat4 model = glm.scale(mat4.identity(), scale);
             renderer.SetUniform("projectionMatrix", projection);
             renderer.SetUniform("viewMatrix", view);
             renderer.SetUniform("modelMatrix", model);

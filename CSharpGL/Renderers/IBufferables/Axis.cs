@@ -18,7 +18,7 @@ namespace CSharpGL
         {
             if (partCount < 2) { throw new ArgumentException(); }
             this.model = new AxisModel(partCount, radius);
-            this.Lengths = new vec3(radius * 2, radius * 2, radius * 2);
+            this.ModelSize = new vec3(radius * 2, radius * 2, radius * 2);
         }
 
         /// <summary>
@@ -130,6 +130,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public vec3 Lengths { get; private set; }
+        public vec3 ModelSize { get; private set; }
     }
 }

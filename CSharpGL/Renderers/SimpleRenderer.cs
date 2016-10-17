@@ -32,7 +32,7 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Axis model)
         {
-            return Create(model, model.Lengths, Axis.strPosition);
+            return Create(model, model.ModelSize, Axis.strPosition);
         }
 
         /// <summary>
