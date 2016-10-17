@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Drawing.Design;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     /// A shader program object.

@@ -100,6 +100,7 @@ namespace CSharpGL
         {
             this.array = DoAlloc(elementCount);
         }
+
         /// <summary>
         ///
         /// </summary>

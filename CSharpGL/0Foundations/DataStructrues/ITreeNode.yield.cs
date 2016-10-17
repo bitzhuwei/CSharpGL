@@ -26,12 +26,14 @@ namespace CSharpGL
                         yield return item;
                     }
                     break;
+
                 case TraverseOrder.Post:
                     foreach (var item in PostorderTraverse(treeNode))
                     {
                         yield return item;
                     }
                     break;
+
                 default:
                     break;
             }

@@ -4694,6 +4694,7 @@ namespace CSharpGL
         /// <param name="pname">The name of the parameter within programInterface​ to query.</param>
         /// <param name="parameters">The address of a variable to retrieve the value of pname​ for the program interface..</param>
         public delegate void glGetProgramInterfaceiv(uint program, uint programInterface, uint pname, int[] parameters);
+
         /// <summary>
         /// Query the index of a named resource within a program
         /// </summary>
@@ -4701,6 +4702,7 @@ namespace CSharpGL
         /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
         /// <param name="name">The name of the resource to query the index of.</param>
         internal delegate uint glGetProgramResourceIndex(uint program, uint programInterface, string name);
+
         /// <summary>
         /// Query the name of an indexed resource within a program
         /// </summary>
@@ -4711,6 +4713,7 @@ namespace CSharpGL
         /// <param name="length">The address of a variable which will receive the length of the resource name.</param>
         /// <param name="name">The address of a character array into which will be written the name of the resource.</param>
         public delegate void glGetProgramResourceName(uint program, uint programInterface, uint index, uint bufSize, uint[] length, string[] name);
+
         /// <summary>
         /// Retrieve values for multiple properties of a single active resource within a program object
         /// </summary>
@@ -4723,6 +4726,7 @@ namespace CSharpGL
         /// <param name="length">If not NULL, then this value will be filled in with the number of actual parameters written to params​.</param>
         /// <param name="parameters">The output array of parameters to write.</param>
         public delegate void glGetProgramResourceiv(uint program, uint programInterface, uint index, uint propCount, uint[] props, uint bufSize, uint[] length, int[] parameters);
+
         /// <summary>
         /// Query the location of a named resource within a program.
         /// </summary>
@@ -4730,6 +4734,7 @@ namespace CSharpGL
         /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
         /// <param name="name">The name of the resource to query the location of.</param>
         public delegate int glGetProgramResourceLocation(uint program, uint programInterface, string name);
+
         /// <summary>
         /// Query the fragment color index of a named variable within a program.
         /// </summary>
@@ -4738,7 +4743,7 @@ namespace CSharpGL
         /// <param name="name">The name of the resource to query the location of.</param>
         public delegate int glGetProgramResourceLocationIndex(uint program, uint programInterface, string name);
 
-        #endregion
+        #endregion GL_ARB_program_interface_query
 
         #region GL_ARB_shader_storage_buffer_object
 
@@ -4752,9 +4757,10 @@ namespace CSharpGL
 
         //  Constants
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const uint GL_SHADER_STORAGE_BLOCK = 0x92E6;
+
         /// <summary>
         ///
         /// </summary>
@@ -4764,54 +4770,67 @@ namespace CSharpGL
         ///
         /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_BINDING = 0x90D3;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_START = 0x90D4;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_SIZE = 0x90D5;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS = 0x90D6;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_GEOMETRY_SHADER_STORAGE_BLOCKS = 0x90D7;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS = 0x90D8;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS = 0x90D9;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS = 0x90DA;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS = 0x90DB;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS = 0x90DC;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS = 0x90DD;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_SHADER_STORAGE_BLOCK_SIZE = 0x90DE;
+
         /// <summary>
         ///
         /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT = 0x90DF;
+
         /// <summary>
         ///
         /// </summary>
@@ -4822,7 +4841,7 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES = 0x8F39;
 
-        #endregion
+        #endregion GL_ARB_shader_storage_buffer_object
 
         //#region GL_ARB_stencil_texturing
 

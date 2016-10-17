@@ -3,7 +3,7 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public partial class Renderbuffer : IDisposable
     {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace CSharpGL
 {
@@ -119,7 +118,7 @@ namespace CSharpGL
         }
 
         ///// <summary>
-        ///// 
+        /////
         ///// </summary>
         ///// <param name="modelMatrix"></param>
         ///// <returns></returns>
@@ -198,25 +197,25 @@ namespace CSharpGL
     }
 
     ///// <summary>
-    ///// 
+    /////
     ///// </summary>
     //[Flags]
     //public enum ModelSpaceFactor
     //{
     //    /// <summary>
-    //    /// 
+    //    ///
     //    /// </summary>
     //    WorldPosition,
     //    /// <summary>
-    //    /// 
+    //    ///
     //    /// </summary>
     //    Scale,
     //    /// <summary>
-    //    /// 
+    //    ///
     //    /// </summary>
     //    RotationAngle,
     //    /// <summary>
-    //    /// 
+    //    ///
     //    /// </summary>
     //    RotationAxis,
     //}

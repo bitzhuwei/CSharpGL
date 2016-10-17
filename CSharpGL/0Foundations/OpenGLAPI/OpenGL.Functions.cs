@@ -849,6 +849,7 @@ namespace CSharpGL
         /// <param name="array">The array to enable.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEnableClientState", SetLastError = true)]
         public static extern void EnableClientState(uint array);
+
         /// <summary>
         ///
         /// </summary>
@@ -2277,6 +2278,7 @@ namespace CSharpGL
         /// <param name="v2">Bottom-Right point.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glRectdv", SetLastError = true)]
         public static extern void Rectdv(double[] v1, double[] v2);
+
         /// <summary>
         ///
         /// </summary>

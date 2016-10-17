@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     /// <summary>
     ///
