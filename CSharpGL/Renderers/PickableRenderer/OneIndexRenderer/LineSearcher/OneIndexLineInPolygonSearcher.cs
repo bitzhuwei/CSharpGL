@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CSharpGL
 {
     internal class OneIndexLineInPolygonSearcher : OneIndexLineSearcher
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>

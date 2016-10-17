@@ -92,7 +92,6 @@ namespace CSharpGL
             //    cursor.UpdatePosition(mousePosition);
             //    this.rootCursor.Render(arg);
             //}
-
         }
 
         private void RenderNormally(ViewPort viewPort, Rectangle clientRectangle)

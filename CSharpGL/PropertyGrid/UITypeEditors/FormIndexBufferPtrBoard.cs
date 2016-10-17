@@ -168,6 +168,7 @@ namespace CSharpGL
         {
             return this.indexBufferPtr.FirstVertex;
         }
+
         public override int Count()
         {
             return this.indexBufferPtr.VertexCount;

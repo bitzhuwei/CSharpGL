@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CSharpGL
@@ -30,6 +29,7 @@ namespace CSharpGL
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
+
         private readonly string fullname;
 
         //private EventHandler mouseEnter;

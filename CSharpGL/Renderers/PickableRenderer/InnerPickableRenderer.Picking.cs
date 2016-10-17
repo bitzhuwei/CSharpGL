@@ -18,7 +18,7 @@ namespace CSharpGL
         public uint PickingBaseId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         public void Render4Picking(RenderEventArgs arg)
@@ -67,7 +67,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>

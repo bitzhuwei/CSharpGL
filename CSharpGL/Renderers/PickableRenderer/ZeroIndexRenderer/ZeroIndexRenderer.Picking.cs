@@ -5,7 +5,7 @@ namespace CSharpGL
     partial class ZeroIndexRenderer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
@@ -73,7 +73,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
@@ -108,7 +108,6 @@ namespace CSharpGL
             {
                 // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
                 PickingLastLineInLineLoop(out vertexIds, out positions);
-
             }
             else
             {
