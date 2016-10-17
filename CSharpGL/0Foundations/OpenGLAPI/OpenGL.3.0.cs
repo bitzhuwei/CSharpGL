@@ -381,35 +381,35 @@
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
         //public delegate void glGetTexParameterIuiv(uint target, uint pname, uint[] parameters);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="buffer"></param>
-        ///// <param name="drawbuffer"></param>
-        ///// <param name="value"></param>
-        //public delegate void glClearBufferiv(uint buffer, int drawbuffer, int[] value);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="buffer"></param>
-        ///// <param name="drawbuffer"></param>
-        ///// <param name="value"></param>
-        //public delegate void glClearBufferuiv(uint buffer, int drawbuffer, uint[] value);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="buffer"></param>
-        ///// <param name="drawbuffer"></param>
-        ///// <param name="value"></param>
-        //public delegate void glClearBufferfv(uint buffer, int drawbuffer, float[] value);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="buffer"></param>
-        ///// <param name="drawbuffer"></param>
-        ///// <param name="depth"></param>
-        ///// <param name="stencil"></param>
-        //public delegate void glClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="value"></param>
+        public delegate void glClearBufferiv(uint buffer, int drawbuffer, int[] value);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="value"></param>
+        public delegate void glClearBufferuiv(uint buffer, int drawbuffer, uint[] value);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="value"></param>
+        public delegate void glClearBufferfv(uint buffer, int drawbuffer, float[] value);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="depth"></param>
+        /// <param name="stencil"></param>
+        public delegate void glClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil);
         ///// <summary>
         /////
         ///// </summary>
