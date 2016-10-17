@@ -34,6 +34,33 @@
             Minimum position of this cuboid.
             </summary>
         </member>
+        <member name="T:CSharpGL.MarkableStruct`1">
+            <summary>
+            Keeps a struct value and records the latest time when is it's udpated.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.MarkableStruct`1.#ctor(`0)">
+            <summary>
+            Records time when is a property is updated and uploaded.
+            </summary>
+            <param name="value">value.</param>
+        </member>
+        <member name="M:CSharpGL.MarkableStruct`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.MarkableStruct`1.Value">
+            <summary>
+            Kept value.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.MarkableStruct`1.UpdateTicks">
+            <summary>
+            The latest time when the value is updated.
+            </summary>
+        </member>
         <member name="T:CSharpGL.ModelMatrixHelper">
             <summary>
             treat <see cref="T:CSharpGL.mat4"/> as a matrix that transform object from model's space to world's space.
@@ -5770,9 +5797,9 @@
              </summary>
         </member>
         <member name="F:CSharpGL.OpenGL.GL_SHADER_STORAGE_BLOCK">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="F:CSharpGL.OpenGL.GL_SHADER_STORAGE_BUFFER">
              <summary>
@@ -6827,6 +6854,13 @@
             </summary>
             <param name="writable">Specifies whether the depth buffer is enabled for writing.If flag is GL_FALSE,depth buffer writing is disabled.Otherwise, it is enabled.Initially, depth buffer writing is enabled.
             <para>指定是否允许向深度缓冲区写入数据。如果flag是GL_FLASE，那么向深度缓冲区写入是禁止的。否则，就是允许的。初始时，是允许向深度缓冲区写入数据的。</para></param>
+        </member>
+        <member name="M:CSharpGL.OpenGL.DepthRange(System.Double,System.Double)">
+            <summary>
+            Specify mapping of depth values from normalized device coordinates	to window coordinates.
+            </summary>
+            <param name="zNear">Specifies the mapping of the near clipping plane to window coordinates. The initial value is 0.</param>
+            <param name="zFar">Specifies the mapping of the near clipping plane to window coordinates. The initial value is 1.</param>
         </member>
         <member name="M:CSharpGL.OpenGL.Disable(System.UInt32)">
             <summary>
@@ -10577,6 +10611,39 @@
              <param name="count"></param>
              <param name="value"></param>
         </member>
+        <member name="T:CSharpGL.OpenGL.glClearBufferiv">
+             <summary>
+            
+             </summary>
+             <param name="buffer"></param>
+             <param name="drawbuffer"></param>
+             <param name="value"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glClearBufferuiv">
+             <summary>
+            
+             </summary>
+             <param name="buffer"></param>
+             <param name="drawbuffer"></param>
+             <param name="value"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glClearBufferfv">
+             <summary>
+            
+             </summary>
+             <param name="buffer"></param>
+             <param name="drawbuffer"></param>
+             <param name="value"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glClearBufferfi">
+             <summary>
+            
+             </summary>
+             <param name="buffer"></param>
+             <param name="drawbuffer"></param>
+             <param name="depth"></param>
+             <param name="stencil"></param>
+        </member>
         <member name="T:CSharpGL.OpenGL.glDrawArraysInstanced">
              <summary>
             
@@ -11903,6 +11970,190 @@
             
              </summary>
         </member>
+        <member name="T:CSharpGL.RendererBase">
+            <summary>
+            用OpenGL初始化和渲染一个模型。
+            <para>Initialize and render something with OpenGL.</para>
+            </summary>
+        </member>
+        <member name="T:CSharpGL.IRenderable">
+            <summary>
+            Render something.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.IModelSpace">
+            <summary>
+            gets model's original size.
+            transform a model from model's sapce to world's space.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IModelSpace.WorldPosition">
+            <summary>
+            Position in world space.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IModelSpace.RotationAngleDegree">
+            <summary>
+            Rotation angle in degree.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IModelSpace.RotationAxis">
+            <summary>
+            Rotation axis.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IModelSpace.Scale">
+            <summary>
+            Scale factor.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IModelSpace.ModelSize">
+            <summary>
+            Size in X/Y/Z axis.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.IRenderable.Render(CSharpGL.RenderEventArgs)">
+            <summary>
+            Render something.
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="F:CSharpGL.RendererBase.strModelSpace">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.IsModelMatrixMarked">
+            <summary>
+            Should this model matrix be updated?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.RendererBase.GetModelMatrix">
+            <summary>
+            Get model matrix that transform model from model space to world space.
+            Note: this method requires that parent scene object be rendered first, then chidren.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:CSharpGL.RendererBase.modelMatrixRecord">
+            <summary>
+            records whether modelMatrix is updated.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.Initialize">
+            <summary>
+            Initialize all stuff related to OpenGL.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.DoInitialize">
+            <summary>
+            This method should only be invoked once.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.Render(CSharpGL.RenderEventArgs)">
+            <summary>
+            Render something.
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.RendererBase.DoRender(CSharpGL.RenderEventArgs)">
+            <summary>
+            Render something.
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.RendererBase.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.Finalize">
+            <summary>
+            Destruct instance of the class.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.RendererBase.disposedValue">
+            <summary>
+            Backing field to track whether Dispose has been called.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.Dispose(System.Boolean)">
+            <summary>
+            Dispose managed and unmanaged resources of this instance.
+            </summary>
+            <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        </member>
+        <member name="M:CSharpGL.RendererBase.DisposeManagedResources">
+            <summary>
+            释放.net托管资源。
+            <para>Dispose reources managed by .NET.</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.DisposeUnmanagedResources">
+            <summary>
+            释放.net非托管资源，例如释放OpenGL相关的资源（Buffer、纹理等）。
+            <para>Dispose resources not managed by .NET(OpenGL buffers, textures, etc.).</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RendererBase.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.RendererBase.#ctor">
+            <summary>
+            用OpenGL初始化和渲染一个模型。
+            <para>Initialize and render something with OpenGL.</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.WorldPosition">
+            <summary>
+            Position in world space.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.RotationAngleDegree">
+            <summary>
+            Rotation angle in degree.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.RotationAxis">
+            <summary>
+            Rotation axis.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.Scale">
+            <summary>
+            Scale factor.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.ModelSize">
+            <summary>
+            Length in X/Y/Z axis.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.IsInitialized">
+            <summary>
+            Already initialized.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.BindingSceneObject">
+            <summary>
+            binding scene object.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.Enabled">
+            <summary>
+            Render this or not.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RendererBase.Id">
+            <summary>
+            为便于调试而设置的ID值，没有应用意义。
+            <para>for debugging purpose only.</para>
+            </summary>
+        </member>
         <member name="T:CSharpGL.ShaderProgram">
             <summary>
             A shader program object.
@@ -12452,193 +12703,6 @@
             Rendering something using GLSL shader and VBO(VAO).
             </summary>
         </member>
-        <member name="T:CSharpGL.RendererBase">
-            <summary>
-            用OpenGL初始化和渲染一个模型。
-            <para>Initialize and render something with OpenGL.</para>
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IRenderable">
-            <summary>
-            Render something.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IModelSpace">
-            <summary>
-            gets model's original size.
-            transform a model from model's sapce to world's space.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.WorldPosition">
-            <summary>
-            Position in world space.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.RotationAngleDegree">
-            <summary>
-            Rotation angle in degree.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.RotationAxis">
-            <summary>
-            Rotation axis.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.Scale">
-            <summary>
-            Scale factor.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.ModelSize">
-            <summary>
-            Size in X/Y/Z axis.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.IRenderable.Render(CSharpGL.RenderEventArgs)">
-            <summary>
-            Render something.
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="F:CSharpGL.RendererBase.strModelSpace">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.RendererBase.modelMatrixRecord">
-            <summary>
-            records whether modelMatrix is updated.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.GeUpdatedModelMatrix(CSharpGL.mat4@)">
-            <summary>
-            Get model matrix that transform model from model space to world space.
-            <para>This method will also cancel updated recording mark.</para>
-            <para>Returns true if model matrix is updated; otherwise return false.</para>
-            </summary>
-            <param name="modelMatrix">updated model matrix.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.RendererBase.GetUpdatedModelMatrix">
-            <summary>
-            Get model matrix that transform model from model space to world space.
-            <para>This method will also cancel updated recording mark.</para>
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Initialize">
-            <summary>
-            Initialize all stuff related to OpenGL.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DoInitialize">
-            <summary>
-            This method should only be invoked once.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Render(CSharpGL.RenderEventArgs)">
-            <summary>
-            Render something.
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DoRender(CSharpGL.RenderEventArgs)">
-            <summary>
-            Render something.
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Finalize">
-            <summary>
-            Destruct instance of the class.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.RendererBase.disposedValue">
-            <summary>
-            Backing field to track whether Dispose has been called.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Dispose(System.Boolean)">
-            <summary>
-            Dispose managed and unmanaged resources of this instance.
-            </summary>
-            <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DisposeManagedResources">
-            <summary>
-            释放.net托管资源。
-            <para>Dispose reources managed by .NET.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DisposeUnmanagedResources">
-            <summary>
-            释放.net非托管资源，例如释放OpenGL相关的资源（Buffer、纹理等）。
-            <para>Dispose resources not managed by .NET(OpenGL buffers, textures, etc.).</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.RendererBase.#ctor">
-            <summary>
-            用OpenGL初始化和渲染一个模型。
-            <para>Initialize and render something with OpenGL.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.WorldPosition">
-            <summary>
-            Position in world space.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.RotationAngleDegree">
-            <summary>
-            Rotation angle in degree.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.RotationAxis">
-            <summary>
-            Rotation axis.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.Scale">
-            <summary>
-            Scale factor.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.ModelSize">
-            <summary>
-            Length in X/Y/Z axis.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.IsInitialized">
-            <summary>
-            Already initialized.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.BindingSceneObject">
-            <summary>
-            binding scene object.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.Enabled">
-            <summary>
-            Render this or not.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.Id">
-            <summary>
-            为便于调试而设置的ID值，没有应用意义。
-            <para>for debugging purpose only.</para>
-            </summary>
-        </member>
         <member name="M:CSharpGL.Renderer.GetUniformBoolArrayValue(System.String,System.Boolean[]@)">
              <summary>
             
@@ -12972,10 +13036,10 @@
              <param name="arg"></param>
         </member>
         <member name="M:CSharpGL.PickableRenderer.Render4Picking(CSharpGL.RenderEventArgs)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
+             </summary>
+             <param name="arg"></param>
         </member>
         <member name="M:CSharpGL.PickableRenderer.GetVertexCount">
              <summary>
@@ -14146,6 +14210,9 @@
             <summary>
             Create, update, use and delete a framebuffer object.
             </summary>
+             <summary>
+            
+             </summary>
             <summary>
             Create, update, use and delete a renderbuffer object.
             </summary>
@@ -18035,13 +18102,6 @@
             <param name="pickingGeometryType"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Scene.DepthBufferValid(System.Drawing.Rectangle)">
-            <summary>
-            Maybe something is picked because depth buffer is valid.
-            </summary>
-            <param name="pickingRect"></param>
-            <returns></returns>
-        </member>
         <member name="M:CSharpGL.Scene.Render4Picking(CSharpGL.RenderEventArgs)">
             <summary>
             Render all <see cref="T:CSharpGL.PickableRenderer"/>s for color-coded picking.
@@ -18422,15 +18482,15 @@
              </summary>
         </member>
         <member name="M:CSharpGL.ILayoutEvent.DoBeforeLayout">
-            <summary>
+             <summary>
             
-            </summary>
-            <returns></returns>
+             </summary>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ILayoutEvent.DoAfterLayout">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="F:CSharpGL.ViewPort.strILayout">
              <summary>
@@ -20252,10 +20312,10 @@
             </summary>
         </member>
         <member name="M:CSharpGL.InnerPickableRenderer.Render4Picking(CSharpGL.RenderEventArgs)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
+             </summary>
+             <param name="arg"></param>
         </member>
         <member name="M:CSharpGL.InnerPickableRenderer.GetVertexCount">
              <summary>
@@ -20264,14 +20324,14 @@
              <returns></returns>
         </member>
         <member name="M:CSharpGL.InnerPickableRenderer.GetPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.InnerPickableRenderer.Render4InnerPicking(CSharpGL.RenderEventArgs,CSharpGL.IndexBufferPtr)">
             <summary>
@@ -21384,48 +21444,48 @@
             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexLineSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexLineInQuadSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexLineInTriangleSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexLineInPolygonSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="T:CSharpGL.OneIndexRenderer">
             <summary>
@@ -21568,114 +21628,114 @@
             </summary>
         </member>
         <member name="M:CSharpGL.OneIndexPointSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexPointInPolygonSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexPointInQuadSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexPointInTriangleSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,CSharpGL.RecognizedPrimitiveInfo,CSharpGL.OneIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="primitiveInfo"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="primitiveInfo"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInPolygonSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInQuadSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInQuadStripSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInTriangleFanSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInTrianglesAdjacencySearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInTriangleSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
             <summary>
@@ -21689,26 +21749,26 @@
             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInTriangleStripAdjacencySearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexPointInTriangleStripSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="T:CSharpGL.ZeroIndexRenderer">
             <summary>
@@ -21726,26 +21786,26 @@
             <param name="switches"></param>
         </member>
         <member name="M:CSharpGL.ZeroIndexRenderer.GetPickedGeometry(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexRenderer.SearchPoint(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexPointSearcher)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="stageVertexId"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="searcher"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="stageVertexId"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="searcher"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexRenderer.SearchLine(CSharpGL.RenderEventArgs,System.UInt32,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexLineSearcher)">
             <summary>
@@ -22022,7 +22082,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:CSharpGL.Axis.Lengths">
+        <member name="P:CSharpGL.Axis.ModelSize">
              <summary>
             
              </summary>
@@ -22328,92 +22388,92 @@
             </summary>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInPolygonSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInQuadStripSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInQuadSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInTriangleFanSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInTrianglesAdjacencySearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInTriangleStripAdjacencySearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInTriangleStripSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="arg"></param>
-            <param name="x">mouse position(Left Down is (0, 0)).</param>
-            <param name="y">mouse position(Left Down is (0, 0)).</param>
-            <param name="lastVertexId"></param>
-            <param name="modernRenderer"></param>
-            <returns></returns>
+             </summary>
+             <param name="arg"></param>
+             <param name="x">mouse position(Left Down is (0, 0)).</param>
+             <param name="y">mouse position(Left Down is (0, 0)).</param>
+             <param name="lastVertexId"></param>
+             <param name="modernRenderer"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexLineInTriangleSearcher.Search(CSharpGL.RenderEventArgs,System.Int32,System.Int32,System.UInt32,CSharpGL.ZeroIndexRenderer)">
             <summary>
