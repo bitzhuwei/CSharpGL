@@ -148,6 +148,7 @@ namespace CSharpGL
         // TODO: cascade model matrix not tested yet!
         /// <summary>
         /// Get model matrix that transform model from model space to world space.
+        /// Note: this method requires that parent scene object be rendered first, then chidren.
         /// </summary>
         /// <returns></returns>
         public MarkableStruct<mat4> GetModelMatrix()
