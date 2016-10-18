@@ -37,8 +37,7 @@ namespace CSharpGL
 
             //	Create the bitmap.
             IntPtr mdc = this.MemoryDeviceContext;
-            this.HBitmap = Win32.CreateDIBSection(mdc, ref info, Win32.DIB_RGB_COLORS,
-                out this.bits, IntPtr.Zero, 0);
+            this.HBitmap = Win32.CreateDIBSection(mdc, ref info, Win32.DIB_RGB_COLORS, out this.bits, IntPtr.Zero, 0);
 
             Win32.SelectObject(mdc, this.HBitmap);
 
@@ -75,8 +74,7 @@ namespace CSharpGL
 
             //	Create the bitmap.
             IntPtr mdc = this.MemoryDeviceContext;
-            this.HBitmap = Win32.CreateDIBSection(mdc, ref info, Win32.DIB_RGB_COLORS,
-                out this.bits, IntPtr.Zero, 0);
+            this.HBitmap = Win32.CreateDIBSection(mdc, ref info, Win32.DIB_RGB_COLORS, out this.bits, IntPtr.Zero, 0);
 
             Win32.SelectObject(mdc, this.HBitmap);
         }
@@ -120,9 +118,10 @@ namespace CSharpGL
         public virtual void DestroyBitmap()
         {
             //	Destroy the bitmap.
-            if (this.HBitmap != IntPtr.Zero)
+            IntPtr hBitmap = this.HBitmap;
+            if (hBitmap != IntPtr.Zero)
             {
-                Win32.DeleteObject(this.HBitmap);
+                Win32.DeleteObject(hBitmap);
                 this.HBitmap = IntPtr.Zero;
             }
         }
