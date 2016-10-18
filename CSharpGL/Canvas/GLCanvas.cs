@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected RenderContext renderContext;
+        protected FBORenderContext renderContext;
 
         /// <summary>
         /// indicates whether the control is in design mode.
@@ -140,7 +140,7 @@ namespace CSharpGL
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            RenderContext renderContext = this.renderContext;
+            FBORenderContext renderContext = this.renderContext;
             if (renderContext == null)
             {
                 base.OnPaint(e);
@@ -236,7 +236,7 @@ namespace CSharpGL
         {
             base.OnSizeChanged(e);
 
-            RenderContext renderContext = this.renderContext;
+            FBORenderContext renderContext = this.renderContext;
             if (renderContext != null)
             {
                 renderContext.MakeCurrent();
@@ -267,7 +267,7 @@ namespace CSharpGL
 
         private void DestroyRenderContext()
         {
-            RenderContext renderContext = this.renderContext;
+            FBORenderContext renderContext = this.renderContext;
             if (renderContext != null)
             {
                 this.renderContext = null;
