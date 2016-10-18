@@ -55,10 +55,11 @@
         //public delegate void glUniformMatrix4x3fv(int location, int count, bool transpose, float[] value);
 
         //  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_PIXEL_PACK_BUFFER = 0x88EB;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_PIXEL_PACK_BUFFER = 0x88EB;
+
         /// <summary>
         ///
         /// </summary>

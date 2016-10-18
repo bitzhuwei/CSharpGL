@@ -36,6 +36,11 @@
         PixelUnpackBuffer = OpenGL.GL_PIXEL_UNPACK_BUFFER,
 
         /// <summary>
+        /// 
+        /// </summary>
+        PixelPackBuffer = OpenGL.GL_PIXEL_PACK_BUFFER,
+
+        /// <summary>
         ///
         /// </summary>
         AtomicCounterBuffer = OpenGL.GL_ATOMIC_COUNTER_BUFFER,
