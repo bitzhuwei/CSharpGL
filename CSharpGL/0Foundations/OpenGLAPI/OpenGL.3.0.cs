@@ -273,20 +273,31 @@
         ///// <param name="location"></param>
         ///// <param name="parameters"></param>
         //public delegate void glGetUniformuiv(uint program, int location, uint[] parameters);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="program"></param>
-        ///// <param name="color"></param>
-        ///// <param name="name"></param>
-        //public delegate void glBindFragDataLocation(uint program, uint color, string name);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="program"></param>
-        ///// <param name="name"></param>
-        ///// <returns></returns>
-        //public delegate int glGetFragDataLocation(uint program, string name);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="color"></param>
+        /// <param name="name"></param>
+        public delegate void glBindFragDataLocation(uint program, uint colorNumber, string name);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="colorNumber"></param>
+        /// <param name="index"></param>
+        /// <param name="name"></param>
+        public delegate void glBindFragDataLocationIndexed(uint program, uint colorNumber, uint index, string name);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public delegate int glGetFragDataLocation(uint program, string name);
+
         /// <summary>
         ///
         /// </summary>
@@ -388,6 +399,7 @@
         /// <param name="drawbuffer"></param>
         /// <param name="value"></param>
         public delegate void glClearBufferiv(uint buffer, int drawbuffer, int[] value);
+
         /// <summary>
         ///
         /// </summary>
@@ -395,6 +407,7 @@
         /// <param name="drawbuffer"></param>
         /// <param name="value"></param>
         public delegate void glClearBufferuiv(uint buffer, int drawbuffer, uint[] value);
+
         /// <summary>
         ///
         /// </summary>
@@ -402,6 +415,7 @@
         /// <param name="drawbuffer"></param>
         /// <param name="value"></param>
         public delegate void glClearBufferfv(uint buffer, int drawbuffer, float[] value);
+
         /// <summary>
         ///
         /// </summary>
@@ -410,6 +424,7 @@
         /// <param name="depth"></param>
         /// <param name="stencil"></param>
         public delegate void glClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil);
+
         ///// <summary>
         /////
         ///// </summary>
