@@ -16,7 +16,7 @@ namespace CSharpGL
         ///// <param name="modeAlpha"></param>
         //public delegate void glBlendEquationSeparate(uint modeRGB, uint modeAlpha);
         /// <summary>
-        ///
+        /// Select buffers that are written to.
         /// </summary>
         /// <param name="n"></param>
         /// <param name="bufs"></param>
