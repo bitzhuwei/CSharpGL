@@ -301,6 +301,14 @@
         /// <summary>
         ///
         /// </summary>
+        /// <param name="program"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public delegate int glGetFragDataIndex(uint program, string name);
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="location"></param>
         /// <param name="v0"></param>
         internal delegate void glUniform1ui(int location, uint v0);
