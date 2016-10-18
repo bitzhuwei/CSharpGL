@@ -178,16 +178,17 @@ namespace CSharpGL
         /// <summary>
         /// Blit the rendered data to the supplied device context.
         /// </summary>
-        /// <param name="hdc">The HDC.</param>
-        public override void Blit(IntPtr hdc)
+        /// <param name="deviceContext">The HDC.</param>
+        public override void Blit(IntPtr deviceContext)
         {
-            if (this.DeviceContextHandle != IntPtr.Zero || windowHandle != IntPtr.Zero)
+            IntPtr dc = this.DeviceContextHandle;
+            if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
             {
                 //	Swap the buffers.
-                Win32.SwapBuffers(this.DeviceContextHandle);
+                Win32.SwapBuffers(dc);
 
-                //  Get the HDC for the graphics object.
-                Win32.BitBlt(hdc, 0, 0, this.Width, this.Height, this.DeviceContextHandle, 0, 0, Win32.SRCCOPY);
+                //	Blit the DC (containing the DIB section) to the target DC.
+                Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height, dc, 0, 0, Win32.SRCCOPY);
             }
         }
 

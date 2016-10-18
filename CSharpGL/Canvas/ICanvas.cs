@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
+    // TODO: could this interface be any worse?
     /// <summary>
     /// OpenGL Canvas.
     /// </summary>

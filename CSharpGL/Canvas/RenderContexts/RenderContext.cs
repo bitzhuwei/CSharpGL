@@ -44,8 +44,8 @@ namespace CSharpGL
         /// <summary>
         /// Blit the rendered data to the supplied device context.
         /// </summary>
-        /// <param name="hdc">The HDC.</param>
-        public abstract void Blit(IntPtr hdc);
+        /// <param name="deviceContext">The HDC.</param>
+        public abstract void Blit(IntPtr deviceContext);
 
         /// <summary>
         /// Gets the render context handle.

@@ -123,8 +123,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="hdc"></param>
-        public override void Blit(IntPtr hdc)
+        /// <param name="deviceContext"></param>
+        public override void Blit(IntPtr deviceContext)
         {
             if (this.DeviceContextHandle != IntPtr.Zero)
             {
@@ -136,7 +136,7 @@ namespace CSharpGL
                     OpenGL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
 
                 //	Blit the DC (containing the DIB section) to the target DC.
-                Win32.BitBlt(hdc, 0, 0, this.Width, this.Height,
+                Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
                     this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
             }
         }
