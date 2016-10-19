@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -34,6 +35,8 @@ namespace CSharpGL
         /// <param name="defaultValue"></param>
         public FullDictionary(TValue defaultValue)
         {
+            Debug.Assert(defaultValue != null);
+
             this.defaultValue = defaultValue;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace CSharpGL
@@ -101,6 +102,9 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么 Dead lock, Why?
         protected UnmanagedArrayBase(int elementCount, int elementSize, bool autoAlloc)
         {
+            Debug.Assert(elementCount >= 0);
+            Debug.Assert(elementSize >= 0);
+
             this.Length = elementCount;
             this.elementSize = elementSize;
             if (autoAlloc)
@@ -184,8 +188,8 @@ namespace CSharpGL
             IntPtr header = this.Header;
             if (header != IntPtr.Zero)
             {
-                this.Header = IntPtr.Zero;
                 Marshal.FreeHGlobal(header);
+                this.Header = IntPtr.Zero;
             }
         }
 

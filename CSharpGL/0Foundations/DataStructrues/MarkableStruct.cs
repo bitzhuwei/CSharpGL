@@ -48,7 +48,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("[{0}]({1})", this.value, this.UpdateTicks);
+            return string.Format("[{0}](ticks: {1})", this.value, this.UpdateTicks);
         }
     }
 }
