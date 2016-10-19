@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace CSharpGL
 {
@@ -30,8 +31,10 @@ namespace CSharpGL
         /// a list of components who bind to the specified binding object.
         /// </summary>
         /// <param name="bindingObject"></param>
-        public ComponentList(TBinding bindingObject = default(TBinding))
+        public ComponentList(TBinding bindingObject)
         {
+            Debug.Assert(bindingObject != null);
+
             this.bindingObject = bindingObject;
         }
 

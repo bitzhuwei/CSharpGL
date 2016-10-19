@@ -13,6 +13,6 @@ namespace CSharpGL
         /// A list of script.
         /// </summary>
         /// <param name="bindingObject"></param>
-        public ScriptList(SceneObject bindingObject = null) : base(bindingObject) { }
+        public ScriptList(SceneObject bindingObject) : base(bindingObject) { }
     }
 }
