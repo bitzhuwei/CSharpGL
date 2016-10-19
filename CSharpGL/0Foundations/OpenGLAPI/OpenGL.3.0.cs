@@ -277,7 +277,7 @@
         ///
         /// </summary>
         /// <param name="program"></param>
-        /// <param name="color"></param>
+        /// <param name="colorNumber"></param>
         /// <param name="name"></param>
         public delegate void glBindFragDataLocation(uint program, uint colorNumber, string name);
 

@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Diagnostics;
+namespace CSharpGL
 {
     /// <summary>
     /// 用于存储索引的VBO。
@@ -16,6 +17,8 @@
         public IndexBuffer(DrawMode mode, BufferUsage usage, int primCount)
             : base(usage)
         {
+            Debug.Assert(primCount > 0);
+
             this.Mode = mode;
             this.PrimCount = primCount;
         }

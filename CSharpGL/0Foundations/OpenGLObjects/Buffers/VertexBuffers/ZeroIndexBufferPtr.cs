@@ -33,7 +33,7 @@ namespace CSharpGL
 
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
-            this.OriginalVertexCount = vertexCount;
+            //this.OriginalVertexCount = vertexCount;
         }
 
         /// <summary>
@@ -46,10 +46,10 @@ namespace CSharpGL
         /// </summary>
         public int VertexCount { get; set; }
 
-        /// <summary>
-        /// 总共有多少个元素？<para>How many vertexes are there in total?</para>
-        /// </summary>
-        public int OriginalVertexCount { get; private set; }
+        ///// <summary>
+        ///// 总共有多少个元素？<para>How many vertexes are there in total?</para>
+        ///// </summary>
+        //public int OriginalVertexCount { get; private set; }
 
         /// <summary>
         /// need to do nothing.

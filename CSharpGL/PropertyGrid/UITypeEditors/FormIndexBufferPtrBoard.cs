@@ -176,7 +176,7 @@ namespace CSharpGL
 
         public override int OriginalCount()
         {
-            return this.indexBufferPtr.OriginalVertexCount;
+            return this.indexBufferPtr.Length;
         }
 
         public override void SetFirst(int value)

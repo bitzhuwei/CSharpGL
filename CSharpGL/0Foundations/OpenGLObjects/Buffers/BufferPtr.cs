@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -68,6 +69,10 @@ namespace CSharpGL
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         internal BufferPtr(uint bufferId, int length, int byteLength)
         {
+            Debug.Assert(bufferId >= 0);
+            Debug.Assert(length >= 0);
+            Debug.Assert(byteLength >= 0);
+
             if (glBindBuffer == null)
             {
                 glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();

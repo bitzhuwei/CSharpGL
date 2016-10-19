@@ -36,6 +36,7 @@ namespace CSharpGL
             { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
 
             this.ElementCount = length;
+            //this.OriginalElementCount = length;
             this.Type = type;
         }
 
@@ -50,6 +51,12 @@ namespace CSharpGL
         /// <para>How many indexes to be rendered?</para>
         /// </summary>
         public int ElementCount { get; set; }
+
+        ///// <summary>
+        ///// 实际上一共有多少个索引？
+        ///// <para>How many indexes exists?</para>
+        ///// </summary>
+        //public int OriginalElementCount { get; set; }
 
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
