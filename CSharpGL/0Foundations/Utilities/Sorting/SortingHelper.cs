@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -23,6 +21,7 @@ namespace CSharpGL
         //    }
         //}
 
+        // TODO: something wrong in this quick sort method.
         ///// <summary>
         ///// Sort unmanaged array specified with <paramref name="pointer"/> at specified area.
         ///// </summary>
@@ -95,6 +94,7 @@ namespace CSharpGL
 
         //    return start;
         //}
+
         /// <summary>
         /// Sort unmanaged array.
         /// </summary>
@@ -104,6 +104,7 @@ namespace CSharpGL
         {
             array.Sort(0, array.Length, descending);
         }
+
         /// <summary>
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
         /// </summary>
