@@ -126,6 +126,9 @@
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`float.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`vec2.cs" />
+    <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`mat2.cs" />
+    <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`mat3.cs" />
+    <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`mat4.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`vec4.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`vec3.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Order`float.cs" />
