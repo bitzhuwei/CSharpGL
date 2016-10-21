@@ -96,7 +96,7 @@ namespace CSharpGL
         //    return start;
         //}
         /// <summary>
-        /// Sort unmanaged array specified with <paramref name="pointer"/> at specified area.
+        /// Sort unmanaged array.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="descending">true for descending sort; otherwise false.</param>
@@ -105,11 +105,11 @@ namespace CSharpGL
             array.Sort(0, array.Length, descending);
         }
         /// <summary>
-        /// Sort unmanaged array specified with <paramref name="pointer"/> at specified area.
+        /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="start">index of first value to be sorted.</param>
-        /// <param name="length">length of <paramref name="pointer"/> to bo sorted.</param>
+        /// <param name="length">length of <paramref name="array"/> to bo sorted.</param>
         /// <param name="descending">true for descending sort; otherwise false.</param>
         public static void Sort<T>(this UnmanagedArray<T> array, int start, int length, bool descending = true) where T : struct,IComparable<T>
         {
@@ -157,14 +157,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Sort unmanaged array specified with <paramref name="pointer"/> at specified area.
+        /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="start">index of first value to be sorted.</param>
-        /// <param name="length">length of <paramref name="pointer"/> to bo sorted.</param>
+        /// <param name="length">length of <paramref name="array"/> to bo sorted.</param>
         /// <param name="comparer">
-        /// If you want descending sort, make it returns -1 when <paramref name="pointer"/>[left] &lt; <paramref name="pointer"/>[right].
-        /// <para>Otherwise, make it returns -1 when <paramref name="pointer"/>[left] &gt; <paramref name="pointer"/>[right].</para></param>
+        /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
+        /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
         public static void Sort<T>(this UnmanagedArray<T> array, int start, int length, Func<T, T, int> comparer) where T : struct
         {
             IntPtr pointer = array.Header;
