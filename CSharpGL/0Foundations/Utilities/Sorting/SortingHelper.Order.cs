@@ -26,6 +26,16 @@ namespace CSharpGL
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
         /// </summary>
         /// <param name="array"></param>
+        /// <param name="descending">true for descending sort; otherwise false.</param>
+        public static void Sort<T>(this UnmanagedArray<T> array, bool descending) where T : struct, IComparable<T>
+        {
+            QuickSort(array, 0, array.Length - 1, descending);
+        }
+
+        /// <summary>
+        /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
+        /// </summary>
+        /// <param name="array"></param>
         /// <param name="start">index of first value to be sorted.</param>
         /// <param name="length">length of <paramref name="array"/> to bo sorted.</param>
         /// <param name="descending">true for descending sort; otherwise false.</param>
@@ -79,7 +89,7 @@ namespace CSharpGL
                 startValue = (T)Marshal.PtrToStructure(startIndex, type);
                 if (descending)
                 {
-                    while (start < end && startValue.CompareTo(pivot) < 0)
+                    while (start < end && startValue.CompareTo(pivot) > 0)
                     {
                         start++;
                         startIndex = new IntPtr((int)pointer + start * elementSize);
@@ -88,7 +98,7 @@ namespace CSharpGL
                 }
                 else
                 {
-                    while (start < end && startValue.CompareTo(pivot) > 0)
+                    while (start < end && startValue.CompareTo(pivot) < 0)
                     {
                         start++;
                         startIndex = new IntPtr((int)pointer + start * elementSize);
@@ -100,7 +110,7 @@ namespace CSharpGL
                 endValue = (T)Marshal.PtrToStructure(endIndex, type);
                 if (descending)
                 {
-                    while (start < end && endValue.CompareTo(pivot) > 0)
+                    while (start < end && endValue.CompareTo(pivot) < 0)
                     {
                         end--;
                         endIndex = new IntPtr((int)pointer + end * elementSize);
@@ -109,7 +119,7 @@ namespace CSharpGL
                 }
                 else
                 {
-                    while (start < end && endValue.CompareTo(pivot) < 0)
+                    while (start < end && endValue.CompareTo(pivot) > 0)
                     {
                         end--;
                         endIndex = new IntPtr((int)pointer + end * elementSize);
