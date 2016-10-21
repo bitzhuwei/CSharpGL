@@ -1676,6 +1676,11 @@
             
              </summary>
         </member>
+        <member name="F:CSharpGL.OpenGL.GL_PIXEL_PACK_BUFFER">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="F:CSharpGL.OpenGL.GL_PIXEL_UNPACK_BUFFER">
              <summary>
             
@@ -10159,11 +10164,11 @@
             <returns></returns>
         </member>
         <member name="T:CSharpGL.OpenGL.glDrawBuffers">
-             <summary>
-            
-             </summary>
-             <param name="n"></param>
-             <param name="bufs"></param>
+            <summary>
+            Select buffers that are written to.
+            </summary>
+            <param name="n"></param>
+            <param name="bufs"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glAttachShader">
              <summary>
@@ -10544,6 +10549,39 @@
              <summary>
             
              </summary>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glBindFragDataLocation">
+             <summary>
+            
+             </summary>
+             <param name="program"></param>
+             <param name="colorNumber"></param>
+             <param name="name"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glBindFragDataLocationIndexed">
+             <summary>
+            
+             </summary>
+             <param name="program"></param>
+             <param name="colorNumber"></param>
+             <param name="index"></param>
+             <param name="name"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glGetFragDataLocation">
+             <summary>
+            
+             </summary>
+             <param name="program"></param>
+             <param name="name"></param>
+             <returns></returns>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glGetFragDataIndex">
+             <summary>
+            
+             </summary>
+             <param name="program"></param>
+             <param name="name"></param>
+             <returns></returns>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform1ui">
              <summary>
@@ -11194,7 +11232,7 @@
              <param name="message"></param>
              <param name="userParam"></param>
         </member>
-        <member name="T:CSharpGL.ShaderStorageBuffer`1">
+        <member name="T:CSharpGL.PixelPackBuffer`1">
              <summary>
             
              </summary>
@@ -11333,20 +11371,20 @@
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderStorageBuffer`1.#ctor(CSharpGL.BufferUsage,System.Boolean)">
+        <member name="M:CSharpGL.PixelPackBuffer`1.#ctor(CSharpGL.BufferUsage,System.Boolean)">
              <summary>
             
              </summary>
              <param name="usage"></param>
              <param name="noDataCopyed"></param>
         </member>
-        <member name="M:CSharpGL.ShaderStorageBuffer`1.Upload2GraphicsCard">
+        <member name="M:CSharpGL.PixelPackBuffer`1.Upload2GraphicsCard">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="T:CSharpGL.ShaderStorageBufferPtr">
+        <member name="T:CSharpGL.PixelPackBufferPtr">
             <summary>
             Buffer object that not work as input variable in shader.
             </summary>
@@ -11490,6 +11528,43 @@
             
              </summary>
              <returns></returns>
+        </member>
+        <member name="M:CSharpGL.PixelPackBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            pixel unpack buffer's pointer.
+            </summary>
+            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+        </member>
+        <member name="P:CSharpGL.PixelPackBufferPtr.Target">
+            <summary>
+            Target that this buffer should bind to.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.ShaderStorageBuffer`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
+        </member>
+        <member name="M:CSharpGL.ShaderStorageBuffer`1.#ctor(CSharpGL.BufferUsage,System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="usage"></param>
+             <param name="noDataCopyed"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderStorageBuffer`1.Upload2GraphicsCard">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:CSharpGL.ShaderStorageBufferPtr">
+            <summary>
+            Buffer object that not work as input variable in shader.
+            </summary>
         </member>
         <member name="M:CSharpGL.ShaderStorageBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
@@ -12667,6 +12742,35 @@
             <summary>
             Mark <see cref="T:CSharpGL.UniformVariable"/>'s 'Value' property.
             </summary>
+        </member>
+        <member name="T:CSharpGL.SortingHelper">
+            <summary>
+            Helper class for sorting unmanaged array.
+            </summary>
+            <summary>
+            Helper class for sorting unmanaged array.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.SortingHelper.Sort(CSharpGL.vec3*,System.Int32,System.Int32,System.Func{CSharpGL.vec3,CSharpGL.vec3,System.Int32})">
+            <summary>
+            Sort unmanaged array specified with <paramref name="pointer"/> at specified area.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="start"></param>
+            <param name="length"></param>
+            <param name="comparer"></param>
+        </member>
+        <member name="M:CSharpGL.SortingHelper.Sort``1(System.IntPtr,System.Int32,System.Int32,System.Func{``0,``0,System.Int32})">
+            <summary>
+            Sort unmanaged array specified with <paramref name="pointer"/> at specified area.
+            </summary>
+            <param name="pointer"></param>
+            <param name="start">index of first value to be sorted.</param>
+            <param name="length">length of <paramref name="pointer"/> to bo sorted.</param>
+            <param name="comparer">
+            If you want descending sort, make it returns -1 when <paramref name="pointer"/>[left] &lt; <paramref name="pointer"/>[right].
+            <para>Otherwise, make it returns -1 when <paramref name="pointer"/>[left] &gt; <paramref name="pointer"/>[right].</para></param>
         </member>
         <member name="T:CSharpGL.BezierType">
             <summary>
@@ -21340,7 +21444,7 @@
             <summary>
             Blit the rendered data to the supplied device context.
             </summary>
-            <param name="hdc">The HDC.</param>
+            <param name="deviceContext">The HDC.</param>
         </member>
         <member name="P:CSharpGL.RenderContext.RenderContextHandle">
             <summary>
@@ -24792,7 +24896,7 @@
             <summary>
             Blit the rendered data to the supplied device context.
             </summary>
-            <param name="hdc">The HDC.</param>
+            <param name="deviceContext">The HDC.</param>
         </member>
         <member name="M:CSharpGL.HiddenWindowRenderContext.MakeCurrent">
             <summary>
@@ -24830,7 +24934,7 @@
              <summary>
             
              </summary>
-             <param name="hdc"></param>
+             <param name="deviceContext"></param>
         </member>
         <member name="F:CSharpGL.FBORenderContext.framebuffer">
             <summary>
@@ -25359,11 +25463,6 @@
             要渲染多少个元素？<para>How many vertexes to be rendered?</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.ZeroIndexBufferPtr.OriginalVertexCount">
-            <summary>
-            总共有多少个元素？<para>How many vertexes are there in total?</para>
-            </summary>
-        </member>
         <member name="T:CSharpGL.BlendingDestinationFactor">
             <summary>
             BlendingDestinationFactor
@@ -25553,6 +25652,11 @@
              <summary>
             
              </summary>
+        </member>
+        <member name="F:CSharpGL.BufferTarget.PixelPackBuffer">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:CSharpGL.BufferTarget.AtomicCounterBuffer">
              <summary>
