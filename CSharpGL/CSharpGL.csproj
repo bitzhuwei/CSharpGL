@@ -124,7 +124,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
-    <Compile Include="0Foundations\Utilities\Sorting\Sorting.vec3.cs" />
+    <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`vec3.cs" />
+    <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Order`float.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Order.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierType.cs" />
