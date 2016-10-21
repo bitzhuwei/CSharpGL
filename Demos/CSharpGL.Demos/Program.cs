@@ -16,12 +16,14 @@ namespace CSharpGL.Demos
             unsafe
             {
                 Func<int, int, int> comparer = (x, y) => x - y;
-                array.Header.Sort(0, 10, comparer);
+                array.Sort(0, 10, comparer);
                 var p = (int*)array.Header.ToPointer();
+                int[] p2 = new int[10];
                 for (int i = 0; i < 10; i++)
                 {
-                    Console.WriteLine(p[i]);
+                    p2[i] = p[i];
                 }
+                Console.WriteLine();
             }
             string filename = string.Format("CSharpGL{0:yyyy-MM-dd_HH-mm-ss.ff}.log", DateTime.Now);
             Debug.Listeners.Add(new TextWriterTraceListener(filename));
