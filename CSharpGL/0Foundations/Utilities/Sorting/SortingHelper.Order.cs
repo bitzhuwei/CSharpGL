@@ -9,16 +9,26 @@ namespace CSharpGL
     /// </summary>
     public static partial class SortingHelper
     {
-        //static void Test()
+        //static void TestOrder()
         //{
-        //    IntPtr pointer = IntPtr.Zero;// map, new, etc...
+        //    const int length = 17;
+        //    var array = new UnmanagedArray<int>(length);
         //    unsafe
         //    {
-        //        var array = (vec3*)pointer.ToPointer();
-        //        int start = 0;
-        //        int length = 100;
-        //        Func<vec3, vec3, int> comparer = null;
-        //        Sort(pointer, start, length, comparer);
+        //        var p = (int*)array.Header.ToPointer();
+        //        for (int i = 0; i < length; i++)
+        //        {
+        //            p[i] = i + length;
+        //        }
+
+        //        array.Sort(descending: true);
+
+        //        int[] p2 = new int[length];
+        //        for (int i = 0; i < length; i++)
+        //        {
+        //            p2[i] = p[i];
+        //        }
+        //        Console.WriteLine();
         //    }
         //}
 
