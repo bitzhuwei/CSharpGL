@@ -67,39 +67,21 @@ namespace CSharpGL
             while (start < end)
             {
                 startValue = pointer[start];
-                if (descending)
+                while ((start < end)
+                    && ((descending && (startValue.CompareTo(pivot) > 0))
+                        || (!descending) && (startValue.CompareTo(pivot) < 0)))
                 {
-                    while (start < end && startValue.CompareTo(pivot) > 0)
-                    {
-                        start++;
-                        startValue = pointer[start];
-                    }
-                }
-                else
-                {
-                    while (start < end && startValue.CompareTo(pivot) < 0)
-                    {
-                        start++;
-                        startValue = pointer[start];
-                    }
+                    start++;
+                    startValue = pointer[start];
                 }
 
                 endValue = pointer[end];
-                if (descending)
+                while ((start < end)
+                    && ((descending && (endValue.CompareTo(pivot) < 0))
+                        || (!descending) && (endValue.CompareTo(pivot) > 0)))
                 {
-                    while (start < end && endValue.CompareTo(pivot) < 0)
-                    {
-                        end--;
-                        endValue = pointer[end];
-                    }
-                }
-                else
-                {
-                    while (start < end && endValue.CompareTo(pivot) > 0)
-                    {
-                        end--;
-                        endValue = pointer[end];
-                    }
+                    end--;
+                    endValue = pointer[end];
                 }
 
                 if (start < end)

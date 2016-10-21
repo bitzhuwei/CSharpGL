@@ -97,44 +97,24 @@ namespace CSharpGL
             {
                 startIndex = new IntPtr((int)pointer + start * elementSize);
                 startValue = (T)Marshal.PtrToStructure(startIndex, type);
-                if (descending)
+                while ((start < end)
+                    && ((descending && (startValue.CompareTo(pivot) > 0))
+                        || ((!descending) && (startValue.CompareTo(pivot) < 0))))
                 {
-                    while (start < end && startValue.CompareTo(pivot) > 0)
-                    {
-                        start++;
-                        startIndex = new IntPtr((int)pointer + start * elementSize);
-                        startValue = (T)Marshal.PtrToStructure(startIndex, type);
-                    }
-                }
-                else
-                {
-                    while (start < end && startValue.CompareTo(pivot) < 0)
-                    {
-                        start++;
-                        startIndex = new IntPtr((int)pointer + start * elementSize);
-                        startValue = (T)Marshal.PtrToStructure(startIndex, type);
-                    }
+                    start++;
+                    startIndex = new IntPtr((int)pointer + start * elementSize);
+                    startValue = (T)Marshal.PtrToStructure(startIndex, type);
                 }
 
                 endIndex = new IntPtr((int)pointer + end * elementSize);
                 endValue = (T)Marshal.PtrToStructure(endIndex, type);
-                if (descending)
+                while ((start < end)
+                 && ((descending && (endValue.CompareTo(pivot) < 0))
+                        || ((!descending) && (endValue.CompareTo(pivot) > 0))))
                 {
-                    while (start < end && endValue.CompareTo(pivot) < 0)
-                    {
-                        end--;
-                        endIndex = new IntPtr((int)pointer + end * elementSize);
-                        endValue = (T)Marshal.PtrToStructure(endIndex, type);
-                    }
-                }
-                else
-                {
-                    while (start < end && endValue.CompareTo(pivot) > 0)
-                    {
-                        end--;
-                        endIndex = new IntPtr((int)pointer + end * elementSize);
-                        endValue = (T)Marshal.PtrToStructure(endIndex, type);
-                    }
+                    end--;
+                    endIndex = new IntPtr((int)pointer + end * elementSize);
+                    endValue = (T)Marshal.PtrToStructure(endIndex, type);
                 }
 
                 if (start < end)
