@@ -80,6 +80,5 @@ namespace CSharpGL
 
             return start;
         }
-
     }
 }
