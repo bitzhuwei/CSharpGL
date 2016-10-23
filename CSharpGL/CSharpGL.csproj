@@ -201,6 +201,7 @@
     <Content Include="0Foundations\Rendering Pipeline Overview%28渲染管道概览%29.md" />
     <Content Include="0Foundations\Maths\讲讲清楚OpenGL坐标变换.md" />
     <Content Include="0Foundations\Maths\正确地自定义值类型的姿势.md" />
+    <None Include="0Foundations\Utilities\Sorting\SortingHelper.Test.cs" />
     <None Include="Canvas\readme.md" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs" />
