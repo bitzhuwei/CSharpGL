@@ -40,10 +40,10 @@ namespace CSharpGL
         private static void QuickSort<T>(UnmanagedArray<T> array, int start, int length, Comparer<T> comparer) where T : struct
         {
             if (array == null) { throw new ArgumentNullException("array"); }
-            if (comparer == null) { throw new ArgumentNullException("comparer"); }
             if (start < 0) { throw new ArgumentOutOfRangeException("start"); }
             if (length < 0) { throw new ArgumentOutOfRangeException("length"); }
             if (array.Length < start + length) { throw new ArgumentOutOfRangeException(string.Format("{0} < {1} + {2}", array.Length, start, length)); }
+            if (comparer == null) { throw new ArgumentNullException("comparer"); }
 
             MethodInfo method = GetOuterComparerMethod<T>();
             object invokeResult = method.Invoke(null, new object[] { array, start, length, comparer });
