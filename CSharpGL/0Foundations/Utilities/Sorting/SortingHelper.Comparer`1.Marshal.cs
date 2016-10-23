@@ -9,30 +9,6 @@ namespace CSharpGL
     /// </summary>
     public static partial class SortingHelper
     {
-        //static void TestComparer()
-        //{
-        //    const int length = 17;
-        //    var array = new UnmanagedArray<int>(length);
-        //    unsafe
-        //    {
-        //        var p = (int*)array.Header.ToPointer();
-        //        for (int i = 0; i < length; i++)
-        //        {
-        //            p[i] = i + length;
-        //        }
-
-        //        Func<int, int, int> comparer = (x, y) => x - y;// descending sort.
-        //        array.Sort(comparer);
-
-        //        int[] p2 = new int[length];
-        //        for (int i = 0; i < length; i++)
-        //        {
-        //            p2[i] = p[i];
-        //        }
-        //        Console.WriteLine();
-        //    }
-        //}
-
         /// <summary>
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
         /// </summary>
@@ -40,7 +16,7 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort<T>(this UnmanagedArray<T> array, Func<T, T, int> comparer) where T : struct
+        public static void Sort<T>(this UnmanagedArray<T> array, Comparer<T> comparer) where T : struct
         {
             QuickSort(array, 0, array.Length - 1, comparer);
         }
@@ -54,12 +30,12 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort<T>(this UnmanagedArray<T> array, int start, int length, Func<T, T, int> comparer) where T : struct
+        public static void Sort<T>(this UnmanagedArray<T> array, int start, int length, Comparer<T> comparer) where T : struct
         {
             QuickSort(array, start, start + length - 1, comparer);
         }
 
-        private static void QuickSort<T>(UnmanagedArray<T> array, int start, int end, Func<T, T, int> comparer) where T : struct
+        private static void QuickSort<T>(UnmanagedArray<T> array, int start, int end, Comparer<T> comparer) where T : struct
         {
             if (start >= end) { return; }
 
@@ -69,7 +45,7 @@ namespace CSharpGL
             QuickSort(array, comparer, stack);
         }
 
-        private static void QuickSort<T>(UnmanagedArray<T> array, Func<T, T, int> comparer, Stack<int> stack) where T : struct
+        private static void QuickSort<T>(UnmanagedArray<T> array, Comparer<T> comparer, Stack<int> stack) where T : struct
         {
             IntPtr pointer = array.Header;
             Type type = typeof(T);
@@ -91,7 +67,7 @@ namespace CSharpGL
             }
         }
 
-        private static int QuickSortPartion<T>(IntPtr pointer, int start, int end, Func<T, T, int> comparer, Type type, int elementSize) where T : struct
+        private static int QuickSortPartion<T>(IntPtr pointer, int start, int end, Comparer<T> comparer, Type type, int elementSize) where T : struct
         {
             IntPtr pivotIndex, startIndex, endIndex;
             T pivot, startValue, endValue;

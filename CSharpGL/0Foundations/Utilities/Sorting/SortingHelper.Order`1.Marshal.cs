@@ -9,38 +9,15 @@ namespace CSharpGL
     /// </summary>
     public static partial class SortingHelper
     {
-        //static void TestOrder()
-        //{
-        //    const int length = 17;
-        //    var array = new UnmanagedArray<int>(length);
-        //    unsafe
-        //    {
-        //        var p = (int*)array.Header.ToPointer();
-        //        for (int i = 0; i < length; i++)
-        //        {
-        //            p[i] = i + length;
-        //        }
-
-        //        array.Sort(descending: true);
-
-        //        int[] p2 = new int[length];
-        //        for (int i = 0; i < length; i++)
-        //        {
-        //            p2[i] = p[i];
-        //        }
-        //        Console.WriteLine();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Sort unmanaged array specified with <paramref name="array"/> at specified area.
-        ///// </summary>
-        ///// <param name="array"></param>
-        ///// <param name="descending">true for descending sort; otherwise false.</param>
-        //public static void Sort<T>(this UnmanagedArray<T> array, bool descending) where T : struct, IComparable<T>
-        //{
-        //    QuickSort(array, 0, array.Length - 1, descending);
-        //}
+        /// <summary>
+        /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="descending">true for descending sort; otherwise false.</param>
+        public static void Sort<T>(this UnmanagedArray<T> array, bool descending) where T : struct, IComparable<T>
+        {
+            QuickSort(array, 0, array.Length - 1, descending);
+        }
 
         /// <summary>
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
