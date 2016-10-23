@@ -18,20 +18,20 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort(UnmanagedArray<TemplateStructType> array, int start, int length, Func<TemplateStructType, TemplateStructType, int> comparer)
+        public static void Sort(UnmanagedArray<TemplateStructType> array, int start, int length, Comparer<TemplateStructType> comparer)
         {
             QuickSort(array, start, start + length - 1, comparer);
         }
 
-        private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, Func<TemplateStructType, TemplateStructType, int> comparer)
+        private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, Comparer<TemplateStructType> comparer)
         {
-            Stack<int>( stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
             stack.Push(end);
             stack.Push(start);
             QuickSort(array, comparer, stack);
         }
 
-        private static void QuickSort(UnmanagedArray<TemplateStructType> array, Func<TemplateStructType, TemplateStructType, int> comparer, Stack<int> stack)
+        private static void QuickSort(UnmanagedArray<TemplateStructType> array, Comparer<TemplateStructType> comparer, Stack<int> stack)
         {
             while (stack.Count > 0)
             {
@@ -49,7 +49,7 @@ namespace CSharpGL
             }
         }
 
-        private static unsafe int QuickSortPartion(UnmanagedArray<TemplateStructType> array, int start, int end, Func<TemplateStructType, TemplateStructType, int> comparer)
+        private static unsafe int QuickSortPartion(UnmanagedArray<TemplateStructType> array, int start, int end, Comparer<TemplateStructType> comparer)
         {
             TemplateStructType* pointer = (TemplateStructType*)array.Header.ToPointer();
             TemplateStructType pivot, startValue, endValue;
@@ -57,14 +57,14 @@ namespace CSharpGL
             while (start < end)
             {
                 startValue = pointer[start];
-                while (start < end && comparer(startValue, pivot) > 0)
+                while (start < end && comparer.Compare(startValue, pivot) > 0)
                 {
                     start++;
                     startValue = pointer[start];
                 }
 
                 endValue = pointer[end];
-                while (start < end && comparer(endValue, pivot) < 0)
+                while (start < end && comparer.Compare(endValue, pivot) < 0)
                 {
                     end--;
                     endValue = pointer[end];

@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort(this UnmanagedArray<vec4> array, Func<vec4, vec4, int> comparer)
+        public static void Sort(this UnmanagedArray<vec4> array, Comparer<vec4> comparer)
         {
             QuickSort(array, 0, array.Length - 1, comparer);
         }
@@ -30,12 +30,12 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort(this UnmanagedArray<vec4> array, int start, int length, Func<vec4, vec4, int> comparer)
+        public static void Sort(this UnmanagedArray<vec4> array, int start, int length, Comparer<vec4> comparer)
         {
             QuickSort(array, start, start + length - 1, comparer);
         }
 
-        private static void QuickSort(UnmanagedArray<vec4> array, int start, int end, Func<vec4, vec4, int> comparer)
+        private static void QuickSort(UnmanagedArray<vec4> array, int start, int end, Comparer<vec4> comparer)
         {
             if (start >= end) { return; }
 
@@ -45,7 +45,7 @@ namespace CSharpGL
             QuickSort(array, comparer, stack);
         }
 
-        private static void QuickSort(UnmanagedArray<vec4> array, Func<vec4, vec4, int> comparer, Stack<int> stack)
+        private static void QuickSort(UnmanagedArray<vec4> array, Comparer<vec4> comparer, Stack<int> stack)
         {
             while (stack.Count > 0)
             {
@@ -63,7 +63,7 @@ namespace CSharpGL
             }
         }
 
-        private static unsafe int QuickSortPartion(UnmanagedArray<vec4> array, int start, int end, Func<vec4, vec4, int> comparer)
+        private static unsafe int QuickSortPartion(UnmanagedArray<vec4> array, int start, int end, Comparer<vec4> comparer)
         {
             var pointer = (vec4*)array.Header.ToPointer();
             vec4 pivot, startValue, endValue;
@@ -71,14 +71,14 @@ namespace CSharpGL
             while (start < end)
             {
                 startValue = pointer[start];
-                while (start < end && comparer(startValue, pivot) > 0)
+                while (start < end && comparer.Compare(startValue, pivot) > 0)
                 {
                     start++;
                     startValue = pointer[start];
                 }
 
                 endValue = pointer[end];
-                while (start < end && comparer(endValue, pivot) < 0)
+                while (start < end && comparer.Compare(endValue, pivot) < 0)
                 {
                     end--;
                     endValue = pointer[end];
