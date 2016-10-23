@@ -14,6 +14,11 @@ namespace CSharpGL
         internal static OpenGL.glVertexAttribPointer glVertexAttribPointer;
 
         /// <summary>
+        /// 
+        /// </summary>
+        internal static OpenGL.glVertexAttribIPointer glVertexAttribIPointer;
+
+        /// <summary>
         ///
         /// </summary>
         internal static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
@@ -60,6 +65,7 @@ namespace CSharpGL
             if (glVertexAttribPointer == null)
             {
                 glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
+                glVertexAttribIPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribIPointer>();
                 glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
                 glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
                 glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>();
@@ -248,7 +254,14 @@ namespace CSharpGL
             {
                 // 指定格式
                 // set up data format.
-                glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                if (this.IsInteger(this.Config))
+                {
+                    glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                }
+                else
+                {
+                    glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                }
                 if (patchVertexes > 0)// tessellation shading.
                 { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
                 // 启用
@@ -260,6 +273,77 @@ namespace CSharpGL
                 }
             }
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
+        }
+
+        private bool IsInteger(VertexAttributeConfig config)
+        {
+            bool result = false;
+
+            switch (config)
+            {
+                case VertexAttributeConfig.Byte:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.BVec2:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.BVec3:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.BVec4:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.Int:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.IVec2:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.IVec3:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.IVec4:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.UInt:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.UVec2:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.UVec3:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.UVec4:
+                    result = true;
+                    break;
+                case VertexAttributeConfig.Float:
+                    break;
+                case VertexAttributeConfig.Vec2:
+                    break;
+                case VertexAttributeConfig.Vec3:
+                    break;
+                case VertexAttributeConfig.Vec4:
+                    break;
+                case VertexAttributeConfig.Double:
+                    break;
+                case VertexAttributeConfig.DVec2:
+                    break;
+                case VertexAttributeConfig.DVec3:
+                    break;
+                case VertexAttributeConfig.DVec4:
+                    break;
+                case VertexAttributeConfig.Mat2:
+                    break;
+                case VertexAttributeConfig.Mat3:
+                    break;
+                case VertexAttributeConfig.Mat4:
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return result;
         }
     }
 }
