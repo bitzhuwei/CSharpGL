@@ -32,15 +32,15 @@ namespace CSharpGL
         //    }
         //}
 
-        /// <summary>
-        /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="descending">true for descending sort; otherwise false.</param>
-        public static void Sort<T>(this UnmanagedArray<T> array, bool descending) where T : struct, IComparable<T>
-        {
-            QuickSort(array, 0, array.Length - 1, descending);
-        }
+        ///// <summary>
+        ///// Sort unmanaged array specified with <paramref name="array"/> at specified area.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="descending">true for descending sort; otherwise false.</param>
+        //public static void Sort<T>(this UnmanagedArray<T> array, bool descending) where T : struct, IComparable<T>
+        //{
+        //    QuickSort(array, 0, array.Length - 1, descending);
+        //}
 
         /// <summary>
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.

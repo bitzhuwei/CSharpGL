@@ -85,8 +85,8 @@ namespace CSharpGL
                 }
                 if (start < end)
                 {
-                    pointer[start] = startValue;
-                    pointer[end] = endValue;
+                    pointer[end] = startValue;
+                    pointer[start] = endValue;
                 }
             }
 

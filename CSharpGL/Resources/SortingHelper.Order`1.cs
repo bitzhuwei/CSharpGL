@@ -9,15 +9,15 @@ namespace CSharpGL
     /// </summary>
     public static partial class SortingHelper
     {
-        /// <summary>
-        /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="descending">true for descending sort; otherwise false.</param>
-        public static void Sort(this UnmanagedArray<float> array, bool descending)
-        {
-            QuickSort(array, 0, array.Length - 1, descending);
-        }
+        ///// <summary>
+        ///// Sort unmanaged array specified with <paramref name="array"/> at specified area.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="descending">true for descending sort; otherwise false.</param>
+        //public static void Sort(this UnmanagedArray<TemplateStructType> array, bool descending)
+        //{
+        //    QuickSort(array, 0, array.Length - 1, descending);
+        //}
 
         /// <summary>
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
@@ -26,22 +26,22 @@ namespace CSharpGL
         /// <param name="start">index of first value to be sorted.</param>
         /// <param name="length">length of <paramref name="array"/> to bo sorted.</param>
         /// <param name="descending">true for descending sort; otherwise false.</param>
-        public static void Sort(this UnmanagedArray<float> array, int start, int length, bool descending)
+        public static void Sort(UnmanagedArray<TemplateStructType> array, int start, int length, bool descending)
         {
             QuickSort(array, start, start + length - 1, descending);
         }
 
-        private static void QuickSort(UnmanagedArray<float> array, int start, int end, bool descending)
+        private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, bool descending)
         {
             if (start >= end) { return; }
 
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
             stack.Push(end);
             stack.Push(start);
             QuickSort(array, descending, stack);
         }
 
-        private static void QuickSort(UnmanagedArray<float> array, bool descending, Stack<int> stack)
+        private static void QuickSort(UnmanagedArray<TemplateStructType> array, bool descending, Stack<int> stack)
         {
             while (stack.Count > 0)
             {
@@ -59,10 +59,10 @@ namespace CSharpGL
             }
         }
 
-        private static unsafe int QuickSortPartion(UnmanagedArray<float> array, int start, int end, bool descending)
+        private static unsafe int QuickSortPartion(UnmanagedArray<TemplateStructType> array, int start, int end, bool descending)
         {
-            var pointer = (float*)array.Header.ToPointer();
-            float pivot, startValue, endValue;
+            TemplateStructType* pointer = (TemplateStructType*)array.Header.ToPointer();
+            TemplateStructType pivot, startValue, endValue;
             pivot = pointer[start];
             while (start < end)
             {
@@ -86,8 +86,8 @@ namespace CSharpGL
 
                 if (start < end)
                 {
-                    pointer[start] = startValue;
-                    pointer[end] = endValue;
+                    pointer[end] = startValue;
+                    pointer[start] = endValue;
                 }
             }
 

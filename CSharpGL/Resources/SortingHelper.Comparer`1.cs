@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort(this UnmanagedArray<vec2> array, Func<vec2, vec2, int> comparer)
+        public static void Sort(this UnmanagedArray<TemplateStructType> array, Func<TemplateStructType, TemplateStructType, int> comparer)
         {
             QuickSort(array, 0, array.Length - 1, comparer);
         }
@@ -30,12 +30,12 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort(this UnmanagedArray<vec2> array, int start, int length, Func<vec2, vec2, int> comparer)
+        public static void Sort(this UnmanagedArray<TemplateStructType> array, int start, int length, Func<TemplateStructType, TemplateStructType, int> comparer)
         {
             QuickSort(array, start, start + length - 1, comparer);
         }
 
-        private static void QuickSort(UnmanagedArray<vec2> array, int start, int end, Func<vec2, vec2, int> comparer)
+        private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, Func<TemplateStructType, TemplateStructType, int> comparer)
         {
             if (start >= end) { return; }
 
@@ -45,7 +45,7 @@ namespace CSharpGL
             QuickSort(array, comparer, stack);
         }
 
-        private static void QuickSort(UnmanagedArray<vec2> array, Func<vec2, vec2, int> comparer, Stack<int> stack)
+        private static void QuickSort(UnmanagedArray<TemplateStructType> array, Func<TemplateStructType, TemplateStructType, int> comparer, Stack<int> stack)
         {
             while (stack.Count > 0)
             {
@@ -63,10 +63,10 @@ namespace CSharpGL
             }
         }
 
-        private static unsafe int QuickSortPartion(UnmanagedArray<vec2> array, int start, int end, Func<vec2, vec2, int> comparer)
+        private static unsafe int QuickSortPartion(UnmanagedArray<TemplateStructType> array, int start, int end, Func<TemplateStructType, TemplateStructType, int> comparer)
         {
-            var pointer = (vec2*)array.Header.ToPointer();
-            vec2 pivot, startValue, endValue;
+            var pointer = (TemplateStructType*)array.Header.ToPointer();
+            TemplateStructType pivot, startValue, endValue;
             pivot = pointer[start];
             while (start < end)
             {
