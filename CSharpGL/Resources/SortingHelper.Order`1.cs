@@ -16,12 +16,12 @@ namespace CSharpGL
         /// <param name="start">index of first value to be sorted.</param>
         /// <param name="length">length of <paramref name="array"/> to bo sorted.</param>
         /// <param name="descending">true for descending sort; otherwise false.</param>
-        public static void Sort(UnmanagedArray<TemplateStructType> array, int start, int length, bool descending)
+        public static void Sort(IntPtr array, int start, int length, bool descending)
         {
             QuickSort(array, start, start + length - 1, descending);
         }
 
-        private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, bool descending)
+        private static void QuickSort(IntPtr array, int start, int end, bool descending)
         {
             if (start >= end) { return; }
 
@@ -31,13 +31,14 @@ namespace CSharpGL
             QuickSort(array, descending, stack);
         }
 
-        private static void QuickSort(UnmanagedArray<TemplateStructType> array, bool descending, Stack<int> stack)
+        private static unsafe void QuickSort(IntPtr array, bool descending, Stack<int> stack)
         {
+            TemplateStructType* pointer = (TemplateStructType*)array.ToPointer();
             while (stack.Count > 0)
             {
                 int start = stack.Pop();
                 int end = stack.Pop();
-                int index = QuickSortPartion(array, start, end, descending);
+                int index = QuickSortPartion(pointer, start, end, descending);
                 if (start < index - 1)
                 {
                     stack.Push(index - 1); stack.Push(start);
@@ -49,35 +50,34 @@ namespace CSharpGL
             }
         }
 
-        private static unsafe int QuickSortPartion(UnmanagedArray<TemplateStructType> array, int start, int end, bool descending)
+        private static unsafe int QuickSortPartion(TemplateStructType* array, int start, int end, bool descending)
         {
-            TemplateStructType* pointer = (TemplateStructType*)array.Header.ToPointer();
             TemplateStructType pivot, startValue, endValue;
-            pivot = pointer[start];
+            pivot = array[start];
             while (start < end)
             {
-                startValue = pointer[start];
+                startValue = array[start];
                 while ((start < end)
                     && ((descending && (startValue.CompareTo(pivot) > 0))
                         || (!descending) && (startValue.CompareTo(pivot) < 0)))
                 {
                     start++;
-                    startValue = pointer[start];
+                    startValue = array[start];
                 }
 
-                endValue = pointer[end];
+                endValue = array[end];
                 while ((start < end)
                     && ((descending && (endValue.CompareTo(pivot) < 0))
                         || (!descending) && (endValue.CompareTo(pivot) > 0)))
                 {
                     end--;
-                    endValue = pointer[end];
+                    endValue = array[end];
                 }
 
                 if (start < end)
                 {
-                    pointer[end] = startValue;
-                    pointer[start] = endValue;
+                    array[end] = startValue;
+                    array[start] = endValue;
                 }
             }
 

@@ -37,7 +37,7 @@ namespace CSharpGL
 
             Type type = typeof(T);
             MethodInfo method = GetOrderMethod(type);
-            object invokeResult = method.Invoke(null, new object[] { array, start, length, descending });
+            object invokeResult = method.Invoke(null, new object[] { array.Header, start, length, descending });
         }
 
         private static MethodInfo GetOrderMethod(Type type)
@@ -59,9 +59,7 @@ namespace CSharpGL
                     order);
                 Assembly asm = result.CompiledAssembly;
                 Type sortingHelper = asm.GetType("CSharpGL.SortingHelper");
-                Type unmanagedArrayGeneric = typeof(UnmanagedArray<>);
-                Type unmanagedArray = unmanagedArrayGeneric.MakeGenericType(type);
-                method = sortingHelper.GetMethod("Sort", new Type[] { unmanagedArray, typeof(int), typeof(int), typeof(bool) });
+                method = sortingHelper.GetMethod("Sort", new Type[] { typeof(IntPtr), typeof(int), typeof(int), typeof(bool) });
 
                 icomparableDict.Add(type, method);
             }

@@ -46,7 +46,7 @@ namespace CSharpGL
             if (comparer == null) { throw new ArgumentNullException("comparer"); }
 
             MethodInfo method = GetOuterComparerMethod<T>();
-            object invokeResult = method.Invoke(null, new object[] { array, start, length, comparer });
+            object invokeResult = method.Invoke(null, new object[] { array.Header, start, length, comparer });
         }
 
         private static MethodInfo GetOuterComparerMethod<T>()
@@ -69,7 +69,7 @@ namespace CSharpGL
                 Type sortingHelper = asm.GetType("CSharpGL.SortingHelper");
                 Type unmanagedArrayGeneric = typeof(UnmanagedArray<>);
                 Type unmanagedArray = unmanagedArrayGeneric.MakeGenericType(type);
-                method = sortingHelper.GetMethod("Sort", new Type[] { unmanagedArray, typeof(int), typeof(int), typeof(Comparer<T>) });
+                method = sortingHelper.GetMethod("Sort", new Type[] { typeof(IntPtr), typeof(int), typeof(int), typeof(Comparer<T>) });
 
                 outerComparerDict.Add(type, method);
             }

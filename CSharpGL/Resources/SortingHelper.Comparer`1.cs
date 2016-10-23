@@ -18,12 +18,12 @@ namespace CSharpGL
         /// <param name="comparer">
         /// If you want descending sort, make it returns -1 when <paramref name="array"/>[left] &lt; <paramref name="array"/>[right].
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
-        public static void Sort(UnmanagedArray<TemplateStructType> array, int start, int length, Comparer<TemplateStructType> comparer)
+        public static void Sort(IntPtr array, int start, int length, Comparer<TemplateStructType> comparer)
         {
             QuickSort(array, start, start + length - 1, comparer);
         }
 
-        private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, Comparer<TemplateStructType> comparer)
+        private static void QuickSort(IntPtr array, int start, int end, Comparer<TemplateStructType> comparer)
         {
             if (start >= end) { return; }
 
@@ -33,13 +33,15 @@ namespace CSharpGL
             QuickSort(array, comparer, stack);
         }
 
-        private static void QuickSort(UnmanagedArray<TemplateStructType> array, Comparer<TemplateStructType> comparer, Stack<int> stack)
+        private static unsafe void QuickSort(IntPtr array, Comparer<TemplateStructType> comparer, Stack<int> stack)
         {
+            TemplateStructType* pointer = (TemplateStructType*)array.ToPointer();
+
             while (stack.Count > 0)
             {
                 int start = stack.Pop();
                 int end = stack.Pop();
-                int index = QuickSortPartion(array, start, end, comparer);
+                int index = QuickSortPartion(pointer, start, end, comparer);
                 if (start < index - 1)
                 {
                     stack.Push(index - 1); stack.Push(start);
@@ -51,31 +53,30 @@ namespace CSharpGL
             }
         }
 
-        private static unsafe int QuickSortPartion(UnmanagedArray<TemplateStructType> array, int start, int end, Comparer<TemplateStructType> comparer)
+        private static unsafe int QuickSortPartion(TemplateStructType* array, int start, int end, Comparer<TemplateStructType> comparer)
         {
-            TemplateStructType* pointer = (TemplateStructType*)array.Header.ToPointer();
             TemplateStructType pivot, startValue, endValue;
-            pivot = pointer[start];
+            pivot = array[start];
             while (start < end)
             {
-                startValue = pointer[start];
+                startValue = array[start];
                 while (start < end && comparer.Compare(startValue, pivot) > 0)
                 {
                     start++;
-                    startValue = pointer[start];
+                    startValue = array[start];
                 }
 
-                endValue = pointer[end];
+                endValue = array[end];
                 while (start < end && comparer.Compare(endValue, pivot) < 0)
                 {
                     end--;
-                    endValue = pointer[end];
+                    endValue = array[end];
                 }
 
                 if (start < end)
                 {
-                    pointer[end] = startValue;
-                    pointer[start] = endValue;
+                    array[end] = startValue;
+                    array[start] = endValue;
                 }
             }
 
