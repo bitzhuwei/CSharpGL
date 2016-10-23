@@ -47,8 +47,6 @@ namespace CSharpGL
             {
                 string order = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Order`1.cs");
                 order = order.Replace("TemplateStructType", type.FullName);
-                //string comparer = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Comparer`1.cs");
-                //comparer = comparer.Replace("TemplateStructType", type.FullName);
                 var codeProvider = new CSharpCodeProvider();
                 var option = new CompilerParameters();
                 option.GenerateInMemory = true;
