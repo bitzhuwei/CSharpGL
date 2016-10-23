@@ -1,6 +1,7 @@
 ﻿using Microsoft.CSharp;
 using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace CSharpGL
@@ -35,24 +36,39 @@ namespace CSharpGL
             if (array.Length < start + length) { throw new ArgumentOutOfRangeException(string.Format("{0} < {1} + {2}", array.Length, start, length)); }
 
             Type type = typeof(T);
-            string order = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Order`1.cs");
-            order = order.Replace("TemplateStructType", type.FullName);
-            //string comparer = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Comparer`1.cs");
-            //comparer = comparer.Replace("TemplateStructType", type.FullName);
-            var codeProvider = new CSharpCodeProvider();
-            var option = new CompilerParameters();
-            option.GenerateInMemory = true;
-            option.CompilerOptions = "/unsafe";
-            option.ReferencedAssemblies.Add("System.dll");
-            option.ReferencedAssemblies.Add("CSharpGL.dll");
-            CompilerResults result = codeProvider.CompileAssemblyFromSource(option,
-                order);
-            Assembly asm = result.CompiledAssembly;
-            Type sortingHelper = asm.GetType("CSharpGL.SortingHelper");
-            Type unmanagedArrayGeneric = typeof(UnmanagedArray<>);
-            Type unmanagedArray = unmanagedArrayGeneric.MakeGenericType(type);
-            MethodInfo method = sortingHelper.GetMethod("Sort", new Type[] { unmanagedArray, typeof(int), typeof(int), typeof(bool) });
+            MethodInfo method = GetOrderMethod(type);
             object invokeResult = method.Invoke(null, new object[] { array, start, length, descending });
         }
+
+        private static MethodInfo GetOrderMethod(Type type)
+        {
+            MethodInfo method;
+            if (!icomparableDict.TryGetValue(type, out method))
+            {
+                string order = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Order`1.cs");
+                order = order.Replace("TemplateStructType", type.FullName);
+                //string comparer = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Comparer`1.cs");
+                //comparer = comparer.Replace("TemplateStructType", type.FullName);
+                var codeProvider = new CSharpCodeProvider();
+                var option = new CompilerParameters();
+                option.GenerateInMemory = true;
+                option.CompilerOptions = "/unsafe";
+                option.ReferencedAssemblies.Add("System.dll");
+                option.ReferencedAssemblies.Add("CSharpGL.dll");
+                CompilerResults result = codeProvider.CompileAssemblyFromSource(option,
+                    order);
+                Assembly asm = result.CompiledAssembly;
+                Type sortingHelper = asm.GetType("CSharpGL.SortingHelper");
+                Type unmanagedArrayGeneric = typeof(UnmanagedArray<>);
+                Type unmanagedArray = unmanagedArrayGeneric.MakeGenericType(type);
+                method = sortingHelper.GetMethod("Sort", new Type[] { unmanagedArray, typeof(int), typeof(int), typeof(bool) });
+
+                icomparableDict.Add(type, method);
+            }
+
+            return method;
+        }
+
+        private static readonly Dictionary<Type, MethodInfo> icomparableDict = new Dictionary<Type, MethodInfo>();
     }
 }
