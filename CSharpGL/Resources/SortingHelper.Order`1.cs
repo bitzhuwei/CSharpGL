@@ -9,16 +9,6 @@ namespace CSharpGL
     /// </summary>
     public static partial class SortingHelper
     {
-        ///// <summary>
-        ///// Sort unmanaged array specified with <paramref name="array"/> at specified area.
-        ///// </summary>
-        ///// <param name="array"></param>
-        ///// <param name="descending">true for descending sort; otherwise false.</param>
-        //public static void Sort(this UnmanagedArray<TemplateStructType> array, bool descending)
-        //{
-        //    QuickSort(array, 0, array.Length - 1, descending);
-        //}
-
         /// <summary>
         /// Sort unmanaged array specified with <paramref name="array"/> at specified area.
         /// </summary>
