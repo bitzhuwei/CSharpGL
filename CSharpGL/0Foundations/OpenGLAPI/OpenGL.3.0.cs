@@ -121,6 +121,16 @@ namespace CSharpGL
         /// <param name="stride"></param>
         /// <param name="pointer"></param>
         public delegate void glVertexAttribIPointer(uint index, int size, uint type, int stride, IntPtr pointer);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
+        public delegate void glVertexAttribLPointer(uint index, int size, uint type, int stride, IntPtr pointer);
+
         ///// <summary>
         /////
         ///// </summary>

@@ -19,6 +19,11 @@ namespace CSharpGL
         internal static OpenGL.glVertexAttribIPointer glVertexAttribIPointer;
 
         /// <summary>
+        /// 
+        /// </summary>
+        internal static OpenGL.glVertexAttribLPointer glVertexAttribLPointer;
+
+        /// <summary>
         ///
         /// </summary>
         internal static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
@@ -66,6 +71,7 @@ namespace CSharpGL
             {
                 glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
                 glVertexAttribIPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribIPointer>();
+                glVertexAttribLPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribLPointer>();
                 glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
                 glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
                 glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>();
@@ -254,14 +260,21 @@ namespace CSharpGL
             {
                 // 指定格式
                 // set up data format.
-                if (this.IsInteger(this.Config))
+                switch (this.IsInteger(this.Config))
                 {
-                    glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                    case VertexAttribPointerType.Default:
+                        glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                        break;
+                    case VertexAttribPointerType.Integer:
+                        glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                        break;
+                    case VertexAttribPointerType.Long:
+                        glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
-                }
+
                 if (patchVertexes > 0)// tessellation shading.
                 { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
                 // 启用
@@ -275,47 +288,47 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
         }
 
-        private bool IsInteger(VertexAttributeConfig config)
+        private VertexAttribPointerType IsInteger(VertexAttributeConfig config)
         {
-            bool result = false;
+            var result = VertexAttribPointerType.Default;
 
             switch (config)
             {
                 case VertexAttributeConfig.Byte:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.BVec2:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.BVec3:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.BVec4:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.Int:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.IVec2:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.IVec3:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.IVec4:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.UInt:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.UVec2:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.UVec3:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.UVec4:
-                    result = true;
+                    result = VertexAttribPointerType.Integer;
                     break;
                 case VertexAttributeConfig.Float:
                     break;
@@ -326,12 +339,16 @@ namespace CSharpGL
                 case VertexAttributeConfig.Vec4:
                     break;
                 case VertexAttributeConfig.Double:
+                    result = VertexAttribPointerType.Long;
                     break;
                 case VertexAttributeConfig.DVec2:
+                    result = VertexAttribPointerType.Long;
                     break;
                 case VertexAttributeConfig.DVec3:
+                    result = VertexAttribPointerType.Long;
                     break;
                 case VertexAttributeConfig.DVec4:
+                    result = VertexAttribPointerType.Long;
                     break;
                 case VertexAttributeConfig.Mat2:
                     break;
@@ -345,5 +362,21 @@ namespace CSharpGL
 
             return result;
         }
+    }
+
+    enum VertexAttribPointerType
+    {
+        /// <summary>
+        /// float
+        /// </summary>
+        Default,
+        /// <summary>
+        /// byte, short, int, uint,
+        /// </summary>
+        Integer,
+        /// <summary>
+        /// GL_DOUBLE
+        /// </summary>
+        Long,
     }
 }
