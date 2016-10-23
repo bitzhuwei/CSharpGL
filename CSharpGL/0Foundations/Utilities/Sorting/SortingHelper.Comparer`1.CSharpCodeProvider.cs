@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
         public static void Sort<T>(this UnmanagedArray<T> array, Comparer<T> comparer) where T : struct
         {
-            QuickSort(array, 0, array.Length - 1, comparer);
+            QuickSort(array, 0, array.Length, comparer);
         }
 
         /// <summary>
@@ -35,21 +35,19 @@ namespace CSharpGL
         /// <para>Otherwise, make it returns -1 when <paramref name="array"/>[left] &gt; <paramref name="array"/>[right].</para></param>
         public static void Sort<T>(this UnmanagedArray<T> array, int start, int length, Comparer<T> comparer) where T : struct
         {
-            QuickSort(array, start, start + length - 1, comparer);
+            QuickSort(array, start, length, comparer);
         }
 
-        private static void QuickSort<T>(UnmanagedArray<T> array, int start, int end, Comparer<T> comparer) where T : struct
+        private static void QuickSort<T>(UnmanagedArray<T> array, int start, int length, Comparer<T> comparer) where T : struct
         {
             if (array == null) { throw new ArgumentNullException("array"); }
             if (comparer == null) { throw new ArgumentNullException("comparer"); }
             if (start < 0) { throw new ArgumentOutOfRangeException("start"); }
-            if (end < 0) { throw new ArgumentOutOfRangeException("length"); }
-            if (array.Length <= end) { throw new ArgumentOutOfRangeException(string.Format("{0} < {1} + {2}", array.Length, start, end)); }
-
-            if (start >= end) { return; }
+            if (length < 0) { throw new ArgumentOutOfRangeException("length"); }
+            if (array.Length < start + length) { throw new ArgumentOutOfRangeException(string.Format("{0} < {1} + {2}", array.Length, start, length)); }
 
             MethodInfo method = GetOuterComparerMethod<T>();
-            object invokeResult = method.Invoke(null, new object[] { array, start, end, comparer });
+            object invokeResult = method.Invoke(null, new object[] { array, start, length, comparer });
         }
 
         private static MethodInfo GetOuterComparerMethod<T>()

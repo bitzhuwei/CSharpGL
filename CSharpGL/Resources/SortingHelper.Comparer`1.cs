@@ -25,6 +25,8 @@ namespace CSharpGL
 
         private static void QuickSort(UnmanagedArray<TemplateStructType> array, int start, int end, Comparer<TemplateStructType> comparer)
         {
+            if (start >= end) { return; }
+
             Stack<int> stack = new Stack<int>();
             stack.Push(end);
             stack.Push(start);

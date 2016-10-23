@@ -125,9 +125,6 @@
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`1.CSharpCodeProvider.cs" />
-    <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`float.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Order`1.CSharpCodeProvider.cs">
       <SubType>Code</SubType>
     </Compile>
