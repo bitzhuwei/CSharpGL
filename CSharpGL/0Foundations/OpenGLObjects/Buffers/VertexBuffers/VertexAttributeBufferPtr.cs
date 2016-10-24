@@ -14,12 +14,12 @@ namespace CSharpGL
         internal static OpenGL.glVertexAttribPointer glVertexAttribPointer;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glVertexAttribIPointer glVertexAttribIPointer;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glVertexAttribLPointer glVertexAttribLPointer;
 
@@ -265,12 +265,15 @@ namespace CSharpGL
                     case VertexAttribPointerType.Default:
                         glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
                         break;
+
                     case VertexAttribPointerType.Integer:
                         glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
                         break;
+
                     case VertexAttribPointerType.Long:
                         glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
                         break;
+
                     default:
                         break;
                 }
@@ -297,65 +300,88 @@ namespace CSharpGL
                 case VertexAttributeConfig.Byte:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.BVec2:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.BVec3:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.BVec4:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.Int:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.IVec2:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.IVec3:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.IVec4:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.UInt:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.UVec2:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.UVec3:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.UVec4:
                     result = VertexAttribPointerType.Integer;
                     break;
+
                 case VertexAttributeConfig.Float:
                     break;
+
                 case VertexAttributeConfig.Vec2:
                     break;
+
                 case VertexAttributeConfig.Vec3:
                     break;
+
                 case VertexAttributeConfig.Vec4:
                     break;
+
                 case VertexAttributeConfig.Double:
                     result = VertexAttribPointerType.Long;
                     break;
+
                 case VertexAttributeConfig.DVec2:
                     result = VertexAttribPointerType.Long;
                     break;
+
                 case VertexAttributeConfig.DVec3:
                     result = VertexAttribPointerType.Long;
                     break;
+
                 case VertexAttributeConfig.DVec4:
                     result = VertexAttribPointerType.Long;
                     break;
+
                 case VertexAttributeConfig.Mat2:
                     break;
+
                 case VertexAttributeConfig.Mat3:
                     break;
+
                 case VertexAttributeConfig.Mat4:
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
@@ -364,16 +390,18 @@ namespace CSharpGL
         }
     }
 
-    enum VertexAttribPointerType
+    internal enum VertexAttribPointerType
     {
         /// <summary>
         /// float
         /// </summary>
         Default,
+
         /// <summary>
         /// byte, short, int, uint,
         /// </summary>
         Integer,
+
         /// <summary>
         /// GL_DOUBLE
         /// </summary>
