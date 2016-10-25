@@ -260,7 +260,7 @@ namespace CSharpGL
             {
                 // 指定格式
                 // set up data format.
-                switch (this.IsInteger(this.Config))
+                switch (this.GetVertexAttribPointerType(this.Config))
                 {
                     case VertexAttribPointerType.Default:
                         glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
@@ -291,7 +291,7 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
         }
 
-        private VertexAttribPointerType IsInteger(VertexAttributeConfig config)
+        private VertexAttribPointerType GetVertexAttribPointerType(VertexAttributeConfig config)
         {
             var result = VertexAttribPointerType.Default;
 
