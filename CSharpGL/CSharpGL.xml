@@ -10550,6 +10550,26 @@
             
              </summary>
         </member>
+        <member name="T:CSharpGL.OpenGL.glVertexAttribIPointer">
+             <summary>
+            
+             </summary>
+             <param name="index"></param>
+             <param name="size"></param>
+             <param name="type"></param>
+             <param name="stride"></param>
+             <param name="pointer"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glVertexAttribLPointer">
+             <summary>
+            
+             </summary>
+             <param name="index"></param>
+             <param name="size"></param>
+             <param name="type"></param>
+             <param name="stride"></param>
+             <param name="pointer"></param>
+        </member>
         <member name="T:CSharpGL.OpenGL.glBindFragDataLocation">
              <summary>
             
@@ -25221,6 +25241,16 @@
             
              </summary>
         </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribIPointer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribLPointer">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="F:CSharpGL.VertexAttributeBufferPtr.glEnableVertexAttribArray">
              <summary>
             
@@ -25296,6 +25326,21 @@
         <member name="P:CSharpGL.VertexAttributeBufferPtr.PatchVertexes">
             <summary>
             How many vertexes makes a patch? No patch if PatchVertexes is 0.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttribPointerType.Default">
+            <summary>
+            float
+            </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttribPointerType.Integer">
+            <summary>
+            byte, short, int, uint,
+            </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttribPointerType.Long">
+            <summary>
+            GL_DOUBLE
             </summary>
         </member>
         <member name="T:CSharpGL.VertexArrayObject">

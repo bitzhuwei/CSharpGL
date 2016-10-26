@@ -3,6 +3,13 @@ CSharpGL wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and of
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.7.1:
+1. rename `IColorCodedPicking` to `IPickable`.
+2. `Markable` struct supports timestamp when member is updated.
+3. Cascade model matrix.(`IModelSpace` keeps relative model space to parent node.)
+4. Quick sort algorithm of `UnmanagedArray<T>`.
+5. `VertexAttributeBufferPtr` supports `glVertexAttribPointer`, `glVertexAttribIPointer` and `glVertexAttribLPointer`.
+
 ## v1.0.7.0:
 1. DitherSwitch\LogicOperationSwitch\AlphaFuncSwitch.
 2. Support uniform struct.
@@ -11,7 +18,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 5. Generic `ILayout<T>` separated from `UIRenderer`.
 6. `ViewPort` supports `ILayout<ViewPort>`(tree layout). `Scene` supports multiple view ports.
 7. `ViewPort` integrated in picking.
-8. Use opengl window coordinate system in piccking.
+8. Use opengl window coordinate system in picking.
 
 ## v1.0.6.8:
 1. `UniformVariable` need not to reset.
@@ -39,7 +46,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 8. Color-coded picking intergrated in Scene.
 9. VertexAttributeBufferPtr supports tessellation shaders.
 10. Remove self defined cursor in scene.
-11. fix: Inner pickable Renderer akes model matrix into consideration when moving vertex's positions.
+11. fix: Inner pickable Renderer takes model matrix into consideration when moving vertex's positions.
 12. Remove mat4 MVP in IColorCodedPicking.
 13. fix: missed the condition of picking a point when rendering GL_POINTS.
 
