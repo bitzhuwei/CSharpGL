@@ -95,11 +95,11 @@ namespace CSharpGL
 
             // 白色意味着没有拾取到任何对象
             // white color: nothing picked.
-            OpenGL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            OpenGL.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             // restore clear color
-            OpenGL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
+            OpenGL.glClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             this.Render4Picking(arg, indexBufferPtr);
 

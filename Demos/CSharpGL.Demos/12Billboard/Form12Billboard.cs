@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -15,7 +15,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
 
             Application.Idle += Application_Idle;
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
         private void Application_Idle(object sender, EventArgs e)

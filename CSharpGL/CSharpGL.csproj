@@ -94,6 +94,7 @@
     <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox2D.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBoxHelper.cs" />
+    <Compile Include="0Foundations\OpenGLAPI\OpenGL.Properties.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.1.2.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.1.3.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.1.4.cs" />

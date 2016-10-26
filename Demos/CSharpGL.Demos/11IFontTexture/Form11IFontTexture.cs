@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -9,8 +9,6 @@ namespace CSharpGL.Demos
         public Form11IFontTexture()
         {
             InitializeComponent();
-
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
         private const string defaultCharSet = " \tabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&";

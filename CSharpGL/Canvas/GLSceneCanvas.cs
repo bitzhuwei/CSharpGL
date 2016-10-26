@@ -221,7 +221,7 @@ namespace CSharpGL
         {
             // Sky blue fore background.
             //OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            OpenGL.ClearColor(0, 0, 0, 0);
+            OpenGL.glClearColor(0, 0, 0, 0);
 
             //  Clear the color and depth buffer.
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);

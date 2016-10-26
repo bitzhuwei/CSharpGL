@@ -18,6 +18,7 @@ namespace CSharpGL.Demos
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
                 this.scene = new Scene(camera, this.glCanvas1);
+                this.scene.ClearColor = Color.SkyBlue;
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {

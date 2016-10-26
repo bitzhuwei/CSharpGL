@@ -75,7 +75,7 @@ namespace CSharpGL
         {
             OpenGL.GetFloat(GetTarget.ColorClearValue, original);
 
-            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, alpha);
+            OpenGL.glClearColor(clearColor.x, clearColor.y, clearColor.z, alpha);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
         }
 
@@ -84,7 +84,7 @@ namespace CSharpGL
         /// </summary>
         protected override void SwitchOff()
         {
-            OpenGL.ClearColor(original[0], original[1], original[2], original[3]);
+            OpenGL.glClearColor(original[0], original[1], original[2], original[3]);
         }
     }
 }

@@ -21,7 +21,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
         private void Application_Idle(object sender, EventArgs e)

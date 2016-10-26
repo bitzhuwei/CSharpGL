@@ -18,7 +18,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.KeyUp += glCanvas1_KeyUp;
 
             Application.Idle += Application_Idle;
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
         private void Application_Idle(object sender, EventArgs e)
@@ -29,7 +28,6 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             this.scene.Render(this.chkRenderMode.Checked ? CSharpGL.PickingGeometryType.None : this.PickingGeometryType);

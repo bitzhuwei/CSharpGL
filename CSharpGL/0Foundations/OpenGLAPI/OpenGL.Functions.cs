@@ -169,7 +169,7 @@ namespace CSharpGL
         /// <param name="blue">Blue component of the color (between 0 and 1)./</param>
         /// <param name="alpha">Alpha component of the color (between 0 and 1).</param>
         [DllImport(Win32.opengl32, EntryPoint = "glClearColor", SetLastError = true)]
-        public static extern void ClearColor(float red, float green, float blue, float alpha);
+        internal static extern void glClearColor(float red, float green, float blue, float alpha);
 
         /// <summary>
         /// Specify the clear value for the depth buffer.

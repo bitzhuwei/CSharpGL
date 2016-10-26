@@ -73,7 +73,7 @@ namespace CSharpGL
         private void RenderColorCoded(ViewPort viewPort, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
             var color = new vec4(1, 1, 1, 1);
-            OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+            OpenGL.glClearColor(color.x, color.y, color.z, color.w);
 
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
@@ -99,7 +99,7 @@ namespace CSharpGL
             var arg = new RenderEventArgs(clientRectangle, viewPort, PickingGeometryType.None);
 
             vec4 color = viewPort.ClearColor.ToVec4();
-            OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+            OpenGL.glClearColor(color.x, color.y, color.z, color.w);
 
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 

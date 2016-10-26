@@ -24,7 +24,7 @@ namespace CSharpGL
             set
             {
                 vec4 color = value.ToVec4();
-                OpenGL.ClearColor(color.x, color.y, color.z, color.w);
+                OpenGL.glClearColor(color.x, color.y, color.z, color.w);
             }
         }
     }
