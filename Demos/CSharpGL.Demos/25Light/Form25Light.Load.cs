@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
                 cameraManipulater.Bind(camera, this.glCanvas1);
                 this.cameraManipulater = cameraManipulater;
                 this.scene = new Scene(camera, this.glCanvas1);
-                this.scene.ClearColor = Color.SkyBlue;
+                this.scene.RootViewPort.ClearColor = Color.SkyBlue;
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {

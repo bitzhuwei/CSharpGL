@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
                     new vec3(5, 3, 4), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var scene = new Scene(camera, this.glCanvas1);
-                scene.ClearColor = Color.SkyBlue;
+                scene.RootViewPort.ClearColor = Color.SkyBlue;
                 this.glCanvas1.Resize += scene.Resize;
                 this.scene = scene;
                 var cameraManipulater = new SatelliteManipulater();

@@ -116,7 +116,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <returns></returns>
-        private List<IPickable> Render4Picking(RenderEventArgs arg)
+        internal List<IPickable> Render4Picking(RenderEventArgs arg)
         {
             arg.UsingViewPort.On();
 

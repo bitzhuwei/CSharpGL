@@ -35,5 +35,17 @@ namespace CSharpGL
             {
             }
         }
+
+        public override void Render(Scene scene, System.Drawing.Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
+        {
+            this.On();// limit rendering area.
+
+            vec4 color = this.ClearColor.ToVec4();
+            OpenGL.glClearColor(color.x, color.y, color.z, color.w);
+
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+            this.Off();// cancel limitation.
+        }
     }
 }

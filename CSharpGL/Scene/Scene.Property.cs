@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Drawing;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -35,25 +34,25 @@ namespace CSharpGL
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public ICanvas Canvas { get; private set; }
 
-        /// <summary>
-        /// Gets root view port's background color./Sets all viewports' background color.
-        /// </summary>
-        [Category(strScene)]
-        [Description("Gets root view port's background color./Sets all viewports' background color.")]
-        public Color ClearColor
-        {
-            get
-            {
-                return this.rootViewPort.ClearColor;
-            }
-            set
-            {
-                foreach (ViewPort item in this.rootViewPort.Traverse(TraverseOrder.Pre))
-                {
-                    item.ClearColor = value;
-                }
-            }
-        }
+        ///// <summary>
+        ///// Gets root view port's background color./Sets all viewports' background color.
+        ///// </summary>
+        //[Category(strScene)]
+        //[Description("Gets root view port's background color./Sets all viewports' background color.")]
+        //public Color ClearColor
+        //{
+        //    get
+        //    {
+        //        return this.rootViewPort.ClearColor;
+        //    }
+        //    set
+        //    {
+        //        foreach (ViewPort item in this.rootViewPort.Traverse(TraverseOrder.Pre))
+        //        {
+        //            item.ClearColor = value;
+        //        }
+        //    }
+        //}
 
         ///// <summary>
         ///// OpenGL UI for cursor.

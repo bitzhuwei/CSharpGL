@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -144,6 +146,106 @@ namespace CSharpGL
 
             this.scissorTestSwitch.Off();
             this.viewportSwitch.Off();
+        }
+
+        /// <summary>
+        /// render scene in this view port.
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="clientRectangle"></param>
+        /// <param name="pickingGeometryType"></param>
+        public virtual void Render(Scene scene, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
+        {
+            this.On();// limit rendering area.
+
+            if (pickingGeometryType == PickingGeometryType.None)
+            {
+                RenderNormally(scene, clientRectangle);
+            }
+            else
+            {
+                RenderColorCoded(scene, clientRectangle, pickingGeometryType);
+            }
+
+            this.Off();// cancel limitation.
+        }
+
+        private void RenderColorCoded(Scene scene, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
+        {
+            var color = new vec4(1, 1, 1, 1);
+            OpenGL.glClearColor(color.x, color.y, color.z, color.w);
+
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+            var arg = new RenderEventArgs(clientRectangle, this, pickingGeometryType);
+            // render objects.
+            // Render all PickableRenderers for color-coded picking.
+            List<IPickable> pickableRendererList = scene.Render4Picking(arg);
+
+            //// render regular UI.
+            //this.RootUI.Render(arg);
+
+            //// render cursor.
+            //UICursor cursor = this.Cursor;
+            //if (cursor != null && cursor.Enabled)
+            //{
+            //    cursor.UpdatePosition(mousePosition);
+            //    this.rootCursor.Render(arg);
+            //}
+        }
+
+        private void RenderNormally(Scene scene, Rectangle clientRectangle)
+        {
+            var arg = new RenderEventArgs(clientRectangle, this, PickingGeometryType.None);
+
+            vec4 color = this.ClearColor.ToVec4();
+            OpenGL.glClearColor(color.x, color.y, color.z, color.w);
+
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+            // render objects.
+            SceneObject obj = scene.RootObject;
+            this.RenderObject(obj, arg);
+
+            // render regular UI.
+            scene.RootUI.Render(arg);
+
+            //// render cursor.
+            //UICursor cursor = this.Cursor;
+            //if (cursor != null && cursor.Enabled)
+            //{
+            //    cursor.UpdatePosition(mousePosition);
+            //    this.rootCursor.Render(arg);
+            //}
+        }
+
+        /// <summary>
+        /// render object recursively.
+        /// </summary>
+        /// <param name="sceneObject"></param>
+        /// <param name="arg"></param>
+        private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
+        {
+            if (sceneObject.Enabled)
+            {
+                //sceneObject.DoBeforeRendering();
+                GLSwitch[] switchArray = sceneObject.GroupSwitchList.ToArray();
+                for (int i = 0; i < switchArray.Length; i++)
+                {
+                    switchArray[i].On();
+                }
+                sceneObject.Render(arg);
+                SceneObject[] array = sceneObject.Children.ToArray();
+                foreach (SceneObject child in array)
+                {
+                    RenderObject(child, arg);
+                }
+                //sceneObject.DoAfterRendering();
+                for (int i = switchArray.Length - 1; i >= 0; i--)
+                {
+                    switchArray[i].Off();
+                }
+            }
         }
     }
 }

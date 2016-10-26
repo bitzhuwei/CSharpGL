@@ -40,7 +40,10 @@ namespace CSharpGL.Demos
                 var scene = new Scene(camera, this.glCanvas1);
                 //scene.Cursor.Enabled = false;
                 this.scene = scene;
-                ViewPort viewPort = scene.RootViewPort.Children[0];
+                ViewPort rootViewPort = scene.RootViewPort;
+                rootViewPort.ClearColor = Color.White;
+                ViewPort viewPort = rootViewPort.Children[0];
+                viewPort.ClearColor = Color.Gray;
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
                 viewPort.AfterLayout += perspectiveViewPort_AfterLayout;
                 this.glCanvas1.Resize += scene.Resize;
@@ -51,6 +54,7 @@ namespace CSharpGL.Demos
                 new vec3(0, 0, 25), new vec3(0, 0, 0), new vec3(0, 1, 0),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.ClearColor = Color.Gray;
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
                 viewPort.AfterLayout += topViewPort_AfterLayout;
                 this.scene.RootViewPort.Children.Add(viewPort);
@@ -61,6 +65,7 @@ namespace CSharpGL.Demos
                 new vec3(0, 25, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.ClearColor = Color.Gray;
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
                 viewPort.AfterLayout += frontViewPort_AfterLayout;
                 this.scene.RootViewPort.Children.Add(viewPort);
@@ -71,6 +76,7 @@ namespace CSharpGL.Demos
                 new vec3(-25, 0, 0), new vec3(0, 0, 0), new vec3(0, 0, -1),
                 CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 ViewPort viewPort = new ViewPort(camera, AnchorStyles.None, new Padding(), new Size());
+                viewPort.ClearColor = Color.Gray;
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
                 viewPort.AfterLayout += leftViewPort_AfterLayout;
                 this.scene.RootViewPort.Children.Add(viewPort);
