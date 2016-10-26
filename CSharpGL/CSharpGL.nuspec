@@ -13,6 +13,6 @@
     <summary>CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents. Inspired by SharpGL.</summary>
     <releaseNotes></releaseNotes>
     <copyright>Copyright © bitzhuwei 2016</copyright>
-    <tags>OpenGL C# GLSL Shader text picking 3D WinForms Graphics glm matrix UI Scene Label PropertyGrid</tags>
+    <tags>OpenGL C# GLSL Shader picking 3D WinForms Graphics glm matrix UI Scene PropertyGrid</tags>
   </metadata>
 </package>
