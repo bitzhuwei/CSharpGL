@@ -38,7 +38,6 @@ namespace CSharpGL.Demos
                 rotator.StepLength = 0.5f;
                 rotator.Bind(camera, this.glCanvas1);
                 var scene = new Scene(camera, this.glCanvas1);
-                scene.ClearColor = Color.SkyBlue;
                 //scene.Cursor.Enabled = false;
                 this.scene = scene;
                 ViewPort viewPort = scene.RootViewPort.Children[0];
