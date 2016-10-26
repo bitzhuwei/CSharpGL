@@ -21,21 +21,11 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Does this viewport take part in rendering?
+        /// render scene in this view port.
         /// </summary>
-        [Category("Scene Root View Port")]
-        [Description("Does this viewport take part in rendering?")]
-        public override bool Visiable
-        {
-            get
-            {
-                return false;
-            }
-            set
-            {
-            }
-        }
-
+        /// <param name="scene"></param>
+        /// <param name="clientRectangle"></param>
+        /// <param name="pickingGeometryType"></param>
         public override void Render(Scene scene, System.Drawing.Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
             this.On();// limit rendering area.

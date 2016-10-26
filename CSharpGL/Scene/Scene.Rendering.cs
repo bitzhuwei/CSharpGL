@@ -17,10 +17,6 @@ namespace CSharpGL
             {
                 // update view port's location and size.
                 this.rootViewPort.Layout();
-                // render root view port.
-                vec4 color = this.rootViewPort.ClearColor.ToVec4();
-                OpenGL.glClearColor(color.x, color.y, color.z, color.w);
-                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
                 // render scene in every view port.
                 this.RenderViewPort(this.rootViewPort, this.Canvas.ClientRectangle, pickingGeometryType);
             }
