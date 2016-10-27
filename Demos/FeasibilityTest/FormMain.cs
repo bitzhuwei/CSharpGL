@@ -22,7 +22,7 @@ namespace FeasibilityTest
 
         private void Application_Idle(object sender, EventArgs e)
         {
-            //this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
+            this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.drvSimuControl1.FPS.ToShortString());
         }
 
         Random random = new Random();
