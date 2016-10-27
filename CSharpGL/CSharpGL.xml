@@ -1048,6 +1048,8 @@
         </member>
         <member name="T:CSharpGL.OpenGL">
             <summary>
+            </summary>
+            <summary>
             The OpenGL class wraps Sun's OpenGL 3D library.
             </summary>
         </member>
@@ -6444,7 +6446,7 @@
             <param name="blue">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
             <param name="alpha">Specify the red, green, blue and alpha values used when the accumulation buffer is cleared. The initial values are all 0.</param>
         </member>
-        <member name="M:CSharpGL.OpenGL.ClearColor(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:CSharpGL.OpenGL.glClearColor(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             This function sets the color that the drawing buffer is 'cleared' to.
             </summary>
@@ -9943,6 +9945,11 @@
             </summary>
             <param name="target"></param>
             <param name="textureId"></param>
+        </member>
+        <member name="P:CSharpGL.OpenGL.ClearColor">
+            <summary>
+            Gets or sets OpenGL's clear color.
+            </summary>
         </member>
         <member name="T:CSharpGL.OpenGL.glDrawRangeElements">
              <summary>
@@ -18280,21 +18287,6 @@
             <param name="clientRectangle"></param>
             <param name="pickingGeometryType"></param>
         </member>
-        <member name="M:CSharpGL.Scene.Render(CSharpGL.ViewPort,System.Drawing.Rectangle,CSharpGL.PickingGeometryType)">
-            <summary>
-            Render scene in specified <paramref name="viewPort"/>.
-            </summary>
-            <param name="viewPort"></param>
-            <param name="clientRectangle"></param>
-            <param name="pickingGeometryType"></param>
-        </member>
-        <member name="M:CSharpGL.Scene.RenderObject(CSharpGL.SceneObject,CSharpGL.RenderEventArgs)">
-            <summary>
-            render object recursively.
-            </summary>
-            <param name="sceneObject"></param>
-            <param name="arg"></param>
-        </member>
         <member name="F:CSharpGL.Scene.maxCycle">
             <summary>
             how many times should this engine run?
@@ -18353,11 +18345,6 @@
         <member name="P:CSharpGL.Scene.Canvas">
             <summary>
             Canvas that this scene binds to.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.Scene.ClearColor">
-            <summary>
-            Gets root view port's background color./Sets all viewports' background color.
             </summary>
         </member>
         <member name="P:CSharpGL.Scene.RootObject">
@@ -18667,6 +18654,21 @@
             cancel limitation.
             </summary>
         </member>
+        <member name="M:CSharpGL.ViewPort.Render(CSharpGL.Scene,System.Drawing.Rectangle,CSharpGL.PickingGeometryType)">
+            <summary>
+            render scene in this view port.
+            </summary>
+            <param name="scene"></param>
+            <param name="clientRectangle"></param>
+            <param name="pickingGeometryType"></param>
+        </member>
+        <member name="M:CSharpGL.ViewPort.RenderObject(CSharpGL.SceneObject,CSharpGL.RenderEventArgs)">
+            <summary>
+            render object recursively.
+            </summary>
+            <param name="sceneObject"></param>
+            <param name="arg"></param>
+        </member>
         <member name="P:CSharpGL.ViewPort.Enabled">
             <summary>
             Does this viewport and all its children take part in rendering?
@@ -18760,10 +18762,13 @@
             <param name="margin"></param>
             <param name="size"></param>
         </member>
-        <member name="P:CSharpGL.SceneRootViewPort.Visiable">
+        <member name="M:CSharpGL.SceneRootViewPort.Render(CSharpGL.Scene,System.Drawing.Rectangle,CSharpGL.PickingGeometryType)">
             <summary>
-            Does this viewport take part in rendering?
+            render scene in this view port.
             </summary>
+            <param name="scene"></param>
+            <param name="clientRectangle"></param>
+            <param name="pickingGeometryType"></param>
         </member>
         <member name="T:CSharpGL.UIRenderer">
             <summary>
@@ -25518,7 +25523,7 @@
             要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.ZeroIndexBufferPtr.VertexCount">
+        <member name="P:CSharpGL.ZeroIndexBufferPtr.RenderingVertexCount">
             <summary>
             要渲染多少个元素？<para>How many vertexes to be rendered?</para>
             </summary>
