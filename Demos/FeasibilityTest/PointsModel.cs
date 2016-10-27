@@ -51,7 +51,7 @@ namespace FeasibilityTest
         {
             if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.LineStrip, 0, this.pointList.Count))
+                using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, this.pointList.Count))
                 {
                     this.indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
                 }
