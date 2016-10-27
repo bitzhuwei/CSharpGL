@@ -236,21 +236,24 @@ namespace CSharpGL
         {
             base.OnSizeChanged(e);
 
-            FBORenderContext renderContext = this.renderContext;
-            if (renderContext != null)
+            if (this.Width > 0 && this.Height > 0)
             {
-                renderContext.MakeCurrent();
-
-                renderContext.SetDimensions(this.Width, this.Height);
-
-                OpenGL.Viewport(0, 0, this.Width, this.Height);
-
-                if (this.designMode)
+                FBORenderContext renderContext = this.renderContext;
+                if (renderContext != null)
                 {
-                    GLCanvasHelper.ResizeGL(this.Width, this.Height);
-                }
+                    renderContext.MakeCurrent();
 
-                this.Invalidate();
+                    renderContext.SetDimensions(this.Width, this.Height);
+
+                    OpenGL.Viewport(0, 0, this.Width, this.Height);
+
+                    if (this.designMode)
+                    {
+                        GLCanvasHelper.ResizeGL(this.Width, this.Height);
+                    }
+
+                    this.Invalidate();
+                }
             }
         }
 
