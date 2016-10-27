@@ -170,11 +170,17 @@ namespace CSharpGL
                         break;
 
                     case VertexAttribPointerType.Integer:
-                        glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                        if (glVertexAttribIPointer == null)
+                        { glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit)); }
+                        else
+                        { glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit)); }
                         break;
 
                     case VertexAttribPointerType.Long:
-                        glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                        if (glVertexAttribLPointer == null)
+                        { glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit)); }
+                        else
+                        { glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit)); }
                         break;
 
                     default:

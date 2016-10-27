@@ -39,42 +39,56 @@ namespace CSharpGL
             Delegate del = null;
             if (!extensionFunctions.TryGetValue(name, out del))
             {
-                IntPtr proc = IntPtr.Zero;
-                if (CurrentOS.IsWindows)
+                IntPtr proc = GetProc(name);
+
+                if (proc != IntPtr.Zero)
                 {
-                    // check https://www.opengl.org/wiki/Load_OpenGL_Functions
-                    proc = Win32.wglGetProcAddress(name);
-                    long pointer = proc.ToInt64();
+                    //  Get the delegate for the function pointer.
+                    del = Marshal.GetDelegateForFunctionPointer(proc, delegateType);
+
+                    //  Add to the dictionary.
+                    extensionFunctions.Add(name, del);
+                }
+            }
+
+            return del;
+        }
+
+        private static IntPtr GetProc(string name)
+        {
+            IntPtr proc = IntPtr.Zero;
+            if (CurrentOS.IsWindows)
+            {
+                // check https://www.opengl.org/wiki/Load_OpenGL_Functions
+                proc = Win32.wglGetProcAddress(name);
+                long pointer = proc.ToInt64();
+                if (-1 <= pointer && pointer <= 3)
+                {
+                    proc = Win32.GetProcAddress(Win32.Instance.opengl32Library, name);
+                    pointer = proc.ToInt64();
                     if (-1 <= pointer && pointer <= 3)
                     {
-                        proc = Win32.GetProcAddress(Win32.Instance.opengl32Library, name);
-                        pointer = proc.ToInt64();
-                        if (-1 <= pointer && pointer <= 3)
-                        {
-                            throw new Exception("Extension function " + name + " not supported");
-                        }
+                        Debug.WriteLine(string.Format(
+                            "Extension function [{0}] not supported!", name));
+                        proc = IntPtr.Zero;
                     }
                 }
-                else if (CurrentOS.IsLinux)
-                {
-                    proc = glxGetProcAddress(name);
-                    if (proc == IntPtr.Zero)
-                    {
-                        throw new Exception("Extension function " + name + " not supported");
-                    }
-                }
-                else
-                {
-                    throw new NotImplementedException("Unsupported OS.");
-                }
-
-                //  Get the delegate for the function pointer.
-                del = Marshal.GetDelegateForFunctionPointer(proc, delegateType);
-
-                //  Add to the dictionary.
-                extensionFunctions.Add(name, del);
             }
-            return del;
+            else if (CurrentOS.IsLinux)
+            {
+                proc = glxGetProcAddress(name);
+                if (proc == IntPtr.Zero)
+                {
+                    Debug.WriteLine(string.Format(
+                            "Extension function [{0}] not supported!", name));
+                }
+            }
+            else
+            {
+                throw new NotImplementedException("Unsupported OS.");
+            }
+
+            return proc;
         }
 
         /// <summary>
