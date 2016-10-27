@@ -7,6 +7,8 @@ namespace DrvSimu
 {
     public partial class ScientificCanvas
     {
+        private PointsRenderer pointsRenderer;
+
         private void ScientificCanvas_Load(object sender, EventArgs e)
         {
             var camera = new Camera(new vec3(4, 1.6f, 3), new vec3(0, 0, 0), new vec3(0, 1, 0),
@@ -16,6 +18,12 @@ namespace DrvSimu
             this.cameraManipulater = cameraManipulater;
 
             this.Scene = new Scene(camera, this);
+            {
+                var pointsRenderer = PointsRenderer.Create(3000000);
+                SceneObject obj = pointsRenderer.WrapToSceneObject(false);
+                this.Scene.RootObject.Children.Add(obj);
+                this.pointsRenderer = pointsRenderer;
+            }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(128, 128));

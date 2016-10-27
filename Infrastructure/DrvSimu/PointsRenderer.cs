@@ -16,10 +16,12 @@ namespace DrvSimu
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Points.frag"), ShaderType.FragmentShader);
             var map = new AttributeMap();
             map.Add("in_Position", PointsModel.strPosition);
+            map.Add("in_Color", PointsModel.strColor);
             var renderer = new PointsRenderer(model, shaderCodes, map, PointsModel.strPosition);
             renderer.capacity = capacity;
             //renderer.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
             renderer.ModelSize = new vec3(1, 1, 1);
+            renderer.Initialize();
             (renderer.indexBufferPtr as ZeroIndexBufferPtr).RenderingVertexCount = 0;
             return renderer;
         }
@@ -77,6 +79,7 @@ namespace DrvSimu
             }
 
             this.nextPointIndex++;
+            (this.indexBufferPtr as ZeroIndexBufferPtr).RenderingVertexCount = this.nextPointIndex;
 
             return true;
         }
