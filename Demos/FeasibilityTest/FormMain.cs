@@ -57,6 +57,7 @@ namespace FeasibilityTest
                 PointsRenderer renderer = PointsRenderer.Create(pointList);
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
+                this.glCanvas1.Invalidate();
             }
         }
 
