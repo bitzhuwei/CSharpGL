@@ -1,12 +1,13 @@
 ﻿using CSharpGL;
+using System.Drawing;
 
 namespace DrvSimu
 {
     public partial class DrvSimuControl
     {
-        public void AddPoint(vec3 point)
+        public void SetColor(Color color)
         {
-            this.pointsRenderer.SetPoint(point);
+            this.pointsRenderer.SetColor(color);
         }
     }
 }
