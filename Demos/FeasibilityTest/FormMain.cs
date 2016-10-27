@@ -15,13 +15,21 @@ namespace FeasibilityTest
     {
         public FormMain()
         {
+            MessageBox.Show("001");
             InitializeComponent();
+            MessageBox.Show("002");
 
             this.Load += Form_Load;
+            MessageBox.Show("003");
+
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            MessageBox.Show("004");
+
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            MessageBox.Show("005");
 
             Application.Idle += Application_Idle;
+            MessageBox.Show("006");
         }
 
         private void Application_Idle(object sender, EventArgs e)
@@ -52,12 +60,18 @@ namespace FeasibilityTest
         {
             if (this.openFileDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                MessageBox.Show("007");
                 string filename = this.openFileDlg.FileName;
                 List<vec3> pointList = PointListFactory.OpenFile(filename);
+                MessageBox.Show("008");
                 PointsRenderer renderer = PointsRenderer.Create(pointList);
+                MessageBox.Show("009");
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
+                MessageBox.Show("010");
                 this.scene.RootObject.Children.Add(obj);
+                MessageBox.Show("011");
                 this.glCanvas1.Invalidate();
+                MessageBox.Show("012");
             }
         }
 
