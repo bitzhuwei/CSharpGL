@@ -188,7 +188,10 @@ namespace CSharpGL
                 }
 
                 if (patchVertexes > 0)// tessellation shading.
-                { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
+                {
+                    if (glPatchParameteri != null)
+                    { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
+                }
                 // 启用
                 // enable this VBO.
                 glEnableVertexAttribArray(loc + i);

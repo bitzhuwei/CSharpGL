@@ -14,7 +14,7 @@ namespace CSharpGL
         //private static OpenGL.glDrawBuffers glDrawBuffers;
         private static OpenGL.glFramebufferRenderbufferEXT glFramebufferRenderbuffer;
 
-        //private static OpenGL.glFramebufferParameteri glFramebufferParameteri;
+        private static OpenGL.glFramebufferParameteri glFramebufferParameteri;
         private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
 
         private uint[] frameBuffer = new uint[1];
@@ -46,7 +46,7 @@ namespace CSharpGL
                 glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
                 //glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>();
                 glFramebufferRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>();
-                //glFramebufferParameteri = OpenGL.GetDelegateFor<OpenGL.glFramebufferParameteri>();
+                glFramebufferParameteri = OpenGL.GetDelegateFor<OpenGL.glFramebufferParameteri>();
                 glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
             }
 
