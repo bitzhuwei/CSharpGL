@@ -2,7 +2,7 @@
 
 namespace DrvSimu
 {
-    public partial class DrvSimuCanvas
+    public partial class DrvSimuControl
     {
         public void AddPoint(vec3 point)
         {

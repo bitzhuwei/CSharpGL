@@ -1,6 +1,6 @@
 ﻿namespace DrvSimu
 {
-    public partial class DrvSimuCanvas
+    public partial class DrvSimuControl
     {
         protected override void Dispose(bool disposing)
         {

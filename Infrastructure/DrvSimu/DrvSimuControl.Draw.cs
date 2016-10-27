@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace DrvSimu
 {
-    public partial class DrvSimuCanvas
+    public partial class DrvSimuControl
     {
         private void ScientificCanvas_OpenGLDraw(object sender, PaintEventArgs e)
         {

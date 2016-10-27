@@ -2,7 +2,7 @@
 
 namespace DrvSimu
 {
-    public partial class DrvSimuCanvas
+    public partial class DrvSimuControl
     {
 
     }

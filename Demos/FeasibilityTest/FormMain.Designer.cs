@@ -33,7 +33,7 @@
             this.btnSetColor = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
-            this.drvSimuCanvas1 = new DrvSimu.DrvSimuCanvas();
+            this.drvSimuCanvas1 = new DrvSimu.DrvSimuControl();
             ((System.ComponentModel.ISupportInitialize)(this.drvSimuCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +45,7 @@
             this.btnAddPoint.TabIndex = 0;
             this.btnAddPoint.Text = "Add Point";
             this.btnAddPoint.UseVisualStyleBackColor = true;
+            this.btnAddPoint.Click += new System.EventHandler(this.btnAddPoint_Click);
             // 
             // btnSetColor
             // 
@@ -54,6 +55,7 @@
             this.btnSetColor.TabIndex = 1;
             this.btnSetColor.Text = "Set Color";
             this.btnSetColor.UseVisualStyleBackColor = true;
+            this.btnSetColor.Click += new System.EventHandler(this.btnSetColor_Click);
             // 
             // openFileDlg
             // 
@@ -61,8 +63,8 @@
             // 
             // drvSimuCanvas1
             // 
-            this.drvSimuCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.drvSimuCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.drvSimuCanvas1.Location = new System.Drawing.Point(12, 42);
             this.drvSimuCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -92,7 +94,7 @@
         private System.Windows.Forms.Button btnSetColor;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.OpenFileDialog openFileDlg;
-        private DrvSimu.DrvSimuCanvas drvSimuCanvas1;
+        private DrvSimu.DrvSimuControl drvSimuCanvas1;
 
     }
 }
