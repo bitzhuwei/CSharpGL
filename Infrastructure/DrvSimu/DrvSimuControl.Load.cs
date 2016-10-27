@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace DrvSimu
 {
-    public partial class ScientificCanvas
+    public partial class DrvSimuCanvas
     {
         private PointsRenderer pointsRenderer;
 

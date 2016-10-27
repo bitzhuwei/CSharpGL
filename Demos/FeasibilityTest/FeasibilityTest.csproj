@@ -45,9 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMain.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +98,10 @@
     <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
       <Project>{115ab8f1-a732-4fad-8f16-f8c9e4da02a1}</Project>
       <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\DrvSimu\DrvSimu.csproj">
+      <Project>{2ec303f1-fabf-4d0b-b0d2-1b54b819c18b}</Project>
+      <Name>DrvSimu</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,12 +2,12 @@
 
 namespace DrvSimu
 {
-    public partial class ScientificCanvas : GLCanvas
+    public partial class DrvSimuCanvas : GLCanvas
     {
         public Scene Scene { get; private set; }
         private SatelliteManipulater cameraManipulater;
 
-        public ScientificCanvas()
+        public DrvSimuCanvas()
         {
             if (!this.designMode)
             {
