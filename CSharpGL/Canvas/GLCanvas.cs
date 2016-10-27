@@ -236,20 +236,21 @@ namespace CSharpGL
         {
             base.OnSizeChanged(e);
 
-            if (this.Width > 0 && this.Height > 0)
+            int width = this.Width, height = this.Height;
+            if (width > 0 && height > 0)
             {
                 FBORenderContext renderContext = this.renderContext;
                 if (renderContext != null)
                 {
                     renderContext.MakeCurrent();
 
-                    renderContext.SetDimensions(this.Width, this.Height);
+                    renderContext.SetDimensions(width, height);
 
-                    OpenGL.Viewport(0, 0, this.Width, this.Height);
+                    OpenGL.Viewport(0, 0, width, height);
 
                     if (this.designMode)
                     {
-                        GLCanvasHelper.ResizeGL(this.Width, this.Height);
+                        GLCanvasHelper.ResizeGL(width, height);
                     }
 
                     this.Invalidate();
