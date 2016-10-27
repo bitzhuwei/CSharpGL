@@ -171,7 +171,7 @@ namespace CSharpGL
 
         public override int Count()
         {
-            return this.indexBufferPtr.VertexCount;
+            return this.indexBufferPtr.RenderingVertexCount;
         }
 
         public override int OriginalCount()
@@ -186,7 +186,7 @@ namespace CSharpGL
 
         internal override void SetCount(int value)
         {
-            this.indexBufferPtr.VertexCount = value;
+            this.indexBufferPtr.RenderingVertexCount = value;
         }
 
         public override string ToString()

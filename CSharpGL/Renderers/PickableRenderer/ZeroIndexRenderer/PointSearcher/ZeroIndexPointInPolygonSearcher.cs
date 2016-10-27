@@ -22,7 +22,7 @@ namespace CSharpGL
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             using (var buffer = new ZeroIndexBuffer(DrawMode.Points,
-                zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.VertexCount))
+                zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.RenderingVertexCount))
             {
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
@@ -32,7 +32,7 @@ namespace CSharpGL
             indexBufferPtr.Dispose();
 
             if (zeroIndexBufferPtr.FirstVertex <= id
-                && id < zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.VertexCount)
+                && id < zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.RenderingVertexCount)
             { return id; }
             else
             { throw new Exception("This should not happen!"); }

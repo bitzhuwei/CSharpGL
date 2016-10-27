@@ -20,7 +20,7 @@
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             using (var buffer = new ZeroIndexBuffer(DrawMode.LineLoop,
-                zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.VertexCount))
+                zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.RenderingVertexCount))
             {
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
@@ -30,7 +30,7 @@
             indexBufferPtr.Dispose();
 
             if (id == zeroIndexBufferPtr.FirstVertex)
-            { return new uint[] { (uint)(zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.VertexCount - 1), id, }; }
+            { return new uint[] { (uint)(zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.RenderingVertexCount - 1), id, }; }
             else
             { return new uint[] { id - 1, id, }; }
         }

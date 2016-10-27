@@ -209,7 +209,7 @@ namespace CSharpGL
             var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
             int first = indexBufferPtr.FirstVertex;
             if (first < 0) { return false; }
-            int vertexCount = indexBufferPtr.VertexCount;
+            int vertexCount = indexBufferPtr.RenderingVertexCount;
             if (vertexCount <= 0) { return false; }
             int last = first + vertexCount - 1;
             switch (mode)

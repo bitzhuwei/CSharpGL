@@ -24,7 +24,7 @@ namespace CSharpGL
             if (string.IsNullOrEmpty(content))
             {
                 if (this.indexBufferPtr != null)
-                { this.indexBufferPtr.VertexCount = 0; }
+                { this.indexBufferPtr.RenderingVertexCount = 0; }
                 this.content = string.Empty;
                 return;
             }
@@ -38,7 +38,7 @@ namespace CSharpGL
 
             SetupGlyphPositions(content, fontTextureService);
             SetupGlyphTexCoord(content, fontTextureService);
-            this.indexBufferPtr.VertexCount = count * 4;
+            this.indexBufferPtr.RenderingVertexCount = count * 4;
         }
 
         unsafe private void SetupGlyphTexCoord(string content, IFontTexture fontTexture)

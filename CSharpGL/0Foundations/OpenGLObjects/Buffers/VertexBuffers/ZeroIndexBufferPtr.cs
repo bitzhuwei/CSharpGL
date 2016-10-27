@@ -32,7 +32,7 @@ namespace CSharpGL
             { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }
 
             this.FirstVertex = firstVertex;
-            this.VertexCount = vertexCount;
+            this.RenderingVertexCount = vertexCount;
             //this.OriginalVertexCount = vertexCount;
         }
 
@@ -44,7 +44,7 @@ namespace CSharpGL
         /// <summary>
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
-        public int VertexCount { get; set; }
+        public int RenderingVertexCount { get; set; }
 
         ///// <summary>
         ///// 总共有多少个元素？<para>How many vertexes are there in total?</para>
@@ -127,11 +127,11 @@ namespace CSharpGL
             if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
             else if (primCount == 1)
             {
-                OpenGL.DrawArrays(mode, this.FirstVertex, this.VertexCount);
+                OpenGL.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
             }
             else
             {
-                glDrawArraysInstanced(mode, this.FirstVertex, this.VertexCount, primCount);
+                glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
             }
         }
 
@@ -149,12 +149,12 @@ namespace CSharpGL
             else if (primCount == 1)
             {
                 return string.Format("OpenGL.DrawArrays({0}, {1}, {2})",
-                    this.Mode, this.FirstVertex, this.VertexCount);
+                    this.Mode, this.FirstVertex, this.RenderingVertexCount);
             }
             else
             {
                 return string.Format("OpenGL.glDrawArraysInstanced({0}, {1}, {2}, {3})",
-                    this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
+                    this.Mode, this.FirstVertex, this.RenderingVertexCount, this.PrimCount);
             }
         }
     }
