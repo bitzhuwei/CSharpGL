@@ -33,6 +33,7 @@
             this.btnRun = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             this.btnOpen.TabIndex = 0;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnRun
             // 
@@ -53,11 +55,12 @@
             this.btnRun.TabIndex = 1;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // glCanvas1
             // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.glCanvas1.Location = new System.Drawing.Point(12, 42);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -65,6 +68,10 @@
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTrigger.Manual;
             this.glCanvas1.Size = new System.Drawing.Size(713, 498);
             this.glCanvas1.TabIndex = 2;
+            // 
+            // openFileDlg
+            // 
+            this.openFileDlg.Filter = "*.txt|*.txt";
             // 
             // FormMain
             // 
@@ -87,6 +94,7 @@
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.Timer timer1;
         private CSharpGL.GLCanvas glCanvas1;
+        private System.Windows.Forms.OpenFileDialog openFileDlg;
 
     }
 }

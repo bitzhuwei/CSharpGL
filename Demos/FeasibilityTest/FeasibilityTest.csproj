@@ -61,11 +61,14 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="PointsModel.cs" />
-    <Compile Include="ModelFactory.cs" />
+    <Compile Include="PointListFactory.cs" />
     <Compile Include="ModelList.cs" />
     <Compile Include="PointsRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

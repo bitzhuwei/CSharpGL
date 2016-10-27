@@ -17,6 +17,7 @@ namespace FeasibilityTest
         {
             InitializeComponent();
 
+            this.Load += Form_Load;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
@@ -45,6 +46,23 @@ namespace FeasibilityTest
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             this.scene.Render();
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            if (this.openFileDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = this.openFileDlg.FileName;
+                List<vec3> pointList = PointListFactory.OpenFile(filename);
+                PointsRenderer renderer = PointsRenderer.Create(pointList);
+                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
+                this.scene.RootObject.Children.Add(obj);
+            }
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

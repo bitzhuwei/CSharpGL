@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FeasibilityTest
 {
-    class ModelFactory
+    class PointListFactory
     {
-        private static char[] separator = new char[] { ' ', 'X', 'Y', 'Z' };
+        private static char[] separator = new char[] { ' ', 'X', 'Y', 'Z', 'F' };
 
         public static List<vec3> OpenFile(string filename)
         {
@@ -21,27 +21,29 @@ namespace FeasibilityTest
                 while (!stream.EndOfStream)
                 {
                     string line = stream.ReadLine();
+                    if (!line.StartsWith("X")) { continue; }
+
                     string[] parts = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                     if (parts.Length == 1)
                     {
-                        var point = new vec3(float.Parse(parts[0]), lastPoint.y, lastPoint.z);
+                        var point = new vec3(float.Parse(parts[0], System.Globalization.NumberStyles.Any), lastPoint.y, lastPoint.z);
                         pointList.Add(point);
                         lastPoint = point;
                     }
                     else if (parts.Length == 2)
                     {
-                        var point = new vec3(float.Parse(parts[1]), float.Parse(parts[2]), lastPoint.z);
+                        var point = new vec3(float.Parse(parts[0], System.Globalization.NumberStyles.Any), float.Parse(parts[1], System.Globalization.NumberStyles.Any), lastPoint.z);
                         pointList.Add(point);
                         lastPoint = point;
                     }
-                    else if (parts.Length == 3)
+                    else //if (parts.Length == 3)
                     {
-                        var point = new vec3(float.Parse(parts[0]), float.Parse(parts[1]), float.Parse(parts[2]));
+                        var point = new vec3(float.Parse(parts[0], System.Globalization.NumberStyles.Any), float.Parse(parts[1], System.Globalization.NumberStyles.Any), float.Parse(parts[2], System.Globalization.NumberStyles.Any));
                         pointList.Add(point);
                         lastPoint = point;
                     }
-                    else
-                    { throw new NotImplementedException(); }
+                    //else
+                    //{ throw new NotImplementedException(); }
                 }
             }
 

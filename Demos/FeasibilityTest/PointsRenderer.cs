@@ -16,7 +16,7 @@ namespace FeasibilityTest
             var map = new AttributeMap();
             map.Add("in_Position", PointsModel.strPosition);
             var renderer = new PointsRenderer(model, shaderCodes, map, PointsModel.strPosition);
-            renderer.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
+            //renderer.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
             renderer.ModelSize = box.MaxPosition - box.MinPosition;
             return renderer;
         }
@@ -26,5 +26,17 @@ namespace FeasibilityTest
             params GLSwitch[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
+
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            mat4 projection = arg.Camera.GetProjectionMatrix();
+            mat4 view = arg.Camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix().Value;
+            this.SetUniform("projectionMatrix", projection);
+            this.SetUniform("viewMatrix", view);
+            this.SetUniform("modelMatrix", model);
+
+            base.DoRender(arg);
+        }
     }
 }

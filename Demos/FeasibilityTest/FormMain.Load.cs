@@ -30,13 +30,6 @@ namespace FeasibilityTest
                 this.scene = new Scene(camera, this.glCanvas1);
                 this.glCanvas1.Resize += this.scene.Resize;
             }
-            //{
-            //    const int particleCount = 10000;
-            //    PointSpriteRenderer renderer = PointSpriteRenderer.Create(particleCount);
-            //    this.renderer = renderer;
-            //    SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
-            //    this.scene.RootObject.Children.Add(obj);
-            //}
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
