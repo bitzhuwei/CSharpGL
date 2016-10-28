@@ -1,5 +1,4 @@
-﻿using CSharpGL;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace DrvSimu
 {

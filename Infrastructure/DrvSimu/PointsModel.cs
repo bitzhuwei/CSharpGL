@@ -1,12 +1,10 @@
 ﻿using CSharpGL;
 using System;
-using System.Collections.Generic;
 
 namespace DrvSimu
 {
     internal class PointsModel : IBufferable
     {
-
         /// <summary>
         /// how many points can this model contains?
         /// </summary>

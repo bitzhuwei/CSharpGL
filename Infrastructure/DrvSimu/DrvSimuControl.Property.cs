@@ -1,9 +1,6 @@
-﻿using CSharpGL;
-
-namespace DrvSimu
+﻿namespace DrvSimu
 {
     public partial class DrvSimuControl
     {
-
     }
 }
