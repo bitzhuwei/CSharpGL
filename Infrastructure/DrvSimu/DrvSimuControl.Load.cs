@@ -8,6 +8,7 @@ namespace DrvSimu
     public partial class DrvSimuControl
     {
         private PointsRenderer pointsRenderer;
+        private CrossRenderer crossRenderer;
 
         private void ScientificCanvas_Load(object sender, EventArgs e)
         {
@@ -23,6 +24,12 @@ namespace DrvSimu
                 SceneObject obj = pointsRenderer.WrapToSceneObject(false);
                 this.Scene.RootObject.Children.Add(obj);
                 this.pointsRenderer = pointsRenderer;
+            }
+            {
+                CrossRenderer crossRenderer = CrossRenderer.Create();
+                SceneObject obj = crossRenderer.WrapToSceneObject(false);
+                this.Scene.RootObject.Children.Add(obj);
+                this.crossRenderer = crossRenderer;
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,

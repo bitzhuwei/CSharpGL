@@ -7,6 +7,7 @@ namespace DrvSimu
         public void AddPoint(vec3 point)
         {
             this.pointsRenderer.SetPoint(point);
+            this.crossRenderer.SetPoint(point);
             this.Invalidate();
         }
     }
