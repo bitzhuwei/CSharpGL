@@ -49,6 +49,7 @@ namespace DrvSimu
             mat4 projection = arg.Camera.GetProjectionMatrix();
             this.SetUniform("mvp", projection * view * model);
 
+            OpenGL.Clear(ClearBufferMask.DepthBufferBit);
             base.DoRender(arg);
         }
 
