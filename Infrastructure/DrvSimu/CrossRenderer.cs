@@ -39,7 +39,7 @@ namespace DrvSimu
             }
             base.DoInitialize();
             this.SetUniform("spriteTexture", this.spriteTexture);
-            this.SetUniform("factor", 100.0f);
+            //this.SetUniform("factor", 100.0f);
         }
 
         protected override void DoRender(RenderEventArgs arg)
