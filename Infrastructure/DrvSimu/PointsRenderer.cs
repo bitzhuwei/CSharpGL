@@ -21,6 +21,8 @@ namespace DrvSimu
             renderer.capacity = capacity;
             //renderer.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
             renderer.ModelSize = new vec3(1, 1, 1);
+            renderer.switchList.Add(new PointSizeSwitch(3));
+            renderer.switchList.Add(new LineWidthSwitch(3));
             renderer.Initialize();
             (renderer.indexBufferPtr as ZeroIndexBufferPtr).RenderingVertexCount = 0;
             return renderer;

@@ -78,7 +78,7 @@ namespace DrvSimu
         {
             if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, this.capacity))
+                using (var buffer = new ZeroIndexBuffer(DrawMode.LineStrip, 0, this.capacity))
                 {
                     this.indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
                 }

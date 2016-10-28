@@ -2,7 +2,7 @@
 
 in vec3 in_Position;
 in vec3 in_Color;
-in vec3 passColor;
+out vec3 passColor;
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
