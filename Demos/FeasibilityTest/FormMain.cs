@@ -17,7 +17,36 @@ namespace FeasibilityTest
         {
             InitializeComponent();
 
+            this.drvSimuControl1.KeyPress += drvSimuControl1_KeyPress;
+
             Application.Idle += Application_Idle;
+
+            {
+                var builder = new StringBuilder();
+                builder.AppendLine("1: Scene's property grid.");
+                builder.AppendLine("2: Canvas' property grid.");
+                builder.AppendLine("3: Form's property grid.");
+                MessageBox.Show(builder.ToString());
+            }
+        }
+
+        void drvSimuControl1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '1')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.drvSimuControl1.Scene);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == '2')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this.drvSimuControl1);
+                frmPropertyGrid.Show();
+            }
+            else if (e.KeyChar == '3')
+            {
+                var frmPropertyGrid = new FormProperyGrid(this);
+                frmPropertyGrid.Show();
+            }
         }
 
         private void Application_Idle(object sender, EventArgs e)
