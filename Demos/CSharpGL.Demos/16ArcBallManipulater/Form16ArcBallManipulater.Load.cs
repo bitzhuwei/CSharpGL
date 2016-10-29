@@ -38,8 +38,7 @@ namespace CSharpGL.Demos
                 var arcballManipulater = new ArcBallManipulater();
                 arcballManipulater.Bind(this.scene.FirstCamera, this.glCanvas1);
                 SimpleRenderer renderer = SimpleRenderer.Create(new Teapot());
-                SceneObject obj = renderer.WrapToSceneObject();
-                obj.Scripts.Add(new ArcballScript(arcballManipulater));
+                SceneObject obj = renderer.WrapToSceneObject(new ArcballScript(arcballManipulater));
                 {
                     BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
                     var boxObj = box.WrapToSceneObject();
