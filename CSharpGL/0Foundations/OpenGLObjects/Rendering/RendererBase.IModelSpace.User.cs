@@ -24,6 +24,7 @@
         /// <returns></returns>
         public MarkableStruct<mat4> GetModelMatrix()
         {
+            //return new MarkableStruct<mat4>(IModelSpaceHelper.GetModelMatrix(this));
             if (this.modelMatrixRecord.IsMarked())// this model matrix is updated.
             {
                 mat4 thisModel = IModelSpaceHelper.GetModelMatrix(this);
@@ -32,11 +33,15 @@
                 SceneObject obj = this.BindingSceneObject;
                 if (obj != null)
                 {
-                    RendererBase renderer = obj.Renderer;
-                    if (renderer != null)
+                    SceneObject parent = obj.Parent;
+                    if (parent != null)
                     {
-                        // this requires that parent scene object be rendered first, then chidren.
-                        thisModel = renderer.modelMatrix.Value * thisModel;
+                        RendererBase parentRenderer = parent.Renderer;
+                        if (parentRenderer != null)
+                        {
+                            // this requires that parent scene object be rendered first, then chidren.
+                            thisModel = parentRenderer.modelMatrix.Value * thisModel;
+                        }
                     }
                 }
                 // total model matrix.
@@ -56,7 +61,8 @@
                             long ticks = parentRenderer.modelMatrix.UpdateTicks;
                             if (this.parentModelMatrixTicks != ticks) // parent's model matrix is updated.
                             {
-                                this.modelMatrix.Value = parentRenderer.modelMatrix.Value * this.modelMatrix.Value;
+                                mat4 thisModel = IModelSpaceHelper.GetModelMatrix(this);
+                                this.modelMatrix.Value = parentRenderer.modelMatrix.Value * thisModel;
                                 this.parentModelMatrixTicks = ticks;
                             }
                         }

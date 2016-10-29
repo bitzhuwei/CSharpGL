@@ -43,7 +43,6 @@ namespace CSharpGL.Demos
                 {
                     BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
                     var boxObj = box.WrapToSceneObject();
-                    boxObj.Scripts.Add(new ArcballScript(arcballManipulater));
                     obj.Children.Add(boxObj);
                 }
                 this.scene.RootObject.Children.Add(obj);
