@@ -36,7 +36,7 @@ namespace CSharpGL
 
             if (result)
             {
-                glClearBufferData(this.BufferId, internalFormat, format, type, data);
+                glClearBufferData((uint)this.Target, internalFormat, format, type, data);
             }
 
             return result;

@@ -10998,6 +10998,50 @@
             </param>
             <returns></returns>
         </member>
+        <member name="T:CSharpGL.OpenGL.glClearBufferData">
+            <summary>
+            Fill a buffer object's data store with a fixed value
+            </summary>
+            <param name="target">Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER​, GL_ATOMIC_COUNTER_BUFFER​, GL_COPY_READ_BUFFER​, GL_COPY_WRITE_BUFFER​, GL_DRAW_INDIRECT_BUFFER​, GL_DISPATCH_INDIRECT_BUFFER​, GL_ELEMENT_ARRAY_BUFFER​, GL_PIXEL_PACK_BUFFER​, GL_PIXEL_UNPACK_BUFFER​, GL_QUERY_BUFFER​, GL_SHADER_STORAGE_BUFFER​, GL_TEXTURE_BUFFER​, GL_TRANSFORM_FEEDBACK_BUFFER​, or GL_UNIFORM_BUFFER​.</param>
+            <param name="internalformat">The sized internal format with which the data will be stored in the buffer object.</param>
+            <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
+            <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
+            <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be NULL.</param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glClearBufferSubData">
+            <summary>
+            Fill all or part of buffer object's data store with a fixed value
+            </summary>
+            <param name="target">Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER​, GL_ATOMIC_COUNTER_BUFFER​, GL_COPY_READ_BUFFER​, GL_COPY_WRITE_BUFFER​, GL_DRAW_INDIRECT_BUFFER​, GL_DISPATCH_INDIRECT_BUFFER​, GL_ELEMENT_ARRAY_BUFFER​, GL_PIXEL_PACK_BUFFER​, GL_PIXEL_UNPACK_BUFFER​, GL_QUERY_BUFFER​, GL_SHADER_STORAGE_BUFFER​, GL_TEXTURE_BUFFER​, GL_TRANSFORM_FEEDBACK_BUFFER​, or GL_UNIFORM_BUFFER​.</param>
+            <param name="internalformat">The sized internal format with which the data will be stored in the buffer object.</param>
+            <param name="offset">The offset, in basic machine units into the buffer object's data store at which to start filling.</param>
+            <param name="size">The size, in basic machine units of the range of the data store to fill.</param>
+            <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
+            <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
+            <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be NULL.</param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glClearNamedBufferDataEXT">
+             <summary>
+            
+             </summary>
+             <param name="buffer"></param>
+             <param name="internalformat"></param>
+             <param name="format"></param>
+             <param name="type"></param>
+             <param name="data"></param>
+        </member>
+        <member name="T:CSharpGL.OpenGL.glClearNamedBufferSubDataEXT">
+             <summary>
+            
+             </summary>
+             <param name="buffer"></param>
+             <param name="internalformat"></param>
+             <param name="offset"></param>
+             <param name="size"></param>
+             <param name="format"></param>
+             <param name="type"></param>
+             <param name="data"></param>
+        </member>
         <member name="T:CSharpGL.OpenGL.glDispatchCompute">
              <summary>
             
@@ -11259,6 +11303,152 @@
              <param name="message"></param>
              <param name="userParam"></param>
         </member>
+        <member name="T:CSharpGL.BufferPtr">
+            <summary>
+            将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
+            VBO's pointer got from Buffer's GetBufferPtr() method.
+            </summary>
+            <summary>
+            将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
+            VBO's pointer got from Buffer's GetBufferPtr() method.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase)">
+            <summary>
+            
+            </summary>
+            <param name="internalFormat"></param>
+            <param name="format"></param>
+            <param name="type"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="internalFormat"></param>
+            <param name="format"></param>
+            <param name="type"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.Dispose">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.Finalize">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.DisposeUnmanagedResources">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.DisposeManagedResources">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glBindBuffer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glDeleteBuffers">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glMapBuffer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glUnmapBuffer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glMapBufferRange">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glClearBufferData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
+            VBO's pointer got from Buffer's GetBufferPtr() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
+            </summary>
+            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.Bind">
+             <summary>
+            Bind this buffer.
+             </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.Unbind">
+            <summary>
+            Unind this buffer.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.MapBufferRange(System.Int32,System.Int32,CSharpGL.MapBufferRangeAccess,System.Boolean)">
+            <summary>
+            Start to read/write buffer.
+            </summary>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <param name="access"></param>
+            <param name="bind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.MapBuffer(CSharpGL.MapBufferAccess,System.Boolean)">
+            <summary>
+            Start to read/write buffer.
+            </summary>
+            <param name="access"></param>
+            <param name="bind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.UnmapBuffer(System.Boolean)">
+            <summary>
+            Stop reading/writing buffer.
+            </summary>
+            <param name="unbind"></param>
+        </member>
+        <member name="P:CSharpGL.BufferPtr.BufferId">
+            <summary>
+            用glGenBuffers()得到的VBO的Id。
+            <para>Id got from glGenBuffers();</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.BufferPtr.Length">
+            <summary>
+            此VBO含有多个个元素？
+            <para>How many elements?</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.BufferPtr.ByteLength">
+            <summary>
+            此VBO中的数据在内存中占用多少个字节？
+            <para>How many bytes in this buffer?</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.BufferPtr.Target">
+            <summary>
+            Target that this buffer should bind to.
+            </summary>
+        </member>
         <member name="T:CSharpGL.PixelPackBuffer`1">
              <summary>
             
@@ -11419,127 +11609,6 @@
         <member name="T:CSharpGL.IndependentBufferPtr">
             <summary>
             Buffer object that not work as input variable in shader.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.BufferPtr">
-            <summary>
-            将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
-            VBO's pointer got from Buffer's GetBufferPtr() method.
-            </summary>
-            <summary>
-            将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
-            VBO's pointer got from Buffer's GetBufferPtr() method.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.Dispose">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.Finalize">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.DisposeUnmanagedResources">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.DisposeManagedResources">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.BufferPtr.glBindBuffer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.BufferPtr.glDeleteBuffers">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.BufferPtr.glMapBuffer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.BufferPtr.glUnmapBuffer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.BufferPtr.glMapBufferRange">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
-            <summary>
-            将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
-            VBO's pointer got from Buffer's GetBufferPtr() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
-            </summary>
-            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
-            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.Bind">
-             <summary>
-            Bind this buffer.
-             </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.Unbind">
-            <summary>
-            Unind this buffer.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.MapBufferRange(System.Int32,System.Int32,CSharpGL.MapBufferRangeAccess,System.Boolean)">
-            <summary>
-            Start to read/write buffer.
-            </summary>
-            <param name="offset"></param>
-            <param name="length"></param>
-            <param name="access"></param>
-            <param name="bind"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.MapBuffer(CSharpGL.MapBufferAccess,System.Boolean)">
-            <summary>
-            Start to read/write buffer.
-            </summary>
-            <param name="access"></param>
-            <param name="bind"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.BufferPtr.UnmapBuffer(System.Boolean)">
-            <summary>
-            Stop reading/writing buffer.
-            </summary>
-            <param name="unbind"></param>
-        </member>
-        <member name="P:CSharpGL.BufferPtr.BufferId">
-            <summary>
-            用glGenBuffers()得到的VBO的Id。
-            <para>Id got from glGenBuffers();</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.BufferPtr.Length">
-            <summary>
-            此VBO含有多个个元素？
-            <para>How many elements?</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.BufferPtr.ByteLength">
-            <summary>
-            此VBO中的数据在内存中占用多少个字节？
-            <para>How many bytes in this buffer?</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.BufferPtr.Target">
-            <summary>
-            Target that this buffer should bind to.
             </summary>
         </member>
         <member name="M:CSharpGL.IndependentBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
