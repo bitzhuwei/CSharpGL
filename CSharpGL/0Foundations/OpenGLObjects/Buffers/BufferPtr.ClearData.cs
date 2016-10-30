@@ -36,7 +36,9 @@ namespace CSharpGL
 
             if (result)
             {
+                glBindBuffer((uint)this.Target, this.BufferId);
                 glClearBufferData((uint)this.Target, internalFormat, format, type, data);
+                glBindBuffer((uint)this.Target, 0);
             }
 
             return result;
