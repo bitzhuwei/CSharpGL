@@ -11417,24 +11417,24 @@
              </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glClearBufferData">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glClearBufferSubData">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glCopyBufferSubData">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glGetBufferSubData">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:CSharpGL.BufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
@@ -11729,179 +11729,6 @@
         <member name="P:CSharpGL.ShaderStorageBufferPtr.Target">
             <summary>
             Target that this buffer should bind to.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.OneIndexBuffer">
-            <summary>
-            用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>里各个顶点的渲染顺序。
-            Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IndexBuffer">
-            <summary>
-            用于存储索引的VBO。
-            <para>Vertex Buffer Object storing vertex' index.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.IndexBuffer.#ctor(CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            用于存储索引的VBO。
-            <para>Vertex Buffer Object storing vertex' index.</para>
-            </summary>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-        </member>
-        <member name="M:CSharpGL.IndexBuffer.Upload2GraphicsCard">
-            <summary>
-            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
-            Uploads this buffer to GPU memory and gets its pointer.
-            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.IndexBuffer.GetBufferPtr">
-            <summary>
-            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
-            Uploads this buffer to GPU memory and gets its pointer.
-            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:CSharpGL.IndexBuffer.Mode">
-            <summary>
-            用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IndexBuffer.PrimCount">
-            <summary>
-            primCount in instanced rendering.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.OneIndexBuffer.Create(System.Int32,CSharpGL.BufferUsage,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32,System.UInt32,System.Int32)">
-            <summary>
-            Crates a <see cref="T:CSharpGL.VertexAttributeBufferPtr"/> object directly in server side(GPU) without initializing its value.
-            </summary>
-            <param name="byteLength"></param>
-            <param name="usage"></param>
-            <param name="mode"></param>
-            <param name="type"></param>
-            <param name="length"></param>
-            <param name="instanceDivisor"></param>
-            <param name="patchVertexes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.OneIndexBuffer.#ctor(CSharpGL.IndexElementType,CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>里各个顶点的渲染顺序。
-            Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="elementType">element type.</param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-        </member>
-        <member name="M:CSharpGL.OneIndexBuffer.DoAlloc(System.Int32,System.Boolean)">
-            <summary>
-            申请指定长度的非托管数组。
-            <para>create an unmanaged array to store data for this buffer.</para>
-            </summary>
-            <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
-        </member>
-        <member name="M:CSharpGL.OneIndexBuffer.Upload2GraphicsCard">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.OneIndexBuffer.Type">
-            <summary>
-            type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
-            </summary>
-        </member>
-        <member name="T:CSharpGL.VertexAttributeBuffer`1">
-            <summary>
-            顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-            <para>每个<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>仅描述其中一个属性。</para>
-            <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
-            <para>Each <see cref="T:CSharpGL.VertexAttributeBuffer`1"/> describes only 1 property.</para>
-            <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
-            <para><typeparamref name="T"/> is type of element of this array in application level.</para>
-            </summary>
-            <typeparam name="T">element type in this array in application level.</typeparam>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer`1.Create(System.Int32,CSharpGL.BufferUsage,System.String,CSharpGL.VertexAttributeConfig,System.Int32,System.UInt32,System.Int32)">
-            <summary>
-            Crates a <see cref="T:CSharpGL.VertexAttributeBufferPtr"/> object directly in server side(GPU) without initializing its value.
-            </summary>
-            <param name="byteLength"></param>
-            <param name="usage"></param>
-            <param name="varNameInVertexShader"></param>
-            <param name="config"></param>
-            <param name="length"></param>
-            <param name="instanceDivisor"></param>
-            <param name="patchVertexes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer`1.#ctor(System.String,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
-            <summary>
-            顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-            <para>每个<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>仅描述其中一个属性。</para>
-            <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
-            <para>Each <see cref="T:CSharpGL.VertexAttributeBuffer`1"/> describes only 1 property.</para>
-            <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
-            <para><typeparamref name="T"/> is type of element of this array in application level.</para>
-            </summary>
-            <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
-            <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
-            </param>
-            <param name="usage"></param>
-            <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
-            <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer`1.GetBufferPtr">
-            <summary>
-            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
-            Uploads this buffer to GPU memory and gets its pointer.
-            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer`1.Upload2GraphicsCard">
-            <summary>
-            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
-            Uploads this buffer to GPU memory and gets its pointer.
-            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer`1.DoAlloc(System.Int32,System.Boolean)">
-            <summary>
-            申请指定长度的非托管数组。
-            <para>create an unmanaged array to store data for this buffer.</para>
-            </summary>
-            <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer`1.VarNameInVertexShader">
-            <summary>
-            此顶点属性VBO对应于vertex shader中的哪个in变量？
-            <para>Mapping variable's name in vertex shader.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer`1.Config">
-            <summary>
-            third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer`1.InstancedDivisor">
-            <summary>
-            0: not instanced. 1: instanced divisor is 1.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer`1.PatchVertexes">
-            <summary>
-            How many vertexes makes a patch? No patch if PatchVertexes is 0.
             </summary>
         </member>
         <member name="M:CSharpGL.VertexAttributeConfigHelper.Parse(CSharpGL.VertexAttributeConfig,System.Int32@,System.Int32@,System.UInt32@,System.Int32@,System.Int32@)">
@@ -25267,6 +25094,81 @@
             
              </summary>
         </member>
+        <member name="T:CSharpGL.OneIndexBuffer">
+            <summary>
+            用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>里各个顶点的渲染顺序。
+            Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.IndexBuffer">
+            <summary>
+            用于存储索引的VBO。
+            <para>Vertex Buffer Object storing vertex' index.</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.IndexBuffer.#ctor(CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+            <summary>
+            用于存储索引的VBO。
+            <para>Vertex Buffer Object storing vertex' index.</para>
+            </summary>
+            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+            <param name="usage"></param>
+            <param name="primCount">primCount in instanced rendering.</param>
+        </member>
+        <member name="M:CSharpGL.IndexBuffer.Upload2GraphicsCard">
+            <summary>
+            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+            Uploads this buffer to GPU memory and gets its pointer.
+            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.IndexBuffer.GetBufferPtr">
+            <summary>
+            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+            Uploads this buffer to GPU memory and gets its pointer.
+            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CSharpGL.IndexBuffer.Mode">
+            <summary>
+            用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IndexBuffer.PrimCount">
+            <summary>
+            primCount in instanced rendering.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.OneIndexBuffer.#ctor(CSharpGL.IndexElementType,CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+            <summary>
+            用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>里各个顶点的渲染顺序。
+            Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
+            </summary>
+            <param name="elementType">element type.</param>
+            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+            <param name="usage"></param>
+            <param name="primCount">primCount in instanced rendering.</param>
+        </member>
+        <member name="M:CSharpGL.OneIndexBuffer.DoAlloc(System.Int32,System.Boolean)">
+            <summary>
+            申请指定长度的非托管数组。
+            <para>create an unmanaged array to store data for this buffer.</para>
+            </summary>
+            <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
+            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
+        </member>
+        <member name="M:CSharpGL.OneIndexBuffer.Upload2GraphicsCard">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:CSharpGL.OneIndexBuffer.Type">
+            <summary>
+            type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+            </summary>
+        </member>
         <member name="T:CSharpGL.IndexElementType">
              <summary>
             
@@ -25370,6 +25272,78 @@
         <member name="P:CSharpGL.OneIndexBufferPtr.Type">
             <summary>
             type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+            </summary>
+        </member>
+        <member name="T:CSharpGL.VertexAttributeBuffer`1">
+            <summary>
+            顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
+            <para>每个<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>仅描述其中一个属性。</para>
+            <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
+            <para>Each <see cref="T:CSharpGL.VertexAttributeBuffer`1"/> describes only 1 property.</para>
+            <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
+            <para><typeparamref name="T"/> is type of element of this array in application level.</para>
+            </summary>
+            <typeparam name="T">element type in this array in application level.</typeparam>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBuffer`1.#ctor(System.String,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
+            <summary>
+            顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
+            <para>每个<see cref="T:CSharpGL.VertexAttributeBuffer`1"/>仅描述其中一个属性。</para>
+            <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
+            <para>Each <see cref="T:CSharpGL.VertexAttributeBuffer`1"/> describes only 1 property.</para>
+            <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
+            <para><typeparamref name="T"/> is type of element of this array in application level.</para>
+            </summary>
+            <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
+            <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+            </param>
+            <param name="usage"></param>
+            <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
+            <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBuffer`1.GetBufferPtr">
+            <summary>
+            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+            Uploads this buffer to GPU memory and gets its pointer.
+            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBuffer`1.Upload2GraphicsCard">
+            <summary>
+            将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+            Uploads this buffer to GPU memory and gets its pointer.
+            It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBuffer`1.DoAlloc(System.Int32,System.Boolean)">
+            <summary>
+            申请指定长度的非托管数组。
+            <para>create an unmanaged array to store data for this buffer.</para>
+            </summary>
+            <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
+            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBuffer`1.VarNameInVertexShader">
+            <summary>
+            此顶点属性VBO对应于vertex shader中的哪个in变量？
+            <para>Mapping variable's name in vertex shader.</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBuffer`1.Config">
+            <summary>
+            third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBuffer`1.InstancedDivisor">
+            <summary>
+            0: not instanced. 1: instanced divisor is 1.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBuffer`1.PatchVertexes">
+            <summary>
+            How many vertexes makes a patch? No patch if PatchVertexes is 0.
             </summary>
         </member>
         <member name="T:CSharpGL.VertexAttributeBufferPtr">
