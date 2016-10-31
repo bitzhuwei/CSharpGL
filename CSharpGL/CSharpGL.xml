@@ -11555,22 +11555,20 @@
             </summary>
             <param name="usage"></param>
         </member>
-        <member name="M:CSharpGL.Buffer.DoAlloc(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.Buffer.DoAlloc(System.Int32)">
             <summary>
             申请指定元素数目的非托管数组。
             <para>create an unmanaged array to store data for this buffer.</para>
             </summary>
             <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>No data will be copyed from CPU memory to GPU memory.</para></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.Alloc(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.Buffer.Alloc(System.Int32)">
             <summary>
             申请指定元素数目的非托管数组。
             <para>create an unmanaged array to store data for this buffer.</para>
             </summary>
             <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
         </member>
         <member name="M:CSharpGL.Buffer.ToString">
              <summary>
@@ -11608,13 +11606,12 @@
             </summary>
             <param name="usage"></param>
         </member>
-        <member name="M:CSharpGL.IndependentBuffer`1.DoAlloc(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.IndependentBuffer`1.DoAlloc(System.Int32)">
             <summary>
             申请指定长度的非托管数组。
             <para>create an unmanaged array to store data for this buffer.</para>
             </summary>
             <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
         </member>
         <member name="M:CSharpGL.IndependentBuffer`1.Upload2GraphicsCard">
             <summary>
@@ -25151,13 +25148,12 @@
             <param name="usage"></param>
             <param name="primCount">primCount in instanced rendering.</param>
         </member>
-        <member name="M:CSharpGL.OneIndexBuffer.DoAlloc(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.OneIndexBuffer.DoAlloc(System.Int32)">
             <summary>
             申请指定长度的非托管数组。
             <para>create an unmanaged array to store data for this buffer.</para>
             </summary>
             <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
         </member>
         <member name="M:CSharpGL.OneIndexBuffer.Upload2GraphicsCard">
              <summary>
@@ -25317,13 +25313,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer`1.DoAlloc(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.VertexAttributeBuffer`1.DoAlloc(System.Int32)">
             <summary>
             申请指定长度的非托管数组。
             <para>create an unmanaged array to store data for this buffer.</para>
             </summary>
             <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
         </member>
         <member name="P:CSharpGL.VertexAttributeBuffer`1.VarNameInVertexShader">
             <summary>
@@ -25537,13 +25532,12 @@
             <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
             <param name="primCount">primCount in instanced rendering.</param>
         </member>
-        <member name="M:CSharpGL.ZeroIndexBuffer.DoAlloc(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.ZeroIndexBuffer.DoAlloc(System.Int32)">
             <summary>
             对此buffer，没有必要调用此方法。
             <para>No need to invoke this method for <see cref="T:CSharpGL.ZeroIndexBuffer"/>.</para>
             </summary>
             <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-            <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
         </member>
         <member name="M:CSharpGL.ZeroIndexBuffer.Upload2GraphicsCard">
              <summary>
@@ -28722,19 +28716,13 @@
             <para>How manay bytes for one element of array?</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.Int32,System.Int32)">
             <summary>
             Base type of unmanaged array.
             <para>Similar to array in <code>int array[Length];</code></para>
             </summary>
             <param name="elementCount">How many elements?</param>
             <param name="elementSize">How manay bytes for one element of array?</param>
-            <param name="autoAlloc"></param>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.Alloc">
-            <summary>
-            Alloate memory for this array.
-            </summary>
         </member>
         <member name="M:CSharpGL.UnmanagedArrayBase.Dispose">
             <summary>
@@ -28801,12 +28789,11 @@
             <para>Only used for debugging.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.UnmanagedArray`1.#ctor(System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.UnmanagedArray`1.#ctor(System.Int32)">
             <summary>
             unmanaged array.
             </summary>
             <param name="count"></param>
-            <param name="autoAlloc"></param>
         </member>
         <member name="M:CSharpGL.UnmanagedArray`1.DisposeUnmanagedResources">
             <summary>

@@ -106,10 +106,9 @@
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        /// <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
-        protected override UnmanagedArrayBase DoAlloc(int elementCount, bool dataCopying)
+        protected override UnmanagedArrayBase DoAlloc(int elementCount)
         {
-            return new UnmanagedArray<T>(elementCount, dataCopying);
+            return new UnmanagedArray<T>(elementCount);
         }
     }
 }

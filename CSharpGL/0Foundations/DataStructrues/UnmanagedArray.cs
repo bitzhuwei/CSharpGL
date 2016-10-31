@@ -27,9 +27,8 @@ namespace CSharpGL
         /// unmanaged array.
         /// </summary>
         /// <param name="count"></param>
-        /// <param name="autoAlloc"></param>
-        public UnmanagedArray(int count, bool autoAlloc = true)
-            : base(count, Marshal.SizeOf(typeof(T)), autoAlloc)
+        public UnmanagedArray(int count)
+            : base(count, Marshal.SizeOf(typeof(T)))
         {
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
@@ -133,37 +132,18 @@ namespace CSharpGL
         /// </summary>
         /// <param name="elementCount">How many elements?</param>
         /// <param name="elementSize">How manay bytes for one element of array?</param>
-        /// <param name="autoAlloc"></param>
         //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么 Dead lock, Why?
-        protected UnmanagedArrayBase(int elementCount, int elementSize, bool autoAlloc)
+        protected UnmanagedArrayBase(int elementCount, int elementSize)
         {
             Debug.Assert(elementCount >= 0);
             Debug.Assert(elementSize >= 0);
 
             this.Length = elementCount;
             this.elementSize = elementSize;
-            if (autoAlloc)
-            {
-                this.Alloc();
-            }
+            int memSize = this.Length * this.elementSize;
+            this.Header = Marshal.AllocHGlobal(memSize);
 
             UnmanagedArrayBase.allocatedCount++;
-        }
-
-        private bool initialized = false;
-
-        /// <summary>
-        /// Alloate memory for this array.
-        /// </summary>
-        public void Alloc()
-        {
-            if (!this.initialized)
-            {
-                int memSize = this.Length * this.elementSize;
-                this.Header = Marshal.AllocHGlobal(memSize);
-
-                this.initialized = true;
-            }
         }
 
         #region IDisposable Members
