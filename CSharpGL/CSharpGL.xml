@@ -11313,26 +11313,26 @@
             VBO's pointer got from Buffer's GetBufferPtr() method.
             </summary>
         </member>
-        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.Boolean,System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase)">
+        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
             <summary>
             
             </summary>
-            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <param name="internalFormat"></param>
             <param name="format"></param>
             <param name="type"></param>
             <param name="data"></param>
+            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.Boolean,System.UInt32,System.UInt32,System.UInt32,System.IntPtr)">
+        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
             <summary>
             
             </summary>
-            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <param name="internalFormat"></param>
             <param name="format"></param>
             <param name="type"></param>
             <param name="data"></param>
+            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
         <member name="M:CSharpGL.BufferPtr.Dispose">

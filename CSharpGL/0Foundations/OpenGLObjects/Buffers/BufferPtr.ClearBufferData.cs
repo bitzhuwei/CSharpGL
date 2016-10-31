@@ -10,29 +10,29 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
         /// <param name="internalFormat"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="data"></param>
+        /// <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
         /// <returns></returns>
-        public bool ClearBufferData(bool autoBind, uint internalFormat, uint format, uint type, UnmanagedArrayBase data)
+        public bool ClearBufferData(uint internalFormat, uint format, uint type, UnmanagedArrayBase data, bool autoBind = true)
         {
             if (data == null) { throw new ArgumentNullException("data"); }
 
-            return ClearBufferData(autoBind, internalFormat, format, type, data.Header);
+            return ClearBufferData(internalFormat, format, type, data.Header, autoBind);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
         /// <param name="internalFormat"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="data"></param>
+        /// <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
         /// <returns></returns>
-        public bool ClearBufferData(bool autoBind, uint internalFormat, uint format, uint type, IntPtr data)
+        public bool ClearBufferData(uint internalFormat, uint format, uint type, IntPtr data, bool autoBind = true)
         {
             bool result = (glClearBufferData != null);
 
