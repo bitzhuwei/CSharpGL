@@ -1,7 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing.Design;
 
 namespace CSharpGL
 {
@@ -96,6 +93,5 @@ namespace CSharpGL
 
             return result;
         }
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace CSharpGL
 {
@@ -30,6 +29,5 @@ namespace CSharpGL
 
             return bufferPtr;
         }
-
     }
 }

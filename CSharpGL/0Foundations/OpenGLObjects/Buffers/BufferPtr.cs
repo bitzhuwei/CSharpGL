@@ -61,22 +61,22 @@ namespace CSharpGL
         internal static OpenGL.glMapBufferRange glMapBufferRange;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glClearBufferData glClearBufferData;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glClearBufferSubData glClearBufferSubData;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glCopyBufferSubData glCopyBufferSubData;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glGetBufferSubData glGetBufferSubData;
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     internal static partial class VertexAttributeConfigHelper
     {
