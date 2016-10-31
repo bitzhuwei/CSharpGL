@@ -11,9 +11,8 @@
         ///
         /// </summary>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
-        public AtomicCounterBuffer(BufferUsage usage, bool noDataCopyed = false)
-            : base(usage, noDataCopyed)
+        public AtomicCounterBuffer(BufferUsage usage)
+            : base(usage)
         {
         }
 

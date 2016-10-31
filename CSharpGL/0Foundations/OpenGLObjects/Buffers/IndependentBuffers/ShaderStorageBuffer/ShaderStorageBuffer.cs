@@ -11,9 +11,8 @@
         ///
         /// </summary>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
-        public ShaderStorageBuffer(BufferUsage usage, bool noDataCopyed = false)
-            : base(usage, noDataCopyed)
+        public ShaderStorageBuffer(BufferUsage usage)
+            : base(usage)
         {
         }
 

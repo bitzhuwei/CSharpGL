@@ -69,9 +69,9 @@ namespace CSharpGL.Demos
             }
             // Create buffer for clearing the head pointer texture
             //var buffer = new IndependentBuffer<uint>(BufferTarget.PixelUnpackBuffer, BufferUsage.StaticDraw, false);
-            using (var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw, false))
+            using (var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw))
             {
-                buffer.Alloc(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
+                buffer.Alloc(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT, false);
                 // NOTE: not all initial values are zero in this unmanged array.
                 //unsafe
                 //{
@@ -84,15 +84,15 @@ namespace CSharpGL.Demos
                 this.headClearBufferPtr = buffer.GetBufferPtr() as PixelUnpackBufferPtr;
             }
             // Create the atomic counter buffer
-            using (var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy, false))
+            using (var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy))
             {
-                buffer.Alloc(1);
+                buffer.Alloc(1, false);
                 this.atomicCountBufferPtr = buffer.GetBufferPtr() as AtomicCounterBufferPtr;
             }
             // Bind it to a texture (for use as a TBO)
-            using (var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy, noDataCopyed: false))
+            using (var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy))
             {
-                buffer.Alloc(elementCount: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
+                buffer.Alloc(elementCount: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3, dataCopying: false);
                 IndependentBufferPtr bufferPtr = buffer.GetBufferPtr();
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
                 texture.Initialize();

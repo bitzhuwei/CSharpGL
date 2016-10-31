@@ -12,9 +12,8 @@
         /// T: 此buffer存储的是哪种struct的数据？<para>type of index value.</para>
         /// </summary>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
-        public TextureBuffer(BufferUsage usage, bool noDataCopyed = false)
-            : base(usage, noDataCopyed)
+        public TextureBuffer(BufferUsage usage)
+            : base(usage)
         {
         }
 

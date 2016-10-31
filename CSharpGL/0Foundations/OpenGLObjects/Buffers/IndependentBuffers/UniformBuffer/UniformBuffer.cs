@@ -11,9 +11,8 @@
         ///
         /// </summary>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
-        public UniformBuffer(BufferUsage usage, bool noDataCopyed = false)
-            : base(usage, noDataCopyed)
+        public UniformBuffer(BufferUsage usage)
+            : base(usage)
         {
         }
 

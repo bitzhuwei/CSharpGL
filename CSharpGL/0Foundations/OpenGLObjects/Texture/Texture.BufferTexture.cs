@@ -21,12 +21,12 @@
         /// <param name="internalFormat"></param>
         /// <param name="elementCount"></param>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
+        /// <param name="dataCopying"></param>
         /// <returns></returns>
-        public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage, bool noDataCopyed = false) where T : struct
+        public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage, bool dataCopying = true) where T : struct
         {
-            var buffer = new TextureBuffer<T>(usage, noDataCopyed);
-            buffer.Alloc(elementCount);
+            var buffer = new TextureBuffer<T>(usage);
+            buffer.Alloc(elementCount, dataCopying);
             BufferPtr bufferPtr = buffer.GetBufferPtr();
 
             return bufferPtr.DumpBufferTexture(internalFormat, autoDispose: true);

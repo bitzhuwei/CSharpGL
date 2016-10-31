@@ -79,7 +79,7 @@ namespace CSharpGL
             var uboSize = new uint[1];
             glGetActiveUniformBlockiv(program.ProgramId, uboIndex, OpenGL.GL_UNIFORM_BLOCK_DATA_SIZE, uboSize);
             UniformBufferPtr result = null;
-            using (var buffer = new UniformBuffer<byte>(BufferUsage.StaticDraw, noDataCopyed: false))
+            using (var buffer = new UniformBuffer<byte>(BufferUsage.StaticDraw))
             {
                 byte[] bytes = this.value.ToBytes();
                 buffer.Alloc(bytes.Length);

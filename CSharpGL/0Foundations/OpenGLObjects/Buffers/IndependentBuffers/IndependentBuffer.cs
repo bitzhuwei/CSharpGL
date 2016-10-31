@@ -7,18 +7,11 @@
     public abstract class IndependentBuffer<T> : Buffer where T : struct
     {
         /// <summary>
-        /// No data copyed from CPU memory to GPU memory.
-        /// </summary>
-        private bool noDataCopyed;
-
-        /// <summary>
         /// </summary>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed">No data copyed from CPU memory to GPU memory.</param>
-        public IndependentBuffer(BufferUsage usage, bool noDataCopyed)
+        public IndependentBuffer(BufferUsage usage)
             : base(usage)
         {
-            this.noDataCopyed = noDataCopyed;
         }
 
         /// <summary>
@@ -26,10 +19,10 @@
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        protected override UnmanagedArrayBase DoAlloc(int elementCount)
+        /// <param name="dataCopying">计划从CPU内存向GPU内存上传数据。<para>data will be copyed from CPU memory to GPU memory.</para></param>
+        protected override UnmanagedArrayBase DoAlloc(int elementCount, bool dataCopying)
         {
-            bool autoAlloc = !this.noDataCopyed;
-            return new UnmanagedArray<T>(elementCount, autoAlloc);
+            return new UnmanagedArray<T>(elementCount, dataCopying);
         }
 
         /// <summary>

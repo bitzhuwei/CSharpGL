@@ -11,9 +11,8 @@
         ///
         /// </summary>
         /// <param name="usage"></param>
-        /// <param name="noDataCopyed"></param>
-        public PixelUnpackBuffer(BufferUsage usage, bool noDataCopyed = false)
-            : base(usage, noDataCopyed)
+        public PixelUnpackBuffer(BufferUsage usage)
+            : base(usage)
         {
         }
 
