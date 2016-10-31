@@ -3986,6 +3986,16 @@ namespace CSharpGL
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="readTarget"></param>
+        /// <param name="writeTarget"></param>
+        /// <param name="readOffset"></param>
+        /// <param name="writeOffset"></param>
+        /// <param name="size"></param>
+        public delegate void glCopyBufferSubData(uint readTarget, uint writeTarget, IntPtr readOffset, IntPtr writeOffset, IntPtr size);
+
         #region GL_ARB_compute_shader
 
         //  Delegates

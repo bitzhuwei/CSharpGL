@@ -11042,6 +11042,16 @@
              <param name="type"></param>
              <param name="data"></param>
         </member>
+        <member name="T:CSharpGL.OpenGL.glCopyBufferSubData">
+            <summary>
+            
+            </summary>
+            <param name="readTarget"></param>
+            <param name="writeTarget"></param>
+            <param name="readOffset"></param>
+            <param name="writeOffset"></param>
+            <param name="size"></param>
+        </member>
         <member name="T:CSharpGL.OpenGL.glDispatchCompute">
              <summary>
             
@@ -11412,6 +11422,11 @@
             </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glClearBufferSubData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glCopyBufferSubData">
             <summary>
             
             </summary>
