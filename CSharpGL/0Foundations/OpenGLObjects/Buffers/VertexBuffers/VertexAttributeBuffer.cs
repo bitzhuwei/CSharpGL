@@ -9,7 +9,7 @@
     /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
     /// </summary>
     /// <typeparam name="T">element type in this array in application level.</typeparam>
-    public class VertexAttributeBuffer<T> : Buffer where T : struct
+    public partial class VertexAttributeBuffer<T> : Buffer where T : struct
     {
         /// <summary>
         /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。

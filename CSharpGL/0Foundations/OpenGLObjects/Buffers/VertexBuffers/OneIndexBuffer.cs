@@ -6,7 +6,7 @@ namespace CSharpGL
     /// 用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer&lt;T&gt;"/>里各个顶点的渲染顺序。
     /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
     /// </summary>
-    public class OneIndexBuffer : IndexBuffer
+    public partial class OneIndexBuffer : IndexBuffer
     {
         /// <summary>
         /// 用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer&lt;T&gt;"/>里各个顶点的渲染顺序。
