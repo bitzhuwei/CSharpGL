@@ -11431,6 +11431,11 @@
             
             </summary>
         </member>
+        <member name="F:CSharpGL.BufferPtr.glGetBufferSubData">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:CSharpGL.BufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
             将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
