@@ -126,6 +126,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
+    <Content Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.ClearBufferData.md" />
     <None Include="0Foundations\Utilities\Sorting\readme.md" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`1.CSharpCodeProvider.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Order`1.CSharpCodeProvider.cs">
