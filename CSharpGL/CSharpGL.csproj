@@ -114,6 +114,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfigHelper.GetVertexAttribPointerType.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfigHelper.GetDataTypeByteLength.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfigHelper.Parse.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\AccumBufferSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
