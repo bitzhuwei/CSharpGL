@@ -15,11 +15,11 @@ namespace CSharpGL
         /// <param name="type"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool ClearBufferData(uint internalFormat, uint format, uint type, UnmanagedArrayBase data)
+        public bool ClearBufferData(bool autoBind, uint internalFormat, uint format, uint type, UnmanagedArrayBase data)
         {
             if (data == null) { throw new ArgumentNullException("data"); }
 
-            return ClearBufferData(internalFormat, format, type, data.Header);
+            return ClearBufferData(autoBind, internalFormat, format, type, data.Header);
         }
 
         /// <summary>
@@ -30,15 +30,17 @@ namespace CSharpGL
         /// <param name="type"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool ClearBufferData(uint internalFormat, uint format, uint type, IntPtr data)
+        public bool ClearBufferData(bool autoBind, uint internalFormat, uint format, uint type, IntPtr data)
         {
             bool result = (glClearBufferData != null);
 
             if (result)
             {
-                glBindBuffer((uint)this.Target, this.BufferId);
+                if (autoBind)
+                { glBindBuffer((uint)this.Target, this.BufferId); }
                 glClearBufferData((uint)this.Target, internalFormat, format, type, data);
-                glBindBuffer((uint)this.Target, 0);
+                if (autoBind)
+                { glBindBuffer((uint)this.Target, 0); }
             }
 
             return result;
