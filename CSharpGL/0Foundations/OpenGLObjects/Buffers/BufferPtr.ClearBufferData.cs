@@ -10,6 +10,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
         /// <param name="internalFormat"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
@@ -25,6 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
         /// <param name="internalFormat"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
