@@ -67,7 +67,7 @@ namespace CSharpGL.Demos
 
         private static Random random = new Random();
 
-        private int testOrder = 0;
+        private int testClearBufferDataOrder = 0;
         /// <summary>
         /// Set this property's value to anyhting else to check if the model's color turns into a random pure color.
         /// </summary>
@@ -75,7 +75,7 @@ namespace CSharpGL.Demos
         [Description("Set this property's value to anyhting else to check if the model's color turns into white.")]
         public int TestClearBufferData
         {
-            get { return this.testOrder; }
+            get { return this.testClearBufferDataOrder; }
             set
             {
                 var bufferPtr = this.Model.GetVertexAttributeBufferPtr(Teapot.strColor, string.Empty);
@@ -87,7 +87,34 @@ namespace CSharpGL.Demos
                     (float)random.NextDouble()
                     );
                 bufferPtr.ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
-                this.testOrder++;
+                this.testClearBufferDataOrder++;
+            }
+        }
+
+
+        private int testClearBufferSubDataOrder = 0;
+        /// <summary>
+        /// Set this property's value to anyhting else to check if the model's color turns into a random pure color.
+        /// </summary>
+        [Category("Test")]
+        [Description("Set this property's value to anyhting else to check if the model's color turns into white.")]
+        public int TestClearBufferSubData
+        {
+            get { return this.testClearBufferSubDataOrder; }
+            set
+            {
+                var bufferPtr = this.Model.GetVertexAttributeBufferPtr(Teapot.strColor, string.Empty);
+                int offset = bufferPtr.ByteLength / 3;
+                int size = bufferPtr.ByteLength * 2 / 3;
+                var array = new UnmanagedArray<vec3>(1);
+                // this works slow.
+                array[0] = new vec3(
+                    (float)random.NextDouble(),
+                    (float)random.NextDouble(),
+                    (float)random.NextDouble()
+                    );
+                bufferPtr.ClearBufferSubData(OpenGL.GL_RGB32F, new IntPtr(offset), (uint)size, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
+                this.testClearBufferSubDataOrder++;
             }
         }
     }
