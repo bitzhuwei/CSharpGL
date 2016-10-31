@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
         /// Set this property's value to anyhting else to check if the model's color turns into a random pure color.
         /// </summary>
         [Category("Test")]
-        [Description("Set this property's value to anyhting else to check if the model's color turns into white.")]
+        [Description("Set this property's value to anyhting else to check if the model's color turns into a random color.")]
         public int TestClearBufferData
         {
             get { return this.testClearBufferDataOrder; }
@@ -97,7 +97,7 @@ namespace CSharpGL.Demos
         /// Set this property's value to anyhting else to check if the model's color turns into a random pure color.
         /// </summary>
         [Category("Test")]
-        [Description("Set this property's value to anyhting else to check if the model's color turns into white.")]
+        [Description("Set this property's value to anyhting else to check if part of the model's color turns into a random color.")]
         public int TestClearBufferSubData
         {
             get { return this.testClearBufferSubDataOrder; }
