@@ -66,6 +66,11 @@ namespace CSharpGL
         internal static OpenGL.glClearBufferData glClearBufferData;
 
         /// <summary>
+        /// 
+        /// </summary>
+        internal static OpenGL.glClearBufferSubData glClearBufferSubData;
+
+        /// <summary>
         /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
         /// VBO's pointer got from Buffer's GetBufferPtr() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
         /// </summary>
@@ -86,6 +91,7 @@ namespace CSharpGL
                 glMapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>();
                 glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>();
                 glClearBufferData = OpenGL.GetDelegateFor<OpenGL.glClearBufferData>();
+                glClearBufferSubData = OpenGL.GetDelegateFor<OpenGL.glClearBufferSubData>();
             }
 
             this.BufferId = bufferId;

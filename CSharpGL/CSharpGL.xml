@@ -11315,20 +11315,46 @@
         </member>
         <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
             <summary>
+            Fill a buffer object's data store with a fixed value.
+            </summary>
+            <param name="internalFormat">The sized internal format with which the data will be stored in the buffer object.</param>
+            <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
+            <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
+            <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be null.</param>
+            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
+            <summary>
+            Fill a buffer object's data store with a fixed value.
+            </summary>
+            <param name="internalFormat">The sized internal format with which the data will be stored in the buffer object.</param>
+            <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
+            <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
+            <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be IntPtr.Zero.</param>
+            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.BufferPtr.ClearBufferSubData(System.UInt32,System.IntPtr,System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
+            <summary>
             
             </summary>
             <param name="internalFormat"></param>
+            <param name="offset"></param>
+            <param name="size"></param>
             <param name="format"></param>
             <param name="type"></param>
             <param name="data"></param>
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.BufferPtr.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
+        <member name="M:CSharpGL.BufferPtr.ClearBufferSubData(System.UInt32,System.IntPtr,System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
             <summary>
             
             </summary>
             <param name="internalFormat"></param>
+            <param name="offset"></param>
+            <param name="size"></param>
             <param name="format"></param>
             <param name="type"></param>
             <param name="data"></param>
@@ -11381,6 +11407,11 @@
              </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glClearBufferData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glClearBufferSubData">
             <summary>
             
             </summary>
@@ -28770,8 +28801,10 @@
         </member>
         <member name="P:CSharpGL.UnmanagedArray`1.Item(System.Int32)">
             <summary>
+            gets/sets element's value at specified <paramref name="index"/>.
+            <para>Please use unsafe way when dealing with big data for efficiency purpose.</para>
             获取或设置索引为<paramref name="index"/>的元素。
-            <para>如果要处理的元素数目较大，请使用unsafe方式(<see cref="!:UnmanagedArrayFastAccessHelper"/>)。</para>
+            <para>如果要处理的元素数目较大，请使用unsafe方式（为提高效率）。</para>
             </summary>
             <param name="index"></param>
             <returns></returns>
