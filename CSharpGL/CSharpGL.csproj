@@ -109,12 +109,17 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.ClearBufferData.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.DirectlyCreate.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.DirectlyCreate.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBuffer.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBufferPtr.DirectlyCreate.cs" />

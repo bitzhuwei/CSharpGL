@@ -3,7 +3,7 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public class UniformBufferPtr : IndependentBufferPtr
+    public partial class UniformBufferPtr : IndependentBufferPtr
     {
         private static OpenGL.glUniformBlockBinding glUniformBlockBinding;
 
