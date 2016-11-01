@@ -123,12 +123,14 @@ namespace GridViewer
             if (this.indexBufferPtr != null) { return this.indexBufferPtr; }
 
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
-            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.QuadStrip, BufferUsage.StaticDraw))
+            int length = vertexCount + (this.pipeline.Count - 1);
+            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
+            unsafe
             {
-                buffer.Alloc(vertexCount + (this.pipeline.Count - 1));
-                var array = (uint*)buffer.Header.ToPointer();
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (uint*)pointer.ToPointer();
                 uint positionIndex = 0;
-                for (int i = 0; i < buffer.Length; i++)
+                for (int i = 0; i < bufferPtr.Length; i++)
                 {
                     if (i % (faceCount * 2 + 2 + 1) == (faceCount * 2 + 2))
                     {
@@ -139,8 +141,7 @@ namespace GridViewer
                         array[i] = positionIndex++;
                     }
                 }
-
-                this.indexBufferPtr = buffer.GetBufferPtr();
+                this.indexBufferPtr = bufferPtr;
             }
 
             return this.indexBufferPtr;
