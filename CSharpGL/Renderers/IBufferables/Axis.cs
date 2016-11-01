@@ -114,20 +114,19 @@ namespace CSharpGL
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
-                     this.model.mode, BufferUsage.StaticDraw))
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, this.model.mode, IndexElementType.UInt, this.model.indexes.Length);
+                unsafe
                 {
-                    buffer.Alloc(this.model.indexes.Length);
-                    unsafe
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (uint*)pointer.ToPointer();
+                    for (int i = 0; i < this.model.indexes.Length; i++)
                     {
-                        var array = (uint*)buffer.Header.ToPointer();
-                        for (int i = 0; i < this.model.indexes.Length; i++)
-                        {
-                            array[i] = this.model.indexes[i];
-                        }
+                        array[i] = this.model.indexes[i];
                     }
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+
+                this.indexBufferPtr = bufferPtr;
             }
 
             return indexBufferPtr;
