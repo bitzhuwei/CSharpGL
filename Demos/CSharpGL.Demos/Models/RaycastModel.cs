@@ -1,4 +1,5 @@
-﻿namespace CSharpGL.Demos
+﻿using System;
+namespace CSharpGL.Demos
 {
     internal class RaycastModel : IBufferable
     {
@@ -47,43 +48,45 @@
         {
             if (bufferName == strposition)
             {
-                if (positionBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = boundingBox.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(boundingBox.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (float*)pointer;
+                        for (int i = 0; i < boundingBox.Length; i++)
                         {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < boundingBox.Length; i++)
-                            {
-                                array[i] = boundingBox[i] - 0.5f;
-                            }
+                            array[i] = boundingBox[i] - 0.5f;
                         }
-                        positionBuffer = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+
+                    this.positionBuffer = bufferPtr;
                 }
-                return positionBuffer;
+                return this.positionBuffer;
             }
             else if (bufferName == strcolor)
             {
-                if (colorBuffer == null)
+                if (this.colorBuffer == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = boundingBox.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(boundingBox.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (float*)pointer;
+                        for (int i = 0; i < boundingBox.Length; i++)
                         {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < boundingBox.Length; i++)
-                            {
-                                array[i] = boundingBox[i];
-                            }
+                            array[i] = boundingBox[i];
                         }
-                        colorBuffer = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+
+                    this.colorBuffer = bufferPtr;
                 }
-                return colorBuffer;
+                return this.colorBuffer;
             }
             else
             {
@@ -95,20 +98,19 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Triangles, BufferUsage.StaticDraw))
+                int length = indices.Length;
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, length);
+                unsafe
                 {
-                    buffer.Alloc(indices.Length);
-                    unsafe
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (uint*)pointer;
+                    for (int i = 0; i < indices.Length; i++)
                     {
-                        var array = (uint*)buffer.Header.ToPointer();
-                        for (int i = 0; i < indices.Length; i++)
-                        {
-                            array[i] = indices[i];
-                        }
+                        array[i] = indices[i];
                     }
-
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+                this.indexBufferPtr = bufferPtr;
             }
 
             return indexBufferPtr;
