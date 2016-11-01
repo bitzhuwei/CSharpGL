@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -46,21 +47,33 @@ namespace CSharpGL
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
-                    {
-                        buffer.Alloc(this.model.positions.Length);
-                        unsafe
-                        {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < this.model.positions.Length; i++)
-                            {
-                                array[i] = this.model.positions[i];
-                            }
-                        }
+                    //using (var buffer = new VertexAttributeBuffer<vec3>(
+                    //    varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    //{
+                    //    buffer.Alloc(this.model.positions.Length);
+                    //    unsafe
+                    //    {
+                    //        var array = (vec3*)buffer.Header.ToPointer();
+                    //        for (int i = 0; i < this.model.positions.Length; i++)
+                    //        {
+                    //            array[i] = this.model.positions[i];
+                    //        }
+                    //    }
 
-                        positionBufferPtr = buffer.GetBufferPtr();
+                    //    positionBufferPtr = buffer.GetBufferPtr();
+                    //}
+                    VertexAttributeBufferPtr ptr = VertexAttributeBufferPtr.Create(typeof(vec3), BufferUsage.StaticDraw, varNameInShader, VertexAttributeConfig.Vec3, this.model.positions.Length);
+                    unsafe
+                    {
+                        IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer.ToPointer();
+                        for (int i = 0; i < this.model.positions.Length; i++)
+                        {
+                            array[i] = this.model.positions[i];
+                        }
+                        ptr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = ptr;
                 }
                 return positionBufferPtr;
             }
