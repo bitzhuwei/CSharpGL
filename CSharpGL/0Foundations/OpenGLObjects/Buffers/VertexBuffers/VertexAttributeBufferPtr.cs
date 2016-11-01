@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Vertex' attribute buffer's pointer.
     /// </summary>
-    public class VertexAttributeBufferPtr : BufferPtr
+    public partial class VertexAttributeBufferPtr : BufferPtr
     {
         /// <summary>
         ///

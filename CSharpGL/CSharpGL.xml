@@ -11391,10 +11391,20 @@
             
              </summary>
         </member>
+        <member name="F:CSharpGL.BufferPtr.glGenBuffers">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:CSharpGL.BufferPtr.glBindBuffer">
              <summary>
             
              </summary>
+        </member>
+        <member name="F:CSharpGL.BufferPtr.glBufferData">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:CSharpGL.BufferPtr.glDeleteBuffers">
              <summary>
@@ -11726,6 +11736,299 @@
         <member name="P:CSharpGL.ShaderStorageBufferPtr.Target">
             <summary>
             Target that this buffer should bind to.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.ZeroIndexBufferPtr">
+            <summary>
+            Wraps glDrawArrays(uint mode, int first, int count).
+            </summary>
+        </member>
+        <member name="T:CSharpGL.IndexBufferPtr">
+            <summary>
+            索引buffer渲染器的基类。
+            <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.IndexBufferPtr.#ctor(CSharpGL.DrawMode,System.UInt32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            索引buffer渲染器的基类。
+            <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
+            </summary>
+            <param name="mode"></param>
+            <param name="bufferId"></param>
+            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+            <param name="primCount">primCount in instanced rendering.</param>
+        </member>
+        <member name="M:CSharpGL.IndexBufferPtr.Render(CSharpGL.RenderEventArgs)">
+            <summary>
+            执行此VBO的渲染操作。
+            <para>Render using this VBO.</para>
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="P:CSharpGL.IndexBufferPtr.Mode">
+            <summary>
+            用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
+            </summary>
+        </member>
+        <member name="P:CSharpGL.IndexBufferPtr.PrimCount">
+            <summary>
+            primCount in instanced rendering.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.Create(CSharpGL.DrawMode,System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:CSharpGL.ZeroIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
+            </summary>
+            <param name="mode"></param>
+            <param name="firstVertex"></param>
+            <param name="vertexCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.#ctor(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Wraps glDrawArrays(uint mode, int first, int count).
+            </summary>
+            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+            <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
+            <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
+            <param name="primCount">primCount in instanced rendering.</param>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.Bind">
+            <summary>
+            need to do nothing.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.Unbind">
+            <summary>
+            need to do nothing.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.MapBufferRange(System.Int32,System.Int32,CSharpGL.MapBufferRangeAccess,System.Boolean)">
+            <summary>
+            Start to read/write buffer.
+            <para>This will returns IntPtr.Zero as this buffer allocates no data in memory.</para>
+            </summary>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <param name="access"></param>
+            <param name="bind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.MapBuffer(CSharpGL.MapBufferAccess,System.Boolean)">
+            <summary>
+            Start to read/write buffer.
+            <para>This will returns IntPtr.Zero as this buffer allocates no data in memory.</para>
+            </summary>
+            <param name="access"></param>
+            <param name="bind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.UnmapBuffer(System.Boolean)">
+            <summary>
+            Stop reading/writing buffer.
+            <para>need to do nothing.</para>
+            </summary>
+            <param name="unbind"></param>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.Render(CSharpGL.RenderEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.ZeroIndexBufferPtr.Target">
+            <summary>
+            Invalid for <see cref="T:CSharpGL.ZeroIndexBufferPtr"/>.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ZeroIndexBufferPtr.FirstVertex">
+            <summary>
+            要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ZeroIndexBufferPtr.RenderingVertexCount">
+            <summary>
+            要渲染多少个元素？<para>How many vertexes to be rendered?</para>
+            </summary>
+        </member>
+        <member name="T:CSharpGL.OneIndexBufferPtr">
+            <summary>
+            Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+            </summary>
+        </member>
+        <member name="M:CSharpGL.OneIndexBufferPtr.Create(System.Int32,CSharpGL.BufferUsage,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32)">
+            <summary>
+            Creates a <see cref="T:CSharpGL.OneIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
+            </summary>
+            <param name="byteLength"></param>
+            <param name="usage"></param>
+            <param name="mode"></param>
+            <param name="type"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.OneIndexBufferPtr.#ctor(System.UInt32,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+            </summary>
+            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+            <param name="type">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
+            <para>表示第3个参数，表示索引元素的类型。</para></param>
+            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+            <param name="primCount">primCount in instanced rendering.</param>
+        </member>
+        <member name="M:CSharpGL.OneIndexBufferPtr.Render(CSharpGL.RenderEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.OneIndexBufferPtr.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.OneIndexBufferPtr.Target">
+            <summary>
+            Target that this buffer should bind to.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.OneIndexBufferPtr.FirstIndex">
+            <summary>
+            要渲染的第一个索引的位置。
+            <para>First index to be rendered.</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.OneIndexBufferPtr.ElementCount">
+            <summary>
+            要渲染多少个索引。
+            <para>How many indexes to be rendered?</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.OneIndexBufferPtr.Type">
+            <summary>
+            type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+            </summary>
+        </member>
+        <member name="T:CSharpGL.VertexAttributeBufferPtr">
+            <summary>
+            Vertex' attribute buffer's pointer.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBufferPtr.Create(System.Int32,CSharpGL.BufferUsage,System.String,CSharpGL.VertexAttributeConfig,System.Int32,System.UInt32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:CSharpGL.VertexAttributeBufferPtr"/> object directly in server side(GPU) without initializing its value.
+            </summary>
+            <param name="byteLength"></param>
+            <param name="usage"></param>
+            <param name="varNameInVertexShader"></param>
+            <param name="config"></param>
+            <param name="length"></param>
+            <param name="instanceDivisor"></param>
+            <param name="patchVertexes"></param>
+            <returns></returns>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribPointer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribIPointer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribLPointer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glEnableVertexAttribArray">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribDivisor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glPatchParameteri">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.VertexAttributeBufferPtr.glPatchParameterfv">
+            <summary>
+            TODO: temporary field here. not know where to use it yet.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBufferPtr.#ctor(System.String,System.UInt32,CSharpGL.VertexAttributeConfig,System.Int32,System.Int32,System.UInt32,System.Int32)">
+            <summary>
+            Vertex' attribute buffer's pointer.
+            </summary>
+            <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
+            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+            <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+            </param>
+            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+            <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
+            <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
+        </member>
+        <member name="M:CSharpGL.VertexAttributeBufferPtr.Standby(CSharpGL.ShaderProgram)">
+            <summary>
+            在使用<see cref="T:CSharpGL.VertexArrayObject"/>后，此方法只会执行一次。
+            This method will only be invoked once when using <see cref="T:CSharpGL.VertexArrayObject"/>.
+            </summary>
+            <param name="shaderProgram"></param>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.Target">
+            <summary>
+            Target that this buffer should bind to.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.VarNameInVertexShader">
+            <summary>
+            此顶点属性VBO对应于vertex shader中的哪个in变量？
+            <para>Mapping variable's name in vertex shader.</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.Config">
+            <summary>
+            third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.DataTypeByteLength">
+            <summary>
+            How many bytes are there in a primitive data type(float/uint/int etc)?
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.DataSize">
+            <summary>
+            second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+            <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.InstancedDivisor">
+            <summary>
+            0: not instanced. 1: instanced divisor is 1.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.VertexAttributeBufferPtr.PatchVertexes">
+            <summary>
+            How many vertexes makes a patch? No patch if PatchVertexes is 0.
             </summary>
         </member>
         <member name="M:CSharpGL.VertexAttributeConfigHelper.Parse(CSharpGL.VertexAttributeConfig,System.Int32@,System.Int32@,System.UInt32@,System.Int32@,System.Int32@)">
@@ -25185,91 +25488,6 @@
             uint
             </summary>
         </member>
-        <member name="T:CSharpGL.OneIndexBufferPtr">
-            <summary>
-            Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IndexBufferPtr">
-            <summary>
-            索引buffer渲染器的基类。
-            <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.IndexBufferPtr.#ctor(CSharpGL.DrawMode,System.UInt32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            索引buffer渲染器的基类。
-            <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
-            </summary>
-            <param name="mode"></param>
-            <param name="bufferId"></param>
-            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
-            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-        </member>
-        <member name="M:CSharpGL.IndexBufferPtr.Render(CSharpGL.RenderEventArgs)">
-            <summary>
-            执行此VBO的渲染操作。
-            <para>Render using this VBO.</para>
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="P:CSharpGL.IndexBufferPtr.Mode">
-            <summary>
-            用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IndexBufferPtr.PrimCount">
-            <summary>
-            primCount in instanced rendering.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.OneIndexBufferPtr.#ctor(System.UInt32,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
-            </summary>
-            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="type">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
-            <para>表示第3个参数，表示索引元素的类型。</para></param>
-            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
-            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-        </member>
-        <member name="M:CSharpGL.OneIndexBufferPtr.Render(CSharpGL.RenderEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="arg"></param>
-        </member>
-        <member name="M:CSharpGL.OneIndexBufferPtr.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="P:CSharpGL.OneIndexBufferPtr.Target">
-            <summary>
-            Target that this buffer should bind to.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.OneIndexBufferPtr.FirstIndex">
-            <summary>
-            要渲染的第一个索引的位置。
-            <para>First index to be rendered.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.OneIndexBufferPtr.ElementCount">
-            <summary>
-            要渲染多少个索引。
-            <para>How many indexes to be rendered?</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.OneIndexBufferPtr.Type">
-            <summary>
-            type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
-            </summary>
-        </member>
         <member name="T:CSharpGL.VertexAttributeBuffer`1">
             <summary>
             顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
@@ -25337,103 +25555,6 @@
             </summary>
         </member>
         <member name="P:CSharpGL.VertexAttributeBuffer`1.PatchVertexes">
-            <summary>
-            How many vertexes makes a patch? No patch if PatchVertexes is 0.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.VertexAttributeBufferPtr">
-            <summary>
-            Vertex' attribute buffer's pointer.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribPointer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribIPointer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribLPointer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glEnableVertexAttribArray">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glVertexAttribDivisor">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glPatchParameteri">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.VertexAttributeBufferPtr.glPatchParameterfv">
-            <summary>
-            TODO: temporary field here. not know where to use it yet.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBufferPtr.#ctor(System.String,System.UInt32,CSharpGL.VertexAttributeConfig,System.Int32,System.Int32,System.UInt32,System.Int32)">
-            <summary>
-            Vertex' attribute buffer's pointer.
-            </summary>
-            <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
-            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-            <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
-            </param>
-            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
-            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-            <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
-            <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
-        </member>
-        <member name="M:CSharpGL.VertexAttributeBufferPtr.Standby(CSharpGL.ShaderProgram)">
-            <summary>
-            在使用<see cref="T:CSharpGL.VertexArrayObject"/>后，此方法只会执行一次。
-            This method will only be invoked once when using <see cref="T:CSharpGL.VertexArrayObject"/>.
-            </summary>
-            <param name="shaderProgram"></param>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.Target">
-            <summary>
-            Target that this buffer should bind to.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.VarNameInVertexShader">
-            <summary>
-            此顶点属性VBO对应于vertex shader中的哪个in变量？
-            <para>Mapping variable's name in vertex shader.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.Config">
-            <summary>
-            third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.DataTypeByteLength">
-            <summary>
-            How many bytes are there in a primitive data type(float/uint/int etc)?
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.DataSize">
-            <summary>
-            second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-            <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.InstancedDivisor">
-            <summary>
-            0: not instanced. 1: instanced divisor is 1.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.VertexAttributeBufferPtr.PatchVertexes">
             <summary>
             How many vertexes makes a patch? No patch if PatchVertexes is 0.
             </summary>
@@ -25551,84 +25672,6 @@
             </summary>
         </member>
         <member name="P:CSharpGL.ZeroIndexBuffer.VertexCount">
-            <summary>
-            要渲染多少个元素？<para>How many vertexes to be rendered?</para>
-            </summary>
-        </member>
-        <member name="T:CSharpGL.ZeroIndexBufferPtr">
-            <summary>
-            Wraps glDrawArrays(uint mode, int first, int count).
-            </summary>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.#ctor(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Wraps glDrawArrays(uint mode, int first, int count).
-            </summary>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-            <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.Bind">
-            <summary>
-            need to do nothing.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.Unbind">
-            <summary>
-            need to do nothing.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.MapBufferRange(System.Int32,System.Int32,CSharpGL.MapBufferRangeAccess,System.Boolean)">
-            <summary>
-            Start to read/write buffer.
-            <para>This will returns IntPtr.Zero as this buffer allocates no data in memory.</para>
-            </summary>
-            <param name="offset"></param>
-            <param name="length"></param>
-            <param name="access"></param>
-            <param name="bind"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.MapBuffer(CSharpGL.MapBufferAccess,System.Boolean)">
-            <summary>
-            Start to read/write buffer.
-            <para>This will returns IntPtr.Zero as this buffer allocates no data in memory.</para>
-            </summary>
-            <param name="access"></param>
-            <param name="bind"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.UnmapBuffer(System.Boolean)">
-            <summary>
-            Stop reading/writing buffer.
-            <para>need to do nothing.</para>
-            </summary>
-            <param name="unbind"></param>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.Render(CSharpGL.RenderEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="arg"></param>
-        </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="P:CSharpGL.ZeroIndexBufferPtr.Target">
-            <summary>
-            Invalid for <see cref="T:CSharpGL.ZeroIndexBufferPtr"/>.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.ZeroIndexBufferPtr.FirstVertex">
-            <summary>
-            要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.ZeroIndexBufferPtr.RenderingVertexCount">
             <summary>
             要渲染多少个元素？<para>How many vertexes to be rendered?</para>
             </summary>

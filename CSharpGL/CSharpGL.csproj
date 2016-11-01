@@ -113,6 +113,9 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBufferPtr.DirectlyCreate.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBuffer.DirectlyCreate.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfigHelper.GetVertexAttribPointerType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfigHelper.GetDataTypeByteLength.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeConfigHelper.Parse.cs" />

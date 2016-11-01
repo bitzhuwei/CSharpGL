@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
-    public sealed class ZeroIndexBufferPtr : IndexBufferPtr
+    public sealed partial class ZeroIndexBufferPtr : IndexBufferPtr
     {
         private static OpenGL.glDrawArraysInstanced glDrawArraysInstanced;
 

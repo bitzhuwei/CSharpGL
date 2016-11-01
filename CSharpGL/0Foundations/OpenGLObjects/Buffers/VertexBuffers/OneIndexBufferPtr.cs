@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
-    public sealed class OneIndexBufferPtr : IndexBufferPtr
+    public sealed partial class OneIndexBufferPtr : IndexBufferPtr
     {
         private static OpenGL.glDrawElementsInstanced glDrawElementsInstanced;
 
