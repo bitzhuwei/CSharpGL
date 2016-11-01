@@ -1,4 +1,5 @@
-﻿namespace CSharpGL.Demos
+﻿using System;
+namespace CSharpGL.Demos
 {
     /// <summary>
     /// 正方形的水面
@@ -23,31 +24,32 @@
         {
             if (bufferName == strPosition)
             {
-                if (positionBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec4>(varNameInShader, VertexAttributeConfig.Vec4, BufferUsage.DynamicDraw))
+                    int length = this.SideLength * this.SideLength;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(this.SideLength * this.SideLength);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec4*)pointer;
+                        for (int z = 0; z < this.SideLength; z++)
                         {
-                            var pointer = (vec4*)buffer.Header.ToPointer();
-                            for (int z = 0; z < this.SideLength; z++)
+                            for (int x = 0; x < this.SideLength; x++)
                             {
-                                for (int x = 0; x < this.SideLength; x++)
-                                {
-                                    pointer[x + z * this.SideLength] = new vec4(
-                                        -(float)this.SideLength / 2.0f + 0.5f + (float)x,
-                                        0.0f,
-                                        (float)this.SideLength / 2.0f - 0.5f - (float)z,
-                                        1.0f
-                                        );
-                                }
+                                array[x + z * this.SideLength] = new vec4(
+                                    -(float)this.SideLength / 2.0f + 0.5f + (float)x,
+                                    0.0f,
+                                    (float)this.SideLength / 2.0f - 0.5f - (float)z,
+                                    1.0f
+                                    );
                             }
                         }
-                        positionBuffer = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+
+                    this.positionBuffer = bufferPtr;
                 }
-                return positionBuffer;
+                return this.positionBuffer;
             }
             else
             {
@@ -57,36 +59,36 @@
 
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                int length = this.SideLength * (this.SideLength - 1) * 2;
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UInt, length);
+                unsafe
                 {
-                    buffer.Alloc(this.SideLength * (this.SideLength - 1) * 2);
-                    unsafe
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (uint*)pointer;
+                    for (int k = 0; k < this.SideLength - 1; k++)
                     {
-                        var pointer = (uint*)buffer.Header.ToPointer();
-                        for (int k = 0; k < this.SideLength - 1; k++)
+                        for (int i = 0; i < this.SideLength; i++)
                         {
-                            for (int i = 0; i < this.SideLength; i++)
+                            if (k % 2 == 0)
                             {
-                                if (k % 2 == 0)
-                                {
-                                    pointer[(i + k * this.SideLength) * 2 + 0] = (uint)(i + (k + 1) * this.SideLength);
-                                    pointer[(i + k * this.SideLength) * 2 + 1] = (uint)(i + (k + 0) * this.SideLength);
-                                }
-                                else
-                                {
-                                    pointer[(i + k * this.SideLength) * 2 + 0] = (uint)(this.SideLength - 1 - i + (k + 0) * this.SideLength);
-                                    pointer[(i + k * this.SideLength) * 2 + 1] = (uint)(this.SideLength - 1 - i + (k + 1) * this.SideLength);
-                                }
+                                array[(i + k * this.SideLength) * 2 + 0] = (uint)(i + (k + 1) * this.SideLength);
+                                array[(i + k * this.SideLength) * 2 + 1] = (uint)(i + (k + 0) * this.SideLength);
+                            }
+                            else
+                            {
+                                array[(i + k * this.SideLength) * 2 + 0] = (uint)(this.SideLength - 1 - i + (k + 0) * this.SideLength);
+                                array[(i + k * this.SideLength) * 2 + 1] = (uint)(this.SideLength - 1 - i + (k + 1) * this.SideLength);
                             }
                         }
                     }
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         private IndexBufferPtr indexBufferPtr = null;
