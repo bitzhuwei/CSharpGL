@@ -95,22 +95,23 @@ namespace GridViewer
             {
                 if (brightnessBufferPtr != null) { return brightnessBufferPtr; }
 
-                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
+                VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                unsafe
                 {
-                    int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                    buffer.Alloc(vertexCount);
-                    var array = (vec3*)buffer.Header.ToPointer();
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (vec3*)pointer.ToPointer();
                     var random = new Random();
-                    for (int i = 0; i < buffer.Length; i++)
+                    for (int i = 0; i < bufferPtr.Length; i++)
                     {
                         var x = (float)(random.NextDouble() * 0.5 + 0.5);
                         array[i] = new vec3(x, x, x);
                     }
-
-                    brightnessBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+                this.brightnessBufferPtr = bufferPtr;
 
-                return brightnessBufferPtr;
+                return this.brightnessBufferPtr;
             }
             else
             {
