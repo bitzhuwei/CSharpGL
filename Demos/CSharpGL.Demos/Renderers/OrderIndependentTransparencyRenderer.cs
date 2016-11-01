@@ -68,32 +68,35 @@ namespace CSharpGL.Demos
                 OpenGL.BindImageTexture(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
             }
             // Create buffer for clearing the head pointer texture
-            //var buffer = new IndependentBuffer<uint>(BufferTarget.PixelUnpackBuffer, BufferUsage.StaticDraw, false);
-            using (var buffer = new PixelUnpackBuffer<uint>(BufferUsage.StaticDraw))
             {
-                //buffer.Alloc(MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT, false);
+                PixelUnpackBufferPtr bufferPtr = PixelUnpackBufferPtr.Create(typeof(uint), BufferUsage.StaticDraw, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
                 // NOTE: not all initial values are zero in this unmanged array.
+                // initialize buffer's value to 0.
                 //unsafe
                 //{
-                //    var array = (uint*)buffer.Header.ToPointer();
+                //    IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
+                //    var array = (uint*)pointer.ToPointer();
                 //    for (int i = 0; i < MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT; i++)
                 //    {
                 //        array[i] = 0;
                 //    }
                 //}
-                this.headClearBufferPtr = buffer.GetBufferPtr() as PixelUnpackBufferPtr;
+                // another way to initialize buffer's value to 0.
+                //using (var data = new UnmanagedArray<uint>(1))
+                //{
+                //    data[0] = 0;
+                //    ptr.ClearBufferData(OpenGL.GL_UNSIGNED_INT, OpenGL.GL_RED, OpenGL.GL_UNSIGNED_INT, data);
+                //}
+                this.headClearBufferPtr = bufferPtr;
             }
             // Create the atomic counter buffer
-            using (var buffer = new AtomicCounterBuffer<uint>(BufferUsage.DynamicCopy))
             {
-                //buffer.Alloc(1, false);
-                this.atomicCountBufferPtr = buffer.GetBufferPtr() as AtomicCounterBufferPtr;
+                AtomicCounterBufferPtr bufferPtr = AtomicCounterBufferPtr.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
+                this.atomicCountBufferPtr = bufferPtr;
             }
             // Bind it to a texture (for use as a TBO)
-            using (var buffer = new TextureBuffer<vec4>(BufferUsage.DynamicCopy))
             {
-                //buffer.Alloc(elementCount: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3, dataCopying: false);
-                IndependentBufferPtr bufferPtr = buffer.GetBufferPtr();
+                TextureBufferPtr bufferPtr = TextureBufferPtr.Create(typeof(vec4), BufferUsage.DynamicCopy, length: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
                 texture.Initialize();
                 bufferPtr.Dispose();// dispose it ASAP.
