@@ -1,4 +1,5 @@
 ﻿using CSharpGL;
+using System;
 using System.Runtime.InteropServices;
 
 namespace GridViewer
@@ -10,32 +11,30 @@ namespace GridViewer
 
         private VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)
         {
-            VertexAttributeBufferPtr ptr = null;
-            using (var buffer = new VertexAttributeBuffer<HexahedronPosition>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+            int dimSize = this.DataSource.DimenSize;
+            int length = dimSize;
+            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(HexahedronPosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            unsafe
             {
-                int dimSize = this.DataSource.DimenSize;
-                buffer.Alloc(dimSize);
-                unsafe
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (HexahedronPosition*)pointer;
+                int I, J, K;
+                for (int gridIndex = 0; gridIndex < dimSize; gridIndex++)
                 {
-                    var array = (HexahedronPosition*)buffer.Header.ToPointer();
-                    int I, J, K;
-                    for (int gridIndex = 0; gridIndex < dimSize; gridIndex++)
-                    {
-                        this.DataSource.InvertIJK(gridIndex, out I, out J, out K);
-                        array[gridIndex].FLT = this.DataSource.Position + this.DataSource.PointFLT(I, J, K);
-                        array[gridIndex].FRT = this.DataSource.Position + this.DataSource.PointFRT(I, J, K);
-                        array[gridIndex].BRT = this.DataSource.Position + this.DataSource.PointBRT(I, J, K);
-                        array[gridIndex].BLT = this.DataSource.Position + this.DataSource.PointBLT(I, J, K);
-                        array[gridIndex].FLB = this.DataSource.Position + this.DataSource.PointFLB(I, J, K);
-                        array[gridIndex].FRB = this.DataSource.Position + this.DataSource.PointFRB(I, J, K);
-                        array[gridIndex].BRB = this.DataSource.Position + this.DataSource.PointBRB(I, J, K);
-                        array[gridIndex].BLB = this.DataSource.Position + this.DataSource.PointBLB(I, J, K);
-                    }
+                    this.DataSource.InvertIJK(gridIndex, out I, out J, out K);
+                    array[gridIndex].FLT = this.DataSource.Position + this.DataSource.PointFLT(I, J, K);
+                    array[gridIndex].FRT = this.DataSource.Position + this.DataSource.PointFRT(I, J, K);
+                    array[gridIndex].BRT = this.DataSource.Position + this.DataSource.PointBRT(I, J, K);
+                    array[gridIndex].BLT = this.DataSource.Position + this.DataSource.PointBLT(I, J, K);
+                    array[gridIndex].FLB = this.DataSource.Position + this.DataSource.PointFLB(I, J, K);
+                    array[gridIndex].FRB = this.DataSource.Position + this.DataSource.PointFRB(I, J, K);
+                    array[gridIndex].BRB = this.DataSource.Position + this.DataSource.PointBRB(I, J, K);
+                    array[gridIndex].BLB = this.DataSource.Position + this.DataSource.PointBLB(I, J, K);
                 }
-                ptr = buffer.GetBufferPtr();
+                bufferPtr.UnmapBuffer();
             }
 
-            return ptr;
+            return bufferPtr;
         }
     }
 

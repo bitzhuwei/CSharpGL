@@ -12,25 +12,22 @@ namespace GridViewer
 
         private VertexAttributeBufferPtr GetColorBufferPtr(string varNameInShader)
         {
-            VertexAttributeBufferPtr ptr = null;
-            using (var buffer = new VertexAttributeBuffer<HexahedronTexCoord>(varNameInShader, VertexAttributeConfig.Float, BufferUsage.StaticDraw))
+            float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
+            int gridCellCount = this.DataSource.DimenSize;
+            int length = gridCellCount;
+            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(HexahedronTexCoord), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            unsafe
             {
-                float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
-
-                int gridCellCount = this.DataSource.DimenSize;
-                buffer.Alloc(gridCellCount);
-                unsafe
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (HexahedronTexCoord*)pointer;
+                for (int gridIndex = 0; gridIndex < gridCellCount; gridIndex++)
                 {
-                    var array = (HexahedronTexCoord*)buffer.Header.ToPointer();
-                    for (int gridIndex = 0; gridIndex < gridCellCount; gridIndex++)
-                    {
-                        array[gridIndex].SetCoord(textures[gridIndex]);
-                    }
+                    array[gridIndex].SetCoord(textures[gridIndex]);
                 }
-                ptr = buffer.GetBufferPtr();
+                bufferPtr.UnmapBuffer();
             }
 
-            return ptr;
+            return bufferPtr;
         }
 
         public override void UpdateColor(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
@@ -38,9 +35,9 @@ namespace GridViewer
             float[] textures = GetTextureCoords(property);
             int gridCellCount = this.DataSource.DimenSize;
 
-            IntPtr pointer = this.colorBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
             unsafe
             {
+                IntPtr pointer = this.colorBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
                 var array = (HexahedronTexCoord*)pointer;
                 for (int gridIndex = 0; gridIndex < gridCellCount; gridIndex++)
                 {
