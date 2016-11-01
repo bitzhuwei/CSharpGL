@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Runtime.InteropServices;
+namespace CSharpGL
 {
     public partial class Texture
     {
@@ -23,12 +24,11 @@
         /// <param name="usage"></param>
         /// <param name="dataCopying"></param>
         /// <returns></returns>
-        public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage, bool dataCopying = true) where T : struct
+        public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage) where T : struct
         {
-            var buffer = new TextureBuffer<T>(usage);
-            buffer.Alloc(elementCount);
-            BufferPtr bufferPtr = buffer.GetBufferPtr();
-
+            int elementLength = Marshal.SizeOf(typeof(T));
+            int byteLength = elementLength * elementCount;
+            TextureBufferPtr bufferPtr = TextureBufferPtr.Create(byteLength, usage, elementCount);
             return bufferPtr.DumpBufferTexture(internalFormat, autoDispose: true);
         }
     }
