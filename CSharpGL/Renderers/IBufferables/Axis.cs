@@ -62,12 +62,13 @@ namespace CSharpGL
 
                     //    positionBufferPtr = buffer.GetBufferPtr();
                     //}
-                    VertexAttributeBufferPtr ptr = VertexAttributeBufferPtr.Create(typeof(vec3), BufferUsage.StaticDraw, varNameInShader, VertexAttributeConfig.Vec3, this.model.positions.Length);
+                    int length = this.model.positions.Length;
+                    VertexAttributeBufferPtr ptr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer.ToPointer();
-                        for (int i = 0; i < this.model.positions.Length; i++)
+                        for (int i = 0; i < length; i++)
                         {
                             array[i] = this.model.positions[i];
                         }
