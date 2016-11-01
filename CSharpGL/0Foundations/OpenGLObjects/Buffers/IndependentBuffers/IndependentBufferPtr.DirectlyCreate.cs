@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -8,12 +9,14 @@ namespace CSharpGL
         /// Creates a sub-type of <see cref="IndependentBufferPtr"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="byteLength"></param>
+        /// <param name="elementType"></param>
         /// <param name="usage"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static IndependentBufferPtr Create(IndependentBufferTarget target, int byteLength, BufferUsage usage, int length)
+        public static IndependentBufferPtr Create(IndependentBufferTarget target, Type elementType, BufferUsage usage, int length)
         {
+            if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
+
             if (glGenBuffers == null)
             {
                 glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
@@ -56,6 +59,7 @@ namespace CSharpGL
                     throw new NotImplementedException();
             }
 
+            int byteLength = Marshal.SizeOf(elementType) * length;
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
             glBindBuffer(bufferTarget, buffers[0]);

@@ -100,6 +100,9 @@ namespace CSharpGL.Demos
                 this.linkedListTexture = texture;
             }
             {
+                //TextureBufferPtr bufferPtr = TextureBufferPtr.Create()
+            }
+            {
                 OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
             }
             OpenGL.ClearDepth(1.0f);

@@ -22,13 +22,10 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="elementCount"></param>
         /// <param name="usage"></param>
-        /// <param name="dataCopying"></param>
         /// <returns></returns>
         public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage) where T : struct
         {
-            int elementLength = Marshal.SizeOf(typeof(T));
-            int byteLength = elementLength * elementCount;
-            TextureBufferPtr bufferPtr = TextureBufferPtr.Create(byteLength, usage, elementCount);
+            TextureBufferPtr bufferPtr = TextureBufferPtr.Create(typeof(T), usage, elementCount);
             return bufferPtr.DumpBufferTexture(internalFormat, autoDispose: true);
         }
     }

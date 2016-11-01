@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace CSharpGL
 {
     public partial class TextureBufferPtr
@@ -6,13 +7,13 @@ namespace CSharpGL
         /// <summary>
         /// Creates a <see cref="TextureBufferPtr"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
-        /// <param name="byteLength"></param>
+        /// <param name="elementType"></param>
         /// <param name="usage"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static TextureBufferPtr Create(int byteLength, BufferUsage usage, int length)
+        public static TextureBufferPtr Create(Type elementType, BufferUsage usage, int length)
         {
-            return (IndependentBufferPtr.Create(IndependentBufferTarget.TextureBuffer, byteLength, usage, length) as TextureBufferPtr);
+            return (IndependentBufferPtr.Create(IndependentBufferTarget.TextureBuffer, elementType, usage, length) as TextureBufferPtr);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace CSharpGL
         public abstract BufferTarget Target { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glGenBuffers glGenBuffers;
 
@@ -47,7 +47,7 @@ namespace CSharpGL
         internal static OpenGL.glBindBuffer glBindBuffer;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static OpenGL.glBufferData glBufferData;
 
