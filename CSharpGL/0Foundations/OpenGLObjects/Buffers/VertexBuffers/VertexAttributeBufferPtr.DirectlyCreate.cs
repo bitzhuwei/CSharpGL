@@ -22,13 +22,7 @@ namespace CSharpGL
 
             if (glGenBuffers == null)
             {
-                glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
-                glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
-            }
-
-            if (glBindBuffer == null)
-            {
-                glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+                InitOpenGLCommands();
             }
 
             int byteLength = Marshal.SizeOf(elementType) * length;

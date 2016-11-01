@@ -104,22 +104,32 @@ namespace CSharpGL
             Debug.Assert(length >= 0);
             Debug.Assert(byteLength >= 0);
 
-            if (glBindBuffer == null)
+            if (glGenBuffers == null)
             {
-                glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
-                glDeleteBuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>();
-                glMapBuffer = OpenGL.GetDelegateFor<OpenGL.glMapBuffer>();
-                glMapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>();
-                glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>();
-                glClearBufferData = OpenGL.GetDelegateFor<OpenGL.glClearBufferData>();
-                glClearBufferSubData = OpenGL.GetDelegateFor<OpenGL.glClearBufferSubData>();
-                glCopyBufferSubData = OpenGL.GetDelegateFor<OpenGL.glCopyBufferSubData>();
-                glGetBufferSubData = OpenGL.GetDelegateFor<OpenGL.glGetBufferSubData>();
+                InitOpenGLCommands();
             }
 
             this.BufferId = bufferId;
             this.Length = length;
             this.ByteLength = byteLength;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected static void InitOpenGLCommands()
+        {
+            glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
+            glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+            glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
+            glDeleteBuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>();
+            glMapBuffer = OpenGL.GetDelegateFor<OpenGL.glMapBuffer>();
+            glMapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>();
+            glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>();
+            glClearBufferData = OpenGL.GetDelegateFor<OpenGL.glClearBufferData>();
+            glClearBufferSubData = OpenGL.GetDelegateFor<OpenGL.glClearBufferSubData>();
+            glCopyBufferSubData = OpenGL.GetDelegateFor<OpenGL.glCopyBufferSubData>();
+            glGetBufferSubData = OpenGL.GetDelegateFor<OpenGL.glGetBufferSubData>();
         }
 
         /// <summary>
