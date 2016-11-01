@@ -41,45 +41,41 @@ namespace CSharpGL
             {
                 if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = BigDipperModel.positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(BigDipperModel.positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer.ToPointer();
+                        for (int i = 0; i < BigDipperModel.positions.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < BigDipperModel.positions.Length; i++)
-                            {
-                                array[i] = BigDipperModel.positions[i];
-                            }
+                            array[i] = BigDipperModel.positions[i];
                         }
-
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == color)
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = BigDipperModel.colors.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(BigDipperModel.colors.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer.ToPointer();
+                        for (int i = 0; i < BigDipperModel.colors.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < BigDipperModel.colors.Length; i++)
-                            {
-                                array[i] = BigDipperModel.colors[i];
-                            }
+                            array[i] = BigDipperModel.colors[i];
                         }
-
-                        colorBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.colorBufferPtr = bufferPtr;
                 }
-                return colorBufferPtr;
+                return this.colorBufferPtr;
             }
             else
             {
@@ -96,6 +92,7 @@ namespace CSharpGL
             if (indexBufferPtr == null)
             {
                 ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.LineStrip, 0, BigDipperModel.positions.Length);
+
                 this.indexBufferPtr = bufferPtr;
             }
 
