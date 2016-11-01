@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace CSharpGL.Demos
 {
@@ -40,37 +41,33 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             base.DoInitialize();
-            using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
-                buffer.Alloc(vertexCount);
+                ShaderStorageBufferPtr bufferPtr = ShaderStorageBufferPtr.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
-                    var array = (vec4*)buffer.Header.ToPointer();
+                    var array = (vec4*)pointer;
                     array[0] = new vec4(0, 0, 1, 1);
                     array[1] = new vec4(1, 0, 0, 1);
                     array[2] = new vec4(-1, 0, 0, 1);
                     array[3] = new vec4(0, 1, 0, 1);
                 }
-                var bufferPtr = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                bufferPtr.UnmapBuffer();
                 bufferPtr.Binding(this.Program, "PositionBuffer", 0);
                 bufferPtr.Unbind();
                 //this.shaderStorageBufferPtr = bufferPtr;
             }
-            using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
-                buffer.Alloc(vertexCount);
+                ShaderStorageBufferPtr bufferPtr = ShaderStorageBufferPtr.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
-                    var array = (vec4*)buffer.Header.ToPointer();
+                    var array = (vec4*)pointer;
                     array[0] = new vec4(+1, +0, +0, 0);
                     array[1] = new vec4(+0, +1, +0, 0);
                     array[2] = new vec4(+0, +0, +1, 0);
                     array[3] = new vec4(+1, +1, +1, 0);
-                    //array[0] = new vec3(new vec3(0, 0, 0));
-                    //array[1] = new vec3(new vec3(1, 1, +1));
-                    //array[2] = new vec3(new vec3(0, +1, 0));
                 }
-                var bufferPtr = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
                 bufferPtr.Binding(this.Program, "ColorBuffer", 1);
                 bufferPtr.Unbind();
                 //this.shaderStorageBufferPtr = bufferPtr;
@@ -111,24 +108,22 @@ namespace CSharpGL.Demos
 
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Triangles, BufferUsage.StaticDraw))
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
+                unsafe
                 {
-                    buffer.Alloc(3 * 3);
-                    unsafe
-                    {
-                        var array = (uint*)buffer.Header.ToPointer();
-                        array[0] = 0; array[1] = 1; array[2] = 3;
-                        array[3] = 0; array[4] = 3; array[5] = 2;
-                        array[6] = 1; array[7] = 3; array[8] = 2;
-                    }
-
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (uint*)pointer;
+                    array[0] = 0; array[1] = 1; array[2] = 3;
+                    array[3] = 0; array[4] = 3; array[5] = 2;
+                    array[6] = 1; array[7] = 3; array[8] = 2;
+                    bufferPtr.UnmapBuffer();
                 }
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         public bool UsesZeroIndexBuffer()
