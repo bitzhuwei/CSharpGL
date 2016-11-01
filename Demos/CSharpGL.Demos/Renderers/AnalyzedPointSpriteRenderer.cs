@@ -62,31 +62,30 @@ namespace CSharpGL.Demos
             {
                 if (bufferName == strPosition)
                 {
-                    if (positionBufferPtr == null)
+                    if (this.positionBufferPtr == null)
                     {
-                        using (var buffer = new VertexAttributeBuffer<vec3>(
-                            varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                        int length = particleCount;
+                        VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        unsafe
                         {
-                            buffer.Alloc(particleCount);
-                            unsafe
+                            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                            var array = (vec3*)pointer;
+                            for (int i = 0; i < particleCount; i++)
                             {
-                                var array = (vec3*)buffer.Header.ToPointer();
-                                for (int i = 0; i < particleCount; i++)
-                                {
-                                    double beta = random.NextDouble() * Math.PI;
-                                    double theta = random.NextDouble() * Math.PI * 2;
-                                    float x = (float)(a * Math.Sin(beta) * Math.Cos(theta));
-                                    float y = (float)(b * Math.Sin(beta) * Math.Sin(theta));
-                                    float z = (float)(c * Math.Cos(beta));
-                                    array[i] = new vec3(x, y, z);
-                                }
+                                double beta = random.NextDouble() * Math.PI;
+                                double theta = random.NextDouble() * Math.PI * 2;
+                                float x = (float)(a * Math.Sin(beta) * Math.Cos(theta));
+                                float y = (float)(b * Math.Sin(beta) * Math.Sin(theta));
+                                float z = (float)(c * Math.Cos(beta));
+                                array[i] = new vec3(x, y, z);
                             }
-
-                            positionBufferPtr = buffer.GetBufferPtr();
+                            bufferPtr.UnmapBuffer();
                         }
+
+                        this.positionBufferPtr = bufferPtr;
                     }
 
-                    return positionBufferPtr;
+                    return this.positionBufferPtr;
                 }
                 else
                 {
@@ -96,13 +95,10 @@ namespace CSharpGL.Demos
 
             public IndexBufferPtr GetIndexBufferPtr()
             {
-                if (indexBufferPtr == null)
+                if (this.indexBufferPtr == null)
                 {
-                    using (var buffer = new ZeroIndexBuffer(
-                      DrawMode.Points, 0, particleCount))
-                    {
-                        indexBufferPtr = buffer.GetBufferPtr();
-                    }
+                    ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, particleCount);
+                    this.indexBufferPtr = bufferPtr;
                 }
 
                 return indexBufferPtr;
