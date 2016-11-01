@@ -27,38 +27,42 @@ namespace CSharpGL
         {
             if ((bufferName == position))
             {
-                if ((positionBufferPtr == null))
+                if ((this.positionBufferPtr == null))
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
-                    {// begin of using
-                        buffer.Alloc(this.pointCount);
-                        unsafe
+                    int length = this.pointCount;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
+                    {
+                        var random = new Random();
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < this.pointCount; i++)
                         {
-                            var random = new Random();
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < this.pointCount; i++)
-                            {
-                                array[i] = (new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()) - new vec3(0.5f, 0.5f, 0.5f)) * this.Lengths;
-                            }
+                            array[i] = (new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()) - new vec3(0.5f, 0.5f, 0.5f)) * this.Lengths;
                         }
-                        positionBufferPtr = buffer.GetBufferPtr();
-                    }// end of using
+                        bufferPtr.UnmapBuffer();
+                    }
+
+                    this.positionBufferPtr = bufferPtr;
                 }
                 return positionBufferPtr;
             }
-            throw new System.ArgumentException("bufferName");
+            else
+            {
+                throw new System.ArgumentException("bufferName");
+            }
         }
 
         public CSharpGL.IndexBufferPtr GetIndexBufferPtr()
         {
-            if ((indexBufferPtr == null))
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, this.pointCount))
-                {// begin of using
-                    indexBufferPtr = buffer.GetBufferPtr();
-                }// end of using
+                int vertexCount = this.pointCount;
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, vertexCount);
+                this.indexBufferPtr = bufferPtr;
+
             }
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         /// <summary>
