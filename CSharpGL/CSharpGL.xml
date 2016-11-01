@@ -11667,6 +11667,17 @@
             Buffer object that not work as input variable in shader.
             </summary>
         </member>
+        <member name="M:CSharpGL.IndependentBufferPtr.Create(CSharpGL.IndependentBufferTarget,System.Int32,CSharpGL.BufferUsage,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32)">
+            <summary>
+            Creates a <see cref="T:CSharpGL.OneIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
+            </summary>
+            <param name="byteLength"></param>
+            <param name="usage"></param>
+            <param name="mode"></param>
+            <param name="type"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
         <member name="M:CSharpGL.IndependentBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
             pixel unpack buffer's pointer.
@@ -11734,6 +11745,35 @@
             <param name="storageBlockBindingPoint">binding point maintained by OpenGL context.</param>
         </member>
         <member name="P:CSharpGL.ShaderStorageBufferPtr.Target">
+            <summary>
+            Target that this buffer should bind to.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.TextureBufferPtr">
+            <summary>
+            Buffer object that not work as input variable in shader.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.TextureBufferPtr.Create(System.Int32,CSharpGL.BufferUsage,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32)">
+            <summary>
+            Creates a <see cref="T:CSharpGL.OneIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
+            </summary>
+            <param name="byteLength"></param>
+            <param name="usage"></param>
+            <param name="mode"></param>
+            <param name="type"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.TextureBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            TextureBufferObject matches <code>uniform samplerBuffer xxx;</code> in GLSL shader.
+            </summary>
+            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+        </member>
+        <member name="P:CSharpGL.TextureBufferPtr.Target">
             <summary>
             Target that this buffer should bind to.
             </summary>
@@ -14031,24 +14071,6 @@
             
              </summary>
              <returns></returns>
-        </member>
-        <member name="T:CSharpGL.TextureBufferPtr">
-            <summary>
-            Buffer object that not work as input variable in shader.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.TextureBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
-            <summary>
-            TextureBufferObject matches <code>uniform samplerBuffer xxx;</code> in GLSL shader.
-            </summary>
-            <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-            <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
-            <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        </member>
-        <member name="P:CSharpGL.TextureBufferPtr.Target">
-            <summary>
-            Target that this buffer should bind to.
-            </summary>
         </member>
         <member name="T:CSharpGL.UniformBufferPtr">
             <summary>
