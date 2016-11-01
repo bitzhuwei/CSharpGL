@@ -8,6 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
     /// VBO's pointer got from Buffer's GetBufferPtr() method.
+    /// <para>A wrapped pointer that referenced to a buffer(an array) in server(GPU memory) side.</para>
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class BufferPtr : IDisposable
