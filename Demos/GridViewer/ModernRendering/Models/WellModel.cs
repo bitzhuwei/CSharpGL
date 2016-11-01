@@ -55,11 +55,12 @@ namespace GridViewer
             {
                 if (positionBufferPtr != null) { return positionBufferPtr; }
 
-                using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
+                VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                unsafe
                 {
-                    int vertexCount = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                    buffer.Alloc(vertexCount);
-                    var array = (vec3*)buffer.Header.ToPointer();
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (vec3*)pointer.ToPointer();
                     int index = 0;
                     var max = new vec3(float.MinValue, float.MinValue, float.MinValue);
                     var min = new vec3(float.MaxValue, float.MaxValue, float.MaxValue);
@@ -84,12 +85,11 @@ namespace GridViewer
                             array[index++] = tmp2;
                         }
                     }
+                    bufferPtr.UnmapBuffer();
                     this.ModelSize = max - min;
-
-                    positionBufferPtr = buffer.GetBufferPtr();
+                    this.positionBufferPtr = bufferPtr;
                 }
-
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == strBrightness)
             {
