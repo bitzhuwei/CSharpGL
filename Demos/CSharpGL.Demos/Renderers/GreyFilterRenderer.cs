@@ -85,49 +85,47 @@ namespace CSharpGL.Demos
             {
                 if (bufferName == strPosition)
                 {
-                    if (positionBufferPtr == null)
+                    if (this.positionBufferPtr == null)
                     {
-                        using (var buffer = new VertexAttributeBuffer<vec3>(
-                            varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                        int length = positions.Length;
+                        VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        unsafe
                         {
-                            buffer.Alloc(positions.Length);
-                            unsafe
+                            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                            var array = (vec3*)pointer;
+                            for (int i = 0; i < positions.Length; i++)
                             {
-                                var array = (vec3*)buffer.Header.ToPointer();
-                                for (int i = 0; i < positions.Length; i++)
-                                {
-                                    array[i] = new vec3(positions[i].x, positions[i].y, 0);
-                                }
+                                array[i] = new vec3(positions[i].x, positions[i].y, 0);
                             }
-
-                            positionBufferPtr = buffer.GetBufferPtr();
+                            bufferPtr.UnmapBuffer();
                         }
+
+                        this.positionBufferPtr = bufferPtr;
                     }
 
-                    return positionBufferPtr;
+                    return this.positionBufferPtr;
                 }
                 else if (bufferName == strTexCoord)
                 {
-                    if (texCoordBufferPtr == null)
+                    if (this.texCoordBufferPtr == null)
                     {
-                        using (var buffer = new VertexAttributeBuffer<vec2>(
-                            varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
+                        int length = texCoords.Length;
+                        VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                        unsafe
                         {
-                            buffer.Alloc(texCoords.Length);
-                            unsafe
+                            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                            var array = (vec2*)pointer;
+                            for (int i = 0; i < texCoords.Length; i++)
                             {
-                                var array = (vec2*)buffer.Header.ToPointer();
-                                for (int i = 0; i < texCoords.Length; i++)
-                                {
-                                    array[i] = texCoords[i];
-                                }
+                                array[i] = texCoords[i];
                             }
-
-                            texCoordBufferPtr = buffer.GetBufferPtr();
+                            bufferPtr.UnmapBuffer();
                         }
+
+                        this.texCoordBufferPtr = bufferPtr;
                     }
 
-                    return texCoordBufferPtr;
+                    return this.texCoordBufferPtr;
                 }
                 else
                 {
@@ -137,15 +135,13 @@ namespace CSharpGL.Demos
 
             public IndexBufferPtr GetIndexBufferPtr()
             {
-                if (indexBufferPtr == null)
+                if (this.indexBufferPtr == null)
                 {
-                    using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleStrip, 0, 4))
-                    {
-                        indexBufferPtr = buffer.GetBufferPtr();
-                    }
+                    ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.TriangleStrip, 0, 4);
+                    this.indexBufferPtr = bufferPtr;
                 }
 
-                return indexBufferPtr;
+                return this.indexBufferPtr;
             }
 
             /// <summary>
