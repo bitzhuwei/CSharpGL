@@ -47,21 +47,6 @@ namespace CSharpGL
             {
                 if (positionBufferPtr == null)
                 {
-                    //using (var buffer = new VertexAttributeBuffer<vec3>(
-                    //    varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
-                    //{
-                    //    buffer.Alloc(this.model.positions.Length);
-                    //    unsafe
-                    //    {
-                    //        var array = (vec3*)buffer.Header.ToPointer();
-                    //        for (int i = 0; i < this.model.positions.Length; i++)
-                    //        {
-                    //            array[i] = this.model.positions[i];
-                    //        }
-                    //    }
-
-                    //    positionBufferPtr = buffer.GetBufferPtr();
-                    //}
                     int length = this.model.positions.Length;
                     VertexAttributeBufferPtr ptr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
@@ -82,21 +67,20 @@ namespace CSharpGL
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = this.model.colors.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(this.model.colors.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer.ToPointer();
+                        for (int i = 0; i < length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < this.model.colors.Length; i++)
-                            {
-                                array[i] = this.model.colors[i];
-                            }
+                            array[i] = this.model.colors[i];
                         }
-
-                        colorBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+
+                    this.colorBufferPtr = bufferPtr;
                 }
                 return colorBufferPtr;
             }
