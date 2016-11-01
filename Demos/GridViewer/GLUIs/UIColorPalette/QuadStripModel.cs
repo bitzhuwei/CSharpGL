@@ -61,51 +61,49 @@ namespace GridViewer
         {
             if (bufferName == position)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = (this.quadCount + 1) * 2;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc((this.quadCount + 1) * 2);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < (this.quadCount + 1); i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < (this.quadCount + 1); i++)
-                            {
-                                array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount), 0.5f, 0);
-                                array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount), -0.5f, 0);
-                            }
+                            array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount), 0.5f, 0);
+                            array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount), -0.5f, 0);
                         }
-
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == texCoord)
             {
-                if (texCoordBufferPtr == null)
+                if (this.texCoordBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(
-                        varNameInShader, VertexAttributeConfig.Float, BufferUsage.StaticDraw))
+                    int length = (this.quadCount + 1) * 2;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc((this.quadCount + 1) * 2);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        //Random random = new Random();
+                        var array = (float*)pointer;
+                        for (int i = 0; i < (this.quadCount + 1); i++)
                         {
-                            //Random random = new Random();
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < (this.quadCount + 1); i++)
-                            {
-                                //array[i * 2 + 0] = (float)random.NextDouble();
-                                array[i * 2 + 0] = (float)i / (float)this.quadCount;
-                                array[i * 2 + 1] = array[i * 2 + 0];
-                            }
+                            //array[i * 2 + 0] = (float)random.NextDouble();
+                            array[i * 2 + 0] = (float)i / (float)this.quadCount;
+                            array[i * 2 + 1] = array[i * 2 + 0];
                         }
-
-                        texCoordBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+
+                    this.texCoordBufferPtr = bufferPtr;
                 }
-                return texCoordBufferPtr;
+                return this.texCoordBufferPtr;
             }
             else if (bufferName == color)
             {
