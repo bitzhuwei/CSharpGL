@@ -77,24 +77,23 @@ namespace CSharpGL
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < positions.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < positions.Length; i++)
-                            {
-                                array[i] = positions[i] / 2 * this.lengths;
-                            }
+                            array[i] = positions[i] / 2 * this.lengths;
                         }
-
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else
             {
@@ -108,24 +107,24 @@ namespace CSharpGL
         /// <returns></returns>
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.Quads, BufferUsage.StaticDraw))
+                int length = indexes.Length;
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Quads, IndexElementType.UByte, length);
+                unsafe
                 {
-                    buffer.Alloc(indexes.Length);
-                    unsafe
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (byte*)pointer;
+                    for (int i = 0; i < indexes.Length; i++)
                     {
-                        var array = (byte*)buffer.Header.ToPointer();
-                        for (int i = 0; i < indexes.Length; i++)
-                        {
-                            array[i] = indexes[i];
-                        }
+                        array[i] = indexes[i];
                     }
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         /// <summary>
