@@ -94,84 +94,74 @@ namespace CSharpGL.Demos
 
         private VertexAttributeBufferPtr GetTexCoordBufferPtr(string varNameInShader)
         {
-            VertexAttributeBufferPtr texCoordBufferPtr = null;
-
-            using (var buffer = new VertexAttributeBuffer<float>(
-                varNameInShader, VertexAttributeConfig.Float, BufferUsage.StaticDraw))
+            int uCount = GetUCount(interval);
+            int vCount = GetVCount(interval);
+            int length = uCount * vCount;
+            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            unsafe
             {
-                int uCount = GetUCount(interval);
-                int vCount = GetVCount(interval);
-                buffer.Alloc(uCount * vCount);
-                unsafe
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (float*)pointer;
+                int index = 0;
+                for (int uIndex = 0; uIndex < uCount; uIndex++)
                 {
-                    int index = 0;
-                    var array = (float*)buffer.Header.ToPointer();
-                    for (int uIndex = 0; uIndex < uCount; uIndex++)
+                    for (int vIndex = 0; vIndex < vCount; vIndex++)
                     {
-                        for (int vIndex = 0; vIndex < vCount; vIndex++)
-                        {
-                            array[index++] = (float)uIndex / (float)uCount;
-                        }
+                        array[index++] = (float)uIndex / (float)uCount;
                     }
                 }
-
-                texCoordBufferPtr = buffer.GetBufferPtr();
-
-                return texCoordBufferPtr;
+                bufferPtr.UnmapBuffer();
             }
+
+            return bufferPtr;
         }
 
         private VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)
         {
-            VertexAttributeBufferPtr positionBufferPtr = null;
-
-            using (var buffer = new VertexAttributeBuffer<vec3>(
-                varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+            bool initialized = false;
+            vec3 max = new vec3();
+            vec3 min = new vec3();
+            int uCount = GetUCount(interval);
+            int vCount = GetVCount(interval);
+            int length = uCount * vCount;
+            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            unsafe
             {
-                bool initialized = false;
-                vec3 max = new vec3();
-                vec3 min = new vec3();
-                int uCount = GetUCount(interval);
-                int vCount = GetVCount(interval);
-                buffer.Alloc(uCount * vCount);
-                unsafe
+                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (vec3*)pointer;
+                int index = 0;
+                for (int uIndex = 0; uIndex < uCount; uIndex++)
                 {
-                    int index = 0;
-                    var array = (vec3*)buffer.Header.ToPointer();
-                    for (int uIndex = 0; uIndex < uCount; uIndex++)
+                    for (int vIndex = 0; vIndex < vCount; vIndex++)
                     {
-                        for (int vIndex = 0; vIndex < vCount; vIndex++)
-                        {
-                            double u = Math.PI * uIndex / uCount;
-                            double v = Math.PI * 2 * vIndex / vCount;
-                            var position = GetPosition(u, v);
+                        double u = Math.PI * uIndex / uCount;
+                        double v = Math.PI * 2 * vIndex / vCount;
+                        var position = GetPosition(u, v);
 
-                            if (!initialized)
-                            {
-                                max = position;
-                                min = position;
-                                initialized = true;
-                            }
-                            else
-                            {
-                                position.UpdateMax(ref max);
-                                position.UpdateMin(ref min);
-                            }
-                            array[index++] = position;
+                        if (!initialized)
+                        {
+                            max = position;
+                            min = position;
+                            initialized = true;
                         }
-                    }
-                    //this.Lengths = max - min;
-                    vec3 worldPosition = max / 2.0f + min / 2.0f;
-                    for (int i = 0; i < index; i++)
-                    {
-                        array[i] = array[i] - worldPosition;
+                        else
+                        {
+                            position.UpdateMax(ref max);
+                            position.UpdateMin(ref min);
+                        }
+                        array[index++] = position;
                     }
                 }
-
-                positionBufferPtr = buffer.GetBufferPtr();
-
-                return positionBufferPtr;
+                //this.Lengths = max - min;
+                vec3 worldPosition = max / 2.0f + min / 2.0f;
+                for (int i = 0; i < index; i++)
+                {
+                    array[i] = array[i] - worldPosition;
+                }
+                bufferPtr.UnmapBuffer();
             }
+
+            return bufferPtr;
         }
 
         public vec3 Lengths { get; private set; }
@@ -193,42 +183,35 @@ namespace CSharpGL.Demos
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.LineStrip, BufferUsage.StaticDraw))
+                int length = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.LineStrip, IndexElementType.UInt, length);
+                unsafe
                 {
-                    int count = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
-                    buffer.Alloc(count);
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (uint*)pointer;
                     int index = 0;
-                    unsafe
+                    // vertical lines.
+                    for (int i = 0; i < vCount; i++)
                     {
-                        var array = (uint*)buffer.Header.ToPointer();
-                        // vertical lines.
-                        for (int i = 0; i < vCount; i++)
+                        for (int j = 0; j < uCount; j++)
                         {
-                            for (int j = 0; j < uCount; j++)
-                            {
-                                array[index++] = (uint)(i + j * vCount);
-                            }
-                            array[index++] = uint.MaxValue;// primitive restart index.
+                            array[index++] = (uint)(i + j * vCount);
                         }
-                        // horizontal lines.
-                        for (int i = 0; i < uCount; i++)
-                        {
-                            for (int j = 0; j < vCount; j++)
-                            {
-                                array[index++] = (uint)(j + i * vCount);
-                            }
-                            array[index++] = (uint)(0 + i * vCount);
-                            array[index++] = uint.MaxValue;// primitive restart index.
-                        }
+                        array[index++] = uint.MaxValue;// primitive restart index.
                     }
-
-                    this.indexBufferPtr = buffer.GetBufferPtr();
+                    // horizontal lines.
+                    for (int i = 0; i < uCount; i++)
+                    {
+                        for (int j = 0; j < vCount; j++)
+                        {
+                            array[index++] = (uint)(j + i * vCount);
+                        }
+                        array[index++] = (uint)(0 + i * vCount);
+                        array[index++] = uint.MaxValue;// primitive restart index.
+                    }
+                    bufferPtr.UnmapBuffer();
                 }
-                //using (var buffer = new ZeroIndexBuffer(
-                //    DrawMode.Points, 0, uCount * vCount))
-                //{
-                //    indexBufferPtr = buffer.GetBufferPtr();
-                //}
+                this.indexBufferPtr = bufferPtr;
             }
 
             return this.indexBufferPtr;
