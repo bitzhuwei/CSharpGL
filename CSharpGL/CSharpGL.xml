@@ -11456,6 +11456,11 @@
             <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
             <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         </member>
+        <member name="M:CSharpGL.BufferPtr.InitOpenGLCommands">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:CSharpGL.BufferPtr.Bind">
              <summary>
             Bind this buffer.
@@ -11957,13 +11962,14 @@
             primCount in instanced rendering.
             </summary>
         </member>
-        <member name="M:CSharpGL.ZeroIndexBufferPtr.Create(CSharpGL.DrawMode,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ZeroIndexBufferPtr.Create(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:CSharpGL.ZeroIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
             </summary>
             <param name="mode"></param>
             <param name="firstVertex"></param>
             <param name="vertexCount"></param>
+            <param name="primCount"></param>
             <returns></returns>
         </member>
         <member name="M:CSharpGL.ZeroIndexBufferPtr.#ctor(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
@@ -12044,15 +12050,14 @@
             Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
             </summary>
         </member>
-        <member name="M:CSharpGL.OneIndexBufferPtr.Create(System.Int32,CSharpGL.BufferUsage,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32)">
+        <member name="M:CSharpGL.OneIndexBufferPtr.Create(CSharpGL.BufferUsage,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32)">
             <summary>
             Creates a <see cref="T:CSharpGL.OneIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
             </summary>
-            <param name="byteLength"></param>
             <param name="usage"></param>
             <param name="mode"></param>
             <param name="type"></param>
-            <param name="length"></param>
+            <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
             <returns></returns>
         </member>
         <member name="M:CSharpGL.OneIndexBufferPtr.#ctor(System.UInt32,CSharpGL.DrawMode,CSharpGL.IndexElementType,System.Int32,System.Int32,System.Int32)">
@@ -16361,7 +16366,7 @@
         </member>
         <member name="T:CSharpGL.Chain">
             <summary>
-            北斗七星
+            链条。若干个点用直线连接起来。
             <para>使用<see cref="T:CSharpGL.ZeroIndexBuffer"/></para>
             </summary>
         </member>
@@ -16788,49 +16793,6 @@
              <returns></returns>
         </member>
         <member name="M:CSharpGL.BoundingBoxModel.UsesZeroIndexBuffer">
-            <summary>
-            Uses <see cref="T:CSharpGL.ZeroIndexBuffer"/> or <see cref="T:CSharpGL.OneIndexBuffer"/>.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:CSharpGL.Ground">
-            <summary>
-            正方形
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Ground.strPosition">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.Ground.strColor">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Ground.#ctor(System.Int32,System.Int32,System.Int32)">
-             <summary>
-            
-             </summary>
-             <param name="squreCountPerUnit">每个world space里的1个距离单位有几个方块？</param>
-             <param name="xUnit">在x轴正方向画多少个距离单位？</param>
-             <param name="zUnit">在z轴正方向画多少个距离单位？</param>
-        </member>
-        <member name="M:CSharpGL.Ground.GetVertexAttributeBufferPtr(System.String,System.String)">
-             <summary>
-            
-             </summary>
-             <param name="bufferName"></param>
-             <param name="varNameInShader"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Ground.GetIndexBufferPtr">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Ground.UsesZeroIndexBuffer">
             <summary>
             Uses <see cref="T:CSharpGL.ZeroIndexBuffer"/> or <see cref="T:CSharpGL.OneIndexBuffer"/>.
             </summary>

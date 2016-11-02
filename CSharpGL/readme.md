@@ -3,6 +3,12 @@ CSharpGL wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and of
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.7.2:
+1. Directly create buffer on server side(GPU).
+2. `ClearBufferData` and `ClearBufferSubData`.
+3. fix: cascade model matrix.
+4. `OpenGL.GetDelegateFor<T>()` logs but not throw an exception when some OpenGL command is not supported on specific device.
+
 ## v1.0.7.1:
 1. rename `IColorCodedPicking` to `IPickable`.
 2. `Markable` struct supports timestamp when member is updated.

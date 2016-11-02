@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     public partial class Framebuffer
     {
@@ -10,6 +11,8 @@
         /// <param name="samples">how many samples?</param>
         public void SetParameter(int width, int height, int samples)
         {
+            if (glFramebufferParameteri == null) { throw new Exception(string.Format("{0} is not supported on this device!", glFramebufferParameteri)); }
+
             //if (glFramebufferParameteri != null)
             {
                 glFramebufferParameteri(OpenGL.GL_DRAW_FRAMEBUFFER, OpenGL.GL_FRAMEBUFFER_DEFAULT_WIDTH, width);//512
