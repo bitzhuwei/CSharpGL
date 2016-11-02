@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Cube.
@@ -53,65 +54,63 @@
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubePosition>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = 1;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(CubeModel.CubePosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(1);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
                         {
-                            var positionArray = (CubeModel.CubePosition*)buffer.Header.ToPointer();
-                            positionArray[0] = CubeModel.position;
+                            var array = (CubeModel.CubePosition*)pointer;
+                            array[0] = CubeModel.position;
                         }
-                        unsafe
                         {
-                            var positionArray = (vec3*)buffer.Header.ToPointer();
+                            var array = (vec3*)pointer;
                             for (int i = 0; i < 24; i++)
                             {
-                                positionArray[i] = positionArray[i] / 2 * Lengths;
+                                array[i] = array[i] / 2 * Lengths;
                             }
                         }
-
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == strColor)
             {
-                if (colorBufferPtr == null)
+                if (this.colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeColor>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = 1;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(CubeModel.CubeColor), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(1);
-                        unsafe
-                        {
-                            var colorArray = (CubeModel.CubeColor*)buffer.Header.ToPointer();
-                            colorArray[0] = CubeModel.color;
-                        }
-
-                        colorBufferPtr = buffer.GetBufferPtr();
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (CubeModel.CubeColor*)pointer;
+                        array[0] = CubeModel.color;
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.colorBufferPtr = bufferPtr;
                 }
-                return colorBufferPtr;
+                return this.colorBufferPtr;
             }
             else if (bufferName == strNormal)
             {
-                if (normalBufferPtr == null)
+                if (this.normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<CubeModel.CubeNormal>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = 1;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(CubeModel.CubeNormal), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(1);
-                        unsafe
-                        {
-                            var normalArray = (CubeModel.CubeNormal*)buffer.Header.ToPointer();
-                            normalArray[0] = CubeModel.normal;
-                        }
-
-                        normalBufferPtr = buffer.GetBufferPtr();
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (CubeModel.CubeNormal*)pointer;
+                        array[0] = CubeModel.normal;
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.normalBufferPtr = bufferPtr;
                 }
-                return normalBufferPtr;
+                return this.normalBufferPtr;
             }
             else
             {
@@ -125,25 +124,24 @@
         /// <returns></returns>
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.Triangles, BufferUsage.StaticDraw))
+                int length = CubeModel.index.Length;
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UByte, length);
+                unsafe
                 {
-                    buffer.Alloc(CubeModel.index.Length);
-                    unsafe
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (byte*)pointer;
+                    for (int i = 0; i < CubeModel.index.Length; i++)
                     {
-                        var array = (byte*)buffer.Header.ToPointer();
-                        for (int i = 0; i < CubeModel.index.Length; i++)
-                        {
-                            array[i] = CubeModel.index[i];
-                        }
+                        array[i] = CubeModel.index[i];
                     }
-
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         private IndexBufferPtr indexBufferPtr = null;
