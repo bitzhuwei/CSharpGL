@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CSharpGL
 {
     /// <summary>
-    /// 北斗七星
+    /// 链条。若干个点用直线连接起来。
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
     public class Chain : IBufferable
@@ -28,13 +28,13 @@ namespace CSharpGL
         ///
         /// </summary>
         public const string position = "position";
+        private VertexAttributeBufferPtr positionBufferPtr;
 
         /// <summary>
         ///
         /// </summary>
         public const string color = "color";
-
-        private Dictionary<string, VertexAttributeBufferPtr> propertyBufferPtrDict = new Dictionary<string, VertexAttributeBufferPtr>();
+        private VertexAttributeBufferPtr colorBufferPtr;
 
         /// <summary>
         ///
@@ -46,47 +46,43 @@ namespace CSharpGL
         {
             if (bufferName == position)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = model.Positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.Positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < model.Positions.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.Positions.Length; i++)
-                            {
-                                array[i] = model.Positions[i];
-                            }
+                            array[i] = model.Positions[i];
                         }
-
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as VertexAttributeBufferPtr);
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return propertyBufferPtrDict[bufferName];
+                return this.positionBufferPtr;
             }
             else if (bufferName == color)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (this.colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = model.Colors.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.Colors.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < model.Colors.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.Colors.Length; i++)
-                            {
-                                array[i] = model.Colors[i];
-                            }
+                            array[i] = model.Colors[i];
                         }
-
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as VertexAttributeBufferPtr);
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.colorBufferPtr = bufferPtr;
                 }
-                return propertyBufferPtrDict[bufferName];
+                return this.colorBufferPtr;
             }
             else
             {
@@ -100,16 +96,14 @@ namespace CSharpGL
         /// <returns></returns>
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(
-                    DrawMode.LineStrip, 0, this.model.Positions.Length))
-                {
-                    indexBufferPtr = buffer.GetBufferPtr();
-                }
+                int vertexCount = this.model.Positions.Length;
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.LineStrip, 0, vertexCount);
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         private IndexBufferPtr indexBufferPtr = null;
