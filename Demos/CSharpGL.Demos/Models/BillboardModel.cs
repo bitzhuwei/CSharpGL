@@ -1,9 +1,10 @@
-﻿namespace CSharpGL.Demos
+﻿using System;
+namespace CSharpGL.Demos
 {
     internal class BillboardModel : IBufferable
     {
         public const string strPosition = "position";
-        private VertexAttributeBufferPtr positionBuffer;
+        private VertexAttributeBufferPtr positionBufferPtr;
 
         private static readonly float[] positions =
         {
@@ -17,23 +18,23 @@
         {
             if (bufferName == strPosition)
             {
-                if (positionBuffer == null)
+                if (positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw))
+                    int length = positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (float*)pointer;
+                        for (int i = 0; i < positions.Length; i++)
                         {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < positions.Length; i++)
-                            {
-                                array[i] = positions[i];
-                            }
+                            array[i] = positions[i];
                         }
-                        positionBuffer = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBuffer;
+                return positionBufferPtr;
             }
             else
             {
@@ -43,15 +44,14 @@
 
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleStrip, 0, 4))
-                {
-                    indexBufferPtr = buffer.GetBufferPtr();
-                }
+                int vertexCount = 4;
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.TriangleStrip, 0, vertexCount);
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         private IndexBufferPtr indexBufferPtr = null;
