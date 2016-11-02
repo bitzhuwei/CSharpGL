@@ -61,10 +61,8 @@ namespace CSharpGL
         {
             if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount))
-                {
-                    this.indexBufferPtr = buffer.GetBufferPtr();
-                }
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
+                this.indexBufferPtr = bufferPtr;
             }
 
             return this.indexBufferPtr;

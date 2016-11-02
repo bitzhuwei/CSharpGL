@@ -41,31 +41,26 @@ namespace CSharpGL
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<GlyphPosition>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw))
-                    {
-                        buffer.Alloc(maxCharCount);
+                    int length = maxCharCount;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(GlyphPosition), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
 
-                        positionBufferPtr = buffer.GetBufferPtr();
-                    }
+                    this.positionBufferPtr = bufferPtr;
                 }
 
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == strUV)
             {
-                if (uvBufferPtr == null)
+                if (this.uvBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<GlyphTexCoord>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw))
-                    {
-                        buffer.Alloc(maxCharCount);
-
-                        uvBufferPtr = buffer.GetBufferPtr();
-                    }
+                    int length = maxCharCount;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(GlyphTexCoord), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    this.uvBufferPtr = bufferPtr;
                 }
 
-                return uvBufferPtr;
+                return this.uvBufferPtr;
             }
             else
             {
@@ -79,16 +74,14 @@ namespace CSharpGL
         /// <returns></returns>
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(
-                  DrawMode.Quads, 0, maxCharCount * 4))
-                {
-                    indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
-                }
+                int vertexCount = maxCharCount * 4;
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Quads, 0, vertexCount);
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         /// <summary>
