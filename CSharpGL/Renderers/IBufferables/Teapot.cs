@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Teapot.
@@ -44,73 +45,66 @@
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    float[] positions = model.GetPositions();
+                    int length = positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        float[] positions = model.GetPositions();
-                        //List<vec3> pos = new List<vec3>();
-                        //for (int i = 0; i < positions.Length; i += 3)
-                        //{
-                        //    pos.Add(new vec3(positions[i], positions[i + 1], positions[i + 2]));
-                        //}
-                        //IBoundingBox box = pos.Move2Center();
-                        //vec3 lengths = box.MaxPosition - box.MinPosition;
-                        buffer.Alloc(positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (float*)pointer;
+                        for (int i = 0; i < positions.Length; i++)
                         {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < positions.Length; i++)
-                            {
-                                array[i] = positions[i];
-                            }
+                            array[i] = positions[i];
                         }
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == strColor)
             {
-                if (colorBufferPtr == null)
+                if (this.colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    float[] normals = model.GetNormals();
+                    int length = normals.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        float[] normals = model.GetNormals();
-                        buffer.Alloc(normals.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (float*)pointer;
+                        for (int i = 0; i < normals.Length; i++)
                         {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < normals.Length; i++)
-                            {
-                                array[i] = normals[i];
-                            }
+                            array[i] = normals[i];
                         }
-                        colorBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.colorBufferPtr = bufferPtr;
                 }
-                return colorBufferPtr;
+                return this.colorBufferPtr;
             }
             else if (bufferName == strNormal)
             {
-                if (normalBufferPtr == null)
+                if (this.normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<float>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    float[] normals = model.GetNormals();
+                    int length = normals.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        float[] normals = model.GetNormals();
-                        buffer.Alloc(normals.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (float*)pointer;
+                        for (int i = 0; i < normals.Length; i++)
                         {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < normals.Length; i++)
-                            {
-                                array[i] = normals[i];
-                            }
+                            array[i] = normals[i];
                         }
-                        normalBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.normalBufferPtr = bufferPtr;
                 }
-                return normalBufferPtr;
+                return this.normalBufferPtr;
             }
             else
             {
@@ -126,21 +120,20 @@
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UShort, DrawMode.Triangles, BufferUsage.StaticDraw))
+                ushort[] faces = model.GetFaces();
+                int length = faces.Length;
+                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UShort, length);
+                unsafe
                 {
-                    ushort[] faces = model.GetFaces();
-                    buffer.Alloc(faces.Length);
-                    unsafe
+                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (ushort*)pointer;
+                    for (int i = 0; i < faces.Length; i++)
                     {
-                        var array = (ushort*)buffer.Header.ToPointer();
-                        for (int i = 0; i < faces.Length; i++)
-                        {
-                            array[i] = (ushort)(faces[i] - 1);
-                        }
+                        array[i] = (ushort)(faces[i] - 1);
                     }
-
-                    indexBufferPtr = buffer.GetBufferPtr();
+                    bufferPtr.UnmapBuffer();
                 }
+                this.indexBufferPtr = bufferPtr;
             }
 
             return indexBufferPtr;
