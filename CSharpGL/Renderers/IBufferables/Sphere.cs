@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Sphere.
@@ -57,83 +58,83 @@
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = model.positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < model.positions.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.positions.Length; i++)
-                            {
-                                array[i] = model.positions[i];
-                            }
+                            array[i] = model.positions[i];
                         }
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == strNormal)
             {
-                if (normalBufferPtr == null)
+                if (this.normalBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = model.normals.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.normals.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < model.normals.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.normals.Length; i++)
-                            {
-                                array[i] = model.normals[i];
-                            }
+                            array[i] = model.normals[i];
                         }
-                        normalBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.normalBufferPtr = bufferPtr;
                 }
-                return normalBufferPtr;
+                return this.normalBufferPtr;
             }
             else if (bufferName == strColor)
             {
-                if (colorBufferPtr == null)
+                if (this.colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = model.colors.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.colors.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < model.colors.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.colors.Length; i++)
-                            {
-                                array[i] = model.colors[i];
-                            }
+                            array[i] = model.colors[i];
                         }
-                        colorBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.colorBufferPtr = bufferPtr;
                 }
-                return colorBufferPtr;
+                return this.colorBufferPtr;
             }
             else if (bufferName == strUV)
             {
-                if (uvBufferPtr == null)
+                if (this.uvBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
+                    int length = model.uv.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.uv.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec2*)pointer;
+                        for (int i = 0; i < model.uv.Length; i++)
                         {
-                            var array = (vec2*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.uv.Length; i++)
-                            {
-                                array[i] = model.uv[i];
-                            }
+                            array[i] = model.uv[i];
                         }
-                        uvBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.uvBufferPtr = bufferPtr;
                 }
-                return uvBufferPtr;
+                return this.uvBufferPtr;
             }
             else
             {
@@ -147,64 +148,59 @@
         /// <returns></returns>
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
+                int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    using (var buffer = new OneIndexBuffer(IndexElementType.UByte, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UByte, length);
+                    unsafe
                     {
-                        buffer.Alloc(model.indexes.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (byte*)pointer;
+                        for (int i = 0; i < model.indexes.Length; i++)
                         {
-                            var indexArray = (byte*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.indexes.Length; i++)
-                            {
-                                if (model.indexes[i] == uint.MaxValue)
-                                { indexArray[i] = byte.MaxValue; }
-                                else
-                                { indexArray[i] = (byte)model.indexes[i]; }
-                            }
+                            if (model.indexes[i] == uint.MaxValue)
+                            { array[i] = byte.MaxValue; }
+                            else
+                            { array[i] = (byte)model.indexes[i]; }
                         }
-
-                        indexBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.indexBufferPtr = bufferPtr;
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    using (var buffer = new OneIndexBuffer(IndexElementType.UShort, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UShort, length);
+                    unsafe
                     {
-                        buffer.Alloc(model.indexes.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (ushort*)pointer;
+                        for (int i = 0; i < model.indexes.Length; i++)
                         {
-                            var indexArray = (ushort*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.indexes.Length; i++)
-                            {
-                                if (model.indexes[i] == uint.MaxValue)
-                                { indexArray[i] = ushort.MaxValue; }
-                                else
-                                { indexArray[i] = (ushort)model.indexes[i]; }
-                            }
+                            if (model.indexes[i] == uint.MaxValue)
+                            { array[i] = ushort.MaxValue; }
+                            else
+                            { array[i] = (ushort)model.indexes[i]; }
                         }
-
-                        indexBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.indexBufferPtr = bufferPtr;
                 }
                 else
                 {
-                    using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UInt, length);
+                    unsafe
                     {
-                        buffer.Alloc(model.indexes.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (uint*)pointer;
+                        for (int i = 0; i < model.indexes.Length; i++)
                         {
-                            var indexArray = (uint*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.indexes.Length; i++)
-                            {
-                                indexArray[i] = model.indexes[i];
-                            }
+                            array[i] = model.indexes[i];
                         }
-
-                        indexBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.indexBufferPtr = bufferPtr;
                 }
             }
 
