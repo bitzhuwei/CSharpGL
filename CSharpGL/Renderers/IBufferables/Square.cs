@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Square.
@@ -40,43 +41,43 @@
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    int length = model.positions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.positions.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < model.positions.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.positions.Length; i++)
-                            {
-                                array[i] = model.positions[i];
-                            }
+                            array[i] = model.positions[i];
                         }
-                        positionBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             else if (bufferName == strTexCoord)
             {
-                if (uvBufferPtr == null)
+                if (this.uvBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec2>(varNameInShader, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw))
+                    int length = model.texCoords.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc(model.texCoords.Length);
-                        unsafe
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec2*)pointer;
+                        for (int i = 0; i < model.texCoords.Length; i++)
                         {
-                            var array = (vec2*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.texCoords.Length; i++)
-                            {
-                                array[i] = model.texCoords[i];
-                            }
+                            array[i] = model.texCoords[i];
                         }
-                        uvBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.uvBufferPtr = bufferPtr;
                 }
-                return uvBufferPtr;
+                return this.uvBufferPtr;
             }
             else
             {
@@ -90,15 +91,14 @@
         /// <returns></returns>
         public IndexBufferPtr GetIndexBufferPtr()
         {
-            if (indexBufferPtr == null)
+            if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(this.model.GetDrawModel(), 0, this.model.positions.Length))
-                {
-                    indexBufferPtr = buffer.GetBufferPtr();
-                }
+                int vertexCount = this.model.positions.Length;
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(this.model.GetDrawModel(), 0, vertexCount);
+                this.indexBufferPtr = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
         /// <summary>
