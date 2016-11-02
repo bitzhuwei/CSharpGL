@@ -1,5 +1,6 @@
 namespace CSharpGL
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -50,25 +51,25 @@ namespace CSharpGL
         /// <returns></returns>
         public CSharpGL.VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
-            if ((bufferName == strposition))
+            if (bufferName == strposition)
             {
-                if ((positionBufferPtr == null))
+                if (this.positionBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
-                    {// begin of using
-                        buffer.Alloc(this.pointPositions.Length);
-                        unsafe
+                    int length = this.pointPositions.Length;
+                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
+                    {
+                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        var array = (vec3*)pointer;
+                        for (int i = 0; i < this.pointPositions.Length; i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < this.pointPositions.Length; i++)
-                            {
-                                array[i] = this.pointPositions[i];
-                            }
+                            array[i] = this.pointPositions[i];
                         }
-                        positionBufferPtr = buffer.GetBufferPtr();
-                    }// end of using
+                        bufferPtr.UnmapBuffer();
+                    }
+                    this.positionBufferPtr = bufferPtr;
                 }
-                return positionBufferPtr;
+                return this.positionBufferPtr;
             }
             throw new System.ArgumentException("bufferName");
         }
@@ -81,10 +82,9 @@ namespace CSharpGL
         {
             if ((indexBufferPtr == null))
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, this.pointPositions.Length))
-                {// begin of using
-                    indexBufferPtr = buffer.GetBufferPtr();
-                }// end of using
+                int vertexCount = this.pointPositions.Length;
+                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, vertexCount);
+                this.indexBufferPtr = bufferPtr;
             }
             return indexBufferPtr;
         }
