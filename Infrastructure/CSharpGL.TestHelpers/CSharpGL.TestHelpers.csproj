@@ -49,6 +49,7 @@
     <Compile Include="FontBuilder.Designer.cs">
       <DependentUpon>FontBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ground.cs" />
     <Compile Include="matHelper.cs" />
     <Compile Include="UnamangedArrayTest.cs" />
     <Compile Include="RotatieAngleTest.cs" />

@@ -262,7 +262,6 @@
     <Compile Include="Renderers\PointsRenderer.cs" />
     <Compile Include="Renderers\SimpleRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
-    <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Faces.cs" />
     <Content Include="0Foundations\OpenGLObjects\Texture\readme.md" />
