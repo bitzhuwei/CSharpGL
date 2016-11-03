@@ -12738,12 +12738,6 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.RendererBase.IsModelMatrixMarked">
-            <summary>
-            Should this model matrix be updated?
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:CSharpGL.RendererBase.GetModelMatrix">
             <summary>
             Get model matrix that transform model from model space to world space.

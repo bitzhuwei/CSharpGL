@@ -5,14 +5,14 @@
         private MarkableStruct<mat4> modelMatrix = new MarkableStruct<mat4>(mat4.identity());
         //private mat4 cascadeModelMatrix = mat4.identity();
 
-        /// <summary>
-        /// Should this model matrix be updated?
-        /// </summary>
-        /// <returns></returns>
-        public bool IsModelMatrixMarked()
-        {
-            return this.modelMatrixRecord.IsMarked();
-        }
+        ///// <summary>
+        ///// Should this model matrix be updated?
+        ///// </summary>
+        ///// <returns></returns>
+        //public bool IsModelMatrixMarked()
+        //{
+        //    return this.modelMatrixRecord.IsMarked();
+        //}
 
         private long parentModelMatrixTicks;
 
