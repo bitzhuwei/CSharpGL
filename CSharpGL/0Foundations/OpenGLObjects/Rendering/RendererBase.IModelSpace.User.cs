@@ -2,8 +2,10 @@
 {
     public abstract partial class RendererBase
     {
+        /// <summary>
+        /// model matrix that transform this renderer in world space coordinate.
+        /// </summary>
         private MarkableStruct<mat4> modelMatrix = new MarkableStruct<mat4>(mat4.identity());
-        //private mat4 cascadeModelMatrix = mat4.identity();
 
         ///// <summary>
         ///// Should this model matrix be updated?
@@ -14,20 +16,18 @@
         //    return this.modelMatrixRecord.IsMarked();
         //}
 
-        private long parentModelMatrixTicks;
+        private long parentMatrixTicks;
 
-        // TODO: cascade model matrix not tested yet!
         /// <summary>
-        /// Get model matrix that transform model from model space to world space.
-        /// Note: this method requires that parent scene object be rendered first, then chidren.
+        /// Get model matrix that transform this renderer from model space to world space.
         /// </summary>
         /// <returns></returns>
         public MarkableStruct<mat4> GetModelMatrix()
         {
-            //return new MarkableStruct<mat4>(IModelSpaceHelper.GetModelMatrix(this));
             if (this.modelMatrixRecord.IsMarked())// this model matrix is updated.
             {
-                mat4 thisModel = IModelSpaceHelper.GetModelMatrix(this);
+                // get matrix representing transform relative to parent node.
+                mat4 matrix = IModelSpaceHelper.GetModelMatrix(this);
                 this.modelMatrixRecord.CancelMark();
                 // cascade parent's model matrix.
                 SceneObject obj = this.BindingSceneObject;
@@ -39,14 +39,15 @@
                         RendererBase parentRenderer = parent.Renderer;
                         if (parentRenderer != null)
                         {
+                            // get parent's matrix representing transform relative to world space coordinate.
                             MarkableStruct<mat4> parentMatrix = parentRenderer.GetModelMatrix();
-                            // this requires that parent scene object be rendered first, then chidren.
-                            thisModel = parentMatrix.Value * thisModel;
+                            // get matrix means transform relative to world space coordinate for this renderer.
+                            matrix = parentMatrix.Value * matrix;
                         }
                     }
                 }
-                // total model matrix.
-                this.modelMatrix.Value = thisModel;
+                // update this renderer's transform matrix relative to world space coordinate.
+                this.modelMatrix.Value = matrix;
             }
             else // this model matrix is not updated.
             {
@@ -59,13 +60,14 @@
                         RendererBase parentRenderer = parent.Renderer;
                         if (parentRenderer != null)
                         {
+                            // get parent's matrix representing transform relative to world space coordinate.
                             MarkableStruct<mat4> parentMatrix = parentRenderer.GetModelMatrix();
                             long ticks = parentMatrix.UpdateTicks;
-                            if (this.parentModelMatrixTicks != ticks) // parent's model matrix is updated.
+                            if (this.parentMatrixTicks != ticks) // parent's model matrix is updated.
                             {
-                                mat4 thisModel = IModelSpaceHelper.GetModelMatrix(this);
-                                this.modelMatrix.Value = parentMatrix.Value * thisModel;
-                                this.parentModelMatrixTicks = ticks;
+                                mat4 matrix = IModelSpaceHelper.GetModelMatrix(this);
+                                this.modelMatrix.Value = parentMatrix.Value * matrix;
+                                this.parentMatrixTicks = ticks;
                             }
                         }
                     }

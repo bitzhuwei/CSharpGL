@@ -12738,10 +12738,14 @@
             
              </summary>
         </member>
+        <member name="F:CSharpGL.RendererBase.modelMatrix">
+            <summary>
+            model matrix that transform this renderer in world space coordinate.
+            </summary>
+        </member>
         <member name="M:CSharpGL.RendererBase.GetModelMatrix">
             <summary>
-            Get model matrix that transform model from model space to world space.
-            Note: this method requires that parent scene object be rendered first, then chidren.
+            Get model matrix that transform this renderer from model space to world space.
             </summary>
             <returns></returns>
         </member>
@@ -15308,7 +15312,7 @@
         </member>
         <member name="M:CSharpGL.IModelSpaceHelper.GetModelMatrix(CSharpGL.IModelSpace)">
             <summary>
-            Get model matrix that transform model from model space to world space.
+            Get model matrix.
             </summary>
             <param name="model"></param>
             <returns></returns>

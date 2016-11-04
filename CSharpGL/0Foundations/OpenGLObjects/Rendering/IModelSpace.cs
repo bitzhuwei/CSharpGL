@@ -73,7 +73,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Get model matrix that transform model from model space to world space.
+        /// Get model matrix.
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
