@@ -131,7 +131,7 @@
     <None Include="ModernRendering\Models\readme.md" />
     <Compile Include="ModernRendering\Models\CatesianGrid\CatesianGrid.Index.cs" />
     <Compile Include="ModernRendering\Models\CatesianGrid\CatesianGrid.Color.cs" />
-    <Compile Include="ModernRendering\Models\CatesianGrid\CatesianGrid.Positions.cs" />
+    <Compile Include="ModernRendering\Models\CatesianGrid\CatesianGrid.GetPositionBufferPtr.cs" />
     <Compile Include="ModernRendering\Models\SimulationInputDataHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
