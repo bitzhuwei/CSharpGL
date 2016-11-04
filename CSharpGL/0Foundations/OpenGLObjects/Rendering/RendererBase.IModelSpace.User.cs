@@ -39,8 +39,9 @@
                         RendererBase parentRenderer = parent.Renderer;
                         if (parentRenderer != null)
                         {
+                            MarkableStruct<mat4> parentMatrix = parentRenderer.GetModelMatrix();
                             // this requires that parent scene object be rendered first, then chidren.
-                            thisModel = parentRenderer.modelMatrix.Value * thisModel;
+                            thisModel = parentMatrix.Value * thisModel;
                         }
                     }
                 }
@@ -58,11 +59,12 @@
                         RendererBase parentRenderer = parent.Renderer;
                         if (parentRenderer != null)
                         {
-                            long ticks = parentRenderer.modelMatrix.UpdateTicks;
+                            MarkableStruct<mat4> parentMatrix = parentRenderer.GetModelMatrix();
+                            long ticks = parentMatrix.UpdateTicks;
                             if (this.parentModelMatrixTicks != ticks) // parent's model matrix is updated.
                             {
                                 mat4 thisModel = IModelSpaceHelper.GetModelMatrix(this);
-                                this.modelMatrix.Value = parentRenderer.modelMatrix.Value * thisModel;
+                                this.modelMatrix.Value = parentMatrix.Value * thisModel;
                                 this.parentModelMatrixTicks = ticks;
                             }
                         }
