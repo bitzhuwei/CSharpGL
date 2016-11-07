@@ -32,10 +32,12 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="bitmap"></param>
         /// <param name="samplerBuilder"></param>
+        /// <param name="maxLevel"></param>
+        /// <param name="border"></param>
         public Texture(TextureTarget target,
             Bitmap bitmap,
-            SamplerBase samplerBuilder)
-            : this(target, new BitmapFiller(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), samplerBuilder)
+            SamplerBase samplerBuilder, int maxLevel = 0, int border = 0)
+            : this(target, new BitmapFiller(bitmap, maxLevel, OpenGL.GL_RGBA, border, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), samplerBuilder)
         {
         }
 
@@ -62,12 +64,14 @@ namespace CSharpGL
         /// <param name="bitmap"></param>
         /// <param name="parameters"></param>
         /// <param name="mipmapFiltering"></param>
+        /// <param name="maxLevel"></param>
+        /// <param name="border"></param>
         public Texture(
             TextureTarget target,
             Bitmap bitmap,
             SamplerParameters parameters,
-            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
-            : this(target, new BitmapFiller(bitmap, 0, OpenGL.GL_RGBA, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), new FakeSampler(parameters, mipmapFiltering))
+            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear, int maxLevel = 0, int border = 0)
+            : this(target, new BitmapFiller(bitmap, maxLevel, OpenGL.GL_RGBA, border, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), new FakeSampler(parameters, mipmapFiltering))
         {
         }
     }
