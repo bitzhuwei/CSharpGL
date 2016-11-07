@@ -20,7 +20,7 @@ namespace CSharpGL
                 }
 
 
-                array.Sort(Comparer<float>.Default);
+                array.Sort(comparer: Comparer<float>.Default);
                 //array.Sort(descending: true);
 
                 float[] p2 = new float[length];
