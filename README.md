@@ -3,9 +3,6 @@
 :crystal_ball:[Wiki](https://github.com/bitzhuwei/CSharpGL/wiki) | :egg:[nuget](https://www.nuget.org/packages/CSharpGL) | :bread:[CSharpGL.dll](https://raw.githubusercontent.com/bitzhuwei/CSharpGL/master/CSharpGL/CSharpGL.dll)  
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and offers general demostrations and documents.  
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.gif?raw=true)
-## :stars:GLCanvas
-A winform control that supports drag-drop and wraps initialization of creating OpenGL context.
-![GLCanvas](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLCanvas.gif?raw=true)
 ## :pushpin:Color-Coded Picking
 `IColorCodedPicking` supports picking primitives in multiple vertex buffer objects using Mouse.  
 ![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
