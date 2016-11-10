@@ -15567,13 +15567,15 @@
             <param name="imageBuilder"></param>
             <param name="samplerBuilder"></param>
         </member>
-        <member name="M:CSharpGL.Texture.#ctor(CSharpGL.TextureTarget,System.Drawing.Bitmap,CSharpGL.SamplerBase)">
+        <member name="M:CSharpGL.Texture.#ctor(CSharpGL.TextureTarget,System.Drawing.Bitmap,CSharpGL.SamplerBase,System.Int32,System.Int32)">
             <summary>
             Texture.
             </summary>
             <param name="target"></param>
             <param name="bitmap"></param>
             <param name="samplerBuilder"></param>
+            <param name="maxLevel"></param>
+            <param name="border"></param>
         </member>
         <member name="M:CSharpGL.Texture.#ctor(CSharpGL.TextureTarget,CSharpGL.ImageFiller,CSharpGL.SamplerParameters,CSharpGL.MipmapFilter)">
             <summary>
@@ -15584,7 +15586,7 @@
             <param name="parameters"></param>
             <param name="mipmapFiltering"></param>
         </member>
-        <member name="M:CSharpGL.Texture.#ctor(CSharpGL.TextureTarget,System.Drawing.Bitmap,CSharpGL.SamplerParameters,CSharpGL.MipmapFilter)">
+        <member name="M:CSharpGL.Texture.#ctor(CSharpGL.TextureTarget,System.Drawing.Bitmap,CSharpGL.SamplerParameters,CSharpGL.MipmapFilter,System.Int32,System.Int32)">
             <summary>
             Texture.
             </summary>
@@ -15592,6 +15594,8 @@
             <param name="bitmap"></param>
             <param name="parameters"></param>
             <param name="mipmapFiltering"></param>
+            <param name="maxLevel"></param>
+            <param name="border"></param>
         </member>
         <member name="F:CSharpGL.Texture.id">
             <summary>
@@ -15656,9 +15660,9 @@
             build texture's content with Bitmap.
             </summary>
             <param name="bitmap"></param>
-            <param name="level">0</param>
+            <param name="maxLevel">0 as default.</param>
             <param name="internalformat">OpenGL.GL_RGBA etc.</param>
-            <param name="border">0</param>
+            <param name="border">max level.</param>
             <param name="format">OpenGL.GL_BGRA etc.</param>
             <param name="type">OpenGL.GL_UNSIGNED_BYTE etc.</param>
             <param name="target2d">true for 2D; false for 1D.</param>
