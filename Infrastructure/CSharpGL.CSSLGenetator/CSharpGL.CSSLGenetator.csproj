@@ -90,6 +90,8 @@
     <Compile Include="FormInsertStructureField.Designer.cs">
       <DependentUpon>FormInsertStructureField.cs</DependentUpon>
     </Compile>
+    <None Include="How2UseCSSL\Simple.cssl.cs" />
+    <None Include="How2UseCSSL\Simple.main.cs" />
     <Compile Include="IntermediateStructure.cs" />
     <Compile Include="FormInsertShaderField.cs">
       <SubType>Form</SubType>
@@ -121,6 +123,13 @@
     <Compile Include="StructureField.cs" />
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
+    <None Include="How2UseCSSL\Simple.config" />
+    <None Include="How2UseCSSL\Simple.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="How2UseCSSL\Simple.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="readme.md" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -149,6 +158,9 @@
       <Project>{3b520e1d-aab3-440a-b112-4b310e7c94df}</Project>
       <Name>CSharpGL.CSSL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="How2UseCSSL\Simple.PropertyNameMap.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

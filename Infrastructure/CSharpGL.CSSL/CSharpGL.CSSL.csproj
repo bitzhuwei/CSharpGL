@@ -76,9 +76,18 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Dump2FileAttribute.cs" />
     <Compile Include="GLSLVersionAttribute.cs" />
+    <None Include="How2UseCSSL\Simple.cssl.cs" />
+    <None Include="How2UseCSSL\Simple.main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Qualifiers.cs" />
     <Compile Include="Shaders\CSShaderCode.cs" />
+    <None Include="How2UseCSSL\Simple.config" />
+    <None Include="How2UseCSSL\Simple.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="How2UseCSSL\Simple.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Shaders\FragmentCSShaderCode.Demo.cs" />
     <Compile Include="Shaders\FragmentCSShaderCode.cs" />
     <Compile Include="Shaders\GeometryCSShaderCode.cs" />
@@ -88,6 +97,9 @@
   <ItemGroup>
     <None Include="readme.md" />
     <None Include="Shaders\CSShaderCode.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="How2UseCSSL\Simple.PropertyNameMap.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
