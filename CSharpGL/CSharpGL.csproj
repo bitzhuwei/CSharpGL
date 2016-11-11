@@ -605,7 +605,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer\VertexAttributeBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexArrayObject.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\ZeroIndexBuffer\ZeroIndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\ZeroIndexBuffer\ZeroIndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\BlendFunc.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Buffer.cs" />

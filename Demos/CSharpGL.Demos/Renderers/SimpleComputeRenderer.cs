@@ -163,11 +163,7 @@ namespace CSharpGL.Demos
             {
                 if (indexBufferPtr == null)
                 {
-                    using (var buffer = new ZeroIndexBuffer(
-                      DrawMode.TriangleFan, 0, vertsData.Length))
-                    {
-                        indexBufferPtr = buffer.GetBufferPtr();
-                    }
+                    indexBufferPtr = ZeroIndexBufferPtr.Create(DrawMode.TriangleFan, 0, vertsData.Length);
                 }
 
                 return indexBufferPtr;

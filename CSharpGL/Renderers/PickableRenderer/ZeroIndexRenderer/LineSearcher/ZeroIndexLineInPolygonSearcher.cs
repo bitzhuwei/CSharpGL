@@ -16,14 +16,9 @@
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             ZeroIndexBufferPtr zeroIndexBufferPtr = modernRenderer.IndexBufferPtr;
-            ZeroIndexBufferPtr indexBufferPtr = null;
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
-            using (var buffer = new ZeroIndexBuffer(DrawMode.LineLoop,
-                zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.RenderingVertexCount))
-            {
-                indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
-            }
+            ZeroIndexBufferPtr indexBufferPtr = ZeroIndexBufferPtr.Create(DrawMode.LineLoop, zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.RenderingVertexCount, zeroIndexBufferPtr.PrimCount);
             modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
