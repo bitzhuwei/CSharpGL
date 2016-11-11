@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public static partial class BufferHelper
+    public static partial class Array2Buffer
     {
         /// <summary>
         ///
