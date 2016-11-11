@@ -1,8 +1,5 @@
 ﻿namespace CSharpGL
 {
-    /// <summary>
-    ///
-    /// </summary>
     public static class BufferPtrHelper
     {
         /// <summary>
