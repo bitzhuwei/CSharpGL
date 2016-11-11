@@ -68,19 +68,19 @@ namespace CSharpGL
                 if (colorBuffer == null)
                 {
                     int length = this.model.colors.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer.ToPointer();
                         for (int i = 0; i < length; i++)
                         {
                             array[i] = this.model.colors[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
 
-                    this.colorBuffer = bufferPtr;
+                    this.colorBuffer = buffer;
                 }
                 return colorBuffer;
             }
@@ -98,19 +98,19 @@ namespace CSharpGL
         {
             if (indexBuffer == null)
             {
-                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, this.model.mode, IndexElementType.UInt, this.model.indexes.Length);
+                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, this.model.mode, IndexElementType.UInt, this.model.indexes.Length);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (uint*)pointer.ToPointer();
                     for (int i = 0; i < this.model.indexes.Length; i++)
                     {
                         array[i] = this.model.indexes[i];
                     }
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                 }
 
-                this.indexBuffer = bufferPtr;
+                this.indexBuffer = buffer;
             }
 
             return indexBuffer;

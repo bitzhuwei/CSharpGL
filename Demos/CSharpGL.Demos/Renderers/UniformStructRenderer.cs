@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
             get { return this.testClearBufferDataOrder; }
             set
             {
-                var bufferPtr = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
+                var buffer = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
                 var array = new UnmanagedArray<vec3>(1);
                 // this works slow.
                 array[0] = new vec3(
@@ -86,7 +86,7 @@ namespace CSharpGL.Demos
                     (float)random.NextDouble(),
                     (float)random.NextDouble()
                     );
-                bufferPtr.ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
+                buffer.ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
                 this.testClearBufferDataOrder++;
             }
         }
@@ -103,9 +103,9 @@ namespace CSharpGL.Demos
             get { return this.testClearBufferSubDataOrder; }
             set
             {
-                var bufferPtr = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
-                int offset = bufferPtr.ByteLength / 3;
-                int size = bufferPtr.ByteLength * 2 / 3;
+                var buffer = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
+                int offset = buffer.ByteLength / 3;
+                int size = buffer.ByteLength * 2 / 3;
                 var array = new UnmanagedArray<vec3>(1);
                 // this works slow.
                 array[0] = new vec3(
@@ -113,7 +113,7 @@ namespace CSharpGL.Demos
                     (float)random.NextDouble(),
                     (float)random.NextDouble()
                     );
-                bufferPtr.ClearBufferSubData(OpenGL.GL_RGB32F, new IntPtr(offset), (uint)size, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
+                buffer.ClearBufferSubData(OpenGL.GL_RGB32F, new IntPtr(offset), (uint)size, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
                 this.testClearBufferSubDataOrder++;
             }
         }

@@ -8,26 +8,26 @@ namespace GridViewer
     public partial class CatesianGrid
     {
         public const string strColor = "color";
-        private VertexAttributeBuffer colorBufferPtr;
+        private VertexAttributeBuffer colorBuffer;
 
-        private VertexAttributeBuffer GetColorBufferPtr(string varNameInShader)
+        private VertexAttributeBuffer GetColorBuffer(string varNameInShader)
         {
             float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
             int gridCellCount = this.DataSource.DimenSize;
             int length = gridCellCount;
-            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(HexahedronTexCoord), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(HexahedronTexCoord), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
             unsafe
             {
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 var array = (HexahedronTexCoord*)pointer;
                 for (int gridIndex = 0; gridIndex < gridCellCount; gridIndex++)
                 {
                     array[gridIndex].SetCoord(textures[gridIndex]);
                 }
-                bufferPtr.UnmapBuffer();
+                buffer.UnmapBuffer();
             }
 
-            return bufferPtr;
+            return buffer;
         }
 
         public override void UpdateColor(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
@@ -37,14 +37,14 @@ namespace GridViewer
 
             unsafe
             {
-                IntPtr pointer = this.colorBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                IntPtr pointer = this.colorBuffer.MapBuffer(MapBufferAccess.WriteOnly);
                 var array = (HexahedronTexCoord*)pointer;
                 for (int gridIndex = 0; gridIndex < gridCellCount; gridIndex++)
                 {
                     array[gridIndex].SetCoord(textures[gridIndex]);
                 }
             }
-            this.colorBufferPtr.UnmapBuffer();
+            this.colorBuffer.UnmapBuffer();
         }
 
         private float[] GetTextureCoords(GridBlockProperty property)

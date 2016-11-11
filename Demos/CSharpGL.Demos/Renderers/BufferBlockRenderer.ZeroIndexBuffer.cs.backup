@@ -48,10 +48,10 @@ namespace CSharpGL.Demos
                     array[1] = new vec4(-1, -1, +1, 1);
                     array[2] = new vec4(-1, +1, -1, 1);
                 }
-                var bufferPtr = buffer.GetBuffer() as ShaderStorageBuffer;
-                bufferPtr.Binding(this.Program, "PositionBuffer", 0);
-                bufferPtr.Unbind();
-                //this.shaderStorageBuffer = bufferPtr;
+                var buffer = buffer.GetBuffer() as ShaderStorageBuffer;
+                buffer.Binding(this.Program, "PositionBuffer", 0);
+                buffer.Unbind();
+                //this.shaderStorageBuffer = buffer;
             }
             using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
@@ -66,10 +66,10 @@ namespace CSharpGL.Demos
                     //array[1] = new vec3(new vec3(1, 1, +1));
                     //array[2] = new vec3(new vec3(0, +1, 0));
                 }
-                var bufferPtr = buffer.GetBuffer() as ShaderStorageBuffer;
-                bufferPtr.Binding(this.Program, "ColorBuffer", 1);
-                bufferPtr.Unbind();
-                //this.shaderStorageBuffer = bufferPtr;
+                var buffer = buffer.GetBuffer() as ShaderStorageBuffer;
+                buffer.Binding(this.Program, "ColorBuffer", 1);
+                buffer.Unbind();
+                //this.shaderStorageBuffer = buffer;
             }
 
             this.groundRenderer.Initialize();

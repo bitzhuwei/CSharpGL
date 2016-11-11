@@ -32,10 +32,10 @@
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new VertexAttributeBuffer(
+            var buffer = new VertexAttributeBuffer(
                 varNameInVertexShader, buffers[0], config, array.Length, array.ByteLength, instancedDivisor, patchVertexes);
 
-            return bufferPtr;
+            return buffer;
         }
     }
 }

@@ -102,8 +102,8 @@ namespace CSharpGL
         /// </summary>
         public const string strColor = "color";
 
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer colorBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer colorBuffer;
 
         /// <summary>
         ///
@@ -111,47 +111,47 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = positions.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < positions.Length; i++)
                         {
                             array[i] = positions[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
-                if (this.colorBufferPtr == null)
+                if (this.colorBuffer == null)
                 {
                     int length = colors.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < colors.Length; i++)
                         {
                             array[i] = colors[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.colorBufferPtr = bufferPtr;
+                    this.colorBuffer = buffer;
                 }
-                return this.colorBufferPtr;
+                return this.colorBuffer;
             }
             else
             {
@@ -163,19 +163,19 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int vertexCount = positions.Length;
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Lines, 0, vertexCount);
-                this.indexBufferPtr = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Lines, 0, vertexCount);
+                this.indexBuffer = buffer;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

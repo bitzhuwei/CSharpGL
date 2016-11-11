@@ -7,12 +7,12 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="internalFormat"></param>
-        /// <param name="bufferPtr"></param>
-        /// <param name="autoDispose">Dispose <paramref name="bufferPtr"/> when disposing returned texture.</param>
+        /// <param name="buffer"></param>
+        /// <param name="autoDispose">Dispose <paramref name="buffer"/> when disposing returned texture.</param>
         /// <returns></returns>
-        public static Texture CreateBufferTexture(uint internalFormat, Buffer bufferPtr, bool autoDispose)
+        public static Texture CreateBufferTexture(uint internalFormat, Buffer buffer, bool autoDispose)
         {
-            return bufferPtr.DumpBufferTexture(internalFormat, autoDispose);
+            return buffer.DumpBufferTexture(internalFormat, autoDispose);
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace CSharpGL
         /// <returns></returns>
         public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage) where T : struct
         {
-            TextureBuffer bufferPtr = TextureBuffer.Create(typeof(T), usage, elementCount);
-            return bufferPtr.DumpBufferTexture(internalFormat, autoDispose: true);
+            TextureBuffer buffer = TextureBuffer.Create(typeof(T), usage, elementCount);
+            return buffer.DumpBufferTexture(internalFormat, autoDispose: true);
         }
     }
 }

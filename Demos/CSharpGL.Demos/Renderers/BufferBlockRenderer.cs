@@ -42,8 +42,8 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
             {
-                ShaderStorageBuffer bufferPtr = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                ShaderStorageBuffer buffer = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
                     var array = (vec4*)pointer;
@@ -52,14 +52,14 @@ namespace CSharpGL.Demos
                     array[2] = new vec4(-1, 0, 0, 1);
                     array[3] = new vec4(0, 1, 0, 1);
                 }
-                bufferPtr.UnmapBuffer();
-                bufferPtr.Binding(this.Program, "PositionBuffer", 0);
-                bufferPtr.Unbind();
-                //this.shaderStorageBuffer = bufferPtr;
+                buffer.UnmapBuffer();
+                buffer.Binding(this.Program, "PositionBuffer", 0);
+                buffer.Unbind();
+                //this.shaderStorageBuffer = buffer;
             }
             {
-                ShaderStorageBuffer bufferPtr = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                ShaderStorageBuffer buffer = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
                     var array = (vec4*)pointer;
@@ -68,9 +68,9 @@ namespace CSharpGL.Demos
                     array[2] = new vec4(+0, +0, +1, 0);
                     array[3] = new vec4(+1, +1, +1, 0);
                 }
-                bufferPtr.Binding(this.Program, "ColorBuffer", 1);
-                bufferPtr.Unbind();
-                //this.shaderStorageBuffer = bufferPtr;
+                buffer.Binding(this.Program, "ColorBuffer", 1);
+                buffer.Unbind();
+                //this.shaderStorageBuffer = buffer;
             }
 
             this.groundRenderer.Initialize();
@@ -110,17 +110,17 @@ namespace CSharpGL.Demos
         {
             if (this.indexBuffer == null)
             {
-                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
+                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (uint*)pointer;
                     array[0] = 0; array[1] = 1; array[2] = 3;
                     array[3] = 0; array[4] = 3; array[5] = 2;
                     array[6] = 1; array[7] = 3; array[8] = 2;
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                 }
-                this.indexBuffer = bufferPtr;
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

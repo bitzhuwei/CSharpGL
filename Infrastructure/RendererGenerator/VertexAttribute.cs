@@ -10,7 +10,7 @@ namespace RendererGenerator
         public string NameInModel { get; set; }
         private const string strAttributeType = "AttributeType";
         public string AttributeType { get; set; }
-        public string BufferPtrName { get { return string.Format("{0}BufferPtr", this.NameInModel); } }
+        public string BufferName { get { return string.Format("{0}Buffer", this.NameInModel); } }
 
         /// <summary>
         ///

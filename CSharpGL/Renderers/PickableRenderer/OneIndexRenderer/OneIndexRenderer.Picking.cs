@@ -219,14 +219,14 @@ namespace CSharpGL
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 
-            var bufferPtr = this.indexBuffer as OneIndexBuffer;
-            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
+            var buffer = this.indexBuffer as OneIndexBuffer;
+            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glSwitch == null)
             { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer); }
             else
             { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer, glSwitch.RestartIndex); }
-            bufferPtr.UnmapBuffer();
+            buffer.UnmapBuffer();
 
             return primitiveInfoList;
         }

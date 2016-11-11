@@ -36,23 +36,23 @@ namespace CSharpGL.Demos
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {
-                Buffer bufferPtr = this.positionBuffer;
-                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
+                Buffer buffer = this.positionBuffer;
+                Texture texture = buffer.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
-                Buffer bufferPtr = this.velocityBuffer;
-                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
+                Buffer buffer = this.velocityBuffer;
+                Texture texture = buffer.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.velocityTexture = texture;
             }
             {
-                UniformBuffer bufferPtr = UniformBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: 64);
-                bufferPtr.Bind();
-                OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, bufferPtr.BufferId);
-                bufferPtr.Unbind();
-                this.attractorBuffer = bufferPtr;
+                UniformBuffer buffer = UniformBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: 64);
+                buffer.Bind();
+                OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, buffer.BufferId);
+                buffer.Unbind();
+                this.attractorBuffer = buffer;
 
                 OpenGL.CheckError();
             }

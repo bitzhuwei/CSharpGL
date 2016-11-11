@@ -58,20 +58,20 @@ namespace GridViewer
                 if (this.positionBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < (this.quadCount + 1); i++)
                         {
                             array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount), 0.5f, 0);
                             array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount), -0.5f, 0);
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
 
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
                 return positionBuffer;
             }
@@ -80,10 +80,10 @@ namespace GridViewer
                 if (this.colorBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < (this.quadCount + 1); i++)
                         {
@@ -93,10 +93,10 @@ namespace GridViewer
                             array[i * 2 + 0] = value;
                             array[i * 2 + 1] = value;
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
 
-                    this.colorBuffer = bufferPtr;
+                    this.colorBuffer = buffer;
                 }
                 return colorBuffer;
             }
@@ -114,8 +114,8 @@ namespace GridViewer
         {
             if (this.indexBuffer == null)
             {
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.QuadStrip, 0, (this.quadCount + 1) * 2);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.QuadStrip, 0, (this.quadCount + 1) * 2);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

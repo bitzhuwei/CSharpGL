@@ -49,18 +49,18 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     int length = model.Positions.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < model.Positions.Length; i++)
                         {
                             array[i] = model.Positions[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
                 return this.positionBuffer;
             }
@@ -69,18 +69,18 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     int length = model.Colors.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < model.Colors.Length; i++)
                         {
                             array[i] = model.Colors[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.colorBuffer = bufferPtr;
+                    this.colorBuffer = buffer;
                 }
                 return this.colorBuffer;
             }
@@ -99,8 +99,8 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int vertexCount = this.model.Positions.Length;
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.LineStrip, 0, vertexCount);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.LineStrip, 0, vertexCount);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

@@ -57,10 +57,10 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     int length = 1;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(CubeModel.CubePosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(CubeModel.CubePosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
                         {
                             var array = (CubeModel.CubePosition*)pointer;
                             array[0] = CubeModel.position;
@@ -72,9 +72,9 @@ namespace CSharpGL
                                 array[i] = array[i] / 2 * Lengths;
                             }
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
                 return this.positionBuffer;
             }
@@ -83,15 +83,15 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     int length = 1;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(CubeModel.CubeColor), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(CubeModel.CubeColor), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (CubeModel.CubeColor*)pointer;
                         array[0] = CubeModel.color;
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.colorBuffer = bufferPtr;
+                    this.colorBuffer = buffer;
                 }
                 return this.colorBuffer;
             }
@@ -100,15 +100,15 @@ namespace CSharpGL
                 if (this.normalBuffer == null)
                 {
                     int length = 1;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(CubeModel.CubeNormal), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(CubeModel.CubeNormal), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (CubeModel.CubeNormal*)pointer;
                         array[0] = CubeModel.normal;
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.normalBuffer = bufferPtr;
+                    this.normalBuffer = buffer;
                 }
                 return this.normalBuffer;
             }
@@ -127,18 +127,18 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int length = CubeModel.index.Length;
-                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UByte, length);
+                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UByte, length);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (byte*)pointer;
                     for (int i = 0; i < CubeModel.index.Length; i++)
                     {
                         array[i] = CubeModel.index[i];
                     }
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                 }
-                this.indexBuffer = bufferPtr;
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

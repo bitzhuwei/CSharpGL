@@ -27,10 +27,10 @@ namespace CSharpGL
             glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new OneIndexBuffer(
+            var buffer = new OneIndexBuffer(
                  buffers[0], mode, type, length, byteLength);
 
-            return bufferPtr;
+            return buffer;
         }
 
         private static int GetSize(IndexElementType type)

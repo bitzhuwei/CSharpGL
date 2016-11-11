@@ -39,18 +39,18 @@ namespace CSharpGL.Demos
                 if (this.positionBuffer == null)
                 {
                     int length = xy_vertices.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (float*)pointer;
                         for (int i = 0; i < xy_vertices.Length; i++)
                         {
                             array[i] = xy_vertices[i] * this.halfExtent;
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
                 return this.positionBuffer;
             }
@@ -59,18 +59,18 @@ namespace CSharpGL.Demos
                 if (this.normalBuffer == null)
                 {
                     int length = xy_normals.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (float*)pointer;
                         for (int i = 0; i < xy_normals.Length; i++)
                         {
                             array[i] = xy_normals[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.normalBuffer = bufferPtr;
+                    this.normalBuffer = buffer;
                 }
                 return this.normalBuffer;
             }
@@ -79,18 +79,18 @@ namespace CSharpGL.Demos
                 if (this.tangentBuffer == null)
                 {
                     int length = xy_tangents.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (float*)pointer;
                         for (int i = 0; i < xy_tangents.Length; i++)
                         {
                             array[i] = xy_tangents[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.tangentBuffer = bufferPtr;
+                    this.tangentBuffer = buffer;
                 }
                 return this.tangentBuffer;
             }
@@ -99,18 +99,18 @@ namespace CSharpGL.Demos
                 if (this.texCoordBuffer == null)
                 {
                     int length = xy_texCoords.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (float*)pointer;
                         for (int i = 0; i < xy_texCoords.Length; i++)
                         {
                             array[i] = xy_texCoords[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.texCoordBuffer = bufferPtr;
+                    this.texCoordBuffer = buffer;
                 }
                 return this.texCoordBuffer;
             }
@@ -125,18 +125,18 @@ namespace CSharpGL.Demos
             if (this.indexBuffer == null)
             {
                 int length = xy_indices.Length;
-                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, length);
+                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, length);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (uint*)pointer;
                     for (int i = 0; i < xy_indices.Length; i++)
                     {
                         array[i] = xy_indices[i];
                     }
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                 }
-                this.indexBuffer = bufferPtr;
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

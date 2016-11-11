@@ -11363,7 +11363,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetAtomicCounterBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetAtomicCounterBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11373,7 +11373,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetPixelPackBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetPixelPackBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11383,7 +11383,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetPixelUnpackBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetPixelUnpackBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11393,7 +11393,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetShaderStorageBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetShaderStorageBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11403,7 +11403,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetTextureBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetTextureBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11413,7 +11413,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetUniformBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetUniformBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11423,7 +11423,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetIndependentBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.IndependentBufferTarget,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetIndependentBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.IndependentBufferTarget,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
             <summary>
             获取某种独立的Buffer。
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
@@ -11628,7 +11628,7 @@
         <member name="M:CSharpGL.Buffer.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
             将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
-            VBO's pointer got from Buffer's GetBufferPtr() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
+            VBO's pointer got from Buffer's GetBuffer() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
             </summary>
             <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
             <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
@@ -13632,12 +13632,12 @@
             Vertex Array Object.
             </summary>
         </member>
-        <member name="F:CSharpGL.Renderer.vertexAttributeBufferPtrs">
+        <member name="F:CSharpGL.Renderer.vertexAttributeBuffers">
             <summary>
             Vertex attribute buffers.
             </summary>
         </member>
-        <member name="F:CSharpGL.Renderer.indexBufferPtr">
+        <member name="F:CSharpGL.Renderer.indexBuffer">
              <summary>
             
              </summary>
@@ -13733,12 +13733,12 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.Renderer.IndexBufferPtr">
+        <member name="P:CSharpGL.Renderer.IndexBuffer">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.Renderer.VertexAttributeBufferPtrs">
+        <member name="P:CSharpGL.Renderer.VertexAttributeBuffers">
             <summary>
              Vertex attribute buffers.
             </summary>
@@ -13886,7 +13886,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PickableRenderer.PositionBufferPtr">
+        <member name="P:CSharpGL.PickableRenderer.PositionBuffer">
             <summary>
             Position buffer.
             </summary>
@@ -15067,8 +15067,8 @@
             
              </summary>
              <param name="internalformat"></param>
-             <param name="bufferPtr"></param>
-             <param name="autoDispose">Dispose <paramref name="bufferPtr"/> when this filler is disposed.</param>
+             <param name="buffer"></param>
+             <param name="autoDispose">Dispose <paramref name="buffer"/> when this filler is disposed.</param>
         </member>
         <member name="M:CSharpGL.TexBufferImageFiller.Fill">
              <summary>
@@ -15470,8 +15470,8 @@
             
              </summary>
              <param name="internalFormat"></param>
-             <param name="bufferPtr"></param>
-             <param name="autoDispose">Dispose <paramref name="bufferPtr"/> when disposing returned texture.</param>
+             <param name="buffer"></param>
+             <param name="autoDispose">Dispose <paramref name="buffer"/> when disposing returned texture.</param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.Texture.CreateBufferTexture``1(System.UInt32,System.Int32,CSharpGL.BufferUsage)">
@@ -15864,13 +15864,13 @@
              <summary>
             
              </summary>
-             <param name="indexBufferPtr"></param>
+             <param name="indexBuffer"></param>
         </member>
         <member name="M:CSharpGL.FormIndexBufferBoard.SetTarget(CSharpGL.IndexBuffer)">
              <summary>
             
              </summary>
-             <param name="indexBufferPtr"></param>
+             <param name="indexBuffer"></param>
         </member>
         <member name="F:CSharpGL.FormIndexBufferBoard.components">
             <summary>
@@ -16307,7 +16307,7 @@
             <see cref="T:CSharpGL.Buffer"/>则可用于控制GPU的渲染操作。</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.IBufferable.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.IBufferable.GetVertexAttributeBuffer(System.String,System.String)">
             <summary>
             获取顶点某种属性的<see cref="T:CSharpGL.Buffer"/>。
             </summary>
@@ -16315,7 +16315,7 @@
             <param name="varNameInShader">此buffer在shader中对应的in变量名。</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.IBufferable.GetIndexBufferPtr">
+        <member name="M:CSharpGL.IBufferable.GetIndexBuffer">
             <summary>
             获取描述索引的<see cref="T:CSharpGL.Buffer"/>。
             应为<see cref="T:CSharpGL.ZeroIndexBuffer"/>或<see cref="T:CSharpGL.OneIndexBuffer"/>。
@@ -16347,7 +16347,7 @@
             <param name="width">点的范围（宽度）</param>
             <param name="height">点的范围（高度）</param>
         </member>
-        <member name="M:CSharpGL.Chain.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Chain.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -16355,7 +16355,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Chain.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Chain.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -16402,7 +16402,7 @@
             </summary>
             <param name="pointPositions"></param>
         </member>
-        <member name="M:CSharpGL.Points.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Points.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -16410,7 +16410,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Points.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Points.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -16453,7 +16453,7 @@
             Square.
             </summary>
         </member>
-        <member name="M:CSharpGL.Square.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Square.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -16461,7 +16461,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Square.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Square.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -16492,7 +16492,7 @@
             <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
             <param name="primCount">primCount in instanced rendering.</param>
         </member>
-        <member name="M:CSharpGL.ZeroAttributeModel.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.ZeroAttributeModel.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -16500,7 +16500,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.ZeroAttributeModel.GetIndexBufferPtr">
+        <member name="M:CSharpGL.ZeroAttributeModel.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -16708,7 +16708,7 @@
             </summary>
             <param name="lengths">bounding box's length at x, y, z axis.</param>
         </member>
-        <member name="M:CSharpGL.BoundingBoxModel.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.BoundingBoxModel.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -16716,7 +16716,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.BoundingBoxModel.GetIndexBufferPtr">
+        <member name="M:CSharpGL.BoundingBoxModel.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -16759,7 +16759,7 @@
              </summary>
              <param name="maxCharCount"></param>
         </member>
-        <member name="M:CSharpGL.TextModel.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.TextModel.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -16767,7 +16767,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.TextModel.GetIndexBufferPtr">
+        <member name="M:CSharpGL.TextModel.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -20825,7 +20825,7 @@
             render with specified index buffer.
             </summary>
             <param name="arg"></param>
-            <param name="temporaryIndexBufferPtr"></param>
+            <param name="temporaryIndexBuffer"></param>
         </member>
         <member name="M:CSharpGL.InnerPickableRenderer.MovePositions(System.Drawing.Point,CSharpGL.mat4,CSharpGL.mat4,CSharpGL.vec4,System.Collections.Generic.IEnumerable{System.UInt32})">
             <summary>
@@ -20882,14 +20882,14 @@
             select a primitive geometry(point, line, triangle, quad, polygon) from points/lines/triangles/quads/polygons in this renderer.
             </summary>
             <param name="arg"></param>
-            <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
+            <param name="indexBuffer">indicates the primitive to pick a line from.</param>
         </member>
         <member name="P:CSharpGL.InnerPickableRenderer.PositionNameInIBufferable">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.InnerPickableRenderer.PositionBufferPtr">
+        <member name="P:CSharpGL.InnerPickableRenderer.PositionBuffer">
             <summary>
             Position buffer pointer.
             </summary>
@@ -22049,7 +22049,7 @@
             <summary>
             在所有可能的图元（lastVertexId匹配）中，
             逐个测试，找到最接近摄像机的那个图元，
-            返回此图元的最后一个索引在<see cref="P:CSharpGL.OneIndexRenderer.IndexBufferPtr"/>中的索引（位置）。
+            返回此图元的最后一个索引在<see cref="P:CSharpGL.OneIndexRenderer.IndexBuffer"/>中的索引（位置）。
             </summary>
             <param name="arg"></param>
             <param name="primitiveInfoList"></param>
@@ -22064,7 +22064,7 @@
             <param name="recognizedPrimitiveIndex0"></param>
             <param name="recognizedPrimitiveIndex1"></param>
             <param name="drawMode"></param>
-            <param name="oneIndexBufferPtr"></param>
+            <param name="oneIndexBuffer"></param>
             <param name="lastIndex0"></param>
             <param name="lastIndex1"></param>
         </member>
@@ -22150,7 +22150,7 @@
             
              </summary>
              <param name="arg"></param>
-             <param name="twoPrimitivesIndexBufferPtr"></param>
+             <param name="twoPrimitivesIndexBuffer"></param>
              <param name="x">mouse position(Left Down is (0, 0)).</param>
              <param name="y">mouse position(Left Down is (0, 0)).</param>
              <returns></returns>
@@ -22159,13 +22159,13 @@
             <summary>
             遍历以<paramref name="lastVertexId"/>为最后一个顶点的图元，
             瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
-            将此索引在<see cref="P:CSharpGL.OneIndexRenderer.IndexBufferPtr"/>中的索引（位置）收集起来。
+            将此索引在<see cref="P:CSharpGL.OneIndexRenderer.IndexBuffer"/>中的索引（位置）收集起来。
             </summary>
             <param name="arg"></param>
             <param name="lastVertexId"></param>
             <returns></returns>
         </member>
-        <member name="P:CSharpGL.OneIndexRenderer.IndexBufferPtr">
+        <member name="P:CSharpGL.OneIndexRenderer.IndexBuffer">
             <summary>
             此渲染器的索引Buffer。
             </summary>
@@ -22375,7 +22375,7 @@
             <param name="mode"></param>
             <returns></returns>
         </member>
-        <member name="P:CSharpGL.ZeroIndexRenderer.IndexBufferPtr">
+        <member name="P:CSharpGL.ZeroIndexRenderer.IndexBuffer">
             <summary>
             此渲染器的索引Buffer。
             </summary>
@@ -22569,7 +22569,7 @@
             </summary>
             <param name="lastVertexId"></param>
             <param name="pointer"></param>
-            <param name="oneIndexBufferPtr"></param>
+            <param name="oneIndexBuffer"></param>
             <returns></returns>
         </member>
         <member name="M:CSharpGL.PrimitiveRecognizer.Recognize(System.UInt32,System.IntPtr,CSharpGL.OneIndexBuffer,System.UInt32)">
@@ -22579,7 +22579,7 @@
             </summary>
             <param name="lastVertexId"></param>
             <param name="pointer"></param>
-            <param name="oneIndexBufferPtr"></param>
+            <param name="oneIndexBuffer"></param>
             <param name="primitiveRestartIndex"></param>
             <returns></returns>
         </member>
@@ -22605,7 +22605,7 @@
             <param name="partCount"></param>
             <param name="radius"></param>
         </member>
-        <member name="M:CSharpGL.Axis.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Axis.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -22613,7 +22613,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Axis.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Axis.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -22656,7 +22656,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.BigDipper.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.BigDipper.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -22664,7 +22664,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.BigDipper.GetIndexBufferPtr">
+        <member name="M:CSharpGL.BigDipper.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -22714,7 +22714,7 @@
              </summary>
              <param name="lengths"></param>
         </member>
-        <member name="M:CSharpGL.Cube.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Cube.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -22722,7 +22722,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Cube.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Cube.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -22774,7 +22774,7 @@
             <param name="latitudeParts">用纬线把地球切割为几块。</param>
             <param name="longitudeParts">用经线把地球切割为几块。</param>
         </member>
-        <member name="M:CSharpGL.Sphere.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Sphere.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -22782,7 +22782,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Sphere.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Sphere.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -22825,7 +22825,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Teapot.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Teapot.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -22833,7 +22833,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Teapot.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Teapot.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -22872,7 +22872,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Tetrahedron.GetVertexAttributeBufferPtr(System.String,System.String)">
+        <member name="M:CSharpGL.Tetrahedron.GetVertexAttributeBuffer(System.String,System.String)">
              <summary>
             
              </summary>
@@ -22880,7 +22880,7 @@
              <param name="varNameInShader"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.Tetrahedron.GetIndexBufferPtr">
+        <member name="M:CSharpGL.Tetrahedron.GetIndexBuffer">
              <summary>
             
              </summary>
@@ -25411,8 +25411,8 @@
             VAO是用来管理VBO的。可以进一步减少DrawCall。
             <para>VAO is used to reduce draw-call.</para>
             </summary>
-            <param name="indexBufferPtr">index buffer pointer that used to invoke draw command.</param>
-            <param name="vertexAttributeBufferPtrs">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
+            <param name="indexBuffer">index buffer pointer that used to invoke draw command.</param>
+            <param name="vertexAttributeBuffers">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
         </member>
         <member name="M:CSharpGL.VertexArrayObject.Initialize(CSharpGL.ShaderProgram)">
             <summary>
@@ -25430,7 +25430,7 @@
             </summary>
             <param name="arg"></param>
             <param name="shaderProgram"></param>
-            <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
+            <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
         </member>
         <member name="M:CSharpGL.VertexArrayObject.ToString">
              <summary>
@@ -25447,12 +25447,12 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.VertexArrayObject.VertexAttributeBufferPtrs">
+        <member name="P:CSharpGL.VertexArrayObject.VertexAttributeBuffers">
             <summary>
             vertex attribute buffers('in vec3 position;' in shader etc.)
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexArrayObject.IndexBufferPtr">
+        <member name="P:CSharpGL.VertexArrayObject.IndexBuffer">
             <summary>
             The one and only one index buffer used to indexing vertex attribute buffers.
             </summary>

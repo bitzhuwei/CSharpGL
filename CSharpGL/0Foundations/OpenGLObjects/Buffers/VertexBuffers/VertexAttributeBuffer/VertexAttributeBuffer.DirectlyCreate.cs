@@ -33,10 +33,10 @@ namespace CSharpGL
             glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new VertexAttributeBuffer(
+            var buffer = new VertexAttributeBuffer(
                 varNameInVertexShader, buffers[0], config, length, byteLength, instanceDivisor, patchVertexes);
 
-            return bufferPtr;
+            return buffer;
         }
     }
 }

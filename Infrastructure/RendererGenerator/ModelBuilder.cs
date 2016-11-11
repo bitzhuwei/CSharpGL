@@ -26,7 +26,7 @@ namespace RendererGenerator
             modelType.Comments.Add(new CodeCommentStatement(string.Format("Model of {0}", dataStructure.TargetName), true));
             modelType.Comments.Add(new CodeCommentStatement("</summary>", true));
             BuildFields(modelType, dataStructure);
-            BuildGetVertexAttributeBufferPtr(modelType, dataStructure);
+            BuildGetVertexAttributeBuffer(modelType, dataStructure);
             BuildGetIndex(modelType, dataStructure);
 
             var parserNamespace = new CodeNamespace("CSharpGL");
@@ -50,7 +50,7 @@ namespace RendererGenerator
         }
 
         /// <summary>
-        /// public IndexBufferPtr GetIndex()
+        /// public IndexBuffer GetIndex()
         /// </summary>
         /// <param name="modelType"></param>
         /// <param name="dataStructure"></param>
@@ -63,10 +63,10 @@ namespace RendererGenerator
 
         private void GetIndexBody(CodeMemberMethod method, DataStructure dataStructure)
         {
-            // if (indexBufferPtr == null)
+            // if (indexBuffer == null)
             var ifStatement = new CodeConditionStatement(
                 new CodeBinaryOperatorExpression(
-                    new CodeVariableReferenceExpression(indexBufferPtr),
+                    new CodeVariableReferenceExpression(indexBuffer),
                     CodeBinaryOperatorType.IdentityEquality,
                     new CodePrimitiveExpression(null)));
             method.Statements.Add(ifStatement);
@@ -76,7 +76,7 @@ namespace RendererGenerator
                 var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new ZeroIndexBuffer({0}.{1}, 0, ))", dataStructure.DrawMode.GetType().Name, dataStructure.DrawMode));
                 ifStatement.TrueStatements.Add(usingBegin);
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
-                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr();")));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBuffer = buffer.GetBuffer();")));
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
             }
             else
@@ -95,11 +95,11 @@ namespace RendererGenerator
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        // TODO: set array's values: array[0] = ...;")));
                 // }
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    }// end of unsafe"));
-                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr();")));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBuffer = buffer.GetBuffer();")));
                 ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
             }
             method.Statements.Add(new CodeMethodReturnStatement(
-                new CodeVariableReferenceExpression(indexBufferPtr)));
+                new CodeVariableReferenceExpression(indexBuffer)));
         }
 
         private CodeMemberMethod GetIndexDeclaration(DataStructure dataStructure)
@@ -107,29 +107,29 @@ namespace RendererGenerator
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             method.ReturnType = new CodeTypeReference(typeof(IndexBuffer));
-            method.Name = "GetIndexBufferPtr";
+            method.Name = "GetIndexBuffer";
             return method;
         }
 
         /// <summary>
-        /// public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        /// public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
         /// </summary>
         /// <param name="modelType"></param>
         /// <param name="dataStructure"></param>
-        private void BuildGetVertexAttributeBufferPtr(CodeTypeDeclaration modelType, DataStructure dataStructure)
+        private void BuildGetVertexAttributeBuffer(CodeTypeDeclaration modelType, DataStructure dataStructure)
         {
-            //public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
-            var method = GetVertexAttributeBufferPtrDeclaration();
-            GetVertexAttributeBufferPtrBody(method, dataStructure);
+            //public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
+            var method = GetVertexAttributeBufferDeclaration();
+            GetVertexAttributeBufferBody(method, dataStructure);
 
             modelType.Members.Add(method);
         }
 
         /// <summary>
-        /// body of public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        /// body of public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
         /// </summary>
         /// <param name="method"></param>
-        private void GetVertexAttributeBufferPtrBody(CodeMemberMethod method, DataStructure dataStructure)
+        private void GetVertexAttributeBufferBody(CodeMemberMethod method, DataStructure dataStructure)
         {
             foreach (var item in dataStructure.PropertyList)
             {
@@ -140,10 +140,10 @@ namespace RendererGenerator
                         CodeBinaryOperatorType.IdentityEquality,
                         new CodeVariableReferenceExpression(item.NameInModel)));
                 method.Statements.Add(ifStatement);
-                // if (positionBufferPtr != null)
+                // if (positionBuffer != null)
                 var ifStatement2 = new CodeConditionStatement(
                     new CodeBinaryOperatorExpression(
-                        new CodeVariableReferenceExpression(item.BufferPtrName),
+                        new CodeVariableReferenceExpression(item.BufferName),
                         CodeBinaryOperatorType.IdentityEquality,
                         new CodePrimitiveExpression(null)));
                 ifStatement.TrueStatements.Add(ifStatement2);
@@ -162,10 +162,10 @@ namespace RendererGenerator
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                            // TODO: set array's values: array[0] = ...;")));
                 // }
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        }// end of unsafe"));
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        {0} = buffer.GetBufferPtr();", item.BufferPtrName)));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        {0} = buffer.GetBuffer();", item.BufferName)));
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    }// end of using"));
                 ifStatement.TrueStatements.Add(new CodeMethodReturnStatement(
-                    new CodeVariableReferenceExpression(item.BufferPtrName)));
+                    new CodeVariableReferenceExpression(item.BufferName)));
             }
 
             // throw new NotImplementedException();
@@ -184,15 +184,15 @@ namespace RendererGenerator
         }
 
         /// <summary>
-        /// public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        /// public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
         /// </summary>
         /// <returns></returns>
-        private CodeMemberMethod GetVertexAttributeBufferPtrDeclaration()
+        private CodeMemberMethod GetVertexAttributeBufferDeclaration()
         {
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             method.ReturnType = new CodeTypeReference(typeof(VertexAttributeBuffer));
-            method.Name = "GetVertexAttributeBufferPtr";
+            method.Name = "GetVertexAttributeBuffer";
             var parameter0 = new CodeParameterDeclarationExpression(typeof(string), bufferName);
             method.Parameters.Add(parameter0);
             var parameter1 = new CodeParameterDeclarationExpression(typeof(string), varNameInShader);
@@ -217,19 +217,19 @@ namespace RendererGenerator
                     modelType.Members.Add(constField);
                 }
                 {
-                    // private PropertyBufferPtr positionBufferPtr;
-                    var bufferPtrField = new CodeMemberField(typeof(VertexAttributeBuffer), item.BufferPtrName);
-                    modelType.Members.Add(bufferPtrField);
+                    // private PropertyBuffer positionBuffer;
+                    var bufferField = new CodeMemberField(typeof(VertexAttributeBuffer), item.BufferName);
+                    modelType.Members.Add(bufferField);
                 }
             }
             {
-                // private IndexBufferPtr indexBufferPtr;
-                var bufferPtrField = new CodeMemberField(typeof(IndexBuffer), indexBufferPtr);
-                modelType.Members.Add(bufferPtrField);
+                // private IndexBuffer indexBuffer;
+                var bufferField = new CodeMemberField(typeof(IndexBuffer), indexBuffer);
+                modelType.Members.Add(bufferField);
             }
         }
 
-        private const string indexBufferPtr = "indexBufferPtr";
+        private const string indexBuffer = "indexBuffer";
         private const string bufferName = "bufferName";
         private const string varNameInShader = "varNameInShader";
     }

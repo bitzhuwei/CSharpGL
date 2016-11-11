@@ -12,11 +12,11 @@ namespace GridViewer
     public partial class WellModel : IBufferable, IModelSpace
     {
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBufferPtr = null;
+        private VertexAttributeBuffer positionBuffer = null;
         public const string strBrightness = "brightness";
-        private VertexAttributeBuffer brightnessBufferPtr = null;
+        private VertexAttributeBuffer brightnessBuffer = null;
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         private List<vec3> pipeline;
         private float radius;
@@ -49,17 +49,17 @@ namespace GridViewer
             this.pipeline = pipeline;
         }
 
-        public unsafe VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public unsafe VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr != null) { return positionBufferPtr; }
+                if (positionBuffer != null) { return positionBuffer; }
 
                 int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (vec3*)pointer.ToPointer();
                     int index = 0;
                     var max = new vec3(float.MinValue, float.MinValue, float.MinValue);
@@ -85,33 +85,33 @@ namespace GridViewer
                             array[index++] = tmp2;
                         }
                     }
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                     this.ModelSize = max - min;
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == strBrightness)
             {
-                if (brightnessBufferPtr != null) { return brightnessBufferPtr; }
+                if (brightnessBuffer != null) { return brightnessBuffer; }
 
                 int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (vec3*)pointer.ToPointer();
                     var random = new Random();
-                    for (int i = 0; i < bufferPtr.Length; i++)
+                    for (int i = 0; i < buffer.Length; i++)
                     {
                         var x = (float)(random.NextDouble() * 0.5 + 0.5);
                         array[i] = new vec3(x, x, x);
                     }
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                 }
-                this.brightnessBufferPtr = bufferPtr;
+                this.brightnessBuffer = buffer;
 
-                return this.brightnessBufferPtr;
+                return this.brightnessBuffer;
             }
             else
             {
@@ -119,19 +119,19 @@ namespace GridViewer
             }
         }
 
-        public unsafe IndexBuffer GetIndexBufferPtr()
+        public unsafe IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr != null) { return this.indexBufferPtr; }
+            if (this.indexBuffer != null) { return this.indexBuffer; }
 
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
             int length = vertexCount + (this.pipeline.Count - 1);
-            OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
+            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
             unsafe
             {
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 var array = (uint*)pointer.ToPointer();
                 uint positionIndex = 0;
-                for (int i = 0; i < bufferPtr.Length; i++)
+                for (int i = 0; i < buffer.Length; i++)
                 {
                     if (i % (faceCount * 2 + 2 + 1) == (faceCount * 2 + 2))
                     {
@@ -142,10 +142,10 @@ namespace GridViewer
                         array[i] = positionIndex++;
                     }
                 }
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = buffer;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

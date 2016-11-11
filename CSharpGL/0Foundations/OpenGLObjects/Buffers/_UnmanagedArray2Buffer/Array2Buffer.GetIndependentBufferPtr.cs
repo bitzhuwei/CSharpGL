@@ -106,38 +106,38 @@ namespace CSharpGL
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            IndependentBuffer bufferPtr = null;
+            IndependentBuffer buffer = null;
             switch (bufferTarget)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:
-                    bufferPtr = new AtomicCounterBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new AtomicCounterBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.PixelPackBuffer:
-                    bufferPtr = new PixelPackBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new PixelPackBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.PixelUnpackBuffer:
-                    bufferPtr = new PixelUnpackBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new PixelUnpackBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.ShaderStorageBuffer:
-                    bufferPtr = new ShaderStorageBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new ShaderStorageBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.TextureBuffer:
-                    bufferPtr = new TextureBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new TextureBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.UniformBuffer:
-                    bufferPtr = new UniformBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new UniformBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 default:
                     throw new NotImplementedException();
             }
 
-            return bufferPtr;
+            return buffer;
         }
     }
 }

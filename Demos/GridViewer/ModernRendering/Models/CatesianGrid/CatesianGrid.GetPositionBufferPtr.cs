@@ -7,16 +7,16 @@ namespace GridViewer
     public partial class CatesianGrid
     {
         public const string strPosition = "position";
-        private VertexAttributeBuffer propertyBufferPtr;
+        private VertexAttributeBuffer propertyBuffer;
 
-        private VertexAttributeBuffer GetPositionBufferPtr(string varNameInShader)
+        private VertexAttributeBuffer GetPositionBuffer(string varNameInShader)
         {
             int dimSize = this.DataSource.DimenSize;
             int length = dimSize;
-            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(HexahedronPosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(HexahedronPosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
             unsafe
             {
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 var array = (HexahedronPosition*)pointer;
                 int I, J, K;
                 for (int gridIndex = 0; gridIndex < dimSize; gridIndex++)
@@ -31,10 +31,10 @@ namespace GridViewer
                     array[gridIndex].BRB = this.DataSource.Position + this.DataSource.PointBRB(I, J, K);
                     array[gridIndex].BLB = this.DataSource.Position + this.DataSource.PointBLB(I, J, K);
                 }
-                bufferPtr.UnmapBuffer();
+                buffer.UnmapBuffer();
             }
 
-            return bufferPtr;
+            return buffer;
         }
     }
 

@@ -125,19 +125,19 @@ namespace CSharpGL.Demos
                     if (positionBuffer == null)
                     {
                         int length = 4;
-                        VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
-                            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                             var array = (vec3*)pointer;
                             array[0] = new vec3(-1.0f, -1.0f, 0.5f);
                             array[1] = new vec3(1.0f, -1.0f, 0.5f);
                             array[2] = new vec3(1.0f, 1.0f, 0.5f);
                             array[3] = new vec3(-1.0f, 1.0f, 0.5f);
-                            bufferPtr.UnmapBuffer();
+                            buffer.UnmapBuffer();
                         }
 
-                        this.positionBuffer = bufferPtr;
+                        this.positionBuffer = buffer;
                     }
                     return positionBuffer;
                 }
@@ -146,18 +146,18 @@ namespace CSharpGL.Demos
                     if (this.uvBuffer == null)
                     {
                         int length = 4;
-                        VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                        VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
-                            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                             var array = (vec2*)pointer;
                             array[0] = new vec2(1, 1);
                             array[1] = new vec2(0, 1);
                             array[2] = new vec2(0, 0);
                             array[3] = new vec2(1, 0);
-                            bufferPtr.UnmapBuffer();
+                            buffer.UnmapBuffer();
                         }
-                        this.uvBuffer = bufferPtr;
+                        this.uvBuffer = buffer;
                     }
                     return this.uvBuffer;
                 }
@@ -169,8 +169,8 @@ namespace CSharpGL.Demos
             {
                 if (this.indexBuffer == null)
                 {
-                    ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, 4);
-                    this.indexBuffer = bufferPtr;
+                    ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, 4);
+                    this.indexBuffer = buffer;
                 }
                 return indexBuffer;
             }

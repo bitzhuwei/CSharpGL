@@ -26,19 +26,19 @@ namespace CSharpGL
                 var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBuffer(
+                    VertexAttributeBuffer buffer = model.GetVertexAttributeBuffer(
                                item.NameInIBufferable, item.VarNameInShader);
-                    if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
+                    if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     if (item.NameInIBufferable == positionNameInIBufferable)
                     {
                         positionBuffer = new VertexAttributeBuffer(
                             "in_Position",// in_Postion same with in the PickingShader.vert shader
-                            bufferPtr.BufferId,
-                            bufferPtr.Config,
-                            bufferPtr.Length,
-                            bufferPtr.ByteLength);
+                            buffer.BufferId,
+                            buffer.Config,
+                            buffer.Length,
+                            buffer.ByteLength);
                     }
-                    list.Add(bufferPtr);
+                    list.Add(buffer);
                 }
                 vertexAttributeBuffers = list.ToArray();
             }

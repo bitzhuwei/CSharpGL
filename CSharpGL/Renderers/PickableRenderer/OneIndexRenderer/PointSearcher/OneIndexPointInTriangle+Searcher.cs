@@ -21,19 +21,19 @@ namespace CSharpGL
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length != 3) { throw new ArgumentException(); }
 
-            OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Points, IndexElementType.UInt, 3);
+            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Points, IndexElementType.UInt, 3);
             unsafe
             {
-                var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 array[0] = indexList[0];
                 array[1] = indexList[1];
                 array[2] = indexList[2];
-                bufferPtr.UnmapBuffer();
+                buffer.UnmapBuffer();
             }
-            modernRenderer.Render4InnerPicking(arg, bufferPtr);
+            modernRenderer.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            bufferPtr.Dispose();
+            buffer.Dispose();
 
             if (id == indexList[0] || id == indexList[1] || id == indexList[2])
             { return id; }

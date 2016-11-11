@@ -44,9 +44,9 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     int length = maxCharCount;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(GlyphPosition), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(GlyphPosition), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
 
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
 
                 return this.positionBuffer;
@@ -56,8 +56,8 @@ namespace CSharpGL
                 if (this.uvBuffer == null)
                 {
                     int length = maxCharCount;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(GlyphTexCoord), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
-                    this.uvBuffer = bufferPtr;
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(GlyphTexCoord), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    this.uvBuffer = buffer;
                 }
 
                 return this.uvBuffer;
@@ -77,8 +77,8 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int vertexCount = maxCharCount * 4;
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Quads, 0, vertexCount);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, vertexCount);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

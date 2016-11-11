@@ -8,19 +8,19 @@ namespace CSharpGL
     public class TexBufferImageFiller : ImageFiller, IDisposable
     {
         private uint internalformat;
-        private Buffer bufferPtr;
+        private Buffer buffer;
         private bool autoDispose;
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="internalformat"></param>
-        /// <param name="bufferPtr"></param>
-        /// <param name="autoDispose">Dispose <paramref name="bufferPtr"/> when this filler is disposed.</param>
-        public TexBufferImageFiller(uint internalformat, Buffer bufferPtr, bool autoDispose)
+        /// <param name="buffer"></param>
+        /// <param name="autoDispose">Dispose <paramref name="buffer"/> when this filler is disposed.</param>
+        public TexBufferImageFiller(uint internalformat, Buffer buffer, bool autoDispose)
         {
             this.internalformat = internalformat;
-            this.bufferPtr = bufferPtr;
+            this.buffer = buffer;
             this.autoDispose = autoDispose;
         }
 
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// </summary>
         public override void Fill()
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, bufferPtr.BufferId);
+            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, buffer.BufferId);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace CSharpGL
                 // Dispose unmanaged resources.
                 if (this.autoDispose)
                 {
-                    var disp = this.bufferPtr as IDisposable;
+                    var disp = this.buffer as IDisposable;
                     if (disp != null) { disp.Dispose(); }
                 }
             } // end if

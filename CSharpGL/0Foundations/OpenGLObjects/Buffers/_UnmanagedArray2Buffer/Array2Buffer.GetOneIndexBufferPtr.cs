@@ -89,9 +89,9 @@ namespace CSharpGL
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new OneIndexBuffer(buffers[0], mode, elementType, array.Length, array.ByteLength, primCount);
+            var buffer = new OneIndexBuffer(buffers[0], mode, elementType, array.Length, array.ByteLength, primCount);
 
-            return bufferPtr;
+            return buffer;
         }
     }
 

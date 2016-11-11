@@ -14,23 +14,23 @@ namespace GridViewer
             : base(dataSource, gridProps, minColorCode, maxColorCode, defaultBlockPropertyIndex)
         { }
 
-        public override VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public override VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.propertyBufferPtr == null)
+                if (this.propertyBuffer == null)
                 {
-                    this.propertyBufferPtr = this.GetPositionBufferPtr(varNameInShader);
+                    this.propertyBuffer = this.GetPositionBuffer(varNameInShader);
                 }
-                return this.propertyBufferPtr;
+                return this.propertyBuffer;
             }
             else if (bufferName == strColor)
             {
-                if (this.colorBufferPtr == null)
+                if (this.colorBuffer == null)
                 {
-                    this.colorBufferPtr = this.GetColorBufferPtr(varNameInShader);
+                    this.colorBuffer = this.GetColorBuffer(varNameInShader);
                 }
-                return this.colorBufferPtr;
+                return this.colorBuffer;
             }
             else
             {
@@ -38,16 +38,16 @@ namespace GridViewer
             }
         }
 
-        public override IndexBuffer GetIndexBufferPtr()
+        public override IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int dimSize = this.DataSource.DimenSize;
                 int length = dimSize * 2 * (Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint));
-                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
+                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
                 unsafe
                 {
-                    IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     var array = (HalfHexahedronIndex*)pointer;
                     for (int gridIndex = 0; gridIndex < dimSize; gridIndex++)
                     {
@@ -71,15 +71,15 @@ namespace GridViewer
                         array[gridIndex * 2 + 1].dot7 = (uint)(8 * gridIndex + 4);
                         array[gridIndex * 2 + 1].restartIndex = uint.MaxValue;
                     }
-                    bufferPtr.UnmapBuffer();
+                    buffer.UnmapBuffer();
                 }
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = buffer;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr;
+        private IndexBuffer indexBuffer;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

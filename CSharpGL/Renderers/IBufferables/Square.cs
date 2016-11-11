@@ -44,18 +44,18 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     int length = model.positions.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec3*)pointer;
                         for (int i = 0; i < model.positions.Length; i++)
                         {
                             array[i] = model.positions[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
                 return this.positionBuffer;
             }
@@ -64,18 +64,18 @@ namespace CSharpGL
                 if (this.uvBuffer == null)
                 {
                     int length = model.texCoords.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec2*)pointer;
                         for (int i = 0; i < model.texCoords.Length; i++)
                         {
                             array[i] = model.texCoords[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.uvBuffer = bufferPtr;
+                    this.uvBuffer = buffer;
                 }
                 return this.uvBuffer;
             }
@@ -94,8 +94,8 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int vertexCount = this.model.positions.Length;
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(this.model.GetDrawModel(), 0, vertexCount);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(this.model.GetDrawModel(), 0, vertexCount);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

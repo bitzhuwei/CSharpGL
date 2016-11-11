@@ -20,10 +20,10 @@ namespace CSharpGL
                 var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBuffer(
+                    VertexAttributeBuffer buffer = model.GetVertexAttributeBuffer(
                         item.NameInIBufferable, item.VarNameInShader);
-                    if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
-                    list.Add(bufferPtr);
+                    if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
+                    list.Add(buffer);
                 }
                 vertexAttributeBuffers = list.ToArray();
             }

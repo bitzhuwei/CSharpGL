@@ -34,10 +34,10 @@ namespace CSharpGL.Demos
                 if (this.positionBuffer == null)
                 {
                     int length = particleCount;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec4*)pointer;
                         for (int i = 0; i < particleCount; i++)
                         {
@@ -48,9 +48,9 @@ namespace CSharpGL.Demos
                                 (float)(random.NextDouble())
                                 );
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
 
                 return this.positionBuffer;
@@ -60,10 +60,10 @@ namespace CSharpGL.Demos
                 if (this.velocityBuffer == null)
                 {
                     int length = particleCount;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (vec4*)pointer;
                         for (int i = 0; i < particleCount; i++)
                         {
@@ -74,9 +74,9 @@ namespace CSharpGL.Demos
                                 0
                                 );
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.velocityBuffer = bufferPtr;
+                    this.velocityBuffer = buffer;
                 }
 
                 return this.velocityBuffer;
@@ -92,8 +92,8 @@ namespace CSharpGL.Demos
             if (this.indexBuffer == null)
             {
                 int vertexCount = particleCount;
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, vertexCount);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, vertexCount);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

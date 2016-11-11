@@ -69,7 +69,7 @@ namespace CSharpGL.Demos
             }
             // Create buffer for clearing the head pointer texture
             {
-                PixelUnpackBuffer bufferPtr = PixelUnpackBuffer.Create(typeof(uint), BufferUsage.StaticDraw, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
+                PixelUnpackBuffer buffer = PixelUnpackBuffer.Create(typeof(uint), BufferUsage.StaticDraw, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
                 // NOTE: not all initial values are zero in this unmanged array.
                 // initialize buffer's value to 0.
                 //unsafe
@@ -87,23 +87,23 @@ namespace CSharpGL.Demos
                 //    data[0] = 0;
                 //    ptr.ClearBufferData(OpenGL.GL_UNSIGNED_INT, OpenGL.GL_RED, OpenGL.GL_UNSIGNED_INT, data);
                 //}
-                this.headClearBuffer = bufferPtr;
+                this.headClearBuffer = buffer;
             }
             // Create the atomic counter buffer
             {
-                AtomicCounterBuffer bufferPtr = AtomicCounterBuffer.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
-                this.atomicCountBuffer = bufferPtr;
+                AtomicCounterBuffer buffer = AtomicCounterBuffer.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
+                this.atomicCountBuffer = buffer;
             }
             // Bind it to a texture (for use as a TBO)
             {
-                TextureBuffer bufferPtr = TextureBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
-                Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
+                TextureBuffer buffer = TextureBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
+                Texture texture = buffer.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
                 texture.Initialize();
-                bufferPtr.Dispose();// dispose it ASAP.
+                buffer.Dispose();// dispose it ASAP.
                 this.linkedListTexture = texture;
             }
             {
-                //TextureBuffer bufferPtr = TextureBuffer.Create()
+                //TextureBuffer buffer = TextureBuffer.Create()
             }
             {
                 OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);

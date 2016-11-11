@@ -60,38 +60,38 @@ namespace CSharpGL
             glBufferData(bufferTarget, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(bufferTarget, 0);
 
-            IndependentBuffer bufferPtr;
+            IndependentBuffer buffer;
             switch (target)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:
-                    bufferPtr = new AtomicCounterBuffer(buffers[0], length, byteLength);
+                    buffer = new AtomicCounterBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.PixelPackBuffer:
-                    bufferPtr = new PixelPackBuffer(buffers[0], length, byteLength);
+                    buffer = new PixelPackBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.PixelUnpackBuffer:
-                    bufferPtr = new PixelUnpackBuffer(buffers[0], length, byteLength);
+                    buffer = new PixelUnpackBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.ShaderStorageBuffer:
-                    bufferPtr = new ShaderStorageBuffer(buffers[0], length, byteLength);
+                    buffer = new ShaderStorageBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.TextureBuffer:
-                    bufferPtr = new TextureBuffer(buffers[0], length, byteLength);
+                    buffer = new TextureBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.UniformBuffer:
-                    bufferPtr = new UniformBuffer(buffers[0], length, byteLength);
+                    buffer = new UniformBuffer(buffers[0], length, byteLength);
                     break;
 
                 default:
                     throw new NotImplementedException();
             }
 
-            return bufferPtr;
+            return buffer;
         }
     }
 

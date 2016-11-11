@@ -16,21 +16,21 @@
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             // 创建临时索引
-            OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 6);
+            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 6);
             unsafe
             {
-                var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 array[0] = lastVertexId - 1; array[1] = lastVertexId - 0;
                 array[2] = lastVertexId - 2; array[3] = lastVertexId - 1;
                 array[4] = lastVertexId - 0; array[5] = lastVertexId - 2;
-                bufferPtr.UnmapBuffer();
+                buffer.UnmapBuffer();
             }
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
-            modernRenderer.Render4InnerPicking(arg, bufferPtr);
+            modernRenderer.Render4InnerPicking(arg, buffer);
             // id是拾取到的Line的Last Vertex Id
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            bufferPtr.Dispose();
+            buffer.Dispose();
 
             // 对比临时索引，找到那个Line
             if (id + 2 == lastVertexId)

@@ -49,6 +49,6 @@ For example, `position` maps to `in_Position` in vertex shader shown above.
 ### AttributeType
 It's strightforward to understand that AttributeType means variable's type in GLSL shader and `IBufferable`.
 # Why bother?
-I forgot to assign the result to the `indexBufferPtr` in `IBufferable`'s `GetIndex()` method today, and it took me hours of debugging to find out this annoying mistake.  
+I forgot to assign the result to the `indexBuffer` in `IBufferable`'s `GetIndex()` method today, and it took me hours of debugging to find out this annoying mistake.  
 Thus I decided to write this tiny generator to help dumping framework of all future renderer types that derives from `CSharpGL.Renderer`.  
 

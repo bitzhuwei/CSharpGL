@@ -85,33 +85,33 @@ namespace CSharpGL.Demos
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
             unsafe
             {
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 int index = 0;
                 var array = (float*)pointer;
                 for (int uIndex = 0; uIndex < uCount; uIndex++)
                 {
                     array[index++] = (float)uIndex / (float)uCount;
                 }
-                bufferPtr.UnmapBuffer();
+                buffer.UnmapBuffer();
             }
 
-            return bufferPtr;
+            return buffer;
         }
 
         private VertexAttributeBuffer GetPositionBuffer(string varNameInShader)
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
             bool initialized = false;
             vec3 max = new vec3();
             vec3 min = new vec3();
             unsafe
             {
-                IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 int index = 0;
                 var array = (vec3*)pointer;
                 for (int uIndex = 0; uIndex < uCount; uIndex++)
@@ -138,10 +138,10 @@ namespace CSharpGL.Demos
                 {
                     array[i] = array[i] - worldPosition;
                 }
-                bufferPtr.UnmapBuffer();
+                buffer.UnmapBuffer();
             }
 
-            return bufferPtr;
+            return buffer;
         }
 
         public vec3 Lengths { get; private set; }
@@ -163,8 +163,8 @@ namespace CSharpGL.Demos
             if (this.indexBuffer == null)
             {
                 int uCount = GetUCount(interval);
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, uCount);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, uCount);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

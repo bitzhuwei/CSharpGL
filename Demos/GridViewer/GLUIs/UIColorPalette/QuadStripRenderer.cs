@@ -29,8 +29,8 @@ namespace GridViewer
         private LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer texCoordBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer texCoordBuffer;
 
         public static QuadStripRenderer Create(QuadStripModel model)
         {
@@ -55,8 +55,8 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBufferPtr = this.Model.GetVertexAttributeBufferPtr(QuadStripModel.position, null);
-            this.texCoordBufferPtr = this.Model.GetVertexAttributeBufferPtr(QuadStripModel.texCoord, null);
+            this.positionBuffer = this.Model.GetVertexAttributeBuffer(QuadStripModel.position, null);
+            this.texCoordBuffer = this.Model.GetVertexAttributeBuffer(QuadStripModel.texCoord, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -82,7 +82,7 @@ namespace GridViewer
 
         //public void SetQuadCount(int quadCount)
         //{
-        //    OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+        //    OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBuffer.BufferId);
         //    IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
         //    unsafe
         //    {
@@ -104,7 +104,7 @@ namespace GridViewer
         //    int quadCount = codedColors.Length - 1;
 
         //    {
-        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBuffer.BufferId);
         //        IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
         //        unsafe
         //        {
@@ -123,7 +123,7 @@ namespace GridViewer
 
         //    if (this.colorType == ColorType.Texture)
         //    {
-        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.texCoordBufferPtr.BufferId);
+        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.texCoordBuffer.BufferId);
         //        IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
         //        unsafe
         //        {
@@ -139,7 +139,7 @@ namespace GridViewer
         //    }
         //    else if (this.colorType == ColorType.Color)
         //    {
-        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBufferPtr.BufferId);
+        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBuffer.BufferId);
         //        IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
         //        unsafe
         //        {
@@ -155,7 +155,7 @@ namespace GridViewer
         //    }
 
         //    {
-        //        var pointer = this.indexBufferPtr as ZeroIndexBufferPtr;
+        //        var pointer = this.indexBuffer as ZeroIndexBuffer;
         //        pointer.VertexCount = (quadCount + 1) * 2;
         //    }
         //}

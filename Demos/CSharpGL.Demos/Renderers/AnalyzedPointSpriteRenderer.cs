@@ -65,10 +65,10 @@ namespace CSharpGL.Demos
                     if (this.positionBuffer == null)
                     {
                         int length = particleCount;
-                        VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
-                            IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                             var array = (vec3*)pointer;
                             for (int i = 0; i < particleCount; i++)
                             {
@@ -79,10 +79,10 @@ namespace CSharpGL.Demos
                                 float z = (float)(c * Math.Cos(beta));
                                 array[i] = new vec3(x, y, z);
                             }
-                            bufferPtr.UnmapBuffer();
+                            buffer.UnmapBuffer();
                         }
 
-                        this.positionBuffer = bufferPtr;
+                        this.positionBuffer = buffer;
                     }
 
                     return this.positionBuffer;
@@ -97,8 +97,8 @@ namespace CSharpGL.Demos
             {
                 if (this.indexBuffer == null)
                 {
-                    ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, particleCount);
-                    this.indexBuffer = bufferPtr;
+                    ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, particleCount);
+                    this.indexBuffer = buffer;
                 }
 
                 return indexBuffer;

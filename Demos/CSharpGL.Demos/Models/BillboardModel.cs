@@ -21,18 +21,18 @@ namespace CSharpGL.Demos
                 if (positionBuffer == null)
                 {
                     int length = positions.Length;
-                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
                     unsafe
                     {
-                        IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                         var array = (float*)pointer;
                         for (int i = 0; i < positions.Length; i++)
                         {
                             array[i] = positions[i];
                         }
-                        bufferPtr.UnmapBuffer();
+                        buffer.UnmapBuffer();
                     }
-                    this.positionBuffer = bufferPtr;
+                    this.positionBuffer = buffer;
                 }
                 return positionBuffer;
             }
@@ -47,8 +47,8 @@ namespace CSharpGL.Demos
             if (this.indexBuffer == null)
             {
                 int vertexCount = 4;
-                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, vertexCount);
-                this.indexBuffer = bufferPtr;
+                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, vertexCount);
+                this.indexBuffer = buffer;
             }
 
             return this.indexBuffer;

@@ -55,9 +55,9 @@ namespace GridViewer
 
         #region IBuffrable
 
-        public abstract VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader);
+        public abstract VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader);
 
-        public abstract IndexBuffer GetIndexBufferPtr();
+        public abstract IndexBuffer GetIndexBuffer();
 
         public abstract bool UsesZeroIndexBuffer();
 
