@@ -119,7 +119,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.DirectlyCreate.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\ZeroIndexBuffer\ZeroIndexBufferPtr.DirectlyCreate.cs" />
@@ -214,7 +214,7 @@
     <Content Include="0Foundations\Maths\讲讲清楚OpenGL坐标变换.md" />
     <Content Include="0Foundations\Maths\正确地自定义值类型的姿势.md" />
     <None Include="Canvas\readme.md" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBuffer.cs" />
     <Compile Include="Canvas\GLSceneCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
