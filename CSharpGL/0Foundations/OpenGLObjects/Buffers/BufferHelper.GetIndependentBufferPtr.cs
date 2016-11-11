@@ -2,9 +2,6 @@
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// Vertex Buffer Object.
-    /// </summary>
     public static partial class BufferHelper
     {
         /// <summary>
