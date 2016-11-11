@@ -3,7 +3,7 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public abstract partial class IndependentBufferPtr : BufferPtr
+    public abstract partial class IndependentBufferPtr : Buffer
     {
         internal static OpenGL.glBindBufferRange glBindBufferRange;
         internal static OpenGL.glBindBufferBase glBindBufferBase;

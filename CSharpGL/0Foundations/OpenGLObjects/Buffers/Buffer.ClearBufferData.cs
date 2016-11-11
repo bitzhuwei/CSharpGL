@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class BufferPtr
+    public abstract partial class Buffer
     {
         /// <summary>
         /// Fill a buffer object's data store with a fixed value.

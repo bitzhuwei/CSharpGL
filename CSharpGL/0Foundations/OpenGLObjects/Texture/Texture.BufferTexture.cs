@@ -10,7 +10,7 @@ namespace CSharpGL
         /// <param name="bufferPtr"></param>
         /// <param name="autoDispose">Dispose <paramref name="bufferPtr"/> when disposing returned texture.</param>
         /// <returns></returns>
-        public static Texture CreateBufferTexture(uint internalFormat, BufferPtr bufferPtr, bool autoDispose)
+        public static Texture CreateBufferTexture(uint internalFormat, Buffer bufferPtr, bool autoDispose)
         {
             return bufferPtr.DumpBufferTexture(internalFormat, autoDispose);
         }

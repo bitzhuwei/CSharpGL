@@ -112,7 +112,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetIndependentBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetVertexAttributeBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.ClearBufferData.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.ClearBufferData.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.DirectlyCreate.cs" />
@@ -151,10 +151,10 @@
     <Compile Include="Renderers\BezierRenderers\EvaluatorRenderer.cs" />
     <Compile Include="Renderers\BezierRenderers\Evaluator1DRenderer.cs" />
     <Compile Include="Renderers\BezierRenderers\Evaluator2DRenderer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.BufferTexture.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.BufferTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer\VertexAttributeConfig.cs" />
@@ -591,7 +591,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\OneIndexBuffer\OneIndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\IndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer\VertexAttributeBufferPtr.cs" />
@@ -656,7 +656,7 @@
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
-    <None Include="0Foundations\OpenGLObjects\Buffers\Buffer.cd" />
+    <None Include="0Foundations\OpenGLObjects\Buffers\Buffers.cd" />
     <EmbeddedResource Include="Resources\TextModel.frag" />
     <EmbeddedResource Include="Resources\TextModel.vert" />
     <EmbeddedResource Include="Resources\Label.vert" />

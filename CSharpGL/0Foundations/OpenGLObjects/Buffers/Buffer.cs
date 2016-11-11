@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <para>A wrapped pointer that referenced to a buffer(an array) in server(GPU memory) side.</para>
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public abstract partial class BufferPtr : IDisposable
+    public abstract partial class Buffer : IDisposable
     {
         /// <summary>
         /// 用glGenBuffers()得到的VBO的Id。
@@ -98,7 +98,7 @@ namespace CSharpGL
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal BufferPtr(uint bufferId, int length, int byteLength)
+        internal Buffer(uint bufferId, int length, int byteLength)
         {
             Debug.Assert(bufferId >= 0);
             Debug.Assert(length >= 0);

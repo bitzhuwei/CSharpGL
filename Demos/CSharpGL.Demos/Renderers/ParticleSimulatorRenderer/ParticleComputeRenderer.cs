@@ -17,12 +17,12 @@ namespace CSharpGL.Demos
         //private uint[] attractor_buffer = new uint[1];
         private IndependentBufferPtr attractorBufferPtr;
 
-        private BufferPtr positionBufferPtr;
-        private BufferPtr velocityBufferPtr;
+        private Buffer positionBufferPtr;
+        private Buffer velocityBufferPtr;
         private float time = 0;
         private Random random = new Random();
 
-        public ParticleComputeRenderer(BufferPtr positionBufferPtr, BufferPtr velocityBufferPtr)
+        public ParticleComputeRenderer(Buffer positionBufferPtr, Buffer velocityBufferPtr)
         {
             this.positionBufferPtr = positionBufferPtr;
             this.velocityBufferPtr = velocityBufferPtr;
@@ -36,13 +36,13 @@ namespace CSharpGL.Demos
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {
-                BufferPtr bufferPtr = this.positionBufferPtr;
+                Buffer bufferPtr = this.positionBufferPtr;
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
-                BufferPtr bufferPtr = this.velocityBufferPtr;
+                Buffer bufferPtr = this.velocityBufferPtr;
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.velocityTexture = texture;

@@ -9,7 +9,7 @@ namespace CSharpGL
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(IndexBufferPtrEditor), typeof(UITypeEditor))]
-    public abstract class IndexBufferPtr : BufferPtr
+    public abstract class IndexBufferPtr : Buffer
     {
         /// <summary>
         /// 用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
