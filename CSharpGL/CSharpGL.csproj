@@ -109,6 +109,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetOneIndexBufferPtr.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetIndependentBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetVertexAttributeBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.ClearBufferData.cs" />
