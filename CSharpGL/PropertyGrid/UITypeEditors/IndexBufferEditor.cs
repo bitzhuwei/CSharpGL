@@ -7,12 +7,12 @@ namespace CSharpGL
     /// <summary>
     /// 用在<see cref="IndexBuffer"/>类型的属性上。
     /// </summary>
-    internal class IndexBufferPtrEditor : UITypeEditor
+    internal class IndexBufferEditor : UITypeEditor
     {
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据
-            var editor = new FormIndexBufferPtrBoard(value as IndexBuffer);
+            var editor = new FormIndexBufferBoard(value as IndexBuffer);
             editor.ShowDialog();
 
             return value;

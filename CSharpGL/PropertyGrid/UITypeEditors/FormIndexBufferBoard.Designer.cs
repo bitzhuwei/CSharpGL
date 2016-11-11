@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    partial class FormIndexBufferPtrBoard
+    partial class FormIndexBufferBoard
     {
         /// <summary>
         /// Required designer variable.

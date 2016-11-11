@@ -6,15 +6,15 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public partial class FormIndexBufferPtrBoard : Form
+    public partial class FormIndexBufferBoard : Form
     {
-        private IndexBufferPtrController controller;
+        private IndexBufferController controller;
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="indexBufferPtr"></param>
-        public FormIndexBufferPtrBoard(IndexBuffer indexBufferPtr = null)
+        public FormIndexBufferBoard(IndexBuffer indexBufferPtr = null)
         {
             InitializeComponent();
 
@@ -45,7 +45,7 @@ namespace CSharpGL
             this.Text = string.Format("{0}", this.controller);
         }
 
-        private void UpdateUI(IndexBufferPtrController indexBufferPtrController)
+        private void UpdateUI(IndexBufferController indexBufferPtrController)
         {
             int index = -1;
             foreach (object item in this.cmbDrawMode.Items)
@@ -58,7 +58,7 @@ namespace CSharpGL
                 }
             }
 
-            if (indexBufferPtrController is ZeroIndexBufferPtrController)
+            if (indexBufferPtrController is ZeroIndexBufferController)
             {
                 this.lblFirst.Text = "First Vertex:";
                 this.lblCount.Text = "Vertex Count:";
@@ -72,7 +72,7 @@ namespace CSharpGL
                 this.lblCountValue.Text = this.trackCount.Value.ToString();
                 this.Text = string.Format("{0}", this.controller);
             }
-            else if (indexBufferPtrController is OneIndexBufferPtrController)
+            else if (indexBufferPtrController is OneIndexBufferController)
             {
                 this.lblFirst.Text = "First Index:";
                 this.lblCount.Text = "Element Count:";
@@ -135,7 +135,7 @@ namespace CSharpGL
         }
     }
 
-    internal abstract class IndexBufferPtrController
+    internal abstract class IndexBufferController
     {
         public abstract IndexBuffer IndexBufferPtr { get; }
 
@@ -150,7 +150,7 @@ namespace CSharpGL
         internal abstract void SetCount(int value);
     }
 
-    internal class ZeroIndexBufferPtrController : IndexBufferPtrController
+    internal class ZeroIndexBufferController : IndexBufferController
     {
         private ZeroIndexBuffer indexBufferPtr;
 
@@ -159,7 +159,7 @@ namespace CSharpGL
             get { return this.indexBufferPtr; }
         }
 
-        public ZeroIndexBufferPtrController(ZeroIndexBuffer indexBufferPtr)
+        public ZeroIndexBufferController(ZeroIndexBuffer indexBufferPtr)
         {
             this.indexBufferPtr = indexBufferPtr;
         }
@@ -195,7 +195,7 @@ namespace CSharpGL
         }
     }
 
-    internal class OneIndexBufferPtrController : IndexBufferPtrController
+    internal class OneIndexBufferController : IndexBufferController
     {
         public override IndexBuffer IndexBufferPtr
         {
@@ -204,7 +204,7 @@ namespace CSharpGL
 
         private OneIndexBuffer indexBufferPtr;
 
-        public OneIndexBufferPtrController(OneIndexBuffer indexBufferPtr)
+        public OneIndexBufferController(OneIndexBuffer indexBufferPtr)
         {
             this.indexBufferPtr = indexBufferPtr;
         }
@@ -242,20 +242,20 @@ namespace CSharpGL
 
     internal static class ControllerFactory
     {
-        public static IndexBufferPtrController CreateController(this IndexBuffer indexBufferPtr)
+        public static IndexBufferController CreateController(this IndexBuffer indexBufferPtr)
         {
             {
                 var ptr = indexBufferPtr as ZeroIndexBuffer;
                 if (ptr != null)
                 {
-                    return new ZeroIndexBufferPtrController(ptr);
+                    return new ZeroIndexBufferController(ptr);
                 }
             }
             {
                 var ptr = indexBufferPtr as OneIndexBuffer;
                 if (ptr != null)
                 {
-                    return new OneIndexBufferPtrController(ptr);
+                    return new OneIndexBufferController(ptr);
                 }
             }
             {

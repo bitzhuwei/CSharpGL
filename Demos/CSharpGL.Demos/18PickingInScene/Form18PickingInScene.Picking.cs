@@ -177,7 +177,7 @@ namespace CSharpGL.Demos
                 {
                     var frm = new FormProperyGrid(geometry.FromRenderer);
                     frm.Show();
-                    var frmIndexBufferPtrBoard = new FormIndexBufferPtrBoard();
+                    var frmIndexBufferPtrBoard = new FormIndexBufferBoard();
                     HighlightedPickableRenderer renderer = this.highlightedRenderer;
                     if (renderer != null)
                     {

@@ -13,9 +13,9 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBuffer GetOneIndexBufferPtr(this UnmanagedArray<byte> array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArray<byte> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GetOneIndexBufferPtr<byte>(array, mode, usage, primCount);
+            return GetOneIndexBuffer<byte>(array, mode, usage, primCount);
         }
 
         /// <summary>
@@ -27,9 +27,9 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBuffer GetOneIndexBufferPtr(this UnmanagedArray<ushort> array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArray<ushort> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GetOneIndexBufferPtr<ushort>(array, mode, usage, primCount);
+            return GetOneIndexBuffer<ushort>(array, mode, usage, primCount);
         }
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBuffer GetOneIndexBufferPtr(this UnmanagedArray<uint> array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArray<uint> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GetOneIndexBufferPtr<uint>(array, mode, usage, primCount);
+            return GetOneIndexBuffer<uint>(array, mode, usage, primCount);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        private static OneIndexBuffer GetOneIndexBufferPtr<T>(this UnmanagedArray<T> array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
+        private static OneIndexBuffer GetOneIndexBuffer<T>(this UnmanagedArray<T> array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
         {
             Type type = typeof(T);
             IndexElementType elementType = IndexElementType.UInt;

@@ -222,14 +222,14 @@
       <DependentUpon>GLSceneCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
+    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
-      <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
+    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
+      <DependentUpon>FormIndexBufferBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\UITypeEditors\UpdateScene.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
+    <Compile Include="PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="FontTexture\FontBitmap.cs" />
     <Compile Include="FontTexture\FontBitmapHelper.3_PrintBitmap.cs" />

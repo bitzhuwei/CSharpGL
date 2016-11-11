@@ -3,7 +3,7 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class ShaderStorageBuffer : IndependentBufferPtr
+    public partial class ShaderStorageBuffer : IndependentBuffer
     {
         private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
         private static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;

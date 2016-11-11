@@ -3,17 +3,17 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public abstract partial class IndependentBufferPtr
+    public abstract partial class IndependentBuffer
     {
         /// <summary>
-        /// Creates a sub-type of <see cref="IndependentBufferPtr"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a sub-type of <see cref="IndependentBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="elementType"></param>
         /// <param name="usage"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static IndependentBufferPtr Create(IndependentBufferTarget target, Type elementType, BufferUsage usage, int length)
+        public static IndependentBuffer Create(IndependentBufferTarget target, Type elementType, BufferUsage usage, int length)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
 
@@ -60,7 +60,7 @@ namespace CSharpGL
             glBufferData(bufferTarget, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(bufferTarget, 0);
 
-            IndependentBufferPtr bufferPtr;
+            IndependentBuffer bufferPtr;
             switch (target)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:

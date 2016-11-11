@@ -11318,7 +11318,7 @@
             
             </summary>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBufferPtr(CSharpGL.UnmanagedArray{System.Byte},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer(CSharpGL.UnmanagedArray{System.Byte},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
             获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -11329,7 +11329,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBufferPtr(CSharpGL.UnmanagedArray{System.UInt16},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer(CSharpGL.UnmanagedArray{System.UInt16},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
             获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -11340,7 +11340,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBufferPtr(CSharpGL.UnmanagedArray{System.UInt32},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer(CSharpGL.UnmanagedArray{System.UInt32},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
             获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -11351,7 +11351,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBufferPtr``1(CSharpGL.UnmanagedArray{``0},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+        <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
             获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -11435,7 +11435,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetVertexAttributeBufferPtr``1(CSharpGL.UnmanagedArray{``0},System.String,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.Array2Buffer.GetVertexAttributeBuffer``1(CSharpGL.UnmanagedArray{``0},System.String,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
             <summary>
             获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
             <para>每个<see cref="T:CSharpGL.VertexAttributeBuffer"/>仅描述其中一个属性。</para>
@@ -11701,14 +11701,14 @@
             Buffer object that not work as input variable in shader.
             </summary>
         </member>
-        <member name="T:CSharpGL.IndependentBufferPtr">
+        <member name="T:CSharpGL.IndependentBuffer">
             <summary>
             Buffer object that not work as input variable in shader.
             </summary>
         </member>
-        <member name="M:CSharpGL.IndependentBufferPtr.Create(CSharpGL.IndependentBufferTarget,System.Type,CSharpGL.BufferUsage,System.Int32)">
+        <member name="M:CSharpGL.IndependentBuffer.Create(CSharpGL.IndependentBufferTarget,System.Type,CSharpGL.BufferUsage,System.Int32)">
             <summary>
-            Creates a sub-type of <see cref="T:CSharpGL.IndependentBufferPtr"/> object directly in server side(GPU) without initializing its value.
+            Creates a sub-type of <see cref="T:CSharpGL.IndependentBuffer"/> object directly in server side(GPU) without initializing its value.
             </summary>
             <param name="target"></param>
             <param name="elementType"></param>
@@ -11716,7 +11716,7 @@
             <param name="length"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.IndependentBufferPtr.#ctor(System.UInt32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.IndependentBuffer.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
             pixel unpack buffer's pointer.
             </summary>
@@ -11724,7 +11724,7 @@
             <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
             <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         </member>
-        <member name="M:CSharpGL.IndependentBufferPtr.ToString">
+        <member name="M:CSharpGL.IndependentBuffer.ToString">
              <summary>
             
              </summary>
@@ -15855,35 +15855,35 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:CSharpGL.FormIndexBufferPtrBoard">
+        <member name="T:CSharpGL.FormIndexBufferBoard">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.FormIndexBufferPtrBoard.#ctor(CSharpGL.IndexBuffer)">
-             <summary>
-            
-             </summary>
-             <param name="indexBufferPtr"></param>
-        </member>
-        <member name="M:CSharpGL.FormIndexBufferPtrBoard.SetTarget(CSharpGL.IndexBuffer)">
+        <member name="M:CSharpGL.FormIndexBufferBoard.#ctor(CSharpGL.IndexBuffer)">
              <summary>
             
              </summary>
              <param name="indexBufferPtr"></param>
         </member>
-        <member name="F:CSharpGL.FormIndexBufferPtrBoard.components">
+        <member name="M:CSharpGL.FormIndexBufferBoard.SetTarget(CSharpGL.IndexBuffer)">
+             <summary>
+            
+             </summary>
+             <param name="indexBufferPtr"></param>
+        </member>
+        <member name="F:CSharpGL.FormIndexBufferBoard.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:CSharpGL.FormIndexBufferPtrBoard.Dispose(System.Boolean)">
+        <member name="M:CSharpGL.FormIndexBufferBoard.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:CSharpGL.FormIndexBufferPtrBoard.InitializeComponent">
+        <member name="M:CSharpGL.FormIndexBufferBoard.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -15900,7 +15900,7 @@
             </summary>
             <param name="sceneObject"></param>
         </member>
-        <member name="T:CSharpGL.IndexBufferPtrEditor">
+        <member name="T:CSharpGL.IndexBufferEditor">
             <summary>
             用在<see cref="T:CSharpGL.IndexBuffer"/>类型的属性上。
             </summary>

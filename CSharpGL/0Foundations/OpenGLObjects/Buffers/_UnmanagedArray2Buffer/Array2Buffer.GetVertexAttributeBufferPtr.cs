@@ -18,7 +18,7 @@
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexAttributeBuffer GetVertexAttributeBufferPtr<T>(this UnmanagedArray<T> array, string varNameInVertexShader, VertexAttributeConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
+        public static VertexAttributeBuffer GetVertexAttributeBuffer<T>(this UnmanagedArray<T> array, string varNameInVertexShader, VertexAttributeConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
             if (glGenBuffers == null)
             {

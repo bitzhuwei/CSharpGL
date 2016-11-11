@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static PixelUnpackBuffer Create(Type elementType, BufferUsage usage, int length)
         {
-            return (IndependentBufferPtr.Create(IndependentBufferTarget.PixelUnpackBuffer, elementType, usage, length) as PixelUnpackBuffer);
+            return (IndependentBuffer.Create(IndependentBufferTarget.PixelUnpackBuffer, elementType, usage, length) as PixelUnpackBuffer);
         }
     }
 }
