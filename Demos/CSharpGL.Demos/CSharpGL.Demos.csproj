@@ -160,9 +160,6 @@
     <Compile Include="Renderers\UniformStructRenderer.cs" />
     <Compile Include="Renderers\UniformBlockRenderer.cs" />
     <Compile Include="Renderers\ZeroAttributeRenderer.cs" />
-    <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.cs" />
-    <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.Initialize.cs" />
-    <Compile Include="Renderers\RayTracingRenderer\RayTracingRenderer.Render.cs" />
     <Compile Include="Renderers\Water\WaterBackgroundRenderer.cs" />
     <Compile Include="Renderers\Water\WaterTextureRenderer.cs" />
     <Compile Include="Renderers\Water\WaterBackgroundRenderer.DoInitialize.cs" />

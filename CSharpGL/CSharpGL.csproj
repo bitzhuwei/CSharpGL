@@ -116,10 +116,8 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.DirectlyCreate.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\ShaderStorageBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.DirectlyCreate.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.DirectlyCreate.cs" />
@@ -155,9 +153,7 @@
     <Compile Include="Renderers\BezierRenderers\Evaluator2DRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.IDisposable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.BufferTexture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.cs" />

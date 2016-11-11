@@ -76,10 +76,6 @@ namespace CSharpGL.Demos
             {
                 renderer = new RaycastVolumeRenderer();
             }
-            else if (rendererType == typeof(RayTracingRenderer))
-            {
-                renderer = RayTracingRenderer.Create();
-            }
             else if (rendererType == typeof(ShaderToyRenderer))
             {
                 renderer = ShaderToyRenderer.Create();
