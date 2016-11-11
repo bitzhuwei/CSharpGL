@@ -31,6 +31,7 @@ namespace CSharpGL.Demos
                             (float)(random.NextDouble() - 0.5) * 0.2f,
                             0);
                     }
+                    bufferPtr.UnmapBuffer();
                 }
                 this.VelocityBufferPtr = bufferPtr;
             }

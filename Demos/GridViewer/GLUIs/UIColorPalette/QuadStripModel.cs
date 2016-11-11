@@ -107,29 +107,25 @@ namespace GridViewer
             }
             else if (bufferName == color)
             {
-                if (colorBufferPtr == null)
+                if (this.colorBufferPtr == null)
                 {
-                    using (var buffer = new VertexAttributeBuffer<vec3>(
-                        varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
+                    var bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), (this.quadCount + 1) * 2, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    unsafe
                     {
-                        buffer.Alloc((this.quadCount + 1) * 2);
-                        unsafe
+                        var array = (vec3*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                        for (int i = 0; i < (this.quadCount + 1); i++)
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < (this.quadCount + 1); i++)
-                            {
-                                int x = this.bitmap.Width * i / this.quadCount;
-                                if (x == this.bitmap.Width) { x = this.bitmap.Width - 1; }
-                                vec3 value = this.bitmap.GetPixel(x, 0).ToVec3();
-                                array[i * 2 + 0] = value;
-                                array[i * 2 + 1] = value;
-                            }
+                            int x = this.bitmap.Width * i / this.quadCount;
+                            if (x == this.bitmap.Width) { x = this.bitmap.Width - 1; }
+                            vec3 value = this.bitmap.GetPixel(x, 0).ToVec3();
+                            array[i * 2 + 0] = value;
+                            array[i * 2 + 1] = value;
                         }
-
-                        colorBufferPtr = buffer.GetBufferPtr();
+                        bufferPtr.UnmapBuffer();
                     }
+                    this.colorBufferPtr = bufferPtr;
                 }
-                return colorBufferPtr;
+                return this.colorBufferPtr;
             }
             else
             {
