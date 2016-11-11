@@ -1,57 +1,129 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
-  <Class Name="CSharpGL.Buffer">
-    <Position X="11.75" Y="0.5" Width="2.5" />
+  <Class Name="CSharpGL.VertexAttributeBufferPtr">
+    <Position X="0.5" Y="5.5" Width="12.75" />
     <Compartments>
       <Compartment Name="Protected" Collapsed="true" />
       <Compartment Name="Private" Collapsed="true" />
+      <Compartment Name="Internal" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>BAAAAAAEACAAAAAEAQgAAAREAAAAAkAAAAAAAgAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\Buffers\Buffer.cs</FileName>
+      <HashCode>gAAAAAAAAoAAEAAAAAQAACAAAAAAQEAQAAAAIAAgBIg=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer\VertexAttributeBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.BufferPtr">
+    <Position X="16.5" Y="0.5" Width="9.5" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Internal" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAoIgEASCAAABAQQAAACRABAABAwAAAAIEIgAQEQA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\BufferPtr.ClearBufferData.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CSharpGL.IndexBuffer">
-    <Position X="5.25" Y="4" Width="4.75" />
+  <Class Name="CSharpGL.IndependentBufferPtr">
+    <Position X="17.5" Y="5.5" Width="7.5" />
     <Compartments>
-      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Internal" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAABAAAAAAAAAAEACAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.IndexBufferPtr">
+    <Position X="30.5" Y="5.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\IndexBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.AtomicCounterBufferPtr">
+    <Position X="2" Y="13" Width="5.75" />
+    <Compartments>
+      <Compartment Name="Internal" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.PixelPackBufferPtr">
+    <Position X="8.5" Y="13" Width="5.25" />
+    <Compartments>
+      <Compartment Name="Internal" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer\PixelPackBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.PixelUnpackBufferPtr">
+    <Position X="14.5" Y="13" Width="5.5" />
+    <Compartments>
+      <Compartment Name="Internal" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer\PixelUnpackBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.ShaderStorageBufferPtr">
+    <Position X="20.75" Y="13" Width="6.75" />
+    <Compartments>
+      <Compartment Name="Internal" Collapsed="true" />
       <Compartment Name="Private" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAoAAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffer.cs</FileName>
+      <HashCode>AAAAAIAAAAAAAAAAEAAAACAAAAAAAEAAAAAAAAAAACA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer\PixelUnpackBufferPtr.DirectlyCreate.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.OneIndexBuffer">
-    <Position X="7.25" Y="7" Width="7.25" />
+  <Class Name="CSharpGL.TextureBufferPtr">
+    <Position X="28.25" Y="13" Width="5.25" />
     <Compartments>
-      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Internal" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\OneIndexBuffer.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.ZeroIndexBuffer">
-    <Position X="0.5" Y="7" Width="6" />
+  <Class Name="CSharpGL.UniformBufferPtr">
+    <Position X="34.25" Y="13" Width="6.5" />
     <Compartments>
-      <Compartment Name="Protected" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBuffer.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CSharpGL.VertexAttributeBufferPtr">
-    <Position X="15.25" Y="4" Width="10.25" />
-    <Compartments>
-      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Internal" Collapsed="true" />
       <Compartment Name="Private" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAgAAAAAAAAQAAAAAAAAAAEAAAAAAIAAgBAA=</HashCode>
-      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAACA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBufferPtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.OneIndexBufferPtr">
+    <Position X="26.5" Y="8.25" Width="6.75" />
+    <Compartments>
+      <Compartment Name="Internal" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAQACEAAAAACAAAAAAAEIAARAAAAAAAAA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\OneIndexBuffer\OneIndexBuffer.DirectlyCreate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.ZeroIndexBufferPtr">
+    <Position X="34" Y="8.25" Width="6.75" />
+    <Compartments>
+      <Compartment Name="Internal" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAgAAAEAAAAACAAAAAAAEAAABIECAAAEQA=</HashCode>
+      <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\ZeroIndexBuffer\ZeroIndexBufferPtr.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
