@@ -43,7 +43,7 @@
       <FileName>0Foundations\OpenGLObjects\Buffers\VertexBuffers\ZeroIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.VertexAttributeBuffer&lt;T&gt;">
+  <Class Name="CSharpGL.VertexAttributeBufferPtr">
     <Position X="15.25" Y="4" Width="10.25" />
     <Compartments>
       <Compartment Name="Protected" Collapsed="true" />

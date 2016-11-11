@@ -15,26 +15,20 @@
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Lines, BufferUsage.StaticDraw))
+            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 8);
+            unsafe
             {
-                buffer.Alloc(8);
-                unsafe
-                {
-                    var array = (uint*)buffer.Header.ToPointer();
-                    array[0] = lastVertexId - 1; array[1] = lastVertexId - 0;
-                    array[2] = lastVertexId - 2; array[3] = lastVertexId - 1;
-                    array[4] = lastVertexId - 3; array[5] = lastVertexId - 2;
-                    array[6] = lastVertexId - 0; array[7] = lastVertexId - 3;
-                }
-
-                indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                array[0] = lastVertexId - 1; array[1] = lastVertexId - 0;
+                array[2] = lastVertexId - 2; array[3] = lastVertexId - 1;
+                array[4] = lastVertexId - 3; array[5] = lastVertexId - 2;
+                array[6] = lastVertexId - 0; array[7] = lastVertexId - 3;
+                bufferPtr.UnmapBuffer();
             }
-
-            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            modernRenderer.Render4InnerPicking(arg, bufferPtr);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            indexBufferPtr.Dispose();
+            bufferPtr.Dispose();
 
             if (id + 3 == lastVertexId)
             { return new uint[] { id + 3, id, }; }

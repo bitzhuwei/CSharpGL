@@ -24,12 +24,7 @@ namespace CSharpGL
             if (indexesLength > this.maxElementCount)
             {
                 IndexBufferPtr original = this.indexBufferPtr;
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
-                    mode, BufferUsage.DynamicDraw))
-                {
-                    buffer.Alloc(indexesLength);
-                    this.indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
-                }
+                this.indexBufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, indexesLength);
                 this.maxElementCount = indexesLength;
                 original.Dispose();
             }

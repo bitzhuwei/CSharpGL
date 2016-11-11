@@ -17,26 +17,20 @@ namespace CSharpGL
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Points, BufferUsage.StaticDraw))
+            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Points, IndexElementType.UInt, 4);
+            unsafe
             {
-                buffer.Alloc(4);
-                unsafe
-                {
-                    var array = (uint*)buffer.Header.ToPointer();
-                    array[0] = lastVertexId - 0;
-                    array[1] = lastVertexId - 1;
-                    array[2] = lastVertexId - 2;
-                    array[3] = lastVertexId - 3;
-                }
-
-                indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                array[0] = lastVertexId - 0;
+                array[1] = lastVertexId - 1;
+                array[2] = lastVertexId - 2;
+                array[3] = lastVertexId - 3;
+                bufferPtr.UnmapBuffer();
             }
-
-            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            modernRenderer.Render4InnerPicking(arg, bufferPtr);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            indexBufferPtr.Dispose();
+            bufferPtr.Dispose();
             if (lastVertexId - 3 <= id && id <= lastVertexId - 0)
             { return id; }
             else

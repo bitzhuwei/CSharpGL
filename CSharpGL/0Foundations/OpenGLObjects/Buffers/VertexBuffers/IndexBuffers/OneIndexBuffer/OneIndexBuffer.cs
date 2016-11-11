@@ -3,13 +3,13 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// 用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer&lt;T&gt;"/>里各个顶点的渲染顺序。
+    /// 用于存储索引的VBO。索引指定了<see cref="VertexAttributeBufferPtr"/>里各个顶点的渲染顺序。
     /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
     /// </summary>
     public partial class OneIndexBuffer : IndexBuffer
     {
         /// <summary>
-        /// 用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer&lt;T&gt;"/>里各个顶点的渲染顺序。
+        /// 用于存储索引的VBO。索引指定了<see cref="VertexAttributeBufferPtr"/>里各个顶点的渲染顺序。
         /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="elementType">element type.</param>
@@ -76,24 +76,4 @@ namespace CSharpGL
         }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public enum IndexElementType : uint
-    {
-        /// <summary>
-        /// byte
-        /// </summary>
-        UByte = OpenGL.GL_UNSIGNED_BYTE,
-
-        /// <summary>
-        /// ushort
-        /// </summary>
-        UShort = OpenGL.GL_UNSIGNED_SHORT,
-
-        /// <summary>
-        /// uint
-        /// </summary>
-        UInt = OpenGL.GL_UNSIGNED_INT,
-    }
 }

@@ -21,27 +21,20 @@ namespace CSharpGL
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length != 4) { throw new ArgumentException(); }
 
-            OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Lines, BufferUsage.StaticDraw))
+            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 8);
+            unsafe
             {
-                buffer.Alloc(8);
-                unsafe
-                {
-                    var array = (uint*)buffer.Header.ToPointer();
-
-                    array[0] = indexList[0]; array[1] = indexList[1];
-                    array[2] = indexList[1]; array[3] = indexList[2];
-                    array[4] = indexList[2]; array[5] = indexList[3];
-                    array[6] = indexList[3]; array[7] = indexList[0];
-                }
-
-                indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                array[0] = indexList[0]; array[1] = indexList[1];
+                array[2] = indexList[1]; array[3] = indexList[2];
+                array[4] = indexList[2]; array[5] = indexList[3];
+                array[6] = indexList[3]; array[7] = indexList[0];
+                bufferPtr.UnmapBuffer();
             }
-
-            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            modernRenderer.Render4InnerPicking(arg, bufferPtr);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            indexBufferPtr.Dispose();
+            bufferPtr.Dispose();
 
             if (id == indexList[1])
             { return new uint[] { indexList[0], indexList[1], }; }

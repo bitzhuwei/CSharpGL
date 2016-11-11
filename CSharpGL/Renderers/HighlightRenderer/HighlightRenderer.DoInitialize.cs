@@ -46,13 +46,8 @@ namespace CSharpGL
             // init index buffer
             OneIndexBufferPtr indexBufferPtr;
             {
-                using (var buffer = new OneIndexBuffer(IndexElementType.UInt,
-                     DrawMode.Points, // any mode is OK as we'll update it later in other place.
-                     BufferUsage.DynamicDraw))
-                {
-                    buffer.Alloc(positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
-                    indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
-                }
+                var mode = DrawMode.Points;//any mode is OK as we'll update it later in other place.
+                indexBufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
                 this.maxElementCount = indexBufferPtr.ElementCount;
                 indexBufferPtr.ElementCount = 0;// 高亮0个图元
                 // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.

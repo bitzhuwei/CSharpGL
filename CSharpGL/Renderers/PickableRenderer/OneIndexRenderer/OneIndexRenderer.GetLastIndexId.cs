@@ -109,22 +109,18 @@ namespace CSharpGL
                 + recognizedPrimitiveIndex1.VertexIds.Length)
             { throw new Exception(); }
 
-            using (var indexBuffer = new OneIndexBuffer(IndexElementType.UInt, drawMode, BufferUsage.StaticDraw))
+            oneIndexBufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, drawMode, IndexElementType.UInt,
+                recognizedPrimitiveIndex0.VertexIds.Length
+                + 1
+                + recognizedPrimitiveIndex1.VertexIds.Length);
+            unsafe
             {
-                indexBuffer.Alloc(
-                    recognizedPrimitiveIndex0.VertexIds.Length
-                    + 1
-                    + recognizedPrimitiveIndex1.VertexIds.Length);
-                unsafe
+                var array = (uint*)oneIndexBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                for (int i = 0; i < indexArray.Count; i++)
                 {
-                    var array = (uint*)indexBuffer.Header.ToPointer();
-                    for (int i = 0; i < indexArray.Count; i++)
-                    {
-                        array[i] = indexArray[i];
-                    }
+                    array[i] = indexArray[i];
                 }
-
-                oneIndexBufferPtr = indexBuffer.GetBufferPtr() as OneIndexBufferPtr;
+                oneIndexBufferPtr.UnmapBuffer();
             }
         }
 

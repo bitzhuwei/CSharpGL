@@ -18,27 +18,21 @@ namespace CSharpGL
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             // 创建临时索引
-            OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer(IndexElementType.UInt, DrawMode.Points, BufferUsage.StaticDraw))
+            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Points, IndexElementType.UInt, 3);
+            unsafe
             {
-                buffer.Alloc(3);
-                unsafe
-                {
-                    var array = (uint*)buffer.Header.ToPointer();
-                    array[0] = lastVertexId - 0;
-                    array[1] = lastVertexId - 1;
-                    array[2] = lastVertexId - 2;
-                }
-
-                indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                array[0] = lastVertexId - 0;
+                array[1] = lastVertexId - 1;
+                array[2] = lastVertexId - 2;
+                bufferPtr.UnmapBuffer();
             }
-
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
-            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            modernRenderer.Render4InnerPicking(arg, bufferPtr);
             // id是拾取到的Line的Last Vertex Id
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            indexBufferPtr.Dispose();
+            bufferPtr.Dispose();
 
             // 对比临时索引，找到那个Line
             if (lastVertexId - 2 <= id && id <= lastVertexId - 0)
