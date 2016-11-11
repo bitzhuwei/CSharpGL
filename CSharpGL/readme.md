@@ -3,6 +3,11 @@ CSharpGL wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and of
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.7.3:
+1. redefine `Buffer`: Buffer is buffer, there is no buffer pointer.
+2. `BitmapFilter` supports multiple levels.
+3. fix: `RendererBase.GetModelMatrix()`.
+
 ## v1.0.7.2:
 1. Directly create buffer on server side(GPU).
 2. `ClearBufferData` and `ClearBufferSubData`.
