@@ -108,6 +108,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetOneIndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.GetVertexAttributeBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferHelper.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.ClearBufferData.cs" />
@@ -598,7 +599,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\OneIndexBuffer\OneIndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\IndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\OneIndexBuffer\OneIndexBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\IndexBufferPtr.cs" />
