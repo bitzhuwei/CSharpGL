@@ -19,7 +19,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. `Markable` struct supports timestamp when member is updated.
 3. Cascade model matrix.(`IModelSpace` keeps relative model space to parent node.)
 4. Quick sort algorithm of `UnmanagedArray<T>`.
-5. `VertexAttributeBufferPtr` supports `glVertexAttribPointer`, `glVertexAttribIPointer` and `glVertexAttribLPointer`.
+5. `VertexAttributeBuffer` supports `glVertexAttribPointer`, `glVertexAttribIPointer` and `glVertexAttribLPointer`.
 
 ## v1.0.7.0:
 1. DitherSwitch\LogicOperationSwitch\AlphaFuncSwitch.
@@ -50,12 +50,12 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 1. More switces(DepthMask, ColorMask, StencilMask).
 2. Query object supports conditional rendering.
 3. fix: remove framebuffer object in ColorCodedPicking.
-4. `BufferPtr` supports bind/unbind and abstract Target property.
+4. `Buffer` supports bind/unbind and abstract Target property.
 5. `Renderer` always renders with its own index buffer.
 6. LineStippleSwitch and PolygonStippleSwitch.
 7. Bezier curve rendering with legacy OpenGL.
 8. Color-coded picking intergrated in Scene.
-9. VertexAttributeBufferPtr supports tessellation shaders.
+9. VertexAttributeBuffer supports tessellation shaders.
 10. Remove self defined cursor in scene.
 11. fix: Inner pickable Renderer takes model matrix into consideration when moving vertex's positions.
 12. Remove mat4 MVP in IColorCodedPicking.
@@ -80,7 +80,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 7. Clean code with CodeMaid.
 8. Renderer.SetUniform() throws exception when wrong type of value is fed in.
 9. The ICanvas interface abstracts winform controls.
-10. Add 'bool UsesZeroIndexBufferPtr()' in IBufferable.
+10. Add 'bool UsesZeroIndexBuffer()' in IBufferable.
 11. Bind/Unbind buffer.
 12. Initialize VAO inside Renderer's initializing.
 13. Auto-allocate memory in UnmanagedArray.
@@ -181,8 +181,8 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 9. Camera manipulaters using mouse/keyboard.
 10. Better performance: reading GL_DEPTH_COMPONENT to make sure something is picked.
 11. ChildList<T> represents children in ITreeNode<T>.
-12. IndexBufferPtrEditor displays controller for update parameters for glDrawArrays() or glDrawElements().
-13: Release bind element buffer in OneIndexBufferPtr.
+12. IndexBufferEditor displays controller for update parameters for glDrawArrays() or glDrawElements().
+13: Release bind element buffer in OneIndexBuffer.
 14. Comment debug lines in FontResource.
 15. TextModel allows for updating text property.
 
@@ -259,7 +259,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 ## v1.0.1.0:
 1. Only pickable Renderer check if position buffer's DataSize is 3.
 2. Adjust camera's default settings.
-3. OneIndexBufferPtr can controls the first element to be rendered.
+3. OneIndexBuffer can controls the first element to be rendered.
 
 ## v1.0.0.9:
 1. supports picking of point, line and basic geometry(triangle, quad, polygon) from any kind of OneIndexRenderer or ZeroIndexRenderer.

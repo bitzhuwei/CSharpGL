@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
             this.SideLength = sideLength;
         }
 
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -57,9 +57,9 @@ namespace CSharpGL.Demos
             }
         }
 
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int length = this.SideLength * (this.SideLength - 1) * 2;
                 OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UInt, length);
@@ -85,13 +85,13 @@ namespace CSharpGL.Demos
                     }
                     bufferPtr.UnmapBuffer();
                 }
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

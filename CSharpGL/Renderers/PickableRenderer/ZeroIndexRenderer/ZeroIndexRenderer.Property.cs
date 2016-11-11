@@ -5,6 +5,6 @@
         /// <summary>
         /// 此渲染器的索引Buffer。
         /// </summary>
-        public new ZeroIndexBuffer IndexBufferPtr { get { return this.indexBufferPtr as ZeroIndexBuffer; } }
+        public new ZeroIndexBuffer IndexBuffer { get { return this.indexBuffer as ZeroIndexBuffer; } }
     }
 }

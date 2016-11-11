@@ -23,7 +23,7 @@ namespace CSharpGL
 
             if (geometryType == PickingGeometryType.Point)
             {
-                DrawMode mode = this.indexBufferPtr.Mode;
+                DrawMode mode = this.indexBuffer.Mode;
                 PickingGeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == PickingGeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -45,7 +45,7 @@ namespace CSharpGL
             }
             else if (geometryType == PickingGeometryType.Line)
             {
-                DrawMode mode = this.indexBufferPtr.Mode;
+                DrawMode mode = this.indexBuffer.Mode;
                 PickingGeometryType typeOfMode = mode.ToGeometryType();
                 if (geometryType == typeOfMode)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -62,7 +62,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.indexBufferPtr.Mode;
+                DrawMode mode = this.indexBuffer.Mode;
                 PickingGeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == geometryType)// I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -100,7 +100,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = this.PositionBufferPtr.Length; }
+            if (vertexCount == -1) { vertexCount = this.PositionBuffer.Length; }
 
             uint[] vertexIds; vec3[] positions;
 
@@ -206,10 +206,10 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBufferPtr = this.indexBufferPtr as ZeroIndexBuffer;
-            int first = indexBufferPtr.FirstVertex;
+            var indexBuffer = this.indexBuffer as ZeroIndexBuffer;
+            int first = indexBuffer.FirstVertex;
             if (first < 0) { return false; }
-            int vertexCount = indexBufferPtr.RenderingVertexCount;
+            int vertexCount = indexBuffer.RenderingVertexCount;
             if (vertexCount <= 0) { return false; }
             int last = first + vertexCount - 1;
             switch (mode)
@@ -354,25 +354,25 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
-            var offsets = new int[vertexCount] { (this.PositionBufferPtr.Length - 1) * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength, 0, };
+            var offsets = new int[vertexCount] { (this.PositionBuffer.Length - 1) * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength, 0, };
             vertexIds = new uint[vertexCount];
             positions = new vec3[vertexCount];
-            this.PositionBufferPtr.Bind();
+            this.PositionBuffer.Bind();
             for (int i = 0; i < vertexCount; i++)
             {
-                IntPtr pointer = this.PositionBufferPtr.MapBufferRange(
+                IntPtr pointer = this.PositionBuffer.MapBufferRange(
                     offsets[i],
-                    1 * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
+                    1 * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit, false);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
                     positions[i] = array[0];
                 }
-                this.PositionBufferPtr.UnmapBuffer(false);
-                vertexIds[i] = (uint)offsets[i] / (uint)(this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
+                this.PositionBuffer.UnmapBuffer(false);
+                vertexIds[i] = (uint)offsets[i] / (uint)(this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength);
             }
-            this.PositionBufferPtr.Unbind();
+            this.PositionBuffer.Unbind();
         }
     }
 }

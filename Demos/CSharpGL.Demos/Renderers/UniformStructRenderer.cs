@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
             get { return this.testClearBufferDataOrder; }
             set
             {
-                var bufferPtr = this.Model.GetVertexAttributeBufferPtr(Teapot.strColor, string.Empty);
+                var bufferPtr = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
                 var array = new UnmanagedArray<vec3>(1);
                 // this works slow.
                 array[0] = new vec3(
@@ -103,7 +103,7 @@ namespace CSharpGL.Demos
             get { return this.testClearBufferSubDataOrder; }
             set
             {
-                var bufferPtr = this.Model.GetVertexAttributeBufferPtr(Teapot.strColor, string.Empty);
+                var bufferPtr = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
                 int offset = bufferPtr.ByteLength / 3;
                 int size = bufferPtr.ByteLength * 2 / 3;
                 var array = new UnmanagedArray<vec3>(1);

@@ -58,10 +58,10 @@ namespace CSharpGL
         /// <returns></returns>
         public uint GetVertexCount()
         {
-            VertexAttributeBuffer positionBufferPtr = this.PositionBufferPtr;
-            if (positionBufferPtr == null) { return 0; }
-            int byteLength = positionBufferPtr.ByteLength;
-            int vertexLength = positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength;
+            VertexAttributeBuffer positionBuffer = this.PositionBuffer;
+            if (positionBuffer == null) { return 0; }
+            int byteLength = positionBuffer.ByteLength;
+            int vertexLength = positionBuffer.DataSize * positionBuffer.DataTypeByteLength;
             uint vertexCount = (uint)(byteLength / vertexLength);
             return vertexCount;
         }
@@ -84,8 +84,8 @@ namespace CSharpGL
         /// select a primitive geometry(point, line, triangle, quad, polygon) from points/lines/triangles/quads/polygons in this renderer.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(RenderEventArgs arg, IndexBuffer indexBufferPtr)
+        /// <param name="indexBuffer">indicates the primitive to pick a line from.</param>
+        internal void Render4InnerPicking(RenderEventArgs arg, IndexBuffer indexBuffer)
         {
             arg.UsingViewPort.On();
 
@@ -101,7 +101,7 @@ namespace CSharpGL
             // restore clear color
             OpenGL.glClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            this.Render4Picking(arg, indexBufferPtr);
+            this.Render4Picking(arg, indexBuffer);
 
             OpenGL.Flush();
 
@@ -113,11 +113,11 @@ namespace CSharpGL
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
-            int offset = (int)(firstIndex * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
+            int offset = (int)(firstIndex * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength);
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            IntPtr pointer = this.PositionBufferPtr.MapBufferRange(
+            IntPtr pointer = this.PositionBuffer.MapBufferRange(
                 offset,
-                indexCount * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
+                indexCount * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength,
                 MapBufferRangeAccess.MapReadBit);
             var positions = new vec3[indexCount];
             if (pointer.ToInt32() != 0)
@@ -137,10 +137,10 @@ namespace CSharpGL
                 if (error != ErrorCode.NoError)
                 {
                     throw new Exception(string.Format(
-                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId.ToString()));
+                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBuffer.BufferId.ToString()));
                 }
             }
-            this.PositionBufferPtr.UnmapBuffer();
+            this.PositionBuffer.UnmapBuffer();
 
             return positions;
         }
@@ -149,14 +149,14 @@ namespace CSharpGL
         {
             var positions = new vec3[indexes.Length];
 
-            this.PositionBufferPtr.Bind();
+            this.PositionBuffer.Bind();
             for (int i = 0; i < indexes.Length; i++)
             {
-                int offset = (int)(indexes[i] * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength);
+                int offset = (int)(indexes[i] * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength);
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-                IntPtr pointer = this.PositionBufferPtr.MapBufferRange(
+                IntPtr pointer = this.PositionBuffer.MapBufferRange(
                     offset,
-                    1 * this.PositionBufferPtr.DataSize * this.PositionBufferPtr.DataTypeByteLength,
+                    1 * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit, false);
                 if (pointer.ToInt32() != 0)
                 {
@@ -172,12 +172,12 @@ namespace CSharpGL
                     if (error != ErrorCode.NoError)
                     {
                         Debug.WriteLine(string.Format(
-                            "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBufferPtr.BufferId.ToString()));
+                            "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, this.PositionBuffer.BufferId.ToString()));
                     }
                 }
-                this.PositionBufferPtr.UnmapBuffer(false);
+                this.PositionBuffer.UnmapBuffer(false);
             }
-            this.PositionBufferPtr.Unbind();
+            this.PositionBuffer.Unbind();
 
             return positions;
         }

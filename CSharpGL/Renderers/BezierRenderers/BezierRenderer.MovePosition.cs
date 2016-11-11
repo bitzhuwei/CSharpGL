@@ -41,14 +41,14 @@ namespace CSharpGL
 
         private void UpdateEvaluator()
         {
-            IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
+            IntPtr pointer = this.PositionBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             if (pointer == IntPtr.Zero)// this happens when not glMakeCurrent().
             {
-                //this.PositionBufferPtr.Unbind();
+                //this.PositionBuffer.Unbind();
                 return;
             }
 
-            int length = this.PositionBufferPtr.Length;
+            int length = this.PositionBuffer.Length;
             mat4 modelMatrix = this.GetModelMatrix().Value;
             var array = new UnmanagedArray<vec3>(length);
             unsafe
@@ -62,7 +62,7 @@ namespace CSharpGL
             }
             this.Evaluator.Setup(array);
             array.Dispose();
-            this.PositionBufferPtr.UnmapBuffer();
+            this.PositionBuffer.UnmapBuffer();
         }
     }
 }

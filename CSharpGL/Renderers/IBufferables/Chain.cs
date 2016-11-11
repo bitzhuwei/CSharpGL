@@ -28,13 +28,13 @@ namespace CSharpGL
         ///
         /// </summary>
         public const string position = "position";
-        private VertexAttributeBuffer positionBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
 
         /// <summary>
         ///
         /// </summary>
         public const string color = "color";
-        private VertexAttributeBuffer colorBufferPtr;
+        private VertexAttributeBuffer colorBuffer;
 
         /// <summary>
         ///
@@ -42,11 +42,11 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = model.Positions.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -60,13 +60,13 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == color)
             {
-                if (this.colorBufferPtr == null)
+                if (this.colorBuffer == null)
                 {
                     int length = model.Colors.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -80,9 +80,9 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.colorBufferPtr = bufferPtr;
+                    this.colorBuffer = bufferPtr;
                 }
-                return this.colorBufferPtr;
+                return this.colorBuffer;
             }
             else
             {
@@ -94,19 +94,19 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int vertexCount = this.model.Positions.Length;
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.LineStrip, 0, vertexCount);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

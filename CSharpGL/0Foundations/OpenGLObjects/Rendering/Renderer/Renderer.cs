@@ -15,12 +15,12 @@
         /// <summary>
         /// Vertex attribute buffers.
         /// </summary>
-        protected VertexAttributeBuffer[] vertexAttributeBufferPtrs;
+        protected VertexAttributeBuffer[] vertexAttributeBuffers;
 
         /// <summary>
         ///
         /// </summary>
-        protected IndexBuffer indexBufferPtr;
+        protected IndexBuffer indexBuffer;
 
         /// <summary>
         ///

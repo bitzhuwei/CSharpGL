@@ -15,24 +15,24 @@ namespace CSharpGL
 
             // init vertex attribute buffer objects.
             IBufferable model = this.Model;
-            VertexAttributeBuffer[] vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBuffers;
             {
                 var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBufferPtr(
+                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBuffer(
                         item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     list.Add(bufferPtr);
                 }
-                vertexAttributeBufferPtrs = list.ToArray();
+                vertexAttributeBuffers = list.ToArray();
             }
 
             // init index buffer.
-            IndexBuffer indexBufferPtr = model.GetIndexBufferPtr();
+            IndexBuffer indexBuffer = model.GetIndexBuffer();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = indexBufferPtr as OneIndexBuffer;
+            var ptr = indexBuffer as OneIndexBuffer;
             if (ptr != null)
             {
                 GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr.Type);
@@ -40,13 +40,13 @@ namespace CSharpGL
             }
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, vertexAttributeBufferPtrs);
+            var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
             vertexArrayObject.Initialize(program);
 
             // sets fields.
             this.Program = program;
-            this.vertexAttributeBufferPtrs = vertexAttributeBufferPtrs;
-            this.indexBufferPtr = indexBufferPtr;
+            this.vertexAttributeBuffers = vertexAttributeBuffers;
+            this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
         }
     }

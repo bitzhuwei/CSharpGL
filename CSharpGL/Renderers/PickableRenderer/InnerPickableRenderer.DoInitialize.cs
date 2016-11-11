@@ -10,20 +10,20 @@ namespace CSharpGL
             // init shader program.
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
-            VertexAttributeBuffer positionBufferPtr = null;
+            VertexAttributeBuffer positionBuffer = null;
             IBufferable model = this.Model;
-            VertexAttributeBuffer[] vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBuffers;
             {
                 var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBufferPtr(
+                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBuffer(
                      item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
 
                     if (item.NameInIBufferable == this.PositionNameInIBufferable)
                     {
-                        positionBufferPtr = new VertexAttributeBuffer(
+                        positionBuffer = new VertexAttributeBuffer(
                             "in_Position",// in_Postion same with in the PickingShader.vert shader
                             bufferPtr.BufferId,
                             bufferPtr.Config,
@@ -33,18 +33,18 @@ namespace CSharpGL
                     }
                     list.Add(bufferPtr);
                 }
-                vertexAttributeBufferPtrs = list.ToArray();
+                vertexAttributeBuffers = list.ToArray();
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
-            if (positionBufferPtr == null || positionBufferPtr.Config != VertexAttributeConfig.Vec3)
+            if (positionBuffer == null || positionBuffer.Config != VertexAttributeConfig.Vec3)
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
             // init index buffer.
-            IndexBuffer indexBufferPtr = model.GetIndexBufferPtr();
+            IndexBuffer indexBuffer = model.GetIndexBuffer();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = indexBufferPtr as OneIndexBuffer;
+            var ptr = indexBuffer as OneIndexBuffer;
             if (ptr != null)
             {
                 GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr.Type);
@@ -52,13 +52,13 @@ namespace CSharpGL
             }
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, positionBufferPtr);
+            var vertexArrayObject = new VertexArrayObject(indexBuffer, positionBuffer);
             vertexArrayObject.Initialize(program);
 
             // sets fields.
             this.Program = program;
-            this.vertexAttributeBufferPtrs = new VertexAttributeBuffer[] { positionBufferPtr };
-            this.indexBufferPtr = indexBufferPtr;
+            this.vertexAttributeBuffers = new VertexAttributeBuffer[] { positionBuffer };
+            this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
         }
     }

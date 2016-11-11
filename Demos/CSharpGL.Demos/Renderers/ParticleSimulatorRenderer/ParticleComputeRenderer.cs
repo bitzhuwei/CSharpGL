@@ -15,17 +15,17 @@ namespace CSharpGL.Demos
         private Texture velocityTexture;
 
         //private uint[] attractor_buffer = new uint[1];
-        private IndependentBuffer attractorBufferPtr;
+        private IndependentBuffer attractorBuffer;
 
-        private Buffer positionBufferPtr;
-        private Buffer velocityBufferPtr;
+        private Buffer positionBuffer;
+        private Buffer velocityBuffer;
         private float time = 0;
         private Random random = new Random();
 
-        public ParticleComputeRenderer(Buffer positionBufferPtr, Buffer velocityBufferPtr)
+        public ParticleComputeRenderer(Buffer positionBuffer, Buffer velocityBuffer)
         {
-            this.positionBufferPtr = positionBufferPtr;
-            this.velocityBufferPtr = velocityBufferPtr;
+            this.positionBuffer = positionBuffer;
+            this.velocityBuffer = velocityBuffer;
         }
 
         protected override void DoInitialize()
@@ -36,13 +36,13 @@ namespace CSharpGL.Demos
                 this.computeProgram = shaderCode.CreateProgram();
             }
             {
-                Buffer bufferPtr = this.positionBufferPtr;
+                Buffer bufferPtr = this.positionBuffer;
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.positionTexture = texture;
             }
             {
-                Buffer bufferPtr = this.velocityBufferPtr;
+                Buffer bufferPtr = this.velocityBuffer;
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32F, autoDispose: false);
                 texture.Initialize();
                 this.velocityTexture = texture;
@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
                 bufferPtr.Bind();
                 OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, bufferPtr.BufferId);
                 bufferPtr.Unbind();
-                this.attractorBufferPtr = bufferPtr;
+                this.attractorBuffer = bufferPtr;
 
                 OpenGL.CheckError();
             }
@@ -63,7 +63,7 @@ namespace CSharpGL.Demos
             float deltaTime = (float)random.NextDouble() * 5;
             time += (float)random.NextDouble() * 5;
 
-            IntPtr attractors = this.attractorBufferPtr.MapBufferRange(
+            IntPtr attractors = this.attractorBuffer.MapBufferRange(
                 0, 64 * Marshal.SizeOf(typeof(vec4)),
                 MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
             unsafe
@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
                         ParticleModel.attractor_masses[i]);
                 }
             }
-            this.attractorBufferPtr.UnmapBuffer();
+            this.attractorBuffer.UnmapBuffer();
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
@@ -95,7 +95,7 @@ namespace CSharpGL.Demos
             this.computeProgram.Dispose();
             this.positionTexture.Dispose();
             this.velocityTexture.Dispose();
-            this.attractorBufferPtr.Dispose();
+            this.attractorBuffer.Dispose();
         }
     }
 }

@@ -11,8 +11,8 @@ namespace CSharpGL.Demos
         private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
-        private PixelUnpackBuffer headClearBufferPtr;
-        private AtomicCounterBuffer atomicCountBufferPtr;
+        private PixelUnpackBuffer headClearBuffer;
+        private AtomicCounterBuffer atomicCountBuffer;
         private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
 
@@ -87,12 +87,12 @@ namespace CSharpGL.Demos
                 //    data[0] = 0;
                 //    ptr.ClearBufferData(OpenGL.GL_UNSIGNED_INT, OpenGL.GL_RED, OpenGL.GL_UNSIGNED_INT, data);
                 //}
-                this.headClearBufferPtr = bufferPtr;
+                this.headClearBuffer = bufferPtr;
             }
             // Create the atomic counter buffer
             {
                 AtomicCounterBuffer bufferPtr = AtomicCounterBuffer.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
-                this.atomicCountBufferPtr = bufferPtr;
+                this.atomicCountBuffer = bufferPtr;
             }
             // Bind it to a texture (for use as a TBO)
             {
@@ -103,7 +103,7 @@ namespace CSharpGL.Demos
                 this.linkedListTexture = texture;
             }
             {
-                //TextureBufferPtr bufferPtr = TextureBufferPtr.Create()
+                //TextureBuffer bufferPtr = TextureBuffer.Create()
             }
             {
                 OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
@@ -119,20 +119,20 @@ namespace CSharpGL.Demos
             this.cullFaceSwitch.On();
 
             // Reset atomic counter
-            IntPtr data = this.atomicCountBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+            IntPtr data = this.atomicCountBuffer.MapBuffer(MapBufferAccess.WriteOnly);
             unsafe
             {
                 var array = (uint*)data.ToPointer();
                 array[0] = 0;
             }
-            this.atomicCountBufferPtr.UnmapBuffer();
+            this.atomicCountBuffer.UnmapBuffer();
 
             // Clear head-pointer image
-            this.headClearBufferPtr.Bind();
+            this.headClearBuffer.Bind();
             this.headTexture.Bind();
             OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
             this.headTexture.Unbind();
-            this.headClearBufferPtr.Unbind();
+            this.headClearBuffer.Unbind();
             //
 
             // Bind head-pointer image for read-write
@@ -172,7 +172,7 @@ namespace CSharpGL.Demos
             this.resolve_lists.Dispose();
 
             this.linkedListTexture.Dispose();
-            this.atomicCountBufferPtr.Dispose();
+            this.atomicCountBuffer.Dispose();
             this.headTexture.Dispose();
         }
 

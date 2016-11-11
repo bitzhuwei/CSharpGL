@@ -27,6 +27,6 @@
         /// <summary>
         /// 此渲染器的索引Buffer。
         /// </summary>
-        public new OneIndexBuffer IndexBufferPtr { get { return this.indexBufferPtr as OneIndexBuffer; } }
+        public new OneIndexBuffer IndexBuffer { get { return this.indexBuffer as OneIndexBuffer; } }
     }
 }

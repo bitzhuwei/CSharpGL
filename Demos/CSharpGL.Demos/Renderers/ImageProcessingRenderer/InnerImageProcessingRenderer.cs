@@ -114,15 +114,15 @@ namespace CSharpGL.Demos
         {
             public const string strposition = "position";
             public const string struv = "uv";
-            private VertexAttributeBuffer positionBufferPtr;
-            private VertexAttributeBuffer uvBufferPtr;
-            private IndexBuffer indexBufferPtr;
+            private VertexAttributeBuffer positionBuffer;
+            private VertexAttributeBuffer uvBuffer;
+            private IndexBuffer indexBuffer;
 
-            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strposition)
                 {
-                    if (positionBufferPtr == null)
+                    if (positionBuffer == null)
                     {
                         int length = 4;
                         VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -137,13 +137,13 @@ namespace CSharpGL.Demos
                             bufferPtr.UnmapBuffer();
                         }
 
-                        this.positionBufferPtr = bufferPtr;
+                        this.positionBuffer = bufferPtr;
                     }
-                    return positionBufferPtr;
+                    return positionBuffer;
                 }
                 else if (bufferName == struv)
                 {
-                    if (this.uvBufferPtr == null)
+                    if (this.uvBuffer == null)
                     {
                         int length = 4;
                         VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
@@ -157,22 +157,22 @@ namespace CSharpGL.Demos
                             array[3] = new vec2(1, 0);
                             bufferPtr.UnmapBuffer();
                         }
-                        this.uvBufferPtr = bufferPtr;
+                        this.uvBuffer = bufferPtr;
                     }
-                    return this.uvBufferPtr;
+                    return this.uvBuffer;
                 }
                 else
                 { throw new NotImplementedException(); }
             }
 
-            public IndexBuffer GetIndexBufferPtr()
+            public IndexBuffer GetIndexBuffer()
             {
-                if (this.indexBufferPtr == null)
+                if (this.indexBuffer == null)
                 {
                     ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, 4);
-                    this.indexBufferPtr = bufferPtr;
+                    this.indexBuffer = bufferPtr;
                 }
-                return indexBufferPtr;
+                return indexBuffer;
             }
 
             /// <summary>

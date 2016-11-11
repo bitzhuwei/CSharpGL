@@ -18,7 +18,7 @@ namespace CSharpGL
         public void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
-            IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
+            IntPtr pointer = this.PositionBuffer.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
                 mat4 modelMatrix = this.GetModelMatrix().Value;
@@ -34,7 +34,7 @@ namespace CSharpGL
                         modelViewMatrix, projectionMatrix, viewport);
                 }
             }
-            this.PositionBufferPtr.UnmapBuffer();
+            this.PositionBuffer.UnmapBuffer();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace CSharpGL
         public void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
-            IntPtr pointer = this.PositionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
+            IntPtr pointer = this.PositionBuffer.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
                 mat4 modelMatrix = this.GetModelMatrix().Value;
@@ -65,7 +65,7 @@ namespace CSharpGL
                         modelViewMatrix, projectionMatrix, viewport);
                 }
             }
-            this.PositionBufferPtr.UnmapBuffer();
+            this.PositionBuffer.UnmapBuffer();
         }
     }
 }

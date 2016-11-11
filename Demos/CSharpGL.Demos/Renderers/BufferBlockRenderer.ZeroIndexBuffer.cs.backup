@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
         }
 
         private GroundRenderer groundRenderer;
-        //private ShaderStorageBufferPtr shaderStorageBufferPtr;
+        //private ShaderStorageBuffer shaderStorageBuffer;
         private const int vertexCount = 3;
 
         private BufferBlockRenderer(IBufferable model, ShaderCode[] shaderCodes,
@@ -48,10 +48,10 @@ namespace CSharpGL.Demos
                     array[1] = new vec4(-1, -1, +1, 1);
                     array[2] = new vec4(-1, +1, -1, 1);
                 }
-                var bufferPtr = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                var bufferPtr = buffer.GetBuffer() as ShaderStorageBuffer;
                 bufferPtr.Binding(this.Program, "PositionBuffer", 0);
                 bufferPtr.Unbind();
-                //this.shaderStorageBufferPtr = bufferPtr;
+                //this.shaderStorageBuffer = bufferPtr;
             }
             using (var buffer = new ShaderStorageBuffer<vec4>(BufferUsage.StaticDraw))
             {
@@ -66,10 +66,10 @@ namespace CSharpGL.Demos
                     //array[1] = new vec3(new vec3(1, 1, +1));
                     //array[2] = new vec3(new vec3(0, +1, 0));
                 }
-                var bufferPtr = buffer.GetBufferPtr() as ShaderStorageBufferPtr;
+                var bufferPtr = buffer.GetBuffer() as ShaderStorageBuffer;
                 bufferPtr.Binding(this.Program, "ColorBuffer", 1);
                 bufferPtr.Unbind();
-                //this.shaderStorageBufferPtr = bufferPtr;
+                //this.shaderStorageBuffer = bufferPtr;
             }
 
             this.groundRenderer.Initialize();

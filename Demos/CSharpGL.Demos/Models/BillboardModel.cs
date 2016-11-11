@@ -4,7 +4,7 @@ namespace CSharpGL.Demos
     internal class BillboardModel : IBufferable
     {
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
 
         private static readonly float[] positions =
         {
@@ -14,11 +14,11 @@ namespace CSharpGL.Demos
 		    0.5f,  0.5f, 0.0f,
         };
 
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (positionBufferPtr == null)
+                if (positionBuffer == null)
                 {
                     int length = positions.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
@@ -32,9 +32,9 @@ namespace CSharpGL.Demos
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return positionBufferPtr;
+                return positionBuffer;
             }
             else
             {
@@ -42,19 +42,19 @@ namespace CSharpGL.Demos
             }
         }
 
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int vertexCount = 4;
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, vertexCount);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

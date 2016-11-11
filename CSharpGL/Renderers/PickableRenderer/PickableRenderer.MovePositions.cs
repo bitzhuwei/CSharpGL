@@ -11,7 +11,7 @@ namespace CSharpGL
         /// Position buffer.
         /// </summary>
         [Browsable(false)]
-        public VertexAttributeBuffer PositionBufferPtr { get { return this.innerPickableRenderer.PositionBufferPtr; } }
+        public VertexAttributeBuffer PositionBuffer { get { return this.innerPickableRenderer.PositionBuffer; } }
 
         /// <summary>
         /// Move vertexes' position accroding to difference on screen.

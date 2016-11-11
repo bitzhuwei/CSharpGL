@@ -27,9 +27,9 @@ namespace CSharpGL
         /// </summary>
         public const string strTexCoord = "texCoord";
 
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer uvBufferPtr;
-        private IndexBuffer indexBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer uvBuffer;
+        private IndexBuffer indexBuffer;
 
         /// <summary>
         ///
@@ -37,11 +37,11 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = model.positions.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -55,13 +55,13 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == strTexCoord)
             {
-                if (this.uvBufferPtr == null)
+                if (this.uvBuffer == null)
                 {
                     int length = model.texCoords.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
@@ -75,9 +75,9 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.uvBufferPtr = bufferPtr;
+                    this.uvBuffer = bufferPtr;
                 }
-                return this.uvBufferPtr;
+                return this.uvBuffer;
             }
             else
             {
@@ -89,16 +89,16 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int vertexCount = this.model.positions.Length;
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(this.model.GetDrawModel(), 0, vertexCount);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
         /// <summary>

@@ -177,22 +177,22 @@ namespace CSharpGL.Demos
                 {
                     var frm = new FormProperyGrid(geometry.FromRenderer);
                     frm.Show();
-                    var frmIndexBufferPtrBoard = new FormIndexBufferBoard();
+                    var frmIndexBufferBoard = new FormIndexBufferBoard();
                     HighlightedPickableRenderer renderer = this.highlightedRenderer;
                     if (renderer != null)
                     {
-                        frmIndexBufferPtrBoard.SetTarget(renderer.PickableRenderer.IndexBufferPtr);
+                        frmIndexBufferBoard.SetTarget(renderer.PickableRenderer.IndexBuffer);
                     }
                     else
                     {
                         var tmp = geometry.FromRenderer as PickableRenderer;
                         if (tmp != null)
                         {
-                            frmIndexBufferPtrBoard.SetTarget(tmp.IndexBufferPtr);
-                            //frmIndexBufferPtrBoard.SetTarget((geometry.From as PickableRenderer).IndexBufferPtr);
+                            frmIndexBufferBoard.SetTarget(tmp.IndexBuffer);
+                            //frmIndexBufferBoard.SetTarget((geometry.From as PickableRenderer).IndexBuffer);
                         }
                     }
-                    frmIndexBufferPtrBoard.Show();
+                    frmIndexBufferBoard.Show();
                 }
                 {
                     HighlightedPickableRenderer renderer = this.highlightedRenderer;

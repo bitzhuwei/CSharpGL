@@ -10,7 +10,7 @@
         /// </summary>
         protected string positionNameInIBufferable;
 
-        internal VertexAttributeBuffer positionBufferPtr;
+        internal VertexAttributeBuffer positionBuffer;
 
         /// <summary>
         /// 高亮显示指定的图元。
@@ -41,8 +41,8 @@
         /// <returns></returns>
         public override string ToString()
         {
-            var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
-            return string.Format("{0} highlighting: {1} vertexes.", base.ToString(), indexBufferPtr.ElementCount);
+            var indexBuffer = this.indexBuffer as OneIndexBuffer;
+            return string.Format("{0} highlighting: {1} vertexes.", base.ToString(), indexBuffer.ElementCount);
         }
     }
 }

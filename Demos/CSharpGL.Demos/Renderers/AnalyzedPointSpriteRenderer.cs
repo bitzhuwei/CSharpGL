@@ -52,17 +52,17 @@ namespace CSharpGL.Demos
             }
 
             public const string strPosition = "position";
-            private VertexAttributeBuffer positionBufferPtr = null;
-            private IndexBuffer indexBufferPtr;
+            private VertexAttributeBuffer positionBuffer = null;
+            private IndexBuffer indexBuffer;
             private int particleCount;
             private Random random = new Random();
             private const float a = 5, b = 4, c = 3;
 
-            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
-                    if (this.positionBufferPtr == null)
+                    if (this.positionBuffer == null)
                     {
                         int length = particleCount;
                         VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -82,10 +82,10 @@ namespace CSharpGL.Demos
                             bufferPtr.UnmapBuffer();
                         }
 
-                        this.positionBufferPtr = bufferPtr;
+                        this.positionBuffer = bufferPtr;
                     }
 
-                    return this.positionBufferPtr;
+                    return this.positionBuffer;
                 }
                 else
                 {
@@ -93,15 +93,15 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBuffer GetIndexBufferPtr()
+            public IndexBuffer GetIndexBuffer()
             {
-                if (this.indexBufferPtr == null)
+                if (this.indexBuffer == null)
                 {
                     ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, particleCount);
-                    this.indexBufferPtr = bufferPtr;
+                    this.indexBuffer = bufferPtr;
                 }
 
-                return indexBufferPtr;
+                return indexBuffer;
             }
 
             /// <summary>

@@ -12,7 +12,7 @@
             {
                 vao.Dispose();
             }
-            VertexAttributeBuffer[] vbos = this.vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vbos = this.vertexAttributeBuffers;
             if (vbos != null)
             {
                 foreach (VertexAttributeBuffer item in vbos)
@@ -20,10 +20,10 @@
                     item.Dispose();
                 }
             }
-            IndexBuffer indexBufferPtr = this.indexBufferPtr;
-            if (indexBufferPtr != null)
+            IndexBuffer indexBuffer = this.indexBuffer;
+            if (indexBuffer != null)
             {
-                indexBufferPtr.Dispose();
+                indexBuffer.Dispose();
             }
             ShaderProgram program = this.Program;
             if (program != null)

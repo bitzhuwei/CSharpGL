@@ -23,8 +23,8 @@ namespace CSharpGL
         {
             if (string.IsNullOrEmpty(content))
             {
-                if (this.indexBufferPtr != null)
-                { this.indexBufferPtr.RenderingVertexCount = 0; }
+                if (this.indexBuffer != null)
+                { this.indexBuffer.RenderingVertexCount = 0; }
                 this.content = string.Empty;
                 return;
             }
@@ -38,13 +38,13 @@ namespace CSharpGL
 
             SetupGlyphPositions(content, fontTextureService);
             SetupGlyphTexCoord(content, fontTextureService);
-            this.indexBufferPtr.RenderingVertexCount = count * 4;
+            this.indexBuffer.RenderingVertexCount = count * 4;
         }
 
         unsafe private void SetupGlyphTexCoord(string content, IFontTexture fontTexture)
         {
             FullDictionary<char, GlyphInfo> charInfoDict = fontTexture.GlyphInfoDictionary;
-            IntPtr pointer = this.uvBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+            IntPtr pointer = this.uvBuffer.MapBuffer(MapBufferAccess.WriteOnly);
             var array = (TextModel.GlyphTexCoord*)pointer.ToPointer();
             int width = fontTexture.TextureSize.Width;
             int height = fontTexture.TextureSize.Height;
@@ -73,13 +73,13 @@ namespace CSharpGL
                     new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset) / (float)height)
                     );
             }
-            this.uvBufferPtr.UnmapBuffer();
+            this.uvBuffer.UnmapBuffer();
         }
 
         unsafe private void SetupGlyphPositions(string content, IFontTexture fontTexture)
         {
             FullDictionary<char, GlyphInfo> charInfoDict = fontTexture.GlyphInfoDictionary;
-            IntPtr pointer = this.positionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
+            IntPtr pointer = this.positionBuffer.MapBuffer(MapBufferAccess.ReadWrite);
             var array = (TextModel.GlyphPosition*)pointer.ToPointer();
             float currentWidth = 0; int currentHeight = 0;
             /*
@@ -130,7 +130,7 @@ namespace CSharpGL
                 position.rightDown.y /= (currentHeight + fontTexture.GlyphHeight);
                 array[i] = position;
             }
-            this.positionBufferPtr.UnmapBuffer();
+            this.positionBuffer.UnmapBuffer();
         }
     }
 }

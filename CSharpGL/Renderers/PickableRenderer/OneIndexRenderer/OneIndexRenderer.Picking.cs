@@ -34,7 +34,7 @@ namespace CSharpGL
             }
 
             PickingGeometryType geometryType = arg.PickingGeometryType;
-            DrawMode mode = this.indexBufferPtr.Mode;
+            DrawMode mode = this.indexBuffer.Mode;
             PickingGeometryType typeOfMode = mode.ToGeometryType();
 
             if (geometryType == PickingGeometryType.Point)
@@ -188,14 +188,14 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="twoPrimitivesIndexBufferPtr"></param>
+        /// <param name="twoPrimitivesIndexBuffer"></param>
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        private uint Pick(RenderEventArgs arg, OneIndexBuffer twoPrimitivesIndexBufferPtr,
+        private uint Pick(RenderEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer,
             int x, int y)
         {
-            Render4InnerPicking(arg, twoPrimitivesIndexBufferPtr);
+            Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
             uint pickedIndex = ColorCodedPicking.ReadStageVertexId(x, y);
 
@@ -205,7 +205,7 @@ namespace CSharpGL
         /// <summary>
         /// 遍历以<paramref name="lastVertexId"/>为最后一个顶点的图元，
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
-        /// 将此索引在<see cref="IndexBufferPtr"/>中的索引（位置）收集起来。
+        /// 将此索引在<see cref="IndexBuffer"/>中的索引（位置）收集起来。
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
@@ -214,18 +214,18 @@ namespace CSharpGL
         {
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.PickingGeometryType == PickingGeometryType.Point
-                && this.indexBufferPtr.Mode.ToGeometryType() == PickingGeometryType.Line) ?
-                DrawMode.Points : this.indexBufferPtr.Mode);
+                && this.indexBuffer.Mode.ToGeometryType() == PickingGeometryType.Line) ?
+                DrawMode.Points : this.indexBuffer.Mode);
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 
-            var bufferPtr = this.indexBufferPtr as OneIndexBuffer;
+            var bufferPtr = this.indexBuffer as OneIndexBuffer;
             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glSwitch == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBuffer); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBuffer, glSwitch.RestartIndex); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer, glSwitch.RestartIndex); }
             bufferPtr.UnmapBuffer();
 
             return primitiveInfoList;

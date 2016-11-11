@@ -10,7 +10,7 @@ namespace CSharpGL
         /// <summary>
         /// 在所有可能的图元（lastVertexId匹配）中，
         /// 逐个测试，找到最接近摄像机的那个图元，
-        /// 返回此图元的最后一个索引在<see cref="IndexBufferPtr"/>中的索引（位置）。
+        /// 返回此图元的最后一个索引在<see cref="IndexBuffer"/>中的索引（位置）。
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="primitiveInfoList"></param>
@@ -37,12 +37,12 @@ namespace CSharpGL
 #endif
             for (int i = 1; i < primitiveInfoList.Count; i++)
             {
-                OneIndexBuffer twoPrimitivesIndexBufferPtr;
+                OneIndexBuffer twoPrimitivesIndexBuffer;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
-                    primitiveInfoList[current], primitiveInfoList[i], this.indexBufferPtr.Mode,
-                    out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
-                uint pickedIndex = Pick(arg, twoPrimitivesIndexBufferPtr,
+                    primitiveInfoList[current], primitiveInfoList[i], this.indexBuffer.Mode,
+                    out twoPrimitivesIndexBuffer, out lastIndex0, out lastIndex1);
+                uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer,
                     x, y);
                 if (pickedIndex == lastIndex1)
                 { current = i; }
@@ -90,14 +90,14 @@ namespace CSharpGL
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>
         /// <param name="drawMode"></param>
-        /// <param name="oneIndexBufferPtr"></param>
+        /// <param name="oneIndexBuffer"></param>
         /// <param name="lastIndex0"></param>
         /// <param name="lastIndex1"></param>
         private void AssembleIndexBuffer(
             RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
             RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
             DrawMode drawMode,
-            out OneIndexBuffer oneIndexBufferPtr,
+            out OneIndexBuffer oneIndexBuffer,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> indexArray = ArrangeIndexes(
@@ -109,18 +109,18 @@ namespace CSharpGL
                 + recognizedPrimitiveIndex1.VertexIds.Length)
             { throw new Exception(); }
 
-            oneIndexBufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, drawMode, IndexElementType.UInt,
+            oneIndexBuffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, drawMode, IndexElementType.UInt,
                 recognizedPrimitiveIndex0.VertexIds.Length
                 + 1
                 + recognizedPrimitiveIndex1.VertexIds.Length);
             unsafe
             {
-                var array = (uint*)oneIndexBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (uint*)oneIndexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
                 for (int i = 0; i < indexArray.Count; i++)
                 {
                     array[i] = indexArray[i];
                 }
-                oneIndexBufferPtr.UnmapBuffer();
+                oneIndexBuffer.UnmapBuffer();
             }
         }
 

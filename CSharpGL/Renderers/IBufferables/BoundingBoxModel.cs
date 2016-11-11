@@ -54,8 +54,8 @@ namespace CSharpGL
         /// </summary>
         public const string strPosition = "position";
 
-        private VertexAttributeBuffer positionBufferPtr = null;
-        private IndexBuffer indexBufferPtr = null;
+        private VertexAttributeBuffer positionBuffer = null;
+        private IndexBuffer indexBuffer = null;
         private vec3 lengths;
 
         /// <summary>
@@ -73,11 +73,11 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = positions.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -91,9 +91,9 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else
             {
@@ -105,9 +105,9 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int length = indexes.Length;
                 OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Quads, IndexElementType.UByte, length);
@@ -121,10 +121,10 @@ namespace CSharpGL
                     }
                     bufferPtr.UnmapBuffer();
                 }
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
         /// <summary>

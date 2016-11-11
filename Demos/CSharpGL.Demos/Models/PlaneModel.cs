@@ -24,19 +24,19 @@ namespace CSharpGL.Demos
         }
 
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
         public const string strNormal = "normal";
-        private VertexAttributeBuffer normalBufferPtr;
+        private VertexAttributeBuffer normalBuffer;
         public const string strTangent = "tangent";
-        private VertexAttributeBuffer tangentBufferPtr;
+        private VertexAttributeBuffer tangentBuffer;
         public const string strTexCoord = "texCoord";
-        private VertexAttributeBuffer texCoordBufferPtr;
+        private VertexAttributeBuffer texCoordBuffer;
 
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = xy_vertices.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw, varNameInShader);
@@ -50,13 +50,13 @@ namespace CSharpGL.Demos
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == strNormal)
             {
-                if (this.normalBufferPtr == null)
+                if (this.normalBuffer == null)
                 {
                     int length = xy_normals.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -70,13 +70,13 @@ namespace CSharpGL.Demos
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.normalBufferPtr = bufferPtr;
+                    this.normalBuffer = bufferPtr;
                 }
-                return this.normalBufferPtr;
+                return this.normalBuffer;
             }
             else if (bufferName == strTangent)
             {
-                if (this.tangentBufferPtr == null)
+                if (this.tangentBuffer == null)
                 {
                     int length = xy_tangents.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -90,13 +90,13 @@ namespace CSharpGL.Demos
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.tangentBufferPtr = bufferPtr;
+                    this.tangentBuffer = bufferPtr;
                 }
-                return this.tangentBufferPtr;
+                return this.tangentBuffer;
             }
             else if (bufferName == strTexCoord)
             {
-                if (this.texCoordBufferPtr == null)
+                if (this.texCoordBuffer == null)
                 {
                     int length = xy_texCoords.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
@@ -110,9 +110,9 @@ namespace CSharpGL.Demos
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.texCoordBufferPtr = bufferPtr;
+                    this.texCoordBuffer = bufferPtr;
                 }
-                return this.texCoordBufferPtr;
+                return this.texCoordBuffer;
             }
             else
             {
@@ -120,9 +120,9 @@ namespace CSharpGL.Demos
             }
         }
 
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int length = xy_indices.Length;
                 OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, length);
@@ -136,13 +136,13 @@ namespace CSharpGL.Demos
                     }
                     bufferPtr.UnmapBuffer();
                 }
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

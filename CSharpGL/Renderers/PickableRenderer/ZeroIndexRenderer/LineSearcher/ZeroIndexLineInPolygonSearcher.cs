@@ -15,17 +15,17 @@
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            ZeroIndexBuffer zeroIndexBufferPtr = modernRenderer.IndexBufferPtr;
+            ZeroIndexBuffer zeroIndexBuffer = modernRenderer.IndexBuffer;
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
-            ZeroIndexBuffer indexBufferPtr = ZeroIndexBuffer.Create(DrawMode.LineLoop, zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.RenderingVertexCount, zeroIndexBufferPtr.PrimCount);
-            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.LineLoop, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.PrimCount);
+            modernRenderer.Render4InnerPicking(arg, indexBuffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            indexBufferPtr.Dispose();
+            indexBuffer.Dispose();
 
-            if (id == zeroIndexBufferPtr.FirstVertex)
-            { return new uint[] { (uint)(zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.RenderingVertexCount - 1), id, }; }
+            if (id == zeroIndexBuffer.FirstVertex)
+            { return new uint[] { (uint)(zeroIndexBuffer.FirstVertex + zeroIndexBuffer.RenderingVertexCount - 1), id, }; }
             else
             { return new uint[] { id - 1, id, }; }
         }

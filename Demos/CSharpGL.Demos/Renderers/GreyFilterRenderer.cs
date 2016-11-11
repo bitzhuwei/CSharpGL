@@ -76,16 +76,16 @@ namespace CSharpGL.Demos
             private static vec2[] texCoords = new vec2[] { new vec2(0, 0), new vec2(1, 0), new vec2(0, 1), new vec2(1, 1), };
 
             public const string strPosition = "position";
-            private VertexAttributeBuffer positionBufferPtr = null;
+            private VertexAttributeBuffer positionBuffer = null;
             public const string strTexCoord = "texCoord";
-            private VertexAttributeBuffer texCoordBufferPtr = null;
-            private IndexBuffer indexBufferPtr;
+            private VertexAttributeBuffer texCoordBuffer = null;
+            private IndexBuffer indexBuffer;
 
-            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
-                    if (this.positionBufferPtr == null)
+                    if (this.positionBuffer == null)
                     {
                         int length = positions.Length;
                         VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -100,14 +100,14 @@ namespace CSharpGL.Demos
                             bufferPtr.UnmapBuffer();
                         }
 
-                        this.positionBufferPtr = bufferPtr;
+                        this.positionBuffer = bufferPtr;
                     }
 
-                    return this.positionBufferPtr;
+                    return this.positionBuffer;
                 }
                 else if (bufferName == strTexCoord)
                 {
-                    if (this.texCoordBufferPtr == null)
+                    if (this.texCoordBuffer == null)
                     {
                         int length = texCoords.Length;
                         VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
@@ -122,10 +122,10 @@ namespace CSharpGL.Demos
                             bufferPtr.UnmapBuffer();
                         }
 
-                        this.texCoordBufferPtr = bufferPtr;
+                        this.texCoordBuffer = bufferPtr;
                     }
 
-                    return this.texCoordBufferPtr;
+                    return this.texCoordBuffer;
                 }
                 else
                 {
@@ -133,15 +133,15 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBuffer GetIndexBufferPtr()
+            public IndexBuffer GetIndexBuffer()
             {
-                if (this.indexBufferPtr == null)
+                if (this.indexBuffer == null)
                 {
                     ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, 4);
-                    this.indexBufferPtr = bufferPtr;
+                    this.indexBuffer = bufferPtr;
                 }
 
-                return this.indexBufferPtr;
+                return this.indexBuffer;
             }
 
             /// <summary>

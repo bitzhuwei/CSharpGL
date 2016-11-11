@@ -130,7 +130,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 
 <div class="cnblogs_code">
 <pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">const</span> <span style="color: #0000ff;">string</span> strPosition = <span style="color: #800000;">"</span><span style="color: #800000;">position</span><span style="color: #800000;">"</span>;<span style="color: #008000;">//</span><span style="color: #008000;"> buffer name.</span>
-<span style="color: #008080;"> 2</span>         <span style="color: #0000ff;">private</span> VertexAttributeBufferPtr positionBufferPtr = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+<span style="color: #008080;"> 2</span>         <span style="color: #0000ff;">private</span> VertexAttributeBuffer positionBuffer = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
 </span><span style="color: #008080;"> 3</span> 
 <span style="color: #008080;"> 4</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
 <span style="color: #008080;"> 5</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 获取指定的顶点属性缓存。
@@ -139,15 +139,15 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 <span style="color: #008080;"> 8</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="bufferName"&gt;</span><span style="color: #008000;">buffer name(Gets this name from 'strPosition' etc.</span><span style="color: #808080;">&lt;/param&gt;</span>
 <span style="color: #008080;"> 9</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="varNameInShader"&gt;</span><span style="color: #008000;">name in vertex shader like `in vec3 in_Position;`.</span><span style="color: #808080;">&lt;/param&gt;</span>
 <span style="color: #008080;">10</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">Vertex Buffer Object.</span><span style="color: #808080;">&lt;/returns&gt;</span>
-<span style="color: #008080;">11</span>         VertexAttributeBufferPtr IBufferable.GetVertexAttributeBufferPtr(<span style="color: #0000ff;">string</span> bufferName, <span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
+<span style="color: #008080;">11</span>         VertexAttributeBuffer IBufferable.GetVertexAttributeBuffer(<span style="color: #0000ff;">string</span> bufferName, <span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
 </span><span style="color: #008080;">12</span> <span style="color: #000000;">        {
 </span><span style="color: #008080;">13</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> &hellip;</span>
 <span style="color: #008080;">14</span> <span style="color: #000000;">        }
 </span><span style="color: #008080;">15</span> 
-<span style="color: #008080;">16</span>         <span style="color: #0000ff;">private</span> IndexBufferPtr indexBufferPtr = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+<span style="color: #008080;">16</span>         <span style="color: #0000ff;">private</span> IndexBuffer indexBuffer = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
 </span><span style="color: #008080;">17</span> 
 <span style="color: #008080;">18</span> 
-<span style="color: #008080;">19</span> <span style="color: #000000;">        IndexBufferPtr IBufferable.GetIndexBufferPtr()
+<span style="color: #008080;">19</span> <span style="color: #000000;">        IndexBuffer IBufferable.GetIndexBuffer()
 </span><span style="color: #008080;">20</span> <span style="color: #000000;">        {
 </span><span style="color: #008080;">21</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> &hellip;</span>
 <span style="color: #008080;">22</span> <span style="color: #000000;">        }
@@ -165,18 +165,18 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 
 为了简单，本例中的Klein Bottle，我们只给它一条顶点属性，即必不可少的位置。等学会了这个，今后再加其他的属性（颜色、法线等等）就可以触类旁通了。
 
-提供顶点属性缓存的是`IBufferable.GetVertexAttributeBufferPtr (string bufferName, string varNameInShader);`这个方法。根据`bufferName`，这个方法提供用户需要的缓存对象。下面就是实现这个方法的框架结构。
+提供顶点属性缓存的是`IBufferable.GetVertexAttributeBuffer (string bufferName, string varNameInShader);`这个方法。根据`bufferName`，这个方法提供用户需要的缓存对象。下面就是实现这个方法的框架结构。
 
 <div class="cnblogs_code">
-<pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">public</span> VertexAttributeBufferPtr GetVertexAttributeBufferPtr(<span style="color: #0000ff;">string</span> bufferName, <span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">public</span> VertexAttributeBuffer GetVertexAttributeBuffer(<span style="color: #0000ff;">string</span> bufferName, <span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
 </span><span style="color: #008080;"> 2</span> <span style="color: #000000;">        {
 </span><span style="color: #008080;"> 3</span>             <span style="color: #0000ff;">if</span> (bufferName ==<span style="color: #000000;"> KleinBottleModel.strPosition)
 </span><span style="color: #008080;"> 4</span> <span style="color: #000000;">            {
-</span><span style="color: #008080;"> 5</span>                 <span style="color: #0000ff;">if</span> (<span style="color: #0000ff;">this</span>.positionBufferPtr == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;"> 5</span>                 <span style="color: #0000ff;">if</span> (<span style="color: #0000ff;">this</span>.positionBuffer == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
 </span><span style="color: #008080;"> 6</span> <span style="color: #000000;">                {
-</span><span style="color: #008080;"> 7</span>                     <span style="color: #0000ff;">this</span>.positionBufferPtr =<span style="color: #000000;"> GetPositionBufferPtr(varNameInShader);
+</span><span style="color: #008080;"> 7</span>                     <span style="color: #0000ff;">this</span>.positionBuffer =<span style="color: #000000;"> GetPositionBuffer(varNameInShader);
 </span><span style="color: #008080;"> 8</span> <span style="color: #000000;">                }
-</span><span style="color: #008080;"> 9</span>                 <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span><span style="color: #000000;">.positionBufferPtr;
+</span><span style="color: #008080;"> 9</span>                 <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span><span style="color: #000000;">.positionBuffer;
 </span><span style="color: #008080;">10</span> <span style="color: #000000;">            }
 </span><span style="color: #008080;">11</span>             <span style="color: #0000ff;">else</span>
 <span style="color: #008080;">12</span> <span style="color: #000000;">            {
@@ -191,9 +191,9 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 
 <div class="cnblogs_code" onclick="cnblogs_code_show('dec3a89c-81f9-466c-9f71-ef3c4a7f69e6')">![](http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif)![](http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif)
 <div id="cnblogs_code_open_dec3a89c-81f9-466c-9f71-ef3c4a7f69e6" class="cnblogs_code_hide">
-<pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">private</span> VertexAttributeBufferPtr GetPositionBufferPtr(<span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">private</span> VertexAttributeBuffer GetPositionBuffer(<span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
 </span><span style="color: #008080;"> 2</span> <span style="color: #000000;">        {
-</span><span style="color: #008080;"> 3</span> VertexAttributeBufferPtr positionBufferPtr = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 3</span> VertexAttributeBuffer positionBuffer = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
 </span><span style="color: #008080;"> 4</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 在CPU端创建缓存buffer，buffer实际上是一个数组，数组元素的类型为vec3。</span>
 <span style="color: #008080;"> 5</span>             <span style="color: #0000ff;">using</span> (<span style="color: #0000ff;">var</span> buffer = <span style="color: #0000ff;">new</span> VertexAttributeBuffer&lt;vec3&gt;<span style="color: #000000;">(
 </span><span style="color: #008080;"> 6</span> <span style="color: #000000;">                varNameInShader, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw))
@@ -219,14 +219,14 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </span><span style="color: #008080;">26</span> <span style="color: #000000;">                    }
 </span><span style="color: #008080;">27</span> <span style="color: #000000;">                }
 </span><span style="color: #008080;">28</span> 
-<span style="color: #008080;">29</span>                 <span style="color: #008000;">//</span><span style="color: #008000;"> GetBufferPtr()将CPU端的数组上传到GPU端，GPU返回此buffer的指针，将此指针及其相关数据封装起来，就成为了我们需要的位置缓存对象。</span>
-<span style="color: #008080;">30</span>                 positionBufferPtr =<span style="color: #000000;"> buffer.GetBufferPtr();
+<span style="color: #008080;">29</span>                 <span style="color: #008000;">//</span><span style="color: #008000;"> GetBuffer()将CPU端的数组上传到GPU端，GPU返回此buffer的指针，将此指针及其相关数据封装起来，就成为了我们需要的位置缓存对象。</span>
+<span style="color: #008080;">30</span>                 positionBuffer =<span style="color: #000000;"> buffer.GetBuffer();
 </span><span style="color: #008080;">31</span>             }<span style="color: #008000;">//</span><span style="color: #008000;"> using(){} 结束，CPU端的非托管数组空间被释放。即CPU端不再需要保持buffer了。</span>
 <span style="color: #008080;">32</span> 
-<span style="color: #008080;">33</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> positionBufferPtr;
+<span style="color: #008080;">33</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> positionBuffer;
 </span><span style="color: #008080;">34</span>         }</pre>
 </div>
-<span class="cnblogs_code_collapse">VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)</span></div>
+<span class="cnblogs_code_collapse">VertexAttributeBuffer GetPositionBuffer(string varNameInShader)</span></div>
 
 &nbsp;
 
@@ -235,21 +235,21 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 每个渲染器(Renderer)都需要一个索引缓存。索引缓存告诉GPU，顶点属性缓存里的数据是按怎样的顺序依次渲染的。本例用最简单的索引缓存`ZeroIndexBuffer`。`ZeroIndexBuffer`用`glDrawArrays()`这个OpenGL指令来渲染。
 
 <div class="cnblogs_code">
-<pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">private</span> IndexBufferPtr indexBufferPtr = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #0000ff;">private</span> IndexBuffer indexBuffer = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
 </span><span style="color: #008080;"> 2</span> 
-<span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">public</span><span style="color: #000000;"> IndexBufferPtr GetIndexBufferPtr()
+<span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">public</span><span style="color: #000000;"> IndexBuffer GetIndexBuffer()
 </span><span style="color: #008080;"> 4</span> <span style="color: #000000;">        {
-</span><span style="color: #008080;"> 5</span>             <span style="color: #0000ff;">if</span> (indexBufferPtr == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;"> 5</span>             <span style="color: #0000ff;">if</span> (indexBuffer == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
 </span><span style="color: #008080;"> 6</span> <span style="color: #000000;">            {
 </span><span style="color: #008080;"> 7</span>                 <span style="color: #0000ff;">int</span> uCount =<span style="color: #000000;"> GetUCount(interval);
 </span><span style="color: #008080;"> 8</span>                 <span style="color: #0000ff;">int</span> vCount =<span style="color: #000000;"> GetVCount(interval);
 </span><span style="color: #008080;"> 9</span>                 <span style="color: #0000ff;">using</span> (<span style="color: #0000ff;">var</span> buffer = <span style="color: #0000ff;">new</span> ZeroIndexBuffer(DrawMode.Points, <span style="color: #800080;">0</span>, uCount *<span style="color: #000000;"> vCount))
 </span><span style="color: #008080;">10</span> <span style="color: #000000;">                {
-</span><span style="color: #008080;">11</span>                     indexBufferPtr =<span style="color: #000000;"> buffer.GetBufferPtr();
+</span><span style="color: #008080;">11</span>                     indexBuffer =<span style="color: #000000;"> buffer.GetBuffer();
 </span><span style="color: #008080;">12</span> <span style="color: #000000;">                }
 </span><span style="color: #008080;">13</span> <span style="color: #000000;">            }
 </span><span style="color: #008080;">14</span> 
-<span style="color: #008080;">15</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> indexBufferPtr;
+<span style="color: #008080;">15</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> indexBuffer;
 </span><span style="color: #008080;">16</span>         }</pre>
 </div>
 

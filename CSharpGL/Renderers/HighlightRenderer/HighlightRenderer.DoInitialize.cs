@@ -19,19 +19,19 @@ namespace CSharpGL
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
             // init property buffer objects.
-            VertexAttributeBuffer positionBufferPtr = null;
+            VertexAttributeBuffer positionBuffer = null;
             IBufferable model = this.Model;
-            VertexAttributeBuffer[] vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBuffers;
             {
                 var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBufferPtr(
+                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBuffer(
                                item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     if (item.NameInIBufferable == positionNameInIBufferable)
                     {
-                        positionBufferPtr = new VertexAttributeBuffer(
+                        positionBuffer = new VertexAttributeBuffer(
                             "in_Position",// in_Postion same with in the PickingShader.vert shader
                             bufferPtr.BufferId,
                             bufferPtr.Config,
@@ -40,32 +40,32 @@ namespace CSharpGL
                     }
                     list.Add(bufferPtr);
                 }
-                vertexAttributeBufferPtrs = list.ToArray();
+                vertexAttributeBuffers = list.ToArray();
             }
 
             // init index buffer
-            OneIndexBuffer indexBufferPtr;
+            OneIndexBuffer indexBuffer;
             {
                 var mode = DrawMode.Points;//any mode is OK as we'll update it later in other place.
-                indexBufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
-                this.maxElementCount = indexBufferPtr.ElementCount;
-                indexBufferPtr.ElementCount = 0;// 高亮0个图元
+                indexBuffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, positionBuffer.ByteLength / (positionBuffer.DataSize * positionBuffer.DataTypeByteLength));
+                this.maxElementCount = indexBuffer.ElementCount;
+                indexBuffer.ElementCount = 0;// 高亮0个图元
                 // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-                GLSwitch glSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type);
+                GLSwitch glSwitch = new PrimitiveRestartSwitch(indexBuffer.Type);
                 this.switchList.Add(glSwitch);
             }
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBufferPtr, vertexAttributeBufferPtrs);
+            var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
             vertexArrayObject.Initialize(program);
 
             // sets fields.
             this.Program = program;
-            this.vertexAttributeBufferPtrs = vertexAttributeBufferPtrs;
-            this.indexBufferPtr = indexBufferPtr;
+            this.vertexAttributeBuffers = vertexAttributeBuffers;
+            this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
 
-            this.positionBufferPtr = positionBufferPtr;
+            this.positionBuffer = positionBuffer;
         }
     }
 }

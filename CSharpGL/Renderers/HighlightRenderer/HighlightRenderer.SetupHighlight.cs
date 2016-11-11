@@ -9,8 +9,8 @@ namespace CSharpGL
         /// </summary>
         public void ClearHighlightIndexes()
         {
-            var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
-            indexBufferPtr.ElementCount = 0;
+            var indexBuffer = this.indexBuffer as OneIndexBuffer;
+            indexBuffer.ElementCount = 0;
         }
 
         /// <summary>
@@ -23,14 +23,14 @@ namespace CSharpGL
             int indexesLength = indexes.Length;
             if (indexesLength > this.maxElementCount)
             {
-                IndexBuffer original = this.indexBufferPtr;
-                this.indexBufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, indexesLength);
+                IndexBuffer original = this.indexBuffer;
+                this.indexBuffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, indexesLength);
                 this.maxElementCount = indexesLength;
                 original.Dispose();
             }
 
-            var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
-            IntPtr pointer = indexBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
+            var indexBuffer = this.indexBuffer as OneIndexBuffer;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -39,10 +39,10 @@ namespace CSharpGL
                     array[i] = indexes[i];
                 }
             }
-            indexBufferPtr.UnmapBuffer();
+            indexBuffer.UnmapBuffer();
 
-            indexBufferPtr.Mode = mode;
-            indexBufferPtr.ElementCount = indexesLength;
+            indexBuffer.Mode = mode;
+            indexBuffer.ElementCount = indexesLength;
         }
     }
 }

@@ -41,9 +41,9 @@ namespace GridViewer
         /// </summary>
         public const string color = "color";
 
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer texCoordBufferPtr;
-        private VertexAttributeBuffer colorBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer texCoordBuffer;
+        private VertexAttributeBuffer colorBuffer;
 
         public QuadStripModel(int quadCount, Bitmap bitmap = null)
         {
@@ -57,11 +57,11 @@ namespace GridViewer
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -77,13 +77,13 @@ namespace GridViewer
                         bufferPtr.UnmapBuffer();
                     }
 
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == texCoord)
             {
-                if (this.texCoordBufferPtr == null)
+                if (this.texCoordBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
@@ -101,13 +101,13 @@ namespace GridViewer
                         bufferPtr.UnmapBuffer();
                     }
 
-                    this.texCoordBufferPtr = bufferPtr;
+                    this.texCoordBuffer = bufferPtr;
                 }
-                return this.texCoordBufferPtr;
+                return this.texCoordBuffer;
             }
             else if (bufferName == color)
             {
-                if (this.colorBufferPtr == null)
+                if (this.colorBuffer == null)
                 {
                     var bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), (this.quadCount + 1) * 2, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
@@ -123,9 +123,9 @@ namespace GridViewer
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.colorBufferPtr = bufferPtr;
+                    this.colorBuffer = bufferPtr;
                 }
-                return this.colorBufferPtr;
+                return this.colorBuffer;
             }
             else
             {
@@ -137,18 +137,18 @@ namespace GridViewer
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (indexBufferPtr == null)
+            if (indexBuffer == null)
             {
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.QuadStrip, 0, (this.quadCount + 1) * 2);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
         /// </summary>

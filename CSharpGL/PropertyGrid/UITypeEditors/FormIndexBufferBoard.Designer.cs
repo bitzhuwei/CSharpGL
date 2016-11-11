@@ -149,7 +149,7 @@
             this.cmbDrawMode.TabIndex = 5;
             this.cmbDrawMode.SelectedIndexChanged += new System.EventHandler(this.cmbDrawMode_SelectedIndexChanged);
             // 
-            // FormIndexBufferPtrBoard
+            // FormIndexBufferBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -166,8 +166,8 @@
             this.Controls.Add(this.lblFirst);
             this.Controls.Add(this.trackCount);
             this.Controls.Add(this.trackFirst);
-            this.Name = "FormIndexBufferPtrBoard";
-            this.Text = "FormIndexBufferPtrBoard";
+            this.Name = "FormIndexBufferBoard";
+            this.Text = "FormIndexBufferBoard";
             ((System.ComponentModel.ISupportInitialize)(this.trackFirst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackCount)).EndInit();
             this.ResumeLayout(false);

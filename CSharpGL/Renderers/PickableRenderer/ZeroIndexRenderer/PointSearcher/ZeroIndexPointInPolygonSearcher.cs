@@ -17,17 +17,17 @@ namespace CSharpGL
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            ZeroIndexBuffer zeroIndexBufferPtr = modernRenderer.IndexBufferPtr;
+            ZeroIndexBuffer zeroIndexBuffer = modernRenderer.IndexBuffer;
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
-            ZeroIndexBuffer indexBufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.RenderingVertexCount, zeroIndexBufferPtr.PrimCount);
-            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.PrimCount);
+            modernRenderer.Render4InnerPicking(arg, indexBuffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
-            indexBufferPtr.Dispose();
+            indexBuffer.Dispose();
 
-            if (zeroIndexBufferPtr.FirstVertex <= id
-                && id < zeroIndexBufferPtr.FirstVertex + zeroIndexBufferPtr.RenderingVertexCount)
+            if (zeroIndexBuffer.FirstVertex <= id
+                && id < zeroIndexBuffer.FirstVertex + zeroIndexBuffer.RenderingVertexCount)
             { return id; }
             else
             { throw new Exception("This should not happen!"); }

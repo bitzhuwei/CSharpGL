@@ -24,7 +24,7 @@ namespace GridViewer
     /// </summary>
     internal class LinesRenderer : Renderer
     {
-        private VertexAttributeBuffer positionBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
         private int markerCount;
 
         public static LinesRenderer Create(LinesModel model)
@@ -49,7 +49,7 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBufferPtr = this.Model.GetVertexAttributeBufferPtr(LinesModel.position, null);
+            this.positionBuffer = this.Model.GetVertexAttributeBuffer(LinesModel.position, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -60,7 +60,7 @@ namespace GridViewer
         public void UpdateCodedColors(double axisMin, double axisMax, double step)
         {
             int lineCount = (int)((axisMax - axisMin) / step) + 1;
-            IntPtr pointer = this.positionBufferPtr.MapBuffer(MapBufferAccess.ReadWrite);
+            IntPtr pointer = this.positionBuffer.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
@@ -87,7 +87,7 @@ namespace GridViewer
                     array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
                 }
             }
-            this.positionBufferPtr.UnmapBuffer();
+            this.positionBuffer.UnmapBuffer();
         }
 
         //public void UpdateCodedColors(CodedColor[] codedColors)
@@ -95,7 +95,7 @@ namespace GridViewer
         //    int lineCount = codedColors.Length;
 
         //    {
-        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBuffer.BufferId);
         //        IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
         //        unsafe
         //        {

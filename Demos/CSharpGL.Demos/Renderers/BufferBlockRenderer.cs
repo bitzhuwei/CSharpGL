@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
 
         private GroundRenderer groundRenderer;
 
-        //private ShaderStorageBufferPtr shaderStorageBufferPtr;
+        //private ShaderStorageBuffer shaderStorageBuffer;
         private const int vertexCount = 4;
 
         private BufferBlockRenderer(IBufferable model, ShaderCode[] shaderCodes,
@@ -55,7 +55,7 @@ namespace CSharpGL.Demos
                 bufferPtr.UnmapBuffer();
                 bufferPtr.Binding(this.Program, "PositionBuffer", 0);
                 bufferPtr.Unbind();
-                //this.shaderStorageBufferPtr = bufferPtr;
+                //this.shaderStorageBuffer = bufferPtr;
             }
             {
                 ShaderStorageBuffer bufferPtr = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
                 }
                 bufferPtr.Binding(this.Program, "ColorBuffer", 1);
                 bufferPtr.Unbind();
-                //this.shaderStorageBufferPtr = bufferPtr;
+                //this.shaderStorageBuffer = bufferPtr;
             }
 
             this.groundRenderer.Initialize();
@@ -99,16 +99,16 @@ namespace CSharpGL.Demos
 
     internal class BufferBlockModel : IBufferable
     {
-        private IndexBuffer indexBufferPtr;
+        private IndexBuffer indexBuffer;
 
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             return null;
         }
 
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
                 unsafe
@@ -120,10 +120,10 @@ namespace CSharpGL.Demos
                     array[6] = 1; array[7] = 3; array[8] = 2;
                     bufferPtr.UnmapBuffer();
                 }
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
         public bool UsesZeroIndexBuffer()

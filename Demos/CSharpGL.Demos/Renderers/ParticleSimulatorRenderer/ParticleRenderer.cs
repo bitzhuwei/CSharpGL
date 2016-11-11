@@ -4,8 +4,8 @@ namespace CSharpGL.Demos
 {
     internal class ParticleRenderer : Renderer
     {
-        public VertexAttributeBuffer PositionBufferPtr { get; private set; }
-        public VertexAttributeBuffer VelocityBufferPtr { get; private set; }
+        public VertexAttributeBuffer PositionBuffer { get; private set; }
+        public VertexAttributeBuffer VelocityBuffer { get; private set; }
 
         public ParticleRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, params GLSwitch[] switches)
@@ -33,17 +33,17 @@ namespace CSharpGL.Demos
                     }
                     bufferPtr.UnmapBuffer();
                 }
-                this.VelocityBufferPtr = bufferPtr;
+                this.VelocityBuffer = bufferPtr;
             }
 
-            this.PositionBufferPtr = this.Model.GetVertexAttributeBufferPtr(ParticleModel.strPosition, null);
+            this.PositionBuffer = this.Model.GetVertexAttributeBuffer(ParticleModel.strPosition, null);
         }
 
         protected override void DisposeUnmanagedResources()
         {
             base.DisposeUnmanagedResources();
 
-            this.VelocityBufferPtr.Dispose();
+            this.VelocityBuffer.Dispose();
         }
     }
 }

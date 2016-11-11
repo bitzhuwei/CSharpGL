@@ -42,11 +42,11 @@ namespace CSharpGL
         /// </summary>
         public const string strUV = "uv";
 
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer normalBufferPtr;
-        private VertexAttributeBuffer colorBufferPtr;
-        private VertexAttributeBuffer uvBufferPtr;
-        private IndexBuffer indexBufferPtr = null;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer normalBuffer;
+        private VertexAttributeBuffer colorBuffer;
+        private VertexAttributeBuffer uvBuffer;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         ///
@@ -54,11 +54,11 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = model.positions.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -72,13 +72,13 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == strNormal)
             {
-                if (this.normalBufferPtr == null)
+                if (this.normalBuffer == null)
                 {
                     int length = model.normals.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -92,13 +92,13 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.normalBufferPtr = bufferPtr;
+                    this.normalBuffer = bufferPtr;
                 }
-                return this.normalBufferPtr;
+                return this.normalBuffer;
             }
             else if (bufferName == strColor)
             {
-                if (this.colorBufferPtr == null)
+                if (this.colorBuffer == null)
                 {
                     int length = model.colors.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -112,13 +112,13 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.colorBufferPtr = bufferPtr;
+                    this.colorBuffer = bufferPtr;
                 }
-                return this.colorBufferPtr;
+                return this.colorBuffer;
             }
             else if (bufferName == strUV)
             {
-                if (this.uvBufferPtr == null)
+                if (this.uvBuffer == null)
                 {
                     int length = model.uv.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
@@ -132,9 +132,9 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.uvBufferPtr = bufferPtr;
+                    this.uvBuffer = bufferPtr;
                 }
-                return this.uvBufferPtr;
+                return this.uvBuffer;
             }
             else
             {
@@ -146,9 +146,9 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
@@ -167,7 +167,7 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.indexBufferPtr = bufferPtr;
+                    this.indexBuffer = bufferPtr;
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
@@ -185,7 +185,7 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.indexBufferPtr = bufferPtr;
+                    this.indexBuffer = bufferPtr;
                 }
                 else
                 {
@@ -200,11 +200,11 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.indexBufferPtr = bufferPtr;
+                    this.indexBuffer = bufferPtr;
                 }
             }
 
-            return indexBufferPtr;
+            return indexBuffer;
         }
 
         /// <summary>

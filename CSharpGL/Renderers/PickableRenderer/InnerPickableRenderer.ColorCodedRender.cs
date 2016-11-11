@@ -8,8 +8,8 @@ namespace CSharpGL
         /// render with specified index buffer.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="temporaryIndexBufferPtr"></param>
-        private void Render4Picking(RenderEventArgs arg, IndexBuffer temporaryIndexBufferPtr)
+        /// <param name="temporaryIndexBuffer"></param>
+        private void Render4Picking(RenderEventArgs arg, IndexBuffer temporaryIndexBuffer)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 
@@ -28,17 +28,17 @@ namespace CSharpGL
             uniformmMVP4Picking.SetUniform(program);
 
             PickingSwitchesOn();
-            var oneIndexBufferPtr = temporaryIndexBufferPtr as OneIndexBuffer;
-            if (oneIndexBufferPtr != null)
+            var oneIndexBuffer = temporaryIndexBuffer as OneIndexBuffer;
+            if (oneIndexBuffer != null)
             {
-                PrimitiveRestartSwitch glSwitch = this.GetPrimitiveRestartSwitch(oneIndexBufferPtr);
+                PrimitiveRestartSwitch glSwitch = this.GetPrimitiveRestartSwitch(oneIndexBuffer);
                 glSwitch.On();
-                this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
+                this.vertexArrayObject.Render(arg, program, temporaryIndexBuffer);
                 glSwitch.Off();
             }
             else
             {
-                this.vertexArrayObject.Render(arg, program, temporaryIndexBufferPtr);
+                this.vertexArrayObject.Render(arg, program, temporaryIndexBuffer);
             }
             PickingSwitchesOff();
 
@@ -104,26 +104,26 @@ namespace CSharpGL
         private PrimitiveRestartSwitch ushortRestartIndexSwitch = null;
         private PrimitiveRestartSwitch uintRestartIndexSwitch = null;
 
-        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBuffer indexBufferPtr)
+        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBuffer indexBuffer)
         {
             PrimitiveRestartSwitch result = null;
-            switch (indexBufferPtr.Type)
+            switch (indexBuffer.Type)
             {
                 case IndexElementType.UByte:
                     if (this.ubyteRestartIndexSwitch == null)
-                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type); }
+                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.Type); }
                     result = this.ubyteRestartIndexSwitch;
                     break;
 
                 case IndexElementType.UShort:
                     if (this.ushortRestartIndexSwitch == null)
-                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type); }
+                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.Type); }
                     result = this.ushortRestartIndexSwitch;
                     break;
 
                 case IndexElementType.UInt:
                     if (this.uintRestartIndexSwitch == null)
-                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBufferPtr.Type); }
+                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.Type); }
                     result = this.uintRestartIndexSwitch;
                     break;
 

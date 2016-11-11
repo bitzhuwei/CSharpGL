@@ -48,7 +48,7 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             throw new Exception("No vertex attribute buffer for this model!");
         }
@@ -57,18 +57,18 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr;
+        private IndexBuffer indexBuffer;
 
         /// <summary>
         ///

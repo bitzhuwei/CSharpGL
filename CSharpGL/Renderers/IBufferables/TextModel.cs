@@ -26,9 +26,9 @@ namespace CSharpGL
         /// </summary>
         public const string strUV = "uv";
 
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer uvBufferPtr;
-        private ZeroIndexBuffer indexBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer uvBuffer;
+        private ZeroIndexBuffer indexBuffer;
         private int maxCharCount;
 
         /// <summary>
@@ -37,30 +37,30 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBufferPtr == null)
+                if (this.positionBuffer == null)
                 {
                     int length = maxCharCount;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(GlyphPosition), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
 
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
 
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == strUV)
             {
-                if (this.uvBufferPtr == null)
+                if (this.uvBuffer == null)
                 {
                     int length = maxCharCount;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(GlyphTexCoord), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
-                    this.uvBufferPtr = bufferPtr;
+                    this.uvBuffer = bufferPtr;
                 }
 
-                return this.uvBufferPtr;
+                return this.uvBuffer;
             }
             else
             {
@@ -72,16 +72,16 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int vertexCount = maxCharCount * 4;
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Quads, 0, vertexCount);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
         /// <summary>

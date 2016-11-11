@@ -128,14 +128,14 @@ namespace CSharpGL.Demos
         };
 
             public const string strPosition = "position";
-            private VertexAttributeBuffer positionBufferPtr = null;
-            private IndexBuffer indexBufferPtr;
+            private VertexAttributeBuffer positionBuffer = null;
+            private IndexBuffer indexBuffer;
 
-            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
-                    if (positionBufferPtr == null)
+                    if (positionBuffer == null)
                     {
                         var bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), vertsData.Length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
@@ -148,10 +148,10 @@ namespace CSharpGL.Demos
                             bufferPtr.UnmapBuffer();
                         }
 
-                        positionBufferPtr = bufferPtr;
+                        positionBuffer = bufferPtr;
                     }
 
-                    return positionBufferPtr;
+                    return positionBuffer;
                 }
                 else
                 {
@@ -159,14 +159,14 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBuffer GetIndexBufferPtr()
+            public IndexBuffer GetIndexBuffer()
             {
-                if (indexBufferPtr == null)
+                if (indexBuffer == null)
                 {
-                    indexBufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, vertsData.Length);
+                    indexBuffer = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, vertsData.Length);
                 }
 
-                return indexBufferPtr;
+                return indexBuffer;
             }
 
             /// <summary>

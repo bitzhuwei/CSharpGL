@@ -40,13 +40,13 @@ namespace CSharpGL
         /// <param name="program"></param>
         protected override void DoSetUniform(ShaderProgram program)
         {
-            if (uniformBufferPtr == null)
+            if (uniformBuffer == null)
             {
-                uniformBufferPtr = Initialize(program);
+                uniformBuffer = Initialize(program);
             }
             else
             {
-                IntPtr pointer = uniformBufferPtr.MapBuffer(MapBufferAccess.WriteOnly, bind: true);
+                IntPtr pointer = uniformBuffer.MapBuffer(MapBufferAccess.WriteOnly, bind: true);
                 unsafe
                 {
                     var array = (byte*)pointer.ToPointer();
@@ -56,7 +56,7 @@ namespace CSharpGL
                         array[i] = bytes[i];
                     }
                 }
-                uniformBufferPtr.UnmapBuffer(unbind: true);
+                uniformBuffer.UnmapBuffer(unbind: true);
             }
 
             this.Updated = false;
@@ -99,6 +99,6 @@ namespace CSharpGL
             return result;
         }
 
-        private UniformBuffer uniformBufferPtr = null;
+        private UniformBuffer uniformBuffer = null;
     }
 }

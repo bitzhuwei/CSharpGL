@@ -9,18 +9,18 @@
         {
             get
             {
-                var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
-                if (indexBufferPtr == null)
+                var indexBuffer = this.indexBuffer as OneIndexBuffer;
+                if (indexBuffer == null)
                 { return 0; }
                 else
-                { return indexBufferPtr.ElementCount; }
+                { return indexBuffer.ElementCount; }
             }
             set
             {
-                var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
-                if (indexBufferPtr != null)
+                var indexBuffer = this.indexBuffer as OneIndexBuffer;
+                if (indexBuffer != null)
                 {
-                    indexBufferPtr.ElementCount = value;
+                    indexBuffer.ElementCount = value;
                 }
             }
         }
@@ -33,11 +33,11 @@
         {
             get
             {
-                var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
-                if (indexBufferPtr == null)
+                var indexBuffer = this.indexBuffer as OneIndexBuffer;
+                if (indexBuffer == null)
                 { return IndexElementType.UInt; }
                 else
-                { return indexBufferPtr.Type; }
+                { return indexBuffer.Type; }
             }
         }
 

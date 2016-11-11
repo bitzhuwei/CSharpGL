@@ -12,9 +12,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBuffer GetAtomicCounterBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.AtomicCounterBuffer, config, usage) as AtomicCounterBuffer;
+            return GetIndependentBuffer(array, IndependentBufferTarget.AtomicCounterBuffer, config, usage) as AtomicCounterBuffer;
         }
 
         /// <summary>
@@ -25,9 +25,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBuffer GetPixelPackBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static PixelPackBuffer GetPixelPackBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.PixelPackBuffer, config, usage) as PixelPackBuffer;
+            return GetIndependentBuffer(array, IndependentBufferTarget.PixelPackBuffer, config, usage) as PixelPackBuffer;
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer GetPixelUnpackBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.PixelUnpackBuffer, config, usage) as PixelUnpackBuffer;
+            return GetIndependentBuffer(array, IndependentBufferTarget.PixelUnpackBuffer, config, usage) as PixelUnpackBuffer;
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static ShaderStorageBuffer GetShaderStorageBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.ShaderStorageBuffer, config, usage) as ShaderStorageBuffer;
+            return GetIndependentBuffer(array, IndependentBufferTarget.ShaderStorageBuffer, config, usage) as ShaderStorageBuffer;
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBuffer GetTextureBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static TextureBuffer GetTextureBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.TextureBuffer, config, usage) as TextureBuffer;
+            return GetIndependentBuffer(array, IndependentBufferTarget.TextureBuffer, config, usage) as TextureBuffer;
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static UniformBuffer GetUniformBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static UniformBuffer GetUniformBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.UniformBuffer, config, usage) as UniformBuffer;
+            return GetIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, config, usage) as UniformBuffer;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static IndependentBuffer GetIndependentBufferPtr<T>(this UnmanagedArray<T> array, IndependentBufferTarget bufferTarget, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static IndependentBuffer GetIndependentBuffer<T>(this UnmanagedArray<T> array, IndependentBufferTarget bufferTarget, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
             if (glGenBuffers == null)
             {

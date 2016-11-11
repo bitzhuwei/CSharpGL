@@ -23,15 +23,15 @@ namespace CSharpGL
 
         public const string position = "position";
 
-        private CSharpGL.VertexAttributeBuffer positionBufferPtr;
+        private CSharpGL.VertexAttributeBuffer positionBuffer;
 
-        private CSharpGL.IndexBuffer indexBufferPtr;
+        private CSharpGL.IndexBuffer indexBuffer;
 
-        public CSharpGL.VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public CSharpGL.VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if ((bufferName == position))
             {
-                if ((this.positionBufferPtr == null))
+                if ((this.positionBuffer == null))
                 {
                     int length = this.pointPositions.Count;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -45,22 +45,22 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             throw new System.ArgumentException("bufferName");
         }
 
-        public CSharpGL.IndexBuffer GetIndexBufferPtr()
+        public CSharpGL.IndexBuffer GetIndexBuffer()
         {
-            if (this.indexBufferPtr == null)
+            if (this.indexBuffer == null)
             {
                 int vertexCount = this.pointPositions.Count;
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, vertexCount);
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
-            return this.indexBufferPtr;
+            return this.indexBuffer;
         }
 
         /// <summary>

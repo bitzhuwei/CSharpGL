@@ -18,8 +18,8 @@ namespace CSharpGL
         /// </summary>
         public const string color = "color";
 
-        private VertexAttributeBuffer positionBufferPtr;
-        private VertexAttributeBuffer colorBufferPtr;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer colorBuffer;
 
         /// <summary>
         ///
@@ -35,11 +35,11 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
-                if (positionBufferPtr == null)
+                if (positionBuffer == null)
                 {
                     int length = BigDipperModel.positions.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -53,13 +53,13 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.positionBufferPtr = bufferPtr;
+                    this.positionBuffer = bufferPtr;
                 }
-                return this.positionBufferPtr;
+                return this.positionBuffer;
             }
             else if (bufferName == color)
             {
-                if (colorBufferPtr == null)
+                if (colorBuffer == null)
                 {
                     int length = BigDipperModel.colors.Length;
                     VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
@@ -73,9 +73,9 @@ namespace CSharpGL
                         }
                         bufferPtr.UnmapBuffer();
                     }
-                    this.colorBufferPtr = bufferPtr;
+                    this.colorBuffer = bufferPtr;
                 }
-                return this.colorBufferPtr;
+                return this.colorBuffer;
             }
             else
             {
@@ -87,19 +87,19 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBufferPtr()
+        public IndexBuffer GetIndexBuffer()
         {
-            if (indexBufferPtr == null)
+            if (indexBuffer == null)
             {
                 ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.LineStrip, 0, BigDipperModel.positions.Length);
 
-                this.indexBufferPtr = bufferPtr;
+                this.indexBuffer = bufferPtr;
             }
 
-            return indexBufferPtr;
+            return indexBuffer;
         }
 
-        private IndexBuffer indexBufferPtr = null;
+        private IndexBuffer indexBuffer = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
