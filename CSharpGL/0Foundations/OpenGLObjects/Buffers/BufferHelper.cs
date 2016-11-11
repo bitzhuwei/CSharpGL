@@ -1,23 +1,21 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class BufferHelper
     {
         /// <summary>
         ///
         /// </summary>
-        static OpenGL.glGenBuffers glGenBuffers;
+        private static OpenGL.glGenBuffers glGenBuffers;
 
         /// <summary>
         ///
         /// </summary>
-        static OpenGL.glBindBuffer glBindBuffer;
+        private static OpenGL.glBindBuffer glBindBuffer;
 
         /// <summary>
         ///
         /// </summary>
-        static OpenGL.glBufferData glBufferData;
+        private static OpenGL.glBufferData glBufferData;
 
         private static void InitFunctions()
         {

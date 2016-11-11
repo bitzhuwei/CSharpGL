@@ -114,7 +114,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected static void InitOpenGLCommands()
         {

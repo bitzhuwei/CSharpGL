@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class BufferHelper
     {
-
         /// <summary>
         /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="VertexAttributeBuffer"/>仅描述其中一个属性。</para>
