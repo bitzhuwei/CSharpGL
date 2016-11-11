@@ -18,12 +18,11 @@ namespace CSharpGL.Demos
 
             {
                 // velocity
-                var buffer = new VertexAttributeBuffer<vec4>("empty", VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy);
-                buffer.Alloc(ParticleModel.particleCount);
+                var bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec4), ParticleModel.particleCount, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, "empty");
                 unsafe
                 {
                     var random = new Random();
-                    var array = (vec4*)buffer.Header.ToPointer();
+                    var array = (vec4*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
                     for (int i = 0; i < ParticleModel.particleCount; i++)
                     {
                         array[i] = new vec4(
@@ -33,8 +32,7 @@ namespace CSharpGL.Demos
                             0);
                     }
                 }
-                var ptr = buffer.GetBufferPtr();
-                this.VelocityBufferPtr = ptr;
+                this.VelocityBufferPtr = bufferPtr;
             }
 
             this.PositionBufferPtr = this.Model.GetVertexAttributeBufferPtr(ParticleModel.strPosition, null);
