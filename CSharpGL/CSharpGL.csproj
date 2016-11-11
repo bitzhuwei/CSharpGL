@@ -160,7 +160,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer\AtomicCounterBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\BufferPtr.BufferTexture.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\TextureBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBufferPtr.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexAttributeBuffer\VertexAttributeConfig.cs" />
@@ -208,7 +207,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\ImageFiller.cs" />
     <Content Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\readme.md" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer\UniformBuffer.cs" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />

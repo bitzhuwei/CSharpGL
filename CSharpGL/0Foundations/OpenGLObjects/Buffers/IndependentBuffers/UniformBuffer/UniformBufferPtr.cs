@@ -1,5 +1,6 @@
 ﻿namespace CSharpGL
 {
+    // http://blog.csdn.net/csxiaoshui/article/details/32101977
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
