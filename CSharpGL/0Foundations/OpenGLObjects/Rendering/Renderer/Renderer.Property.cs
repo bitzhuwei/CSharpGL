@@ -42,7 +42,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderer)]
         [Description("index buffer(glDrawArrays or glDrawElements).")]
-        public IndexBufferPtr IndexBufferPtr { get { return this.indexBufferPtr; } }
+        public IndexBuffer IndexBufferPtr { get { return this.indexBufferPtr; } }
 
         /// <summary>
         ///  Vertex attribute buffers.
@@ -50,7 +50,7 @@ namespace CSharpGL
         [Category(strRenderer)]
         [Description("Vertex attribute buffers.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public IEnumerable<VertexAttributeBufferPtr> VertexAttributeBufferPtrs
+        public IEnumerable<VertexAttributeBuffer> VertexAttributeBufferPtrs
         {
             get
             {

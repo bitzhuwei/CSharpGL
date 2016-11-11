@@ -9,7 +9,7 @@ namespace CSharpGL
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(IndexBufferPtrEditor), typeof(UITypeEditor))]
-    public abstract class IndexBufferPtr : Buffer
+    public abstract class IndexBuffer : Buffer
     {
         /// <summary>
         /// 用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
-        internal IndexBufferPtr(DrawMode mode, uint bufferId, int length, int byteLength, int primCount)
+        internal IndexBuffer(DrawMode mode, uint bufferId, int length, int byteLength, int primCount)
             : base(bufferId, length, byteLength)
         {
             this.Mode = mode;

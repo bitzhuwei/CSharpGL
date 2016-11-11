@@ -9,7 +9,7 @@ namespace CSharpGL
         /// </summary>
         public void ClearHighlightIndexes()
         {
-            var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+            var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
             indexBufferPtr.ElementCount = 0;
         }
 
@@ -23,13 +23,13 @@ namespace CSharpGL
             int indexesLength = indexes.Length;
             if (indexesLength > this.maxElementCount)
             {
-                IndexBufferPtr original = this.indexBufferPtr;
-                this.indexBufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, indexesLength);
+                IndexBuffer original = this.indexBufferPtr;
+                this.indexBufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, indexesLength);
                 this.maxElementCount = indexesLength;
                 original.Dispose();
             }
 
-            var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+            var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
             IntPtr pointer = indexBufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
             unsafe
             {

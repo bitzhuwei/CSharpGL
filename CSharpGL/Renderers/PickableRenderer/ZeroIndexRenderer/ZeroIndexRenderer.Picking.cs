@@ -206,7 +206,7 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+            var indexBufferPtr = this.indexBufferPtr as ZeroIndexBuffer;
             int first = indexBufferPtr.FirstVertex;
             if (first < 0) { return false; }
             int vertexCount = indexBufferPtr.RenderingVertexCount;

@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
     internal class WaterPlaneModel : IBufferable
     {
         public const string strPosition = "position";
-        private VertexAttributeBufferPtr positionBuffer;
+        private VertexAttributeBuffer positionBuffer;
 
         /// <summary>
         /// 正方形的水面
@@ -20,14 +20,14 @@ namespace CSharpGL.Demos
             this.SideLength = sideLength;
         }
 
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = this.SideLength * this.SideLength;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -57,12 +57,12 @@ namespace CSharpGL.Demos
             }
         }
 
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
                 int length = this.SideLength * (this.SideLength - 1) * 2;
-                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UInt, length);
+                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UInt, length);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -91,7 +91,7 @@ namespace CSharpGL.Demos
             return this.indexBufferPtr;
         }
 
-        private IndexBufferPtr indexBufferPtr = null;
+        private IndexBuffer indexBufferPtr = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

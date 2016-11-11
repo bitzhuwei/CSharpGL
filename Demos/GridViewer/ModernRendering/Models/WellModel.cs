@@ -12,11 +12,11 @@ namespace GridViewer
     public partial class WellModel : IBufferable, IModelSpace
     {
         public const string strPosition = "position";
-        private VertexAttributeBufferPtr positionBufferPtr = null;
+        private VertexAttributeBuffer positionBufferPtr = null;
         public const string strBrightness = "brightness";
-        private VertexAttributeBufferPtr brightnessBufferPtr = null;
+        private VertexAttributeBuffer brightnessBufferPtr = null;
 
-        private IndexBufferPtr indexBufferPtr = null;
+        private IndexBuffer indexBufferPtr = null;
 
         private List<vec3> pipeline;
         private float radius;
@@ -49,14 +49,14 @@ namespace GridViewer
             this.pipeline = pipeline;
         }
 
-        public unsafe VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public unsafe VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr != null) { return positionBufferPtr; }
 
                 int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -96,7 +96,7 @@ namespace GridViewer
                 if (brightnessBufferPtr != null) { return brightnessBufferPtr; }
 
                 int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -119,13 +119,13 @@ namespace GridViewer
             }
         }
 
-        public unsafe IndexBufferPtr GetIndexBufferPtr()
+        public unsafe IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr != null) { return this.indexBufferPtr; }
 
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
             int length = vertexCount + (this.pipeline.Count - 1);
-            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
+            OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
             unsafe
             {
                 IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);

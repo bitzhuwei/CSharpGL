@@ -1,33 +1,83 @@
-﻿namespace CSharpGL
+﻿using System;
+using System.ComponentModel;
+
+namespace CSharpGL
 {
     /// <summary>
-    /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-    /// <para>每个<see cref="VertexAttributeBuffer&lt;T&gt;"/>仅描述其中一个属性。</para>
-    /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
-    /// <para>Each <see cref="VertexAttributeBuffer&lt;T&gt;"/> describes only 1 property.</para>
-    /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
-    /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
+    /// Vertex' attribute buffer's pointer.
     /// </summary>
-    /// <typeparam name="T">element type in this array in application level.</typeparam>
-    public partial class VertexAttributeBuffer<T> : Buffer where T : struct
+    public partial class VertexAttributeBuffer : Buffer
     {
         /// <summary>
-        /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-        /// <para>每个<see cref="VertexAttributeBuffer&lt;T&gt;"/>仅描述其中一个属性。</para>
-        /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
-        /// <para>Each <see cref="VertexAttributeBuffer&lt;T&gt;"/> describes only 1 property.</para>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
+        ///
+        /// </summary>
+        internal static OpenGL.glVertexAttribPointer glVertexAttribPointer;
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal static OpenGL.glVertexAttribIPointer glVertexAttribIPointer;
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal static OpenGL.glVertexAttribLPointer glVertexAttribLPointer;
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal static OpenGL.glPatchParameteri glPatchParameteri;
+
+        /// <summary>
+        /// TODO: temporary field here. not know where to use it yet.
+        /// </summary>
+        internal static OpenGL.glPatchParameterfv glPatchParameterfv;
+
+        /// <summary>
+        /// Target that this buffer should bind to.
+        /// </summary>
+        public override BufferTarget Target
+        {
+            get { return BufferTarget.ArrayBuffer; }
+        }
+
+        /// <summary>
+        /// Vertex' attribute buffer's pointer.
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
+        /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
-        /// <param name="usage"></param>
+        /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+        /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
-        public VertexAttributeBuffer(string varNameInVertexShader, VertexAttributeConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
-            : base(usage)
+        internal VertexAttributeBuffer(string varNameInVertexShader,
+            uint bufferId, VertexAttributeConfig config, int length, int byteLength,
+            uint instancedDivisor = 0, int patchVertexes = 0)
+            : base(bufferId, length, byteLength)
         {
+            if (glVertexAttribPointer == null)
+            {
+                glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
+                glVertexAttribIPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribIPointer>();
+                glVertexAttribLPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribLPointer>();
+                glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
+                glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
+                glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>();
+                glPatchParameterfv = OpenGL.GetDelegateFor<OpenGL.glPatchParameterfv>();
+            }
+
             this.VarNameInVertexShader = varNameInVertexShader;
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
@@ -46,6 +96,37 @@
         public VertexAttributeConfig Config { get; private set; }
 
         /// <summary>
+        /// How many bytes are there in a primitive data type(float/uint/int etc)?
+        /// </summary>
+        public int DataTypeByteLength
+        {
+            get
+            {
+                int result = this.Config.GetDataTypeByteLength();
+
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+        /// <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
+        /// </summary>
+        public int DataSize
+        {
+            get
+            {
+                int locationCount;
+                int dataSize;
+                uint dataType;
+                int stride;
+                int startOffsetUnit;
+                this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
+                return dataSize;
+            }
+        }
+
+        /// <summary>
         /// 0: not instanced. 1: instanced divisor is 1.
         /// </summary>
         public uint InstancedDivisor { get; private set; }
@@ -53,62 +134,91 @@
         /// <summary>
         /// How many vertexes makes a patch? No patch if PatchVertexes is 0.
         /// </summary>
+        [ReadOnly(true)]
         public int PatchVertexes { get; set; }
 
-        private VertexAttributeBufferPtr bufferPtr = null;
-
         /// <summary>
-        /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
-        /// Uploads this buffer to GPU memory and gets its pointer.
-        /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+        /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
+        /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>
-        /// <returns></returns>
-        public VertexAttributeBufferPtr GetBufferPtr()
+        /// <param name="shaderProgram"></param>
+        public void Standby(ShaderProgram shaderProgram)
         {
-            if (bufferPtr == null)
+            int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
+            if (location < 0) { throw new ArgumentException(); }
+
+            uint loc = (uint)location;
+            int locationCount;
+            int dataSize;
+            uint dataType;
+            int stride;
+            int startOffsetUnit;
+            this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
+            int patchVertexes = this.PatchVertexes;
+            uint divisor = this.InstancedDivisor;
+            // 选中此VBO
+            // select this VBO.
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
+            for (uint i = 0; i < locationCount; i++)
             {
-                if (glGenBuffers == null)
+                // 指定格式
+                // set up data format.
+                switch (this.Config.GetVertexAttribPointerType())
                 {
-                    glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
-                    glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
-                    glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
+                    case VertexAttribPointerType.Default:
+                        glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                        break;
+
+                    case VertexAttribPointerType.Integer:
+                        if (glVertexAttribIPointer == null)
+                        { glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit)); }
+                        else
+                        { glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit)); }
+                        break;
+
+                    case VertexAttribPointerType.Long:
+                        if (glVertexAttribLPointer == null)
+                        { glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit)); }
+                        else
+                        { glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit)); }
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
                 }
 
-                bufferPtr = Upload2GraphicsCard();
+                if (patchVertexes > 0)// tessellation shading.
+                {
+                    if (glPatchParameteri != null)
+                    { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
+                }
+                // 启用
+                // enable this VBO.
+                glEnableVertexAttribArray(loc + i);
+                if (divisor > 0)// instanced rendering.
+                {
+                    glVertexAttribDivisor(loc + i, divisor);
+                }
             }
-
-            return bufferPtr;
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
         }
+    }
+
+    internal enum VertexAttribPointerType
+    {
+        /// <summary>
+        /// float
+        /// </summary>
+        Default,
 
         /// <summary>
-        /// 将此Buffer的数据上传到GPU内存，并获取在GPU上的指针。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
-        /// Uploads this buffer to GPU memory and gets its pointer.
-        /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
+        /// byte, short, int, uint,
         /// </summary>
-        /// <returns></returns>
-        protected VertexAttributeBufferPtr Upload2GraphicsCard()
-        {
-            uint[] buffers = new uint[1];
-            glGenBuffers(1, buffers);
-            const uint target = OpenGL.GL_ARRAY_BUFFER;
-            glBindBuffer(target, buffers[0]);
-            glBufferData(target, this.ByteLength, this.Header, (uint)this.Usage);
-            glBindBuffer(target, 0);
-
-            var bufferPtr = new VertexAttributeBufferPtr(
-                this.VarNameInVertexShader, buffers[0], this.Config, this.Length, this.ByteLength, this.InstancedDivisor, this.PatchVertexes);
-
-            return bufferPtr;
-        }
+        Integer,
 
         /// <summary>
-        /// 申请指定长度的非托管数组。
-        /// <para>create an unmanaged array to store data for this buffer.</para>
+        /// GL_DOUBLE
         /// </summary>
-        /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        protected override UnmanagedArrayBase DoAlloc(int elementCount)
-        {
-            return new UnmanagedArray<T>(elementCount);
-        }
+        Long,
     }
 }

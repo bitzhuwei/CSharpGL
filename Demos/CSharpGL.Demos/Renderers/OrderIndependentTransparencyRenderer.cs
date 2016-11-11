@@ -11,8 +11,8 @@ namespace CSharpGL.Demos
         private Texture headTexture;
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
-        private PixelUnpackBufferPtr headClearBufferPtr;
-        private AtomicCounterBufferPtr atomicCountBufferPtr;
+        private PixelUnpackBuffer headClearBufferPtr;
+        private AtomicCounterBuffer atomicCountBufferPtr;
         private Texture linkedListTexture;
         private DepthTestSwitch depthTestSwitch;
 
@@ -69,7 +69,7 @@ namespace CSharpGL.Demos
             }
             // Create buffer for clearing the head pointer texture
             {
-                PixelUnpackBufferPtr bufferPtr = PixelUnpackBufferPtr.Create(typeof(uint), BufferUsage.StaticDraw, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
+                PixelUnpackBuffer bufferPtr = PixelUnpackBuffer.Create(typeof(uint), BufferUsage.StaticDraw, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
                 // NOTE: not all initial values are zero in this unmanged array.
                 // initialize buffer's value to 0.
                 //unsafe
@@ -91,12 +91,12 @@ namespace CSharpGL.Demos
             }
             // Create the atomic counter buffer
             {
-                AtomicCounterBufferPtr bufferPtr = AtomicCounterBufferPtr.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
+                AtomicCounterBuffer bufferPtr = AtomicCounterBuffer.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
                 this.atomicCountBufferPtr = bufferPtr;
             }
             // Bind it to a texture (for use as a TBO)
             {
-                TextureBufferPtr bufferPtr = TextureBufferPtr.Create(typeof(vec4), BufferUsage.DynamicCopy, length: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
+                TextureBuffer bufferPtr = TextureBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
                 Texture texture = bufferPtr.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
                 texture.Initialize();
                 bufferPtr.Dispose();// dispose it ASAP.

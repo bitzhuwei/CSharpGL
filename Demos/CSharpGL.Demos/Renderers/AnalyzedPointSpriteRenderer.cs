@@ -52,20 +52,20 @@ namespace CSharpGL.Demos
             }
 
             public const string strPosition = "position";
-            private VertexAttributeBufferPtr positionBufferPtr = null;
-            private IndexBufferPtr indexBufferPtr;
+            private VertexAttributeBuffer positionBufferPtr = null;
+            private IndexBuffer indexBufferPtr;
             private int particleCount;
             private Random random = new Random();
             private const float a = 5, b = 4, c = 3;
 
-            public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
                     if (this.positionBufferPtr == null)
                     {
                         int length = particleCount;
-                        VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -93,11 +93,11 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBufferPtr GetIndexBufferPtr()
+            public IndexBuffer GetIndexBufferPtr()
             {
                 if (this.indexBufferPtr == null)
                 {
-                    ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, particleCount);
+                    ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, particleCount);
                     this.indexBufferPtr = bufferPtr;
                 }
 

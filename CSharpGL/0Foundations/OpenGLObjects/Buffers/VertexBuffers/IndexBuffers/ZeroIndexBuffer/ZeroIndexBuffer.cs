@@ -6,12 +6,12 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
-    public sealed partial class ZeroIndexBufferPtr : IndexBufferPtr
+    public sealed partial class ZeroIndexBuffer : IndexBuffer
     {
         private static OpenGL.glDrawArraysInstanced glDrawArraysInstanced;
 
         /// <summary>
-        /// Invalid for <see cref="ZeroIndexBufferPtr"/>.
+        /// Invalid for <see cref="ZeroIndexBuffer"/>.
         /// </summary>
         public override BufferTarget Target
         {
@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
-        internal ZeroIndexBufferPtr(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
+        internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
             if (glDrawArraysInstanced == null)

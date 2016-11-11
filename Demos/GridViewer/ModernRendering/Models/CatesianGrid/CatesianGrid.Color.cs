@@ -8,14 +8,14 @@ namespace GridViewer
     public partial class CatesianGrid
     {
         public const string strColor = "color";
-        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBuffer colorBufferPtr;
 
-        private VertexAttributeBufferPtr GetColorBufferPtr(string varNameInShader)
+        private VertexAttributeBuffer GetColorBufferPtr(string varNameInShader)
         {
             float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
             int gridCellCount = this.DataSource.DimenSize;
             int length = gridCellCount;
-            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(HexahedronTexCoord), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(HexahedronTexCoord), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
             unsafe
             {
                 IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);

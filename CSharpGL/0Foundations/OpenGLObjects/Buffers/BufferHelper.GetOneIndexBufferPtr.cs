@@ -5,7 +5,7 @@ namespace CSharpGL
     public static partial class BufferHelper
     {
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBufferPtr"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
@@ -13,13 +13,13 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBufferPtr GetOneIndexBufferPtr(this UnmanagedArray<byte> array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static OneIndexBuffer GetOneIndexBufferPtr(this UnmanagedArray<byte> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
             return GetOneIndexBufferPtr<byte>(array, mode, usage, primCount);
         }
 
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBufferPtr"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
@@ -27,13 +27,13 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBufferPtr GetOneIndexBufferPtr(this UnmanagedArray<ushort> array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static OneIndexBuffer GetOneIndexBufferPtr(this UnmanagedArray<ushort> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
             return GetOneIndexBufferPtr<ushort>(array, mode, usage, primCount);
         }
 
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBufferPtr"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
@@ -41,13 +41,13 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBufferPtr GetOneIndexBufferPtr(this UnmanagedArray<uint> array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static OneIndexBuffer GetOneIndexBufferPtr(this UnmanagedArray<uint> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
             return GetOneIndexBufferPtr<uint>(array, mode, usage, primCount);
         }
 
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBufferPtr"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -56,7 +56,7 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        private static OneIndexBufferPtr GetOneIndexBufferPtr<T>(this UnmanagedArray<T> array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
+        private static OneIndexBuffer GetOneIndexBufferPtr<T>(this UnmanagedArray<T> array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
         {
             Type type = typeof(T);
             IndexElementType elementType = IndexElementType.UInt;
@@ -89,7 +89,7 @@ namespace CSharpGL
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new OneIndexBufferPtr(buffers[0], mode, elementType, array.Length, array.ByteLength, primCount);
+            var bufferPtr = new OneIndexBuffer(buffers[0], mode, elementType, array.Length, array.ByteLength, primCount);
 
             return bufferPtr;
         }

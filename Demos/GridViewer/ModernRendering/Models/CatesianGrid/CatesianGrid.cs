@@ -14,7 +14,7 @@ namespace GridViewer
             : base(dataSource, gridProps, minColorCode, maxColorCode, defaultBlockPropertyIndex)
         { }
 
-        public override VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public override VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -38,13 +38,13 @@ namespace GridViewer
             }
         }
 
-        public override IndexBufferPtr GetIndexBufferPtr()
+        public override IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
                 int dimSize = this.DataSource.DimenSize;
                 int length = dimSize * 2 * (Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint));
-                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
+                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.QuadStrip, IndexElementType.UInt, length);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -79,7 +79,7 @@ namespace GridViewer
             return this.indexBufferPtr;
         }
 
-        private IndexBufferPtr indexBufferPtr;
+        private IndexBuffer indexBufferPtr;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

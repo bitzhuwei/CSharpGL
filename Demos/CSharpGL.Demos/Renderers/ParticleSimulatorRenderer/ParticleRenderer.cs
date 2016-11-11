@@ -4,8 +4,8 @@ namespace CSharpGL.Demos
 {
     internal class ParticleRenderer : Renderer
     {
-        public VertexAttributeBufferPtr PositionBufferPtr { get; private set; }
-        public VertexAttributeBufferPtr VelocityBufferPtr { get; private set; }
+        public VertexAttributeBuffer PositionBufferPtr { get; private set; }
+        public VertexAttributeBuffer VelocityBufferPtr { get; private set; }
 
         public ParticleRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, params GLSwitch[] switches)
@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
 
             {
                 // velocity
-                var bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec4), ParticleModel.particleCount, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, "empty");
+                var bufferPtr = VertexAttributeBuffer.Create(typeof(vec4), ParticleModel.particleCount, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, "empty");
                 unsafe
                 {
                     var random = new Random();

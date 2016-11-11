@@ -192,7 +192,7 @@ namespace CSharpGL
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        private uint Pick(RenderEventArgs arg, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
+        private uint Pick(RenderEventArgs arg, OneIndexBuffer twoPrimitivesIndexBufferPtr,
             int x, int y)
         {
             Render4InnerPicking(arg, twoPrimitivesIndexBufferPtr);
@@ -219,13 +219,13 @@ namespace CSharpGL
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 
-            var bufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+            var bufferPtr = this.indexBufferPtr as OneIndexBuffer;
             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glSwitch == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBuffer); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr, glSwitch.RestartIndex); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBuffer, glSwitch.RestartIndex); }
             bufferPtr.UnmapBuffer();
 
             return primitiveInfoList;

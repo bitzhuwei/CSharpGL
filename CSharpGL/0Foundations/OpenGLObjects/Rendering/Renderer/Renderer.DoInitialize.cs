@@ -15,12 +15,12 @@ namespace CSharpGL
 
             // init vertex attribute buffer objects.
             IBufferable model = this.Model;
-            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBufferPtrs;
             {
-                var list = new List<VertexAttributeBufferPtr>();
+                var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBufferPtr bufferPtr = model.GetVertexAttributeBufferPtr(
+                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBufferPtr(
                         item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     list.Add(bufferPtr);
@@ -29,10 +29,10 @@ namespace CSharpGL
             }
 
             // init index buffer.
-            IndexBufferPtr indexBufferPtr = model.GetIndexBufferPtr();
+            IndexBuffer indexBufferPtr = model.GetIndexBufferPtr();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = indexBufferPtr as OneIndexBufferPtr;
+            var ptr = indexBufferPtr as OneIndexBuffer;
             if (ptr != null)
             {
                 GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr.Type);

@@ -64,27 +64,27 @@ namespace CSharpGL
             switch (target)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:
-                    bufferPtr = new AtomicCounterBufferPtr(buffers[0], length, byteLength);
+                    bufferPtr = new AtomicCounterBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.PixelPackBuffer:
-                    bufferPtr = new PixelPackBufferPtr(buffers[0], length, byteLength);
+                    bufferPtr = new PixelPackBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.PixelUnpackBuffer:
-                    bufferPtr = new PixelUnpackBufferPtr(buffers[0], length, byteLength);
+                    bufferPtr = new PixelUnpackBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.ShaderStorageBuffer:
-                    bufferPtr = new ShaderStorageBufferPtr(buffers[0], length, byteLength);
+                    bufferPtr = new ShaderStorageBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.TextureBuffer:
-                    bufferPtr = new TextureBufferPtr(buffers[0], length, byteLength);
+                    bufferPtr = new TextureBuffer(buffers[0], length, byteLength);
                     break;
 
                 case IndependentBufferTarget.UniformBuffer:
-                    bufferPtr = new UniformBufferPtr(buffers[0], length, byteLength);
+                    bufferPtr = new UniformBuffer(buffers[0], length, byteLength);
                     break;
 
                 default:

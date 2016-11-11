@@ -18,14 +18,14 @@ namespace CSharpGL
         /// </summary>
         [Category(strVertexArrayObject)]
         [Description("vertex attribute buffers('in vec3 position;' in shader etc.)")]
-        public VertexAttributeBufferPtr[] VertexAttributeBufferPtrs { get; private set; }
+        public VertexAttributeBuffer[] VertexAttributeBufferPtrs { get; private set; }
 
         /// <summary>
         /// The one and only one index buffer used to indexing vertex attribute buffers.
         /// </summary>
         [Category(strVertexArrayObject)]
         [Description("The one and only one index buffer used to indexing vertex attribute buffers.)")]
-        public IndexBufferPtr IndexBufferPtr { get; private set; }
+        public IndexBuffer IndexBufferPtr { get; private set; }
 
         private uint[] ids = new uint[1];
 
@@ -47,7 +47,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="indexBufferPtr">index buffer pointer that used to invoke draw command.</param>
         /// <param name="vertexAttributeBufferPtrs">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params VertexAttributeBufferPtr[] vertexAttributeBufferPtrs)
+        public VertexArrayObject(IndexBuffer indexBufferPtr, params VertexAttributeBuffer[] vertexAttributeBufferPtrs)
         {
             if (indexBufferPtr == null)
             {
@@ -85,10 +85,10 @@ namespace CSharpGL
             glGenVertexArrays(1, ids);
 
             this.Bind();// this vertex array object will record all stand-by actions.
-            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
             if (vertexAttributeBufferPtrs != null)
             {
-                foreach (VertexAttributeBufferPtr item in vertexAttributeBufferPtrs)
+                foreach (VertexAttributeBuffer item in vertexAttributeBufferPtrs)
                 {
                     item.Standby(shaderProgram);
                 }
@@ -113,7 +113,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
-        public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
+        public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBuffer temporaryIndexBufferPtr = null)
         {
             if (temporaryIndexBufferPtr != null)
             {
@@ -174,17 +174,17 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
-                        VertexAttributeBufferPtr[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
+                        VertexAttributeBuffer[] vertexAttributeBufferPtrs = this.VertexAttributeBufferPtrs;
                         if (vertexAttributeBufferPtrs != null)
                         {
-                            foreach (VertexAttributeBufferPtr item in vertexAttributeBufferPtrs)
+                            foreach (VertexAttributeBuffer item in vertexAttributeBufferPtrs)
                             {
                                 item.Dispose();
                             }
                         }
                     }
                     {
-                        IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
+                        IndexBuffer indexBufferPtr = this.IndexBufferPtr;
                         indexBufferPtr.Dispose();
                     }
                 }

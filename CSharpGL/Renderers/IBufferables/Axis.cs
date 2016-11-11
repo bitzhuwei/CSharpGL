@@ -32,8 +32,8 @@ namespace CSharpGL
         /// </summary>
         public const string strColor = "color";
 
-        private VertexAttributeBufferPtr positionBufferPtr;
-        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBuffer positionBufferPtr;
+        private VertexAttributeBuffer colorBufferPtr;
 
         /// <summary>
         ///
@@ -41,14 +41,14 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBufferPtr == null)
                 {
                     int length = this.model.positions.Length;
-                    VertexAttributeBufferPtr ptr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer ptr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -68,7 +68,7 @@ namespace CSharpGL
                 if (colorBufferPtr == null)
                 {
                     int length = this.model.colors.Length;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -94,11 +94,11 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (indexBufferPtr == null)
             {
-                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, this.model.mode, IndexElementType.UInt, this.model.indexes.Length);
+                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, this.model.mode, IndexElementType.UInt, this.model.indexes.Length);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -122,7 +122,7 @@ namespace CSharpGL
         /// <returns></returns>
         public bool UsesZeroIndexBuffer() { return false; }
 
-        private IndexBufferPtr indexBufferPtr = null;
+        private IndexBuffer indexBufferPtr = null;
 
         /// <summary>
         ///

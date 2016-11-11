@@ -14,7 +14,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="indexBufferPtr"></param>
-        public FormIndexBufferPtrBoard(IndexBufferPtr indexBufferPtr = null)
+        public FormIndexBufferPtrBoard(IndexBuffer indexBufferPtr = null)
         {
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="indexBufferPtr"></param>
-        public void SetTarget(IndexBufferPtr indexBufferPtr)
+        public void SetTarget(IndexBuffer indexBufferPtr)
         {
             if (indexBufferPtr == null) { throw new ArgumentNullException(); }
 
@@ -137,7 +137,7 @@ namespace CSharpGL
 
     internal abstract class IndexBufferPtrController
     {
-        public abstract IndexBufferPtr IndexBufferPtr { get; }
+        public abstract IndexBuffer IndexBufferPtr { get; }
 
         public abstract int First();
 
@@ -152,14 +152,14 @@ namespace CSharpGL
 
     internal class ZeroIndexBufferPtrController : IndexBufferPtrController
     {
-        private ZeroIndexBufferPtr indexBufferPtr;
+        private ZeroIndexBuffer indexBufferPtr;
 
-        public override IndexBufferPtr IndexBufferPtr
+        public override IndexBuffer IndexBufferPtr
         {
             get { return this.indexBufferPtr; }
         }
 
-        public ZeroIndexBufferPtrController(ZeroIndexBufferPtr indexBufferPtr)
+        public ZeroIndexBufferPtrController(ZeroIndexBuffer indexBufferPtr)
         {
             this.indexBufferPtr = indexBufferPtr;
         }
@@ -197,14 +197,14 @@ namespace CSharpGL
 
     internal class OneIndexBufferPtrController : IndexBufferPtrController
     {
-        public override IndexBufferPtr IndexBufferPtr
+        public override IndexBuffer IndexBufferPtr
         {
             get { return this.indexBufferPtr; }
         }
 
-        private OneIndexBufferPtr indexBufferPtr;
+        private OneIndexBuffer indexBufferPtr;
 
-        public OneIndexBufferPtrController(OneIndexBufferPtr indexBufferPtr)
+        public OneIndexBufferPtrController(OneIndexBuffer indexBufferPtr)
         {
             this.indexBufferPtr = indexBufferPtr;
         }
@@ -242,17 +242,17 @@ namespace CSharpGL
 
     internal static class ControllerFactory
     {
-        public static IndexBufferPtrController CreateController(this IndexBufferPtr indexBufferPtr)
+        public static IndexBufferPtrController CreateController(this IndexBuffer indexBufferPtr)
         {
             {
-                var ptr = indexBufferPtr as ZeroIndexBufferPtr;
+                var ptr = indexBufferPtr as ZeroIndexBuffer;
                 if (ptr != null)
                 {
                     return new ZeroIndexBufferPtrController(ptr);
                 }
             }
             {
-                var ptr = indexBufferPtr as OneIndexBufferPtr;
+                var ptr = indexBufferPtr as OneIndexBuffer;
                 if (ptr != null)
                 {
                     return new OneIndexBufferPtrController(ptr);

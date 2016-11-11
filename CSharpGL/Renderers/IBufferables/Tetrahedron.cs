@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Tetrahedron.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_tetrahedron.jpg
-    /// <para>Uses <see cref="OneIndexBufferPtr"/></para>
+    /// <para>Uses <see cref="OneIndexBuffer"/></para>
     /// </summary>
     public class Tetrahedron : IBufferable
     {
@@ -23,9 +23,9 @@ namespace CSharpGL
         /// </summary>
         public const string strNormal = "normal";
 
-        private VertexAttributeBufferPtr positionBufferPtr;
-        private VertexAttributeBufferPtr colorBufferPtr;
-        private VertexAttributeBufferPtr normalBufferPtr;
+        private VertexAttributeBuffer positionBufferPtr;
+        private VertexAttributeBuffer colorBufferPtr;
+        private VertexAttributeBuffer normalBufferPtr;
 
         /// <summary>
         ///
@@ -33,14 +33,14 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBufferPtr == null)
                 {
                     int length = TetrahedronModel.position.Length;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -60,7 +60,7 @@ namespace CSharpGL
                 if (this.colorBufferPtr == null)
                 {
                     int length = TetrahedronModel.color.Length;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -80,7 +80,7 @@ namespace CSharpGL
                 if (this.normalBufferPtr == null)
                 {
                     int length = TetrahedronModel.normal.Length;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -105,12 +105,12 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
                 int length = TetrahedronModel.index.Length;
-                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UByte, length);
+                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UByte, length);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -127,7 +127,7 @@ namespace CSharpGL
             return this.indexBufferPtr;
         }
 
-        private IndexBufferPtr indexBufferPtr = null;
+        private IndexBuffer indexBufferPtr = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

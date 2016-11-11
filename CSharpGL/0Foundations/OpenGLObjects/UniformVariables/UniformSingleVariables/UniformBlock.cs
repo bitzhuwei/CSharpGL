@@ -67,7 +67,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="program"></param>
         /// <returns></returns>
-        private UniformBufferPtr Initialize(ShaderProgram program)
+        private UniformBuffer Initialize(ShaderProgram program)
         {
             if (glGetUniformBlockIndex == null)
             {
@@ -79,7 +79,7 @@ namespace CSharpGL
             var uboSize = new uint[1];
             glGetActiveUniformBlockiv(program.ProgramId, uboIndex, OpenGL.GL_UNIFORM_BLOCK_DATA_SIZE, uboSize);
             byte[] bytes = this.value.ToBytes();
-            UniformBufferPtr result = UniformBufferPtr.Create(typeof(byte), BufferUsage.StaticDraw, bytes.Length);
+            UniformBuffer result = UniformBuffer.Create(typeof(byte), BufferUsage.StaticDraw, bytes.Length);
             unsafe
             {
                 var array = (byte*)result.MapBuffer(MapBufferAccess.WriteOnly);
@@ -99,6 +99,6 @@ namespace CSharpGL
             return result;
         }
 
-        private UniformBufferPtr uniformBufferPtr = null;
+        private UniformBuffer uniformBufferPtr = null;
     }
 }

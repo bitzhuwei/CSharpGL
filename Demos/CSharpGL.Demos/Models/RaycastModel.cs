@@ -5,8 +5,8 @@ namespace CSharpGL.Demos
     {
         public const string strposition = "position";
         public const string strcolor = "color";
-        private VertexAttributeBufferPtr positionBuffer;
-        private VertexAttributeBufferPtr colorBuffer;
+        private VertexAttributeBuffer positionBuffer;
+        private VertexAttributeBuffer colorBuffer;
 
         // draw the six faces of the boundbox by drawwing triangles
         // draw it contra-clockwise
@@ -44,14 +44,14 @@ namespace CSharpGL.Demos
 			4,5,1,
         };
 
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strposition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = boundingBox.Length;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
                 if (this.colorBuffer == null)
                 {
                     int length = boundingBox.Length;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -94,12 +94,12 @@ namespace CSharpGL.Demos
             }
         }
 
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (indexBufferPtr == null)
             {
                 int length = indices.Length;
-                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, length);
+                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, length);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -116,7 +116,7 @@ namespace CSharpGL.Demos
             return indexBufferPtr;
         }
 
-        private IndexBufferPtr indexBufferPtr = null;
+        private IndexBuffer indexBufferPtr = null;
 
         /// <summary>
         /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.

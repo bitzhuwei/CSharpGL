@@ -43,12 +43,12 @@ namespace CSharpGL.Demos
         }
 
         public const string strPosition = "position";
-        private VertexAttributeBufferPtr positionBufferPtr;
+        private VertexAttributeBuffer positionBufferPtr;
 
         public const string strTexCoord = "texCoord";
-        private VertexAttributeBufferPtr colorBufferPtr;
+        private VertexAttributeBuffer colorBufferPtr;
 
-        private IndexBufferPtr indexBufferPtr = null;
+        private IndexBuffer indexBufferPtr = null;
 
         /// <summary>
         /// 获取指定的顶点属性缓存。
@@ -57,7 +57,7 @@ namespace CSharpGL.Demos
         /// <param name="bufferName">buffer name(Gets this name from 'strPosition' etc.</param>
         /// <param name="varNameInShader">name in vertex shader like `in vec3 in_Position;`.</param>
         /// <returns>Vertex Buffer Object.</returns>
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -81,11 +81,11 @@ namespace CSharpGL.Demos
             }
         }
 
-        private VertexAttributeBufferPtr GetTexCoordBufferPtr(string varNameInShader)
+        private VertexAttributeBuffer GetTexCoordBufferPtr(string varNameInShader)
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
             unsafe
             {
                 IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -101,11 +101,11 @@ namespace CSharpGL.Demos
             return bufferPtr;
         }
 
-        private VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)
+        private VertexAttributeBuffer GetPositionBufferPtr(string varNameInShader)
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
             bool initialized = false;
             vec3 max = new vec3();
             vec3 min = new vec3();
@@ -158,12 +158,12 @@ namespace CSharpGL.Demos
             return new vec3((float)x, (float)y, (float)z);
         }
 
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
                 int uCount = GetUCount(interval);
-                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, uCount);
+                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, uCount);
                 this.indexBufferPtr = bufferPtr;
             }
 

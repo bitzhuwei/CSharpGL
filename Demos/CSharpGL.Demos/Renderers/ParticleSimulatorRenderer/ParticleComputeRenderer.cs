@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                 this.velocityTexture = texture;
             }
             {
-                UniformBufferPtr bufferPtr = UniformBufferPtr.Create(typeof(vec4), BufferUsage.DynamicCopy, length: 64);
+                UniformBuffer bufferPtr = UniformBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: 64);
                 bufferPtr.Bind();
                 OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, bufferPtr.BufferId);
                 bufferPtr.Unbind();

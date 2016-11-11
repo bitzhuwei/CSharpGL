@@ -6,7 +6,7 @@ namespace CSharpGL
     public partial class HighlightRenderer
     {
         /// <summary>
-        /// <see cref="OneIndexBufferPtr"/>实际存在多少个元素。
+        /// <see cref="OneIndexBuffer"/>实际存在多少个元素。
         /// </summary>
         protected int maxElementCount = 0;
 
@@ -19,19 +19,19 @@ namespace CSharpGL
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
             // init property buffer objects.
-            VertexAttributeBufferPtr positionBufferPtr = null;
+            VertexAttributeBuffer positionBufferPtr = null;
             IBufferable model = this.Model;
-            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBufferPtrs;
             {
-                var list = new List<VertexAttributeBufferPtr>();
+                var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBufferPtr bufferPtr = model.GetVertexAttributeBufferPtr(
+                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBufferPtr(
                                item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     if (item.NameInIBufferable == positionNameInIBufferable)
                     {
-                        positionBufferPtr = new VertexAttributeBufferPtr(
+                        positionBufferPtr = new VertexAttributeBuffer(
                             "in_Position",// in_Postion same with in the PickingShader.vert shader
                             bufferPtr.BufferId,
                             bufferPtr.Config,
@@ -44,10 +44,10 @@ namespace CSharpGL
             }
 
             // init index buffer
-            OneIndexBufferPtr indexBufferPtr;
+            OneIndexBuffer indexBufferPtr;
             {
                 var mode = DrawMode.Points;//any mode is OK as we'll update it later in other place.
-                indexBufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
+                indexBufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, mode, IndexElementType.UInt, positionBufferPtr.ByteLength / (positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength));
                 this.maxElementCount = indexBufferPtr.ElementCount;
                 indexBufferPtr.ElementCount = 0;// 高亮0个图元
                 // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.

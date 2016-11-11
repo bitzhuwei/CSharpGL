@@ -12,9 +12,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBufferPtr GetAtomicCounterBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static AtomicCounterBuffer GetAtomicCounterBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.AtomicCounterBuffer, config, usage) as AtomicCounterBufferPtr;
+            return GetIndependentBufferPtr(array, IndependentBufferTarget.AtomicCounterBuffer, config, usage) as AtomicCounterBuffer;
         }
 
         /// <summary>
@@ -25,9 +25,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBufferPtr GetPixelPackBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static PixelPackBuffer GetPixelPackBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.PixelPackBuffer, config, usage) as PixelPackBufferPtr;
+            return GetIndependentBufferPtr(array, IndependentBufferTarget.PixelPackBuffer, config, usage) as PixelPackBuffer;
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBufferPtr GetPixelUnpackBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static PixelUnpackBuffer GetPixelUnpackBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.PixelUnpackBuffer, config, usage) as PixelUnpackBufferPtr;
+            return GetIndependentBufferPtr(array, IndependentBufferTarget.PixelUnpackBuffer, config, usage) as PixelUnpackBuffer;
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static ShaderStorageBufferPtr GetShaderStorageBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static ShaderStorageBuffer GetShaderStorageBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.ShaderStorageBuffer, config, usage) as ShaderStorageBufferPtr;
+            return GetIndependentBufferPtr(array, IndependentBufferTarget.ShaderStorageBuffer, config, usage) as ShaderStorageBuffer;
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBufferPtr GetTextureBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static TextureBuffer GetTextureBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.TextureBuffer, config, usage) as TextureBufferPtr;
+            return GetIndependentBufferPtr(array, IndependentBufferTarget.TextureBuffer, config, usage) as TextureBuffer;
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static UniformBufferPtr GetUniformBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static UniformBuffer GetUniformBufferPtr<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
         {
-            return GetIndependentBufferPtr(array, IndependentBufferTarget.UniformBuffer, config, usage) as UniformBufferPtr;
+            return GetIndependentBufferPtr(array, IndependentBufferTarget.UniformBuffer, config, usage) as UniformBuffer;
         }
 
         /// <summary>
@@ -110,27 +110,27 @@ namespace CSharpGL
             switch (bufferTarget)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:
-                    bufferPtr = new AtomicCounterBufferPtr(buffers[0], array.Length, array.ByteLength);
+                    bufferPtr = new AtomicCounterBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.PixelPackBuffer:
-                    bufferPtr = new PixelPackBufferPtr(buffers[0], array.Length, array.ByteLength);
+                    bufferPtr = new PixelPackBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.PixelUnpackBuffer:
-                    bufferPtr = new PixelUnpackBufferPtr(buffers[0], array.Length, array.ByteLength);
+                    bufferPtr = new PixelUnpackBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.ShaderStorageBuffer:
-                    bufferPtr = new ShaderStorageBufferPtr(buffers[0], array.Length, array.ByteLength);
+                    bufferPtr = new ShaderStorageBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.TextureBuffer:
-                    bufferPtr = new TextureBufferPtr(buffers[0], array.Length, array.ByteLength);
+                    bufferPtr = new TextureBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.UniformBuffer:
-                    bufferPtr = new UniformBufferPtr(buffers[0], array.Length, array.ByteLength);
+                    bufferPtr = new UniformBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
                 default:

@@ -7,13 +7,13 @@ namespace GridViewer
     public partial class CatesianGrid
     {
         public const string strPosition = "position";
-        private VertexAttributeBufferPtr propertyBufferPtr;
+        private VertexAttributeBuffer propertyBufferPtr;
 
-        private VertexAttributeBufferPtr GetPositionBufferPtr(string varNameInShader)
+        private VertexAttributeBuffer GetPositionBufferPtr(string varNameInShader)
         {
             int dimSize = this.DataSource.DimenSize;
             int length = dimSize;
-            VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(HexahedronPosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(HexahedronPosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
             unsafe
             {
                 IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);

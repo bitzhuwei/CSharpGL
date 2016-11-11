@@ -3,17 +3,17 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public sealed partial class OneIndexBufferPtr
+    public sealed partial class OneIndexBuffer
     {
         /// <summary>
-        /// Creates a <see cref="OneIndexBufferPtr"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="usage"></param>
         /// <param name="mode"></param>
         /// <param name="type"></param>
         /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
         /// <returns></returns>
-        public static OneIndexBufferPtr Create(BufferUsage usage, DrawMode mode, IndexElementType type, int length)
+        public static OneIndexBuffer Create(BufferUsage usage, DrawMode mode, IndexElementType type, int length)
         {
             if (glGenBuffers == null)
             {
@@ -28,7 +28,7 @@ namespace CSharpGL
             glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new OneIndexBufferPtr(
+            var bufferPtr = new OneIndexBuffer(
                  buffers[0], mode, type, length, byteLength);
 
             return bufferPtr;

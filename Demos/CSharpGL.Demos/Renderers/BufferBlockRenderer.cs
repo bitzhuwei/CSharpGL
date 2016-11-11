@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
             {
-                ShaderStorageBufferPtr bufferPtr = ShaderStorageBufferPtr.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                ShaderStorageBuffer bufferPtr = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
                 IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
@@ -58,7 +58,7 @@ namespace CSharpGL.Demos
                 //this.shaderStorageBufferPtr = bufferPtr;
             }
             {
-                ShaderStorageBufferPtr bufferPtr = ShaderStorageBufferPtr.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                ShaderStorageBuffer bufferPtr = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
                 IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
@@ -99,18 +99,18 @@ namespace CSharpGL.Demos
 
     internal class BufferBlockModel : IBufferable
     {
-        private IndexBufferPtr indexBufferPtr;
+        private IndexBuffer indexBufferPtr;
 
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             return null;
         }
 
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
-                OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
+                OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
                 unsafe
                 {
                     IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);

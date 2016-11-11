@@ -13,9 +13,9 @@ namespace CSharpGL.Demos
 
         public const string strPosition = "position";
         public const string strVelocity = "velocity";
-        private VertexAttributeBufferPtr positionBufferPtr = null;
-        private VertexAttributeBufferPtr velocityBufferPtr = null;
-        private IndexBufferPtr indexBufferPtr;
+        private VertexAttributeBuffer positionBufferPtr = null;
+        private VertexAttributeBuffer velocityBufferPtr = null;
+        private IndexBuffer indexBufferPtr;
         private Random random = new Random();
 
         static ParticleModel()
@@ -27,14 +27,14 @@ namespace CSharpGL.Demos
             }
         }
 
-        public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBufferPtr == null)
                 {
                     int length = particleCount;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -60,7 +60,7 @@ namespace CSharpGL.Demos
                 if (this.velocityBufferPtr == null)
                 {
                     int length = particleCount;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -87,12 +87,12 @@ namespace CSharpGL.Demos
             }
         }
 
-        public IndexBufferPtr GetIndexBufferPtr()
+        public IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
                 int vertexCount = particleCount;
-                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, vertexCount);
+                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, vertexCount);
                 this.indexBufferPtr = bufferPtr;
             }
 

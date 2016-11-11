@@ -9,7 +9,7 @@
         {
             get
             {
-                var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
                 if (indexBufferPtr == null)
                 { return 0; }
                 else
@@ -17,7 +17,7 @@
             }
             set
             {
-                var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
                 if (indexBufferPtr != null)
                 {
                     indexBufferPtr.ElementCount = value;
@@ -33,7 +33,7 @@
         {
             get
             {
-                var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                var indexBufferPtr = this.indexBufferPtr as OneIndexBuffer;
                 if (indexBufferPtr == null)
                 { return IndexElementType.UInt; }
                 else

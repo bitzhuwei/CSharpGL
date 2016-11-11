@@ -76,19 +76,19 @@ namespace CSharpGL.Demos
             private static vec2[] texCoords = new vec2[] { new vec2(0, 0), new vec2(1, 0), new vec2(0, 1), new vec2(1, 1), };
 
             public const string strPosition = "position";
-            private VertexAttributeBufferPtr positionBufferPtr = null;
+            private VertexAttributeBuffer positionBufferPtr = null;
             public const string strTexCoord = "texCoord";
-            private VertexAttributeBufferPtr texCoordBufferPtr = null;
-            private IndexBufferPtr indexBufferPtr;
+            private VertexAttributeBuffer texCoordBufferPtr = null;
+            private IndexBuffer indexBufferPtr;
 
-            public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
                     if (this.positionBufferPtr == null)
                     {
                         int length = positions.Length;
-                        VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -110,7 +110,7 @@ namespace CSharpGL.Demos
                     if (this.texCoordBufferPtr == null)
                     {
                         int length = texCoords.Length;
-                        VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                        VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             IntPtr pointer = bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -133,11 +133,11 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBufferPtr GetIndexBufferPtr()
+            public IndexBuffer GetIndexBufferPtr()
             {
                 if (this.indexBufferPtr == null)
                 {
-                    ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.TriangleStrip, 0, 4);
+                    ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, 4);
                     this.indexBufferPtr = bufferPtr;
                 }
 

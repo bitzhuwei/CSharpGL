@@ -3,7 +3,7 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class ShaderStorageBufferPtr : IndependentBufferPtr
+    public partial class ShaderStorageBuffer : IndependentBufferPtr
     {
         private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
         private static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
@@ -22,7 +22,7 @@
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal ShaderStorageBufferPtr(
+        internal ShaderStorageBuffer(
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {

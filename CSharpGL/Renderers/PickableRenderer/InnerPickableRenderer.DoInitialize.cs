@@ -10,20 +10,20 @@ namespace CSharpGL
             // init shader program.
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
-            VertexAttributeBufferPtr positionBufferPtr = null;
+            VertexAttributeBuffer positionBufferPtr = null;
             IBufferable model = this.Model;
-            VertexAttributeBufferPtr[] vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vertexAttributeBufferPtrs;
             {
-                var list = new List<VertexAttributeBufferPtr>();
+                var list = new List<VertexAttributeBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBufferPtr bufferPtr = model.GetVertexAttributeBufferPtr(
+                    VertexAttributeBuffer bufferPtr = model.GetVertexAttributeBufferPtr(
                      item.NameInIBufferable, item.VarNameInShader);
                     if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
 
                     if (item.NameInIBufferable == this.PositionNameInIBufferable)
                     {
-                        positionBufferPtr = new VertexAttributeBufferPtr(
+                        positionBufferPtr = new VertexAttributeBuffer(
                             "in_Position",// in_Postion same with in the PickingShader.vert shader
                             bufferPtr.BufferId,
                             bufferPtr.Config,
@@ -41,10 +41,10 @@ namespace CSharpGL
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
             // init index buffer.
-            IndexBufferPtr indexBufferPtr = model.GetIndexBufferPtr();
+            IndexBuffer indexBufferPtr = model.GetIndexBufferPtr();
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = indexBufferPtr as OneIndexBufferPtr;
+            var ptr = indexBufferPtr as OneIndexBuffer;
             if (ptr != null)
             {
                 GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr.Type);
@@ -57,7 +57,7 @@ namespace CSharpGL
 
             // sets fields.
             this.Program = program;
-            this.vertexAttributeBufferPtrs = new VertexAttributeBufferPtr[] { positionBufferPtr };
+            this.vertexAttributeBufferPtrs = new VertexAttributeBuffer[] { positionBufferPtr };
             this.indexBufferPtr = indexBufferPtr;
             this.vertexArrayObject = vertexArrayObject;
         }

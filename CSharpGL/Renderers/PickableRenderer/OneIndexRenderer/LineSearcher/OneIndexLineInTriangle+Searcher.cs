@@ -25,7 +25,7 @@ namespace CSharpGL
             //else if (indexList[0] == indexList[2]) { return new uint[] { indexList[0], indexList[1], }; }
             //else if (indexList[1] == indexList[2]) { return new uint[] { indexList[1], indexList[0], }; }
 
-            OneIndexBufferPtr bufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 6);
+            OneIndexBuffer bufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 6);
             unsafe
             {
                 var array = (uint*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);

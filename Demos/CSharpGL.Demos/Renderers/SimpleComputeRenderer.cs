@@ -128,16 +128,16 @@ namespace CSharpGL.Demos
         };
 
             public const string strPosition = "position";
-            private VertexAttributeBufferPtr positionBufferPtr = null;
-            private IndexBufferPtr indexBufferPtr;
+            private VertexAttributeBuffer positionBufferPtr = null;
+            private IndexBuffer indexBufferPtr;
 
-            public VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+            public VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
                     if (positionBufferPtr == null)
                     {
-                        var bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), vertsData.Length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        var bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), vertsData.Length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             var array = (vec3*)bufferPtr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -159,11 +159,11 @@ namespace CSharpGL.Demos
                 }
             }
 
-            public IndexBufferPtr GetIndexBufferPtr()
+            public IndexBuffer GetIndexBufferPtr()
             {
                 if (indexBufferPtr == null)
                 {
-                    indexBufferPtr = ZeroIndexBufferPtr.Create(DrawMode.TriangleFan, 0, vertsData.Length);
+                    indexBufferPtr = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, vertsData.Length);
                 }
 
                 return indexBufferPtr;

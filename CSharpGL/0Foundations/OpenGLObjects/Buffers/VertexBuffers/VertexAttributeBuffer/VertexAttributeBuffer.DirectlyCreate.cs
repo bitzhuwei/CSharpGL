@@ -3,10 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public partial class VertexAttributeBufferPtr
+    public partial class VertexAttributeBuffer
     {
         /// <summary>
-        /// Creates a <see cref="VertexAttributeBufferPtr"/> object(actually an array) directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="VertexAttributeBuffer"/> object(actually an array) directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType">element's type of this 'array'.</param>
         /// <param name="length">How many elements are there?</param>
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="instanceDivisor"></param>
         /// <param name="patchVertexes"></param>
         /// <returns></returns>
-        public static VertexAttributeBufferPtr Create(Type elementType, int length, VertexAttributeConfig config, BufferUsage usage, string varNameInVertexShader, uint instanceDivisor = 0, int patchVertexes = 0)
+        public static VertexAttributeBuffer Create(Type elementType, int length, VertexAttributeConfig config, BufferUsage usage, string varNameInVertexShader, uint instanceDivisor = 0, int patchVertexes = 0)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
 
@@ -33,7 +33,7 @@ namespace CSharpGL
             glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(target, 0);
 
-            var bufferPtr = new VertexAttributeBufferPtr(
+            var bufferPtr = new VertexAttributeBuffer(
                 varNameInVertexShader, buffers[0], config, length, byteLength, instanceDivisor, patchVertexes);
 
             return bufferPtr;

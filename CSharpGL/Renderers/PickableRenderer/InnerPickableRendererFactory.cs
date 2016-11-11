@@ -3,12 +3,12 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableRenderer"/>
+    /// 根据<see cref="IndexBuffer"/>的具体类型获取一个<see cref="PickableRenderer"/>
     /// </summary>
     internal static class InnerPickableRendererFactory
     {
         /// <summary>
-        /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableRenderer"/>
+        /// 根据<see cref="IndexBuffer"/>的具体类型获取一个<see cref="PickableRenderer"/>
         /// </summary>
         /// <param name="model"></param>
         /// <param name="attributeMap"></param>

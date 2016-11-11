@@ -19,18 +19,18 @@ namespace CSharpGL
 
         public const string position = "position";
 
-        private CSharpGL.VertexAttributeBufferPtr positionBufferPtr;
+        private CSharpGL.VertexAttributeBuffer positionBufferPtr;
 
-        private CSharpGL.IndexBufferPtr indexBufferPtr;
+        private CSharpGL.IndexBuffer indexBufferPtr;
 
-        public CSharpGL.VertexAttributeBufferPtr GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
+        public CSharpGL.VertexAttributeBuffer GetVertexAttributeBufferPtr(string bufferName, string varNameInShader)
         {
             if ((bufferName == position))
             {
                 if ((this.positionBufferPtr == null))
                 {
                     int length = this.pointCount;
-                    VertexAttributeBufferPtr bufferPtr = VertexAttributeBufferPtr.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexAttributeBuffer bufferPtr = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         var random = new Random();
@@ -53,12 +53,12 @@ namespace CSharpGL
             }
         }
 
-        public CSharpGL.IndexBufferPtr GetIndexBufferPtr()
+        public CSharpGL.IndexBuffer GetIndexBufferPtr()
         {
             if (this.indexBufferPtr == null)
             {
                 int vertexCount = this.pointCount;
-                ZeroIndexBufferPtr bufferPtr = ZeroIndexBufferPtr.Create(DrawMode.Points, 0, vertexCount);
+                ZeroIndexBuffer bufferPtr = ZeroIndexBuffer.Create(DrawMode.Points, 0, vertexCount);
                 this.indexBufferPtr = bufferPtr;
 
             }

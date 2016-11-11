@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
         {
             BoundingBox box = null;
             var self = this.BindingObject.Renderer as PickableRenderer;
-            VertexAttributeBufferPtr positionPtr = self.PositionBufferPtr;
+            VertexAttributeBuffer positionPtr = self.PositionBufferPtr;
             IntPtr pointer = positionPtr.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {

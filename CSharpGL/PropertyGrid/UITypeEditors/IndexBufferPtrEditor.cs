@@ -5,14 +5,14 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用在<see cref="IndexBufferPtr"/>类型的属性上。
+    /// 用在<see cref="IndexBuffer"/>类型的属性上。
     /// </summary>
     internal class IndexBufferPtrEditor : UITypeEditor
     {
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据
-            var editor = new FormIndexBufferPtrBoard(value as IndexBufferPtr);
+            var editor = new FormIndexBufferPtrBoard(value as IndexBuffer);
             editor.ShowDialog();
 
             return value;

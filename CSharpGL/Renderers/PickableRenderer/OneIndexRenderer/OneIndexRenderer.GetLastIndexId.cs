@@ -37,7 +37,7 @@ namespace CSharpGL
 #endif
             for (int i = 1; i < primitiveInfoList.Count; i++)
             {
-                OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
+                OneIndexBuffer twoPrimitivesIndexBufferPtr;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
                     primitiveInfoList[current], primitiveInfoList[i], this.indexBufferPtr.Mode,
@@ -97,7 +97,7 @@ namespace CSharpGL
             RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
             RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
             DrawMode drawMode,
-            out OneIndexBufferPtr oneIndexBufferPtr,
+            out OneIndexBuffer oneIndexBufferPtr,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> indexArray = ArrangeIndexes(
@@ -109,7 +109,7 @@ namespace CSharpGL
                 + recognizedPrimitiveIndex1.VertexIds.Length)
             { throw new Exception(); }
 
-            oneIndexBufferPtr = OneIndexBufferPtr.Create(BufferUsage.StaticDraw, drawMode, IndexElementType.UInt,
+            oneIndexBufferPtr = OneIndexBuffer.Create(BufferUsage.StaticDraw, drawMode, IndexElementType.UInt,
                 recognizedPrimitiveIndex0.VertexIds.Length
                 + 1
                 + recognizedPrimitiveIndex1.VertexIds.Length);

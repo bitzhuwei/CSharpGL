@@ -5,7 +5,7 @@ namespace CSharpGL
 {
     internal class PointsRecognizer : PrimitiveRecognizer
     {
-        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -23,7 +23,7 @@ namespace CSharpGL
             }
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -41,7 +41,7 @@ namespace CSharpGL
             }
         }
 
-        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -59,7 +59,7 @@ namespace CSharpGL
             }
         }
 
-        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -77,7 +77,7 @@ namespace CSharpGL
             }
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -95,7 +95,7 @@ namespace CSharpGL
             }
         }
 
-        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBufferPtr, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe

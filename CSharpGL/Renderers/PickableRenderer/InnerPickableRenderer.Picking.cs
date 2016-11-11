@@ -58,7 +58,7 @@ namespace CSharpGL
         /// <returns></returns>
         public uint GetVertexCount()
         {
-            VertexAttributeBufferPtr positionBufferPtr = this.PositionBufferPtr;
+            VertexAttributeBuffer positionBufferPtr = this.PositionBufferPtr;
             if (positionBufferPtr == null) { return 0; }
             int byteLength = positionBufferPtr.ByteLength;
             int vertexLength = positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength;
@@ -85,7 +85,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
+        internal void Render4InnerPicking(RenderEventArgs arg, IndexBuffer indexBufferPtr)
         {
             arg.UsingViewPort.On();
 

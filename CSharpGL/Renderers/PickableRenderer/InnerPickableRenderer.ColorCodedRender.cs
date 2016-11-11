@@ -9,7 +9,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="temporaryIndexBufferPtr"></param>
-        private void Render4Picking(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr)
+        private void Render4Picking(RenderEventArgs arg, IndexBuffer temporaryIndexBufferPtr)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 
@@ -28,7 +28,7 @@ namespace CSharpGL
             uniformmMVP4Picking.SetUniform(program);
 
             PickingSwitchesOn();
-            var oneIndexBufferPtr = temporaryIndexBufferPtr as OneIndexBufferPtr;
+            var oneIndexBufferPtr = temporaryIndexBufferPtr as OneIndexBuffer;
             if (oneIndexBufferPtr != null)
             {
                 PrimitiveRestartSwitch glSwitch = this.GetPrimitiveRestartSwitch(oneIndexBufferPtr);
@@ -104,7 +104,7 @@ namespace CSharpGL
         private PrimitiveRestartSwitch ushortRestartIndexSwitch = null;
         private PrimitiveRestartSwitch uintRestartIndexSwitch = null;
 
-        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
+        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBuffer indexBufferPtr)
         {
             PrimitiveRestartSwitch result = null;
             switch (indexBufferPtr.Type)

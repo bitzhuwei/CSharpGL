@@ -12,15 +12,15 @@
             {
                 vao.Dispose();
             }
-            VertexAttributeBufferPtr[] vbos = this.vertexAttributeBufferPtrs;
+            VertexAttributeBuffer[] vbos = this.vertexAttributeBufferPtrs;
             if (vbos != null)
             {
-                foreach (VertexAttributeBufferPtr item in vbos)
+                foreach (VertexAttributeBuffer item in vbos)
                 {
                     item.Dispose();
                 }
             }
-            IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+            IndexBuffer indexBufferPtr = this.indexBufferPtr;
             if (indexBufferPtr != null)
             {
                 indexBufferPtr.Dispose();

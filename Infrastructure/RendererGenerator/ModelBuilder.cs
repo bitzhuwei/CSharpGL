@@ -106,7 +106,7 @@ namespace RendererGenerator
         {
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
-            method.ReturnType = new CodeTypeReference(typeof(IndexBufferPtr));
+            method.ReturnType = new CodeTypeReference(typeof(IndexBuffer));
             method.Name = "GetIndexBufferPtr";
             return method;
         }
@@ -191,7 +191,7 @@ namespace RendererGenerator
         {
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
-            method.ReturnType = new CodeTypeReference(typeof(VertexAttributeBufferPtr));
+            method.ReturnType = new CodeTypeReference(typeof(VertexAttributeBuffer));
             method.Name = "GetVertexAttributeBufferPtr";
             var parameter0 = new CodeParameterDeclarationExpression(typeof(string), bufferName);
             method.Parameters.Add(parameter0);
@@ -218,13 +218,13 @@ namespace RendererGenerator
                 }
                 {
                     // private PropertyBufferPtr positionBufferPtr;
-                    var bufferPtrField = new CodeMemberField(typeof(VertexAttributeBufferPtr), item.BufferPtrName);
+                    var bufferPtrField = new CodeMemberField(typeof(VertexAttributeBuffer), item.BufferPtrName);
                     modelType.Members.Add(bufferPtrField);
                 }
             }
             {
                 // private IndexBufferPtr indexBufferPtr;
-                var bufferPtrField = new CodeMemberField(typeof(IndexBufferPtr), indexBufferPtr);
+                var bufferPtrField = new CodeMemberField(typeof(IndexBuffer), indexBufferPtr);
                 modelType.Members.Add(bufferPtrField);
             }
         }
