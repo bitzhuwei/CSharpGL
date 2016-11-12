@@ -11320,7 +11320,7 @@
         </member>
         <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer(CSharpGL.UnmanagedArray{System.Byte},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
-            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
             </summary>
             <param name="array"></param>
@@ -11331,7 +11331,7 @@
         </member>
         <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer(CSharpGL.UnmanagedArray{System.UInt16},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
-            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
             </summary>
             <param name="array"></param>
@@ -11342,7 +11342,7 @@
         </member>
         <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer(CSharpGL.UnmanagedArray{System.UInt32},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
-            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
             </summary>
             <param name="array"></param>
@@ -11353,7 +11353,7 @@
         </member>
         <member name="M:CSharpGL.Array2Buffer.GetOneIndexBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
-            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+            获取一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
             Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
             </summary>
             <typeparam name="T"></typeparam>
@@ -11363,7 +11363,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetAtomicCounterBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetAtomicCounterBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11373,7 +11373,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetPixelPackBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetPixelPackBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11383,7 +11383,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetPixelUnpackBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetPixelUnpackBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11393,7 +11393,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetShaderStorageBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetShaderStorageBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11403,7 +11403,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetTextureBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetTextureBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11413,7 +11413,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetUniformBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetUniformBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             </summary>
@@ -11423,7 +11423,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetIndependentBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.IndependentBufferTarget,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.Array2Buffer.GetIndependentBuffer``1(CSharpGL.UnmanagedArray{``0},CSharpGL.IndependentBufferTarget,CSharpGL.VBOConfig,CSharpGL.BufferUsage)">
             <summary>
             获取某种独立的Buffer。
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
@@ -11435,12 +11435,12 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Array2Buffer.GetVertexAttributeBuffer``1(CSharpGL.UnmanagedArray{``0},System.String,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.Array2Buffer.GetVertexBufferObject``1(CSharpGL.UnmanagedArray{``0},System.String,CSharpGL.VBOConfig,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
             <summary>
             获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-            <para>每个<see cref="T:CSharpGL.VertexAttributeBuffer"/>仅描述其中一个属性。</para>
+            <para>每个<see cref="T:CSharpGL.VertexBuffer"/>仅描述其中一个属性。</para>
             <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
-            <para>Each <see cref="T:CSharpGL.VertexAttributeBuffer"/> describes only 1 property.</para>
+            <para>Each <see cref="T:CSharpGL.VertexBuffer"/> describes only 1 property.</para>
             <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
             <para><typeparamref name="T"/> is type of element of this array in application level.</para>
             </summary>
@@ -12121,14 +12121,15 @@
             type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
             </summary>
         </member>
-        <member name="T:CSharpGL.VertexAttributeBuffer">
+        <member name="T:CSharpGL.VertexBuffer">
             <summary>
-            Vertex' attribute buffer's pointer.
+            type of Vertex Buffer Object, which represents one of vertex's attribute(position, color, uv coordinate, normal, etc).
+            <para>In CSharpGL, one <see cref="T:CSharpGL.VertexBuffer"/> contains only one kind of attribute.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer.Create(System.Type,System.Int32,CSharpGL.VertexAttributeConfig,CSharpGL.BufferUsage,System.String,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.VertexBuffer.Create(System.Type,System.Int32,CSharpGL.VBOConfig,CSharpGL.BufferUsage,System.String,System.UInt32,System.Int32)">
             <summary>
-            Creates a <see cref="T:CSharpGL.VertexAttributeBuffer"/> object(actually an array) directly in server side(GPU) without initializing its value.
+            Creates a <see cref="T:CSharpGL.VertexBuffer"/> object(actually an array) directly in server side(GPU) without initializing its value.
             </summary>
             <param name="elementType">element's type of this 'array'.</param>
             <param name="length">How many elements are there?</param>
@@ -12139,42 +12140,42 @@
             <param name="patchVertexes"></param>
             <returns></returns>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glVertexAttribPointer">
+        <member name="F:CSharpGL.VertexBuffer.glVertexAttribPointer">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glVertexAttribIPointer">
+        <member name="F:CSharpGL.VertexBuffer.glVertexAttribIPointer">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glVertexAttribLPointer">
+        <member name="F:CSharpGL.VertexBuffer.glVertexAttribLPointer">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glEnableVertexAttribArray">
+        <member name="F:CSharpGL.VertexBuffer.glEnableVertexAttribArray">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glVertexAttribDivisor">
+        <member name="F:CSharpGL.VertexBuffer.glVertexAttribDivisor">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glPatchParameteri">
+        <member name="F:CSharpGL.VertexBuffer.glPatchParameteri">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeBuffer.glPatchParameterfv">
+        <member name="F:CSharpGL.VertexBuffer.glPatchParameterfv">
             <summary>
             TODO: temporary field here. not know where to use it yet.
             </summary>
         </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer.#ctor(System.String,System.UInt32,CSharpGL.VertexAttributeConfig,System.Int32,System.Int32,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.VertexBuffer.#ctor(System.String,System.UInt32,CSharpGL.VBOConfig,System.Int32,System.Int32,System.UInt32,System.Int32)">
             <summary>
             Vertex' attribute buffer's pointer.
             </summary>
@@ -12187,51 +12188,51 @@
             <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
             <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         </member>
-        <member name="M:CSharpGL.VertexAttributeBuffer.Standby(CSharpGL.ShaderProgram)">
+        <member name="M:CSharpGL.VertexBuffer.Standby(CSharpGL.ShaderProgram)">
             <summary>
             在使用<see cref="T:CSharpGL.VertexArrayObject"/>后，此方法只会执行一次。
             This method will only be invoked once when using <see cref="T:CSharpGL.VertexArrayObject"/>.
             </summary>
             <param name="shaderProgram"></param>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.Target">
+        <member name="P:CSharpGL.VertexBuffer.Target">
             <summary>
             Target that this buffer should bind to.
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.VarNameInVertexShader">
+        <member name="P:CSharpGL.VertexBuffer.VarNameInVertexShader">
             <summary>
             此顶点属性VBO对应于vertex shader中的哪个in变量？
             <para>Mapping variable's name in vertex shader.</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.Config">
+        <member name="P:CSharpGL.VertexBuffer.Config">
             <summary>
             third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.DataTypeByteLength">
+        <member name="P:CSharpGL.VertexBuffer.DataTypeByteLength">
             <summary>
             How many bytes are there in a primitive data type(float/uint/int etc)?
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.DataSize">
+        <member name="P:CSharpGL.VertexBuffer.DataSize">
             <summary>
             second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
             <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.InstancedDivisor">
+        <member name="P:CSharpGL.VertexBuffer.InstancedDivisor">
             <summary>
             0: not instanced. 1: instanced divisor is 1.
             </summary>
         </member>
-        <member name="P:CSharpGL.VertexAttributeBuffer.PatchVertexes">
+        <member name="P:CSharpGL.VertexBuffer.PatchVertexes">
             <summary>
             How many vertexes makes a patch? No patch if PatchVertexes is 0.
             </summary>
         </member>
-        <member name="M:CSharpGL.VertexAttributeConfigHelper.Parse(CSharpGL.VertexAttributeConfig,System.Int32@,System.Int32@,System.UInt32@,System.Int32@,System.Int32@)">
+        <member name="M:CSharpGL.VBOConfigHelper.Parse(CSharpGL.VBOConfig,System.Int32@,System.Int32@,System.UInt32@,System.Int32@,System.Int32@)">
             <summary>
             Gets parameter values for glVertexAttribPointer() and glEnable/DisableVertexAttribArray().
             </summary>
@@ -14125,122 +14126,122 @@
             
              </summary>
         </member>
-        <member name="T:CSharpGL.VertexAttributeConfig">
+        <member name="T:CSharpGL.VBOConfig">
             <summary>
             Decides parameter values for glVertexAttribPointer() and glEnable/DisableVertexAttribArray().
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Byte">
+        <member name="F:CSharpGL.VBOConfig.Byte">
             <summary>
             byte.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.BVec2">
+        <member name="F:CSharpGL.VBOConfig.BVec2">
             <summary>
             <see cref="T:CSharpGL.bvec2"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.BVec3">
+        <member name="F:CSharpGL.VBOConfig.BVec3">
             <summary>
             <see cref="T:CSharpGL.bvec3"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.BVec4">
+        <member name="F:CSharpGL.VBOConfig.BVec4">
             <summary>
             <see cref="T:CSharpGL.bvec4"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Int">
+        <member name="F:CSharpGL.VBOConfig.Int">
             <summary>
             int.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.IVec2">
+        <member name="F:CSharpGL.VBOConfig.IVec2">
             <summary>
             <see cref="T:CSharpGL.ivec2"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.IVec3">
+        <member name="F:CSharpGL.VBOConfig.IVec3">
             <summary>
             <see cref="T:CSharpGL.ivec3"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.IVec4">
+        <member name="F:CSharpGL.VBOConfig.IVec4">
             <summary>
             <see cref="T:CSharpGL.ivec4"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.UInt">
+        <member name="F:CSharpGL.VBOConfig.UInt">
             <summary>
             uint.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.UVec2">
+        <member name="F:CSharpGL.VBOConfig.UVec2">
             <summary>
             <see cref="T:CSharpGL.uvec2"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.UVec3">
+        <member name="F:CSharpGL.VBOConfig.UVec3">
             <summary>
             <see cref="T:CSharpGL.uvec3"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.UVec4">
+        <member name="F:CSharpGL.VBOConfig.UVec4">
             <summary>
             <see cref="T:CSharpGL.uvec4"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Float">
+        <member name="F:CSharpGL.VBOConfig.Float">
             <summary>
             float.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Vec2">
+        <member name="F:CSharpGL.VBOConfig.Vec2">
             <summary>
             <see cref="T:CSharpGL.vec2"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Vec3">
+        <member name="F:CSharpGL.VBOConfig.Vec3">
             <summary>
             <see cref="T:CSharpGL.vec3"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Vec4">
+        <member name="F:CSharpGL.VBOConfig.Vec4">
             <summary>
             <see cref="T:CSharpGL.vec4"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Double">
+        <member name="F:CSharpGL.VBOConfig.Double">
             <summary>
             double.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.DVec2">
+        <member name="F:CSharpGL.VBOConfig.DVec2">
             <summary>
             d<see cref="T:CSharpGL.vec2"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.DVec3">
+        <member name="F:CSharpGL.VBOConfig.DVec3">
             <summary>
             <see cref="T:CSharpGL.dvec3"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.DVec4">
+        <member name="F:CSharpGL.VBOConfig.DVec4">
             <summary>
             <see cref="T:CSharpGL.dvec4"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Mat2">
+        <member name="F:CSharpGL.VBOConfig.Mat2">
             <summary>
             <see cref="T:CSharpGL.mat2"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Mat3">
+        <member name="F:CSharpGL.VBOConfig.Mat3">
             <summary>
             <see cref="T:CSharpGL.mat3"/>.
             </summary>
         </member>
-        <member name="F:CSharpGL.VertexAttributeConfig.Mat4">
+        <member name="F:CSharpGL.VBOConfig.Mat4">
             <summary>
             <see cref="T:CSharpGL.mat4"/>.
             </summary>
@@ -25406,7 +25407,7 @@
             <para>VAO is used to reduce draw-call.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.VertexArrayObject.#ctor(CSharpGL.IndexBuffer,CSharpGL.VertexAttributeBuffer[])">
+        <member name="M:CSharpGL.VertexArrayObject.#ctor(CSharpGL.IndexBuffer,CSharpGL.VertexBuffer[])">
             <summary>
             VAO是用来管理VBO的。可以进一步减少DrawCall。
             <para>VAO is used to reduce draw-call.</para>
