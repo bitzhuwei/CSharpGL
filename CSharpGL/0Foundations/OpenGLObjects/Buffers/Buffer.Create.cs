@@ -38,6 +38,7 @@ namespace CSharpGL
 
             return buffer;
         }
+
         /// <summary>
         /// Creates a <see cref="ZeroIndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
@@ -53,6 +54,7 @@ namespace CSharpGL
 
             return buffer;
         }
+
         /// <summary>
         /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
@@ -105,6 +107,7 @@ namespace CSharpGL
 
             return result;
         }
+
         /// <summary>
         /// Creates a sub-type of <see cref="Buffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>

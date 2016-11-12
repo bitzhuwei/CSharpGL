@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace CSharpGL
 {
     /// <summary>
@@ -48,6 +49,7 @@ namespace CSharpGL
             glBindBufferBase(OpenGL.GL_SHADER_STORAGE_BUFFER, storageBlockBindingPoint, this.BufferId);
             glShaderStorageBlockBinding(program.ProgramId, storageBlockIndex, storageBlockBindingPoint);
         }
+
         /// <summary>
         /// Creates a <see cref="ShaderStorageBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
