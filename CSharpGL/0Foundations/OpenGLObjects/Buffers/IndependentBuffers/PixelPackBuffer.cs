@@ -3,7 +3,7 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class PixelPackBuffer : IndependentBuffer
+    public partial class PixelPackBuffer : Buffer
     {
         /// <summary>
         /// Target that this buffer should bind to.

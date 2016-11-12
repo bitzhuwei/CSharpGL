@@ -3,10 +3,11 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class ShaderStorageBuffer : IndependentBuffer
+    public partial class ShaderStorageBuffer : Buffer
     {
         private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
         private static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
+        private static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
         /// Target that this buffer should bind to.
@@ -30,6 +31,7 @@
             {
                 glShaderStorageBlockBinding = OpenGL.GetDelegateFor<OpenGL.glShaderStorageBlockBinding>();
                 glGetProgramResourceIndex = OpenGL.GetDelegateFor<OpenGL.glGetProgramResourceIndex>();
+                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
             }
         }
 

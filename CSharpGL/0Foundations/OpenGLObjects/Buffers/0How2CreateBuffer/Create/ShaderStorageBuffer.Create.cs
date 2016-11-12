@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static ShaderStorageBuffer Create(Type elementType, BufferUsage usage, int length)
         {
-            return (IndependentBuffer.Create(IndependentBufferTarget.ShaderStorageBuffer, elementType, usage, length) as ShaderStorageBuffer);
+            return (Buffer.Create(IndependentBufferTarget.ShaderStorageBuffer, elementType, usage, length) as ShaderStorageBuffer);
         }
     }
 }

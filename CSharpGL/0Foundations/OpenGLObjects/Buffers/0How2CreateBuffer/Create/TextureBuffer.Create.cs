@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static TextureBuffer Create(Type elementType, BufferUsage usage, int length)
         {
-            return (IndependentBuffer.Create(IndependentBufferTarget.TextureBuffer, elementType, usage, length) as TextureBuffer);
+            return (Buffer.Create(IndependentBufferTarget.TextureBuffer, elementType, usage, length) as TextureBuffer);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static AtomicCounterBuffer Create(Type elementType, BufferUsage usage, int length)
         {
-            return (IndependentBuffer.Create(IndependentBufferTarget.AtomicCounterBuffer, elementType, usage, length) as AtomicCounterBuffer);
+            return (Buffer.Create(IndependentBufferTarget.AtomicCounterBuffer, elementType, usage, length) as AtomicCounterBuffer);
         }
     }
 }

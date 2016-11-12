@@ -92,7 +92,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static IndependentBuffer GetIndependentBuffer<T>(this UnmanagedArray<T> array, IndependentBufferTarget bufferTarget, VBOConfig config, BufferUsage usage) where T : struct
+        public static Buffer GetIndependentBuffer<T>(this UnmanagedArray<T> array, IndependentBufferTarget bufferTarget, VBOConfig config, BufferUsage usage) where T : struct
         {
             if (glGenBuffers == null)
             {
@@ -106,7 +106,7 @@ namespace CSharpGL
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            IndependentBuffer buffer = null;
+            Buffer buffer = null;
             switch (bufferTarget)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:

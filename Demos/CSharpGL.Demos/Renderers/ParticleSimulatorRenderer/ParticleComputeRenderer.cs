@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
         private Texture velocityTexture;
 
         //private uint[] attractor_buffer = new uint[1];
-        private IndependentBuffer attractorBuffer;
+        private Buffer attractorBuffer;
 
         private Buffer positionBuffer;
         private Buffer velocityBuffer;

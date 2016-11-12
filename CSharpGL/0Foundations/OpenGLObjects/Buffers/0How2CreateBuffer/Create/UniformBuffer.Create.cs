@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static UniformBuffer Create(Type elementType, BufferUsage usage, int length)
         {
-            return (IndependentBuffer.Create(IndependentBufferTarget.UniformBuffer, elementType, usage, length) as UniformBuffer);
+            return (Buffer.Create(IndependentBufferTarget.UniformBuffer, elementType, usage, length) as UniformBuffer);
         }
     }
 }

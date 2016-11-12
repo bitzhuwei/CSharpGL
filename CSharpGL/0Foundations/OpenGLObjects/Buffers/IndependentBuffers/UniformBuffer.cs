@@ -4,9 +4,11 @@
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class UniformBuffer : IndependentBuffer
+    public partial class UniformBuffer : Buffer
     {
         private static OpenGL.glUniformBlockBinding glUniformBlockBinding;
+        private static OpenGL.glBindBufferRange glBindBufferRange;
+        private static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>
         /// Target that this buffer should bind to.
@@ -29,6 +31,8 @@
             if (glUniformBlockBinding == null)
             {
                 glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
+                glBindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>();
+                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
             }
         }
 
