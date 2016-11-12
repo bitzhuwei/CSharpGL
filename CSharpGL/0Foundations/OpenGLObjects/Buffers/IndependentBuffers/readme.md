@@ -3,3 +3,5 @@ A Buffer Object that is used to store uniform data for a shader program is calle
 
 The term "Uniform Buffer Object" refers to the OpenGL buffer object that is used to provide storage for uniforms. The term "uniform blocks" refer to the GLSL language grouping of uniforms whose storage come from buffer objects. 
 
+# Texture Buffer Object
+`TextureBufferObject` matches `uniform samplerBuffer` in GLSL shader.
