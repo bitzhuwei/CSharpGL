@@ -18,7 +18,7 @@ namespace CSharpGL
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             // 创建临时索引
-            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Points, IndexElementType.UInt, 3);
+            OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, 3, DrawMode.Points, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
             if (this.indexBuffer == null)
             {
                 int length = this.SideLength * (this.SideLength - 1) * 2;
-                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.TriangleStrip, IndexElementType.UInt, length);
+                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

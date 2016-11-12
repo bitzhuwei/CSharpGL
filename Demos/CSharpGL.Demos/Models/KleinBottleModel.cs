@@ -184,7 +184,7 @@ namespace CSharpGL.Demos
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
                 int length = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
-                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.LineStrip, IndexElementType.UInt, length);
+                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.LineStrip, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

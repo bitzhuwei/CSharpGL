@@ -110,7 +110,7 @@ namespace CSharpGL.Demos
         {
             if (this.indexBuffer == null)
             {
-                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UInt, 3 * 3);
+                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, 3 * 3, DrawMode.Triangles, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
