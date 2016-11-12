@@ -29,8 +29,8 @@ namespace GridViewer
         private LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
-        private VertexAttributeBuffer positionBuffer;
-        private VertexAttributeBuffer texCoordBuffer;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer texCoordBuffer;
 
         public static QuadStripRenderer Create(QuadStripModel model)
         {

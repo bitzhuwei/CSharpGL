@@ -13,8 +13,8 @@ namespace CSharpGL.Demos
 
         public const string strPosition = "position";
         public const string strVelocity = "velocity";
-        private VertexAttributeBuffer positionBuffer = null;
-        private VertexAttributeBuffer velocityBuffer = null;
+        private VertexBuffer positionBuffer = null;
+        private VertexBuffer velocityBuffer = null;
         private IndexBuffer indexBuffer;
         private Random random = new Random();
 
@@ -27,14 +27,14 @@ namespace CSharpGL.Demos
             }
         }
 
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = particleCount;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -60,7 +60,7 @@ namespace CSharpGL.Demos
                 if (this.velocityBuffer == null)
                 {
                     int length = particleCount;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, BufferUsage.DynamicCopy, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

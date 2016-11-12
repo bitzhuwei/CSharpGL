@@ -28,7 +28,7 @@ namespace GridViewer
         /// </summary>
         public const string position = "position";
 
-        private VertexAttributeBuffer positionBuffer;
+        private VertexBuffer positionBuffer;
 
         public LinesModel(int markerCount)
         {
@@ -41,14 +41,14 @@ namespace GridViewer
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = this.markerCount * 2;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

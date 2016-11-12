@@ -5,8 +5,8 @@ namespace CSharpGL.Demos
     {
         public const string strposition = "position";
         public const string strcolor = "color";
-        private VertexAttributeBuffer positionBuffer;
-        private VertexAttributeBuffer colorBuffer;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer colorBuffer;
 
         // draw the six faces of the boundbox by drawwing triangles
         // draw it contra-clockwise
@@ -44,14 +44,14 @@ namespace CSharpGL.Demos
 			4,5,1,
         };
 
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strposition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = boundingBox.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
                 if (this.colorBuffer == null)
                 {
                     int length = boundingBox.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

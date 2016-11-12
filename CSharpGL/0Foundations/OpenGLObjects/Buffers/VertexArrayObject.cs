@@ -18,7 +18,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strVertexArrayObject)]
         [Description("vertex attribute buffers('in vec3 position;' in shader etc.)")]
-        public VertexAttributeBuffer[] VertexAttributeBuffers { get; private set; }
+        public VertexBuffer[] VertexAttributeBuffers { get; private set; }
 
         /// <summary>
         /// The one and only one index buffer used to indexing vertex attribute buffers.
@@ -47,7 +47,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="indexBuffer">index buffer pointer that used to invoke draw command.</param>
         /// <param name="vertexAttributeBuffers">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBuffer indexBuffer, params VertexAttributeBuffer[] vertexAttributeBuffers)
+        public VertexArrayObject(IndexBuffer indexBuffer, params VertexBuffer[] vertexAttributeBuffers)
         {
             if (indexBuffer == null)
             {
@@ -85,10 +85,10 @@ namespace CSharpGL
             glGenVertexArrays(1, ids);
 
             this.Bind();// this vertex array object will record all stand-by actions.
-            VertexAttributeBuffer[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+            VertexBuffer[] vertexAttributeBuffers = this.VertexAttributeBuffers;
             if (vertexAttributeBuffers != null)
             {
-                foreach (VertexAttributeBuffer item in vertexAttributeBuffers)
+                foreach (VertexBuffer item in vertexAttributeBuffers)
                 {
                     item.Standby(shaderProgram);
                 }
@@ -174,10 +174,10 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
-                        VertexAttributeBuffer[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+                        VertexBuffer[] vertexAttributeBuffers = this.VertexAttributeBuffers;
                         if (vertexAttributeBuffers != null)
                         {
-                            foreach (VertexAttributeBuffer item in vertexAttributeBuffers)
+                            foreach (VertexBuffer item in vertexAttributeBuffers)
                             {
                                 item.Dispose();
                             }

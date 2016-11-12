@@ -4,7 +4,7 @@ namespace CSharpGL.Demos
     internal class BillboardModel : IBufferable
     {
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBuffer;
+        private VertexBuffer positionBuffer;
 
         private static readonly float[] positions =
         {
@@ -14,14 +14,14 @@ namespace CSharpGL.Demos
 		    0.5f,  0.5f, 0.0f,
         };
 
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBuffer == null)
                 {
                     int length = positions.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

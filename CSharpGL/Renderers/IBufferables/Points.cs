@@ -39,7 +39,7 @@ namespace CSharpGL
         /// </summary>
         public const string strposition = "position";
 
-        private CSharpGL.VertexAttributeBuffer positionBuffer;
+        private CSharpGL.VertexBuffer positionBuffer;
 
         private CSharpGL.IndexBuffer indexBuffer;
 
@@ -49,14 +49,14 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public CSharpGL.VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public CSharpGL.VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strposition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = this.pointPositions.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

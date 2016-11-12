@@ -58,7 +58,7 @@ namespace CSharpGL
         /// <returns></returns>
         public uint GetVertexCount()
         {
-            VertexAttributeBuffer positionBuffer = this.PositionBuffer;
+            VertexBuffer positionBuffer = this.PositionBuffer;
             if (positionBuffer == null) { return 0; }
             int byteLength = positionBuffer.ByteLength;
             int vertexLength = positionBuffer.DataSize * positionBuffer.DataTypeByteLength;

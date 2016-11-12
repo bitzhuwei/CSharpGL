@@ -28,13 +28,13 @@ namespace CSharpGL
         ///
         /// </summary>
         public const string position = "position";
-        private VertexAttributeBuffer positionBuffer;
+        private VertexBuffer positionBuffer;
 
         /// <summary>
         ///
         /// </summary>
         public const string color = "color";
-        private VertexAttributeBuffer colorBuffer;
+        private VertexBuffer colorBuffer;
 
         /// <summary>
         ///
@@ -42,14 +42,14 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = model.Positions.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -69,7 +69,7 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     int length = model.Colors.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

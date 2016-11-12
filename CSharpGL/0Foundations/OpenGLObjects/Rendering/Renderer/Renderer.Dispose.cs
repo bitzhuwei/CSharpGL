@@ -12,10 +12,10 @@
             {
                 vao.Dispose();
             }
-            VertexAttributeBuffer[] vbos = this.vertexAttributeBuffers;
+            VertexBuffer[] vbos = this.vertexAttributeBuffers;
             if (vbos != null)
             {
-                foreach (VertexAttributeBuffer item in vbos)
+                foreach (VertexBuffer item in vbos)
                 {
                     item.Dispose();
                 }

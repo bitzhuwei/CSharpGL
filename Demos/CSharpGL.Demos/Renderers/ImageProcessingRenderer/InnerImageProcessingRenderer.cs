@@ -114,18 +114,18 @@ namespace CSharpGL.Demos
         {
             public const string strposition = "position";
             public const string struv = "uv";
-            private VertexAttributeBuffer positionBuffer;
-            private VertexAttributeBuffer uvBuffer;
+            private VertexBuffer positionBuffer;
+            private VertexBuffer uvBuffer;
             private IndexBuffer indexBuffer;
 
-            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+            public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strposition)
                 {
                     if (positionBuffer == null)
                     {
                         int length = 4;
-                        VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -146,7 +146,7 @@ namespace CSharpGL.Demos
                     if (this.uvBuffer == null)
                     {
                         int length = 4;
-                        VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec2), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
     internal class WaterPlaneModel : IBufferable
     {
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBuffer;
+        private VertexBuffer positionBuffer;
 
         /// <summary>
         /// 正方形的水面
@@ -20,14 +20,14 @@ namespace CSharpGL.Demos
             this.SideLength = sideLength;
         }
 
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = this.SideLength * this.SideLength;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec4), length, VertexAttributeConfig.Vec4, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, BufferUsage.DynamicDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

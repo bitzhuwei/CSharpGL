@@ -3,7 +3,7 @@
     /// <summary>
     /// Decides parameter values for glVertexAttribPointer() and glEnable/DisableVertexAttribArray().
     /// </summary>
-    public enum VertexAttributeConfig : uint
+    public enum VBOConfig : uint
     {
         /// <summary>
         /// byte.

@@ -4,9 +4,10 @@ using System.ComponentModel;
 namespace CSharpGL
 {
     /// <summary>
-    /// Vertex' attribute buffer's pointer.
+    /// type of Vertex Buffer Object, which represents one of vertex's attribute(position, color, uv coordinate, normal, etc).
+    /// <para>In CSharpGL, one <see cref="VertexBuffer"/> contains only one kind of attribute.</para>
     /// </summary>
-    public partial class VertexAttributeBuffer : Buffer
+    public partial class VertexBuffer : Buffer
     {
         /// <summary>
         ///
@@ -62,8 +63,8 @@ namespace CSharpGL
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
-        internal VertexAttributeBuffer(string varNameInVertexShader,
-            uint bufferId, VertexAttributeConfig config, int length, int byteLength,
+        internal VertexBuffer(string varNameInVertexShader,
+            uint bufferId, VBOConfig config, int length, int byteLength,
             uint instancedDivisor = 0, int patchVertexes = 0)
             : base(bufferId, length, byteLength)
         {
@@ -93,7 +94,7 @@ namespace CSharpGL
         /// <summary>
         /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
-        public VertexAttributeConfig Config { get; private set; }
+        public VBOConfig Config { get; private set; }
 
         /// <summary>
         /// How many bytes are there in a primitive data type(float/uint/int etc)?

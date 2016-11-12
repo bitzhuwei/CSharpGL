@@ -128,16 +128,16 @@ namespace CSharpGL.Demos
         };
 
             public const string strPosition = "position";
-            private VertexAttributeBuffer positionBuffer = null;
+            private VertexBuffer positionBuffer = null;
             private IndexBuffer indexBuffer;
 
-            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+            public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
                 {
                     if (positionBuffer == null)
                     {
-                        var buffer = VertexAttributeBuffer.Create(typeof(vec3), vertsData.Length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        var buffer = VertexBuffer.Create(typeof(vec3), vertsData.Length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             var array = (vec3*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

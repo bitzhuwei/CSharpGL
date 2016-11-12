@@ -2,97 +2,97 @@
 
 namespace CSharpGL
 {
-    internal static partial class VertexAttributeConfigHelper
+    internal static partial class VBOConfigHelper
     {
-        internal static VertexAttribPointerType GetVertexAttribPointerType(this VertexAttributeConfig config)
+        internal static VertexAttribPointerType GetVertexAttribPointerType(this VBOConfig config)
         {
             var result = VertexAttribPointerType.Default;
 
             switch (config)
             {
-                case VertexAttributeConfig.Byte:
+                case VBOConfig.Byte:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.BVec2:
+                case VBOConfig.BVec2:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.BVec3:
+                case VBOConfig.BVec3:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.BVec4:
+                case VBOConfig.BVec4:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.Int:
+                case VBOConfig.Int:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.IVec2:
+                case VBOConfig.IVec2:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.IVec3:
+                case VBOConfig.IVec3:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.IVec4:
+                case VBOConfig.IVec4:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.UInt:
+                case VBOConfig.UInt:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.UVec2:
+                case VBOConfig.UVec2:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.UVec3:
+                case VBOConfig.UVec3:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.UVec4:
+                case VBOConfig.UVec4:
                     result = VertexAttribPointerType.Integer;
                     break;
 
-                case VertexAttributeConfig.Float:
+                case VBOConfig.Float:
                     break;
 
-                case VertexAttributeConfig.Vec2:
+                case VBOConfig.Vec2:
                     break;
 
-                case VertexAttributeConfig.Vec3:
+                case VBOConfig.Vec3:
                     break;
 
-                case VertexAttributeConfig.Vec4:
+                case VBOConfig.Vec4:
                     break;
 
-                case VertexAttributeConfig.Double:
+                case VBOConfig.Double:
                     result = VertexAttribPointerType.Long;
                     break;
 
-                case VertexAttributeConfig.DVec2:
+                case VBOConfig.DVec2:
                     result = VertexAttribPointerType.Long;
                     break;
 
-                case VertexAttributeConfig.DVec3:
+                case VBOConfig.DVec3:
                     result = VertexAttribPointerType.Long;
                     break;
 
-                case VertexAttributeConfig.DVec4:
+                case VBOConfig.DVec4:
                     result = VertexAttribPointerType.Long;
                     break;
 
-                case VertexAttributeConfig.Mat2:
+                case VBOConfig.Mat2:
                     break;
 
-                case VertexAttributeConfig.Mat3:
+                case VBOConfig.Mat3:
                     break;
 
-                case VertexAttributeConfig.Mat4:
+                case VBOConfig.Mat4:
                     break;
 
                 default:

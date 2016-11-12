@@ -67,20 +67,20 @@ namespace CSharpGL.Demos
             }
 
             public const string strposition = "position";
-            private VertexAttributeBuffer positionBuffer = null;
+            private VertexBuffer positionBuffer = null;
             private IndexBuffer indexBuffer;
             private int particleCount;
             private Random random = new Random();
             private float factor = 1;
 
-            public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+            public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
             {
                 if (bufferName == strposition)
                 {
                     if (this.positionBuffer == null)
                     {
                         int length = particleCount;
-                        VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                         unsafe
                         {
                             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

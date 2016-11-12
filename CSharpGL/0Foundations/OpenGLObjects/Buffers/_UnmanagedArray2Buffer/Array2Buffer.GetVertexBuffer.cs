@@ -4,9 +4,9 @@
     {
         /// <summary>
         /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-        /// <para>每个<see cref="VertexAttributeBuffer"/>仅描述其中一个属性。</para>
+        /// <para>每个<see cref="VertexBuffer"/>仅描述其中一个属性。</para>
         /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
-        /// <para>Each <see cref="VertexAttributeBuffer"/> describes only 1 property.</para>
+        /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
         /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// </summary>
@@ -18,7 +18,7 @@
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexAttributeBuffer GetVertexAttributeBuffer<T>(this UnmanagedArray<T> array, string varNameInVertexShader, VertexAttributeConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
+        public static VertexBuffer GetVertexBufferObject<T>(this UnmanagedArray<T> array, string varNameInVertexShader, VBOConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
             if (glGenBuffers == null)
             {
@@ -32,7 +32,7 @@
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            var buffer = new VertexAttributeBuffer(
+            var buffer = new VertexBuffer(
                 varNameInVertexShader, buffers[0], config, array.Length, array.ByteLength, instancedDivisor, patchVertexes);
 
             return buffer;

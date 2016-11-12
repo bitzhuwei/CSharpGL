@@ -24,22 +24,22 @@ namespace CSharpGL.Demos
         }
 
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBuffer;
+        private VertexBuffer positionBuffer;
         public const string strNormal = "normal";
-        private VertexAttributeBuffer normalBuffer;
+        private VertexBuffer normalBuffer;
         public const string strTangent = "tangent";
-        private VertexAttributeBuffer tangentBuffer;
+        private VertexBuffer tangentBuffer;
         public const string strTexCoord = "texCoord";
-        private VertexAttributeBuffer texCoordBuffer;
+        private VertexBuffer texCoordBuffer;
 
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = xy_vertices.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec4, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec4, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                 if (this.normalBuffer == null)
                 {
                     int length = xy_normals.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -79,7 +79,7 @@ namespace CSharpGL.Demos
                 if (this.tangentBuffer == null)
                 {
                     int length = xy_tangents.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -99,7 +99,7 @@ namespace CSharpGL.Demos
                 if (this.texCoordBuffer == null)
                 {
                     int length = xy_texCoords.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

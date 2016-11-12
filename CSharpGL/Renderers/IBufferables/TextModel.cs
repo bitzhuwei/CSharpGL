@@ -26,8 +26,8 @@ namespace CSharpGL
         /// </summary>
         public const string strUV = "uv";
 
-        private VertexAttributeBuffer positionBuffer;
-        private VertexAttributeBuffer uvBuffer;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer uvBuffer;
         private ZeroIndexBuffer indexBuffer;
         private int maxCharCount;
 
@@ -37,14 +37,14 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = maxCharCount;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(GlyphPosition), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(GlyphPosition), length, VBOConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
 
                     this.positionBuffer = buffer;
                 }
@@ -56,7 +56,7 @@ namespace CSharpGL
                 if (this.uvBuffer == null)
                 {
                     int length = maxCharCount;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(GlyphTexCoord), length, VertexAttributeConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(GlyphTexCoord), length, VBOConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
                     this.uvBuffer = buffer;
                 }
 

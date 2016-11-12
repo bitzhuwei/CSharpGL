@@ -14,7 +14,7 @@ namespace GridViewer
             : base(dataSource, gridProps, minColorCode, maxColorCode, defaultBlockPropertyIndex)
         { }
 
-        public override VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public override VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {

@@ -23,9 +23,9 @@ namespace CSharpGL
         /// </summary>
         public const string strNormal = "normal";
 
-        private VertexAttributeBuffer positionBuffer;
-        private VertexAttributeBuffer colorBuffer;
-        private VertexAttributeBuffer normalBuffer;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer colorBuffer;
+        private VertexBuffer normalBuffer;
 
         /// <summary>
         ///
@@ -50,14 +50,14 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = 1;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(CubeModel.CubePosition), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubePosition), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
@@ -83,7 +83,7 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     int length = 1;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(CubeModel.CubeColor), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeColor), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -100,7 +100,7 @@ namespace CSharpGL
                 if (this.normalBuffer == null)
                 {
                     int length = 1;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(CubeModel.CubeNormal), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeNormal), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

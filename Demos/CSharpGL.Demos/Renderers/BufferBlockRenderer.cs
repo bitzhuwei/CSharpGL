@@ -101,7 +101,7 @@ namespace CSharpGL.Demos
     {
         private IndexBuffer indexBuffer;
 
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             return null;
         }

@@ -12,9 +12,9 @@ namespace GridViewer
     public partial class WellModel : IBufferable, IModelSpace
     {
         public const string strPosition = "position";
-        private VertexAttributeBuffer positionBuffer = null;
+        private VertexBuffer positionBuffer = null;
         public const string strBrightness = "brightness";
-        private VertexAttributeBuffer brightnessBuffer = null;
+        private VertexBuffer brightnessBuffer = null;
 
         private IndexBuffer indexBuffer = null;
 
@@ -49,14 +49,14 @@ namespace GridViewer
             this.pipeline = pipeline;
         }
 
-        public unsafe VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public unsafe VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
                 if (positionBuffer != null) { return positionBuffer; }
 
                 int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -96,7 +96,7 @@ namespace GridViewer
                 if (brightnessBuffer != null) { return brightnessBuffer; }
 
                 int length = (faceCount * 2 + 2) * (pipeline.Count - 1);
-                VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

@@ -15,12 +15,12 @@ namespace CSharpGL
 
             // init vertex attribute buffer objects.
             IBufferable model = this.Model;
-            VertexAttributeBuffer[] vertexAttributeBuffers;
+            VertexBuffer[] vertexAttributeBuffers;
             {
-                var list = new List<VertexAttributeBuffer>();
+                var list = new List<VertexBuffer>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
-                    VertexAttributeBuffer buffer = model.GetVertexAttributeBuffer(
+                    VertexBuffer buffer = model.GetVertexAttributeBuffer(
                         item.NameInIBufferable, item.VarNameInShader);
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     list.Add(buffer);

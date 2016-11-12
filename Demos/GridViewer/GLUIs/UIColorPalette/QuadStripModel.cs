@@ -41,9 +41,9 @@ namespace GridViewer
         /// </summary>
         public const string color = "color";
 
-        private VertexAttributeBuffer positionBuffer;
-        private VertexAttributeBuffer texCoordBuffer;
-        private VertexAttributeBuffer colorBuffer;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer texCoordBuffer;
+        private VertexBuffer colorBuffer;
 
         public QuadStripModel(int quadCount, Bitmap bitmap = null)
         {
@@ -57,14 +57,14 @@ namespace GridViewer
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
             {
                 if (this.positionBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -86,7 +86,7 @@ namespace GridViewer
                 if (this.texCoordBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -109,7 +109,7 @@ namespace GridViewer
             {
                 if (this.colorBuffer == null)
                 {
-                    var buffer = VertexAttributeBuffer.Create(typeof(vec3), (this.quadCount + 1) * 2, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    var buffer = VertexBuffer.Create(typeof(vec3), (this.quadCount + 1) * 2, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         var array = (vec3*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

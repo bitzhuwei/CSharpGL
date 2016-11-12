@@ -5,7 +5,7 @@ namespace CSharpGL
     public static partial class Array2Buffer
     {
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
@@ -19,7 +19,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
@@ -33,7 +33,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
@@ -47,7 +47,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexAttributeBuffer"/>里各个顶点的渲染顺序。
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <typeparam name="T"></typeparam>

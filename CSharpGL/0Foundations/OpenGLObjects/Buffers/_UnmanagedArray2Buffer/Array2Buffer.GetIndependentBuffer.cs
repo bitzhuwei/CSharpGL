@@ -12,7 +12,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this UnmanagedArray<T> array, VBOConfig config, BufferUsage usage) where T : struct
         {
             return GetIndependentBuffer(array, IndependentBufferTarget.AtomicCounterBuffer, config, usage) as AtomicCounterBuffer;
         }
@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBuffer GetPixelPackBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static PixelPackBuffer GetPixelPackBuffer<T>(this UnmanagedArray<T> array, VBOConfig config, BufferUsage usage) where T : struct
         {
             return GetIndependentBuffer(array, IndependentBufferTarget.PixelPackBuffer, config, usage) as PixelPackBuffer;
         }
@@ -38,7 +38,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this UnmanagedArray<T> array, VBOConfig config, BufferUsage usage) where T : struct
         {
             return GetIndependentBuffer(array, IndependentBufferTarget.PixelUnpackBuffer, config, usage) as PixelUnpackBuffer;
         }
@@ -51,7 +51,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this UnmanagedArray<T> array, VBOConfig config, BufferUsage usage) where T : struct
         {
             return GetIndependentBuffer(array, IndependentBufferTarget.ShaderStorageBuffer, config, usage) as ShaderStorageBuffer;
         }
@@ -64,7 +64,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBuffer GetTextureBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static TextureBuffer GetTextureBuffer<T>(this UnmanagedArray<T> array, VBOConfig config, BufferUsage usage) where T : struct
         {
             return GetIndependentBuffer(array, IndependentBufferTarget.TextureBuffer, config, usage) as TextureBuffer;
         }
@@ -77,7 +77,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static UniformBuffer GetUniformBuffer<T>(this UnmanagedArray<T> array, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static UniformBuffer GetUniformBuffer<T>(this UnmanagedArray<T> array, VBOConfig config, BufferUsage usage) where T : struct
         {
             return GetIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, config, usage) as UniformBuffer;
         }
@@ -92,7 +92,7 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static IndependentBuffer GetIndependentBuffer<T>(this UnmanagedArray<T> array, IndependentBufferTarget bufferTarget, VertexAttributeConfig config, BufferUsage usage) where T : struct
+        public static IndependentBuffer GetIndependentBuffer<T>(this UnmanagedArray<T> array, IndependentBufferTarget bufferTarget, VBOConfig config, BufferUsage usage) where T : struct
         {
             if (glGenBuffers == null)
             {

@@ -31,9 +31,9 @@ namespace CSharpGL
         public const string strNormal = "normal";
 
         private TeapotModel model;
-        private VertexAttributeBuffer positionBuffer;
-        private VertexAttributeBuffer colorBuffer;
-        private VertexAttributeBuffer normalBuffer;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer colorBuffer;
+        private VertexBuffer normalBuffer;
 
         /// <summary>
         ///
@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -49,7 +49,7 @@ namespace CSharpGL
                 {
                     float[] positions = model.GetPositions();
                     int length = positions.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -70,7 +70,7 @@ namespace CSharpGL
                 {
                     float[] normals = model.GetNormals();
                     int length = normals.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -91,7 +91,7 @@ namespace CSharpGL
                 {
                     float[] normals = model.GetNormals();
                     int length = normals.Length;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(float), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

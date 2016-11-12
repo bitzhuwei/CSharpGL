@@ -23,18 +23,18 @@ namespace CSharpGL
 
         public const string position = "position";
 
-        private CSharpGL.VertexAttributeBuffer positionBuffer;
+        private CSharpGL.VertexBuffer positionBuffer;
 
         private CSharpGL.IndexBuffer indexBuffer;
 
-        public CSharpGL.VertexAttributeBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public CSharpGL.VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if ((bufferName == position))
             {
                 if ((this.positionBuffer == null))
                 {
                     int length = this.pointPositions.Count;
-                    VertexAttributeBuffer buffer = VertexAttributeBuffer.Create(typeof(vec3), length, VertexAttributeConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

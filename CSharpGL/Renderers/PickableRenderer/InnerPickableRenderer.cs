@@ -17,11 +17,11 @@ namespace CSharpGL
         /// Position buffer pointer.
         /// </summary>
         [Browsable(false)]
-        internal VertexAttributeBuffer PositionBuffer
+        internal VertexBuffer PositionBuffer
         {
             get
             {
-                VertexAttributeBuffer[] pointers = this.vertexAttributeBuffers;
+                VertexBuffer[] pointers = this.vertexAttributeBuffers;
                 if (pointers == null || pointers.Length < 0)
                 {
                     throw new Exception("Vertex attribute buffers are not readly!");
