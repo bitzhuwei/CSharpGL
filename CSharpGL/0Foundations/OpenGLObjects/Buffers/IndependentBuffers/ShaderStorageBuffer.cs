@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Buffer object that not work as input variable in shader.
@@ -46,6 +47,17 @@
             uint storageBlockIndex = glGetProgramResourceIndex(program.ProgramId, OpenGL.GL_SHADER_STORAGE_BLOCK, storageBlockName);
             glBindBufferBase(OpenGL.GL_SHADER_STORAGE_BUFFER, storageBlockBindingPoint, this.BufferId);
             glShaderStorageBlockBinding(program.ProgramId, storageBlockIndex, storageBlockBindingPoint);
+        }
+        /// <summary>
+        /// Creates a <see cref="ShaderStorageBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// </summary>
+        /// <param name="elementType"></param>
+        /// <param name="usage"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static ShaderStorageBuffer Create(Type elementType, BufferUsage usage, int length)
+        {
+            return (Buffer.Create(IndependentBufferTarget.ShaderStorageBuffer, elementType, usage, length) as ShaderStorageBuffer);
         }
     }
 }

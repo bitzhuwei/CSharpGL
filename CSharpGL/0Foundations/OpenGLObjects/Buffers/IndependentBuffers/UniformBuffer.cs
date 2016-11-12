@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     // http://blog.csdn.net/csxiaoshui/article/details/32101977
     /// <summary>
@@ -46,6 +47,17 @@
         {
             glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uniformBlockBindingPoint, this.BufferId);
             glUniformBlockBinding(program.ProgramId, uniformBlockIndex, uniformBlockBindingPoint);
+        }
+        /// <summary>
+        /// Creates a <see cref="UniformBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// </summary>
+        /// <param name="elementType"></param>
+        /// <param name="usage"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static UniformBuffer Create(Type elementType, BufferUsage usage, int length)
+        {
+            return (Buffer.Create(IndependentBufferTarget.UniformBuffer, elementType, usage, length) as UniformBuffer);
         }
     }
 }
