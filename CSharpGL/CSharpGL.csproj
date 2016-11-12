@@ -125,9 +125,9 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\ZeroIndexBuffer\ZeroIndexBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\OneIndexBuffer\OneIndexBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VertexBuffer.Create.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfigHelper.GetVertexAttribPointerType.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfigHelper.GetDataTypeByteLength.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfigHelper.Parse.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.GetVertexAttribPointerType.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.GetDataTypeByteLength.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.Parse.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\AccumBufferSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
