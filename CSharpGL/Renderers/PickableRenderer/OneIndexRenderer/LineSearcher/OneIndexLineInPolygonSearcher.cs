@@ -21,7 +21,7 @@ namespace CSharpGL
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length < 3) { throw new ArgumentException(); }
 
-            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.LineLoop, IndexElementType.UInt, indexList.Length);
+            OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, indexList.Length, DrawMode.LineLoop, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

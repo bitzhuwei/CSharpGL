@@ -127,7 +127,7 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int length = CubeModel.index.Length;
-                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Triangles, IndexElementType.UByte, length);
+                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Triangles, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

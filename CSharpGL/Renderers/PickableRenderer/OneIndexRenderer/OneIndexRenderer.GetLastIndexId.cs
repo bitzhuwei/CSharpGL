@@ -109,10 +109,11 @@ namespace CSharpGL
                 + recognizedPrimitiveIndex1.VertexIds.Length)
             { throw new Exception(); }
 
-            oneIndexBuffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, drawMode, IndexElementType.UInt,
+            oneIndexBuffer = Buffer.Create(IndexElementType.UInt,
                 recognizedPrimitiveIndex0.VertexIds.Length
                 + 1
-                + recognizedPrimitiveIndex1.VertexIds.Length);
+                + recognizedPrimitiveIndex1.VertexIds.Length,
+                drawMode, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)oneIndexBuffer.MapBuffer(MapBufferAccess.WriteOnly);

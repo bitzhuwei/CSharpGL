@@ -110,7 +110,7 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int length = indexes.Length;
-                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Quads, IndexElementType.UByte, length);
+                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Quads, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

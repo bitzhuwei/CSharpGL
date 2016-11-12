@@ -15,7 +15,7 @@
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 6);
+            OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

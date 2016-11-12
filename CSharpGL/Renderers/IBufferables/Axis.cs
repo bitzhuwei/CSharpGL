@@ -98,7 +98,7 @@ namespace CSharpGL
         {
             if (indexBuffer == null)
             {
-                OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, this.model.mode, IndexElementType.UInt, this.model.indexes.Length);
+                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, this.model.indexes.Length, this.model.mode, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

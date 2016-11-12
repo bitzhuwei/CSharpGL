@@ -16,7 +16,7 @@
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             // 创建临时索引
-            OneIndexBuffer buffer = OneIndexBuffer.Create(BufferUsage.StaticDraw, DrawMode.Lines, IndexElementType.UInt, 6);
+            OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

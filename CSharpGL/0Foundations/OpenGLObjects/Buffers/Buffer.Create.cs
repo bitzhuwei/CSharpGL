@@ -58,12 +58,12 @@ namespace CSharpGL
         /// <summary>
         /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
-        /// <param name="usage"></param>
-        /// <param name="mode"></param>
         /// <param name="type"></param>
         /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
+        /// <param name="mode"></param>
+        /// <param name="usage"></param>
         /// <returns></returns>
-        public static OneIndexBuffer Create(BufferUsage usage, DrawMode mode, IndexElementType type, int length)
+        public static OneIndexBuffer Create(IndexElementType type, int length, DrawMode mode, BufferUsage usage)
         {
             if (glGenBuffers == null)
             {
