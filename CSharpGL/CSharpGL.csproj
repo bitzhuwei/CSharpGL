@@ -116,15 +116,16 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\PixelUnpackBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\AtomicCounterBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\PixelPackBuffer.Create.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferTarget.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\ShaderStorageBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\IndependentBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\TextureBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\UniformBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\ZeroIndexBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\OneIndexBuffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\0How2CreateBuffer\Create\VertexBuffer.Create.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.GetVertexAttribPointerType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.GetDataTypeByteLength.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.Parse.cs" />
