@@ -18,7 +18,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<byte>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<byte>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             OneIndexBuffer buffer = GetOneIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UByte, primCount);
             pinned.Free();
 
@@ -38,7 +38,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<ushort>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<ushort>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             OneIndexBuffer buffer = GetOneIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UShort, primCount);
             pinned.Free();
 
@@ -58,7 +58,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<uint>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<uint>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             OneIndexBuffer buffer = GetOneIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UInt, primCount);
             pinned.Free();
 

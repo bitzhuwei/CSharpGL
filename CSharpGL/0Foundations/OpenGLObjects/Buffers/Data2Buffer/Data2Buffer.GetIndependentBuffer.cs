@@ -80,7 +80,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             AtomicCounterBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
             pinned.Free();
 
@@ -96,7 +96,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             PixelPackBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
             pinned.Free();
 
@@ -112,7 +112,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             PixelUnpackBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
             pinned.Free();
 
@@ -128,7 +128,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             ShaderStorageBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
             pinned.Free();
 
@@ -144,7 +144,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             TextureBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
             pinned.Free();
 
@@ -160,7 +160,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             UniformBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
             pinned.Free();
 
