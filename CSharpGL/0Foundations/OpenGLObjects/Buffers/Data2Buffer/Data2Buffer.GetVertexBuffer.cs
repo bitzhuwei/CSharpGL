@@ -18,10 +18,10 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer GetVertexBufferObject<T>(this T data, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
+        public static VertexBuffer GetVertexBuffer<T>(this T data, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
             var array = new T[] { data };
-            return GetVertexBufferObject(array, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
+            return GetVertexBuffer(array, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
             // another way to do this:
             //using (UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(1))
             //{
@@ -44,12 +44,12 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer GetVertexBufferObject<T>(this T[] array, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
+        public static VertexBuffer GetVertexBuffer<T>(this T[] array, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(header, array.Length);
-            VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
+            VertexBuffer buffer = GetVertexBuffer(unmanagedArray, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
             pinned.Free();
 
             return buffer;
@@ -68,7 +68,7 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer GetVertexBufferObject(this UnmanagedArrayBase array, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
+        public static VertexBuffer GetVertexBuffer(this UnmanagedArrayBase array, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
         {
             if (glGenBuffers == null)
             {
