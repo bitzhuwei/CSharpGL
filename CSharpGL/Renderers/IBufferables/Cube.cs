@@ -82,16 +82,18 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    int length = 1;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeColor), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (CubeModel.CubeColor*)pointer;
-                        array[0] = CubeModel.color;
-                        buffer.UnmapBuffer();
-                    }
-                    this.colorBuffer = buffer;
+                    //int length = 1;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeColor), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (CubeModel.CubeColor*)pointer;
+                    //    array[0] = CubeModel.color;
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    // another way to do this:
+                    this.colorBuffer = CubeModel.color.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -99,16 +101,18 @@ namespace CSharpGL
             {
                 if (this.normalBuffer == null)
                 {
-                    int length = 1;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeNormal), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (CubeModel.CubeNormal*)pointer;
-                        array[0] = CubeModel.normal;
-                        buffer.UnmapBuffer();
-                    }
-                    this.normalBuffer = buffer;
+                    //int length = 1;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeNormal), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (CubeModel.CubeNormal*)pointer;
+                    //    array[0] = CubeModel.normal;
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.normalBuffer = buffer;
+                    // another way to do this:
+                    this.normalBuffer = CubeModel.normal.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }
@@ -126,19 +130,21 @@ namespace CSharpGL
         {
             if (this.indexBuffer == null)
             {
-                int length = CubeModel.index.Length;
-                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Triangles, BufferUsage.StaticDraw);
-                unsafe
-                {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (byte*)pointer;
-                    for (int i = 0; i < CubeModel.index.Length; i++)
-                    {
-                        array[i] = CubeModel.index[i];
-                    }
-                    buffer.UnmapBuffer();
-                }
-                this.indexBuffer = buffer;
+                //int length = CubeModel.index.Length;
+                //OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                //unsafe
+                //{
+                //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                //    var array = (byte*)pointer;
+                //    for (int i = 0; i < CubeModel.index.Length; i++)
+                //    {
+                //        array[i] = CubeModel.index[i];
+                //    }
+                //    buffer.UnmapBuffer();
+                //}
+                //this.indexBuffer = buffer;
+                // another way to do this:
+                this.indexBuffer = CubeModel.index.GetOneIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;
