@@ -33,6 +33,10 @@ namespace CSharpGL
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
 
+        internal UnmanagedArray(IntPtr header, int count)
+            : base(header, count, Marshal.SizeOf(typeof(T)))
+        { }
+
         /// <summary>
         /// Dispose unmanaged resources
         /// </summary>
@@ -124,6 +128,13 @@ namespace CSharpGL
         public int ByteLength
         {
             get { return (this.Length * this.elementSize); }
+        }
+
+        internal UnmanagedArrayBase(IntPtr header, int elementCount, int elementSize)
+        {
+            this.Header = header;
+            this.elementSize = elementSize;
+            this.Length = elementCount;
         }
 
         /// <summary>
