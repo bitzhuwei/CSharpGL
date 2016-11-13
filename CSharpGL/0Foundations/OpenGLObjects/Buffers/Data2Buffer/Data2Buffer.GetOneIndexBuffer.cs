@@ -9,6 +9,51 @@ namespace CSharpGL
         /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
+        /// <param name="data"></param>
+        /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+        /// <param name="usage"></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <returns></returns>
+        public static OneIndexBuffer GetOneIndexBuffer(this byte data, DrawMode mode, BufferUsage usage, int primCount = 1)
+        {
+            var array = new byte[] { data };
+            return GetOneIndexBuffer(array, mode, usage, primCount);
+        }
+
+        /// <summary>
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
+        /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+        /// <param name="usage"></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <returns></returns>
+        public static OneIndexBuffer GetOneIndexBuffer(this ushort data, DrawMode mode, BufferUsage usage, int primCount = 1)
+        {
+            var array = new ushort[] { data };
+            return GetOneIndexBuffer(array, mode, usage, primCount);
+        }
+
+        /// <summary>
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
+        /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+        /// <param name="usage"></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <returns></returns>
+        public static OneIndexBuffer GetOneIndexBuffer(this uint data, DrawMode mode, BufferUsage usage, int primCount = 1)
+        {
+            var array = new uint[] { data };
+            return GetOneIndexBuffer(array, mode, usage, primCount);
+        }
+
+        /// <summary>
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
+        /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
+        /// </summary>
         /// <param name="array"></param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
@@ -136,5 +181,4 @@ namespace CSharpGL
             return buffer;
         }
     }
-
 }
