@@ -1,9 +1,112 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
     public static partial class Array2Buffer
     {
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T[] array, VBOConfig config, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            AtomicCounterBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.AtomicCounterBuffer, config, usage) as AtomicCounterBuffer;
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static PixelPackBuffer GetPixelPackBuffer<T>(this T[] array, VBOConfig config, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            PixelPackBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelPackBuffer, config, usage) as PixelPackBuffer;
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this T[] array, VBOConfig config, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            PixelUnpackBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelUnpackBuffer, config, usage) as PixelUnpackBuffer;
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this T[] array, VBOConfig config, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            ShaderStorageBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.ShaderStorageBuffer, config, usage) as ShaderStorageBuffer;
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static TextureBuffer GetTextureBuffer<T>(this T[] array, VBOConfig config, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            TextureBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.TextureBuffer, config, usage) as TextureBuffer;
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static UniformBuffer GetUniformBuffer<T>(this T[] array, VBOConfig config, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);
+            UniformBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.UniformBuffer, config, usage) as UniformBuffer;
+            pinned.Free();
+
+            return buffer;
+        }
+
         /// <summary>
         /// </summary>
         /// <param name="array"></param>

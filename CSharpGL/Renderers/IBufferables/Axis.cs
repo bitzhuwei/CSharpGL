@@ -45,23 +45,25 @@ namespace CSharpGL
         {
             if (bufferName == strPosition)
             {
-                if (positionBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    int length = this.model.positions.Length;
-                    VertexBuffer ptr = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer.ToPointer();
-                        for (int i = 0; i < length; i++)
-                        {
-                            array[i] = this.model.positions[i];
-                        }
-                        ptr.UnmapBuffer();
-                    }
-                    this.positionBuffer = ptr;
+                    //int length = this.model.positions.Length;
+                    //VertexBuffer ptr = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer.ToPointer();
+                    //    for (int i = 0; i < length; i++)
+                    //    {
+                    //        array[i] = this.model.positions[i];
+                    //    }
+                    //    ptr.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = ptr;
+                    // another way to do this:
+                    this.positionBuffer = this.model.positions.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return positionBuffer;
+                return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {

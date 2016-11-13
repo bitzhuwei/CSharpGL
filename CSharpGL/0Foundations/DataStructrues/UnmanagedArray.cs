@@ -33,6 +33,11 @@ namespace CSharpGL
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
 
+        /// <summary>
+        /// Creats an unmanaged array instance whose content will be disposed by someone else.
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="count"></param>
         internal UnmanagedArray(IntPtr header, int count)
             : base(header, count, Marshal.SizeOf(typeof(T)))
         { }
@@ -135,6 +140,7 @@ namespace CSharpGL
             this.Header = header;
             this.elementSize = elementSize;
             this.Length = elementCount;
+            this.manualDispose = true;
         }
 
         /// <summary>
@@ -180,6 +186,7 @@ namespace CSharpGL
         /// Backing field to track whether Dispose has been called.
         /// </summary>
         private bool disposedValue = false;
+        private bool manualDispose = false;
 
         /// <summary>
         /// Dispose managed and unmanaged resources of this instance.
@@ -211,11 +218,20 @@ namespace CSharpGL
         /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
-            IntPtr header = this.Header;
-            if (header != IntPtr.Zero)
+            if (this.manualDispose)
             {
-                Marshal.FreeHGlobal(header);
                 this.Header = IntPtr.Zero;
+                this.Length = 0;
+            }
+            else
+            {
+                IntPtr header = this.Header;
+                if (header != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(header);
+                    this.Header = IntPtr.Zero;
+                    this.Length = 0;
+                }
             }
         }
 

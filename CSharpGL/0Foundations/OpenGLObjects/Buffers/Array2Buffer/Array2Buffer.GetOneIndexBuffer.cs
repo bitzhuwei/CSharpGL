@@ -1,9 +1,70 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
     public static partial class Array2Buffer
     {
+        /// <summary>
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
+        /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+        /// <param name="usage"></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <returns></returns>
+        public static OneIndexBuffer GetOneIndexBuffer(this byte[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<byte>(header, array.Length);
+            OneIndexBuffer buffer = GetOneIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UByte, primCount);
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
+        /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+        /// <param name="usage"></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <returns></returns>
+        public static OneIndexBuffer GetOneIndexBuffer(this ushort[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<ushort>(header, array.Length);
+            OneIndexBuffer buffer = GetOneIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UShort, primCount);
+            pinned.Free();
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
+        /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
+        /// <param name="usage"></param>
+        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <returns></returns>
+        public static OneIndexBuffer GetOneIndexBuffer(this uint[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            var unmanagedArray = new UnmanagedArray<uint>(header, array.Length);
+            OneIndexBuffer buffer = GetOneIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UInt, primCount);
+            pinned.Free();
+
+            return buffer;
+        }
+
         /// <summary>
         /// 获取一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Gets a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
