@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArray<byte> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GetOneIndexBuffer<byte>(array, mode, usage, primCount);
+            return GetOneIndexBuffer(array, mode, usage, IndexElementType.UByte, primCount);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArray<ushort> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GetOneIndexBuffer<ushort>(array, mode, usage, primCount);
+            return GetOneIndexBuffer(array, mode, usage, IndexElementType.UShort, primCount);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArray<uint> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GetOneIndexBuffer<uint>(array, mode, usage, primCount);
+            return GetOneIndexBuffer(array, mode, usage, IndexElementType.UInt, primCount);
         }
 
         /// <summary>
@@ -56,27 +56,8 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        private static OneIndexBuffer GetOneIndexBuffer<T>(this UnmanagedArray<T> array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
+        private static OneIndexBuffer GetOneIndexBuffer(this UnmanagedArrayBase array, DrawMode mode, BufferUsage usage, IndexElementType elementType, int primCount = 1)
         {
-            Type type = typeof(T);
-            IndexElementType elementType = IndexElementType.UInt;
-            if (type == typeof(byte))
-            {
-                elementType = IndexElementType.UByte;
-            }
-            else if (type == typeof(ushort))
-            {
-                elementType = IndexElementType.UShort;
-            }
-            else if (type == typeof(uint))
-            {
-                elementType = IndexElementType.UInt;
-            }
-            else
-            {
-                throw new ArgumentException(string.Format("Array's element type must be one of byte, ushort or uint!"));
-            }
-
             if (glGenBuffers == null)
             {
                 InitFunctions();
