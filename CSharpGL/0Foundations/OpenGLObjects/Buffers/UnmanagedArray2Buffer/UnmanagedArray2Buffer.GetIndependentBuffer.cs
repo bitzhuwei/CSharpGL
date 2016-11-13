@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public static partial class Array2Buffer
+    public static partial class UnmanagedArray2Buffer
     {
         /// <summary>
         /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
