@@ -7,8 +7,7 @@ namespace CSharpGL
     {
         /// <summary>
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T data, BufferUsage usage) where T : struct
@@ -19,8 +18,7 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static PixelPackBuffer GetPixelPackBuffer<T>(this T data, BufferUsage usage) where T : struct
@@ -31,8 +29,7 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this T data, BufferUsage usage) where T : struct
@@ -43,8 +40,7 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this T data, BufferUsage usage) where T : struct
@@ -55,8 +51,7 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static TextureBuffer GetTextureBuffer<T>(this T data, BufferUsage usage) where T : struct
@@ -67,8 +62,7 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static UniformBuffer GetUniformBuffer<T>(this T data, BufferUsage usage) where T : struct
@@ -80,7 +74,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T[] array, BufferUsage usage) where T : struct
@@ -97,7 +90,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static PixelPackBuffer GetPixelPackBuffer<T>(this T[] array, BufferUsage usage) where T : struct
@@ -114,7 +106,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this T[] array, BufferUsage usage) where T : struct
@@ -131,7 +122,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this T[] array, BufferUsage usage) where T : struct
@@ -148,7 +138,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static TextureBuffer GetTextureBuffer<T>(this T[] array, BufferUsage usage) where T : struct
@@ -165,7 +154,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static UniformBuffer GetUniformBuffer<T>(this T[] array, BufferUsage usage) where T : struct
@@ -182,7 +170,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static AtomicCounterBuffer GetAtomicCounterBuffer(this UnmanagedArrayBase array, BufferUsage usage)
@@ -193,7 +180,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static PixelPackBuffer GetPixelPackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
@@ -204,7 +190,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static PixelUnpackBuffer GetPixelUnpackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
@@ -215,7 +200,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static ShaderStorageBuffer GetShaderStorageBuffer(this UnmanagedArrayBase array, BufferUsage usage)
@@ -226,7 +210,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static TextureBuffer GetTextureBuffer(this UnmanagedArrayBase array, BufferUsage usage)
@@ -237,7 +220,6 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static UniformBuffer GetUniformBuffer(this UnmanagedArrayBase array, BufferUsage usage)
@@ -250,10 +232,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array"></param>
         /// <param name="bufferTarget"></param>
-        /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static Buffer GetIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
+        private static Buffer GetIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
         {
             if (glGenBuffers == null)
             {
