@@ -135,6 +135,12 @@ namespace CSharpGL
             get { return (this.Length * this.elementSize); }
         }
 
+        /// <summary>
+        /// Creats an unmanaged array instance whose content will be disposed by someone else.
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="elementCount"></param>
+        /// <param name="elementSize"></param>
         internal UnmanagedArrayBase(IntPtr header, int elementCount, int elementSize)
         {
             this.Header = header;
@@ -186,6 +192,10 @@ namespace CSharpGL
         /// Backing field to track whether Dispose has been called.
         /// </summary>
         private bool disposedValue = false;
+
+        /// <summary>
+        /// this array's content will be disposed by someone else.
+        /// </summary>
         private bool manualDispose = false;
 
         /// <summary>
