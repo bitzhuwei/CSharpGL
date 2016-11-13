@@ -23,12 +23,8 @@ namespace CSharpGL
 
                     if (item.NameInIBufferable == this.PositionNameInIBufferable)
                     {
-                        positionBuffer = new VertexBuffer(
-                            "in_Position",// in_Postion same with in the PickingShader.vert shader
-                            buffer.BufferId,
-                            buffer.Config,
-                            buffer.Length,
-                            buffer.ByteLength);
+                        positionBuffer = buffer.Clone() as VertexBuffer;
+                        positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
                         break;
                     }
                     list.Add(buffer);

@@ -7,7 +7,7 @@ namespace CSharpGL
     /// type of Vertex Buffer Object, which represents one of vertex's attribute(position, color, uv coordinate, normal, etc).
     /// <para>In CSharpGL, one <see cref="VertexBuffer"/> contains only one kind of attribute.</para>
     /// </summary>
-    public partial class VertexBuffer : Buffer
+    public partial class VertexBuffer : Buffer, ICloneable
     {
         /// <summary>
         ///
@@ -89,12 +89,12 @@ namespace CSharpGL
         /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
         /// <para>Mapping variable's name in vertex shader.</para>
         /// </summary>
-        public string VarNameInVertexShader { get; private set; }
+        public string VarNameInVertexShader { get; set; }
 
         /// <summary>
         /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
-        public VBOConfig Config { get; private set; }
+        public VBOConfig Config { get; set; }
 
         /// <summary>
         /// How many bytes are there in a primitive data type(float/uint/int etc)?
@@ -130,7 +130,7 @@ namespace CSharpGL
         /// <summary>
         /// 0: not instanced. 1: instanced divisor is 1.
         /// </summary>
-        public uint InstancedDivisor { get; private set; }
+        public uint InstancedDivisor { get; set; }
 
         /// <summary>
         /// How many vertexes makes a patch? No patch if PatchVertexes is 0.
@@ -203,6 +203,16 @@ namespace CSharpGL
                 }
             }
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
+        }
+
+
+        /// <summary>
+        /// Shallow copy of this <see cref="VertexBuffer"/> instance.
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 
