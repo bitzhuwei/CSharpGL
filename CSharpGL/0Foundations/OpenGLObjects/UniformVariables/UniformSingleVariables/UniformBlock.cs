@@ -79,16 +79,17 @@ namespace CSharpGL
             var uboSize = new uint[1];
             glGetActiveUniformBlockiv(program.ProgramId, uboIndex, OpenGL.GL_UNIFORM_BLOCK_DATA_SIZE, uboSize);
             byte[] bytes = this.value.ToBytes();
-            UniformBuffer result = UniformBuffer.Create(typeof(byte), bytes.Length, BufferUsage.StaticDraw);
-            unsafe
-            {
-                var array = (byte*)result.MapBuffer(MapBufferAccess.WriteOnly);
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    array[i] = bytes[i];
-                }
-                result.UnmapBuffer();
-            }
+            //UniformBuffer result = UniformBuffer.Create(typeof(byte), bytes.Length, BufferUsage.StaticDraw);
+            //unsafe
+            //{
+            //    var array = (byte*)result.MapBuffer(MapBufferAccess.WriteOnly);
+            //    for (int i = 0; i < bytes.Length; i++)
+            //    {
+            //        array[i] = bytes[i];
+            //    }
+            //    result.UnmapBuffer();
+            //}
+            UniformBuffer result = bytes.GetUniformBuffer(BufferUsage.StaticDraw);
 
             //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
             //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, 0, result.BufferId);

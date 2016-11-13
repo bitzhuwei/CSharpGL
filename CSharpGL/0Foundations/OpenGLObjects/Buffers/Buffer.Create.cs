@@ -124,37 +124,7 @@ namespace CSharpGL
                 InitOpenGLCommands();
             }
 
-            uint bufferTarget = 0;
-            switch (target)
-            {
-                case IndependentBufferTarget.AtomicCounterBuffer:
-                    bufferTarget = OpenGL.GL_ATOMIC_COUNTER_BUFFER;
-                    break;
-
-                case IndependentBufferTarget.PixelPackBuffer:
-                    bufferTarget = OpenGL.GL_PIXEL_PACK_BUFFER;
-                    break;
-
-                case IndependentBufferTarget.PixelUnpackBuffer:
-                    bufferTarget = OpenGL.GL_PIXEL_UNPACK_BUFFER;
-                    break;
-
-                case IndependentBufferTarget.ShaderStorageBuffer:
-                    bufferTarget = OpenGL.GL_SHADER_STORAGE_BUFFER;
-                    break;
-
-                case IndependentBufferTarget.TextureBuffer:
-                    bufferTarget = OpenGL.GL_TEXTURE_BUFFER;
-                    break;
-
-                case IndependentBufferTarget.UniformBuffer:
-                    bufferTarget = OpenGL.GL_UNIFORM_BUFFER;
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
+            uint bufferTarget = (uint)target;
             int byteLength = Marshal.SizeOf(elementType) * length;
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);

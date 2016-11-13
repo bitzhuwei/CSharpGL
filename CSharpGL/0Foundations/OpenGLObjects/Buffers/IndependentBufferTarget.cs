@@ -3,36 +3,36 @@
     /// <summary>
     ///
     /// </summary>
-    public enum IndependentBufferTarget
+    public enum IndependentBufferTarget : uint
     {
         /// <summary>
         ///
         /// </summary>
-        AtomicCounterBuffer,
+        AtomicCounterBuffer = OpenGL.GL_ATOMIC_COUNTER_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        PixelPackBuffer,
+        PixelPackBuffer = OpenGL.GL_PIXEL_PACK_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        PixelUnpackBuffer,
+        PixelUnpackBuffer = OpenGL.GL_PIXEL_UNPACK_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        ShaderStorageBuffer,
+        ShaderStorageBuffer = OpenGL.GL_SHADER_STORAGE_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        TextureBuffer,
+        TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        UniformBuffer,
+        UniformBuffer = OpenGL.GL_UNIFORM_BUFFER,
     }
 }

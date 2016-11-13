@@ -11,6 +11,78 @@ namespace CSharpGL
         /// <param name="config"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
+        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GetAtomicCounterBuffer(array, usage);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static PixelPackBuffer GetPixelPackBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GetPixelPackBuffer(array, usage);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GetPixelUnpackBuffer(array, usage);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GetShaderStorageBuffer(array, usage);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static TextureBuffer GetTextureBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GetTextureBuffer(array, usage);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static UniformBuffer GetUniformBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GetUniformBuffer(array, usage);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="config"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
         public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
