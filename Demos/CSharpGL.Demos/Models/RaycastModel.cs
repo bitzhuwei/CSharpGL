@@ -85,7 +85,7 @@ namespace CSharpGL.Demos
                     //}
 
                     //this.colorBuffer = buffer;
-                    this.colorBuffer = boundingBox.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = boundingBox.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }

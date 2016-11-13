@@ -149,7 +149,7 @@ namespace CSharpGL.Demos
                         //}
 
                         //positionBuffer = buffer;
-                        this.positionBuffer = vertsData.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                        this.positionBuffer = vertsData.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     }
 
                     return this.positionBuffer;

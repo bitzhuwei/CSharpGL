@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
                     //    buffer.UnmapBuffer();
                     //}
                     //this.positionBuffer = buffer;
-                    this.positionBuffer = positions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.DynamicDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.DynamicDraw);
                 }
                 return positionBuffer;
             }

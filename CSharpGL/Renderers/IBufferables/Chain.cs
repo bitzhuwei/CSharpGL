@@ -62,7 +62,7 @@ namespace CSharpGL
                     //}
                     //this.positionBuffer = buffer;
                     // another way to do this:
-                    this.positionBuffer = model.Positions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.positionBuffer = model.Positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -84,7 +84,7 @@ namespace CSharpGL
                     //}
                     //this.colorBuffer = buffer;
                     // another way to do this:
-                    this.colorBuffer = model.Colors.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = model.Colors.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }

@@ -123,7 +123,7 @@ namespace CSharpGL.Demos
                         //}
 
                         //this.texCoordBuffer = buffer;
-                        this.texCoordBuffer = texCoords.GetVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
+                        this.texCoordBuffer = texCoords.GenVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                     }
 
                     return this.texCoordBuffer;

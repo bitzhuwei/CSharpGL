@@ -69,7 +69,7 @@ namespace CSharpGL
                     //}
                     //this.positionBuffer = buffer;
                     // another way to do this:
-                    this.positionBuffer = this.pointPositions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.positionBuffer = this.pointPositions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }

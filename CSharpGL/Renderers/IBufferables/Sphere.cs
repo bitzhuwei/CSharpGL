@@ -74,7 +74,7 @@ namespace CSharpGL
                     //}
                     //this.positionBuffer = buffer;
                     // another way to do this:
-                    this.positionBuffer = this.model.positions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.positionBuffer = this.model.positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -96,7 +96,7 @@ namespace CSharpGL
                     //}
                     //this.normalBuffer = buffer;
                     // another way to do this:
-                    this.normalBuffer = this.model.normals.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.normalBuffer = this.model.normals.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }
@@ -118,7 +118,7 @@ namespace CSharpGL
                     //}
                     //this.colorBuffer = buffer;
                     // another way to do this:
-                    this.colorBuffer = this.model.colors.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = this.model.colors.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -140,7 +140,7 @@ namespace CSharpGL
                     //}
                     //this.uvBuffer = buffer;
                     // another way to do this:
-                    this.uvBuffer = model.uv.GetVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
+                    this.uvBuffer = model.uv.GenVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.uvBuffer;
             }

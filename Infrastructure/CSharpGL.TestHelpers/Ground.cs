@@ -130,7 +130,7 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.positionBuffer = buffer;
-                    this.positionBuffer = positions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -151,7 +151,7 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.colorBuffer = buffer;
-                    this.colorBuffer = colors.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }

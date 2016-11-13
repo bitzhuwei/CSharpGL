@@ -52,7 +52,7 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.positionBuffer = buffer;
-                    this.positionBuffer = TetrahedronModel.position.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.positionBuffer = TetrahedronModel.position.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -73,7 +73,7 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.colorBuffer = buffer;
-                    this.colorBuffer = TetrahedronModel.color.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = TetrahedronModel.color.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -94,7 +94,7 @@ namespace CSharpGL
                     //        buffer.UnmapBuffer();
                     //    }
                     //    this.normalBuffer = buffer;
-                    this.normalBuffer = TetrahedronModel.normal.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.normalBuffer = TetrahedronModel.normal.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }

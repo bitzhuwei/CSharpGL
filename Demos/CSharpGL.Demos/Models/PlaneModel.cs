@@ -71,7 +71,7 @@ namespace CSharpGL.Demos
                     //    buffer.UnmapBuffer();
                     //}
                     //this.normalBuffer = buffer;
-                    this.normalBuffer = xy_normals.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.normalBuffer = xy_normals.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }
@@ -92,7 +92,7 @@ namespace CSharpGL.Demos
                     //    buffer.UnmapBuffer();
                     //}
                     //this.tangentBuffer = buffer;
-                    this.tangentBuffer = xy_tangents.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.tangentBuffer = xy_tangents.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.tangentBuffer;
             }
@@ -113,7 +113,7 @@ namespace CSharpGL.Demos
                     //    buffer.UnmapBuffer();
                     //}
                     //this.texCoordBuffer = buffer;
-                    this.texCoordBuffer = xy_texCoords.GetVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
+                    this.texCoordBuffer = xy_texCoords.GenVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.texCoordBuffer;
             }
