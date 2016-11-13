@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static Texture CreateBufferTexture<T>(uint internalFormat, int elementCount, BufferUsage usage) where T : struct
         {
-            TextureBuffer buffer = TextureBuffer.Create(typeof(T), usage, elementCount);
+            TextureBuffer buffer = TextureBuffer.Create(typeof(T), elementCount, usage);
             return buffer.DumpBufferTexture(internalFormat, autoDispose: true);
         }
     }

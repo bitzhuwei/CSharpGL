@@ -5,9 +5,7 @@ namespace CSharpGL
     public static partial class UnmanagedArray2Buffer
     {
         /// <summary>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="config"></param>
         /// <param name="usage"></param>
@@ -18,9 +16,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="config"></param>
         /// <param name="usage"></param>
@@ -31,9 +27,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="config"></param>
         /// <param name="usage"></param>
@@ -44,9 +38,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="config"></param>
         /// <param name="usage"></param>
@@ -57,9 +49,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="config"></param>
         /// <param name="usage"></param>
@@ -70,9 +60,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="config"></param>
         /// <param name="usage"></param>
@@ -84,9 +72,7 @@ namespace CSharpGL
 
         /// <summary>
         /// 获取某种独立的Buffer。
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
         /// </summary>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// <param name="array"></param>
         /// <param name="bufferTarget"></param>
         /// <param name="config"></param>

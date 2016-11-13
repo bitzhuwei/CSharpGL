@@ -34,9 +34,9 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer Create(Type elementType, BufferUsage usage, int length)
+        public static PixelUnpackBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.PixelUnpackBuffer, elementType, usage, length) as PixelUnpackBuffer);
+            return (Buffer.Create(IndependentBufferTarget.PixelUnpackBuffer, elementType, length, usage) as PixelUnpackBuffer);
         }
     }
 }

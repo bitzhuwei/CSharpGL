@@ -31,12 +31,12 @@ namespace CSharpGL
         /// Creates a <see cref="AtomicCounterBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType"></param>
-        /// <param name="usage"></param>
         /// <param name="length"></param>
+        /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBuffer Create(Type elementType, BufferUsage usage, int length)
+        public static AtomicCounterBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.AtomicCounterBuffer, elementType, usage, length) as AtomicCounterBuffer);
+            return (Buffer.Create(IndependentBufferTarget.AtomicCounterBuffer, elementType, length, usage) as AtomicCounterBuffer);
         }
     }
 }

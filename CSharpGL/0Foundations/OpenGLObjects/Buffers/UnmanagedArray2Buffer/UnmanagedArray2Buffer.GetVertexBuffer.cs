@@ -7,10 +7,7 @@
         /// <para>每个<see cref="VertexBuffer"/>仅描述其中一个属性。</para>
         /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
-        /// <para>Note: If <typeparamref name="T"/> matches one of this.Config's value, then (Ptr.ByteLength / (Ptr.DataSize * Ptr.DataTypeByteLength)) equals (Ptr.Length).</para>
-        /// <para><typeparamref name="T"/> is type of element of this array in application level.</para>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);</param>

@@ -31,12 +31,12 @@ namespace CSharpGL
         /// Creates a <see cref="TextureBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType"></param>
-        /// <param name="usage"></param>
         /// <param name="length"></param>
+        /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBuffer Create(Type elementType, BufferUsage usage, int length)
+        public static TextureBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.TextureBuffer, elementType, usage, length) as TextureBuffer);
+            return (Buffer.Create(IndependentBufferTarget.TextureBuffer, elementType, length, usage) as TextureBuffer);
         }
     }
 }

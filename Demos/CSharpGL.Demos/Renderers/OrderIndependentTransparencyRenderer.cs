@@ -69,7 +69,8 @@ namespace CSharpGL.Demos
             }
             // Create buffer for clearing the head pointer texture
             {
-                PixelUnpackBuffer buffer = PixelUnpackBuffer.Create(typeof(uint), BufferUsage.StaticDraw, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT);
+                const int length = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT;
+                PixelUnpackBuffer buffer = PixelUnpackBuffer.Create(typeof(uint), length, BufferUsage.StaticDraw);
                 // NOTE: not all initial values are zero in this unmanged array.
                 // initialize buffer's value to 0.
                 //unsafe
@@ -91,12 +92,14 @@ namespace CSharpGL.Demos
             }
             // Create the atomic counter buffer
             {
-                AtomicCounterBuffer buffer = AtomicCounterBuffer.Create(typeof(uint), BufferUsage.DynamicCopy, length: 1);
+                const int length = 1;
+                AtomicCounterBuffer buffer = AtomicCounterBuffer.Create(typeof(uint), length, BufferUsage.DynamicCopy);
                 this.atomicCountBuffer = buffer;
             }
             // Bind it to a texture (for use as a TBO)
             {
-                TextureBuffer buffer = TextureBuffer.Create(typeof(vec4), BufferUsage.DynamicCopy, length: MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3);
+                const int length = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3;
+                TextureBuffer buffer = TextureBuffer.Create(typeof(vec4), length, BufferUsage.DynamicCopy);
                 Texture texture = buffer.DumpBufferTexture(OpenGL.GL_RGBA32UI, autoDispose: true);
                 texture.Initialize();
                 buffer.Dispose();// dispose it ASAP.

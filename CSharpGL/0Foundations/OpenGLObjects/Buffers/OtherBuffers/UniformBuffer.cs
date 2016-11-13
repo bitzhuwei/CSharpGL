@@ -57,9 +57,9 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static UniformBuffer Create(Type elementType, BufferUsage usage, int length)
+        public static UniformBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.UniformBuffer, elementType, usage, length) as UniformBuffer);
+            return (Buffer.Create(IndependentBufferTarget.UniformBuffer, elementType, length, usage) as UniformBuffer);
         }
     }
 }

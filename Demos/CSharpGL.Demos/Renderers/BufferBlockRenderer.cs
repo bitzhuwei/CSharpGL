@@ -42,7 +42,8 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
             {
-                ShaderStorageBuffer buffer = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                const int length = vertexCount;
+                ShaderStorageBuffer buffer = ShaderStorageBuffer.Create(typeof(vec4), length, BufferUsage.StaticDraw);
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {
@@ -58,7 +59,8 @@ namespace CSharpGL.Demos
                 //this.shaderStorageBuffer = buffer;
             }
             {
-                ShaderStorageBuffer buffer = ShaderStorageBuffer.Create(typeof(vec4), BufferUsage.StaticDraw, vertexCount);
+                const int length = vertexCount;
+                ShaderStorageBuffer buffer = ShaderStorageBuffer.Create(typeof(vec4), length, BufferUsage.StaticDraw);
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                 unsafe
                 {

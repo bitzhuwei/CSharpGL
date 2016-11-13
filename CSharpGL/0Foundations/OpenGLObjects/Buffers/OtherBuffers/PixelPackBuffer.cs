@@ -31,12 +31,12 @@ namespace CSharpGL
         /// Creates a <see cref="PixelPackBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType"></param>
-        /// <param name="usage"></param>
         /// <param name="length"></param>
+        /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBuffer Create(Type elementType, BufferUsage usage, int length)
+        public static PixelPackBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.PixelPackBuffer, elementType, usage, length) as PixelPackBuffer);
+            return (Buffer.Create(IndependentBufferTarget.PixelPackBuffer, elementType, length, usage) as PixelPackBuffer);
         }
     }
 }

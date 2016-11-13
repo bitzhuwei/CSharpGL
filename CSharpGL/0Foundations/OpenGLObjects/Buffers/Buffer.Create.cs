@@ -113,10 +113,10 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="elementType"></param>
-        /// <param name="usage"></param>
         /// <param name="length"></param>
+        /// <param name="usage"></param>
         /// <returns></returns>
-        public static Buffer Create(IndependentBufferTarget target, Type elementType, BufferUsage usage, int length)
+        public static Buffer Create(IndependentBufferTarget target, Type elementType, int length, BufferUsage usage)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
 
