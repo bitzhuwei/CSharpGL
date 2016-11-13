@@ -26,7 +26,7 @@ namespace CSharpGL
             //using (UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(1))
             //{
             //    Marshal.StructureToPtr(data, unmanagedArray.Header, false);
-            //    VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, varNameInVertexShader, config, usage, instancedDivisor, patchVertexes);
+            //    VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
             //    return buffer;
             //}
         }
