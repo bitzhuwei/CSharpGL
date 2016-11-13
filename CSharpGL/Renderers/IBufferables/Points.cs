@@ -55,23 +55,28 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = this.pointPositions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < this.pointPositions.Length; i++)
-                        {
-                            array[i] = this.pointPositions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = this.pointPositions.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < this.pointPositions.Length; i++)
+                    //    {
+                    //        array[i] = this.pointPositions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    // another way to do this:
+                    this.positionBuffer = this.pointPositions.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
-            throw new System.ArgumentException("bufferName");
+            else
+            {
+                throw new System.ArgumentException("bufferName");
+            }
         }
 
         /// <summary>

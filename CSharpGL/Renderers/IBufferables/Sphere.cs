@@ -60,19 +60,21 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = model.positions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < model.positions.Length; i++)
-                        {
-                            array[i] = model.positions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = model.positions.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < model.positions.Length; i++)
+                    //    {
+                    //        array[i] = model.positions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    // another way to do this:
+                    this.positionBuffer = this.model.positions.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -80,19 +82,21 @@ namespace CSharpGL
             {
                 if (this.normalBuffer == null)
                 {
-                    int length = model.normals.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < model.normals.Length; i++)
-                        {
-                            array[i] = model.normals[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.normalBuffer = buffer;
+                    //int length = model.normals.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < model.normals.Length; i++)
+                    //    {
+                    //        array[i] = model.normals[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.normalBuffer = buffer;
+                    // another way to do this:
+                    this.normalBuffer = this.model.normals.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }
@@ -100,19 +104,21 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    int length = model.colors.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < model.colors.Length; i++)
-                        {
-                            array[i] = model.colors[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.colorBuffer = buffer;
+                    //int length = model.colors.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < model.colors.Length; i++)
+                    //    {
+                    //        array[i] = model.colors[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    // another way to do this:
+                    this.colorBuffer = this.model.colors.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -120,19 +126,21 @@ namespace CSharpGL
             {
                 if (this.uvBuffer == null)
                 {
-                    int length = model.uv.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec2*)pointer;
-                        for (int i = 0; i < model.uv.Length; i++)
-                        {
-                            array[i] = model.uv[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.uvBuffer = buffer;
+                    //int length = model.uv.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec2*)pointer;
+                    //    for (int i = 0; i < model.uv.Length; i++)
+                    //    {
+                    //        array[i] = model.uv[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.uvBuffer = buffer;
+                    // another way to do this:
+                    this.uvBuffer = model.uv.GetVertexBufferObject(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.uvBuffer;
             }

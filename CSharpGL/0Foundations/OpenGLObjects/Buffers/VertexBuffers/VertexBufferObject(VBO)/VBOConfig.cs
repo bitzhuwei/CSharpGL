@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Decides parameter values for glVertexAttribPointer() and glEnable/DisableVertexAttribArray().
+    /// <para>type in 'in vec3 position' in GLSL shader.</para>
     /// </summary>
     public enum VBOConfig : uint
     {

@@ -93,7 +93,7 @@ namespace CSharpGL
                     //}
                     //this.colorBuffer = buffer;
                     // another way to do this:
-                    this.colorBuffer = CubeModel.color.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.colorBuffer = CubeModel.color.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -112,7 +112,7 @@ namespace CSharpGL
                     //}
                     //this.normalBuffer = buffer;
                     // another way to do this:
-                    this.normalBuffer = CubeModel.normal.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.normalBuffer = CubeModel.normal.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }

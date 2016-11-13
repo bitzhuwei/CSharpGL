@@ -48,19 +48,21 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     float[] positions = model.GetPositions();
-                    int length = positions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < positions.Length; i++)
-                        {
-                            array[i] = positions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = positions.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < positions.Length; i++)
+                    //    {
+                    //        array[i] = positions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    // another way to do this:
+                    this.positionBuffer = positions.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -69,19 +71,21 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     float[] normals = model.GetNormals();
-                    int length = normals.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < normals.Length; i++)
-                        {
-                            array[i] = normals[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.colorBuffer = buffer;
+                    //int length = normals.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < normals.Length; i++)
+                    //    {
+                    //        array[i] = normals[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    // another way to do this:
+                    this.colorBuffer = normals.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -90,19 +94,21 @@ namespace CSharpGL
                 if (this.normalBuffer == null)
                 {
                     float[] normals = model.GetNormals();
-                    int length = normals.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < normals.Length; i++)
-                        {
-                            array[i] = normals[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.normalBuffer = buffer;
+                    //int length = normals.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < normals.Length; i++)
+                    //    {
+                    //        array[i] = normals[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.normalBuffer = buffer;
+                    // another way to do this:
+                    this.normalBuffer = normals.GetVertexBufferObject(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }
