@@ -20,16 +20,15 @@ namespace CSharpGL
         /// <returns></returns>
         public static VertexBuffer GetVertexBufferObject<T>(this T data, string varNameInVertexShader, VBOConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
-            //GCHandle pinned = GCHandle.Alloc(data, GCHandleType.Pinned);
-            //IntPtr header = GCHandle.ToIntPtr(pinned);
-            using (UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(1))
-            {
-                Marshal.StructureToPtr(data, unmanagedArray.Header, false);
-                VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, varNameInVertexShader, config, usage, instancedDivisor, patchVertexes);
-                return buffer;
-            }
-            //pinned.Free();
-
+            var array = new T[] { data };
+            return GetVertexBufferObject(array, varNameInVertexShader, config, usage, instancedDivisor, patchVertexes);
+            // another way to do this:
+            //using (UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(1))
+            //{
+            //    Marshal.StructureToPtr(data, unmanagedArray.Header, false);
+            //    VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, varNameInVertexShader, config, usage, instancedDivisor, patchVertexes);
+            //    return buffer;
+            //}
         }
 
         /// <summary>
