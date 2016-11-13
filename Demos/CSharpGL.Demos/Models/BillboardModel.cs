@@ -20,19 +20,20 @@ namespace CSharpGL.Demos
             {
                 if (positionBuffer == null)
                 {
-                    int length = positions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < positions.Length; i++)
-                        {
-                            array[i] = positions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = positions.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.DynamicDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < positions.Length; i++)
+                    //    {
+                    //        array[i] = positions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    this.positionBuffer = positions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.DynamicDraw);
                 }
                 return positionBuffer;
             }

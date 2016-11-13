@@ -39,19 +39,20 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = TetrahedronModel.position.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < TetrahedronModel.position.Length; i++)
-                        {
-                            array[i] = TetrahedronModel.position[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = TetrahedronModel.position.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < TetrahedronModel.position.Length; i++)
+                    //    {
+                    //        array[i] = TetrahedronModel.position[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    this.positionBuffer = TetrahedronModel.position.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -59,19 +60,20 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    int length = TetrahedronModel.color.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < TetrahedronModel.color.Length; i++)
-                        {
-                            array[i] = TetrahedronModel.color[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.colorBuffer = buffer;
+                    //int length = TetrahedronModel.color.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < TetrahedronModel.color.Length; i++)
+                    //    {
+                    //        array[i] = TetrahedronModel.color[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    this.colorBuffer = TetrahedronModel.color.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -79,19 +81,20 @@ namespace CSharpGL
             {
                 if (this.normalBuffer == null)
                 {
-                    int length = TetrahedronModel.normal.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < TetrahedronModel.normal.Length; i++)
-                        {
-                            array[i] = TetrahedronModel.normal[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.normalBuffer = buffer;
+                    //    int length = TetrahedronModel.normal.Length;
+                    //    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //    unsafe
+                    //    {
+                    //        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //        var array = (vec3*)pointer;
+                    //        for (int i = 0; i < TetrahedronModel.normal.Length; i++)
+                    //        {
+                    //            array[i] = TetrahedronModel.normal[i];
+                    //        }
+                    //        buffer.UnmapBuffer();
+                    //    }
+                    //    this.normalBuffer = buffer;
+                    this.normalBuffer = TetrahedronModel.normal.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }

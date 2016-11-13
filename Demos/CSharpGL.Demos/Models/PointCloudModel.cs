@@ -33,19 +33,20 @@ namespace CSharpGL
             {
                 if ((this.positionBuffer == null))
                 {
-                    int length = this.pointPositions.Count;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < this.pointPositions.Count; i++)
-                        {
-                            array[i] = this.pointPositions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = this.pointPositions.Count;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < this.pointPositions.Count; i++)
+                    //    {
+                    //        array[i] = this.pointPositions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    this.positionBuffer = this.pointPositions.ToArray().GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }

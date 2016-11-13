@@ -117,19 +117,20 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = positions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < positions.Length; i++)
-                        {
-                            array[i] = positions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = positions.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < positions.Length; i++)
+                    //    {
+                    //        array[i] = positions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    this.positionBuffer = positions.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -137,19 +138,20 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    int length = colors.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < colors.Length; i++)
-                        {
-                            array[i] = colors[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.colorBuffer = buffer;
+                    //int length = colors.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer;
+                    //    for (int i = 0; i < colors.Length; i++)
+                    //    {
+                    //        array[i] = colors[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    this.colorBuffer = colors.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }

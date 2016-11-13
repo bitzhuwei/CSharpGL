@@ -135,23 +135,24 @@ namespace CSharpGL.Demos
             {
                 if (bufferName == strPosition)
                 {
-                    if (positionBuffer == null)
+                    if (this.positionBuffer == null)
                     {
-                        var buffer = VertexBuffer.Create(typeof(vec3), vertsData.Length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                        unsafe
-                        {
-                            var array = (vec3*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                            for (int i = 0; i < vertsData.Length; i++)
-                            {
-                                array[i] = vertsData[i];
-                            }
-                            buffer.UnmapBuffer();
-                        }
+                        //var buffer = VertexBuffer.Create(typeof(vec3), vertsData.Length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        //unsafe
+                        //{
+                        //    var array = (vec3*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                        //    for (int i = 0; i < vertsData.Length; i++)
+                        //    {
+                        //        array[i] = vertsData[i];
+                        //    }
+                        //    buffer.UnmapBuffer();
+                        //}
 
-                        positionBuffer = buffer;
+                        //positionBuffer = buffer;
+                        this.positionBuffer = vertsData.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     }
 
-                    return positionBuffer;
+                    return this.positionBuffer;
                 }
                 else
                 {

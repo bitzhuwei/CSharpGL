@@ -109,20 +109,21 @@ namespace CSharpGL.Demos
                 {
                     if (this.texCoordBuffer == null)
                     {
-                        int length = texCoords.Length;
-                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
-                        unsafe
-                        {
-                            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                            var array = (vec2*)pointer;
-                            for (int i = 0; i < texCoords.Length; i++)
-                            {
-                                array[i] = texCoords[i];
-                            }
-                            buffer.UnmapBuffer();
-                        }
+                        //int length = texCoords.Length;
+                        //VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                        //unsafe
+                        //{
+                        //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                        //    var array = (vec2*)pointer;
+                        //    for (int i = 0; i < texCoords.Length; i++)
+                        //    {
+                        //        array[i] = texCoords[i];
+                        //    }
+                        //    buffer.UnmapBuffer();
+                        //}
 
-                        this.texCoordBuffer = buffer;
+                        //this.texCoordBuffer = buffer;
+                        this.texCoordBuffer = texCoords.GetVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                     }
 
                     return this.texCoordBuffer;

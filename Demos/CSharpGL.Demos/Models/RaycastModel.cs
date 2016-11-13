@@ -71,20 +71,21 @@ namespace CSharpGL.Demos
             {
                 if (this.colorBuffer == null)
                 {
-                    int length = boundingBox.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < boundingBox.Length; i++)
-                        {
-                            array[i] = boundingBox[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
+                    //int length = boundingBox.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < boundingBox.Length; i++)
+                    //    {
+                    //        array[i] = boundingBox[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
 
-                    this.colorBuffer = buffer;
+                    //this.colorBuffer = buffer;
+                    this.colorBuffer = boundingBox.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -98,19 +99,20 @@ namespace CSharpGL.Demos
         {
             if (indexBuffer == null)
             {
-                int length = indices.Length;
-                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.Triangles, BufferUsage.StaticDraw);
-                unsafe
-                {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (uint*)pointer;
-                    for (int i = 0; i < indices.Length; i++)
-                    {
-                        array[i] = indices[i];
-                    }
-                    buffer.UnmapBuffer();
-                }
-                this.indexBuffer = buffer;
+                //int length = indices.Length;
+                //OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                //unsafe
+                //{
+                //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                //    var array = (uint*)pointer;
+                //    for (int i = 0; i < indices.Length; i++)
+                //    {
+                //        array[i] = indices[i];
+                //    }
+                //    buffer.UnmapBuffer();
+                //}
+                //this.indexBuffer = buffer;
+                this.indexBuffer = indices.GetOneIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
             return indexBuffer;

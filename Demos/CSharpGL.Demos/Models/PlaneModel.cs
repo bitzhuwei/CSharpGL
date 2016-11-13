@@ -58,19 +58,20 @@ namespace CSharpGL.Demos
             {
                 if (this.normalBuffer == null)
                 {
-                    int length = xy_normals.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < xy_normals.Length; i++)
-                        {
-                            array[i] = xy_normals[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.normalBuffer = buffer;
+                    //int length = xy_normals.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < xy_normals.Length; i++)
+                    //    {
+                    //        array[i] = xy_normals[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.normalBuffer = buffer;
+                    this.normalBuffer = xy_normals.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.normalBuffer;
             }
@@ -78,19 +79,20 @@ namespace CSharpGL.Demos
             {
                 if (this.tangentBuffer == null)
                 {
-                    int length = xy_tangents.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < xy_tangents.Length; i++)
-                        {
-                            array[i] = xy_tangents[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.tangentBuffer = buffer;
+                    //int length = xy_tangents.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < xy_tangents.Length; i++)
+                    //    {
+                    //        array[i] = xy_tangents[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.tangentBuffer = buffer;
+                    this.tangentBuffer = xy_tangents.GetVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.tangentBuffer;
             }
@@ -98,19 +100,20 @@ namespace CSharpGL.Demos
             {
                 if (this.texCoordBuffer == null)
                 {
-                    int length = xy_texCoords.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < xy_texCoords.Length; i++)
-                        {
-                            array[i] = xy_texCoords[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.texCoordBuffer = buffer;
+                    //int length = xy_texCoords.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < xy_texCoords.Length; i++)
+                    //    {
+                    //        array[i] = xy_texCoords[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.texCoordBuffer = buffer;
+                    this.texCoordBuffer = xy_texCoords.GetVertexBuffer(VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.texCoordBuffer;
             }
@@ -124,19 +127,20 @@ namespace CSharpGL.Demos
         {
             if (this.indexBuffer == null)
             {
-                int length = xy_indices.Length;
-                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.Triangles, BufferUsage.StaticDraw);
-                unsafe
-                {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (uint*)pointer;
-                    for (int i = 0; i < xy_indices.Length; i++)
-                    {
-                        array[i] = xy_indices[i];
-                    }
-                    buffer.UnmapBuffer();
-                }
-                this.indexBuffer = buffer;
+                //int length = xy_indices.Length;
+                //OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                //unsafe
+                //{
+                //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                //    var array = (uint*)pointer;
+                //    for (int i = 0; i < xy_indices.Length; i++)
+                //    {
+                //        array[i] = xy_indices[i];
+                //    }
+                //    buffer.UnmapBuffer();
+                //}
+                //this.indexBuffer = buffer;
+                this.indexBuffer = xy_indices.GetOneIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;
