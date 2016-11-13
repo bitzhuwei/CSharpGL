@@ -12,8 +12,8 @@ namespace CSharpGL
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);</param>
+        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
@@ -38,8 +38,8 @@ namespace CSharpGL
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);</param>
+        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
@@ -62,8 +62,8 @@ namespace CSharpGL
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);</param>
+        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
