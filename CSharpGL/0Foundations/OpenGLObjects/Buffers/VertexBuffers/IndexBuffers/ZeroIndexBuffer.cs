@@ -28,9 +28,6 @@ namespace CSharpGL
         internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
-            if (glDrawArraysInstanced == null)
-            { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }
-
             this.FirstVertex = firstVertex;
             this.RenderingVertexCount = vertexCount;
             //this.OriginalVertexCount = vertexCount;
@@ -131,6 +128,9 @@ namespace CSharpGL
             }
             else
             {
+                if (glDrawArraysInstanced == null)
+                { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }
+
                 glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
             }
         }
