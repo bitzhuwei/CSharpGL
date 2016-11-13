@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public static partial class Array2Buffer
+    public static partial class Data2Buffer
     {
         /// <summary>
         /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
