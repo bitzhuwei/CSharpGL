@@ -67,24 +67,25 @@ namespace CSharpGL
             }
             else if (bufferName == strColor)
             {
-                if (colorBuffer == null)
+                if (this.colorBuffer == null)
                 {
-                    int length = this.model.colors.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer.ToPointer();
-                        for (int i = 0; i < length; i++)
-                        {
-                            array[i] = this.model.colors[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-
-                    this.colorBuffer = buffer;
+                    //int length = this.model.colors.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer.ToPointer();
+                    //    for (int i = 0; i < length; i++)
+                    //    {
+                    //        array[i] = this.model.colors[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    // another way to do this:
+                    this.colorBuffer = this.model.colors.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return colorBuffer;
+                return this.colorBuffer;
             }
             else
             {
@@ -98,24 +99,25 @@ namespace CSharpGL
         /// <returns></returns>
         public IndexBuffer GetIndexBuffer()
         {
-            if (indexBuffer == null)
+            if (this.indexBuffer == null)
             {
-                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, this.model.indexes.Length, this.model.mode, BufferUsage.StaticDraw);
-                unsafe
-                {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (uint*)pointer.ToPointer();
-                    for (int i = 0; i < this.model.indexes.Length; i++)
-                    {
-                        array[i] = this.model.indexes[i];
-                    }
-                    buffer.UnmapBuffer();
-                }
-
-                this.indexBuffer = buffer;
+                //OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, this.model.indexes.Length, this.model.mode, BufferUsage.StaticDraw);
+                //unsafe
+                //{
+                //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                //    var array = (uint*)pointer.ToPointer();
+                //    for (int i = 0; i < this.model.indexes.Length; i++)
+                //    {
+                //        array[i] = this.model.indexes[i];
+                //    }
+                //    buffer.UnmapBuffer();
+                //}
+                //this.indexBuffer = buffer;
+                // another way to do this:
+                this.indexBuffer = this.model.indexes.GetOneIndexBuffer(this.model.mode, BufferUsage.StaticDraw);
             }
 
-            return indexBuffer;
+            return this.indexBuffer;
         }
 
         /// <summary>
