@@ -39,41 +39,45 @@ namespace CSharpGL
         {
             if (bufferName == position)
             {
-                if (positionBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    int length = BigDipperModel.positions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer.ToPointer();
-                        for (int i = 0; i < BigDipperModel.positions.Length; i++)
-                        {
-                            array[i] = BigDipperModel.positions[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.positionBuffer = buffer;
+                    //int length = BigDipperModel.positions.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer.ToPointer();
+                    //    for (int i = 0; i < BigDipperModel.positions.Length; i++)
+                    //    {
+                    //        array[i] = BigDipperModel.positions[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.positionBuffer = buffer;
+                    // another way to do this:
+                    this.positionBuffer = BigDipperModel.positions.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
             else if (bufferName == color)
             {
-                if (colorBuffer == null)
+                if (this.colorBuffer == null)
                 {
-                    int length = BigDipperModel.colors.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer.ToPointer();
-                        for (int i = 0; i < BigDipperModel.colors.Length; i++)
-                        {
-                            array[i] = BigDipperModel.colors[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
-                    this.colorBuffer = buffer;
+                    //int length = BigDipperModel.colors.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (vec3*)pointer.ToPointer();
+                    //    for (int i = 0; i < BigDipperModel.colors.Length; i++)
+                    //    {
+                    //        array[i] = BigDipperModel.colors[i];
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
+                    //this.colorBuffer = buffer;
+                    // another way to do this:
+                    this.colorBuffer = BigDipperModel.colors.GetVertexBufferObject(varNameInShader, VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }

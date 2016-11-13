@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+
 namespace CSharpGL
 {
     public static partial class Array2Buffer

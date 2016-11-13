@@ -109,19 +109,21 @@ namespace CSharpGL
         {
             if (this.indexBuffer == null)
             {
-                int length = indexes.Length;
-                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Quads, BufferUsage.StaticDraw);
-                unsafe
-                {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (byte*)pointer;
-                    for (int i = 0; i < indexes.Length; i++)
-                    {
-                        array[i] = indexes[i];
-                    }
-                    buffer.UnmapBuffer();
-                }
-                this.indexBuffer = buffer;
+                //int length = indexes.Length;
+                //OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Quads, BufferUsage.StaticDraw);
+                //unsafe
+                //{
+                //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                //    var array = (byte*)pointer;
+                //    for (int i = 0; i < indexes.Length; i++)
+                //    {
+                //        array[i] = indexes[i];
+                //    }
+                //    buffer.UnmapBuffer();
+                //}
+                //this.indexBuffer = buffer;
+                // another way to do this:
+                this.indexBuffer = indexes.GetOneIndexBuffer(DrawMode.Quads, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;
