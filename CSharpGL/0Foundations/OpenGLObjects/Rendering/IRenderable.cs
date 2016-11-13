@@ -22,6 +22,7 @@ namespace CSharpGL
     /// </summary>
     public class RenderEventArgs
     {
+        // TODO: big bug: when mouse is picking something and move outside of viewport to anothher one, camera will go wrong.
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
