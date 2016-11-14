@@ -32,9 +32,6 @@ namespace CSharpGL
             IndexElementType type, int length, int byteLength, int primCount = 1)
             : base(mode, bufferId, length, byteLength, primCount)
         {
-            if (glDrawElementsInstanced == null)
-            { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
-
             this.ElementCount = length;
             //this.OriginalElementCount = length;
             this.Type = type;
@@ -111,6 +108,9 @@ namespace CSharpGL
             }
             else
             {
+                if (glDrawElementsInstanced == null)
+                { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
+
                 glDrawElementsInstanced(mode, this.ElementCount, (uint)this.Type, offset, primCount);
             }
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
