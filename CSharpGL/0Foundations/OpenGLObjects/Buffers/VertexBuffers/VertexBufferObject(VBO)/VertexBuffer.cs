@@ -39,10 +39,10 @@ namespace CSharpGL
         /// </summary>
         internal static OpenGL.glPatchParameteri glPatchParameteri;
 
-        /// <summary>
-        /// TODO: temporary field here. not know where to use it yet.
-        /// </summary>
-        internal static OpenGL.glPatchParameterfv glPatchParameterfv;
+        ///// <summary>
+        ///// TODO: temporary field here. not know where to use it yet.
+        ///// </summary>
+        //internal static OpenGL.glPatchParameterfv glPatchParameterfv;
 
         /// <summary>
         /// Target that this buffer should bind to.
@@ -68,17 +68,6 @@ namespace CSharpGL
             uint instancedDivisor = 0, int patchVertexes = 0)
             : base(bufferId, length, byteLength)
         {
-            if (glVertexAttribPointer == null)
-            {
-                glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
-                glVertexAttribIPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribIPointer>();
-                glVertexAttribLPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribLPointer>();
-                glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
-                glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>();
-                glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>();
-                glPatchParameterfv = OpenGL.GetDelegateFor<OpenGL.glPatchParameterfv>();
-            }
-
             this.VarNameInVertexShader = varNameInVertexShader;
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
@@ -160,6 +149,7 @@ namespace CSharpGL
             uint divisor = this.InstancedDivisor;
             // 选中此VBO
             // select this VBO.
+            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             for (uint i = 0; i < locationCount; i++)
             {
@@ -168,21 +158,34 @@ namespace CSharpGL
                 switch (config.GetVertexAttribPointerType())
                 {
                     case VertexAttribPointerType.Default:
+                        if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
                         glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
                         break;
 
                     case VertexAttribPointerType.Integer:
                         if (glVertexAttribIPointer != null)
-                        { glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit)); }
+                        {
+                            if (glVertexAttribIPointer == null) { glVertexAttribIPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribIPointer>(); }
+                            glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                        }
                         else
-                        { glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit)); }
+                        {
+                            if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
+                            glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                        }
                         break;
 
                     case VertexAttribPointerType.Long:
                         if (glVertexAttribLPointer != null)
-                        { glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit)); }
+                        {
+                            if (glVertexAttribLPointer == null) { glVertexAttribLPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribLPointer>(); }
+                            glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                        }
                         else
-                        { glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit)); }
+                        {
+                            if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
+                            glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                        }
                         break;
 
                     default:
@@ -192,13 +195,18 @@ namespace CSharpGL
                 if (patchVertexes > 0)// tessellation shading.
                 {
                     if (glPatchParameteri != null)
-                    { glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes); }
+                    {
+                        if (glPatchParameteri == null) { glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>(); }
+                        glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes);
+                    }
                 }
                 // 启用
                 // enable this VBO.
+                if (glEnableVertexAttribArray == null) { glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>(); }
                 glEnableVertexAttribArray(loc + i);
                 if (divisor > 0)// instanced rendering.
                 {
+                    if (glVertexAttribDivisor == null) { glVertexAttribDivisor = OpenGL.GetDelegateFor<OpenGL.glVertexAttribDivisor>(); }
                     glVertexAttribDivisor(loc + i, divisor);
                 }
             }

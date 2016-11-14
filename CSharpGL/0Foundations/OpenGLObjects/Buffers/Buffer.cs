@@ -80,15 +80,15 @@ namespace CSharpGL
         /// </summary>
         internal static OpenGL.glClearBufferSubData glClearBufferSubData;
 
-        /// <summary>
-        ///
-        /// </summary>
-        internal static OpenGL.glCopyBufferSubData glCopyBufferSubData;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //internal static OpenGL.glCopyBufferSubData glCopyBufferSubData;
 
-        /// <summary>
-        ///
-        /// </summary>
-        internal static OpenGL.glGetBufferSubData glGetBufferSubData;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //internal static OpenGL.glGetBufferSubData glGetBufferSubData;
 
         /// <summary>
         /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
@@ -103,32 +103,9 @@ namespace CSharpGL
             Debug.Assert(length >= 0);
             Debug.Assert(byteLength >= 0);
 
-            if (glGenBuffers == null)
-            {
-                InitOpenGLCommands();
-            }
-
             this.BufferId = bufferId;
             this.Length = length;
             this.ByteLength = byteLength;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected static void InitOpenGLCommands()
-        {
-            glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
-            glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
-            glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
-            glDeleteBuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>();
-            glMapBuffer = OpenGL.GetDelegateFor<OpenGL.glMapBuffer>();
-            glMapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>();
-            glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>();
-            glClearBufferData = OpenGL.GetDelegateFor<OpenGL.glClearBufferData>();
-            glClearBufferSubData = OpenGL.GetDelegateFor<OpenGL.glClearBufferSubData>();
-            glCopyBufferSubData = OpenGL.GetDelegateFor<OpenGL.glCopyBufferSubData>();
-            glGetBufferSubData = OpenGL.GetDelegateFor<OpenGL.glGetBufferSubData>();
         }
 
         /// <summary>
@@ -136,6 +113,7 @@ namespace CSharpGL
         /// </summary>
         public virtual void Bind()
         {
+            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer((uint)this.Target, this.BufferId);
         }
 
@@ -144,6 +122,7 @@ namespace CSharpGL
         /// </summary>
         public virtual void Unbind()
         {
+            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer((uint)this.Target, 0);
         }
 
@@ -159,9 +138,13 @@ namespace CSharpGL
         {
             if (bind)
             {
+                if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                 glBindBuffer((uint)this.Target, this.BufferId);
             }
-            return glMapBufferRange((uint)this.Target, offset, length, (uint)access);
+
+            if (glMapBufferRange == null) { glMapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
+            IntPtr pointer = glMapBufferRange((uint)this.Target, offset, length, (uint)access);
+            return pointer;
         }
 
         /// <summary>
@@ -174,8 +157,11 @@ namespace CSharpGL
         {
             if (bind)
             {
+                if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                 glBindBuffer((uint)this.Target, this.BufferId);
             }
+
+            if (glMapBuffer == null) { glMapBuffer = OpenGL.GetDelegateFor<OpenGL.glMapBuffer>(); }
             IntPtr pointer = glMapBuffer((uint)this.Target, (uint)access);
             return pointer;
         }
@@ -186,9 +172,11 @@ namespace CSharpGL
         /// <param name="unbind"></param>
         public virtual bool UnmapBuffer(bool unbind = true)
         {
+            if (glUnmapBuffer == null) { glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>(); }
             bool result = glUnmapBuffer((uint)this.Target);
             if (unbind)
             {
+                if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                 glBindBuffer((uint)this.Target, 0);
             }
 

@@ -30,12 +30,7 @@ namespace CSharpGL
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
-            if (glUniformBlockBinding == null)
-            {
-                glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>();
-                glBindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>();
-                glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>();
-            }
+
         }
 
         /// <summary>
@@ -46,6 +41,9 @@ namespace CSharpGL
         /// <param name="program">shader program.</param>
         public void Binding(ShaderProgram program, uint uniformBlockIndex, uint uniformBlockBindingPoint)
         {
+            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
+            if (glUniformBlockBinding == null) { glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>(); }
+
             glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uniformBlockBindingPoint, this.BufferId);
             glUniformBlockBinding(program.ProgramId, uniformBlockIndex, uniformBlockBindingPoint);
         }

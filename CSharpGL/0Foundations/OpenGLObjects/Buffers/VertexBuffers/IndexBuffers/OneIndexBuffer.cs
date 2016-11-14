@@ -101,6 +101,7 @@ namespace CSharpGL
                     throw new NotImplementedException();
             }
 
+            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             if (primCount == 1)
             {
