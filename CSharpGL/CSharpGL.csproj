@@ -120,9 +120,9 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.T[].cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.ClearBufferData.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBufferTarget.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\PixelPackBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\ShaderStorageBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\IndependentBufferTarget.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelPackBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\ShaderStorageBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.GetVertexAttribPointerType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.GetDataTypeByteLength.cs" />
@@ -151,11 +151,11 @@
     <Compile Include="Renderers\BezierRenderers\Evaluator1DRenderer.cs" />
     <Compile Include="Renderers\BezierRenderers\Evaluator2DRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.IDisposable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\PixelUnpackBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\AtomicCounterBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\PixelUnpackBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\AtomicCounterBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.BufferTexture.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\TextureBuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\UniformBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\TextureBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\UniformBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBufferObject%28VBO%29\VBOConfig.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.ICamera.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\Camera.IOrthoCamera.cs" />
@@ -201,7 +201,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\ImageFiller.cs" />
     <Content Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\readme.md" />
-    <Content Include="0Foundations\OpenGLObjects\Buffers\OtherBuffers\readme.md" />
+    <Content Include="0Foundations\OpenGLObjects\Buffers\IndependentBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />
     <Content Include="0Foundations\readme.md" />
     <Compile Include="0Foundations\Utilities\StructHelper.cs" />
