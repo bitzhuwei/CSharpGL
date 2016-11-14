@@ -108,13 +108,15 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenOtherBuffers.T[].cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenOtherBuffers.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.T.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenIndexBuffer.T[].cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenIndexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\IndexElementType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenIndexBuffer.T.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.GenOtherBuffers.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenOtherBuffers.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.T[].cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.ClearBufferData.cs" />
