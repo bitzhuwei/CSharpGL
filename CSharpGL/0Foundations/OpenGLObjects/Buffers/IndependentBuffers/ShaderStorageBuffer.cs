@@ -39,10 +39,11 @@ namespace CSharpGL
         /// <param name="storageBlockBindingPoint">binding point maintained by OpenGL context.</param>
         public void Binding(ShaderProgram program, string storageBlockName, uint storageBlockBindingPoint)
         {
-            uint storageBlockIndex = glGetProgramResourceIndex(program.ProgramId, OpenGL.GL_SHADER_STORAGE_BLOCK, storageBlockName);
+            if (glGetProgramResourceIndex == null) { glGetProgramResourceIndex = OpenGL.GetDelegateFor<OpenGL.glGetProgramResourceIndex>(); }
             if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
             if (glShaderStorageBlockBinding == null) { glShaderStorageBlockBinding = OpenGL.GetDelegateFor<OpenGL.glShaderStorageBlockBinding>(); }
 
+            uint storageBlockIndex = glGetProgramResourceIndex(program.ProgramId, OpenGL.GL_SHADER_STORAGE_BLOCK, storageBlockName);
             glBindBufferBase(OpenGL.GL_SHADER_STORAGE_BUFFER, storageBlockBindingPoint, this.BufferId);
             glShaderStorageBlockBinding(program.ProgramId, storageBlockIndex, storageBlockBindingPoint);
         }
