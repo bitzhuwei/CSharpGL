@@ -22,7 +22,7 @@ namespace CSharpGL
             if (indexList.Length != 4) { throw new ArgumentException(); }
 
             var targetIndexList = new uint[8] { indexList[0], indexList[1], indexList[1], indexList[2], indexList[2], indexList[3], indexList[3], indexList[0], };
-            OneIndexBuffer buffer = targetIndexList.GetOneIndexBuffer(DrawMode.Lines, BufferUsage.StaticDraw);
+            OneIndexBuffer buffer = targetIndexList.GenOneIndexBuffer(DrawMode.Lines, BufferUsage.StaticDraw);
             modernRenderer.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 

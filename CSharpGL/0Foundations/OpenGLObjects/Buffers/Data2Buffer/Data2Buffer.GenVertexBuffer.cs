@@ -6,7 +6,7 @@ namespace CSharpGL
     public static partial class Data2Buffer
     {
         /// <summary>
-        /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
+        /// 生成顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="VertexBuffer"/>仅描述其中一个属性。</para>
         /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
@@ -32,7 +32,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
+        /// 生成顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="VertexBuffer"/>仅描述其中一个属性。</para>
         /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>
@@ -56,7 +56,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
+        /// 生成顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="VertexBuffer"/>仅描述其中一个属性。</para>
         /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, etc.).</para>
         /// <para>Each <see cref="VertexBuffer"/> describes only 1 property.</para>

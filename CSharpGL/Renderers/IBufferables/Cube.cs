@@ -144,7 +144,7 @@ namespace CSharpGL
                 //}
                 //this.indexBuffer = buffer;
                 // another way to do this:
-                this.indexBuffer = CubeModel.index.GetOneIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                this.indexBuffer = CubeModel.index.GenOneIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;

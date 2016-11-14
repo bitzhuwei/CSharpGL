@@ -114,7 +114,7 @@ namespace CSharpGL
                 //}
                 //this.indexBuffer = buffer;
                 // another way to do this:
-                this.indexBuffer = this.model.indexes.GetOneIndexBuffer(this.model.mode, BufferUsage.StaticDraw);
+                this.indexBuffer = this.model.indexes.GenOneIndexBuffer(this.model.mode, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;

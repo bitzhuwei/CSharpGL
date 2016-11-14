@@ -10,10 +10,10 @@ namespace CSharpGL
         /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T data, BufferUsage usage) where T : struct
+        public static AtomicCounterBuffer GenAtomicCounterBuffer<T>(this T data, BufferUsage usage) where T : struct
         {
             var array = new T[] { data };
-            return GetAtomicCounterBuffer(array, usage);
+            return GenAtomicCounterBuffer(array, usage);
         }
 
         /// <summary>
@@ -21,10 +21,10 @@ namespace CSharpGL
         /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBuffer GetPixelPackBuffer<T>(this T data, BufferUsage usage) where T : struct
+        public static PixelPackBuffer GenPixelPackBuffer<T>(this T data, BufferUsage usage) where T : struct
         {
             var array = new T[] { data };
-            return GetPixelPackBuffer(array, usage);
+            return GenPixelPackBuffer(array, usage);
         }
 
         /// <summary>
@@ -32,10 +32,10 @@ namespace CSharpGL
         /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this T data, BufferUsage usage) where T : struct
+        public static PixelUnpackBuffer GenPixelUnpackBuffer<T>(this T data, BufferUsage usage) where T : struct
         {
             var array = new T[] { data };
-            return GetPixelUnpackBuffer(array, usage);
+            return GenPixelUnpackBuffer(array, usage);
         }
 
         /// <summary>
@@ -43,10 +43,10 @@ namespace CSharpGL
         /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this T data, BufferUsage usage) where T : struct
+        public static ShaderStorageBuffer GenShaderStorageBuffer<T>(this T data, BufferUsage usage) where T : struct
         {
             var array = new T[] { data };
-            return GetShaderStorageBuffer(array, usage);
+            return GenShaderStorageBuffer(array, usage);
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace CSharpGL
         /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBuffer GetTextureBuffer<T>(this T data, BufferUsage usage) where T : struct
+        public static TextureBuffer GenTextureBuffer<T>(this T data, BufferUsage usage) where T : struct
         {
             var array = new T[] { data };
-            return GetTextureBuffer(array, usage);
+            return GenTextureBuffer(array, usage);
         }
 
         /// <summary>
@@ -65,10 +65,10 @@ namespace CSharpGL
         /// <param name="data"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static UniformBuffer GetUniformBuffer<T>(this T data, BufferUsage usage) where T : struct
+        public static UniformBuffer GenUniformBuffer<T>(this T data, BufferUsage usage) where T : struct
         {
             var array = new T[] { data };
-            return GetUniformBuffer(array, usage);
+            return GenUniformBuffer(array, usage);
         }
 
         /// <summary>
@@ -76,12 +76,12 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBuffer GetAtomicCounterBuffer<T>(this T[] array, BufferUsage usage) where T : struct
+        public static AtomicCounterBuffer GenAtomicCounterBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            AtomicCounterBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
+            AtomicCounterBuffer buffer = GenIndependentBuffer(unmanagedArray, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
             pinned.Free();
 
             return buffer;
@@ -92,12 +92,12 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBuffer GetPixelPackBuffer<T>(this T[] array, BufferUsage usage) where T : struct
+        public static PixelPackBuffer GenPixelPackBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            PixelPackBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
+            PixelPackBuffer buffer = GenIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
             pinned.Free();
 
             return buffer;
@@ -108,12 +108,12 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer GetPixelUnpackBuffer<T>(this T[] array, BufferUsage usage) where T : struct
+        public static PixelUnpackBuffer GenPixelUnpackBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            PixelUnpackBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
+            PixelUnpackBuffer buffer = GenIndependentBuffer(unmanagedArray, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
             pinned.Free();
 
             return buffer;
@@ -124,12 +124,12 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static ShaderStorageBuffer GetShaderStorageBuffer<T>(this T[] array, BufferUsage usage) where T : struct
+        public static ShaderStorageBuffer GenShaderStorageBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            ShaderStorageBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
+            ShaderStorageBuffer buffer = GenIndependentBuffer(unmanagedArray, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
             pinned.Free();
 
             return buffer;
@@ -140,12 +140,12 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBuffer GetTextureBuffer<T>(this T[] array, BufferUsage usage) where T : struct
+        public static TextureBuffer GenTextureBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            TextureBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
+            TextureBuffer buffer = GenIndependentBuffer(unmanagedArray, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
             pinned.Free();
 
             return buffer;
@@ -156,12 +156,12 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static UniformBuffer GetUniformBuffer<T>(this T[] array, BufferUsage usage) where T : struct
+        public static UniformBuffer GenUniformBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            UniformBuffer buffer = GetIndependentBuffer(unmanagedArray, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
+            UniformBuffer buffer = GenIndependentBuffer(unmanagedArray, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
             pinned.Free();
 
             return buffer;
@@ -172,9 +172,9 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static AtomicCounterBuffer GetAtomicCounterBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        public static AtomicCounterBuffer GenAtomicCounterBuffer(this UnmanagedArrayBase array, BufferUsage usage)
         {
-            return GetIndependentBuffer(array, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
+            return GenIndependentBuffer(array, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
         }
 
         /// <summary>
@@ -182,9 +182,9 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelPackBuffer GetPixelPackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        public static PixelPackBuffer GenPixelPackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
         {
-            return GetIndependentBuffer(array, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
+            return GenIndependentBuffer(array, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
         }
 
         /// <summary>
@@ -192,9 +192,9 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer GetPixelUnpackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        public static PixelUnpackBuffer GenPixelUnpackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
         {
-            return GetIndependentBuffer(array, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
+            return GenIndependentBuffer(array, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
         }
 
         /// <summary>
@@ -202,9 +202,9 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static ShaderStorageBuffer GetShaderStorageBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        public static ShaderStorageBuffer GenShaderStorageBuffer(this UnmanagedArrayBase array, BufferUsage usage)
         {
-            return GetIndependentBuffer(array, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
+            return GenIndependentBuffer(array, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
         }
 
         /// <summary>
@@ -212,9 +212,9 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static TextureBuffer GetTextureBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        public static TextureBuffer GenTextureBuffer(this UnmanagedArrayBase array, BufferUsage usage)
         {
-            return GetIndependentBuffer(array, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
+            return GenIndependentBuffer(array, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
         }
 
         /// <summary>
@@ -222,19 +222,19 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static UniformBuffer GetUniformBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        public static UniformBuffer GenUniformBuffer(this UnmanagedArrayBase array, BufferUsage usage)
         {
-            return GetIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
+            return GenIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
         }
 
         /// <summary>
-        /// 获取某种独立的Buffer。
+        /// 生成某种独立的Buffer。
         /// </summary>
         /// <param name="array"></param>
         /// <param name="bufferTarget"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        private static Buffer GetIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
+        private static Buffer GenIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
         {
             if (glGenBuffers == null)
             {

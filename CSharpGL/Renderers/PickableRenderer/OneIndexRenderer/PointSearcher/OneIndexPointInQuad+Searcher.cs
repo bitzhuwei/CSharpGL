@@ -21,7 +21,7 @@ namespace CSharpGL
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length != 4) { throw new ArgumentException(); }
 
-            OneIndexBuffer buffer = indexList.GetOneIndexBuffer(DrawMode.Points, BufferUsage.StaticDraw);
+            OneIndexBuffer buffer = indexList.GenOneIndexBuffer(DrawMode.Points, BufferUsage.StaticDraw);
             modernRenderer.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
