@@ -61,7 +61,13 @@ namespace CSharpGL
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            OneIndexBuffer buffer = GenIndexBuffer(unmanagedArray, mode, usage, IndexElementType.UInt, primCount);
+            IndexElementType type;
+            if (typeof(T) == typeof(uint)) { type = IndexElementType.UInt; }
+            else if (typeof(T) == typeof(ushort)) { type = IndexElementType.UShort; }
+            else if (typeof(T) == typeof(byte)) { type = IndexElementType.UByte; }
+            else { throw new ArgumentException(string.Format("Only uint/ushort/byte are allowed!")); }
+
+            OneIndexBuffer buffer = GenIndexBuffer(unmanagedArray, mode, usage, type, primCount);
             pinned.Free();
 
             return buffer;
