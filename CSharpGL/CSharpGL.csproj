@@ -109,7 +109,7 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers\IndexElementType.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.GenOneIndexBuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.GenIndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.GenOtherBuffers.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.GenVertexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.cs" />

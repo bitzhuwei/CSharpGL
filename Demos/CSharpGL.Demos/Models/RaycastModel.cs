@@ -112,7 +112,7 @@ namespace CSharpGL.Demos
                 //    buffer.UnmapBuffer();
                 //}
                 //this.indexBuffer = buffer;
-                this.indexBuffer = indices.GenOneIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                this.indexBuffer = indices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
             return indexBuffer;

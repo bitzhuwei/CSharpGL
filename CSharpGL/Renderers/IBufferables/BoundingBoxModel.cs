@@ -123,7 +123,7 @@ namespace CSharpGL
                 //}
                 //this.indexBuffer = buffer;
                 // another way to do this:
-                this.indexBuffer = indexes.GenOneIndexBuffer(DrawMode.Quads, BufferUsage.StaticDraw);
+                this.indexBuffer = indexes.GenIndexBuffer(DrawMode.Quads, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;
