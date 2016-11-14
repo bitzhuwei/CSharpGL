@@ -1,11 +1,7 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-namespace CSharpGL
+﻿namespace CSharpGL
 {
     public static partial class Data2Buffer
     {
-
         /// <summary>
         /// 生成一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
