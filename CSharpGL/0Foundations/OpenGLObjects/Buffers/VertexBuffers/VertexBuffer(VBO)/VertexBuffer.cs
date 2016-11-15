@@ -106,8 +106,7 @@ namespace CSharpGL
         {
             get
             {
-                VBOConfigDetail detail = this.Config.Parse();
-                return detail.dataSize;
+                return this.Config.GetDataSize();
             }
         }
 
