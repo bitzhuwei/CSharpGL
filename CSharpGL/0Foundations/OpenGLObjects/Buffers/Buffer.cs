@@ -6,7 +6,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// 位于服务器端（GPU内存）中的定长数组。
+    /// 位于服务器端（GPU内存）的定长数组。
     /// <para>An array at server side (GPU memory) with fixed length.</para>
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
@@ -19,8 +19,8 @@ namespace CSharpGL
         public uint BufferId { get; private set; }
 
         /// <summary>
-        /// 此VBO含有多个个元素？
-        /// <para>How many elements?</para>
+        /// 此VBO含有多少个元素？
+        /// <para>How many elements in thie buffer?</para>
         /// </summary>
         public int Length { get; private set; }
 
@@ -91,11 +91,11 @@ namespace CSharpGL
         //internal static OpenGL.glGetBufferSubData glGetBufferSubData;
 
         /// <summary>
-        /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
-        /// VBO's pointer got from Buffer's GetBuffer() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
+        /// 位于服务器端（GPU内存）的定长数组。
+        /// <para>An array at server side (GPU memory) with fixed length.</para>
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-        /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+        /// <param name="length">此VBO含有多少个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         protected Buffer(uint bufferId, int length, int byteLength)
         {
