@@ -28,6 +28,18 @@ namespace CSharpGL.Demos
 			1.0f, 1.0f, 1.0f,
         };
 
+        private static readonly float[] boundingBoxColor =
+        {
+			0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 1.0f,
+			0.0f, 1.0f, 0.0f,
+			0.0f, 1.0f, 1.0f,
+			1.0f, 0.0f, 0.0f,
+			1.0f, 0.0f, 1.0f,
+			1.0f, 1.0f, 0.0f,
+			1.0f, 1.0f, 1.0f,
+        };
+
         private static readonly uint[] indices =
         {
 			1,5,7,
@@ -44,26 +56,34 @@ namespace CSharpGL.Demos
 			4,5,1,
         };
 
+        static RaycastModel()
+        {
+            for (int i = 0; i < boundingBox.Length; i++)
+            {
+                boundingBox[i] = boundingBox[i] - 0.5f;
+            }
+        }
         public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
             if (bufferName == strposition)
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = boundingBox.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < boundingBox.Length; i++)
-                        {
-                            array[i] = boundingBox[i] - 0.5f;
-                        }
-                        buffer.UnmapBuffer();
-                    }
+                    //int length = boundingBox.Length;
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //unsafe
+                    //{
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    var array = (float*)pointer;
+                    //    for (int i = 0; i < boundingBox.Length; i++)
+                    //    {
+                    //        array[i] = boundingBox[i] - 0.5f;
+                    //    }
+                    //    buffer.UnmapBuffer();
+                    //}
 
-                    this.positionBuffer = buffer;
+                    //this.positionBuffer = buffer;
+                    this.positionBuffer = boundingBox.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -85,7 +105,7 @@ namespace CSharpGL.Demos
                     //}
 
                     //this.colorBuffer = buffer;
-                    this.colorBuffer = boundingBox.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = boundingBoxColor.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }

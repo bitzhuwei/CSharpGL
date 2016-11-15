@@ -6,6 +6,7 @@ namespace CSharpGL
     public static partial class Data2Buffer
     {
         /// <summary>
+        /// Generates an atomic counter buffer.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="usage"></param>
@@ -17,6 +18,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates an pixel pack buffer.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="usage"></param>
@@ -28,6 +30,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates an pixel unpack buffer.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="usage"></param>
@@ -39,6 +42,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates an shader storage buffer.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="usage"></param>
@@ -50,6 +54,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates an texture buffer.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="usage"></param>
@@ -61,6 +66,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates an uniform buffer.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="usage"></param>
