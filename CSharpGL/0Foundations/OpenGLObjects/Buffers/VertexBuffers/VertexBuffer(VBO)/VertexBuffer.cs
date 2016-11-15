@@ -106,13 +106,8 @@ namespace CSharpGL
         {
             get
             {
-                int locationCount;
-                int dataSize;
-                uint dataType;
-                int stride;
-                int startOffsetUnit;
-                this.Config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
-                return dataSize;
+                VBOConfigDetail detail = this.Config.Parse();
+                return detail.dataSize;
             }
         }
 
@@ -138,20 +133,15 @@ namespace CSharpGL
             if (location < 0) { throw new ArgumentException(); }
 
             uint loc = (uint)location;
-            int locationCount;
-            int dataSize;
-            uint dataType;
-            int stride;
-            int startOffsetUnit;
             VBOConfig config = this.Config;
-            config.Parse(out locationCount, out dataSize, out dataType, out stride, out startOffsetUnit);
+            VBOConfigDetail detail = config.Parse();
             int patchVertexes = this.PatchVertexes;
             uint divisor = this.InstancedDivisor;
             // 选中此VBO
             // select this VBO.
             if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
-            for (uint i = 0; i < locationCount; i++)
+            for (uint i = 0; i < detail.locationCount; i++)
             {
                 // 指定格式
                 // set up data format.
@@ -159,19 +149,19 @@ namespace CSharpGL
                 {
                     case VertexAttribPointerType.Default:
                         if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
-                        glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                        glVertexAttribPointer(loc + i, detail.dataSize, detail.dataType, false, detail.stride, new IntPtr(i * detail.startOffsetUnit));
                         break;
 
                     case VertexAttribPointerType.Integer:
                         if (glVertexAttribIPointer != null)
                         {
                             if (glVertexAttribIPointer == null) { glVertexAttribIPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribIPointer>(); }
-                            glVertexAttribIPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                            glVertexAttribIPointer(loc + i, detail.dataSize, detail.dataType, detail.stride, new IntPtr(i * detail.startOffsetUnit));
                         }
                         else
                         {
                             if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
-                            glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                            glVertexAttribPointer(loc + i, detail.dataSize, detail.dataType, false, detail.stride, new IntPtr(i * detail.startOffsetUnit));
                         }
                         break;
 
@@ -179,12 +169,12 @@ namespace CSharpGL
                         if (glVertexAttribLPointer != null)
                         {
                             if (glVertexAttribLPointer == null) { glVertexAttribLPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribLPointer>(); }
-                            glVertexAttribLPointer(loc + i, dataSize, dataType, stride, new IntPtr(i * startOffsetUnit));
+                            glVertexAttribLPointer(loc + i, detail.dataSize, detail.dataType, detail.stride, new IntPtr(i * detail.startOffsetUnit));
                         }
                         else
                         {
                             if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
-                            glVertexAttribPointer(loc + i, dataSize, dataType, false, stride, new IntPtr(i * startOffsetUnit));
+                            glVertexAttribPointer(loc + i, detail.dataSize, detail.dataType, false, detail.stride, new IntPtr(i * detail.startOffsetUnit));
                         }
                         break;
 
@@ -212,7 +202,6 @@ namespace CSharpGL
             }
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
         }
-
 
         /// <summary>
         /// Shallow copy of this <see cref="VertexBuffer"/> instance.

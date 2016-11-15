@@ -9,147 +9,151 @@ namespace CSharpGL
         /// Gets parameter values for glVertexAttribPointer() and glEnable/DisableVertexAttribArray().
         /// </summary>
         /// <param name="config"></param>
-        /// <param name="locationCount"></param>
-        /// <param name="dataSize"></param>
-        /// <param name="dataType"></param>
-        /// <param name="stride"></param>
-        /// <param name="startOffsetUnit"></param>
-        internal static void Parse(this VBOConfig config, out int locationCount, out int dataSize, out uint dataType, out int stride, out int startOffsetUnit)
+        internal static VBOConfigDetail Parse(this VBOConfig config)
         {
-            locationCount = 1;
-            //dataSize = 0;
-            //dataType = 0;
-            stride = 0;
-            startOffsetUnit = 0;
+            var result = new VBOConfigDetail();
+
             switch (config)
             {
                 case VBOConfig.Byte:
-                    dataSize = 1;
-                    dataType = OpenGL.GL_BYTE;
+                    result.dataSize = 1;
+                    result.dataType = OpenGL.GL_BYTE;
                     break;
 
                 case VBOConfig.BVec2:
-                    dataSize = 2;
-                    dataType = OpenGL.GL_BYTE;
+                    result.dataSize = 2;
+                    result.dataType = OpenGL.GL_BYTE;
                     break;
 
                 case VBOConfig.BVec3:
-                    dataSize = 3;
-                    dataType = OpenGL.GL_BYTE;
+                    result.dataSize = 3;
+                    result.dataType = OpenGL.GL_BYTE;
                     break;
 
                 case VBOConfig.BVec4:
-                    dataSize = 4;
-                    dataType = OpenGL.GL_BYTE;
+                    result.dataSize = 4;
+                    result.dataType = OpenGL.GL_BYTE;
                     break;
 
                 case VBOConfig.Int:
-                    dataSize = 1;
-                    dataType = OpenGL.GL_INT;
+                    result.dataSize = 1;
+                    result.dataType = OpenGL.GL_INT;
                     break;
 
                 case VBOConfig.IVec2:
-                    dataSize = 2;
-                    dataType = OpenGL.GL_INT;
+                    result.dataSize = 2;
+                    result.dataType = OpenGL.GL_INT;
                     break;
 
                 case VBOConfig.IVec3:
-                    dataSize = 3;
-                    dataType = OpenGL.GL_INT;
+                    result.dataSize = 3;
+                    result.dataType = OpenGL.GL_INT;
                     break;
 
                 case VBOConfig.IVec4:
-                    dataSize = 4;
-                    dataType = OpenGL.GL_INT;
+                    result.dataSize = 4;
+                    result.dataType = OpenGL.GL_INT;
                     break;
 
                 case VBOConfig.UInt:
-                    dataSize = 1;
-                    dataType = OpenGL.GL_UNSIGNED_INT;
+                    result.dataSize = 1;
+                    result.dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
 
                 case VBOConfig.UVec2:
-                    dataSize = 2;
-                    dataType = OpenGL.GL_UNSIGNED_INT;
+                    result.dataSize = 2;
+                    result.dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
 
                 case VBOConfig.UVec3:
-                    dataSize = 3;
-                    dataType = OpenGL.GL_UNSIGNED_INT;
+                    result.dataSize = 3;
+                    result.dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
 
                 case VBOConfig.UVec4:
-                    dataSize = 4;
-                    dataType = OpenGL.GL_UNSIGNED_INT;
+                    result.dataSize = 4;
+                    result.dataType = OpenGL.GL_UNSIGNED_INT;
                     break;
 
                 case VBOConfig.Float:
-                    dataSize = 1;
-                    dataType = OpenGL.GL_FLOAT;
+                    result.dataSize = 1;
+                    result.dataType = OpenGL.GL_FLOAT;
                     break;
 
                 case VBOConfig.Vec2:
-                    dataSize = 2;
-                    dataType = OpenGL.GL_FLOAT;
+                    result.dataSize = 2;
+                    result.dataType = OpenGL.GL_FLOAT;
                     break;
 
                 case VBOConfig.Vec3:
-                    dataSize = 3;
-                    dataType = OpenGL.GL_FLOAT;
+                    result.dataSize = 3;
+                    result.dataType = OpenGL.GL_FLOAT;
                     break;
 
                 case VBOConfig.Vec4:
-                    dataSize = 4;
-                    dataType = OpenGL.GL_FLOAT;
+                    result.dataSize = 4;
+                    result.dataType = OpenGL.GL_FLOAT;
                     break;
 
                 case VBOConfig.Double:
-                    dataSize = 1;
-                    dataType = OpenGL.GL_DOUBLE;
+                    result.dataSize = 1;
+                    result.dataType = OpenGL.GL_DOUBLE;
                     break;
 
                 case VBOConfig.DVec2:
-                    dataSize = 2;
-                    dataType = OpenGL.GL_DOUBLE;
+                    result.dataSize = 2;
+                    result.dataType = OpenGL.GL_DOUBLE;
                     break;
 
                 case VBOConfig.DVec3:
-                    dataSize = 3;
-                    dataType = OpenGL.GL_DOUBLE;
+                    result.dataSize = 3;
+                    result.dataType = OpenGL.GL_DOUBLE;
                     break;
 
                 case VBOConfig.DVec4:
-                    dataSize = 4;
-                    dataType = OpenGL.GL_DOUBLE;
+                    result.dataSize = 4;
+                    result.dataType = OpenGL.GL_DOUBLE;
                     break;
 
                 case VBOConfig.Mat2:
-                    locationCount = 2;
-                    dataSize = 2;
-                    dataType = OpenGL.GL_FLOAT;
-                    stride = Marshal.SizeOf(typeof(mat2));
-                    startOffsetUnit = Marshal.SizeOf(typeof(vec2));
+                    result.locationCount = 2;
+                    result.dataSize = 2;
+                    result.dataType = OpenGL.GL_FLOAT;
+                    result.stride = Marshal.SizeOf(typeof(mat2));
+                    result.startOffsetUnit = Marshal.SizeOf(typeof(vec2));
                     break;
 
                 case VBOConfig.Mat3:
-                    locationCount = 3;
-                    dataSize = 3;
-                    dataType = OpenGL.GL_FLOAT;
-                    stride = Marshal.SizeOf(typeof(mat3));
-                    startOffsetUnit = Marshal.SizeOf(typeof(vec3));
+                    result.locationCount = 3;
+                    result.dataSize = 3;
+                    result.dataType = OpenGL.GL_FLOAT;
+                    result.stride = Marshal.SizeOf(typeof(mat3));
+                    result.startOffsetUnit = Marshal.SizeOf(typeof(vec3));
                     break;
 
                 case VBOConfig.Mat4:
-                    locationCount = 4;
-                    dataSize = 4;
-                    dataType = OpenGL.GL_FLOAT;
-                    stride = Marshal.SizeOf(typeof(mat4));
-                    startOffsetUnit = Marshal.SizeOf(typeof(vec4));
+                    result.locationCount = 4;
+                    result.dataSize = 4;
+                    result.dataType = OpenGL.GL_FLOAT;
+                    result.stride = Marshal.SizeOf(typeof(mat4));
+                    result.startOffsetUnit = Marshal.SizeOf(typeof(vec4));
                     break;
 
                 default:
                     throw new NotImplementedException();
             }
+
+            return result;
         }
+    }
+
+    class VBOConfigDetail
+    {
+        public int locationCount = 1;
+        public int dataSize;
+        public uint dataType;
+        public int stride;
+        public int startOffsetUnit;
+
     }
 }
