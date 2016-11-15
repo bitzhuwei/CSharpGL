@@ -132,8 +132,7 @@ namespace CSharpGL
             if (location < 0) { throw new ArgumentException(); }
 
             uint loc = (uint)location;
-            VBOConfig config = this.Config;
-            VBOConfigDetail detail = config.Parse();
+            VBOConfigDetail detail = this.Config.Parse();
             int patchVertexes = this.PatchVertexes;
             uint divisor = this.InstancedDivisor;
             // 选中此VBO
@@ -144,7 +143,7 @@ namespace CSharpGL
             {
                 // 指定格式
                 // set up data format.
-                switch (config.GetVertexAttribPointerType())
+                switch (detail.pointerType)
                 {
                     case VertexAttribPointerType.Default:
                         if (glVertexAttribPointer == null) { glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>(); }
