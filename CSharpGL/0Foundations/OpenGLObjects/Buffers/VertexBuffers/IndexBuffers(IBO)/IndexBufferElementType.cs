@@ -4,7 +4,7 @@
     /// <summary>
     ///
     /// </summary>
-    public enum IndexElementType : uint
+    public enum IndexBufferElementType : uint
     {
         /// <summary>
         /// byte

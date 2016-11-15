@@ -13,7 +13,7 @@
         /// <returns></returns>
         public static OneIndexBuffer GenIndexBuffer(this UnmanagedArray<byte> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GenIndexBuffer(array, mode, usage, IndexElementType.UByte, primCount);
+            return GenIndexBuffer(array, mode, usage, IndexBufferElementType.UByte, primCount);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@
         /// <returns></returns>
         public static OneIndexBuffer GenIndexBuffer(this UnmanagedArray<ushort> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GenIndexBuffer(array, mode, usage, IndexElementType.UShort, primCount);
+            return GenIndexBuffer(array, mode, usage, IndexBufferElementType.UShort, primCount);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@
         /// <returns></returns>
         public static OneIndexBuffer GenIndexBuffer(this UnmanagedArray<uint> array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GenIndexBuffer(array, mode, usage, IndexElementType.UInt, primCount);
+            return GenIndexBuffer(array, mode, usage, IndexBufferElementType.UInt, primCount);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@
         /// <param name="elementType"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        private static OneIndexBuffer GenIndexBuffer(this UnmanagedArrayBase array, DrawMode mode, BufferUsage usage, IndexElementType elementType, int primCount = 1)
+        private static OneIndexBuffer GenIndexBuffer(this UnmanagedArrayBase array, DrawMode mode, BufferUsage usage, IndexBufferElementType elementType, int primCount = 1)
         {
             if (glGenBuffers == null)
             {

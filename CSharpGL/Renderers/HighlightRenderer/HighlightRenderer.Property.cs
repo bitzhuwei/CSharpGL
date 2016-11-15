@@ -29,15 +29,15 @@
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// 只能是OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT
         /// </summary>
-        public IndexElementType Type
+        public IndexBufferElementType Type
         {
             get
             {
                 var indexBuffer = this.indexBuffer as OneIndexBuffer;
                 if (indexBuffer == null)
-                { return IndexElementType.UInt; }
+                { return IndexBufferElementType.UInt; }
                 else
-                { return indexBuffer.Type; }
+                { return indexBuffer.ElementType; }
             }
         }
 

@@ -61,7 +61,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static OneIndexBuffer Create(IndexElementType type, int length, DrawMode mode, BufferUsage usage)
+        public static OneIndexBuffer Create(IndexBufferElementType type, int length, DrawMode mode, BufferUsage usage)
         {
             if (glGenBuffers == null) { glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>(); }
             if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
@@ -81,20 +81,20 @@ namespace CSharpGL
             return buffer;
         }
 
-        private static int GetSize(IndexElementType type)
+        private static int GetSize(IndexBufferElementType type)
         {
             int result = 0;
             switch (type)
             {
-                case IndexElementType.UByte:
+                case IndexBufferElementType.UByte:
                     result = sizeof(byte);
                     break;
 
-                case IndexElementType.UShort:
+                case IndexBufferElementType.UShort:
                     result = sizeof(ushort);
                     break;
 
-                case IndexElementType.UInt:
+                case IndexBufferElementType.UInt:
                     result = sizeof(uint);
                     break;
 

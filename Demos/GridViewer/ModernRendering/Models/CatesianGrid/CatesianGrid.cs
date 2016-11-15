@@ -44,7 +44,7 @@ namespace GridViewer
             {
                 int dimSize = this.DataSource.DimenSize;
                 int length = dimSize * 2 * (Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint));
-                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.QuadStrip, BufferUsage.StaticDraw);
+                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexBufferElementType.UInt, length, DrawMode.QuadStrip, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

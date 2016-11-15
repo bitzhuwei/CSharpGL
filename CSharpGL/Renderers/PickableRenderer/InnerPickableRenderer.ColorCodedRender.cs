@@ -107,23 +107,23 @@ namespace CSharpGL
         private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBuffer indexBuffer)
         {
             PrimitiveRestartSwitch result = null;
-            switch (indexBuffer.Type)
+            switch (indexBuffer.ElementType)
             {
-                case IndexElementType.UByte:
+                case IndexBufferElementType.UByte:
                     if (this.ubyteRestartIndexSwitch == null)
-                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.Type); }
+                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType); }
                     result = this.ubyteRestartIndexSwitch;
                     break;
 
-                case IndexElementType.UShort:
+                case IndexBufferElementType.UShort:
                     if (this.ushortRestartIndexSwitch == null)
-                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.Type); }
+                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType); }
                     result = this.ushortRestartIndexSwitch;
                     break;
 
-                case IndexElementType.UInt:
+                case IndexBufferElementType.UInt:
                     if (this.uintRestartIndexSwitch == null)
-                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.Type); }
+                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType); }
                     result = this.uintRestartIndexSwitch;
                     break;
 

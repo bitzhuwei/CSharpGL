@@ -113,7 +113,7 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int length = TetrahedronModel.index.Length;
-                OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                OneIndexBuffer buffer = Buffer.Create(IndexBufferElementType.UByte, length, DrawMode.Triangles, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

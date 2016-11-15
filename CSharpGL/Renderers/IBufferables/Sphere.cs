@@ -161,7 +161,7 @@ namespace CSharpGL
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    OneIndexBuffer buffer = Buffer.Create(IndexElementType.UByte, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    OneIndexBuffer buffer = Buffer.Create(IndexBufferElementType.UByte, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -179,7 +179,7 @@ namespace CSharpGL
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    OneIndexBuffer buffer = Buffer.Create(IndexElementType.UShort, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    OneIndexBuffer buffer = Buffer.Create(IndexBufferElementType.UShort, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -197,7 +197,7 @@ namespace CSharpGL
                 }
                 else
                 {
-                    OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    OneIndexBuffer buffer = Buffer.Create(IndexBufferElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

@@ -9,20 +9,20 @@
         ///
         /// </summary>
         /// <param name="indexElementType"></param>
-        public PrimitiveRestartSwitch(IndexElementType indexElementType)
+        public PrimitiveRestartSwitch(IndexBufferElementType indexElementType)
             : base(OpenGL.GL_PRIMITIVE_RESTART, true)
         {
             switch (indexElementType)
             {
-                case IndexElementType.UByte:
+                case IndexBufferElementType.UByte:
                     this.RestartIndex = byte.MaxValue;
                     break;
 
-                case IndexElementType.UShort:
+                case IndexBufferElementType.UShort:
                     this.RestartIndex = ushort.MaxValue;
                     break;
 
-                case IndexElementType.UInt:
+                case IndexBufferElementType.UInt:
                     this.RestartIndex = uint.MaxValue;
                     break;
 

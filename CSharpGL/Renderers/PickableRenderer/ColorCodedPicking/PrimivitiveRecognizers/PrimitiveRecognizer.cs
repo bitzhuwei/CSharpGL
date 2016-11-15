@@ -16,17 +16,17 @@ namespace CSharpGL
          uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer)
         {
             var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
-            switch (oneIndexBuffer.Type)
+            switch (oneIndexBuffer.ElementType)
             {
-                case IndexElementType.UByte:
+                case IndexBufferElementType.UByte:
                     RecognizeByte(lastVertexId, pointer, oneIndexBuffer, lastIndexIdList);
                     break;
 
-                case IndexElementType.UShort:
+                case IndexBufferElementType.UShort:
                     RecognizeUShort(lastVertexId, pointer, oneIndexBuffer, lastIndexIdList);
                     break;
 
-                case IndexElementType.UInt:
+                case IndexBufferElementType.UInt:
                     RecognizeUInt(lastVertexId, pointer, oneIndexBuffer, lastIndexIdList);
                     break;
 
@@ -58,17 +58,17 @@ namespace CSharpGL
             var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
             if (lastVertexId != primitiveRestartIndex)
             {
-                switch (oneIndexBuffer.Type)
+                switch (oneIndexBuffer.ElementType)
                 {
-                    case IndexElementType.UByte:
+                    case IndexBufferElementType.UByte:
                         RecognizeByte(lastVertexId, pointer, oneIndexBuffer, lastIndexIdList, primitiveRestartIndex);
                         break;
 
-                    case IndexElementType.UShort:
+                    case IndexBufferElementType.UShort:
                         RecognizeUShort(lastVertexId, pointer, oneIndexBuffer, lastIndexIdList, primitiveRestartIndex);
                         break;
 
-                    case IndexElementType.UInt:
+                    case IndexBufferElementType.UInt:
                         RecognizeUInt(lastVertexId, pointer, oneIndexBuffer, lastIndexIdList, primitiveRestartIndex);
                         break;
 

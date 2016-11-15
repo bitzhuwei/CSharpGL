@@ -125,7 +125,7 @@ namespace GridViewer
 
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
             int length = vertexCount + (this.pipeline.Count - 1);
-            OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.QuadStrip, BufferUsage.StaticDraw);
+            OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexBufferElementType.UInt, length, DrawMode.QuadStrip, BufferUsage.StaticDraw);
             unsafe
             {
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

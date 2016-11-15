@@ -29,12 +29,12 @@ namespace CSharpGL
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal OneIndexBuffer(uint bufferId, DrawMode mode,
-            IndexElementType type, int length, int byteLength, int primCount = 1)
+            IndexBufferElementType type, int length, int byteLength, int primCount = 1)
             : base(mode, bufferId, length, byteLength, primCount)
         {
             this.ElementCount = length;
             //this.OriginalElementCount = length;
-            this.Type = type;
+            this.ElementType = type;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace CSharpGL
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// </summary>
-        public IndexElementType Type { get; private set; }
+        public IndexBufferElementType ElementType { get; private set; }
 
         /// <summary>
         ///
@@ -83,17 +83,17 @@ namespace CSharpGL
                 mode = (uint)this.Mode;
             }
 
-            switch (this.Type)
+            switch (this.ElementType)
             {
-                case IndexElementType.UByte:
+                case IndexBufferElementType.UByte:
                     offset = new IntPtr(this.FirstIndex * sizeof(byte));
                     break;
 
-                case IndexElementType.UShort:
+                case IndexBufferElementType.UShort:
                     offset = new IntPtr(this.FirstIndex * sizeof(ushort));
                     break;
 
-                case IndexElementType.UInt:
+                case IndexBufferElementType.UInt:
                     offset = new IntPtr(this.FirstIndex * sizeof(uint));
                     break;
 
@@ -105,14 +105,14 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             if (primCount == 1)
             {
-                OpenGL.DrawElements(mode, this.ElementCount, (uint)this.Type, offset);
+                OpenGL.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
             }
             else
             {
                 if (glDrawElementsInstanced == null)
                 { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
 
-                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.Type, offset, primCount);
+                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
             }
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
@@ -124,17 +124,17 @@ namespace CSharpGL
         public override string ToString()
         {
             string type = string.Empty;
-            switch (this.Type)
+            switch (this.ElementType)
             {
-                case IndexElementType.UByte:
+                case IndexBufferElementType.UByte:
                     type = "byte";
                     break;
 
-                case IndexElementType.UShort:
+                case IndexBufferElementType.UShort:
                     type = "ushort";
                     break;
 
-                case IndexElementType.UInt:
+                case IndexBufferElementType.UInt:
                     type = "uint";
                     break;
 
@@ -149,12 +149,12 @@ namespace CSharpGL
             else if (primCount == 1)
             {
                 return string.Format("glDrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
-                    this.Mode, this.ElementCount, this.Type, this.FirstIndex, type);
+                    this.Mode, this.ElementCount, this.ElementType, this.FirstIndex, type);
             }
             else
             {
                 return string.Format("glDrawElementsInstanced({0}, {1}, {2}, new IntPtr({3} * sizeof({4}), {5})",
-                    this.Mode, this.ElementCount, this.Type, this.FirstIndex, type, primCount);
+                    this.Mode, this.ElementCount, this.ElementType, this.FirstIndex, type, primCount);
             }
         }
     }
