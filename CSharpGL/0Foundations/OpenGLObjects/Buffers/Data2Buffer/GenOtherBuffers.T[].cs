@@ -71,6 +71,14 @@ namespace CSharpGL
             return GenIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
         }
 
+        /// <summary>
+        /// Generates an independent buffer.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="target"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
         private static Buffer GenIndependentBuffer<T>(this T[] array, IndependentBufferTarget target, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);

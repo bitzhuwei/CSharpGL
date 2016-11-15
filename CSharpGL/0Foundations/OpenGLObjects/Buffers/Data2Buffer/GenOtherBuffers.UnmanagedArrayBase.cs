@@ -7,6 +7,7 @@ namespace CSharpGL
     {
 
         /// <summary>
+        /// Generates an atomic counter buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
@@ -17,6 +18,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates a pixel pack buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
@@ -27,6 +29,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates a pixel unpack buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
@@ -37,6 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates a shader storage buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
@@ -47,6 +51,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates a texture buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
@@ -57,6 +62,7 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Generates an uniform buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
@@ -67,7 +73,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 生成某种独立的Buffer。
+        /// Generates an independent buffer.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="bufferTarget"></param>
