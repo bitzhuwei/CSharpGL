@@ -85,30 +85,30 @@ namespace CSharpGL
         /// </summary>
         public VBOConfig Config { get; set; }
 
-        /// <summary>
-        /// How many bytes are there in a primitive data type(float/uint/int etc)?
-        /// </summary>
-        public int DataTypeByteLength
-        {
-            get
-            {
-                int result = this.Config.GetDataTypeByteLength();
+        ///// <summary>
+        ///// How many bytes are there in a primitive data type(float/uint/int etc)?
+        ///// </summary>
+        //public int DataTypeByteLength
+        //{
+        //    get
+        //    {
+        //        int result = this.Config.GetDataTypeByteLength();
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
 
-        /// <summary>
-        /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
-        /// <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
-        /// </summary>
-        public int DataSize
-        {
-            get
-            {
-                return this.Config.GetDataSize();
-            }
-        }
+        ///// <summary>
+        ///// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+        ///// <para>How many primitive data type(float/int/uint etc) are there in a data unit?</para>
+        ///// </summary>
+        //public int DataSize
+        //{
+        //    get
+        //    {
+        //        return this.Config.GetDataSize();
+        //    }
+        //}
 
         /// <summary>
         /// 0: not instanced. 1: instanced divisor is 1.

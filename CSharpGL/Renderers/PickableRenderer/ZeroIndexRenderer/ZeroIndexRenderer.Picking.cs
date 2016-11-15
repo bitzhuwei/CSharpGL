@@ -354,7 +354,7 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
-            var offsets = new int[vertexCount] { (this.PositionBuffer.Length - 1) * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength, 0, };
+            var offsets = new int[vertexCount] { (this.PositionBuffer.Length - 1) * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength(), 0, };
             vertexIds = new uint[vertexCount];
             positions = new vec3[vertexCount];
             this.PositionBuffer.Bind();
@@ -362,7 +362,7 @@ namespace CSharpGL
             {
                 IntPtr pointer = this.PositionBuffer.MapBufferRange(
                     offsets[i],
-                    1 * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength,
+                    1 * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength(),
                     MapBufferRangeAccess.MapReadBit, false);
                 unsafe
                 {
@@ -370,7 +370,7 @@ namespace CSharpGL
                     positions[i] = array[0];
                 }
                 this.PositionBuffer.UnmapBuffer(false);
-                vertexIds[i] = (uint)offsets[i] / (uint)(this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength);
+                vertexIds[i] = (uint)offsets[i] / (uint)(this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength());
             }
             this.PositionBuffer.Unbind();
         }

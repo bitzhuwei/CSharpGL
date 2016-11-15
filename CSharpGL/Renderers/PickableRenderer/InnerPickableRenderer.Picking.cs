@@ -61,7 +61,7 @@ namespace CSharpGL
             VertexBuffer positionBuffer = this.PositionBuffer;
             if (positionBuffer == null) { return 0; }
             int byteLength = positionBuffer.ByteLength;
-            int vertexLength = positionBuffer.DataSize * positionBuffer.DataTypeByteLength;
+            int vertexLength = positionBuffer.Config.GetDataSize() * positionBuffer.Config.GetDataTypeByteLength();
             uint vertexCount = (uint)(byteLength / vertexLength);
             return vertexCount;
         }
@@ -113,11 +113,11 @@ namespace CSharpGL
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
-            int offset = (int)(firstIndex * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength);
+            int offset = (int)(firstIndex * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength());
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             IntPtr pointer = this.PositionBuffer.MapBufferRange(
                 offset,
-                indexCount * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength,
+                indexCount * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength(),
                 MapBufferRangeAccess.MapReadBit);
             var positions = new vec3[indexCount];
             if (pointer.ToInt32() != 0)
@@ -152,11 +152,11 @@ namespace CSharpGL
             this.PositionBuffer.Bind();
             for (int i = 0; i < indexes.Length; i++)
             {
-                int offset = (int)(indexes[i] * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength);
+                int offset = (int)(indexes[i] * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength());
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
                 IntPtr pointer = this.PositionBuffer.MapBufferRange(
                     offset,
-                    1 * this.PositionBuffer.DataSize * this.PositionBuffer.DataTypeByteLength,
+                    1 * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength(),
                     MapBufferRangeAccess.MapReadBit, false);
                 if (pointer.ToInt32() != 0)
                 {

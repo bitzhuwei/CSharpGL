@@ -147,13 +147,12 @@ namespace CSharpGL
         }
     }
 
-    class VBOConfigDetail
+    internal class VBOConfigDetail
     {
         public int locationCount = 1;
         public int dataSize;
         public uint dataType;
         public int stride;
         public int startOffsetUnit;
-
     }
 }

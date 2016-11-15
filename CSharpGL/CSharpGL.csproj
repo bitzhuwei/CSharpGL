@@ -126,6 +126,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Buffer.Create.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetVertexAttribPointerType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataTypeByteLength.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataSize.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.Parse.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\AccumBufferSwitch.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
