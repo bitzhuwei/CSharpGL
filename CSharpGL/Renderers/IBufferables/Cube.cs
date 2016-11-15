@@ -57,7 +57,7 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     int length = 1;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubePosition), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubePosition), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
@@ -83,7 +83,7 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     //int length = 1;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeColor), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeColor), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -102,7 +102,7 @@ namespace CSharpGL
                 if (this.normalBuffer == null)
                 {
                     //int length = 1;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeNormal), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(CubeModel.CubeNormal), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

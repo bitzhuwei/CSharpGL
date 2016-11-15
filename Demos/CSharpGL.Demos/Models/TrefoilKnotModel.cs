@@ -85,7 +85,7 @@ namespace CSharpGL.Demos
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, varNameInShader, BufferUsage.StaticDraw);
             unsafe
             {
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -105,7 +105,7 @@ namespace CSharpGL.Demos
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
             bool initialized = false;
             vec3 max = new vec3();
             vec3 min = new vec3();

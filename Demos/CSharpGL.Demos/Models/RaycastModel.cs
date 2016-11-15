@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
                 if (this.positionBuffer == null)
                 {
                     //int length = boundingBox.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -92,7 +92,7 @@ namespace CSharpGL.Demos
                 if (this.colorBuffer == null)
                 {
                     //int length = boundingBox.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

@@ -49,7 +49,7 @@ namespace CSharpGL
                 {
                     float[] positions = model.GetPositions();
                     //int length = positions.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -72,7 +72,7 @@ namespace CSharpGL
                 {
                     float[] normals = model.GetNormals();
                     //int length = normals.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -95,7 +95,7 @@ namespace CSharpGL
                 {
                     float[] normals = model.GetNormals();
                     //int length = normals.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

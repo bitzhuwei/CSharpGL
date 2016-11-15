@@ -11,12 +11,12 @@ namespace CSharpGL
         /// <param name="elementType">element's type of this 'array'.</param>
         /// <param name="length">How many elements are there?</param>
         /// <param name="config">mapping to vertex shader's 'in' type.</param>
-        /// <param name="usage"></param>
         /// <param name="varNameInVertexShader">mapping to vertex shader's 'in' name.</param>
+        /// <param name="usage"></param>
         /// <param name="instanceDivisor"></param>
         /// <param name="patchVertexes"></param>
         /// <returns></returns>
-        public static VertexBuffer Create(Type elementType, int length, VBOConfig config, BufferUsage usage, string varNameInVertexShader, uint instanceDivisor = 0, int patchVertexes = 0)
+        public static VertexBuffer Create(Type elementType, int length, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instanceDivisor = 0, int patchVertexes = 0)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
 
@@ -33,7 +33,7 @@ namespace CSharpGL
             glBindBuffer(target, 0);
 
             var buffer = new VertexBuffer(
-                varNameInVertexShader, buffers[0], config, length, byteLength, instanceDivisor, patchVertexes);
+                 buffers[0], config, varNameInVertexShader, length, byteLength, instanceDivisor, patchVertexes);
 
             return buffer;
         }

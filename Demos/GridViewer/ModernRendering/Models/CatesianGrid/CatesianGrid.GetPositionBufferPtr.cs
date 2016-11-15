@@ -13,7 +13,7 @@ namespace GridViewer
         {
             int dimSize = this.DataSource.DimenSize;
             int length = dimSize;
-            VertexBuffer buffer = VertexBuffer.Create(typeof(HexahedronPosition), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+            VertexBuffer buffer = VertexBuffer.Create(typeof(HexahedronPosition), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
             unsafe
             {
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

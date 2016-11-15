@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
                 if (this.positionBuffer == null)
                 {
                     int length = xy_vertices.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec4, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec4, varNameInShader, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                 if (this.normalBuffer == null)
                 {
                     //int length = xy_normals.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -80,7 +80,7 @@ namespace CSharpGL.Demos
                 if (this.tangentBuffer == null)
                 {
                     //int length = xy_tangents.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -101,7 +101,7 @@ namespace CSharpGL.Demos
                 if (this.texCoordBuffer == null)
                 {
                     //int length = xy_texCoords.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

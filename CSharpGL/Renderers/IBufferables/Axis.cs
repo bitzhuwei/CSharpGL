@@ -48,7 +48,7 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     //int length = this.model.positions.Length;
-                    //VertexBuffer ptr = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer ptr = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
@@ -70,7 +70,7 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     //int length = this.model.colors.Length;
-                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
                     //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

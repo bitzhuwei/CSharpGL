@@ -137,7 +137,7 @@ namespace CSharpGL.Demos
                 {
                     if (this.positionBuffer == null)
                     {
-                        //var buffer = VertexBuffer.Create(typeof(vec3), vertsData.Length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        //var buffer = VertexBuffer.Create(typeof(vec3), vertsData.Length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                         //unsafe
                         //{
                         //    var array = (vec3*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

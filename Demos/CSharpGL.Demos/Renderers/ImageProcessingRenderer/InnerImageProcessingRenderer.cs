@@ -125,7 +125,7 @@ namespace CSharpGL.Demos
                     if (positionBuffer == null)
                     {
                         int length = 4;
-                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                         unsafe
                         {
                             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -146,7 +146,7 @@ namespace CSharpGL.Demos
                     if (this.uvBuffer == null)
                     {
                         int length = 4;
-                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, BufferUsage.StaticDraw, varNameInShader);
+                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec2), length, VBOConfig.Vec2, varNameInShader, BufferUsage.StaticDraw);
                         unsafe
                         {
                             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

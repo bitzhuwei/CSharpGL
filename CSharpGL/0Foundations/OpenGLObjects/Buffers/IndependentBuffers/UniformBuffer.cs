@@ -9,7 +9,7 @@ namespace CSharpGL
     public partial class UniformBuffer : Buffer
     {
         private static OpenGL.glUniformBlockBinding glUniformBlockBinding;
-        private static OpenGL.glBindBufferRange glBindBufferRange;
+        //private static OpenGL.glBindBufferRange glBindBufferRange;
         private static OpenGL.glBindBufferBase glBindBufferBase;
 
         /// <summary>

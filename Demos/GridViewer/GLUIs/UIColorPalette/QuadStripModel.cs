@@ -64,7 +64,7 @@ namespace GridViewer
                 if (this.positionBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -86,7 +86,7 @@ namespace GridViewer
                 if (this.texCoordBuffer == null)
                 {
                     int length = (this.quadCount + 1) * 2;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, varNameInShader, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -109,7 +109,7 @@ namespace GridViewer
             {
                 if (this.colorBuffer == null)
                 {
-                    var buffer = VertexBuffer.Create(typeof(vec3), (this.quadCount + 1) * 2, VBOConfig.Vec3, BufferUsage.StaticDraw, varNameInShader);
+                    var buffer = VertexBuffer.Create(typeof(vec3), (this.quadCount + 1) * 2, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     unsafe
                     {
                         var array = (vec3*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

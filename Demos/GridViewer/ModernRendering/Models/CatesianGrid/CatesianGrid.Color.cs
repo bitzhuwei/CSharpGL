@@ -15,7 +15,7 @@ namespace GridViewer
             float[] textures = GetTextureCoords(this.GridBlockProperties[this.defaultBlockPropertyIndex]);
             int gridCellCount = this.DataSource.DimenSize;
             int length = gridCellCount;
-            VertexBuffer buffer = VertexBuffer.Create(typeof(HexahedronTexCoord), length, VBOConfig.Float, BufferUsage.StaticDraw, varNameInShader);
+            VertexBuffer buffer = VertexBuffer.Create(typeof(HexahedronTexCoord), length, VBOConfig.Float, varNameInShader, BufferUsage.StaticDraw);
             unsafe
             {
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

@@ -44,7 +44,7 @@ namespace CSharpGL
                 if (this.positionBuffer == null)
                 {
                     int length = maxCharCount;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(GlyphPosition), length, VBOConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(GlyphPosition), length, VBOConfig.Vec2, varNameInShader, BufferUsage.DynamicDraw);
 
                     this.positionBuffer = buffer;
                 }
@@ -56,7 +56,7 @@ namespace CSharpGL
                 if (this.uvBuffer == null)
                 {
                     int length = maxCharCount;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(GlyphTexCoord), length, VBOConfig.Vec2, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(GlyphTexCoord), length, VBOConfig.Vec2, varNameInShader, BufferUsage.DynamicDraw);
                     this.uvBuffer = buffer;
                 }
 

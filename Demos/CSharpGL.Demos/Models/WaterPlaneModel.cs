@@ -27,7 +27,7 @@ namespace CSharpGL.Demos
                 if (this.positionBuffer == null)
                 {
                     int length = this.SideLength * this.SideLength;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, BufferUsage.DynamicDraw, varNameInShader);
+                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, varNameInShader, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
