@@ -23,18 +23,18 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        /// <param name="type">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
+        /// <param name="elementType">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal OneIndexBuffer(uint bufferId, DrawMode mode,
-            IndexBufferElementType type, int length, int byteLength, int primCount = 1)
+            IndexBufferElementType elementType, int length, int byteLength, int primCount = 1)
             : base(mode, bufferId, length, byteLength, primCount)
         {
             this.ElementCount = length;
             //this.OriginalElementCount = length;
-            this.ElementType = type;
+            this.ElementType = elementType;
         }
 
         /// <summary>
