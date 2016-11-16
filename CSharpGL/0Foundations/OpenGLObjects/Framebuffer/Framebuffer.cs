@@ -7,15 +7,15 @@ namespace CSharpGL
     /// </summary>
     public partial class Framebuffer : IDisposable
     {
-        private static OpenGL.glBindFramebufferEXT glBindFramebuffer;
-        private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
-        private static OpenGL.glFramebufferTexture2DEXT glFramebufferTexture2D;
+        private static OpenGL.glBindFramebuffer glBindFramebuffer;
+        private static OpenGL.glGenFramebuffers glGenFramebuffers;
+        private static OpenGL.glFramebufferTexture2D glFramebufferTexture2D;
 
         //private static OpenGL.glDrawBuffers glDrawBuffers;
-        private static OpenGL.glFramebufferRenderbufferEXT glFramebufferRenderbuffer;
+        private static OpenGL.glFramebufferRenderbuffer glFramebufferRenderbuffer;
 
         private static OpenGL.glFramebufferParameteri glFramebufferParameteri;
-        private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
+        private static OpenGL.glCheckFramebufferStatus glCheckFramebufferStatus;
 
         private uint[] frameBuffer = new uint[1];
 
@@ -41,13 +41,13 @@ namespace CSharpGL
         {
             if (glGenFramebuffers == null)
             {
-                glGenFramebuffers = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>();
-                glBindFramebuffer = OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>();
-                glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
+                glGenFramebuffers = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffers>();
+                glBindFramebuffer = OpenGL.GetDelegateFor<OpenGL.glBindFramebuffer>();
+                glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2D>();
                 //glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>();
-                glFramebufferRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>();
+                glFramebufferRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbuffer>();
                 glFramebufferParameteri = OpenGL.GetDelegateFor<OpenGL.glFramebufferParameteri>();
-                glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
+                glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatus>();
             }
 
             glGenFramebuffers(1, frameBuffer);

@@ -5,9 +5,9 @@
     /// </summary>
     public partial class Renderbuffer
     {
-        private static OpenGL.glBindRenderbufferEXT glBindRenderbuffer;
-        private static OpenGL.glGenRenderbuffersEXT glGenRenderbuffers;
-        private static OpenGL.glRenderbufferStorageEXT glRenderbufferStorage;
+        private static OpenGL.glBindRenderbuffer glBindRenderbuffer;
+        private static OpenGL.glGenRenderbuffers glGenRenderbuffers;
+        private static OpenGL.glRenderbufferStorage glRenderbufferStorage;
 
         private uint[] renderbuffer = new uint[1];
 
@@ -22,9 +22,9 @@
         {
             if (glGenRenderbuffers == null)
             {
-                glGenRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>();
-                glBindRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>();
-                glRenderbufferStorage = OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>();
+                glGenRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffers>();
+                glBindRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glBindRenderbuffer>();
+                glRenderbufferStorage = OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorage>();
             }
 
             this.Width = width;

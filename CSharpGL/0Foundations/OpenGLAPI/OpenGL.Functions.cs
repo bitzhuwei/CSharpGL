@@ -634,7 +634,7 @@ namespace CSharpGL
         /// <param name="samplers">The array containing the names of the textures to delete.</param>
         internal delegate void glDeleteSamplers(int n, uint[] samplers);
 
-        private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
+        private static OpenGL.glDeleteFramebuffers _glDeleteFramebuffers;
 
         /// <summary>
         /// This function deletes a set of Texture objects.
@@ -646,13 +646,13 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                if (glDeleteFramebuffers == null)
-                { glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>(); }
-                glDeleteFramebuffers(n, framebuffers);
+                if (_glDeleteFramebuffers == null)
+                { _glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffers>(); }
+                _glDeleteFramebuffers(n, framebuffers);
             }
         }
 
-        private static OpenGL.glDeleteRenderbuffersEXT glDeleteRenderbuffers;
+        private static OpenGL.glDeleteRenderbuffers _glDeleteRenderbuffers;
 
         /// <summary>
         /// This function deletes a set of Texture objects.
@@ -664,9 +664,9 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                if (glDeleteRenderbuffers == null)
-                { glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>(); }
-                glDeleteRenderbuffers(n, renderbuffers);
+                if (_glDeleteRenderbuffers == null)
+                { _glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffers>(); }
+                _glDeleteRenderbuffers(n, renderbuffers);
             }
         }
 

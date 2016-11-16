@@ -17,7 +17,7 @@
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="pixels"></param>
-        //public delegate void glTexImage3DEXT(uint target, int level, uint internalformat, uint width,
+        //public delegate void glTexImage3D(uint target, int level, uint internalformat, uint width,
         //    uint height, uint depth, int border, uint format, uint type, IntPtr pixels);
         ///// <summary>
         /////
@@ -33,7 +33,7 @@
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="pixels"></param>
-        //public delegate void glTexSubImage3DEXT(uint target, int level, int xoffset, int yoffset, int zoffset,
+        //public delegate void glTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset,
         //    uint width, uint height, uint depth, uint format, uint type, IntPtr pixels);
 
         #endregion GL_EXT_texture3D

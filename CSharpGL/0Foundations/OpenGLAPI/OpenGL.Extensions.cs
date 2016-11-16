@@ -73,7 +73,7 @@ namespace CSharpGL
         ///// <param name="count"></param>
         ///// <param name="type"></param>
         ///// <param name="indices"></param>
-        //public delegate void glDrawRangeElementsEXT(uint mode, uint start, uint end, uint count, uint type, IntPtr indices);
+        //public delegate void glDrawRangeElements(uint mode, uint start, uint end, uint count, uint type, IntPtr indices);
 
         #endregion GL_EXT_draw_range_elements
 
@@ -216,7 +216,7 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="image"></param>
-        //public delegate void glConvolutionFilter1DEXT(uint target, uint internalformat, int width, uint format, uint type, IntPtr image);
+        //public delegate void glConvolutionFilter1D(uint target, uint internalformat, int width, uint format, uint type, IntPtr image);
         ///// <summary>
         /////
         ///// </summary>
@@ -227,35 +227,35 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="image"></param>
-        //public delegate void glConvolutionFilter2DEXT(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr image);
+        //public delegate void glConvolutionFilter2D(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr image);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glConvolutionParameterfEXT(uint target, uint pname, float parameters);
+        //public delegate void glConvolutionParameterf(uint target, uint pname, float parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glConvolutionParameterfvEXT(uint target, uint pname, float[] parameters);
+        //public delegate void glConvolutionParameterfv(uint target, uint pname, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameter"></param>
-        //public delegate void glConvolutionParameteriEXT(uint target, uint pname, int parameter);
+        //public delegate void glConvolutionParameteri(uint target, uint pname, int parameter);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glConvolutionParameterivEXT(uint target, uint pname, int[] parameters);
+        //public delegate void glConvolutionParameteriv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -264,7 +264,7 @@ namespace CSharpGL
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="width"></param>
-        //public delegate void glCopyConvolutionFilter1DEXT(uint target, uint internalformat, int x, int y, int width);
+        //public delegate void glCopyConvolutionFilter1D(uint target, uint internalformat, int x, int y, int width);
         ///// <summary>
         /////
         ///// </summary>
@@ -274,7 +274,7 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="width"></param>
         ///// <param name="height"></param>
-        //public delegate void glCopyConvolutionFilter2DEXT(uint target, uint internalformat, int x, int y, int width, int height);
+        //public delegate void glCopyConvolutionFilter2D(uint target, uint internalformat, int x, int y, int width, int height);
         ///// <summary>
         /////
         ///// </summary>
@@ -282,21 +282,21 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="image"></param>
-        //public delegate void glGetConvolutionFilterEXT(uint target, uint format, uint type, IntPtr image);
+        //public delegate void glGetConvolutionFilter(uint target, uint format, uint type, IntPtr image);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetConvolutionParameterfvEXT(uint target, uint pname, float[] parameters);
+        //public delegate void glGetConvolutionParameterfv(uint target, uint pname, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetConvolutionParameterivEXT(uint target, uint pname, int[] parameters);
+        //public delegate void glGetConvolutionParameteriv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -306,7 +306,7 @@ namespace CSharpGL
         ///// <param name="row"></param>
         ///// <param name="column"></param>
         ///// <param name="span"></param>
-        //public delegate void glGetSeparableFilterEXT(uint target, uint format, uint type, IntPtr row, IntPtr column, IntPtr span);
+        //public delegate void glGetSeparableFilter(uint target, uint format, uint type, IntPtr row, IntPtr column, IntPtr span);
         ///// <summary>
         /////
         ///// </summary>
@@ -318,7 +318,7 @@ namespace CSharpGL
         ///// <param name="type"></param>
         ///// <param name="row"></param>
         ///// <param name="column"></param>
-        //public delegate void glSeparableFilter2DEXT(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
+        //public delegate void glSeparableFilter2D(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
 
         ////  Constants
         ///// <summary>
@@ -464,21 +464,21 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="values"></param>
-        //public delegate void glGetHistogramEXT(uint target, bool reset, uint format, uint type, IntPtr values);
+        //public delegate void glGetHistogram(uint target, bool reset, uint format, uint type, IntPtr values);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetHistogramParameterfvEXT(uint target, uint pname, float[] parameters);
+        //public delegate void glGetHistogramParameterfv(uint target, uint pname, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetHistogramParameterivEXT(uint target, uint pname, int[] parameters);
+        //public delegate void glGetHistogramParameteriv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -487,21 +487,21 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="values"></param>
-        //public delegate void glGetMinmaxEXT(uint target, bool reset, uint format, uint type, IntPtr values);
+        //public delegate void glGetMinmax(uint target, bool reset, uint format, uint type, IntPtr values);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetMinmaxParameterfvEXT(uint target, uint pname, float[] parameters);
+        //public delegate void glGetMinmaxParameterfv(uint target, uint pname, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetMinmaxParameterivEXT(uint target, uint pname, int[] parameters);
+        //public delegate void glGetMinmaxParameteriv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -509,24 +509,24 @@ namespace CSharpGL
         ///// <param name="width"></param>
         ///// <param name="internalformat"></param>
         ///// <param name="sink"></param>
-        //public delegate void glHistogramEXT(uint target, int width, uint internalformat, bool sink);
+        //public delegate void glHistogram(uint target, int width, uint internalformat, bool sink);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="internalformat"></param>
         ///// <param name="sink"></param>
-        //public delegate void glMinmaxEXT(uint target, uint internalformat, bool sink);
+        //public delegate void glMinmax(uint target, uint internalformat, bool sink);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
-        //public delegate void glResetHistogramEXT(uint target);
+        //public delegate void glResetHistogram(uint target);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
-        //public delegate void glResetMinmaxEXT(uint target);
+        //public delegate void glResetMinmax(uint target);
 
         ////  Constants
         ///// <summary>
@@ -598,7 +598,7 @@ namespace CSharpGL
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
         ///// <param name="alpha"></param>
-        //public delegate void glBlendColorEXT(float red, float green, float blue, float alpha);
+        //public delegate void glBlendColor(float red, float green, float blue, float alpha);
 
         ////  Constants
         ///// <summary>
@@ -615,7 +615,7 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="mode"></param>
-        //public delegate void glBlendEquationEXT(uint mode);
+        //public delegate void glBlendEquation(uint mode);
 
         ////  Constants
         ///// <summary>
@@ -1456,29 +1456,29 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="coord"></param>
-        //public delegate void glFogCoordfEXT(float coord);
+        //public delegate void glFogCoordf(float coord);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="coord"></param>
-        //public delegate void glFogCoordfvEXT(float[] coord);
+        //public delegate void glFogCoordfv(float[] coord);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="coord"></param>
-        //public delegate void glFogCoorddEXT(double coord);
+        //public delegate void glFogCoordd(double coord);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="coord"></param>
-        //public delegate void glFogCoorddvEXT(double[] coord);
+        //public delegate void glFogCoorddv(double[] coord);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="type"></param>
         ///// <param name="stride"></param>
         ///// <param name="pointer"></param>
-        //public delegate void glFogCoordPointerEXT(uint type, int stride, IntPtr pointer);
+        //public delegate void glFogCoordPointer(uint type, int stride, IntPtr pointer);
 
         ////  Constants
         ///// <summary>
@@ -1526,7 +1526,7 @@ namespace CSharpGL
         ///// <param name="first"></param>
         ///// <param name="count"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glMultiDrawArraysEXT(uint mode, int[] first, int[] count, int primcount);
+        //public delegate void glMultiDrawArrays(uint mode, int[] first, int[] count, int primcount);
         ///// <summary>
         /////
         ///// </summary>
@@ -1535,7 +1535,7 @@ namespace CSharpGL
         ///// <param name="type"></param>
         ///// <param name="indices"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glMultiDrawElementsEXT(uint mode, int[] count, uint type, IntPtr indices, int primcount);
+        //public delegate void glMultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int primcount);
 
         //#endregion
 
@@ -1584,96 +1584,96 @@ namespace CSharpGL
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3bEXT(sbyte red, sbyte green, sbyte blue);
+        //public delegate void glSecondaryColor3b(sbyte red, sbyte green, sbyte blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3bvEXT(sbyte[] v);
+        //public delegate void glSecondaryColor3bv(sbyte[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3dEXT(double red, double green, double blue);
+        //public delegate void glSecondaryColor3d(double red, double green, double blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3dvEXT(double[] v);
+        //public delegate void glSecondaryColor3dv(double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3fEXT(float red, float green, float blue);
+        //public delegate void glSecondaryColor3f(float red, float green, float blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3fvEXT(float[] v);
+        //public delegate void glSecondaryColor3fv(float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3iEXT(int red, int green, int blue);
+        //public delegate void glSecondaryColor3i(int red, int green, int blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3ivEXT(int[] v);
+        //public delegate void glSecondaryColor3iv(int[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3sEXT(short red, short green, short blue);
+        //public delegate void glSecondaryColor3s(short red, short green, short blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3svEXT(short[] v);
+        //public delegate void glSecondaryColor3sv(short[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3ubEXT(byte red, byte green, byte blue);
+        //public delegate void glSecondaryColor3ub(byte red, byte green, byte blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3ubvEXT(byte[] v);
+        //public delegate void glSecondaryColor3ubv(byte[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3uiEXT(uint red, uint green, uint blue);
+        //public delegate void glSecondaryColor3ui(uint red, uint green, uint blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3uivEXT(uint[] v);
+        //public delegate void glSecondaryColor3uiv(uint[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="red"></param>
         ///// <param name="green"></param>
         ///// <param name="blue"></param>
-        //public delegate void glSecondaryColor3usEXT(ushort red, ushort green, ushort blue);
+        //public delegate void glSecondaryColor3us(ushort red, ushort green, ushort blue);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glSecondaryColor3usvEXT(ushort[] v);
+        //public delegate void glSecondaryColor3usv(ushort[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -1681,7 +1681,7 @@ namespace CSharpGL
         ///// <param name="type"></param>
         ///// <param name="stride"></param>
         ///// <param name="pointer"></param>
-        //public delegate void glSecondaryColorPointerEXT(int size, uint type, int stride, IntPtr pointer);
+        //public delegate void glSecondaryColorPointer(int size, uint type, int stride, IntPtr pointer);
 
         ////  Constants
         ///// <summary>
@@ -1725,7 +1725,7 @@ namespace CSharpGL
         ///// <param name="dfactorRGB"></param>
         ///// <param name="sfactorAlpha"></param>
         ///// <param name="dfactorAlpha"></param>
-        //public delegate void glBlendFuncSeparateEXT(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
+        //public delegate void glBlendFuncSeparate(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
 
         ////  Constants
 
@@ -3607,7 +3607,7 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="modeRGB"></param>
         ///// <param name="modeAlpha"></param>
-        //public delegate void glBlendEquationSeparateEXT(uint modeRGB, uint modeAlpha);
+        //public delegate void glBlendEquationSeparate(uint modeRGB, uint modeAlpha);
 
         ////  Constants
 
@@ -3620,7 +3620,7 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="face"></param>
-        //public delegate void glActiveStencilFaceEXT(uint face);
+        //public delegate void glActiveStencilFace(uint face);
 
         ////  Constants
         ///// <summary>
@@ -3710,7 +3710,7 @@ namespace CSharpGL
         ///// <param name="start"></param>
         ///// <param name="count"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glDrawArraysInstancedEXT(uint mode, int start, int count, int primcount);
+        //public delegate void glDrawArraysInstanced(uint mode, int start, int count, int primcount);
         ///// <summary>
         /////
         ///// </summary>
@@ -3719,7 +3719,7 @@ namespace CSharpGL
         ///// <param name="type"></param>
         ///// <param name="indices"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glDrawElementsInstancedEXT(uint mode, int count, uint type, IntPtr indices, int primcount);
+        //public delegate void glDrawElementsInstanced(uint mode, int count, uint type, IntPtr indices, int primcount);
 
         //#endregion
 
@@ -3782,11 +3782,11 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="primitiveMode"></param>
-        //public delegate void glBeginTransformFeedbackEXT(uint primitiveMode);
+        //public delegate void glBeginTransformFeedback(uint primitiveMode);
         ///// <summary>
         /////
         ///// </summary>
-        //public delegate void glEndTransformFeedbackEXT();
+        //public delegate void glEndTransformFeedback();
         ///// <summary>
         /////
         ///// </summary>
@@ -3795,7 +3795,7 @@ namespace CSharpGL
         ///// <param name="buffer"></param>
         ///// <param name="offset"></param>
         ///// <param name="size"></param>
-        //public delegate void glBindBufferRangeEXT(uint target, uint index, uint buffer, int offset, int size);
+        //public delegate void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
         ///// <summary>
         /////
         ///// </summary>
@@ -3803,14 +3803,14 @@ namespace CSharpGL
         ///// <param name="index"></param>
         ///// <param name="buffer"></param>
         ///// <param name="offset"></param>
-        //public delegate void glBindBufferOffsetEXT(uint target, uint index, uint buffer, int offset);
+        //public delegate void glBindBufferOffset(uint target, uint index, uint buffer, int offset);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="buffer"></param>
-        //public delegate void glBindBufferBaseEXT(uint target, uint index, uint buffer);
+        //public delegate void glBindBufferBase(uint target, uint index, uint buffer);
         ///// <summary>
         /////
         ///// </summary>
@@ -3818,7 +3818,7 @@ namespace CSharpGL
         ///// <param name="count"></param>
         ///// <param name="varyings"></param>
         ///// <param name="bufferMode"></param>
-        //public delegate void glTransformFeedbackVaryingsEXT(uint program, int count, string[] varyings, uint bufferMode);
+        //public delegate void glTransformFeedbackVaryings(uint program, int count, string[] varyings, uint bufferMode);
         ///// <summary>
         /////
         ///// </summary>
@@ -3829,7 +3829,7 @@ namespace CSharpGL
         ///// <param name="size"></param>
         ///// <param name="type"></param>
         ///// <param name="name"></param>
-        //public delegate void glGetTransformFeedbackVaryingEXT(uint program, uint index, int bufSize, int[] length, int[] size, uint[] type, string name);
+        //public delegate void glGetTransformFeedbackVarying(uint program, uint index, int bufSize, int[] length, int[] size, uint[] type, string name);
 
         ////  Constants
 
@@ -3971,7 +3971,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="data"></param>
-        public delegate void glClearNamedBufferDataEXT(uint buffer, uint internalformat, uint format, uint type, IntPtr data);
+        public delegate void glClearNamedBufferData(uint buffer, uint internalformat, uint format, uint type, IntPtr data);
         /// <summary>
         ///
         /// </summary>
@@ -3982,7 +3982,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="data"></param>
-        public delegate void glClearNamedBufferSubDataEXT(uint buffer, uint internalformat, IntPtr offset, uint size, uint format, uint type, IntPtr data);
+        public delegate void glClearNamedBufferSubData(uint buffer, uint internalformat, IntPtr offset, uint size, uint format, uint type, IntPtr data);
 
         #endregion
 
@@ -4883,7 +4883,7 @@ namespace CSharpGL
         ///// <param name="buffer">Specifies the name of the buffer object whose storage to attach to the active buffer texture.</param>
         ///// <param name="offset">Specifies the offset of the start of the range of the buffer's data store to attach.</param>
         ///// <param name="size">Specifies the size of the range of the buffer's data store to attach.</param>
-        //public delegate void glTextureBufferRangeEXT(uint texture, uint target, uint internalformat, uint buffer, IntPtr offset, IntPtr size);
+        //public delegate void glTextureBufferRange(uint texture, uint target, uint internalformat, uint buffer, IntPtr offset, IntPtr size);
 
         //#endregion
 
@@ -4921,7 +4921,7 @@ namespace CSharpGL
         ///// <param name="width">Specifies the width of the texture, in texels.</param>
         ///// <param name="height">Specifies the height of the texture, in texels.</param>
         ///// <param name="fixedsamplelocations">Specifies whether the image will use identical sample locations and the same number of samples for all texels in the image, and the sample locations will not depend on the internal format or size of the image.</param>
-        //public delegate void glTexStorage2DMultisampleEXT(uint texture, uint target, uint samples, uint internalformat, uint width, uint height, bool fixedsamplelocations);
+        //public delegate void glTexStorage2DMultisample(uint texture, uint target, uint samples, uint internalformat, uint width, uint height, bool fixedsamplelocations);
         ///// <summary>
         ///// Specify storage for a three-dimensional multisample array texture
         ///// </summary>
@@ -4933,7 +4933,7 @@ namespace CSharpGL
         ///// <param name="height">Specifies the height of the texture, in texels.</param>
         ///// <param name="depth">Specifies the depth of the texture, in layers.</param>
         ///// <param name="fixedsamplelocations">Specifies the depth of the texture, in layers.</param>
-        //public delegate void glTexStorage3DMultisampleEXT(uint texture, uint target, uint samples, uint internalformat, uint width, uint height, uint depth, bool fixedsamplelocations);
+        //public delegate void glTexStorage3DMultisample(uint texture, uint target, uint samples, uint internalformat, uint width, uint height, uint depth, bool fixedsamplelocations);
 
         //#endregion
 
@@ -5029,7 +5029,7 @@ namespace CSharpGL
         ///// <param name="buffer"></param>
         ///// <param name="offset"></param>
         ///// <param name="stride"></param>
-        //public delegate void glVertexArrayBindVertexBufferEXT(uint vaobj, uint bindingindex, uint buffer, IntPtr offset, uint stride);
+        //public delegate void glVertexArrayBindVertexBuffer(uint vaobj, uint bindingindex, uint buffer, IntPtr offset, uint stride);
         ///// <summary>
         /////
         ///// </summary>
@@ -5039,7 +5039,7 @@ namespace CSharpGL
         ///// <param name="type"></param>
         ///// <param name="normalized"></param>
         ///// <param name="relativeoffset"></param>
-        //public delegate void glVertexArrayVertexAttribFormatEXT(uint vaobj, uint attribindex, int size, uint type, bool normalized, uint relativeoffset);
+        //public delegate void glVertexArrayVertexAttribFormat(uint vaobj, uint attribindex, int size, uint type, bool normalized, uint relativeoffset);
         ///// <summary>
         /////
         ///// </summary>
@@ -5048,7 +5048,7 @@ namespace CSharpGL
         ///// <param name="size"></param>
         ///// <param name="type"></param>
         ///// <param name="relativeoffset"></param>
-        //public delegate void glVertexArrayVertexAttribIFormatEXT(uint vaobj, uint attribindex, int size, uint type, uint relativeoffset);
+        //public delegate void glVertexArrayVertexAttribIFormat(uint vaobj, uint attribindex, int size, uint type, uint relativeoffset);
         ///// <summary>
         /////
         ///// </summary>
@@ -5057,21 +5057,21 @@ namespace CSharpGL
         ///// <param name="size"></param>
         ///// <param name="type"></param>
         ///// <param name="relativeoffset"></param>
-        //public delegate void glVertexArrayVertexAttribLFormatEXT(uint vaobj, uint attribindex, int size, uint type, uint relativeoffset);
+        //public delegate void glVertexArrayVertexAttribLFormat(uint vaobj, uint attribindex, int size, uint type, uint relativeoffset);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="vaobj"></param>
         ///// <param name="attribindex"></param>
         ///// <param name="bindingindex"></param>
-        //public delegate void glVertexArrayVertexAttribBindingEXT(uint vaobj, uint attribindex, uint bindingindex);
+        //public delegate void glVertexArrayVertexAttribBinding(uint vaobj, uint attribindex, uint bindingindex);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="vaobj"></param>
         ///// <param name="bindingindex"></param>
         ///// <param name="divisor"></param>
-        //public delegate void glVertexArrayVertexBindingDivisorEXT(uint vaobj, uint bindingindex, uint divisor);
+        //public delegate void glVertexArrayVertexBindingDivisor(uint vaobj, uint bindingindex, uint divisor);
 
         ////  Constants
         ///// <summary>

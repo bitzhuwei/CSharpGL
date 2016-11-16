@@ -206,10 +206,10 @@ namespace CSharpGL
         ///// <param name="height"></param>
         //public void Resize(int width, int height)
         //{
-        //    //glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-        //    //glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
-        //    //glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
-        //    //glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, width, height);
+        //    //glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
+        //    //glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
+        //    //glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
+        //    //glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, width, height);
         //    //var complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER);
         //    this.depthBuffer.Resize(OpenGL.GL_DEPTH_ATTACHMENT, width, height);
         //    foreach (var item in this.colorBufferList)

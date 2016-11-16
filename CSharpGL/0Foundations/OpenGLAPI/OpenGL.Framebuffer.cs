@@ -27,7 +27,7 @@
         /// <param name="framebuffer"></param>
         /// <param name="pname"></param>
         /// <param name="param"></param>
-        public delegate void glNamedFramebufferParameteriEXT(uint framebuffer, uint pname, int param);
+        public delegate void glNamedFramebufferParameteri(uint framebuffer, uint pname, int param);
 
         /// <summary>
         ///
@@ -35,7 +35,7 @@
         /// <param name="framebuffer"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetNamedFramebufferParameterivEXT(uint framebuffer, uint pname, int[] parameters);
+        public delegate void glGetNamedFramebufferParameteriv(uint framebuffer, uint pname, int[] parameters);
 
         #endregion GL_ARB_framebuffer_no_attachments
 
@@ -47,28 +47,28 @@
         /// </summary>
         /// <param name="renderbuffer"></param>
         /// <returns></returns>
-        public delegate bool glIsRenderbufferEXT(uint renderbuffer);
+        public delegate bool glIsRenderbuffer(uint renderbuffer);
 
         /// <summary>
         /// bind a named renderbuffer object.
         /// </summary>
         /// <param name="target">Specifies the target to which the renderbuffer object is bound. The symbolic constant must be GL_RENDERBUFFER.</param>
         /// <param name="renderbuffer">Specifies the name of a renderbuffer object.</param>
-        internal delegate void glBindRenderbufferEXT(uint target, uint renderbuffer);
+        internal delegate void glBindRenderbuffer(uint target, uint renderbuffer);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="renderbuffers"></param>
-        private delegate void glDeleteRenderbuffersEXT(uint n, uint[] renderbuffers);
+        private delegate void glDeleteRenderbuffers(uint n, uint[] renderbuffers);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="renderbuffers"></param>
-        internal delegate void glGenRenderbuffersEXT(uint n, uint[] renderbuffers);
+        internal delegate void glGenRenderbuffers(uint n, uint[] renderbuffers);
 
         /// <summary>
         ///
@@ -77,7 +77,7 @@
         /// <param name="internalformat"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        internal delegate void glRenderbufferStorageEXT(uint target, uint internalformat, int width, int height);
+        internal delegate void glRenderbufferStorage(uint target, uint internalformat, int width, int height);
 
         /// <summary>
         ///
@@ -85,42 +85,42 @@
         /// <param name="target"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetRenderbufferParameterivEXT(uint target, uint pname, int[] parameters);
+        public delegate void glGetRenderbufferParameteriv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="framebuffer"></param>
         /// <returns></returns>
-        public delegate bool glIsFramebufferEXT(uint framebuffer);
+        public delegate bool glIsFramebuffer(uint framebuffer);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="framebuffer"></param>
-        internal delegate void glBindFramebufferEXT(uint target, uint framebuffer);
+        internal delegate void glBindFramebuffer(uint target, uint framebuffer);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="framebuffers"></param>
-        private delegate void glDeleteFramebuffersEXT(uint n, uint[] framebuffers);
+        private delegate void glDeleteFramebuffers(uint n, uint[] framebuffers);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="n"></param>
         /// <param name="framebuffers"></param>
-        internal delegate void glGenFramebuffersEXT(uint n, uint[] framebuffers);
+        internal delegate void glGenFramebuffers(uint n, uint[] framebuffers);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        internal delegate uint glCheckFramebufferStatusEXT(uint target);
+        internal delegate uint glCheckFramebufferStatus(uint target);
 
         /// <summary>
         ///
@@ -130,7 +130,7 @@
         /// <param name="textarget"></param>
         /// <param name="texture"></param>
         /// <param name="level"></param>
-        public delegate void glFramebufferTexture1DEXT(uint target, uint attachment, uint textarget, uint texture, int level);
+        public delegate void glFramebufferTexture1D(uint target, uint attachment, uint textarget, uint texture, int level);
 
         /// <summary>
         ///
@@ -140,7 +140,7 @@
         /// <param name="textarget"></param>
         /// <param name="texture"></param>
         /// <param name="level"></param>
-        internal delegate void glFramebufferTexture2DEXT(uint target, uint attachment, uint textarget, uint texture, int level);
+        internal delegate void glFramebufferTexture2D(uint target, uint attachment, uint textarget, uint texture, int level);
 
         /// <summary>
         ///
@@ -151,7 +151,7 @@
         /// <param name="texture"></param>
         /// <param name="level"></param>
         /// <param name="zoffset"></param>
-        public delegate void glFramebufferTexture3DEXT(uint target, uint attachment, uint textarget, uint texture, int level, int zoffset);
+        public delegate void glFramebufferTexture3D(uint target, uint attachment, uint textarget, uint texture, int level, int zoffset);
 
         /// <summary>
         ///
@@ -160,7 +160,7 @@
         /// <param name="attachment"></param>
         /// <param name="renderbuffertarget"></param>
         /// <param name="renderbuffer"></param>
-        internal delegate void glFramebufferRenderbufferEXT(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
+        internal delegate void glFramebufferRenderbuffer(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
 
         /// <summary>
         ///
@@ -169,15 +169,15 @@
         /// <param name="attachment"></param>
         /// <param name="pname"></param>
         /// <param name="parameters"></param>
-        public delegate void glGetFramebufferAttachmentParameterivEXT(uint target, uint attachment, uint pname, int[] parameters);
+        public delegate void glGetFramebufferAttachmentParameteriv(uint target, uint attachment, uint pname, int[] parameters);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="target"></param>
-        private delegate void glGenerateMipmapEXT(uint target);
+        private delegate void glGenerateMipmap(uint target);
 
-        private static glGenerateMipmapEXT glGenerateMipmapFunc;
+        private static OpenGL.glGenerateMipmap _glGenerateMipmap;
 
         /// <summary>
         ///
@@ -185,9 +185,9 @@
         /// <param name="target"></param>
         public static void GenerateMipmap(MipmapTarget target)
         {
-            if (glGenerateMipmapFunc == null)
-            { glGenerateMipmapFunc = OpenGL.GetDelegateFor<OpenGL.glGenerateMipmapEXT>(); }
-            glGenerateMipmapFunc((uint)target);
+            if (_glGenerateMipmap == null)
+            { _glGenerateMipmap = OpenGL.GetDelegateFor<OpenGL.glGenerateMipmap>(); }
+            _glGenerateMipmap((uint)target);
         }
 
         //  Constants
@@ -529,7 +529,7 @@
         ///// <param name="internalformat"></param>
         ///// <param name="width"></param>
         ///// <param name="height"></param>
-        //public delegate void glRenderbufferStorageMultisampleEXT(uint target, int samples, uint internalformat, int width, int height);
+        //public delegate void glRenderbufferStorageMultisample(uint target, int samples, uint internalformat, int width, int height);
 
         ////  Constants
         ///// <summary>
