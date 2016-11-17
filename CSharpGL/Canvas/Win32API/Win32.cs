@@ -20,45 +20,6 @@ namespace CSharpGL
         /// </summary>
         internal readonly IntPtr opengl32Library;
 
-        #region IDisposable
-
-        /// <summary>
-        ///
-        /// </summary>
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        ~Win32()
-        {
-            this.Dispose(false);
-        }
-
-        private bool disposedValue;
-
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
-                    // Dispose managed resources.
-                }
-
-                // Dispose unmanaged resources.
-                FreeLibrary(opengl32Library);
-            }
-
-            this.disposedValue = true;
-        }
-
-        #endregion IDisposable
-
         #region Kernel32 Functions
 
         [DllImport(kernel32, SetLastError = true)]

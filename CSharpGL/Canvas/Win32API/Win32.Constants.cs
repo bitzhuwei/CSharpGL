@@ -3,9 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// Useful functions imported from the Win32 SDK.
-    /// </summary>
     internal sealed partial class Win32
     {
         //  The names of the libraries we're importing.
