@@ -23,13 +23,13 @@ namespace CSharpGL
         #region Kernel32 Functions
 
         [DllImport(kernel32, SetLastError = true)]
-        private static extern IntPtr LoadLibrary(string lpFileName);
+        internal static extern IntPtr LoadLibrary(string lpFileName);
 
         [DllImport(kernel32, SetLastError = true)]
         internal extern static IntPtr GetProcAddress(IntPtr lib, String funcName);
 
         [DllImport(kernel32, SetLastError = true)]
-        private extern static bool FreeLibrary(IntPtr lib);
+        internal extern static bool FreeLibrary(IntPtr lib);
 
         #endregion Kernel32 Functions
 

@@ -2,60 +2,62 @@
 
 namespace CSharpGL
 {
-    internal static partial class Win32
+    internal class OpenGL32Library : IDisposable
     {
-        private class OpenGL32Library : IDisposable
+        public static readonly OpenGL32Library Instance = new OpenGL32Library();
+
+        private OpenGL32Library()
         {
-            public static readonly OpenGL32Library Instance = new OpenGL32Library();
+            libPtr = Win32.LoadLibrary(Win32.opengl32);
+        }
 
-            private OpenGL32Library()
+        /// <summary>
+        /// glLibrary = Win32.LoadLibrary(OpenGL32);
+        /// </summary>
+        internal readonly IntPtr libPtr;
+
+        public override string ToString()
+        {
+            return string.Format("OpenGL32 Library Address: {0}", libPtr);
+        }
+
+        #region IDisposable
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        ~OpenGL32Library()
+        {
+            this.Dispose(false);
+        }
+
+        private bool disposedValue;
+
+        private void Dispose(bool disposing)
+        {
+            if (this.disposedValue == false)
             {
-                libPtr = Win32.LoadLibrary(opengl32);
-            }
-
-            /// <summary>
-            /// glLibrary = Win32.LoadLibrary(OpenGL32);
-            /// </summary>
-            internal readonly IntPtr libPtr;
-
-            #region IDisposable
-
-            /// <summary>
-            ///
-            /// </summary>
-            public void Dispose()
-            {
-                this.Dispose(true);
-                GC.SuppressFinalize(this);
-            }
-
-            /// <summary>
-            ///
-            /// </summary>
-            ~OpenGL32Library()
-            {
-                this.Dispose(false);
-            }
-
-            private bool disposedValue;
-
-            private void Dispose(bool disposing)
-            {
-                if (this.disposedValue == false)
+                if (disposing)
                 {
-                    if (disposing)
-                    {
-                        // Dispose managed resources.
-                    }
-
-                    // Dispose unmanaged resources.
-                    FreeLibrary(libPtr);
+                    // Dispose managed resources.
                 }
 
-                this.disposedValue = true;
+                // Dispose unmanaged resources.
+                Win32.FreeLibrary(libPtr);
             }
 
-            #endregion IDisposable
+            this.disposedValue = true;
         }
+
+        #endregion IDisposable
     }
 }
