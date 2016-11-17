@@ -3,6 +3,12 @@ CSharpGL wraps OpenGL features(VBO, shader, scene, picking, UI, text etc) and of
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.7.4:
+1. fix: static `Win32` initialization.
+2. fix: IndependentBufferTarget : uint
+3. `Buffer` allows for shadow copy.
+4. Any struct\managed array\unmanaged array can be uploaded to server side directly.
+
 ## v1.0.7.3:
 1. redefine `Buffer`: Buffer is buffer, there is no buffer pointer.
 2. `BitmapFilter` supports multiple levels.
