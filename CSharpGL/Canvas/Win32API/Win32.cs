@@ -6,19 +6,19 @@ namespace CSharpGL
     /// <summary>
     /// Useful functions imported from the Win32 SDK.
     /// </summary>
-    internal sealed partial class Win32 : IDisposable
+    internal static partial class Win32
     {
-        internal static readonly Win32 Instance = new Win32();
+        private static OpenGL32Library lib;
 
-        private Win32()
+        static Win32()
         {
-            opengl32Library = Win32.LoadLibrary(opengl32);
+            lib = OpenGL32Library.Instance;
         }
 
-        /// <summary>
-        /// glLibrary = Win32.LoadLibrary(OpenGL32);
-        /// </summary>
-        internal readonly IntPtr opengl32Library;
+        internal static IntPtr GetProcAddress(string name)
+        {
+            return Win32.GetProcAddress(OpenGL32Library.Instance.libPtr, name);
+        }
 
         #region Kernel32 Functions
 

@@ -145,7 +145,7 @@
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Order`1.CSharpCodeProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Canvas\Win32API\Win32.IDisposable.cs" />
+    <Compile Include="Canvas\Win32API\Win32.OpenGL32Library.cs" />
     <Compile Include="Canvas\Win32API\Win32.Constants.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierType.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.MovePosition.cs" />

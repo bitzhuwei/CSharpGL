@@ -1,9 +1,6 @@
-using System;
-using System.Runtime.InteropServices;
-
 namespace CSharpGL
 {
-    internal sealed partial class Win32
+    internal static partial class Win32
     {
         //  The names of the libraries we're importing.
         /// <summary>

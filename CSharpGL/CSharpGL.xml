@@ -13249,6 +13249,104 @@
             <param name="length">length of <paramref name="array"/> to bo sorted.</param>
             <param name="descending">true for descending sort; otherwise false.</param>
         </member>
+        <member name="T:CSharpGL.Win32">
+            <summary>
+            Useful functions imported from the Win32 SDK.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Win32.kernel32">
+            <summary>
+            private const string kernel32 = "kernel32.dll";
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Win32.gdi32">
+            <summary>
+            private const string gdi32 = "gdi32.dll"
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Win32.user32">
+            <summary>
+            private const string user32 = "user32.dll"
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Win32.opengl32">
+            <summary>
+            internal const string OpenGL32 = "opengl32.dll"
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Win32.wglGetCurrentContext">
+            <summary>
+            Gets the current render context.
+            </summary>
+            <returns>The current render context.</returns>
+        </member>
+        <member name="M:CSharpGL.Win32.wglGetCurrentDC">
+            <summary>
+            The wglGetCurrentDC function obtains a handle to the device context that is associated with the current OpenGL rendering context of the calling thread.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Win32.wglMakeCurrent(System.IntPtr,System.IntPtr)">
+            <summary>
+            Make the specified render context current.
+            </summary>
+            <param name="hdc">The handle to the device context.</param>
+            <param name="hrc">The handle to the render context.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Win32.wglCreateContext(System.IntPtr)">
+            <summary>
+            Creates a render context from the device context.
+            </summary>
+            <param name="hdc">The handle to the device context.</param>
+            <returns>The handle to the render context.</returns>
+        </member>
+        <member name="M:CSharpGL.Win32.wglDeleteContext(System.IntPtr)">
+            <summary>
+            Deletes the render context.
+            </summary>
+            <param name="hrc">The handle to the render context.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Win32.wglGetProcAddress(System.String)">
+            <summary>
+            Gets a proc address.
+            </summary>
+            <param name="name">The name of the function.</param>
+            <returns>The address of the function.</returns>
+        </member>
+        <member name="M:CSharpGL.Win32.wglUseFontBitmaps(System.IntPtr,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            The wglUseFontBitmaps function creates a set of bitmap display lists for use in the current OpenGL rendering context. The set of bitmap display lists is based on the glyphs in the currently selected font in the device context. You can then use bitmaps to draw characters in an OpenGL image.
+            </summary>
+            <param name="hDC">Specifies the device context whose currently selected font will be used to form the glyph bitmap display lists in the current OpenGL rendering context..</param>
+            <param name="first">Specifies the first glyph in the run of glyphs that will be used to form glyph bitmap display lists.</param>
+            <param name="count">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates count display lists, one for each glyph in the run.</param>
+            <param name="listBase">Specifies a starting display list.</param>
+            <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. To get extended error information, call GetLastError.</returns>
+        </member>
+        <member name="M:CSharpGL.Win32.CreateCompatibleDC(System.IntPtr)">
+            <summary>
+            This function creates a memory device context (DC) compatible with the specified device.
+            </summary>
+            <param name="hDC">Handle to an existing device context.If this handle is NULL, the function creates a memory device context compatible with the application's current screen.</param>
+            <returns>The handle to a memory device context indicates success. NULL indicates failure.</returns>
+        </member>
+        <member name="F:CSharpGL.Win32.OpenGL32Library.libPtr">
+            <summary>
+            glLibrary = Win32.LoadLibrary(OpenGL32);
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Win32.OpenGL32Library.Dispose">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.Win32.OpenGL32Library.Finalize">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="T:CSharpGL.BezierType">
             <summary>
             Type of bezier graph.
@@ -27936,104 +28034,6 @@
             <param name="wParam"></param>
             <param name="lParam"></param>
             <returns></returns>
-        </member>
-        <member name="T:CSharpGL.Win32">
-            <summary>
-            Useful functions imported from the Win32 SDK.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Win32.kernel32">
-            <summary>
-            private const string kernel32 = "kernel32.dll";
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Win32.gdi32">
-            <summary>
-            private const string gdi32 = "gdi32.dll"
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Win32.user32">
-            <summary>
-            private const string user32 = "user32.dll"
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Win32.opengl32">
-            <summary>
-            internal const string OpenGL32 = "opengl32.dll"
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Win32.opengl32Library">
-            <summary>
-            glLibrary = Win32.LoadLibrary(OpenGL32);
-            </summary>
-        </member>
-        <member name="M:CSharpGL.Win32.Dispose">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Win32.Finalize">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Win32.wglGetCurrentContext">
-            <summary>
-            Gets the current render context.
-            </summary>
-            <returns>The current render context.</returns>
-        </member>
-        <member name="M:CSharpGL.Win32.wglGetCurrentDC">
-            <summary>
-            The wglGetCurrentDC function obtains a handle to the device context that is associated with the current OpenGL rendering context of the calling thread.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Win32.wglMakeCurrent(System.IntPtr,System.IntPtr)">
-            <summary>
-            Make the specified render context current.
-            </summary>
-            <param name="hdc">The handle to the device context.</param>
-            <param name="hrc">The handle to the render context.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Win32.wglCreateContext(System.IntPtr)">
-            <summary>
-            Creates a render context from the device context.
-            </summary>
-            <param name="hdc">The handle to the device context.</param>
-            <returns>The handle to the render context.</returns>
-        </member>
-        <member name="M:CSharpGL.Win32.wglDeleteContext(System.IntPtr)">
-            <summary>
-            Deletes the render context.
-            </summary>
-            <param name="hrc">The handle to the render context.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Win32.wglGetProcAddress(System.String)">
-            <summary>
-            Gets a proc address.
-            </summary>
-            <param name="name">The name of the function.</param>
-            <returns>The address of the function.</returns>
-        </member>
-        <member name="M:CSharpGL.Win32.wglUseFontBitmaps(System.IntPtr,System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            The wglUseFontBitmaps function creates a set of bitmap display lists for use in the current OpenGL rendering context. The set of bitmap display lists is based on the glyphs in the currently selected font in the device context. You can then use bitmaps to draw characters in an OpenGL image.
-            </summary>
-            <param name="hDC">Specifies the device context whose currently selected font will be used to form the glyph bitmap display lists in the current OpenGL rendering context..</param>
-            <param name="first">Specifies the first glyph in the run of glyphs that will be used to form glyph bitmap display lists.</param>
-            <param name="count">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates count display lists, one for each glyph in the run.</param>
-            <param name="listBase">Specifies a starting display list.</param>
-            <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. To get extended error information, call GetLastError.</returns>
-        </member>
-        <member name="M:CSharpGL.Win32.CreateCompatibleDC(System.IntPtr)">
-            <summary>
-            This function creates a memory device context (DC) compatible with the specified device.
-            </summary>
-            <param name="hDC">Handle to an existing device context.If this handle is NULL, the function creates a memory device context compatible with the application's current screen.</param>
-            <returns>The handle to a memory device context indicates success. NULL indicates failure.</returns>
         </member>
         <member name="T:CSharpGL.WindowStyles">
              <summary>
