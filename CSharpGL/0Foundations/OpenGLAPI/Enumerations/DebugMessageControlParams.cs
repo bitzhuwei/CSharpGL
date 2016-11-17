@@ -13,32 +13,32 @@
         /// <summary>
         ///
         /// </summary>
-        API_ARB = OpenGL.GL_DEBUG_SOURCE_API_ARB,
+        API = OpenGL.GL_DEBUG_SOURCE_API,
 
         /// <summary>
         ///
         /// </summary>
-        WINDOW_SYSTEM_ARB = OpenGL.GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB,
+        WINDOW_SYSTEM = OpenGL.GL_DEBUG_SOURCE_WINDOW_SYSTEM,
 
         /// <summary>
         ///
         /// </summary>
-        SHADER_COMPILER_ARB = OpenGL.GL_DEBUG_SOURCE_SHADER_COMPILER_ARB,
+        SHADER_COMPILER = OpenGL.GL_DEBUG_SOURCE_SHADER_COMPILER,
 
         /// <summary>
         ///
         /// </summary>
-        THIRD_PARTY_ARB = OpenGL.GL_DEBUG_SOURCE_THIRD_PARTY_ARB,
+        THIRD_PARTY = OpenGL.GL_DEBUG_SOURCE_THIRD_PARTY,
 
         /// <summary>
         ///
         /// </summary>
-        APPLICATION_ARB = OpenGL.GL_DEBUG_SOURCE_APPLICATION_ARB,
+        APPLICATION = OpenGL.GL_DEBUG_SOURCE_APPLICATION,
 
         /// <summary>
         ///
         /// </summary>
-        OTHER_ARB = OpenGL.GL_DEBUG_SOURCE_OTHER_ARB,
+        OTHER = OpenGL.GL_DEBUG_SOURCE_OTHER,
     }
 
     /// <summary>
@@ -54,32 +54,32 @@
         /// <summary>
         ///
         /// </summary>
-        DEBUG_TYPE_ERROR_ARB = OpenGL.GL_DEBUG_TYPE_ERROR_ARB,
+        DEBUG_TYPE_ERROR = OpenGL.GL_DEBUG_TYPE_ERROR,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB = OpenGL.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB,
+        DEBUG_TYPE_DEPRECATED_BEHAVIOR = OpenGL.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB = OpenGL.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB,
+        DEBUG_TYPE_UNDEFINED_BEHAVIOR = OpenGL.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_TYPE_PORTABILITY_ARB = OpenGL.GL_DEBUG_TYPE_PORTABILITY_ARB,
+        DEBUG_TYPE_PORTABILITY = OpenGL.GL_DEBUG_TYPE_PORTABILITY,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_TYPE_PERFORMANCE_ARB = OpenGL.GL_DEBUG_TYPE_PERFORMANCE_ARB,
+        DEBUG_TYPE_PERFORMANCE = OpenGL.GL_DEBUG_TYPE_PERFORMANCE,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_TYPE_OTHER_ARB = OpenGL.GL_DEBUG_TYPE_OTHER_ARB,
+        DEBUG_TYPE_OTHER = OpenGL.GL_DEBUG_TYPE_OTHER,
     }
 
     /// <summary>
@@ -95,18 +95,18 @@
         /// <summary>
         ///
         /// </summary>
-        DEBUG_SEVERITY_HIGH_ARB = OpenGL.GL_DEBUG_SEVERITY_HIGH_ARB,
+        DEBUG_SEVERITY_HIGH = OpenGL.GL_DEBUG_SEVERITY_HIGH,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_SEVERITY_MEDIUM_ARB = OpenGL.GL_DEBUG_SEVERITY_MEDIUM_ARB,
+        DEBUG_SEVERITY_MEDIUM = OpenGL.GL_DEBUG_SEVERITY_MEDIUM,
 
         /// <summary>
         ///
         /// </summary>
-        DEBUG_SEVERITY_LOW_ARB = OpenGL.GL_DEBUG_SEVERITY_LOW_ARB,
+        DEBUG_SEVERITY_LOW = OpenGL.GL_DEBUG_SEVERITY_LOW,
 
-        //DEBUG_SEVERITY_NOTIFICATION_ARB = GL.GL_DEBUG_SEVERITY_NOTIFICATION_ARB,
+        //DEBUG_SEVERITY_NOTIFICATION = GL.GL_DEBUG_SEVERITY_NOTIFICATION,
     }
 }

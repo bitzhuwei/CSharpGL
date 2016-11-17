@@ -28,18 +28,18 @@
             for (int i = 0; i < count; i++) { this.SwitchList[i].On(); }
 
             OpenGL.Enable(OpenGL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            OpenGL.Enable(OpenGL.GL_POINT_SPRITE_ARB);
-            OpenGL.TexEnv(OpenGL.GL_POINT_SPRITE_ARB, OpenGL.GL_COORD_REPLACE_ARB, OpenGL.GL_TRUE);
+            OpenGL.Enable(OpenGL.GL_POINT_SPRITE);
+            OpenGL.TexEnv(OpenGL.GL_POINT_SPRITE, OpenGL.GL_COORD_REPLACE, OpenGL.GL_TRUE);
             OpenGL.Hint(OpenGL.GL_POINT_SMOOTH_HINT, OpenGL.GL_NICEST);
             //GL.GetDelegateFor<GL.glBlendEquation>()(GL.GL_FUNC_ADD_EXT);
             //GL.GetDelegateFor<GL.glBlendFuncSeparate>()(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
 
             //float[] quadratic = { 1.0f, 0, 0, 1.0f };
-            //GL.PointParameter(GL.GL_POINT_DISTANCE_ATTENUATION_ARB, quadratic);
-            //GL.PointParameter(GL.GL_POINT_FADE_THRESHOLD_SIZE_ARB, 10.0f);
-            //GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
+            //GL.PointParameter(GL.GL_POINT_DISTANCE_ATTENUATION, quadratic);
+            //GL.PointParameter(GL.GL_POINT_FADE_THRESHOLD_SIZE, 10.0f);
+            //GL.TexEnvf(GL.GL_POINT_SPRITE, GL.GL_COORD_REPLACE, GL.GL_TRUE);
 
-            //GL.PointParameter(GL.GL_POINT_SIZE_MIN_ARB, m_ParticleSize);
+            //GL.PointParameter(GL.GL_POINT_SIZE_MIN, m_ParticleSize);
             ////GL.TexEnvi(GL.GL_POINT_SPRITE, GL.GL_COORD_REPLACE, GL.GL_TRUE);
             //GL.PointParameter(GL.GL_POINT_SPRITE_COORD_ORIGIN, GL.GL_LOWER_LEFT);
         }
@@ -49,7 +49,7 @@
         /// </summary>
         protected override void SwitchOff()
         {
-            OpenGL.Disable(OpenGL.GL_POINT_SPRITE_ARB);
+            OpenGL.Disable(OpenGL.GL_POINT_SPRITE);
             OpenGL.Disable(OpenGL.GL_VERTEX_PROGRAM_POINT_SIZE);
 
             int count = this.SwitchList.Count;

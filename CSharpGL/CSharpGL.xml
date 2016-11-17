@@ -5728,67 +5728,67 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_POINT_SPRITE_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_POINT_SPRITE">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_COORD_REPLACE_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_COORD_REPLACE">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_MAJOR_VERSION">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_MINOR_VERSION">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_LAYER_PLANE_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_LAYER_PLANE">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_FLAGS_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_FLAGS">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_PROFILE_MASK_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_PROFILE_MASK">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_DEBUG_BIT">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_CORE_PROFILE_BIT_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_CORE_PROFILE_BIT">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB">
+        <member name="F:CSharpGL.OpenGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.ERROR_INVALID_VERSION_ARB">
+        <member name="F:CSharpGL.OpenGL.ERROR_INVALID_VERSION">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.ERROR_INVALID_PROFILE_ARB">
+        <member name="F:CSharpGL.OpenGL.ERROR_INVALID_PROFILE">
              <summary>
             
              </summary>
@@ -5893,82 +5893,82 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_OUTPUT_SYNCHRONOUS">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_API_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_API">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_WINDOW_SYSTEM">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_SHADER_COMPILER_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_SHADER_COMPILER">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_THIRD_PARTY_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_THIRD_PARTY">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_APPLICATION_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_APPLICATION">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_OTHER_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SOURCE_OTHER">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_ERROR_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_ERROR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_PORTABILITY_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_PORTABILITY">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_PERFORMANCE_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_PERFORMANCE">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_OTHER_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_TYPE_OTHER">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SEVERITY_HIGH_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SEVERITY_HIGH">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SEVERITY_MEDIUM_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SEVERITY_MEDIUM">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SEVERITY_LOW_ARB">
+        <member name="F:CSharpGL.OpenGL.GL_DEBUG_SEVERITY_LOW">
              <summary>
             
              </summary>
@@ -25915,32 +25915,32 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSource.API_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSource.API">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSource.WINDOW_SYSTEM_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSource.WINDOW_SYSTEM">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSource.SHADER_COMPILER_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSource.SHADER_COMPILER">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSource.THIRD_PARTY_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSource.THIRD_PARTY">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSource.APPLICATION_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSource.APPLICATION">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSource.OTHER_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSource.OTHER">
              <summary>
             
              </summary>
@@ -25955,32 +25955,32 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_ERROR_ARB">
+        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_ERROR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB">
+        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_DEPRECATED_BEHAVIOR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB">
+        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_UNDEFINED_BEHAVIOR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_PORTABILITY_ARB">
+        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_PORTABILITY">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_PERFORMANCE_ARB">
+        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_PERFORMANCE">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_OTHER_ARB">
+        <member name="F:CSharpGL.DebugMessageControlType.DEBUG_TYPE_OTHER">
              <summary>
             
              </summary>
@@ -25995,17 +25995,17 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSeverity.DEBUG_SEVERITY_HIGH_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSeverity.DEBUG_SEVERITY_HIGH">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSeverity.DEBUG_SEVERITY_MEDIUM_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSeverity.DEBUG_SEVERITY_MEDIUM">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugMessageControlSeverity.DEBUG_SEVERITY_LOW_ARB">
+        <member name="F:CSharpGL.DebugMessageControlSeverity.DEBUG_SEVERITY_LOW">
              <summary>
             
              </summary>
@@ -26015,32 +26015,32 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_API_ARB">
+        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_API">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_WINDOW_SYSTEM_ARB">
+        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_WINDOW_SYSTEM">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_SHADER_COMPILER_ARB">
+        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_SHADER_COMPILER">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_THIRD_PARTY_ARB">
+        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_THIRD_PARTY">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_APPLICATION_ARB">
+        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_APPLICATION">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_OTHER_ARB">
+        <member name="F:CSharpGL.DebugSource.DEBUG_SOURCE_OTHER">
              <summary>
             
              </summary>
@@ -26050,32 +26050,32 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_ERROR_ARB">
+        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_ERROR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB">
+        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_DEPRECATED_BEHAVIOR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB">
+        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_UNDEFINED_BEHAVIOR">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_PORTABILITY_ARB">
+        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_PORTABILITY">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_PERFORMANCE_ARB">
+        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_PERFORMANCE">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_OTHER_ARB">
+        <member name="F:CSharpGL.DebugType.DEBUG_TYPE_OTHER">
              <summary>
             
              </summary>
@@ -26085,17 +26085,17 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSeverity.DEBUG_SEVERITY_HIGH_ARB">
+        <member name="F:CSharpGL.DebugSeverity.DEBUG_SEVERITY_HIGH">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSeverity.DEBUG_SEVERITY_MEDIUM_ARB">
+        <member name="F:CSharpGL.DebugSeverity.DEBUG_SEVERITY_MEDIUM">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.DebugSeverity.DEBUG_SEVERITY_LOW_ARB">
+        <member name="F:CSharpGL.DebugSeverity.DEBUG_SEVERITY_LOW">
              <summary>
             
              </summary>

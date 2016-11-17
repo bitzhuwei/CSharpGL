@@ -109,17 +109,17 @@ namespace CSharpGL
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
 
-            //  Now the none-trivial case. We must use the WGL_ARB_create_context extension to
+            //  Now the none-trivial case. We must use the WGL_create_context extension to
             //  attempt to create a 3.0+ context.
             try
             {
                 int[] attributes =
                 {
-                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
-                    OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
+                    OpenGL.WGL_CONTEXT_MAJOR_VERSION, 2,
+                    OpenGL.WGL_CONTEXT_MINOR_VERSION, 1,
+                    OpenGL.WGL_CONTEXT_FLAGS, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT,// compatible profile
 #if DEBUG
-                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
+                    OpenGL.WGL_CONTEXT_FLAGS, OpenGL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
 #endif
                     0
                 };

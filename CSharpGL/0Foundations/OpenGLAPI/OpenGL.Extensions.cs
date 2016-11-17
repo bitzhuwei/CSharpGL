@@ -645,7 +645,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_multitexture
+        //#region GL_multitexture
 
         ////  Delegates
         ///// <summary>
@@ -879,147 +879,147 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE0_ARB = 0x84C0;
+        //public const uint GL_TEXTURE0 = 0x84C0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE1_ARB = 0x84C1;
+        //public const uint GL_TEXTURE1 = 0x84C1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE2_ARB = 0x84C2;
+        //public const uint GL_TEXTURE2 = 0x84C2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE3_ARB = 0x84C3;
+        //public const uint GL_TEXTURE3 = 0x84C3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE4_ARB = 0x84C4;
+        //public const uint GL_TEXTURE4 = 0x84C4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE5_ARB = 0x84C5;
+        //public const uint GL_TEXTURE5 = 0x84C5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE6_ARB = 0x84C6;
+        //public const uint GL_TEXTURE6 = 0x84C6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE7_ARB = 0x84C7;
+        //public const uint GL_TEXTURE7 = 0x84C7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE8_ARB = 0x84C8;
+        //public const uint GL_TEXTURE8 = 0x84C8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE9_ARB = 0x84C9;
+        //public const uint GL_TEXTURE9 = 0x84C9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE10_ARB = 0x84CA;
+        //public const uint GL_TEXTURE10 = 0x84CA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE11_ARB = 0x84CB;
+        //public const uint GL_TEXTURE11 = 0x84CB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE12_ARB = 0x84CC;
+        //public const uint GL_TEXTURE12 = 0x84CC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE13_ARB = 0x84CD;
+        //public const uint GL_TEXTURE13 = 0x84CD;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE14_ARB = 0x84CE;
+        //public const uint GL_TEXTURE14 = 0x84CE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE15_ARB = 0x84CF;
+        //public const uint GL_TEXTURE15 = 0x84CF;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE16_ARB = 0x84D0;
+        //public const uint GL_TEXTURE16 = 0x84D0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE17_ARB = 0x84D1;
+        //public const uint GL_TEXTURE17 = 0x84D1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE18_ARB = 0x84D2;
+        //public const uint GL_TEXTURE18 = 0x84D2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE19_ARB = 0x84D3;
+        //public const uint GL_TEXTURE19 = 0x84D3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE20_ARB = 0x84D4;
+        //public const uint GL_TEXTURE20 = 0x84D4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE21_ARB = 0x84D5;
+        //public const uint GL_TEXTURE21 = 0x84D5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE22_ARB = 0x84D6;
+        //public const uint GL_TEXTURE22 = 0x84D6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE23_ARB = 0x84D7;
+        //public const uint GL_TEXTURE23 = 0x84D7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE24_ARB = 0x84D8;
+        //public const uint GL_TEXTURE24 = 0x84D8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE25_ARB = 0x84D9;
+        //public const uint GL_TEXTURE25 = 0x84D9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE26_ARB = 0x84DA;
+        //public const uint GL_TEXTURE26 = 0x84DA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE27_ARB = 0x84DB;
+        //public const uint GL_TEXTURE27 = 0x84DB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE28_ARB = 0x84DC;
+        //public const uint GL_TEXTURE28 = 0x84DC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE29_ARB = 0x84DD;
+        //public const uint GL_TEXTURE29 = 0x84DD;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE30_ARB = 0x84DE;
+        //public const uint GL_TEXTURE30 = 0x84DE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE31_ARB = 0x84DF;
+        //public const uint GL_TEXTURE31 = 0x84DF;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ACTIVE_TEXTURE_ARB = 0x84E0;
+        //public const uint GL_ACTIVE_TEXTURE = 0x84E0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CLIENT_ACTIVE_TEXTURE_ARB = 0x84E1;
+        //public const uint GL_CLIENT_ACTIVE_TEXTURE = 0x84E1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_TEXTURE_UNITS_ARB = 0x84E2;
+        //public const uint GL_MAX_TEXTURE_UNITS = 0x84E2;
 
         //#endregion
 
-        //#region GL_ARB_texture_compression
+        //#region GL_texture_compression
 
         ////  Delegates
         ///// <summary>
@@ -1109,47 +1109,47 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_ALPHA_ARB = 0x84E9;
+        //public const uint GL_COMPRESSED_ALPHA = 0x84E9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_LUMINANCE_ARB = 0x84EA;
+        //public const uint GL_COMPRESSED_LUMINANCE = 0x84EA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_LUMINANCE_ALPHA_ARB = 0x84EB;
+        //public const uint GL_COMPRESSED_LUMINANCE_ALPHA = 0x84EB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_INTENSITY_ARB = 0x84EC;
+        //public const uint GL_COMPRESSED_INTENSITY = 0x84EC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_RGB_ARB = 0x84ED;
+        //public const uint GL_COMPRESSED_RGB = 0x84ED;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_RGBA_ARB = 0x84EE;
+        //public const uint GL_COMPRESSED_RGBA = 0x84EE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_COMPRESSION_HINT_ARB = 0x84EF;
+        //public const uint GL_TEXTURE_COMPRESSION_HINT = 0x84EF;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_COMPRESSED_IMAGE_SIZE_ARB = 0x86A0;
+        //public const uint GL_TEXTURE_COMPRESSED_IMAGE_SIZE = 0x86A0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_COMPRESSED_ARB = 0x86A1;
+        //public const uint GL_TEXTURE_COMPRESSED = 0x86A1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_NUM_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A2;
+        //public const uint GL_NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A3;
+        //public const uint GL_COMPRESSED_TEXTURE_FORMATS = 0x86A3;
 
         //#endregion
 
@@ -1167,7 +1167,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_multisample
+        //#region GL_multisample
 
         ////  Delegates
         ///// <summary>
@@ -1181,167 +1181,167 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MULTISAMPLE_ARB = 0x809D;
+        //public const uint GL_MULTISAMPLE = 0x809D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLE_ALPHA_TO_COVERAGE_ARB = 0x809E;
+        //public const uint GL_SAMPLE_ALPHA_TO_COVERAGE = 0x809E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLE_ALPHA_TO_ONE_ARB = 0x809F;
+        //public const uint GL_SAMPLE_ALPHA_TO_ONE = 0x809F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLE_COVERAGE_ARB = 0x80A0;
+        //public const uint GL_SAMPLE_COVERAGE = 0x80A0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLE_BUFFERS_ARB = 0x80A8;
+        //public const uint GL_SAMPLE_BUFFERS = 0x80A8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLES_ARB = 0x80A9;
+        //public const uint GL_SAMPLES = 0x80A9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLE_COVERAGE_VALUE_ARB = 0x80AA;
+        //public const uint GL_SAMPLE_COVERAGE_VALUE = 0x80AA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLE_COVERAGE_INVERT_ARB = 0x80AB;
+        //public const uint GL_SAMPLE_COVERAGE_INVERT = 0x80AB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MULTISAMPLE_BIT_ARB = 0x20000000;
+        //public const uint GL_MULTISAMPLE_BIT = 0x20000000;
 
         //#endregion
 
-        //#region GL_ARB_texture_env_add
+        //#region GL_texture_env_add
 
         ////  Appears to not have any functionality
 
         //#endregion
 
-        //#region GL_ARB_texture_env_combine
+        //#region GL_texture_env_combine
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMBINE_ARB = 0x8570;
+        //public const uint GL_COMBINE = 0x8570;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMBINE_RGB_ARB = 0x8571;
+        //public const uint GL_COMBINE_RGB = 0x8571;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMBINE_ALPHA_ARB = 0x8572;
+        //public const uint GL_COMBINE_ALPHA = 0x8572;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SOURCE0_RGB_ARB = 0x8580;
+        //public const uint GL_SOURCE0_RGB = 0x8580;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SOURCE1_RGB_ARB = 0x8581;
+        //public const uint GL_SOURCE1_RGB = 0x8581;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SOURCE2_RGB_ARB = 0x8582;
+        //public const uint GL_SOURCE2_RGB = 0x8582;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SOURCE0_ALPHA_ARB = 0x8588;
+        //public const uint GL_SOURCE0_ALPHA = 0x8588;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SOURCE1_ALPHA_ARB = 0x8589;
+        //public const uint GL_SOURCE1_ALPHA = 0x8589;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SOURCE2_ALPHA_ARB = 0x858A;
+        //public const uint GL_SOURCE2_ALPHA = 0x858A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OPERAND0_RGB_ARB = 0x8590;
+        //public const uint GL_OPERAND0_RGB = 0x8590;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OPERAND1_RGB_ARB = 0x8591;
+        //public const uint GL_OPERAND1_RGB = 0x8591;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OPERAND2_RGB_ARB = 0x8592;
+        //public const uint GL_OPERAND2_RGB = 0x8592;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OPERAND0_ALPHA_ARB = 0x8598;
+        //public const uint GL_OPERAND0_ALPHA = 0x8598;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OPERAND1_ALPHA_ARB = 0x8599;
+        //public const uint GL_OPERAND1_ALPHA = 0x8599;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OPERAND2_ALPHA_ARB = 0x859A;
+        //public const uint GL_OPERAND2_ALPHA = 0x859A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_RGB_SCALE_ARB = 0x8573;
+        //public const uint GL_RGB_SCALE = 0x8573;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ADD_SIGNED_ARB = 0x8574;
+        //public const uint GL_ADD_SIGNED = 0x8574;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INTERPOLATE_ARB = 0x8575;
+        //public const uint GL_INTERPOLATE = 0x8575;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SUBTRACT_ARB = 0x84E7;
+        //public const uint GL_SUBTRACT = 0x84E7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CONSTANT_ARB = 0x8576;
+        //public const uint GL_CONSTANT = 0x8576;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PRIMARY_COLOR_ARB = 0x8577;
+        //public const uint GL_PRIMARY_COLOR = 0x8577;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PREVIOUS_ARB = 0x8578;
+        //public const uint GL_PREVIOUS = 0x8578;
 
         //#endregion
 
-        //#region GL_ARB_texture_env_dot3
+        //#region GL_texture_env_dot3
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DOT3_RGB_ARB = 0x86AE;
+        //public const uint GL_DOT3_RGB = 0x86AE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DOT3_RGBA_ARB = 0x86AF;
+        //public const uint GL_DOT3_RGBA = 0x86AF;
 
         //#endregion
 
-        //#region GL_ARB_texture_border_clamp
+        //#region GL_texture_border_clamp
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CLAMP_TO_BORDER_ARB = 0x812D;
+        //public const uint GL_CLAMP_TO_BORDER = 0x812D;
 
         //#endregion
 
-        //#region GL_ARB_transpose_matrix
+        //#region GL_transpose_matrix
 
         ////  Delegates
         ///// <summary>
@@ -1369,19 +1369,19 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TRANSPOSE_MODELVIEW_MATRIX_ARB = 0x84E3;
+        //public const uint GL_TRANSPOSE_MODELVIEW_MATRIX = 0x84E3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TRANSPOSE_PROJECTION_MATRIX_ARB = 0x84E4;
+        //public const uint GL_TRANSPOSE_PROJECTION_MATRIX = 0x84E4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TRANSPOSE_TEXTURE_MATRIX_ARB = 0x84E5;
+        //public const uint GL_TRANSPOSE_TEXTURE_MATRIX = 0x84E5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TRANSPOSE_COLOR_MATRIX_ARB = 0x84E6;
+        //public const uint GL_TRANSPOSE_COLOR_MATRIX = 0x84E6;
 
         //#endregion
 
@@ -1405,47 +1405,47 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_depth_texture
+        //#region GL_depth_texture
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT16_ARB = 0x81A5;
+        //public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT24_ARB = 0x81A6;
+        //public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT32_ARB = 0x81A7;
+        //public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_DEPTH_SIZE_ARB = 0x884A;
+        //public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DEPTH_TEXTURE_MODE_ARB = 0x884B;
+        //public const uint GL_DEPTH_TEXTURE_MODE = 0x884B;
 
         //#endregion
 
-        //#region GL_ARB_shadow
+        //#region GL_shadow
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_COMPARE_MODE_ARB = 0x884C;
+        //public const uint GL_TEXTURE_COMPARE_MODE = 0x884C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_COMPARE_FUNC_ARB = 0x884D;
+        //public const uint GL_TEXTURE_COMPARE_FUNC = 0x884D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPARE_R_TO_TEXTURE_ARB = 0x884E;
+        //public const uint GL_COMPARE_R_TO_TEXTURE = 0x884E;
 
         //#endregion
 
@@ -1539,7 +1539,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_point_parameters
+        //#region GL_point_parameters
 
         ////  Delegates
         ///// <summary>
@@ -1559,19 +1559,19 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_POINT_SIZE_MIN_ARB = 0x8126;
+        //public const uint GL_POINT_SIZE_MIN = 0x8126;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_POINT_SIZE_MAX_ARB = 0x8127;
+        //public const uint GL_POINT_SIZE_MAX = 0x8127;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_POINT_FADE_THRESHOLD_SIZE_ARB = 0x8128;
+        //public const uint GL_POINT_FADE_THRESHOLD_SIZE = 0x8128;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_POINT_DISTANCE_ATTENUATION_ARB = 0x8129;
+        //public const uint GL_POINT_DISTANCE_ATTENUATION = 0x8129;
 
         //#endregion
 
@@ -1737,7 +1737,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_texture_env_crossbar
+        //#region GL_texture_env_crossbar
 
         ////  No methods or constants.
 
@@ -1753,17 +1753,17 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_texture_mirrored_repeat
+        //#region GL_texture_mirrored_repeat
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MIRRORED_REPEAT_ARB = 0x8370;
+        //public const uint GL_MIRRORED_REPEAT = 0x8370;
 
         //#endregion
 
-        //#region GL_ARB_window_pos
+        //#region GL_window_pos
 
         ////  Delegates
         ///// <summary>
@@ -1861,7 +1861,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_vertex_buffer_object
+        //#region GL_vertex_buffer_object
 
         ////  Delegates
         ///// <summary>
@@ -1944,130 +1944,130 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BUFFER_SIZE_ARB = 0x8764;
+        //public const uint GL_BUFFER_SIZE = 0x8764;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BUFFER_USAGE_ARB = 0x8765;
+        //public const uint GL_BUFFER_USAGE = 0x8765;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ARRAY_BUFFER_ARB = 0x8892;
+        //public const uint GL_ARRAY_BUFFER = 0x8892;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ELEMENT_ARRAY_BUFFER_ARB = 0x8893;
+        //public const uint GL_ELEMENT_ARRAY_BUFFER = 0x8893;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ARRAY_BUFFER_BINDING_ARB = 0x8894;
+        //public const uint GL_ARRAY_BUFFER_BINDING = 0x8894;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ELEMENT_ARRAY_BUFFER_BINDING_ARB = 0x8895;
+        //public const uint GL_ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ARRAY_BUFFER_BINDING_ARB = 0x8896;
+        //public const uint GL_VERTEX_ARRAY_BUFFER_BINDING = 0x8896;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_NORMAL_ARRAY_BUFFER_BINDING_ARB = 0x8897;
+        //public const uint GL_NORMAL_ARRAY_BUFFER_BINDING = 0x8897;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x8898;
+        //public const uint GL_COLOR_ARRAY_BUFFER_BINDING = 0x8898;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INDEX_ARRAY_BUFFER_BINDING_ARB = 0x8899;
+        //public const uint GL_INDEX_ARRAY_BUFFER_BINDING = 0x8899;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING_ARB = 0x889A;
+        //public const uint GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = 0x889A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_EDGE_FLAG_ARRAY_BUFFER_BINDING_ARB = 0x889B;
+        //public const uint GL_EDGE_FLAG_ARRAY_BUFFER_BINDING = 0x889B;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x889C;
+        //public const uint GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING = 0x889C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING_ARB = 0x889D;
+        //public const uint GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING = 0x889D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB = 0x889E;
+        //public const uint GL_WEIGHT_ARRAY_BUFFER_BINDING = 0x889E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB = 0x889F;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_READ_ONLY_ARB = 0x88B8;
+        //public const uint GL_READ_ONLY = 0x88B8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_WRITE_ONLY_ARB = 0x88B9;
+        //public const uint GL_WRITE_ONLY = 0x88B9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_READ_WRITE_ARB = 0x88BA;
+        //public const uint GL_READ_WRITE = 0x88BA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BUFFER_ACCESS_ARB = 0x88BB;
+        //public const uint GL_BUFFER_ACCESS = 0x88BB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BUFFER_MAPPED_ARB = 0x88BC;
+        //public const uint GL_BUFFER_MAPPED = 0x88BC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BUFFER_MAP_POINTER_ARB = 0x88BD;
+        //public const uint GL_BUFFER_MAP_POINTER = 0x88BD;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_STREAM_DRAW_ARB = 0x88E0;
+        //public const uint GL_STREAM_DRAW = 0x88E0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_STREAM_READ_ARB = 0x88E1;
+        //public const uint GL_STREAM_READ = 0x88E1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_STREAM_COPY_ARB = 0x88E2;
+        //public const uint GL_STREAM_COPY = 0x88E2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_STATIC_DRAW_ARB = 0x88E4;
+        //public const uint GL_STATIC_DRAW = 0x88E4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_STATIC_READ_ARB = 0x88E5;
+        //public const uint GL_STATIC_READ = 0x88E5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_STATIC_COPY_ARB = 0x88E6;
+        //public const uint GL_STATIC_COPY = 0x88E6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DYNAMIC_DRAW_ARB = 0x88E8;
+        //public const uint GL_DYNAMIC_DRAW = 0x88E8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DYNAMIC_READ_ARB = 0x88E9;
+        //public const uint GL_DYNAMIC_READ = 0x88E9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DYNAMIC_COPY_ARB = 0x88EA;
+        //public const uint GL_DYNAMIC_COPY = 0x88EA;
         //#endregion
 
-        //#region GL_ARB_occlusion_query
+        //#region GL_occlusion_query
 
         ////  Delegates
         ///// <summary>
@@ -2125,23 +2125,23 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_QUERY_COUNTER_BITS_ARB = 0x8864;
+        //public const uint GL_QUERY_COUNTER_BITS = 0x8864;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CURRENT_QUERY_ARB = 0x8865;
+        //public const uint GL_CURRENT_QUERY = 0x8865;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_QUERY_RESULT_ARB = 0x8866;
+        //public const uint GL_QUERY_RESULT = 0x8866;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_QUERY_RESULT_AVAILABLE_ARB = 0x8867;
+        //public const uint GL_QUERY_RESULT_AVAILABLE = 0x8867;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLES_PASSED_ARB = 0x8914;
+        //public const uint GL_SAMPLES_PASSED = 0x8914;
         /// <summary>
         ///
         /// </summary>
@@ -2149,7 +2149,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_shader_objects
+        //#region GL_shader_objects
 
         ////  Delegates
         ///// <summary>
@@ -2429,143 +2429,143 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_OBJECT_ARB = 0x8B40;
+        //public const uint GL_PROGRAM_OBJECT = 0x8B40;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SHADER_OBJECT_ARB = 0x8B48;
+        //public const uint GL_SHADER_OBJECT = 0x8B48;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_TYPE_ARB = 0x8B4E;
+        //public const uint GL_OBJECT_TYPE = 0x8B4E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_SUBTYPE_ARB = 0x8B4F;
+        //public const uint GL_OBJECT_SUBTYPE = 0x8B4F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FLOAT_VEC2_ARB = 0x8B50;
+        //public const uint GL_FLOAT_VEC2 = 0x8B50;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FLOAT_VEC3_ARB = 0x8B51;
+        //public const uint GL_FLOAT_VEC3 = 0x8B51;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FLOAT_VEC4_ARB = 0x8B52;
+        //public const uint GL_FLOAT_VEC4 = 0x8B52;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INT_VEC2_ARB = 0x8B53;
+        //public const uint GL_INT_VEC2 = 0x8B53;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INT_VEC3_ARB = 0x8B54;
+        //public const uint GL_INT_VEC3 = 0x8B54;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INT_VEC4_ARB = 0x8B55;
+        //public const uint GL_INT_VEC4 = 0x8B55;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BOOL_ARB = 0x8B56;
+        //public const uint GL_BOOL = 0x8B56;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BOOL_VEC2_ARB = 0x8B57;
+        //public const uint GL_BOOL_VEC2 = 0x8B57;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BOOL_VEC3_ARB = 0x8B58;
+        //public const uint GL_BOOL_VEC3 = 0x8B58;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_BOOL_VEC4_ARB = 0x8B59;
+        //public const uint GL_BOOL_VEC4 = 0x8B59;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FLOAT_MAT2_ARB = 0x8B5A;
+        //public const uint GL_FLOAT_MAT2 = 0x8B5A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FLOAT_MAT3_ARB = 0x8B5B;
+        //public const uint GL_FLOAT_MAT3 = 0x8B5B;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FLOAT_MAT4_ARB = 0x8B5C;
+        //public const uint GL_FLOAT_MAT4 = 0x8B5C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_1D_ARB = 0x8B5D;
+        //public const uint GL_SAMPLER_1D = 0x8B5D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_2D_ARB = 0x8B5E;
+        //public const uint GL_SAMPLER_2D = 0x8B5E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_3D_ARB = 0x8B5F;
+        //public const uint GL_SAMPLER_3D = 0x8B5F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_CUBE_ARB = 0x8B60;
+        //public const uint GL_SAMPLER_CUBE = 0x8B60;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_1D_SHADOW_ARB = 0x8B61;
+        //public const uint GL_SAMPLER_1D_SHADOW = 0x8B61;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_2D_SHADOW_ARB = 0x8B62;
+        //public const uint GL_SAMPLER_2D_SHADOW = 0x8B62;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_2D_RECT_ARB = 0x8B63;
+        //public const uint GL_SAMPLER_2D_RECT = 0x8B63;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SAMPLER_2D_RECT_SHADOW_ARB = 0x8B64;
+        //public const uint GL_SAMPLER_2D_RECT_SHADOW = 0x8B64;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_DELETE_STATUS_ARB = 0x8B80;
+        //public const uint GL_OBJECT_DELETE_STATUS = 0x8B80;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_COMPILE_STATUS_ARB = 0x8B81;
+        //public const uint GL_OBJECT_COMPILE_STATUS = 0x8B81;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_LINK_STATUS_ARB = 0x8B82;
+        //public const uint GL_OBJECT_LINK_STATUS = 0x8B82;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_VALIDATE_STATUS_ARB = 0x8B83;
+        //public const uint GL_OBJECT_VALIDATE_STATUS = 0x8B83;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_INFO_LOG_LENGTH_ARB = 0x8B84;
+        //public const uint GL_OBJECT_INFO_LOG_LENGTH = 0x8B84;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_ATTACHED_OBJECTS_ARB = 0x8B85;
+        //public const uint GL_OBJECT_ATTACHED_OBJECTS = 0x8B85;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_ACTIVE_UNIFORMS_ARB = 0x8B86;
+        //public const uint GL_OBJECT_ACTIVE_UNIFORMS = 0x8B86;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB = 0x8B87;
+        //public const uint GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH = 0x8B87;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_SHADER_SOURCE_LENGTH_ARB = 0x8B88;
+        //public const uint GL_OBJECT_SHADER_SOURCE_LENGTH = 0x8B88;
 
         //#endregion
 
-        //#region GL_ARB_vertex_program
+        //#region GL_vertex_program
 
         ////  Delegates
         ///// <summary>
@@ -2994,323 +2994,323 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COLOR_SUM_ARB = 0x8458;
+        //public const uint GL_COLOR_SUM = 0x8458;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_PROGRAM_ARB = 0x8620;
+        //public const uint GL_VERTEX_PROGRAM = 0x8620;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_ENABLED_ARB = 0x8622;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_ENABLED = 0x8622;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_SIZE_ARB = 0x8623;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_SIZE = 0x8623;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_STRIDE_ARB = 0x8624;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_TYPE_ARB = 0x8625;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_TYPE = 0x8625;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CURRENT_VERTEX_ATTRIB_ARB = 0x8626;
+        //public const uint GL_CURRENT_VERTEX_ATTRIB = 0x8626;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_LENGTH_ARB = 0x8627;
+        //public const uint GL_PROGRAM_LENGTH = 0x8627;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_STRING_ARB = 0x8628;
+        //public const uint GL_PROGRAM_STRING = 0x8628;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_MATRIX_STACK_DEPTH_ARB = 0x862E;
+        //public const uint GL_MAX_PROGRAM_MATRIX_STACK_DEPTH = 0x862E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_MATRICES_ARB = 0x862F;
+        //public const uint GL_MAX_PROGRAM_MATRICES = 0x862F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CURRENT_MATRIX_STACK_DEPTH_ARB = 0x8640;
+        //public const uint GL_CURRENT_MATRIX_STACK_DEPTH = 0x8640;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_CURRENT_MATRIX_ARB = 0x8641;
+        //public const uint GL_CURRENT_MATRIX = 0x8641;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_PROGRAM_POINT_SIZE_ARB = 0x8642;
+        //public const uint GL_VERTEX_PROGRAM_POINT_SIZE = 0x8642;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_PROGRAM_TWO_SIDE_ARB = 0x8643;
+        //public const uint GL_VERTEX_PROGRAM_TWO_SIDE = 0x8643;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_POINTER_ARB = 0x8645;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_POINTER = 0x8645;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_ERROR_POSITION_ARB = 0x864B;
+        //public const uint GL_PROGRAM_ERROR_POSITION = 0x864B;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_BINDING_ARB = 0x8677;
+        //public const uint GL_PROGRAM_BINDING = 0x8677;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_VERTEX_ATTRIBS_ARB = 0x8869;
+        //public const uint GL_MAX_VERTEX_ATTRIBS = 0x8869;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB = 0x886A;
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_ERROR_STRING_ARB = 0x8874;
+        //public const uint GL_PROGRAM_ERROR_STRING = 0x8874;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_FORMAT_ASCII_ARB = 0x8875;
+        //public const uint GL_PROGRAM_FORMAT_ASCII = 0x8875;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_FORMAT_ARB = 0x8876;
+        //public const uint GL_PROGRAM_FORMAT = 0x8876;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_INSTRUCTIONS_ARB = 0x88A0;
+        //public const uint GL_PROGRAM_INSTRUCTIONS = 0x88A0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_INSTRUCTIONS_ARB = 0x88A1;
+        //public const uint GL_MAX_PROGRAM_INSTRUCTIONS = 0x88A1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_NATIVE_INSTRUCTIONS_ARB = 0x88A2;
+        //public const uint GL_PROGRAM_NATIVE_INSTRUCTIONS = 0x88A2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB = 0x88A3;
+        //public const uint GL_MAX_PROGRAM_NATIVE_INSTRUCTIONS = 0x88A3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_TEMPORARIES_ARB = 0x88A4;
+        //public const uint GL_PROGRAM_TEMPORARIES = 0x88A4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_TEMPORARIES_ARB = 0x88A5;
+        //public const uint GL_MAX_PROGRAM_TEMPORARIES = 0x88A5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_NATIVE_TEMPORARIES_ARB = 0x88A6;
+        //public const uint GL_PROGRAM_NATIVE_TEMPORARIES = 0x88A6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_NATIVE_TEMPORARIES_ARB = 0x88A7;
+        //public const uint GL_MAX_PROGRAM_NATIVE_TEMPORARIES = 0x88A7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_PARAMETERS_ARB = 0x88A8;
+        //public const uint GL_PROGRAM_PARAMETERS = 0x88A8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_PARAMETERS_ARB = 0x88A9;
+        //public const uint GL_MAX_PROGRAM_PARAMETERS = 0x88A9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_NATIVE_PARAMETERS_ARB = 0x88AA;
+        //public const uint GL_PROGRAM_NATIVE_PARAMETERS = 0x88AA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_NATIVE_PARAMETERS_ARB = 0x88AB;
+        //public const uint GL_MAX_PROGRAM_NATIVE_PARAMETERS = 0x88AB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_ATTRIBS_ARB = 0x88AC;
+        //public const uint GL_PROGRAM_ATTRIBS = 0x88AC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_ATTRIBS_ARB = 0x88AD;
+        //public const uint GL_MAX_PROGRAM_ATTRIBS = 0x88AD;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_NATIVE_ATTRIBS_ARB = 0x88AE;
+        //public const uint GL_PROGRAM_NATIVE_ATTRIBS = 0x88AE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_NATIVE_ATTRIBS_ARB = 0x88AF;
+        //public const uint GL_MAX_PROGRAM_NATIVE_ATTRIBS = 0x88AF;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_ADDRESS_REGISTERS_ARB = 0x88B0;
+        //public const uint GL_PROGRAM_ADDRESS_REGISTERS = 0x88B0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB = 0x88B1;
+        //public const uint GL_MAX_PROGRAM_ADDRESS_REGISTERS = 0x88B1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB = 0x88B2;
+        //public const uint GL_PROGRAM_NATIVE_ADDRESS_REGISTERS = 0x88B2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB = 0x88B3;
+        //public const uint GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS = 0x88B3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_LOCAL_PARAMETERS_ARB = 0x88B4;
+        //public const uint GL_MAX_PROGRAM_LOCAL_PARAMETERS = 0x88B4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_PROGRAM_ENV_PARAMETERS_ARB = 0x88B5;
+        //public const uint GL_MAX_PROGRAM_ENV_PARAMETERS = 0x88B5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB = 0x88B6;
+        //public const uint GL_PROGRAM_UNDER_NATIVE_LIMITS = 0x88B6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TRANSPOSE_CURRENT_MATRIX_ARB = 0x88B7;
+        //public const uint GL_TRANSPOSE_CURRENT_MATRIX = 0x88B7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX0_ARB = 0x88C0;
+        //public const uint GL_MATRIX0 = 0x88C0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX1_ARB = 0x88C1;
+        //public const uint GL_MATRIX1 = 0x88C1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX2_ARB = 0x88C2;
+        //public const uint GL_MATRIX2 = 0x88C2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX3_ARB = 0x88C3;
+        //public const uint GL_MATRIX3 = 0x88C3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX4_ARB = 0x88C4;
+        //public const uint GL_MATRIX4 = 0x88C4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX5_ARB = 0x88C5;
+        //public const uint GL_MATRIX5 = 0x88C5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX6_ARB = 0x88C6;
+        //public const uint GL_MATRIX6 = 0x88C6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX7_ARB = 0x88C7;
+        //public const uint GL_MATRIX7 = 0x88C7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX8_ARB = 0x88C8;
+        //public const uint GL_MATRIX8 = 0x88C8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX9_ARB = 0x88C9;
+        //public const uint GL_MATRIX9 = 0x88C9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX10_ARB = 0x88CA;
+        //public const uint GL_MATRIX10 = 0x88CA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX11_ARB = 0x88CB;
+        //public const uint GL_MATRIX11 = 0x88CB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX12_ARB = 0x88CC;
+        //public const uint GL_MATRIX12 = 0x88CC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX13_ARB = 0x88CD;
+        //public const uint GL_MATRIX13 = 0x88CD;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX14_ARB = 0x88CE;
+        //public const uint GL_MATRIX14 = 0x88CE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX15_ARB = 0x88CF;
+        //public const uint GL_MATRIX15 = 0x88CF;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX16_ARB = 0x88D0;
+        //public const uint GL_MATRIX16 = 0x88D0;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX17_ARB = 0x88D1;
+        //public const uint GL_MATRIX17 = 0x88D1;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX18_ARB = 0x88D2;
+        //public const uint GL_MATRIX18 = 0x88D2;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX19_ARB = 0x88D3;
+        //public const uint GL_MATRIX19 = 0x88D3;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX20_ARB = 0x88D4;
+        //public const uint GL_MATRIX20 = 0x88D4;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX21_ARB = 0x88D5;
+        //public const uint GL_MATRIX21 = 0x88D5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX22_ARB = 0x88D6;
+        //public const uint GL_MATRIX22 = 0x88D6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX23_ARB = 0x88D7;
+        //public const uint GL_MATRIX23 = 0x88D7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX24_ARB = 0x88D8;
+        //public const uint GL_MATRIX24 = 0x88D8;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX25_ARB = 0x88D9;
+        //public const uint GL_MATRIX25 = 0x88D9;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX26_ARB = 0x88DA;
+        //public const uint GL_MATRIX26 = 0x88DA;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX27_ARB = 0x88DB;
+        //public const uint GL_MATRIX27 = 0x88DB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX28_ARB = 0x88DC;
+        //public const uint GL_MATRIX28 = 0x88DC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX29_ARB = 0x88DD;
+        //public const uint GL_MATRIX29 = 0x88DD;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX30_ARB = 0x88DE;
+        //public const uint GL_MATRIX30 = 0x88DE;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MATRIX31_ARB = 0x88DF;
+        //public const uint GL_MATRIX31 = 0x88DF;
 
         //#endregion
 
-        //#region GL_ARB_vertex_shader
+        //#region GL_vertex_shader
 
         ////  Delegates
         ///// <summary>
@@ -3343,52 +3343,52 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_VERTEX_SHADER_ARB = 0x8B31;
+        //public const uint GL_VERTEX_SHADER = 0x8B31;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_VERTEX_UNIFORM_COMPONENTS_ARB = 0x8B4A;
+        //public const uint GL_MAX_VERTEX_UNIFORM_COMPONENTS = 0x8B4A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_VARYING_FLOATS_ARB = 0x8B4B;
+        //public const uint GL_MAX_VARYING_FLOATS = 0x8B4B;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB = 0x8B4C;
+        //public const uint GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS_ARB = 0x8B4D;
+        //public const uint GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_ACTIVE_ATTRIBUTES_ARB = 0x8B89;
+        //public const uint GL_OBJECT_ACTIVE_ATTRIBUTES = 0x8B89;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB = 0x8B8A;
+        //public const uint GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH = 0x8B8A;
 
         //#endregion
 
-        //#region GL_ARB_fragment_shader
+        //#region GL_fragment_shader
 
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FRAGMENT_SHADER_ARB = 0x8B30;
+        //public const uint GL_FRAGMENT_SHADER = 0x8B30;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB = 0x8B49;
+        //public const uint GL_MAX_FRAGMENT_UNIFORM_COMPONENTS = 0x8B49;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B;
+        //public const uint GL_FRAGMENT_SHADER_DERIVATIVE_HINT = 0x8B8B;
 
         //#endregion
 
-        //#region GL_ARB_draw_buffers
+        //#region GL_draw_buffers
 
         ////  Delegates
         ///// <summary>
@@ -3402,200 +3402,200 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_DRAW_BUFFERS_ARB = 0x8824;
+        //public const uint GL_MAX_DRAW_BUFFERS = 0x8824;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER0_ARB = 0x8825;
+        //public const uint GL_DRAW_BUFFER0 = 0x8825;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER1_ARB = 0x8826;
+        //public const uint GL_DRAW_BUFFER1 = 0x8826;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER2_ARB = 0x8827;
+        //public const uint GL_DRAW_BUFFER2 = 0x8827;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER3_ARB = 0x8828;
+        //public const uint GL_DRAW_BUFFER3 = 0x8828;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER4_ARB = 0x8829;
+        //public const uint GL_DRAW_BUFFER4 = 0x8829;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER5_ARB = 0x882A;
+        //public const uint GL_DRAW_BUFFER5 = 0x882A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER6_ARB = 0x882B;
+        //public const uint GL_DRAW_BUFFER6 = 0x882B;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER7_ARB = 0x882C;
+        //public const uint GL_DRAW_BUFFER7 = 0x882C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER8_ARB = 0x882D;
+        //public const uint GL_DRAW_BUFFER8 = 0x882D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER9_ARB = 0x882E;
+        //public const uint GL_DRAW_BUFFER9 = 0x882E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER10_ARB = 0x882F;
+        //public const uint GL_DRAW_BUFFER10 = 0x882F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER11_ARB = 0x8830;
+        //public const uint GL_DRAW_BUFFER11 = 0x8830;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER12_ARB = 0x8831;
+        //public const uint GL_DRAW_BUFFER12 = 0x8831;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER13_ARB = 0x8832;
+        //public const uint GL_DRAW_BUFFER13 = 0x8832;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER14_ARB = 0x8833;
+        //public const uint GL_DRAW_BUFFER14 = 0x8833;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_DRAW_BUFFER15_ARB = 0x8834;
+        //public const uint GL_DRAW_BUFFER15 = 0x8834;
 
         //#endregion
 
-        //#region GL_ARB_texture_non_power_of_two
+        //#region GL_texture_non_power_of_two
 
         ////  No methods or constants
 
         //#endregion
 
-        //#region GL_ARB_texture_rectangle
+        //#region GL_texture_rectangle
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_RECTANGLE_ARB = 0x84F5;
+        //public const uint GL_TEXTURE_RECTANGLE = 0x84F5;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_BINDING_RECTANGLE_ARB = 0x84F6;
+        //public const uint GL_TEXTURE_BINDING_RECTANGLE = 0x84F6;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PROXY_TEXTURE_RECTANGLE_ARB = 0x84F7;
+        //public const uint GL_PROXY_TEXTURE_RECTANGLE = 0x84F7;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB = 0x84F8;
+        //public const uint GL_MAX_RECTANGLE_TEXTURE_SIZE = 0x84F8;
 
         //#endregion
 
-        //#region GL_ARB_point_sprite
+        //#region GL_point_sprite
 
         //  Constants
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_POINT_SPRITE_ARB = 0x8861;
+        public const uint GL_POINT_SPRITE = 0x8861;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_COORD_REPLACE_ARB = 0x8862;
+        public const uint GL_COORD_REPLACE = 0x8862;
 
         //#endregion
 
-        //#region GL_ARB_texture_float
+        //#region GL_texture_float
 
         ////  Constants
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_RED_TYPE_ARB = 0x8C10;
+        //public const uint GL_TEXTURE_RED_TYPE = 0x8C10;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_GREEN_TYPE_ARB = 0x8C11;
+        //public const uint GL_TEXTURE_GREEN_TYPE = 0x8C11;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_BLUE_TYPE_ARB = 0x8C12;
+        //public const uint GL_TEXTURE_BLUE_TYPE = 0x8C12;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_ALPHA_TYPE_ARB = 0x8C13;
+        //public const uint GL_TEXTURE_ALPHA_TYPE = 0x8C13;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_LUMINANCE_TYPE_ARB = 0x8C14;
+        //public const uint GL_TEXTURE_LUMINANCE_TYPE = 0x8C14;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_INTENSITY_TYPE_ARB = 0x8C15;
+        //public const uint GL_TEXTURE_INTENSITY_TYPE = 0x8C15;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_TEXTURE_DEPTH_TYPE_ARB = 0x8C16;
+        //public const uint GL_TEXTURE_DEPTH_TYPE = 0x8C16;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_UNSIGNED_NORMALIZED_ARB = 0x8C17;
+        //public const uint GL_UNSIGNED_NORMALIZED = 0x8C17;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_RGBA32F_ARB = 0x8814;
+        //public const uint GL_RGBA32F = 0x8814;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_RGB32F_ARB = 0x8815;
+        //public const uint GL_RGB32F = 0x8815;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ALPHA32F_ARB = 0x8816;
+        //public const uint GL_ALPHA32F = 0x8816;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INTENSITY32F_ARB = 0x8817;
+        //public const uint GL_INTENSITY32F = 0x8817;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_LUMINANCE32F_ARB = 0x8818;
+        //public const uint GL_LUMINANCE32F = 0x8818;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_LUMINANCE_ALPHA32F_ARB = 0x8819;
+        //public const uint GL_LUMINANCE_ALPHA32F = 0x8819;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_RGBA16F_ARB = 0x881A;
+        //public const uint GL_RGBA16F = 0x881A;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_RGB16F_ARB = 0x881B;
+        //public const uint GL_RGB16F = 0x881B;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_ALPHA16F_ARB = 0x881C;
+        //public const uint GL_ALPHA16F = 0x881C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_INTENSITY16F_ARB = 0x881D;
+        //public const uint GL_INTENSITY16F = 0x881D;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_LUMINANCE16F_ARB = 0x881E;
+        //public const uint GL_LUMINANCE16F = 0x881E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_LUMINANCE_ALPHA16F_ARB = 0x881F;
+        //public const uint GL_LUMINANCE_ALPHA16F = 0x881F;
 
         //#endregion
 
@@ -3634,24 +3634,24 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_pixel_buffer_object
+        //#region GL_pixel_buffer_object
 
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PIXEL_PACK_BUFFER_ARB = 0x88EB;
+        //public const uint GL_PIXEL_PACK_BUFFER = 0x88EB;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PIXEL_UNPACK_BUFFER_ARB = 0x88EC;
+        //public const uint GL_PIXEL_UNPACK_BUFFER = 0x88EC;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PIXEL_PACK_BUFFER_BINDING_ARB = 0x88ED;
+        //public const uint GL_PIXEL_PACK_BUFFER_BINDING = 0x88ED;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_PIXEL_UNPACK_BUFFER_BINDING_ARB = 0x88EF;
+        //public const uint GL_PIXEL_UNPACK_BUFFER_BINDING = 0x88EF;
 
         //#endregion
 
@@ -3723,7 +3723,7 @@ namespace CSharpGL
 
         //#endregion
 
-        #region GL_ARB_vertex_array_object
+        #region GL_vertex_array_object
 
         //  Delegates
         /// <summary>
@@ -3759,7 +3759,7 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_VERTEX_ARRAY_BINDING = 0x85B5;
 
-        #endregion GL_ARB_vertex_array_object
+        #endregion GL_vertex_array_object
 
         //#region GL_EXT_framebuffer_sRGB
 
@@ -3835,7 +3835,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region WGL_ARB_extensions_string
+        //#region WGL_extensions_string
 
         ////  Delegates
         ///// <summary>
@@ -3847,7 +3847,7 @@ namespace CSharpGL
 
         //#endregion
 
-        #region WGL_ARB_create_context
+        #region WGL_create_context
 
         //  Delegates
         /// <summary>
@@ -3874,61 +3874,61 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_MAJOR_VERSION_ARB = 0x2091;
+        public const int WGL_CONTEXT_MAJOR_VERSION = 0x2091;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_MINOR_VERSION_ARB = 0x2092;
+        public const int WGL_CONTEXT_MINOR_VERSION = 0x2092;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_LAYER_PLANE_ARB = 0x2093;
+        public const int WGL_CONTEXT_LAYER_PLANE = 0x2093;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_FLAGS_ARB = 0x2094;
+        public const int WGL_CONTEXT_FLAGS = 0x2094;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_PROFILE_MASK_ARB = 0x9126;
+        public const int WGL_CONTEXT_PROFILE_MASK = 0x9126;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_DEBUG_BIT_ARB = 0x0001;
+        public const int WGL_CONTEXT_DEBUG_BIT = 0x0001;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB = 0x0002;
+        public const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT = 0x0002;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB = 0x00000001;
+        public const int WGL_CONTEXT_CORE_PROFILE_BIT = 0x00000001;
 
         /// <summary>
         ///
         /// </summary>
-        public const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
+        public const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x00000002;
 
         /// <summary>
         ///
         /// </summary>
-        public const int ERROR_INVALID_VERSION_ARB = 0x2095;
+        public const int ERROR_INVALID_VERSION = 0x2095;
 
         /// <summary>
         ///
         /// </summary>
-        public const int ERROR_INVALID_PROFILE_ARB = 0x2096;
+        public const int ERROR_INVALID_PROFILE = 0x2096;
 
-        #endregion WGL_ARB_create_context
+        #endregion WGL_create_context
 
-        //#region GL_ARB_explicit_uniform_location
+        //#region GL_explicit_uniform_location
 
         ////  Constants
 
@@ -3940,7 +3940,7 @@ namespace CSharpGL
 
         //#endregion
 
-        #region GL_ARB_clear_buffer_object
+        #region GL_clear_buffer_object
 
         //  Delegates
         /// <summary>
@@ -3996,7 +3996,7 @@ namespace CSharpGL
         /// <param name="size"></param>
         public delegate void glCopyBufferSubData(uint readTarget, uint writeTarget, IntPtr readOffset, IntPtr writeOffset, IntPtr size);
 
-        #region GL_ARB_compute_shader
+        #region GL_compute_shader
 
         //  Delegates
         /// <summary>
@@ -4088,9 +4088,9 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_COMPUTE_SHADER_BIT = 0x00000020;
 
-        #endregion GL_ARB_compute_shader
+        #endregion GL_compute_shader
 
-        //#region GL_ARB_copy_image
+        //#region GL_copy_image
 
         ////  Delegates
         ///// <summary>
@@ -4116,7 +4116,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_ES3_compatibility
+        //#region GL_ES3_compatibility
 
         ///// <summary>
         /////
@@ -4178,7 +4178,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_internalformat_query2
+        //#region GL_internalformat_query2
 
         ////  Delegates
         ///// <summary>
@@ -4384,7 +4384,7 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_SRGB_DECODE_ARB = 0x8299;
+        //public const uint GL_SRGB_DECODE = 0x8299;
         ///// <summary>
         /////
         ///// </summary>
@@ -4616,7 +4616,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_invalidate_subdata
+        //#region GL_invalidate_subdata
 
         ////  Delegates
         ///// <summary>
@@ -4694,7 +4694,7 @@ namespace CSharpGL
 
         //#endregion
 
-        #region GL_ARB_program_interface_query
+        #region GL_program_interface_query
 
         /// <summary>
         /// Query a property of an interface in a program
@@ -4753,9 +4753,9 @@ namespace CSharpGL
         /// <param name="name">The name of the resource to query the location of.</param>
         public delegate int glGetProgramResourceLocationIndex(uint program, uint programInterface, string name);
 
-        #endregion GL_ARB_program_interface_query
+        #endregion GL_program_interface_query
 
-        #region GL_ARB_shader_storage_buffer_object
+        #region GL_shader_storage_buffer_object
 
         /// <summary>
         /// Change an active shader storage block binding.
@@ -4851,9 +4851,9 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES = 0x8F39;
 
-        #endregion GL_ARB_shader_storage_buffer_object
+        #endregion GL_shader_storage_buffer_object
 
-        //#region GL_ARB_stencil_texturing
+        //#region GL_stencil_texturing
 
         ////  Constants
         ///// <summary>
@@ -4863,7 +4863,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_texture_buffer_range
+        //#region GL_texture_buffer_range
 
         ///// <summary>
         ///// Bind a range of a buffer's data store to a buffer texture
@@ -4887,7 +4887,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_texture_storage_multisample
+        //#region GL_texture_storage_multisample
 
         ////  Delegates
         ///// <summary>
@@ -4937,7 +4937,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_texture_view
+        //#region GL_texture_view
 
         ////  Delegates
         ///// <summary>
@@ -4973,7 +4973,7 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_ARB_vertex_attrib_binding
+        //#region GL_vertex_attrib_binding
 
         ////  Delegates
         ///// <summary>
@@ -5144,84 +5144,84 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB = 0x8242;
+        public const uint GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SOURCE_API_ARB = 0x8246;
+        public const uint GL_DEBUG_SOURCE_API = 0x8246;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB = 0x8247;
+        public const uint GL_DEBUG_SOURCE_WINDOW_SYSTEM = 0x8247;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SOURCE_SHADER_COMPILER_ARB = 0x8248;
+        public const uint GL_DEBUG_SOURCE_SHADER_COMPILER = 0x8248;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SOURCE_THIRD_PARTY_ARB = 0x8249;
+        public const uint GL_DEBUG_SOURCE_THIRD_PARTY = 0x8249;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SOURCE_APPLICATION_ARB = 0x824A;
+        public const uint GL_DEBUG_SOURCE_APPLICATION = 0x824A;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SOURCE_OTHER_ARB = 0x824B;
+        public const uint GL_DEBUG_SOURCE_OTHER = 0x824B;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_TYPE_ERROR_ARB = 0x824C;
+        public const uint GL_DEBUG_TYPE_ERROR = 0x824C;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB = 0x824D;
+        public const uint GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR = 0x824D;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB = 0x824E;
+        public const uint GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR = 0x824E;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_TYPE_PORTABILITY_ARB = 0x824F;
+        public const uint GL_DEBUG_TYPE_PORTABILITY = 0x824F;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_TYPE_PERFORMANCE_ARB = 0x8250;
+        public const uint GL_DEBUG_TYPE_PERFORMANCE = 0x8250;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_TYPE_OTHER_ARB = 0x8251;
+        public const uint GL_DEBUG_TYPE_OTHER = 0x8251;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SEVERITY_HIGH_ARB = 0x9146;
+        public const uint GL_DEBUG_SEVERITY_HIGH = 0x9146;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SEVERITY_MEDIUM_ARB = 0x9147;
+        public const uint GL_DEBUG_SEVERITY_MEDIUM = 0x9147;
 
         /// <summary>
         ///
         /// </summary>
-        public const uint GL_DEBUG_SEVERITY_LOW_ARB = 0x9148;
+        public const uint GL_DEBUG_SEVERITY_LOW = 0x9148;
 
-        //public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
+        //public const uint GL_DEBUG_SEVERITY_NOTIFICATION = 0x9149;
 
         /// <summary>
         /// 设置哪些属性的消息能够/不能被传入callback函数。
@@ -5743,19 +5743,19 @@ namespace CSharpGL
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB = 0x8E8F;
+        //public const uint GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT = 0x8E8F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB = 0x8E8E;
+        //public const uint GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT = 0x8E8E;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_RGBA_BPTC_UNORM_ARB = 0x8E8C;
+        //public const uint GL_COMPRESSED_RGBA_BPTC_UNORM = 0x8E8C;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB = 0x8E8D;
+        //public const uint GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM = 0x8E8D;
 
         ///// <summary>
         /////

@@ -2,7 +2,7 @@
 {
     public static partial class OpenGL
     {
-        #region GL_ARB_framebuffer_no_attachments
+        #region GL_framebuffer_no_attachments
 
         ////  Delegates
         /// <summary>
@@ -37,7 +37,7 @@
         /// <param name="parameters"></param>
         public delegate void glGetNamedFramebufferParameteriv(uint framebuffer, uint pname, int[] parameters);
 
-        #endregion GL_ARB_framebuffer_no_attachments
+        #endregion GL_framebuffer_no_attachments
 
         #region GL_EXT_framebuffer_object
 
