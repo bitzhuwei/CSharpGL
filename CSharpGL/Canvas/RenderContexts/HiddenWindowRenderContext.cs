@@ -123,7 +123,7 @@ namespace CSharpGL
 #endif
                     0
                 };
-                IntPtr hrc = OpenGL.GetDelegateFor<OpenGL.wglCreateContextAttribsARB>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
+                IntPtr hrc = OpenGL.GetDelegateFor<OpenGL.wglCreateContextAttribs>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
                 Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
                 Win32.wglDeleteContext(this.RenderContextHandle);
                 Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);

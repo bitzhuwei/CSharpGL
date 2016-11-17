@@ -652,126 +652,112 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="texture"></param>
-        //public delegate void glActiveTextureARB(uint texture);
+        //public delegate void glActiveTexture(uint texture);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="texture"></param>
-        //public delegate void glClientActiveTextureARB(uint texture);
+        //public delegate void glClientActiveTexture(uint texture);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
-        //public delegate void glMultiTexCoord1dARB(uint target, double s);
+        //public delegate void glMultiTexCoord1d(uint target, double s);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord1dvARB(uint target, double[] v);
+        //public delegate void glMultiTexCoord1dv(uint target, double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
-        //public delegate void glMultiTexCoord1fARB(uint target, float s);
+        //public delegate void glMultiTexCoord1f(uint target, float s);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord1fvARB(uint target, float[] v);
+        //public delegate void glMultiTexCoord1fv(uint target, float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
-        //public delegate void glMultiTexCoord1iARB(uint target, int s);
+        //public delegate void glMultiTexCoord1i(uint target, int s);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord1ivARB(uint target, int[] v);
+        //public delegate void glMultiTexCoord1iv(uint target, int[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
-        //public delegate void glMultiTexCoord1sARB(uint target, short s);
+        //public delegate void glMultiTexCoord1s(uint target, short s);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord1svARB(uint target, short[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="s"></param>
-        ///// <param name="t"></param>
-        //public delegate void glMultiTexCoord2dARB(uint target, double s, double t);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord2dvARB(uint target, double[] v);
+        //public delegate void glMultiTexCoord1sv(uint target, short[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
         ///// <param name="t"></param>
-        //public delegate void glMultiTexCoord2fARB(uint target, float s, float t);
+        //public delegate void glMultiTexCoord2d(uint target, double s, double t);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord2fvARB(uint target, float[] v);
+        //public delegate void glMultiTexCoord2dv(uint target, double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
         ///// <param name="t"></param>
-        //public delegate void glMultiTexCoord2iARB(uint target, int s, int t);
+        //public delegate void glMultiTexCoord2f(uint target, float s, float t);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord2ivARB(uint target, int[] v);
+        //public delegate void glMultiTexCoord2fv(uint target, float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
         ///// <param name="t"></param>
-        //public delegate void glMultiTexCoord2sARB(uint target, short s, short t);
+        //public delegate void glMultiTexCoord2i(uint target, int s, int t);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord2svARB(uint target, short[] v);
+        //public delegate void glMultiTexCoord2iv(uint target, int[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="s"></param>
         ///// <param name="t"></param>
-        ///// <param name="r"></param>
-        //public delegate void glMultiTexCoord3dARB(uint target, double s, double t, double r);
+        //public delegate void glMultiTexCoord2s(uint target, short s, short t);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord3dvARB(uint target, double[] v);
+        //public delegate void glMultiTexCoord2sv(uint target, short[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -779,13 +765,13 @@ namespace CSharpGL
         ///// <param name="s"></param>
         ///// <param name="t"></param>
         ///// <param name="r"></param>
-        //public delegate void glMultiTexCoord3fARB(uint target, float s, float t, float r);
+        //public delegate void glMultiTexCoord3d(uint target, double s, double t, double r);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord3fvARB(uint target, float[] v);
+        //public delegate void glMultiTexCoord3dv(uint target, double[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -793,13 +779,13 @@ namespace CSharpGL
         ///// <param name="s"></param>
         ///// <param name="t"></param>
         ///// <param name="r"></param>
-        //public delegate void glMultiTexCoord3iARB(uint target, int s, int t, int r);
+        //public delegate void glMultiTexCoord3f(uint target, float s, float t, float r);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord3ivARB(uint target, int[] v);
+        //public delegate void glMultiTexCoord3fv(uint target, float[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -807,13 +793,13 @@ namespace CSharpGL
         ///// <param name="s"></param>
         ///// <param name="t"></param>
         ///// <param name="r"></param>
-        //public delegate void glMultiTexCoord3sARB(uint target, short s, short t, short r);
+        //public delegate void glMultiTexCoord3i(uint target, int s, int t, int r);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord3svARB(uint target, short[] v);
+        //public delegate void glMultiTexCoord3iv(uint target, int[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -821,14 +807,13 @@ namespace CSharpGL
         ///// <param name="s"></param>
         ///// <param name="t"></param>
         ///// <param name="r"></param>
-        ///// <param name="q"></param>
-        //public delegate void glMultiTexCoord4dARB(uint target, double s, double t, double r, double q);
+        //public delegate void glMultiTexCoord3s(uint target, short s, short t, short r);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord4dvARB(uint target, double[] v);
+        //public delegate void glMultiTexCoord3sv(uint target, short[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -837,13 +822,13 @@ namespace CSharpGL
         ///// <param name="t"></param>
         ///// <param name="r"></param>
         ///// <param name="q"></param>
-        //public delegate void glMultiTexCoord4fARB(uint target, float s, float t, float r, float q);
+        //public delegate void glMultiTexCoord4d(uint target, double s, double t, double r, double q);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord4fvARB(uint target, float[] v);
+        //public delegate void glMultiTexCoord4dv(uint target, double[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -852,13 +837,13 @@ namespace CSharpGL
         ///// <param name="t"></param>
         ///// <param name="r"></param>
         ///// <param name="q"></param>
-        //public delegate void glMultiTexCoord4iARB(uint target, int s, int t, int r, int q);
+        //public delegate void glMultiTexCoord4f(uint target, float s, float t, float r, float q);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord4ivARB(uint target, int[] v);
+        //public delegate void glMultiTexCoord4fv(uint target, float[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -867,13 +852,28 @@ namespace CSharpGL
         ///// <param name="t"></param>
         ///// <param name="r"></param>
         ///// <param name="q"></param>
-        //public delegate void glMultiTexCoord4sARB(uint target, short s, short t, short r, short q);
+        //public delegate void glMultiTexCoord4i(uint target, int s, int t, int r, int q);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="v"></param>
-        //public delegate void glMultiTexCoord4svARB(uint target, short[] v);
+        //public delegate void glMultiTexCoord4iv(uint target, int[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4s(uint target, short s, short t, short r, short q);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4sv(uint target, short[] v);
 
         ////  Constants
         ///// <summary>
@@ -1034,7 +1034,7 @@ namespace CSharpGL
         ///// <param name="border"></param>
         ///// <param name="imageSize"></param>
         ///// <param name="data"></param>
-        //public delegate void glCompressedTexImage3DARB(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
+        //public delegate void glCompressedTexImage3D(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
@@ -1046,7 +1046,7 @@ namespace CSharpGL
         ///// <param name="border"></param>
         ///// <param name="imageSize"></param>
         ///// <param name="data"></param>
-        //public delegate void glCompressedTexImage2DARB(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
+        //public delegate void glCompressedTexImage2D(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
@@ -1057,7 +1057,7 @@ namespace CSharpGL
         ///// <param name="border"></param>
         ///// <param name="imageSize"></param>
         ///// <param name="data"></param>
-        //public delegate void glCompressedTexImage1DARB(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
+        //public delegate void glCompressedTexImage1D(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
@@ -1072,7 +1072,7 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="imageSize"></param>
         ///// <param name="data"></param>
-        //public delegate void glCompressedTexSubImage3DARB(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
+        //public delegate void glCompressedTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
@@ -1085,7 +1085,7 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="imageSize"></param>
         ///// <param name="data"></param>
-        //public delegate void glCompressedTexSubImage2DARB(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
+        //public delegate void glCompressedTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
@@ -1096,14 +1096,14 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="imageSize"></param>
         ///// <param name="data"></param>
-        //public delegate void glCompressedTexSubImage1DARB(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
+        //public delegate void glCompressedTexSubImage1D(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="level"></param>
         ///// <param name="img"></param>
-        //public delegate void glGetCompressedTexImageARB(uint target, int level, IntPtr img);
+        //public delegate void glGetCompressedTexImage(uint target, int level, IntPtr img);
 
         ////  Constants
         ///// <summary>
@@ -1175,7 +1175,7 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="value"></param>
         ///// <param name="invert"></param>
-        //public delegate void glSampleCoverageARB(float value, bool invert);
+        //public delegate void glSampleCoverage(float value, bool invert);
 
         ////  Constants
         ///// <summary>
@@ -1348,22 +1348,22 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="m"></param>
-        //public delegate void glLoadTransposeMatrixfARB(float[] m);
+        //public delegate void glLoadTransposeMatrixf(float[] m);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="m"></param>
-        //public delegate void glLoadTransposeMatrixdARB(double[] m);
+        //public delegate void glLoadTransposeMatrixd(double[] m);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="m"></param>
-        //public delegate void glMultTransposeMatrixfARB(float[] m);
+        //public delegate void glMultTransposeMatrixf(float[] m);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="m"></param>
-        //public delegate void glMultTransposeMatrixdARB(double[] m);
+        //public delegate void glMultTransposeMatrixd(double[] m);
 
         ////  Constants
         ///// <summary>
@@ -1547,13 +1547,13 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="pname"></param>
         ///// <param name="param"></param>
-        //public delegate void glPointParameterfARB(uint pname, float param);
+        //public delegate void glPointParameterf(uint pname, float param);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glPointParameterfvARB(uint pname, float[] parameters);
+        //public delegate void glPointParameterfv(uint pname, float[] parameters);
 
         ////  Constants
         ///// <summary>
@@ -1771,93 +1771,93 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        //public delegate void glWindowPos2dARB(double x, double y);
+        //public delegate void glWindowPos2d(double x, double y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos2dvARB(double[] v);
+        //public delegate void glWindowPos2dv(double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        //public delegate void glWindowPos2fARB(float x, float y);
+        //public delegate void glWindowPos2f(float x, float y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos2fvARB(float[] v);
+        //public delegate void glWindowPos2fv(float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        //public delegate void glWindowPos2iARB(int x, int y);
+        //public delegate void glWindowPos2i(int x, int y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos2ivARB(int[] v);
+        //public delegate void glWindowPos2iv(int[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        //public delegate void glWindowPos2sARB(short x, short y);
+        //public delegate void glWindowPos2s(short x, short y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos2svARB(short[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="x"></param>
-        ///// <param name="y"></param>
-        ///// <param name="z"></param>
-        //public delegate void glWindowPos3dARB(double x, double y, double z);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="v"></param>
-        //public delegate void glWindowPos3dvARB(double[] v);
+        //public delegate void glWindowPos2sv(short[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="z"></param>
-        //public delegate void glWindowPos3fARB(float x, float y, float z);
+        //public delegate void glWindowPos3d(double x, double y, double z);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos3fvARB(float[] v);
+        //public delegate void glWindowPos3dv(double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="z"></param>
-        //public delegate void glWindowPos3iARB(int x, int y, int z);
+        //public delegate void glWindowPos3f(float x, float y, float z);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos3ivARB(int[] v);
+        //public delegate void glWindowPos3fv(float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="z"></param>
-        //public delegate void glWindowPos3sARB(short x, short y, short z);
+        //public delegate void glWindowPos3i(int x, int y, int z);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="v"></param>
-        //public delegate void glWindowPos3svARB(short[] v);
+        //public delegate void glWindowPos3iv(int[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glWindowPos3s(short x, short y, short z);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos3sv(short[] v);
 
         //#endregion
 
@@ -1869,25 +1869,25 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="buffer"></param>
-        //public delegate void glBindBufferARB(uint target, uint buffer);
+        //public delegate void glBindBuffer(uint target, uint buffer);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="buffers"></param>
-        //public delegate void glDeleteBuffersARB(int n, uint[] buffers);
+        //public delegate void glDeleteBuffers(int n, uint[] buffers);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="buffers"></param>
-        //public delegate void glGenBuffersARB(int n, uint[] buffers);
+        //public delegate void glGenBuffers(int n, uint[] buffers);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="buffer"></param>
         ///// <returns></returns>
-        //public delegate bool glIsBufferARB(uint buffer);
+        //public delegate bool glIsBuffer(uint buffer);
         ///// <summary>
         /////
         ///// </summary>
@@ -1895,7 +1895,7 @@ namespace CSharpGL
         ///// <param name="size"></param>
         ///// <param name="data"></param>
         ///// <param name="usage"></param>
-        //public delegate void glBufferDataARB(uint target, uint size, IntPtr data, uint usage);
+        //public delegate void glBufferData(uint target, uint size, IntPtr data, uint usage);
         ///// <summary>
         /////
         ///// </summary>
@@ -1903,7 +1903,7 @@ namespace CSharpGL
         ///// <param name="offset"></param>
         ///// <param name="size"></param>
         ///// <param name="data"></param>
-        //public delegate void glBufferSubDataARB(uint target, uint offset, uint size, IntPtr data);
+        //public delegate void glBufferSubData(uint target, uint offset, uint size, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
@@ -1911,34 +1911,34 @@ namespace CSharpGL
         ///// <param name="offset"></param>
         ///// <param name="size"></param>
         ///// <param name="data"></param>
-        //public delegate void glGetBufferSubDataARB(uint target, uint offset, uint size, IntPtr data);
+        //public delegate void glGetBufferSubData(uint target, uint offset, uint size, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="access"></param>
         ///// <returns></returns>
-        //public delegate IntPtr glMapBufferARB(uint target, uint access);
+        //public delegate IntPtr glMapBuffer(uint target, uint access);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <returns></returns>
-        //public delegate bool glUnmapBufferARB(uint target);
+        //public delegate bool glUnmapBuffer(uint target);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetBufferParameterivARB(uint target, uint pname, int[] parameters);
+        //public delegate void glGetBufferParameteriv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetBufferPointervARB(uint target, uint pname, IntPtr parameters);
+        //public delegate void glGetBufferPointerv(uint target, uint pname, IntPtr parameters);
 
         ////  Constants
         ///// <summary>
@@ -2075,51 +2075,51 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="ids"></param>
-        //public delegate void glGenQueriesARB(int n, uint[] ids);
+        //public delegate void glGenQueries(int n, uint[] ids);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="ids"></param>
-        //public delegate void glDeleteQueriesARB(int n, uint[] ids);
+        //public delegate void glDeleteQueries(int n, uint[] ids);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="id"></param>
         ///// <returns></returns>
-        //public delegate bool glIsQueryARB(uint id);
+        //public delegate bool glIsQuery(uint id);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="id"></param>
-        //public delegate void glBeginQueryARB(uint target, uint id);
+        //public delegate void glBeginQuery(uint target, uint id);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
-        //public delegate void glEndQueryARB(uint target);
+        //public delegate void glEndQuery(uint target);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetQueryivARB(uint target, uint pname, int[] parameters);
+        //public delegate void glGetQueryiv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="id"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetQueryObjectivARB(uint id, uint pname, int[] parameters);
+        //public delegate void glGetQueryObjectiv(uint id, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="id"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetQueryObjectuivARB(uint id, uint pname, uint[] parameters);
+        //public delegate void glGetQueryObjectuiv(uint id, uint pname, uint[] parameters);
 
         ////  Constants
         ///// <summary>
@@ -2156,25 +2156,25 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="obj"></param>
-        //public delegate void glDeleteObjectARB(uint obj);
+        //public delegate void glDeleteObject(uint obj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="pname"></param>
         ///// <returns></returns>
-        //public delegate uint glGetHandleARB(uint pname);
+        //public delegate uint glGetHandle(uint pname);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="containerObj"></param>
         ///// <param name="attachedObj"></param>
-        //public delegate void glDetachObjectARB(uint containerObj, uint attachedObj);
+        //public delegate void glDetachObject(uint containerObj, uint attachedObj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="shaderType"></param>
         ///// <returns></returns>
-        //public delegate uint glCreateShaderObjectARB(uint shaderType);
+        //public delegate uint glCreateShaderObject(uint shaderType);
         ///// <summary>
         /////
         ///// </summary>
@@ -2182,51 +2182,51 @@ namespace CSharpGL
         ///// <param name="count"></param>
         ///// <param name="source"></param>
         ///// <param name="length"></param>
-        //public delegate void glShaderSourceARB(uint shaderObj, int count, string[] source, ref int length);
+        //public delegate void glShaderSource(uint shaderObj, int count, string[] source, ref int length);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="shaderObj"></param>
-        //public delegate void glCompileShaderARB(uint shaderObj);
+        //public delegate void glCompileShader(uint shaderObj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <returns></returns>
-        //public delegate uint glCreateProgramObjectARB();
+        //public delegate uint glCreateProgramObject();
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="containerObj"></param>
         ///// <param name="obj"></param>
-        //public delegate void glAttachObjectARB(uint containerObj, uint obj);
+        //public delegate void glAttachObject(uint containerObj, uint obj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
-        //public delegate void glLinkProgramARB(uint programObj);
+        //public delegate void glLinkProgram(uint programObj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
-        //public delegate void glUseProgramObjectARB(uint programObj);
+        //public delegate void glUseProgramObject(uint programObj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
-        //public delegate void glValidateProgramARB(uint programObj);
+        //public delegate void glValidateProgram(uint programObj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="v0"></param>
-        //public delegate void glUniform1fARB(int location, float v0);
+        //public delegate void glUniform1f(int location, float v0);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="v0"></param>
         ///// <param name="v1"></param>
-        //public delegate void glUniform2fARB(int location, float v0, float v1);
+        //public delegate void glUniform2f(int location, float v0, float v1);
         ///// <summary>
         /////
         ///// </summary>
@@ -2234,7 +2234,7 @@ namespace CSharpGL
         ///// <param name="v0"></param>
         ///// <param name="v1"></param>
         ///// <param name="v2"></param>
-        //public delegate void glUniform3fARB(int location, float v0, float v1, float v2);
+        //public delegate void glUniform3f(int location, float v0, float v1, float v2);
         ///// <summary>
         /////
         ///// </summary>
@@ -2243,20 +2243,20 @@ namespace CSharpGL
         ///// <param name="v1"></param>
         ///// <param name="v2"></param>
         ///// <param name="v3"></param>
-        //public delegate void glUniform4fARB(int location, float v0, float v1, float v2, float v3);
+        //public delegate void glUniform4f(int location, float v0, float v1, float v2, float v3);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="v0"></param>
-        //public delegate void glUniform1iARB(int location, int v0);
+        //public delegate void glUniform1i(int location, int v0);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="v0"></param>
         ///// <param name="v1"></param>
-        //public delegate void glUniform2iARB(int location, int v0, int v1);
+        //public delegate void glUniform2i(int location, int v0, int v1);
         ///// <summary>
         /////
         ///// </summary>
@@ -2264,7 +2264,7 @@ namespace CSharpGL
         ///// <param name="v0"></param>
         ///// <param name="v1"></param>
         ///// <param name="v2"></param>
-        //public delegate void glUniform3iARB(int location, int v0, int v1, int v2);
+        //public delegate void glUniform3i(int location, int v0, int v1, int v2);
         ///// <summary>
         /////
         ///// </summary>
@@ -2273,71 +2273,63 @@ namespace CSharpGL
         ///// <param name="v1"></param>
         ///// <param name="v2"></param>
         ///// <param name="v3"></param>
-        //public delegate void glUniform4iARB(int location, int v0, int v1, int v2, int v3);
+        //public delegate void glUniform4i(int location, int v0, int v1, int v2, int v3);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform1fvARB(int location, int count, float[] value);
+        //public delegate void glUniform1fv(int location, int count, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform2fvARB(int location, int count, float[] value);
+        //public delegate void glUniform2fv(int location, int count, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform3fvARB(int location, int count, float[] value);
+        //public delegate void glUniform3fv(int location, int count, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform4fvARB(int location, int count, float[] value);
+        //public delegate void glUniform4fv(int location, int count, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform1ivARB(int location, int count, int[] value);
+        //public delegate void glUniform1iv(int location, int count, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform2ivARB(int location, int count, int[] value);
+        //public delegate void glUniform2iv(int location, int count, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform3ivARB(int location, int count, int[] value);
+        //public delegate void glUniform3iv(int location, int count, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
         ///// <param name="count"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform4ivARB(int location, int count, int[] value);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="location"></param>
-        ///// <param name="count"></param>
-        ///// <param name="transpose"></param>
-        ///// <param name="value"></param>
-        //public delegate void glUniformMatrix2fvARB(int location, int count, bool transpose, float[] value);
+        //public delegate void glUniform4iv(int location, int count, int[] value);
         ///// <summary>
         /////
         ///// </summary>
@@ -2345,7 +2337,7 @@ namespace CSharpGL
         ///// <param name="count"></param>
         ///// <param name="transpose"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniformMatrix3fvARB(int location, int count, bool transpose, float[] value);
+        //public delegate void glUniformMatrix2fv(int location, int count, bool transpose, float[] value);
         ///// <summary>
         /////
         ///// </summary>
@@ -2353,21 +2345,29 @@ namespace CSharpGL
         ///// <param name="count"></param>
         ///// <param name="transpose"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniformMatrix4fvARB(int location, int count, bool transpose, float[] value);
+        //public delegate void glUniformMatrix3fv(int location, int count, bool transpose, float[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="count"></param>
+        ///// <param name="transpose"></param>
+        ///// <param name="value"></param>
+        //public delegate void glUniformMatrix4fv(int location, int count, bool transpose, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="obj"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetObjectParameterfvARB(uint obj, uint pname, float[] parameters);
+        //public delegate void glGetObjectParameterfv(uint obj, uint pname, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="obj"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetObjectParameterivARB(uint obj, uint pname, int[] parameters);
+        //public delegate void glGetObjectParameteriv(uint obj, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -2375,7 +2375,7 @@ namespace CSharpGL
         ///// <param name="maxLength"></param>
         ///// <param name="length"></param>
         ///// <param name="infoLog"></param>
-        //public delegate void glGetInfoLogARB(uint obj, int maxLength, ref int length, string infoLog);
+        //public delegate void glGetInfoLog(uint obj, int maxLength, ref int length, string infoLog);
         ///// <summary>
         /////
         ///// </summary>
@@ -2383,14 +2383,14 @@ namespace CSharpGL
         ///// <param name="maxCount"></param>
         ///// <param name="count"></param>
         ///// <param name="obj"></param>
-        //public delegate void glGetAttachedObjectsARB(uint containerObj, int maxCount, ref int count, ref uint obj);
+        //public delegate void glGetAttachedObjects(uint containerObj, int maxCount, ref int count, ref uint obj);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
         ///// <param name="name"></param>
         ///// <returns></returns>
-        //public delegate int glGetUniformLocationARB(uint programObj, string name);
+        //public delegate int glGetUniformLocation(uint programObj, string name);
         ///// <summary>
         /////
         ///// </summary>
@@ -2401,21 +2401,21 @@ namespace CSharpGL
         ///// <param name="size"></param>
         ///// <param name="type"></param>
         ///// <param name="name"></param>
-        //public delegate void glGetActiveUniformARB(uint programObj, uint index, int maxLength, ref int length, ref int size, ref uint type, string name);
+        //public delegate void glGetActiveUniform(uint programObj, uint index, int maxLength, ref int length, ref int size, ref uint type, string name);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
         ///// <param name="location"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetUniformfvARB(uint programObj, int location, float[] parameters);
+        //public delegate void glGetUniformfv(uint programObj, int location, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
         ///// <param name="location"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetUniformivARB(uint programObj, int location, int[] parameters);
+        //public delegate void glGetUniformiv(uint programObj, int location, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -2423,7 +2423,7 @@ namespace CSharpGL
         ///// <param name="maxLength"></param>
         ///// <param name="length"></param>
         ///// <param name="source"></param>
-        //public delegate void glGetShaderSourceARB(uint obj, int maxLength, ref int length, string source);
+        //public delegate void glGetShaderSource(uint obj, int maxLength, ref int length, string source);
 
         ////  Constants
         ///// <summary>
@@ -2573,90 +2573,76 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="x"></param>
-        //public delegate void glVertexAttrib1dARB(uint index, double x);
+        //public delegate void glVertexAttrib1d(uint index, double x);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib1dvARB(uint index, double[] v);
+        //public delegate void glVertexAttrib1dv(uint index, double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="x"></param>
-        //public delegate void glVertexAttrib1fARB(uint index, float x);
+        //public delegate void glVertexAttrib1f(uint index, float x);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib1fvARB(uint index, float[] v);
+        //public delegate void glVertexAttrib1fv(uint index, float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="x"></param>
-        //public delegate void glVertexAttrib1sARB(uint index, short x);
+        //public delegate void glVertexAttrib1s(uint index, short x);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib1svARB(uint index, short[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="x"></param>
-        ///// <param name="y"></param>
-        //public delegate void glVertexAttrib2dARB(uint index, double x, double y);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="v"></param>
-        //public delegate void glVertexAttrib2dvARB(uint index, double[] v);
+        //public delegate void glVertexAttrib1sv(uint index, short[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        //public delegate void glVertexAttrib2fARB(uint index, float x, float y);
+        //public delegate void glVertexAttrib2d(uint index, double x, double y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib2fvARB(uint index, float[] v);
+        //public delegate void glVertexAttrib2dv(uint index, double[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        //public delegate void glVertexAttrib2sARB(uint index, short x, short y);
+        //public delegate void glVertexAttrib2f(uint index, float x, float y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib2svARB(uint index, short[] v);
+        //public delegate void glVertexAttrib2fv(uint index, float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="x"></param>
         ///// <param name="y"></param>
-        ///// <param name="z"></param>
-        //public delegate void glVertexAttrib3dARB(uint index, double x, double y, double z);
+        //public delegate void glVertexAttrib2s(uint index, short x, short y);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib3dvARB(uint index, double[] v);
+        //public delegate void glVertexAttrib2sv(uint index, short[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2664,13 +2650,13 @@ namespace CSharpGL
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="z"></param>
-        //public delegate void glVertexAttrib3fARB(uint index, float x, float y, float z);
+        //public delegate void glVertexAttrib3d(uint index, double x, double y, double z);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib3fvARB(uint index, float[] v);
+        //public delegate void glVertexAttrib3dv(uint index, double[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2678,31 +2664,13 @@ namespace CSharpGL
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="z"></param>
-        //public delegate void glVertexAttrib3sARB(uint index, short x, short y, short z);
+        //public delegate void glVertexAttrib3f(uint index, float x, float y, float z);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib3svARB(uint index, short[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4NbvARB(uint index, sbyte[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4NivARB(uint index, int[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4NsvARB(uint index, short[] v);
+        //public delegate void glVertexAttrib3fv(uint index, float[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2710,32 +2678,31 @@ namespace CSharpGL
         ///// <param name="x"></param>
         ///// <param name="y"></param>
         ///// <param name="z"></param>
-        ///// <param name="w"></param>
-        //public delegate void glVertexAttrib4NubARB(uint index, byte x, byte y, byte z, byte w);
+        //public delegate void glVertexAttrib3s(uint index, short x, short y, short z);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4NubvARB(uint index, byte[] v);
+        //public delegate void glVertexAttrib3sv(uint index, short[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4NuivARB(uint index, uint[] v);
+        //public delegate void glVertexAttrib4Nbv(uint index, sbyte[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4NusvARB(uint index, ushort[] v);
+        //public delegate void glVertexAttrib4Niv(uint index, int[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4bvARB(uint index, sbyte[] v);
+        //public delegate void glVertexAttrib4Nsv(uint index, short[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2744,13 +2711,31 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glVertexAttrib4dARB(uint index, double x, double y, double z, double w);
+        //public delegate void glVertexAttrib4Nub(uint index, byte x, byte y, byte z, byte w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4dvARB(uint index, double[] v);
+        //public delegate void glVertexAttrib4Nubv(uint index, byte[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nuiv(uint index, uint[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nusv(uint index, ushort[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4bv(uint index, sbyte[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2759,19 +2744,13 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glVertexAttrib4fARB(uint index, float x, float y, float z, float w);
+        //public delegate void glVertexAttrib4d(uint index, double x, double y, double z, double w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4fvARB(uint index, float[] v);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4ivARB(uint index, int[] v);
+        //public delegate void glVertexAttrib4dv(uint index, double[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2780,31 +2759,52 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glVertexAttrib4sARB(uint index, short x, short y, short z, short w);
+        //public delegate void glVertexAttrib4f(uint index, float x, float y, float z, float w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4svARB(uint index, short[] v);
+        //public delegate void glVertexAttrib4fv(uint index, float[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4ubvARB(uint index, byte[] v);
+        //public delegate void glVertexAttrib4iv(uint index, int[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        ///// <param name="w"></param>
+        //public delegate void glVertexAttrib4s(uint index, short x, short y, short z, short w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4uivARB(uint index, uint[] v);
+        //public delegate void glVertexAttrib4sv(uint index, short[] v);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="v"></param>
-        //public delegate void glVertexAttrib4usvARB(uint index, ushort[] v);
+        //public delegate void glVertexAttrib4ubv(uint index, byte[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4uiv(uint index, uint[] v);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4usv(uint index, ushort[] v);
         ///// <summary>
         /////
         ///// </summary>
@@ -2814,17 +2814,17 @@ namespace CSharpGL
         ///// <param name="normalized"></param>
         ///// <param name="stride"></param>
         ///// <param name="pointer"></param>
-        //public delegate void glVertexAttribPointerARB(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+        //public delegate void glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
-        //public delegate void glEnableVertexAttribArrayARB(uint index);
+        //public delegate void glEnableVertexAttribArray(uint index);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
-        //public delegate void glDisableVertexAttribArrayARB(uint index);
+        //public delegate void glDisableVertexAttribArray(uint index);
         ///// <summary>
         /////
         ///// </summary>
@@ -2832,25 +2832,25 @@ namespace CSharpGL
         ///// <param name="format"></param>
         ///// <param name="len"></param>
         ///// <param name="str"></param>
-        //public delegate void glProgramStringARB(uint target, uint format, int len, IntPtr str);
+        //public delegate void glProgramString(uint target, uint format, int len, IntPtr str);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="program"></param>
-        //public delegate void glBindProgramARB(uint target, uint program);
+        //public delegate void glBindProgram(uint target, uint program);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="programs"></param>
-        //public delegate void glDeleteProgramsARB(int n, uint[] programs);
+        //public delegate void glDeletePrograms(int n, uint[] programs);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="programs"></param>
-        //public delegate void glGenProgramsARB(int n, uint[] programs);
+        //public delegate void glGenPrograms(int n, uint[] programs);
         ///// <summary>
         /////
         ///// </summary>
@@ -2860,14 +2860,14 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glProgramEnvParameter4dARB(uint target, uint index, double x, double y, double z, double w);
+        //public delegate void glProgramEnvParameter4d(uint target, uint index, double x, double y, double z, double w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glProgramEnvParameter4dvARB(uint target, uint index, double[] parameters);
+        //public delegate void glProgramEnvParameter4dv(uint target, uint index, double[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -2877,14 +2877,14 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glProgramEnvParameter4fARB(uint target, uint index, float x, float y, float z, float w);
+        //public delegate void glProgramEnvParameter4f(uint target, uint index, float x, float y, float z, float w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glProgramEnvParameter4fvARB(uint target, uint index, float[] parameters);
+        //public delegate void glProgramEnvParameter4fv(uint target, uint index, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -2894,14 +2894,14 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glProgramLocalParameter4dARB(uint target, uint index, double x, double y, double z, double w);
+        //public delegate void glProgramLocalParameter4d(uint target, uint index, double x, double y, double z, double w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glProgramLocalParameter4dvARB(uint target, uint index, double[] parameters);
+        //public delegate void glProgramLocalParameter4dv(uint target, uint index, double[] parameters);
         ///// <summary>
         /////
         ///// </summary>
@@ -2911,84 +2911,84 @@ namespace CSharpGL
         ///// <param name="y"></param>
         ///// <param name="z"></param>
         ///// <param name="w"></param>
-        //public delegate void glProgramLocalParameter4fARB(uint target, uint index, float x, float y, float z, float w);
+        //public delegate void glProgramLocalParameter4f(uint target, uint index, float x, float y, float z, float w);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glProgramLocalParameter4fvARB(uint target, uint index, float[] parameters);
+        //public delegate void glProgramLocalParameter4fv(uint target, uint index, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetProgramEnvParameterdvARB(uint target, uint index, double[] parameters);
+        //public delegate void glGetProgramEnvParameterdv(uint target, uint index, double[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetProgramEnvParameterfvARB(uint target, uint index, float[] parameters);
+        //public delegate void glGetProgramEnvParameterfv(uint target, uint index, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetProgramLocalParameterdvARB(uint target, uint index, double[] parameters);
+        //public delegate void glGetProgramLocalParameterdv(uint target, uint index, double[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="index"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetProgramLocalParameterfvARB(uint target, uint index, float[] parameters);
+        //public delegate void glGetProgramLocalParameterfv(uint target, uint index, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetProgramivARB(uint target, uint pname, int[] parameters);
+        //public delegate void glGetProgramiv(uint target, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="pname"></param>
         ///// <param name="str"></param>
-        //public delegate void glGetProgramStringARB(uint target, uint pname, IntPtr str);
+        //public delegate void glGetProgramString(uint target, uint pname, IntPtr str);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetVertexAttribdvARB(uint index, uint pname, double[] parameters);
+        //public delegate void glGetVertexAttribdv(uint index, uint pname, double[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetVertexAttribfvARB(uint index, uint pname, float[] parameters);
+        //public delegate void glGetVertexAttribfv(uint index, uint pname, float[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
-        //public delegate void glGetVertexAttribivARB(uint index, uint pname, int[] parameters);
+        //public delegate void glGetVertexAttribiv(uint index, uint pname, int[] parameters);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="index"></param>
         ///// <param name="pname"></param>
         ///// <param name="pointer"></param>
-        //public delegate void glGetVertexAttribPointervARB(uint index, uint pname, IntPtr pointer);
+        //public delegate void glGetVertexAttribPointerv(uint index, uint pname, IntPtr pointer);
 
         ////  Constants
         ///// <summary>
@@ -3319,7 +3319,7 @@ namespace CSharpGL
         ///// <param name="programObj"></param>
         ///// <param name="index"></param>
         ///// <param name="name"></param>
-        //public delegate void glBindAttribLocationARB(uint programObj, uint index, string name);
+        //public delegate void glBindAttribLocation(uint programObj, uint index, string name);
         ///// <summary>
         /////
         ///// </summary>
@@ -3330,14 +3330,14 @@ namespace CSharpGL
         ///// <param name="size"></param>
         ///// <param name="type"></param>
         ///// <param name="name"></param>
-        //public delegate void glGetActiveAttribARB(uint programObj, uint index, int maxLength, int[] length, int[] size, uint[] type, string name);
+        //public delegate void glGetActiveAttrib(uint programObj, uint index, int maxLength, int[] length, int[] size, uint[] type, string name);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="programObj"></param>
         ///// <param name="name"></param>
         ///// <returns></returns>
-        //public delegate uint glGetAttribLocationARB(uint programObj, string name);
+        //public delegate uint glGetAttribLocation(uint programObj, string name);
 
         ////  Constants
         ///// <summary>
@@ -3396,7 +3396,7 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="bufs"></param>
-        //public delegate void glDrawBuffersARB(int n, uint[] bufs);
+        //public delegate void glDrawBuffers(int n, uint[] bufs);
 
         ////  Constants
         ///// <summary>
@@ -3843,7 +3843,7 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="hdc"></param>
         ///// <returns></returns>
-        //public delegate string wglGetExtensionsStringARB(IntPtr hdc);
+        //public delegate string wglGetExtensionsString(IntPtr hdc);
 
         //#endregion
 
@@ -3868,7 +3868,7 @@ namespace CSharpGL
         /// specified more than once, then the last value specified is used.
         /// </param>
         /// <returns></returns>
-        public delegate IntPtr wglCreateContextAttribsARB(IntPtr hDC, IntPtr hShareContext, int[] attribList);
+        public delegate IntPtr wglCreateContextAttribs(IntPtr hDC, IntPtr hShareContext, int[] attribList);
 
         //  Constants
         /// <summary>

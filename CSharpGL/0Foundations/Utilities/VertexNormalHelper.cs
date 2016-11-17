@@ -5,6 +5,12 @@
     /// </summary>
     public static class VertexNormalHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positions"></param>
+        /// <param name="indexes"></param>
+        /// <returns></returns>
         public static vec3[] GenerateNormalsForQuadMesh(vec3[] positions, uint[] indexes)
         {
             var faceNormals = new vec3[indexes.Length / 4];
@@ -72,6 +78,12 @@
             return normals;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positions"></param>
+        /// <param name="indexes"></param>
+        /// <returns></returns>
         public static vec3[] GenerateNormalsForTriangleMesh(vec3[] positions, uint[] indexes)
         {
             var faceNormals = new vec3[indexes.Length / 3];
