@@ -8,16 +8,11 @@ namespace CSharpGL
     /// </summary>
     internal static partial class Win32
     {
-        private static OpenGL32Library lib;
-
-        static Win32()
-        {
-            lib = OpenGL32Library.Instance;
-        }
+        private static readonly OpenGL32Library lib = OpenGL32Library.Instance;
 
         internal static IntPtr GetProcAddress(string name)
         {
-            return Win32.GetProcAddress(OpenGL32Library.Instance.libPtr, name);
+            return Win32.GetProcAddress(lib.libPtr, name);
         }
 
         #region Kernel32 Functions
