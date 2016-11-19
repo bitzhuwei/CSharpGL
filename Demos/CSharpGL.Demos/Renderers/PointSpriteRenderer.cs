@@ -80,40 +80,34 @@ namespace CSharpGL.Demos
                     if (this.positionBuffer == null)
                     {
                         int length = particleCount;
-                        VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
-                        unsafe
+                        var array = new vec3[length];
+                        for (int i = 0; i < particleCount; i++)
                         {
-                            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                            var array = (vec3*)pointer;
-                            for (int i = 0; i < particleCount; i++)
+                            if (i % 2 == 0)
                             {
-                                if (i % 2 == 0)
+                                while (true)
                                 {
-                                    while (true)
+                                    var x = (float)(random.NextDouble() * 2 - 1) * factor;
+                                    var y = (float)(random.NextDouble() * 2 - 1) * factor;
+                                    var z = (float)(random.NextDouble() * 2 - 1) * factor;
+                                    if (y < 0 && x * x + y * y + z * z >= factor * factor)
                                     {
-                                        var x = (float)(random.NextDouble() * 2 - 1) * factor;
-                                        var y = (float)(random.NextDouble() * 2 - 1) * factor;
-                                        var z = (float)(random.NextDouble() * 2 - 1) * factor;
-                                        if (y < 0 && x * x + y * y + z * z >= factor * factor)
-                                        {
-                                            array[i] = new vec3(x, y, z);
-                                            break;
-                                        }
+                                        array[i] = new vec3(x, y, z);
+                                        break;
                                     }
                                 }
-                                else
-                                {
-                                    double theta = random.NextDouble() * 2 * Math.PI - Math.PI;
-                                    double alpha = random.NextDouble() * 2 * Math.PI - Math.PI;
-                                    array[i] = new vec3(
-                                        (float)(Math.Sin(theta) * Math.Cos(alpha)) * factor,
-                                        (float)(Math.Sin(theta) * Math.Sin(alpha)) * factor,
-                                        (float)(Math.Cos(theta)) * factor);
-                                }
                             }
-                            buffer.UnmapBuffer();
+                            else
+                            {
+                                double theta = random.NextDouble() * 2 * Math.PI - Math.PI;
+                                double alpha = random.NextDouble() * 2 * Math.PI - Math.PI;
+                                array[i] = new vec3(
+                                    (float)(Math.Sin(theta) * Math.Cos(alpha)) * factor,
+                                    (float)(Math.Sin(theta) * Math.Sin(alpha)) * factor,
+                                    (float)(Math.Cos(theta)) * factor);
+                            }
                         }
-
+                        VertexBuffer buffer = array.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                         this.positionBuffer = buffer;
                     }
 
