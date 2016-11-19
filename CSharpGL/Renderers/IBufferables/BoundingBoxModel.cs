@@ -79,18 +79,12 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = positions.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
-                    unsafe
+                    var array = new vec3[positions.Length];
+                    for (int i = 0; i < positions.Length; i++)
                     {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec3*)pointer;
-                        for (int i = 0; i < positions.Length; i++)
-                        {
-                            array[i] = positions[i] / 2 * this.lengths;
-                        }
-                        buffer.UnmapBuffer();
+                        array[i] = positions[i] / 2 * this.lengths;
                     }
+                    VertexBuffer buffer = array.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     this.positionBuffer = buffer;
                 }
                 return this.positionBuffer;

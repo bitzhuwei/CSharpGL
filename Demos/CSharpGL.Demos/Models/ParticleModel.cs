@@ -33,23 +33,17 @@ namespace CSharpGL.Demos
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = particleCount;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, varNameInShader, BufferUsage.DynamicCopy);
-                    unsafe
+                    var array = new vec4[particleCount];
+                    for (int i = 0; i < particleCount; i++)
                     {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec4*)pointer;
-                        for (int i = 0; i < particleCount; i++)
-                        {
-                            array[i] = new vec4(
-                                (float)(random.NextDouble() - 0.5) * 20,
-                                (float)(random.NextDouble() - 0.5) * 20,
-                                (float)(random.NextDouble() - 0.5) * 20,
-                                (float)(random.NextDouble())
-                                );
-                        }
-                        buffer.UnmapBuffer();
+                        array[i] = new vec4(
+                            (float)(random.NextDouble() - 0.5) * 20,
+                            (float)(random.NextDouble() - 0.5) * 20,
+                            (float)(random.NextDouble() - 0.5) * 20,
+                            (float)(random.NextDouble())
+                            );
                     }
+                    VertexBuffer buffer = array.GenVertexBuffer(VBOConfig.Vec4, varNameInShader, BufferUsage.DynamicCopy);
                     this.positionBuffer = buffer;
                 }
 
@@ -59,23 +53,17 @@ namespace CSharpGL.Demos
             {
                 if (this.velocityBuffer == null)
                 {
-                    int length = particleCount;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(vec4), length, VBOConfig.Vec4, varNameInShader, BufferUsage.StaticDraw);
-                    unsafe
+                    var array = new vec4[particleCount];
+                    for (int i = 0; i < particleCount; i++)
                     {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (vec4*)pointer;
-                        for (int i = 0; i < particleCount; i++)
-                        {
-                            array[i] = new vec4(
-                                (float)(random.NextDouble() - 0.5) * 0.2f,
-                                (float)(random.NextDouble() - 0.5) * 0.2f,
-                                (float)(random.NextDouble() - 0.5) * 0.2f,
-                                0
-                                );
-                        }
-                        buffer.UnmapBuffer();
+                        array[i] = new vec4(
+                               (float)(random.NextDouble() - 0.5) * 0.2f,
+                               (float)(random.NextDouble() - 0.5) * 0.2f,
+                               (float)(random.NextDouble() - 0.5) * 0.2f,
+                               0
+                               );
                     }
+                    VertexBuffer buffer = array.GenVertexBuffer(VBOConfig.Vec4, varNameInShader, BufferUsage.StaticDraw);
                     this.velocityBuffer = buffer;
                 }
 
