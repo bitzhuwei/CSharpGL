@@ -79,8 +79,7 @@ namespace CSharpGL.Demos
                 {
                     if (this.positionBuffer == null)
                     {
-                        int length = particleCount;
-                        var array = new vec3[length];
+                        var array = new vec3[particleCount];
                         for (int i = 0; i < particleCount; i++)
                         {
                             if (i % 2 == 0)
