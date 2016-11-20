@@ -20,6 +20,7 @@ namespace CSharpGL
             UnmanagedArrayBase unmanagedArray = UnmanagedArray<vec3>.FromHandle(header, 1);
             bool result = ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, unmanagedArray, autoBind);
             pin.Free();
+
             return result;
         }
 
