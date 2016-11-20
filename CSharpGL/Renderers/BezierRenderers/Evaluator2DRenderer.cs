@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -45,8 +47,6 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             Setup(this.controlPoints);
-
-            controlPoints.Dispose();
         }
 
         /// <summary>
@@ -83,8 +83,10 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Setup(UnmanagedArray<vec3> controlPoints)
+        public override void Setup(vec3[] controlPoints)
         {
+            GCHandle pin = GCHandle.Alloc(controlPoints, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(controlPoints, 0);
             OpenGL.Map2f(OpenGL.GL_MAP2_VERTEX_3, //生成的数据类型
                    minU, // u的下界
                    maxU, //u的上界
@@ -94,10 +96,11 @@ namespace CSharpGL
                    maxV, //v的上界
                    9, // 控制点之间的间隔
                    3, // v方向上的阶
-                   controlPoints.Header); //控制点数组
+                   header); //控制点数组
             //OpenGL.Enable(OpenGL.GL_MAP2_VERTEX_3);
             //从0到10映射一个包含10个点的网格
             OpenGL.MapGrid2f(10, 0.0f, 10.0f, 10, 0.0f, 10.0f);
+            pin.Free();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected unsafe UnmanagedArray<vec3> controlPoints;
+        protected unsafe vec3[] controlPoints;
 
         /// <summary>
         ///
@@ -31,16 +31,7 @@ namespace CSharpGL
         {
             vec3[] points = controlPoints.ToArray();
             BoundingBox box = points.Move2Center();
-            var array = new UnmanagedArray<vec3>(points.Length);
-            unsafe
-            {
-                var pointer = (vec3*)array.Header.ToPointer();
-                for (int i = 0; i < array.Length; i++)
-                {
-                    pointer[i] = points[i];
-                }
-            }
-            this.controlPoints = array;
+            this.controlPoints = points;
             this.ModelSize = box.MaxPosition - box.MinPosition;
             // TODO: not needed. Why?
             //this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
@@ -53,6 +44,6 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="controlPoints"></param>
-        public abstract void Setup(UnmanagedArray<vec3> controlPoints);
+        public abstract void Setup(vec3[] controlPoints);
     }
 }

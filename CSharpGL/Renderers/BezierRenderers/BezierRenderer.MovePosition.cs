@@ -50,18 +50,16 @@ namespace CSharpGL
 
             int length = this.PositionBuffer.Length;
             mat4 modelMatrix = this.GetModelMatrix().Value;
-            var array = new UnmanagedArray<vec3>(length);
+            var array = new vec3[length];
             unsafe
             {
-                var header = (vec3*)array.Header.ToPointer();
                 var bufferHeader = (vec3*)pointer.ToPointer();
                 for (int i = 0; i < length; i++)
                 {
-                    header[i] = new vec3(modelMatrix * new vec4(bufferHeader[i], 1.0f));
+                    array[i] = new vec3(modelMatrix * new vec4(bufferHeader[i], 1.0f));
                 }
             }
             this.Evaluator.Setup(array);
-            array.Dispose();
             this.PositionBuffer.UnmapBuffer();
         }
     }
