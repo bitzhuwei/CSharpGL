@@ -60,7 +60,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
+            var unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             IndexBufferElementType type;
             if (typeof(T) == typeof(uint)) { type = IndexBufferElementType.UInt; }
             else if (typeof(T) == typeof(ushort)) { type = IndexBufferElementType.UShort; }

@@ -23,7 +23,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
+            UnmanagedArrayBase unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             VertexBuffer buffer = GetVertexBuffer(unmanagedArray, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
             pinned.Free();
 

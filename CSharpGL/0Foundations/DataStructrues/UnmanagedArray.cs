@@ -38,7 +38,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="header"></param>
         /// <param name="count"></param>
-        internal UnmanagedArray(IntPtr header, int count)
+        /// <returns></returns>
+        public static UnmanagedArray<T> FromHandle(IntPtr header, int count)
+        {
+            return new UnmanagedArray<T>(header, count);
+        }
+
+        private UnmanagedArray(IntPtr header, int count)
             : base(header, count, Marshal.SizeOf(typeof(T)))
         { }
 
