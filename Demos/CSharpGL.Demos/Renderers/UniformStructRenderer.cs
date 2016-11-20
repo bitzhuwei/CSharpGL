@@ -79,14 +79,13 @@ namespace CSharpGL.Demos
             set
             {
                 var buffer = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
-                var array = new UnmanagedArray<vec3>(1);
-                // this works slow.
-                array[0] = new vec3(
+                var data = new vec3(
                     (float)random.NextDouble(),
                     (float)random.NextDouble(),
                     (float)random.NextDouble()
                     );
-                buffer.ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
+                //buffer.ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
+                buffer.ClearBufferData(data);
                 this.testClearBufferDataOrder++;
             }
         }

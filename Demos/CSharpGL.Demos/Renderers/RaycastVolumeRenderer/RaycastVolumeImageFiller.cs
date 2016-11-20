@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL.Demos
 {
@@ -33,12 +34,11 @@ namespace CSharpGL.Demos
         /// </summary>
         public override void Fill()
         {
-            var data = new UnmanagedArray<byte>(width * height * depth);
+            var data = new byte[width * height * depth];
             unsafe
             {
                 int index = 0;
                 int readCount = 0;
-                byte* array = (byte*)data.Header.ToPointer();
                 using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
                 using (var br = new BinaryReader(fs))
                 {
@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
 
                         for (int i = 0; i < readCount; i++)
                         {
-                            array[index++] = cache[i];
+                            data[index++] = cache[i];
                         }
                         unReadCount -= readCount;
                     } while (readCount > 0);
@@ -62,10 +62,12 @@ namespace CSharpGL.Demos
             }
 
             OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
+            GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(data, 0);
             OpenGL.TexImage3D(OpenGL.GL_TEXTURE_3D, 0, (int)OpenGL.GL_INTENSITY,
                 width, height, depth, 0,
-                OpenGL.GL_LUMINANCE, OpenGL.GL_UNSIGNED_BYTE, data.Header);
-            data.Dispose();
+                OpenGL.GL_LUMINANCE, OpenGL.GL_UNSIGNED_BYTE, header);
+            pin.Free();
         }
     }
 }
