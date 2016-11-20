@@ -38,18 +38,12 @@ namespace CSharpGL.Demos
             {
                 if (this.positionBuffer == null)
                 {
-                    int length = xy_vertices.Length;
-                    VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec4, varNameInShader, BufferUsage.StaticDraw);
-                    unsafe
+                    var array = new float[xy_vertices.Length];
+                    for (int i = 0; i < xy_vertices.Length; i++)
                     {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (float*)pointer;
-                        for (int i = 0; i < xy_vertices.Length; i++)
-                        {
-                            array[i] = xy_vertices[i] * this.halfExtent;
-                        }
-                        buffer.UnmapBuffer();
+                        array[i] = xy_vertices[i] * this.halfExtent;
                     }
+                    VertexBuffer buffer = array.GenVertexBuffer(VBOConfig.Vec4, varNameInShader, BufferUsage.StaticDraw);
                     this.positionBuffer = buffer;
                 }
                 return this.positionBuffer;
