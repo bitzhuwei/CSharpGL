@@ -105,14 +105,12 @@ namespace CSharpGL.Demos
                 var buffer = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
                 int offset = buffer.ByteLength / 3;
                 int size = buffer.ByteLength * 2 / 3;
-                var array = new UnmanagedArray<vec3>(1);
-                // this works slow.
-                array[0] = new vec3(
+                var array = new vec3(
                     (float)random.NextDouble(),
                     (float)random.NextDouble(),
                     (float)random.NextDouble()
                     );
-                buffer.ClearBufferSubData(OpenGL.GL_RGB32F, new IntPtr(offset), (uint)size, OpenGL.GL_RGB, OpenGL.GL_FLOAT, array);
+                buffer.ClearBufferSubData(offset, (uint)size, array);
                 this.testClearBufferSubDataOrder++;
             }
         }
