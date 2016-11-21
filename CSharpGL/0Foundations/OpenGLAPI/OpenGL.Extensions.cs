@@ -5332,6 +5332,31 @@ namespace CSharpGL
         public const uint GL_MAX_VERTEX_IMAGE_UNIFORMS = 0x90CA;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_TESS_CONTROL_IMAGE_UNIFORMS = 0x90CB;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_TESS_EVALUATION_IMAGE_UNIFORMS = 0x90CC;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_GEOMETRY_IMAGE_UNIFORMS = 0x90CD;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_FRAGMENT_IMAGE_UNIFORMS = 0x90CE;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_COMBINED_IMAGE_UNIFORMS = 0x90CF;
+
+        /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_VERTEX_UNIFORM_BLOCKS = 0x8A2B;

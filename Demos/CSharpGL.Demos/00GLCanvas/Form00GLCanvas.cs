@@ -59,9 +59,20 @@ namespace CSharpGL.Demos
             content.Add(string.Format("Max Framebuffer Height: {0}", Framebuffer.MaxFramebufferHeight()));
             content.Add(string.Format("Max Framebuffer Layers: {0}", Framebuffer.MaxFramebufferLayers()));
             content.Add(string.Format("Max Framebuffer Samples: {0}", Framebuffer.MaxFramebufferSamples()));
-            var maxVertexImageUniforms = new int[1];
-            OpenGL.GetInteger(OpenGL.GL_MAX_VERTEX_IMAGE_UNIFORMS, maxVertexImageUniforms);
-            content.Add(string.Format("Max Vertex Image Uniforms: {0}", maxVertexImageUniforms[0]));
+            var maxImageUniforms = new int[1];
+            OpenGL.GetInteger(OpenGL.GL_MAX_VERTEX_IMAGE_UNIFORMS, maxImageUniforms);
+            content.Add(string.Format("Max Vertex Image Uniforms: {0}", maxImageUniforms[0]));
+            OpenGL.GetInteger(OpenGL.GL_MAX_TESS_CONTROL_IMAGE_UNIFORMS, maxImageUniforms);
+            content.Add(string.Format("Max TESS CONTROL Image Uniforms: {0}", maxImageUniforms[0]));
+            OpenGL.GetInteger(OpenGL.GL_MAX_TESS_EVALUATION_IMAGE_UNIFORMS, maxImageUniforms);
+            content.Add(string.Format("Max TESS EVALUATION Image Uniforms: {0}", maxImageUniforms[0]));
+            OpenGL.GetInteger(OpenGL.GL_MAX_GEOMETRY_IMAGE_UNIFORMS, maxImageUniforms);
+            content.Add(string.Format("Max Geometry Image Uniforms: {0}", maxImageUniforms[0]));
+            OpenGL.GetInteger(OpenGL.GL_MAX_FRAGMENT_IMAGE_UNIFORMS, maxImageUniforms);
+            content.Add(string.Format("Max Fragment Image Uniforms: {0}", maxImageUniforms[0]));
+            OpenGL.GetInteger(OpenGL.GL_MAX_COMBINED_IMAGE_UNIFORMS, maxImageUniforms);
+            content.Add(string.Format("Max Combined Image Uniforms: {0}", maxImageUniforms[0]));
+
             //content.Add(string.Format("Framebuffer Default Width: {0}", Framebuffer.DefaultWidth()));
             //content.Add(string.Format("Framebuffer Default Height: {0}", Framebuffer.DefaultHeight()));
             //content.Add(string.Format("Framebuffer Default Layers: {0}", Framebuffer.DefaultLayers()));
