@@ -59,6 +59,9 @@ namespace CSharpGL.Demos
             content.Add(string.Format("Max Framebuffer Height: {0}", Framebuffer.MaxFramebufferHeight()));
             content.Add(string.Format("Max Framebuffer Layers: {0}", Framebuffer.MaxFramebufferLayers()));
             content.Add(string.Format("Max Framebuffer Samples: {0}", Framebuffer.MaxFramebufferSamples()));
+            var maxVertexImageUniforms = new int[1];
+            OpenGL.GetInteger(OpenGL.GL_MAX_VERTEX_IMAGE_UNIFORMS, maxVertexImageUniforms);
+            content.Add(string.Format("Max Vertex Image Uniforms: {0}", maxVertexImageUniforms[0]));
             //content.Add(string.Format("Framebuffer Default Width: {0}", Framebuffer.DefaultWidth()));
             //content.Add(string.Format("Framebuffer Default Height: {0}", Framebuffer.DefaultHeight()));
             //content.Add(string.Format("Framebuffer Default Layers: {0}", Framebuffer.DefaultLayers()));

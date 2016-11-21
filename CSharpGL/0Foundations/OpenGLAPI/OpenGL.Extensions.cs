@@ -5327,6 +5327,11 @@ namespace CSharpGL
         public const uint GL_UNIFORM_BUFFER_SIZE = 0x8A2A;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_VERTEX_IMAGE_UNIFORMS = 0x90CA;
+
+        /// <summary>
         ///
         /// </summary>
         public const uint GL_MAX_VERTEX_UNIFORM_BLOCKS = 0x8A2B;
