@@ -2,6 +2,7 @@
 
 namespace CSharpGL
 {
+    // 运用GLSL的struct和数组方式来定义Buffer布局。
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
