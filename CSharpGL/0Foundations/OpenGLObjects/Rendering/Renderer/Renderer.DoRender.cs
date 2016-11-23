@@ -17,34 +17,34 @@
             program.Bind();
             SetUniformValues(program);
 
-            GLSwitch[] switchList = this.switchList.ToArray();
-            SwitchesOn(switchList);
+            GLState[] stateList = this.stateList.ToArray();
+            StatesOn(stateList);
 
             this.vertexArrayObject.Render(arg, program);
 
-            SwitchesOff(switchList);
+            StatesOff(stateList);
 
             // 解绑shader
             program.Unbind();
         }
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void SwitchesOn(GLSwitch[] switchList)
+        private void StatesOn(GLState[] stateList)
         {
-            int count = switchList.Length;
+            int count = stateList.Length;
             for (int i = 0; i < count; i++)
             {
-                switchList[i].On();
+                stateList[i].On();
             }
         }
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void SwitchesOff(GLSwitch[] switchList)
+        private void StatesOff(GLState[] stateList)
         {
-            int count = switchList.Length;
+            int count = stateList.Length;
             for (int i = count - 1; i >= 0; i--)
             {
-                switchList[i].Off();
+                stateList[i].Off();
             }
         }
 

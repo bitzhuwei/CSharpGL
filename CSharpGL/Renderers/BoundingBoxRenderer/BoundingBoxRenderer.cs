@@ -39,7 +39,7 @@ namespace CSharpGL
                 @"Resources\BoundingBox.frag"), ShaderType.FragmentShader);
             var map = new AttributeMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
-            var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeSwitch(PolygonMode.Line), new PolygonOffsetFillSwitch());
+            var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeState(PolygonMode.Line), new PolygonOffsetFillState());
             result.ModelSize = lengths;
             return result;
         }
@@ -52,7 +52,7 @@ namespace CSharpGL
         /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
         private BoundingBoxRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             this.BoundingBoxColor = Color.White;

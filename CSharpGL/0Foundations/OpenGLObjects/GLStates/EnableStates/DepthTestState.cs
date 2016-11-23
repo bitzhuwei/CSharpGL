@@ -3,33 +3,32 @@
     /// <summary>
     ///
     /// </summary>
-    public class DitherSwitch : EnableSwitch
+    public class DepthTestState : EnableState
     {
         /// <summary>
         ///
         /// </summary>
-        public DitherSwitch()
-            : base(OpenGL.GL_DITHER, true)
+        public DepthTestState()
+            : base(OpenGL.GL_DEPTH_TEST, true)
         { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DitherSwitch(bool enableCapacity)
-            : base(OpenGL.GL_DITHER, enableCapacity)
+        public DepthTestState(bool enableCapacity)
+            : base(OpenGL.GL_DEPTH_TEST, enableCapacity)
         { }
 
         /// <summary>
         ///
         /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             if (this.EnableCapacity)
-            { return "OpenGL.Enable(GL_DITHER);"; }
+            { return "OpenGL.Enable(GL_DEPTH_TEST);"; }
             else
-            { return "OpenGL.Disable(GL_DITHER);"; }
+            { return "OpenGL.Disable(GL_DEPTH_TEST);"; }
         }
     }
 }

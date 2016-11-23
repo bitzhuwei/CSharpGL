@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public class AccumBufferSwitch : GLSwitch
+    public class AccumBufferState : GLState
     {
         private vec3 clearValue = new vec3(0, 0, 0);
 
@@ -44,14 +44,14 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public AccumBufferSwitch() { }
+        public AccumBufferState() { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="clearColor"></param>
         /// <param name="clearAlphazValue">Ranges between [0, 1.0].</param>
-        public AccumBufferSwitch(Color clearColor, float clearAlphazValue)
+        public AccumBufferState(Color clearColor, float clearAlphazValue)
         {
             this.ClearValue = clearColor;
             this.clearAlphazValue = clearAlphazValue;
@@ -71,7 +71,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             OpenGL.GetFloat(GetTarget.AccumClearValue, original);
 
@@ -81,7 +81,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             OpenGL.ClearAccum(original[0], original[1], original[2], original[3]);
         }

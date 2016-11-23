@@ -22,7 +22,7 @@ namespace GridViewer
         }
 
         private CatesianGridRenderer(vec3 originalWorldPosition, CatesianGrid catesianGrid, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, Texture codedColorSampler, params GLSwitch[] switches)
+            AttributeMap attributeMap, Texture codedColorSampler, params GLState[] switches)
             : base(originalWorldPosition, catesianGrid, shaderCodes, attributeMap, switches)
         {
             this.codedColorSampler = codedColorSampler;

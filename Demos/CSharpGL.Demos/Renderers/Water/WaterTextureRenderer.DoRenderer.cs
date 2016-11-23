@@ -6,7 +6,7 @@
         {
             UpdateWaves();
 
-            //this.viewportSwitch.On();
+            //this.viewportState.On();
             this.framebuffer.Bind();
             OpenGL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             this.SetUniform("u_passedTime", this.passedTime);
@@ -16,7 +16,7 @@
             base.DoRender(arg);
 
             this.framebuffer.Unbind();
-            //this.viewportSwitch.Off();
+            //this.viewportState.Off();
         }
 
         private const int NUMBERWAVES = 4;

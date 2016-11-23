@@ -118,7 +118,7 @@ namespace CSharpGL.Demos
             map.Add("boundingBox", RaycastModel.strcolor);
             var raycastRenderer = new Renderer(model, shaderCodes, map);
             raycastRenderer.Initialize();
-            raycastRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));
+            raycastRenderer.StateList.Add(new CullFaceState(CullFaceMode.Back, true));
 
             return raycastRenderer;
         }
@@ -133,7 +133,7 @@ namespace CSharpGL.Demos
             map.Add("boundingBox", RaycastModel.strcolor);
             var backfaceRenderer = new Renderer(model, shaderCodes, map);
             backfaceRenderer.Initialize();
-            backfaceRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Front, true));
+            backfaceRenderer.StateList.Add(new CullFaceState(CullFaceMode.Front, true));
 
             return backfaceRenderer;
         }

@@ -20,16 +20,16 @@
             }
             if (textRecord.IsMarked())
             {
-                if (this.Model != null)
+                if (this.DataSource != null)
                 {
-                    (this.Model as TextModel).SetText(this.text, this.fontTexture);
+                    (this.DataSource as TextModel).SetText(this.text, this.fontTexture);
                 }
             }
             if (discardTransparencyRecord.IsMarked())
             {
                 bool discard = this.DiscardTransparency;
                 this.SetUniform("discardTransparency", discard);
-                this.blendSwitch.Enabled = discard;
+                this.blendState.Enabled = discard;
                 discardTransparencyRecord.CancelMark();
             }
             int[] viewport = OpenGL.GetViewport();

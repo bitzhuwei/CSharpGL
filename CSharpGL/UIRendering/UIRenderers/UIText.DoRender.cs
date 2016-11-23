@@ -33,11 +33,11 @@
                 }
             }
 
-            blendSwitch.On();
+            blendState.On();
 
             base.DoRender(arg);
 
-            blendSwitch.Off();
+            blendState.Off();
         }
     }
 }

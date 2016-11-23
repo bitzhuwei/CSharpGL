@@ -41,7 +41,7 @@ namespace GridViewer
         }
 
         private LinesRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         { }
 
@@ -49,7 +49,7 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBuffer = this.Model.GetVertexAttributeBuffer(LinesModel.position, null);
+            this.positionBuffer = this.DataSource.GetVertexAttributeBuffer(LinesModel.position, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)

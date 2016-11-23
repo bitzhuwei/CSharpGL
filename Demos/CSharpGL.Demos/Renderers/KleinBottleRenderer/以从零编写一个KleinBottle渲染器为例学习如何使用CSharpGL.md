@@ -263,11 +263,11 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 <pre><span style="color: #008080;"> 1</span>     <span style="color: #0000ff;">class</span><span style="color: #000000;"> KleinBottleRenderer : Renderer
 </span><span style="color: #008080;"> 2</span> <span style="color: #000000;">    {
 </span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">private</span><span style="color: #000000;"> KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-</span><span style="color: #008080;"> 4</span>             AttributeMap attributeMap, <span style="color: #0000ff;">params</span><span style="color: #000000;"> GLSwitch[] switches)
+</span><span style="color: #008080;"> 4</span>             AttributeMap attributeMap, <span style="color: #0000ff;">params</span><span style="color: #000000;"> GLState[] switches)
 </span><span style="color: #008080;"> 5</span>             : <span style="color: #0000ff;">base</span><span style="color: #000000;">(model, shaderCodes, attributeMap, switches)
 </span><span style="color: #008080;"> 6</span> <span style="color: #000000;">        {
 </span><span style="color: #008080;"> 7</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 设定点的大小。</span>
-<span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">this</span>.switchList.Add(<span style="color: #0000ff;">new</span> PointSizeSwitch(<span style="color: #800080;">3</span><span style="color: #000000;">));
+<span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">this</span>.stateList.Add(<span style="color: #0000ff;">new</span> PointSizeState(<span style="color: #800080;">3</span><span style="color: #000000;">));
 </span><span style="color: #008080;"> 9</span> <span style="color: #000000;">        }
 </span><span style="color: #008080;">10</span>     }</pre>
 </div>
@@ -448,7 +448,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 
 ★CSharpGL封装了拾取、拖拽模型、UI、文字、场景等常用的功能，你只需继承这些类型即可使用。CSharpGL对每项功能都提供了Demo，运行这些demo，就可以得知如何使用这些功能。
 
-★可以用PropertyGrid来实时控制渲染效果，这是十分便利的工具。例如本例中，你可以用PointSizeSwitch来控制渲染的顶点的大小。
+★可以用PropertyGrid来实时控制渲染效果，这是十分便利的工具。例如本例中，你可以用PointSizeState来控制渲染的顶点的大小。
 
 &nbsp;![](http://images2015.cnblogs.com/blog/383191/201609/383191-20160930122945688-1860094329.png)
 

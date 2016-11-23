@@ -12,8 +12,8 @@ OpenGL中执行渲染的指令是`glDrawArrays()`和`glDrawElements()`以及他�
 ## uniform变量
 `UniformVariable`封装了shader里的uniform变量（例如`uniform vec3 vPosition;`）。`UniformVariable`在`Renderer`里用于为uniform变量指定值。
 ## OpenGL开关
-OpenGL是个状态机。`GLSwitch`就是控制其状态的。  
-例如`LineWidthSwitch`控制线的宽度。在渲染前将线宽设置为指定的宽度，在渲染后恢复到原来的宽度。  
+OpenGL是个状态机。`GLState`就是控制其状态的。  
+例如`LineWidthState`控制线的宽度。在渲染前将线宽设置为指定的宽度，在渲染后恢复到原来的宽度。  
 这可以避免忘记恢复原有状态的bug。
 ## Rendering
 `Renderer`用Modern OpenGL(VBO+Shader)进行渲染。以`IBufferable`为模型数据，以`ShaderCode`为shader数据，以`AttributeMap`为两者之间的关联关系。可自定义开关（`GLSwtich`）。可自定义uniform变量。
@@ -34,10 +34,10 @@ Camera is a special object in world space.
 ## Uniform Variable
 `UniformVariable` wraps uniform variables in shader like `uniform vec3 vPosition;`. `UniformVariable` is used in `Renderer` to setup uniform variable's value.
 ## OpenGL switch
-OpenGL works as a state machine. `GLSwitch` controls one of states in OpenGL.  
-For example, `LineWidthSwitch` controls line's width. It sets line's width to specified value before rendering, and reset it to original value after rendering.  
+OpenGL works as a state machine. `GLState` controls one of states in OpenGL.  
+For example, `LineWidthState` controls line's width. It sets line's width to specified value before rendering, and reset it to original value after rendering.  
 This could prevent future bugs about forgetting to reset to original state.
 ## Rendering
-`Renderer` renders a model with VBOs and shaders. `IBufferable` provides model's data. `ShaderCode` provides shader code. `AttributeMap` provides mapping relations between model data and shader's variables. Different kinds of `GLSwitch`es and uniform variables are supported.
+`Renderer` renders a model with VBOs and shaders. `IBufferable` provides model's data. `ShaderCode` provides shader code. `AttributeMap` provides mapping relations between model data and shader's variables. Different kinds of `GLState`es and uniform variables are supported.
 ## Other stuff
 Texture, framebuffer and query object are simple concepts after you've learnt everything metioned above.

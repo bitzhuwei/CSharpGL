@@ -29,15 +29,15 @@ namespace CSharpGL
             }
         }
 
-        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+        private BlendState blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
 
         /// <summary>
         ///
         /// </summary>
         [Description("Blend mode.")]
-        public BlendSwitch BlendSwitch
+        public BlendState BlendState
         {
-            get { return blendSwitch; }
+            get { return blendState; }
         }
 
         private UpdatingRecord textColorRecord = new UpdatingRecord();

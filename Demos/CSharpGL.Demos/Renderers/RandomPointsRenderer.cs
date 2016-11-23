@@ -18,11 +18,11 @@ namespace CSharpGL.Demos
             map.Add("in_Position", RandomPointsModel.position);
             var renderer = new RandomPointsRenderer(model, shaderCodes, map);
             renderer.ModelSize = model.Lengths;
-            //renderer.switchList.Add(new PointSizeSwitch(10));
+            //renderer.stateList.Add(new PointSizeState(10));
             return renderer;
         }
 
-        private RandomPointsRenderer(CSharpGL.IBufferable model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, params GLSwitch[] switches) :
+        private RandomPointsRenderer(CSharpGL.IBufferable model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, params GLState[] switches) :
             base(model, shaderCodes, attributeMap, switches)
         {
         }

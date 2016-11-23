@@ -28,7 +28,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 5. `VertexAttributeBuffer` supports `glVertexAttribPointer`, `glVertexAttribIPointer` and `glVertexAttribLPointer`.
 
 ## v1.0.7.0:
-1. DitherSwitch\LogicOperationSwitch\AlphaFuncSwitch.
+1. DitherState\LogicOperationState\AlphaFuncState.
 2. Support uniform struct.
 3. Remove opengl version attribute in `GLCanvas`.
 4. fix: return first `lastIndexId` object when picking a point.
@@ -39,7 +39,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 ## v1.0.6.8:
 1. `UniformVariable` need not to reset.
-2. `ClipPlaneSwitch` only works in Legacy OpenGL.
+2. `ClipPlaneState` only works in Legacy OpenGL.
 3. `UniformBlock<T>` supports uniform block in GLSL.
 4. fix: Fields of `vec4` layout in the order `x, y, z, w` to match that in GLSL.
 5. `glm.inverse()` and `glm.transpose()`.
@@ -50,7 +50,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 3. VAO with no vertex attribute buffer is allowed.
 4. `ShaderStorageBuffer` 'is an' `IndependentBuffer`.
 5. `CubemapImageFiller` for creating a cubemap texture.
-6. `FrontFaceSwitch`.
+6. `FrontFaceState`.
 
 ## v1.0.6.6:
 1. More switces(DepthMask, ColorMask, StencilMask).
@@ -58,7 +58,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 3. fix: remove framebuffer object in ColorCodedPicking.
 4. `Buffer` supports bind/unbind and abstract Target property.
 5. `Renderer` always renders with its own index buffer.
-6. LineStippleSwitch and PolygonStippleSwitch.
+6. LineStippleState and PolygonStippleState.
 7. Bezier curve rendering with legacy OpenGL.
 8. Color-coded picking intergrated in Scene.
 9. VertexAttributeBuffer supports tessellation shaders.
@@ -193,8 +193,8 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 15. TextModel allows for updating text property.
 
 ## v1.0.4.9:
-1. 3 PolygonOffsetSwitch types for Fill, Line and Point.
-2. remove unnecessary initialization of creating PrimitiveRestartSwitch for OneIndexRenderer.
+1. 3 PolygonOffsetState types for Fill, Line and Point.
+2. remove unnecessary initialization of creating PrimitiveRestartState for OneIndexRenderer.
 3. Rename GLRoot/GLAxis/GLText to UIRoot/UIAxis/UIText.
 4. UI types manage its uniform variables inside.
 5. ILayout derived from ITreeNode<UIRenderer>.
@@ -280,6 +280,6 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Color-coded-picking of primitives in a VBO.
 3. Highlight picked primitives.
 4. Draw text using `glRasterPos()` and `CallList`.
-5. `PolygonOffsetSwitch`.
+5. `PolygonOffsetState`.
 6. `ILayout` supports layout UI element in an OpenGL canvas.
 

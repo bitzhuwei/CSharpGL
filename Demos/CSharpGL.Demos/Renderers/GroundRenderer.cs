@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
         public Color LineColor { get; set; }
 
         private GroundRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             this.LineColor = Color.White;

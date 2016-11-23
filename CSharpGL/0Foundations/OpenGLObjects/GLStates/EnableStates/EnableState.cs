@@ -3,12 +3,12 @@
     /// <summary>
     /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
-    public abstract class EnableSwitch : GLSwitch
+    public abstract class EnableState : GLState
     {
         /// <summary>
         ///
         /// </summary>
-        protected bool enableCapacityWhenSwitchOn;
+        protected bool enableCapacityWhenStateOn;
 
         /// <summary>
         /// GL.Enable(capacity);
@@ -26,14 +26,14 @@
         /// GL.Enable(capacity);
         /// </summary>
         /// <param name="capacity"></param>
-        public EnableSwitch(uint capacity) : this(capacity, true) { }
+        public EnableState(uint capacity) : this(capacity, true) { }
 
         /// <summary>
         /// GL.Enable(capacity); or GL.Disable(capacity);
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public EnableSwitch(uint capacity, bool enableCapacity)
+        public EnableState(uint capacity, bool enableCapacity)
         {
             this.Init(capacity, enableCapacity);
         }
@@ -57,11 +57,11 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            this.enableCapacityWhenSwitchOn = this.EnableCapacity;
+            this.enableCapacityWhenStateOn = this.EnableCapacity;
             this.originalEnableCapacity = OpenGL.IsEnabled(this.Capacity) != 0;
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 if (!this.originalEnableCapacity)
                 { OpenGL.Enable(Capacity); }
@@ -76,9 +76,9 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 if (!this.originalEnableCapacity)
                 { OpenGL.Disable(Capacity); }

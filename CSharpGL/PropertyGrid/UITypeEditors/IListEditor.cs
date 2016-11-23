@@ -6,7 +6,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用在IList&lt;GLSwitch&gt;类型的属性上。
+    /// 用在IList&lt;GLState&gt;类型的属性上。
     /// </summary>
     internal class IListEditor<T> : UITypeEditor
     {

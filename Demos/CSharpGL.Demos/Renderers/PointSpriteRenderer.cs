@@ -15,14 +15,14 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("position", PointSpriteModel.strposition);
             var model = new PointSpriteModel(particleCount);
-            var renderer = new PointSpriteRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            var renderer = new PointSpriteRenderer(model, shaderCodes, map, new PointSpriteState());
             renderer.ModelSize = model.Lengths;
 
             return renderer;
         }
 
         public PointSpriteRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

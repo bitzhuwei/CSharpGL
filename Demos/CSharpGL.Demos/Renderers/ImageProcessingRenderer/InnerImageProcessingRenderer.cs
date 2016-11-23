@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
 
         private InnerImageProcessingRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
 
@@ -182,7 +182,7 @@ namespace CSharpGL.Demos
             public bool UsesZeroIndexBuffer() { return true; }
         }
 
-        internal void SwitchDisplayImage(bool forward)
+        internal void StateDisplayImage(bool forward)
         {
             if (forward)
             {

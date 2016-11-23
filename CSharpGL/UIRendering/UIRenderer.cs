@@ -8,9 +8,9 @@ namespace CSharpGL
     /// </summary>
     public partial class UIRenderer : RendererBase, ILayout<UIRenderer>, ILayoutEvent
     {
-        private ViewportSwitch viewportSwitch;
-        private ScissorTestSwitch scissorTestSwitch;
-        private GLSwitchList switchList = new GLSwitchList();
+        private ViewportState viewportState;
+        private ScissorTestState scissorTestState;
+        private GLStateList stateList = new GLStateList();
 
         private const string strUIRenderer = "UIRenderer";
 
@@ -19,9 +19,9 @@ namespace CSharpGL
         /// </summary>
         [Category(strUIRenderer)]
         [Description("OpenGL switches.")]
-        public GLSwitchList SwitchList
+        public GLStateList StateList
         {
-            get { return switchList; }
+            get { return stateList; }
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            this.viewportSwitch = new ViewportSwitch();
-            this.scissorTestSwitch = new ScissorTestSwitch();
+            this.viewportState = new ViewportState();
+            this.scissorTestState = new ScissorTestState();
 
             RendererBase renderer = this.Renderer;
             if (renderer != null)
@@ -75,25 +75,25 @@ namespace CSharpGL
             {
                 if (this.locationUpdated)
                 {
-                    this.viewportSwitch.X = this.Location.X;
-                    this.viewportSwitch.Y = this.Location.Y;
-                    this.scissorTestSwitch.X = this.Location.X;
-                    this.scissorTestSwitch.Y = this.Location.Y;
+                    this.viewportState.X = this.Location.X;
+                    this.viewportState.Y = this.Location.Y;
+                    this.scissorTestState.X = this.Location.X;
+                    this.scissorTestState.Y = this.Location.Y;
                     this.locationUpdated = false;
                 }
                 if (this.sizeUpdated)
                 {
-                    this.viewportSwitch.Width = this.Size.Width;
-                    this.viewportSwitch.Height = this.Size.Height;
-                    this.scissorTestSwitch.Width = this.Size.Width;
-                    this.scissorTestSwitch.Height = this.Size.Height;
+                    this.viewportState.Width = this.Size.Width;
+                    this.viewportState.Height = this.Size.Height;
+                    this.scissorTestState.Width = this.Size.Width;
+                    this.scissorTestState.Height = this.Size.Height;
                     this.sizeUpdated = false;
                 }
 
-                this.viewportSwitch.On();
-                this.scissorTestSwitch.On();
-                int count = this.switchList.Count;
-                for (int i = 0; i < count; i++) { this.switchList[i].On(); }
+                this.viewportState.On();
+                this.scissorTestState.On();
+                int count = this.stateList.Count;
+                for (int i = 0; i < count; i++) { this.stateList[i].On(); }
 
                 // 把所有在此之前渲染的内容都推到最远。
                 // Push all rendered stuff to farest position.
@@ -101,9 +101,9 @@ namespace CSharpGL
 
                 renderer.Render(arg);
 
-                for (int i = count - 1; i >= 0; i--) { this.switchList[i].Off(); }
-                this.scissorTestSwitch.Off();
-                this.viewportSwitch.Off();
+                for (int i = count - 1; i >= 0; i--) { this.stateList[i].Off(); }
+                this.scissorTestState.Off();
+                this.viewportState.Off();
             }
         }
 

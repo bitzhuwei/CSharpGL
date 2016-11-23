@@ -20,7 +20,7 @@ namespace CSharpGL
 
             // init property buffer objects.
             VertexBuffer positionBuffer = null;
-            IBufferable model = this.Model;
+            IBufferable model = this.DataSource;
             VertexBuffer[] vertexAttributeBuffers;
             {
                 var list = new List<VertexBuffer>();
@@ -50,8 +50,8 @@ namespace CSharpGL
                 this.maxElementCount = indexBuffer.ElementCount;
                 indexBuffer.ElementCount = 0;// 高亮0个图元
                 // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-                GLSwitch glSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType);
-                this.switchList.Add(glSwitch);
+                GLState glState = new PrimitiveRestartState(indexBuffer.ElementType);
+                this.stateList.Add(glState);
             }
 
             // init VAO.

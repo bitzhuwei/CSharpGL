@@ -5,25 +5,25 @@ namespace CSharpGL
     /// <summary>
     /// specify a logical pixel operation for rendering.
     /// </summary>
-    public class LogicOperationSwitch : EnableSwitch
+    public class LogicOperationState : EnableState
     {
         /// <summary>
         /// specify a logical pixel operation for rendering.
         /// </summary>
-        public LogicOperationSwitch() : this(LogicOp.Copy) { }
+        public LogicOperationState() : this(LogicOp.Copy) { }
 
         /// <summary>
         /// specify a logical pixel operation for rendering.
         /// </summary>
         /// <param name="operation"></param>
-        public LogicOperationSwitch(LogicOp operation) : this(operation, true) { }
+        public LogicOperationState(LogicOp operation) : this(operation, true) { }
 
         /// <summary>
         /// specify a logical pixel operation for rendering.
         /// </summary>
         /// <param name="operation"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public LogicOperationSwitch(LogicOp operation, bool enableCapacity)
+        public LogicOperationState(LogicOp operation, bool enableCapacity)
             : base(OpenGL.GL_COLOR_LOGIC_OP, enableCapacity)
         {
             this.Operation = operation;
@@ -47,11 +47,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 OpenGL.LogicOp((uint)this.Operation);
             }

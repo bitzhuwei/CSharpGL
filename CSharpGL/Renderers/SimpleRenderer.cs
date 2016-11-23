@@ -97,7 +97,7 @@
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
         private SimpleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
         }

@@ -28,7 +28,7 @@ namespace CSharpGL.Demos
         }
 
         private EmitNormalLineRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
         }

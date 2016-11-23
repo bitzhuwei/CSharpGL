@@ -43,8 +43,8 @@ namespace CSharpGL.Demos
                 BlendingSourceFactor source;
                 BlendingDestinationFactor dest;
                 this.blendFactorHelper.GetNext(out source, out dest);
-                this.glText.BlendSwitch.SourceFactor = source;
-                this.glText.BlendSwitch.DestFactor = dest;
+                this.glText.BlendState.SourceFactor = source;
+                this.glText.BlendState.DestFactor = dest;
                 this.UpdateLabel();
             }
             else if (e.KeyChar == '1')

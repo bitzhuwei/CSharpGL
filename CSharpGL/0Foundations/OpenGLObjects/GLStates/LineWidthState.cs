@@ -3,12 +3,12 @@
     /// <summary>
     ///
     /// </summary>
-    public class LineWidthSwitch : GLSwitch
+    public class LineWidthState : GLState
     {
         private static float min;
         private static float max;
 
-        static LineWidthSwitch()
+        static LineWidthState()
         {
             OpenGL.LineWidthRange(out min, out max);
             //OpenGL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
@@ -32,13 +32,13 @@
         /// <summary>
         ///
         /// </summary>
-        public LineWidthSwitch() : this(1.0f) { }
+        public LineWidthState() : this(1.0f) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="lineWidth"></param>
-        public LineWidthSwitch(float lineWidth)
+        public LineWidthState(float lineWidth)
         {
             this.LineWidth = lineWidth;
             this.MinLineWidth = min;
@@ -58,7 +58,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             OpenGL.GetFloat(GetTarget.LineWidth, original);
 
@@ -68,7 +68,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             OpenGL.LineWidth(original[0]);
         }

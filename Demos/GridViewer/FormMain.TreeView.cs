@@ -43,15 +43,15 @@ namespace GridViewer
                 if (selectedRenderer != null)
                 {
                     selectedRenderer.BoundingBoxColor = Color.Aqua;
-                    var glSwitch = selectedRenderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
-                    glSwitch.LineWidth = 3;
+                    var glState = selectedRenderer.StateList.Find(x => x is LineWidthState) as LineWidthState;
+                    glState.LineWidth = 3;
                 }
 
                 if (lastselectedBoxRenderer != null)
                 {
                     lastselectedBoxRenderer.BoundingBoxColor = Color.White;
-                    var glSwitch = lastselectedBoxRenderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
-                    glSwitch.LineWidth = 1;
+                    var glState = lastselectedBoxRenderer.StateList.Find(x => x is LineWidthState) as LineWidthState;
+                    glState.LineWidth = 1;
                 }
 
                 this.lastselectedBoxRenderer = selectedRenderer;
@@ -74,8 +74,8 @@ namespace GridViewer
         //            if (renderer != null)
         //            {
         //                renderer.BoundingBoxColor = Color.Aqua;
-        //                var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
-        //                glSwitch.LineWidth = 3;
+        //                var glState = renderer.StateList.Find(x => x is LineWidthState) as LineWidthState;
+        //                glState.LineWidth = 3;
         //                updated = true;
         //            }
         //        }
@@ -90,8 +90,8 @@ namespace GridViewer
         //            if (renderer != null)
         //            {
         //                renderer.BoundingBoxColor = Color.White;
-        //                var glSwitch = renderer.SwitchList.Find(x => x is LineWidthSwitch) as LineWidthSwitch;
-        //                glSwitch.LineWidth = 1;
+        //                var glState = renderer.StateList.Find(x => x is LineWidthState) as LineWidthState;
+        //                glState.LineWidth = 1;
         //                updated = true;
         //            }
         //        }

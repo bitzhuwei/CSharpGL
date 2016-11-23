@@ -3,17 +3,17 @@
     /// <summary>
     ///
     /// </summary>
-    public class PointSpriteSwitch : GLSwitch
+    public class PointSpriteState : GLState
     {
         /// <summary>
         ///
         /// </summary>
-        public PointSpriteSwitch()
+        public PointSpriteState()
         {
-            this.SwitchList = new GLSwitchList();
-            this.SwitchList.Add(new PointSmoothSwitch());
-            this.SwitchList.Add(new DepthTestSwitch());
-            this.SwitchList.Add(new BlendSwitch(
+            this.StateList = new GLStateList();
+            this.StateList.Add(new PointSmoothState());
+            this.StateList.Add(new DepthTestState());
+            this.StateList.Add(new BlendState(
                 BlendingSourceFactor.SourceAlpha,
                 BlendingDestinationFactor.OneMinusSourceAlpha));
         }
@@ -22,10 +22,10 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            int count = this.SwitchList.Count;
-            for (int i = 0; i < count; i++) { this.SwitchList[i].On(); }
+            int count = this.StateList.Count;
+            for (int i = 0; i < count; i++) { this.StateList[i].On(); }
 
             OpenGL.Enable(OpenGL.GL_VERTEX_PROGRAM_POINT_SIZE);
             OpenGL.Enable(OpenGL.GL_POINT_SPRITE);
@@ -47,19 +47,19 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             OpenGL.Disable(OpenGL.GL_POINT_SPRITE);
             OpenGL.Disable(OpenGL.GL_VERTEX_PROGRAM_POINT_SIZE);
 
-            int count = this.SwitchList.Count;
-            for (int i = count - 1; i >= 0; i--) { this.SwitchList[i].Off(); }
+            int count = this.StateList.Count;
+            for (int i = count - 1; i >= 0; i--) { this.StateList[i].Off(); }
         }
 
         /// <summary>
         ///
         /// </summary>
-        public GLSwitchList SwitchList { get; set; }
+        public GLStateList StateList { get; set; }
 
         /// <summary>
         ///

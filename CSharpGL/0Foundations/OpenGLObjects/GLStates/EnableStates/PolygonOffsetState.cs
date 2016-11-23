@@ -3,19 +3,19 @@
     /// <summary>
     /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
     /// </summary>
-    public abstract class PolygonOffsetSwitch : EnableSwitch
+    public abstract class PolygonOffsetState : EnableState
     {
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
-        public PolygonOffsetSwitch() : this(PolygonOffset.Fill, true) { }
+        public PolygonOffsetState() : this(PolygonOffset.Fill, true) { }
 
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="pullNear"></param>
-        public PolygonOffsetSwitch(PolygonOffset mode, bool pullNear)
+        public PolygonOffsetState(PolygonOffset mode, bool pullNear)
             : base((uint)mode, true)
         {
             this.PullNear = pullNear;
@@ -35,11 +35,11 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 float value = this.PullNear ? -1.0f : 1.0f;
                 OpenGL.PolygonOffset(value, value);

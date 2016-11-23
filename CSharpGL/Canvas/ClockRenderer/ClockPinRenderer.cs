@@ -7,13 +7,13 @@ namespace CSharpGL
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
-        private readonly LineWidthSwitch secondLineWidthSwitch = new LineWidthSwitch(1);
+        private readonly LineWidthState secondLineWidthState = new LineWidthState(1);
         private readonly List<vec3> minutePosition = new List<vec3>();
         private readonly List<vec3> minuteColor = new List<vec3>();
-        private readonly LineWidthSwitch minuteLineWidthSwitch = new LineWidthSwitch(3);
+        private readonly LineWidthState minuteLineWidthState = new LineWidthState(3);
         private readonly List<vec3> hourPosition = new List<vec3>();
         private readonly List<vec3> hourColor = new List<vec3>();
-        private readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
+        private readonly LineWidthState hourLineWidthState = new LineWidthState(8);
 
         public ClockPinRenderer()
         {
@@ -52,7 +52,7 @@ namespace CSharpGL
                 OpenGL.LoadIdentity();
                 this.LegacyTransform();
 
-                secondLineWidthSwitch.On();
+                secondLineWidthState.On();
                 OpenGL.Begin(OpenGL.GL_LINES);
                 for (int i = 0; i < secondPosition.Count; i++)
                 {
@@ -62,7 +62,7 @@ namespace CSharpGL
                     OpenGL.Vertex3f(position.x, position.y, position.z);
                 }
                 OpenGL.End();
-                secondLineWidthSwitch.Off();
+                secondLineWidthState.Off();
             }
             {
                 float minuteAngle = ((float)(now.Minute * 60 + now.Second)) / (60.0f * 60.0f) * 360.0f * speed;
@@ -70,7 +70,7 @@ namespace CSharpGL
                 OpenGL.LoadIdentity();
                 this.LegacyTransform();
 
-                minuteLineWidthSwitch.On();
+                minuteLineWidthState.On();
                 OpenGL.Begin(OpenGL.GL_LINES);
                 for (int i = 0; i < minutePosition.Count; i++)
                 {
@@ -80,7 +80,7 @@ namespace CSharpGL
                     OpenGL.Vertex3f(position.x, position.y, position.z);
                 }
                 OpenGL.End();
-                minuteLineWidthSwitch.Off();
+                minuteLineWidthState.Off();
             }
             {
                 float hourAngle = ((float)((now.Hour * 60 + now.Minute) * 60 + now.Second)) / (12.0f * 60.0f * 60.0f) * 360.0f * speed;
@@ -88,7 +88,7 @@ namespace CSharpGL
                 OpenGL.LoadIdentity();
                 this.LegacyTransform();
 
-                hourLineWidthSwitch.On();
+                hourLineWidthState.On();
                 OpenGL.Begin(OpenGL.GL_LINES);
                 for (int i = 0; i < hourPosition.Count; i++)
                 {
@@ -98,7 +98,7 @@ namespace CSharpGL
                     OpenGL.Vertex3f(position.x, position.y, position.z);
                 }
                 OpenGL.End();
-                hourLineWidthSwitch.Off();
+                hourLineWidthState.Off();
             }
         }
     }

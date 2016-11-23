@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ZeroAttributeRenderer\ZeroAttribute.frag"), ShaderType.FragmentShader);
             var map = new AttributeMap();// no items in this map.
             var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
-            var renderer = new ZeroAttributeRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            var renderer = new ZeroAttributeRenderer(model, shaderCodes, map, new PointSpriteState());
             renderer.ModelSize = new vec3(2.05f, 2.05f, 0.01f);
 
             return renderer;
@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
 
         private ZeroAttributeRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

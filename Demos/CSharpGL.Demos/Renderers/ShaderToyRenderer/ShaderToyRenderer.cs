@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
         }
 
         private ShaderToyRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

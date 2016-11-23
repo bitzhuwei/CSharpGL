@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
             this.SetUniform("u_waterTexture", this.waterTextureRenderer.MirrorTexture);
 
             // display back faces only.
-            this.cullfaceSwitch = new CullFaceSwitch(CullFaceMode.Back);
+            this.cullfaceState = new CullFaceState(CullFaceMode.Back);
         }
 
         private Texture GetCubeMapTexture()

@@ -31,7 +31,7 @@ namespace CSharpGL
             }
         }
 
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
 
         /// <summary>
         /// Renderer that supports color-coded rendering.
@@ -43,20 +43,20 @@ namespace CSharpGL
         ///<param name="switches">OpenGL switches.</param>
         internal InnerPickableRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             this.PositionNameInIBufferable = positionNameInIBufferable;
-            this.switchList.Add(polygonModeSwitch);
+            this.stateList.Add(polygonModeState);
             {
                 float min, max;
                 OpenGL.LineWidthRange(out min, out max);
-                this.switchList.Add(new LineWidthSwitch(max));
+                this.stateList.Add(new LineWidthState(max));
             }
             {
                 float min, max;
                 OpenGL.PointSizeRange(out min, out max);
-                this.switchList.Add(new PointSizeSwitch(max));
+                this.stateList.Add(new PointSizeState(max));
             }
         }
     }

@@ -3,21 +3,21 @@
     /// <summary>
     ///
     /// </summary>
-    public class PointSmoothSwitch : EnableSwitch
+    public class DitherState : EnableState
     {
         /// <summary>
         ///
         /// </summary>
-        public PointSmoothSwitch()
-            : base(OpenGL.GL_POINT_SMOOTH, true)
+        public DitherState()
+            : base(OpenGL.GL_DITHER, true)
         { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public PointSmoothSwitch(bool enableCapacity)
-            : base(OpenGL.GL_POINT_SMOOTH, enableCapacity)
+        public DitherState(bool enableCapacity)
+            : base(OpenGL.GL_DITHER, enableCapacity)
         { }
 
         /// <summary>
@@ -27,9 +27,9 @@
         public override string ToString()
         {
             if (this.EnableCapacity)
-            { return "OpenGL.Enable(GL_POINT_SMOOTH);"; }
+            { return "OpenGL.Enable(GL_DITHER);"; }
             else
-            { return "OpenGL.Disable(GL_POINT_SMOOTH);"; }
+            { return "OpenGL.Disable(GL_DITHER);"; }
         }
     }
 }

@@ -30,7 +30,7 @@
 
         #region discard
 
-        private GLSwitch blendSwitch;
+        private GLState blendState;
         private bool discardTransparency = true;
         private UpdatingRecord discardTransparencyRecord = new UpdatingRecord();
 

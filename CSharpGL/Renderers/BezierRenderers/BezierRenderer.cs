@@ -24,7 +24,7 @@ namespace CSharpGL
             var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
             renderer.ModelSize = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
-            renderer.switchList.Add(new PointSizeSwitch(10));
+            renderer.stateList.Add(new PointSizeState(10));
 
             return renderer;
         }
@@ -39,7 +39,7 @@ namespace CSharpGL
         /// <param name="attributeMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches) :
+        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches) :
             base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
             switch (type)

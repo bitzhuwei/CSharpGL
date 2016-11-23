@@ -28,10 +28,10 @@
             map.Add("in_Position", TextModel.strPosition);
             map.Add("in_UV", TextModel.strUV);
 
-            var blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
+            var blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
 
-            var renderer = new LabelRenderer(model, shaderCodes, map, blendSwitch);
-            renderer.blendSwitch = blendSwitch;
+            var renderer = new LabelRenderer(model, shaderCodes, map, blendState);
+            renderer.blendState = blendState;
             renderer.fontTexture = fontTexture;
             renderer.LabelHeight = labelHeight;
 
@@ -46,7 +46,7 @@
         /// <param name="attributeMap"></param>
         /// <param name="switches"></param>
         private LabelRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

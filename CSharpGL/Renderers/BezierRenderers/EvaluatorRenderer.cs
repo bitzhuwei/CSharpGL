@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public LineWidthSwitch CurveWidth { get; private set; }
+        public LineWidthState CurveWidth { get; private set; }
 
         /// <summary>
         ///
@@ -36,7 +36,7 @@ namespace CSharpGL
             // TODO: not needed. Why?
             //this.WorldPosition = box.MaxPosition / 2 + box.MinPosition / 2;
 
-            this.CurveWidth = new LineWidthSwitch(0.5f);
+            this.CurveWidth = new LineWidthState(0.5f);
             this.CurveColor = Color.Red;
         }
 

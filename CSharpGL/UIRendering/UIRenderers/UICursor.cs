@@ -34,7 +34,7 @@ namespace CSharpGL
         {
             this.FocalPoint = focalPoint;
             TextureRenderer renderer = TextureRenderer.Create(cursorBitmap);
-            renderer.SwitchList.Add(new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            renderer.StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             this.Renderer = renderer;
         }
 

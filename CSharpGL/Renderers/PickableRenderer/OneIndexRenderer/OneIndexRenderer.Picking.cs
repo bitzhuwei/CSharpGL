@@ -217,25 +217,25 @@ namespace CSharpGL
                 && this.indexBuffer.Mode.ToGeometryType() == PickingGeometryType.Line) ?
                 DrawMode.Points : this.indexBuffer.Mode);
 
-            PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
+            PrimitiveRestartState glState = GetPrimitiveRestartState();
 
             var buffer = this.indexBuffer as OneIndexBuffer;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
-            if (glSwitch == null)
+            if (glState == null)
             { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer, glSwitch.RestartIndex); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, this.indexBuffer as OneIndexBuffer, glState.RestartIndex); }
             buffer.UnmapBuffer();
 
             return primitiveInfoList;
         }
 
-        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
+        private PrimitiveRestartState GetPrimitiveRestartState()
         {
-            foreach (GLSwitch item in this.switchList)
+            foreach (GLState item in this.stateList)
             {
-                var target = item as PrimitiveRestartSwitch;
+                var target = item as PrimitiveRestartState;
                 if (target != null)
                 {
                     return target;

@@ -3,7 +3,7 @@
     /// <summary>
     /// Toggle of color mask.
     /// </summary>
-    public class ColorMaskSwitch : GLSwitch
+    public class ColorMaskState : GLState
     {
         /// <summary>
         ///  mask when this switch is turned on.
@@ -23,7 +23,7 @@
         /// <param name="blueWritable">blue mask when this switch is turned on</param>
         /// <param name="alphaWritable">alpha mask when this switch is turned on</param>
 
-        public ColorMaskSwitch(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable)
+        public ColorMaskState(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable)
         {
             this.Mask = new ColorMask(redWritable, greenWritable, blueWritable, alphaWritable);
             this.OriginalMask = ColorMask.GetCurrent();
@@ -40,7 +40,7 @@
         /// <param name="originalBlueWritable">green mask when this switch is turned off.</param>
         /// <param name="originalGreenWritable">blue mask when this switch is turned off.</param>
         /// <param name="originalRedWritable">alpha mask when this switch is turned off.</param>
-        public ColorMaskSwitch(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable, bool originalRedWritable, bool originalGreenWritable, bool originalBlueWritable, bool originalAlphaWritable)
+        public ColorMaskState(bool redWritable, bool greenWritable, bool blueWritable, bool alphaWritable, bool originalRedWritable, bool originalGreenWritable, bool originalBlueWritable, bool originalAlphaWritable)
         {
             this.Mask = new ColorMask(redWritable, greenWritable, blueWritable, alphaWritable);
             this.OriginalMask = new ColorMask(
@@ -51,7 +51,7 @@
         /// Toggle of color mask.
         /// </summary>
         /// <param name="mask">mask when this switch is turned on.</param>
-        public ColorMaskSwitch(ColorMask mask)
+        public ColorMaskState(ColorMask mask)
         {
             this.Mask = mask;
             this.OriginalMask = ColorMask.GetCurrent();
@@ -62,7 +62,7 @@
         /// </summary>
         /// <param name="mask">mask when this switch is turned on.</param>
         /// <param name="originalMask">mask when this switch is turned off.</param>
-        public ColorMaskSwitch(ColorMask mask, ColorMask originalMask)
+        public ColorMaskState(ColorMask mask, ColorMask originalMask)
         {
             this.Mask = mask;
             this.OriginalMask = originalMask;
@@ -79,7 +79,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             ColorMask mask = this.Mask;
             OpenGL.ColorMask(mask.redWritable, mask.greenWritable, mask.blueWritable, mask.alphaWritable);
@@ -88,7 +88,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             ColorMask mask = this.OriginalMask;
             OpenGL.ColorMask(mask.redWritable, mask.greenWritable, mask.blueWritable, mask.alphaWritable);

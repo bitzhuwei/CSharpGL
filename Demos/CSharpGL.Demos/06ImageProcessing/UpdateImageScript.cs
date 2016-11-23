@@ -49,12 +49,12 @@ namespace CSharpGL.Demos
             else if (e.KeyChar == 'z')
             {
                 var renderer = this.BindingObject.Renderer as ImageProcessingRenderer;
-                renderer.SwitchDisplayImage(true);
+                renderer.StateDisplayImage(true);
             }
             else if (e.KeyChar == 'x')
             {
                 var renderer = this.BindingObject.Renderer as ImageProcessingRenderer;
-                renderer.SwitchDisplayImage(false);
+                renderer.StateDisplayImage(false);
             }
         }
 

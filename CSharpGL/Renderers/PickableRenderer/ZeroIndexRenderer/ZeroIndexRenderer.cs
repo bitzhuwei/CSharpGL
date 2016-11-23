@@ -15,7 +15,7 @@
         ///<param name="switches"></param>
         internal ZeroIndexRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
     }

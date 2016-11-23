@@ -3,12 +3,12 @@
     /// <summary>
     ///
     /// </summary>
-    public class PointSizeSwitch : GLSwitch
+    public class PointSizeState : GLState
     {
         private static float min;
         private static float max;
 
-        static PointSizeSwitch()
+        static PointSizeState()
         {
             OpenGL.PointSizeRange(out min, out max);
             //GL.GetFloat(GetTarget.PointSizeGranularity, pointSizeWidthRange);//TODO: what does PointSizeGranularity mean?
@@ -32,13 +32,13 @@
         /// <summary>
         ///
         /// </summary>
-        public PointSizeSwitch() : this(1.0f) { }
+        public PointSizeState() : this(1.0f) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="pointSize"></param>
-        public PointSizeSwitch(float pointSize)
+        public PointSizeState(float pointSize)
         {
             this.PointSize = pointSize;
             this.MinPointSize = min;
@@ -59,7 +59,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             OpenGL.GetFloat(GetTarget.PointSize, original);
 
@@ -69,7 +69,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             OpenGL.PointSize(original[0]);
         }

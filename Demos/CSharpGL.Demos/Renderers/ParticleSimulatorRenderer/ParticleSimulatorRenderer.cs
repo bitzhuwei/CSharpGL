@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ParticleSimulatorRenderer\particleSimulator.frag"), ShaderType.FragmentShader);
                 var map = new AttributeMap();
                 map.Add("position", ParticleModel.strPosition);
-                var particleRenderer = new ParticleRenderer(model, shaderCodes, map, new DepthTestSwitch(false), new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One));
+                var particleRenderer = new ParticleRenderer(model, shaderCodes, map, new DepthTestState(false), new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One));
                 particleRenderer.Initialize();
                 this.particleRenderer = particleRenderer;
             }

@@ -3,32 +3,33 @@
     /// <summary>
     ///
     /// </summary>
-    public class DepthTestSwitch : EnableSwitch
+    public class PointSmoothState : EnableState
     {
         /// <summary>
         ///
         /// </summary>
-        public DepthTestSwitch()
-            : base(OpenGL.GL_DEPTH_TEST, true)
+        public PointSmoothState()
+            : base(OpenGL.GL_POINT_SMOOTH, true)
         { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DepthTestSwitch(bool enableCapacity)
-            : base(OpenGL.GL_DEPTH_TEST, enableCapacity)
+        public PointSmoothState(bool enableCapacity)
+            : base(OpenGL.GL_POINT_SMOOTH, enableCapacity)
         { }
 
         /// <summary>
         ///
         /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             if (this.EnableCapacity)
-            { return "OpenGL.Enable(GL_DEPTH_TEST);"; }
+            { return "OpenGL.Enable(GL_POINT_SMOOTH);"; }
             else
-            { return "OpenGL.Disable(GL_DEPTH_TEST);"; }
+            { return "OpenGL.Disable(GL_POINT_SMOOTH);"; }
         }
     }
 }

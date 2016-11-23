@@ -43,7 +43,7 @@ namespace GridViewer
         /// <param name="attributeMap"></param>
         /// <param name="switches"></param>
         private WellRenderer(WellModel model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }
@@ -52,7 +52,7 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            var model = this.Model as WellModel;
+            var model = this.DataSource as WellModel;
             this.WorldPosition = model.WorldPosition;
             this.ModelSize = model.ModelSize;
             this.firstNode = model.FirstNode;

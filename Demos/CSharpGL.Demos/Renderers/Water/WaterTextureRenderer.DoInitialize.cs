@@ -11,7 +11,7 @@
 
         private const int TEXTURE_SIZE = 1024;
         private Framebuffer framebuffer;
-        private ViewportSwitch viewportSwitch;
+        private ViewportState viewportState;
 
         protected override void DoInitialize()
         {
@@ -48,7 +48,7 @@
                 this.SetUniform("u_waterPlaneLength", (float)this.waterPlaneLength);
             }
 
-            this.viewportSwitch = new ViewportSwitch(0, 0, TEXTURE_SIZE, TEXTURE_SIZE);
+            this.viewportState = new ViewportState(0, 0, TEXTURE_SIZE, TEXTURE_SIZE);
         }
     }
 }

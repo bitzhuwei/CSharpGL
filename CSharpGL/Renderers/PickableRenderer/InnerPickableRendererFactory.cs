@@ -19,7 +19,7 @@ namespace CSharpGL
             this IBufferable model,
             AttributeMap attributeMap,
             string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
         {
             if (model == null || attributeMap == null || string.IsNullOrEmpty(positionNameInIBufferable))
             { throw new ArgumentNullException(); }

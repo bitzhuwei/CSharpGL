@@ -25,10 +25,10 @@ namespace GridViewer
     /// </summary>
     internal class QuadStripRenderer : Renderer
     {
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
-        private LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+        private LineWidthState lineWidthState = new LineWidthState(1);
 
-        private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
+        private PolygonOffsetState offsetState = new PolygonOffsetLineState();
         private VertexBuffer positionBuffer;
         private VertexBuffer texCoordBuffer;
 
@@ -46,7 +46,7 @@ namespace GridViewer
         }
 
         private QuadStripRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }
@@ -55,8 +55,8 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            this.positionBuffer = this.Model.GetVertexAttributeBuffer(QuadStripModel.position, null);
-            this.texCoordBuffer = this.Model.GetVertexAttributeBuffer(QuadStripModel.texCoord, null);
+            this.positionBuffer = this.DataSource.GetVertexAttributeBuffer(QuadStripModel.position, null);
+            this.texCoordBuffer = this.DataSource.GetVertexAttributeBuffer(QuadStripModel.texCoord, null);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -64,14 +64,14 @@ namespace GridViewer
             this.SetUniform("renderWireframe", false);
             base.DoRender(arg);
 
-            polygonModeSwitch.On();
-            lineWidthSwitch.On();
-            // offsetSwitch.On();
+            polygonModeState.On();
+            lineWidthState.On();
+            // offsetState.On();
             this.SetUniform("renderWireframe", true);
             base.DoRender(arg);
-            //offsetSwitch.Off();
-            lineWidthSwitch.Off();
-            polygonModeSwitch.Off();
+            //offsetState.Off();
+            lineWidthState.Off();
+            polygonModeState.Off();
         }
 
         //public enum ColorType

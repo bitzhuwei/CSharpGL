@@ -13,7 +13,7 @@ namespace GridViewer
         public GridViewModel Grid { get; private set; }
 
         protected GridViewRenderer(vec3 originalWorldPosition, GridViewModel model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             this.WorldPosition = originalWorldPosition;
@@ -25,26 +25,26 @@ namespace GridViewer
             if (this.RenderGrid)
             {
                 this.SetUniform("renderingWireframe", false);
-                this.polygonModeSwitch.Mode = PolygonMode.Fill;
-                this.polygonModeSwitch.On();
+                this.polygonModeState.Mode = PolygonMode.Fill;
+                this.polygonModeState.On();
                 base.DoRender(arg);
-                this.polygonModeSwitch.Off();
+                this.polygonModeState.Off();
             }
 
             if (this.renderWireframe)
             {
                 this.SetUniform("renderingWireframe", true);
-                this.polygonModeSwitch.Mode = PolygonMode.Line;
-                this.polygonModeSwitch.On();
-                this.polygonOffsetSwitch.On();
+                this.polygonModeState.Mode = PolygonMode.Line;
+                this.polygonModeState.On();
+                this.polygonOffsetState.On();
                 base.DoRender(arg);
-                this.polygonOffsetSwitch.Off();
-                this.polygonModeSwitch.Off();
+                this.polygonOffsetState.Off();
+                this.polygonModeState.Off();
             }
         }
 
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch();
-        private PolygonOffsetSwitch polygonOffsetSwitch = new PolygonOffsetLineSwitch();
+        private PolygonModeState polygonModeState = new PolygonModeState();
+        private PolygonOffsetState polygonOffsetState = new PolygonOffsetLineState();
         private bool renderGrid = true;
         /// <summary>
         /// 

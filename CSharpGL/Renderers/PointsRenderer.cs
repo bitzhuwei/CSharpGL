@@ -22,7 +22,7 @@ namespace CSharpGL
             var renderer = new PointsRenderer(model, shaderCodes, map, Points.strposition);
             renderer.ModelSize = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
-            renderer.switchList.Add(new PointSizeSwitch(10));
+            renderer.stateList.Add(new PointSizeState(10));
 
             return renderer;
         }
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <param name="attributeMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        public PointsRenderer(Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches) :
+        public PointsRenderer(Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches) :
             base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
         }

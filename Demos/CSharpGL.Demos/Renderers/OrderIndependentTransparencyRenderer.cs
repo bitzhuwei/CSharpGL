@@ -14,18 +14,18 @@ namespace CSharpGL.Demos
         private PixelUnpackBuffer headClearBuffer;
         private AtomicCounterBuffer atomicCountBuffer;
         private Texture linkedListTexture;
-        private DepthTestSwitch depthTestSwitch;
+        private DepthTestState depthTestState;
 
-        public DepthTestSwitch DepthTestSwitch
+        public DepthTestState DepthTestState
         {
-            get { return depthTestSwitch; }
+            get { return depthTestState; }
         }
 
-        private CullFaceSwitch cullFaceSwitch;
+        private CullFaceState cullFaceState;
 
-        public CullFaceSwitch CullFaceSwitch
+        public CullFaceState CullFaceState
         {
-            get { return cullFaceSwitch; }
+            get { return cullFaceState; }
         }
 
         public OrderIndependentTransparencyRenderer(IBufferable model, vec3 lengths,
@@ -49,8 +49,8 @@ namespace CSharpGL.Demos
                 this.resolve_lists = new PickableRenderer(model, resolve_lists, map, positionName);
             }
             {
-                this.depthTestSwitch = new DepthTestSwitch(false);
-                this.cullFaceSwitch = new CullFaceSwitch(false);
+                this.depthTestState = new DepthTestState(false);
+                this.cullFaceState = new CullFaceState(false);
             }
             this.ModelSize = lengths;
         }
@@ -121,8 +121,8 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.depthTestSwitch.On();
-            this.cullFaceSwitch.On();
+            this.depthTestState.On();
+            this.cullFaceState.On();
 
             // Reset atomic counter
             IntPtr data = this.atomicCountBuffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -168,8 +168,8 @@ namespace CSharpGL.Demos
             OpenGL.BindImageTexture(1, 0, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
             OpenGL.BindImageTexture(0, 0, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
-            this.cullFaceSwitch.Off();
-            this.depthTestSwitch.Off();
+            this.cullFaceState.Off();
+            this.depthTestState.Off();
         }
 
         protected override void DisposeUnmanagedResources()

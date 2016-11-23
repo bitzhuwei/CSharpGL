@@ -5,19 +5,19 @@ namespace CSharpGL
     /// <summary>
     /// Dashed line.
     /// </summary>
-    public class LineStippleSwitch : EnableSwitch
+    public class LineStippleState : EnableState
     {
         /// <summary>
         /// Dashed line.
         /// </summary>
-        public LineStippleSwitch() : this(1, 0x0F0F) { }
+        public LineStippleState() : this(1, 0x0F0F) { }
 
         /// <summary>
         /// Dashed line.
         /// </summary>
         /// <param name="factor">factor in 'void glLineStipple(int factor, ushort pattern);'.</param>
         /// <param name="pattern">pattern in 'void glLineStipple(int factor, ushort pattern);'.</param>
-        public LineStippleSwitch(int factor, ushort pattern)
+        public LineStippleState(int factor, ushort pattern)
             : base(OpenGL.GL_LINE_STIPPLE, true)
         {
             this.Init(factor, pattern);
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="factor"></param>
         /// <param name="pattern"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public LineStippleSwitch(int factor, ushort pattern, bool enableCapacity)
+        public LineStippleState(int factor, ushort pattern, bool enableCapacity)
             : base(OpenGL.GL_LINE_STIPPLE, enableCapacity)
         {
             this.Init(factor, pattern);
@@ -59,11 +59,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 OpenGL.LineStipple(this.Factor, this.Pattern);
             }

@@ -25,7 +25,7 @@ namespace CSharpGL
         ///<param name="switches"></param>
         public PickableRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             var innerPickableRenderer = InnerPickableRendererFactory.GetRenderer(

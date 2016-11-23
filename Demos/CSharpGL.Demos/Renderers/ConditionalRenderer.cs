@@ -14,8 +14,8 @@ namespace CSharpGL.Demos
         private const float scaleFactor = 1.0f;
 
         private List<Tuple<SimpleRenderer, RendererBase, Query>> coupleList = new List<Tuple<SimpleRenderer, RendererBase, Query>>();
-        private DepthMaskSwitch depthMaskSwitch = new DepthMaskSwitch(false);
-        private ColorMaskSwitch colorMaskSwitch = new ColorMaskSwitch(false, false, false, false);
+        private DepthMaskState depthMaskState = new DepthMaskState(false);
+        private ColorMaskState colorMaskState = new ColorMaskState(false, false, false, false);
 
         private bool enableConditionalRendering = true;
 
@@ -97,16 +97,16 @@ namespace CSharpGL.Demos
         {
             if (this.ConditionalRendering)
             {
-                this.depthMaskSwitch.On();
-                this.colorMaskSwitch.On();
+                this.depthMaskState.On();
+                this.colorMaskState.On();
                 foreach (var item in this.coupleList)
                 {
                     item.Item3.BeginQuery(QueryTarget.AnySamplesPassed);
                     item.Item1.Render(arg);
                     item.Item3.EndQuery(QueryTarget.AnySamplesPassed);
                 }
-                this.colorMaskSwitch.Off();
-                this.depthMaskSwitch.Off();
+                this.colorMaskState.Off();
+                this.depthMaskState.Off();
                 var result = new int[1];
                 foreach (var item in this.coupleList)
                 {

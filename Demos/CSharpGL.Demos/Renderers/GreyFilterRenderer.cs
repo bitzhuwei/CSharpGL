@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             map.Add("a_vertex", GreyFilterModel.strPosition);
             map.Add("a_texCoord", GreyFilterModel.strTexCoord);
             var model = new GreyFilterModel();
-            var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteSwitch());
+            var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteState());
             renderer.ModelSize = model.Lengths;
 
             return renderer;
@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
 
         private GreyFilterRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

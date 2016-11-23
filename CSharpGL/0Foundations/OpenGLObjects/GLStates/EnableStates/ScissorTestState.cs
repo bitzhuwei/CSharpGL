@@ -3,12 +3,12 @@
     /// <summary>
     ///
     /// </summary>
-    public class ScissorTestSwitch : EnableSwitch
+    public class ScissorTestState : EnableState
     {
         /// <summary>
         ///
         /// </summary>
-        public ScissorTestSwitch()
+        public ScissorTestState()
             : base(OpenGL.GL_SCISSOR_TEST, true)
         {
             int x, y, width, height;
@@ -20,7 +20,7 @@
         ///
         /// </summary>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ScissorTestSwitch(bool enableCapacity)
+        public ScissorTestState(bool enableCapacity)
             : base(OpenGL.GL_SCISSOR_TEST, enableCapacity)
         {
             int x, y, width, height;
@@ -35,7 +35,7 @@
         /// <param name="y"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public ScissorTestSwitch(int x, int y, int width, int height)
+        public ScissorTestState(int x, int y, int width, int height)
             : base(OpenGL.GL_SCISSOR_TEST, true)
         {
             this.Init(x, y, width, height);
@@ -49,7 +49,7 @@
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ScissorTestSwitch(int x, int y, int width, int height, bool enableCapacity)
+        public ScissorTestState(int x, int y, int width, int height, bool enableCapacity)
             : base(OpenGL.GL_SCISSOR_TEST, enableCapacity)
         {
             this.Init(x, y, width, height);
@@ -82,11 +82,11 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 OpenGL.Scissor(this.X, this.Y, this.Width, this.Height);
             }

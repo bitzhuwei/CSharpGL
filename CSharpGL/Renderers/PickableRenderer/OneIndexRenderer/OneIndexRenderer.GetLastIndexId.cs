@@ -71,14 +71,14 @@ namespace CSharpGL
 
         private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
-            if (glSwitch != null)
+            PrimitiveRestartState glState = GetPrimitiveRestartState();
+            if (glState != null)
             {
                 foreach (RecognizedPrimitiveInfo info in primitiveInfoList)
                 {
                     foreach (uint vertexId in info.VertexIds)
                     {
-                        if (vertexId == glSwitch.RestartIndex) { throw new Exception(); }
+                        if (vertexId == glState.RestartIndex) { throw new Exception(); }
                     }
                 }
             }

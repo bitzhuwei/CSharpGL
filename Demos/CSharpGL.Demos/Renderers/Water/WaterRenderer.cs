@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\Water.frag.glsl"), ShaderType.FragmentShader);
             var map = new AttributeMap();
             map.Add("a_vertex", WaterPlaneModel.strPosition);
-            var renderer = new WaterRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CCW));
+            var renderer = new WaterRenderer(model, shaderCodes, map, new FrontFaceState(FrontFaceMode.CCW));
             renderer.waterTextureRenderer = WaterTextureRenderer.Create(waterPlaneLength);
             renderer.backgroundRenderer = WaterBackgroundRenderer.Create(waterPlaneLength);
             renderer.ModelSize = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
@@ -37,11 +37,11 @@ namespace CSharpGL.Demos
         }
 
         private int waterPlaneLength;
-        private CullFaceSwitch cullfaceSwitch;
+        private CullFaceState cullfaceState;
 
         private WaterRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

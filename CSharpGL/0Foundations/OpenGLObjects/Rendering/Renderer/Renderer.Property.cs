@@ -20,7 +20,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderer)]
         [Description("model data that can be transfermed into OpenGL Buffer Objects.")]
-        public IBufferable Model { get; private set; }
+        public IBufferable DataSource { get; private set; }
 
         /// <summary>
         ///
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderer)]
         [Description("OpenGL switches.")]
-        public GLSwitchList SwitchList { get { return this.switchList; } }
+        public GLStateList StateList { get { return this.stateList; } }
 
         /// <summary>
         ///

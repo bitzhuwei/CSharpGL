@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("in_Position", position);
             map.Add("in_Color", color);
-            var renderer = new OrderDependentTransparencyRenderer(model, shaderCodes, map, position, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            var renderer = new OrderDependentTransparencyRenderer(model, shaderCodes, map, position, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             renderer.ModelSize = lengths;
 
             return renderer;
@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
 
         private OrderDependentTransparencyRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         { }
 

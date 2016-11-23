@@ -4,7 +4,7 @@
     /// This function sets what defines a front face. Counter ClockWise by default.
     /// <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
     /// </summary>
-    public class FrontFaceSwitch : GLSwitch
+    public class FrontFaceState : GLState
     {
         private int[] originalPolygonMode = new int[1];
 
@@ -12,14 +12,14 @@
         /// This function sets what defines a front face. Counter ClockWise by default.
         /// <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
         /// </summary>
-        public FrontFaceSwitch() : this(FrontFaceMode.CW) { }
+        public FrontFaceState() : this(FrontFaceMode.CW) { }
 
         /// <summary>
         /// This function sets what defines a front face. Counter ClockWise by default.
         /// <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
         /// </summary>
         /// <param name="mode"></param>
-        public FrontFaceSwitch(FrontFaceMode mode)
+        public FrontFaceState(FrontFaceMode mode)
         {
             this.Mode = mode;
         }
@@ -38,7 +38,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             OpenGL.GetInteger(GetTarget.FrontFace, originalPolygonMode);
 
@@ -52,7 +52,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             if (this.lastMode != originalPolygonMode[0])
             {

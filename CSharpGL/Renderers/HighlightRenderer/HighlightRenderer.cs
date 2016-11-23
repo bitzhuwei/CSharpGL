@@ -20,7 +20,7 @@
         ///<param name="switches"></param>
         public HighlightRenderer(IBufferable model,
             string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            params GLState[] switches)
             : base(model, HighlightShaderHelper.GetHighlightShaderCode(),
                 new AttributeMap("in_Position", positionNameInIBufferable),
                 switches)
@@ -28,11 +28,11 @@
             this.positionNameInIBufferable = positionNameInIBufferable;
             this.UniformVariables.Add(new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
             this.UniformVariables.Add(this.uniformMVP);
-            this.SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
-            this.SwitchList.Add(new LineWidthSwitch(10.0f));
-            this.SwitchList.Add(new PointSizeSwitch(20.0f));
-            this.SwitchList.Add(new PolygonOffsetFillSwitch());
-            this.SwitchList.Add(new PolygonOffsetPointSwitch());
+            this.StateList.Add(new PolygonModeState(PolygonMode.Line));
+            this.StateList.Add(new LineWidthState(10.0f));
+            this.StateList.Add(new PointSizeState(20.0f));
+            this.StateList.Add(new PolygonOffsetFillState());
+            this.StateList.Add(new PolygonOffsetPointState());
         }
 
         /// <summary>

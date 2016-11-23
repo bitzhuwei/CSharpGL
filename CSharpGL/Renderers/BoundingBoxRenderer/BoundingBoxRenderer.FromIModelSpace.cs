@@ -16,7 +16,7 @@ namespace CSharpGL
         public static BoundingBoxRenderer GetBoundingBoxRenderer(this IModelSpace model)
         {
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(model.ModelSize);
-            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth: 1.0f));
+            boxRenderer.StateList.Add(new LineWidthState(lineWidth: 1.0f));
             //boxRenderer.CopyModelSpaceStateFrom(model);
             boxRenderer.ModelSize = model.ModelSize;
 
@@ -66,7 +66,7 @@ namespace CSharpGL
             vec3 lengths = (max - min);
             vec3 worldPosition = max / 2.0f + min / 2.0f;
             BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths);
-            boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth: 1.0f));
+            boxRenderer.StateList.Add(new LineWidthState(lineWidth: 1.0f));
             boxRenderer.WorldPosition = worldPosition;
 
             return boxRenderer;
@@ -141,7 +141,7 @@ namespace CSharpGL
         //    vec3 originalWorldPosition = rectangle.MaxPosition / 2 + rectangle.MinPosition / 2;
         //    BoundingBoxRenderer boxRenderer = BoundingBoxRenderer.Create(lengths, originalWorldPosition);
         //    const float lineWidth = 1.0f;
-        //    boxRenderer.SwitchList.Add(new LineWidthSwitch(lineWidth));
+        //    boxRenderer.StateList.Add(new LineWidthState(lineWidth));
 
         //    return boxRenderer;
         //}

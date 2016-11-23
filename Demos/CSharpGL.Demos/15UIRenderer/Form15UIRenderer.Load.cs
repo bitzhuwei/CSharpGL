@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             {
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
-                glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
+                glText.StateList.Add(new ClearColorState());// show black back color to indicate glText's area.
                 glText.Text = "The quick brown fox jumps over the lazy dog!";
                 this.glText = glText;
                 this.scene.RootUI.Children.Add(glText);
@@ -55,8 +55,8 @@ namespace CSharpGL.Demos
         private void UpdateLabel()
         {
             this.lblCurrentBlend.Text = string.Format("glBlend({0}, {1});",
-                this.glText.BlendSwitch.SourceFactor,
-                this.glText.BlendSwitch.DestFactor);
+                this.glText.BlendState.SourceFactor,
+                this.glText.BlendState.DestFactor);
         }
     }
 }

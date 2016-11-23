@@ -3,20 +3,20 @@
     /// <summary>
     ///
     /// </summary>
-    public class PolygonModeSwitch : GLSwitch
+    public class PolygonModeState : GLState
     {
         private int[] originalPolygonMode = new int[2];
 
         /// <summary>
         ///
         /// </summary>
-        public PolygonModeSwitch() : this(PolygonMode.Fill) { }
+        public PolygonModeState() : this(PolygonMode.Fill) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="mode"></param>
-        public PolygonModeSwitch(PolygonMode mode)
+        public PolygonModeState(PolygonMode mode)
         {
             this.Mode = mode;
         }
@@ -33,7 +33,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             OpenGL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
@@ -43,7 +43,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             if (originalPolygonMode[0] == originalPolygonMode[1])
             {

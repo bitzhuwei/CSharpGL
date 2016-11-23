@@ -7,7 +7,7 @@ namespace CSharpGL
     ///
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public abstract class GLSwitch
+    public abstract class GLState
     {
         private bool inUse = false;
 
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public GLSwitch()
+        public GLState()
         {
             this.Enabled = true;
         }
@@ -32,7 +32,7 @@ namespace CSharpGL
             if (this.Enabled)
             {
                 this.inUse = true;
-                this.SwitchOn();
+                this.StateOn();
             }
         }
 
@@ -44,18 +44,18 @@ namespace CSharpGL
             if (this.inUse)
             {
                 this.inUse = false;
-                this.SwitchOff();
+                this.StateOff();
             }
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected abstract void SwitchOn();
+        protected abstract void StateOn();
 
         /// <summary>
         ///
         /// </summary>
-        protected abstract void SwitchOff();
+        protected abstract void StateOff();
     }
 }

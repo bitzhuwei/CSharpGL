@@ -3,21 +3,21 @@
     /// <summary>
     /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
     /// </summary>
-    public class PolygonOffsetPointSwitch : PolygonOffsetSwitch
+    public class PolygonOffsetFillState : PolygonOffsetState
     {
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
-        public PolygonOffsetPointSwitch()
-            : base(PolygonOffset.Point, true)
+        public PolygonOffsetFillState()
+            : base(PolygonOffset.Fill, true)
         { }
 
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
         /// <param name="pullNear"></param>
-        public PolygonOffsetPointSwitch(bool pullNear)
-            : base(PolygonOffset.Point, pullNear)
+        public PolygonOffsetFillState(bool pullNear)
+            : base(PolygonOffset.Fill, pullNear)
         { }
     }
 }

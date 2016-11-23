@@ -14,8 +14,8 @@ namespace CSharpGL
     {
         private const string viewport = "View Port";
 
-        private ViewportSwitch viewportSwitch;
-        private ScissorTestSwitch scissorTestSwitch;
+        private ViewportState viewportState;
+        private ScissorTestState scissorTestState;
 
         private bool enabled = true;
 
@@ -103,8 +103,8 @@ namespace CSharpGL
         {
             if (!this.isInitialized)
             {
-                this.viewportSwitch = new ViewportSwitch();
-                this.scissorTestSwitch = new ScissorTestSwitch();
+                this.viewportState = new ViewportState();
+                this.scissorTestState = new ScissorTestState();
                 this.isInitialized = true;
             }
         }
@@ -118,23 +118,23 @@ namespace CSharpGL
 
             if (this.locationUpdated)
             {
-                this.viewportSwitch.X = this.Location.X;
-                this.viewportSwitch.Y = this.Location.Y;
-                this.scissorTestSwitch.X = this.Location.X;
-                this.scissorTestSwitch.Y = this.Location.Y;
+                this.viewportState.X = this.Location.X;
+                this.viewportState.Y = this.Location.Y;
+                this.scissorTestState.X = this.Location.X;
+                this.scissorTestState.Y = this.Location.Y;
                 this.locationUpdated = false;
             }
             if (this.sizeUpdated)
             {
-                this.viewportSwitch.Width = this.Size.Width;
-                this.viewportSwitch.Height = this.Size.Height;
-                this.scissorTestSwitch.Width = this.Size.Width;
-                this.scissorTestSwitch.Height = this.Size.Height;
+                this.viewportState.Width = this.Size.Width;
+                this.viewportState.Height = this.Size.Height;
+                this.scissorTestState.Width = this.Size.Width;
+                this.scissorTestState.Height = this.Size.Height;
                 this.sizeUpdated = false;
             }
 
-            this.viewportSwitch.On();
-            this.scissorTestSwitch.On();
+            this.viewportState.On();
+            this.scissorTestState.On();
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace CSharpGL
         {
             if (!this.isInitialized) { this.Initialize(); }
 
-            this.scissorTestSwitch.Off();
-            this.viewportSwitch.Off();
+            this.scissorTestState.Off();
+            this.viewportState.Off();
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace CSharpGL
             if (sceneObject.Enabled)
             {
                 //sceneObject.DoBeforeRendering();
-                GLSwitch[] switchArray = sceneObject.GroupSwitchList.ToArray();
+                GLState[] switchArray = sceneObject.GroupStateList.ToArray();
                 for (int i = 0; i < switchArray.Length; i++)
                 {
                     switchArray[i].On();

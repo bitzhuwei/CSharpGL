@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
         private const int vertexCount = 4;
 
         private BufferBlockRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             var groundRenderer = GroundRenderer.Create(new GroundModel(20));

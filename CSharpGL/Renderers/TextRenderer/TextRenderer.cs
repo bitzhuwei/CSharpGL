@@ -39,7 +39,7 @@
         /// <param name="attributeMap"></param>
         /// <param name="switches"></param>
         private TextRenderer(TextModel model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             this.textModel = model;

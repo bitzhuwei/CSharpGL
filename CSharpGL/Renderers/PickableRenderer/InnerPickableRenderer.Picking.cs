@@ -40,11 +40,11 @@ namespace CSharpGL
             }
             uniformmMVP4Picking.SetUniform(program);
 
-            PickingSwitchesOn();
+            PickingStateesOn();
 
             this.vertexArrayObject.Render(arg, program);
 
-            PickingSwitchesOff();
+            PickingStateesOff();
 
             //if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
 

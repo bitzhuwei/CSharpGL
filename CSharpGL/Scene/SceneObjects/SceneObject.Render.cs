@@ -4,14 +4,14 @@ namespace CSharpGL
 {
     public partial class SceneObject
     {
-        private GLSwitchList groupSwitchList = new GLSwitchList();
+        private GLStateList groupStateList = new GLStateList();
 
         /// <summary>
         /// Turn on before rendering something and turn off after rendering.
         /// </summary>
         [Category(strSceneObject)]
         [Description("Turn on before rendering something and turn off after rendering.")]
-        public GLSwitchList GroupSwitchList { get { return groupSwitchList; } }
+        public GLStateList GroupStateList { get { return groupStateList; } }
 
         ///// <summary>
         ///// Occurs before this object and all of its children's rendering.

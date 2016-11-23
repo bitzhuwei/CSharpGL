@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             //map.Add("a_normal", PlaneModel.strNormal);
-            var renderer = new WaterBackgroundRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CW));
+            var renderer = new WaterBackgroundRenderer(model, shaderCodes, map, new FrontFaceState(FrontFaceMode.CW));
             renderer.ModelSize = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
 
             return renderer;
@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
 
         private WaterBackgroundRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

@@ -86,7 +86,7 @@ namespace RendererGenerator
             method.Parameters.Add(shaderCode);
             var map = new CodeParameterDeclarationExpression(typeof(AttributeMap), "attributeMap");
             method.Parameters.Add(map);
-            var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLSwitch).Name)), "switches");
+            var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLState).Name)), "switches");
             method.Parameters.Add(last);
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("model"));
             method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression(shaderCodes));

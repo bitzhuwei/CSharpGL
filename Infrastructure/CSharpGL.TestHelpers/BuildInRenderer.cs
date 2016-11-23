@@ -3,7 +3,7 @@
     public class BuildInRenderer : Renderer
     {
         public BuildInRenderer(vec3 lengths, IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             this.ModelSize = lengths;

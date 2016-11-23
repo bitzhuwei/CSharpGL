@@ -3,13 +3,13 @@
     /// <summary>
     ///
     /// </summary>
-    public class PrimitiveRestartSwitch : EnableSwitch
+    public class PrimitiveRestartState : EnableState
     {
         /// <summary>
         ///
         /// </summary>
         /// <param name="indexElementType"></param>
-        public PrimitiveRestartSwitch(IndexBufferElementType indexElementType)
+        public PrimitiveRestartState(IndexBufferElementType indexElementType)
             : base(OpenGL.GL_PRIMITIVE_RESTART, true)
         {
             switch (indexElementType)
@@ -45,11 +45,11 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 if (glPrimitiveRestartIndex == null)
                 { glPrimitiveRestartIndex = OpenGL.GetDelegateFor<OpenGL.glPrimitiveRestartIndex>(); }

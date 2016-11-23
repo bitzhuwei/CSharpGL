@@ -72,7 +72,7 @@ namespace GridViewer
             this.currentMarkersCount = maxMarkerCount;
 
             //// display this UI control's area.
-            //this.SwitchList.Add(new ClearColorSwitch());
+            //this.StateList.Add(new ClearColorState());
 
             // color bar using texture.
             {
@@ -82,7 +82,7 @@ namespace GridViewer
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                 zNear, zFar);
-                //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
+                //this.StateList.Add(new ClearColorState(Color.Blue));
                 this.Children.Add(bar);
                 this.colorPaletteBar = bar;
             }
@@ -95,7 +95,7 @@ namespace GridViewer
                     new System.Windows.Forms.Padding(marginLeft, 1 + size.Height / 3, marginRight, 0),
                     new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                     zNear, zFar);
-                //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
+                //this.StateList.Add(new ClearColorState(Color.Blue));
                 this.Children.Add(bar);
                 this.colorPaletteBar2 = bar;
                 bar.Enabled = false;
@@ -107,7 +107,7 @@ namespace GridViewer
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 2),
                 zNear, zFar);
-                //markers.SwitchList.Add(new ClearColorSwitch(Color.Red));
+                //markers.StateList.Add(new ClearColorState(Color.Red));
                 this.Children.Add(markers);
                 this.markers = markers;
             }
@@ -127,7 +127,7 @@ namespace GridViewer
                         new System.Drawing.Size(width, size.Height / 2), zNear, zFar,
                         font.GetFontBitmap("0123456789.eE+-").GetFontTexture(), 100);
                     label.Initialize();
-                    //label.SwitchList.Add(new ClearColorSwitch(Color.Green));
+                    //label.StateList.Add(new ClearColorState(Color.Green));
                     label.Text = ((float)i).ToShortString();
                     label.BeforeLayout += label_beforeLayout;
                     this.Children.Add(label);

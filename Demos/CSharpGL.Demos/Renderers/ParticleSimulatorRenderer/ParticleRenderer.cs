@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
         public VertexBuffer VelocityBuffer { get; private set; }
 
         public ParticleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         { }
 
@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
                 this.VelocityBuffer = buffer;
             }
 
-            this.PositionBuffer = this.Model.GetVertexAttributeBuffer(ParticleModel.strPosition, null);
+            this.PositionBuffer = this.DataSource.GetVertexAttributeBuffer(ParticleModel.strPosition, null);
         }
 
         protected override void DisposeUnmanagedResources()

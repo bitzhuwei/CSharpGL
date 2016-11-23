@@ -3,7 +3,7 @@
     /// <summary>
     /// Toggle of depth mask.
     /// </summary>
-    public class DepthMaskSwitch : GLSwitch
+    public class DepthMaskState : GLState
     {
         private bool writable = false;
 
@@ -20,7 +20,7 @@
         /// Toggle of depth mask.
         /// </summary>
         /// <param name="writable">Writable when this switch is turned on?</param>
-        public DepthMaskSwitch(bool writable = false)
+        public DepthMaskState(bool writable = false)
         {
             this.Writable = writable;
         }
@@ -40,7 +40,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
             this.lastState = this.Writable;
             OpenGL.DepthMask(this.lastState);
@@ -49,7 +49,7 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOff()
+        protected override void StateOff()
         {
             OpenGL.DepthMask(!lastState);
         }

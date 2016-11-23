@@ -24,10 +24,10 @@ namespace CSharpGL.Demos
         }
 
         private KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, string positionNameInIBufferable, params GLSwitch[] switches)
+            AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
-            this.switchList.Add(new LineWidthSwitch(3));
+            this.stateList.Add(new LineWidthState(3));
         }
 
         protected override void DoInitialize()

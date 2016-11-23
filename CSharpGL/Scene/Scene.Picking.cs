@@ -147,7 +147,7 @@ namespace CSharpGL
             if ((sceneObject == null) || (!sceneObject.Enabled)) { return; }
 
             // global switches on.
-            GLSwitch[] switchArray = sceneObject.GroupSwitchList.ToArray();
+            GLState[] switchArray = sceneObject.GroupStateList.ToArray();
             for (int i = 0; i < switchArray.Length; i++)
             {
                 switchArray[i].On();

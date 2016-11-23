@@ -3,12 +3,12 @@
     /// <summary>
     /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
     /// </summary>
-    public class CullFaceSwitch : EnableSwitch
+    public class CullFaceState : EnableState
     {
         /// <summary>
         ///
         /// </summary>
-        public CullFaceSwitch()
+        public CullFaceState()
             : base(OpenGL.GL_CULL_FACE, true)
         {
             this.Init(CullFaceMode.Back);
@@ -18,7 +18,7 @@
         ///
         /// </summary>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public CullFaceSwitch(bool enableCapacity)
+        public CullFaceState(bool enableCapacity)
             : base(OpenGL.GL_CULL_FACE, enableCapacity)
         {
             this.Init(CullFaceMode.Back);
@@ -28,7 +28,7 @@
         ///
         /// </summary>
         /// <param name="mode"></param>
-        public CullFaceSwitch(CullFaceMode mode)
+        public CullFaceState(CullFaceMode mode)
             : base(OpenGL.GL_CULL_FACE, true)
         {
             this.Init(mode);
@@ -39,7 +39,7 @@
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public CullFaceSwitch(CullFaceMode mode, bool enableCapacity)
+        public CullFaceState(CullFaceMode mode, bool enableCapacity)
             : base(OpenGL.GL_CULL_FACE, enableCapacity)
         {
             this.Init(mode);
@@ -68,11 +68,11 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 OpenGL.CullFace(this.mode);
             }

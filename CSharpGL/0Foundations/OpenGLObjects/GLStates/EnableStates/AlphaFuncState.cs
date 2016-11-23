@@ -5,12 +5,12 @@ namespace CSharpGL
     /// <summary>
     /// specify the alpha test function.
     /// </summary>
-    public class AlphaFuncSwitch : EnableSwitch
+    public class AlphaFuncState : EnableState
     {
         /// <summary>
         /// specify the alpha test function.
         /// </summary>
-        public AlphaFuncSwitch()
+        public AlphaFuncState()
             : this(AlphaTestFunction.Always, 0)// this is default values in OpenGL.
         { }
 
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="alphaTestFunc"></param>
         /// <param name="alphaTestReferenceValue"></param>
-        public AlphaFuncSwitch(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue)
+        public AlphaFuncState(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue)
             : base(OpenGL.GL_ALPHA_TEST, true)
         {
             this.AlphaTestFunc = alphaTestFunc;
@@ -46,11 +46,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 OpenGL.AlphaFunc((uint)this.AlphaTestFunc, this.AlphaTestReferenceValue);
             }

@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             map.Add("a_texCoord", PlaneModel.strTexCoord);
-            var renderer = new WaterTextureRenderer(model, shaderCodes, map, new FrontFaceSwitch(FrontFaceMode.CCW), new ClearColorSwitch(Color.Black, 0), new ViewportSwitch(0, 0, TEXTURE_SIZE, TEXTURE_SIZE));
+            var renderer = new WaterTextureRenderer(model, shaderCodes, map, new FrontFaceState(FrontFaceMode.CCW), new ClearColorState(Color.Black, 0), new ViewportState(0, 0, TEXTURE_SIZE, TEXTURE_SIZE));
             renderer.ModelSize = new vec3(waterPlaneLength, 0, waterPlaneLength);
             renderer.waterPlaneLength = waterPlaneLength;
 
@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
 
         private WaterTextureRenderer(
             IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
         }

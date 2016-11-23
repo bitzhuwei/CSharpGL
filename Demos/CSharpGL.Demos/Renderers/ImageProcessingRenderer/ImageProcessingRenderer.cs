@@ -29,9 +29,9 @@
             this.innerRenderer.Dispose();
         }
 
-        public void SwitchDisplayImage(bool forward)
+        public void StateDisplayImage(bool forward)
         {
-            this.innerRenderer.SwitchDisplayImage(forward);
+            this.innerRenderer.StateDisplayImage(forward);
         }
     }
 }

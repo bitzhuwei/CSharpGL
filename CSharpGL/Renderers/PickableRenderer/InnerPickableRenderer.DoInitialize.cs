@@ -11,7 +11,7 @@ namespace CSharpGL
             ShaderProgram program = this.shaderCodes.CreateProgram();
 
             VertexBuffer positionBuffer = null;
-            IBufferable model = this.Model;
+            IBufferable model = this.DataSource;
             VertexBuffer[] vertexAttributeBuffers;
             {
                 var list = new List<VertexBuffer>();
@@ -43,8 +43,8 @@ namespace CSharpGL
             var ptr = indexBuffer as OneIndexBuffer;
             if (ptr != null)
             {
-                GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr.ElementType);
-                this.switchList.Add(glSwitch);
+                GLState glState = new PrimitiveRestartState(ptr.ElementType);
+                this.stateList.Add(glState);
             }
 
             // init VAO.

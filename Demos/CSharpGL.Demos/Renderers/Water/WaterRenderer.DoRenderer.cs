@@ -15,7 +15,7 @@
             this.SetUniform("u_waveParameters", WaterTextureRenderer.ToFloat(WaterTextureRenderer.waveParameters));
             this.SetUniform("u_waveDirections", WaterTextureRenderer.ToFloat(WaterTextureRenderer.waveDirections));
 
-            this.cullfaceSwitch.On();
+            this.cullfaceState.On();
 
             this.backgroundRenderer.passedTime = passedTime;
             this.backgroundRenderer.Render(arg);
@@ -25,7 +25,7 @@
 
             base.DoRender(arg);
 
-            this.cullfaceSwitch.Off();
+            this.cullfaceState.Off();
 
             passedTime += deltaTime;
         }

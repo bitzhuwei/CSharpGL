@@ -6,12 +6,12 @@ namespace CSharpGL
     /// specify a plane against which all geometry is clipped.
     /// <para>you can't use glClipPlane and vertex programs together.</para>
     /// </summary>
-    public class ClipPlaneSwitch : EnableSwitch
+    public class ClipPlaneState : EnableState
     {
         private static readonly double[] defaultEquation = new double[4] { 0, 1, 0, 0, };
         private static int maxClipPlanes;
 
-        static ClipPlaneSwitch()
+        static ClipPlaneState()
         {
             var result = new int[1];
             OpenGL.GetInteger(GetTarget.MaxClipPlanes, result);
@@ -73,7 +73,7 @@ namespace CSharpGL
         /// <summary>
         /// specify a plane against which all geometry is clipped.
         /// </summary>
-        public ClipPlaneSwitch()
+        public ClipPlaneState()
             : this(enableCapacity: true)
         {
         }
@@ -82,7 +82,7 @@ namespace CSharpGL
         /// specify a plane against which all geometry is clipped.
         /// </summary>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ClipPlaneSwitch(bool enableCapacity)
+        public ClipPlaneState(bool enableCapacity)
             : this(0u, defaultEquation, enableCapacity)
         {
         }
@@ -94,7 +94,7 @@ namespace CSharpGL
         /// <para>Just put in 0, 1, ... GL_MAX_CLIP_PLANES -1./// </para>
         /// </param>
         /// <param name="equation">Specifies the address of an array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
-        public ClipPlaneSwitch(uint planeIndex, double[] equation)
+        public ClipPlaneState(uint planeIndex, double[] equation)
             : this(planeIndex, equation, true)
         {
         }
@@ -107,7 +107,7 @@ namespace CSharpGL
         /// </param>
         /// <param name="equation">Specifies the address of an array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ClipPlaneSwitch(uint planeIndex, double[] equation, bool enableCapacity)
+        public ClipPlaneState(uint planeIndex, double[] equation, bool enableCapacity)
             : base(OpenGL.GL_CLIP_PLANE0 + planeIndex, enableCapacity)
         {
             this.Init(planeIndex, equation);
@@ -137,11 +137,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void SwitchOn()
+        protected override void StateOn()
         {
-            base.SwitchOn();
+            base.StateOn();
 
-            if (this.enableCapacityWhenSwitchOn)
+            if (this.enableCapacityWhenStateOn)
             {
                 OpenGL.ClipPlane(this.Capacity, this.equation);
             }

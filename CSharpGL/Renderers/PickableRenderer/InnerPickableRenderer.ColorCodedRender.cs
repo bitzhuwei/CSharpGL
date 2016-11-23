@@ -27,20 +27,20 @@ namespace CSharpGL
             }
             uniformmMVP4Picking.SetUniform(program);
 
-            PickingSwitchesOn();
+            PickingStateesOn();
             var oneIndexBuffer = temporaryIndexBuffer as OneIndexBuffer;
             if (oneIndexBuffer != null)
             {
-                PrimitiveRestartSwitch glSwitch = this.GetPrimitiveRestartSwitch(oneIndexBuffer);
-                glSwitch.On();
+                PrimitiveRestartState glState = this.GetPrimitiveRestartState(oneIndexBuffer);
+                glState.On();
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBuffer);
-                glSwitch.Off();
+                glState.Off();
             }
             else
             {
                 this.vertexArrayObject.Render(arg, program, temporaryIndexBuffer);
             }
-            PickingSwitchesOff();
+            PickingStateesOff();
 
             //if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
 
@@ -48,21 +48,21 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        protected void PickingSwitchesOff()
+        protected void PickingStateesOff()
         {
-            int count = this.switchList.Count;
+            int count = this.stateList.Count;
             for (int i = count - 1; i >= 0; i--)
             {
-                this.switchList[i].Off();
+                this.stateList[i].Off();
             }
         }
 
-        protected void PickingSwitchesOn()
+        protected void PickingStateesOn()
         {
-            int count = this.switchList.Count;
+            int count = this.stateList.Count;
             for (int i = 0; i < count; i++)
             {
-                this.switchList[i].On();
+                this.stateList[i].On();
             }
         }
 
@@ -72,27 +72,27 @@ namespace CSharpGL
             {
                 case PickingGeometryType.None:
                     // whatever it is.
-                    polygonModeSwitch.Mode = PolygonMode.Point;
+                    polygonModeState.Mode = PolygonMode.Point;
                     break;
 
                 case PickingGeometryType.Point:
-                    polygonModeSwitch.Mode = PolygonMode.Point;
+                    polygonModeState.Mode = PolygonMode.Point;
                     break;
 
                 case PickingGeometryType.Line:
-                    polygonModeSwitch.Mode = PolygonMode.Line;
+                    polygonModeState.Mode = PolygonMode.Line;
                     break;
 
                 case PickingGeometryType.Triangle:
-                    polygonModeSwitch.Mode = PolygonMode.Fill;
+                    polygonModeState.Mode = PolygonMode.Fill;
                     break;
 
                 case PickingGeometryType.Quad:
-                    polygonModeSwitch.Mode = PolygonMode.Fill;
+                    polygonModeState.Mode = PolygonMode.Fill;
                     break;
 
                 case PickingGeometryType.Polygon:
-                    polygonModeSwitch.Mode = PolygonMode.Fill;
+                    polygonModeState.Mode = PolygonMode.Fill;
                     break;
 
                 default:
@@ -100,31 +100,31 @@ namespace CSharpGL
             }
         }
 
-        private PrimitiveRestartSwitch ubyteRestartIndexSwitch = null;
-        private PrimitiveRestartSwitch ushortRestartIndexSwitch = null;
-        private PrimitiveRestartSwitch uintRestartIndexSwitch = null;
+        private PrimitiveRestartState ubyteRestartIndexState = null;
+        private PrimitiveRestartState ushortRestartIndexState = null;
+        private PrimitiveRestartState uintRestartIndexState = null;
 
-        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch(OneIndexBuffer indexBuffer)
+        private PrimitiveRestartState GetPrimitiveRestartState(OneIndexBuffer indexBuffer)
         {
-            PrimitiveRestartSwitch result = null;
+            PrimitiveRestartState result = null;
             switch (indexBuffer.ElementType)
             {
                 case IndexBufferElementType.UByte:
-                    if (this.ubyteRestartIndexSwitch == null)
-                    { this.ubyteRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType); }
-                    result = this.ubyteRestartIndexSwitch;
+                    if (this.ubyteRestartIndexState == null)
+                    { this.ubyteRestartIndexState = new PrimitiveRestartState(indexBuffer.ElementType); }
+                    result = this.ubyteRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UShort:
-                    if (this.ushortRestartIndexSwitch == null)
-                    { this.ushortRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType); }
-                    result = this.ushortRestartIndexSwitch;
+                    if (this.ushortRestartIndexState == null)
+                    { this.ushortRestartIndexState = new PrimitiveRestartState(indexBuffer.ElementType); }
+                    result = this.ushortRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UInt:
-                    if (this.uintRestartIndexSwitch == null)
-                    { this.uintRestartIndexSwitch = new PrimitiveRestartSwitch(indexBuffer.ElementType); }
-                    result = this.uintRestartIndexSwitch;
+                    if (this.uintRestartIndexState == null)
+                    { this.uintRestartIndexState = new PrimitiveRestartState(indexBuffer.ElementType); }
+                    result = this.uintRestartIndexState;
                     break;
 
                 default:

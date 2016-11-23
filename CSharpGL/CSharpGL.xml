@@ -6018,6 +6018,36 @@
             
              </summary>
         </member>
+        <member name="F:CSharpGL.OpenGL.GL_MAX_VERTEX_IMAGE_UNIFORMS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.OpenGL.GL_MAX_TESS_CONTROL_IMAGE_UNIFORMS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.OpenGL.GL_MAX_TESS_EVALUATION_IMAGE_UNIFORMS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.OpenGL.GL_MAX_GEOMETRY_IMAGE_UNIFORMS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.OpenGL.GL_MAX_FRAGMENT_IMAGE_UNIFORMS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.OpenGL.GL_MAX_COMBINED_IMAGE_UNIFORMS">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:CSharpGL.OpenGL.GL_MAX_VERTEX_UNIFORM_BLOCKS">
              <summary>
             
@@ -11689,6 +11719,14 @@
             <para>An array at server side (GPU memory) with fixed length.</para>
             </summary>
         </member>
+        <member name="M:CSharpGL.Buffer.ClearBufferData(CSharpGL.vec3,System.Boolean)">
+            <summary>
+            Fill a buffer object's data store with a fixed value.
+            </summary>
+            <param name="data"></param>
+            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
+            <returns></returns>
+        </member>
         <member name="M:CSharpGL.Buffer.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
             <summary>
             Fill a buffer object's data store with a fixed value.
@@ -11708,6 +11746,19 @@
             <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
             <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
             <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be IntPtr.Zero.</param>
+            <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Buffer.ClearBufferSubData(System.Int32,System.UInt32,CSharpGL.vec3,System.Boolean)">
+            <summary>
+            Fill all or part of buffer object's data store with a fixed value.
+            </summary>
+            <param name="internalFormat">The sized internal format with which the data will be stored in the buffer object.</param>
+            <param name="offset">The offset, in basic machine units into the buffer object's data store at which to start filling.</param>
+            <param name="size">The size, in basic machine units of the range of the data store to fill.</param>
+            <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
+            <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
+            <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be null.</param>
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
@@ -12030,164 +12081,164 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="T:CSharpGL.AccumBufferSwitch">
+        <member name="T:CSharpGL.AccumBufferState">
              <summary>
             
              </summary>
         </member>
-        <member name="T:CSharpGL.GLSwitch">
+        <member name="T:CSharpGL.GLState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.GLSwitch.#ctor">
+        <member name="M:CSharpGL.GLState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.GLSwitch.On">
+        <member name="M:CSharpGL.GLState.On">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.GLSwitch.Off">
+        <member name="M:CSharpGL.GLState.Off">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.GLSwitch.SwitchOn">
+        <member name="M:CSharpGL.GLState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.GLSwitch.SwitchOff">
+        <member name="M:CSharpGL.GLState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.GLSwitch.Enabled">
+        <member name="P:CSharpGL.GLState.Enabled">
             <summary>
             You want to use this switch?
             </summary>
         </member>
-        <member name="M:CSharpGL.AccumBufferSwitch.#ctor">
+        <member name="M:CSharpGL.AccumBufferState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.AccumBufferSwitch.#ctor(System.Drawing.Color,System.Single)">
+        <member name="M:CSharpGL.AccumBufferState.#ctor(System.Drawing.Color,System.Single)">
              <summary>
             
              </summary>
              <param name="clearColor"></param>
              <param name="clearAlphazValue">Ranges between [0, 1.0].</param>
         </member>
-        <member name="M:CSharpGL.AccumBufferSwitch.ToString">
+        <member name="M:CSharpGL.AccumBufferState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.AccumBufferSwitch.SwitchOn">
+        <member name="M:CSharpGL.AccumBufferState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.AccumBufferSwitch.SwitchOff">
+        <member name="M:CSharpGL.AccumBufferState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.AccumBufferSwitch.ClearValue">
+        <member name="P:CSharpGL.AccumBufferState.ClearValue">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.AccumBufferSwitch.ClearAlphaValue">
+        <member name="P:CSharpGL.AccumBufferState.ClearAlphaValue">
             <summary>
             Alpha value.
             </summary>
         </member>
-        <member name="T:CSharpGL.AlphaFuncSwitch">
+        <member name="T:CSharpGL.AlphaFuncState">
             <summary>
             specify the alpha test function.
             </summary>
         </member>
-        <member name="T:CSharpGL.EnableSwitch">
+        <member name="T:CSharpGL.EnableState">
             <summary>
             GL.Enable(cap); or GL.Disable(cap);
             </summary>
         </member>
-        <member name="F:CSharpGL.EnableSwitch.enableCapacityWhenSwitchOn">
+        <member name="F:CSharpGL.EnableState.enableCapacityWhenStateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.EnableSwitch.#ctor(System.UInt32)">
+        <member name="M:CSharpGL.EnableState.#ctor(System.UInt32)">
             <summary>
             GL.Enable(capacity);
             </summary>
             <param name="capacity"></param>
         </member>
-        <member name="M:CSharpGL.EnableSwitch.#ctor(System.UInt32,System.Boolean)">
+        <member name="M:CSharpGL.EnableState.#ctor(System.UInt32,System.Boolean)">
             <summary>
             GL.Enable(capacity); or GL.Disable(capacity);
             </summary>
             <param name="capacity"></param>
             <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.EnableSwitch.ToString">
+        <member name="M:CSharpGL.EnableState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.EnableSwitch.SwitchOn">
+        <member name="M:CSharpGL.EnableState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.EnableSwitch.SwitchOff">
+        <member name="M:CSharpGL.EnableState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.EnableSwitch.Capacity">
+        <member name="P:CSharpGL.EnableState.Capacity">
             <summary>
             GL.Enable(capacity);
             </summary>
         </member>
-        <member name="P:CSharpGL.EnableSwitch.EnableCapacity">
+        <member name="P:CSharpGL.EnableState.EnableCapacity">
             <summary>
             GL.Enable(capacity); or GL.Disable(capacity);
             </summary>
         </member>
-        <member name="M:CSharpGL.AlphaFuncSwitch.#ctor">
+        <member name="M:CSharpGL.AlphaFuncState.#ctor">
             <summary>
             specify the alpha test function.
             </summary>
         </member>
-        <member name="M:CSharpGL.AlphaFuncSwitch.#ctor(CSharpGL.AlphaTestFunction,System.Single)">
+        <member name="M:CSharpGL.AlphaFuncState.#ctor(CSharpGL.AlphaTestFunction,System.Single)">
             <summary>
             specify the alpha test function.
             </summary>
             <param name="alphaTestFunc"></param>
             <param name="alphaTestReferenceValue"></param>
         </member>
-        <member name="M:CSharpGL.AlphaFuncSwitch.ToString">
+        <member name="M:CSharpGL.AlphaFuncState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.AlphaFuncSwitch.SwitchOn">
+        <member name="M:CSharpGL.AlphaFuncState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.AlphaFuncSwitch.AlphaTestFunc">
+        <member name="P:CSharpGL.AlphaFuncState.AlphaTestFunc">
             <summary>
             Specifies the alpha comparison function. The initial value is GL_ALWAYS.
             </summary>
         </member>
-        <member name="P:CSharpGL.AlphaFuncSwitch.AlphaTestReferenceValue">
+        <member name="P:CSharpGL.AlphaFuncState.AlphaTestReferenceValue">
             <summary>
             Specifies the reference value that incoming alpha values are compared to. This value is clamped to the range [0, 1], where 0 represents the lowest possible alpha value and 1 the highest possible value. The initial reference value is 0.
             </summary>
@@ -12237,24 +12288,24 @@
             Always passes (initial value).
             </summary>
         </member>
-        <member name="T:CSharpGL.ClipPlaneSwitch">
+        <member name="T:CSharpGL.ClipPlaneState">
             <summary>
             specify a plane against which all geometry is clipped.
             <para>you can't use glClipPlane and vertex programs together.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.ClipPlaneSwitch.#ctor">
+        <member name="M:CSharpGL.ClipPlaneState.#ctor">
             <summary>
             specify a plane against which all geometry is clipped.
             </summary>
         </member>
-        <member name="M:CSharpGL.ClipPlaneSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.ClipPlaneState.#ctor(System.Boolean)">
             <summary>
             specify a plane against which all geometry is clipped.
             </summary>
             <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.ClipPlaneSwitch.#ctor(System.UInt32,System.Double[])">
+        <member name="M:CSharpGL.ClipPlaneState.#ctor(System.UInt32,System.Double[])">
             <summary>
             specify a plane against which all geometry is clipped.
             </summary>
@@ -12263,7 +12314,7 @@
             </param>
             <param name="equation">Specifies the address of an array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
         </member>
-        <member name="M:CSharpGL.ClipPlaneSwitch.#ctor(System.UInt32,System.Double[],System.Boolean)">
+        <member name="M:CSharpGL.ClipPlaneState.#ctor(System.UInt32,System.Double[],System.Boolean)">
             <summary>
             specify a plane against which all geometry is clipped.
             </summary>
@@ -12273,89 +12324,89 @@
             <param name="equation">Specifies the address of an array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
             <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.ClipPlaneSwitch.ToString">
+        <member name="M:CSharpGL.ClipPlaneState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ClipPlaneSwitch.SwitchOn">
+        <member name="M:CSharpGL.ClipPlaneState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ClipPlaneSwitch.MaxClipPlanes">
+        <member name="P:CSharpGL.ClipPlaneState.MaxClipPlanes">
             <summary>
             you can't use glClipPlane and vertex programs together.
             </summary>
         </member>
-        <member name="P:CSharpGL.ClipPlaneSwitch.PlaneIndex">
+        <member name="P:CSharpGL.ClipPlaneState.PlaneIndex">
             <summary>
             Specifies which clipping plane is being positioned. Symbolic names of the form GL_CLIP_PLANEi, where i is an integer between 0 and GL_MAX_CLIP_PLANES -1 , are accepted.
             <para>Just put in 0, 1, ... GL_MAX_CLIP_PLANES -1.
             </para>
             </summary>
         </member>
-        <member name="P:CSharpGL.ClipPlaneSwitch.Equation">
+        <member name="P:CSharpGL.ClipPlaneState.Equation">
             <summary>
             Specifies the address of an array of four double-precision floating-point values. These values are interpreted as a plane equation.
             </summary>
         </member>
-        <member name="T:CSharpGL.DitherSwitch">
+        <member name="T:CSharpGL.DitherState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DitherSwitch.#ctor">
+        <member name="M:CSharpGL.DitherState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DitherSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.DitherState.#ctor(System.Boolean)">
              <summary>
             
              </summary>
              <param name="enableCapacity">true for enable, false for disable</param>
         </member>
-        <member name="M:CSharpGL.DitherSwitch.ToString">
+        <member name="M:CSharpGL.DitherState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="T:CSharpGL.LogicOperationSwitch">
+        <member name="T:CSharpGL.LogicOperationState">
             <summary>
             specify a logical pixel operation for rendering.
             </summary>
         </member>
-        <member name="M:CSharpGL.LogicOperationSwitch.#ctor">
+        <member name="M:CSharpGL.LogicOperationState.#ctor">
             <summary>
             specify a logical pixel operation for rendering.
             </summary>
         </member>
-        <member name="M:CSharpGL.LogicOperationSwitch.#ctor(CSharpGL.LogicOp)">
+        <member name="M:CSharpGL.LogicOperationState.#ctor(CSharpGL.LogicOp)">
             <summary>
             specify a logical pixel operation for rendering.
             </summary>
             <param name="operation"></param>
         </member>
-        <member name="M:CSharpGL.LogicOperationSwitch.#ctor(CSharpGL.LogicOp,System.Boolean)">
+        <member name="M:CSharpGL.LogicOperationState.#ctor(CSharpGL.LogicOp,System.Boolean)">
             <summary>
             specify a logical pixel operation for rendering.
             </summary>
             <param name="operation"></param>
             <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.LogicOperationSwitch.ToString">
+        <member name="M:CSharpGL.LogicOperationState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.LogicOperationSwitch.SwitchOn">
+        <member name="M:CSharpGL.LogicOperationState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.LogicOperationSwitch.Operation">
+        <member name="P:CSharpGL.LogicOperationState.Operation">
             <summary>
             Specifies a symbolic constant that selects a logical operation.
             </summary>
@@ -12448,42 +12499,42 @@
             
              </summary>
         </member>
-        <member name="T:CSharpGL.FrontFaceSwitch">
+        <member name="T:CSharpGL.FrontFaceState">
             <summary>
             This function sets what defines a front face. Counter ClockWise by default.
             <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.FrontFaceSwitch.#ctor">
+        <member name="M:CSharpGL.FrontFaceState.#ctor">
             <summary>
             This function sets what defines a front face. Counter ClockWise by default.
             <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.FrontFaceSwitch.#ctor(CSharpGL.FrontFaceMode)">
+        <member name="M:CSharpGL.FrontFaceState.#ctor(CSharpGL.FrontFaceMode)">
             <summary>
             This function sets what defines a front face. Counter ClockWise by default.
             <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
             </summary>
             <param name="mode"></param>
         </member>
-        <member name="M:CSharpGL.FrontFaceSwitch.ToString">
+        <member name="M:CSharpGL.FrontFaceState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.FrontFaceSwitch.SwitchOn">
+        <member name="M:CSharpGL.FrontFaceState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.FrontFaceSwitch.SwitchOff">
+        <member name="M:CSharpGL.FrontFaceState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.FrontFaceSwitch.Mode">
+        <member name="P:CSharpGL.FrontFaceState.Mode">
              <summary>
             
              </summary>
@@ -13249,6 +13300,21 @@
             <param name="length">length of <paramref name="array"/> to bo sorted.</param>
             <param name="descending">true for descending sort; otherwise false.</param>
         </member>
+        <member name="F:CSharpGL.OpenGL32Library.libPtr">
+            <summary>
+            glLibrary = Win32.LoadLibrary(OpenGL32);
+            </summary>
+        </member>
+        <member name="M:CSharpGL.OpenGL32Library.Dispose">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.OpenGL32Library.Finalize">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="T:CSharpGL.Win32">
             <summary>
             Useful functions imported from the Win32 SDK.
@@ -13331,21 +13397,6 @@
             </summary>
             <param name="hDC">Handle to an existing device context.If this handle is NULL, the function creates a memory device context compatible with the application's current screen.</param>
             <returns>The handle to a memory device context indicates success. NULL indicates failure.</returns>
-        </member>
-        <member name="F:CSharpGL.Win32.OpenGL32Library.libPtr">
-            <summary>
-            glLibrary = Win32.LoadLibrary(OpenGL32);
-            </summary>
-        </member>
-        <member name="M:CSharpGL.Win32.OpenGL32Library.Dispose">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Win32.OpenGL32Library.Finalize">
-             <summary>
-            
-             </summary>
         </member>
         <member name="T:CSharpGL.BezierType">
             <summary>
@@ -13564,7 +13615,7 @@
             Mapping relations between 'in' variables in vertex shader and buffers in <see cref="P:CSharpGL.Renderer.Model"/>.
             </summary>
         </member>
-        <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
              <summary>
              Rendering something using GLSL shader and VBO(VAO).
              </summary>
@@ -13635,7 +13686,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.Renderer.SwitchList">
+        <member name="P:CSharpGL.Renderer.StateList">
              <summary>
             
              </summary>
@@ -13693,7 +13744,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.PickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              支持"拾取"的渲染器
              </summary>
@@ -13805,7 +13856,7 @@
              <param name="model"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.PointsRenderer.#ctor(CSharpGL.Points,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.PointsRenderer.#ctor(CSharpGL.Points,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
             
              </summary>
@@ -13862,7 +13913,7 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.BezierRenderer.#ctor(System.Collections.Generic.IList{CSharpGL.vec3},CSharpGL.BezierType,CSharpGL.Points,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.BezierRenderer.#ctor(System.Collections.Generic.IList{CSharpGL.vec3},CSharpGL.BezierType,CSharpGL.Points,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
             <summary>
             Rendering a evaluator(a bezier curve or surface) and its control points.
             </summary>
@@ -13931,7 +13982,7 @@
             This is a 1D evaluator, i.e a bezier curve.
             </summary>
         </member>
-        <member name="M:CSharpGL.EvaluatorRenderer.Setup(CSharpGL.UnmanagedArray{CSharpGL.vec3})">
+        <member name="M:CSharpGL.EvaluatorRenderer.Setup(CSharpGL.vec3[])">
              <summary>
             
              </summary>
@@ -13966,7 +14017,7 @@
             </summary>
             <param name="arg"></param>
         </member>
-        <member name="M:CSharpGL.Evaluator1DRenderer.Setup(CSharpGL.UnmanagedArray{CSharpGL.vec3})">
+        <member name="M:CSharpGL.Evaluator1DRenderer.Setup(CSharpGL.vec3[])">
              <summary>
             
              </summary>
@@ -14012,7 +14063,7 @@
             </summary>
             <param name="arg"></param>
         </member>
-        <member name="M:CSharpGL.Evaluator2DRenderer.Setup(CSharpGL.UnmanagedArray{CSharpGL.vec3})">
+        <member name="M:CSharpGL.Evaluator2DRenderer.Setup(CSharpGL.vec3[])">
              <summary>
             
              </summary>
@@ -14518,12 +14569,12 @@
             </summary>
             <param name="camera"></param>
         </member>
-        <member name="T:CSharpGL.ColorMaskSwitch">
+        <member name="T:CSharpGL.ColorMaskState">
             <summary>
             Toggle of color mask.
             </summary>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:CSharpGL.ColorMaskState.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Toggle of color mask.
             </summary>
@@ -14532,7 +14583,7 @@
             <param name="blueWritable">blue mask when this switch is turned on</param>
             <param name="alphaWritable">alpha mask when this switch is turned on</param>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:CSharpGL.ColorMaskState.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Toggle of color mask.
             </summary>
@@ -14545,40 +14596,40 @@
             <param name="originalGreenWritable">blue mask when this switch is turned off.</param>
             <param name="originalRedWritable">alpha mask when this switch is turned off.</param>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.#ctor(CSharpGL.ColorMask)">
+        <member name="M:CSharpGL.ColorMaskState.#ctor(CSharpGL.ColorMask)">
             <summary>
             Toggle of color mask.
             </summary>
             <param name="mask">mask when this switch is turned on.</param>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.#ctor(CSharpGL.ColorMask,CSharpGL.ColorMask)">
+        <member name="M:CSharpGL.ColorMaskState.#ctor(CSharpGL.ColorMask,CSharpGL.ColorMask)">
             <summary>
             Toggle of color mask.
             </summary>
             <param name="mask">mask when this switch is turned on.</param>
             <param name="originalMask">mask when this switch is turned off.</param>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.ToString">
+        <member name="M:CSharpGL.ColorMaskState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.SwitchOn">
+        <member name="M:CSharpGL.ColorMaskState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ColorMaskSwitch.SwitchOff">
+        <member name="M:CSharpGL.ColorMaskState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ColorMaskSwitch.Mask">
+        <member name="P:CSharpGL.ColorMaskState.Mask">
             <summary>
              mask when this switch is turned on.
             </summary>
         </member>
-        <member name="P:CSharpGL.ColorMaskSwitch.OriginalMask">
+        <member name="P:CSharpGL.ColorMaskState.OriginalMask">
             <summary>
              mask when this switch is turned off.
             </summary>
@@ -14634,55 +14685,55 @@
             Gets default color mask in OpenGL.
             </summary>
         </member>
-        <member name="T:CSharpGL.DepthMaskSwitch">
+        <member name="T:CSharpGL.DepthMaskState">
             <summary>
             Toggle of depth mask.
             </summary>
         </member>
-        <member name="M:CSharpGL.DepthMaskSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.DepthMaskState.#ctor(System.Boolean)">
             <summary>
             Toggle of depth mask.
             </summary>
             <param name="writable">Writable when this switch is turned on?</param>
         </member>
-        <member name="M:CSharpGL.DepthMaskSwitch.ToString">
+        <member name="M:CSharpGL.DepthMaskState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DepthMaskSwitch.SwitchOn">
+        <member name="M:CSharpGL.DepthMaskState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DepthMaskSwitch.SwitchOff">
+        <member name="M:CSharpGL.DepthMaskState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.DepthMaskSwitch.Writable">
+        <member name="P:CSharpGL.DepthMaskState.Writable">
             <summary>
              Writable when this switch is turned on?
             </summary>
         </member>
-        <member name="T:CSharpGL.LineStippleSwitch">
+        <member name="T:CSharpGL.LineStippleState">
             <summary>
             Dashed line.
             </summary>
         </member>
-        <member name="M:CSharpGL.LineStippleSwitch.#ctor">
+        <member name="M:CSharpGL.LineStippleState.#ctor">
             <summary>
             Dashed line.
             </summary>
         </member>
-        <member name="M:CSharpGL.LineStippleSwitch.#ctor(System.Int32,System.UInt16)">
+        <member name="M:CSharpGL.LineStippleState.#ctor(System.Int32,System.UInt16)">
             <summary>
             Dashed line.
             </summary>
             <param name="factor">factor in 'void glLineStipple(int factor, ushort pattern);'.</param>
             <param name="pattern">pattern in 'void glLineStipple(int factor, ushort pattern);'.</param>
         </member>
-        <member name="M:CSharpGL.LineStippleSwitch.#ctor(System.Int32,System.UInt16,System.Boolean)">
+        <member name="M:CSharpGL.LineStippleState.#ctor(System.Int32,System.UInt16,System.Boolean)">
             <summary>
             Dashed line.
             </summary>
@@ -14690,22 +14741,22 @@
             <param name="pattern"></param>
             <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.LineStippleSwitch.ToString">
+        <member name="M:CSharpGL.LineStippleState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.LineStippleSwitch.SwitchOn">
+        <member name="M:CSharpGL.LineStippleState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.LineStippleSwitch.Factor">
+        <member name="P:CSharpGL.LineStippleState.Factor">
             <summary>
             factor in 'void glLineStipple(int factor, ushort pattern);'.
             </summary>
         </member>
-        <member name="P:CSharpGL.LineStippleSwitch.Pattern">
+        <member name="P:CSharpGL.LineStippleState.Pattern">
             <summary>
             pattern in 'void glLineStipple(int factor, ushort pattern);'.
             </summary>
@@ -16266,7 +16317,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.HighlightRenderer.#ctor(CSharpGL.IBufferable,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.HighlightRenderer.#ctor(CSharpGL.IBufferable,System.String,CSharpGL.GLState[])">
              <summary>
              高亮显示指定的图元。
              </summary>
@@ -16584,7 +16635,7 @@
             <param name="fontTexture">Use which font to render text?</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.LabelRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.LabelRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
              <summary>
             
              </summary>
@@ -16690,7 +16741,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.SimpleRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.SimpleRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
             
              </summary>
@@ -18567,7 +18618,7 @@
             <param name="fontTexture">Use which font to render text?</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.TextRenderer.#ctor(CSharpGL.TextModel,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.TextRenderer.#ctor(CSharpGL.TextModel,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
             <summary>
             Renders a label(a single line of text).
             </summary>
@@ -18598,7 +18649,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.TextRenderer.BlendSwitch">
+        <member name="P:CSharpGL.TextRenderer.BlendState">
              <summary>
             
              </summary>
@@ -18916,7 +18967,7 @@
             Length in X/Y/Z axis.
             </summary>
         </member>
-        <member name="P:CSharpGL.SceneObject.GroupSwitchList">
+        <member name="P:CSharpGL.SceneObject.GroupStateList">
             <summary>
             Turn on before rendering something and turn off after rendering.
             </summary>
@@ -19294,7 +19345,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.UIRenderer.SwitchList">
+        <member name="P:CSharpGL.UIRenderer.StateList">
              <summary>
             
              </summary>
@@ -19439,88 +19490,88 @@
             Minimum position of this cuboid.
             </summary>
         </member>
-        <member name="T:CSharpGL.BlendSwitch">
+        <member name="T:CSharpGL.BlendState">
             <summary>
             specify pixel arithmetic.
             </summary>
         </member>
-        <member name="M:CSharpGL.BlendSwitch.#ctor">
+        <member name="M:CSharpGL.BlendState.#ctor">
             <summary>
             specify pixel arithmetic.
             </summary>
         </member>
-        <member name="M:CSharpGL.BlendSwitch.#ctor(CSharpGL.BlendingSourceFactor,CSharpGL.BlendingDestinationFactor)">
+        <member name="M:CSharpGL.BlendState.#ctor(CSharpGL.BlendingSourceFactor,CSharpGL.BlendingDestinationFactor)">
             <summary>
             specify pixel arithmetic.
             </summary>
             <param name="sourceFactor">Specifies how the red, green, blue, and alpha source blending factors are computedThe initial value is GL_ONE.</param>
             <param name="destFactor">Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         </member>
-        <member name="M:CSharpGL.BlendSwitch.ToString">
+        <member name="M:CSharpGL.BlendState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.BlendSwitch.SwitchOn">
+        <member name="M:CSharpGL.BlendState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.BlendSwitch.SourceFactor">
+        <member name="P:CSharpGL.BlendState.SourceFactor">
             <summary>
             Specifies how the red, green, blue, and alpha source blending factors are computed. The initial value is GL_ONE.
             </summary>
         </member>
-        <member name="P:CSharpGL.BlendSwitch.DestFactor">
+        <member name="P:CSharpGL.BlendState.DestFactor">
             <summary>
             Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.
             </summary>
         </member>
-        <member name="T:CSharpGL.CullFaceSwitch">
+        <member name="T:CSharpGL.CullFaceState">
             <summary>
             https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
             </summary>
         </member>
-        <member name="M:CSharpGL.CullFaceSwitch.#ctor">
+        <member name="M:CSharpGL.CullFaceState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.CullFaceSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.CullFaceState.#ctor(System.Boolean)">
              <summary>
             
              </summary>
              <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.CullFaceSwitch.#ctor(CSharpGL.CullFaceMode)">
+        <member name="M:CSharpGL.CullFaceState.#ctor(CSharpGL.CullFaceMode)">
              <summary>
             
              </summary>
              <param name="mode"></param>
         </member>
-        <member name="M:CSharpGL.CullFaceSwitch.#ctor(CSharpGL.CullFaceMode,System.Boolean)">
+        <member name="M:CSharpGL.CullFaceState.#ctor(CSharpGL.CullFaceMode,System.Boolean)">
              <summary>
             
              </summary>
              <param name="mode"></param>
              <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.CullFaceSwitch.ToString">
+        <member name="M:CSharpGL.CullFaceState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.CullFaceSwitch.SwitchOn">
+        <member name="M:CSharpGL.CullFaceState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.CullFaceSwitch.mode">
+        <member name="F:CSharpGL.CullFaceState.mode">
             <summary>
             Specifies whether front- or back-facing polygons are candidates for culling. Symbolic constants GL_FRONT, GL_BACK, and GL_FRONT_AND_BACK are accepted. The initial value is GL_BACK.
             </summary>
         </member>
-        <member name="P:CSharpGL.CullFaceSwitch.Mode">
+        <member name="P:CSharpGL.CullFaceState.Mode">
             <summary>
             https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
             </summary>
@@ -19545,174 +19596,174 @@
             Display both front and back faces.
             </summary>
         </member>
-        <member name="T:CSharpGL.DepthTestSwitch">
+        <member name="T:CSharpGL.DepthTestState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DepthTestSwitch.#ctor">
+        <member name="M:CSharpGL.DepthTestState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DepthTestSwitch.#ctor(System.Boolean)">
-             <summary>
-            
-             </summary>
-             <param name="enableCapacity">true for enable, false for disable</param>
-        </member>
-        <member name="M:CSharpGL.DepthTestSwitch.ToString">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="T:CSharpGL.PointSmoothSwitch">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.PointSmoothSwitch.#ctor">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.PointSmoothSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.DepthTestState.#ctor(System.Boolean)">
              <summary>
             
              </summary>
              <param name="enableCapacity">true for enable, false for disable</param>
         </member>
-        <member name="M:CSharpGL.PointSmoothSwitch.ToString">
+        <member name="M:CSharpGL.DepthTestState.ToString">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:CSharpGL.PointSmoothState">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.PointSmoothState.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.PointSmoothState.#ctor(System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="enableCapacity">true for enable, false for disable</param>
+        </member>
+        <member name="M:CSharpGL.PointSmoothState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="T:CSharpGL.PolygonOffsetFillSwitch">
+        <member name="T:CSharpGL.PolygonOffsetFillState">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
         </member>
-        <member name="T:CSharpGL.PolygonOffsetSwitch">
+        <member name="T:CSharpGL.PolygonOffsetState">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetSwitch.#ctor">
+        <member name="M:CSharpGL.PolygonOffsetState.#ctor">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetSwitch.#ctor(CSharpGL.PolygonOffset,System.Boolean)">
+        <member name="M:CSharpGL.PolygonOffsetState.#ctor(CSharpGL.PolygonOffset,System.Boolean)">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
             <param name="mode"></param>
             <param name="pullNear"></param>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetSwitch.ToString">
+        <member name="M:CSharpGL.PolygonOffsetState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetSwitch.SwitchOn">
+        <member name="M:CSharpGL.PolygonOffsetState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PolygonOffsetSwitch.PullNear">
+        <member name="P:CSharpGL.PolygonOffsetState.PullNear">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetFillSwitch.#ctor">
+        <member name="M:CSharpGL.PolygonOffsetFillState.#ctor">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetFillSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.PolygonOffsetFillState.#ctor(System.Boolean)">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
             <param name="pullNear"></param>
         </member>
-        <member name="T:CSharpGL.PolygonOffsetLineSwitch">
+        <member name="T:CSharpGL.PolygonOffsetLineState">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetLineSwitch.#ctor">
+        <member name="M:CSharpGL.PolygonOffsetLineState.#ctor">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
         </member>
-        <member name="M:CSharpGL.PolygonOffsetLineSwitch.#ctor(System.Boolean)">
-            <summary>
-            http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
-            </summary>
-            <param name="pullNear"></param>
-        </member>
-        <member name="T:CSharpGL.PolygonOffsetPointSwitch">
-            <summary>
-            http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
-            </summary>
-        </member>
-        <member name="M:CSharpGL.PolygonOffsetPointSwitch.#ctor">
-            <summary>
-            http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
-            </summary>
-        </member>
-        <member name="M:CSharpGL.PolygonOffsetPointSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.PolygonOffsetLineState.#ctor(System.Boolean)">
             <summary>
             http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
             </summary>
             <param name="pullNear"></param>
         </member>
-        <member name="T:CSharpGL.PrimitiveRestartSwitch">
+        <member name="T:CSharpGL.PolygonOffsetPointState">
+            <summary>
+            http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
+            </summary>
+        </member>
+        <member name="M:CSharpGL.PolygonOffsetPointState.#ctor">
+            <summary>
+            http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
+            </summary>
+        </member>
+        <member name="M:CSharpGL.PolygonOffsetPointState.#ctor(System.Boolean)">
+            <summary>
+            http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
+            </summary>
+            <param name="pullNear"></param>
+        </member>
+        <member name="T:CSharpGL.PrimitiveRestartState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PrimitiveRestartSwitch.#ctor(CSharpGL.IndexBufferElementType)">
+        <member name="M:CSharpGL.PrimitiveRestartState.#ctor(CSharpGL.IndexBufferElementType)">
              <summary>
             
              </summary>
              <param name="indexElementType"></param>
         </member>
-        <member name="M:CSharpGL.PrimitiveRestartSwitch.ToString">
+        <member name="M:CSharpGL.PrimitiveRestartState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.PrimitiveRestartSwitch.SwitchOn">
+        <member name="M:CSharpGL.PrimitiveRestartState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PrimitiveRestartSwitch.RestartIndex">
+        <member name="P:CSharpGL.PrimitiveRestartState.RestartIndex">
              <summary>
             
              </summary>
         </member>
-        <member name="T:CSharpGL.ScissorTestSwitch">
+        <member name="T:CSharpGL.ScissorTestState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ScissorTestSwitch.#ctor">
+        <member name="M:CSharpGL.ScissorTestState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ScissorTestSwitch.#ctor(System.Boolean)">
+        <member name="M:CSharpGL.ScissorTestState.#ctor(System.Boolean)">
              <summary>
             
              </summary>
              <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.ScissorTestSwitch.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ScissorTestState.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
              <summary>
             
              </summary>
@@ -19721,7 +19772,7 @@
              <param name="width"></param>
              <param name="height"></param>
         </member>
-        <member name="M:CSharpGL.ScissorTestSwitch.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:CSharpGL.ScissorTestState.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
              <summary>
             
              </summary>
@@ -19731,33 +19782,33 @@
              <param name="height"></param>
              <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         </member>
-        <member name="M:CSharpGL.ScissorTestSwitch.ToString">
+        <member name="M:CSharpGL.ScissorTestState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.ScissorTestSwitch.SwitchOn">
+        <member name="M:CSharpGL.ScissorTestState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ScissorTestSwitch.X">
+        <member name="P:CSharpGL.ScissorTestState.X">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ScissorTestSwitch.Y">
+        <member name="P:CSharpGL.ScissorTestState.Y">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ScissorTestSwitch.Width">
+        <member name="P:CSharpGL.ScissorTestState.Width">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ScissorTestSwitch.Height">
+        <member name="P:CSharpGL.ScissorTestState.Height">
              <summary>
             
              </summary>
@@ -20248,7 +20299,7 @@
             <param name="lengths">bounding box's length at x, y, z direction.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.BoundingBoxRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.BoundingBoxRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
              <summary>
              Rendering something using GLSL shader and VBO(VAO).
              </summary>
@@ -20422,64 +20473,64 @@
             正交
             </summary>
         </member>
-        <member name="T:CSharpGL.ClearColorSwitch">
+        <member name="T:CSharpGL.ClearColorState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ClearColorSwitch.#ctor">
+        <member name="M:CSharpGL.ClearColorState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ClearColorSwitch.#ctor(System.Drawing.Color,System.Single)">
+        <member name="M:CSharpGL.ClearColorState.#ctor(System.Drawing.Color,System.Single)">
              <summary>
             
              </summary>
              <param name="clearColor"></param>
              <param name="alpha">Ranges between [0, 1.0].</param>
         </member>
-        <member name="M:CSharpGL.ClearColorSwitch.ToString">
+        <member name="M:CSharpGL.ClearColorState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ClearColorSwitch.SwitchOn">
+        <member name="M:CSharpGL.ClearColorState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ClearColorSwitch.SwitchOff">
+        <member name="M:CSharpGL.ClearColorState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ClearColorSwitch.ClearColor">
+        <member name="P:CSharpGL.ClearColorState.ClearColor">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ClearColorSwitch.Alpha">
+        <member name="P:CSharpGL.ClearColorState.Alpha">
             <summary>
             Alpha value.
             </summary>
         </member>
-        <member name="T:CSharpGL.GLSwitchList">
+        <member name="T:CSharpGL.GLStateList">
              <summary>
             
              </summary>
         </member>
-        <member name="T:CSharpGL.ViewportSwitch">
+        <member name="T:CSharpGL.ViewportState">
             <summary>
             set and reset viewport using glViewport();
             </summary>
         </member>
-        <member name="M:CSharpGL.ViewportSwitch.#ctor">
+        <member name="M:CSharpGL.ViewportState.#ctor">
             <summary>
             set and reset viewport using glViewport();
             </summary>
         </member>
-        <member name="M:CSharpGL.ViewportSwitch.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ViewportState.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             set and reset viewport using glViewport();
             </summary>
@@ -20488,44 +20539,44 @@
             <param name="width"></param>
             <param name="height"></param>
         </member>
-        <member name="M:CSharpGL.ViewportSwitch.#ctor(System.Int32[])">
+        <member name="M:CSharpGL.ViewportState.#ctor(System.Int32[])">
             <summary>
             set and reset viewport using glViewport();
             </summary>
             <param name="viewport"></param>
         </member>
-        <member name="M:CSharpGL.ViewportSwitch.ToString">
+        <member name="M:CSharpGL.ViewportState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.ViewportSwitch.SwitchOn">
+        <member name="M:CSharpGL.ViewportState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ViewportSwitch.SwitchOff">
+        <member name="M:CSharpGL.ViewportState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ViewportSwitch.X">
+        <member name="P:CSharpGL.ViewportState.X">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ViewportSwitch.Y">
+        <member name="P:CSharpGL.ViewportState.Y">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ViewportSwitch.Width">
+        <member name="P:CSharpGL.ViewportState.Width">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ViewportSwitch.Height">
+        <member name="P:CSharpGL.ViewportState.Height">
              <summary>
             
              </summary>
@@ -20570,7 +20621,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.UIText.BlendSwitch">
+        <member name="P:CSharpGL.UIText.BlendState">
              <summary>
             
              </summary>
@@ -20834,7 +20885,7 @@
             Renderer that supports color-coded rendering.
             </summary>
         </member>
-        <member name="M:CSharpGL.InnerPickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.InnerPickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              Renderer that supports color-coded rendering.
              </summary>
@@ -20928,7 +20979,7 @@
             根据<see cref="T:CSharpGL.IndexBuffer"/>的具体类型获取一个<see cref="T:CSharpGL.PickableRenderer"/>
             </summary>
         </member>
-        <member name="M:CSharpGL.InnerPickableRendererFactory.GetRenderer(CSharpGL.IBufferable,CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.InnerPickableRendererFactory.GetRenderer(CSharpGL.IBufferable,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
             <summary>
             根据<see cref="T:CSharpGL.IndexBuffer"/>的具体类型获取一个<see cref="T:CSharpGL.PickableRenderer"/>
             </summary>
@@ -22059,7 +22110,7 @@
             用glDrawElements进行渲染。
             </summary>
         </member>
-        <member name="M:CSharpGL.OneIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.OneIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              用glDrawElements进行渲染。
              </summary>
@@ -22342,7 +22393,7 @@
             用glDrarArrays进行渲染。
             </summary>
         </member>
-        <member name="M:CSharpGL.ZeroIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLSwitch[])">
+        <member name="M:CSharpGL.ZeroIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              用glDrarArrays进行渲染。
              </summary>
@@ -23053,95 +23104,95 @@
             <param name="modernRenderer">目标Renderer</param>
             <returns></returns>
         </member>
-        <member name="T:CSharpGL.LineWidthSwitch">
+        <member name="T:CSharpGL.LineWidthState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.LineWidthSwitch.#ctor">
+        <member name="M:CSharpGL.LineWidthState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.LineWidthSwitch.#ctor(System.Single)">
+        <member name="M:CSharpGL.LineWidthState.#ctor(System.Single)">
              <summary>
             
              </summary>
              <param name="lineWidth"></param>
         </member>
-        <member name="M:CSharpGL.LineWidthSwitch.ToString">
+        <member name="M:CSharpGL.LineWidthState.ToString">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.LineWidthSwitch.SwitchOn">
+        <member name="M:CSharpGL.LineWidthState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.LineWidthSwitch.SwitchOff">
+        <member name="M:CSharpGL.LineWidthState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.LineWidthSwitch.MinLineWidth">
+        <member name="P:CSharpGL.LineWidthState.MinLineWidth">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.LineWidthSwitch.MaxLineWidth">
+        <member name="P:CSharpGL.LineWidthState.MaxLineWidth">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.LineWidthSwitch.LineWidth">
+        <member name="P:CSharpGL.LineWidthState.LineWidth">
              <summary>
             
              </summary>
         </member>
-        <member name="T:CSharpGL.PointSizeSwitch">
+        <member name="T:CSharpGL.PointSizeState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSizeSwitch.#ctor">
+        <member name="M:CSharpGL.PointSizeState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSizeSwitch.#ctor(System.Single)">
+        <member name="M:CSharpGL.PointSizeState.#ctor(System.Single)">
              <summary>
             
              </summary>
              <param name="pointSize"></param>
         </member>
-        <member name="M:CSharpGL.PointSizeSwitch.ToString">
+        <member name="M:CSharpGL.PointSizeState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.PointSizeSwitch.SwitchOn">
+        <member name="M:CSharpGL.PointSizeState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSizeSwitch.SwitchOff">
+        <member name="M:CSharpGL.PointSizeState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PointSizeSwitch.MinPointSize">
+        <member name="P:CSharpGL.PointSizeState.MinPointSize">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PointSizeSwitch.MaxPointSize">
+        <member name="P:CSharpGL.PointSizeState.MaxPointSize">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PointSizeSwitch.PointSize">
+        <member name="P:CSharpGL.PointSizeState.PointSize">
              <summary>
             
              </summary>
@@ -23731,70 +23782,70 @@
             <param name="mode"></param>
             <returns></returns>
         </member>
-        <member name="T:CSharpGL.PointSpriteSwitch">
+        <member name="T:CSharpGL.PointSpriteState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSpriteSwitch.#ctor">
+        <member name="M:CSharpGL.PointSpriteState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSpriteSwitch.SwitchOn">
+        <member name="M:CSharpGL.PointSpriteState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSpriteSwitch.SwitchOff">
+        <member name="M:CSharpGL.PointSpriteState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PointSpriteSwitch.ToString">
+        <member name="M:CSharpGL.PointSpriteState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="P:CSharpGL.PointSpriteSwitch.SwitchList">
+        <member name="P:CSharpGL.PointSpriteState.StateList">
              <summary>
             
              </summary>
         </member>
-        <member name="T:CSharpGL.PolygonModeSwitch">
+        <member name="T:CSharpGL.PolygonModeState">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PolygonModeSwitch.#ctor">
+        <member name="M:CSharpGL.PolygonModeState.#ctor">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PolygonModeSwitch.#ctor(CSharpGL.PolygonMode)">
+        <member name="M:CSharpGL.PolygonModeState.#ctor(CSharpGL.PolygonMode)">
              <summary>
             
              </summary>
              <param name="mode"></param>
         </member>
-        <member name="M:CSharpGL.PolygonModeSwitch.ToString">
+        <member name="M:CSharpGL.PolygonModeState.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.PolygonModeSwitch.SwitchOn">
+        <member name="M:CSharpGL.PolygonModeState.StateOn">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PolygonModeSwitch.SwitchOff">
+        <member name="M:CSharpGL.PolygonModeState.StateOff">
              <summary>
             
              </summary>
         </member>
-        <member name="P:CSharpGL.PolygonModeSwitch.Mode">
+        <member name="P:CSharpGL.PolygonModeState.Mode">
              <summary>
             
              </summary>
@@ -23806,7 +23857,7 @@
         </member>
         <member name="T:CSharpGL.IListEditor`1">
             <summary>
-            用在IList&lt;GLSwitch&gt;类型的属性上。
+            用在IList&lt;GLState&gt;类型的属性上。
             </summary>
         </member>
         <member name="T:CSharpGL.AttributeMap">
@@ -28815,12 +28866,13 @@
             </summary>
             <param name="count"></param>
         </member>
-        <member name="M:CSharpGL.UnmanagedArray`1.#ctor(System.IntPtr,System.Int32)">
+        <member name="M:CSharpGL.UnmanagedArray`1.FromHandle(System.IntPtr,System.Int32)">
             <summary>
             Creats an unmanaged array instance whose content will be disposed by someone else.
             </summary>
             <param name="header"></param>
             <param name="count"></param>
+            <returns></returns>
         </member>
         <member name="M:CSharpGL.UnmanagedArray`1.DisposeUnmanagedResources">
             <summary>

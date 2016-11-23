@@ -29,7 +29,7 @@ namespace CSharpGL.Demos
         private GroundRenderer groundRenderer;
 
         private UniformArrayRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             var groundRenderer = GroundRenderer.Create(new GroundModel(20));

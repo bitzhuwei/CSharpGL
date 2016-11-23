@@ -123,7 +123,7 @@ namespace CSharpGL.Demos
                     SceneObject obj;
                     if (useHighlightedPickingEffect)
                     {
-                        var model = item.Model;
+                        var model = item.DataSource;
                         var highlightRenderer = new HighlightRenderer(model, item.PositionNameInIBufferable);
                         var renderer = new HighlightedPickableRenderer(
                             highlightRenderer, item);
@@ -217,13 +217,13 @@ namespace CSharpGL.Demos
             }
             {
                 SimpleRenderer pickableRenderer = SimpleRenderer.Create(new Chain());
-                pickableRenderer.SwitchList.Add(new LineWidthSwitch(5));
+                pickableRenderer.StateList.Add(new LineWidthState(5));
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }
             {
                 SimpleRenderer pickableRenderer = SimpleRenderer.Create(new BigDipper());
-                pickableRenderer.SwitchList.Add(new LineWidthSwitch(5));
+                pickableRenderer.StateList.Add(new LineWidthState(5));
                 pickableRenderer.Initialize();
                 list.Add(pickableRenderer);
             }

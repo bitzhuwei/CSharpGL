@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
         private GroundRenderer groundRenderer;
 
         private UniformStructRenderer(IBufferable model, ShaderCode[] shaderCodes,
-            AttributeMap attributeMap, params GLSwitch[] switches)
+            AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderCodes, attributeMap, switches)
         {
             var groundRenderer = GroundRenderer.Create(new GroundModel(20));
@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
             get { return this.testClearBufferDataOrder; }
             set
             {
-                var buffer = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
+                var buffer = this.DataSource.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
                 var data = new vec3(
                     (float)random.NextDouble(),
                     (float)random.NextDouble(),
@@ -102,7 +102,7 @@ namespace CSharpGL.Demos
             get { return this.testClearBufferSubDataOrder; }
             set
             {
-                var buffer = this.Model.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
+                var buffer = this.DataSource.GetVertexAttributeBuffer(Teapot.strColor, string.Empty);
                 int offset = buffer.ByteLength / 3;
                 int size = buffer.ByteLength * 2 / 3;
                 var array = new vec3(
