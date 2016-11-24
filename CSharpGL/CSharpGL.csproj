@@ -81,11 +81,11 @@
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox2D.cs" />
     <Content Include="0Foundations\Maths\glm_camera.2D.cs" />
     <Compile Include="0Foundations\DataStructrues\MarkableStruct.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArrayBase.FromHandle.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArrayBase.IDisposable.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArrayBase.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArray`1.fromHandle.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArray`1.IDisposable.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.FromHandle.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.IDisposable.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.fromHandle.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.IDisposable.cs" />
     <Compile Include="0Foundations\Maths\ModelMatrixHelper.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec3.cs" />
@@ -428,8 +428,8 @@
     <Compile Include="0Foundations\Utilities\ColorHelper.cs" />
     <Compile Include="0Foundations\Utilities\DoubleHelper.cs" />
     <Compile Include="0Foundations\Utilities\DumpTreeToText.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode.yield.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode.cs" />
+    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.yield.cs" />
+    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.cs" />
     <Compile Include="0Foundations\DataStructrues\UpdatingRecord.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockMarkRenderer.cs" />
@@ -648,8 +648,8 @@
     <Compile Include="0Foundations\Utilities\FloatHelper.cs" />
     <Compile Include="0Foundations\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="0Foundations\Utilities\PositionHelper.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArray`1.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode.ChildList.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.cs" />
+    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.ChildList.cs" />
     <Compile Include="Scene\Scene.Property.cs" />
   </ItemGroup>
   <ItemGroup />
