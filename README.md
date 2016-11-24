@@ -1,7 +1,7 @@
 <img align="right" src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth/earth-64-60.gif?raw=true" alt="CSharpGL" style="float:right">
 # Object Oriented OpenGL in C\#  
 :crystal_ball:[Wiki](https://github.com/bitzhuwei/CSharpGL/wiki) | :egg:[nuget](https://www.nuget.org/packages/CSharpGL) | :bread:[CSharpGL.dll](https://raw.githubusercontent.com/bitzhuwei/CSharpGL/master/CSharpGL/CSharpGL.dll)  
-[CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL API(buffer, shader, texture, matrix, toggle etc) and demonstrates how to express high-level functions(scene, text, picking, UI etc) with CSharpGL library.  
+[CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL API(buffer, shader, texture, matrix, state etc) and demonstrates how to express high-level functions(scene, text, picking, UI etc) with CSharpGL library.  
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.gif?raw=true)
 ## :pushpin:Color-Coded Picking
 `IColorCodedPicking` supports picking primitives in multiple vertex buffer objects using Mouse.  
