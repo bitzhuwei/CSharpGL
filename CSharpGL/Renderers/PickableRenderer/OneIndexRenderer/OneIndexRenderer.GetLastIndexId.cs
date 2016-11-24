@@ -141,9 +141,9 @@ namespace CSharpGL
             DrawMode drawMode,
             out uint lastIndex0, out uint lastIndex1)
         {
-            List<uint> sameIndexList = new List<uint>();
-            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex0.VertexIds);
-            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex1.VertexIds);
+            var sameIndexList = new List<uint>();
+            var array0 = new List<uint>(recognizedPrimitiveIndex0.VertexIds);
+            var array1 = new List<uint>(recognizedPrimitiveIndex1.VertexIds);
             array0.Sort(); array1.Sort();
             int p0 = 0, p1 = 0;
             while (p0 < array0.Count && p1 < array1.Count)
@@ -185,7 +185,7 @@ namespace CSharpGL
 
             if (lastIndex0 == lastIndex1) { throw new Exception(); }
 
-            List<uint> result = new List<uint>();
+            var result = new List<uint>();
             result.AddRange(sameIndexList);
             result.AddRange(array0);
             result.Add(uint.MaxValue);// primitive restart index
