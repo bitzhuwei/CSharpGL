@@ -96,7 +96,7 @@ namespace CSharpGL.Demos
                 AtomicCounterBuffer buffer = AtomicCounterBuffer.Create(typeof(uint), length, BufferUsage.DynamicCopy);
                 // another way to do this:
                 //uint data = 1;
-                //AtomicCounterBuffer buffer = data.GetAtomicCounterBuffer(BufferUsage.DynamicCopy);
+                //AtomicCounterBuffer buffer = data.GenAtomicCounterBuffer(BufferUsage.DynamicCopy);
                 this.atomicCountBuffer = buffer;
             }
             // Bind it to a texture (for use as a TBO)

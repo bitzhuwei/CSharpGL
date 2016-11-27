@@ -47,11 +47,13 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
+                    this.positionBuffer = this.model.positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    // another way to do this:
                     //int length = this.model.positions.Length;
-                    //VertexBuffer ptr = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
                     //{
-                    //    IntPtr pointer = ptr.MapBuffer(MapBufferAccess.WriteOnly);
+                    //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
                     //    var array = (vec3*)pointer.ToPointer();
                     //    for (int i = 0; i < length; i++)
                     //    {
@@ -60,8 +62,6 @@ namespace CSharpGL
                     //    ptr.UnmapBuffer();
                     //}
                     //this.positionBuffer = ptr;
-                    // another way to do this:
-                    this.positionBuffer = this.model.positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -69,6 +69,8 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
+                    this.colorBuffer = this.model.colors.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    // another way to do this:
                     //int length = this.model.colors.Length;
                     //VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe
@@ -82,8 +84,6 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.colorBuffer = buffer;
-                    // another way to do this:
-                    this.colorBuffer = this.model.colors.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -101,6 +101,8 @@ namespace CSharpGL
         {
             if (this.indexBuffer == null)
             {
+                this.indexBuffer = this.model.indexes.GenIndexBuffer(this.model.mode, BufferUsage.StaticDraw);
+                // another way to do this:
                 //OneIndexBuffer buffer = Buffer.Create(IndexElementType.UInt, this.model.indexes.Length, this.model.mode, BufferUsage.StaticDraw);
                 //unsafe
                 //{
@@ -113,8 +115,6 @@ namespace CSharpGL
                 //    buffer.UnmapBuffer();
                 //}
                 //this.indexBuffer = buffer;
-                // another way to do this:
-                this.indexBuffer = this.model.indexes.GenIndexBuffer(this.model.mode, BufferUsage.StaticDraw);
             }
 
             return this.indexBuffer;

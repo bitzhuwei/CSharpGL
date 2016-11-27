@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer GetVertexBuffer(this UnmanagedArrayBase array, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
+        public static VertexBuffer GenVertexBuffer(this UnmanagedArrayBase array, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
         {
             if (glGenBuffers == null)
             {
