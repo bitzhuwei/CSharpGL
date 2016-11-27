@@ -58,16 +58,18 @@ namespace CSharpGL
         /// <returns></returns>
         private static OneIndexBuffer GenIndexBuffer<T>(this T[] array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
         {
-            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             IndexBufferElementType type;
             if (typeof(T) == typeof(uint)) { type = IndexBufferElementType.UInt; }
             else if (typeof(T) == typeof(ushort)) { type = IndexBufferElementType.UShort; }
             else if (typeof(T) == typeof(byte)) { type = IndexBufferElementType.UByte; }
             else { throw new ArgumentException(string.Format("Only uint/ushort/byte are allowed!")); }
 
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            UnmanagedArrayBase unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
+
             OneIndexBuffer buffer = GenIndexBuffer(unmanagedArray, mode, usage, type, primCount);
+
             pinned.Free();
 
             return buffer;
