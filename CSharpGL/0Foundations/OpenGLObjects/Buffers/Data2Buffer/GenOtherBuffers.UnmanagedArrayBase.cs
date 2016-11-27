@@ -6,71 +6,71 @@ namespace CSharpGL
     public static partial class Data2Buffer
     {
 
-        /// <summary>
-        /// Generates an atomic counter buffer.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static AtomicCounterBuffer GenAtomicCounterBuffer(this UnmanagedArrayBase array, BufferUsage usage)
-        {
-            return GenIndependentBuffer(array, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
-        }
+        ///// <summary>
+        ///// Generates an atomic counter buffer.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="usage"></param>
+        ///// <returns></returns>
+        //public static AtomicCounterBuffer GenAtomicCounterBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        //{
+        //    return GenIndependentBuffer(array, IndependentBufferTarget.AtomicCounterBuffer, usage) as AtomicCounterBuffer;
+        //}
 
-        /// <summary>
-        /// Generates a pixel pack buffer.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static PixelPackBuffer GenPixelPackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
-        {
-            return GenIndependentBuffer(array, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
-        }
+        ///// <summary>
+        ///// Generates a pixel pack buffer.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="usage"></param>
+        ///// <returns></returns>
+        //public static PixelPackBuffer GenPixelPackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        //{
+        //    return GenIndependentBuffer(array, IndependentBufferTarget.PixelPackBuffer, usage) as PixelPackBuffer;
+        //}
 
-        /// <summary>
-        /// Generates a pixel unpack buffer.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static PixelUnpackBuffer GenPixelUnpackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
-        {
-            return GenIndependentBuffer(array, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
-        }
+        ///// <summary>
+        ///// Generates a pixel unpack buffer.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="usage"></param>
+        ///// <returns></returns>
+        //public static PixelUnpackBuffer GenPixelUnpackBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        //{
+        //    return GenIndependentBuffer(array, IndependentBufferTarget.PixelUnpackBuffer, usage) as PixelUnpackBuffer;
+        //}
 
-        /// <summary>
-        /// Generates a shader storage buffer.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static ShaderStorageBuffer GenShaderStorageBuffer(this UnmanagedArrayBase array, BufferUsage usage)
-        {
-            return GenIndependentBuffer(array, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
-        }
+        ///// <summary>
+        ///// Generates a shader storage buffer.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="usage"></param>
+        ///// <returns></returns>
+        //public static ShaderStorageBuffer GenShaderStorageBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        //{
+        //    return GenIndependentBuffer(array, IndependentBufferTarget.ShaderStorageBuffer, usage) as ShaderStorageBuffer;
+        //}
 
-        /// <summary>
-        /// Generates a texture buffer.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static TextureBuffer GenTextureBuffer(this UnmanagedArrayBase array, BufferUsage usage)
-        {
-            return GenIndependentBuffer(array, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
-        }
+        ///// <summary>
+        ///// Generates a texture buffer.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="usage"></param>
+        ///// <returns></returns>
+        //public static TextureBuffer GenTextureBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        //{
+        //    return GenIndependentBuffer(array, IndependentBufferTarget.TextureBuffer, usage) as TextureBuffer;
+        //}
 
-        /// <summary>
-        /// Generates an uniform buffer.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static UniformBuffer GenUniformBuffer(this UnmanagedArrayBase array, BufferUsage usage)
-        {
-            return GenIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
-        }
+        ///// <summary>
+        ///// Generates an uniform buffer.
+        ///// </summary>
+        ///// <param name="array"></param>
+        ///// <param name="usage"></param>
+        ///// <returns></returns>
+        //public static UniformBuffer GenUniformBuffer(this UnmanagedArrayBase array, BufferUsage usage)
+        //{
+        //    return GenIndependentBuffer(array, IndependentBufferTarget.UniformBuffer, usage) as UniformBuffer;
+        //}
 
         /// <summary>
         /// Generates an independent buffer.

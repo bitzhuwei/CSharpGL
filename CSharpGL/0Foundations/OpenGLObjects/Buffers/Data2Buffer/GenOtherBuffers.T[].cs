@@ -83,7 +83,7 @@ namespace CSharpGL
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            var unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
+            UnmanagedArrayBase unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             Buffer buffer = GenIndependentBuffer(unmanagedArray, target, usage);
             pinned.Free();
 

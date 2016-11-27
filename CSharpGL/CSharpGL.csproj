@@ -118,9 +118,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.T.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenIndexBuffer.T[].cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenIndexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\VertexBuffers\IndexBuffers%28IBO%29\IndexBufferElementType.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenIndexBuffer.T.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenOtherBuffers.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\GenVertexBuffer.T[].cs" />
     <Compile Include="0Foundations\OpenGLObjects\Buffers\Data2Buffer\Data2Buffer.cs" />

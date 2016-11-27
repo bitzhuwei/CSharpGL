@@ -58,19 +58,32 @@ namespace CSharpGL
         /// <returns></returns>
         private static OneIndexBuffer GenIndexBuffer<T>(this T[] array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
         {
-            IndexBufferElementType type;
-            if (typeof(T) == typeof(uint)) { type = IndexBufferElementType.UInt; }
-            else if (typeof(T) == typeof(ushort)) { type = IndexBufferElementType.UShort; }
-            else if (typeof(T) == typeof(byte)) { type = IndexBufferElementType.UByte; }
+            IndexBufferElementType elementType;
+            if (typeof(T) == typeof(uint)) { elementType = IndexBufferElementType.UInt; }
+            else if (typeof(T) == typeof(ushort)) { elementType = IndexBufferElementType.UShort; }
+            else if (typeof(T) == typeof(byte)) { elementType = IndexBufferElementType.UByte; }
             else { throw new ArgumentException(string.Format("Only uint/ushort/byte are allowed!")); }
+
+            if (glGenBuffers == null)
+            {
+                InitFunctions();
+            }
 
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-
-            OneIndexBuffer buffer = GenIndexBuffer(unmanagedArray, mode, usage, type, primCount);
-
+            var buffers = new uint[1];
+            {
+                glGenBuffers(1, buffers);
+                const uint target = OpenGL.GL_ELEMENT_ARRAY_BUFFER;
+                glBindBuffer(target, buffers[0]);
+                glBufferData(target, unmanagedArray.ByteLength, unmanagedArray.Header, (uint)usage);
+                glBindBuffer(target, 0);
+            }
             pinned.Free();
+
+            var buffer = new OneIndexBuffer(buffers[0], mode, elementType, unmanagedArray.Length, unmanagedArray.ByteLength, primCount);
+
 
             return buffer;
         }
