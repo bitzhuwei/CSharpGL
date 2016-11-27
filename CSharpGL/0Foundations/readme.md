@@ -4,7 +4,7 @@
 一个Shader就是在GPU上运行的一小段（也许并不小）类C代码。  
 现代OpenGL的渲染是建立在GLSL的shader基础上的。Shader工作在OpenGL渲染管线的各自的阶段上。这些阶段如何施展全看你的shader怎么写。
 ## Buffer
-`Buffer` and `Buffer` 是对OpenGL的Buffer对象的封装。一个Buffer对象本质上是从CPU内存上传到GPU内存的一个数组。
+`Buffer`及其子类型是对OpenGL的缓存对象的封装。一个`Buffer`对象代表的是GPU内存里的一个数组。
 OpenGL中执行渲染的指令是`glDrawArrays()`和`glDrawElements()`以及他们的高级变种版本。如果你想从零开始学OpenGL，也许可以首先围绕这两个指令开始。
 ## 摄像机
 摄像机(Camera)是在世界坐标系下的一个特殊的物体。  
@@ -16,7 +16,7 @@ OpenGL是个状态机。`GLState`就是控制其状态的。
 例如`LineWidthState`控制线的宽度。在渲染前将线宽设置为指定的宽度，在渲染后恢复到原来的宽度。  
 这可以避免忘记恢复原有状态的bug。
 ## Rendering
-`Renderer`用Modern OpenGL(VBO+Shader)进行渲染。以`IBufferable`为模型数据，以`ShaderCode`为shader数据，以`AttributeMap`为两者之间的关联关系。可自定义开关（`GLSwtich`）。可自定义uniform变量。
+`Renderer`用Modern OpenGL(VBO+Shader)进行渲染。以`IBufferable`为模型数据，以`ShaderCode`为shader数据，以`AttributeMap`为两者之间的关联关系。可自定义开关（`GLState`）。可自定义uniform变量。
 ## 其他
 纹理、帧缓存、查询对象等等，在你学会上述内容之后就仅仅是一些很简单的概念而已。
 
@@ -26,7 +26,7 @@ OpenGL concepts lay in this folder. All basic OpenGL knowledge included in CShar
 A shader is a small(maybe not that small) piece of C-like code that executes on GPU.  
 Modern OpenGL rendering is built on GLSL shader. Shaders works on their own stages in OpenGL rendering pipeline. It's all up to you how these stages work.
 ## Buffer
-`Buffer`, `Buffer` and their subtypes wrap all kinds of buffer object in OpenGL. A buffer object is essentially an array uploaded to GPU memory from CPU memory.  
+`Buffer` their subtypes wrap all kinds of buffer object in OpenGL. A buffer object represents an array in CPU memory.  
 The actual rendering command in OpenGL is `glDrawArrays()` and `glDrawElements()` and their advanced versions. If you want to learn OpenGL from scratch, maybe it's a good choice to focus on these two commands.  
 ## Camera
 Camera is a special object in world space.  
