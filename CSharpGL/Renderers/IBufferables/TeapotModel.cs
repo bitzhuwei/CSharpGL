@@ -10,17 +10,23 @@
 
         public float[] GetPositions()
         {
-            return positionData;
+            var result = new float[positionData.Length];
+            positionData.CopyTo(result, 0);
+            return result;
         }
 
         public float[] GetNormals()
         {
-            return normals;
+            var result = new float[normals.Length];
+            normals.CopyTo(result, 0);
+            return result;
         }
 
         public ushort[] GetFaces()
         {
-            return faceData;
+            var result = new ushort[faceData.Length];
+            faceData.CopyTo(result, 0);
+            return result;
         }
 
         static TeapotModel()

@@ -8,7 +8,13 @@ namespace CSharpGL.Demos
 {
     class BasicLightsRenderer : PickableRenderer
     {
-        public vec3 AmbientLight { get; set; }
+        public vec3 AmbientLightColor { get; set; }
+        public vec3 DirectionalLightDirection { get; set; }
+        public vec3 DirectionalLightColor { get; set; }
+        public vec3 HalfVector { get; set; }
+        public float Shininess { get; set; }
+        public float Strength { get; set; }
+
         public static BasicLightsRenderer Create()
         {
             IBufferable model = new Teapot();
@@ -18,6 +24,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("inPosition", Teapot.strPosition);
             map.Add("inColor", Teapot.strColor);
+            map.Add("inNormal", Teapot.strNormal);
 
             var renderer = new BasicLightsRenderer(model, shaderCodes, map, Teapot.strPosition);
             return renderer;
@@ -28,16 +35,28 @@ namespace CSharpGL.Demos
             params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
-            this.AmbientLight = new vec3(0.5f, 0.5f, 0.5f);
+            this.AmbientLightColor = new vec3(0.2f);
+            this.DirectionalLightDirection = new vec3(1).normalize();
+            this.DirectionalLightColor = new vec3(1);
+            this.HalfVector = new vec3(1);
+            this.Shininess = 10.0f;
+            this.Strength = 1.0f;
         }
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.SetUniform("ambientLight", this.AmbientLight);
+            this.SetUniform("ambientLight", this.AmbientLightColor);
+            this.SetUniform("directionalLightColor", this.DirectionalLightColor);
+            this.SetUniform("directionalLightDirection", this.DirectionalLightDirection.normalize());
+            this.SetUniform("halfVector", this.HalfVector.normalize());
+            this.SetUniform("shininess", this.Shininess);
+            this.SetUniform("strength", this.Strength);
+
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix().Value;
             this.SetUniform("mvpMatrix", projection * view * model);
+            this.SetUniform("normalMatrix", glm.transpose(glm.inverse(model)).to_mat3());
 
             base.DoRender(arg);
         }
