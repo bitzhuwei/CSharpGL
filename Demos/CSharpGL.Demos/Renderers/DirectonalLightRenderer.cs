@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL.Demos
 {
-    class BasicLightsRenderer : PickableRenderer
+    class DirectonalLightRenderer : PickableRenderer
     {
         public vec3 AmbientLightColor { get; set; }
         public vec3 DirectionalLightDirection { get; set; }
@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
         public float Shininess { get; set; }
         public float Strength { get; set; }
 
-        public static BasicLightsRenderer Create()
+        public static DirectonalLightRenderer Create()
         {
             IBufferable model = new Teapot();
             var shaderCodes = new ShaderCode[2];
@@ -26,11 +26,11 @@ namespace CSharpGL.Demos
             map.Add("inColor", Teapot.strColor);
             map.Add("inNormal", Teapot.strNormal);
 
-            var renderer = new BasicLightsRenderer(model, shaderCodes, map, Teapot.strPosition);
+            var renderer = new DirectonalLightRenderer(model, shaderCodes, map, Teapot.strPosition);
             return renderer;
         }
 
-        private BasicLightsRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private DirectonalLightRenderer(IBufferable model, ShaderCode[] shaderCodes,
             AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)

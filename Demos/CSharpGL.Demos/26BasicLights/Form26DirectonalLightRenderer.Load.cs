@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form26BasicLights : Form
+    public partial class Form26DirectonalLightRenderer : Form
     {
-        private BasicLightsRenderer renderer;
+        private DirectonalLightRenderer renderer;
         private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                BasicLightsRenderer renderer = BasicLightsRenderer.Create();
+                DirectonalLightRenderer renderer = DirectonalLightRenderer.Create();
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;

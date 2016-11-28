@@ -47,13 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
-    <Compile Include="26BasicLights\Form26BasicLights.cs">
+    <Compile Include="26BasicLights\Form26DirectonalLightRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="26BasicLights\Form26BasicLights.Designer.cs">
-      <DependentUpon>Form26BasicLights.cs</DependentUpon>
+    <Compile Include="26BasicLights\Form26DirectonalLightRenderer.Designer.cs">
+      <DependentUpon>Form26DirectonalLightRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="26BasicLights\Form26BasicLights.Load.cs">
+    <Compile Include="26BasicLights\Form26DirectonalLightRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="25GreyFilter\Form25GreyFilter.cs">
@@ -148,7 +148,7 @@
     <None Include="readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
-    <Compile Include="Renderers\BasicLightsRenderer.cs" />
+    <Compile Include="Renderers\DirectonalLightRenderer.cs" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingComputeRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\InnerImageProcessingRenderer.cs" />

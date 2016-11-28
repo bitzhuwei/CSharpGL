@@ -233,12 +233,12 @@
             this.btn26BasicLights.Font = new System.Drawing.Font("宋体", 12F);
             this.btn26BasicLights.Location = new System.Drawing.Point(12, 563);
             this.btn26BasicLights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn26BasicLights.Name = "btn26BasicLights";
+            this.btn26BasicLights.Name = "btn26DirectonalLight";
             this.btn26BasicLights.Size = new System.Drawing.Size(767, 38);
             this.btn26BasicLights.TabIndex = 0;
-            this.btn26BasicLights.Text = "Form26 Basic Lights";
+            this.btn26BasicLights.Text = "Form26 Directonal Light";
             this.btn26BasicLights.UseVisualStyleBackColor = true;
-            this.btn26BasicLights.Click += new System.EventHandler(this.btn26BasicLights_Click);
+            this.btn26BasicLights.Click += new System.EventHandler(this.btn26DirectonalLight_Click);
             // 
             // FormMain
             // 

@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form26BasicLights : Form
+    public partial class Form26DirectonalLightRenderer : Form
     {
         private SatelliteManipulater cameraManipulater;
 
-        public Form26BasicLights()
+        public Form26DirectonalLightRenderer()
         {
             InitializeComponent();
 
