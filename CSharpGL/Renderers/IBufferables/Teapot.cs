@@ -71,6 +71,10 @@ namespace CSharpGL
                 if (this.colorBuffer == null)
                 {
                     float[] normals = model.GetNormals();
+                    for (int i = 0; i < normals.Length; i++)
+                    {
+                        if (normals[i] < 0) { normals[i] = -normals[i]; }
+                    }
                     //int length = normals.Length;
                     //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe

@@ -65,15 +65,6 @@
     <Compile Include="25GreyFilter\Form25GreyFilter.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="24GreayFilter\Form24GreayFilter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="24GreayFilter\Form24GreayFilter.Designer.cs">
-      <DependentUpon>Form24GreayFilter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="24GreayFilter\Form24GreayFilter.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="18PickingInScene\UpdatingBoxScript.cs" />
     <Compile Include="23SingleRenderer\DemoRendererFactory.cs" />
     <Compile Include="23SingleRenderer\Form23SingleRenderer.cs">
@@ -157,6 +148,7 @@
     <None Include="readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
+    <Compile Include="Renderers\BasicLightsRenderer.cs" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingComputeRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\InnerImageProcessingRenderer.cs" />
@@ -280,6 +272,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
+    <None Include="shaders\BasicLight\BasicLight.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\BasicLight\BasicLight.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\GreyFilterRenderer\GreyFilter.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

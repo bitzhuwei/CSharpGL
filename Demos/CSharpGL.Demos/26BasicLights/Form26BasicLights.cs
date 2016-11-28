@@ -31,27 +31,10 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'o')
+            if (e.KeyChar == '1')
             {
-                if (openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    using (var bitmap = new Bitmap(openTextureDlg.FileName))
-                    {
-                        this.renderer.SetupTexture(bitmap);
-                    }
-                }
-            }
-            else if (e.KeyChar == 'p')
-            {
-                bool original = false;
-                if (this.renderer.GetUniformValue<bool>("original", out original))
-                {
-                    this.renderer.SetUniform("original", !original);
-                }
-                else
-                {
-                    this.renderer.SetUniform("original", original);
-                }
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
+                frmPropertyGrid.Show();
             }
             else if (e.KeyChar == '2')
             {

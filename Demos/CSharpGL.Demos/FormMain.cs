@@ -76,9 +76,14 @@ namespace CSharpGL.Demos
             (new Form23SingleRenderer()).Show();
         }
 
-        private void btn24GreyFilter_Click(object sender, EventArgs e)
+        private void btn25reyFilter_Click(object sender, EventArgs e)
         {
-            (new Form24GreayFilter()).Show();
+            (new Form25GreyFilter()).Show();
+        }
+
+        private void btn26BasicLights_Click(object sender, EventArgs e)
+        {
+            (new Form26BasicLights()).Show();
         }
     }
 }

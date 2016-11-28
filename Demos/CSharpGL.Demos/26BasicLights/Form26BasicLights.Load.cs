@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form26BasicLights : Form
     {
-        private GreyFilterRenderer renderer;
+        private BasicLightsRenderer renderer;
         private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
@@ -25,10 +25,13 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                GreyFilterRenderer renderer = GreyFilterRenderer.Create();
+                BasicLightsRenderer renderer = BasicLightsRenderer.Create();
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
+
+                var frmPropertyGrid = new FormProperyGrid(renderer);
+                frmPropertyGrid.Show();
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
@@ -37,6 +40,7 @@ namespace CSharpGL.Demos
             }
             {
                 var builder = new StringBuilder();
+                builder.AppendLine("1: Scenes' property grid.");
                 builder.AppendLine("2: Canvas' property grid.");
                 MessageBox.Show(builder.ToString());
             }
