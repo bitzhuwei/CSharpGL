@@ -29,11 +29,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public SatelliteManipulater()
+        public SatelliteManipulater(MouseButtons bindingMouseButtons = MouseButtons.Right)
         {
             this.HorizontalRotationFactor = 4;
             this.VerticalRotationFactor = 4;
-            this.BindingMouseButtons = MouseButtons.Right;
+            this.BindingMouseButtons = bindingMouseButtons;
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
             this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
             this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);

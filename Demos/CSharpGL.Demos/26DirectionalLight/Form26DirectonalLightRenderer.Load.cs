@@ -25,13 +25,12 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
+                var arcballManipulater = new ArcBallManipulater();
+                arcballManipulater.Bind(this.scene.FirstCamera, this.glCanvas1);
                 DirectonalLightRenderer renderer = DirectonalLightRenderer.Create();
-                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
+                SceneObject obj = renderer.WrapToSceneObject(true, new ArcballScript(arcballManipulater));
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
-
-                var frmPropertyGrid = new FormProperyGrid(renderer);
-                frmPropertyGrid.Show();
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
@@ -43,6 +42,9 @@ namespace CSharpGL.Demos
                 builder.AppendLine("1: Scenes' property grid.");
                 builder.AppendLine("2: Canvas' property grid.");
                 MessageBox.Show(builder.ToString());
+            }
+            {
+                this.scene.Start();
             }
         }
     }

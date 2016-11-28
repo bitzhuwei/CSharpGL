@@ -47,13 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
-    <Compile Include="26BasicLights\Form26DirectonalLightRenderer.cs">
+    <Compile Include="26DirectionalLight\Form26DirectonalLightRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="26BasicLights\Form26DirectonalLightRenderer.Designer.cs">
+    <Compile Include="26DirectionalLight\Form26DirectonalLightRenderer.Designer.cs">
       <DependentUpon>Form26DirectonalLightRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="26BasicLights\Form26DirectonalLightRenderer.Load.cs">
+    <Compile Include="26DirectionalLight\Form26DirectonalLightRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="25GreyFilter\Form25GreyFilter.cs">
@@ -272,8 +272,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
-    <None Include="shaders\BasicLight\BasicLight.frag" />
-    <None Include="shaders\BasicLight\BasicLight.vert" />
+    <None Include="shaders\DirectonalLight\DirectonalLight.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\DirectonalLight\DirectonalLight.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\GreyFilterRenderer\GreyFilter.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
