@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
             this.AmbientLightColor = new vec3(0.2f);
-            this.DirectionalLightDirection = new vec3(1).normalize();
+            this.DirectionalLightDirection = new vec3(1);
             this.DirectionalLightColor = new vec3(1);
             this.HalfVector = new vec3(1);
             this.Shininess = 10.0f;
