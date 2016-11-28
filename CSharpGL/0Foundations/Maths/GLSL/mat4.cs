@@ -138,9 +138,9 @@ namespace CSharpGL
         public float[] ToArray()
         {
             float[] result = new float[16];
-            result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z; result[0 + 3] = col0.w;
-            result[4 + 0] = col1.x; result[4 + 1] = col1.y; result[4 + 2] = col1.z; result[4 + 3] = col1.w;
-            result[8 + 0] = col2.x; result[8 + 1] = col2.y; result[8 + 2] = col2.z; result[8 + 3] = col2.w;
+            result[00 + 0] = col0.x; result[00 + 1] = col0.y; result[00 + 2] = col0.z; result[00 + 3] = col0.w;
+            result[04 + 0] = col1.x; result[04 + 1] = col1.y; result[04 + 2] = col1.z; result[04 + 3] = col1.w;
+            result[08 + 0] = col2.x; result[08 + 1] = col2.y; result[08 + 2] = col2.z; result[08 + 3] = col2.w;
             result[12 + 0] = col3.x; result[12 + 1] = col3.y; result[12 + 2] = col3.z; result[12 + 3] = col3.w;
 
             return result;
