@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
         public vec3 AmbientLightColor { get; set; }
         public vec3 DirectionalLightDirection { get; set; }
         public vec3 DirectionalLightColor { get; set; }
-        public vec3 HalfVector { get; set; }
+        //public vec3 HalfVector { get; set; }
         public float Shininess { get; set; }
         public float Strength { get; set; }
 
@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
             this.AmbientLightColor = new vec3(0.2f);
             this.DirectionalLightDirection = new vec3(1);
             this.DirectionalLightColor = new vec3(1);
-            this.HalfVector = new vec3(1);
+            //this.HalfVector = new vec3(1);
             this.Shininess = 10.0f;
             this.Strength = 1.0f;
         }
@@ -48,7 +48,8 @@ namespace CSharpGL.Demos
             this.SetUniform("ambientLight", this.AmbientLightColor);
             this.SetUniform("directionalLightColor", this.DirectionalLightColor);
             this.SetUniform("directionalLightDirection", this.DirectionalLightDirection.normalize());
-            this.SetUniform("halfVector", this.HalfVector.normalize());
+            this.SetUniform("halfVector", this.DirectionalLightDirection.normalize());
+            //this.SetUniform("halfVector", this.HalfVector.normalize());
             this.SetUniform("shininess", this.Shininess);
             this.SetUniform("strength", this.Strength);
 
