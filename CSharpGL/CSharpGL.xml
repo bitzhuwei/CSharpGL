@@ -61,6 +61,152 @@
             The latest time when the value is updated.
             </summary>
         </member>
+        <member name="T:CSharpGL.UnmanagedArrayBase">
+            <summary>
+            Base type of unmanaged array.
+            <para>Similar to array in <code>int array[Length];</code></para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Creats an unmanaged array instance whose content will be disposed by someone else.
+            </summary>
+            <param name="header"></param>
+            <param name="elementCount"></param>
+            <param name="elementSize"></param>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArrayBase.allocatedCount">
+            <summary>
+            How many <see cref="T:CSharpGL.UnmanagedArrayBase"/> allocated?
+            <para>Only used for debugging.</para>
+            </summary>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArrayBase.disposedCount">
+            <summary>
+            How many <see cref="T:CSharpGL.UnmanagedArrayBase"/> released?
+            <para>Only used for debugging.</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.Finalize">
+            <summary>
+            Destruct instance of the class.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArrayBase.disposedValue">
+            <summary>
+            Backing field to track whether Dispose has been called.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArrayBase.manualDispose">
+            <summary>
+            this array's content will be disposed by someone else.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.Dispose(System.Boolean)">
+            <summary>
+            Dispose managed and unmanaged resources of this instance.
+            </summary>
+            <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.DisposeUnmanagedResources">
+            <summary>
+            Dispose unmanaged resources
+            </summary>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArrayBase.elementSize">
+            <summary>
+            单个元素的字节数。
+            <para>How manay bytes for one element of array?</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Base type of unmanaged array.
+            <para>Similar to array in <code>int array[Length];</code></para>
+            </summary>
+            <param name="elementCount">How many elements?</param>
+            <param name="elementSize">How manay bytes for one element of array?</param>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArrayBase.ToString">
+            <summary>
+            return string.Format("head: {0}, element count: {1}, byte length: {2}",
+                this.Header, this.Length, this.ByteLength);
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CSharpGL.UnmanagedArrayBase.Header">
+            <summary>
+            此非托管数组中的数据在内存中的起始地址
+            Start position of array; Head of array; first element's position of array.
+            <para>Similar to <code>array</code> in <code>int array[Length];</code></para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.UnmanagedArrayBase.Length">
+            <summary>
+            How many elements?
+            <para>Similar to <code>Length</code> in <code>int array[Length];</code></para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.UnmanagedArrayBase.ByteLength">
+            <summary>
+            申请到的字节数。（元素的总数 * 单个元素的字节数）。
+            <para>How many bytes for total array?</para>
+            <para>Length * elementSize</para>
+            </summary>
+        </member>
+        <member name="T:CSharpGL.UnmanagedArray`1">
+            <summary>
+            unmanaged huge array.
+            <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
+            </summary>
+            <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArray`1.FromHandle(System.IntPtr,System.Int32)">
+            <summary>
+            Creats an unmanaged array instance whose content will be disposed by someone else.
+            </summary>
+            <param name="header"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArray`1.thisTypeAllocatedCount">
+            <summary>
+            How many <see cref="T:CSharpGL.UnmanagedArray`1"/> objects allocated?
+            <para>Only used for debugging.</para>
+            </summary>
+        </member>
+        <member name="F:CSharpGL.UnmanagedArray`1.thisTypeDisposedCount">
+            <summary>
+            How many <see cref="T:CSharpGL.UnmanagedArray`1"/> objects released?
+            <para>Only used for debugging.</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArray`1.DisposeUnmanagedResources">
+            <summary>
+            Dispose unmanaged resources
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UnmanagedArray`1.#ctor(System.Int32)">
+            <summary>
+            unmanaged array.
+            </summary>
+            <param name="count"></param>
+        </member>
+        <member name="P:CSharpGL.UnmanagedArray`1.Item(System.Int32)">
+            <summary>
+            gets/sets element's value at specified <paramref name="index"/>.
+            <para>Please use unsafe way when dealing with big data for efficiency purpose.</para>
+            获取或设置索引为<paramref name="index"/>的元素。
+            <para>如果要处理的元素数目较大，请使用unsafe方式（为提高效率）。</para>
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
         <member name="T:CSharpGL.ModelMatrixHelper">
             <summary>
             treat <see cref="T:CSharpGL.mat4"/> as a matrix that transform object from model's space to world's space.
@@ -11406,54 +11552,6 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Data2Buffer.GenAtomicCounterBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.BufferUsage)">
-            <summary>
-            Generates an atomic counter buffer.
-            </summary>
-            <param name="array"></param>
-            <param name="usage"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenPixelPackBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.BufferUsage)">
-            <summary>
-            Generates a pixel pack buffer.
-            </summary>
-            <param name="array"></param>
-            <param name="usage"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenPixelUnpackBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.BufferUsage)">
-            <summary>
-            Generates a pixel unpack buffer.
-            </summary>
-            <param name="array"></param>
-            <param name="usage"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenShaderStorageBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.BufferUsage)">
-            <summary>
-            Generates a shader storage buffer.
-            </summary>
-            <param name="array"></param>
-            <param name="usage"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenTextureBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.BufferUsage)">
-            <summary>
-            Generates a texture buffer.
-            </summary>
-            <param name="array"></param>
-            <param name="usage"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenUniformBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.BufferUsage)">
-            <summary>
-            Generates an uniform buffer.
-            </summary>
-            <param name="array"></param>
-            <param name="usage"></param>
-            <returns></returns>
-        </member>
         <member name="M:CSharpGL.Data2Buffer.GenIndependentBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.IndependentBufferTarget,CSharpGL.BufferUsage)">
             <summary>
             Generates an independent buffer.
@@ -11463,7 +11561,7 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Data2Buffer.GetVertexBuffer``1(``0,CSharpGL.VBOConfig,System.String,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.Data2Buffer.GenVertexBuffer``1(``0,CSharpGL.VBOConfig,System.String,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
             <summary>
             生成顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
             <para>每个<see cref="T:CSharpGL.VertexBuffer"/>仅描述其中一个属性。</para>
@@ -11478,7 +11576,7 @@
             <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Data2Buffer.GetVertexBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.VBOConfig,System.String,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.Data2Buffer.GenVertexBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.VBOConfig,System.String,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
             <summary>
             生成顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
             <para>每个<see cref="T:CSharpGL.VertexBuffer"/>仅描述其中一个属性。</para>
@@ -11532,84 +11630,6 @@
             Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
             </summary>
             <param name="array"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(CSharpGL.UnmanagedArray{System.Byte},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="array"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(CSharpGL.UnmanagedArray{System.UInt16},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="array"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(CSharpGL.UnmanagedArray{System.UInt32},CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="array"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(CSharpGL.UnmanagedArrayBase,CSharpGL.DrawMode,CSharpGL.BufferUsage,CSharpGL.IndexBufferElementType,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="array"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="elementType"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(System.Byte,CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="data"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(System.UInt16,CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="data"></param>
-            <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="usage"></param>
-            <param name="primCount">primCount in instanced rendering.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer(System.UInt32,CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
-            <summary>
-            生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
-            Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
-            </summary>
-            <param name="data"></param>
             <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
             <param name="usage"></param>
             <param name="primCount">primCount in instanced rendering.</param>
@@ -13600,7 +13620,7 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Renderer.switchList">
+        <member name="F:CSharpGL.Renderer.stateList">
              <summary>
             
              </summary>
@@ -13612,7 +13632,7 @@
         </member>
         <member name="F:CSharpGL.Renderer.attributeMap">
             <summary>
-            Mapping relations between 'in' variables in vertex shader and buffers in <see cref="P:CSharpGL.Renderer.Model"/>.
+            Mapping relations between 'in' variables in vertex shader and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.
             </summary>
         </member>
         <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
@@ -13621,7 +13641,7 @@
              </summary>
              <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
              <param name="shaderCodes">All shader codes needed for this renderer.</param>
-             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="F:CSharpGL.Renderer.shaderCodes"/> and buffers in <see cref="P:CSharpGL.Renderer.Model"/>.</param>
+             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="F:CSharpGL.Renderer.shaderCodes"/> and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.</param>
             <param name="switches">OpenGL switches.</param>
         </member>
         <member name="M:CSharpGL.Renderer.DisposeUnmanagedResources">
@@ -13676,7 +13696,7 @@
             Shader Program that does the rendering algorithm.
             </summary>
         </member>
-        <member name="P:CSharpGL.Renderer.Model">
+        <member name="P:CSharpGL.Renderer.DataSource">
             <summary>
             model data that can be transfermed into OpenGL Buffer Objects.
             </summary>
@@ -28741,152 +28761,6 @@
             Move positions where around (0, 0, 0)
             </summary>
             <param name="positions"></param>
-            <returns></returns>
-        </member>
-        <member name="T:CSharpGL.UnmanagedArray`1">
-            <summary>
-            unmanaged huge array.
-            <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
-            </summary>
-            <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
-        </member>
-        <member name="T:CSharpGL.UnmanagedArrayBase">
-            <summary>
-            Base type of unmanaged array.
-            <para>Similar to array in <code>int array[Length];</code></para>
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArrayBase.allocatedCount">
-            <summary>
-            How many <see cref="T:CSharpGL.UnmanagedArrayBase"/> allocated?
-            <para>Only used for debugging.</para>
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArrayBase.disposedCount">
-            <summary>
-            How many <see cref="T:CSharpGL.UnmanagedArrayBase"/> released?
-            <para>Only used for debugging.</para>
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArrayBase.elementSize">
-            <summary>
-            单个元素的字节数。
-            <para>How manay bytes for one element of array?</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.IntPtr,System.Int32,System.Int32)">
-            <summary>
-            Creats an unmanaged array instance whose content will be disposed by someone else.
-            </summary>
-            <param name="header"></param>
-            <param name="elementCount"></param>
-            <param name="elementSize"></param>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Base type of unmanaged array.
-            <para>Similar to array in <code>int array[Length];</code></para>
-            </summary>
-            <param name="elementCount">How many elements?</param>
-            <param name="elementSize">How manay bytes for one element of array?</param>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.Finalize">
-            <summary>
-            Destruct instance of the class.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArrayBase.disposedValue">
-            <summary>
-            Backing field to track whether Dispose has been called.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArrayBase.manualDispose">
-            <summary>
-            this array's content will be disposed by someone else.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.Dispose(System.Boolean)">
-            <summary>
-            Dispose managed and unmanaged resources of this instance.
-            </summary>
-            <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.DisposeUnmanagedResources">
-            <summary>
-            Dispose unmanaged resources
-            </summary>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.ToString">
-            <summary>
-            return string.Format("head: {0}, element count: {1}, byte length: {2}",
-                this.Header, this.Length, this.ByteLength);
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:CSharpGL.UnmanagedArrayBase.Header">
-            <summary>
-            此非托管数组中的数据在内存中的起始地址
-            Start position of array; Head of array; first element's position of array.
-            <para>Similar to <code>array</code> in <code>int array[Length];</code></para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.UnmanagedArrayBase.Length">
-            <summary>
-            How many elements?
-            <para>Similar to <code>Length</code> in <code>int array[Length];</code></para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.UnmanagedArrayBase.ByteLength">
-            <summary>
-            申请到的字节数。（元素的总数 * 单个元素的字节数）。
-            <para>How many bytes for total array?</para>
-            <para>Length * elementSize</para>
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArray`1.thisTypeAllocatedCount">
-            <summary>
-            How many <see cref="T:CSharpGL.UnmanagedArray`1"/> objects allocated?
-            <para>Only used for debugging.</para>
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArray`1.thisTypeDisposedCount">
-            <summary>
-            How many <see cref="T:CSharpGL.UnmanagedArray`1"/> objects released?
-            <para>Only used for debugging.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArray`1.#ctor(System.Int32)">
-            <summary>
-            unmanaged array.
-            </summary>
-            <param name="count"></param>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArray`1.FromHandle(System.IntPtr,System.Int32)">
-            <summary>
-            Creats an unmanaged array instance whose content will be disposed by someone else.
-            </summary>
-            <param name="header"></param>
-            <param name="count"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArray`1.DisposeUnmanagedResources">
-            <summary>
-            Dispose unmanaged resources
-            </summary>
-        </member>
-        <member name="P:CSharpGL.UnmanagedArray`1.Item(System.Int32)">
-            <summary>
-            gets/sets element's value at specified <paramref name="index"/>.
-            <para>Please use unsafe way when dealing with big data for efficiency purpose.</para>
-            获取或设置索引为<paramref name="index"/>的元素。
-            <para>如果要处理的元素数目较大，请使用unsafe方式（为提高效率）。</para>
-            </summary>
-            <param name="index"></param>
             <returns></returns>
         </member>
         <member name="T:CSharpGL.ChildList`1">

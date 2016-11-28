@@ -47,6 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
+    <Compile Include="26BasicLights\Form26BasicLights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="26BasicLights\Form26BasicLights.Designer.cs">
+      <DependentUpon>Form26BasicLights.cs</DependentUpon>
+    </Compile>
+    <Compile Include="26BasicLights\Form26BasicLights.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="25GreyFilter\Form25GreyFilter.cs">
       <SubType>Form</SubType>
     </Compile>
