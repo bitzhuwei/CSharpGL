@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form26DirectionalLightRenderer
+    partial class Form26DirectionalLight
     {
         /// <summary>
         /// Required designer variable.

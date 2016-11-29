@@ -83,7 +83,12 @@ namespace CSharpGL.Demos
 
         private void btn26DirectionalLight_Click(object sender, EventArgs e)
         {
-            (new Form26DirectionalLightRenderer()).Show();
+            (new Form26DirectionalLight()).Show();
+        }
+
+        private void btn27PointLight_Click(object sender, EventArgs e)
+        {
+            (new Form27PointLight()).Show();
         }
     }
 }

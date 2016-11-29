@@ -8,7 +8,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form27PointLight : Form
     {
-        private DirectonalLightRenderer renderer;
+        private PointLightRenderer renderer;
         private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace CSharpGL.Demos
             {
                 var arcballManipulater = new ArcBallManipulater();
                 arcballManipulater.Bind(this.scene.FirstCamera, this.glCanvas1);
-                DirectonalLightRenderer renderer = DirectonalLightRenderer.Create();
+                PointLightRenderer renderer = PointLightRenderer.Create();
                 SceneObject obj = renderer.WrapToSceneObject(true, new ArcballScript(arcballManipulater));
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form26DirectionalLightRenderer : Form
+    public partial class Form26DirectionalLight : Form
     {
         private DirectonalLightRenderer renderer;
         private Scene scene;
