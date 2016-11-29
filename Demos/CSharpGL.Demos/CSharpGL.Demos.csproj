@@ -47,6 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
+    <Compile Include="27PointLight\Form27PointLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="27PointLight\Form27PointLight.Designer.cs">
+      <DependentUpon>Form27PointLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="27PointLight\Form27PointLight.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="26DirectionalLight\Form26DirectonalLightRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,10 +281,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
-    <None Include="shaders\DirectonalLight\DirectonalLight.frag">
+    <None Include="shaders\DirectionalLight\DirectionalLight.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\DirectonalLight\DirectonalLight.vert">
+    <None Include="shaders\DirectionalLight\DirectionalLight.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\GreyFilterRenderer\GreyFilter.vert">
@@ -569,7 +578,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="shaders\DirectionalLight\" />
+    <Folder Include="shaders\DirectonalLight\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

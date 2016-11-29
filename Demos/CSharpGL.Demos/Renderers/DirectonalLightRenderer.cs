@@ -19,8 +19,8 @@ namespace CSharpGL.Demos
         {
             var model = new Teapot();
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\DirectonalLight\DirectonalLight.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\DirectonalLight\DirectonalLight.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\DirectionalLight\DirectionalLight.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\DirectionalLight\DirectionalLight.frag"), ShaderType.FragmentShader);
             var map = new AttributeMap();
             map.Add("inPosition", Teapot.strPosition);
             map.Add("inColor", Teapot.strColor);
