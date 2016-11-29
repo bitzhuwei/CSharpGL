@@ -40,11 +40,14 @@ namespace CSharpGL.Demos
             : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
         {
             this.Ambient = new vec3(0.2f);
-            this.LightPosition = new vec3(1);
+            this.LightPosition = new vec3(400);
             this.LightColor = new vec3(1);
             //this.HalfVector = new vec3(1);
             this.Shininess = 10.0f;
             this.Strength = 1.0f;
+            this.ConstantAttenuation = 0.2f;
+            this.LinearAttenuation = 0.0f;
+            this.QuadraticAttenuation = 0.0f;
         }
 
         protected override void DoRender(RenderEventArgs arg)

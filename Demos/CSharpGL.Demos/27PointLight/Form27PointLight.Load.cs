@@ -31,6 +31,9 @@ namespace CSharpGL.Demos
                 SceneObject obj = renderer.WrapToSceneObject(true, new ArcballScript(arcballManipulater));
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
+
+                var frmPropertyGrid = new FormProperyGrid(renderer);
+                frmPropertyGrid.Show();
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
