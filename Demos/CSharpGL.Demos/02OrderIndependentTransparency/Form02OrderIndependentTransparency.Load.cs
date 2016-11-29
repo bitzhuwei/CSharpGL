@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
             {
                 Teapot model = new Teapot();
                 var renderer = new OrderIndependentTransparencyRenderer(
-                    model, model.Lengths, Teapot.strPosition, Teapot.strNormal);
+                    model, model.Size, Teapot.strPosition, Teapot.strNormal);
                 SceneObject obj = renderer.WrapToSceneObject();
                 this.scene.RootObject.Children.Add(obj);
             }

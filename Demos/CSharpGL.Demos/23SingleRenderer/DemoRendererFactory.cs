@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
             else if (rendererType == typeof(EmitNormalLineRenderer))
             {
                 var model = new Teapot();
-                renderer = EmitNormalLineRenderer.Create(model, Teapot.strPosition, Teapot.strNormal, model.Lengths);
+                renderer = EmitNormalLineRenderer.Create(model, Teapot.strPosition, Teapot.strNormal, model.Size);
             }
             else if (rendererType == typeof(ImageProcessingRenderer))
             {
@@ -38,12 +38,12 @@ namespace CSharpGL.Demos
             else if (rendererType == typeof(OrderDependentTransparencyRenderer))
             {
                 var model = new Teapot();
-                renderer = OrderDependentTransparencyRenderer.Create(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
+                renderer = OrderDependentTransparencyRenderer.Create(model, model.Size, Teapot.strPosition, Teapot.strColor);
             }
             else if (rendererType == typeof(OrderIndependentTransparencyRenderer))
             {
                 var model = new Teapot();
-                renderer = new OrderIndependentTransparencyRenderer(model, model.Lengths, Teapot.strPosition, Teapot.strColor);
+                renderer = new OrderIndependentTransparencyRenderer(model, model.Size, Teapot.strPosition, Teapot.strColor);
             }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {

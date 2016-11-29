@@ -160,6 +160,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public vec3 Lengths { get { return new vec3(6.42963028f, 3.15f, 4.0f); } }
+        public vec3 Size { get { return new vec3(6.42963028f, 3.15f, 4.0f); } }
     }
 }

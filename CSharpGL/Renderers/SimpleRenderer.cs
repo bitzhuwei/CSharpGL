@@ -72,7 +72,7 @@
         /// <returns></returns>
         public static SimpleRenderer Create(Teapot model)
         {
-            return Create(model, model.Lengths, Teapot.strPosition);
+            return Create(model, model.Size, Teapot.strPosition);
         }
 
         internal static SimpleRenderer Create(IBufferable model, vec3 lengths, string positionNameInIBufferable)

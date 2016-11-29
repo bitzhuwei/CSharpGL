@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
 
         public static DirectonalLightRenderer Create()
         {
-            IBufferable model = new Teapot();
+            var model = new Teapot();
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\DirectonalLight\DirectonalLight.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\DirectonalLight\DirectonalLight.frag"), ShaderType.FragmentShader);
@@ -27,6 +27,7 @@ namespace CSharpGL.Demos
             map.Add("inNormal", Teapot.strNormal);
 
             var renderer = new DirectonalLightRenderer(model, shaderCodes, map, Teapot.strPosition);
+            renderer.ModelSize = model.Size;
             return renderer;
         }
 
