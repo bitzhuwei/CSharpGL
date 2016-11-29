@@ -41,7 +41,7 @@
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.btn25GreyFilter = new System.Windows.Forms.Button();
-            this.btn26BasicLights = new System.Windows.Forms.Button();
+            this.btn26DirectionalLight = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -228,17 +228,17 @@
             // 
             // btn25BasicLights
             // 
-            this.btn26BasicLights.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn26DirectionalLight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn26BasicLights.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn26BasicLights.Location = new System.Drawing.Point(12, 563);
-            this.btn26BasicLights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn26BasicLights.Name = "btn26DirectonalLight";
-            this.btn26BasicLights.Size = new System.Drawing.Size(767, 38);
-            this.btn26BasicLights.TabIndex = 0;
-            this.btn26BasicLights.Text = "Form26 Directonal Light";
-            this.btn26BasicLights.UseVisualStyleBackColor = true;
-            this.btn26BasicLights.Click += new System.EventHandler(this.btn26DirectonalLight_Click);
+            this.btn26DirectionalLight.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn26DirectionalLight.Location = new System.Drawing.Point(12, 563);
+            this.btn26DirectionalLight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn26DirectionalLight.Name = "btn26DirectionalLight";
+            this.btn26DirectionalLight.Size = new System.Drawing.Size(767, 38);
+            this.btn26DirectionalLight.TabIndex = 0;
+            this.btn26DirectionalLight.Text = "Form26 Directional Light";
+            this.btn26DirectionalLight.UseVisualStyleBackColor = true;
+            this.btn26DirectionalLight.Click += new System.EventHandler(this.btn26DirectionalLight_Click);
             // 
             // FormMain
             // 
@@ -254,7 +254,7 @@
             this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
-            this.Controls.Add(this.btn26BasicLights);
+            this.Controls.Add(this.btn26DirectionalLight);
             this.Controls.Add(this.btn25GreyFilter);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btn02OriderIndependentTransparency);
@@ -282,6 +282,6 @@
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
         private System.Windows.Forms.Button btn25GreyFilter;
-        private System.Windows.Forms.Button btn26BasicLights;
+        private System.Windows.Forms.Button btn26DirectionalLight;
     }
 }

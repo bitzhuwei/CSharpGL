@@ -81,9 +81,9 @@ namespace CSharpGL.Demos
             (new Form25GreyFilter()).Show();
         }
 
-        private void btn26DirectonalLight_Click(object sender, EventArgs e)
+        private void btn26DirectionalLight_Click(object sender, EventArgs e)
         {
-            (new Form26DirectonalLightRenderer()).Show();
+            (new Form26DirectionalLightRenderer()).Show();
         }
     }
 }
