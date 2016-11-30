@@ -9,15 +9,12 @@ namespace CSharpGL.Demos
     public partial class Form26DirectionalLight
     {
         private PickedGeometry pickedGeometry;
-        private DragParam dragParam;
         private Point lastMousePosition;
-        private Point lastMouseDownPosition;
-        public PickingGeometryType PickingGeometryType { get; set; }
+        private PickingGeometryType pickingGeometryType = PickingGeometryType.Triangle;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
             this.lastMousePosition = e.Location;
-            this.lastMouseDownPosition = e.Location;
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -28,18 +25,7 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-                if (pickedGeometry != null)
-                {
-                    ViewPort viewPort = pickedGeometry.FromViewPort;
-                    ICamera camera = viewPort.Camera;
-                    var dragParam = new DragParam(
-                        camera.GetPerspectiveProjectionMatrix(),
-                        camera.GetViewMatrix(),
-                        viewPort.Rect.ToViewport(),
-                        new Point(e.X, glCanvas1.Height - e.Y - 1));
-                    dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
-                    this.dragParam = dragParam;
-                }
+
             }
         }
 
@@ -55,31 +41,41 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-                DragParam dragParam = this.dragParam;
-                if (dragParam != null)
-                {
-                    var current = new Point(e.X, glCanvas1.Height - e.Y - 1);
-                    Point differenceOnScreen = new Point(
-                        current.X - dragParam.lastMousePositionOnScreen.X,
-                        current.Y - dragParam.lastMousePositionOnScreen.Y);
-                    dragParam.lastMousePositionOnScreen = current;
-                    PickableRenderer renderer = null;
-                    {
-                        var tmp = this.pickedGeometry.FromRenderer as HighlightedPickableRenderer;
-                        if (tmp != null) { renderer = tmp.PickableRenderer; }
-                    }
-
-                    if (renderer == null) { renderer = this.pickedGeometry.FromRenderer as PickableRenderer; }
-
-                    renderer.MovePositions(
-                        differenceOnScreen,
-                        dragParam.viewMatrix, dragParam.projectionMatrix,
-                        dragParam.viewport,
-                        dragParam.pickedVertexIds);
-                }
+            }
+            else
+            {
+                TryPicking(e);
             }
 
             this.lastMousePosition = e.Location;
+        }
+
+        private void TryPicking(MouseEventArgs e)
+        {
+            List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
+              e.Location, pickingGeometryType);
+            PickedGeometry pickedGeometry = null;
+            if (allPickedGeometrys != null && allPickedGeometrys.Count > 0)
+            { pickedGeometry = allPickedGeometrys[0].Item2; }
+
+            if (pickedGeometry != null)
+            {
+                {
+                    var modelRenderer = pickedGeometry.FromRenderer as DirectonalLightRenderer;
+                    if (modelRenderer != null)
+                    {
+                        var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
+                        script.Bind();
+                    }
+                }
+
+                this.glCanvas1.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                this.glCanvas1.Cursor = Cursors.Default;
+            }
+            this.pickedGeometry = pickedGeometry;
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -91,7 +87,15 @@ namespace CSharpGL.Demos
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                this.dragParam = null;
+                if (pickedGeometry != null)
+                {
+                    var modelRenderer = pickedGeometry.FromRenderer as DirectonalLightRenderer;
+                    if (modelRenderer != null)
+                    {
+                        var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
+                        script.Unbind();
+                    }
+                }
             }
 
             this.lastMousePosition = e.Location;
