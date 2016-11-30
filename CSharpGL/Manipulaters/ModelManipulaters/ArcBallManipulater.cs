@@ -26,6 +26,12 @@ namespace CSharpGL
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
         private mat4 totalRotation = mat4.identity();
+        private bool isBinded = false;
+
+        public bool IsBinded
+        {
+            get { return isBinded; }
+        }
 
         /// <summary>
         /// Rotate model using arc-ball method.
@@ -61,6 +67,8 @@ namespace CSharpGL
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
+            if (this.isBinded) { return; }
+
             this.camera = camera;
             this.canvas = canvas;
 
@@ -70,6 +78,8 @@ namespace CSharpGL
             canvas.MouseWheel += this.mouseWheelEvent;
 
             SetCamera(camera.Position, camera.Target, camera.UpVector);
+
+            this.isBinded = true;
         }
 
         /// <summary>
@@ -151,6 +161,8 @@ namespace CSharpGL
                 this.canvas.MouseWheel -= this.mouseWheelEvent;
                 this.canvas = null;
                 this.camera = null;
+
+                this.isBinded = false;
             }
         }
 

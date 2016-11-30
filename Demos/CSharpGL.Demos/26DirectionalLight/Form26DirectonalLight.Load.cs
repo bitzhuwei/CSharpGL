@@ -26,10 +26,8 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var arcballManipulater = new ArcBallManipulater();
-                arcballManipulater.Bind(this.scene.FirstCamera, this.glCanvas1);
                 DirectonalLightRenderer renderer = DirectonalLightRenderer.Create();
-                SceneObject obj = renderer.WrapToSceneObject(true, new ArcballScript(arcballManipulater));
+                SceneObject obj = renderer.WrapToSceneObject(true, new ModelScript(this.glCanvas1, this.scene.FirstCamera));
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
 

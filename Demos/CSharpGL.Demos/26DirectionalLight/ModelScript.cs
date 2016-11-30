@@ -9,6 +9,11 @@ namespace CSharpGL.Demos
     class ModelScript : PickingScript
     {
         private ArcBallManipulater manipulater = new ArcBallManipulater(System.Windows.Forms.MouseButtons.Left);
+
+        public ArcBallManipulater Manipulater
+        {
+            get { return manipulater; }
+        }
         private ICanvas canvas;
         private ICamera camera;
 

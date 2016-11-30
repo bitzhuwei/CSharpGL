@@ -54,28 +54,36 @@ namespace CSharpGL.Demos
         {
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = this.scene.Pick(
               e.Location, pickingGeometryType);
-            PickedGeometry pickedGeometry = null;
+            PickedGeometry geometry = null;
             if (allPickedGeometrys != null && allPickedGeometrys.Count > 0)
-            { pickedGeometry = allPickedGeometrys[0].Item2; }
+            { geometry = allPickedGeometrys[0].Item2; }
 
-            if (pickedGeometry != null)
+            if (geometry != null)
             {
+                var modelRenderer = geometry.FromRenderer as DirectonalLightRenderer;
+                if (modelRenderer != null)
                 {
-                    var modelRenderer = pickedGeometry.FromRenderer as DirectonalLightRenderer;
-                    if (modelRenderer != null)
-                    {
-                        var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
-                        script.Bind();
-                    }
+                    var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
+                    script.Bind();
                 }
 
                 this.glCanvas1.Cursor = Cursors.Hand;
             }
             else
             {
+                if (this.pickedGeometry != null)
+                {
+                    var modelRenderer = this.pickedGeometry.FromRenderer as DirectonalLightRenderer;
+                    if (modelRenderer != null)
+                    {
+                        var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
+                        script.Unbind();
+                    }
+                }
                 this.glCanvas1.Cursor = Cursors.Default;
             }
-            this.pickedGeometry = pickedGeometry;
+
+            this.pickedGeometry = geometry;
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -87,14 +95,16 @@ namespace CSharpGL.Demos
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                if (pickedGeometry != null)
+
+            }
+
+            if (pickedGeometry != null)
+            {
+                var modelRenderer = pickedGeometry.FromRenderer as DirectonalLightRenderer;
+                if (modelRenderer != null)
                 {
-                    var modelRenderer = pickedGeometry.FromRenderer as DirectonalLightRenderer;
-                    if (modelRenderer != null)
-                    {
-                        var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
-                        script.Unbind();
-                    }
+                    var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
+                    script.Unbind();
                 }
             }
 

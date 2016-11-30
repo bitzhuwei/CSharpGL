@@ -22,6 +22,16 @@ namespace CSharpGL.Demos
         private void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
+            this.lblInfo.Text = string.Format("binded: {0}", false);
+            if (this.pickedGeometry != null)
+            {
+                var modelRenderer = this.pickedGeometry.FromRenderer as DirectonalLightRenderer;
+                if (modelRenderer != null)
+                {
+                    var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
+                    this.lblInfo.Text = string.Format("binded: {0}", script.Manipulater.IsBinded);
+                }
+            }
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

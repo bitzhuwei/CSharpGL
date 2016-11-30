@@ -449,6 +449,9 @@
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="26DirectionalLight\Form26DirectonalLight.resx">
+      <DependentUpon>Form26DirectonalLight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

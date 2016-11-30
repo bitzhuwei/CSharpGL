@@ -23,6 +23,8 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public void Render4Picking(RenderEventArgs arg)
         {
+            if (!this.IsInitialized) { this.Initialize(); }
+
             UpdatePolygonMode(arg.PickingGeometryType);
 
             ShaderProgram program = this.Program;
