@@ -9,6 +9,7 @@ namespace CSharpGL.Demos
     public partial class Form26DirectionalLight : Form
     {
         private DirectonalLightRenderer renderer;
+        private SimplexNoiseRenderer sunRenderer;
         private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
@@ -34,6 +35,14 @@ namespace CSharpGL.Demos
 
                 var frmPropertyGrid = new FormProperyGrid(renderer);
                 frmPropertyGrid.Show();
+            }
+            {
+                SimplexNoiseRenderer renderer = SimplexNoiseRenderer.Create();
+                renderer.Scale = new vec3(0.2f);
+                renderer.WorldPosition = new vec3(3, 3, 3);
+                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
+                this.scene.RootObject.Children.Add(obj);
+                this.sunRenderer = renderer;
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
