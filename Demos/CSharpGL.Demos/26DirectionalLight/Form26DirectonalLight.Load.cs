@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
                 SimplexNoiseRenderer renderer = SimplexNoiseRenderer.Create();
                 renderer.Scale = new vec3(0.2f);
                 renderer.WorldPosition = new vec3(3, 3, 3);
-                SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
+                SceneObject obj = renderer.WrapToSceneObject(true, new DirectionalLightScript(this.glCanvas1, this.scene.FirstCamera, renderer));
                 this.scene.RootObject.Children.Add(obj);
                 this.sunRenderer = renderer;
             }

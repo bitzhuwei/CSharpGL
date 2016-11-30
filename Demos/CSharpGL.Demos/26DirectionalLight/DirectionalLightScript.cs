@@ -8,14 +8,25 @@ namespace CSharpGL.Demos
 {
     class DirectionalLightScript : PickingScript
     {
+        private ICanvas canvas;
+        private ICamera camera;
+        private TranslateManipulater manipulater;
+
+        public DirectionalLightScript(ICanvas canvas, ICamera camera, RendererBase renderer)
+        {
+            this.canvas = canvas;
+            this.camera = camera;
+            this.manipulater = new TranslateManipulater(renderer);
+        }
+
         public override void Bind()
         {
-            throw new NotImplementedException();
+            this.manipulater.Bind(this.camera, this.canvas);
         }
 
         public override void Unbind()
         {
-            throw new NotImplementedException();
+            this.manipulater.Unbind();
         }
     }
 }

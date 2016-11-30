@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Canvas\Win32API\Win32.OpenGL32Library.cs" />
     <Compile Include="Canvas\Win32API\Win32.Constants.cs" />
+    <Compile Include="Manipulaters\ModelManipulaters\TranslateManipulater.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierType.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.MovePosition.cs" />
     <Compile Include="Renderers\BezierRenderers\BezierRenderer.cs" />
