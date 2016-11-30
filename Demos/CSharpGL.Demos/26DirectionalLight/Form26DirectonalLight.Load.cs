@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form26DirectionalLight : Form
+    public partial class Form26DirectionalLight
     {
         private DirectonalLightRenderer renderer;
         private SimplexNoiseRenderer sunRenderer;
@@ -48,6 +48,11 @@ namespace CSharpGL.Demos
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
                 this.scene.RootUI.Children.Add(uiAxis);
+            }
+            {
+                this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+                this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+                this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             }
             {
                 var builder = new StringBuilder();
