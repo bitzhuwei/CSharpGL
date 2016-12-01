@@ -60,11 +60,14 @@ namespace CSharpGL.Demos
 
             if (geometry != null)
             {
-                var modelRenderer = geometry.FromRenderer as DirectonalLightRenderer;
-                if (modelRenderer != null)
+                var renderer = geometry.FromRenderer as RendererBase;
+                if (renderer != null)
                 {
-                    var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
-                    script.Bind();
+                    var script = renderer.BindingSceneObject.GetScript<PickingScript>();
+                    if (script != null)
+                    {
+                        script.Bind();
+                    }
                 }
 
                 this.glCanvas1.Cursor = Cursors.Hand;
@@ -73,11 +76,14 @@ namespace CSharpGL.Demos
             {
                 if (this.pickedGeometry != null)
                 {
-                    var modelRenderer = this.pickedGeometry.FromRenderer as DirectonalLightRenderer;
-                    if (modelRenderer != null)
+                    var renderer = this.pickedGeometry.FromRenderer as RendererBase;
+                    if (renderer != null)
                     {
-                        var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
-                        script.Unbind();
+                        var script = renderer.BindingSceneObject.GetScript<PickingScript>();
+                        if (script != null)
+                        {
+                            script.Unbind();
+                        }
                     }
                 }
                 this.glCanvas1.Cursor = Cursors.Default;
@@ -100,11 +106,14 @@ namespace CSharpGL.Demos
 
             if (pickedGeometry != null)
             {
-                var modelRenderer = pickedGeometry.FromRenderer as DirectonalLightRenderer;
-                if (modelRenderer != null)
+                var renderer = this.pickedGeometry.FromRenderer as RendererBase;
+                if (renderer != null)
                 {
-                    var script = modelRenderer.BindingSceneObject.GetScript<ModelScript>();
-                    script.Unbind();
+                    var script = renderer.BindingSceneObject.GetScript<PickingScript>();
+                    if (script != null)
+                    {
+                        script.Unbind();
+                    }
                 }
             }
 

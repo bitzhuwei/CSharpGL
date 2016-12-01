@@ -99,7 +99,7 @@ namespace CSharpGL
                     SetCamera(this.camera.Position, this.camera.Target, this.camera.UpVector);
                 }
 
-                this._lastPosition = e.Location;
+                this._lastPosition = new Point(e.X, this.canvas.ClientRectangle.Height - e.Y - 1);
 
                 mouseDownFlag = true;
             }
@@ -114,8 +114,9 @@ namespace CSharpGL
                     SetCamera(this.camera.Position, this.camera.Target, this.camera.UpVector);
                 }
 
-                Point location = e.Location;
+                Point location = new Point(e.X, this.canvas.ClientRectangle.Height - e.Y - 1);
                 Point differenceOnScreen = new Point(location.X - this._lastPosition.X, location.Y - this._lastPosition.Y);
+                mat4 model = this.renderer.GetModelMatrix().Value;
                 mat4 view = this.camera.GetViewMatrix();
                 mat4 projection = this.camera.GetProjectionMatrix();
                 vec4 viewport;
@@ -123,12 +124,13 @@ namespace CSharpGL
                     int[] result = OpenGL.GetViewport();
                     viewport = new vec4(result[0], result[1], result[2], result[3]);
                 }
-                vec3 position = new vec3(0.0f);
-                vec3 windowPos = glm.project(position, view, projection, viewport);
-                vec3 newWindowPos = new vec3(windowPos.x + differenceOnScreen.X, windowPos.y + differenceOnScreen.Y, windowPos.z);
-                vec3 newPosition = glm.unProject(newWindowPos, view, projection, viewport);
-
-                this.renderer.WorldPosition += newPosition;// which is actually newPosition - position;
+                var position = new vec3(0.0f);
+                vec3 windowPos = glm.project(position, view * model, projection, viewport);
+                var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X, windowPos.y + differenceOnScreen.Y, windowPos.z);
+                vec3 newPosition = glm.unProject(newWindowPos, view * model, projection, viewport);
+                var worldPosition = new vec3(model * new vec4(position, 1.0f));
+                var newWorldPosition = new vec3(model * new vec4(newPosition, 1.0f));
+                this.renderer.WorldPosition += newWorldPosition - worldPosition; //newPosition;// which is actually newPosition - position;
 
                 _lastPosition = location;
             }
