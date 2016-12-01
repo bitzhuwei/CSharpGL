@@ -54,6 +54,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="26DirectionalLight\DirectionalLightScript.cs" />
+    <Compile Include="26DirectionalLight\UpdateDirectionalLightDirection.cs" />
     <Compile Include="26DirectionalLight\PickingScript.cs" />
     <Compile Include="27PointLight\Form27PointLight.cs">
       <SubType>Form</SubType>

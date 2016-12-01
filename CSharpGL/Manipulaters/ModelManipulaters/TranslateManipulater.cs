@@ -39,6 +39,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotate model using arc-ball method.
         /// </summary>
+        /// <param name="renderer"></param>
         /// <param name="bindingMouseButtons"></param>
         public TranslateManipulater(RendererBase renderer, MouseButtons bindingMouseButtons = MouseButtons.Left)
         {

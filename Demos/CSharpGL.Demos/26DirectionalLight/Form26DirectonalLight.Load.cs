@@ -31,8 +31,8 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
 
-                var frmPropertyGrid = new FormProperyGrid(renderer);
-                frmPropertyGrid.Show();
+                //var frmPropertyGrid = new FormProperyGrid(renderer);
+                //frmPropertyGrid.Show();
             }
             {
                 SimplexNoiseRenderer renderer = SimplexNoiseRenderer.Create();
@@ -41,6 +41,10 @@ namespace CSharpGL.Demos
                 SceneObject obj = renderer.WrapToSceneObject(true, new DirectionalLightScript(this.glCanvas1, this.scene.FirstCamera, renderer));
                 this.scene.RootObject.Children.Add(obj);
                 this.sunRenderer = renderer;
+            }
+            {
+                SceneObject obj = this.renderer.BindingSceneObject;
+                obj.Scripts.Add(new UpdateDirectionalLightDirection(this.sunRenderer));
             }
             {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
