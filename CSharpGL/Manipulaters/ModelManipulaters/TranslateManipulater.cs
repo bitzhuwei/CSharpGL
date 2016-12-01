@@ -124,7 +124,7 @@ namespace CSharpGL
                     int[] result = OpenGL.GetViewport();
                     viewport = new vec4(result[0], result[1], result[2], result[3]);
                 }
-                var position = new vec3(0.0f);
+                var position = new vec3(0.0f);// imangine we have a point at (0, 0, 0).
                 vec3 windowPos = glm.project(position, view * model, projection, viewport);
                 var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X, windowPos.y + differenceOnScreen.Y, windowPos.z);
                 vec3 newPosition = glm.unProject(newWindowPos, view * model, projection, viewport);
