@@ -17,6 +17,6 @@ void main()
 {
 	passNormal = normalize(normalMatrix * inNormal);
 	passColor = inColor;
-	passPosition = vec3(view * model * vec4(inPosition, 1.0));
+	passPosition = vec3(model * vec4(inPosition, 1.0));
 	gl_Position = projection * view * model * vec4(inPosition, 1.0);
 }

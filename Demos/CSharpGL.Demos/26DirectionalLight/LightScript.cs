@@ -6,13 +6,13 @@ using System.Text;
 
 namespace CSharpGL.Demos
 {
-    class DirectionalLightScript : PickingScript
+    class LightScript : PickingScript
     {
         private ICanvas canvas;
         private ICamera camera;
         private TranslateManipulater manipulater;
 
-        public DirectionalLightScript(ICanvas canvas, ICamera camera, RendererBase renderer)
+        public LightScript(ICanvas canvas, ICamera camera, RendererBase renderer)
         {
             this.canvas = canvas;
             this.camera = camera;

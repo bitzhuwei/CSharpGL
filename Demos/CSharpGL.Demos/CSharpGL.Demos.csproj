@@ -53,7 +53,7 @@
     <Compile Include="26DirectionalLight\Form26DirectonalLight.Picking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="26DirectionalLight\DirectionalLightScript.cs" />
+    <Compile Include="26DirectionalLight\LightScript.cs" />
     <Compile Include="26DirectionalLight\UpdateDirectionalLightDirection.cs" />
     <Compile Include="26DirectionalLight\PickingScript.cs" />
     <Compile Include="27PointLight\Form27PointLight.cs">
@@ -61,6 +61,9 @@
     </Compile>
     <Compile Include="27PointLight\Form27PointLight.Designer.cs">
       <DependentUpon>Form27PointLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="27PointLight\Form27PointLight.Picking.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="27PointLight\Form27PointLight.Load.cs">
       <SubType>Form</SubType>
@@ -157,6 +160,7 @@
     <Compile Include="15UIRenderer\Form15UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="27PointLight\UpdatePointLightPosition.cs" />
     <Compile Include="Models\TrefoilKnotModel.cs" />
     <Compile Include="Models\KleinBottleModel.cs" />
     <Compile Include="Models\PlaneModel.cs" />

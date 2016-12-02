@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
         {
             this.SetUniform("ambient", this.Ambient);
             this.SetUniform("lightColor", this.LightColor);
-            this.SetUniform("lightPosition", this.LightPosition.normalize());
+            this.SetUniform("lightPosition", this.LightPosition);
             //this.SetUniform("halfVector", this.HalfVector.normalize());
             this.SetUniform("shininess", this.Shininess);
             this.SetUniform("strength", this.Strength);

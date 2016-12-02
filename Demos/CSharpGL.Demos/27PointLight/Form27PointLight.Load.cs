@@ -10,6 +10,7 @@ namespace CSharpGL.Demos
     {
         private PointLightRenderer renderer;
         private Scene scene;
+        private SimplexNoiseRenderer sunRenderer;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -25,10 +26,8 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var arcballManipulater = new ArcBallManipulater();
-                arcballManipulater.Bind(this.scene.FirstCamera, this.glCanvas1);
                 PointLightRenderer renderer = PointLightRenderer.Create();
-                SceneObject obj = renderer.WrapToSceneObject(true, new ArcballScript(arcballManipulater));
+                SceneObject obj = renderer.WrapToSceneObject(true, new ModelScript(this.glCanvas1, this.scene.FirstCamera));
                 this.scene.RootObject.Children.Add(obj);
                 this.renderer = renderer;
 
@@ -36,9 +35,26 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
             }
             {
+                SimplexNoiseRenderer renderer = SimplexNoiseRenderer.Create();
+                renderer.Scale = new vec3(0.2f);
+                renderer.WorldPosition = new vec3(3, 3, 3);
+                SceneObject obj = renderer.WrapToSceneObject(true, new LightScript(this.glCanvas1, this.scene.FirstCamera, renderer));
+                this.scene.RootObject.Children.Add(obj);
+                this.sunRenderer = renderer;
+            }
+            {
+                SceneObject obj = this.renderer.BindingSceneObject;
+                obj.Scripts.Add(new UpdatePointLightPosition(this.sunRenderer));
+            }
+            {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128));
                 this.scene.RootUI.Children.Add(uiAxis);
+            }
+            {
+                this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+                this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+                this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             }
             {
                 var builder = new StringBuilder();
