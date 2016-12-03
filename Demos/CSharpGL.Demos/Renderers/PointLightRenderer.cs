@@ -65,7 +65,7 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix().Value;
-            this.SetUniform("eyeDirection", arg.Camera.GetFront());
+            this.SetUniform("eyeDirection", arg.Camera.GetBack().normalize());
             this.SetUniform("projection", projection);
             this.SetUniform("view", view);
             this.SetUniform("model", model);
