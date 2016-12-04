@@ -39,6 +39,9 @@ An earth model that singly rotates same as real earth. It's composed of 65341 po
 Billboard can be used to display health-bar, damage numbers in game application.
 ``LabelRenderer`` renders a string at specified position which always faces camera.  
 ![billboard-health-bar-text](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/billboard-health-bar-text.png?raw=true)
+## :high_brightness:Light
+ambient, diffuse and specular light effect from directional light.  
+![Direcional-light](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/directional-light.gif?raw=true)
 ## :movie_camera:Scene Editor
 Useful tool to build a scene and feels how opengl's transform system works.
 ![CSharpGL-Scene-Editor](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/CSharpGL-Scene-Editor.jpg?raw=true)
