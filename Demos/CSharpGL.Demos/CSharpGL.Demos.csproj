@@ -56,6 +56,15 @@
     <Compile Include="26DirectionalLight\LightScript.cs" />
     <Compile Include="26DirectionalLight\UpdateDirectionalLightDirection.cs" />
     <Compile Include="26DirectionalLight\PickingScript.cs" />
+    <Compile Include="28HemisphereLighting\Form28HemisphereLighting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="28HemisphereLighting\Form28HemisphereLighting.Designer.cs">
+      <DependentUpon>Form28HemisphereLighting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="28HemisphereLighting\Form28HemisphereLighting.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="27PointLight\Form27PointLight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +179,7 @@
     <None Include="readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
+    <Compile Include="Renderers\HemisphereLightingRenderer.cs" />
     <Compile Include="Renderers\PointLightRenderer.cs" />
     <Compile Include="Renderers\DirectonalLightRenderer.cs" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
@@ -295,6 +305,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
+    <None Include="shaders\HemisphereLighting\HemisphereLighting.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\HemisphereLighting\HemisphereLighting.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\PointLight\PointLight.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

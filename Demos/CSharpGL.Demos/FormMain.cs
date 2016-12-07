@@ -90,5 +90,10 @@ namespace CSharpGL.Demos
         {
             (new Form27PointLight()).Show();
         }
+
+        private void btn28SemisphereLighting_Click(object sender, EventArgs e)
+        {
+            (new Form28HemisphereLighting()).Show();
+        }
     }
 }
