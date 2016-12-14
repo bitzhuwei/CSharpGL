@@ -61,3 +61,9 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+*.vert   linguist-language=GLSL
+*.geom   linguist-language=GLSL
+*.frag   linguist-language=GLSL
+*.tesc   linguist-language=GLSL
+*.tese   linguist-language=GLSL
+*.comp   linguist-language=GLSL
