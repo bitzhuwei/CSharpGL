@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace CSharpGL
@@ -1520,16 +1521,13 @@ namespace CSharpGL
         /// <returns></returns>
         public static Color ReadPixel(int x, int y)
         {
-            using (var pdata = new UnmanagedArray<Pixel>(1))
-            {
-                OpenGL.ReadPixels(x, y, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, pdata.Header);
-                unsafe
-                {
-                    var array = (Pixel*)pdata.Header.ToPointer();
-                    Color c = array[0].ToColor();
-                    return c;
-                }
-            }
+            var pixel = new Pixel[1];
+            GCHandle pinned = GCHandle.Alloc(pixel, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(pixel, 0);
+            OpenGL.ReadPixels(x, y, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, header);
+            pinned.Free();
+            Color c = pixel[0].ToColor();
+            return c;
         }
 
         #region Text
