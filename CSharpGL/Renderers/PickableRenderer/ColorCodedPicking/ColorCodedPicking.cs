@@ -1,4 +1,6 @@
-﻿namespace CSharpGL
+﻿using System;
+using System.Runtime.InteropServices;
+namespace CSharpGL
 {
     /// <summary>
     ///
@@ -14,19 +16,17 @@
         /// <returns></returns>
         internal static unsafe uint ReadStageVertexId(int x, int y)
         {
-            uint stageVertexId = uint.MaxValue;
-            using (var codedColor = new UnmanagedArray<Pixel>(1))
-            {
-                // get coded color.
-                OpenGL.ReadPixels(x, y, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
-                var array = (Pixel*)codedColor.Header.ToPointer();
-                Pixel pixel = array[0];
+            var array = new Pixel[1];
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            // get coded color.
+            OpenGL.ReadPixels(x, y, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, header);
+            pinned.Free();
+            Pixel pixel = array[0];
+            uint stageVertexId = pixel.IsWhite() ?
+                uint.MaxValue :
                 // This is when (x, y) is not on background and some primitive is picked.
-                if (!pixel.IsWhite())
-                {
-                    stageVertexId = pixel.ToStageVertexId();
-                }
-            }
+                pixel.ToStageVertexId();
 
             return stageVertexId;
         }
