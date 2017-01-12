@@ -7,7 +7,7 @@ namespace CSharpGL
     ///
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct Pixel
+    internal struct Pixel
     {
         /// <summary>
         ///

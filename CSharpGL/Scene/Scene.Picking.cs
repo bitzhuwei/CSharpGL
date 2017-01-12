@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -219,32 +220,33 @@ namespace CSharpGL
         /// <returns></returns>
         private static unsafe List<Tuple<Point, uint>> ReadPixels(Rectangle target)
         {
-            var result = new List<Tuple<Point, uint>>();
-
             // get coded color.
-            using (var codedColor = new UnmanagedArray<Pixel>(target.Width * target.Height))
+            var codedColor = new Pixel[target.Width * target.Height];
             {
+                GCHandle pinned = GCHandle.Alloc(codedColor, GCHandleType.Pinned);
+                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(codedColor, 0);
                 OpenGL.ReadPixels(target.X, target.Y, target.Width, target.Height,
-                    OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
+                    OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, header);
+                pinned.Free();
+            }
 
-                var array = (Pixel*)codedColor.Header.ToPointer();
-                int index = 0;
-                var vertexIdList = new List<uint>();
-                for (int yOffset = target.Height - 1; yOffset >= 0; yOffset--)
+            var result = new List<Tuple<Point, uint>>();
+            int index = 0;
+            var vertexIdList = new List<uint>();
+            for (int yOffset = target.Height - 1; yOffset >= 0; yOffset--)
+            {
+                for (int xOffset = 0; xOffset < target.Width; xOffset++)
                 {
-                    for (int xOffset = 0; xOffset < target.Width; xOffset++)
+                    Pixel pixel = codedColor[index++];
+                    // This is when (x, y) is not on background and some primitive is picked.
+                    if (!pixel.IsWhite())
                     {
-                        Pixel pixel = array[index++];
-                        // This is when (x, y) is not on background and some primitive is picked.
-                        if (!pixel.IsWhite())
+                        uint stageVertexId = pixel.ToStageVertexId();
+                        if (!vertexIdList.Contains(stageVertexId))
                         {
-                            uint stageVertexId = pixel.ToStageVertexId();
-                            if (!vertexIdList.Contains(stageVertexId))
-                            {
-                                result.Add(new Tuple<Point, uint>(
-                                    new Point(target.X + xOffset, target.Y + yOffset), stageVertexId));
-                                vertexIdList.Add(stageVertexId);
-                            }
+                            result.Add(new Tuple<Point, uint>(
+                                new Point(target.X + xOffset, target.Y + yOffset), stageVertexId));
+                            vertexIdList.Add(stageVertexId);
                         }
                     }
                 }
