@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Data for CPU(model) -&gt; pointer to Data for GPU(buffer renderer)
+    /// Data for CPU(model) -&gt; Data for GPU(buffer renderer)
     /// <para>从模型的数据格式转换为<see cref="Buffer"/>，<see cref="Buffer"/>转换为<see cref="Buffer"/>，
     /// <see cref="Buffer"/>则可用于控制GPU的渲染操作。</para>
     /// </summary>

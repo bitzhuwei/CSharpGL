@@ -13418,6 +13418,95 @@
             <param name="hDC">Handle to an existing device context.If this handle is NULL, the function creates a memory device context compatible with the application's current screen.</param>
             <returns>The handle to a memory device context indicates success. NULL indicates failure.</returns>
         </member>
+        <member name="T:CSharpGL.TranslateManipulater">
+            <summary>
+            Rotate model using arc-ball method.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.Manipulater">
+            <summary>
+            Manipulate camera or model.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Manipulater.Bind(CSharpGL.ICamera,CSharpGL.ICanvas)">
+            <summary>
+            start to manipulate specified <paramref name="camera"/> or model.
+            </summary>
+            <param name="camera"></param>
+            <param name="canvas"></param>
+        </member>
+        <member name="M:CSharpGL.Manipulater.Unbind">
+            <summary>
+            stop to manipulate camera or model.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.IMouseHandler">
+            <summary>
+            Handle mouse events.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.IMouseHandler.canvas_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="M:CSharpGL.IMouseHandler.canvas_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="M:CSharpGL.IMouseHandler.canvas_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="M:CSharpGL.IMouseHandler.canvas_MouseWheel(System.Object,System.Windows.Forms.MouseEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="M:CSharpGL.TranslateManipulater.#ctor(CSharpGL.RendererBase,System.Windows.Forms.MouseButtons)">
+            <summary>
+            Rotate model using arc-ball method.
+            </summary>
+            <param name="renderer"></param>
+            <param name="bindingMouseButtons"></param>
+        </member>
+        <member name="M:CSharpGL.TranslateManipulater.Bind(CSharpGL.ICamera,CSharpGL.ICanvas)">
+             <summary>
+            
+             </summary>
+             <param name="camera"></param>
+             <param name="canvas"></param>
+        </member>
+        <member name="M:CSharpGL.TranslateManipulater.Unbind">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:CSharpGL.TranslateManipulater.IsBinded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.TranslateManipulater.BindingMouseButtons">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:CSharpGL.TranslateManipulater.MouseSensitivity">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="T:CSharpGL.BezierType">
             <summary>
             Type of bezier graph.
@@ -16952,56 +17041,6 @@
             Rotate model using arc-ball method.
             </summary>
         </member>
-        <member name="T:CSharpGL.Manipulater">
-            <summary>
-            Manipulate camera or model.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.Manipulater.Bind(CSharpGL.ICamera,CSharpGL.ICanvas)">
-            <summary>
-            start to manipulate specified <paramref name="camera"/> or model.
-            </summary>
-            <param name="camera"></param>
-            <param name="canvas"></param>
-        </member>
-        <member name="M:CSharpGL.Manipulater.Unbind">
-            <summary>
-            stop to manipulate camera or model.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IMouseHandler">
-            <summary>
-            Handle mouse events.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.IMouseHandler.canvas_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="sender"></param>
-             <param name="e"></param>
-        </member>
-        <member name="M:CSharpGL.IMouseHandler.canvas_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="sender"></param>
-             <param name="e"></param>
-        </member>
-        <member name="M:CSharpGL.IMouseHandler.canvas_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="sender"></param>
-             <param name="e"></param>
-        </member>
-        <member name="M:CSharpGL.IMouseHandler.canvas_MouseWheel(System.Object,System.Windows.Forms.MouseEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="sender"></param>
-             <param name="e"></param>
-        </member>
         <member name="M:CSharpGL.ArcBallManipulater.#ctor(System.Windows.Forms.MouseButtons)">
             <summary>
             Rotate model using arc-ball method.
@@ -20361,7 +20400,7 @@
             <para>Just like a satellite moves around a fixed star.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.SatelliteManipulater.#ctor">
+        <member name="M:CSharpGL.SatelliteManipulater.#ctor(System.Windows.Forms.MouseButtons)">
              <summary>
             
              </summary>
@@ -22940,7 +22979,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:CSharpGL.Teapot.Lengths">
+        <member name="P:CSharpGL.Teapot.Size">
              <summary>
             
              </summary>

@@ -99,7 +99,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    break;
+                    throw new NotImplementedException();
             }
 
             return result;
