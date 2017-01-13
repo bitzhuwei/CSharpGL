@@ -224,19 +224,19 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneObject"></param>
         /// <param name="arg"></param>
-        private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
+        private void RenderObject(ITreeNode<SceneObject> sceneObject, RenderEventArgs arg)
         {
-            if (sceneObject.Enabled)
+            if (sceneObject.Content.Enabled)
             {
                 //sceneObject.DoBeforeRendering();
-                GLState[] switchArray = sceneObject.GroupStateList.ToArray();
+                GLState[] switchArray = sceneObject.Content.GroupStateList.ToArray();
                 for (int i = 0; i < switchArray.Length; i++)
                 {
                     switchArray[i].On();
                 }
-                sceneObject.Render(arg);
-                SceneObject[] array = sceneObject.Children.ToArray();
-                foreach (SceneObject child in array)
+                sceneObject.Content.Render(arg);
+                ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();
+                foreach (ITreeNode<SceneObject> child in array)
                 {
                     RenderObject(child, arg);
                 }

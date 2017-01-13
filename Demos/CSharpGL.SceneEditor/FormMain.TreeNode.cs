@@ -20,21 +20,21 @@ namespace CSharpGL.SceneEditor
             this.treeView1.Nodes.Add(node);
         }
 
-        private void Children_ItemRemoved(object sender, RemoveItemEventArgs<SceneObject> e)
+        private void Children_ItemRemoved(object sender, RemoveTreeNodeEventArgs<SceneObject> e)
         {
             if (e.RemovedItem.Parent == null)
             {
-                var node = e.RemovedItem.Tag as TreeNode;
+                var node = e.RemovedItem.Content.Tag as TreeNode;
                 this.treeView1.Nodes.Remove(node);
             }
             else
             {
-                var node = e.RemovedItem.Tag as TreeNode;
+                var node = e.RemovedItem.Content.Tag as TreeNode;
                 node.Parent.Nodes.Remove(node);
             }
         }
 
-        private void Children_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
+        private void Children_ItemAdded(object sender, AddTreeNodeEventArgs<SceneObject> e)
         {
             //if (e.NewItem.Parent == null)
             //{
@@ -49,8 +49,8 @@ namespace CSharpGL.SceneEditor
                 int index = e.NewItem.Parent.Children.IndexOf(e.NewItem);
                 var node = new TreeNode(e.NewItem.ToString());
                 node.Tag = e.NewItem;
-                e.NewItem.Tag = node;
-                (e.NewItem.Parent.Tag as TreeNode).Nodes.Insert(index, node);
+                e.NewItem.Content.Tag = node;
+                (e.NewItem.Parent.Content.Tag as TreeNode).Nodes.Insert(index, node);
             }
         }
 
@@ -84,7 +84,7 @@ namespace CSharpGL.SceneEditor
             {
                 {
                     var obj = node.Tag as SceneObject;
-                    SceneObject parent = obj.Parent;
+                    SceneObject parent = obj.Parent.Content;
                     if (parent != null)
                     { parent.Children.Remove(obj); }
                     else
@@ -144,12 +144,12 @@ namespace CSharpGL.SceneEditor
             this.treeView1.ExpandAll();
         }
 
-        private TreeNode[] GetTreeNodes(IList<SceneObject> list)
+        private TreeNode[] GetTreeNodes(ChildList<SceneObject> list)
         {
             var result = new TreeNode[list.Count];
             for (int i = 0; i < result.Length; i++)
             {
-                var node = new TreeNode(list[i].Name);
+                var node = new TreeNode(list[i].Content.Name);
                 node.Tag = list[i];
                 if (list[i].Children.Count > 0)
                 {

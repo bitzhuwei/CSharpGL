@@ -28,6 +28,9 @@ namespace CSharpGL
         private mat4 totalRotation = mat4.identity();
         private bool isBinded = false;
 
+        /// <summary>
+        /// Indicates whether this this manipulater is binded to camera and canvas.
+        /// </summary>
         public bool IsBinded
         {
             get { return isBinded; }
@@ -54,12 +57,11 @@ namespace CSharpGL
         public MouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
-        ///
         /// </summary>
         public float MouseSensitivity { get; set; }
 
         /// <summary>
-        ///
+        /// Bind this manipulater to specified <paramref name="camera"/> and <paramref name="canvas"/>.
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
@@ -149,7 +151,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// Unbind this manipulater to camera and canvas.
         /// </summary>
         public override void Unbind()
         {

@@ -51,7 +51,7 @@ namespace CSharpGL
         private void DisposeObject(SceneObject sceneObject)
         {
             sceneObject.Dispose();
-            SceneObject[] array = sceneObject.Children.ToArray();
+            ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();
             foreach (SceneObject child in array)
             {
                 DisposeObject(child);
@@ -61,7 +61,7 @@ namespace CSharpGL
         private void DisposeUI(UIRenderer uiRenderer)
         {
             uiRenderer.Dispose();
-            UIRenderer[] array = uiRenderer.Children.ToArray();
+            ITreeNode<UIRenderer>[] array = uiRenderer.Children.ToArray();
             foreach (UIRenderer child in array)
             {
                 DisposeUI(child);

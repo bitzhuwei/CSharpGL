@@ -141,9 +141,9 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            foreach (var item in this.Children)
+            foreach (ITreeNode<UIRenderer> item in this.Children)
             {
-                item.Initialize();
+                item.Content.Initialize();
             }
 
             this.SetCodedColor(-100, 100, 200);

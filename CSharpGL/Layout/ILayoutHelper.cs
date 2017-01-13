@@ -41,18 +41,18 @@ namespace CSharpGL
         /// <param name="node"></param>
         public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>, ILayoutEvent
         {
-            var layoutEvent = node.Value as ILayoutEvent;
+            var layoutEvent = node.Content as ILayoutEvent;
             if (layoutEvent == null)
             {
                 throw new Exception(string.Format(
-                    "node.Self should not be null!"));
+                    "node.Value should not be null!"));
             }
             bool cancelTreeLayout = layoutEvent.DoBeforeLayout();
 
-            ILayout<T> parent = node.Parent;
+            ITreeNode<T> parent = node.Parent;
             if ((parent != null) && (!cancelTreeLayout))
             {
-                NonRootNodeLayout(node, parent);
+                NonRootNodeLayout(node, parent.Content);
             }
 
             layoutEvent.DoAfterLayout();
@@ -64,7 +64,7 @@ namespace CSharpGL
 
             if (parent != null)
             {
-                node.ParentLastSize = parent.Size;
+                node.ParentLastSize = parent.Content.Size;
             }
         }
 

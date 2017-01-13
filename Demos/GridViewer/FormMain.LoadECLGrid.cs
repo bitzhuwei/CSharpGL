@@ -92,7 +92,7 @@ namespace GridViewer
             // dump children nodes.
             foreach (var item in obj.Children)
             {
-                TreeNode child = DumpTreeNode(item);
+                TreeNode child = DumpTreeNode(item.Content);
                 if (child != null)
                 {
                     node.Nodes.Add(child);

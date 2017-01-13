@@ -16,7 +16,6 @@ namespace CSharpGL
         /// <param name="order"></param>
         /// <returns></returns>
         public static IEnumerable<T> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order)
-            where T : ITreeNode<T>
         {
             switch (order)
             {
@@ -47,11 +46,10 @@ namespace CSharpGL
         /// <param name="treeNode"></param>
         /// <returns></returns>
         public static IEnumerable<T> PostorderTraverse<T>(ITreeNode<T> treeNode)
-            where T : ITreeNode<T>
         {
             for (int i = 0; i < treeNode.Children.Count; i++)
             {
-                T child = treeNode.Children[i];
+                ITreeNode<T> child = treeNode.Children[i];
                 IEnumerable<T> enumerable = PostorderTraverse(child);
                 foreach (T item in enumerable)
                 {
@@ -59,7 +57,7 @@ namespace CSharpGL
                 }
             }
 
-            yield return treeNode.Value;
+            yield return treeNode.Content;
         }
 
         /// <summary>
@@ -70,13 +68,12 @@ namespace CSharpGL
         /// <param name="treeNode"></param>
         /// <returns></returns>
         public static IEnumerable<T> PreorderTraverse<T>(ITreeNode<T> treeNode)
-            where T : ITreeNode<T>
         {
-            yield return treeNode.Value;
+            yield return treeNode.Content;
 
             for (int i = 0; i < treeNode.Children.Count; i++)
             {
-                T child = treeNode.Children[i];
+                ITreeNode<T> child = treeNode.Children[i];
                 IEnumerable<T> enumerable = PreorderTraverse(child);
                 foreach (T item in enumerable)
                 {
@@ -95,7 +92,7 @@ namespace CSharpGL
         //public static IEnumerable<T> DFSEnumerateRecursively<T>(this ITreeNode<T> treeNode)
         //    where T : ITreeNode<T>
         //{
-        //    yield return treeNode.Self;
+        //    yield return treeNode.Value;
         //    for (int i = 0; i < treeNode.Children.Count; i++)
         //    {
         //        T child = treeNode.Children[i];
@@ -126,7 +123,7 @@ namespace CSharpGL
         //        {
         //            stack.Push(item);
         //        }
-        //        yield return current.Self;
+        //        yield return current.Value;
         //    }
         //}
     }

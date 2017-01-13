@@ -125,15 +125,15 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strTreeNode)]
-        [Description("Self.")]
-        public UIRenderer Value { get { return this; } }
+        [Description("Value.")]
+        public UIRenderer Content { get { return this; } }
 
         /// <summary>
         ///
         /// </summary>
         [Category(strTreeNode)]
         [Description("Parent UI Renderer.")]
-        public UIRenderer Parent { get; set; }
+        public ITreeNode<UIRenderer> Parent { get; set; }
 
         //ChildList<UIRenderer> children;
 

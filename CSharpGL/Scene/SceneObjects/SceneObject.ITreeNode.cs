@@ -13,15 +13,15 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strTreeNode)]
-        [Description("Self")]
-        public SceneObject Value { get { return this; } }
+        [Description("Value")]
+        public SceneObject Content { get { return this; } }
 
         /// <summary>
         ///
         /// </summary>
         [Category(strTreeNode)]
         [Description("Parent")]
-        public SceneObject Parent { get; set; }
+        public ITreeNode<SceneObject> Parent { get; set; }
 
         /// <summary>
         ///

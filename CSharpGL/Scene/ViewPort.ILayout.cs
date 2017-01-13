@@ -121,15 +121,15 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strTreeNode)]
-        [Description("Self.")]
-        public ViewPort Value { get { return this; } }
+        [Description("Value.")]
+        public ViewPort Content { get { return this; } }
 
         /// <summary>
         ///
         /// </summary>
         [Category(strTreeNode)]
         [Description("Parent UI Renderer.")]
-        public ViewPort Parent { get; set; }
+        public ITreeNode<ViewPort> Parent { get; set; }
 
         //ChildList<UIRenderer> children;
 

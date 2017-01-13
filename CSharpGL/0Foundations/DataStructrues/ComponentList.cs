@@ -16,12 +16,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<AddItemEventArgs<TComponent>> ItemAdded;
+        public event EventHandler<AddComponentEventArgs<TComponent>> ItemAdded;
 
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<RemoveItemEventArgs<TComponent>> ItemRemoved;
+        public event EventHandler<RemoveComponentEventArgs<TComponent>> ItemRemoved;
 
         private List<TComponent> list = new List<TComponent>();
 
@@ -58,9 +58,9 @@ namespace CSharpGL
             item.BindingObject = this.bindingObject;
             list.Insert(index, item);
 
-            EventHandler<AddItemEventArgs<TComponent>> ItemAdded = this.ItemAdded;
+            EventHandler<AddComponentEventArgs<TComponent>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
-            { ItemAdded(this, new AddItemEventArgs<TComponent>(item)); }
+            { ItemAdded(this, new AddComponentEventArgs<TComponent>(item)); }
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace CSharpGL
             list.RemoveAt(index);
             obj.BindingObject = default(TBinding);
 
-            EventHandler<RemoveItemEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
+            EventHandler<RemoveComponentEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
-            { ItemRemoved(this, new RemoveItemEventArgs<TComponent>(obj)); }
+            { ItemRemoved(this, new RemoveComponentEventArgs<TComponent>(obj)); }
         }
 
         /// <summary>
@@ -104,9 +104,9 @@ namespace CSharpGL
             item.BindingObject = this.bindingObject;
             list.Add(item);
 
-            EventHandler<AddItemEventArgs<TComponent>> ItemAdded = this.ItemAdded;
+            EventHandler<AddComponentEventArgs<TComponent>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
-            { ItemAdded(this, new AddItemEventArgs<TComponent>(item)); }
+            { ItemAdded(this, new AddComponentEventArgs<TComponent>(item)); }
         }
 
         /// <summary>
@@ -121,12 +121,12 @@ namespace CSharpGL
             }
             list.AddRange(items);
 
-            EventHandler<AddItemEventArgs<TComponent>> ItemAdded = this.ItemAdded;
+            EventHandler<AddComponentEventArgs<TComponent>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
             {
                 foreach (TComponent item in items)
                 {
-                    ItemAdded(this, new AddItemEventArgs<TComponent>(item));
+                    ItemAdded(this, new AddComponentEventArgs<TComponent>(item));
                 }
             }
         }
@@ -144,12 +144,12 @@ namespace CSharpGL
                 item.BindingObject = default(TBinding);
             }
 
-            EventHandler<RemoveItemEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
+            EventHandler<RemoveComponentEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
             {
                 foreach (TComponent item in array)
                 {
-                    ItemRemoved(this, new RemoveItemEventArgs<TComponent>(item));
+                    ItemRemoved(this, new RemoveComponentEventArgs<TComponent>(item));
                 }
             }
         }
@@ -202,9 +202,9 @@ namespace CSharpGL
             {
                 item.BindingObject = default(TBinding);
 
-                EventHandler<RemoveItemEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
+                EventHandler<RemoveComponentEventArgs<TComponent>> ItemRemoved = this.ItemRemoved;
                 if (ItemRemoved != null)
-                { ItemRemoved(this, new RemoveItemEventArgs<TComponent>(item)); }
+                { ItemRemoved(this, new RemoveComponentEventArgs<TComponent>(item)); }
             }
             return result;
         }
@@ -234,5 +234,66 @@ namespace CSharpGL
         ///
         /// </summary>
         TBinding BindingObject { get; set; }
+    }
+
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class AddComponentEventArgs<T> : EventArgs
+    {
+        /// <summary>
+        /// newly added item.
+        /// </summary>
+        public T NewItem { get; private set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="newItem"></param>
+        public AddComponentEventArgs(T newItem)
+        {
+            this.NewItem = newItem;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("Added item: {0}", NewItem);
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class RemoveComponentEventArgs<T> : EventArgs
+    {
+        /// <summary>
+        /// removed item.
+        /// </summary>
+        public T RemovedItem { get; private set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="removedItem"></param>
+        public RemoveComponentEventArgs(T removedItem)
+        {
+            this.RemovedItem = removedItem;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("Removed item: {0}", RemovedItem);
+        }
     }
 }

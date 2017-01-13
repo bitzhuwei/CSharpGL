@@ -106,7 +106,7 @@ namespace CSharpGL
             if (sceneObject.Enabled)
             {
                 sceneObject.Update();
-                SceneObject[] array = sceneObject.Children.ToArray();
+                ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();
                 foreach (SceneObject child in array)
                 {
                     UpdateObject(child);
