@@ -11773,11 +11773,8 @@
             <summary>
             Fill all or part of buffer object's data store with a fixed value.
             </summary>
-            <param name="internalFormat">The sized internal format with which the data will be stored in the buffer object.</param>
             <param name="offset">The offset, in basic machine units into the buffer object's data store at which to start filling.</param>
             <param name="size">The size, in basic machine units of the range of the data store to fill.</param>
-            <param name="format">Specifies the format of the pixel data. For transfers of depth, stencil, or depth/stencil data, you must use GL_DEPTH_COMPONENT​, GL_STENCIL_INDEX​, or GL_DEPTH_STENCIL​, where appropriate. For transfers of normalized integer or floating-point color image data, you must use one of the following: GL_RED​, GL_GREEN​, GL_BLUE​, GL_RG​, GL_RGB​, GL_BGR​, GL_RGBA​, and GL_BGRA​. For transfers of non-normalized integer data, you must use one of the following: GL_RED_INTEGER​, GL_GREEN_INTEGER​, GL_BLUE_INTEGER​, GL_RG_INTEGER​, GL_RGB_INTEGER​, GL_BGR_INTEGER​, GL_RGBA_INTEGER​, and GL_BGRA_INTEGER​.</param>
-            <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
             <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be null.</param>
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
@@ -17048,11 +17045,11 @@
             <param name="bindingMouseButtons"></param>
         </member>
         <member name="M:CSharpGL.ArcBallManipulater.Bind(CSharpGL.ICamera,CSharpGL.ICanvas)">
-             <summary>
-            
-             </summary>
-             <param name="camera"></param>
-             <param name="canvas"></param>
+            <summary>
+            Bind this manipulater to specified <paramref name="camera"/> and <paramref name="canvas"/>.
+            </summary>
+            <param name="camera"></param>
+            <param name="canvas"></param>
         </member>
         <member name="M:CSharpGL.ArcBallManipulater.GetRotationMatrix">
              <summary>
@@ -17060,9 +17057,14 @@
              </summary>
         </member>
         <member name="M:CSharpGL.ArcBallManipulater.Unbind">
-             <summary>
-            
-             </summary>
+            <summary>
+            Unbind this manipulater to camera and canvas.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ArcBallManipulater.IsBinded">
+            <summary>
+            Indicates whether this this manipulater is binded to camera and canvas.
+            </summary>
         </member>
         <member name="P:CSharpGL.ArcBallManipulater.BindingMouseButtons">
              <summary>
@@ -17070,9 +17072,8 @@
              </summary>
         </member>
         <member name="P:CSharpGL.ArcBallManipulater.MouseSensitivity">
-             <summary>
-            
-             </summary>
+            <summary>
+            </summary>
         </member>
         <member name="T:CSharpGL.bvec2">
             <summary>
@@ -18906,14 +18907,14 @@
             </summary>
             <typeparam name="T">要实现<see cref="T:CSharpGL.ITreeNode`1"/>接口的类型</typeparam>
         </member>
-        <member name="P:CSharpGL.ITreeNode`1.Self">
-            <summary>
-            this.
-            </summary>
-        </member>
         <member name="P:CSharpGL.ITreeNode`1.Parent">
             <summary>
             parent node.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ITreeNode`1.Content">
+            <summary>
+            Content of this node.
             </summary>
         </member>
         <member name="P:CSharpGL.ITreeNode`1.Children">
@@ -19057,7 +19058,7 @@
             binded object.
             </summary>
         </member>
-        <member name="P:CSharpGL.SceneObject.Self">
+        <member name="P:CSharpGL.SceneObject.Content">
              <summary>
             
              </summary>
@@ -19195,7 +19196,7 @@
             <param name="clientRectangle"></param>
             <param name="pickingGeometryType"></param>
         </member>
-        <member name="M:CSharpGL.ViewPort.RenderObject(CSharpGL.SceneObject,CSharpGL.RenderEventArgs)">
+        <member name="M:CSharpGL.ViewPort.RenderObject(CSharpGL.ITreeNode{CSharpGL.SceneObject},CSharpGL.RenderEventArgs)">
             <summary>
             render object recursively.
             </summary>
@@ -19272,7 +19273,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.ViewPort.Self">
+        <member name="P:CSharpGL.ViewPort.Content">
              <summary>
             
              </summary>
@@ -19389,7 +19390,7 @@
             
              </summary>
         </member>
-        <member name="P:CSharpGL.UIRenderer.Self">
+        <member name="P:CSharpGL.UIRenderer.Content">
              <summary>
             
              </summary>
@@ -21307,6 +21308,52 @@
             </summary>
             <param name="type"></param>
             <returns></returns>
+        </member>
+        <member name="T:CSharpGL.AddComponentEventArgs`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:CSharpGL.AddComponentEventArgs`1.#ctor(`0)">
+             <summary>
+            
+             </summary>
+             <param name="newItem"></param>
+        </member>
+        <member name="M:CSharpGL.AddComponentEventArgs`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.AddComponentEventArgs`1.NewItem">
+            <summary>
+            newly added item.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.RemoveComponentEventArgs`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:CSharpGL.RemoveComponentEventArgs`1.#ctor(`0)">
+             <summary>
+            
+             </summary>
+             <param name="removedItem"></param>
+        </member>
+        <member name="M:CSharpGL.RemoveComponentEventArgs`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.RemoveComponentEventArgs`1.RemovedItem">
+            <summary>
+            removed item.
+            </summary>
         </member>
         <member name="T:CSharpGL.Pixel">
              <summary>
@@ -28808,20 +28855,20 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSharpGL.ChildList`1.#ctor(`0)">
+        <member name="M:CSharpGL.ChildList`1.#ctor(CSharpGL.ITreeNode{`0})">
             <summary>
             children in <see cref="T:CSharpGL.ITreeNode`1"/>.
             </summary>
             <param name="parent"></param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.IndexOf(`0)">
+        <member name="M:CSharpGL.ChildList`1.IndexOf(CSharpGL.ITreeNode{`0})">
             <summary>
             搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
             </summary>
             <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Insert(System.Int32,`0)">
+        <member name="M:CSharpGL.ChildList`1.Insert(System.Int32,CSharpGL.ITreeNode{`0})">
             <summary>
             将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
             </summary>
@@ -28834,13 +28881,13 @@
             </summary>
             <param name="index">要移除的元素的从零开始的索引。</param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Add(`0)">
+        <member name="M:CSharpGL.ChildList`1.Add(CSharpGL.ITreeNode{`0})">
             <summary>
             将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
             </summary>
             <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:CSharpGL.ChildList`1.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ITreeNode{`0}})">
             <summary>
             将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
             </summary>
@@ -28851,21 +28898,21 @@
             从 System.Collections.Generic.List&lt;T&gt;中移除所有元素。
             </summary>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Contains(`0)">
+        <member name="M:CSharpGL.ChildList`1.Contains(CSharpGL.ITreeNode{`0})">
             <summary>
             确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
             </summary>
             <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
         </member>
-        <member name="M:CSharpGL.ChildList`1.CopyTo(`0[],System.Int32)">
+        <member name="M:CSharpGL.ChildList`1.CopyTo(CSharpGL.ITreeNode{`0}[],System.Int32)">
             <summary>
             将整个 System.Collections.Generic.List&lt;T&gt; 复制到兼容的一维数组中，从目标数组的指定索引位置开始放置。
             </summary>
             <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
             <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Remove(`0)">
+        <member name="M:CSharpGL.ChildList`1.Remove(CSharpGL.ITreeNode{`0})">
             <summary>
             从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
             </summary>
@@ -28896,7 +28943,7 @@
         </member>
         <member name="P:CSharpGL.ChildList`1.Parent">
             <summary>
-            parent of this list's items.
+            Gets parent of this list's items.
             </summary>
         </member>
         <member name="P:CSharpGL.ChildList`1.Item(System.Int32)">
@@ -28916,48 +28963,48 @@
             获取一个值，该值指示 System.Collections.Generic.ICollection&lt;T&gt; 是否为只读。
             </summary>
         </member>
-        <member name="T:CSharpGL.AddItemEventArgs`1">
+        <member name="T:CSharpGL.AddTreeNodeEventArgs`1">
              <summary>
             
              </summary>
              <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSharpGL.AddItemEventArgs`1.#ctor(`0)">
+        <member name="M:CSharpGL.AddTreeNodeEventArgs`1.#ctor(CSharpGL.ITreeNode{`0})">
              <summary>
             
              </summary>
              <param name="newItem"></param>
         </member>
-        <member name="M:CSharpGL.AddItemEventArgs`1.ToString">
+        <member name="M:CSharpGL.AddTreeNodeEventArgs`1.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="P:CSharpGL.AddItemEventArgs`1.NewItem">
+        <member name="P:CSharpGL.AddTreeNodeEventArgs`1.NewItem">
             <summary>
             newly added item.
             </summary>
         </member>
-        <member name="T:CSharpGL.RemoveItemEventArgs`1">
+        <member name="T:CSharpGL.RemoveTreeNodeEventArgs`1">
              <summary>
             
              </summary>
              <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSharpGL.RemoveItemEventArgs`1.#ctor(`0)">
+        <member name="M:CSharpGL.RemoveTreeNodeEventArgs`1.#ctor(CSharpGL.ITreeNode{`0})">
              <summary>
             
              </summary>
              <param name="removedItem"></param>
         </member>
-        <member name="M:CSharpGL.RemoveItemEventArgs`1.ToString">
+        <member name="M:CSharpGL.RemoveTreeNodeEventArgs`1.ToString">
              <summary>
             
              </summary>
              <returns></returns>
         </member>
-        <member name="P:CSharpGL.RemoveItemEventArgs`1.RemovedItem">
+        <member name="P:CSharpGL.RemoveTreeNodeEventArgs`1.RemovedItem">
             <summary>
             removed item.
             </summary>

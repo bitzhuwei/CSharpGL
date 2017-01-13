@@ -84,7 +84,7 @@
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.FromHandle.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.IDisposable.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.cs" />
-    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.FromHandle2.cs" />
+    <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.FromHandle.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.IDisposable.cs" />
     <Compile Include="0Foundations\Maths\ModelMatrixHelper.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec2.cs" />
