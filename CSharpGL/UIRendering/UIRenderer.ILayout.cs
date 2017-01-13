@@ -126,7 +126,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strTreeNode)]
         [Description("Self.")]
-        public UIRenderer Self { get { return this; } }
+        public UIRenderer Value { get { return this; } }
 
         /// <summary>
         ///

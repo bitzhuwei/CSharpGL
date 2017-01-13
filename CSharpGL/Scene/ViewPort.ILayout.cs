@@ -122,7 +122,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strTreeNode)]
         [Description("Self.")]
-        public ViewPort Self { get { return this; } }
+        public ViewPort Value { get { return this; } }
 
         /// <summary>
         ///

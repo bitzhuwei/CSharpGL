@@ -9,7 +9,7 @@
         /// <summary>
         /// this.
         /// </summary>
-        T Self { get; }
+        T Value { get; }
 
         /// <summary>
         /// parent node.

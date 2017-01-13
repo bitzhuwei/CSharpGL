@@ -25,7 +25,7 @@ namespace CSharpGL
         private static void GetBuilder<T>(StringBuilder builder, ITreeNode<T> tree, ref int tabSpace)
             where T : ITreeNode<T>
         {
-            builder.AppendLine(GetPreMarks(tree) + tree.Self.ToString());
+            builder.AppendLine(GetPreMarks(tree) + tree.Value.ToString());
             tabSpace++;
             foreach (T item in tree.Children)
             {
@@ -57,7 +57,7 @@ namespace CSharpGL
                     builder.Append("    ");
             }
             parent = tree.Parent;
-            if (parent.Children.IndexOf(tree.Self) < parent.Children.Count - 1)
+            if (parent.Children.IndexOf(tree.Value) < parent.Children.Count - 1)
             { builder.Append("├─"); }
             else
             { builder.Append("└─"); }

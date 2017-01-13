@@ -59,7 +59,7 @@ namespace CSharpGL
                 }
             }
 
-            yield return treeNode.Self;
+            yield return treeNode.Value;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace CSharpGL
         public static IEnumerable<T> PreorderTraverse<T>(ITreeNode<T> treeNode)
             where T : ITreeNode<T>
         {
-            yield return treeNode.Self;
+            yield return treeNode.Value;
 
             for (int i = 0; i < treeNode.Children.Count; i++)
             {

@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <param name="node"></param>
         public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>, ILayoutEvent
         {
-            var layoutEvent = node.Self as ILayoutEvent;
+            var layoutEvent = node.Value as ILayoutEvent;
             if (layoutEvent == null)
             {
                 throw new Exception(string.Format(

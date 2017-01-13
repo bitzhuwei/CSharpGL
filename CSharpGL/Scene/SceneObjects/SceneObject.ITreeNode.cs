@@ -14,7 +14,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strTreeNode)]
         [Description("Self")]
-        public SceneObject Self { get { return this; } }
+        public SceneObject Value { get { return this; } }
 
         /// <summary>
         ///
