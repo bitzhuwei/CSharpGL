@@ -24,9 +24,9 @@ namespace CSharpGL
         private List<ITreeNode<T>> list = new List<ITreeNode<T>>();
 
         /// <summary>
-        /// Gets parent of this list's items.
+        /// parent of this list's items.
         /// </summary>
-        public ITreeNode<T> Parent { get; private set; }
+        private readonly ITreeNode<T> parent;
 
         /// <summary>
         /// children in <see cref="ITreeNode&lt;T&gt;"/>.
@@ -36,7 +36,7 @@ namespace CSharpGL
         {
             Debug.Assert(parent != null);
 
-            this.Parent = parent;
+            this.parent = parent;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace CSharpGL
         /// <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
         public void Insert(int index, ITreeNode<T> item)
         {
-            item.Parent = this.Parent;
+            item.Parent = this.parent;
             list.Insert(index, item);
             //item.RefreshRelativeTransform();
 
@@ -104,7 +104,7 @@ namespace CSharpGL
         /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         public void Add(ITreeNode<T> item)
         {
-            item.Parent = this.Parent;
+            item.Parent = this.parent;
             list.Add(item);
             //item.RefreshRelativeTransform();
 
@@ -121,7 +121,7 @@ namespace CSharpGL
         {
             foreach (ITreeNode<T> item in items)
             {
-                item.Parent = this.Parent;
+                item.Parent = this.parent;
             }
             list.AddRange(items);
             foreach (ITreeNode<T> item in items)

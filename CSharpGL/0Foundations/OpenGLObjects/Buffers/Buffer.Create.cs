@@ -40,6 +40,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Creates a <see cref="ZeroIndexBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// <para><see cref="ZeroIndexBuffer"/> is not a real buffer like <see cref="OneIndexBuffer"/>.</para>
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="firstVertex"></param>

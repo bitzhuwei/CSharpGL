@@ -2,9 +2,10 @@
 {
     /// <summary>
     /// 通用的树结点。
+    /// <para>General tree node.</para>
     /// </summary>
-    /// <typeparam name="T">要实现<see cref="ITreeNode&lt;T&gt;"/>接口的类型</typeparam>
-    public interface ITreeNode<T>// where T : ITreeNode<T>
+    /// <typeparam name="T"></typeparam>
+    public interface ITreeNode<T>
     {
         /// <summary>
         /// parent node.

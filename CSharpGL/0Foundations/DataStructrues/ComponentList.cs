@@ -25,7 +25,7 @@ namespace CSharpGL
 
         private List<TComponent> list = new List<TComponent>();
 
-        private TBinding bindingObject;
+        private readonly TBinding bindingObject;
 
         /// <summary>
         /// a list of components who bind to the specified binding object.
