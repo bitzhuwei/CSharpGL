@@ -14,5 +14,5 @@ We do this because the Bitmap's size must be settled(in constructor method) when
 ![FontBitmapHelper.3_PrintBitmap.cs.png](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/FontBitmapHelper.3_PrintBitmap.cs.png?raw=true)
 
 ## what does it look like?
-Here shows what it looks like. The image inside of the red rectangle is what we got from FonBitmap.  
+Here shows what it looks like. The image inside of the red rectangle is what we got from `FontBitmap`.  
 ![FontBitmapHelper.3_PrintBitmap.cs.png](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/FontTexture.jpg?raw=true)
