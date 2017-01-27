@@ -17,6 +17,7 @@ namespace EMGraphics
             this.vertexPositions = vertexPositions;
             this.triangles = triangles;
         }
+
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
         private vec3[] vertexPositions;
@@ -45,7 +46,7 @@ namespace EMGraphics
         {
             if (this.indexBuffer == null)
             {
-                OneIndexBuffer buffer = CSharpGL.GLBuffer.Create(IndexBufferElementType.UInt, this.triangles.Length * 3, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, this.triangles.Length * 3, DrawMode.Triangles, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

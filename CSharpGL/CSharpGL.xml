@@ -11733,13 +11733,13 @@
             uint
             </summary>
         </member>
-        <member name="T:CSharpGL.Buffer">
+        <member name="T:CSharpGL.GLBuffer">
             <summary>
             位于服务器端（GPU内存）的定长数组。
             <para>An array at server side (GPU memory) with fixed length.</para>
             </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.ClearBufferData(CSharpGL.vec3,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.ClearBufferData(CSharpGL.vec3,System.Boolean)">
             <summary>
             Fill a buffer object's data store with a fixed value.
             </summary>
@@ -11747,7 +11747,7 @@
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
             <summary>
             Fill a buffer object's data store with a fixed value.
             </summary>
@@ -11758,7 +11758,7 @@
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.ClearBufferData(System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
             <summary>
             Fill a buffer object's data store with a fixed value.
             </summary>
@@ -11769,7 +11769,7 @@
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.ClearBufferSubData(System.Int32,System.UInt32,CSharpGL.vec3,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.ClearBufferSubData(System.Int32,System.UInt32,CSharpGL.vec3,System.Boolean)">
             <summary>
             Fill all or part of buffer object's data store with a fixed value.
             </summary>
@@ -11779,7 +11779,7 @@
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.ClearBufferSubData(System.UInt32,System.IntPtr,System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.ClearBufferSubData(System.UInt32,System.IntPtr,System.UInt32,System.UInt32,System.UInt32,CSharpGL.UnmanagedArrayBase,System.Boolean)">
             <summary>
             Fill all or part of buffer object's data store with a fixed value.
             </summary>
@@ -11792,7 +11792,7 @@
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.ClearBufferSubData(System.UInt32,System.IntPtr,System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.ClearBufferSubData(System.UInt32,System.IntPtr,System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.Boolean)">
             <summary>
             Fill all or part of buffer object's data store with a fixed value.
             </summary>
@@ -11805,7 +11805,7 @@
             <param name="autoBind">Automatically call glBindBuffer() inside this method.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.Create(System.Type,System.Int32,CSharpGL.VBOConfig,System.String,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
+        <member name="M:CSharpGL.GLBuffer.Create(System.Type,System.Int32,CSharpGL.VBOConfig,System.String,CSharpGL.BufferUsage,System.UInt32,System.Int32)">
             <summary>
             Creates a <see cref="T:CSharpGL.VertexBuffer"/> object(actually an array) directly in server side(GPU) without initializing its value.
             </summary>
@@ -11818,7 +11818,7 @@
             <param name="patchVertexes"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.Create(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.GLBuffer.Create(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:CSharpGL.ZeroIndexBuffer"/> object directly in server side(GPU) without initializing its value.
             <para><see cref="T:CSharpGL.ZeroIndexBuffer"/> is not a real buffer like <see cref="T:CSharpGL.OneIndexBuffer"/>.</para>
@@ -11829,7 +11829,7 @@
             <param name="primCount"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.Create(CSharpGL.IndexBufferElementType,System.Int32,CSharpGL.DrawMode,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.GLBuffer.Create(CSharpGL.IndexBufferElementType,System.Int32,CSharpGL.DrawMode,CSharpGL.BufferUsage)">
             <summary>
             Creates a <see cref="T:CSharpGL.OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
             </summary>
@@ -11839,9 +11839,9 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.Create(CSharpGL.IndependentBufferTarget,System.Type,System.Int32,CSharpGL.BufferUsage)">
+        <member name="M:CSharpGL.GLBuffer.Create(CSharpGL.IndependentBufferTarget,System.Type,System.Int32,CSharpGL.BufferUsage)">
             <summary>
-            Creates a sub-type of <see cref="T:CSharpGL.Buffer"/> object directly in server side(GPU) without initializing its value.
+            Creates a sub-type of <see cref="T:CSharpGL.GLBuffer"/> object directly in server side(GPU) without initializing its value.
             </summary>
             <param name="target"></param>
             <param name="elementType"></param>
@@ -11849,80 +11849,80 @@
             <param name="usage"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.Dispose">
+        <member name="M:CSharpGL.GLBuffer.Dispose">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.Finalize">
+        <member name="M:CSharpGL.GLBuffer.Finalize">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.DisposeUnmanagedResources">
+        <member name="M:CSharpGL.GLBuffer.DisposeUnmanagedResources">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.DisposeManagedResources">
+        <member name="M:CSharpGL.GLBuffer.DisposeManagedResources">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.DumpBufferTexture(System.UInt32,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.DumpBufferTexture(System.UInt32,System.Boolean)">
             <summary>
-            Dump a <see cref="T:CSharpGL.Texture"/> filled with this <see cref="T:CSharpGL.Buffer"/>.
+            Dump a <see cref="T:CSharpGL.Texture"/> filled with this <see cref="T:CSharpGL.GLBuffer"/>.
             </summary>
             <param name="internalFormat"></param>
             <param name="autoDispose">Dispose this buffer when disposing returned texture.</param>
             <returns></returns>
         </member>
-        <member name="F:CSharpGL.Buffer.glGenBuffers">
+        <member name="F:CSharpGL.GLBuffer.glGenBuffers">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glBindBuffer">
+        <member name="F:CSharpGL.GLBuffer.glBindBuffer">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glBufferData">
+        <member name="F:CSharpGL.GLBuffer.glBufferData">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glDeleteBuffers">
+        <member name="F:CSharpGL.GLBuffer.glDeleteBuffers">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glMapBuffer">
+        <member name="F:CSharpGL.GLBuffer.glMapBuffer">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glUnmapBuffer">
+        <member name="F:CSharpGL.GLBuffer.glUnmapBuffer">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glMapBufferRange">
+        <member name="F:CSharpGL.GLBuffer.glMapBufferRange">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glClearBufferData">
+        <member name="F:CSharpGL.GLBuffer.glClearBufferData">
              <summary>
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Buffer.glClearBufferSubData">
+        <member name="F:CSharpGL.GLBuffer.glClearBufferSubData">
              <summary>
             
              </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.#ctor(System.UInt32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.GLBuffer.#ctor(System.UInt32,System.Int32,System.Int32)">
             <summary>
             位于服务器端（GPU内存）的定长数组。
             <para>An array at server side (GPU memory) with fixed length.</para>
@@ -11931,17 +11931,17 @@
             <param name="length">此VBO含有多少个元素？<para>How many elements?</para></param>
             <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         </member>
-        <member name="M:CSharpGL.Buffer.Bind">
+        <member name="M:CSharpGL.GLBuffer.Bind">
              <summary>
             Bind this buffer.
              </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.Unbind">
+        <member name="M:CSharpGL.GLBuffer.Unbind">
             <summary>
             Unind this buffer.
             </summary>
         </member>
-        <member name="M:CSharpGL.Buffer.MapBufferRange(System.Int32,System.Int32,CSharpGL.MapBufferRangeAccess,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.MapBufferRange(System.Int32,System.Int32,CSharpGL.MapBufferRangeAccess,System.Boolean)">
             <summary>
             Start to read/write buffer.
             </summary>
@@ -11951,7 +11951,7 @@
             <param name="bind"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.MapBuffer(CSharpGL.MapBufferAccess,System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.MapBuffer(CSharpGL.MapBufferAccess,System.Boolean)">
             <summary>
             Start to read/write buffer.
             </summary>
@@ -11959,31 +11959,31 @@
             <param name="bind"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Buffer.UnmapBuffer(System.Boolean)">
+        <member name="M:CSharpGL.GLBuffer.UnmapBuffer(System.Boolean)">
             <summary>
             Stop reading/writing buffer.
             </summary>
             <param name="unbind"></param>
         </member>
-        <member name="P:CSharpGL.Buffer.BufferId">
+        <member name="P:CSharpGL.GLBuffer.BufferId">
             <summary>
             用glGenBuffers()得到的VBO的Id。
             <para>Id got from glGenBuffers();</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.Buffer.Length">
+        <member name="P:CSharpGL.GLBuffer.Length">
             <summary>
             此VBO含有多少个元素？
             <para>How many elements in thie buffer?</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.Buffer.ByteLength">
+        <member name="P:CSharpGL.GLBuffer.ByteLength">
             <summary>
             此VBO中的数据在内存中占用多少个字节？
             <para>How many bytes in this buffer?</para>
             </summary>
         </member>
-        <member name="P:CSharpGL.Buffer.Target">
+        <member name="P:CSharpGL.GLBuffer.Target">
             <summary>
             Target that this buffer should bind to.
             </summary>
@@ -15244,7 +15244,7 @@
             fill texture's content with a buffer.
             </summary>
         </member>
-        <member name="M:CSharpGL.TexBufferImageFiller.#ctor(System.UInt32,CSharpGL.Buffer,System.Boolean)">
+        <member name="M:CSharpGL.TexBufferImageFiller.#ctor(System.UInt32,CSharpGL.GLBuffer,System.Boolean)">
              <summary>
             
              </summary>
@@ -15647,7 +15647,7 @@
             A texture object.
             </summary>
         </member>
-        <member name="M:CSharpGL.Texture.CreateBufferTexture(System.UInt32,CSharpGL.Buffer,System.Boolean)">
+        <member name="M:CSharpGL.Texture.CreateBufferTexture(System.UInt32,CSharpGL.GLBuffer,System.Boolean)">
              <summary>
             
              </summary>
@@ -16485,13 +16485,13 @@
         <member name="T:CSharpGL.IBufferable">
             <summary>
             Data for CPU(model) -&gt; Data for GPU(buffer renderer)
-            <para>从模型的数据格式转换为<see cref="T:CSharpGL.Buffer"/>，<see cref="T:CSharpGL.Buffer"/>转换为<see cref="T:CSharpGL.Buffer"/>，
-            <see cref="T:CSharpGL.Buffer"/>则可用于控制GPU的渲染操作。</para>
+            <para>从模型的数据格式转换为<see cref="T:CSharpGL.GLBuffer"/>，<see cref="T:CSharpGL.GLBuffer"/>转换为<see cref="T:CSharpGL.GLBuffer"/>，
+            <see cref="T:CSharpGL.GLBuffer"/>则可用于控制GPU的渲染操作。</para>
             </summary>
         </member>
         <member name="M:CSharpGL.IBufferable.GetVertexAttributeBuffer(System.String,System.String)">
             <summary>
-            获取顶点某种属性的<see cref="T:CSharpGL.Buffer"/>。
+            获取顶点某种属性的<see cref="T:CSharpGL.GLBuffer"/>。
             </summary>
             <param name="bufferName">CPU代码指定的buffer名字，用以区分各个用途的buffer。</param>
             <param name="varNameInShader">此buffer在shader中对应的in变量名。</param>
@@ -16499,7 +16499,7 @@
         </member>
         <member name="M:CSharpGL.IBufferable.GetIndexBuffer">
             <summary>
-            获取描述索引的<see cref="T:CSharpGL.Buffer"/>。
+            获取描述索引的<see cref="T:CSharpGL.GLBuffer"/>。
             应为<see cref="T:CSharpGL.ZeroIndexBuffer"/>或<see cref="T:CSharpGL.OneIndexBuffer"/>。
             </summary>
             <returns></returns>
