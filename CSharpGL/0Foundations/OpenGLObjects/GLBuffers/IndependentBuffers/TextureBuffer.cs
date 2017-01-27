@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class TextureBuffer : Buffer
+    public partial class TextureBuffer : GLBuffer
     {
         /// <summary>
         /// Target that this buffer should bind to.
@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static TextureBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.TextureBuffer, elementType, length, usage) as TextureBuffer);
+            return (GLBuffer.Create(IndependentBufferTarget.TextureBuffer, elementType, length, usage) as TextureBuffer);
         }
     }
 }

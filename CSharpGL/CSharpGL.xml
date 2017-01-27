@@ -11821,6 +11821,7 @@
         <member name="M:CSharpGL.Buffer.Create(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:CSharpGL.ZeroIndexBuffer"/> object directly in server side(GPU) without initializing its value.
+            <para><see cref="T:CSharpGL.ZeroIndexBuffer"/> is not a real buffer like <see cref="T:CSharpGL.OneIndexBuffer"/>.</para>
             </summary>
             <param name="mode"></param>
             <param name="firstVertex"></param>
@@ -18904,8 +18905,9 @@
         <member name="T:CSharpGL.ITreeNode`1">
             <summary>
             通用的树结点。
+            <para>General tree node.</para>
             </summary>
-            <typeparam name="T">要实现<see cref="T:CSharpGL.ITreeNode`1"/>接口的类型</typeparam>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="P:CSharpGL.ITreeNode`1.Parent">
             <summary>
@@ -28855,6 +28857,11 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="F:CSharpGL.ChildList`1.parent">
+            <summary>
+            parent of this list's items.
+            </summary>
+        </member>
         <member name="M:CSharpGL.ChildList`1.#ctor(CSharpGL.ITreeNode{`0})">
             <summary>
             children in <see cref="T:CSharpGL.ITreeNode`1"/>.
@@ -28939,11 +28946,6 @@
         <member name="E:CSharpGL.ChildList`1.ItemRemoved">
             <summary>
             invoked when an item is removed from this list.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.ChildList`1.Parent">
-            <summary>
-            Gets parent of this list's items.
             </summary>
         </member>
         <member name="P:CSharpGL.ChildList`1.Item(System.Int32)">

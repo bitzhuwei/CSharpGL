@@ -5,14 +5,14 @@ namespace CSharpGL
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class PixelUnpackBuffer : Buffer
+    public partial class AtomicCounterBuffer : GLBuffer
     {
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
         public override BufferTarget Target
         {
-            get { return BufferTarget.PixelUnpackBuffer; }
+            get { return BufferTarget.AtomicCounterBuffer; }
         }
 
         /// <summary>
@@ -21,22 +21,22 @@ namespace CSharpGL
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal PixelUnpackBuffer(
+        internal AtomicCounterBuffer(
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
         }
 
         /// <summary>
-        /// Creates a <see cref="PixelUnpackBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="AtomicCounterBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType"></param>
-        /// <param name="usage"></param>
         /// <param name="length"></param>
+        /// <param name="usage"></param>
         /// <returns></returns>
-        public static PixelUnpackBuffer Create(Type elementType, int length, BufferUsage usage)
+        public static AtomicCounterBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.PixelUnpackBuffer, elementType, length, usage) as PixelUnpackBuffer);
+            return (GLBuffer.Create(IndependentBufferTarget.AtomicCounterBuffer, elementType, length, usage) as AtomicCounterBuffer);
         }
     }
 }

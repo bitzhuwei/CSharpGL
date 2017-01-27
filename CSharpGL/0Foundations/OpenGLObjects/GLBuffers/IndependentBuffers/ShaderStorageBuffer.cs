@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class ShaderStorageBuffer : Buffer
+    public partial class ShaderStorageBuffer : GLBuffer
     {
         private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
         private static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
@@ -58,7 +58,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static ShaderStorageBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.ShaderStorageBuffer, elementType, length, usage) as ShaderStorageBuffer);
+            return (GLBuffer.Create(IndependentBufferTarget.ShaderStorageBuffer, elementType, length, usage) as ShaderStorageBuffer);
         }
     }
 }

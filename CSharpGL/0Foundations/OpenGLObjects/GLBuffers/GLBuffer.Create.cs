@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public partial class Buffer
+    public partial class GLBuffer
     {
         /// <summary>
         /// Creates a <see cref="VertexBuffer"/> object(actually an array) directly in server side(GPU) without initializing its value.
@@ -107,14 +107,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a sub-type of <see cref="Buffer"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a sub-type of <see cref="GLBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="elementType"></param>
         /// <param name="length"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static Buffer Create(IndependentBufferTarget target, Type elementType, int length, BufferUsage usage)
+        public static GLBuffer Create(IndependentBufferTarget target, Type elementType, int length, BufferUsage usage)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
 
@@ -130,7 +130,7 @@ namespace CSharpGL
             glBufferData(bufferTarget, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(bufferTarget, 0);
 
-            Buffer buffer;
+            GLBuffer buffer;
             switch (target)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:

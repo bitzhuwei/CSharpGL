@@ -79,12 +79,12 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        private static Buffer GenIndependentBuffer<T>(this T[] array, IndependentBufferTarget target, BufferUsage usage) where T : struct
+        private static GLBuffer GenIndependentBuffer<T>(this T[] array, IndependentBufferTarget target, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = UnmanagedArray<T>.FromHandle(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
-            Buffer buffer = GenIndependentBuffer(unmanagedArray, target, usage);
+            GLBuffer buffer = GenIndependentBuffer(unmanagedArray, target, usage);
             pinned.Free();
 
             return buffer;

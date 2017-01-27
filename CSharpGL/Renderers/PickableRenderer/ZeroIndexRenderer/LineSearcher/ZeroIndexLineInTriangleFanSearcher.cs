@@ -17,7 +17,7 @@ namespace CSharpGL
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            OneIndexBuffer buffer = Buffer.Create(IndexBufferElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
+            OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

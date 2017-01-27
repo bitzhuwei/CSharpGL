@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class UniformBuffer : Buffer
+    public partial class UniformBuffer : GLBuffer
     {
         private static OpenGL.glUniformBlockBinding glUniformBlockBinding;
         //private static OpenGL.glBindBufferRange glBindBufferRange;
@@ -57,7 +57,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static UniformBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.UniformBuffer, elementType, length, usage) as UniformBuffer);
+            return (GLBuffer.Create(IndependentBufferTarget.UniformBuffer, elementType, length, usage) as UniformBuffer);
         }
     }
 }

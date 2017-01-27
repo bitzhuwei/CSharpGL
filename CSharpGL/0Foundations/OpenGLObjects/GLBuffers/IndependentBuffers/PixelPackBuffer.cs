@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// Buffer object that not work as input variable in shader.
     /// </summary>
-    public partial class PixelPackBuffer : Buffer
+    public partial class PixelPackBuffer : GLBuffer
     {
         /// <summary>
         /// Target that this buffer should bind to.
@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static PixelPackBuffer Create(Type elementType, int length, BufferUsage usage)
         {
-            return (Buffer.Create(IndependentBufferTarget.PixelPackBuffer, elementType, length, usage) as PixelPackBuffer);
+            return (GLBuffer.Create(IndependentBufferTarget.PixelPackBuffer, elementType, length, usage) as PixelPackBuffer);
         }
     }
 }

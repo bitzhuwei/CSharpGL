@@ -132,7 +132,7 @@ namespace CSharpGL
             {
                 ushort[] faces = model.GetFaces();
                 int length = faces.Length;
-                OneIndexBuffer buffer = Buffer.Create(IndexBufferElementType.UShort, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.Triangles, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

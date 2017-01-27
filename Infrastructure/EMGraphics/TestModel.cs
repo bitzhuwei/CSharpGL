@@ -45,7 +45,7 @@ namespace EMGraphics
         {
             if (this.indexBuffer == null)
             {
-                OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexBufferElementType.UInt, this.triangles.Length * 3, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                OneIndexBuffer buffer = CSharpGL.GLBuffer.Create(IndexBufferElementType.UInt, this.triangles.Length * 3, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

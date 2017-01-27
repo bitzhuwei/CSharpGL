@@ -24,7 +24,7 @@ namespace CSharpGL
             if (indexesLength > this.maxElementCount)
             {
                 IndexBuffer original = this.indexBuffer;
-                this.indexBuffer = Buffer.Create(IndexBufferElementType.UInt, indexesLength, mode, BufferUsage.StaticDraw);
+                this.indexBuffer = GLBuffer.Create(IndexBufferElementType.UInt, indexesLength, mode, BufferUsage.StaticDraw);
                 this.maxElementCount = indexesLength;
                 original.Dispose();
             }

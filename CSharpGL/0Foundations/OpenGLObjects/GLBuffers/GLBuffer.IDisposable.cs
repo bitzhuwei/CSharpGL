@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class Buffer
+    public abstract partial class GLBuffer
     {
         private bool disposedValue = false;
 
@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        ~Buffer()
+        ~GLBuffer()
         {
             this.Dispose(false);
         }

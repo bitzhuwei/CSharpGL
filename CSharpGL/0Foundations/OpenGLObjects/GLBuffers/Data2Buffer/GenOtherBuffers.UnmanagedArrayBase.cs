@@ -79,7 +79,7 @@ namespace CSharpGL
         /// <param name="bufferTarget"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        private static Buffer GenIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
+        private static GLBuffer GenIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
         {
             if (glGenBuffers == null)
             {
@@ -93,7 +93,7 @@ namespace CSharpGL
             glBufferData(target, array.ByteLength, array.Header, (uint)usage);
             glBindBuffer(target, 0);
 
-            Buffer buffer = null;
+            GLBuffer buffer = null;
             switch (bufferTarget)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:

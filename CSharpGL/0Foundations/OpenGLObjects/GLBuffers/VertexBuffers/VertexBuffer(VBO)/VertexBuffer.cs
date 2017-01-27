@@ -7,7 +7,7 @@ namespace CSharpGL
     /// type of Vertex Buffer Object, which represents one of vertex's attribute(position, color, uv coordinate, normal, etc).
     /// <para>In CSharpGL, one <see cref="VertexBuffer"/> contains only one kind of attribute.</para>
     /// </summary>
-    public partial class VertexBuffer : Buffer, ICloneable
+    public partial class VertexBuffer : GLBuffer, ICloneable
     {
         /// <summary>
         ///

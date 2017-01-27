@@ -1,9 +1,9 @@
 ﻿namespace CSharpGL
 {
-    public abstract partial class Buffer
+    public abstract partial class GLBuffer
     {
         /// <summary>
-        /// Dump a <see cref="Texture"/> filled with this <see cref="Buffer"/>.
+        /// Dump a <see cref="Texture"/> filled with this <see cref="GLBuffer"/>.
         /// </summary>
         /// <param name="internalFormat"></param>
         /// <param name="autoDispose">Dispose this buffer when disposing returned texture.</param>

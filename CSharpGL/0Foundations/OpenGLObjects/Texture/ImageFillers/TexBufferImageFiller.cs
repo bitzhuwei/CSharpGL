@@ -8,7 +8,7 @@ namespace CSharpGL
     public class TexBufferImageFiller : ImageFiller, IDisposable
     {
         private uint internalformat;
-        private Buffer buffer;
+        private GLBuffer buffer;
         private bool autoDispose;
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <param name="internalformat"></param>
         /// <param name="buffer"></param>
         /// <param name="autoDispose">Dispose <paramref name="buffer"/> when this filler is disposed.</param>
-        public TexBufferImageFiller(uint internalformat, Buffer buffer, bool autoDispose)
+        public TexBufferImageFiller(uint internalformat, GLBuffer buffer, bool autoDispose)
         {
             this.internalformat = internalformat;
             this.buffer = buffer;

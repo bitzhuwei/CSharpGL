@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public abstract partial class Buffer
+    public abstract partial class GLBuffer
     {
         /// <summary>
         /// Fill a buffer object's data store with a fixed value.
