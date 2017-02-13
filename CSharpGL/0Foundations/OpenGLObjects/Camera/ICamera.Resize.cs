@@ -34,17 +34,17 @@
                 orthoCamera.Top = newTop;
             }
 
-            //const int factor = 100;
-            //if (width / 2 / factor != orthoCamera.Right)
-            //{
-            //    orthoCamera.Left = -width / 2 / factor;
-            //    orthoCamera.Right = width / 2 / factor;
-            //}
-            //if (height / 2 / factor != orthoCamera.Top)
-            //{
-            //    orthoCamera.Bottom = -height / 2 / factor;
-            //    orthoCamera.Top = height / 2 / factor;
-            //}
+            const int factor = 100;
+            if (width / 2 / factor != orthoCamera.Right)
+            {
+                orthoCamera.Left = -width / 2 / factor;
+                orthoCamera.Right = width / 2 / factor;
+            }
+            if (height / 2 / factor != orthoCamera.Top)
+            {
+                orthoCamera.Bottom = -height / 2 / factor;
+                orthoCamera.Top = height / 2 / factor;
+            }
         }
     }
 }
