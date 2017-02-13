@@ -137,8 +137,8 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strTreeNode)]
-        [Editor(typeof(IListEditor<ViewPort>), typeof(UITypeEditor))]
         [Description("Children UI Renderers.")]
+        [Editor(typeof(IListEditor<ITreeNode<ViewPort>>), typeof(UITypeEditor))]
         public ChildList<ViewPort> Children { get; private set; }
     }
 }
