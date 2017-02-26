@@ -130,8 +130,8 @@ namespace CSharpGL
         {
             if (indexBuffer == null)
             {
-                ushort[] faces = model.GetFaces();
-                int length = faces.Length;
+                CSharpGL.TeapotModel.Face[] faces = model.GetFaces();
+                int length = faces.Length * 3;
                 OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.Triangles, BufferUsage.StaticDraw);
                 unsafe
                 {
@@ -139,7 +139,9 @@ namespace CSharpGL
                     var array = (ushort*)pointer;
                     for (int i = 0; i < faces.Length; i++)
                     {
-                        array[i] = (ushort)(faces[i] - 1);
+                        array[i * 3 + 0] = (ushort)(faces[i].vertexId1 - 1);
+                        array[i * 3 + 1] = (ushort)(faces[i].vertexId2 - 1);
+                        array[i * 3 + 2] = (ushort)(faces[i].vertexId3 - 1);
                     }
                     buffer.UnmapBuffer();
                 }

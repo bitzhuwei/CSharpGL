@@ -22,9 +22,9 @@
             return result;
         }
 
-        public ushort[] GetFaces()
+        public Face[] GetFaces()
         {
-            var result = new ushort[faceData.Length];
+            var result = new Face[faceData.Length];
             faceData.CopyTo(result, 0);
             return result;
         }
@@ -37,13 +37,12 @@
 
         private static void GenNormals()
         {
-            var faceNormals = new vec3[faceData.Length / 3];
-
-            for (int i = 0; i < faceData.Length / 3; i++)
+            var faceNormals = new vec3[faceData.Length];
+            for (int i = 0; i < faceData.Length; i++)
             {
-                ushort vertexId1 = faceData[i * 3 + 0];
-                ushort vertexId2 = faceData[i * 3 + 1];
-                ushort vertexId3 = faceData[i * 3 + 2];
+                ushort vertexId1 = faceData[i].vertexId1;
+                ushort vertexId2 = faceData[i].vertexId2;
+                ushort vertexId3 = faceData[i].vertexId3;
                 vec3 vertex0 = new vec3(
                     positionData[(vertexId1 - 1) * 3 + 0],
                     positionData[(vertexId1 - 1) * 3 + 1],
@@ -66,11 +65,11 @@
             {
                 vec3 sum = new vec3();
                 int shared = 0;
-                for (int j = 0; j < faceData.Length / 3; j++)
+                for (int j = 0; j < faceData.Length; j++)
                 {
-                    ushort vertexId1 = faceData[j * 3 + 0];
-                    ushort vertexId2 = faceData[j * 3 + 1];
-                    ushort vertexId3 = faceData[j * 3 + 2];
+                    ushort vertexId1 = faceData[j].vertexId1;
+                    ushort vertexId2 = faceData[j].vertexId2;
+                    ushort vertexId3 = faceData[j].vertexId3;
                     if (vertexId1 - 1 == i || vertexId2 - 1 == i || vertexId3 - 1 == i)
                     {
                         sum = sum + faceNormals[j];
