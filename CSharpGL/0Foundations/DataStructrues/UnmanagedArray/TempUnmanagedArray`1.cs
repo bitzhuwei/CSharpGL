@@ -4,23 +4,20 @@ using System.Runtime.InteropServices;
 namespace CSharpGL
 {
     /// <summary>
-    /// unmanaged huge array.
-    /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
+    /// An temporary unmanaged huge array who don't dispose its unmanged memory.
     /// </summary>
     /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
-    public sealed unsafe partial class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
+    public unsafe partial class TempUnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
         /// <summary>
-        /// unmanaged array.
+        /// An temporary unmanaged huge array who don't dispose its unmanged memory.
         /// </summary>
+        /// <param name="header"></param>
         /// <param name="elementCount"></param>
-        public UnmanagedArray(int elementCount)
+        public TempUnmanagedArray(IntPtr header, int elementCount)
             : base(elementCount, Marshal.SizeOf(typeof(T)))
         {
-            int memSize = elementCount * elementSize;
-            this.Header = Marshal.AllocHGlobal(memSize);
-
-            UnmanagedArray<T>.thisTypeAllocatedCount++;
+            this.Header = header;
         }
 
         // Do not try to use less effitient way of accessing elements as we're using OpenGL.

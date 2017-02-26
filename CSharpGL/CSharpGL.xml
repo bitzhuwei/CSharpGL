@@ -67,14 +67,6 @@
             <para>Similar to array in <code>int array[Length];</code></para>
             </summary>
         </member>
-        <member name="M:CSharpGL.UnmanagedArrayBase.#ctor(System.IntPtr,System.Int32,System.Int32)">
-            <summary>
-            Creats an unmanaged array instance whose content will be disposed by someone else.
-            </summary>
-            <param name="header"></param>
-            <param name="elementCount"></param>
-            <param name="elementSize"></param>
-        </member>
         <member name="F:CSharpGL.UnmanagedArrayBase.allocatedCount">
             <summary>
             How many <see cref="T:CSharpGL.UnmanagedArrayBase"/> allocated?
@@ -100,11 +92,6 @@
         <member name="F:CSharpGL.UnmanagedArrayBase.disposedValue">
             <summary>
             Backing field to track whether Dispose has been called.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.UnmanagedArrayBase.manualDispose">
-            <summary>
-            this array's content will be disposed by someone else.
             </summary>
         </member>
         <member name="M:CSharpGL.UnmanagedArrayBase.Dispose(System.Boolean)">
@@ -159,20 +146,40 @@
             <para>Length * elementSize</para>
             </summary>
         </member>
+        <member name="T:CSharpGL.TempUnmanagedArray`1">
+            <summary>
+            An temporary unmanaged huge array who don't dispose its unmanged memory.
+            </summary>
+            <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
+        </member>
+        <member name="M:CSharpGL.TempUnmanagedArray`1.#ctor(System.IntPtr,System.Int32)">
+            <summary>
+            An temporary unmanaged huge array who don't dispose its unmanged memory.
+            </summary>
+            <param name="header"></param>
+            <param name="elementCount"></param>
+        </member>
+        <member name="M:CSharpGL.TempUnmanagedArray`1.DisposeUnmanagedResources">
+            <summary>
+            Dispose unmanaged resources
+            </summary>
+        </member>
+        <member name="P:CSharpGL.TempUnmanagedArray`1.Item(System.Int32)">
+            <summary>
+            gets/sets element's value at specified <paramref name="index"/>.
+            <para>Please use unsafe way when dealing with big data for efficiency purpose.</para>
+            获取或设置索引为<paramref name="index"/>的元素。
+            <para>如果要处理的元素数目较大，请使用unsafe方式（为提高效率）。</para>
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
         <member name="T:CSharpGL.UnmanagedArray`1">
             <summary>
             unmanaged huge array.
             <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
             </summary>
             <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
-        </member>
-        <member name="M:CSharpGL.UnmanagedArray`1.FromHandle(System.IntPtr,System.Int32)">
-            <summary>
-            Creats an unmanaged array instance whose content will be disposed by someone else.
-            </summary>
-            <param name="header"></param>
-            <param name="count"></param>
-            <returns></returns>
         </member>
         <member name="F:CSharpGL.UnmanagedArray`1.thisTypeAllocatedCount">
             <summary>
@@ -195,7 +202,7 @@
             <summary>
             unmanaged array.
             </summary>
-            <param name="count"></param>
+            <param name="elementCount"></param>
         </member>
         <member name="P:CSharpGL.UnmanagedArray`1.Item(System.Int32)">
             <summary>

@@ -15,13 +15,13 @@ namespace CSharpGL
         /// Start position of array; Head of array; first element's position of array.
         /// <para>Similar to <code>array</code> in <code>int array[Length];</code></para>
         /// </summary>
-        public IntPtr Header { get; private set; }
+        public IntPtr Header { get; protected set; }
 
         /// <summary>
         /// How many elements?
         /// <para>Similar to <code>Length</code> in <code>int array[Length];</code></para>
         /// </summary>
-        public int Length { get; private set; }
+        public int Length { get; protected set; }
 
         /// <summary>
         /// 单个元素的字节数。
@@ -51,8 +51,6 @@ namespace CSharpGL
             Debug.Assert(elementCount >= 0);
             Debug.Assert(elementSize >= 0);
 
-            int memSize = elementCount * elementSize;
-            this.Header = Marshal.AllocHGlobal(memSize);
             this.Length = elementCount;
             this.elementSize = elementSize;
 

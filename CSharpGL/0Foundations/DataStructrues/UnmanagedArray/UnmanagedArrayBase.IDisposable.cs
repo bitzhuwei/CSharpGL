@@ -42,11 +42,6 @@ namespace CSharpGL
         private bool disposedValue = false;
 
         /// <summary>
-        /// this array's content will be disposed by someone else.
-        /// </summary>
-        private bool manualDispose = false;
-
-        /// <summary>
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
@@ -72,24 +67,7 @@ namespace CSharpGL
         /// <summary>
         /// Dispose unmanaged resources
         /// </summary>
-        protected virtual void DisposeUnmanagedResources()
-        {
-            if (this.manualDispose)
-            {
-                this.Header = IntPtr.Zero;
-                this.Length = 0;
-            }
-            else
-            {
-                IntPtr header = this.Header;
-                if (header != IntPtr.Zero)
-                {
-                    Marshal.FreeHGlobal(header);
-                    this.Header = IntPtr.Zero;
-                    this.Length = 0;
-                }
-            }
-        }
+        protected abstract void DisposeUnmanagedResources();
 
         #endregion IDisposable Members
     }

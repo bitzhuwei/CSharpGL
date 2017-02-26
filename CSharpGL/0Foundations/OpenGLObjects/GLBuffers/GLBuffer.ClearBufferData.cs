@@ -17,7 +17,7 @@ namespace CSharpGL
             var array = new vec3[] { data };
             GCHandle pin = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            UnmanagedArrayBase unmanagedArray = UnmanagedArray<vec3>.FromHandle(header, 1);
+            UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<vec3>(header, 1);
             bool result = ClearBufferData(OpenGL.GL_RGB32F, OpenGL.GL_RGB, OpenGL.GL_FLOAT, unmanagedArray, autoBind);
             pin.Free();
 
@@ -88,7 +88,7 @@ namespace CSharpGL
             var array = new vec3[] { data };
             GCHandle pin = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-            UnmanagedArrayBase unmanagedArray = UnmanagedArray<vec3>.FromHandle(header, 1);
+            UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<vec3>(header, 1);
             bool result = ClearBufferSubData(OpenGL.GL_RGB32F, new IntPtr(offset), size, OpenGL.GL_RGB, OpenGL.GL_FLOAT, unmanagedArray, autoBind);
             pin.Free();
 
