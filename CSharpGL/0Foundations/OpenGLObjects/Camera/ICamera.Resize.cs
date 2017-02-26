@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Drawing;
+namespace CSharpGL
 {
     public static partial class ICameraHelper
     {
@@ -7,43 +8,64 @@
         /// Adjust camera when OpenGL canvas's size changed.
         /// </summary>
         /// <param name="camera"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public static void Resize(this ICamera camera, double width, double height)
+        /// <param name="lastSize">canvas' last size.</param>
+        /// <param name="currentSize">canvas' current size.</param>
+        public static void Resize(this ICamera camera, Size lastSize, Size currentSize)
         {
-            double aspectRatio = width / height;
-
             IPerspectiveCamera perspectiveCamera = camera;
-            perspectiveCamera.AspectRatio = aspectRatio;
-
-            IOrthoCamera orthoCamera = camera;
-
             double lastAspectRatio = perspectiveCamera.AspectRatio;
-            if (aspectRatio > lastAspectRatio)
+
+            // update perspective camera.
             {
-                double top = orthoCamera.Top;
-                double newRight = top * aspectRatio;
-                orthoCamera.Left = -newRight;
-                orthoCamera.Right = newRight;
-            }
-            else if (aspectRatio < lastAspectRatio)
-            {
-                double right = orthoCamera.Right;
-                double newTop = right / aspectRatio;
-                orthoCamera.Bottom = -newTop;
-                orthoCamera.Top = newTop;
+                perspectiveCamera.AspectRatio = ((double)currentSize.Width) / ((double)currentSize.Height);
             }
 
-            const int factor = 100;
-            if (width / 2 / factor != orthoCamera.Right)
+            // update ortho camera.
             {
-                orthoCamera.Left = -width / 2 / factor;
-                orthoCamera.Right = width / 2 / factor;
-            }
-            if (height / 2 / factor != orthoCamera.Top)
-            {
-                orthoCamera.Bottom = -height / 2 / factor;
-                orthoCamera.Top = height / 2 / factor;
+                IOrthoCamera orthoCamera = camera;
+                if (lastSize.Width != currentSize.Width)
+                {
+                    double lastWidth = orthoCamera.Right - orthoCamera.Left;
+                    double widthRatio = ((double)currentSize.Width) / ((double)lastSize.Width);
+                    double currentWidth = lastWidth * widthRatio;
+                    orthoCamera.Left = -currentWidth / 2.0;
+                    orthoCamera.Right = currentWidth / 2.0;
+                }
+
+                if (lastSize.Height != currentSize.Height)
+                {
+                    double lastHeight = orthoCamera.Top - orthoCamera.Bottom;
+                    double heightRatio = ((double)currentSize.Height) / ((double)lastSize.Height);
+                    double currentHeight = lastHeight * heightRatio;
+                    orthoCamera.Bottom = -currentHeight / 2.0;
+                    orthoCamera.Top = currentHeight / 2.0;
+                }
+                //if (aspectRatio > lastAspectRatio)
+                //{
+                //    double top = orthoCamera.Top;
+                //    double newRight = top * aspectRatio;
+                //    orthoCamera.Left = -newRight;
+                //    orthoCamera.Right = newRight;
+                //}
+                //else if (aspectRatio < lastAspectRatio)
+                //{
+                //    double right = orthoCamera.Right;
+                //    double newTop = right / aspectRatio;
+                //    orthoCamera.Bottom = -newTop;
+                //    orthoCamera.Top = newTop;
+                //}
+
+                //const int factor = 100;
+                //if (width / 2 / factor != orthoCamera.Right)
+                //{
+                //    orthoCamera.Left = -width / 2 / factor;
+                //    orthoCamera.Right = width / 2 / factor;
+                //}
+                //if (height / 2 / factor != orthoCamera.Top)
+                //{
+                //    orthoCamera.Bottom = -height / 2 / factor;
+                //    orthoCamera.Top = height / 2 / factor;
+                //}
             }
         }
     }

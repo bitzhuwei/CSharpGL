@@ -14668,14 +14668,14 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ICameraHelper.Resize(CSharpGL.ICamera,System.Double,System.Double)">
+        <member name="M:CSharpGL.ICameraHelper.Resize(CSharpGL.ICamera,System.Drawing.Size,System.Drawing.Size)">
             <summary>
             opengl控件的大小改变时调整camera.
             Adjust camera when OpenGL canvas's size changed.
             </summary>
             <param name="camera"></param>
-            <param name="width"></param>
-            <param name="height"></param>
+            <param name="lastSize">canvas' last size.</param>
+            <param name="currentSize">canvas' current size.</param>
         </member>
         <member name="M:CSharpGL.ICameraHelper.LegacyProjection(CSharpGL.ICamera)">
             <summary>

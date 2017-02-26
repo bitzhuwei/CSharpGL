@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharpGL.Demos
@@ -62,15 +62,6 @@ namespace CSharpGL.Demos
             else
             {
                 this.rotator.canvas_MouseWheel(sender, e);
-            }
-        }
-
-        private void glCanvas1_Resize(object sender, EventArgs e)
-        {
-            ICamera camera = this.scene.FirstCamera;
-            if (camera != null)
-            {
-                camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
             }
         }
     }
