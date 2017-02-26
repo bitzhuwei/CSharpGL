@@ -70,10 +70,12 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    float[] normals = model.GetNormals();
+                    vec3[] normals = model.GetNormals();
                     for (int i = 0; i < normals.Length; i++)
                     {
-                        if (normals[i] < 0) { normals[i] = -normals[i]; }
+                        if (normals[i].x < 0) { normals[i].x = -normals[i].x; }
+                        if (normals[i].y < 0) { normals[i].y = -normals[i].y; }
+                        if (normals[i].z < 0) { normals[i].z = -normals[i].z; }
                     }
                     //int length = normals.Length;
                     //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
@@ -97,7 +99,7 @@ namespace CSharpGL
             {
                 if (this.normalBuffer == null)
                 {
-                    float[] normals = model.GetNormals();
+                    vec3[] normals = model.GetNormals();
                     //int length = normals.Length;
                     //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe

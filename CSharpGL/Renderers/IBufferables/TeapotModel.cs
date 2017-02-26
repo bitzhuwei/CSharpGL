@@ -2,7 +2,7 @@
 {
     internal partial class TeapotModel
     {
-        internal static float[] normals;
+        internal static vec3[] normals;
 
         public TeapotModel()
         {
@@ -15,9 +15,9 @@
             return result;
         }
 
-        public float[] GetNormals()
+        public vec3[] GetNormals()
         {
-            var result = new float[normals.Length];
+            var result = new vec3[normals.Length];
             normals.CopyTo(result, 0);
             return result;
         }
@@ -51,7 +51,7 @@
                 faceNormals[i] = v2.cross(v1).normalize();
             }
 
-            var normals = new float[positionData.Length * 3];
+            var normals = new vec3[positionData.Length];
             for (int i = 0; i < positionData.Length; i++)
             {
                 vec3 sum = new vec3();
@@ -70,12 +70,8 @@
 
                 if (shared > 0)
                 {
-                    sum = (sum / shared).normalize();
+                    normals[i] = (sum / shared).normalize();
                 }
-
-                normals[i * 3 + 0] = sum.x;
-                normals[i * 3 + 1] = sum.y;
-                normals[i * 3 + 2] = sum.z;
             }
 
             TeapotModel.normals = normals;
