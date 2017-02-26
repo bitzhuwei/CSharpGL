@@ -47,7 +47,7 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    float[] positions = model.GetPositions();
+                    vec3[] positions = model.GetPositions();
                     //int length = positions.Length;
                     //VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
                     //unsafe

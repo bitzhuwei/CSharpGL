@@ -8,9 +8,9 @@
         {
         }
 
-        public float[] GetPositions()
+        public vec3[] GetPositions()
         {
-            var result = new float[positionData.Length];
+            var result = new vec3[positionData.Length];
             positionData.CopyTo(result, 0);
             return result;
         }
@@ -43,25 +43,16 @@
                 ushort vertexId1 = faceData[i].vertexId1;
                 ushort vertexId2 = faceData[i].vertexId2;
                 ushort vertexId3 = faceData[i].vertexId3;
-                vec3 vertex0 = new vec3(
-                    positionData[(vertexId1 - 1) * 3 + 0],
-                    positionData[(vertexId1 - 1) * 3 + 1],
-                    positionData[(vertexId1 - 1) * 3 + 2]);
-                vec3 vertex1 = new vec3(
-                    positionData[(vertexId2 - 1) * 3 + 0],
-                    positionData[(vertexId2 - 1) * 3 + 1],
-                    positionData[(vertexId2 - 1) * 3 + 2]);
-                vec3 vertex2 = new vec3(
-                    positionData[(vertexId3 - 1) * 3 + 0],
-                    positionData[(vertexId3 - 1) * 3 + 1],
-                    positionData[(vertexId3 - 1) * 3 + 2]);
+                vec3 vertex0 = positionData[vertexId1 - 1];
+                vec3 vertex1 = positionData[vertexId2 - 1];
+                vec3 vertex2 = positionData[vertexId3 - 1];
                 vec3 v1 = vertex0 - vertex2;
                 vec3 v2 = vertex2 - vertex1;
                 faceNormals[i] = v2.cross(v1).normalize();
             }
 
-            var normals = new float[positionData.Length];
-            for (int i = 0; i < positionData.Length / 3; i++)
+            var normals = new float[positionData.Length * 3];
+            for (int i = 0; i < positionData.Length; i++)
             {
                 vec3 sum = new vec3();
                 int shared = 0;
@@ -92,23 +83,21 @@
 
         private static void MovePosition2Center()
         {
-            vec3 min = new vec3(0 * 3 + 0, 0 * 3 + 1, 0 * 3 + 2);
+            vec3 min = positionData[0];
             vec3 max = min;
-            for (int i = 1; i < positionData.Length / 3; i++)
+            for (int i = 1; i < positionData.Length; i++)
             {
-                if (positionData[i * 3 + 0] < min.x) { min.x = positionData[i * 3 + 0]; }
-                if (positionData[i * 3 + 1] < min.y) { min.y = positionData[i * 3 + 1]; }
-                if (positionData[i * 3 + 2] < min.z) { min.z = positionData[i * 3 + 2]; }
-                if (max.x < positionData[i * 3 + 0]) { max.x = positionData[i * 3 + 0]; }
-                if (max.y < positionData[i * 3 + 1]) { max.y = positionData[i * 3 + 1]; }
-                if (max.z < positionData[i * 3 + 2]) { max.z = positionData[i * 3 + 2]; }
+                if (positionData[i].x < min.x) { min.x = positionData[i].x; }
+                if (positionData[i].y < min.y) { min.y = positionData[i].y; }
+                if (positionData[i].z < min.z) { min.z = positionData[i].z; }
+                if (max.x < positionData[i].x) { max.x = positionData[i].x; }
+                if (max.y < positionData[i].y) { max.y = positionData[i].y; }
+                if (max.z < positionData[i].z) { max.z = positionData[i].z; }
             }
             vec3 mid = max / 2 + min / 2;
-            for (int i = 0; i < positionData.Length / 3; i++)
+            for (int i = 0; i < positionData.Length; i++)
             {
-                positionData[i * 3 + 0] = positionData[i * 3 + 0] - mid.x;
-                positionData[i * 3 + 1] = positionData[i * 3 + 1] - mid.y;
-                positionData[i * 3 + 2] = positionData[i * 3 + 2] - mid.z;
+                positionData[i] = positionData[i] - mid;
             }
         }
     }
