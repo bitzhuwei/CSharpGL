@@ -17,9 +17,4 @@
         /// <returns></returns>
         mat4 GetProjectionMatrix();
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static partial class ICameraHelper { }
 }
