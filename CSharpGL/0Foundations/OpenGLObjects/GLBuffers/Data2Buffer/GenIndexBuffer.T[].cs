@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer GenIndexBuffer(this byte[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GenIndexBuffer<byte>(array, mode, usage, primCount);
+            return GenIndexBuffer<byte>(array, mode, usage, IndexBufferElementType.UByte, primCount);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer GenIndexBuffer(this ushort[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GenIndexBuffer<ushort>(array, mode, usage, primCount);
+            return GenIndexBuffer<ushort>(array, mode, usage, IndexBufferElementType.UShort, primCount);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer GenIndexBuffer(this uint[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
         {
-            return GenIndexBuffer<uint>(array, mode, usage, primCount);
+            return GenIndexBuffer<uint>(array, mode, usage, IndexBufferElementType.UInt, primCount);
         }
 
         /// <summary>
@@ -54,16 +54,11 @@ namespace CSharpGL
         /// <param name="array"></param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
+        /// <param name="elementType"></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        private static OneIndexBuffer GenIndexBuffer<T>(this T[] array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
+        private static OneIndexBuffer GenIndexBuffer<T>(this T[] array, DrawMode mode, BufferUsage usage, IndexBufferElementType elementType, int primCount = 1) where T : struct
         {
-            IndexBufferElementType elementType;
-            if (typeof(T) == typeof(uint)) { elementType = IndexBufferElementType.UInt; }
-            else if (typeof(T) == typeof(ushort)) { elementType = IndexBufferElementType.UShort; }
-            else if (typeof(T) == typeof(byte)) { elementType = IndexBufferElementType.UByte; }
-            else { throw new ArgumentException(string.Format("Only uint/ushort/byte are allowed!")); }
-
             if (glGenBuffers == null)
             {
                 InitFunctions();
