@@ -95,8 +95,8 @@ namespace CSharpGL
                     camera.Bottom = -size * height / width;
                     camera.Top = size * height / width;
                 }
-                camera.Near = 0;
-                camera.Far = size * 3 + 1;// double.MaxValue;
+                //camera.Near = 0;
+                //camera.Far = size * 3 + 1;// double.MaxValue;
             }
         }
     }
