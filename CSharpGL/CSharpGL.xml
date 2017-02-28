@@ -11631,7 +11631,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer``1(``0[],CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
+        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer``1(``0[],CSharpGL.DrawMode,CSharpGL.BufferUsage,CSharpGL.IndexBufferElementType,System.Int32)">
             <summary>
             生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
             Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -11639,6 +11639,7 @@
             <param name="array"></param>
             <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
             <param name="usage"></param>
+            <param name="elementType"></param>
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
@@ -14662,11 +14663,6 @@
             <value>
             The position.
             </value>
-        </member>
-        <member name="T:CSharpGL.ICameraHelper">
-             <summary>
-            
-             </summary>
         </member>
         <member name="M:CSharpGL.ICameraHelper.Resize(CSharpGL.ICamera,System.Drawing.Size,System.Drawing.Size)">
             <summary>

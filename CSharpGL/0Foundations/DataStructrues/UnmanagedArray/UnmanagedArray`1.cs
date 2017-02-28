@@ -40,7 +40,7 @@ namespace CSharpGL
                 if (index < 0 || index >= this.Length)
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
-                var pItem = new IntPtr(this.Header.ToInt32() + (index * elementSize));
+                var pItem = new IntPtr(this.Header.ToInt64() + (index * elementSize));
                 var obj = Marshal.PtrToStructure(pItem, typeof(T));
                 T result = (T)obj;
                 //T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
@@ -51,7 +51,7 @@ namespace CSharpGL
                 if (index < 0 || index >= this.Length)
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
-                var pItem = new IntPtr(this.Header.ToInt32() + (index * elementSize));
+                var pItem = new IntPtr(this.Header.ToInt64() + (index * elementSize));
                 Marshal.StructureToPtr(value, pItem, true);
                 //Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
             }
