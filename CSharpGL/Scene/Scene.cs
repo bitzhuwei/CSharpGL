@@ -68,11 +68,14 @@ namespace CSharpGL
             if (control == null) { throw new ArgumentException(); }
 
             Size currentSize = control.Size;
-            this.FirstCamera.Resize(this.canvasLastSize, currentSize);
-            this.canvasLastSize = currentSize;
-            this.rootViewPort.Size = currentSize;
-            this.rootUI.Size = currentSize;
-            //this.rootCursor.Size = currentSize;
+            if (currentSize.Width > 0 && currentSize.Height > 0)
+            {
+                this.FirstCamera.Resize(this.canvasLastSize, currentSize);
+                this.canvasLastSize = currentSize;
+                this.rootViewPort.Size = currentSize;
+                this.rootUI.Size = currentSize;
+                //this.rootCursor.Size = currentSize;
+            }
         }
 
         /// <summary>
