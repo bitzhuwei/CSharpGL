@@ -13,17 +13,18 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Ground.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Ground.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", GroundModel.strPosition);
-            var renderer = new GroundRenderer(model, shaderCodes, map);
+            var renderer = new GroundRenderer(model, provider, map);
             return renderer;
         }
 
         public Color LineColor { get; set; }
 
-        private GroundRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private GroundRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
             this.LineColor = Color.White;
         }

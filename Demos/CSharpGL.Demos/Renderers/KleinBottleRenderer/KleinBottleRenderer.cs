@@ -14,18 +14,19 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\KleinBottleRenderer\KleinBottle.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
-            var renderer = new KleinBottleRenderer(model, shaderCodes, map, KleinBottleModel.strPosition);
+            var renderer = new KleinBottleRenderer(model, provider, map, KleinBottleModel.strPosition);
             renderer.ModelSize = model.Lengths;
 
             return renderer;
         }
 
-        private KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private KleinBottleRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
             this.stateList.Add(new LineWidthState(3));
         }

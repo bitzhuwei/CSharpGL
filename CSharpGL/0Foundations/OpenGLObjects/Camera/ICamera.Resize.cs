@@ -1,6 +1,9 @@
 ﻿using System.Drawing;
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static partial class ICameraHelper
     {
         /// <summary>

@@ -1,4 +1,4 @@
-﻿//namespace CSharpGL
+﻿//namespace EMGraphics
 //{
 //    /// <summary>
 //    /// Renderer that supports color-coded rendering.

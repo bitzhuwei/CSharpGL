@@ -16,7 +16,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program.
-            ShaderProgram program = this.shaderCodes.CreateProgram();
+            ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
 
             // init property buffer objects.
             VertexBuffer positionBuffer = null;

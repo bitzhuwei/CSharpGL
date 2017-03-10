@@ -17,9 +17,10 @@ namespace CSharpGL
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new CSharpGL.AttributeMap();
             map.Add("in_Position", Points.strposition);
-            var renderer = new PointsRenderer(model, shaderCodes, map, Points.strposition);
+            var renderer = new PointsRenderer(model, provider, map, Points.strposition);
             renderer.ModelSize = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
             renderer.stateList.Add(new PointSizeState(10));
@@ -31,12 +32,12 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="shaderCodes"></param>
+        /// <param name="shaderProgramProvider"></param>
         /// <param name="attributeMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        public PointsRenderer(Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches) :
-            base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+        public PointsRenderer(Points model, CSharpGL.IShaderProgramProvider shaderProgramProvider, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches) :
+            base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
         }
 

@@ -21,20 +21,20 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\DirectionalLight\DirectionalLight.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\DirectionalLight\DirectionalLight.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("inPosition", Teapot.strPosition);
             map.Add("inColor", Teapot.strColor);
             map.Add("inNormal", Teapot.strNormal);
-
-            var renderer = new DirectonalLightRenderer(model, shaderCodes, map, Teapot.strPosition);
+            var renderer = new DirectonalLightRenderer(model, provider, map, Teapot.strPosition);
             renderer.ModelSize = model.Size;
             return renderer;
         }
 
-        private DirectonalLightRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private DirectonalLightRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
             this.AmbientLightColor = new vec3(0.2f);
             this.DirectionalLightDirection = new vec3(1);

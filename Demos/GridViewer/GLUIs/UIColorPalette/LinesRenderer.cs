@@ -32,17 +32,18 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Lines.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Lines.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", LinesModel.position);
-            var renderer = new LinesRenderer(model, shaderCodes, map);
+            var renderer = new LinesRenderer(model, provider, map);
             renderer.markerCount = model.markerCount;
 
             return renderer;
         }
 
-        private LinesRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private LinesRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         { }
 
         protected override void DoInitialize()

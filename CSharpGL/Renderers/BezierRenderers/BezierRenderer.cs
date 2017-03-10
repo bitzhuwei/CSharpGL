@@ -18,10 +18,11 @@ namespace CSharpGL
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Points.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new CSharpGL.AttributeMap();
             map.Add("in_Position", Points.strposition);
             var model = new Points(controlPoints);
-            var renderer = new BezierRenderer(controlPoints, type, model, shaderCodes, map, Points.strposition);
+            var renderer = new BezierRenderer(controlPoints, type, model, provider, map, Points.strposition);
             renderer.ModelSize = model.Lengths;
             renderer.WorldPosition = model.WorldPosition;
             renderer.stateList.Add(new PointSizeState(10));
@@ -35,12 +36,12 @@ namespace CSharpGL
         /// <param name="controlPoints"></param>
         /// <param name="type"></param>
         /// <param name="model"></param>
-        /// <param name="shaderCodes"></param>
+        /// <param name="shaderProgramProvider"></param>
         /// <param name="attributeMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
-        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.ShaderCode[] shaderCodes, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches) :
-            base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+        private BezierRenderer(IList<vec3> controlPoints, BezierType type, Points model, CSharpGL.IShaderProgramProvider shaderProgramProvider, CSharpGL.AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches) :
+            base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
             switch (type)
             {

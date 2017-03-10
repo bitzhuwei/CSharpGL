@@ -31,11 +31,12 @@
 @"Resources.TextModel.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.TextModel.frag"), ShaderType.FragmentShader);
-            var map = new AttributeMap();
+			var provider = new ShaderCodeArray(shaderCodes);
+			var map = new AttributeMap();
             map.Add("position", TextModel.strPosition);
             map.Add("uv", TextModel.strUV);
             var model = new TextModel(maxCharCount);
-            var renderer = new Renderer(model, shaderCodes, map);
+            var renderer = new Renderer(model, provider, map);
 
             this.textModel = model;
             this.Renderer = renderer;

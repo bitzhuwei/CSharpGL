@@ -12,18 +12,19 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", CatesianGrid.strPosition);
             map.Add("in_uv", CatesianGrid.strColor);
-            var renderer = new CatesianGridRenderer(originalWorldPosition, grid, shaderCodes, map, codedColorSampler);
+            var renderer = new CatesianGridRenderer(originalWorldPosition, grid, provider, map, codedColorSampler);
             renderer.ModelSize = (grid.DataSource.SourceActiveBounds.MaxPosition - grid.DataSource.SourceActiveBounds.MinPosition).Abs();
             renderer.WorldPosition = -grid.DataSource.Position;
             return renderer;
         }
 
-        private CatesianGridRenderer(vec3 originalWorldPosition, CatesianGrid catesianGrid, ShaderCode[] shaderCodes,
+        private CatesianGridRenderer(vec3 originalWorldPosition, CatesianGrid catesianGrid, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, Texture codedColorSampler, params GLState[] switches)
-            : base(originalWorldPosition, catesianGrid, shaderCodes, attributeMap, switches)
+            : base(originalWorldPosition, catesianGrid, shaderProgramProvider, attributeMap, switches)
         {
             this.codedColorSampler = codedColorSampler;
         }

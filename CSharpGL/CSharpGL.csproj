@@ -137,6 +137,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLStates\EnableStates\LogicOperationState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\FrontFaceState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.IModelSpace.User.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\IShaderProgramProvider.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.SetUniforms.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />

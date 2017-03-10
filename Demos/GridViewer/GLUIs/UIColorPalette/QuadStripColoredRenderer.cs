@@ -39,18 +39,18 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\QuadStripColor.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\QuadStripColor.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", QuadStripColoredModel.position);
             map.Add("in_Color", QuadStripColoredModel.color);
-
-            var renderer = new QuadStripColoredRenderer(model, shaderCodes, map);
+            var renderer = new QuadStripColoredRenderer(model, provider, map);
             renderer.quadCount = model.quadCount;
             return renderer;
         }
 
-        private QuadStripColoredRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private QuadStripColoredRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
 

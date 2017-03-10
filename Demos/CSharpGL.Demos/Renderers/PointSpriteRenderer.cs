@@ -12,18 +12,19 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("position", PointSpriteModel.strposition);
             var model = new PointSpriteModel(particleCount);
-            var renderer = new PointSpriteRenderer(model, shaderCodes, map, new PointSpriteState());
+            var renderer = new PointSpriteRenderer(model, provider, map, new PointSpriteState());
             renderer.ModelSize = model.Lengths;
 
             return renderer;
         }
 
-        public PointSpriteRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        public PointSpriteRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
 

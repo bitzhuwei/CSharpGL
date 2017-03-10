@@ -18,10 +18,11 @@ namespace CSharpGL
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\BuildInSceneObject.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\BuildInSceneObject.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             IBufferable model = GetModel(buildIn);
             AttributeMap map = GetMap(buildIn);
             vec3 lengths = GetLengths(buildIn);
-            var renderer = new BuildInRenderer(lengths, model, shaderCodes, map);
+            var renderer = new BuildInRenderer(lengths, model, provider, map);
             //renderer.Initialize();
 
             SceneObject obj = renderer.WrapToSceneObject();

@@ -113,10 +113,11 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\raycasting.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\raycasting.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("position", RaycastModel.strposition);
             map.Add("boundingBox", RaycastModel.strcolor);
-            var raycastRenderer = new Renderer(model, shaderCodes, map);
+            var raycastRenderer = new Renderer(model, provider, map);
             raycastRenderer.Initialize();
             raycastRenderer.StateList.Add(new CullFaceState(CullFaceMode.Back, true));
 
@@ -128,10 +129,11 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\backface.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\RaycastVolumeRenderer\backface.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("position", RaycastModel.strposition);
             map.Add("boundingBox", RaycastModel.strcolor);
-            var backfaceRenderer = new Renderer(model, shaderCodes, map);
+            var backfaceRenderer = new Renderer(model, provider, map);
             backfaceRenderer.Initialize();
             backfaceRenderer.StateList.Add(new CullFaceState(CullFaceMode.Front, true));
 

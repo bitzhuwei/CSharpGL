@@ -28,10 +28,11 @@ namespace GridViewer
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Well.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Well.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", WellModel.strPosition);
             map.Add("in_Brightness", WellModel.strBrightness);
-            var renderer = new WellRenderer(model, shaderCodes, map);
+            var renderer = new WellRenderer(model, provider, map);
             return renderer;
         }
 
@@ -39,12 +40,12 @@ namespace GridViewer
         /// renders well pipeline(several cylinders)
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="shaderCodes"></param>
+        /// <param name="shaderProgramProvider"></param>
         /// <param name="attributeMap"></param>
         /// <param name="switches"></param>
-        private WellRenderer(WellModel model, ShaderCode[] shaderCodes,
+        private WellRenderer(WellModel model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
 

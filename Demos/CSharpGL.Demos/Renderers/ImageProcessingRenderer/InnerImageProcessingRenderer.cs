@@ -32,20 +32,21 @@ namespace CSharpGL.Demos
             ShaderCode[] simpleShader = new ShaderCode[2];
             simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.vert"), ShaderType.VertexShader);
             simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessingRenderer\ImageProcessing.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(simpleShader);
             var propertyNameMap = new AttributeMap();
             propertyNameMap.Add("vert", "position");
             propertyNameMap.Add("uv", "uv");
             var renderer = new InnerImageProcessingRenderer(
-                model, simpleShader, propertyNameMap, ImageProcessingModel.strposition);
+                model, provider, propertyNameMap, ImageProcessingModel.strposition);
             renderer.textureFilename = textureFilename;
 
             return renderer;
         }
 
-        private InnerImageProcessingRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private InnerImageProcessingRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         { }
 
         protected override void DoInitialize()

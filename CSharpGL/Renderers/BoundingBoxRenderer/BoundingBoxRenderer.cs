@@ -37,9 +37,10 @@ namespace CSharpGL
                 @"Resources\BoundingBox.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\BoundingBox.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
-            var result = new BoundingBoxRenderer(model, shaderCodes, map, new PolygonModeState(PolygonMode.Line), new PolygonOffsetFillState());
+            var result = new BoundingBoxRenderer(model, provider, map, new PolygonModeState(PolygonMode.Line), new PolygonOffsetFillState());
             result.ModelSize = lengths;
             return result;
         }
@@ -48,12 +49,12 @@ namespace CSharpGL
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-        /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
+        /// <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
+        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderProgramProvider"/> and buffers in <paramref name="model"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
-        private BoundingBoxRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private BoundingBoxRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
             this.BoundingBoxColor = Color.White;
         }

@@ -18,19 +18,19 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HemisphereLighting\HemisphereLighting.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\HemisphereLighting\HemisphereLighting.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("inPosition", Teapot.strPosition);
             map.Add("inNormal", Teapot.strNormal);
-
-            var renderer = new HemisphereLightingRenderer(model, shaderCodes, map, Teapot.strPosition);
+            var renderer = new HemisphereLightingRenderer(model, provider, map, Teapot.strPosition);
             renderer.ModelSize = model.Size;
             return renderer;
         }
 
-        private HemisphereLightingRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private HemisphereLightingRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
             this.LightPosition = new vec3(0, 2, 0);
             this.SkyColor = new vec3(1, 0, 0);

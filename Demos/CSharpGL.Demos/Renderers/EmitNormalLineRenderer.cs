@@ -15,10 +15,11 @@ namespace CSharpGL.Demos
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLineRenderer\EmitNormalLine.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLineRenderer\EmitNormalLine.geom"), ShaderType.GeometryShader);
             shaderCodes[2] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLineRenderer\EmitNormalLine.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", position);
             map.Add("in_Normal", normal);
-            var renderer = new EmitNormalLineRenderer(model, shaderCodes, map, position);
+            var renderer = new EmitNormalLineRenderer(model, provider, map, position);
             renderer.SetUniform("normalLength", 0.5f);
             renderer.SetUniform("showModel", true);
             renderer.SetUniform("showNormal", true);
@@ -27,9 +28,9 @@ namespace CSharpGL.Demos
             return renderer;
         }
 
-        private EmitNormalLineRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private EmitNormalLineRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
         }
 

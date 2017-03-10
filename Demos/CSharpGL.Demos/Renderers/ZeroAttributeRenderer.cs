@@ -11,18 +11,19 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ZeroAttributeRenderer\ZeroAttribute.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ZeroAttributeRenderer\ZeroAttribute.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();// no items in this map.
             var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
-            var renderer = new ZeroAttributeRenderer(model, shaderCodes, map, new PointSpriteState());
+            var renderer = new ZeroAttributeRenderer(model, provider, map, new PointSpriteState());
             renderer.ModelSize = new vec3(2.05f, 2.05f, 0.01f);
 
             return renderer;
         }
 
         private ZeroAttributeRenderer(
-            IBufferable model, ShaderCode[] shaderCodes,
+            IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
 

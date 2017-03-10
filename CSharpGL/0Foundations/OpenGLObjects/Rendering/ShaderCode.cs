@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -6,7 +7,7 @@ namespace CSharpGL
     /// 某种类型的shader代码。
     /// <para>Some type of shader code.</para>
     /// </summary>
-    public class ShaderCode
+    public class ShaderCode : IShaderProgramProvider
     {
         /// <summary>
         /// 某种类型的shader代码。
@@ -49,6 +50,15 @@ namespace CSharpGL
             shader.Create((uint)this.ShaderType, this.SourceCode);
 
             return shader;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ShaderProgram GetShaderProgram()
+        {
+            return this.CreateProgram();
         }
     }
 

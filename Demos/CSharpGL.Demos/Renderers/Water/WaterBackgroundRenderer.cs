@@ -12,19 +12,20 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.vert.glsl"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\water\Background.frag.glsl"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("a_vertex", PlaneModel.strPosition);
             //map.Add("a_normal", PlaneModel.strNormal);
-            var renderer = new WaterBackgroundRenderer(model, shaderCodes, map, new FrontFaceState(FrontFaceMode.CW));
+            var renderer = new WaterBackgroundRenderer(model, provider, map, new FrontFaceState(FrontFaceMode.CW));
             renderer.ModelSize = new vec3(waterPlaneLength + 1, waterPlaneLength + 1, waterPlaneLength + 1);
 
             return renderer;
         }
 
         private WaterBackgroundRenderer(
-            IBufferable model, ShaderCode[] shaderCodes,
+            IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
     }

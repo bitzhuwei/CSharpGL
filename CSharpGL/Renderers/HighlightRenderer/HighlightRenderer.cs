@@ -21,7 +21,7 @@
         public HighlightRenderer(IBufferable model,
             string positionNameInIBufferable,
             params GLState[] switches)
-            : base(model, HighlightShaderHelper.GetHighlightShaderCode(),
+            : base(model, HighlightShaderHelper.GetHighlightShaderProgramProvider(),
                 new AttributeMap("in_Position", positionNameInIBufferable),
                 switches)
         {

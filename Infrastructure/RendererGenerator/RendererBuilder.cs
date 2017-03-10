@@ -127,7 +127,7 @@ namespace RendererGenerator
             }
             const string renderer = "renderer";
             {
-                // var renderer = new GroundRenderer(model, shaderCodes, map);
+                // var renderer = new GroundRenderer(model, provider, map);
                 method.Statements.Add(new CodeSnippetStatement(string.Format("            var {0} = new {1}({2}, {3}, map);", renderer, dataStructure.RendererName, model, shaderCodes)));
             }
             {

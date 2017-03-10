@@ -24,20 +24,20 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointLight\PointLight.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointLight\PointLight.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("inPosition", Teapot.strPosition);
             map.Add("inColor", Teapot.strColor);
             map.Add("inNormal", Teapot.strNormal);
-
-            var renderer = new PointLightRenderer(model, shaderCodes, map, Teapot.strPosition);
+            var renderer = new PointLightRenderer(model, provider, map, Teapot.strPosition);
             renderer.ModelSize = model.Size;
             return renderer;
         }
 
-        private PointLightRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private PointLightRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
             this.Ambient = new vec3(0.2f);
             this.LightPosition = new vec3(400);

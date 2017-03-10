@@ -21,18 +21,19 @@ namespace CSharpGL
 @"Resources.SquareRenderer.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.SquareRenderer.frag"), ShaderType.FragmentShader);
+			var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", Square.strPosition);
             map.Add("in_TexCoord", Square.strTexCoord);
             var model = new Square();
-            var renderer = new TextureRenderer(model, shaderCodes, map, Square.strPosition);
+            var renderer = new TextureRenderer(model, provider, map, Square.strPosition);
             renderer.bitmapFilename = bitmapFilename;
             return renderer;
         }
 
-        private TextureRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private TextureRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         { }
 
         protected override void DoInitialize()

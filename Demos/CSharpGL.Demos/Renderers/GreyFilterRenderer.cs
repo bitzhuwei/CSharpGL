@@ -13,20 +13,21 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\GreyFilterRenderer\GreyFilter.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("a_vertex", GreyFilterModel.strPosition);
             map.Add("a_texCoord", GreyFilterModel.strTexCoord);
             var model = new GreyFilterModel();
-            var renderer = new GreyFilterRenderer(model, shaderCodes, map, new PointSpriteState());
+            var renderer = new GreyFilterRenderer(model, provider, map, new PointSpriteState());
             renderer.ModelSize = model.Lengths;
 
             return renderer;
         }
 
         private GreyFilterRenderer(
-            IBufferable model, ShaderCode[] shaderCodes,
+            IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
 

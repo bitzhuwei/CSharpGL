@@ -2,9 +2,9 @@
 {
     public class BuildInRenderer : Renderer
     {
-        public BuildInRenderer(vec3 lengths, IBufferable model, ShaderCode[] shaderCodes,
+        public BuildInRenderer(vec3 lengths, IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
             this.ModelSize = lengths;
         }

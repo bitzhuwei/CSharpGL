@@ -11,13 +11,14 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public static ShaderCode[] GetHighlightShaderCode()
+        public static IShaderProgramProvider GetHighlightShaderProgramProvider()
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
+			var provider = new ShaderCodeArray(shaderCodes);
 
-            return shaderCodes;
+            return provider;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Drawing;
+namespace CSharpGL
 {
     /// <summary>
     /// </summary>
@@ -70,6 +71,7 @@
             if (generateBoundingBox)
             {
                 BoundingBoxRenderer box = renderer.GetBoundingBoxRenderer();
+                box.BoundingBoxColor = Color.Gray;
                 var boxObj = new SceneObject();
                 boxObj.Renderer = box;
                 boxObj.Name = string.Format("Box of [{0}]", name);

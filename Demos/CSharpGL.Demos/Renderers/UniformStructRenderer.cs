@@ -18,10 +18,11 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\UniformStructRenderer\UniformStruct.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\UniformStructRenderer\UniformStruct.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("vPos", Teapot.strPosition);
             map.Add("vColor", Teapot.strColor);
-            var renderer = new UniformStructRenderer(model, shaderCodes, map);
+            var renderer = new UniformStructRenderer(model, provider, map);
             renderer.ModelSize = model.Size;
 
             return renderer;
@@ -29,9 +30,9 @@ namespace CSharpGL.Demos
 
         private GroundRenderer groundRenderer;
 
-        private UniformStructRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private UniformStructRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
             var groundRenderer = GroundRenderer.Create(new GroundModel(20));
             groundRenderer.Scale = new vec3(10, 10, 10);

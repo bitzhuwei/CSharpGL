@@ -11,7 +11,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program.
-            ShaderProgram program = this.shaderCodes.CreateProgram();
+            ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
 
             // init vertex attribute buffer objects.
             IBufferable model = this.DataSource;

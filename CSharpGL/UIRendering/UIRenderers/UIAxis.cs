@@ -22,11 +22,12 @@ namespace CSharpGL
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(@"Resources\Simple.frag"), ShaderType.FragmentShader);
+			var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", Axis.strPosition);
             map.Add("in_Color", Axis.strColor);
             var axis = new Axis(partCount, 0.5f);
-            var renderer = new Renderer(axis, shaderCodes, map);
+            var renderer = new Renderer(axis, provider, map);
             renderer.ModelSize = axis.ModelSize;
 
             this.Renderer = renderer;

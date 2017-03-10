@@ -65,7 +65,14 @@ namespace CSharpGL
         /// </summary>
         [Category(strSceneObject)]
         [Description("Enabled or Not.")]
-        public bool Enabled { get; set; }
+        public bool RenderingEnabled { get; set; }
+
+        /// <summary>
+        /// Enabled or not.
+        /// </summary>
+        [Category(strSceneObject)]
+        [Description("Enabled or Not.")]
+        public bool PickingEnabled { get; set; }
 
         /// <summary>
         /// binded object.
@@ -81,7 +88,8 @@ namespace CSharpGL
         public SceneObject()
         {
             this.Name = this.GetType().Name;
-            this.Enabled = true;
+            this.RenderingEnabled = true;
+            this.PickingEnabled = true;
             //this.Transform = new TransformComponent(this);
             this.Scripts = new ScriptList(this);
             this.Children = new ChildList<SceneObject>(this);

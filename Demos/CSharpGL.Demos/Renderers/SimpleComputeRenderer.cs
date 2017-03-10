@@ -19,14 +19,15 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\SimpleComputeRenderer\compute.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\SimpleComputeRenderer\compute.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("position", SimpleCompute.strPosition);
-            return new SimpleComputeRenderer(new SimpleCompute(), shaderCodes, map);
+            return new SimpleComputeRenderer(new SimpleCompute(), provider, map);
         }
 
-        private SimpleComputeRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private SimpleComputeRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         { }
 
         protected override void DoInitialize()

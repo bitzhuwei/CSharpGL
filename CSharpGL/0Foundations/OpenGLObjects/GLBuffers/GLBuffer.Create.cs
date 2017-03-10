@@ -49,7 +49,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static ZeroIndexBuffer Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
         {
-            var buffer = new ZeroIndexBuffer(mode, firstVertex, vertexCount, primCount);
+            ZeroIndexBuffer buffer = new ZeroIndexBuffer(mode, firstVertex, vertexCount, primCount);
 
             return buffer;
         }

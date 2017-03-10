@@ -28,9 +28,9 @@
         protected GLStateList stateList = new GLStateList();
 
         /// <summary>
-        /// All shader codes needed for this renderer.
+        /// Provides shader program for this renderer.
         /// </summary>
-        protected ShaderCode[] shaderCodes;
+        protected IShaderProgramProvider shaderProgramProvider;
 
         /// <summary>
         /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="DataSource"/>.
@@ -41,14 +41,14 @@
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-        /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
-        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="DataSource"/>.</param>
+        /// <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
+        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderProgramProvider"/> and buffers in <see cref="DataSource"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
-        public Renderer(IBufferable model, ShaderCode[] shaderCodes,
+        public Renderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
         {
             this.DataSource = model;
-            this.shaderCodes = shaderCodes;
+            this.shaderProgramProvider = shaderProgramProvider;
             this.attributeMap = attributeMap;
             this.stateList.AddRange(switches);
         }

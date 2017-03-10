@@ -11631,7 +11631,7 @@
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer``1(``0[],CSharpGL.DrawMode,CSharpGL.BufferUsage,CSharpGL.IndexBufferElementType,System.Int32)">
+        <member name="M:CSharpGL.Data2Buffer.GenIndexBuffer``1(``0[],CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
             生成一个用于存储索引的VBO。索引指定了<see cref="T:CSharpGL.VertexBuffer"/>里各个顶点的渲染顺序。
             Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -11639,7 +11639,6 @@
             <param name="array"></param>
             <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
             <param name="usage"></param>
-            <param name="elementType"></param>
             <param name="primCount">primCount in instanced rendering.</param>
             <returns></returns>
         </member>
@@ -12747,6 +12746,36 @@
             <para>for debugging purpose only.</para>
             </summary>
         </member>
+        <member name="T:CSharpGL.IShaderProgramProvider">
+            <summary>
+            Data for CPU(model) -&gt; Data for GPU(buffer renderer)
+            <para>从模型的数据格式转换为<see cref="T:CSharpGL.GLBuffer"/>，<see cref="T:CSharpGL.GLBuffer"/>转换为<see cref="T:CSharpGL.GLBuffer"/>，
+            <see cref="T:CSharpGL.GLBuffer"/>则可用于控制GPU的渲染操作。</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.IShaderProgramProvider.GetShaderProgram">
+            <summary>
+            获取一个<see cref="T:CSharpGL.ShaderProgram"/>实例。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CSharpGL.ShaderCodeArray">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CSharpGL.ShaderCodeArray.#ctor(CSharpGL.ShaderCode[])">
+            <summary>
+            
+            </summary>
+            <param name="shaderCodes"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderCodeArray.GetShaderProgram">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:CSharpGL.ShaderProgram">
             <summary>
             A shader program object.
@@ -13720,9 +13749,9 @@
             
              </summary>
         </member>
-        <member name="F:CSharpGL.Renderer.shaderCodes">
+        <member name="F:CSharpGL.Renderer.shaderProgramProvider">
             <summary>
-            All shader codes needed for this renderer.
+            Provides shader program for this renderer.
             </summary>
         </member>
         <member name="F:CSharpGL.Renderer.attributeMap">
@@ -13730,13 +13759,13 @@
             Mapping relations between 'in' variables in vertex shader and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.
             </summary>
         </member>
-        <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,CSharpGL.GLState[])">
              <summary>
              Rendering something using GLSL shader and VBO(VAO).
              </summary>
              <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-             <param name="shaderCodes">All shader codes needed for this renderer.</param>
-             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="F:CSharpGL.Renderer.shaderCodes"/> and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.</param>
+             <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
+             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="F:CSharpGL.Renderer.shaderProgramProvider"/> and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.</param>
             <param name="switches">OpenGL switches.</param>
         </member>
         <member name="M:CSharpGL.Renderer.DisposeUnmanagedResources">
@@ -13859,13 +13888,13 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.PickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.PickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              支持"拾取"的渲染器
              </summary>
              <param name="model">一种渲染方式</param>
-             <param name="shaderCodes">各种类型的shader代码</param>
-             <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderCodes"/>中的属性</param>
+             <param name="shaderProgramProvider">各种类型的shader代码</param>
+             <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderProgramProvider"/>中的属性</param>
              <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
             <param name="switches"></param>
         </member>
@@ -13971,12 +14000,12 @@
              <param name="model"></param>
              <returns></returns>
         </member>
-        <member name="M:CSharpGL.PointsRenderer.#ctor(CSharpGL.Points,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.PointsRenderer.#ctor(CSharpGL.Points,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
             
              </summary>
              <param name="model"></param>
-             <param name="shaderCodes"></param>
+             <param name="shaderProgramProvider"></param>
              <param name="attributeMap"></param>
              <param name="positionNameInIBufferable"></param>
              <param name="switches"></param>
@@ -14028,14 +14057,14 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.BezierRenderer.#ctor(System.Collections.Generic.IList{CSharpGL.vec3},CSharpGL.BezierType,CSharpGL.Points,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.BezierRenderer.#ctor(System.Collections.Generic.IList{CSharpGL.vec3},CSharpGL.BezierType,CSharpGL.Points,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
             <summary>
             Rendering a evaluator(a bezier curve or surface) and its control points.
             </summary>
             <param name="controlPoints"></param>
             <param name="type"></param>
             <param name="model"></param>
-            <param name="shaderCodes"></param>
+            <param name="shaderProgramProvider"></param>
             <param name="attributeMap"></param>
             <param name="positionNameInIBufferable"></param>
             <param name="switches"></param>
@@ -14663,6 +14692,11 @@
             <value>
             The position.
             </value>
+        </member>
+        <member name="T:CSharpGL.ICameraHelper">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:CSharpGL.ICameraHelper.Resize(CSharpGL.ICamera,System.Drawing.Size,System.Drawing.Size)">
             <summary>
@@ -16745,12 +16779,12 @@
             <param name="fontTexture">Use which font to render text?</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.LabelRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.LabelRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,CSharpGL.GLState[])">
              <summary>
             
              </summary>
              <param name="model"></param>
-             <param name="shaderCodes"></param>
+             <param name="shaderProgramProvider"></param>
              <param name="attributeMap"></param>
              <param name="switches"></param>
         </member>
@@ -16851,12 +16885,12 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.SimpleRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.SimpleRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
             
              </summary>
              <param name="model"></param>
-             <param name="shaderCodes"></param>
+             <param name="shaderProgramProvider"></param>
              <param name="attributeMap"></param>
              <param name="positionNameInIBufferable"></param>
              <param name="switches"></param>
@@ -18682,12 +18716,12 @@
             <param name="fontTexture">Use which font to render text?</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.TextRenderer.#ctor(CSharpGL.TextModel,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.TextRenderer.#ctor(CSharpGL.TextModel,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,CSharpGL.GLState[])">
             <summary>
             Renders a label(a single line of text).
             </summary>
             <param name="model"></param>
-            <param name="shaderCodes"></param>
+            <param name="shaderProgramProvider"></param>
             <param name="attributeMap"></param>
             <param name="switches"></param>
         </member>
@@ -19053,7 +19087,12 @@
             update state of this object.
             </summary>
         </member>
-        <member name="P:CSharpGL.SceneObject.Enabled">
+        <member name="P:CSharpGL.SceneObject.RenderingEnabled">
+            <summary>
+            Enabled or not.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.SceneObject.PickingEnabled">
             <summary>
             Enabled or not.
             </summary>
@@ -20364,13 +20403,13 @@
             <param name="lengths">bounding box's length at x, y, z direction.</param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.BoundingBoxRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.BoundingBoxRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,CSharpGL.GLState[])">
              <summary>
              Rendering something using GLSL shader and VBO(VAO).
              </summary>
              <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-             <param name="shaderCodes">All shader codes needed for this renderer.</param>
-             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
+             <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
+             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderProgramProvider"/> and buffers in <paramref name="model"/>.</param>
             <param name="switches">OpenGL switches.</param>
         </member>
         <member name="M:CSharpGL.BoundingBoxRenderer.DoRender(CSharpGL.RenderEventArgs)">
@@ -20950,13 +20989,13 @@
             Renderer that supports color-coded rendering.
             </summary>
         </member>
-        <member name="M:CSharpGL.InnerPickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.InnerPickableRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              Renderer that supports color-coded rendering.
              </summary>
              <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-             <param name="shaderCodes">All shader codes needed for this renderer.</param>
-             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderCodes"/> and buffers in <paramref name="model"/>.</param>
+             <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
+             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <paramref name="shaderProgramProvider"/> and buffers in <paramref name="model"/>.</param>
              <param name="positionNameInIBufferable">Name of buffer that describes model's position.</param>
             <param name="switches">OpenGL switches.</param>
         </member>
@@ -22221,13 +22260,13 @@
             用glDrawElements进行渲染。
             </summary>
         </member>
-        <member name="M:CSharpGL.OneIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.OneIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              用glDrawElements进行渲染。
              </summary>
              <param name="model">一种渲染方式</param>
-             <param name="shaderCodes">各种类型的shader代码</param>
-             <param name="attributeMap">关联<paramref name="shaderCodes"/>和<paramref name="shaderCodes"/>中的属性</param>
+             <param name="shaderProgramProvider">各种类型的shader代码</param>
+             <param name="attributeMap">关联<paramref name="shaderProgramProvider"/>和<paramref name="shaderProgramProvider"/>中的属性</param>
              <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
             <param name="switches"></param>
         </member>
@@ -22504,13 +22543,13 @@
             用glDrarArrays进行渲染。
             </summary>
         </member>
-        <member name="M:CSharpGL.ZeroIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.ShaderCode[],CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
+        <member name="M:CSharpGL.ZeroIndexRenderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,System.String,CSharpGL.GLState[])">
              <summary>
              用glDrarArrays进行渲染。
              </summary>
              <param name="model">一种渲染方式</param>
-             <param name="shaderCodes">各种类型的shader代码</param>
-             <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderCodes"/>中的属性</param>
+             <param name="shaderProgramProvider">各种类型的shader代码</param>
+             <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderProgramProvider"/>中的属性</param>
              <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
             <param name="switches"></param>
         </member>
@@ -22722,7 +22761,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.HighlightShaderHelper.GetHighlightShaderCode">
+        <member name="M:CSharpGL.HighlightShaderHelper.GetHighlightShaderProgramProvider">
              <summary>
             
              </summary>
@@ -23873,7 +23912,7 @@
             fragmente shader's cache.
             </summary>
         </member>
-        <member name="M:CSharpGL.PickingShaderHelper.GetShaderCodes">
+        <member name="M:CSharpGL.PickingShaderHelper.GetPickingShaderProgramProvider">
              <summary>
             
              </summary>
@@ -24097,6 +24136,12 @@
         <member name="M:CSharpGL.ShaderCode.CreateShader">
             <summary>
             Create OpenGL shader object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderCode.GetShaderProgram">
+            <summary>
+            
             </summary>
             <returns></returns>
         </member>

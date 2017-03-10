@@ -9,19 +9,20 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ODT\Transparent.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ODT\Transparent.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", position);
             map.Add("in_Color", color);
-            var renderer = new OrderDependentTransparencyRenderer(model, shaderCodes, map, position, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            var renderer = new OrderDependentTransparencyRenderer(model, provider, map, position, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             renderer.ModelSize = lengths;
 
             return renderer;
         }
 
-        private OrderDependentTransparencyRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private OrderDependentTransparencyRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         { }
 
         private long modelTicks;

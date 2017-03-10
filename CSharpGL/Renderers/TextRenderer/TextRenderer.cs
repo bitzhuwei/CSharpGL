@@ -21,11 +21,12 @@
 @"Resources.TextModel.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.TextModel.frag"), ShaderType.FragmentShader);
+			var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("position", TextModel.strPosition);
             map.Add("uv", TextModel.strUV);
             var model = new TextModel(maxCharCount);
-            var renderer = new TextRenderer(model, shaderCodes, map);
+            var renderer = new TextRenderer(model, provider, map);
             renderer.fontTexture = fontTexture;
 
             return renderer;
@@ -35,12 +36,12 @@
         /// Renders a label(a single line of text).
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="shaderCodes"></param>
+        /// <param name="shaderProgramProvider"></param>
         /// <param name="attributeMap"></param>
         /// <param name="switches"></param>
-        private TextRenderer(TextModel model, ShaderCode[] shaderCodes,
+        private TextRenderer(TextModel model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
             this.textModel = model;
         }

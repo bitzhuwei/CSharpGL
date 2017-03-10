@@ -4,7 +4,7 @@
 //using System.Text;
 
 
-//namespace CSharpGL
+//namespace EMGraphics
 //{
 //    /// <summary>
 //    /// 

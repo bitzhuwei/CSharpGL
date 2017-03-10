@@ -8,7 +8,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program.
-            ShaderProgram program = this.shaderCodes.CreateProgram();
+            ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
 
             VertexBuffer positionBuffer = null;
             IBufferable model = this.DataSource;

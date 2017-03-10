@@ -38,7 +38,8 @@ namespace CSharpGL.Demos
                 var build_lists = new ShaderCode[2];
                 build_lists[0] = new ShaderCode(File.ReadAllText(@"shaders\OIT\build_lists.vert"), ShaderType.VertexShader);
                 build_lists[1] = new ShaderCode(File.ReadAllText(@"shaders\OIT\build_lists.frag"), ShaderType.FragmentShader);
-                this.buildListsRenderer = new PickableRenderer(model, build_lists, map, positionName);
+                var provider = new ShaderCodeArray(build_lists);
+                this.buildListsRenderer = new PickableRenderer(model, provider, map, positionName);
             }
             {
                 var map = new AttributeMap();
@@ -46,7 +47,8 @@ namespace CSharpGL.Demos
                 var resolve_lists = new ShaderCode[2];
                 resolve_lists[0] = new ShaderCode(File.ReadAllText(@"shaders\OIT\resolve_lists.vert"), ShaderType.VertexShader);
                 resolve_lists[1] = new ShaderCode(File.ReadAllText(@"shaders\OIT\resolve_lists.frag"), ShaderType.FragmentShader);
-                this.resolve_lists = new PickableRenderer(model, resolve_lists, map, positionName);
+                var provider = new ShaderCodeArray(resolve_lists);
+                this.resolve_lists = new PickableRenderer(model, provider, map, positionName);
             }
             {
                 this.depthTestState = new DepthTestState(false);

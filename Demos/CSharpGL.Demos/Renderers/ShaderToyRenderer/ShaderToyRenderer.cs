@@ -14,17 +14,18 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\ShaderToy.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\ShaderToy.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", Cube.strPosition);
-            var renderer = new ShaderToyRenderer(model, shaderCodes, map);
+            var renderer = new ShaderToyRenderer(model, provider, map);
             renderer.ModelSize = model.Lengths;
 
             return renderer;
         }
 
-        private ShaderToyRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private ShaderToyRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         {
         }
     }

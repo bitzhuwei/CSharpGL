@@ -103,7 +103,7 @@ namespace CSharpGL
 
         private void UpdateObject(SceneObject sceneObject)
         {
-            if (sceneObject.Enabled)
+            if (sceneObject.RenderingEnabled || sceneObject.PickingEnabled)
             {
                 sceneObject.Update();
                 ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();

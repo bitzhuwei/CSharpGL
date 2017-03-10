@@ -14,18 +14,19 @@ namespace CSharpGL.Demos
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\TrefoilKnotRenderer\TrefoilKnot.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\TrefoilKnotRenderer\TrefoilKnot.frag"), ShaderType.FragmentShader);
+            var provider = new ShaderCodeArray(shaderCodes);
             var map = new AttributeMap();
             map.Add("in_Position", TrefoilKnotModel.strPosition);
             map.Add("in_TexCoord", TrefoilKnotModel.strTexCoord);
-            var renderer = new TrefoilKnotRenderer(model, shaderCodes, map, TrefoilKnotModel.strPosition);
+            var renderer = new TrefoilKnotRenderer(model, provider, map, TrefoilKnotModel.strPosition);
             renderer.ModelSize = model.Lengths;
 
             return renderer;
         }
 
-        private TrefoilKnotRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        private TrefoilKnotRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, string positionNameInIBufferable, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, positionNameInIBufferable, switches)
+            : base(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, switches)
         {
             this.stateList.Add(new LineWidthState(3));
             this.stateList.Add(new PointSizeState(3));

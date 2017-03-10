@@ -6,7 +6,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace CSharpGL
+//namespace EMGraphics
 //{
 //    class GLCanvasDesignModeRenderer : PickableRenderer
 //    {
@@ -52,7 +52,7 @@
 //        }
 
 //        private GLCanvasDesignModeRenderer()
-//            : base(model, shaderCodes, map, positionNameInIBufferable)
+//            : base(model, shaderProgramProvider, map, positionNameInIBufferable)
 //        { }
 
 //        private static readonly GLCanvasDesignModeRenderer instance = new GLCanvasDesignModeRenderer();

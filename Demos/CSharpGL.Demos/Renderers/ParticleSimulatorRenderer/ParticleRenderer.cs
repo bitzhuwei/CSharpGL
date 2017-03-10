@@ -7,9 +7,9 @@ namespace CSharpGL.Demos
         public VertexBuffer PositionBuffer { get; private set; }
         public VertexBuffer VelocityBuffer { get; private set; }
 
-        public ParticleRenderer(IBufferable model, ShaderCode[] shaderCodes,
+        public ParticleRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderCodes, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
         { }
 
         protected override void DoInitialize()

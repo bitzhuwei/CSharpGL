@@ -122,7 +122,7 @@ namespace CSharpGL
                 indexCount * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength(),
                 MapBufferRangeAccess.MapReadBit);
             var positions = new vec3[indexCount];
-            if (pointer.ToInt64() != 0)
+            if (pointer.ToInt32() != 0)
             {
                 unsafe
                 {
@@ -160,7 +160,7 @@ namespace CSharpGL
                     offset,
                     1 * this.PositionBuffer.Config.GetDataSize() * this.PositionBuffer.Config.GetDataTypeByteLength(),
                     MapBufferRangeAccess.MapReadBit, false);
-                if (pointer.ToInt64() != 0)
+                if (pointer.ToInt32() != 0)
                 {
                     unsafe
                     {

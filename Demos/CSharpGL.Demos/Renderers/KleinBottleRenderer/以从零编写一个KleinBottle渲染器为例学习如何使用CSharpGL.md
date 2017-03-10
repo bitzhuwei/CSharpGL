@@ -262,9 +262,9 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 <div class="cnblogs_code">
 <pre><span style="color: #008080;"> 1</span>     <span style="color: #0000ff;">class</span><span style="color: #000000;"> KleinBottleRenderer : Renderer
 </span><span style="color: #008080;"> 2</span> <span style="color: #000000;">    {
-</span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">private</span><span style="color: #000000;"> KleinBottleRenderer(IBufferable model, ShaderCode[] shaderCodes,
+</span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">private</span><span style="color: #000000;"> KleinBottleRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
 </span><span style="color: #008080;"> 4</span>             AttributeMap attributeMap, <span style="color: #0000ff;">params</span><span style="color: #000000;"> GLState[] switches)
-</span><span style="color: #008080;"> 5</span>             : <span style="color: #0000ff;">base</span><span style="color: #000000;">(model, shaderCodes, attributeMap, switches)
+</span><span style="color: #008080;"> 5</span>             : <span style="color: #0000ff;">base</span><span style="color: #000000;">(model, shaderProgramProvider, attributeMap, switches)
 </span><span style="color: #008080;"> 6</span> <span style="color: #000000;">        {
 </span><span style="color: #008080;"> 7</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 设定点的大小。</span>
 <span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">this</span>.stateList.Add(<span style="color: #0000ff;">new</span> PointSizeState(<span style="color: #800080;">3</span><span style="color: #000000;">));
@@ -288,7 +288,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </span><span style="color: #008080;"> 9</span>             map.Add(<span style="color: #800000;">"</span><span style="color: #800000;">in_Position</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in vertex shader.</span>
 <span style="color: #008080;">10</span> KleinBottleModel.strPosition <span style="color: #008000;">//</span><span style="color: #008000;"> buffer name in model.</span>
 <span style="color: #008080;">11</span> <span style="color: #000000;">);
-</span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">var</span> renderer = <span style="color: #0000ff;">new</span><span style="color: #000000;"> KleinBottleRenderer(model, shaderCodes, map);
+</span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">var</span> renderer = <span style="color: #0000ff;">new</span><span style="color: #000000;"> KleinBottleRenderer(model, provider, map);
 </span><span style="color: #008080;">13</span> 
 <span style="color: #008080;">14</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> renderer;
 </span><span style="color: #008080;">15</span> <span style="color: #000000;">        }
