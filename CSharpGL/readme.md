@@ -183,7 +183,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 5. Remove SatelliteRotator.
 6. Rename RenderEventArgs to RenderEventArg.
 7. mat4Helper converts float array to mat4.
-8. Fix bug in get delegate for OpenGL command.(Use proc.ToInt64() instead of proc.ToInt32())
+8. Fix bug in get delegate for OpenGL command.(Use proc.ToInt64() instead of proc.ToInt64())
 9. Camera manipulaters using mouse/keyboard.
 10. Better performance: reading GL_DEPTH_COMPONENT to make sure something is picked.
 11. ChildList<T> represents children in ITreeNode<T>.
