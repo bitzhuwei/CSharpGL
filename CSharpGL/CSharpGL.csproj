@@ -307,6 +307,8 @@
     <Compile Include="Scene\ViewPort.cs" />
     <Compile Include="Scene\ViewPort.ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
+    <Compile Include="UIRendering\UIRenderer.IDisposable.cs" />
+    <Compile Include="UIRendering\UIRenderer.IRenderable.cs" />
     <Compile Include="UIRendering\UIRenderer.ILayout.cs" />
     <Compile Include="UIRendering\UIRenderers\UICursor.cs" />
     <Compile Include="Scene\Scene.Engine.cs" />

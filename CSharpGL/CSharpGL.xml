@@ -18514,6 +18514,66 @@
             支持2D UI布局的渲染器
             </summary>
         </member>
+        <member name="M:CSharpGL.UIRenderer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.Finalize">
+            <summary>
+            Destruct instance of the class.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.UIRenderer.disposedValue">
+            <summary>
+            Backing field to track whether Dispose has been called.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.Dispose(System.Boolean)">
+            <summary>
+            Dispose managed and unmanaged resources of this instance.
+            </summary>
+            <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.DisposeManagedResources">
+            <summary>
+            释放.net托管资源。
+            <para>Dispose reources managed by .NET.</para>
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.DisposeUnmanagedResources">
+            <summary>
+            释放.net非托管资源，例如释放OpenGL相关的资源（Buffer、纹理等）。
+            <para>Dispose resources not managed by .NET(OpenGL buffers, textures, etc.).</para>
+            </summary>
+        </member>
+        <member name="P:CSharpGL.UIRenderer.IsInitialized">
+            <summary>
+            Already initialized.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.Initialize">
+            <summary>
+            Initialize all stuff related to OpenGL.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.DoInitialize">
+            <summary>
+            This method should only be invoked once.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.Render(CSharpGL.RenderEventArgs)">
+            <summary>
+            Render something.
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:CSharpGL.UIRenderer.DoRender(CSharpGL.RenderEventArgs)">
+            <summary>
+            Render something.
+            </summary>
+            <param name="arg"></param>
+        </member>
         <member name="E:CSharpGL.UIRenderer.BeforeLayout">
             <summary>
             triggered before layout in <see cref="T:CSharpGL.ILayout`1"/>.Layout().
@@ -18589,6 +18649,16 @@
             
              </summary>
         </member>
+        <member name="P:CSharpGL.UIRenderer.ClearDepthBuffer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.UIRenderer.Enabled">
+            <summary>
+            Render this or not.
+            </summary>
+        </member>
         <member name="M:CSharpGL.UIRenderer.#ctor(System.Windows.Forms.AnchorStyles,System.Windows.Forms.Padding,System.Drawing.Size,System.Int32,System.Int32)">
              <summary>
             
@@ -18598,22 +18668,6 @@
              <param name="size"></param>
              <param name="zNear"></param>
              <param name="zFar"></param>
-        </member>
-        <member name="M:CSharpGL.UIRenderer.DoInitialize">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.UIRenderer.DoRender(CSharpGL.RenderEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="arg"></param>
-        </member>
-        <member name="M:CSharpGL.UIRenderer.DisposeUnmanagedResources">
-             <summary>
-            
-             </summary>
         </member>
         <member name="T:CSharpGL.UICursor">
             <summary>

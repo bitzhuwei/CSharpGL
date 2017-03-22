@@ -74,7 +74,7 @@ namespace CSharpGL.Demos
         }
 
 
-        internal void SetDirection(IRenderable renderer, vec3 direction)
+        internal void SetDirection(RendererBase renderer, vec3 direction)
         {
             direction.y = 0;
             direction = direction.normalize();

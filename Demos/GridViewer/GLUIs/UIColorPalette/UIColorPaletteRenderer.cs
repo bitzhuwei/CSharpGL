@@ -50,7 +50,7 @@ namespace GridViewer
             }
             set
             {
-                RendererBase renderer = this.colorPaletteBar2;
+				UIRenderer renderer = this.colorPaletteBar2;
                 if (renderer != null) { renderer.Enabled = value; }
             }
         }
