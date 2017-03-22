@@ -1,4 +1,3 @@
-<img align="right" src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth/earth-64-60.gif?raw=true" alt="CSharpGL" style="float:right">
 # Object Oriented OpenGL in C\#  
 :crystal_ball:[Wiki](https://github.com/bitzhuwei/CSharpGL/wiki) | :egg:[nuget](https://www.nuget.org/packages/CSharpGL) | :bread:[CSharpGL.dll](https://raw.githubusercontent.com/bitzhuwei/CSharpGL/master/CSharpGL/CSharpGL.dll)  
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) wraps OpenGL API(buffer, shader, state, texture, matrix etc) and demonstrates how to express high-level functions(scene, text, picking, UI etc) with CSharpGL library.  
@@ -55,5 +54,3 @@ A demo is shown as below:
   <VertexAttribute NameInShader="in_TexCoord" NameInModel="texCoord" AttributeType="vec2" />
 </RendererGenerator>
 ```
-# :question:Support or Contact
-Check my blog [here](http://www.cnblogs.com/bitzhuwei/) or join my QQ Group<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=98131e619f6da03b96ad2213a1278da4fdd05b42a58d053125ce6ba76cf991f9"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="CSharpGL(C#+OpenGL)" title="CSharpGL(C#+OpenGL)"></a>.
