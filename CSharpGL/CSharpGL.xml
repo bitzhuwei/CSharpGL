@@ -16136,6 +16136,11 @@
             
              </summary>
         </member>
+        <member name="P:CSharpGL.TextModel.Alignment">
+            <summary>
+            Text's alignment.
+            </summary>
+        </member>
         <member name="M:CSharpGL.TextModel.SetText(System.String,CSharpGL.IFontTexture)">
              <summary>
             
@@ -16246,6 +16251,26 @@
              <param name="leftDown"></param>
              <param name="rightUp"></param>
              <param name="rightDown"></param>
+        </member>
+        <member name="T:CSharpGL.TextAlignment">
+            <summary>
+            text's alignment.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.TextAlignment.Left">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.TextAlignment.Center">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.TextAlignment.Right">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:CSharpGL.ArcBallManipulater">
             <summary>
@@ -20202,6 +20227,11 @@
              <summary>
             
              </summary>
+        </member>
+        <member name="P:CSharpGL.UIText.Alignment">
+            <summary>
+            Text's alignment.
+            </summary>
         </member>
         <member name="P:CSharpGL.UIText.BlendState">
              <summary>

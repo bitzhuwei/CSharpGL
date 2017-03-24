@@ -29,7 +29,17 @@ namespace CSharpGL
             }
         }
 
-        private BlendState blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+		/// <summary>
+		/// Text's alignment.
+		/// </summary>
+		[Description("Text alignment.")]
+		public TextAlignment Alignment
+		{
+			get { if (this.textModel != null) { return this.textModel.Alignment; } else { return TextAlignment.Left; } }
+			set { if (this.textModel != null) { this.textModel.Alignment = value; } }
+		}
+
+		private BlendState blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
 
         /// <summary>
         ///
