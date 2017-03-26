@@ -188,6 +188,7 @@
     <None Include="readme.md" />
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
+    <Compile Include="Renderers\FixedPercentRenderer.cs" />
     <Compile Include="Renderers\HemisphereLightingRenderer.cs" />
     <Compile Include="Renderers\PointLightRenderer.cs" />
     <Compile Include="Renderers\DirectonalLightRenderer.cs" />
@@ -314,6 +315,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
+    <None Include="shaders\FixedPercent.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\FixedPercent.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\HemisphereLighting\HemisphereLighting.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
