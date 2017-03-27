@@ -38,7 +38,7 @@ namespace CSharpGL
             set
             {
                 this.textColor = value;
-                this.textRecord.Mark();
+                this.textColorRecord.Mark();
             }
         }
 
