@@ -25,6 +25,11 @@
                     (this.DataSource as TextModel).SetText(this.text, this.fontTexture);
                 }
             }
+            if (this.textColorRecord.IsMarked())
+            {
+                this.SetUniform("textColor", this.textColor.ToVec3());
+                this.textColorRecord.CancelMark();
+            }
             if (discardTransparencyRecord.IsMarked())
             {
                 bool discard = this.DiscardTransparency;

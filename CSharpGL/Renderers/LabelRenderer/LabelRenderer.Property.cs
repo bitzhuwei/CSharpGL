@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.Drawing;
+namespace CSharpGL
 {
     public partial class LabelRenderer
     {
@@ -23,6 +24,21 @@
                     this.textRecord.Mark();
                 }
                 //if (this.model != null) { this.model.SetText(value, this.fontTexture); }
+            }
+        }
+
+        private UpdatingRecord textColorRecord = new UpdatingRecord();
+        private Color textColor = Color.White;
+        /// <summary>
+        /// Text's color.
+        /// </summary>
+        public Color TextColor
+        {
+            get { return textColor; }
+            set
+            {
+                this.textColor = value;
+                this.textRecord.Mark();
             }
         }
 

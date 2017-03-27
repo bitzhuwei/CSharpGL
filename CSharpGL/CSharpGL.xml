@@ -16799,6 +16799,11 @@
             Displayed text whose maximum length is limited by constructor's maxCharCount parameter.
             </summary>
         </member>
+        <member name="P:CSharpGL.LabelRenderer.TextColor">
+            <summary>
+            Text's color.
+            </summary>
+        </member>
         <member name="P:CSharpGL.LabelRenderer.DiscardTransparency">
             <summary>
             If true, transparent part of glyph will be discarded in shader, which avoids wrrong blend effect and reduce looking effect.
