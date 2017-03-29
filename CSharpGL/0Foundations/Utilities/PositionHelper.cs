@@ -7,6 +7,7 @@ namespace CSharpGL
     /// </summary>
     public static class PositionHelper
     {
+
         /// <summary>
         /// Move positions where around (0, 0)
         /// </summary>
@@ -90,6 +91,25 @@ namespace CSharpGL
             return new BoundingBox(min, max);
         }
 
+        public static BoundingBox GetBoundingBox(this vec3[] positions)
+        {
+            if (positions.Length == 0) { return new BoundingBox(); }
+
+            vec3 min = positions[0], max = positions[0];
+            for (int i = 1; i < positions.Length; i++)
+            {
+                vec3 value = positions[i];
+                if (value.x < min.x) { min.x = value.x; }
+                if (value.y < min.y) { min.y = value.y; }
+                if (value.z < min.z) { min.z = value.z; }
+                if (max.x < value.x) { max.x = value.x; }
+                if (max.y < value.y) { max.y = value.y; }
+                if (max.z < value.z) { max.z = value.z; }
+            }
+
+            return new BoundingBox(min, max);
+        }
+
         /// <summary>
         /// Move positions where around (0, 0, 0)
         /// </summary>
@@ -114,6 +134,25 @@ namespace CSharpGL
             for (int i = 0; i < positions.Count; i++)
             {
                 positions[i] = positions[i] - mid;
+            }
+
+            return new BoundingBox(min, max);
+        }
+
+        public static BoundingBox GetBoundingBox(this IList<vec3> positions)
+        {
+            if (positions.Count == 0) { return new BoundingBox(); }
+
+            vec3 min = positions[0], max = positions[0];
+            for (int i = 1; i < positions.Count; i++)
+            {
+                vec3 value = positions[i];
+                if (value.x < min.x) { min.x = value.x; }
+                if (value.y < min.y) { min.y = value.y; }
+                if (value.z < min.z) { min.z = value.z; }
+                if (max.x < value.x) { max.x = value.x; }
+                if (max.y < value.y) { max.y = value.y; }
+                if (max.z < value.z) { max.z = value.z; }
             }
 
             return new BoundingBox(min, max);
