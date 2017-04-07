@@ -91,6 +91,11 @@ namespace CSharpGL
             return new BoundingBox(min, max);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positions"></param>
+        /// <returns></returns>
         public static BoundingBox GetBoundingBox(this vec3[] positions)
         {
             if (positions.Length == 0) { return new BoundingBox(); }
@@ -139,6 +144,11 @@ namespace CSharpGL
             return new BoundingBox(min, max);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positions"></param>
+        /// <returns></returns>
         public static BoundingBox GetBoundingBox(this IList<vec3> positions)
         {
             if (positions.Count == 0) { return new BoundingBox(); }
