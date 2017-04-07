@@ -10,7 +10,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int SetUniform(string uniformName, int[] values)
+        public int glUniform(string uniformName, int[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
