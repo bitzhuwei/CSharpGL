@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
             this.SetUniform("directionalLightColor", this.DirectionalLightColor);
             this.SetUniform("directionalLightDirection", this.DirectionalLightDirection.normalize());
             this.SetUniform("halfVector", this.DirectionalLightDirection.normalize());
-            //this.SetUniform("halfVector", this.HalfVector.normalize());
+            //this.glUniform("halfVector", this.HalfVector.normalize());
             this.SetUniform("shininess", this.Shininess);
             this.SetUniform("strength", this.Strength);
 

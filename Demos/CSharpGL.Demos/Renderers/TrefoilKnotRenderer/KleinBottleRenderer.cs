@@ -67,7 +67,7 @@ namespace CSharpGL.Demos
                 this.modelTicks = model.UpdateTicks;
             }
 
-            //this.SetUniform("uniformColor", this.uniformColor);
+            //this.glUniform("uniformColor", this.uniformColor);
 
             base.DoRender(arg);
         }

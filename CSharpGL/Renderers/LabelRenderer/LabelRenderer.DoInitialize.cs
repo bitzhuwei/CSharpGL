@@ -10,9 +10,9 @@
             base.DoInitialize();
 
             //int[] viewport = OpenGL.GetViewport();
-            //this.SetUniform("pixelScale", (float)viewport[2]);
-            //this.SetUniform("fontHeight", (float)fontResource.FontHeight);
-            //this.SetUniform("textColor", new vec3(1, 0, 0));
+            //this.glUniform("pixelScale", (float)viewport[2]);
+            //this.glUniform("fontHeight", (float)fontResource.FontHeight);
+            //this.glUniform("textColor", new vec3(1, 0, 0));
             this.SetUniform("fontTexture", this.fontTexture.TextureObj);
         }
     }

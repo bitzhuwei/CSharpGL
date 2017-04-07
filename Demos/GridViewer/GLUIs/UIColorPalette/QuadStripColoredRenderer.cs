@@ -70,7 +70,7 @@ namespace GridViewer
             //polygonModeState.On();
             //lineWidthState.On();
             //// offsetState.On();
-            //this.SetUniform("renderWireframe", true);
+            //this.glUniform("renderWireframe", true);
             //base.DoRender(arg);
             ////offsetState.Off();
             //lineWidthState.Off();
