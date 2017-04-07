@@ -615,7 +615,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int SetUniformMatrix3(string uniformName, mat3[] m)
+        public int glUniform(string uniformName, mat3[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
