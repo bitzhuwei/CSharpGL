@@ -663,7 +663,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int SetUniformMatrix2(string uniformName, float[] m)
+        public int glUniformMatrix2(string uniformName, float[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -678,7 +678,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int SetUniformMatrix3(string uniformName, float[] m)
+        public int glUniformMatrix3(string uniformName, float[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -693,7 +693,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int SetUniformMatrix4(string uniformName, float[] m)
+        public int glUniformMatrix4(string uniformName, float[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)

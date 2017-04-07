@@ -13009,19 +13009,19 @@
             <param name="uniformName"></param>
             <param name="m"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix2(System.String,System.Single[])">
+        <member name="M:CSharpGL.ShaderProgram.glUniformMatrix2(System.String,System.Single[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="m"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix3(System.String,System.Single[])">
+        <member name="M:CSharpGL.ShaderProgram.glUniformMatrix3(System.String,System.Single[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="m"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix4(System.String,System.Single[])">
+        <member name="M:CSharpGL.ShaderProgram.glUniformMatrix4(System.String,System.Single[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
