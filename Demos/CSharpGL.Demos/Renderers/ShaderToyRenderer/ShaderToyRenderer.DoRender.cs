@@ -45,7 +45,7 @@ namespace CSharpGL.Demos
             var now = DateTime.Now;
             float time = (float)now.Subtract(this.lastTime).TotalMilliseconds * 0.001f;
             this.SetUniform("iGlobalTime", time * timeElapsingSpeed);
-            //this.glUniform this.granularity);
+            //this.glUniformthis.granularity);
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("iResolution", new vec2(viewport[2], viewport[3]));
 

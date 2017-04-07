@@ -316,7 +316,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int SetUniform(string uniformName, vec4[] values)
+        public int glUniform(string uniformName, vec4[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
