@@ -12776,6 +12776,266 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:CSharpGL.Renderer">
+            <summary>
+            Rendering something using GLSL shader and VBO(VAO).
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformValue``1(System.String,``0@)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.Texture)">
+            <summary>
+            Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
+            </summary>
+            <param name="varNameInShader"></param>
+            <param name="texture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform``1(System.String,``0)">
+            <summary>
+            Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="varNameInShader"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformBoolArrayValue(System.String,System.Boolean[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformFloatArrayValue(System.String,System.Single[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformVec2ArrayValue(System.String,CSharpGL.vec2[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformVec3ArrayValue(System.String,CSharpGL.vec3[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformVec4ArrayValue(System.String,CSharpGL.vec4[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformMat2ArrayValue(System.String,CSharpGL.mat2[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformMat3ArrayValue(System.String,CSharpGL.mat3[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformMat4ArrayValue(System.String,CSharpGL.mat4[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.GetUniformSamplerArrayValue(System.String,CSharpGL.samplerValue[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,System.Boolean[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,System.Single[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.vec2[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.vec3[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.vec4[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.mat2[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.mat3[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.mat4[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.samplerValue[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="F:CSharpGL.Renderer.vertexArrayObject">
+            <summary>
+            Vertex Array Object.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Renderer.vertexAttributeBuffers">
+            <summary>
+            Vertex attribute buffers.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Renderer.indexBuffer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.Renderer.stateList">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:CSharpGL.Renderer.shaderProgramProvider">
+            <summary>
+            Provides shader program for this renderer.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.Renderer.attributeMap">
+            <summary>
+            Mapping relations between 'in' variables in vertex shader and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,CSharpGL.GLState[])">
+             <summary>
+             Rendering something using GLSL shader and VBO(VAO).
+             </summary>
+             <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
+             <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
+             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="F:CSharpGL.Renderer.shaderProgramProvider"/> and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.</param>
+            <param name="switches">OpenGL switches.</param>
+        </member>
+        <member name="M:CSharpGL.Renderer.DisposeUnmanagedResources">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.Renderer.DoInitialize">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.Renderer.DoRender(CSharpGL.RenderEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="arg"></param>
+        </member>
+        <member name="P:CSharpGL.Renderer.Program">
+            <summary>
+            Shader Program that does the rendering algorithm.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.Renderer.DataSource">
+            <summary>
+            model data that can be transfermed into OpenGL Buffer Objects.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.Renderer.StateList">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:CSharpGL.Renderer.IndexBuffer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:CSharpGL.Renderer.VertexAttributeBuffers">
+            <summary>
+             Vertex attribute buffers.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.Renderer.VertexArrayObject">
+            <summary>
+            Vertex Array Object.
+            </summary>
+        </member>
         <member name="T:CSharpGL.ShaderProgram">
             <summary>
             A shader program object.
@@ -12784,167 +13044,282 @@
             A shader program object.
             </summary>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Int32[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformBoolArrayValue(System.String,System.Boolean[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Single[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformFloatArrayValue(System.String,System.Single[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.bvec2[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformVec2ArrayValue(System.String,CSharpGL.vec2[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.uvec2[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformVec3ArrayValue(System.String,CSharpGL.vec3[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.ivec2[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformVec4ArrayValue(System.String,CSharpGL.vec4[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.vec2[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformMat2ArrayValue(System.String,CSharpGL.mat2[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.bvec3[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformMat3ArrayValue(System.String,CSharpGL.mat3[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.uvec3[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformMat4ArrayValue(System.String,CSharpGL.mat4[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.ivec3[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.vec3[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.bvec4[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.uvec4[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.ivec4[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.vec4[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Boolean)">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="v0"></param>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformSamplerArrayValue(System.String,CSharpGL.samplerValue[]@)">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
         <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Boolean[])">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="v0"></param>
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.UInt32)">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="v0"></param>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Single[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.UInt32,System.UInt32)">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="v0"></param>
-            <param name="v1"></param>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.vec2[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="v0"></param>
-            <param name="v1"></param>
-            <param name="v2"></param>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.vec3[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            </summary>
-            <param name="uniformName"></param>
-            <param name="v0"></param>
-            <param name="v1"></param>
-            <param name="v2"></param>
-            <param name="v3"></param>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.vec4[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.UInt32[])">
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.mat2[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.mat3[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.mat4[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.samplerValue[])">
+             <summary>
+            
+             </summary>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.GetVariableArray(System.Array,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <param name="varNameInShader"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Int32[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="values"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Int32)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Single[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.bvec2[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.uvec2[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.ivec2[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.vec2[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.bvec3[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.uvec3[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.ivec3[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.vec3[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.bvec4[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.uvec4[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.ivec4[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.vec4[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Boolean)">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="v0"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Boolean[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="v0"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.UInt32)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="v0"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.UInt32,System.UInt32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="v0"></param>
             <param name="v1"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Int32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.UInt32,System.UInt32,System.UInt32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
@@ -12952,7 +13327,7 @@
             <param name="v1"></param>
             <param name="v2"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
@@ -12961,20 +13336,27 @@
             <param name="v2"></param>
             <param name="v3"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Single)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.UInt32[])">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Int32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="v0"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Single,System.Single)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Int32,System.Int32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="v0"></param>
             <param name="v1"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Single,System.Single,System.Single)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Int32,System.Int32,System.Int32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
@@ -12982,7 +13364,7 @@
             <param name="v1"></param>
             <param name="v2"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             </summary>
             <param name="uniformName"></param>
@@ -12991,7 +13373,37 @@
             <param name="v2"></param>
             <param name="v3"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix2(System.String,CSharpGL.mat2)">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Single)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="v0"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Single,System.Single)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="v0"></param>
+            <param name="v1"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Single,System.Single,System.Single)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="v0"></param>
+            <param name="v1"></param>
+            <param name="v2"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="v0"></param>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="v3"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.mat2)">
             <summary>
             </summary>
             <param name="uniformName"></param>
@@ -13009,7 +13421,7 @@
             <param name="uniformName"></param>
             <param name="m"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix2(System.String,CSharpGL.mat2[])">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.mat2[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
@@ -13066,6 +13478,37 @@
             </summary>
             <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
         </member>
+        <member name="F:CSharpGL.ShaderProgram.uniformVariables">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.GetUniformValue``1(System.String,``0@)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="varNameInShader"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform(System.String,CSharpGL.Texture)">
+            <summary>
+            Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
+            </summary>
+            <param name="varNameInShader"></param>
+            <param name="texture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.SetUniform``1(System.String,``0)">
+            <summary>
+            Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="varNameInShader"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="M:CSharpGL.ShaderProgram.Initialize(CSharpGL.Shader[])">
             <summary>
             Initialize this shader program object.
@@ -13106,6 +13549,16 @@
             A mapping of attribute names to locations. This allows us to very easily specify
             attribute data by name, quickly looking up the location first if needed.
             </summary>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.PushUniforms">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ShaderProgram.UniformVariables">
+             <summary>
+            
+             </summary>
         </member>
         <member name="P:CSharpGL.ShaderProgram.ProgramId">
             <summary>
@@ -13588,284 +14041,6 @@
         <member name="T:CSharpGL.PickableRenderer">
             <summary>
             支持"拾取"的渲染器
-            </summary>
-        </member>
-        <member name="T:CSharpGL.Renderer">
-            <summary>
-            Rendering something using GLSL shader and VBO(VAO).
-            </summary>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformBoolArrayValue(System.String,System.Boolean[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformFloatArrayValue(System.String,System.Single[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformVec2ArrayValue(System.String,CSharpGL.vec2[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformVec3ArrayValue(System.String,CSharpGL.vec3[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformVec4ArrayValue(System.String,CSharpGL.vec4[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformMat2ArrayValue(System.String,CSharpGL.mat2[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformMat3ArrayValue(System.String,CSharpGL.mat3[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformMat4ArrayValue(System.String,CSharpGL.mat4[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformSamplerArrayValue(System.String,CSharpGL.samplerValue[]@)">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,System.Boolean[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,System.Single[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.vec2[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.vec3[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.vec4[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.mat2[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.mat3[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.mat4[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.samplerValue[])">
-             <summary>
-            
-             </summary>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetVariableArray(System.Array,System.String)">
-             <summary>
-            
-             </summary>
-             <param name="value"></param>
-             <param name="varNameInShader"></param>
-             <returns></returns>
-        </member>
-        <member name="F:CSharpGL.Renderer.vertexArrayObject">
-            <summary>
-            Vertex Array Object.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Renderer.vertexAttributeBuffers">
-            <summary>
-            Vertex attribute buffers.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Renderer.indexBuffer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.Renderer.stateList">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="F:CSharpGL.Renderer.shaderProgramProvider">
-            <summary>
-            Provides shader program for this renderer.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.Renderer.attributeMap">
-            <summary>
-            Mapping relations between 'in' variables in vertex shader and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.Renderer.#ctor(CSharpGL.IBufferable,CSharpGL.IShaderProgramProvider,CSharpGL.AttributeMap,CSharpGL.GLState[])">
-             <summary>
-             Rendering something using GLSL shader and VBO(VAO).
-             </summary>
-             <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-             <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
-             <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="F:CSharpGL.Renderer.shaderProgramProvider"/> and buffers in <see cref="P:CSharpGL.Renderer.DataSource"/>.</param>
-            <param name="switches">OpenGL switches.</param>
-        </member>
-        <member name="M:CSharpGL.Renderer.DisposeUnmanagedResources">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Renderer.DoInitialize">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Renderer.DoRender(CSharpGL.RenderEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="arg"></param>
-        </member>
-        <member name="F:CSharpGL.Renderer.uniformVariables">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.Renderer.GetUniformValue``1(System.String,``0@)">
-             <summary>
-            
-             </summary>
-             <typeparam name="T"></typeparam>
-             <param name="varNameInShader"></param>
-             <param name="value"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform(System.String,CSharpGL.Texture)">
-            <summary>
-            Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
-            </summary>
-            <param name="varNameInShader"></param>
-            <param name="texture"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.Renderer.SetUniform``1(System.String,``0)">
-            <summary>
-            Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="varNameInShader"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="P:CSharpGL.Renderer.Program">
-            <summary>
-            Shader Program that does the rendering algorithm.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.Renderer.DataSource">
-            <summary>
-            model data that can be transfermed into OpenGL Buffer Objects.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.Renderer.UniformVariables">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.Renderer.StateList">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.Renderer.IndexBuffer">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.Renderer.VertexAttributeBuffers">
-            <summary>
-             Vertex attribute buffers.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.Renderer.VertexArrayObject">
-            <summary>
-            Vertex Array Object.
             </summary>
         </member>
         <member name="T:CSharpGL.IPickable">
@@ -28999,9 +29174,23 @@
             <param name="positions"></param>
             <returns></returns>
         </member>
+        <member name="M:CSharpGL.PositionHelper.GetBoundingBox(CSharpGL.vec3[])">
+            <summary>
+            
+            </summary>
+            <param name="positions"></param>
+            <returns></returns>
+        </member>
         <member name="M:CSharpGL.PositionHelper.Move2Center(System.Collections.Generic.IList{CSharpGL.vec3})">
             <summary>
             Move positions where around (0, 0, 0)
+            </summary>
+            <param name="positions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.PositionHelper.GetBoundingBox(System.Collections.Generic.IList{CSharpGL.vec3})">
+            <summary>
+            
             </summary>
             <param name="positions"></param>
             <returns></returns>

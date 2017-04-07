@@ -138,7 +138,12 @@
     <Compile Include="0Foundations\OpenGLObjects\GLStates\FrontFaceState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.IModelSpace.User.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\IShaderProgramProvider.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.glUniforms.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.UniformArrays.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderProgram.UniformArrays.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderProgram.glUniforms.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
@@ -187,7 +192,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.IRenderable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.IDisposable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexBufferImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\NullImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
@@ -389,7 +394,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UIRendering\UIRenderer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformBoolArray.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformFloatArray.cs" />
@@ -489,7 +493,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.DoRender.cs" />
     <Compile Include="Renderers\PickableRenderer\PickableRenderer.MovePositions.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.Property.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Rendering\Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderProgram.Uniforms.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\ErrorCode.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\PolugonOffset.cs" />
@@ -597,7 +601,7 @@
     <Compile Include="Canvas\RenderContexts\RenderContext.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Rendering\RendererBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Shader\Shader.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Shader\ShaderProgram.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderProgram.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\GLBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\OneIndexBuffer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IndexBuffer.cs" />

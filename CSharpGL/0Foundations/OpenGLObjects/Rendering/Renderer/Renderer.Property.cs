@@ -26,14 +26,6 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strRenderer)]
-        [Editor(typeof(UniformVariableListEditor), typeof(UITypeEditor))]
-        [Description("maps to uniform variables in shader.")]
-        public List<UniformVariable> UniformVariables { get { return this.uniformVariables; } }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strRenderer)]
         [Description("OpenGL switches.")]
         public GLStateList StateList { get { return this.stateList; } }
 

@@ -197,5 +197,16 @@ namespace CSharpGL
         /// attribute data by name, quickly looking up the location first if needed.
         /// </summary>
         private readonly Dictionary<string, int> attributeNamesToLocations = new Dictionary<string, int>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void PushUniforms()
+        {
+            foreach (UniformVariable item in this.uniformVariables)
+            {
+                item.SetUniform(this);
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@
 
             // 绑定shader
             program.Bind();
-            SetUniformValues(program);
+            program.PushUniforms();
 
             GLState[] stateList = this.stateList.ToArray();
             StatesOn(stateList);
@@ -48,14 +48,5 @@
             }
         }
 
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void SetUniformValues(ShaderProgram program)
-        {
-            UniformVariable[] array = this.uniformVariables.ToArray();
-            foreach (UniformVariable item in array)
-            {
-                item.SetUniform(program);
-            }
-        }
     }
 }
