@@ -12991,19 +12991,37 @@
             <param name="v2"></param>
             <param name="v3"></param>
         </member>
+        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix2(System.String,CSharpGL.mat2)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="m"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.mat3)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="m"></param>
+        </member>
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.mat4)">
+            <summary>
+            </summary>
+            <param name="uniformName"></param>
+            <param name="m"></param>
+        </member>
         <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix2(System.String,CSharpGL.mat2[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="m"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix3(System.String,CSharpGL.mat3[])">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.mat3[])">
             <summary>
             </summary>
             <param name="uniformName"></param>
             <param name="m"></param>
         </member>
-        <member name="M:CSharpGL.ShaderProgram.SetUniformMatrix4(System.String,CSharpGL.mat4[])">
+        <member name="M:CSharpGL.ShaderProgram.glUniform(System.String,CSharpGL.mat4[])">
             <summary>
             </summary>
             <param name="uniformName"></param>

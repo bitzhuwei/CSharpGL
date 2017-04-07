@@ -591,6 +591,55 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
+        public int SetUniformMatrix2(string uniformName, mat2 m)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>(); }
+                float[] array = m.ToArray();
+                glUniformMatrix2fv(location, 1, false, array);
+            }
+            return location;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
+        public int glUniform(string uniformName, mat3 m)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>(); }
+                float[] array = m.ToArray();
+                glUniformMatrix3fv(location, 1, false, array);
+            }
+            return location;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
+        public int glUniform(string uniformName, mat4 m)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>(); }
+                float[] array = m.ToArray();
+
+                glUniformMatrix4fv(location, 1, false, array);
+            }
+            return location;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
         public int SetUniformMatrix2(string uniformName, mat2[] m)
         {
             int location = GetUniformLocation(uniformName);
