@@ -492,7 +492,7 @@
         /// <param name="v0"></param>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
-        public int SetUniform(string uniformName, int v0, int v1, int v2)
+        public int glUniform(string uniformName, int v0, int v1, int v2)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -510,7 +510,7 @@
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <param name="v3"></param>
-        public int SetUniform(string uniformName, int v0, int v1, int v2, int v3)
+        public int glUniform(string uniformName, int v0, int v1, int v2, int v3)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -525,7 +525,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
-        public int SetUniform(string uniformName, float v0)
+        public int glUniform(string uniformName, float v0)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -541,7 +541,7 @@
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
         /// <param name="v1"></param>
-        public int SetUniform(string uniformName, float v0, float v1)
+        public int glUniform(string uniformName, float v0, float v1)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
