@@ -18,7 +18,7 @@
         /// <param name="program"></param>
         protected override void DoSetUniform(ShaderProgram program)
         {
-            this.Location = program.SetUniformMatrix2(VarName, this.Value.Array);
+            this.Location = program.SetUniform(VarName, this.Value.Array);
             this.Updated = false;
         }
     }
