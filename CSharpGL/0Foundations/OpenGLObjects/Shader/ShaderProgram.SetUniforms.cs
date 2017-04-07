@@ -639,7 +639,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int SetUniformMatrix4(string uniformName, mat4[] m)
+        public int glUniform(string uniformName, mat4[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
