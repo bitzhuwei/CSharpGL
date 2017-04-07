@@ -591,7 +591,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int SetUniformMatrix2(string uniformName, mat2 m)
+        public int SetUniform(string uniformName, mat2 m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
