@@ -24,7 +24,7 @@
         /// <param name="program"></param>
         protected override void DoSetUniform(ShaderProgram program)
         {
-            this.Location = program.SetUniform(VarName, value.x, value.y, value.z);
+            this.Location = program.glUniform(VarName, value.x, value.y, value.z);
             this.Updated = false;
         }
     }

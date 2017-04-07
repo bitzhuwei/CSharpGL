@@ -17,7 +17,7 @@ namespace CSharpGL
 
             // 绑定shader
             program.Bind();
-            program.SetUniform("pickingBaseId", 0);
+            program.glUniform("pickingBaseId", 0);
             UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
             {
                 mat4 projection = arg.Camera.GetProjectionMatrix();

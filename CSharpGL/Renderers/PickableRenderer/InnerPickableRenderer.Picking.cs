@@ -31,7 +31,7 @@ namespace CSharpGL
 
             // 绑定shader
             program.Bind();
-            program.SetUniform("pickingBaseId",
+            program.glUniform("pickingBaseId",
                  (int)this.PickingBaseId);
             UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
             {
