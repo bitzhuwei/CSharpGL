@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
             //var bitmap = new Bitmap(@"13SimplexNoise\sunColor.png");
             //texture.Initialize(bitmap);
             //bitmap.Dispose();
-            //this.glUniforme(BindTextureTarget.Texture1D,
+            //this.glUniform(BindTextureTarget.Texture1D,
             //    texture.Id, OpenGL.GL_TEXTURE0));
         }
     }
