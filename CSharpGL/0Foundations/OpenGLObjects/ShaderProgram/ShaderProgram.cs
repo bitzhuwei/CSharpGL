@@ -203,7 +203,7 @@ namespace CSharpGL
         /// </summary>
         public void PushUniforms()
         {
-            foreach (UniformVariable item in this.uniformVariables)
+            foreach (UniformVariable item in this.uniformVariables.Values)
             {
                 item.SetUniform(this);
             }

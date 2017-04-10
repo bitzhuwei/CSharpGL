@@ -16,12 +16,12 @@ namespace CSharpGL
         [Category("ShaderProgram")]
         [Editor(typeof(UniformVariableListEditor), typeof(UITypeEditor))]
         [Description("maps to uniform variables in shader.")]
-        public List<UniformVariable> UniformVariables { get { return this.uniformVariables; } }
+        public Dictionary<string, UniformVariable> UniformVariables { get { return this.uniformVariables; } }
 
         /// <summary>
         ///
         /// </summary>
-        protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
+        protected Dictionary<string, UniformVariable> uniformVariables = new Dictionary<string, UniformVariable>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
         /// <summary>
@@ -37,14 +37,11 @@ namespace CSharpGL
 
             value = default(T);
             bool gotUniform = false;
-            foreach (UniformVariable item in this.uniformVariables)
+            UniformVariable variable;
+            if (this.uniformVariables.TryGetValue(varNameInShader, out variable))
             {
-                if (item.VarName == varNameInShader)
-                {
-                    value = (item as UniformSingleVariable<T>).Value;
-                    gotUniform = true;
-                    break;
-                }
+                value = (variable as UniformSingleVariable<T>).Value;
+                gotUniform = true;
             }
 
             return gotUniform;
@@ -123,19 +120,16 @@ namespace CSharpGL
 
             bool gotUniform = false;
             bool updated = false;
-            foreach (UniformVariable item in this.uniformVariables)
+            UniformVariable v;
+            if (this.uniformVariables.TryGetValue(varNameInShader, out v))
             {
-                if (item.VarName == varNameInShader)
-                {
-                    var variable = item as UniformSingleVariable<T>;
-                    if (variable == null)
-                    { throw new ArgumentException(string.Format("Wrong type[{0}] for uniform variable [{1}] [{2}];", typeof(T), item.GetType().Name, item.VarName)); }
+                var variable = v as UniformSingleVariable<T>;
+                if (variable == null)
+                { throw new ArgumentException(string.Format("Wrong type[{0}] for uniform variable [{1}] [{2}];", typeof(T), v.GetType().Name, v.VarName)); }
 
-                    variable.Value = value;
-                    updated = variable.Updated;
-                    gotUniform = true;
-                    break;
-                }
+                variable.Value = value;
+                updated = variable.Updated;
+                gotUniform = true;
             }
 
             if (!gotUniform)
@@ -152,7 +146,7 @@ namespace CSharpGL
 
                 var variable = GetVariable(value, varNameInShader) as UniformSingleVariable<T>;
                 variable.Value = value;
-                this.uniformVariables.Add(variable);
+                this.uniformVariables.Add(varNameInShader, variable);
                 updated = true;
             }
 

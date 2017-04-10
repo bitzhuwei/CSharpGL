@@ -26,8 +26,8 @@
                 switches)
         {
             this.positionNameInIBufferable = positionNameInIBufferable;
-            this.Program.UniformVariables.Add(new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
-            this.Program.UniformVariables.Add(this.uniformMVP);
+            this.Program.UniformVariables.Add("highlightColor", new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
+            this.Program.UniformVariables.Add(this.uniformMVP.VarName, this.uniformMVP);
             this.StateList.Add(new PolygonModeState(PolygonMode.Line));
             this.StateList.Add(new LineWidthState(10.0f));
             this.StateList.Add(new PointSizeState(20.0f));
