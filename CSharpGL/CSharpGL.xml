@@ -16416,7 +16416,7 @@
             <summary>
             Gets a <see cref="T:CSharpGL.FontBitmap"/>'s intance.
             </summary>
-            <param name="font"></param>
+            <param name="font">建议最大字体不超过32像素高度，否则可能无法承载所有Unicode字符。</param>
             <param name="charSet"></param>
             <param name="drawBoundary"></param>
             <returns></returns>
