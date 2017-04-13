@@ -16359,18 +16359,6 @@
             <summary>
             helper class.
             </summary>
-            <summary>
-            helper class.
-            </summary>
-            <summary>
-            helper class.
-            </summary>
-            <summary>
-            helper class.
-            </summary>
-            <summary>
-            helper class.
-            </summary>
         </member>
         <member name="F:CSharpGL.FontBitmapHelper.glyphInterval">
             <summary>
@@ -16382,36 +16370,6 @@
             bigger maring means less mix. But 1 is enough.
             </summary>
         </member>
-        <member name="M:CSharpGL.FontBitmapHelper.PrintBitmap(CSharpGL.FontBitmap,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Print the final bitmap that contains all glyphs.
-            And also setup glyph's xoffset, yoffset.
-            </summary>
-            <param name="fontBitmap"></param>
-            <param name="singleCharWidth"></param>
-            <param name="singleCharHeight"></param>
-            <param name="width"></param>
-            <param name="height"></param>
-        </member>
-        <member name="M:CSharpGL.FontBitmapHelper.PrepareFinalBitmapSize(CSharpGL.FontBitmap,System.Int32@,System.Int32@)">
-            <summary>
-            prepare final bitmap's size.
-            </summary>
-            <param name="fontBitmap"></param>
-            <param name="width">final bitmap's width.</param>
-            <param name="height">final bitmap's height.</param>
-        </member>
-        <member name="M:CSharpGL.FontBitmapHelper.PrepareInitialGlyphDict(CSharpGL.FontBitmap,System.String,System.Int32@,System.Int32@)">
-            <summary>
-            Get glyph's size by graphics.MeasureString().
-            Then shrink glyph's size.
-            xoffset now means offset in a single glyph's bitmap.
-            </summary>
-            <param name="fontBitmap"></param>
-            <param name="charSet"></param>
-            <param name="singleCharWidth"></param>
-            <param name="singleCharHeight"></param>
-        </member>
         <member name="M:CSharpGL.FontBitmapHelper.GetFontBitmap(System.Drawing.Font,System.String,System.Boolean)">
             <summary>
             Gets a <see cref="T:CSharpGL.FontBitmap"/>'s intance.
@@ -16420,21 +16378,6 @@
             <param name="charSet"></param>
             <param name="drawBoundary"></param>
             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.FontBitmapHelper.IsEmptyPixel(System.Drawing.Imaging.BitmapData,System.Int32,System.Int32)">
-            <summary>
-            Returns true if the given pixel is empty (i.e. black)
-            </summary>
-            <param name="bitmapData"></param>
-            <param name="x"></param>
-            <param name="y"></param>
-        </member>
-        <member name="M:CSharpGL.FontBitmapHelper.RetargetGlyphRectangleInwards(System.Drawing.Imaging.BitmapData,CSharpGL.GlyphInfo)">
-            <summary>
-            shrink glyph's width to fit in exactly.
-            </summary>
-            <param name="bitmapData"></param>
-            <param name="glyph"></param>
         </member>
         <member name="T:CSharpGL.FontTexture">
             <summary>

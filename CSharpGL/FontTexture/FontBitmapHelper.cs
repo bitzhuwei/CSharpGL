@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// helper class.
     /// </summary>
-    public static partial class FontBitmapHelper
+    public static class FontBitmapHelper
     {
         /// <summary>
         /// bigger interval means less mix. Maybe 1 is enough for font with size of 64.
