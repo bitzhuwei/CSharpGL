@@ -16,12 +16,12 @@ namespace Font2Texture
 
             //TestIfAllHeightSame();
 
-            TestAllUnicodeSizes();
+            PrintAllUnicodeChars();
 
             Console.WriteLine("all done!");
         }
 
-        private static void TestAllUnicodeSizes()
+        private static void PrintAllUnicodeChars()
         {
             var font = new Font("Arial", 32);
             using (var bmp = new Bitmap(1, 1))
