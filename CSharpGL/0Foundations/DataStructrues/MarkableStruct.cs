@@ -5,7 +5,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// Keeps a struct value and records the latest time when is it's udpated.
+    /// Keeps a struct value and records the latest time when it's udpated.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class MarkableStruct<T> where T : struct

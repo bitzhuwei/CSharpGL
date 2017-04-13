@@ -36,7 +36,7 @@
         </member>
         <member name="T:CSharpGL.MarkableStruct`1">
             <summary>
-            Keeps a struct value and records the latest time when is it's udpated.
+            Keeps a struct value and records the latest time when it's udpated.
             </summary>
         </member>
         <member name="M:CSharpGL.MarkableStruct`1.#ctor(`0)">
