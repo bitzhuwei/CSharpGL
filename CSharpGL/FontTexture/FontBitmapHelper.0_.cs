@@ -29,11 +29,15 @@ namespace CSharpGL
         {
             var fontBitmap = new FontBitmap();
             fontBitmap.GlyphFont = font; //fontBitmap.GlyphInfoDictionary //fontBitmap.GlyphHeight //fontBitmap.GlyphBitmap
-
+            // 先获取各个glyph的width和height
             fontBitmap.GlyphInfoDictionary = GetGlyphDict(font, charSet);
+            // 获取所有glyph的面积之和，开方得到最终贴图的宽度textureWidth
             int textureWidth = GetTextureWidth(fontBitmap.GlyphInfoDictionary);
+            // 以所有glyph中height最大的为标准高度
             fontBitmap.GlyphHeight = GetGlyphHeight(fontBitmap.GlyphInfoDictionary, textureWidth);
+            // 摆放glyph，得到x偏移和y偏移量，同时顺便得到最终贴图的高度textureHeight
             int textureHeight = LayoutGlyphs(fontBitmap.GlyphInfoDictionary, textureWidth, fontBitmap.GlyphHeight);
+            // 根据glyph的摆放位置，生成最终的贴图
             fontBitmap.GlyphBitmap = PaintTexture(textureWidth, textureHeight, fontBitmap.GlyphInfoDictionary, font);
 
             if (drawBoundary)
