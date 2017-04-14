@@ -267,7 +267,7 @@
     <None Include="Renderers\readme.md" />
     <Compile Include="0Foundations\Maths\GLSL\bvec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\bvec3.cs" />
-    <Compile Include="0Foundations\Maths\ILoadFromString.cs" />
+    <Compile Include="0Foundations\Maths\GLSL\ILoadFromString.cs" />
     <Compile Include="0Foundations\Maths\MatrixHelper.cs" />
     <Compile Include="0Foundations\Maths\GLSL\uvec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\ivec2.cs" />
