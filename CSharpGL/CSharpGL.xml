@@ -19,21 +19,6 @@
             Minimum position of this cuboid.
             </summary>
         </member>
-        <member name="T:CSharpGL.IBoundingBox2D">
-            <summary>
-            Specify a cuboid that marks a model's edges.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IBoundingBox2D.MaxPosition">
-            <summary>
-            Maximum position of this cuboid.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IBoundingBox2D.MinPosition">
-            <summary>
-            Minimum position of this cuboid.
-            </summary>
-        </member>
         <member name="T:CSharpGL.MarkableStruct`1">
             <summary>
             Keeps a struct value and records the latest time when it's udpated.
@@ -1108,39 +1093,6 @@
             Minimum position of this bounding box.
             </summary>
         </member>
-        <member name="T:CSharpGL.BoundingBox2D">
-            <summary>
-            Specify a cuboid that marks a model's edges.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.BoundingBox2D.#ctor">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.BoundingBox2D.#ctor(CSharpGL.vec2,CSharpGL.vec2)">
-             <summary>
-            
-             </summary>
-             <param name="min"></param>
-             <param name="max"></param>
-        </member>
-        <member name="M:CSharpGL.BoundingBox2D.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="P:CSharpGL.BoundingBox2D.MaxPosition">
-            <summary>
-            Maximum position of this cuboid.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.BoundingBox2D.MinPosition">
-            <summary>
-            Minimum position of this cuboid.
-            </summary>
-        </member>
         <member name="T:CSharpGL.IBoundingBoxHelper">
              <summary>
             
@@ -1182,14 +1134,6 @@
             </summary>
             <param name="boundingBox"></param>
             <param name="factor">0 for no expanding.</param>
-        </member>
-        <member name="M:CSharpGL.IBoundingBoxHelper.Render(CSharpGL.IBoundingBox,System.Drawing.Color,CSharpGL.RenderEventArgs)">
-            <summary>
-            Render this bounding box.
-            </summary>
-            <param name="boundingBox"></param>
-            <param name="color"></param>
-            <param name="arg"></param>
         </member>
         <member name="M:CSharpGL.IBoundingBoxHelper.Union(CSharpGL.IBoundingBox,CSharpGL.vec3)">
              <summary>
@@ -29095,20 +29039,6 @@
              <summary>
             
              </summary>
-        </member>
-        <member name="M:CSharpGL.PositionHelper.Move2Center(CSharpGL.vec2[])">
-            <summary>
-            Move positions where around (0, 0)
-            </summary>
-            <param name="positions"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.PositionHelper.Move2Center(System.Collections.Generic.IList{CSharpGL.vec2})">
-            <summary>
-            Move positions where around (0, 0)
-            </summary>
-            <param name="positions"></param>
-            <returns></returns>
         </member>
         <member name="M:CSharpGL.PositionHelper.Move2Center(CSharpGL.vec3[])">
             <summary>

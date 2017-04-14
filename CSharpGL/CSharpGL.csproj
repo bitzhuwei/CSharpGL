@@ -75,7 +75,6 @@
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox.cs" />
-    <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBox2D.cs" />
     <Compile Include="0Foundations\DataStructrues\MarkableStruct.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.IDisposable.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArrayBase.cs" />
@@ -93,7 +92,6 @@
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\MipmapTarget.cs" />
     <Compile Include="0Foundations\OpenGLAPI\Enumerations\Samplers.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox.cs" />
-    <Compile Include="0Foundations\DataStructrues\BoundingBox\BoundingBox2D.cs" />
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBoxHelper.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Properties.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.1.2.cs" />

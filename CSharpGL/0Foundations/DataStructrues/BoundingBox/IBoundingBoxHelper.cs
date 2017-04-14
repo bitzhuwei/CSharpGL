@@ -91,28 +91,6 @@ namespace CSharpGL
             return new BoundingBox(newMin, newMax);
         }
 
-        private static BoundingBoxRenderer renderer;
-
-        /// <summary>
-        /// Render this bounding box.
-        /// </summary>
-        /// <param name="boundingBox"></param>
-        /// <param name="color"></param>
-        /// <param name="arg"></param>
-        public static void Render(this IBoundingBox boundingBox, Color color, RenderEventArgs arg)
-        {
-            if (renderer == null)
-            {
-                var lengths = new vec3(1, 1, 1);
-                renderer = BoundingBoxRenderer.Create(lengths);
-                renderer.Initialize();
-            }
-            renderer.WorldPosition = boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2;
-            renderer.Scale = boundingBox.MaxPosition - boundingBox.MinPosition;
-            renderer.BoundingBoxColor = color;
-            renderer.Render(arg);
-        }
-
         /// <summary>
         ///
         /// </summary>
