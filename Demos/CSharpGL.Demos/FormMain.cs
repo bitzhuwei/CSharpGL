@@ -96,9 +96,14 @@ namespace CSharpGL.Demos
             (new Form28HemisphereLighting()).Show();
         }
 
-		private void btn29FixedSize_Click(object sender, EventArgs e)
-		{
-			(new Form29FixedPercent()).Show();
-		}
-	}
+        private void btn29FixedSize_Click(object sender, EventArgs e)
+        {
+            (new Form29FixedPercent()).Show();
+        }
+
+        private void btn30Camera_Click(object sender, EventArgs e)
+        {
+            (new Form30Camera()).Show();
+        }
+    }
 }

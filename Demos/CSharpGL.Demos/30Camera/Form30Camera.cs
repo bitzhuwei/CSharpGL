@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form30Camera : Form
+    public partial class Form16ArcBallManipulater : Form
     {
         private SatelliteManipulater cameraManipulater;
 
-        public Form30Camera()
+        public Form16ArcBallManipulater()
         {
             InitializeComponent();
 
