@@ -101,9 +101,5 @@ namespace CSharpGL.Demos
             (new Form29FixedPercent()).Show();
         }
 
-        private void btn30Camera_Click(object sender, EventArgs e)
-        {
-            (new Form30Camera()).Show();
-        }
     }
 }
