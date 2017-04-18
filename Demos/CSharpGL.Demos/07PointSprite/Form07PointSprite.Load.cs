@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                const int particleCount = 10000;
+                const int particleCount = 3000;
                 PointSpriteRenderer renderer = PointSpriteRenderer.Create(particleCount);
                 this.renderer = renderer;
                 SceneObject obj = renderer.WrapToSceneObject(generateBoundingBox: true);
@@ -39,6 +39,7 @@ namespace CSharpGL.Demos
                 builder.AppendLine("O: to select image.");
                 builder.AppendLine("1: Scene's property grid.");
                 builder.AppendLine("2: Canvas' property grid.");
+                builder.AppendLine("p: Enable/Disable point sprit.");
                 MessageBox.Show(builder.ToString());
             }
         }

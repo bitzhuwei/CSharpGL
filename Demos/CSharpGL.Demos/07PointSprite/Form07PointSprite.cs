@@ -49,6 +49,10 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
             }
+            else if (e.KeyChar == 'p')
+            {
+                this.renderer.PointSpriteEnabled = !this.renderer.PointSpriteEnabled;
+            }
         }
     }
 }

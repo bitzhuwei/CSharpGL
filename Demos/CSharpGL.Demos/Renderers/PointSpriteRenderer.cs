@@ -6,6 +6,21 @@ namespace CSharpGL.Demos
     internal class PointSpriteRenderer : Renderer
     {
         private Texture spriteTexture;
+        private PointSpriteState pointSpriteState;
+
+        private bool pointSpritEnabled = true;
+        public bool PointSpriteEnabled
+        {
+            get
+            {
+                return this.pointSpritEnabled;
+            }
+            set
+            {
+                this.pointSpritEnabled = value;
+                this.pointSpriteState.Enabled = value;
+            }
+        }
 
         public static PointSpriteRenderer Create(int particleCount)
         {
@@ -16,7 +31,7 @@ namespace CSharpGL.Demos
             var map = new AttributeMap();
             map.Add("position", PointSpriteModel.strposition);
             var model = new PointSpriteModel(particleCount);
-            var renderer = new PointSpriteRenderer(model, provider, map, new PointSpriteState());
+            var renderer = new PointSpriteRenderer(model, provider, map);
             renderer.ModelSize = model.Lengths;
 
             return renderer;
@@ -26,6 +41,9 @@ namespace CSharpGL.Demos
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
+            this.pointSpriteState = new PointSpriteState();
+            this.stateList.Add(this.pointSpriteState);
+            this.PointSpriteEnabled = true;
         }
 
         protected override void DoInitialize()
@@ -49,6 +67,7 @@ namespace CSharpGL.Demos
             mat4 view = arg.Camera.GetViewMatrix();
             mat4 projection = arg.Camera.GetProjectionMatrix();
             this.SetUniform("mvp", projection * view * model);
+            this.SetUniform("pointSpritEnabled", this.PointSpriteEnabled);
 
             base.DoRender(arg);
         }
