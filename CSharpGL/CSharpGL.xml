@@ -19049,24 +19049,18 @@
             an object to be rendered in a scene.
             </summary>
         </member>
-        <member name="T:CSharpGL.ITreeNode`1">
+        <member name="T:CSharpGL.ITreeNode">
             <summary>
             通用的树结点。
             <para>General tree node.</para>
             </summary>
-            <typeparam name="T"></typeparam>
         </member>
-        <member name="P:CSharpGL.ITreeNode`1.Parent">
+        <member name="P:CSharpGL.ITreeNode.Parent">
             <summary>
             parent node.
             </summary>
         </member>
-        <member name="P:CSharpGL.ITreeNode`1.Content">
-            <summary>
-            Content of this node.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.ITreeNode`1.Children">
+        <member name="P:CSharpGL.ITreeNode.Children">
             <summary>
             children nodes.
             </summary>
@@ -19212,11 +19206,6 @@
             binded object.
             </summary>
         </member>
-        <member name="P:CSharpGL.SceneObject.Content">
-             <summary>
-            
-             </summary>
-        </member>
         <member name="P:CSharpGL.SceneObject.Parent">
              <summary>
             
@@ -19350,7 +19339,7 @@
             <param name="clientRectangle"></param>
             <param name="pickingGeometryType"></param>
         </member>
-        <member name="M:CSharpGL.ViewPort.RenderObject(CSharpGL.ITreeNode{CSharpGL.SceneObject},CSharpGL.RenderEventArgs)">
+        <member name="M:CSharpGL.ViewPort.RenderObject(CSharpGL.SceneObject,CSharpGL.RenderEventArgs)">
             <summary>
             render object recursively.
             </summary>
@@ -19423,11 +19412,6 @@
              </summary>
         </member>
         <member name="P:CSharpGL.ViewPort.zFar">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.ViewPort.Content">
              <summary>
             
              </summary>
@@ -19584,11 +19568,6 @@
              </summary>
         </member>
         <member name="P:CSharpGL.UIRenderer.zFar">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.UIRenderer.Content">
              <summary>
             
              </summary>
@@ -21947,7 +21926,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DumpTreeToText.DumpToText``1(CSharpGL.ITreeNode{``0})">
+        <member name="M:CSharpGL.DumpTreeToText.DumpToText(CSharpGL.ITreeNode)">
             <summary>
             像DOS的树状展示文件夹结构一样展示树结构。
             Display tree similar to 'tree' command in DOS.
@@ -21960,7 +21939,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.Traverse``1(CSharpGL.ITreeNode{``0},CSharpGL.TraverseOrder)">
+        <member name="M:CSharpGL.ITreeNodeHelper.Traverse(CSharpGL.ITreeNode,CSharpGL.TraverseOrder)">
             <summary>
             traverse every item in the tree node recursively.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
@@ -21970,7 +21949,7 @@
             <param name="order"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.PostorderTraverse``1(CSharpGL.ITreeNode{``0})">
+        <member name="M:CSharpGL.ITreeNodeHelper.PostorderTraverse(CSharpGL.ITreeNode)">
             <summary>
             traverse every item in the tree node in post-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
@@ -21979,7 +21958,7 @@
             <param name="treeNode"></param>
             <returns></returns>
         </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.PreorderTraverse``1(CSharpGL.ITreeNode{``0})">
+        <member name="M:CSharpGL.ITreeNodeHelper.PreorderTraverse(CSharpGL.ITreeNode)">
             <summary>
             traverse every item in the tree node in pre-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
@@ -29070,7 +29049,7 @@
         </member>
         <member name="T:CSharpGL.ChildList`1">
             <summary>
-            children in <see cref="T:CSharpGL.ITreeNode`1"/>.
+            children in <see cref="!:ITreeNode&lt;T&gt;"/>.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
@@ -29079,20 +29058,20 @@
             parent of this list's items.
             </summary>
         </member>
-        <member name="M:CSharpGL.ChildList`1.#ctor(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.ChildList`1.#ctor(CSharpGL.ITreeNode)">
             <summary>
-            children in <see cref="T:CSharpGL.ITreeNode`1"/>.
+            children in <see cref="!:ITreeNode&lt;T&gt;"/>.
             </summary>
             <param name="parent"></param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.IndexOf(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.ChildList`1.IndexOf(CSharpGL.ITreeNode)">
             <summary>
             搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
             </summary>
             <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Insert(System.Int32,CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.ChildList`1.Insert(System.Int32,CSharpGL.ITreeNode)">
             <summary>
             将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
             </summary>
@@ -29105,13 +29084,13 @@
             </summary>
             <param name="index">要移除的元素的从零开始的索引。</param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Add(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.ChildList`1.Add(CSharpGL.ITreeNode)">
             <summary>
             将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
             </summary>
             <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ITreeNode{`0}})">
+        <member name="M:CSharpGL.ChildList`1.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ITreeNode})">
             <summary>
             将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
             </summary>
@@ -29122,21 +29101,21 @@
             从 System.Collections.Generic.List&lt;T&gt;中移除所有元素。
             </summary>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Contains(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.ChildList`1.Contains(CSharpGL.ITreeNode)">
             <summary>
             确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
             </summary>
             <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
         </member>
-        <member name="M:CSharpGL.ChildList`1.CopyTo(CSharpGL.ITreeNode{`0}[],System.Int32)">
+        <member name="M:CSharpGL.ChildList`1.CopyTo(CSharpGL.ITreeNode[],System.Int32)">
             <summary>
             将整个 System.Collections.Generic.List&lt;T&gt; 复制到兼容的一维数组中，从目标数组的指定索引位置开始放置。
             </summary>
             <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
             <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
         </member>
-        <member name="M:CSharpGL.ChildList`1.Remove(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.ChildList`1.Remove(CSharpGL.ITreeNode)">
             <summary>
             从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
             </summary>
@@ -29188,7 +29167,7 @@
              </summary>
              <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSharpGL.AddTreeNodeEventArgs`1.#ctor(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.AddTreeNodeEventArgs`1.#ctor(CSharpGL.ITreeNode)">
              <summary>
             
              </summary>
@@ -29211,7 +29190,7 @@
              </summary>
              <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSharpGL.RemoveTreeNodeEventArgs`1.#ctor(CSharpGL.ITreeNode{`0})">
+        <member name="M:CSharpGL.RemoveTreeNodeEventArgs`1.#ctor(CSharpGL.ITreeNode)">
              <summary>
             
              </summary>

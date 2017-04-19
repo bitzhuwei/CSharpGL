@@ -14,7 +14,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="chunk"></param>
         /// <returns></returns>
-        public static string DumpToText<T>(this ITreeNode<T> chunk) where T : ITreeNode<T>
+        public static string DumpToText(this ITreeNode chunk)
         {
             StringBuilder builder = new StringBuilder();
             int tabSpace = 0;
@@ -22,19 +22,18 @@ namespace CSharpGL
             return builder.ToString();
         }
 
-        private static void GetBuilder<T>(StringBuilder builder, ITreeNode<T> tree, ref int tabSpace)
-            where T : ITreeNode<T>
+        private static void GetBuilder(StringBuilder builder, ITreeNode tree, ref int tabSpace)
         {
-            builder.AppendLine(GetPreMarks(tree) + tree.Content.ToString());
+            builder.AppendLine(GetPreMarks(tree) + tree.ToString());
             tabSpace++;
-            foreach (T item in tree.Children)
+            foreach (ITreeNode item in tree.Children)
             {
                 GetBuilder(builder, item, ref tabSpace);
             }
             tabSpace--;
         }
 
-        private static string GetPreMarks<T>(ITreeNode<T> tree) where T : ITreeNode<T>
+        private static string GetPreMarks(ITreeNode tree)
         {
             var parent = tree.Parent;
             if (parent == null) return string.Empty;
@@ -57,7 +56,7 @@ namespace CSharpGL
                     builder.Append("    ");
             }
             parent = tree.Parent;
-            if (parent.Children.IndexOf(tree.Content) < parent.Children.Count - 1)
+            if (parent.Children.IndexOf(tree) < parent.Children.Count - 1)
             { builder.Append("├─"); }
             else
             { builder.Append("└─"); }

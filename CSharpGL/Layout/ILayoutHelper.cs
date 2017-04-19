@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <param name="node"></param>
         public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>, ILayoutEvent
         {
-            var layoutEvent = node.Content as ILayoutEvent;
+            var layoutEvent = node as ILayoutEvent;
             if (layoutEvent == null)
             {
                 throw new Exception(string.Format(
@@ -49,10 +49,10 @@ namespace CSharpGL
             }
             bool cancelTreeLayout = layoutEvent.DoBeforeLayout();
 
-            ITreeNode<T> parent = node.Parent;
+            var parent = node.Parent as ILayout<T>;
             if ((parent != null) && (!cancelTreeLayout))
             {
-                NonRootNodeLayout(node, parent.Content);
+                NonRootNodeLayout(node, parent);
             }
 
             layoutEvent.DoAfterLayout();
@@ -64,7 +64,7 @@ namespace CSharpGL
 
             if (parent != null)
             {
-                node.ParentLastSize = parent.Content.Size;
+                node.ParentLastSize = parent.Size;
             }
         }
 
@@ -83,7 +83,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="currentNode"></param>
         /// <param name="parent"></param>
-        private static void NonRootNodeLayout<T>(ILayout<T> currentNode, ILayout<T> parent) where T : ITreeNode<T>
+        private static void NonRootNodeLayout<T>(ILayout<T> currentNode, ILayout<T> parent) where T : ITreeNode
         {
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)

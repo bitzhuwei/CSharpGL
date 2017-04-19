@@ -23,7 +23,7 @@ namespace CSharpGL.SceneEditor.Scripts
             if (this.renderer == null)
             {
                 this.renderer = this.BindingObject.Renderer as BuildInRenderer;
-                this.planetTransform = this.BindingObject.Parent.Content.Renderer as IModelSpace;
+                this.planetTransform = (this.BindingObject.Parent as SceneObject).Renderer as IModelSpace;
             }
 
             double deltaAngle = Time.DeltaTime.TotalMilliseconds * Math.PI * 2 / this.RevolutionPeriod;

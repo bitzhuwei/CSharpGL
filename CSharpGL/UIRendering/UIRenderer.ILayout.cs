@@ -125,15 +125,8 @@ namespace CSharpGL
         ///
         /// </summary>
         [Category(strTreeNode)]
-        [Description("Value.")]
-        public UIRenderer Content { get { return this; } }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strTreeNode)]
         [Description("Parent UI Renderer.")]
-        public ITreeNode<UIRenderer> Parent { get; set; }
+        public ITreeNode Parent { get; set; }
 
         //ChildList<UIRenderer> children;
 
@@ -142,7 +135,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strTreeNode)]
         [Description("Children UI Renderers.")]
-        [Editor(typeof(IListEditor<ITreeNode<UIRenderer>>), typeof(UITypeEditor))]
-        public ChildList<UIRenderer> Children { get; private set; }
+        [Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
+        public ChildList<ITreeNode> Children { get; private set; }
     }
 }

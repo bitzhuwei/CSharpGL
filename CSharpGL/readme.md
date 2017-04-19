@@ -186,7 +186,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 8. Fix bug in get delegate for OpenGL command.(Use proc.ToInt64() instead of proc.ToInt64())
 9. Camera manipulaters using mouse/keyboard.
 10. Better performance: reading GL_DEPTH_COMPONENT to make sure something is picked.
-11. ChildList<T> represents children in ITreeNode<T>.
+11. ChildList<T> represents children in ITreeNode.
 12. IndexBufferEditor displays controller for update parameters for glDrawArrays() or glDrawElements().
 13: Release bind element buffer in OneIndexBuffer.
 14. Comment debug lines in FontResource.

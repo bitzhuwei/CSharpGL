@@ -12,7 +12,7 @@ namespace CSharpGL
     public partial class SceneObject :
         IModelSpace,
         //IRenderable, // take part in rendering an object.
-        ITreeNode<SceneObject>, // contains children objects and is contained by parent.
+        ITreeNode, // contains children objects and is contained by parent.
         IEnumerable<SceneObject>, // enumerates self and all children objects recursively.
         IDisposable
     {
@@ -92,7 +92,7 @@ namespace CSharpGL
             this.PickingEnabled = true;
             //this.Transform = new TransformComponent(this);
             this.Scripts = new ScriptList(this);
-            this.Children = new ChildList<SceneObject>(this);
+            this.Children = new ChildList<ITreeNode>(this);
         }
 
         /// <summary>

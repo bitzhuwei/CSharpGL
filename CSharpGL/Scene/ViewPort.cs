@@ -86,7 +86,7 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size)
         {
-            this.Children = new ChildList<ViewPort>(this);// new ILayoutList(this);
+            this.Children = new ChildList<ITreeNode>(this);// new ILayoutList(this);
 
             this.Camera = camera;
             this.Anchor = anchor;
@@ -224,21 +224,21 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneObject"></param>
         /// <param name="arg"></param>
-        private void RenderObject(ITreeNode<SceneObject> sceneObject, RenderEventArgs arg)
+        private void RenderObject(SceneObject sceneObject, RenderEventArgs arg)
         {
-            if (sceneObject.Content.RenderingEnabled)
+            if (sceneObject.RenderingEnabled)
             {
                 //sceneObject.DoBeforeRendering();
-                GLState[] switchArray = sceneObject.Content.GroupStateList.ToArray();
+                GLState[] switchArray = sceneObject.GroupStateList.ToArray();
                 for (int i = 0; i < switchArray.Length; i++)
                 {
                     switchArray[i].On();
                 }
-                sceneObject.Content.Render(arg);
-                ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();
-                foreach (ITreeNode<SceneObject> child in array)
+                sceneObject.Render(arg);
+                ITreeNode[] array = sceneObject.Children.ToArray();
+                foreach (ITreeNode child in array)
                 {
-                    RenderObject(child, arg);
+                    RenderObject(child as SceneObject, arg);
                 }
                 //sceneObject.DoAfterRendering();
                 for (int i = switchArray.Length - 1; i >= 0; i--)

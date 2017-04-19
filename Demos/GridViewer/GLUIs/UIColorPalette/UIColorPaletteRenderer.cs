@@ -50,7 +50,7 @@ namespace GridViewer
             }
             set
             {
-				UIRenderer renderer = this.colorPaletteBar2;
+                UIRenderer renderer = this.colorPaletteBar2;
                 if (renderer != null) { renderer.Enabled = value; }
             }
         }
@@ -141,9 +141,9 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            foreach (ITreeNode<UIRenderer> item in this.Children)
+            foreach (ITreeNode item in this.Children)
             {
-                item.Content.Initialize();
+                (item as UIRenderer).Initialize();
             }
 
             this.SetCodedColor(-100, 100, 200);

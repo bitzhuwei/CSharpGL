@@ -8,8 +8,8 @@ namespace CSharpGL
     /// children in <see cref="ITreeNode&lt;T&gt;"/>.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    //[Editor(typeof(IListEditor<ITreeNode<T>>), typeof(UITypeEditor))]
-    public class ChildList<T> : IList<ITreeNode<T>>// where T : ITreeNode<T>
+    //[Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
+    public class ChildList<T> : IList<ITreeNode>// where T : ITreeNode
     {
         /// <summary>
         /// invoked when an item is added into this list.
@@ -21,18 +21,18 @@ namespace CSharpGL
         /// </summary>
         public event EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved;
 
-        private List<ITreeNode<T>> list = new List<ITreeNode<T>>();
+        private List<ITreeNode> list = new List<ITreeNode>();
 
         /// <summary>
         /// parent of this list's items.
         /// </summary>
-        private readonly ITreeNode<T> parent;
+        private readonly ITreeNode parent;
 
         /// <summary>
         /// children in <see cref="ITreeNode&lt;T&gt;"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public ChildList(ITreeNode<T> parent)
+        public ChildList(ITreeNode parent)
         {
             Debug.Assert(parent != null);
 
@@ -44,7 +44,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
-        public int IndexOf(ITreeNode<T> item)
+        public int IndexOf(ITreeNode item)
         {
             return list.IndexOf(item);
         }
@@ -54,7 +54,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">从零开始的索引，应在该位置插入 item。</param>
         /// <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
-        public void Insert(int index, ITreeNode<T> item)
+        public void Insert(int index, ITreeNode item)
         {
             item.Parent = this.parent;
             list.Insert(index, item);
@@ -71,7 +71,7 @@ namespace CSharpGL
         /// <param name="index">要移除的元素的从零开始的索引。</param>
         public void RemoveAt(int index)
         {
-            ITreeNode<T> obj = list[index];
+            ITreeNode obj = list[index];
             list.RemoveAt(index);
             obj.Parent = null;
             //obj.RefreshRelativeTransform();
@@ -86,7 +86,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">要获得或设置的元素从零开始的索引。</param>
         /// <returns>指定索引处的元素。</returns>
-        public ITreeNode<T> this[int index]
+        public ITreeNode this[int index]
         {
             get
             {
@@ -102,7 +102,7 @@ namespace CSharpGL
         /// 将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
         /// </summary>
         /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
-        public void Add(ITreeNode<T> item)
+        public void Add(ITreeNode item)
         {
             item.Parent = this.parent;
             list.Add(item);
@@ -117,14 +117,14 @@ namespace CSharpGL
         /// 将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
         /// </summary>
         /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
-        public void AddRange(IEnumerable<ITreeNode<T>> items)
+        public void AddRange(IEnumerable<ITreeNode> items)
         {
-            foreach (ITreeNode<T> item in items)
+            foreach (ITreeNode item in items)
             {
                 item.Parent = this.parent;
             }
             list.AddRange(items);
-            foreach (ITreeNode<T> item in items)
+            foreach (ITreeNode item in items)
             {
                 //item.RefreshRelativeTransform();
             }
@@ -132,7 +132,7 @@ namespace CSharpGL
             EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
             {
-                foreach (ITreeNode<T> item in items)
+                foreach (ITreeNode item in items)
                 {
                     ItemAdded(this, new AddTreeNodeEventArgs<T>(item));
                 }
@@ -144,10 +144,10 @@ namespace CSharpGL
         /// </summary>
         public void Clear()
         {
-            ITreeNode<T>[] array = this.list.ToArray();
+            ITreeNode[] array = this.list.ToArray();
             this.list.Clear();
 
-            foreach (ITreeNode<T> item in array)
+            foreach (ITreeNode item in array)
             {
                 item.Parent = null;
                 //item.RefreshRelativeTransform();
@@ -156,7 +156,7 @@ namespace CSharpGL
             EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
             {
-                foreach (ITreeNode<T> item in array)
+                foreach (ITreeNode item in array)
                 {
                     ItemRemoved(this, new RemoveTreeNodeEventArgs<T>(item));
                 }
@@ -168,7 +168,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
-        public bool Contains(ITreeNode<T> item)
+        public bool Contains(ITreeNode item)
         {
             return list.Contains(item);
         }
@@ -178,7 +178,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
         /// <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
-        public void CopyTo(ITreeNode<T>[] array, int arrayIndex)
+        public void CopyTo(ITreeNode[] array, int arrayIndex)
         {
             list.CopyTo(array, arrayIndex);
         }
@@ -196,7 +196,7 @@ namespace CSharpGL
         /// </summary>
         public bool IsReadOnly
         {
-            get { return ((ICollection<ITreeNode<T>>)(this.list)).IsReadOnly; }
+            get { return ((ICollection<ITreeNode>)(this.list)).IsReadOnly; }
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
-        public bool Remove(ITreeNode<T> item)
+        public bool Remove(ITreeNode item)
         {
             bool result = list.Remove(item);
             if (result)
@@ -224,7 +224,7 @@ namespace CSharpGL
         /// 返回循环访问 System.Collections.Generic.List&lt;T&gt; 的枚举数。
         /// </summary>
         /// <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
-        public IEnumerator<ITreeNode<T>> GetEnumerator()
+        public IEnumerator<ITreeNode> GetEnumerator()
         {
             return list.GetEnumerator();
         }
@@ -253,13 +253,13 @@ namespace CSharpGL
         /// <summary>
         /// newly added item.
         /// </summary>
-        public ITreeNode<T> NewItem { get; private set; }
+        public ITreeNode NewItem { get; private set; }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="newItem"></param>
-        public AddTreeNodeEventArgs(ITreeNode<T> newItem)
+        public AddTreeNodeEventArgs(ITreeNode newItem)
         {
             this.NewItem = newItem;
         }
@@ -283,13 +283,13 @@ namespace CSharpGL
         /// <summary>
         /// removed item.
         /// </summary>
-        public ITreeNode<T> RemovedItem { get; private set; }
+        public ITreeNode RemovedItem { get; private set; }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="removedItem"></param>
-        public RemoveTreeNodeEventArgs(ITreeNode<T> removedItem)
+        public RemoveTreeNodeEventArgs(ITreeNode removedItem)
         {
             this.RemovedItem = removedItem;
         }

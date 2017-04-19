@@ -13,7 +13,7 @@
         {
             while (sceneObject != null && sceneObject.Parent != null)
             {
-                sceneObject = sceneObject.Parent.Content;
+                sceneObject = sceneObject.Parent as SceneObject;
             }
             var rootObject = sceneObject as SceneRootObject;
             if (rootObject != null)

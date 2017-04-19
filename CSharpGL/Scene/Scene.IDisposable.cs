@@ -51,20 +51,20 @@ namespace CSharpGL
         private void DisposeObject(SceneObject sceneObject)
         {
             sceneObject.Dispose();
-            ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();
-            foreach (SceneObject child in array)
+            ITreeNode[] array = sceneObject.Children.ToArray();
+            foreach (ITreeNode child in array)
             {
-                DisposeObject(child);
+                DisposeObject(child as SceneObject);
             }
         }
 
         private void DisposeUI(UIRenderer uiRenderer)
         {
             uiRenderer.Dispose();
-            ITreeNode<UIRenderer>[] array = uiRenderer.Children.ToArray();
-            foreach (UIRenderer child in array)
+            ITreeNode[] array = uiRenderer.Children.ToArray();
+            foreach (ITreeNode child in array)
             {
-                DisposeUI(child);
+                DisposeUI(child as UIRenderer);
             }
         }
     }

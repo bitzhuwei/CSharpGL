@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
                 this.scene = scene;
                 ViewPort rootViewPort = scene.RootViewPort;
                 rootViewPort.ClearColor = Color.White;
-                ViewPort viewPort = rootViewPort.Children[0].Content;
+                var viewPort = rootViewPort.Children[0] as ViewPort;
                 viewPort.ClearColor = Color.Gray;
                 viewPort.BeforeLayout += viewPort_BeforeLayout;
                 viewPort.AfterLayout += perspectiveViewPort_AfterLayout;
@@ -168,7 +168,7 @@ namespace CSharpGL.Demos
         private void leftViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            Size parentSize = viewPort.Parent.Content.Size;
+            Size parentSize = (viewPort.Parent as ViewPort).Size;
             viewPort.Location = new Point(0 + 1, 0 + 1);
             viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
@@ -176,7 +176,7 @@ namespace CSharpGL.Demos
         private void frontViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            Size parentSize = viewPort.Parent.Content.Size;
+            Size parentSize = (viewPort.Parent as ViewPort).Size;
             viewPort.Location = new Point(parentSize.Width / 2 + 1, parentSize.Height / 2 + 1);
             viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
@@ -184,7 +184,7 @@ namespace CSharpGL.Demos
         private void topViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            Size parentSize = viewPort.Parent.Content.Size;
+            Size parentSize = (viewPort.Parent as ViewPort).Size;
             viewPort.Location = new Point(0 + 1, parentSize.Height / 2 + 1);
             viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }
@@ -192,7 +192,7 @@ namespace CSharpGL.Demos
         private void perspectiveViewPort_AfterLayout(object sender, EventArgs e)
         {
             var viewPort = sender as ViewPort;
-            Size parentSize = viewPort.Parent.Content.Size;
+            Size parentSize = (viewPort.Parent as ViewPort).Size;
             viewPort.Location = new Point(parentSize.Width / 2 + 1, 0 + 1);
             viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
         }

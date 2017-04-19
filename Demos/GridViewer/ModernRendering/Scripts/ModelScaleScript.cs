@@ -66,7 +66,7 @@ namespace GridViewer
                     updated = true;
                 }
 
-                foreach (var item in obj.Children) { stack.Push(item.Content); }
+                foreach (var item in obj.Children) { stack.Push(item as SceneObject); }
             }
 
             return updated;

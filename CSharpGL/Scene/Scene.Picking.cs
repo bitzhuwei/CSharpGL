@@ -175,7 +175,7 @@ namespace CSharpGL
             }
             // render children.
             {
-                ITreeNode<SceneObject>[] array = sceneObject.Children.ToArray();
+                ITreeNode[] array = sceneObject.Children.ToArray();
                 foreach (SceneObject child in array)
                 {
                     RenderPickableObject(child, arg, ref renderedVertexCount, pickedRendererList);

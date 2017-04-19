@@ -15,19 +15,19 @@ namespace CSharpGL
         /// <param name="treeNode"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order)
+        public static IEnumerable<ITreeNode> Traverse(this ITreeNode treeNode, TraverseOrder order)
         {
             switch (order)
             {
                 case TraverseOrder.Pre:
-                    foreach (ITreeNode<T> item in PreorderTraverse(treeNode))
+                    foreach (ITreeNode item in PreorderTraverse(treeNode))
                     {
                         yield return item;
                     }
                     break;
 
                 case TraverseOrder.Post:
-                    foreach (ITreeNode<T> item in PostorderTraverse(treeNode))
+                    foreach (ITreeNode item in PostorderTraverse(treeNode))
                     {
                         yield return item;
                     }
@@ -45,15 +45,15 @@ namespace CSharpGL
         /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> PostorderTraverse<T>(ITreeNode<T> treeNode)
+        public static IEnumerable<ITreeNode> PostorderTraverse(ITreeNode treeNode)
         {
             if (treeNode != null)
             {
                 for (int i = 0; i < treeNode.Children.Count; i++)
                 {
-                    ITreeNode<T> child = treeNode.Children[i];
-                    IEnumerable<ITreeNode<T>> enumerable = PostorderTraverse(child);
-                    foreach (ITreeNode<T> item in enumerable)
+                    ITreeNode child = treeNode.Children[i];
+                    IEnumerable<ITreeNode> enumerable = PostorderTraverse(child);
+                    foreach (ITreeNode item in enumerable)
                     {
                         yield return item;
                     }
@@ -70,7 +70,7 @@ namespace CSharpGL
         /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> PreorderTraverse<T>(ITreeNode<T> treeNode)
+        public static IEnumerable<ITreeNode> PreorderTraverse(ITreeNode treeNode)
         {
             if (treeNode != null)
             {
@@ -78,9 +78,9 @@ namespace CSharpGL
 
                 for (int i = 0; i < treeNode.Children.Count; i++)
                 {
-                    ITreeNode<T> child = treeNode.Children[i];
-                    IEnumerable<ITreeNode<T>> enumerable = PreorderTraverse(child);
-                    foreach (ITreeNode<T> item in enumerable)
+                    ITreeNode child = treeNode.Children[i];
+                    IEnumerable<ITreeNode> enumerable = PreorderTraverse(child);
+                    foreach (ITreeNode item in enumerable)
                     {
                         yield return item;
                     }
@@ -95,8 +95,8 @@ namespace CSharpGL
         ///// <typeparam name="T"></typeparam>
         ///// <param name="treeNode"></param>
         ///// <returns></returns>
-        //public static IEnumerable<T> DFSEnumerateRecursively<T>(this ITreeNode<T> treeNode)
-        //    where T : ITreeNode<T>
+        //public static IEnumerable<T> DFSEnumerateRecursively<T>(this ITreeNode treeNode)
+        //    where T : ITreeNode
         //{
         //    yield return treeNode.Value;
         //    for (int i = 0; i < treeNode.Children.Count; i++)
@@ -117,14 +117,14 @@ namespace CSharpGL
         ///// <typeparam name="T"></typeparam>
         ///// <param name="treeNode"></param>
         ///// <returns></returns>
-        //public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode<T> treeNode)
-        //    where T : ITreeNode<T>
+        //public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode treeNode)
+        //    where T : ITreeNode
         //{
-        //    var stack = new Stack<ITreeNode<T>>();
+        //    var stack = new Stack<ITreeNode>();
         //    stack.Push(treeNode);
         //    while (stack.Count > 0)
         //    {
-        //        ITreeNode<T> current = stack.Pop();
+        //        ITreeNode current = stack.Pop();
         //        foreach (T item in current.Children)
         //        {
         //            stack.Push(item);

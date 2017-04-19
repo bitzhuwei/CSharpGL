@@ -33,10 +33,10 @@
                 SceneObject obj = this.BindingSceneObject;
                 if (obj != null)
                 {
-                    ITreeNode<SceneObject> parent = obj.Parent;
+                    var parent = obj.Parent as SceneObject;
                     if (parent != null)
                     {
-                        RendererBase parentRenderer = parent.Content.Renderer;
+                        RendererBase parentRenderer = parent.Renderer;
                         if (parentRenderer != null)
                         {
                             // get parent's matrix representing transform relative to world space coordinate.
@@ -54,7 +54,7 @@
                 SceneObject obj = this.BindingSceneObject;
                 if (obj != null)
                 {
-                    SceneObject parent = obj.Parent.Content;
+                    var parent = obj.Parent as SceneObject;
                     if (parent != null)
                     {
                         RendererBase parentRenderer = parent.Renderer;

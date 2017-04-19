@@ -66,7 +66,7 @@ namespace CSharpGL
             //            { throw new Exception(string.Format("Maybe circular reference in UI tree!")); }
             //#endif
             renderer.Render(arg);
-            ITreeNode<UIRenderer>[] array = renderer.Children.ToArray();
+            ITreeNode[] array = renderer.Children.ToArray();
             foreach (UIRenderer item in array)
             {
                 RenderUIRenderer(item, arg);
