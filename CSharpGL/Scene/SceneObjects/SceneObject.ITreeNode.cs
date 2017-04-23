@@ -22,7 +22,7 @@ namespace CSharpGL
         [Category(strTreeNode)]
         [Description("Children")]
         [Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
-        public ChildList<ITreeNode> Children { get; private set; }
+        public TreeNodeChildren Children { get; private set; }
 
         #endregion ITreeNode
     }

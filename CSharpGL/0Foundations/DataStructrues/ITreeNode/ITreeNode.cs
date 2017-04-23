@@ -14,6 +14,6 @@
         /// <summary>
         /// children nodes.
         /// </summary>
-        ChildList<ITreeNode> Children { get; }
+        TreeNodeChildren Children { get; }
     }
 }

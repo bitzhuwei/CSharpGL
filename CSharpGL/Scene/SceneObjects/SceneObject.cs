@@ -92,7 +92,7 @@ namespace CSharpGL
             this.PickingEnabled = true;
             //this.Transform = new TransformComponent(this);
             this.Scripts = new ScriptList(this);
-            this.Children = new ChildList<ITreeNode>(this);
+            this.Children = new TreeNodeChildren(this);
         }
 
         /// <summary>

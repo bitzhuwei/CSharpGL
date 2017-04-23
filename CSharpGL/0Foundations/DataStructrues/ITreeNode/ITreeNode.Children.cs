@@ -5,21 +5,20 @@ using System.Diagnostics;
 namespace CSharpGL
 {
     /// <summary>
-    /// children in <see cref="ITreeNode&lt;T&gt;"/>.
+    /// children in <see cref="ITreeNode"/>.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     //[Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
-    public class ChildList<T> : IList<ITreeNode>// where T : ITreeNode
+    public class TreeNodeChildren : IList<ITreeNode>// where T : ITreeNode
     {
         /// <summary>
         /// invoked when an item is added into this list.
         /// </summary>
-        public event EventHandler<AddTreeNodeEventArgs<T>> ItemAdded;
+        public event EventHandler<AddTreeNodeEventArgs> ItemAdded;
 
         /// <summary>
         /// invoked when an item is removed from this list.
         /// </summary>
-        public event EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved;
+        public event EventHandler<RemoveTreeNodeEventArgs> ItemRemoved;
 
         private List<ITreeNode> list = new List<ITreeNode>();
 
@@ -32,7 +31,7 @@ namespace CSharpGL
         /// children in <see cref="ITreeNode&lt;T&gt;"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public ChildList(ITreeNode parent)
+        public TreeNodeChildren(ITreeNode parent)
         {
             Debug.Assert(parent != null);
 
@@ -60,9 +59,9 @@ namespace CSharpGL
             list.Insert(index, item);
             //item.RefreshRelativeTransform();
 
-            EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
+            EventHandler<AddTreeNodeEventArgs> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
-            { ItemAdded(this, new AddTreeNodeEventArgs<T>(item)); }
+            { ItemAdded(this, new AddTreeNodeEventArgs(item)); }
         }
 
         /// <summary>
@@ -76,9 +75,9 @@ namespace CSharpGL
             obj.Parent = null;
             //obj.RefreshRelativeTransform();
 
-            EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved = this.ItemRemoved;
+            EventHandler<RemoveTreeNodeEventArgs> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
-            { ItemRemoved(this, new RemoveTreeNodeEventArgs<T>(obj)); }
+            { ItemRemoved(this, new RemoveTreeNodeEventArgs(obj)); }
         }
 
         /// <summary>
@@ -108,9 +107,9 @@ namespace CSharpGL
             list.Add(item);
             //item.RefreshRelativeTransform();
 
-            EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
+            EventHandler<AddTreeNodeEventArgs> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
-            { ItemAdded(this, new AddTreeNodeEventArgs<T>(item)); }
+            { ItemAdded(this, new AddTreeNodeEventArgs(item)); }
         }
 
         /// <summary>
@@ -129,12 +128,12 @@ namespace CSharpGL
                 //item.RefreshRelativeTransform();
             }
 
-            EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
+            EventHandler<AddTreeNodeEventArgs> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
             {
                 foreach (ITreeNode item in items)
                 {
-                    ItemAdded(this, new AddTreeNodeEventArgs<T>(item));
+                    ItemAdded(this, new AddTreeNodeEventArgs(item));
                 }
             }
         }
@@ -153,12 +152,12 @@ namespace CSharpGL
                 //item.RefreshRelativeTransform();
             }
 
-            EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved = this.ItemRemoved;
+            EventHandler<RemoveTreeNodeEventArgs> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
             {
                 foreach (ITreeNode item in array)
                 {
-                    ItemRemoved(this, new RemoveTreeNodeEventArgs<T>(item));
+                    ItemRemoved(this, new RemoveTreeNodeEventArgs(item));
                 }
             }
         }
@@ -212,9 +211,9 @@ namespace CSharpGL
                 item.Parent = null;
                 //item.RefreshRelativeTransform();
 
-                EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved = this.ItemRemoved;
+                EventHandler<RemoveTreeNodeEventArgs> ItemRemoved = this.ItemRemoved;
                 if (ItemRemoved != null)
-                { ItemRemoved(this, new RemoveTreeNodeEventArgs<T>(item)); }
+                { ItemRemoved(this, new RemoveTreeNodeEventArgs(item)); }
             }
 
             return result;
@@ -248,7 +247,7 @@ namespace CSharpGL
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AddTreeNodeEventArgs<T> : EventArgs
+    public class AddTreeNodeEventArgs : EventArgs
     {
         /// <summary>
         /// newly added item.
@@ -278,7 +277,7 @@ namespace CSharpGL
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class RemoveTreeNodeEventArgs<T> : EventArgs
+    public class RemoveTreeNodeEventArgs : EventArgs
     {
         /// <summary>
         /// removed item.

@@ -124,7 +124,7 @@ namespace CSharpGL
         [Description("Parent UI Renderer.")]
         public ITreeNode Parent { get; set; }
 
-        //ChildList<UIRenderer> children;
+        //TreeNodeChildren<UIRenderer> children;
 
         /// <summary>
         ///
@@ -132,6 +132,6 @@ namespace CSharpGL
         [Category(strTreeNode)]
         [Description("Children UI Renderers.")]
         [Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
-        public ChildList<ITreeNode> Children { get; private set; }
+        public TreeNodeChildren Children { get; private set; }
     }
 }

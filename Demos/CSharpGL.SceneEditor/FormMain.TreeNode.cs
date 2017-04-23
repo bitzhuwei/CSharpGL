@@ -20,7 +20,7 @@ namespace CSharpGL.SceneEditor
             this.treeView1.Nodes.Add(node);
         }
 
-        private void Children_ItemRemoved(object sender, RemoveTreeNodeEventArgs<ITreeNode> e)
+        private void Children_ItemRemoved(object sender, RemoveTreeNodeEventArgs e)
         {
             if (e.RemovedItem.Parent == null)
             {
@@ -34,7 +34,7 @@ namespace CSharpGL.SceneEditor
             }
         }
 
-        private void Children_ItemAdded(object sender, AddTreeNodeEventArgs<ITreeNode> e)
+        private void Children_ItemAdded(object sender, AddTreeNodeEventArgs e)
         {
             //if (e.NewItem.Parent == null)
             //{
@@ -144,7 +144,7 @@ namespace CSharpGL.SceneEditor
             this.treeView1.ExpandAll();
         }
 
-        private TreeNode[] GetTreeNodes(ChildList<ITreeNode> list)
+        private TreeNode[] GetTreeNodes(TreeNodeChildren list)
         {
             var result = new TreeNode[list.Count];
             for (int i = 0; i < result.Length; i++)

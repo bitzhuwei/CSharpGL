@@ -86,7 +86,7 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size)
         {
-            this.Children = new ChildList<ITreeNode>(this);// new ILayoutList(this);
+            this.Children = new TreeNodeChildren(this);// new ILayoutList(this);
 
             this.Camera = camera;
             this.Anchor = anchor;

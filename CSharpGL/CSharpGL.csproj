@@ -645,7 +645,7 @@
     <Compile Include="0Foundations\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="0Foundations\Utilities\PositionHelper.cs" />
     <Compile Include="0Foundations\DataStructrues\UnmanagedArray\UnmanagedArray`1.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.ChildList.cs" />
+    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.Children.cs" />
     <Compile Include="Scene\Scene.Property.cs" />
   </ItemGroup>
   <ItemGroup />

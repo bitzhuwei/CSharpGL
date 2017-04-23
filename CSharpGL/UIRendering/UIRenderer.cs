@@ -56,7 +56,7 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
         {
-            this.Children = new ChildList<ITreeNode>(this);// new ILayoutList(this);
+            this.Children = new TreeNodeChildren(this);// new ILayoutList(this);
 
             this.Anchor = anchor; this.Margin = margin;
             this.Size = size; this.zNear = zNear; this.zFar = zFar;
