@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing.Design;
 
 namespace CSharpGL
 {
     /// <summary>
     /// children in <see cref="ITreeNode"/>.
     /// </summary>
-    //[Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
+    [Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
     public class TreeNodeChildren : IList<ITreeNode>// where T : ITreeNode
     {
         /// <summary>
