@@ -8,7 +8,7 @@ namespace CSharpGL
     public static partial class ILayoutHelper
     {
         /// <summary>
-        /// traverse every item in the tree node recursively.
+        /// traverse every child in the tree node recursively.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
         /// <param name="treeNode"></param>
@@ -38,7 +38,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// traverse every item in the tree node in post-order.
+        /// traverse every child in the tree node in post-order.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
         /// <param name="treeNode"></param>
@@ -62,7 +62,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// traverse every item in the tree node in pre-order.
+        /// traverse every child in the tree node in pre-order.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
         /// <param name="treeNode"></param>
@@ -86,7 +86,7 @@ namespace CSharpGL
         }
 
         ///// <summary>
-        ///// traverse every item in the tree node recursively.
+        ///// traverse every child in the tree node recursively.
         ///// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
@@ -100,15 +100,15 @@ namespace CSharpGL
         //    {
         //        T child = treeNode.Children[i];
         //        IEnumerable<T> enumerable = DFSEnumerateRecursively(child);
-        //        foreach (T item in enumerable)
+        //        foreach (T child in enumerable)
         //        {
-        //            yield return item;
+        //            yield return child;
         //        }
         //    }
         //}
 
         ///// <summary>
-        ///// traverse every item in the tree node non-recursively.
+        ///// traverse every child in the tree node non-recursively.
         ///// <para>Use this when <paramref name="treeNode"/>'s structure is NOT flat.</para>
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
@@ -122,9 +122,9 @@ namespace CSharpGL
         //    while (stack.Count > 0)
         //    {
         //        ITreeNode current = stack.Pop();
-        //        foreach (T item in current.Children)
+        //        foreach (T child in current.Children)
         //        {
-        //            stack.Push(item);
+        //            stack.Push(child);
         //        }
         //        yield return current.Value;
         //    }

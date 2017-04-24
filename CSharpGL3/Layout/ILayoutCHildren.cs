@@ -13,12 +13,12 @@ namespace CSharpGL
     public class ILayoutChildren<T> : IList<ILayout<T>>
     {
         /// <summary>
-        /// invoked when an item is added into this list.
+        /// invoked when an child is added into this list.
         /// </summary>
         public event EventHandler<AddTreeNodeEventArgs<T>> ItemAdded;
 
         /// <summary>
-        /// invoked when an item is removed from this list.
+        /// invoked when an child is removed from this list.
         /// </summary>
         public event EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved;
 
@@ -43,8 +43,8 @@ namespace CSharpGL
         /// <summary>
         /// 搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
         /// </summary>
-        /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
-        /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
+        /// <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+        /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 child 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         public int IndexOf(ILayout<T> item)
         {
             return list.IndexOf(item);
@@ -53,13 +53,13 @@ namespace CSharpGL
         /// <summary>
         /// 将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
         /// </summary>
-        /// <param name="index">从零开始的索引，应在该位置插入 item。</param>
-        /// <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="index">从零开始的索引，应在该位置插入 child。</param>
+        /// <param name="child">要插入的对象。对于引用类型，该值可以为 null。</param>
         public void Insert(int index, ILayout<T> item)
         {
             item.Parent = this.parent;
             list.Insert(index, item);
-            //item.RefreshRelativeTransform();
+            //child.RefreshRelativeTransform();
 
             EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
@@ -102,12 +102,12 @@ namespace CSharpGL
         /// <summary>
         /// 将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
         /// </summary>
-        /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="child">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         public void Add(ILayout<T> item)
         {
             item.Parent = this.parent;
             list.Add(item);
-            //item.RefreshRelativeTransform();
+            //child.RefreshRelativeTransform();
 
             EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
@@ -127,7 +127,7 @@ namespace CSharpGL
             list.AddRange(items);
             foreach (ILayout<T> item in items)
             {
-                //item.RefreshRelativeTransform();
+                //child.RefreshRelativeTransform();
             }
 
             EventHandler<AddTreeNodeEventArgs<T>> ItemAdded = this.ItemAdded;
@@ -151,7 +151,7 @@ namespace CSharpGL
             foreach (ILayout<T> item in array)
             {
                 item.Parent = null;
-                //item.RefreshRelativeTransform();
+                //child.RefreshRelativeTransform();
             }
 
             EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved = this.ItemRemoved;
@@ -167,8 +167,8 @@ namespace CSharpGL
         /// <summary>
         /// 确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
         /// </summary>
-        /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
-        /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
+        /// <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+        /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 child，则为 true，否则为 false。</returns>
         public bool Contains(ILayout<T> item)
         {
             return list.Contains(item);
@@ -203,15 +203,15 @@ namespace CSharpGL
         /// <summary>
         /// 从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
         /// </summary>
-        /// <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
-        /// <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
+        /// <param name="child">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
+        /// <returns>如果成功移除 child，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
         public bool Remove(ILayout<T> item)
         {
             bool result = list.Remove(item);
             if (result)
             {
                 item.Parent = null;
-                //item.RefreshRelativeTransform();
+                //child.RefreshRelativeTransform();
 
                 EventHandler<RemoveTreeNodeEventArgs<T>> ItemRemoved = this.ItemRemoved;
                 if (ItemRemoved != null)
@@ -251,7 +251,7 @@ namespace CSharpGL
     public class AddTreeNodeEventArgs<T> : EventArgs
     {
         /// <summary>
-        /// newly added item.
+        /// newly added child.
         /// </summary>
         public ILayout<T> NewItem { get; private set; }
 
@@ -280,7 +280,7 @@ namespace CSharpGL
     public class RemoveTreeNodeEventArgs<T> : EventArgs
     {
         /// <summary>
-        /// removed item.
+        /// removed child.
         /// </summary>
         public ILayout<T> RemovedItem { get; private set; }
 

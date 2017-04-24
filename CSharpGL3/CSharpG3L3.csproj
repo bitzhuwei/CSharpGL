@@ -396,6 +396,18 @@
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="Scene\Actions\RenderAction\Snippets\Render_VertexBufferNode.cs" />
+    <Compile Include="Scene\Actions\RenderAction\RenderAction.cs" />
+    <Compile Include="Scene\Actions\RenderAction\RenderActionContext.cs" />
+    <Compile Include="Scene\Snippet.cs" />
+    <Compile Include="Scene\SceneAction.cs" />
+    <Compile Include="Scene\SnippetSearcher.cs" />
+    <Compile Include="Scene\Nodes\GLOneIndexNode.cs" />
+    <Compile Include="Scene\Nodes\GLZeroIndexNode.cs" />
+    <Compile Include="Scene\Nodes\GLIndexNode.cs" />
+    <Compile Include="Scene\Nodes\GLVertexBufferNode.cs" />
+    <Compile Include="Scene\Nodes\GLShapeNode.cs" />
+    <Compile Include="Scene\GLNode.cs" />
     <None Include="Resources\SortingHelper.Order`1.cs.resource" />
     <None Include="Resources\SortingHelper.Comparer`1.cs.resource" />
   </ItemGroup>
@@ -447,7 +459,8 @@
     <EmbeddedResource Include="Resources\TextModel.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scene\" />
+    <Folder Include="Scene\Actions\ReadAction\" />
+    <Folder Include="Scene\Actions\WriteAction\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

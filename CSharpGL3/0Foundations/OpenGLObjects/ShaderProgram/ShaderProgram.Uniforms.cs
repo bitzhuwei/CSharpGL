@@ -60,13 +60,13 @@ namespace CSharpGL
 
         //    bool gotUniform = false;
         //    bool updated = false;
-        //    foreach (UniformVariable item in this.uniformVariables)
+        //    foreach (UniformVariable child in this.uniformVariables)
         //    {
-        //        if (item.VarName == blockName)
+        //        if (child.VarName == blockName)
         //        {
-        //            var variable = item as UniformBlock<T>;
+        //            var variable = child as UniformBlock<T>;
         //            if (variable == null)
-        //            { throw new ArgumentException(string.Format("Wrong type[{0}] for uniform block [{1}] [{2}];", typeof(T), item.GetType().Name, item.VarName)); }
+        //            { throw new ArgumentException(string.Format("Wrong type[{0}] for uniform block [{1}] [{2}];", typeof(T), child.GetType().Name, child.VarName)); }
 
         //            variable.Value = value;
         //            updated = variable.Updated;

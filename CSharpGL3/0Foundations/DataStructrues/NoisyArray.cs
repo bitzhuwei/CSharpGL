@@ -3,7 +3,7 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Invoke ItemUpdated event when item is updated.
+    /// Invoke ItemUpdated event when child is updated.
     /// </summary>
     public class NoisyArray<T> where T : struct, IEquatable<T>
     {
@@ -18,12 +18,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Invoked when a new value is set for an item.
+        /// Invoked when a new value is set for an child.
         /// </summary>
         public event EventHandler<NoisyArrayEventArgs<T>> ItemUpdated;
 
         /// <summary>
-        /// Invoke ItemUpdated event when item is updated.
+        /// Invoke ItemUpdated event when child is updated.
         /// </summary>
         /// <param name="length"></param>
         public NoisyArray(int length)
@@ -37,7 +37,7 @@ namespace CSharpGL
         // Noisy array should not publish(make it `public`) this constructor
         // because otherwise it would allow for modification of elements outside of this NoiseArray.
         /// <summary>
-        /// Invoke ItemUpdated event when item is updated.
+        /// Invoke ItemUpdated event when child is updated.
         /// </summary>
         /// <param name="array"></param>
         internal NoisyArray(T[] array)
@@ -49,7 +49,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Gets or sets item's value.
+        /// Gets or sets child's value.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>

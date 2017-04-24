@@ -119,7 +119,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.ComponentList`2.Insert(System.Int32,`1)">
@@ -127,7 +127,7 @@
             
              </summary>
              <param name="index"></param>
-             <param name="item"></param>
+             <param name="child"></param>
         </member>
         <member name="M:CSharpGL.ComponentList`2.RemoveAt(System.Int32)">
              <summary>
@@ -139,7 +139,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
         </member>
         <member name="M:CSharpGL.ComponentList`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
              <summary>
@@ -156,7 +156,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.ComponentList`2.CopyTo(`1[],System.Int32)">
@@ -170,7 +170,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.ComponentList`2.GetEnumerator">
@@ -237,7 +237,7 @@
         </member>
         <member name="P:CSharpGL.AddComponentEventArgs`1.NewItem">
             <summary>
-            newly added item.
+            newly added child.
             </summary>
         </member>
         <member name="T:CSharpGL.RemoveComponentEventArgs`1">
@@ -260,7 +260,7 @@
         </member>
         <member name="P:CSharpGL.RemoveComponentEventArgs`1.RemovedItem">
             <summary>
-            removed item.
+            removed child.
             </summary>
         </member>
         <member name="T:CSharpGL.FullDictionary`2">
@@ -316,7 +316,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
         </member>
         <member name="M:CSharpGL.FullDictionary`2.Clear">
              <summary>
@@ -327,7 +327,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.FullDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
@@ -341,7 +341,7 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.FullDictionary`2.GetEnumerator">
@@ -468,18 +468,18 @@
         </member>
         <member name="T:CSharpGL.NoisyArray`1">
             <summary>
-            Invoke ItemUpdated event when item is updated.
+            Invoke ItemUpdated event when child is updated.
             </summary>
         </member>
         <member name="M:CSharpGL.NoisyArray`1.#ctor(System.Int32)">
             <summary>
-            Invoke ItemUpdated event when item is updated.
+            Invoke ItemUpdated event when child is updated.
             </summary>
             <param name="length"></param>
         </member>
         <member name="M:CSharpGL.NoisyArray`1.#ctor(`0[])">
             <summary>
-            Invoke ItemUpdated event when item is updated.
+            Invoke ItemUpdated event when child is updated.
             </summary>
             <param name="array"></param>
         </member>
@@ -490,12 +490,12 @@
         </member>
         <member name="E:CSharpGL.NoisyArray`1.ItemUpdated">
             <summary>
-            Invoked when a new value is set for an item.
+            Invoked when a new value is set for an child.
             </summary>
         </member>
         <member name="P:CSharpGL.NoisyArray`1.Item(System.Int32)">
             <summary>
-            Gets or sets item's value.
+            Gets or sets child's value.
             </summary>
             <param name="index"></param>
             <returns></returns>
@@ -4386,49 +4386,49 @@
              <summary>
             
              </summary>
-             <param name="item"></param>
+             <param name="child"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMax(CSharpGL.vec3,CSharpGL.vec3@)">
             <summary>
             update maximum values.
             </summary>
-            <param name="item"></param>
+            <param name="child"></param>
             <param name="currentMax"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMax(CSharpGL.ivec3,CSharpGL.ivec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="item"></param>
+            <param name="child"></param>
             <param name="currentMax"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMax(CSharpGL.uvec3,CSharpGL.uvec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="item"></param>
+            <param name="child"></param>
             <param name="currentMax"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMin(CSharpGL.vec3,CSharpGL.vec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="item"></param>
+            <param name="child"></param>
             <param name="currentMin"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMin(CSharpGL.ivec3,CSharpGL.ivec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="item"></param>
+            <param name="child"></param>
             <param name="currentMin"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMin(CSharpGL.uvec3,CSharpGL.uvec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="item"></param>
+            <param name="child"></param>
             <param name="currentMin"></param>
         </member>
         <member name="T:CSharpGL.BindBufferBaseTarget">
@@ -24239,7 +24239,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.Traverse``1(CSharpGL.ILayout{``0},CSharpGL.TraverseOrder)">
             <summary>
-            traverse every item in the tree node recursively.
+            traverse every child in the tree node recursively.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24248,7 +24248,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.PostorderTraverse``1(CSharpGL.ILayout{``0})">
             <summary>
-            traverse every item in the tree node in post-order.
+            traverse every child in the tree node in post-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24256,7 +24256,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.PreorderTraverse``1(CSharpGL.ILayout{``0})">
             <summary>
-            traverse every item in the tree node in pre-order.
+            traverse every child in the tree node in pre-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24282,15 +24282,15 @@
             <summary>
             搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
             </summary>
-            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
-            <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
+            <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+            <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 child 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.Insert(System.Int32,CSharpGL.ILayout{`0})">
             <summary>
             将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
             </summary>
-            <param name="index">从零开始的索引，应在该位置插入 item。</param>
-            <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
+            <param name="index">从零开始的索引，应在该位置插入 child。</param>
+            <param name="child">要插入的对象。对于引用类型，该值可以为 null。</param>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.RemoveAt(System.Int32)">
             <summary>
@@ -24302,7 +24302,7 @@
             <summary>
             将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
             </summary>
-            <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
+            <param name="child">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ILayout{`0}})">
             <summary>
@@ -24319,8 +24319,8 @@
             <summary>
             确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
             </summary>
-            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
-            <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
+            <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+            <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 child，则为 true，否则为 false。</returns>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.CopyTo(CSharpGL.ILayout{`0}[],System.Int32)">
             <summary>
@@ -24333,8 +24333,8 @@
             <summary>
             从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
             </summary>
-            <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
-            <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
+            <param name="child">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
+            <returns>如果成功移除 child，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.GetEnumerator">
             <summary>
@@ -24350,12 +24350,12 @@
         </member>
         <member name="E:CSharpGL.ILayoutChildren`1.ItemAdded">
             <summary>
-            invoked when an item is added into this list.
+            invoked when an child is added into this list.
             </summary>
         </member>
         <member name="E:CSharpGL.ILayoutChildren`1.ItemRemoved">
             <summary>
-            invoked when an item is removed from this list.
+            invoked when an child is removed from this list.
             </summary>
         </member>
         <member name="P:CSharpGL.ILayoutChildren`1.Item(System.Int32)">
@@ -24394,7 +24394,7 @@
         </member>
         <member name="P:CSharpGL.AddTreeNodeEventArgs`1.NewItem">
             <summary>
-            newly added item.
+            newly added child.
             </summary>
         </member>
         <member name="T:CSharpGL.RemoveTreeNodeEventArgs`1">
@@ -24416,7 +24416,7 @@
         </member>
         <member name="P:CSharpGL.RemoveTreeNodeEventArgs`1.RemovedItem">
             <summary>
-            removed item.
+            removed child.
             </summary>
         </member>
         <member name="T:CSharpGL.TraverseOrder">
@@ -24603,6 +24603,52 @@
             <summary>
             用在IList&lt;<see cref="T:CSharpGL.UniformVariable"/>&gt;类型的属性上。
             </summary>
+        </member>
+        <member name="T:CSharpGL.Snippet">
+            <summary>
+            a group of related OpenGL codes.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Snippet.Apply(CSharpGL.SceneAction,CSharpGL.GLNode)">
+            <summary>
+            Apply a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
+            </summary>
+            <param name="action"></param>
+            <param name="node"></param>
+        </member>
+        <member name="T:CSharpGL.RenderAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpGL.SceneAction">
+            <summary>
+            Action that applys to a scene made of <see cref="T:CSharpGL.GLNode"/>.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.SceneAction.Apply(CSharpGL.GLNode)">
+            <summary>
+            
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:CSharpGL.RenderAction.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RenderAction.Context">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CSharpGL.SnippetSearcher.Find(CSharpGL.SceneAction,CSharpGL.GLNode)">
+            <summary>
+            Find the wanted <see cref="T:CSharpGL.Snippet"/> according to specified <paramref name="action"/> and <paramref name="node"/>.
+            </summary>
+            <param name="action"></param>
+            <param name="node"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

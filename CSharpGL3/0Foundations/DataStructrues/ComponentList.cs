@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="child"></param>
         /// <returns></returns>
         public int IndexOf(TComponent item)
         {
@@ -52,7 +52,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="index"></param>
-        /// <param name="item"></param>
+        /// <param name="child"></param>
         public void Insert(int index, TComponent item)
         {
             item.BindingObject = this.bindingObject;
@@ -98,7 +98,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="child"></param>
         public void Add(TComponent item)
         {
             item.BindingObject = this.bindingObject;
@@ -157,7 +157,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="child"></param>
         /// <returns></returns>
         public bool Contains(TComponent item)
         {
@@ -193,7 +193,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="child"></param>
         /// <returns></returns>
         public bool Remove(TComponent item)
         {
@@ -244,7 +244,7 @@ namespace CSharpGL
     public class AddComponentEventArgs<T> : EventArgs
     {
         /// <summary>
-        /// newly added item.
+        /// newly added child.
         /// </summary>
         public T NewItem { get; private set; }
 
@@ -274,7 +274,7 @@ namespace CSharpGL
     public class RemoveComponentEventArgs<T> : EventArgs
     {
         /// <summary>
-        /// removed item.
+        /// removed child.
         /// </summary>
         public T RemovedItem { get; private set; }
 

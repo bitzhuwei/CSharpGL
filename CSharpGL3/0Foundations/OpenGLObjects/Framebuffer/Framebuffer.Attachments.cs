@@ -212,9 +212,9 @@ namespace CSharpGL
         //    //glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, width, height);
         //    //var complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER);
         //    this.depthBuffer.Resize(OpenGL.GL_DEPTH_ATTACHMENT, width, height);
-        //    faoreach (var item in this.colorBufferList)
+        //    faoreach (var child in this.colorBufferList)
         //    {
-        //        item.Resize(OpenGL.GL_RGBA, width, height);
+        //        child.Resize(OpenGL.GL_RGBA, width, height);
         //    }
         //    this.CheckCompleteness();
         //}
