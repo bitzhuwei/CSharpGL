@@ -4,9 +4,13 @@
     /// Supports layout UI element in an OpenGL canvas.
     /// 实现在OpenGL画布上的UI布局
     /// </summary>
-    public interface ILayout<T> : ITreeNode //where T : ITreeNode
+    public interface ILayout<T>
     {
         //event EventHandler afterLayout;
+
+        ILayout<T> Parent { get; set; }
+
+        ILayoutCHildren<T> Children { get; }
 
         /// <summary>
         /// the edges of the <see cref="GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.

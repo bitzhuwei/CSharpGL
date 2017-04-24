@@ -439,224 +439,6 @@
             
              </summary>
         </member>
-        <member name="T:CSharpGL.TreeNodeChildren">
-            <summary>
-            children in <see cref="T:CSharpGL.ITreeNode"/>.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.TreeNodeChildren.parent">
-            <summary>
-            parent of this list's items.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.#ctor(CSharpGL.ITreeNode)">
-            <summary>
-            children in <see cref="T:CSharpGL.ITreeNode"/>.
-            </summary>
-            <param name="parent"></param>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.IndexOf(CSharpGL.ITreeNode)">
-            <summary>
-            搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
-            </summary>
-            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
-            <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.Insert(System.Int32,CSharpGL.ITreeNode)">
-            <summary>
-            将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
-            </summary>
-            <param name="index">从零开始的索引，应在该位置插入 item。</param>
-            <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.RemoveAt(System.Int32)">
-            <summary>
-            移除 System.Collections.Generic.List&lt;T&gt; 的指定索引处的元素。
-            </summary>
-            <param name="index">要移除的元素的从零开始的索引。</param>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.Add(CSharpGL.ITreeNode)">
-            <summary>
-            将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
-            </summary>
-            <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ITreeNode})">
-            <summary>
-            将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
-            </summary>
-            <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.Clear">
-            <summary>
-            从 System.Collections.Generic.List&lt;T&gt;中移除所有元素。
-            </summary>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.Contains(CSharpGL.ITreeNode)">
-            <summary>
-            确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
-            </summary>
-            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
-            <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.CopyTo(CSharpGL.ITreeNode[],System.Int32)">
-            <summary>
-            将整个 System.Collections.Generic.List&lt;T&gt; 复制到兼容的一维数组中，从目标数组的指定索引位置开始放置。
-            </summary>
-            <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
-            <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.Remove(CSharpGL.ITreeNode)">
-            <summary>
-            从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
-            </summary>
-            <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
-            <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.GetEnumerator">
-            <summary>
-            返回循环访问 System.Collections.Generic.List&lt;T&gt; 的枚举数。
-            </summary>
-            <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
-        </member>
-        <member name="M:CSharpGL.TreeNodeChildren.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="E:CSharpGL.TreeNodeChildren.ItemAdded">
-            <summary>
-            invoked when an item is added into this list.
-            </summary>
-        </member>
-        <member name="E:CSharpGL.TreeNodeChildren.ItemRemoved">
-            <summary>
-            invoked when an item is removed from this list.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.TreeNodeChildren.Item(System.Int32)">
-            <summary>
-            获取或设置指定索引处的元素。
-            </summary>
-            <param name="index">要获得或设置的元素从零开始的索引。</param>
-            <returns>指定索引处的元素。</returns>
-        </member>
-        <member name="P:CSharpGL.TreeNodeChildren.Count">
-            <summary>
-            获取 System.Collections.Generic.List&lt;T&gt; 中实际包含的元素数。
-            </summary>
-        </member>
-        <member name="P:CSharpGL.TreeNodeChildren.IsReadOnly">
-            <summary>
-            获取一个值，该值指示 System.Collections.Generic.ICollection&lt;T&gt; 是否为只读。
-            </summary>
-        </member>
-        <member name="T:CSharpGL.AddTreeNodeEventArgs">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.AddTreeNodeEventArgs.#ctor(CSharpGL.ITreeNode)">
-             <summary>
-            
-             </summary>
-             <param name="newItem"></param>
-        </member>
-        <member name="M:CSharpGL.AddTreeNodeEventArgs.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="P:CSharpGL.AddTreeNodeEventArgs.NewItem">
-            <summary>
-            newly added item.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.RemoveTreeNodeEventArgs">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.RemoveTreeNodeEventArgs.#ctor(CSharpGL.ITreeNode)">
-             <summary>
-            
-             </summary>
-             <param name="removedItem"></param>
-        </member>
-        <member name="M:CSharpGL.RemoveTreeNodeEventArgs.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="P:CSharpGL.RemoveTreeNodeEventArgs.RemovedItem">
-            <summary>
-            removed item.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.ITreeNode">
-            <summary>
-            通用的树结点。
-            <para>General tree node.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.ITreeNode.Parent">
-            <summary>
-            parent node.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.ITreeNode.Children">
-            <summary>
-            children nodes.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.ITreeNodeHelper">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.Traverse(CSharpGL.ITreeNode,CSharpGL.TraverseOrder)">
-            <summary>
-            traverse every item in the tree node recursively.
-            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
-            </summary>
-            <param name="treeNode"></param>
-            <param name="order"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.PostorderTraverse(CSharpGL.ITreeNode)">
-            <summary>
-            traverse every item in the tree node in post-order.
-            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
-            </summary>
-            <param name="treeNode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.PreorderTraverse(CSharpGL.ITreeNode)">
-            <summary>
-            traverse every item in the tree node in pre-order.
-            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
-            </summary>
-            <param name="treeNode"></param>
-            <returns></returns>
-        </member>
-        <member name="T:CSharpGL.TraverseOrder">
-            <summary>
-            traverse order.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.TraverseOrder.Pre">
-            <summary>
-            pre-order traverse.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.TraverseOrder.Post">
-            <summary>
-            post-order traverse.
-            </summary>
-        </member>
         <member name="T:CSharpGL.MarkableStruct`1">
             <summary>
             Keeps a struct value and records the latest time when it's udpated.
@@ -23085,7 +22867,7 @@
             
              </summary>
         </member>
-        <member name="M:CSharpGL.DumpTreeToText.DumpToText(CSharpGL.ITreeNode)">
+        <member name="M:CSharpGL.DumpTreeToText.DumpToText``1(CSharpGL.ILayout{``0})">
             <summary>
             像DOS的树状展示文件夹结构一样展示树结构。
             Display tree similar to 'tree' command in DOS.
@@ -24441,6 +24223,208 @@
             </summary>
             <param name="currentNode"></param>
             <param name="parent"></param>
+        </member>
+        <member name="T:CSharpGL.ILayoutCHildren`1">
+            <summary>
+            children in <see cref="T:CSharpGL.ILayoutCHildren`1"/>.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.ILayoutCHildren`1.parent">
+            <summary>
+            parent of this list's items.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.#ctor(CSharpGL.ILayout{`0})">
+            <summary>
+            children in <see cref="!:ITreeNode"/>.
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.IndexOf(CSharpGL.ILayout{`0})">
+            <summary>
+            搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
+            </summary>
+            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+            <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.Insert(System.Int32,CSharpGL.ILayout{`0})">
+            <summary>
+            将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
+            </summary>
+            <param name="index">从零开始的索引，应在该位置插入 item。</param>
+            <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.RemoveAt(System.Int32)">
+            <summary>
+            移除 System.Collections.Generic.List&lt;T&gt; 的指定索引处的元素。
+            </summary>
+            <param name="index">要移除的元素的从零开始的索引。</param>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.Add(CSharpGL.ILayout{`0})">
+            <summary>
+            将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
+            </summary>
+            <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ILayout{`0}})">
+            <summary>
+            将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
+            </summary>
+            <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.Clear">
+            <summary>
+            从 System.Collections.Generic.List&lt;T&gt;中移除所有元素。
+            </summary>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.Contains(CSharpGL.ILayout{`0})">
+            <summary>
+            确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
+            </summary>
+            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+            <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.CopyTo(CSharpGL.ILayout{`0}[],System.Int32)">
+            <summary>
+            将整个 System.Collections.Generic.List&lt;T&gt; 复制到兼容的一维数组中，从目标数组的指定索引位置开始放置。
+            </summary>
+            <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
+            <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.Remove(CSharpGL.ILayout{`0})">
+            <summary>
+            从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
+            </summary>
+            <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
+            <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.GetEnumerator">
+            <summary>
+            返回循环访问 System.Collections.Generic.List&lt;T&gt; 的枚举数。
+            </summary>
+            <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
+        </member>
+        <member name="M:CSharpGL.ILayoutCHildren`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="E:CSharpGL.ILayoutCHildren`1.ItemAdded">
+            <summary>
+            invoked when an item is added into this list.
+            </summary>
+        </member>
+        <member name="E:CSharpGL.ILayoutCHildren`1.ItemRemoved">
+            <summary>
+            invoked when an item is removed from this list.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ILayoutCHildren`1.Item(System.Int32)">
+            <summary>
+            获取或设置指定索引处的元素。
+            </summary>
+            <param name="index">要获得或设置的元素从零开始的索引。</param>
+            <returns>指定索引处的元素。</returns>
+        </member>
+        <member name="P:CSharpGL.ILayoutCHildren`1.Count">
+            <summary>
+            获取 System.Collections.Generic.List&lt;T&gt; 中实际包含的元素数。
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ILayoutCHildren`1.IsReadOnly">
+            <summary>
+            获取一个值，该值指示 System.Collections.Generic.ICollection&lt;T&gt; 是否为只读。
+            </summary>
+        </member>
+        <member name="T:CSharpGL.AddTreeNodeEventArgs`1">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.AddTreeNodeEventArgs`1.#ctor(CSharpGL.ILayout{`0})">
+             <summary>
+            
+             </summary>
+             <param name="newItem"></param>
+        </member>
+        <member name="M:CSharpGL.AddTreeNodeEventArgs`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.AddTreeNodeEventArgs`1.NewItem">
+            <summary>
+            newly added item.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.RemoveTreeNodeEventArgs`1">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.RemoveTreeNodeEventArgs`1.#ctor(CSharpGL.ILayout{`0})">
+             <summary>
+            
+             </summary>
+             <param name="removedItem"></param>
+        </member>
+        <member name="M:CSharpGL.RemoveTreeNodeEventArgs`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:CSharpGL.RemoveTreeNodeEventArgs`1.RemovedItem">
+            <summary>
+            removed item.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.ITreeNodeHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSharpGL.ITreeNodeHelper.Traverse``1(CSharpGL.ILayout{``0},CSharpGL.TraverseOrder)">
+            <summary>
+            traverse every item in the tree node recursively.
+            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
+            </summary>
+            <param name="treeNode"></param>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ITreeNodeHelper.PostorderTraverse``1(CSharpGL.ILayout{``0})">
+            <summary>
+            traverse every item in the tree node in post-order.
+            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
+            </summary>
+            <param name="treeNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ITreeNodeHelper.PreorderTraverse``1(CSharpGL.ILayout{``0})">
+            <summary>
+            traverse every item in the tree node in pre-order.
+            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
+            </summary>
+            <param name="treeNode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CSharpGL.TraverseOrder">
+            <summary>
+            traverse order.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.TraverseOrder.Pre">
+            <summary>
+            pre-order traverse.
+            </summary>
+        </member>
+        <member name="F:CSharpGL.TraverseOrder.Post">
+            <summary>
+            post-order traverse.
+            </summary>
         </member>
         <member name="T:CSharpGL.StructTypeConverter`1">
             <summary>

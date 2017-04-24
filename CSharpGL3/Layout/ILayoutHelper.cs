@@ -68,7 +68,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="currentNode"></param>
         /// <param name="parent"></param>
-        private static void NonRootNodeLayout<T>(ILayout<T> currentNode, ILayout<T> parent) where T : ITreeNode
+        private static void NonRootNodeLayout<T>(ILayout<T> currentNode, ILayout<T> parent)
         {
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)

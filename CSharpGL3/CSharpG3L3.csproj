@@ -48,9 +48,6 @@
     <Compile Include="0Foundations\DataStructrues\BoundingBox\IBoundingBoxHelper.cs" />
     <Compile Include="0Foundations\DataStructrues\ComponentList.cs" />
     <Compile Include="0Foundations\DataStructrues\FullDictionary.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.Children.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.cs" />
-    <Compile Include="0Foundations\DataStructrues\ITreeNode\ITreeNode.yield.cs" />
     <Compile Include="0Foundations\DataStructrues\MarkableStruct.cs" />
     <Compile Include="0Foundations\DataStructrues\NoisyArray.cs" />
     <Compile Include="0Foundations\DataStructrues\Pixel.cs" />
@@ -351,6 +348,12 @@
     <Compile Include="Layout\ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
     <Compile Include="Layout\ILayoutHelper.cs" />
+    <Compile Include="Layout\ILayoutCHildren.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\ITreeNode.yield.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="0Foundations\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
@@ -442,6 +445,9 @@
     <EmbeddedResource Include="Resources\SquareRenderer.vert" />
     <EmbeddedResource Include="Resources\TextModel.frag" />
     <EmbeddedResource Include="Resources\TextModel.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scene\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

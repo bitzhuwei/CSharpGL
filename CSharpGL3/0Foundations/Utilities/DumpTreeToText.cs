@@ -14,7 +14,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="chunk"></param>
         /// <returns></returns>
-        public static string DumpToText(this ITreeNode chunk)
+        public static string DumpToText<T>(this ILayout<T> chunk)
         {
             StringBuilder builder = new StringBuilder();
             int tabSpace = 0;
@@ -22,18 +22,18 @@ namespace CSharpGL
             return builder.ToString();
         }
 
-        private static void GetBuilder(StringBuilder builder, ITreeNode tree, ref int tabSpace)
+        private static void GetBuilder<T>(StringBuilder builder, ILayout<T> tree, ref int tabSpace)
         {
             builder.AppendLine(GetPreMarks(tree) + tree.ToString());
             tabSpace++;
-            foreach (ITreeNode item in tree.Children)
+            foreach (ILayout<T> item in tree.Children)
             {
                 GetBuilder(builder, item, ref tabSpace);
             }
             tabSpace--;
         }
 
-        private static string GetPreMarks(ITreeNode tree)
+        private static string GetPreMarks<T>(ILayout<T> tree)
         {
             var parent = tree.Parent;
             if (parent == null) return string.Empty;
