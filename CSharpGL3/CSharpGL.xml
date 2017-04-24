@@ -24604,14 +24604,40 @@
             用在IList&lt;<see cref="T:CSharpGL.UniformVariable"/>&gt;类型的属性上。
             </summary>
         </member>
+        <member name="T:CSharpGL.Render_VertexBufferNode">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:CSharpGL.Snippet">
             <summary>
             a group of related OpenGL codes.
             </summary>
         </member>
-        <member name="M:CSharpGL.Snippet.Apply(CSharpGL.SceneAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Snippet.BeforeChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
             <summary>
-            Apply a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
+             a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
+            </summary>
+            <param name="action"></param>
+            <param name="node"></param>
+        </member>
+        <member name="M:CSharpGL.Snippet.AfterChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+            <summary>
+            BeforeChildren a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
+            </summary>
+            <param name="action"></param>
+            <param name="node"></param>
+        </member>
+        <member name="M:CSharpGL.Render_VertexBufferNode.BeforeChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="node"></param>
+        </member>
+        <member name="M:CSharpGL.Render_VertexBufferNode.AfterChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+            <summary>
+            
             </summary>
             <param name="action"></param>
             <param name="node"></param>

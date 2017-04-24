@@ -19,7 +19,10 @@ namespace CSharpGL
         public void Apply(GLNode node)
         {
             Snippet snippet = SnippetSearcher.Find(this, node);
-            snippet.Apply(this, node);
+            if (snippet != null)
+            {
+                snippet.BeforeChildren(this, node);
+            }
 
             foreach (var child in node.Children)
             {

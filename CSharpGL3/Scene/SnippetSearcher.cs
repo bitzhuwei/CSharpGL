@@ -41,13 +41,20 @@ namespace CSharpGL
 
         private static Snippet CreateInstance(SceneAction action, GLNode node)
         {
+            Snippet result = null;
             // TODO: This forces Snippet's class name's pattern.
             string prefix = action.ThisTypeCache.Name.Substring(0, action.ThisTypeCache.Name.Length - "Action".Length);
             string postfix = node.ThisTypeCache.Name.Substring(2);
-            Type type = Type.GetType(prefix + "_" + postfix);
-            var snippet = Activator.CreateInstance(type) as Snippet;
+            try
+            {
+                Type type = Type.GetType(prefix + "_" + postfix);
+                result = Activator.CreateInstance(type) as Snippet;
+            }
+            catch (Exception)
+            {
+            }
 
-            return snippet;
+            return result;
         }
     }
 }
