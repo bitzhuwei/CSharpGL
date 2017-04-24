@@ -30,7 +30,7 @@ namespace CSharpGL
         private readonly ITreeNode parent;
 
         /// <summary>
-        /// children in <see cref="ITreeNode&lt;T&gt;"/>.
+        /// children in <see cref="ITreeNode"/>.
         /// </summary>
         /// <param name="parent"></param>
         public TreeNodeChildren(ITreeNode parent)
@@ -248,7 +248,6 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class AddTreeNodeEventArgs : EventArgs
     {
         /// <summary>
@@ -278,7 +277,6 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class RemoveTreeNodeEventArgs : EventArgs
     {
         /// <summary>

@@ -8,8 +8,6 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class OneIndexBuffer : IndexBuffer
     {
-        private static OpenGL.glDrawElementsInstanced glDrawElementsInstanced;
-
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>

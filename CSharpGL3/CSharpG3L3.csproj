@@ -323,11 +323,6 @@
     <Compile Include="0Foundations\Win32API\WindowStylesEx.cs" />
     <Compile Include="0Foundations\Win32API\WNDCLASSEX.cs" />
     <Compile Include="0Foundations\Win32API\WndProc.cs" />
-    <Compile Include="Canvas\BoundedClockRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockCircleRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockMarkRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockPinRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="Canvas\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -336,7 +331,6 @@
     </Compile>
     <Compile Include="Canvas\GLCanvasHelper.cs" />
     <Compile Include="Canvas\ICanvas.cs" />
-    <Compile Include="Canvas\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Canvas\RenderContexts\DIBSection.cs" />
     <Compile Include="Canvas\RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="Canvas\RenderContexts\FBORenderContext.cs" />
@@ -399,15 +393,6 @@
     <Compile Include="PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\UpdateScene.cs" />
-    <Compile Include="Rendering\IModelSpace.cs" />
-    <Compile Include="Rendering\IRenderable.cs" />
-    <Compile Include="Rendering\RendererBase.cs" />
-    <Compile Include="Rendering\RendererBase.IDisposable.cs" />
-    <Compile Include="Rendering\RendererBase.IModelSpace.cs" />
-    <Compile Include="Rendering\RendererBase.IModelSpace.User.cs" />
-    <Compile Include="Rendering\RendererBase.IRenderable.cs" />
-    <Compile Include="Rendering\ShaderCode.cs" />
     <EmbeddedResource Include="Resources\SortingHelper.Order`1.cs" />
     <EmbeddedResource Include="Resources\SortingHelper.Comparer`1.cs" />
   </ItemGroup>
@@ -439,7 +424,6 @@
     <Content Include="PropertyGrid\TypeConverters\readme.md" />
     <Content Include="PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="readme.md" />
-    <Content Include="Rendering\readme.md" />
     <None Include="Resources\!!!.md" />
     <EmbeddedResource Include="Resources\BoundingBox.frag" />
     <EmbeddedResource Include="Resources\BoundingBox.vert" />

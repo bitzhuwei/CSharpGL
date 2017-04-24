@@ -8,8 +8,6 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class ZeroIndexBuffer : IndexBuffer
     {
-        private static OpenGL.glDrawArraysInstanced glDrawArraysInstanced;
-
         /// <summary>
         /// Invalid for <see cref="ZeroIndexBuffer"/>.
         /// </summary>

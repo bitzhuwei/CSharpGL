@@ -451,7 +451,7 @@
         </member>
         <member name="M:CSharpGL.TreeNodeChildren.#ctor(CSharpGL.ITreeNode)">
             <summary>
-            children in <see cref="!:ITreeNode&lt;T&gt;"/>.
+            children in <see cref="T:CSharpGL.ITreeNode"/>.
             </summary>
             <param name="parent"></param>
         </member>
@@ -556,7 +556,6 @@
              <summary>
             
              </summary>
-             <typeparam name="T"></typeparam>
         </member>
         <member name="M:CSharpGL.AddTreeNodeEventArgs.#ctor(CSharpGL.ITreeNode)">
              <summary>
@@ -579,7 +578,6 @@
              <summary>
             
              </summary>
-             <typeparam name="T"></typeparam>
         </member>
         <member name="M:CSharpGL.RemoveTreeNodeEventArgs.#ctor(CSharpGL.ITreeNode)">
              <summary>
@@ -624,7 +622,6 @@
             traverse every item in the tree node recursively.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="treeNode"></param>
             <param name="order"></param>
             <returns></returns>
@@ -634,7 +631,6 @@
             traverse every item in the tree node in post-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="treeNode"></param>
             <returns></returns>
         </member>
@@ -643,7 +639,6 @@
             traverse every item in the tree node in pre-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="treeNode"></param>
             <returns></returns>
         </member>
@@ -23697,181 +23692,6 @@
             <param name="lParam"></param>
             <returns></returns>
         </member>
-        <member name="T:CSharpGL.BoundedClockRenderer">
-            <summary>
-            </summary>
-        </member>
-        <member name="T:CSharpGL.RendererBase">
-            <summary>
-            用OpenGL初始化和渲染一个模型。
-            <para>Initialize and render something with OpenGL.</para>
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IRenderable">
-            <summary>
-            Render something.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.IRenderable.Render(CSharpGL.RenderEventArgs)">
-            <summary>
-            Render something.
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="T:CSharpGL.IModelSpace">
-            <summary>
-            gets model's original size.
-            transform a model from model's sapce to world's space.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.WorldPosition">
-            <summary>
-            Position in world space.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.RotationAngleDegree">
-            <summary>
-            Rotation angle in degree.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.RotationAxis">
-            <summary>
-            Rotation axis.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.Scale">
-            <summary>
-            Scale factor.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.IModelSpace.ModelSize">
-            <summary>
-            Size in X/Y/Z axis.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.RendererBase.strModelSpace">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.RendererBase.#ctor">
-            <summary>
-            用OpenGL初始化和渲染一个模型。
-            <para>Initialize and render something with OpenGL.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Finalize">
-            <summary>
-            Destruct instance of the class.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.RendererBase.disposedValue">
-            <summary>
-            Backing field to track whether Dispose has been called.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Dispose(System.Boolean)">
-            <summary>
-            Dispose managed and unmanaged resources of this instance.
-            </summary>
-            <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DisposeManagedResources">
-            <summary>
-            释放.net托管资源。
-            <para>Dispose reources managed by .NET.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DisposeUnmanagedResources">
-            <summary>
-            释放.net非托管资源，例如释放OpenGL相关的资源（Buffer、纹理等）。
-            <para>Dispose resources not managed by .NET(OpenGL buffers, textures, etc.).</para>
-            </summary>
-        </member>
-        <member name="F:CSharpGL.RendererBase.modelMatrixRecord">
-            <summary>
-            records whether modelMatrix is updated.
-            </summary>
-        </member>
-        <member name="F:CSharpGL.RendererBase.modelMatrix">
-            <summary>
-            model matrix that transform this renderer in world space coordinate.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Initialize">
-            <summary>
-            Initialize all stuff related to OpenGL.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DoInitialize">
-            <summary>
-            This method should only be invoked once.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RendererBase.Render(CSharpGL.RenderEventArgs)">
-            <summary>
-            Render something.
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="M:CSharpGL.RendererBase.DoRender(CSharpGL.RenderEventArgs)">
-            <summary>
-            Render something.
-            </summary>
-            <param name="arg"></param>
-        </member>
-        <member name="P:CSharpGL.RendererBase.Enabled">
-            <summary>
-            Render this or not.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.Id">
-            <summary>
-            为便于调试而设置的ID值，没有应用意义。
-            <para>for debugging purpose only.</para>
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.WorldPosition">
-            <summary>
-            Position in world space.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.RotationAngleDegree">
-            <summary>
-            Rotation angle in degree.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.RotationAxis">
-            <summary>
-            Rotation axis.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.Scale">
-            <summary>
-            Scale factor.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.ModelSize">
-            <summary>
-            Length in X/Y/Z axis.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RendererBase.IsInitialized">
-            <summary>
-            Already initialized.
-            </summary>
-        </member>
         <member name="T:CSharpGL.GLCanvas">
             <summary>
             可执行OpenGL渲染的控件。
@@ -24050,44 +23870,6 @@
         <member name="E:CSharpGL.GLCanvas.OpenGLDraw">
             <summary>
             Occurs when OpenGL drawing should be performed.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.LegacyBoundingBoxRenderer">
-            <summary>
-            Specify a cuboid that marks a model's edges.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.LegacyBoundingBoxRenderer.#ctor">
-            <summary>
-            Specify a cuboid that marks a model's edges.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.LegacyBoundingBoxRenderer.#ctor(CSharpGL.vec3,CSharpGL.vec3)">
-            <summary>
-            Specify a cuboid that marks a model's edges.
-            </summary>
-            <param name="min"></param>
-            <param name="max"></param>
-        </member>
-        <member name="M:CSharpGL.LegacyBoundingBoxRenderer.DoInitialize">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.LegacyBoundingBoxRenderer.DoRender(CSharpGL.RenderEventArgs)">
-             <summary>
-            
-             </summary>
-             <param name="arg"></param>
-        </member>
-        <member name="P:CSharpGL.LegacyBoundingBoxRenderer.MaxPosition">
-            <summary>
-            Maximum position of this cuboid.
-            </summary>
-        </member>
-        <member name="P:CSharpGL.LegacyBoundingBoxRenderer.MinPosition">
-            <summary>
-            Minimum position of this cuboid.
             </summary>
         </member>
         <member name="T:CSharpGL.DIBSection">
@@ -24829,132 +24611,6 @@
             <summary>
             用在IList&lt;<see cref="T:CSharpGL.UniformVariable"/>&gt;类型的属性上。
             </summary>
-        </member>
-        <member name="T:CSharpGL.UpdateScene">
-            <summary>
-            update and render the scene that contains specified <see cref="!:SceneObject"/>.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.IModelSpaceHelper">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.IModelSpaceHelper.GetMaxMinPosition(CSharpGL.IModelSpace,CSharpGL.vec3@,CSharpGL.vec3@)">
-            <summary>
-            Gets max and min position of the AABB box that wraps specified <paramref name="model"/>.
-            </summary>
-            <param name="model"></param>
-            <param name="maxPosition"></param>
-            <param name="minPosition"></param>
-        </member>
-        <member name="M:CSharpGL.IModelSpaceHelper.CopyModelSpaceStateFrom(CSharpGL.IModelSpace,CSharpGL.IModelSpace)">
-            <summary>
-            Copy <see cref="T:CSharpGL.IModelSpace"/> state from specified <paramref name="source"/>.
-            </summary>
-            <param name="dest"></param>
-            <param name="source"></param>
-        </member>
-        <member name="M:CSharpGL.IModelSpaceHelper.GetModelMatrix(CSharpGL.IModelSpace)">
-            <summary>
-            Get model matrix.
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.IModelSpaceHelper.Rotate(CSharpGL.IModelSpace,System.Single,CSharpGL.vec3)">
-            <summary>
-            Rotate this model based on all previous rotation actions.
-            Thus all rotations will take part in model's rotation result.
-            <para>在目前的旋转状态下继续旋转一次，即所有的旋转操作都会（按照发生顺序）生效。</para>
-            </summary>
-            <param name="model"></param>
-            <param name="angleDegree">Angle in Degree.</param>
-            <param name="axis"></param>
-        </member>
-        <member name="M:CSharpGL.IModelSpaceHelper.GetBoundingBox(CSharpGL.IModelSpace)">
-             <summary>
-            
-             </summary>
-             <param name="model"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.IModelSpaceHelper.LegacyTransform(CSharpGL.IModelSpace)">
-            <summary>
-            Run legacy model transform.(from model space to world space)
-            </summary>
-            <param name="model"></param>
-        </member>
-        <member name="T:CSharpGL.RenderEventArgs">
-            <summary>
-            Render event argument.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RenderEventArgs.#ctor(System.Drawing.Rectangle)">
-            <summary>
-            Initializes a new instance of the <see cref="T:CSharpGL.RenderEventArgs"/> class.
-            </summary>
-            <param name="canvasRect"></param>
-        </member>
-        <member name="P:CSharpGL.RenderEventArgs.CanvasRect">
-            <summary>
-            Gets canvas's rectangle.
-            </summary>
-        </member>
-        <member name="T:CSharpGL.ShaderCode">
-            <summary>
-            某种类型的shader代码。
-            <para>Some type of shader code.</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.ShaderCode.#ctor(System.String,CSharpGL.ShaderType)">
-            <summary>
-            某种类型的shader代码。
-            <para>Some type of shader code.</para>
-            </summary>
-            <param name="sourceCode"></param>
-            <param name="shaderType"></param>
-        </member>
-        <member name="M:CSharpGL.ShaderCode.ToString">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderCode.CreateShader">
-            <summary>
-            Create OpenGL shader object.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:CSharpGL.ShaderCode.SourceCode">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:CSharpGL.ShaderCode.ShaderType">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="T:CSharpGL.ShaderCodesHelper">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.ShaderCodesHelper.CreateProgram(CSharpGL.ShaderCode)">
-            <summary>
-            Creates a shader program object by a single shader.
-            </summary>
-            <param name="shaderCode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ShaderCodesHelper.CreateProgram(CSharpGL.ShaderCode[])">
-            <summary>
-            Creates a shader program by multiple shaders.
-            </summary>
-            <param name="shaderCodes"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>
