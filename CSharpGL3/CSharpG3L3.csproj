@@ -393,8 +393,8 @@
     <Compile Include="PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <EmbeddedResource Include="Resources\SortingHelper.Order`1.cs" />
-    <EmbeddedResource Include="Resources\SortingHelper.Comparer`1.cs" />
+    <None Include="Resources\SortingHelper.Order`1.cs.resource" />
+    <None Include="Resources\SortingHelper.Comparer`1.cs.resource" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="0Foundations\OpenGLAPI\Enumerations\DrawMode.png" />

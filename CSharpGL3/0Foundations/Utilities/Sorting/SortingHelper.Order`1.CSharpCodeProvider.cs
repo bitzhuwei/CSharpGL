@@ -45,7 +45,7 @@ namespace CSharpGL
             MethodInfo method;
             if (!icomparableDict.TryGetValue(type, out method))
             {
-                string order = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Order`1.cs");
+                string order = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Order`1.cs.resource");
                 order = order.Replace("TemplateStructType", type.FullName);
                 var codeProvider = new CSharpCodeProvider();
                 var option = new CompilerParameters();

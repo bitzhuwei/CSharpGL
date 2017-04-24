@@ -55,7 +55,7 @@ namespace CSharpGL
             MethodInfo method;
             if (!outerComparerDict.TryGetValue(type, out method))
             {
-                string comparer = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Comparer`1.cs");
+                string comparer = ManifestResourceLoader.LoadTextFile(@"Resources\SortingHelper.Comparer`1.cs.resource");
                 comparer = comparer.Replace("TemplateStructType", type.FullName);
                 var codeProvider = new CSharpCodeProvider();
                 var option = new CompilerParameters();
