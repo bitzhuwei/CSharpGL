@@ -71,7 +71,7 @@
     <Compile Include="0Foundations\Maths\GLSL\dvec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec3.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec4.cs" />
-    <Compile Include="0Foundations\Maths\GLSL\ILoadFromString.cs" />
+    <Compile Include="0Foundations\PropertyGrid\TypeConverters\ILoadFromString.cs" />
     <Compile Include="0Foundations\Maths\GLSL\ivec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\ivec3.cs" />
     <Compile Include="0Foundations\Maths\GLSL\ivec4.cs" />
@@ -352,47 +352,47 @@
     <Compile Include="Layout\ILayoutEvent.cs" />
     <Compile Include="Layout\ILayoutHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
+    <Compile Include="0Foundations\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
       <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
       <DependentUpon>FormIndexBufferBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormSelectType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
       <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IListEditor.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
+    <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <None Include="Resources\SortingHelper.Order`1.cs.resource" />
     <None Include="Resources\SortingHelper.Comparer`1.cs.resource" />
   </ItemGroup>
@@ -421,8 +421,8 @@
     <None Include="Canvas\readme.md" />
     <Content Include="Canvas\RenderContexts\readme.md" />
     <Content Include="FontTexture\readme.md" />
-    <Content Include="PropertyGrid\TypeConverters\readme.md" />
-    <Content Include="PropertyGrid\UITypeEditors\readme.md" />
+    <Content Include="0Foundations\PropertyGrid\TypeConverters\readme.md" />
+    <Content Include="0Foundations\PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="readme.md" />
     <None Include="Resources\!!!.md" />
     <EmbeddedResource Include="Resources\BoundingBox.frag" />
