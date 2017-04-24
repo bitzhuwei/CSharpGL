@@ -7,10 +7,10 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// children in <see cref="ILayoutCHildren&lt;T&gt;"/>.
+    /// children in <see cref="ILayoutChildren&lt;T&gt;"/>.
     /// </summary>
-    //[Editor(typeof(IListEditor<ILayoutCHildren<T>>), typeof(UITypeEditor))]
-    public class ILayoutCHildren<T> : IList<ILayout<T>>
+    //[Editor(typeof(IListEditor<ILayoutChildren<T>>), typeof(UITypeEditor))]
+    public class ILayoutChildren<T> : IList<ILayout<T>>
     {
         /// <summary>
         /// invoked when an item is added into this list.
@@ -33,7 +33,7 @@ namespace CSharpGL
         /// children in <see cref="ITreeNode"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public ILayoutCHildren(ILayout<T> parent)
+        public ILayoutChildren(ILayout<T> parent)
         {
             Debug.Assert(parent != null);
 

@@ -348,7 +348,7 @@
     <Compile Include="Layout\ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
     <Compile Include="Layout\ILayout.Layout.cs" />
-    <Compile Include="Layout\ILayoutCHildren.cs">
+    <Compile Include="Layout\ILayoutChildren.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Layout\ILayout.Traverse.cs">

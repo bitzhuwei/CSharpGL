@@ -16,7 +16,7 @@
         /// <summary>
         /// 
         /// </summary>
-        ILayoutCHildren<T> Children { get; }
+        ILayoutChildren<T> Children { get; }
 
         /// <summary>
         /// the edges of the <see cref="GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
