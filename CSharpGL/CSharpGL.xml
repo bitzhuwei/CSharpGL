@@ -18662,11 +18662,6 @@
             <param name="item"></param>
             <param name="currentMin"></param>
         </member>
-        <member name="T:CSharpGL.OctreeHelper">
-             <summary>
-            
-             </summary>
-        </member>
         <member name="T:CSharpGL.ClearBufferMask">
             <summary>
             Used in GL.BlitFramebuffer, GL.Clear and 1 other function

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL", "CSharpGL\CSharp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Font2Texture", "Demos\Font2Texture\Font2Texture.csproj", "{3568C457-2856-4887-A68D-96D875F37D4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpG3L3", "CSharpGL3\CSharpG3L3.csproj", "{8E03B6B9-834C-47B9-8BA0-91A65C80EF27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{3568C457-2856-4887-A68D-96D875F37D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3568C457-2856-4887-A68D-96D875F37D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3568C457-2856-4887-A68D-96D875F37D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E03B6B9-834C-47B9-8BA0-91A65C80EF27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E03B6B9-834C-47B9-8BA0-91A65C80EF27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E03B6B9-834C-47B9-8BA0-91A65C80EF27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E03B6B9-834C-47B9-8BA0-91A65C80EF27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
