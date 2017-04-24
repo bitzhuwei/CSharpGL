@@ -28,6 +28,11 @@ namespace CSharpGL
             {
                 this.Apply(child);
             }
+
+            if (snippet != null)
+            {
+                snippet.AfterChildren(this, node);
+            }
         }
 
     }
