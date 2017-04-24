@@ -24650,5 +24650,15 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="T:CSharpGL.GLIndexNode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.GLNode.Children">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

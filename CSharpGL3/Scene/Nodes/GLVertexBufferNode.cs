@@ -5,7 +5,12 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public abstract class GLVertexBufferNode : GLNode
+    public sealed class GLVertexBufferNode : GLNode
     {
+        private static readonly Type type = typeof(GLVertexBufferNode);
+        internal override Type ThisTypeCache
+        {
+            get { return type; }
+        }
     }
 }

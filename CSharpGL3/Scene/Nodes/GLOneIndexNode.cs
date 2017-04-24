@@ -5,7 +5,12 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public abstract class GLOneIndexNode : GLNode
+    public sealed class GLOneIndexNode : GLIndexNode
     {
+        private static readonly Type type = typeof(GLOneIndexNode);
+        internal override Type ThisTypeCache
+        {
+            get { return type; }
+        }
     }
 }

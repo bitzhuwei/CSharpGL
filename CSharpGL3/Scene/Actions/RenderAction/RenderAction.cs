@@ -8,8 +8,14 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class RenderAction : SceneAction
+    public sealed class RenderAction : SceneAction
     {
+        private static readonly Type type = typeof(RenderAction);
+        internal override Type ThisTypeCache
+        {
+            get { return type; }
+        }
+
         /// <summary>
         /// 
         /// </summary>

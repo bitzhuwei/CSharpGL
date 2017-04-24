@@ -10,6 +10,7 @@ namespace CSharpGL
     /// </summary>
     public abstract class SceneAction
     {
+        internal abstract Type ThisTypeCache { get; }
 
         /// <summary>
         /// 
