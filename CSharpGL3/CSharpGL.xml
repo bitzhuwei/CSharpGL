@@ -24134,6 +24134,16 @@
             实现在OpenGL画布上的UI布局
             </summary>
         </member>
+        <member name="P:CSharpGL.ILayout`1.Parent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.ILayout`1.Children">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:CSharpGL.ILayout`1.Anchor">
             <summary>
             the edges of the <see cref="T:CSharpGL.GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.

@@ -8,8 +8,14 @@
     {
         //event EventHandler afterLayout;
 
+        /// <summary>
+        /// 
+        /// </summary>
         ILayout<T> Parent { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ILayoutCHildren<T> Children { get; }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace CSharpGL
         /// <para>(0, 0)</para>
         /// </summary>
         /// <param name="node"></param>
-        public static void Layout<T>(this ILayout<T> node) where T : ILayout<T>, ILayoutEvent
+        public static void Layout<T>(this ILayout<T> node)
         {
             var layoutEvent = node as ILayoutEvent;
             if (layoutEvent == null)
@@ -42,7 +42,7 @@ namespace CSharpGL
 
             layoutEvent.DoAfterLayout();
 
-            foreach (T item in node.Children)
+            foreach (var item in node.Children)
             {
                 item.Layout();
             }
