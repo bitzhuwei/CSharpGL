@@ -147,7 +147,7 @@ namespace GridViewer
                 gridObj.Children.Add(boxObj);
             }
 
-            foreach (GridBlockProperty gbp in gridProperties)
+            foreach (var gbp in gridProperties)
             {
                 var script = new ScientificModelScript(gridObj, gbp, this.scientificCanvas.ColorPalette);
                 gridObj.Scripts.Add(script);

@@ -129,7 +129,7 @@ namespace CSharpGL.SceneEditor
         private void refreshTreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.treeView1.Nodes.Clear();
-            foreach (SceneObject sceneObject in this.scene.RootObject)
+            foreach (var sceneObject in this.scene.RootObject)
             {
                 var node = new TreeNode(sceneObject.Name);
                 node.Tag = sceneObject;

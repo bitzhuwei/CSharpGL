@@ -120,12 +120,12 @@ namespace CSharpGL
         /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
         public void AddRange(IEnumerable<ITreeNode> items)
         {
-            foreach (ITreeNode item in items)
+            foreach (var item in items)
             {
                 item.Parent = this.parent;
             }
             list.AddRange(items);
-            foreach (ITreeNode item in items)
+            foreach (var item in items)
             {
                 //item.RefreshRelativeTransform();
             }
@@ -133,7 +133,7 @@ namespace CSharpGL
             EventHandler<AddTreeNodeEventArgs> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
             {
-                foreach (ITreeNode item in items)
+                foreach (var item in items)
                 {
                     ItemAdded(this, new AddTreeNodeEventArgs(item));
                 }
@@ -148,7 +148,7 @@ namespace CSharpGL
             ITreeNode[] array = this.list.ToArray();
             this.list.Clear();
 
-            foreach (ITreeNode item in array)
+            foreach (var item in array)
             {
                 item.Parent = null;
                 //item.RefreshRelativeTransform();
@@ -157,7 +157,7 @@ namespace CSharpGL
             EventHandler<RemoveTreeNodeEventArgs> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
             {
-                foreach (ITreeNode item in array)
+                foreach (var item in array)
                 {
                     ItemRemoved(this, new RemoveTreeNodeEventArgs(item));
                 }

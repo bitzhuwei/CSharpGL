@@ -32,7 +32,7 @@ namespace GridViewer
                         break;
                     }
                 }
-                foreach (TreeNode item in current.Nodes)
+                foreach (var item in current.Nodes)
                 {
                     stack.Push(item);
                 }

@@ -141,7 +141,7 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            foreach (ITreeNode item in this.Children)
+            foreach (var item in this.Children)
             {
                 (item as UIRenderer).Initialize();
             }

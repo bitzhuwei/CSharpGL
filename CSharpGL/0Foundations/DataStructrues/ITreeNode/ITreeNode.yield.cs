@@ -20,14 +20,14 @@ namespace CSharpGL
             switch (order)
             {
                 case TraverseOrder.Pre:
-                    foreach (ITreeNode item in PreorderTraverse(treeNode))
+                    foreach (var item in PreorderTraverse(treeNode))
                     {
                         yield return item;
                     }
                     break;
 
                 case TraverseOrder.Post:
-                    foreach (ITreeNode item in PostorderTraverse(treeNode))
+                    foreach (var item in PostorderTraverse(treeNode))
                     {
                         yield return item;
                     }
@@ -53,7 +53,7 @@ namespace CSharpGL
                 {
                     ITreeNode child = treeNode.Children[i];
                     IEnumerable<ITreeNode> enumerable = PostorderTraverse(child);
-                    foreach (ITreeNode item in enumerable)
+                    foreach (var item in enumerable)
                     {
                         yield return item;
                     }
@@ -80,7 +80,7 @@ namespace CSharpGL
                 {
                     ITreeNode child = treeNode.Children[i];
                     IEnumerable<ITreeNode> enumerable = PreorderTraverse(child);
-                    foreach (ITreeNode item in enumerable)
+                    foreach (var item in enumerable)
                     {
                         yield return item;
                     }

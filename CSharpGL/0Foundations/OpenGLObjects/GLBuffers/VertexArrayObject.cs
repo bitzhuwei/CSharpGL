@@ -88,7 +88,7 @@ namespace CSharpGL
             VertexBuffer[] vertexAttributeBuffers = this.VertexAttributeBuffers;
             if (vertexAttributeBuffers != null)
             {
-                foreach (VertexBuffer item in vertexAttributeBuffers)
+                foreach (var item in vertexAttributeBuffers)
                 {
                     item.Standby(shaderProgram);
                 }
