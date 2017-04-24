@@ -24191,6 +24191,9 @@
             <summary>
             layout controls in OpenGL canvas.
             </summary>
+             <summary>
+            
+             </summary>
         </member>
         <member name="F:CSharpGL.ILayoutHelper.leftRightAnchor">
             <summary>
@@ -24223,6 +24226,31 @@
             </summary>
             <param name="currentNode"></param>
             <param name="parent"></param>
+        </member>
+        <member name="M:CSharpGL.ILayoutHelper.Traverse``1(CSharpGL.ILayout{``0},CSharpGL.TraverseOrder)">
+            <summary>
+            traverse every item in the tree node recursively.
+            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
+            </summary>
+            <param name="treeNode"></param>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ILayoutHelper.PostorderTraverse``1(CSharpGL.ILayout{``0})">
+            <summary>
+            traverse every item in the tree node in post-order.
+            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
+            </summary>
+            <param name="treeNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.ILayoutHelper.PreorderTraverse``1(CSharpGL.ILayout{``0})">
+            <summary>
+            traverse every item in the tree node in pre-order.
+            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
+            </summary>
+            <param name="treeNode"></param>
+            <returns></returns>
         </member>
         <member name="T:CSharpGL.ILayoutCHildren`1">
             <summary>
@@ -24380,36 +24408,6 @@
             <summary>
             removed item.
             </summary>
-        </member>
-        <member name="T:CSharpGL.ITreeNodeHelper">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.Traverse``1(CSharpGL.ILayout{``0},CSharpGL.TraverseOrder)">
-            <summary>
-            traverse every item in the tree node recursively.
-            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
-            </summary>
-            <param name="treeNode"></param>
-            <param name="order"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.PostorderTraverse``1(CSharpGL.ILayout{``0})">
-            <summary>
-            traverse every item in the tree node in post-order.
-            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
-            </summary>
-            <param name="treeNode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.ITreeNodeHelper.PreorderTraverse``1(CSharpGL.ILayout{``0})">
-            <summary>
-            traverse every item in the tree node in pre-order.
-            <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
-            </summary>
-            <param name="treeNode"></param>
-            <returns></returns>
         </member>
         <member name="T:CSharpGL.TraverseOrder">
             <summary>

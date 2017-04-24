@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// layout controls in OpenGL canvas.
     /// </summary>
-    public static class ILayoutHelper
+    public static partial class ILayoutHelper
     {
 
         /// <summary>

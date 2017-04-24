@@ -347,11 +347,11 @@
     <Compile Include="FontTexture\IFontTexture.cs" />
     <Compile Include="Layout\ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
-    <Compile Include="Layout\ILayoutHelper.cs" />
+    <Compile Include="Layout\ILayout.Layout.cs" />
     <Compile Include="Layout\ILayoutCHildren.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Layout\ITreeNode.yield.cs">
+    <Compile Include="Layout\ILayout.Traverse.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
