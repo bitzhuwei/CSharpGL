@@ -24614,28 +24614,28 @@
             a group of related OpenGL codes.
             </summary>
         </member>
-        <member name="M:CSharpGL.Snippet.BeforeChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Snippet.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
              a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
             </summary>
             <param name="action"></param>
             <param name="node"></param>
         </member>
-        <member name="M:CSharpGL.Snippet.AfterChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Snippet.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             BeforeChildren a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
             </summary>
             <param name="action"></param>
             <param name="node"></param>
         </member>
-        <member name="M:CSharpGL.Render_VertexBufferNode.BeforeChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Render_VertexBufferNode.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
             <param name="action"></param>
             <param name="node"></param>
         </member>
-        <member name="M:CSharpGL.Render_VertexBufferNode.AfterChildren(CSharpGL.SceneAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Render_VertexBufferNode.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
@@ -24647,12 +24647,12 @@
             
             </summary>
         </member>
-        <member name="T:CSharpGL.SceneAction">
+        <member name="T:CSharpGL.GLAction">
             <summary>
             Action that applys to a scene made of <see cref="T:CSharpGL.GLNode"/>.
             </summary>
         </member>
-        <member name="M:CSharpGL.SceneAction.Apply(CSharpGL.GLNode)">
+        <member name="M:CSharpGL.GLAction.Apply(CSharpGL.GLNode)">
             <summary>
             
             </summary>
@@ -24668,7 +24668,7 @@
             
             </summary>
         </member>
-        <member name="M:CSharpGL.SnippetSearcher.Find(CSharpGL.SceneAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.SnippetSearcher.Find(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             Find the wanted <see cref="T:CSharpGL.Snippet"/> according to specified <paramref name="action"/> and <paramref name="node"/>.
             </summary>

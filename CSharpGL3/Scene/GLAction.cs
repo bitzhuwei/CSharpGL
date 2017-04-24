@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Action that applys to a scene made of <see cref="GLNode"/>.
     /// </summary>
-    public abstract class SceneAction
+    public abstract class GLAction
     {
         internal abstract Type ThisTypeCache { get; }
 

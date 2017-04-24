@@ -16,7 +16,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="action"></param>
         /// <param name="node"></param>
-        public override void BeforeChildren(SceneAction action, GLNode node)
+        public override void BeforeChildren(GLAction action, GLNode node)
         {
             Debug.Assert(action.ThisTypeCache == typeof(RenderAction));
             Debug.Assert(node.ThisTypeCache == typeof(GLVertexBufferNode));
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="action"></param>
         /// <param name="node"></param>
-        public override void AfterChildren(SceneAction action, GLNode node)
+        public override void AfterChildren(GLAction action, GLNode node)
         {
             Debug.Assert(action.ThisTypeCache == typeof(RenderAction));
             Debug.Assert(node.ThisTypeCache == typeof(GLVertexBufferNode));

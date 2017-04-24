@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="action"></param>
         /// <param name="node"></param>
         /// <returns></returns>
-        public static Snippet Find(SceneAction action, GLNode node)
+        public static Snippet Find(GLAction action, GLNode node)
         {
             Dictionary<Type, Snippet> dict = null;
             Snippet snippet = null;
@@ -39,7 +39,7 @@ namespace CSharpGL
             return snippet;
         }
 
-        private static Snippet CreateInstance(SceneAction action, GLNode node)
+        private static Snippet CreateInstance(GLAction action, GLNode node)
         {
             Snippet result = null;
             // TODO: This forces Snippet's class name's pattern.
