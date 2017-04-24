@@ -10,21 +10,6 @@ namespace CSharpGL
     /// </summary>
     public static class ILayoutHelper
     {
-        /// <summary>
-        /// Gets projection matrix for <see cref="ILayout&lt;T&gt;"/> to layout controls in OpenGL canvas.
-        /// </summary>
-        /// <param name="uiRenderer"></param>
-        /// <returns></returns>
-        public static mat4 GetOrthoProjection(this UIRenderer uiRenderer)
-        {
-            float halfWidth = uiRenderer.Size.Width / 2.0f;
-            float halfHeight = uiRenderer.Size.Height / 2.0f;
-            //float halfDepth = Math.Max(halfWidth, halfHeight);
-            //halfDepth = Math.Max(halfDepth, Math.Abs(uiRenderer.zNear));
-            //halfDepth = Math.Max(halfDepth, Math.Abs(uiRenderer.zFar));
-            return glm.ortho(-halfWidth, halfWidth, -halfHeight, halfHeight,
-                uiRenderer.zNear, uiRenderer.zFar);
-        }
 
         /// <summary>
         /// layout controls in OpenGL canvas.

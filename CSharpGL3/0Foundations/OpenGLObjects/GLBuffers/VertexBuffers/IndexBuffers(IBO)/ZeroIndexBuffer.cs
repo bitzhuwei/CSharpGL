@@ -104,40 +104,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="arg"></param>
-        public override void Render(RenderEventArgs arg)
-        {
-            uint mode = 0;
-            if (arg.PickingGeometryType == PickingGeometryType.Point
-                && this.Mode.ToGeometryType() == PickingGeometryType.Line)// picking point from a line
-            {
-                // this maybe render points that should not appear.
-                // so need to select by another picking.
-                mode = (uint)DrawMode.Points;
-            }
-            else
-            {
-                mode = (uint)this.Mode;
-            }
-
-            int primCount = this.PrimCount;
-            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
-            else if (primCount == 1)
-            {
-                OpenGL.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
-            }
-            else
-            {
-                if (glDrawArraysInstanced == null)
-                { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }
-
-                glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <returns></returns>
         public override string ToString()
         {

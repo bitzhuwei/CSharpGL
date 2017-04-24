@@ -7,7 +7,7 @@ namespace CSharpGL
     /// 某种类型的shader代码。
     /// <para>Some type of shader code.</para>
     /// </summary>
-    public class ShaderCode : IShaderProgramProvider
+    public class ShaderCode
     {
         /// <summary>
         /// 某种类型的shader代码。
@@ -52,14 +52,6 @@ namespace CSharpGL
             return shader;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ShaderProgram GetShaderProgram()
-        {
-            return this.CreateProgram();
-        }
     }
 
     /// <summary>

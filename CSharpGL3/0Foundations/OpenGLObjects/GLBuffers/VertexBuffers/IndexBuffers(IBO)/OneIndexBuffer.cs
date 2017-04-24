@@ -63,63 +63,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="arg"></param>
-        public override void Render(RenderEventArgs arg)
-        {
-            int primCount = this.PrimCount;
-            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
-
-            uint mode = 0;
-            IntPtr offset;
-            if (arg.PickingGeometryType == PickingGeometryType.Point
-                && this.Mode.ToGeometryType() == PickingGeometryType.Line)// picking point from a line
-            {
-                // this may render points that should not appear.
-                // so need to select by another picking.
-                mode = (uint)DrawMode.Points;
-            }
-            else
-            {
-                mode = (uint)this.Mode;
-            }
-
-            switch (this.ElementType)
-            {
-                case IndexBufferElementType.UByte:
-                    offset = new IntPtr(this.FirstIndex * sizeof(byte));
-                    break;
-
-                case IndexBufferElementType.UShort:
-                    offset = new IntPtr(this.FirstIndex * sizeof(ushort));
-                    break;
-
-                case IndexBufferElementType.UInt:
-                    offset = new IntPtr(this.FirstIndex * sizeof(uint));
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
-            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            if (primCount == 1)
-            {
-                OpenGL.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
-            }
-            else
-            {
-                if (glDrawElementsInstanced == null)
-                { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
-
-                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
-            }
-            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <returns></returns>
         public override string ToString()
         {

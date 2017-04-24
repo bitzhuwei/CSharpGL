@@ -39,11 +39,6 @@ namespace CSharpGL
 
         private void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            var sceneObject = context.Instance as SceneObject;
-            if (sceneObject != null)
-            {
-                sceneObject.UpdateAndRender();
-            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

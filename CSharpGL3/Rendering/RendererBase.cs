@@ -15,14 +15,6 @@ namespace CSharpGL
         private const string strRendererBase = "RendererBase";
 
         /// <summary>
-        /// binding scene object.
-        /// </summary>
-        [Category(strRendererBase)]
-        [Description("binding object.")]
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public SceneObject BindingSceneObject { get; set; }
-
-        /// <summary>
         /// Render this or not.
         /// </summary>
         [Category(strRendererBase)]
