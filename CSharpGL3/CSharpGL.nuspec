@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/bitzhuwei/CSharpGL</projectUrl>
+    <iconUrl>https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth/earth-64-60.gif?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <summary>CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents. Inspired by SharpGL.</summary>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright © bitzhuwei 2016</copyright>
+    <tags>OpenGL C# GLSL Shader picking 3D WinForms Graphics glm matrix UI Scene PropertyGrid</tags>
+  </metadata>
+</package>
