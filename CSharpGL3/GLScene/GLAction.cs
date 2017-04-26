@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <param name="node"></param>
         public void Apply(GLNode node)
         {
-            Snippet snippet = SnippetSearcher.Find(this, node);
+            GLSnippet snippet = GLSnippetSearcher.Find(this, node);
             if (snippet != null)
             {
                 snippet.BeforeChildren(this, node);

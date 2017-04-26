@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// a group of related OpenGL codes.
     /// </summary>
-    public abstract class Snippet
+    public abstract class GLSnippet
     {
 
         /// <summary>

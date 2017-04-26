@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class Render_VertexBufferNode : Snippet
+    public class Render_VertexBufferNode : GLSnippet
     {
         /// <summary>
         /// 

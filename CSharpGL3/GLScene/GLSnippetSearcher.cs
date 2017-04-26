@@ -5,20 +5,21 @@ using System.Text;
 
 namespace CSharpGL
 {
-    static class SnippetSearcher
+    static class GLSnippetSearcher
     {
-        static Dictionary<Type, Dictionary<Type, Snippet>> dictionary = new Dictionary<Type, Dictionary<Type, Snippet>>();
+        // (action, node) -> snippet.
+        static Dictionary<Type, Dictionary<Type, GLSnippet>> dictionary = new Dictionary<Type, Dictionary<Type, GLSnippet>>();
 
         /// <summary>
-        /// Find the wanted <see cref="Snippet"/> according to specified <paramref name="action"/> and <paramref name="node"/>.
+        /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="action"/> and <paramref name="node"/>.
         /// </summary>
         /// <param name="action"></param>
         /// <param name="node"></param>
         /// <returns></returns>
-        public static Snippet Find(GLAction action, GLNode node)
+        public static GLSnippet Find(GLAction action, GLNode node)
         {
-            Dictionary<Type, Snippet> dict = null;
-            Snippet snippet = null;
+            Dictionary<Type, GLSnippet> dict = null;
+            GLSnippet snippet = null;
 
             if (dictionary.TryGetValue(action.ThisTypeCache, out dict))
             {
@@ -30,7 +31,7 @@ namespace CSharpGL
             }
             else
             {
-                dict = new Dictionary<Type, Snippet>();
+                dict = new Dictionary<Type, GLSnippet>();
                 snippet = CreateInstance(action, node);
                 dict.Add(node.ThisTypeCache, snippet);
                 dictionary.Add(action.ThisTypeCache, dict);
@@ -39,16 +40,16 @@ namespace CSharpGL
             return snippet;
         }
 
-        private static Snippet CreateInstance(GLAction action, GLNode node)
+        private static GLSnippet CreateInstance(GLAction action, GLNode node)
         {
-            Snippet result = null;
-            // TODO: This forces Snippet's class name's pattern.
+            GLSnippet result = null;
+            // TODO: This forces GLSnippet's class name's pattern.
             string prefix = action.ThisTypeCache.Name.Substring(0, action.ThisTypeCache.Name.Length - "Action".Length);
             string postfix = node.ThisTypeCache.Name.Substring(2);
             try
             {
                 Type type = Type.GetType(prefix + "_" + postfix);
-                result = Activator.CreateInstance(type) as Snippet;
+                result = Activator.CreateInstance(type) as GLSnippet;
             }
             catch (Exception)
             {
