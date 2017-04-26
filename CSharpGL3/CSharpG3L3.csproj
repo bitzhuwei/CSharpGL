@@ -68,6 +68,8 @@
     <Compile Include="0Foundations\Maths\GLSL\dvec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec3.cs" />
     <Compile Include="0Foundations\Maths\GLSL\dvec4.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\IShaderProgramProvider.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderCode.cs" />
     <Compile Include="0Foundations\PropertyGrid\TypeConverters\ILoadFromString.cs" />
     <Compile Include="0Foundations\Maths\GLSL\ivec2.cs" />
     <Compile Include="0Foundations\Maths\GLSL\ivec3.cs" />

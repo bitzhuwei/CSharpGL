@@ -23,22 +23,22 @@ namespace CSharpGL
             Debug.Assert(action != null);
             Debug.Assert(node != null);
 
-            throw new NotImplementedException();
+            action.Context.shaderProgram = node.GetShaderProgram();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="glAction"></param>
-        /// <param name="glNode"></param>
-        public override void AfterChildren(GLAction glAction, GLNode glNode)
-        {
-            var action = glAction as RenderAction;
-            var node = glNode as GLProgramNode;
-            Debug.Assert(action != null);
-            Debug.Assert(node != null);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="glAction"></param>
+        ///// <param name="glNode"></param>
+        //public override void AfterChildren(GLAction glAction, GLNode glNode)
+        //{
+        //    var action = glAction as RenderAction;
+        //    var node = glNode as GLProgramNode;
+        //    Debug.Assert(action != null);
+        //    Debug.Assert(node != null);
 
-            throw new NotImplementedException();
-        }
+        //    throw new NotImplementedException();
+        //}
     }
 }
