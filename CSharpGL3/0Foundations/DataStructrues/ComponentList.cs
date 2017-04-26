@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public int IndexOf(TComponent item)
         {
@@ -52,7 +52,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="index"></param>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         public void Insert(int index, TComponent item)
         {
             item.BindingObject = this.bindingObject;
@@ -98,7 +98,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         public void Add(TComponent item)
         {
             item.BindingObject = this.bindingObject;
@@ -157,7 +157,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public bool Contains(TComponent item)
         {
@@ -193,7 +193,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public bool Remove(TComponent item)
         {

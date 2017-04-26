@@ -13,7 +13,7 @@
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public static vec3 Abs(this vec3 item)
         {
@@ -28,7 +28,7 @@
         /// <summary>
         /// update maximum values.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <param name="currentMax"></param>
         public static void UpdateMax(this vec3 item, ref vec3 currentMax)
         {
@@ -40,7 +40,7 @@
         /// <summary>
         /// update minimum values.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <param name="currentMax"></param>
         public static void UpdateMax(this ivec3 item, ref ivec3 currentMax)
         {
@@ -52,7 +52,7 @@
         /// <summary>
         /// update minimum values.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <param name="currentMax"></param>
         public static void UpdateMax(this uvec3 item, ref uvec3 currentMax)
         {
@@ -64,7 +64,7 @@
         /// <summary>
         /// update minimum values.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <param name="currentMin"></param>
         public static void UpdateMin(this vec3 item, ref vec3 currentMin)
         {
@@ -76,7 +76,7 @@
         /// <summary>
         /// update minimum values.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <param name="currentMin"></param>
         public static void UpdateMin(this ivec3 item, ref ivec3 currentMin)
         {
@@ -88,7 +88,7 @@
         /// <summary>
         /// update minimum values.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <param name="currentMin"></param>
         public static void UpdateMin(this uvec3 item, ref uvec3 currentMin)
         {

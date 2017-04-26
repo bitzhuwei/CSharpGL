@@ -12,17 +12,17 @@ namespace CSharpGL
     {
 
         /// <summary>
-        ///  a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
+        ///  a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="node"></param>
-        public virtual void BeforeChildren(GLAction action, GLNode node) { }
+        /// <param name="glAction"></param>
+        /// <param name="glNode"></param>
+        public virtual void BeforeChildren(GLAction glAction, GLNode glNode) { }
 
         /// <summary>
-        /// BeforeChildren a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
+        /// BeforeChildren a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="node"></param>
-        public virtual void AfterChildren(GLAction action, GLNode node) { }
+        /// <param name="glAction"></param>
+        /// <param name="glNode"></param>
+        public virtual void AfterChildren(GLAction glAction, GLNode glNode) { }
     }
 }

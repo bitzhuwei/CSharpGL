@@ -7,45 +7,50 @@ namespace CSharpGL
 {
     static class GLSnippetSearcher
     {
-        // (action, node) -> snippet.
+        // (glAction, glNode) -> snippet.
         static Dictionary<Type, Dictionary<Type, GLSnippet>> dictionary = new Dictionary<Type, Dictionary<Type, GLSnippet>>();
 
         /// <summary>
-        /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="action"/> and <paramref name="node"/>.
+        /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="node"></param>
+        /// <param name="glAction"></param>
+        /// <param name="glNode"></param>
         /// <returns></returns>
-        public static GLSnippet Find(GLAction action, GLNode node)
+        public static GLSnippet Find(GLAction glAction, GLNode glNode)
         {
+            Type actionType = glAction.GetType();
+            Type nodeType = glNode.GetType();
             Dictionary<Type, GLSnippet> dict = null;
             GLSnippet snippet = null;
 
-            if (dictionary.TryGetValue(action.ThisTypeCache, out dict))
+            if (dictionary.TryGetValue(actionType, out dict))
             {
-                if (!dict.TryGetValue(node.ThisTypeCache, out snippet))
+                if (!dict.TryGetValue(nodeType, out snippet))
                 {
-                    snippet = CreateInstance(action, node);
-                    dict.Add(node.ThisTypeCache, snippet);
+                    snippet = CreateInstance(glAction, glNode);
+                    dict.Add(nodeType, snippet);
                 }
             }
             else
             {
                 dict = new Dictionary<Type, GLSnippet>();
-                snippet = CreateInstance(action, node);
-                dict.Add(node.ThisTypeCache, snippet);
-                dictionary.Add(action.ThisTypeCache, dict);
+                snippet = CreateInstance(glAction, glNode);
+                dict.Add(nodeType, snippet);
+                dictionary.Add(actionType, dict);
             }
 
             return snippet;
         }
 
-        private static GLSnippet CreateInstance(GLAction action, GLNode node)
+        private static GLSnippet CreateInstance(GLAction someAction, GLNode glSomeNode)
         {
+            Type actionType = someAction.GetType();
+            Type nodeType = glSomeNode.GetType();
+
             GLSnippet result = null;
             // TODO: This forces GLSnippet's class name's pattern.
-            string prefix = action.ThisTypeCache.Name.Substring(0, action.ThisTypeCache.Name.Length - "Action".Length);
-            string postfix = node.ThisTypeCache.Name.Substring(2);
+            string prefix = actionType.Name.Substring(0, actionType.Name.Length - "Action".Length);
+            string postfix = nodeType.Name.Substring("GL".Length, nodeType.Name.Length - "GL".Length - "Node".Length);
             try
             {
                 Type type = Type.GetType(prefix + "_" + postfix);

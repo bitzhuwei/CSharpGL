@@ -124,7 +124,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         public void Add(KeyValuePair<TKey, TValue> item)
         {
             ((ICollection<KeyValuePair<TKey, TValue>>)dict).Add(item);
@@ -141,7 +141,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
@@ -177,7 +177,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {

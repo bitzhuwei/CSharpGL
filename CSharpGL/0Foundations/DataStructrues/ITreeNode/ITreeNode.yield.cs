@@ -11,7 +11,6 @@ namespace CSharpGL
         /// traverse every item in the tree node recursively.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <param name="order"></param>
         /// <returns></returns>
@@ -42,7 +41,6 @@ namespace CSharpGL
         /// traverse every item in the tree node in post-order.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <returns></returns>
         public static IEnumerable<ITreeNode> PostorderTraverse(ITreeNode treeNode)
@@ -67,7 +65,6 @@ namespace CSharpGL
         /// traverse every item in the tree node in pre-order.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="treeNode"></param>
         /// <returns></returns>
         public static IEnumerable<ITreeNode> PreorderTraverse(ITreeNode treeNode)

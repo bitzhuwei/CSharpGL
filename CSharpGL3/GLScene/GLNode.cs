@@ -5,9 +5,12 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// contains parameters for some OpenGL code.
+    /// </summary>
     public abstract class GLNode
     {
-        internal abstract Type ThisTypeCache { get; }
+        //internal abstract Type ThisTypeCache { get; }
 
         private List<GLNode> children = new List<GLNode>();
         /// <summary>

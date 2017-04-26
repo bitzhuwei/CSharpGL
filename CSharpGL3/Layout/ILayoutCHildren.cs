@@ -30,7 +30,7 @@ namespace CSharpGL
         private readonly ILayout<T> parent;
 
         /// <summary>
-        /// children in <see cref="ITreeNode"/>.
+        /// children in <see cref="ILayout&lt;T&gt;"/>.
         /// </summary>
         /// <param name="parent"></param>
         public ILayoutChildren(ILayout<T> parent)
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <summary>
         /// 搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
         /// </summary>
-        /// <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 child 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         public int IndexOf(ILayout<T> item)
         {
@@ -54,7 +54,7 @@ namespace CSharpGL
         /// 将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
         /// </summary>
         /// <param name="index">从零开始的索引，应在该位置插入 child。</param>
-        /// <param name="child">要插入的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
         public void Insert(int index, ILayout<T> item)
         {
             item.Parent = this.parent;
@@ -102,7 +102,7 @@ namespace CSharpGL
         /// <summary>
         /// 将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
         /// </summary>
-        /// <param name="child">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         public void Add(ILayout<T> item)
         {
             item.Parent = this.parent;
@@ -167,7 +167,7 @@ namespace CSharpGL
         /// <summary>
         /// 确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
         /// </summary>
-        /// <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 child，则为 true，否则为 false。</returns>
         public bool Contains(ILayout<T> item)
         {
@@ -203,7 +203,7 @@ namespace CSharpGL
         /// <summary>
         /// 从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
         /// </summary>
-        /// <param name="child">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
+        /// <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果成功移除 child，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
         public bool Remove(ILayout<T> item)
         {

@@ -10,28 +10,28 @@ namespace CSharpGL
     /// </summary>
     public abstract class GLAction
     {
-        internal abstract Type ThisTypeCache { get; }
+        //internal abstract Type ThisTypeCache { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="node"></param>
-        public void Apply(GLNode node)
+        /// <param name="glNode"></param>
+        public void Apply(GLNode glNode)
         {
-            GLSnippet snippet = GLSnippetSearcher.Find(this, node);
+            GLSnippet snippet = GLSnippetSearcher.Find(this, glNode);
             if (snippet != null)
             {
-                snippet.BeforeChildren(this, node);
+                snippet.BeforeChildren(this, glNode);
             }
 
-            foreach (var child in node.Children)
+            foreach (var child in glNode.Children)
             {
                 this.Apply(child);
             }
 
             if (snippet != null)
             {
-                snippet.AfterChildren(this, node);
+                snippet.AfterChildren(this, glNode);
             }
         }
 

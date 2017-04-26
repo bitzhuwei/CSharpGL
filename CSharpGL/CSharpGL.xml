@@ -21939,7 +21939,6 @@
             traverse every item in the tree node recursively.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="treeNode"></param>
             <param name="order"></param>
             <returns></returns>
@@ -21949,7 +21948,6 @@
             traverse every item in the tree node in post-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="treeNode"></param>
             <returns></returns>
         </member>
@@ -21958,7 +21956,6 @@
             traverse every item in the tree node in pre-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="treeNode"></param>
             <returns></returns>
         </member>
@@ -29054,7 +29051,7 @@
         </member>
         <member name="M:CSharpGL.TreeNodeChildren.#ctor(CSharpGL.ITreeNode)">
             <summary>
-            children in <see cref="!:ITreeNode&lt;T&gt;"/>.
+            children in <see cref="T:CSharpGL.ITreeNode"/>.
             </summary>
             <param name="parent"></param>
         </member>
@@ -29159,7 +29156,6 @@
              <summary>
             
              </summary>
-             <typeparam name="T"></typeparam>
         </member>
         <member name="M:CSharpGL.AddTreeNodeEventArgs.#ctor(CSharpGL.ITreeNode)">
              <summary>
@@ -29182,7 +29178,6 @@
              <summary>
             
              </summary>
-             <typeparam name="T"></typeparam>
         </member>
         <member name="M:CSharpGL.RemoveTreeNodeEventArgs.#ctor(CSharpGL.ITreeNode)">
              <summary>

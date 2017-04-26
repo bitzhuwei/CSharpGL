@@ -6,9 +6,10 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// complex node. commonly used shape.
+    /// shader program.
     /// </summary>
-    public abstract class GLShapeNode : GLNode
+    public class GLProgramNode : GLNode
     {
+
     }
 }

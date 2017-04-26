@@ -119,7 +119,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.ComponentList`2.Insert(System.Int32,`1)">
@@ -127,7 +127,7 @@
             
              </summary>
              <param name="index"></param>
-             <param name="child"></param>
+             <param name="item"></param>
         </member>
         <member name="M:CSharpGL.ComponentList`2.RemoveAt(System.Int32)">
              <summary>
@@ -139,7 +139,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
         </member>
         <member name="M:CSharpGL.ComponentList`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
              <summary>
@@ -156,7 +156,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.ComponentList`2.CopyTo(`1[],System.Int32)">
@@ -170,7 +170,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.ComponentList`2.GetEnumerator">
@@ -316,7 +316,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
         </member>
         <member name="M:CSharpGL.FullDictionary`2.Clear">
              <summary>
@@ -327,7 +327,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.FullDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
@@ -341,7 +341,7 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.FullDictionary`2.GetEnumerator">
@@ -4386,49 +4386,49 @@
              <summary>
             
              </summary>
-             <param name="child"></param>
+             <param name="item"></param>
              <returns></returns>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMax(CSharpGL.vec3,CSharpGL.vec3@)">
             <summary>
             update maximum values.
             </summary>
-            <param name="child"></param>
+            <param name="item"></param>
             <param name="currentMax"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMax(CSharpGL.ivec3,CSharpGL.ivec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="child"></param>
+            <param name="item"></param>
             <param name="currentMax"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMax(CSharpGL.uvec3,CSharpGL.uvec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="child"></param>
+            <param name="item"></param>
             <param name="currentMax"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMin(CSharpGL.vec3,CSharpGL.vec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="child"></param>
+            <param name="item"></param>
             <param name="currentMin"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMin(CSharpGL.ivec3,CSharpGL.ivec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="child"></param>
+            <param name="item"></param>
             <param name="currentMin"></param>
         </member>
         <member name="M:CSharpGL.VectorHelper.UpdateMin(CSharpGL.uvec3,CSharpGL.uvec3@)">
             <summary>
             update minimum values.
             </summary>
-            <param name="child"></param>
+            <param name="item"></param>
             <param name="currentMin"></param>
         </member>
         <member name="T:CSharpGL.BindBufferBaseTarget">
@@ -24128,6 +24128,64 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:CSharpGL.Render_ProgramNode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpGL.GLSnippet">
+            <summary>
+            a group of related OpenGL codes.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.GLSnippet.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+            <summary>
+             a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
+            </summary>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
+        </member>
+        <member name="M:CSharpGL.GLSnippet.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+            <summary>
+            BeforeChildren a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
+            </summary>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
+        </member>
+        <member name="M:CSharpGL.Render_ProgramNode.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+            <summary>
+            
+            </summary>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
+        </member>
+        <member name="M:CSharpGL.Render_ProgramNode.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+            <summary>
+            
+            </summary>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
+        </member>
+        <member name="T:CSharpGL.GLProgramNode">
+            <summary>
+            shader program.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.GLNode">
+            <summary>
+            contains parameters for some OpenGL code.
+            </summary>
+        </member>
+        <member name="P:CSharpGL.GLNode.Children">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpGL.GLShaderNode">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:CSharpGL.ILayout`1">
             <summary>
             Supports layout UI element in an OpenGL canvas.
@@ -24239,7 +24297,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.Traverse``1(CSharpGL.ILayout{``0},CSharpGL.TraverseOrder)">
             <summary>
-            traverse every child in the tree node recursively.
+            traverse every child in the tree glNode recursively.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24248,7 +24306,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.PostorderTraverse``1(CSharpGL.ILayout{``0})">
             <summary>
-            traverse every child in the tree node in post-order.
+            traverse every child in the tree glNode in post-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24256,7 +24314,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.PreorderTraverse``1(CSharpGL.ILayout{``0})">
             <summary>
-            traverse every child in the tree node in pre-order.
+            traverse every child in the tree glNode in pre-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24274,7 +24332,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.#ctor(CSharpGL.ILayout{`0})">
             <summary>
-            children in <see cref="!:ITreeNode"/>.
+            children in <see cref="T:CSharpGL.ILayout`1"/>.
             </summary>
             <param name="parent"></param>
         </member>
@@ -24282,7 +24340,7 @@
             <summary>
             搜索指定的对象，并返回整个 System.Collections.Generic.List&lt;T&gt; 中第一个匹配项的从零开始的索引。
             </summary>
-            <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 child 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.Insert(System.Int32,CSharpGL.ILayout{`0})">
@@ -24290,7 +24348,7 @@
             将元素插入 System.Collections.Generic.List&lt;T&gt; 的指定索引处。
             </summary>
             <param name="index">从零开始的索引，应在该位置插入 child。</param>
-            <param name="child">要插入的对象。对于引用类型，该值可以为 null。</param>
+            <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.RemoveAt(System.Int32)">
             <summary>
@@ -24302,7 +24360,7 @@
             <summary>
             将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
             </summary>
-            <param name="child">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
+            <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.AddRange(System.Collections.Generic.IEnumerable{CSharpGL.ILayout{`0}})">
             <summary>
@@ -24319,7 +24377,7 @@
             <summary>
             确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
             </summary>
-            <param name="child">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+            <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 child，则为 true，否则为 false。</returns>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.CopyTo(CSharpGL.ILayout{`0}[],System.Int32)">
@@ -24333,7 +24391,7 @@
             <summary>
             从 System.Collections.Generic.List&lt;T&gt; 中移除特定对象的第一个匹配项。
             </summary>
-            <param name="child">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
+            <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
             <returns>如果成功移除 child，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
         </member>
         <member name="M:CSharpGL.ILayoutChildren`1.GetEnumerator">
@@ -24609,38 +24667,19 @@
             
             </summary>
         </member>
-        <member name="T:CSharpGL.GLSnippet">
-            <summary>
-            a group of related OpenGL codes.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.GLSnippet.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
-            <summary>
-             a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
-            </summary>
-            <param name="action"></param>
-            <param name="node"></param>
-        </member>
-        <member name="M:CSharpGL.GLSnippet.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
-            <summary>
-            BeforeChildren a group of related OpenGL codes to specified <paramref name="action"/> and <paramref name="node"/>.
-            </summary>
-            <param name="action"></param>
-            <param name="node"></param>
-        </member>
         <member name="M:CSharpGL.Render_VertexBufferNode.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
-            <param name="action"></param>
-            <param name="node"></param>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
         </member>
         <member name="M:CSharpGL.Render_VertexBufferNode.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
-            <param name="action"></param>
-            <param name="node"></param>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
         </member>
         <member name="T:CSharpGL.RenderAction">
             <summary>
@@ -24656,7 +24695,7 @@
             <summary>
             
             </summary>
-            <param name="node"></param>
+            <param name="glNode"></param>
         </member>
         <member name="M:CSharpGL.RenderAction.#ctor">
             <summary>
@@ -24668,22 +24707,73 @@
             
             </summary>
         </member>
+        <member name="T:CSharpGL.RenderActionContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.RenderActionContext.shaderProgram">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.RenderActionContext.vertexAttributeBuffers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.RenderActionContext.indexBuffer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.RenderActionContext.vertexArrayObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CSharpGL.RenderActionContext.glStateList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RenderActionContext.Validate">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CSharpGL.GLSnippetSearcher.Find(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
-            Find the wanted <see cref="T:CSharpGL.GLSnippet"/> according to specified <paramref name="action"/> and <paramref name="node"/>.
+            Find the wanted <see cref="T:CSharpGL.GLSnippet"/> according to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
             </summary>
-            <param name="action"></param>
-            <param name="node"></param>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
             <returns></returns>
+        </member>
+        <member name="T:CSharpGL.GLOneIndexNode">
+            <summary>
+            glDrawElements*()
+            </summary>
         </member>
         <member name="T:CSharpGL.GLIndexNode">
             <summary>
             
             </summary>
         </member>
-        <member name="P:CSharpGL.GLNode.Children">
+        <member name="T:CSharpGL.GLZeroIndexNode">
             <summary>
-            
+            glDrawArrays*().
+            </summary>
+        </member>
+        <member name="T:CSharpGL.GLVertexBufferNode">
+            <summary>
+            map to 'in vec3 inPosition;' in vertex shader.
+            </summary>
+        </member>
+        <member name="T:CSharpGL.GLShapeNode">
+            <summary>
+            complex node. commonly used shape.
             </summary>
         </member>
     </members>
