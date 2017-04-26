@@ -2214,36 +2214,6 @@
              <param name="index"></param>
              <returns></returns>
         </member>
-        <member name="T:CSharpGL.IShaderProgramProvider">
-            <summary>
-            Data for CPU(model) -&gt; Data for GPU(buffer renderer)
-            <para>从模型的数据格式转换为<see cref="T:CSharpGL.GLBuffer"/>，<see cref="T:CSharpGL.GLBuffer"/>转换为<see cref="T:CSharpGL.GLBuffer"/>，
-            <see cref="T:CSharpGL.GLBuffer"/>则可用于控制GPU的渲染操作。</para>
-            </summary>
-        </member>
-        <member name="M:CSharpGL.IShaderProgramProvider.GetShaderProgram">
-            <summary>
-            获取一个<see cref="T:CSharpGL.ShaderProgram"/>实例。
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:CSharpGL.ShaderCodeArray">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:CSharpGL.ShaderCodeArray.#ctor(CSharpGL.ShaderCode[])">
-            <summary>
-            
-            </summary>
-            <param name="shaderCodes"></param>
-        </member>
-        <member name="M:CSharpGL.ShaderCodeArray.GetShaderProgram">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:CSharpGL.ShaderCode">
             <summary>
             某种类型的shader代码。
