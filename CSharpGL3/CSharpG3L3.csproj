@@ -348,10 +348,12 @@
     <Compile Include="FontTexture\IFontTexture.cs" />
     <None Include="GLScene\readme.md" />
     <Compile Include="GLScene\GLActions\RenderAction\RenderAction.SnippetDictionary.cs" />
+    <Compile Include="GLScene\GLNodes\GLStateNode.cs" />
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_Program.cs" />
     <Compile Include="GLScene\GLNodes\GLProgramNode.cs" />
     <Compile Include="GLScene\GLNodes\GLShaderNode.cs" />
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_OneIndex.cs" />
+    <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_State.cs" />
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_ZeroIndex.cs" />
     <Compile Include="Layout\ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
@@ -471,8 +473,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) $(ProjectDir)CSharpGL.dll
-copy $(TargetDir)CSharpGL.xml $(ProjectDir)CSharpGL.xml</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
