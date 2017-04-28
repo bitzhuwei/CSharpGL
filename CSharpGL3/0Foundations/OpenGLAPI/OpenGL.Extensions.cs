@@ -70,10 +70,10 @@ namespace CSharpGL
         ///// <param name="mode"></param>
         ///// <param name="start"></param>
         ///// <param name="end"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="type"></param>
         ///// <param name="indices"></param>
-        //public delegate void glDrawRangeElements(uint mode, uint start, uint end, uint count, uint type, IntPtr indices);
+        //public delegate void glDrawRangeElements(uint mode, uint start, uint end, uint VertexCount, uint type, IntPtr indices);
 
         #endregion GL_EXT_draw_range_elements
 
@@ -1524,18 +1524,18 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="mode"></param>
         ///// <param name="first"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glMultiDrawArrays(uint mode, int[] first, int[] count, int primcount);
+        //public delegate void glMultiDrawArrays(uint mode, int[] first, int[] VertexCount, int primcount);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="mode"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="type"></param>
         ///// <param name="indices"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glMultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int primcount);
+        //public delegate void glMultiDrawElements(uint mode, int[] VertexCount, uint type, IntPtr indices, int primcount);
 
         //#endregion
 
@@ -2179,10 +2179,10 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="shaderObj"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="source"></param>
         ///// <param name="length"></param>
-        //public delegate void glShaderSource(uint shaderObj, int count, string[] source, ref int length);
+        //public delegate void glShaderSource(uint shaderObj, int VertexCount, string[] source, ref int length);
         ///// <summary>
         /////
         ///// </summary>
@@ -2278,82 +2278,82 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform1fv(int location, int count, float[] value);
+        //public delegate void glUniform1fv(int location, int VertexCount, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform2fv(int location, int count, float[] value);
+        //public delegate void glUniform2fv(int location, int VertexCount, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform3fv(int location, int count, float[] value);
+        //public delegate void glUniform3fv(int location, int VertexCount, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform4fv(int location, int count, float[] value);
+        //public delegate void glUniform4fv(int location, int VertexCount, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform1iv(int location, int count, int[] value);
+        //public delegate void glUniform1iv(int location, int VertexCount, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform2iv(int location, int count, int[] value);
+        //public delegate void glUniform2iv(int location, int VertexCount, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform3iv(int location, int count, int[] value);
+        //public delegate void glUniform3iv(int location, int VertexCount, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniform4iv(int location, int count, int[] value);
+        //public delegate void glUniform4iv(int location, int VertexCount, int[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="transpose"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniformMatrix2fv(int location, int count, bool transpose, float[] value);
+        //public delegate void glUniformMatrix2fv(int location, int VertexCount, bool transpose, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="transpose"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniformMatrix3fv(int location, int count, bool transpose, float[] value);
+        //public delegate void glUniformMatrix3fv(int location, int VertexCount, bool transpose, float[] value);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="location"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="transpose"></param>
         ///// <param name="value"></param>
-        //public delegate void glUniformMatrix4fv(int location, int count, bool transpose, float[] value);
+        //public delegate void glUniformMatrix4fv(int location, int VertexCount, bool transpose, float[] value);
         ///// <summary>
         /////
         ///// </summary>
@@ -2381,9 +2381,9 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="containerObj"></param>
         ///// <param name="maxCount"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="obj"></param>
-        //public delegate void glGetAttachedObjects(uint containerObj, int maxCount, ref int count, ref uint obj);
+        //public delegate void glGetAttachedObjects(uint containerObj, int maxCount, ref int VertexCount, ref uint obj);
         ///// <summary>
         /////
         ///// </summary>
@@ -3708,18 +3708,18 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="mode"></param>
         ///// <param name="start"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glDrawArraysInstanced(uint mode, int start, int count, int primcount);
+        //public delegate void glDrawArraysInstanced(uint mode, int start, int VertexCount, int primcount);
         ///// <summary>
         /////
         ///// </summary>
         ///// <param name="mode"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="type"></param>
         ///// <param name="indices"></param>
         ///// <param name="primcount"></param>
-        //public delegate void glDrawElementsInstanced(uint mode, int count, uint type, IntPtr indices, int primcount);
+        //public delegate void glDrawElementsInstanced(uint mode, int VertexCount, uint type, IntPtr indices, int primcount);
 
         //#endregion
 
@@ -3815,10 +3815,10 @@ namespace CSharpGL
         /////
         ///// </summary>
         ///// <param name="program"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="varyings"></param>
         ///// <param name="bufferMode"></param>
-        //public delegate void glTransformFeedbackVaryings(uint program, int count, string[] varyings, uint bufferMode);
+        //public delegate void glTransformFeedbackVaryings(uint program, int VertexCount, string[] varyings, uint bufferMode);
         ///// <summary>
         /////
         ///// </summary>
@@ -5229,7 +5229,7 @@ namespace CSharpGL
         /// <param name="source"></param>
         /// <param name="type"></param>
         /// <param name="severity"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="ids"></param>
         /// <param name="enabled"></param>
         public delegate void glDebugMessageControl(

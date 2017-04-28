@@ -865,7 +865,7 @@
         </member>
         <member name="M:CSharpGL.UnmanagedArrayBase.ToString">
             <summary>
-            return string.Format("head: {0}, element count: {1}, byte length: {2}",
+            return string.Format("head: {0}, element VertexCount: {1}, byte length: {2}",
                 this.Header, this.Length, this.ByteLength);
             </summary>
             <returns></returns>
@@ -6653,7 +6653,7 @@
         </member>
         <member name="F:CSharpGL.QueryTarget.SamplesPassed">
             <summary>
-            id must be an unused name, or the name of an existing occlusion query object. When glBeginQuery is executed, the query object's samples-passed counter is reset to 0. Subsequent rendering will increment the counter for every sample that passes the depth test. If the value of GL_SAMPLE_BUFFERS is 0, then the samples-passed count is incremented by 1 for each fragment. If the value of GL_SAMPLE_BUFFERS is 1, then the samples-passed count is incremented by the number of samples whose coverage bit is set. However, implementations, at their discression may instead increase the samples-passed count by the value of GL_SAMPLES if any sample in the fragment is covered. When glEndQuery is executed, the samples-passed counter is assigned to the query object's result value. This value can be queried by calling glGetQueryObject with pname GL_QUERY_RESULT.
+            id must be an unused name, or the name of an existing occlusion query object. When glBeginQuery is executed, the query object's samples-passed counter is reset to 0. Subsequent rendering will increment the counter for every sample that passes the depth test. If the value of GL_SAMPLE_BUFFERS is 0, then the samples-passed VertexCount is incremented by 1 for each fragment. If the value of GL_SAMPLE_BUFFERS is 1, then the samples-passed VertexCount is incremented by the number of samples whose coverage bit is set. However, implementations, at their discression may instead increase the samples-passed VertexCount by the value of GL_SAMPLES if any sample in the fragment is covered. When glEndQuery is executed, the samples-passed counter is assigned to the query object's result value. This value can be queried by calling glGetQueryObject with pname GL_QUERY_RESULT.
             </summary>
         </member>
         <member name="F:CSharpGL.QueryTarget.AnySamplesPassed">
@@ -13043,7 +13043,7 @@
             </summary>
             <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
             <param name="first">Specifies the starting	index in the enabled arrays.</param>
-            <param name="count">Specifies the number of vertexes to be rendered.</param>
+            <param name="VertexCount">Specifies the number of vertexes to be rendered.</param>
         </member>
         <member name="M:CSharpGL.OpenGL.DrawBuffer(System.UInt32)">
             <summary>
@@ -13056,7 +13056,7 @@
             Render primitives from array data.
             </summary>
             <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-            <param name="count">Specifies the number of elements to be rendered.</param>
+            <param name="VertexCount">Specifies the number of elements to be rendered.</param>
             <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
             <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         </member>
@@ -13065,7 +13065,7 @@
             Render primitives from array data.
             </summary>
             <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-            <param name="count">Specifies the number of elements to be rendered.</param>
+            <param name="VertexCount">Specifies the number of elements to be rendered.</param>
             <param name="type"></param>
             <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         </member>
@@ -15717,7 +15717,7 @@
             </summary>
             <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
             <param name="first">Specifies the starting	index in the enabled arrays.</param>
-            <param name="count">Specifies the number of indices to be rendered.</param>
+            <param name="VertexCount">Specifies the number of indices to be rendered.</param>
         </member>
         <member name="M:CSharpGL.OpenGL.MultiDrawArrays(CSharpGL.DrawMode,System.Int32[],System.Int32[],System.Int32)">
              <summary>
@@ -15725,7 +15725,7 @@
              </summary>
              <param name="mode"></param>
              <param name="first"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="primcount"></param>
         </member>
         <member name="M:CSharpGL.OpenGL.DrawElements(CSharpGL.DrawMode,System.Int32,System.UInt32,System.IntPtr)">
@@ -15733,7 +15733,7 @@
             Render primitives from array data.
             </summary>
             <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-            <param name="count">Specifies the number of elements to be rendered.</param>
+            <param name="VertexCount">Specifies the number of elements to be rendered.</param>
             <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
             <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         </member>
@@ -15742,7 +15742,7 @@
             
              </summary>
              <param name="mode"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="type"></param>
              <param name="indices"></param>
              <param name="primcount"></param>
@@ -15754,7 +15754,7 @@
              <param name="mode"></param>
              <param name="start"></param>
              <param name="end"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="type"></param>
              <param name="indices"></param>
         </member>
@@ -15899,7 +15899,7 @@
             <param name="source"></param>
             <param name="type"></param>
             <param name="severity"></param>
-            <param name="count"></param>
+            <param name="VertexCount"></param>
             <param name="ids"></param>
             <param name="enabled"></param>
         </member>
@@ -16120,7 +16120,7 @@
              <param name="mode"></param>
              <param name="start"></param>
              <param name="end"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="type"></param>
              <param name="indices"></param>
         </member>
@@ -16181,7 +16181,7 @@
              </summary>
              <param name="mode"></param>
              <param name="first"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="primcount"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glMultiDrawElements">
@@ -16189,7 +16189,7 @@
             
              </summary>
              <param name="mode"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="type"></param>
              <param name="indices"></param>
              <param name="primcount"></param>
@@ -16504,7 +16504,7 @@
             
              </summary>
              <param name="shader"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="source"></param>
              <param name="length"></param>
         </member>
@@ -16587,7 +16587,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform2fv">
@@ -16595,7 +16595,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform3fv">
@@ -16603,7 +16603,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform4fv">
@@ -16611,7 +16611,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform1iv">
@@ -16619,7 +16619,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform2iv">
@@ -16627,7 +16627,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform3iv">
@@ -16635,7 +16635,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform4iv">
@@ -16643,7 +16643,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniformMatrix2fv">
@@ -16651,7 +16651,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="transpose"></param>
              <param name="value"></param>
         </member>
@@ -16660,7 +16660,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="transpose"></param>
              <param name="value"></param>
         </member>
@@ -16669,7 +16669,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="transpose"></param>
              <param name="value"></param>
         </member>
@@ -16811,7 +16811,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform2uiv">
@@ -16819,7 +16819,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform3uiv">
@@ -16827,7 +16827,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glUniform4uiv">
@@ -16835,7 +16835,7 @@
             
              </summary>
              <param name="location"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="value"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glClearBufferiv">
@@ -16877,7 +16877,7 @@
              </summary>
              <param name="mode"></param>
              <param name="first"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="primcount"></param>
         </member>
         <member name="T:CSharpGL.OpenGL.glDrawElementsInstanced">
@@ -16885,7 +16885,7 @@
             
              </summary>
              <param name="mode"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="type"></param>
              <param name="indices"></param>
              <param name="primcount"></param>
@@ -16895,7 +16895,7 @@
             
              </summary>
              <param name="mode"></param>
-             <param name="count"></param>
+             <param name="VertexCount"></param>
              <param name="type"></param>
              <param name="indices"></param>
              <param name="baseVertex"></param>
@@ -17149,7 +17149,7 @@
             <param name="source"></param>
             <param name="type"></param>
             <param name="severity"></param>
-            <param name="count"></param>
+            <param name="VertexCount"></param>
             <param name="ids"></param>
             <param name="enabled"></param>
         </member>
@@ -18478,8 +18478,8 @@
             <para><see cref="T:CSharpGL.ZeroIndexBuffer"/> is not a real buffer like <see cref="T:CSharpGL.OneIndexBuffer"/>.</para>
             </summary>
             <param name="mode"></param>
-            <param name="firstVertex"></param>
-            <param name="vertexCount"></param>
+            <param name="FirstVertex"></param>
+            <param name="VertexCount"></param>
             <param name="primCount"></param>
             <returns></returns>
         </member>
@@ -18950,16 +18950,16 @@
         </member>
         <member name="T:CSharpGL.OneIndexBuffer">
             <summary>
-            Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+            Wraps glDrawElements(uint mode, int VertexCount, uint type, IntPtr indices).
             </summary>
         </member>
         <member name="M:CSharpGL.OneIndexBuffer.#ctor(System.UInt32,CSharpGL.DrawMode,CSharpGL.IndexBufferElementType,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+            Wraps glDrawElements(uint mode, int VertexCount, uint type, IntPtr indices).
             </summary>
             <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
             <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="elementType">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
+            <param name="elementType">type in glDrawElements(uint mode, int VertexCount, uint type, IntPtr indices);
             <para>表示第3个参数，表示索引元素的类型。</para></param>
             <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
             <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
@@ -18990,21 +18990,21 @@
         </member>
         <member name="P:CSharpGL.OneIndexBuffer.ElementType">
             <summary>
-            type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+            type in GL.DrawElements(uint mode, int VertexCount, uint type, IntPtr indices);
             </summary>
         </member>
         <member name="T:CSharpGL.ZeroIndexBuffer">
             <summary>
-            Wraps glDrawArrays(uint mode, int first, int count).
+            Wraps glDrawArrays(uint mode, int first, int VertexCount).
             </summary>
         </member>
         <member name="M:CSharpGL.ZeroIndexBuffer.#ctor(CSharpGL.DrawMode,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Wraps glDrawArrays(uint mode, int first, int count).
+            Wraps glDrawArrays(uint mode, int first, int VertexCount).
             </summary>
             <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-            <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-            <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
+            <param name="FirstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
+            <param name="VertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
             <param name="primCount">primCount in instanced rendering.</param>
         </member>
         <member name="M:CSharpGL.ZeroIndexBuffer.Bind">
@@ -22806,7 +22806,7 @@
             <typeparam name="T"></typeparam>
             <param name="bytes"></param>
             <param name="result"></param>
-            <param name="startIndex"></param>
+            <param name="FirstVertex"></param>
         </member>
         <member name="T:CSharpGL.ColorHelper">
             <summary>
@@ -23193,7 +23193,7 @@
             </summary>
             <param name="hDC">Specifies the device context whose currently selected font will be used to form the glyph bitmap display lists in the current OpenGL rendering context..</param>
             <param name="first">Specifies the first glyph in the run of glyphs that will be used to form glyph bitmap display lists.</param>
-            <param name="count">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates count display lists, one for each glyph in the run.</param>
+            <param name="VertexCount">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates VertexCount display lists, one for each glyph in the run.</param>
             <param name="listBase">Specifies a starting display list.</param>
             <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. To get extended error information, call GetLastError.</returns>
         </member>
@@ -23714,7 +23714,7 @@
             <param name="deviceContext"></param>
             <param name="width">The width.</param>
             <param name="height">The height.</param>
-            <param name="bitCount">The bit count.</param>
+            <param name="bitCount">The bit VertexCount.</param>
             <returns></returns>
         </member>
         <member name="M:CSharpGL.DIBSection.Resize(System.Int32,System.Int32,System.Int32)">
@@ -23723,7 +23723,7 @@
             </summary>
             <param name="width">The width.</param>
             <param name="height">The height.</param>
-            <param name="bitCount">The bit count.</param>
+            <param name="bitCount">The bit VertexCount.</param>
         </member>
         <member name="M:CSharpGL.DIBSection.SetPixelFormat(System.IntPtr,System.Int32)">
             <summary>
@@ -24195,22 +24195,41 @@
             </summary>
             <param name="glNode"></param>
         </member>
+        <member name="M:CSharpGL.GLAction.Find(CSharpGL.GLNode)">
+            <summary>
+            Find the wanted <see cref="T:CSharpGL.GLSnippet"/> according to specified <paramref name="glNode"/>.
+            </summary>
+            <param name="glNode"></param>
+            <returns></returns>
+        </member>
         <member name="P:CSharpGL.GLAction.AppliedNode">
             <summary>
             node that this action applies to.
             </summary>
         </member>
-        <member name="M:CSharpGL.RenderAction.Find(CSharpGL.GLNode)">
+        <member name="P:CSharpGL.GLAction.Dictionary">
             <summary>
-            Find the wanted <see cref="T:CSharpGL.GLSnippet"/> according to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
+            Give me an static dictionary.
             </summary>
-            <param name="glAction"></param>
-            <param name="glNode"></param>
-            <returns></returns>
         </member>
         <member name="M:CSharpGL.RenderAction.#ctor">
             <summary>
             
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RenderAction.Render">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RenderAction.ThisTypeCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RenderAction.Dictionary">
+            <summary>
+            provides a dictionary to cache <see cref="T:CSharpGL.GLSnippet"/>s.
             </summary>
         </member>
         <member name="P:CSharpGL.RenderAction.Context">
@@ -24273,6 +24292,18 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:CSharpGL.Render_ZeroIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CSharpGL.Render_ZeroIndex.DoAction(CSharpGL.GLAction,CSharpGL.GLNode)">
+            <summary>
+            
+            </summary>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
         </member>
         <member name="T:CSharpGL.ILayout`1">
             <summary>
@@ -24750,12 +24781,12 @@
             用在IList&lt;<see cref="T:CSharpGL.UniformVariable"/>&gt;类型的属性上。
             </summary>
         </member>
-        <member name="T:CSharpGL.Render_VertexBuffer">
+        <member name="T:CSharpGL.Render_Vertex">
             <summary>
             
             </summary>
         </member>
-        <member name="M:CSharpGL.Render_VertexBuffer.DoAction(CSharpGL.GLAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Render_Vertex.DoAction(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
@@ -24803,17 +24834,29 @@
             glDrawElements*()
             </summary>
         </member>
-        <member name="T:CSharpGL.GLIndexNode">
+        <member name="M:CSharpGL.GLOneIndexNode.Create``1(``0[],CSharpGL.DrawMode,CSharpGL.BufferUsage,System.Int32)">
             <summary>
             
             </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="mode"></param>
+            <param name="usage"></param>
+            <param name="primCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.GLOneIndexNode.GetIndexBuffer">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:CSharpGL.GLZeroIndexNode">
             <summary>
             glDrawArrays*().
             </summary>
         </member>
-        <member name="T:CSharpGL.GLVertexBufferNode">
+        <member name="T:CSharpGL.GLVertexNode">
             <summary>
             map to 'in vec3 inPosition;' in vertex shader.
             </summary>

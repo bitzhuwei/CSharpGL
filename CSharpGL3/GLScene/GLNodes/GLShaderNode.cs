@@ -10,5 +10,10 @@ namespace CSharpGL
     /// </summary>
     public class GLShaderNode : GLNode
     {
+        private static readonly Type type = typeof(GLShaderNode);
+        internal override Type ThisTypeCache
+        {
+            get { return type; }
+        }
     }
 }

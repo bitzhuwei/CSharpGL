@@ -10,7 +10,7 @@ namespace CSharpGL
     /// </summary>
     public abstract class GLNode
     {
-        //internal abstract Type ThisTypeCache { get; }
+        internal abstract Type ThisTypeCache { get; }
 
         private List<GLNode> children = new List<GLNode>();
         /// <summary>

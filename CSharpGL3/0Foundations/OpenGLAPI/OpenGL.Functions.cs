@@ -728,7 +728,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
-        /// <param name="count">Specifies the number of vertexes to be rendered.</param>
+        /// <param name="VertexCount">Specifies the number of vertexes to be rendered.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawArrays", SetLastError = true)]
         public static extern void DrawArrays(uint mode, int first, int count);
 
@@ -743,7 +743,7 @@ namespace CSharpGL
         /// Render primitives from array data.
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="VertexCount">Specifies the number of elements to be rendered.</param>
         /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
@@ -753,7 +753,7 @@ namespace CSharpGL
         /// Render primitives from array data.
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="VertexCount">Specifies the number of elements to be rendered.</param>
         /// <param name="type"></param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]

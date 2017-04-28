@@ -29,9 +29,12 @@ namespace CSharpGL
         /// </summary>
         public RenderActionContext Context { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Render()
         {
-
+            throw new NotImplementedException();
         }
 
     }

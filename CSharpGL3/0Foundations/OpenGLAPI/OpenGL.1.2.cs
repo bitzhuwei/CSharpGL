@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="start"></param>
         /// <param name="end"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         public delegate void glDrawRangeElements(uint mode, uint start, uint end, int count, uint type, IntPtr indices);
@@ -149,11 +149,11 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="target"></param>
         ///// <param name="start"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="format"></param>
         ///// <param name="type"></param>
         ///// <param name="data"></param>
-        //public delegate void glColorSubTable(uint target, int start, int count, uint format, uint type, IntPtr data);
+        //public delegate void glColorSubTable(uint target, int start, int VertexCount, uint format, uint type, IntPtr data);
         ///// <summary>
         /////
         ///// </summary>

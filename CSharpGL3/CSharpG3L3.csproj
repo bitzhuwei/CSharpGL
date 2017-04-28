@@ -351,6 +351,7 @@
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_Program.cs" />
     <Compile Include="GLScene\GLNodes\GLProgramNode.cs" />
     <Compile Include="GLScene\GLNodes\GLShaderNode.cs" />
+    <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_ZeroIndex.cs" />
     <Compile Include="Layout\ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
     <Compile Include="Layout\ILayout.Layout.cs" />
@@ -402,7 +403,7 @@
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="0Foundations\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_VertexBuffer.cs" />
+    <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_Vertex.cs" />
     <Compile Include="GLScene\GLActions\RenderAction\RenderAction.cs" />
     <Compile Include="GLScene\GLActions\RenderAction\RenderActionContext.cs" />
     <Compile Include="GLScene\GLSnippet.cs" />
@@ -410,8 +411,7 @@
     <Compile Include="GLScene\GLSnippetHelper.cs" />
     <Compile Include="GLScene\GLNodes\GLOneIndexNode.cs" />
     <Compile Include="GLScene\GLNodes\GLZeroIndexNode.cs" />
-    <Compile Include="GLScene\GLNodes\GLIndexNode.cs" />
-    <Compile Include="GLScene\GLNodes\GLVertexBufferNode.cs" />
+    <Compile Include="GLScene\GLNodes\GLVertexNode.cs" />
     <Compile Include="GLScene\GLNodes\GLShapeNode.cs" />
     <Compile Include="GLScene\GLNode.cs" />
     <None Include="Resources\SortingHelper.Order`1.cs.resource" />

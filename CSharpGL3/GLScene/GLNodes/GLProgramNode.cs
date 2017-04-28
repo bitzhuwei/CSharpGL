@@ -10,6 +10,12 @@ namespace CSharpGL
     /// </summary>
     public class GLProgramNode : GLNode
     {
+        private static readonly Type type = typeof(GLProgramNode);
+        internal override Type ThisTypeCache
+        {
+            get { return type; }
+        }
+
         private ShaderProgram shaderProgram;
         private ShaderCode[] shaderCodes;
 

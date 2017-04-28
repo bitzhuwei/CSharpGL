@@ -4,7 +4,7 @@ namespace CSharpGL
 {
     // 用glDrawElements()执行一个索引buffer的渲染操作。
     /// <summary>
-    /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+    /// Wraps glDrawElements(uint mode, int VertexCount, uint type, IntPtr indices).
     /// </summary>
     public sealed partial class OneIndexBuffer : IndexBuffer
     {
@@ -17,11 +17,11 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+        /// Wraps glDrawElements(uint mode, int VertexCount, uint type, IntPtr indices).
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        /// <param name="elementType">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
+        /// <param name="elementType">type in glDrawElements(uint mode, int VertexCount, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
@@ -54,7 +54,7 @@ namespace CSharpGL
         //public int OriginalElementCount { get; set; }
 
         /// <summary>
-        /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+        /// type in GL.DrawElements(uint mode, int VertexCount, uint type, IntPtr indices);
         /// </summary>
         public IndexBufferElementType ElementType { get; private set; }
 

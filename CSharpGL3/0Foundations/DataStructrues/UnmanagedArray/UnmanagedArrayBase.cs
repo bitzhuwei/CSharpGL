@@ -58,7 +58,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// return string.Format("head: {0}, element count: {1}, byte length: {2}",
+        /// return string.Format("head: {0}, element VertexCount: {1}, byte length: {2}",
         ///     this.Header, this.Length, this.ByteLength);
         /// </summary>
         /// <returns></returns>

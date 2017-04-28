@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <param name="result"></param>
-        /// <param name="startIndex"></param>
+        /// <param name="FirstVertex"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetStruct<T>(this byte[] bytes, out T result, int startIndex = 0) where T : struct
         {
@@ -44,7 +44,7 @@ namespace CSharpGL
             //var type = typeof(T);
             //int size = Marshal.SizeOf(type);
             //IntPtr buffer = Marshal.AllocHGlobal(size);
-            //Marshal.Copy(bytes, startIndex, buffer, size);
+            //Marshal.Copy(bytes, FirstVertex, buffer, size);
             //result = (T)Marshal.PtrToStructure(buffer, type);
             //Marshal.FreeHGlobal(buffer);
         }

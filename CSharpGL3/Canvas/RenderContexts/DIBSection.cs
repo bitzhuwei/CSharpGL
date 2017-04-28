@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="deviceContext"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitCount">The bit count.</param>
+        /// <param name="bitCount">The bit VertexCount.</param>
         /// <returns></returns>
         public virtual bool Create(IntPtr deviceContext, int width, int height, int bitCount)
         {
@@ -52,7 +52,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitCount">The bit count.</param>
+        /// <param name="bitCount">The bit VertexCount.</param>
         public void Resize(int width, int height, int bitCount)
         {
             //	Destroy existing objects.

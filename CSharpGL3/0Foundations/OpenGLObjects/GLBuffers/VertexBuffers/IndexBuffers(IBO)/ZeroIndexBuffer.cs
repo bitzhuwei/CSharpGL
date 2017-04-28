@@ -4,7 +4,7 @@ namespace CSharpGL
 {
     // 没有显式索引时的渲染方法。
     /// <summary>
-    /// Wraps glDrawArrays(uint mode, int first, int count).
+    /// Wraps glDrawArrays(uint mode, int first, int VertexCount).
     /// </summary>
     public sealed partial class ZeroIndexBuffer : IndexBuffer
     {
@@ -17,18 +17,18 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Wraps glDrawArrays(uint mode, int first, int count).
+        /// Wraps glDrawArrays(uint mode, int first, int VertexCount).
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-        /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
+        /// <param name="FirstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
+        /// <param name="VertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
             this.FirstVertex = firstVertex;
             this.RenderingVertexCount = vertexCount;
-            //this.OriginalVertexCount = vertexCount;
+            //this.OriginalVertexCount = VertexCount;
         }
 
         /// <summary>

@@ -136,9 +136,9 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="program"></param>
         ///// <param name="maxCount"></param>
-        ///// <param name="count"></param>
+        ///// <param name="VertexCount"></param>
         ///// <param name="obj"></param>
-        //public delegate void glGetAttachedShaders(uint program, int maxCount, int[] count, uint[] obj);
+        //public delegate void glGetAttachedShaders(uint program, int maxCount, int[] VertexCount, uint[] obj);
         /// <summary>
         ///
         /// </summary>
@@ -271,7 +271,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="shader"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="source"></param>
         /// <param name="length"></param>
         [UnmanagedFunctionPointer(CallingConvention.StdCall, ThrowOnUnmappableChar = true)]
@@ -351,12 +351,12 @@ namespace CSharpGL
         /// <param name="v3"></param>
         internal delegate void glUniform4i(int location, int v0, int v1, int v2, int v3);
 
-        // TODO: public delegate void glUniform1fv(int location, int count, IntPtr value); is also available.
+        // TODO: public delegate void glUniform1fv(int location, int VertexCount, IntPtr value); is also available.
         /// <summary>
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform1fv(int location, int count, float[] value);
 
@@ -364,7 +364,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform2fv(int location, int count, float[] value);
 
@@ -372,7 +372,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform3fv(int location, int count, float[] value);
 
@@ -380,7 +380,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform4fv(int location, int count, float[] value);
 
@@ -388,7 +388,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform1iv(int location, int count, int[] value);
 
@@ -396,7 +396,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform2iv(int location, int count, int[] value);
 
@@ -404,7 +404,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform3iv(int location, int count, int[] value);
 
@@ -412,7 +412,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="value"></param>
         internal delegate void glUniform4iv(int location, int count, int[] value);
 
@@ -420,7 +420,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="transpose"></param>
         /// <param name="value"></param>
         internal delegate void glUniformMatrix2fv(int location, int count, bool transpose, float[] value);
@@ -429,7 +429,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="transpose"></param>
         /// <param name="value"></param>
         internal delegate void glUniformMatrix3fv(int location, int count, bool transpose, float[] value);
@@ -438,7 +438,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="location"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="transpose"></param>
         /// <param name="value"></param>
         internal delegate void glUniformMatrix4fv(int location, int count, bool transpose, float[] value);

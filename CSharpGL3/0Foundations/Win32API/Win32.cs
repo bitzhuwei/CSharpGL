@@ -82,7 +82,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="hDC">Specifies the device context whose currently selected font will be used to form the glyph bitmap display lists in the current OpenGL rendering context..</param>
         /// <param name="first">Specifies the first glyph in the run of glyphs that will be used to form glyph bitmap display lists.</param>
-        /// <param name="count">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates count display lists, one for each glyph in the run.</param>
+        /// <param name="VertexCount">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates VertexCount display lists, one for each glyph in the run.</param>
         /// <param name="listBase">Specifies a starting display list.</param>
         /// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. To get extended error information, call GetLastError.</returns>
         [DllImport(opengl32, SetLastError = true)]
@@ -93,7 +93,7 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="hDC">The h DC.</param>
         ///// <param name="first">The first.</param>
-        ///// <param name="count">The count.</param>
+        ///// <param name="VertexCount">The VertexCount.</param>
         ///// <param name="listBase">The list base.</param>
         ///// <param name="deviation">The deviation.</param>
         ///// <param name="extrusion">The extrusion.</param>
@@ -101,7 +101,7 @@ namespace CSharpGL
         ///// <param name="lpgmf">The LPGMF.</param>
         ///// <returns></returns>
         //[DllImport(OpenGL32, SetLastError = true)]
-        //internal static extern bool wglUseFontOutlines(IntPtr hDC, uint first, uint count, uint listBase,
+        //internal static extern bool wglUseFontOutlines(IntPtr hDC, uint first, uint VertexCount, uint listBase,
         //    float deviation, float extrusion, int format, [Out, MarshalAs(UnmanagedType.LPArray)] GLYPHMETRICSFLOAT[] lpgmf);
 
         ///// <summary>

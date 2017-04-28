@@ -10,27 +10,25 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class RenderAction
     {
+        private static readonly Type type = typeof(RenderAction);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        internal override Type ThisTypeCache
+        {
+            get { return type; }
+        }
+
         // appliedNode -> snippet.
         static Dictionary<Type, GLSnippet> dictionary = new Dictionary<Type, GLSnippet>();
 
         /// <summary>
-        /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
+        /// provides a dictionary to cache <see cref="GLSnippet"/>s.
         /// </summary>
-        /// <param name="glAction"></param>
-        /// <param name="glNode"></param>
-        /// <returns></returns>
-        private GLSnippet Find(GLNode glNode)
+        protected internal override Dictionary<Type, GLSnippet> Dictionary
         {
-            Type nodeType = glNode.GetType();
-            GLSnippet snippet = null;
-            if (!dictionary.TryGetValue(nodeType, out snippet))
-            {
-                snippet = GLSnippetHelper.CreateInstance(this, glNode);
-                dictionary.Add(nodeType, snippet);
-            }
-
-            return snippet;
+            get { return dictionary; }
         }
-
     }
 }

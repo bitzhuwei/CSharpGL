@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class Render_VertexBuffer : GLSnippet
+    public class Render_Vertex : GLSnippet
     {
         /// <summary>
         /// 
@@ -19,7 +19,7 @@ namespace CSharpGL
         public override void DoAction(GLAction glAction, GLNode glNode)
         {
             var action = glAction as RenderAction;
-            var node = glNode as GLVertexBufferNode;
+            var node = glNode as GLVertexNode;
             Debug.Assert(action != null);
             Debug.Assert(node != null);
 

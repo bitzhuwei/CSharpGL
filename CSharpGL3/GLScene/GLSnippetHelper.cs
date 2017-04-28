@@ -9,8 +9,8 @@ namespace CSharpGL
     {
         public static GLSnippet CreateInstance(GLAction someAction, GLNode glSomeNode)
         {
-            Type actionType = someAction.GetType();
-            Type nodeType = glSomeNode.GetType();
+            Type actionType = someAction.ThisTypeCache;
+            Type nodeType = glSomeNode.ThisTypeCache;
 
             GLSnippet result = null;
             // NOTE: This forces GLSnippet's class name's pattern.

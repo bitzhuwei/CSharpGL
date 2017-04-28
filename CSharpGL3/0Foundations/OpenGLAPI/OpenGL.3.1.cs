@@ -12,7 +12,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="first"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="primcount"></param>
         internal delegate void glDrawArraysInstanced(uint mode, int first, int count, int primcount);
 
@@ -20,7 +20,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="mode"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         /// <param name="primcount"></param>
@@ -30,7 +30,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="mode"></param>
-        /// <param name="count"></param>
+        /// <param name="VertexCount"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         /// <param name="baseVertex"></param>
