@@ -13,10 +13,19 @@ namespace CSharpGL
         private ShaderProgram shaderProgram;
         private ShaderCode[] shaderCodes;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shaderCodes"></param>
         public GLProgramNode(ShaderCode[] shaderCodes)
         {
             this.shaderCodes = shaderCodes;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ShaderProgram GetShaderProgram()
         {
             if (this.shaderProgram == null)

@@ -24186,21 +24186,14 @@
             a group of related OpenGL codes.
             </summary>
         </member>
-        <member name="M:CSharpGL.GLSnippet.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.GLSnippet.DoAction(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
              a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
             </summary>
             <param name="glAction"></param>
             <param name="glNode"></param>
         </member>
-        <member name="M:CSharpGL.GLSnippet.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
-            <summary>
-            BeforeChildren a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
-            </summary>
-            <param name="glAction"></param>
-            <param name="glNode"></param>
-        </member>
-        <member name="M:CSharpGL.Render_ProgramNode.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Render_ProgramNode.DoAction(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
@@ -24221,6 +24214,18 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:CSharpGL.GLProgramNode.#ctor(CSharpGL.ShaderCode[])">
+            <summary>
+            
+            </summary>
+            <param name="shaderCodes"></param>
+        </member>
+        <member name="M:CSharpGL.GLProgramNode.GetShaderProgram">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:CSharpGL.GLShaderNode">
             <summary>
@@ -24338,7 +24343,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.Traverse``1(CSharpGL.ILayout{``0},CSharpGL.TraverseOrder)">
             <summary>
-            traverse every child in the tree glNode recursively.
+            traverse every child in the tree appliedNode recursively.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24347,7 +24352,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.PostorderTraverse``1(CSharpGL.ILayout{``0})">
             <summary>
-            traverse every child in the tree glNode in post-order.
+            traverse every child in the tree appliedNode in post-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24355,7 +24360,7 @@
         </member>
         <member name="M:CSharpGL.ILayoutHelper.PreorderTraverse``1(CSharpGL.ILayout{``0})">
             <summary>
-            traverse every child in the tree glNode in pre-order.
+            traverse every child in the tree appliedNode in pre-order.
             <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
             </summary>
             <param name="treeNode"></param>
@@ -24703,19 +24708,12 @@
             用在IList&lt;<see cref="T:CSharpGL.UniformVariable"/>&gt;类型的属性上。
             </summary>
         </member>
-        <member name="T:CSharpGL.Render_VertexBufferNode">
+        <member name="T:CSharpGL.Render_VertexBuffer">
             <summary>
             
             </summary>
         </member>
-        <member name="M:CSharpGL.Render_VertexBufferNode.BeforeChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
-            <summary>
-            
-            </summary>
-            <param name="glAction"></param>
-            <param name="glNode"></param>
-        </member>
-        <member name="M:CSharpGL.Render_VertexBufferNode.AfterChildren(CSharpGL.GLAction,CSharpGL.GLNode)">
+        <member name="M:CSharpGL.Render_VertexBuffer.DoAction(CSharpGL.GLAction,CSharpGL.GLNode)">
             <summary>
             
             </summary>
@@ -24737,6 +24735,11 @@
             
             </summary>
             <param name="glNode"></param>
+        </member>
+        <member name="P:CSharpGL.GLAction.AppliedNode">
+            <summary>
+            node that this action applies to.
+            </summary>
         </member>
         <member name="M:CSharpGL.RenderAction.#ctor">
             <summary>

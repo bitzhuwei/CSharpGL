@@ -15,5 +15,9 @@ namespace CSharpGL
         //{
         //    get { return type; }
         //}
+        internal VertexBuffer GetVertexAttributeBuffer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

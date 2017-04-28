@@ -11,6 +11,15 @@ namespace CSharpGL
     public abstract class GLAction
     {
         //internal abstract Type ThisTypeCache { get; }
+        private GLNode appliedNode;
+
+        /// <summary>
+        /// node that this action applies to.
+        /// </summary>
+        protected GLNode AppliedNode
+        {
+            get { return appliedNode; }
+        }
 
         /// <summary>
         /// 
@@ -18,21 +27,7 @@ namespace CSharpGL
         /// <param name="glNode"></param>
         public void Apply(GLNode glNode)
         {
-            GLSnippet snippet = GLSnippetSearcher.Find(this, glNode);
-            if (snippet != null)
-            {
-                snippet.BeforeChildren(this, glNode);
-            }
-
-            foreach (var child in glNode.Children)
-            {
-                this.Apply(child);
-            }
-
-            if (snippet != null)
-            {
-                snippet.AfterChildren(this, glNode);
-            }
+            this.appliedNode = glNode;
         }
 
     }

@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     static class GLSnippetSearcher
     {
-        // (glAction, glNode) -> snippet.
+        // (glAction, appliedNode) -> snippet.
         static Dictionary<Type, Dictionary<Type, GLSnippet>> dictionary = new Dictionary<Type, Dictionary<Type, GLSnippet>>();
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CSharpGL
             Type nodeType = glSomeNode.GetType();
 
             GLSnippet result = null;
-            // TODO: This forces GLSnippet's class name's pattern.
+            // NOTE: This forces GLSnippet's class name's pattern.
             string prefix = actionType.Name.Substring(0, actionType.Name.Length - "Action".Length);
             string postfix = nodeType.Name.Substring("GL".Length, nodeType.Name.Length - "GL".Length - "Node".Length);
             try

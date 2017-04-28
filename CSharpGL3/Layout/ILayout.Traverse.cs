@@ -8,7 +8,7 @@ namespace CSharpGL
     public static partial class ILayoutHelper
     {
         /// <summary>
-        /// traverse every child in the tree glNode recursively.
+        /// traverse every child in the tree appliedNode recursively.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
         /// <param name="treeNode"></param>
@@ -38,7 +38,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// traverse every child in the tree glNode in post-order.
+        /// traverse every child in the tree appliedNode in post-order.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
         /// <param name="treeNode"></param>
@@ -62,7 +62,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// traverse every child in the tree glNode in pre-order.
+        /// traverse every child in the tree appliedNode in pre-order.
         /// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         /// </summary>
         /// <param name="treeNode"></param>
@@ -86,7 +86,7 @@ namespace CSharpGL
         }
 
         ///// <summary>
-        ///// traverse every child in the tree glNode recursively.
+        ///// traverse every child in the tree appliedNode recursively.
         ///// <para>Use this when <paramref name="treeNode"/>'s structure is flat.</para>
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
@@ -108,7 +108,7 @@ namespace CSharpGL
         //}
 
         ///// <summary>
-        ///// traverse every child in the tree glNode non-recursively.
+        ///// traverse every child in the tree appliedNode non-recursively.
         ///// <para>Use this when <paramref name="treeNode"/>'s structure is NOT flat.</para>
         ///// </summary>
         ///// <typeparam name="T"></typeparam>

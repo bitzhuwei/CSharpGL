@@ -17,5 +17,6 @@ namespace CSharpGL
         /// 
         /// </summary>
         public List<GLNode> Children { get { return this.children; } }
+
     }
 }
