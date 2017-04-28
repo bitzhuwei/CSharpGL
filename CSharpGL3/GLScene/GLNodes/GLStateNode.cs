@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="shaderCodes"></param>
+        /// <param name="glState"></param>
         public GLStateNode(GLState glState)
         {
             this.glState = glState;
