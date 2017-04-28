@@ -24176,6 +24176,48 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:CSharpGL.RenderAction">
+            <summary>
+            
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpGL.GLAction">
+            <summary>
+            Action that applys to a scene made of <see cref="T:CSharpGL.GLNode"/>.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.GLAction.Apply(CSharpGL.GLNode)">
+            <summary>
+            
+            </summary>
+            <param name="glNode"></param>
+        </member>
+        <member name="P:CSharpGL.GLAction.AppliedNode">
+            <summary>
+            node that this action applies to.
+            </summary>
+        </member>
+        <member name="M:CSharpGL.RenderAction.Find(CSharpGL.GLNode)">
+            <summary>
+            Find the wanted <see cref="T:CSharpGL.GLSnippet"/> according to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
+            </summary>
+            <param name="glAction"></param>
+            <param name="glNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpGL.RenderAction.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CSharpGL.RenderAction.Context">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:CSharpGL.Render_ProgramNode">
             <summary>
             
@@ -24720,37 +24762,6 @@
             <param name="glAction"></param>
             <param name="glNode"></param>
         </member>
-        <member name="T:CSharpGL.RenderAction">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:CSharpGL.GLAction">
-            <summary>
-            Action that applys to a scene made of <see cref="T:CSharpGL.GLNode"/>.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.GLAction.Apply(CSharpGL.GLNode)">
-            <summary>
-            
-            </summary>
-            <param name="glNode"></param>
-        </member>
-        <member name="P:CSharpGL.GLAction.AppliedNode">
-            <summary>
-            node that this action applies to.
-            </summary>
-        </member>
-        <member name="M:CSharpGL.RenderAction.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:CSharpGL.RenderAction.Context">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:CSharpGL.RenderActionContext">
             <summary>
             
@@ -24785,14 +24796,6 @@
             <summary>
             
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSharpGL.GLSnippetSearcher.Find(CSharpGL.GLAction,CSharpGL.GLNode)">
-            <summary>
-            Find the wanted <see cref="T:CSharpGL.GLSnippet"/> according to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
-            </summary>
-            <param name="glAction"></param>
-            <param name="glNode"></param>
             <returns></returns>
         </member>
         <member name="T:CSharpGL.GLOneIndexNode">

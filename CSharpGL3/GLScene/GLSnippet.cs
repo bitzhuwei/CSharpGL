@@ -16,7 +16,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="glAction"></param>
         /// <param name="glNode"></param>
-        public virtual void DoAction(GLAction glAction, GLNode glNode) { }
+        public abstract void DoAction(GLAction glAction, GLNode glNode);
 
     }
 }
