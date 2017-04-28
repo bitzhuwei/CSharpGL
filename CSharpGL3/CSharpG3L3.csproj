@@ -351,6 +351,7 @@
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_Program.cs" />
     <Compile Include="GLScene\GLNodes\GLProgramNode.cs" />
     <Compile Include="GLScene\GLNodes\GLShaderNode.cs" />
+    <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_OneIndex.cs" />
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_ZeroIndex.cs" />
     <Compile Include="Layout\ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />
