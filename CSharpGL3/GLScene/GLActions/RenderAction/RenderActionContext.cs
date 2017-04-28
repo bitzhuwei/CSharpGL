@@ -61,7 +61,12 @@ namespace CSharpGL
             this.indexBuffer.Bind();
             this.indexBuffer.Render();
             this.indexBuffer.Unbind();
-            throw new NotImplementedException();
+            for (int i = this.glStateList.Count - 1; i >= 0; i++)
+            {
+                this.glStateList[i].Off();
+            }
+
+            this.shaderProgram.Unbind();
         }
     }
 }
