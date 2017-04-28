@@ -20,7 +20,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="first"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="primcount"></param>
         public delegate void glMultiDrawArrays(uint mode, int[] first, int[] count, int primcount);
 
@@ -28,7 +28,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="mode"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         /// <param name="primcount"></param>

@@ -84,13 +84,24 @@ namespace CSharpGL
             return this.buffer;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public DrawMode Mode { get; set; }
 
-        public IndexBufferElementType ElementType { get; protected set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public IndexBufferElementType ElementType { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BufferUsage Usage { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int PrimCount { get; set; }
     }
 }

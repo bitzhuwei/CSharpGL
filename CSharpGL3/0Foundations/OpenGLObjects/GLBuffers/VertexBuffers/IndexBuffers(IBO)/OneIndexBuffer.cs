@@ -8,6 +8,8 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class OneIndexBuffer : IndexBuffer
     {
+        private static OpenGL.glDrawElementsInstanced glDrawElementsInstanced;
+
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
@@ -58,6 +60,50 @@ namespace CSharpGL
         /// </summary>
         public IndexBufferElementType ElementType { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Render()
+        {
+            int primCount = this.PrimCount;
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+
+            uint mode = (uint)this.Mode;
+
+            IntPtr offset;
+            switch (this.ElementType)
+            {
+                case IndexBufferElementType.UByte:
+                    offset = new IntPtr(this.FirstIndex * sizeof(byte));
+                    break;
+
+                case IndexBufferElementType.UShort:
+                    offset = new IntPtr(this.FirstIndex * sizeof(ushort));
+                    break;
+
+                case IndexBufferElementType.UInt:
+                    offset = new IntPtr(this.FirstIndex * sizeof(uint));
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            if (primCount == 1)
+            {
+                OpenGL.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
+            }
+            else
+            {
+                if (glDrawElementsInstanced == null)
+                { glDrawElementsInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawElementsInstanced>(); }
+
+                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
+            }
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
+        }
         /// <summary>
         ///
         /// </summary>

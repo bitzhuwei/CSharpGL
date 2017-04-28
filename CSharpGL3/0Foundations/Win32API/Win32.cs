@@ -82,7 +82,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="hDC">Specifies the device context whose currently selected font will be used to form the glyph bitmap display lists in the current OpenGL rendering context..</param>
         /// <param name="first">Specifies the first glyph in the run of glyphs that will be used to form glyph bitmap display lists.</param>
-        /// <param name="VertexCount">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates VertexCount display lists, one for each glyph in the run.</param>
+        /// <param name="count">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates VertexCount display lists, one for each glyph in the run.</param>
         /// <param name="listBase">Specifies a starting display list.</param>
         /// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. To get extended error information, call GetLastError.</returns>
         [DllImport(opengl32, SetLastError = true)]

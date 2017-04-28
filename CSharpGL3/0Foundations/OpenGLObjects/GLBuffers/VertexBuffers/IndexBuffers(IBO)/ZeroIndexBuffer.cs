@@ -8,6 +8,8 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class ZeroIndexBuffer : IndexBuffer
     {
+        private static OpenGL.glDrawArraysInstanced glDrawArraysInstanced;
+
         /// <summary>
         /// Invalid for <see cref="ZeroIndexBuffer"/>.
         /// </summary>
@@ -20,8 +22,8 @@ namespace CSharpGL
         /// Wraps glDrawArrays(uint mode, int first, int VertexCount).
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        /// <param name="FirstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-        /// <param name="VertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
+        /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
+        /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
@@ -52,6 +54,28 @@ namespace CSharpGL
         public override void Bind()
         {
             // need to do nothing.
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override void Render()
+        {
+            uint mode = (uint)this.Mode;
+
+            int primCount = this.PrimCount;
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+            else if (primCount == 1)
+            {
+                OpenGL.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
+            }
+            else
+            {
+                if (glDrawArraysInstanced == null)
+                { glDrawArraysInstanced = OpenGL.GetDelegateFor<OpenGL.glDrawArraysInstanced>(); }
+
+                glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
+            }
         }
 
         /// <summary>

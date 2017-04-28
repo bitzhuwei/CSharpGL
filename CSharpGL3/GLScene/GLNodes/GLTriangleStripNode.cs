@@ -16,11 +16,22 @@ namespace CSharpGL
             get { return type; }
         }
 
+        private VertexArrayObject vertexArrayObject;
 
-
-        internal VertexArrayObject GetVertexArrayObject(RenderActionContext renderActionContext)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indexBuffer"></param>
+        /// <param name="vertexBuffers"></param>
+        /// <returns></returns>
+        public VertexArrayObject GetVertexArrayObject(IndexBuffer indexBuffer, VertexBuffer[] vertexBuffers)
         {
-            throw new NotImplementedException();
+            if (this.vertexArrayObject == null)
+            {
+                this.vertexArrayObject = new VertexArrayObject(indexBuffer, vertexBuffers);
+            }
+
+            return this.vertexArrayObject;
         }
     }
 }

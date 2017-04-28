@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <param name="result"></param>
-        /// <param name="FirstVertex"></param>
+        /// <param name="startIndex"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetStruct<T>(this byte[] bytes, out T result, int startIndex = 0) where T : struct
         {

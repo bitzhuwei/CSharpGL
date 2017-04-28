@@ -5229,7 +5229,7 @@ namespace CSharpGL
         /// <param name="source"></param>
         /// <param name="type"></param>
         /// <param name="severity"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="ids"></param>
         /// <param name="enabled"></param>
         public delegate void glDebugMessageControl(

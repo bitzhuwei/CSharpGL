@@ -860,7 +860,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
-        /// <param name="VertexCount">Specifies the number of indices to be rendered.</param>
+        /// <param name="count">Specifies the number of indices to be rendered.</param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawArrays(DrawMode mode, int first, int count)
         {
@@ -872,7 +872,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="first"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="primcount"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawArrays(DrawMode mode, int[] first, int[] count, int primcount)
@@ -884,7 +884,7 @@ namespace CSharpGL
         /// Render primitives from array data.
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-        /// <param name="VertexCount">Specifies the number of elements to be rendered.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
         /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -897,7 +897,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="mode"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         /// <param name="primcount"></param>
@@ -925,7 +925,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="start"></param>
         /// <param name="end"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1252,7 +1252,7 @@ namespace CSharpGL
         /// <param name="source"></param>
         /// <param name="type"></param>
         /// <param name="severity"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="ids"></param>
         /// <param name="enabled"></param>
         public static void DebugMessageControl(

@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="start"></param>
         /// <param name="end"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="count"></param>
         /// <param name="type"></param>
         /// <param name="indices"></param>
         public delegate void glDrawRangeElements(uint mode, uint start, uint end, int count, uint type, IntPtr indices);

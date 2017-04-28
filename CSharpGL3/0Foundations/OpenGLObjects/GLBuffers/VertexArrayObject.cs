@@ -72,8 +72,8 @@ namespace CSharpGL
         /// <param name="shaderProgram"></param>
         public void Initialize(ShaderProgram shaderProgram)
         {
-            if (this.Id != 0)
-            { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
+            if (this.Id != 0) { return; }
+            //{ throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
 
             if (glGenVertexArrays == null)
             {

@@ -43,8 +43,8 @@ namespace CSharpGL
         /// <para><see cref="ZeroIndexBuffer"/> is not a real buffer like <see cref="OneIndexBuffer"/>.</para>
         /// </summary>
         /// <param name="mode"></param>
-        /// <param name="FirstVertex"></param>
-        /// <param name="VertexCount"></param>
+        /// <param name="firstVertex"></param>
+        /// <param name="vertexCount"></param>
         /// <param name="primCount"></param>
         /// <returns></returns>
         public static ZeroIndexBuffer Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)

@@ -45,5 +45,23 @@ namespace CSharpGL
 
             return true;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Render()
+        {
+            this.shaderProgram.Bind();
+            for (int i = 0; i < this.glStateList.Count; i++)
+            {
+                this.glStateList[i].On();
+            }
+
+            this.vertexArrayObject.Initialize(this.shaderProgram);
+            this.indexBuffer.Bind();
+            this.indexBuffer.Render();
+            this.indexBuffer.Unbind();
+            throw new NotImplementedException();
+        }
     }
 }

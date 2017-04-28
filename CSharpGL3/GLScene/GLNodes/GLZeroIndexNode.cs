@@ -18,6 +18,13 @@ namespace CSharpGL
             get { return type; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="firstVertex"></param>
+        /// <param name="vertexCount"></param>
+        /// <param name="primCount"></param>
         public GLZeroIndexNode(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
         {
             this.Mode = mode;
@@ -26,6 +33,10 @@ namespace CSharpGL
             this.PrimCount = primCount;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ZeroIndexBuffer GetIndexBuffer()
         {
             if (this.buffer == null)
@@ -36,12 +47,24 @@ namespace CSharpGL
             return this.buffer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DrawMode Mode { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int FirstVertex { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int VertexCount { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int PrimCount { get; set; }
     }
 }

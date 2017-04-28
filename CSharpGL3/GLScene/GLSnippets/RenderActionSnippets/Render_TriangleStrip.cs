@@ -23,8 +23,13 @@ namespace CSharpGL
             Debug.Assert(action != null);
             Debug.Assert(node != null);
 
-            VertexArrayObject vao = node.GetVertexArrayObject(action.Context);
-            action.Context.vertexArrayObject = vao;
+            if (action.Context.vertexArrayObject == null)
+            {
+                VertexArrayObject vao = node.GetVertexArrayObject(action.Context.indexBuffer, action.Context.vertexAttributeBuffers.ToArray());
+                action.Context.vertexArrayObject = vao;
+            }
+
+            action.Context.Render();
         }
 
     }

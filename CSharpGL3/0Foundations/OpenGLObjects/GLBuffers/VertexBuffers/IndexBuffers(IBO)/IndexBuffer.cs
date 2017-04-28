@@ -36,5 +36,12 @@ namespace CSharpGL
         /// primCount in instanced rendering.
         /// </summary>
         public int PrimCount { get; private set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract void Render();
+
     }
 }
