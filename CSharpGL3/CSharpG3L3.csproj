@@ -353,6 +353,7 @@
     <Compile Include="GLScene\GLActions\RenderAction\RenderAction.Designer.cs" />
     <Compile Include="GLScene\GLNodes\GLTriangleStripNode.cs" />
     <Compile Include="GLScene\GLNodes\GLStateNode.cs" />
+    <Compile Include="GLScene\GLNodes\GLCameraNode.cs" />
     <Compile Include="GLScene\GLSnippets\RenderActionSnippets\Render_Program.cs" />
     <Compile Include="GLScene\GLNodes\GLProgramNode.cs" />
     <Compile Include="GLScene\GLNodes\GLShaderNode.cs" />
