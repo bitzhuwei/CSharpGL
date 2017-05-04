@@ -41,13 +41,13 @@
             this.glCanvas1.Size = new System.Drawing.Size(542, 444);
             this.glCanvas1.TabIndex = 0;
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 444);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

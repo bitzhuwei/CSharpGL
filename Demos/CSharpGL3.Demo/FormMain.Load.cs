@@ -10,14 +10,12 @@ using System.Windows.Forms;
 
 namespace CSharpGL3.Demo
 {
-    public partial class FormMain : Form
+    public partial class FormMain
     {
-        public FormMain()
+
+        private void FormMain_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
 
-            this.Load += FormMain_Load;
         }
-
     }
 }
