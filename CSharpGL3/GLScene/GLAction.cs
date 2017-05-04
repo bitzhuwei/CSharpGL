@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <returns></returns>
         protected GLSnippet Find(GLNode glNode)
         {
-            Type nodeType = glNode.GetType();
+            Type nodeType = glNode.ThisTypeCache;
             GLSnippet snippet = null;
             var dict = this.Dictionary;
             if (!dict.TryGetValue(nodeType, out snippet))

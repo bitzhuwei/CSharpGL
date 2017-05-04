@@ -16,7 +16,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="glAction"></param>
         /// <param name="glNode"></param>
-        public abstract void DoAction(GLAction glAction, GLNode glNode);
+        public virtual void BeforeChildren(GLAction glAction, GLNode glNode) { }
+
+        /// <summary>
+        ///  a group of related OpenGL codes to specified <paramref name="glAction"/> and <paramref name="glNode"/>.
+        /// </summary>
+        /// <param name="glAction"></param>
+        /// <param name="glNode"></param>
+        public virtual void AfterChildren(GLAction glAction, GLNode glNode) { }
 
     }
 }

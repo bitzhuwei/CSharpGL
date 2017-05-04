@@ -16,7 +16,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="glAction"></param>
         /// <param name="glNode"></param>
-        public override void DoAction(GLAction glAction, GLNode glNode)
+        public override void BeforeChildren(GLAction glAction, GLNode glNode)
         {
             var action = glAction as RenderAction;
             var node = glNode as GLVertexNode;
