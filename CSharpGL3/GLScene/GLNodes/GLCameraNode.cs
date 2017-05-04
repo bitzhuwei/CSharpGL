@@ -13,7 +13,7 @@ namespace CSharpGL
     {
 
         private static readonly Type type = typeof(GLCameraNode);
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }

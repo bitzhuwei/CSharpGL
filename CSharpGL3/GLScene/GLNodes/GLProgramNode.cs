@@ -11,7 +11,7 @@ namespace CSharpGL
     public class GLProgramNode : GLNode
     {
         private static readonly Type type = typeof(GLProgramNode);
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }

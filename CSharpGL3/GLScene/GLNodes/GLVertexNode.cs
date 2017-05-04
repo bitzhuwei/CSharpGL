@@ -22,7 +22,7 @@ namespace CSharpGL
         private BufferUsage usage;
         private uint instancedDivisor;
         private int patchVertexes;
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }

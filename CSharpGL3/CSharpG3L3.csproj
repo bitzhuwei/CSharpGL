@@ -417,7 +417,6 @@
     <Compile Include="GLScene\GLActions\RenderAction\RenderActionContext.cs" />
     <Compile Include="GLScene\GLSnippet.cs" />
     <Compile Include="GLScene\GLAction.cs" />
-    <Compile Include="GLScene\GLSnippetHelper.cs" />
     <Compile Include="GLScene\GLNodes\GLOneIndexNode.cs" />
     <Compile Include="GLScene\GLNodes\GLZeroIndexNode.cs" />
     <Compile Include="GLScene\GLNodes\GLVertexNode.cs" />

@@ -16,7 +16,7 @@ namespace CSharpGL
         /// </summary>
         public GLNode AppliedNode { get; set; }
 
-        internal abstract Type ThisTypeCache { get; }
+        internal abstract Type SelfTypeCache { get; }
 
         /// <summary>
         /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="glNode"/>.

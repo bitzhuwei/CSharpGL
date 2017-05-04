@@ -13,7 +13,7 @@ namespace CSharpGL
         private ZeroIndexBuffer buffer;
 
         private static readonly Type type = typeof(GLZeroIndexNode);
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }

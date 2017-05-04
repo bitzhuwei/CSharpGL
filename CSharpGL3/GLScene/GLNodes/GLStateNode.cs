@@ -13,7 +13,7 @@ namespace CSharpGL
         private GLState glState;
 
         private static readonly Type type = typeof(GLStateNode);
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }

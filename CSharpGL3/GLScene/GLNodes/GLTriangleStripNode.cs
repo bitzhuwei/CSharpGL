@@ -11,7 +11,7 @@ namespace CSharpGL
     public class GLTriangleStripNode : GLShaderNode
     {
         private static readonly Type type = typeof(GLTriangleStripNode);
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }

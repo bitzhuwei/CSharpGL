@@ -14,7 +14,7 @@ namespace CSharpGL
         private static readonly Type type = typeof(GLOneIndexNode);
         private Array data;
 
-        internal override Type ThisTypeCache
+        internal override Type SelfTypeCache
         {
             get { return type; }
         }
