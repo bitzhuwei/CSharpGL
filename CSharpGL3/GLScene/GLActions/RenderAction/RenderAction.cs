@@ -34,7 +34,9 @@ namespace CSharpGL
         /// </summary>
         public void Render()
         {
-            throw new NotImplementedException();
+            if (this.AppliedNode == null) { throw new Exception("No node applied!"); }
+
+            this.Context.Render();
         }
 
     }
