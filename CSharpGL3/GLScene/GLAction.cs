@@ -10,31 +10,13 @@ namespace CSharpGL
     /// </summary>
     public abstract class GLAction
     {
-        internal abstract Type ThisTypeCache { get; }
-
-        private GLNode appliedNode;
 
         /// <summary>
         /// node that this action applies to.
         /// </summary>
-        protected GLNode AppliedNode
-        {
-            get { return appliedNode; }
-        }
+        public GLNode AppliedNode { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="glNode"></param>
-        public void Apply(GLNode glNode)
-        {
-            this.appliedNode = glNode;
-        }
-
-        ///// <summary>
-        ///// Give me an static dictionary.
-        ///// </summary>
-        //internal protected abstract Dictionary<Type, GLSnippet> Dictionary { get; }
+        internal abstract Type ThisTypeCache { get; }
 
         /// <summary>
         /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="glNode"/>.
@@ -42,7 +24,6 @@ namespace CSharpGL
         /// <param name="glNode"></param>
         /// <returns></returns>
         protected abstract GLSnippet FindSnippet(GLNode glNode);
-
 
     }
 }
