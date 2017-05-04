@@ -21,14 +21,24 @@ namespace CSharpGL
         }
 
         // appliedNode -> snippet.
-        static Dictionary<Type, GLSnippet> dictionary = new Dictionary<Type, GLSnippet>();
+        private static readonly Dictionary<Type, GLSnippet> dictionary = new Dictionary<Type, GLSnippet>();
 
         /// <summary>
-        /// provides a dictionary to cache <see cref="GLSnippet"/>s.
+        /// 
         /// </summary>
-        protected internal override Dictionary<Type, GLSnippet> Dictionary
+        /// <param name="glNode"></param>
+        /// <returns></returns>
+        protected override GLSnippet FindSnippet(GLNode glNode)
         {
-            get { return dictionary; }
+            Type nodeType = glNode.ThisTypeCache;
+            GLSnippet snippet = null;
+            if (!dictionary.TryGetValue(nodeType, out snippet))
+            {
+                snippet = GLSnippetHelper.CreateInstance(this, glNode);
+                dictionary.Add(nodeType, snippet);
+            }
+
+            return snippet;
         }
     }
 }

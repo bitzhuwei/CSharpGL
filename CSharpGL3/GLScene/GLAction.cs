@@ -31,29 +31,18 @@ namespace CSharpGL
             this.appliedNode = glNode;
         }
 
-        /// <summary>
-        /// Give me an static dictionary.
-        /// </summary>
-        internal protected abstract Dictionary<Type, GLSnippet> Dictionary { get; }
+        ///// <summary>
+        ///// Give me an static dictionary.
+        ///// </summary>
+        //internal protected abstract Dictionary<Type, GLSnippet> Dictionary { get; }
 
         /// <summary>
         /// Find the wanted <see cref="GLSnippet"/> according to specified <paramref name="glNode"/>.
         /// </summary>
         /// <param name="glNode"></param>
         /// <returns></returns>
-        protected GLSnippet Find(GLNode glNode)
-        {
-            Type nodeType = glNode.ThisTypeCache;
-            GLSnippet snippet = null;
-            var dict = this.Dictionary;
-            if (!dict.TryGetValue(nodeType, out snippet))
-            {
-                snippet = GLSnippetHelper.CreateInstance(this, glNode);
-                dict.Add(nodeType, snippet);
-            }
+        protected abstract GLSnippet FindSnippet(GLNode glNode);
 
-            return snippet;
-        }
 
     }
 }
