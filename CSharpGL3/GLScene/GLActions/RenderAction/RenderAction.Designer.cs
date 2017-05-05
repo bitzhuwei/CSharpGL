@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 
 namespace CSharpGL
 {
@@ -23,6 +25,16 @@ namespace CSharpGL
         // appliedNode -> snippet.
         private static readonly Dictionary<Type, GLSnippet> dictionary = new Dictionary<Type, GLSnippet>();
 
+        static RenderAction()
+        {
+            dictionary.Add(typeof(GLOneIndexNode), new Render_OneIndex());
+            dictionary.Add(typeof(GLProgramNode), new Render_ProgramNode());
+            dictionary.Add(typeof(GLStateNode), new Render_State());
+            dictionary.Add(typeof(GLTriangleStripNode), new Render_TriangleStrip());
+            dictionary.Add(typeof(GLVertexNode), new Render_Vertex());
+            dictionary.Add(typeof(GLZeroIndexNode), new Render_ZeroIndex());
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -32,31 +44,38 @@ namespace CSharpGL
         {
             Type nodeType = glNode.SelfTypeCache;
             GLSnippet snippet = null;
-            if (!dictionary.TryGetValue(nodeType, out snippet))
-            {
-                snippet = CreateInstance(this.SelfTypeCache, glNode.SelfTypeCache);
-                dictionary.Add(nodeType, snippet);
-            }
+            dictionary.TryGetValue(nodeType, out snippet);
 
             return snippet;
         }
+        //protected override GLSnippet FindSnippet(GLNode glNode)
+        //{
+        //    Type nodeType = glNode.SelfTypeCache;
+        //    GLSnippet snippet = null;
+        //    if (!dictionary.TryGetValue(nodeType, out snippet))
+        //    {
+        //        snippet = CreateInstance(this.SelfTypeCache, glNode.SelfTypeCache);
+        //        dictionary.Add(nodeType, snippet);
+        //    }
 
-        private static GLSnippet CreateInstance(Type actionType, Type nodeType)
-        {
-            GLSnippet result = null;
-            // NOTE: This forces GLSnippet's class name's pattern.
-            string prefix = actionType.Name.Substring(0, actionType.Name.Length - "Action".Length);
-            string postfix = nodeType.Name.Substring("GL".Length, nodeType.Name.Length - "GL".Length - "Node".Length);
-            try
-            {
-                Type type = Type.GetType(prefix + "_" + postfix);
-                result = Activator.CreateInstance(type) as GLSnippet;
-            }
-            catch (Exception)
-            {
-            }
+        //    return snippet;
+        //}
 
-            return result;
-        }
+        //private static GLSnippet CreateInstance(Type actionType, Type nodeType)
+        //{
+        //    GLSnippet result = null;
+        //    // NOTE: This forces GLSnippet's class name's pattern.
+        //    string prefix = actionType.Name.Substring(0, actionType.Name.Length - "Action".Length);
+        //    string postfix = nodeType.Name.Substring("GL".Length, nodeType.Name.Length - "GL".Length - "Node".Length);
+        //    Assembly[] assemblies = AssemblyHelper.GetAssemblies(Application.ExecutablePath);
+
+        //    Type type = Type.GetType(prefix + "_" + postfix);
+        //    if (type != null)
+        //    {
+        //        result = Activator.CreateInstance(type,) as GLSnippet;
+        //    }
+
+        //    return result;
+        //}
     }
 }

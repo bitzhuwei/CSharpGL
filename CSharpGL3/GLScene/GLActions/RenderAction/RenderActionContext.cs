@@ -52,15 +52,19 @@ namespace CSharpGL
         public void Render()
         {
             this.shaderProgram.Bind();
+
             for (int i = 0; i < this.glStateList.Count; i++)
             {
                 this.glStateList[i].On();
             }
 
             this.vertexArrayObject.Initialize(this.shaderProgram);
+            this.vertexArrayObject.Bind();
             this.indexBuffer.Bind();
             this.indexBuffer.Render();
             this.indexBuffer.Unbind();
+            this.vertexArrayObject.Unbind();
+
             for (int i = this.glStateList.Count - 1; i >= 0; i++)
             {
                 this.glStateList[i].Off();
