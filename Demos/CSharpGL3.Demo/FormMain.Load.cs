@@ -23,17 +23,27 @@ namespace CSharpGL3.Demo
             var program = new GLProgramNode(shaderCodes);
 
             var positions = new vec3[3];
-            positions[0] = new vec3(-1, -1, 0);
-            positions[1] = new vec3(-1, 1, 0);
-            positions[2] = new vec3(1, 1, 0);
+            positions[0] = new vec3(-1, -1, 0) * 0.5f;
+            positions[1] = new vec3(-1, 1, 0) * 0.5f;
+            positions[2] = new vec3(1, 1, 0) * 0.5f;
             var positionNode = GLVertexNode.Create(positions, VBOConfig.Vec3, "in_Position", BufferUsage.StaticDraw);
+
+            var colors = new vec3[3];
+            colors[0] = Color.Red.ToVec3();
+            colors[1] = Color.Green.ToVec3();
+            colors[2] = Color.Blue.ToVec3();
+            var colorNode = GLVertexNode.Create(colors, VBOConfig.Vec3, "in_Color", BufferUsage.StaticDraw);
 
             var indexNode = new GLZeroIndexNode(CSharpGL.DrawMode.Triangles, 0, 3);
 
             var shapeNode = new GLTriangleStripNode();
 
             root = new GLSeparatorNode();
-            root.Children.Add(program); root.Children.Add(positionNode); root.Children.Add(indexNode); root.Children.Add(shapeNode);
+            root.Children.Add(program);
+            root.Children.Add(positionNode);
+            root.Children.Add(colorNode);
+            root.Children.Add(indexNode);
+            root.Children.Add(shapeNode);
 
             this.renderAction = new RenderAction();
             this.renderAction.AppliedNode = this.root;
