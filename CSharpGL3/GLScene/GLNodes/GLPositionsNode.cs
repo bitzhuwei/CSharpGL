@@ -15,10 +15,7 @@ namespace CSharpGL
         private vec3[] array;
 
         private static readonly Type type = typeof(GLPositionsNode);
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
+        internal override Type SelfTypeCache { get { return type; } }
 
         public GLPositionsNode(vec3[] array)
         {

@@ -15,10 +15,7 @@ namespace CSharpGL
         private vec3[] array;
 
         private static readonly Type type = typeof(GLColorsNode);
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
+        internal override Type SelfTypeCache { get { return type; } }
 
         public GLColorsNode(vec3[] array)
         {

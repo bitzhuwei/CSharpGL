@@ -44,7 +44,7 @@ namespace CSharpGL3.Demo
 
             var indexNode = new GLZeroIndexNode(CSharpGL.DrawMode.Triangles, 0, positions.Length);
 
-            var shapeNode = new GLTriangleStripNode();
+            var shapeNode = new GLPositionColorNode();
 
             root = new GLSeparatorNode();
             root.Children.Add(program);

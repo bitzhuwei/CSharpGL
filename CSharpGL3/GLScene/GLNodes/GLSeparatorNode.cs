@@ -13,10 +13,7 @@ namespace CSharpGL
     {
 
         private static readonly Type type = typeof(GLSeparatorNode);
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
+        internal override Type SelfTypeCache { get { return type; } }
 
         public GLSeparatorNode() { }
 

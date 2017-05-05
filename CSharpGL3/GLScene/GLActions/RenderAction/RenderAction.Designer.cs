@@ -13,14 +13,7 @@ namespace CSharpGL
     public sealed partial class RenderAction
     {
         private static readonly Type type = typeof(RenderAction);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
+        internal override Type SelfTypeCache { get { return type; } }
 
         // appliedNode -> snippet.
         private static readonly Dictionary<Type, GLSnippet> dictionary = new Dictionary<Type, GLSnippet>();
@@ -32,7 +25,7 @@ namespace CSharpGL
             dictionary.Add(typeof(GLPositionsNode), new Render_Positions());
             dictionary.Add(typeof(GLProgramNode), new Render_ProgramNode());
             dictionary.Add(typeof(GLStateNode), new Render_State());
-            dictionary.Add(typeof(GLTriangleStripNode), new Render_TriangleStrip());
+            dictionary.Add(typeof(GLPositionColorNode), new Render_PositionColor());
             //dictionary.Add(typeof(GLVertexNode), new Render_Vertex());
             dictionary.Add(typeof(GLZeroIndexNode), new Render_ZeroIndex());
         }

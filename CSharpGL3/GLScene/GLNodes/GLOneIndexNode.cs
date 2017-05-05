@@ -11,13 +11,10 @@ namespace CSharpGL
     public sealed class GLOneIndexNode : GLNode
     {
         private OneIndexBuffer buffer;
-        private static readonly Type type = typeof(GLOneIndexNode);
         private Array data;
 
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
+        private static readonly Type type = typeof(GLOneIndexNode);
+        internal override Type SelfTypeCache { get { return type; } }
 
         /// <summary>
         /// 

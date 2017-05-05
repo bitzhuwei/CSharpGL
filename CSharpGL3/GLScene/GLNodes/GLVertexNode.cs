@@ -11,21 +11,19 @@ namespace CSharpGL
     /// </summary>
     public sealed class GLVertexNode : GLNode
     {
+        private static readonly Type type = typeof(GLVertexNode);
+        internal override Type SelfTypeCache { get { return type; } }
+
         private VertexBuffer vertexBuffer;
         private Array array;
         private int length;
 
-        private static readonly Type type = typeof(GLVertexNode);
         private int byteLength;
         private VBOConfig config;
         private string varNameInVertexShader;
         private BufferUsage usage;
         private uint instancedDivisor;
         private int patchVertexes;
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
 
         /// <summary>
         /// 

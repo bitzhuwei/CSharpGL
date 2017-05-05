@@ -10,13 +10,11 @@ namespace CSharpGL
     /// </summary>
     public sealed class GLZeroIndexNode : GLNode
     {
-        private ZeroIndexBuffer buffer;
 
         private static readonly Type type = typeof(GLZeroIndexNode);
-        internal override Type SelfTypeCache
-        {
-            get { return type; }
-        }
+        internal override Type SelfTypeCache { get { return type; } }
+
+        private ZeroIndexBuffer buffer;
 
         /// <summary>
         /// 
