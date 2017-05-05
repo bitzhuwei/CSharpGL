@@ -26,7 +26,6 @@ namespace CSharpGL
             dictionary.Add(typeof(GLProgramNode), new Render_ProgramNode());
             dictionary.Add(typeof(GLStateNode), new Render_State());
             dictionary.Add(typeof(GLPositionColorNode), new Render_PositionColor());
-            //dictionary.Add(typeof(GLVertexNode), new Render_Vertex());
             dictionary.Add(typeof(GLZeroIndexNode), new Render_ZeroIndex());
         }
 
