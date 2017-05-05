@@ -27,11 +27,13 @@ namespace CSharpGL
 
         static RenderAction()
         {
+            dictionary.Add(typeof(GLColorsNode), new Render_Colors());
             dictionary.Add(typeof(GLOneIndexNode), new Render_OneIndex());
+            dictionary.Add(typeof(GLPositionsNode), new Render_Positions());
             dictionary.Add(typeof(GLProgramNode), new Render_ProgramNode());
             dictionary.Add(typeof(GLStateNode), new Render_State());
             dictionary.Add(typeof(GLTriangleStripNode), new Render_TriangleStrip());
-            dictionary.Add(typeof(GLVertexNode), new Render_Vertex());
+            //dictionary.Add(typeof(GLVertexNode), new Render_Vertex());
             dictionary.Add(typeof(GLZeroIndexNode), new Render_ZeroIndex());
         }
 
