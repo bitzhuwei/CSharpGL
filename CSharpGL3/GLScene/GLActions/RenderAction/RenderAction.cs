@@ -30,6 +30,8 @@ namespace CSharpGL
         /// </summary>
         public RenderActionContext Context { get; set; }
 
+        public Color ClearColor { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +39,7 @@ namespace CSharpGL
         {
             if (this.AppliedNode == null) { throw new Exception("No node applied!"); }
 
-            OpenGL.ClearColor = Color.SkyBlue;
+            OpenGL.ClearColor = this.ClearColor;
             OpenGL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
 
             this.Triverse(this.AppliedNode);

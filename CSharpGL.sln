@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpG3L3", "CSharpGL3\CSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL3.Demo", "Demos\CSharpGL3.Demo\CSharpGL3.Demo.csproj", "{E340F6B8-4679-4894-A6CD-9DE8B302E731}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL4", "CSharpGL4\CSharpGL4.csproj", "{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Windows", "CSharpGL.Windows\CSharpGL.Windows.csproj", "{704921FB-E30A-4C8A-BC73-F343AB2EB690}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,14 @@ Global
 		{E340F6B8-4679-4894-A6CD-9DE8B302E731}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E340F6B8-4679-4894-A6CD-9DE8B302E731}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E340F6B8-4679-4894-A6CD-9DE8B302E731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704921FB-E30A-4C8A-BC73-F343AB2EB690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704921FB-E30A-4C8A-BC73-F343AB2EB690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704921FB-E30A-4C8A-BC73-F343AB2EB690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704921FB-E30A-4C8A-BC73-F343AB2EB690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
