@@ -23,11 +23,6 @@
                 result = string.Format("{0:0.0000}", value);
             }
 
-            //if(!result.StartsWith("-"))
-            //{
-            //    result = "+" + result;
-            //}
-
             return result;
         }
     }
