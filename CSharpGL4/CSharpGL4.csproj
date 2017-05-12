@@ -7,7 +7,7 @@
     <ProjectGuid>{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL4</RootNamespace>
+    <RootNamespace>CSharpGL</RootNamespace>
     <AssemblyName>CSharpGL4</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,13 +39,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataStructures\GLSL\bvec2.cs" />
+    <Compile Include="BaseDataStructures\GLSL\bvec3.cs" />
+    <Compile Include="BaseDataStructures\GLSL\bvec4.cs" />
+    <Compile Include="BaseDataStructures\GLSL\dvec2.cs" />
+    <Compile Include="BaseDataStructures\GLSL\dvec3.cs" />
+    <Compile Include="BaseDataStructures\GLSL\dvec4.cs" />
+    <Compile Include="BaseDataStructures\GLSL\glm_camera.cs" />
+    <Compile Include="BaseDataStructures\GLSL\glm_inverse.cs" />
+    <Compile Include="BaseDataStructures\GLSL\glm_trigonometric.cs" />
+    <Compile Include="BaseDataStructures\GLSL\ILoadFromString.cs" />
+    <Compile Include="BaseDataStructures\GLSL\ivec2.cs" />
+    <Compile Include="BaseDataStructures\GLSL\ivec3.cs" />
+    <Compile Include="BaseDataStructures\GLSL\ivec4.cs" />
+    <Compile Include="BaseDataStructures\GLSL\mat2.cs" />
+    <Compile Include="BaseDataStructures\GLSL\mat3.cs" />
+    <Compile Include="BaseDataStructures\GLSL\mat4.cs" />
+    <Compile Include="BaseDataStructures\GLSL\MatrixHelper.cs" />
+    <Compile Include="BaseDataStructures\GLSL\ModelMatrixHelper.cs" />
+    <Compile Include="BaseDataStructures\GLSL\Quaternion.cs" />
+    <Compile Include="BaseDataStructures\GLSL\uvec2.cs" />
+    <Compile Include="BaseDataStructures\GLSL\uvec3.cs" />
+    <Compile Include="BaseDataStructures\GLSL\uvec4.cs" />
+    <Compile Include="BaseDataStructures\GLSL\vec2.cs" />
+    <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
+    <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
+    <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
+    <Compile Include="BaseDataStructures\StructTypeConverter.cs" />
+    <Compile Include="BaseDataStructures\Utilities\DoubleHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\Utilities\FloatHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="OpenGLAPI\IGLCanvas.cs" />
     <Compile Include="OpenGLAPI\IGLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BaseDataStructures\GLSL.Types\" />
     <Folder Include="BaseDataStructures\IBoundingBox\" />
     <Folder Include="BaseDataStructures\ITreeNode\" />
     <Folder Include="BaseDataStructures\UnamangedArray\" />
