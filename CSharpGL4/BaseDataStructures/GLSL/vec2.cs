@@ -12,11 +12,13 @@ namespace CSharpGL
     public struct vec2 : IEquatable<vec2>, ILoadFromString
     {
         /// <summary>
+        /// x = r = s
         /// </summary>
         [FieldOffset(sizeof(float) * 0)]
         public float x;
 
         /// <summary>
+        /// y = g = t
         /// </summary>
         [FieldOffset(sizeof(float) * 1)]
         public float y;
