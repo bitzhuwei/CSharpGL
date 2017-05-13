@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,12 +41,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\BindBufferBaseTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\BlendFunc.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\Buffer.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\ClearBufferMask.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\DebugMessageControlParams.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\DEBUGPROCParams.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\DrawMode.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\ErrorCode.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\FrontFaceMode.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\GetTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\GetTexImage.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\Hint.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\MapBufferAccess.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\MemoryBarrierFlags.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\MipmapTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\PatchParameterName.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\PolugonOffset.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\PolygonMode.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\QueryTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\Samplers.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\ShadeModel.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\ShaderType.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\StringName.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TexImage2D.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TexStorage1DTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TexStorage2DTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TexStorage3DTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TexSubImage2D.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TextureTarget.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\TransformFeedbackTarget.cs" />
+    <Compile Include="OpenGLAPI\FontBitmapEntry.cs" />
+    <Compile Include="OpenGLAPI\FontBitmaps.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.1.2.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.1.3.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.1.4.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.1.5.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.2.0.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.2.1.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.3.0.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.3.1.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.3.2.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.3.3.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.4.0.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Constants.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Extensions.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Functions.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Wrappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win32API\BitmapInfo.cs" />
+    <Compile Include="Win32API\ClassStyles.cs" />
+    <Compile Include="Win32API\PixelFormatDescriptor.cs" />
+    <Compile Include="Win32API\SetWindowPosFlags.cs" />
+    <Compile Include="Win32API\Win32.Constants.cs" />
+    <Compile Include="Win32API\Win32.cs" />
+    <Compile Include="Win32API\Win32.OpenGL32Library.cs" />
+    <Compile Include="Win32API\WindowStyles.cs" />
+    <Compile Include="Win32API\WindowStylesEx.cs" />
+    <Compile Include="Win32API\WNDCLASSEX.cs" />
+    <Compile Include="Win32API\WndProc.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Canvas\" />
     <Folder Include="Context\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpGL4\CSharpGL4.csproj">
+      <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
+      <Name>CSharpGL4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

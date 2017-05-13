@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,7 +67,14 @@
     <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
+    <Compile Include="BaseDataStructures\Pixel.cs" />
     <Compile Include="BaseDataStructures\StructTypeConverter.cs" />
+    <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
+    <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
+    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />
+    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArrayBase.IDisposable.cs" />
+    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArray`1.cs" />
+    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArray`1.IDisposable.cs" />
     <Compile Include="BaseDataStructures\Utilities\DoubleHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -80,9 +89,7 @@
   <ItemGroup>
     <Folder Include="BaseDataStructures\IBoundingBox\" />
     <Folder Include="BaseDataStructures\ITreeNode\" />
-    <Folder Include="BaseDataStructures\UnamangedArray\" />
     <Folder Include="Manipulaters\" />
-    <Folder Include="OpenGLAPI\Functions\" />
     <Folder Include="OpenGLObjects\" />
     <Folder Include="Scene\" />
     <Folder Include="Text\" />

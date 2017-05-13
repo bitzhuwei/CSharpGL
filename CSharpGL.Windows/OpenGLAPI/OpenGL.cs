@@ -27,16 +27,19 @@ namespace CSharpGL
         public static T GetDelegateFor<T>() where T : class
         {
             //  Get the type of the extension function.
-            return GetDelegateFor(functionName: typeof(T).Name, delegateType: typeof(T)) as T;
+            return GetDelegateFor(delegateType: typeof(T)) as T;
         }
 
-        private static Delegate GetDelegateFor(string functionName, Type delegateType)
+        private static Delegate GetDelegateFor(Type delegateType)
         {
+            //  Get the name of the extension function.
+            string name = delegateType.Name;
+
             // ftlPhysicsGuy - Better way
             Delegate del = null;
-            if (!extensionFunctions.TryGetValue(functionName, out del))
+            if (!extensionFunctions.TryGetValue(name, out del))
             {
-                IntPtr proc = GetProc(functionName);
+                IntPtr proc = GetProc(name);
 
                 if (proc != IntPtr.Zero)
                 {
@@ -44,7 +47,7 @@ namespace CSharpGL
                     del = Marshal.GetDelegateForFunctionPointer(proc, delegateType);
 
                     //  Add to the dictionary.
-                    extensionFunctions.Add(functionName, del);
+                    extensionFunctions.Add(name, del);
                 }
             }
 
@@ -54,35 +57,19 @@ namespace CSharpGL
         private static IntPtr GetProc(string name)
         {
             IntPtr proc = IntPtr.Zero;
-            if (CurrentOS.IsWindows)
+            // check https://www.opengl.org/wiki/Load_OpenGL_Functions
+            proc = Win32.wglGetProcAddress(name);
+            long pointer = proc.ToInt64();
+            if (-1 <= pointer && pointer <= 3)
             {
-                // check https://www.opengl.org/wiki/Load_OpenGL_Functions
-                proc = Win32.wglGetProcAddress(name);
-                long pointer = proc.ToInt64();
+                proc = Win32.GetProcAddress(name);
+                pointer = proc.ToInt64();
                 if (-1 <= pointer && pointer <= 3)
                 {
-                    proc = Win32.GetProcAddress(name);
-                    pointer = proc.ToInt64();
-                    if (-1 <= pointer && pointer <= 3)
-                    {
-                        Debug.WriteLine(string.Format(
-                            "Extension function [{0}] not supported!", name));
-                        proc = IntPtr.Zero;
-                    }
-                }
-            }
-            else if (CurrentOS.IsLinux)
-            {
-                proc = glxGetProcAddress(name);
-                if (proc == IntPtr.Zero)
-                {
                     Debug.WriteLine(string.Format(
-                            "Extension function [{0}] not supported!", name));
+                        "Extension function [{0}] not supported!", name));
+                    proc = IntPtr.Zero;
                 }
-            }
-            else
-            {
-                throw new NotImplementedException("Unsupported OS.");
             }
 
             return proc;

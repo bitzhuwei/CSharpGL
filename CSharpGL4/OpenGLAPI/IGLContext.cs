@@ -7,25 +7,26 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// OpenGL context.
     /// </summary>
     public interface IGLContext : IDisposable
     {
         /// <summary>
-        /// 
+        /// render context.
         /// </summary>
         IntPtr RenderContext { get; }
 
         /// <summary>
-        /// 
+        /// device context.
         /// </summary>
         IntPtr DeviceContext { get; }
 
         /// <summary>
-        /// 
+        /// Gets extended OpenGL method.
         /// </summary>
-        /// <param name="glMethod"></param>
+        /// <param name="functionName"></param>
+        /// <param name="delegateType"></param>
         /// <returns></returns>
-        Delegate GetDelegateFor(Delegate glMethod);
+        Delegate GetDelegateFor(string functionName, Type delegateType);
     }
 }
