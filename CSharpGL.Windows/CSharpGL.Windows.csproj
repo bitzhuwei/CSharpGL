@@ -85,6 +85,8 @@
     <Compile Include="OpenGLAPI\OpenGL.3.2.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.3.3.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.4.0.Consts.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Extensions.Consts.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.Framebuffer.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Wrappers.cs" />
     <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />
@@ -101,7 +103,6 @@
     <Compile Include="OpenGLAPI\OpenGL.3.3.cs" />
     <Compile Include="OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Constants.cs" />
-    <Compile Include="OpenGLAPI\OpenGL.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Extensions.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Framebuffer.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Functions.cs" />

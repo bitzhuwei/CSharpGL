@@ -1207,7 +1207,8 @@ namespace CSharpGL
                 }
             }
 
-            GetDelegateFor<glDebugMessageCallback>()(innerCallbackProc, userParam);
+            var function = WinGL.Instance.GetDelegateFor("glDebugMessageCallback", typeof(glDebugMessageCallback)) as glDebugMessageCallback;
+            function(innerCallbackProc, userParam);
         }
 
         private static int debugProcDictCount = 0;
@@ -1271,7 +1272,8 @@ namespace CSharpGL
             int[] ids,
             bool enabled)
         {
-            OpenGL.GetDelegateFor<OpenGL.glDebugMessageControl>()((uint)source, (uint)type, (uint)severity, count, ids, enabled);
+            var function = WinGL.Instance.GetDelegateFor("glDebugMessageControl", GLDelegates.typeof_void_uint_uint_uint_int_intN_bool) as GLDelegates.void_uint_uint_uint_int_intN_bool;
+            function((uint)source, (uint)type, (uint)severity, count, ids, enabled);
         }
 
         /// <summary>
@@ -1291,7 +1293,8 @@ namespace CSharpGL
             int length,
             StringBuilder buf)
         {
-            OpenGL.GetDelegateFor<OpenGL.glDebugMessageInsert>()((uint)source, (uint)type, id, (uint)severity, length, buf);
+            var function = WinGL.Instance.GetDelegateFor("glDebugMessageInsert", GLDelegates.typeof_void_uint_uint_uint_uint_int_StringBuilder) as GLDelegates.void_uint_uint_uint_uint_int_StringBuilder;
+            function((uint)source, (uint)type, id, (uint)severity, length, buf);
         }
 
         #endregion debugging and profiling
@@ -1305,7 +1308,8 @@ namespace CSharpGL
         /// <param name="id"></param>
         public static void BindTransformFeedback(TransformFeedbackTarget target, uint id)
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindTransformFeedback>()((uint)target, id);
+            var function = WinGL.Instance.GetDelegateFor("glBindTransformFeedback", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            function((uint)target, id);
         }
 
         private static GLDelegates.void_uint_uint_uint glBindBufferBase;
@@ -1382,7 +1386,8 @@ namespace CSharpGL
         /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
         public static void PatchParameter(PatchParameterName pname, int value)
         {
-            OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>()((uint)pname, value);
+            var function = WinGL.Instance.GetDelegateFor("glPatchParameteri", GLDelegates.typeof_void_uint_int) as GLDelegates.void_uint_int;
+            function((uint)pname, value);
         }
 
         /// <summary>
@@ -1392,7 +1397,8 @@ namespace CSharpGL
         /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
         public static void PatchParameter(PatchParameterName pname, float[] values)
         {
-            OpenGL.GetDelegateFor<OpenGL.glPatchParameterfv>()((uint)pname, values);
+            var function = WinGL.Instance.GetDelegateFor("glPatchParameterfv", GLDelegates.typeof_void_uint_floatN) as GLDelegates.void_uint_floatN;
+            function((uint)pname, values);
         }
 
         #endregion patch
@@ -1405,7 +1411,8 @@ namespace CSharpGL
         /// <param name="barriers">Specifies the barriers to insert.</param>
         public static void MemoryBarrier(MemoryBarrierFlags barriers)
         {
-            OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()((uint)barriers);
+            var function = WinGL.Instance.GetDelegateFor("glMemoryBarrier", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            function((uint)barriers);
         }
 
         // https://www.opengl.org/wiki/GLAPI/glTexStorage1D
@@ -1418,7 +1425,8 @@ namespace CSharpGL
         /// <param name="width"></param>
         public static void TexStorage1D(TexStorage1DTarget target, int levels, uint internalformat, int width)
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexStorage1D>()((uint)target, levels, internalformat, width);
+            var function = WinGL.Instance.GetDelegateFor("glTexStorage1D", GLDelegates.typeof_void_uint_int_uint_int) as GLDelegates.void_uint_int_uint_int;
+            function((uint)target, levels, internalformat, width);
         }
 
         // https://www.opengl.org/wiki/GLAPI/glTexStorage2D
@@ -1432,7 +1440,8 @@ namespace CSharpGL
         /// <param name="height"></param>
         public static void TexStorage2D(TexStorage2DTarget target, int levels, uint internalformat, int width, int height)
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexStorage2D>()((uint)target, levels, internalformat, width, height);
+            var function = WinGL.Instance.GetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;
+            function((uint)target, levels, internalformat, width, height);
         }
 
         // https://www.opengl.org/wiki/GLAPI/glTexStorage3D
@@ -1447,7 +1456,8 @@ namespace CSharpGL
         /// <param name="depth"></param>
         public static void TexStorage3D(TexStorage3DTarget target, int levels, uint internalformat, int width, int height, int depth)
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexStorage3D>()((uint)target, levels, internalformat, width, height, depth);
+            var function = WinGL.Instance.GetDelegateFor("glTexStorage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int) as GLDelegates.void_uint_int_uint_int_int_int;
+            function((uint)target, levels, internalformat, width, height, depth);
         }
 
         #endregion texture

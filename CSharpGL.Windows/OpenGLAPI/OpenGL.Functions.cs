@@ -57,27 +57,25 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glBindTexture", SetLastError = true)]
         public static extern void BindTexture(uint target, uint texture);
 
-        ///// <summary>
-        ///// bind a named sampler to a texturing target.
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="texture"></param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glBindSampler", SetLastError = true)]
-        //public static extern void BindSampler(uint target, uint sampler);
-        private delegate void glBindSampler(uint target, uint sampler);
-
-        private static glBindSampler glBindSamplerFunc;
+        /// <summary>
+        /// bind a named sampler to a texturing target.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="texture"></param>
+        private static GLDelegates.void_uint_uint glBindSampler;
 
         /// <summary>
-        ///
+        /// bind a named sampler to a texturing target.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="sampler"></param>
         public static void BindSampler(uint target, uint sampler)
         {
-            if (glBindSamplerFunc == null)
-            { glBindSamplerFunc = OpenGL.GetDelegateFor<OpenGL.glBindSampler>(); }
-            glBindSamplerFunc(target, sampler);
+            if (glBindSampler == null)
+            {
+                glBindSampler = WinGL.Instance.GetDelegateFor("glBindSampler", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            }
+            glBindSampler(target, sampler);
         }
 
         /// <summary>
@@ -634,7 +632,10 @@ namespace CSharpGL
         /// <param name="samplers">The array containing the names of the textures to delete.</param>
         internal delegate void glDeleteSamplers(int n, uint[] samplers);
 
-        private static OpenGL.glDeleteFramebuffers _glDeleteFramebuffers;
+        /// <summary>
+        /// void glDeleteFramebuffers(uint n, uint[] framebuffers);
+        /// </summary>
+        private static GLDelegates.void_uint_uintN glDeleteFramebuffers;
 
         /// <summary>
         /// This function deletes a set of Texture objects.
@@ -646,13 +647,18 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                if (_glDeleteFramebuffers == null)
-                { _glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffers>(); }
-                _glDeleteFramebuffers(n, framebuffers);
+                if (glDeleteFramebuffers == null)
+                {
+                    glDeleteFramebuffers = WinGL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
+                }
+                glDeleteFramebuffers(n, framebuffers);
             }
         }
 
-        private static OpenGL.glDeleteRenderbuffers _glDeleteRenderbuffers;
+        /// <summary>
+        /// void glDeleteRenderbuffers(uint n, uint[] renderbuffers);
+        /// </summary>
+        private static GLDelegates.void_uint_uintN glDeleteRenderbuffers;
 
         /// <summary>
         /// This function deletes a set of Texture objects.
@@ -664,9 +670,11 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                if (_glDeleteRenderbuffers == null)
-                { _glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffers>(); }
-                _glDeleteRenderbuffers(n, renderbuffers);
+                if (glDeleteRenderbuffers == null)
+                {
+                    glDeleteRenderbuffers = WinGL.Instance.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
+                }
+                glDeleteRenderbuffers(n, renderbuffers);
             }
         }
 
@@ -1061,15 +1069,15 @@ namespace CSharpGL
         public static extern void GenTextures(int n, uint[] textures);
 
         ///// <summary>
-        ///// generate sampler object names
         ///// </summary>
         ///// <param name="n"></param>
         ///// <param name="textures"></param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glGenSamplers", SetLastError = true)]
-        //public static extern void GenSamplers(int n, uint[] textures);
-        private delegate void glGenSamplers(int n, uint[] textures);
 
-        private static glGenSamplers glGenSamplersFunc;
+        /// <summary>
+        /// generate sampler object names
+        /// void glGenSamplers(int n, uint[] textures);
+        /// </summary>
+        private static GLDelegates.void_int_uintN glGenSamplers;
 
         /// <summary>
         ///
@@ -1078,9 +1086,11 @@ namespace CSharpGL
         /// <param name="textures"></param>
         public static void GenSamplers(int n, uint[] textures)
         {
-            if (glGenSamplersFunc == null)
-            { glGenSamplersFunc = OpenGL.GetDelegateFor<OpenGL.glGenSamplers>(); }
-            glGenSamplersFunc(n, textures);
+            if (glGenSamplers == null)
+            {
+                glGenSamplers = WinGL.Instance.GetDelegateFor("glGenSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            }
+            glGenSamplers(n, textures);
         }
 
         /// <summary>
@@ -2887,9 +2897,10 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glTexParameteri", SetLastError = true)]
         public static extern void TexParameteri(uint target, uint pname, int param);
 
-        private delegate void glSamplerParameteri(uint sampler, uint pname, int param);
-
-        private static glSamplerParameteri glSamplerParameteriFunc;
+        /// <summary>
+        /// void glSamplerParameteri(uint sampler, uint pname, int param);
+        /// </summary>
+        private static GLDelegates.void_uint_uint_int glSamplerParameteri;
 
         /// <summary>
         ///
@@ -2899,9 +2910,11 @@ namespace CSharpGL
         /// <param name="param"></param>
         public static void SamplerParameteri(uint sampler, uint pname, int param)
         {
-            if (glSamplerParameteriFunc == null)
-            { glSamplerParameteriFunc = OpenGL.GetDelegateFor<OpenGL.glSamplerParameteri>(); }
-            glSamplerParameteriFunc(sampler, pname, param);
+            if (glSamplerParameteri == null)
+            {
+                glSamplerParameteri = WinGL.Instance.GetDelegateFor("glSamplerParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
+            }
+            glSamplerParameteri(sampler, pname, param);
         }
 
         /// <summary>
