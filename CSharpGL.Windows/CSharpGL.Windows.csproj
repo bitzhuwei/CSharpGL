@@ -79,6 +79,7 @@
     <Compile Include="OpenGLAPI\OpenGL.1.4.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.1.5.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.2.0.Consts.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.2.1.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Wrappers.cs" />
     <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />

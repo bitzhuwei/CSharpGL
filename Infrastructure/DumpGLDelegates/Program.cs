@@ -202,7 +202,7 @@ namespace DumpGLDelegates
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine().Trim();
-                    if (line.StartsWith("//")) { continue; }
+                    //if (line.StartsWith("//")) { continue; }
 
                     int index = line.IndexOf(" delegate ");
                     if (index >= 0)
