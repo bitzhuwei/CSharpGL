@@ -83,6 +83,7 @@
     <Compile Include="OpenGLAPI\OpenGL.3.0.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.3.1.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.3.2.Consts.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.3.3.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Wrappers.cs" />
     <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />
