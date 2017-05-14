@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace CSharpGL
 {
     /// <summary>
-    /// The OpenGL class wraps Sun's OpenGL 3D library.
+    /// Implementation of OpenGL on Windows System.
     /// </summary>
     public partial class WinGL : GL
     {

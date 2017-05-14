@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
     /// <summary>
-    /// OpenGL is a specification of graphics library.
+    /// OpenGL is a specification of 3D graphics library.
     /// </summary>
     public abstract partial class GL
     {
