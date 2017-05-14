@@ -76,6 +76,7 @@
     <Compile Include="OpenGLAPI\FontBitmaps.cs" />
     <Compile Include="OpenGLAPI\OpenGL.1.2.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.1.3.Consts.cs" />
+    <Compile Include="OpenGLAPI\OpenGL.1.4.Consts.cs" />
     <Compile Include="OpenGLAPI\OpenGL.Wrappers.cs" />
     <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />

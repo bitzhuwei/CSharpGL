@@ -877,7 +877,8 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawArrays(DrawMode mode, int[] first, int[] count, int primcount)
         {
-            GetDelegateFor<glMultiDrawArrays>()((uint)mode, first, count, primcount);
+            var function = WinGL.Instance.GetDelegateFor("glMultiDrawArrays", GLDelegates.typeof_void_uint_intN_intN_int) as GLDelegates.void_uint_intN_intN_int;
+            function((uint)mode, first, count, primcount);
         }
 
         /// <summary>
@@ -904,7 +905,8 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawElements(DrawMode mode, int[] count, uint type, IntPtr indices, int primcount)
         {
-            GetDelegateFor<glMultiDrawElements>()((uint)mode, count, type, indices, primcount);
+            var function = WinGL.Instance.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
+            function((uint)mode, count, type, indices, primcount);
         }
 
         ///// <summary>
