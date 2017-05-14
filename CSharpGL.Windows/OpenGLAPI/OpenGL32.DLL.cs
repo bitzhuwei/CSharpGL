@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify the Alpha Test function.
         /// </summary>
-        /// <param name="func">Specifies the alpha comparison function. Symbolic constants OpenGL.NEVER, OpenGL.LESS, OpenGL.EQUAL, OpenGL.LEQUAL, OpenGL.GREATER, OpenGL.NOTEQUAL, OpenGL.GEQUAL and OpenGL.ALWAYS are accepted. The initial value is OpenGL.ALWAYS.</param>
+        /// <param name="func">Specifies the alpha comparison function. Symbolic constants GL.NEVER, GL.LESS, GL.EQUAL, GL.LEQUAL, GL.GREATER, GL.NOTEQUAL, GL.GEQUAL and GL.ALWAYS are accepted. The initial value is GL.ALWAYS.</param>
         /// <param name="ref_notkeword">Specifies the reference	value that incoming alpha values are compared to. This value is clamped to the range 0	through	1, where 0 represents the lowest possible alpha value and 1 the highest possible value. The initial reference value is 0.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glAlphaFunc", SetLastError = true)]
         public static extern void AlphaFunc(uint func, float ref_notkeword);
@@ -46,7 +46,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.opengl32, EntryPoint = "glBegin", SetLastError = true)]
-        public static extern void Begin(uint mode);
+        public static extern void glBegin(uint mode);
 
         /// <summary>
         /// Call this function after creating a texture to finalise creation of it,
@@ -110,7 +110,7 @@ namespace CSharpGL
         /// Execute	a list of display lists.
         /// </summary>
         /// <param name="n">Specifies the number of display lists to be executed.</param>
-        /// <param name="type">Specifies the type of values in lists. Symbolic constants OpenGL.BYTE, OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.UNSIGNED_SHORT, OpenGL.INT, OpenGL.UNSIGNED_INT, OpenGL.FLOAT, OpenGL.2_BYTES, OpenGL.3_BYTES and OpenGL.4_BYTES are accepted.</param>
+        /// <param name="type">Specifies the type of values in lists. Symbolic constants GL.BYTE, GL.UNSIGNED_BYTE, GL.SHORT, GL.UNSIGNED_SHORT, GL.INT, GL.UNSIGNED_INT, GL.FLOAT, GL.2_BYTES, GL.3_BYTES and GL.4_BYTES are accepted.</param>
         /// <param name="lists">Specifies the address of an array of name offsets in the display list. The pointer type is void because the offsets can be bytes, shorts, ints, or floats, depending on the value of type.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glCallLists", SetLastError = true)]
         public static extern void CallLists(int n, uint type, IntPtr lists);
@@ -146,7 +146,7 @@ namespace CSharpGL
         /// <param name="mask">Which buffers to clear.</param>
         public static void Clear(ClearBufferMask mask)
         {
-            OpenGL.Clear((uint)mask);
+            WinGL.Instance.Clear((uint)mask);
         }
 
         /// <summary>
@@ -192,9 +192,9 @@ namespace CSharpGL
 
         /// <summary>
         /// Specify a plane against which all geometry is clipped.
-        /// <para>https://www.opengl.org/sdk/docs/man2/xhtml/glClipPlane.xml</para>
+        /// <para>https://www.GL.org/sdk/docs/man2/xhtml/glClipPlane.xml</para>
         /// </summary>
-        /// <param name="plane">Specifies which clipping plane is being positioned. Symbolic names of the form OpenGL.CLIP_PLANEi, where i is an integer between 0 and OpenGL.MAX_CLIP_PLANES -1, are accepted.</param>
+        /// <param name="plane">Specifies which clipping plane is being positioned. Symbolic names of the form GL.CLIP_PLANEi, where i is an integer between 0 and GL.MAX_CLIP_PLANES -1, are accepted.</param>
         /// <param name="equation">Specifies the address of an	array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glClipPlane", SetLastError = true)]
         public static extern void ClipPlane(uint plane, double[] equation);
@@ -509,8 +509,8 @@ namespace CSharpGL
         /// <summary>
         /// Cause a material color to track the current color.
         /// </summary>
-        /// <param name="face">Specifies whether front, back, or both front and back material parameters should track the current color. Accepted values are OpenGL.FRONT, OpenGL.BACK, and OpenGL.FRONT_AND_BACK. The initial value is OpenGL.FRONT_AND_BACK.</param>
-        /// <param name="mode">Specifies which	of several material parameters track the current color. Accepted values are	OpenGL.EMISSION, OpenGL.AMBIENT, OpenGL.DIFFUSE, OpenGL.SPECULAR and OpenGL.AMBIENT_AND_DIFFUSE. The initial value is OpenGL.AMBIENT_AND_DIFFUSE.</param>
+        /// <param name="face">Specifies whether front, back, or both front and back material parameters should track the current color. Accepted values are GL.FRONT, GL.BACK, and GL.FRONT_AND_BACK. The initial value is GL.FRONT_AND_BACK.</param>
+        /// <param name="mode">Specifies which	of several material parameters track the current color. Accepted values are	GL.EMISSION, GL.AMBIENT, GL.DIFFUSE, GL.SPECULAR and GL.AMBIENT_AND_DIFFUSE. The initial value is GL.AMBIENT_AND_DIFFUSE.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glColorMaterial", SetLastError = true)]
         public static extern void ColorMaterial(uint face, uint mode);
 
@@ -518,7 +518,7 @@ namespace CSharpGL
         /// Define an array of colors.
         /// </summary>
         /// <param name="size">Specifies the number	of components per color. Must be 3	or 4.</param>
-        /// <param name="type">Specifies the data type of each color component in the array. Symbolic constants OpenGL.BYTE, OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.UNSIGNED_SHORT, OpenGL.INT, OpenGL.UNSIGNED_INT, OpenGL.FLOAT and OpenGL.DOUBLE are accepted.</param>
+        /// <param name="type">Specifies the data type of each color component in the array. Symbolic constants GL.BYTE, GL.UNSIGNED_BYTE, GL.SHORT, GL.UNSIGNED_SHORT, GL.INT, GL.UNSIGNED_INT, GL.FLOAT and GL.DOUBLE are accepted.</param>
         /// <param name="stride">Specifies the byte offset between consecutive colors. If stride is 0, (the initial value), the colors are understood to be tightly packed in the array.</param>
         /// <param name="pointer">Specifies a pointer to the first component of the first color element in the array.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glColorPointer", SetLastError = true)]
@@ -531,14 +531,14 @@ namespace CSharpGL
         /// <param name="y">Specify the window coordinates of the lower left corner of the rectangular region of pixels to be copied.</param>
         /// <param name="width">Specify the dimensions of the rectangular region of pixels to be copied. Both must be nonnegative.</param>
         /// <param name="height">Specify the dimensions of the rectangular region of pixels to be copied. Both must be nonnegative.</param>
-        /// <param name="type">Specifies whether color values, depth values, or stencil values are to be copied. Symbolic constants OpenGL.COLOR, OpenGL.DEPTH, and OpenGL.STENCIL are accepted.</param>
+        /// <param name="type">Specifies whether color values, depth values, or stencil values are to be copied. Symbolic constants GL.COLOR, GL.DEPTH, and GL.STENCIL are accepted.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glCopyPixels", SetLastError = true)]
         public static extern void CopyPixels(int x, int y, int width, int height, uint type);
 
         /// <summary>
         /// Copy pixels into a 1D texture image.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="internalFormat">Specifies the internal format of the texture.</param>
         /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
@@ -551,7 +551,7 @@ namespace CSharpGL
         /// <summary>
         /// Copy pixels into a	2D texture image.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_2D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="internalFormat">Specifies the internal format of the texture.</param>
         /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
@@ -565,7 +565,7 @@ namespace CSharpGL
         /// <summary>
         /// Copy a one-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies the texel offset within the texture array.</param>
         /// <param name="x">Specify the window coordinates of the left corner of the row of pixels to be copied.</param>
@@ -577,7 +577,7 @@ namespace CSharpGL
         /// <summary>
         /// Copy a two-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_2D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies the texel offset within the texture array.</param>
         /// <param name="yoffset">Specifies the texel offset within the texture array.</param>
@@ -591,7 +591,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify whether front- or back-facing facets can be culled.
         /// </summary>
-        /// <param name="mode">Specifies whether front- or back-facing facets are candidates for culling. Symbolic constants OpenGL.FRONT, OpenGL.BACK, and OpenGL.FRONT_AND_BACK are accepted. The initial	value is OpenGL.BACK.</param>
+        /// <param name="mode">Specifies whether front- or back-facing facets are candidates for culling. Symbolic constants GL.FRONT, GL.BACK, and GL.FRONT_AND_BACK are accepted. The initial	value is GL.BACK.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glCullFace", SetLastError = true)]
         public static extern void CullFace(uint mode);
 
@@ -735,7 +735,7 @@ namespace CSharpGL
         /// <summary>
         /// Render	primitives from	array data.
         /// </summary>
-        /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
         /// <param name="count">Specifies the number of vertexes to be rendered.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawArrays", SetLastError = true)]
@@ -744,16 +744,16 @@ namespace CSharpGL
         /// <summary>
         /// Specify which color buffers are to be drawn into.
         /// </summary>
-        /// <param name="mode">Specifies up to	four color buffers to be drawn into. Symbolic constants OpenGL.NONE, OpenGL.FRONT_LEFT, OpenGL.FRONT_RIGHT,	OpenGL.BACK_LEFT, OpenGL.BACK_RIGHT, OpenGL.FRONT, OpenGL.BACK, OpenGL.LEFT, OpenGL.RIGHT, OpenGL.FRONT_AND_BACK, and OpenGL.AUXi, where i is between 0 and (OpenGL.AUX_BUFFERS - 1), are accepted (OpenGL.AUX_BUFFERS is not the upper limit; use glGet to query the number of	available aux buffers.)  The initial value is OpenGL.FRONT for single- buffered contexts, and OpenGL.BACK for double-buffered contexts.</param>
+        /// <param name="mode">Specifies up to	four color buffers to be drawn into. Symbolic constants GL.NONE, GL.FRONT_LEFT, GL.FRONT_RIGHT,	GL.BACK_LEFT, GL.BACK_RIGHT, GL.FRONT, GL.BACK, GL.LEFT, GL.RIGHT, GL.FRONT_AND_BACK, and GL.AUXi, where i is between 0 and (GL.AUX_BUFFERS - 1), are accepted (GL.AUX_BUFFERS is not the upper limit; use glGet to query the number of	available aux buffers.)  The initial value is GL.FRONT for single- buffered contexts, and GL.BACK for double-buffered contexts.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawBuffer", SetLastError = true)]
         public static extern void DrawBuffer(uint mode);
 
         /// <summary>
         /// Render primitives from array data.
         /// </summary>
-        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
         /// <param name="count">Specifies the number of elements to be rendered.</param>
-        /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
+        /// <param name="type">Specifies the type of the values in indices.	Must be one of GL.UNSIGNED_BYTE, GL.UNSIGNED_SHORT, or GL.UNSIGNED_INT.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
         public static extern void DrawElements(uint mode, int count, uint type, IntPtr indices);
@@ -761,7 +761,7 @@ namespace CSharpGL
         /// <summary>
         /// Render primitives from array data.
         /// </summary>
-        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
         /// <param name="count">Specifies the number of elements to be rendered.</param>
         /// <param name="type"></param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
@@ -826,7 +826,7 @@ namespace CSharpGL
         /// <summary>
         /// Flag edges as either boundary or nonboundary.
         /// </summary>
-        /// <param name="flag">Specifies the current edge flag	value, either OpenGL.TRUE or OpenGL.FALSE. The initial value is OpenGL.TRUE.</param>
+        /// <param name="flag">Specifies the current edge flag	value, either GL.TRUE or GL.FALSE. The initial value is GL.TRUE.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glEdgeFlag", SetLastError = true)]
         public static extern void EdgeFlag(byte flag);
 
@@ -864,7 +864,7 @@ namespace CSharpGL
         /// </summary>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.opengl32, EntryPoint = "glEnd", SetLastError = true)]
-        public static extern void End();
+        public static extern void glEnd();
 
         /// <summary>
         /// Ends the current display list compilation.
@@ -1104,7 +1104,7 @@ namespace CSharpGL
         /// <summary>
         /// Return the coefficients of the specified clipping plane.
         /// </summary>
-        /// <param name="plane">Specifies a	clipping plane.	 The number of clipping planes depends on the implementation, but at least six clipping planes are supported. They are identified by symbolic names of the form OpenGL.CLIP_PLANEi where 0 Less Than i Less Than OpenGL.MAX_CLIP_PLANES.</param>
+        /// <param name="plane">Specifies a	clipping plane.	 The number of clipping planes depends on the implementation, but at least six clipping planes are supported. They are identified by symbolic names of the form GL.CLIP_PLANEi where 0 Less Than i Less Than GL.MAX_CLIP_PLANES.</param>
         /// <param name="equation">Returns four double-precision values that are the coefficients of the plane equation of plane in eye coordinates. The initial value is (0, 0, 0, 0).</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetClipPlane", SetLastError = true)]
         public static extern void GetClipPlane(uint plane, double[] equation);
@@ -1143,7 +1143,7 @@ namespace CSharpGL
         /// <summary>
         /// Return light source parameter values.
         /// </summary>
-        /// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form OpenGL.LIGHTi where i ranges from 0 to the value of OpenGL.GL_MAX_LIGHTS - 1.</param>
+        /// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form GL.LIGHTi where i ranges from 0 to the value of GL.GL_MAX_LIGHTS - 1.</param>
         /// <param name="pname">Specifies a light source parameter for light.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetLightfv", SetLastError = true)]
@@ -1152,7 +1152,7 @@ namespace CSharpGL
         /// <summary>
         /// Return light source parameter values.
         /// </summary>
-        /// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form OpenGL.LIGHTi where i ranges from 0 to the value of OpenGL.GL_MAX_LIGHTS - 1.</param>
+        /// <param name="light">Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form GL.LIGHTi where i ranges from 0 to the value of GL.GL_MAX_LIGHTS - 1.</param>
         /// <param name="pname">Specifies a light source parameter for light.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetLightiv", SetLastError = true)]
@@ -1188,7 +1188,7 @@ namespace CSharpGL
         /// <summary>
         /// Return material parameters.
         /// </summary>
-        /// <param name="face">Specifies which of the two materials is being queried. OpenGL.FRONT or OpenGL.BACK are accepted, representing the front and back materials, respectively.</param>
+        /// <param name="face">Specifies which of the two materials is being queried. GL.FRONT or GL.BACK are accepted, representing the front and back materials, respectively.</param>
         /// <param name="pname">Specifies the material parameter to return.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetMaterialfv", SetLastError = true)]
@@ -1197,7 +1197,7 @@ namespace CSharpGL
         /// <summary>
         /// Return material parameters.
         /// </summary>
-        /// <param name="face">Specifies which of the two materials is being queried. OpenGL.FRONT or OpenGL.BACK are accepted, representing the front and back materials, respectively.</param>
+        /// <param name="face">Specifies which of the two materials is being queried. GL.FRONT or GL.BACK are accepted, representing the front and back materials, respectively.</param>
         /// <param name="pname">Specifies the material parameter to return.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetMaterialiv", SetLastError = true)]
@@ -1245,7 +1245,7 @@ namespace CSharpGL
         /// <summary>
         /// Return a string	describing the current GL connection.
         /// </summary>
-        /// <param name="name">Specifies a symbolic constant, one of OpenGL.VENDOR, OpenGL.RENDERER, OpenGL.VERSION, or OpenGL.EXTENSIONS.</param>
+        /// <param name="name">Specifies a symbolic constant, one of GL.VENDOR, GL.RENDERER, GL.VERSION, or GL.EXTENSIONS.</param>
         /// <returns>Pointer to the specified string.</returns>
         [DllImport(Win32.opengl32, EntryPoint = "glGetString", SetLastError = true)]
         private unsafe static extern sbyte* glGetString(uint name);
@@ -1253,8 +1253,8 @@ namespace CSharpGL
         /// <summary>
         /// Return texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment.  Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="target">Specifies a texture environment.  Must be GL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are GL.TEXTURE_ENV_MODE, and GL.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Returns the requested	data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetTexEnvfv", SetLastError = true)]
         public static extern void GetTexEnvfv(uint target, uint pname, float[] parameters);
@@ -1262,8 +1262,8 @@ namespace CSharpGL
         /// <summary>
         /// Return texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment.  Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="target">Specifies a texture environment.  Must be GL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are GL.TEXTURE_ENV_MODE, and GL.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Returns the requested	data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetTexEnviv", SetLastError = true)]
         public static extern void GetTexEnviv(uint target, uint pname, int[] parameters);
@@ -1271,34 +1271,34 @@ namespace CSharpGL
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be GL.TEXTURE_GEN_MODE.</param>
+        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of GL.OBJECT_LINEAR, GL.EYE_LINEAR, or GL.SPHERE_MAP.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetTexGendv", SetLastError = true)]
         public static extern void GetTexGendv(uint coord, uint pname, double[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be GL.TEXTURE_GEN_MODE.</param>
+        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of GL.OBJECT_LINEAR, GL.EYE_LINEAR, or GL.SPHERE_MAP.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetTexGenfv", SetLastError = true)]
         public static extern void GetTexGenfv(uint coord, uint pname, float[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be GL.TEXTURE_GEN_MODE.</param>
+        /// <param name="parameters">Specifies a single-valued texture generation parameter, one of GL.OBJECT_LINEAR, GL.EYE_LINEAR, or GL.SPHERE_MAP.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glGetTexGeniv", SetLastError = true)]
         public static extern void GetTexGeniv(uint coord, uint pname, int[] parameters);
 
         /// <summary>
         /// Return a texture image.
         /// </summary>
-        /// <param name="target">Specifies which texture is to	be obtained. OpenGL.TEXTURE_1D and OpenGL.TEXTURE_2D are accepted.</param>
+        /// <param name="target">Specifies which texture is to	be obtained. GL.TEXTURE_1D and GL.TEXTURE_2D are accepted.</param>
         /// <param name="level">Specifies the level-of-detail number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
         /// <param name="format">Specifies a pixel format for the returned data.</param>
         /// <param name="type">Specifies a pixel type for the returned data.</param>
@@ -1362,7 +1362,7 @@ namespace CSharpGL
         /// <summary>
         /// Define an array of color indexes.
         /// </summary>
-        /// <param name="type">Specifies the data type of each color index in the array.  Symbolic constants OpenGL.UNSIGNED_BYTE, OpenGL.SHORT, OpenGL.INT, OpenGL.FLOAT, and OpenGL.DOUBLE are accepted.</param>
+        /// <param name="type">Specifies the data type of each color index in the array.  Symbolic constants GL.UNSIGNED_BYTE, GL.SHORT, GL.INT, GL.FLOAT, and GL.DOUBLE are accepted.</param>
         /// <param name="stride">Specifies the byte offset between consecutive color indexes.  If stride is 0 (the initial value), the color indexes are understood	to be tightly packed in the array.</param>
         /// <param name="pointer">Specifies a pointer to the first index in the array.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glIndexPointer", SetLastError = true)]
@@ -1883,7 +1883,7 @@ namespace CSharpGL
         /// <summary>
         /// Place a marker in the feedback buffer.
         /// </summary>
-        /// <param name="token">Specifies a marker value to be placed in the feedback buffer following a OpenGL.PASS_THROUGH_TOKEN.</param>
+        /// <param name="token">Specifies a marker value to be placed in the feedback buffer following a GL.PASS_THROUGH_TOKEN.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glPassThrough", SetLastError = true)]
         public static extern void PassThrough(float token);
 
@@ -1979,7 +1979,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Set the polygon stippling pattern.
-        /// <para>https://www.opengl.org/sdk/docs/man2/xhtml/glPolygonStipple.xml</para>
+        /// <para>https://www.GL.org/sdk/docs/man2/xhtml/glPolygonStipple.xml</para>
         /// </summary>
         /// <param name="mask">Specifies a pointer to a 32x32 stipple pattern that will be unpacked from memory in the same way that glDrawPixels unpacks pixels.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glPolygonStipple", SetLastError = true)]
@@ -2241,7 +2241,7 @@ namespace CSharpGL
         /// <summary>
         /// Select	a color	buffer source for pixels.
         /// </summary>
-        /// <param name="mode">Specifies a color buffer.  Accepted values are OpenGL.FRONT_LEFT, OpenGL.FRONT_RIGHT, OpenGL.BACK_LEFT, OpenGL.BACK_RIGHT, OpenGL.FRONT, OpenGL.BACK, OpenGL.LEFT, OpenGL.GL_RIGHT, and OpenGL.AUXi, where i is between 0 and OpenGL.AUX_BUFFERS - 1.</param>
+        /// <param name="mode">Specifies a color buffer.  Accepted values are GL.FRONT_LEFT, GL.FRONT_RIGHT, GL.BACK_LEFT, GL.BACK_RIGHT, GL.FRONT, GL.BACK, GL.LEFT, GL.GL_RIGHT, and GL.AUXi, where i is between 0 and GL.AUX_BUFFERS - 1.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glReadBuffer", SetLastError = true)]
         public static extern void ReadBuffer(uint mode);
 
@@ -2252,8 +2252,8 @@ namespace CSharpGL
         /// <param name="y">Top-Left Y value.</param>
         /// <param name="width">Width of block to read.</param>
         /// <param name="height">Height of block to read.</param>
-        /// <param name="format">Specifies the format of the pixel data. The following symbolic values are accepted: OpenGL.COLOR_INDEX, OpenGL.STENCIL_INDEX, OpenGL.DEPTH_COMPONENT, OpenGL.RED, OpenGL.GREEN, OpenGL.BLUE, OpenGL.ALPHA, OpenGL.RGB, OpenGL.RGBA, OpenGL.LUMINANCE and OpenGL.LUMINANCE_ALPHA.</param>
-        /// <param name="type">Specifies the data type of the pixel data.Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.BYTE, OpenGL.BITMAP, OpenGL.UNSIGNED_SHORT, OpenGL.SHORT, OpenGL.UNSIGNED_INT, OpenGL.INT or OpenGL.FLOAT.</param>
+        /// <param name="format">Specifies the format of the pixel data. The following symbolic values are accepted: GL.COLOR_INDEX, GL.STENCIL_INDEX, GL.DEPTH_COMPONENT, GL.RED, GL.GREEN, GL.BLUE, GL.ALPHA, GL.RGB, GL.RGBA, GL.LUMINANCE and GL.LUMINANCE_ALPHA.</param>
+        /// <param name="type">Specifies the data type of the pixel data.Must be one of GL.UNSIGNED_BYTE, GL.BYTE, GL.BITMAP, GL.UNSIGNED_SHORT, GL.SHORT, GL.UNSIGNED_INT, GL.INT or GL.FLOAT.</param>
         /// <param name="pixels">Storage for the pixel data received.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glReadPixels", SetLastError = true)]
         public static extern void ReadPixels(int x, int y, int width, int height, uint format, uint type, byte[] pixels);
@@ -2265,8 +2265,8 @@ namespace CSharpGL
         /// <param name="y">Top-Left Y value.</param>
         /// <param name="width">Width of block to read.</param>
         /// <param name="height">Height of block to read.</param>
-        /// <param name="format">Specifies the format of the pixel data. The following symbolic values are accepted: OpenGL.COLOR_INDEX, OpenGL.STENCIL_INDEX, OpenGL.DEPTH_COMPONENT, OpenGL.RED, OpenGL.GREEN, OpenGL.BLUE, OpenGL.ALPHA, OpenGL.RGB, OpenGL.RGBA, OpenGL.LUMINANCE and OpenGL.LUMINANCE_ALPHA.</param>
-        /// <param name="type">Specifies the data type of the pixel data.Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.BYTE, OpenGL.BITMAP, OpenGL.UNSIGNED_SHORT, OpenGL.SHORT, OpenGL.UNSIGNED_INT, OpenGL.INT or OpenGL.FLOAT.</param>
+        /// <param name="format">Specifies the format of the pixel data. The following symbolic values are accepted: GL.COLOR_INDEX, GL.STENCIL_INDEX, GL.DEPTH_COMPONENT, GL.RED, GL.GREEN, GL.BLUE, GL.ALPHA, GL.RGB, GL.RGBA, GL.LUMINANCE and GL.LUMINANCE_ALPHA.</param>
+        /// <param name="type">Specifies the data type of the pixel data.Must be one of GL.UNSIGNED_BYTE, GL.BYTE, GL.BITMAP, GL.UNSIGNED_SHORT, GL.SHORT, GL.UNSIGNED_INT, GL.INT or GL.FLOAT.</param>
         /// <param name="pixels">Storage for the pixel data received.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glReadPixels", SetLastError = true)]
         public static extern void ReadPixels(int x, int y, int width, int height, uint format, uint type, IntPtr pixels);
@@ -2419,7 +2419,7 @@ namespace CSharpGL
         /// <summary>
         /// Select flat or smooth shading.
         /// </summary>
-        /// <param name="mode">Specifies a symbolic value representing a shading technique. Accepted values are OpenGL.FLAT and OpenGL.SMOOTH. The default is OpenGL.SMOOTH.</param>
+        /// <param name="mode">Specifies a symbolic value representing a shading technique. Accepted values are GL.FLAT and GL.SMOOTH. The default is GL.SMOOTH.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glShadeModel", SetLastError = true)]
         public static extern void ShadeModel(uint mode);
 
@@ -2732,17 +2732,17 @@ namespace CSharpGL
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be OpenGL.TEXTURE_ENV_MODE.</param>
-        /// <param name="param">Specifies a single symbolic constant, one of OpenGL.MODULATE, OpenGL.DECAL, OpenGL.BLEND, or OpenGL.REPLACE.</param>
+        /// <param name="target">Specifies a texture environment. Must be GL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be GL.TEXTURE_ENV_MODE.</param>
+        /// <param name="param">Specifies a single symbolic constant, one of GL.MODULATE, GL.DECAL, GL.BLEND, or GL.REPLACE.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexEnvf", SetLastError = true)]
         public static extern void TexEnvf(uint target, uint pname, float param);
 
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are OpenGL.TEXTURE_ENV_MODE and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="target">Specifies a texture environment. Must be GL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are GL.TEXTURE_ENV_MODE and GL.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Specifies a pointer to a parameter array that contains either a single symbolic constant or an RGBA color.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexEnvfv", SetLastError = true)]
         public static extern void TexEnvfv(uint target, uint pname, float[] parameters);
@@ -2750,9 +2750,9 @@ namespace CSharpGL
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be OpenGL.TEXTURE_ENV_MODE.</param>
-        /// <param name="param">Specifies a single symbolic constant, one of OpenGL.MODULATE, OpenGL.DECAL, OpenGL.BLEND, or OpenGL.REPLACE.</param>
+        /// <param name="target">Specifies a texture environment. Must be GL.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be GL.TEXTURE_ENV_MODE.</param>
+        /// <param name="param">Specifies a single symbolic constant, one of GL.MODULATE, GL.DECAL, GL.BLEND, or GL.REPLACE.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexEnvi", SetLastError = true)]
         public static extern void TexEnvi(uint target, uint pname, int param);
 
@@ -2768,61 +2768,61 @@ namespace CSharpGL
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        /// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be GL.TEXTURE_GEN_MODE.</param>
+        /// <param name="param">Specifies a single-valued texture generation parameter, one of GL.OBJECT_LINEAR, GL.GL_EYE_LINEAR, or GL.SPHERE_MAP.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexGend", SetLastError = true)]
         public static extern void TexGend(uint coord, uint pname, double param);
 
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
-        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be GL.TEXTURE_GEN_MODE, GL.OBJECT_PLANE, or GL.EYE_PLANE.</param>
+        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is GL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of GL.OBJECT_LINEAR, GL.EYE_LINEAR, or GL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexGendv", SetLastError = true)]
         public static extern void TexGendv(uint coord, uint pname, double[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        /// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be GL.TEXTURE_GEN_MODE.</param>
+        /// <param name="param">Specifies a single-valued texture generation parameter, one of GL.OBJECT_LINEAR, GL.GL_EYE_LINEAR, or GL.SPHERE_MAP.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexGenf", SetLastError = true)]
         public static extern void TexGenf(uint coord, uint pname, float param);
 
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
-        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be GL.TEXTURE_GEN_MODE, GL.OBJECT_PLANE, or GL.EYE_PLANE.</param>
+        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is GL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of GL.OBJECT_LINEAR, GL.EYE_LINEAR, or GL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexGenfv", SetLastError = true)]
         public static extern void TexGenfv(uint coord, uint pname, float[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
-        /// <param name="param">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.GL_EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be GL.TEXTURE_GEN_MODE.</param>
+        /// <param name="param">Specifies a single-valued texture generation parameter, one of GL.OBJECT_LINEAR, GL.GL_EYE_LINEAR, or GL.SPHERE_MAP.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexGeni", SetLastError = true)]
         public static extern void TexGeni(uint coord, uint pname, int param);
 
         ///// <summary>
         ///// Set texture environment parameters.
         ///// </summary>
-        ///// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        ///// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are OpenGL.TEXTURE_ENV_MODE and OpenGL.TEXTURE_ENV_COLOR.</param>
+        ///// <param name="target">Specifies a texture environment. Must be GL.TEXTURE_ENV.</param>
+        ///// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are GL.TEXTURE_ENV_MODE and GL.TEXTURE_ENV_COLOR.</param>
         ///// <param name="parameters">Specifies a pointer to a parameter array that contains either a single symbolic constant or an RGBA color.</param>
         ////
         /// <summary>
         /// Control the generation of texture coordinates.
         /// </summary>
-        /// <param name="coord">Specifies a texture coordinate. Must be one of OpenGL.S, OpenGL.T, OpenGL.R, or OpenGL.Q.</param>
-        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
-        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
+        /// <param name="coord">Specifies a texture coordinate. Must be one of GL.S, GL.T, GL.R, or GL.Q.</param>
+        /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be GL.TEXTURE_GEN_MODE, GL.OBJECT_PLANE, or GL.EYE_PLANE.</param>
+        /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is GL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of GL.OBJECT_LINEAR, GL.EYE_LINEAR, or GL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexGeniv", SetLastError = true)]
         public static extern void TexGeniv(uint coord, uint pname, int[] parameters);
 
@@ -2929,7 +2929,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify a two-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="width">Specifies the width of the texture subimage.</param>
@@ -2942,7 +2942,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify a two-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="width">Specifies the width of the texture subimage.</param>
@@ -2955,7 +2955,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify a two-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>
@@ -2970,7 +2970,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify a two-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be GL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>

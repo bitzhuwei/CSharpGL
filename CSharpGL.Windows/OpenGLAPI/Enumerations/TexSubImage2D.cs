@@ -8,37 +8,37 @@
         /// <summary>
         ///
         /// </summary>
-        Texture2D = OpenGL.GL_TEXTURE_2D,
+        Texture2D = GL.GL_TEXTURE_2D,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapPositiveX = OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+        TextureCubeMapPositiveX = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapNegativeX = OpenGL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+        TextureCubeMapNegativeX = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapPositiveY = OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+        TextureCubeMapPositiveY = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapNegativeY = OpenGL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
+        TextureCubeMapNegativeY = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapPositiveZ = OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+        TextureCubeMapPositiveZ = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapNegativeZ = OpenGL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+        TextureCubeMapNegativeZ = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
     }
 
     /// <summary>
@@ -49,32 +49,32 @@
         /// <summary>
         ///
         /// </summary>
-        Alpha = OpenGL.GL_ALPHA,
+        Alpha = GL.GL_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        RGB = OpenGL.GL_RGB,
+        RGB = GL.GL_RGB,
 
         /// <summary>
         ///
         /// </summary>
-        RGBA = OpenGL.GL_RGBA,
+        RGBA = GL.GL_RGBA,
 
         /// <summary>
         ///
         /// </summary>
-        Luminance = OpenGL.GL_LUMINANCE,
+        Luminance = GL.GL_LUMINANCE,
 
         /// <summary>
         ///
         /// </summary>
-        LuminanceAlpha = OpenGL.GL_LUMINANCE_ALPHA,
+        LuminanceAlpha = GL.GL_LUMINANCE_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        RedInteger = OpenGL.GL_RED_INTEGER,
+        RedInteger = GL.GL_RED_INTEGER,
     }
 
     /// <summary>
@@ -85,26 +85,26 @@
         /// <summary>
         ///
         /// </summary>
-        UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
+        UnsignedByte = GL.GL_UNSIGNED_BYTE,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedShort565 = OpenGL.GL_UNSIGNED_SHORT_5_6_5,
+        UnsignedShort565 = GL.GL_UNSIGNED_SHORT_5_6_5,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedShort4444 = OpenGL.GL_UNSIGNED_SHORT_4_4_4_4,
+        UnsignedShort4444 = GL.GL_UNSIGNED_SHORT_4_4_4_4,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedShort5551 = OpenGL.GL_UNSIGNED_SHORT_5_5_5_1,
+        UnsignedShort5551 = GL.GL_UNSIGNED_SHORT_5_5_5_1,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedInt = OpenGL.GL_UNSIGNED_INT,
+        UnsignedInt = GL.GL_UNSIGNED_INT,
     }
 }

@@ -8,12 +8,12 @@
         /// <summary>
         ///
         /// </summary>
-        Texture2D = OpenGL.GL_TEXTURE_2D,
+        Texture2D = GL.GL_TEXTURE_2D,
 
         /// <summary>
         ///
         /// </summary>
-        ProxyTexture2D = OpenGL.GL_PROXY_TEXTURE_2D,
+        ProxyTexture2D = GL.GL_PROXY_TEXTURE_2D,
     }
 
     /// <summary>
@@ -24,27 +24,27 @@
         /// <summary>
         ///
         /// </summary>
-        Alpha = OpenGL.GL_ALPHA,
+        Alpha = GL.GL_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        RGB = OpenGL.GL_RGB,
+        RGB = GL.GL_RGB,
 
         /// <summary>
         ///
         /// </summary>
-        RGBA = OpenGL.GL_RGBA,
+        RGBA = GL.GL_RGBA,
 
         /// <summary>
         ///
         /// </summary>
-        Luminance = OpenGL.GL_LUMINANCE,
+        Luminance = GL.GL_LUMINANCE,
 
         /// <summary>
         ///
         /// </summary>
-        LuminanceAlpha = OpenGL.GL_LUMINANCE_ALPHA,
+        LuminanceAlpha = GL.GL_LUMINANCE_ALPHA,
     }
 
     /// <summary>
@@ -55,21 +55,21 @@
         /// <summary>
         ///
         /// </summary>
-        UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
+        UnsignedByte = GL.GL_UNSIGNED_BYTE,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedShort565 = OpenGL.GL_UNSIGNED_SHORT_5_6_5,
+        UnsignedShort565 = GL.GL_UNSIGNED_SHORT_5_6_5,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedShort4444 = OpenGL.GL_UNSIGNED_SHORT_4_4_4_4,
+        UnsignedShort4444 = GL.GL_UNSIGNED_SHORT_4_4_4_4,
 
         /// <summary>
         ///
         /// </summary>
-        UnsignedShort5551 = OpenGL.GL_UNSIGNED_SHORT_5_5_5_1,
+        UnsignedShort5551 = GL.GL_UNSIGNED_SHORT_5_5_5_1,
     }
 }

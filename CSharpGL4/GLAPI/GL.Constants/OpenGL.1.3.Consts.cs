@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public static partial class OpenGL
+    public abstract partial class GL
     {
         #region OpenGL 1.3
 

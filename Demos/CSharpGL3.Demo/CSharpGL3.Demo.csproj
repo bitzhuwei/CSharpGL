@@ -90,12 +90,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\CSharpGL3\CSharpG3L3.csproj">
-      <Project>{8e03b6b9-834c-47b9-8ba0-91a65c80ef27}</Project>
-      <Name>CSharpG3L3</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

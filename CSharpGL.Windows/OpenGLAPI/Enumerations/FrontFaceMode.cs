@@ -8,11 +8,11 @@
         /// <summary>
         /// GL_CCW 表示窗口坐标上投影多边形的顶点顺序为逆时针方向的表面为正面。
         /// </summary>
-        CCW = OpenGL.GL_CCW,
+        CCW = GL.GL_CCW,
 
         /// <summary>
         /// GL_CW 表示顶点顺序为顺时针方向的表面为正面。
         /// </summary>
-        CW = OpenGL.GL_CW,
+        CW = GL.GL_CW,
     }
 }

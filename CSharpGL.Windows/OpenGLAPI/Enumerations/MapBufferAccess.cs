@@ -8,16 +8,16 @@
         /// <summary>
         ///
         /// </summary>
-        ReadOnly = OpenGL.GL_READ_ONLY,
+        ReadOnly = GL.GL_READ_ONLY,
 
         /// <summary>
         ///
         /// </summary>
-        WriteOnly = OpenGL.GL_WRITE_ONLY,
+        WriteOnly = GL.GL_WRITE_ONLY,
 
         /// <summary>
         ///
         /// </summary>
-        ReadWrite = OpenGL.GL_READ_WRITE,
+        ReadWrite = GL.GL_READ_WRITE,
     }
 }

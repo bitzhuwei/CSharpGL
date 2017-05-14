@@ -8,36 +8,36 @@
         /// <summary>
         ///
         /// </summary>
-        Texture1D = OpenGL.GL_TEXTURE_1D,
+        Texture1D = GL.GL_TEXTURE_1D,
 
         /// <summary>
         ///
         /// </summary>
-        Texture2D = OpenGL.GL_TEXTURE_2D,
+        Texture2D = GL.GL_TEXTURE_2D,
 
         /// <summary>
         ///
         /// </summary>
-        Texture3D = OpenGL.GL_TEXTURE_3D,
+        Texture3D = GL.GL_TEXTURE_3D,
 
         /// <summary>
         ///
         /// </summary>
-        Texture1DArray = OpenGL.GL_TEXTURE_1D_ARRAY,
+        Texture1DArray = GL.GL_TEXTURE_1D_ARRAY,
 
         /// <summary>
         ///
         /// </summary>
-        Texture2DArray = OpenGL.GL_TEXTURE_2D_ARRAY,
+        Texture2DArray = GL.GL_TEXTURE_2D_ARRAY,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMap = OpenGL.GL_TEXTURE_CUBE_MAP,
+        TextureCubeMap = GL.GL_TEXTURE_CUBE_MAP,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMapArray = OpenGL.GL_TEXTURE_CUBE_MAP_ARRAY
+        TextureCubeMapArray = GL.GL_TEXTURE_CUBE_MAP_ARRAY
     }
 }

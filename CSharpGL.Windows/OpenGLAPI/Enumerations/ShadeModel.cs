@@ -8,11 +8,11 @@
         /// <summary>
         ///
         /// </summary>
-        Flat = OpenGL.GL_FLAT,
+        Flat = GL.GL_FLAT,
 
         /// <summary>
         ///
         /// </summary>
-        Smooth = OpenGL.GL_SMOOTH,
+        Smooth = GL.GL_SMOOTH,
     }
 }

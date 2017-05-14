@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public static partial class OpenGL
+    public abstract partial class GL
     {
         #region The OpenGL constant definitions.
 
@@ -489,37 +489,37 @@
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_NO_ERROR = 0;
+        public const uint GL_NO_ERROR = 0;
 
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_INVALID_ENUM = 0x0500;
+        public const uint GL_INVALID_ENUM = 0x0500;
 
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_INVALID_VALUE = 0x0501;
+        public const uint GL_INVALID_VALUE = 0x0501;
 
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_INVALID_OPERATION = 0x0502;
+        public const uint GL_INVALID_OPERATION = 0x0502;
 
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_STACK_OVERFLOW = 0x0503;
+        public const uint GL_STACK_OVERFLOW = 0x0503;
 
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_STACK_UNDERFLOW = 0x0504;
+        public const uint GL_STACK_UNDERFLOW = 0x0504;
 
         /// <summary>
         ///
         /// </summary>
-        internal const uint GL_OUT_OF_MEMORY = 0x0505;
+        public const uint GL_OUT_OF_MEMORY = 0x0505;
 
         //   FeedBackMode
         /// <summary>

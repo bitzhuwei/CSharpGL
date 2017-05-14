@@ -8,6 +8,6 @@
         /// <summary>
         ///
         /// </summary>
-        TransformFeedback = OpenGL.GL_TRANSFORM_FEEDBACK,
+        TransformFeedback = GL.GL_TRANSFORM_FEEDBACK,
     }
 }

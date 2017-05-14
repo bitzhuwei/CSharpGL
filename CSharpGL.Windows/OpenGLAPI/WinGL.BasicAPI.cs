@@ -7,14 +7,14 @@ namespace CSharpGL
 {
     public partial class WinGL
     {
-        public override void Begin(uint mode)
-        {
-            OpenGL.Begin(mode);
-        }
+        //public override void Begin(uint mode)
+        //{
+        //    WinGL.glBegin(mode);
+        //}
 
-        public override void End()
-        {
-            OpenGL.End();
-        }
+        //public override void End()
+        //{
+        //    WinGL.glEnd();
+        //}
     }
 }

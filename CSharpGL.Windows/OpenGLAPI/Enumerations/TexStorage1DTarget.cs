@@ -8,11 +8,11 @@
         /// <summary>
         ///
         /// </summary>
-        Texture1D = OpenGL.GL_TEXTURE_1D,
+        Texture1D = GL.GL_TEXTURE_1D,
 
         /// <summary>
         ///
         /// </summary>
-        ProxyTexture1D = OpenGL.GL_PROXY_TEXTURE_1D,
+        ProxyTexture1D = GL.GL_PROXY_TEXTURE_1D,
     }
 }

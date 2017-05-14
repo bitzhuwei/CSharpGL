@@ -32,7 +32,7 @@ namespace CSharpGL
         private static IntPtr GetProc(string name)
         {
             IntPtr proc = IntPtr.Zero;
-            // check https://www.opengl.org/wiki/Load_OpenGL_Functions
+            // check https://www.GL.org/wiki/Load_OpenGL_Functions
             proc = Win32.wglGetProcAddress(name);
             long pointer = proc.ToInt64();
             if (-1 <= pointer && pointer <= 3)

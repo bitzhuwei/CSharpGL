@@ -8,21 +8,21 @@
         /// <summary>
         ///
         /// </summary>
-        VertexShader = OpenGL.GL_VERTEX_SHADER,
+        VertexShader = GL.GL_VERTEX_SHADER,
 
         /// <summary>
         ///
         /// </summary>
-        GeometryShader = OpenGL.GL_GEOMETRY_SHADER,
+        GeometryShader = GL.GL_GEOMETRY_SHADER,
 
         /// <summary>
         ///
         /// </summary>
-        FragmentShader = OpenGL.GL_FRAGMENT_SHADER,
+        FragmentShader = GL.GL_FRAGMENT_SHADER,
 
         /// <summary>
         ///
         /// </summary>
-        ComputeShader = OpenGL.GL_COMPUTE_SHADER,
+        ComputeShader = GL.GL_COMPUTE_SHADER,
     }
 }

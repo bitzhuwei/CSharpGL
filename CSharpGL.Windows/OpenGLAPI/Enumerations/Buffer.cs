@@ -8,12 +8,12 @@
         /// <summary>
         /// vertex attribute buffer object.
         /// </summary>
-        ArrayBuffer = OpenGL.GL_ARRAY_BUFFER,
+        ArrayBuffer = GL.GL_ARRAY_BUFFER,
 
         /// <summary>
         /// glDrawElements().
         /// </summary>
-        ElementArrayBuffer = OpenGL.GL_ELEMENT_ARRAY_BUFFER,
+        ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
 
         /// <summary>
         /// This means that this buffer doesn't have (or need) a valid binding target.
@@ -23,37 +23,37 @@
         /// <summary>
         ///
         /// </summary>
-        UniformBuffer = OpenGL.GL_UNIFORM_BUFFER,
+        UniformBuffer = GL.GL_UNIFORM_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        TransformFeedbackBuffer = OpenGL.GL_TRANSFORM_FEEDBACK_BUFFER,
+        TransformFeedbackBuffer = GL.GL_TRANSFORM_FEEDBACK_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        PixelUnpackBuffer = OpenGL.GL_PIXEL_UNPACK_BUFFER,
+        PixelUnpackBuffer = GL.GL_PIXEL_UNPACK_BUFFER,
 
         /// <summary>
         /// 
         /// </summary>
-        PixelPackBuffer = OpenGL.GL_PIXEL_PACK_BUFFER,
+        PixelPackBuffer = GL.GL_PIXEL_PACK_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        AtomicCounterBuffer = OpenGL.GL_ATOMIC_COUNTER_BUFFER,
+        AtomicCounterBuffer = GL.GL_ATOMIC_COUNTER_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
+        TextureBuffer = GL.GL_TEXTURE_BUFFER,
 
         /// <summary>
         ///
         /// </summary>
-        ShaderStorageBuffer = OpenGL.GL_SHADER_STORAGE_BUFFER,
+        ShaderStorageBuffer = GL.GL_SHADER_STORAGE_BUFFER,
     }
 
     ///// <summary>
@@ -74,46 +74,46 @@
         /// <summary>
         ///
         /// </summary>
-        StreamDraw = OpenGL.GL_STREAM_DRAW,//= 0x88E0,
+        StreamDraw = GL.GL_STREAM_DRAW,//= 0x88E0,
 
         /// <summary>
         ///
         /// </summary>
-        StreamRead = OpenGL.GL_STREAM_READ,//= 0x88E1,
+        StreamRead = GL.GL_STREAM_READ,//= 0x88E1,
 
         /// <summary>
         ///
         /// </summary>
-        StreamCopy = OpenGL.GL_STREAM_COPY,//= 0x88E2,
+        StreamCopy = GL.GL_STREAM_COPY,//= 0x88E2,
 
         /// <summary>
         ///
         /// </summary>
-        StaticDraw = OpenGL.GL_STATIC_DRAW,//= 0x88E4,
+        StaticDraw = GL.GL_STATIC_DRAW,//= 0x88E4,
 
         /// <summary>
         ///
         /// </summary>
-        StaticRead = OpenGL.GL_STATIC_READ,//= 0x88E5,
+        StaticRead = GL.GL_STATIC_READ,//= 0x88E5,
 
         /// <summary>
         ///
         /// </summary>
-        StaticCopy = OpenGL.GL_STATIC_COPY,//= 0x88E6,
+        StaticCopy = GL.GL_STATIC_COPY,//= 0x88E6,
 
         /// <summary>
         ///
         /// </summary>
-        DynamicDraw = OpenGL.GL_DYNAMIC_DRAW,//= 0x88E8,
+        DynamicDraw = GL.GL_DYNAMIC_DRAW,//= 0x88E8,
 
         /// <summary>
         ///
         /// </summary>
-        DynamicRead = OpenGL.GL_DYNAMIC_READ,//= 0x88E9,
+        DynamicRead = GL.GL_DYNAMIC_READ,//= 0x88E9,
 
         /// <summary>
         ///
         /// </summary>
-        DynamicCopy = OpenGL.GL_DYNAMIC_COPY,//= 0x88EA,
+        DynamicCopy = GL.GL_DYNAMIC_COPY,//= 0x88EA,
     }
 }

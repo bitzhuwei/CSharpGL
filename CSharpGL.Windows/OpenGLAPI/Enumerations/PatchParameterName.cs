@@ -8,16 +8,16 @@
         /// <summary>
         ///
         /// </summary>
-        PatchVertices = OpenGL.GL_PATCH_VERTICES,
+        PatchVertices = GL.GL_PATCH_VERTICES,
 
         /// <summary>
         ///
         /// </summary>
-        PatchDefaultOuterLevel = OpenGL.GL_PATCH_DEFAULT_OUTER_LEVEL,
+        PatchDefaultOuterLevel = GL.GL_PATCH_DEFAULT_OUTER_LEVEL,
 
         /// <summary>
         ///
         /// </summary>
-        PatchDefaultInnerLevel = OpenGL.GL_PATCH_DEFAULT_INNER_LEVEL,
+        PatchDefaultInnerLevel = GL.GL_PATCH_DEFAULT_INNER_LEVEL,
     }
 }

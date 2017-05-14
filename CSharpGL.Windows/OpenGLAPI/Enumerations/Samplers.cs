@@ -8,22 +8,22 @@
         /// <summary>
         /// 纹理的默认行为。重复纹理图像。
         /// </summary>
-        Repeat = OpenGL.GL_REPEAT,
+        Repeat = GL.GL_REPEAT,
 
         /// <summary>
         /// 和GL_REPEAT一样，除了重复的图片是镜像放置的。
         /// </summary>
-        MirroredRepeaet = OpenGL.GL_MIRRORED_REPEAT,
+        MirroredRepeaet = GL.GL_MIRRORED_REPEAT,
 
         /// <summary>
         /// 纹理坐标会在0到1之间。超出的部分会重复纹理坐标的边缘，就是边缘被拉伸。
         /// </summary>
-        ClampToEdge = OpenGL.GL_CLAMP_TO_EDGE,
+        ClampToEdge = GL.GL_CLAMP_TO_EDGE,
 
         /// <summary>
         /// 超出的部分是用户指定的边缘的颜色。
         /// </summary>
-        ClampToBorder = OpenGL.GL_CLAMP_TO_BORDER,
+        ClampToBorder = GL.GL_CLAMP_TO_BORDER,
     }
 
     /// <summary>
@@ -34,12 +34,12 @@
         /// <summary>
         /// 直接选择最临近的像素的颜色，magnification（放大）时：由于多个片元会在同一个纹理像素上面取值，故最终得到的图片颗粒度很大，会有锯齿。
         /// </summary>
-        Nearest = OpenGL.GL_NEAREST,
+        Nearest = GL.GL_NEAREST,
 
         /// <summary>
         /// 根据临近四个的像素点的颜色值，做线性的插值计算，得到最终的颜色。magnification（放大）时：不会产生锯齿，显示更加平滑。
         /// </summary>
-        Linear = OpenGL.GL_LINEAR,
+        Linear = GL.GL_LINEAR,
     }
 
     /// <summary>
@@ -51,22 +51,22 @@
         /// <summary>
         /// 接收最近的mipmap来匹配像素大小，并使用最临近插值进行纹理采样。
         /// </summary>
-        NearestMipmapNearest = OpenGL.GL_NEAREST_MIPMAP_NEAREST,
+        NearestMipmapNearest = GL.GL_NEAREST_MIPMAP_NEAREST,
 
         /// <summary>
         /// 接收最近的mipmap级别，并使用线性插值采样。
         /// </summary>
-        LinearMipmapNearest = OpenGL.GL_LINEAR_MIPMAP_NEAREST,
+        LinearMipmapNearest = GL.GL_LINEAR_MIPMAP_NEAREST,
 
         /// <summary>
         /// 在两个mipmap之间进行线性插值，通过最邻近插值采样。
         /// </summary>
-        NearestMipmapLinear = OpenGL.GL_NEAREST_MIPMAP_LINEAR,
+        NearestMipmapLinear = GL.GL_NEAREST_MIPMAP_LINEAR,
 
         /// <summary>
         /// 在两个相邻的mipmap进行线性插值，并通过线性插值进行采样。
         /// </summary>
-        LinearMipmapLinear = OpenGL.GL_LINEAR_MIPMAP_LINEAR,
+        LinearMipmapLinear = GL.GL_LINEAR_MIPMAP_LINEAR,
     }
 
     // 总结一下：magnification和minification的时候都可以设置NEAREST和LINEAR两种方式；minification的时候还可以设置mipmap的方式，该方法效果更好。关于具体的算法的实现，可以参考《OpenGL ES specification》的8.13-8.14内容。

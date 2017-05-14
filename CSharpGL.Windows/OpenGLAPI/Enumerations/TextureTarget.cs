@@ -13,26 +13,26 @@
         /// <summary>
         /// The initial value is GL_ZERO
         /// </summary>
-        Texture1D = OpenGL.GL_TEXTURE_1D,
+        Texture1D = GL.GL_TEXTURE_1D,
 
         /// <summary>
         ///
         /// </summary>
-        Texture2D = OpenGL.GL_TEXTURE_2D,
+        Texture2D = GL.GL_TEXTURE_2D,
 
         /// <summary>
         ///
         /// </summary>
-        Texture3D = OpenGL.GL_TEXTURE_3D,
+        Texture3D = GL.GL_TEXTURE_3D,
 
         /// <summary>
         ///
         /// </summary>
-        TextureCubeMap = OpenGL.GL_TEXTURE_CUBE_MAP,
+        TextureCubeMap = GL.GL_TEXTURE_CUBE_MAP,
 
         /// <summary>
         ///
         /// </summary>
-        TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
+        TextureBuffer = GL.GL_TEXTURE_BUFFER,
     }
 }

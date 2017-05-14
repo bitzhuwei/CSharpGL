@@ -21,7 +21,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Translate(double x, double y, double z)
         {
-            OpenGL.Translated(x, y, z);
+            WinGL.Instance.Translated(x, y, z);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Translate(float x, float y, float z)
         {
-            OpenGL.Translatef(x, y, z);
+            WinGL.Instance.Translatef(x, y, z);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Rotate(double angle, double x, double y, double z)
         {
-            OpenGL.Rotated(angle, x, y, z);
+            WinGL.Instance.Rotated(angle, x, y, z);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Rotate(float angle, float x, float y, float z)
         {
-            OpenGL.Rotatef(angle, x, y, z);
+            WinGL.Instance.Rotatef(angle, x, y, z);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Scale(double x, double y, double z)
         {
-            OpenGL.Scaled(x, y, z);
+            WinGL.Instance.Scaled(x, y, z);
         }
 
         /// <summary>
@@ -88,12 +88,12 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Scale(float x, float y, float z)
         {
-            OpenGL.Scalef(x, y, z);
+            WinGL.Instance.Scalef(x, y, z);
         }
 
         #endregion translate, rotate, scale
 
-        #region GL.Color
+        #region WinGL.Instance.Color
 
         /// <summary>
         /// Sets the current color.
@@ -105,7 +105,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte red, byte green, byte blue)
         {
-            OpenGL.Color3ub(red, green, blue);
+            WinGL.Instance.Color3ub(red, green, blue);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte red, byte green, byte blue, byte alpha)
         {
-            OpenGL.Color4ub(red, green, blue, alpha);
+            WinGL.Instance.Color4ub(red, green, blue, alpha);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double red, double green, double blue)
         {
-            OpenGL.Color3d(red, green, blue);
+            WinGL.Instance.Color3d(red, green, blue);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double red, double green, double blue, double alpha)
         {
-            OpenGL.Color4d(red, green, blue, alpha);
+            WinGL.Instance.Color4d(red, green, blue, alpha);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float red, float green, float blue)
         {
-            OpenGL.Color3f(red, green, blue);
+            WinGL.Instance.Color3f(red, green, blue);
         }
 
         /// <summary>
@@ -171,8 +171,8 @@ namespace CSharpGL
         public static void Color(float[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3fv(v); }
-            else if (length == 4) { OpenGL.Color4fv(v); }
+            if (length == 3) { WinGL.Instance.Color3fv(v); }
+            else if (length == 4) { WinGL.Instance.Color4fv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -185,8 +185,8 @@ namespace CSharpGL
         public static void Color(int[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3iv(v); }
-            else if (length == 4) { OpenGL.Color4iv(v); }
+            if (length == 3) { WinGL.Instance.Color3iv(v); }
+            else if (length == 4) { WinGL.Instance.Color4iv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -199,8 +199,8 @@ namespace CSharpGL
         public static void Color(short[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3sv(v); }
-            else if (length == 4) { OpenGL.Color4sv(v); }
+            if (length == 3) { WinGL.Instance.Color3sv(v); }
+            else if (length == 4) { WinGL.Instance.Color4sv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -213,8 +213,8 @@ namespace CSharpGL
         public static void Color(double[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3dv(v); }
-            else if (length == 4) { OpenGL.Color4dv(v); }
+            if (length == 3) { WinGL.Instance.Color3dv(v); }
+            else if (length == 4) { WinGL.Instance.Color4dv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -227,8 +227,8 @@ namespace CSharpGL
         public static void Color(byte[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3bv(v); }
-            else if (length == 4) { OpenGL.Color4bv(v); }
+            if (length == 3) { WinGL.Instance.Color3bv(v); }
+            else if (length == 4) { WinGL.Instance.Color4bv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -241,8 +241,8 @@ namespace CSharpGL
         public static void Color(uint[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3uiv(v); }
-            else if (length == 4) { OpenGL.Color4uiv(v); }
+            if (length == 3) { WinGL.Instance.Color3uiv(v); }
+            else if (length == 4) { WinGL.Instance.Color4uiv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -255,8 +255,8 @@ namespace CSharpGL
         public static void Color(ushort[] v)
         {
             int length = v.Length;
-            if (length == 3) { OpenGL.Color3usv(v); }
-            else if (length == 4) { OpenGL.Color4usv(v); }
+            if (length == 3) { WinGL.Instance.Color3usv(v); }
+            else if (length == 4) { WinGL.Instance.Color4usv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -270,7 +270,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int red, int green, int blue)
         {
-            OpenGL.Color3i(red, green, blue);
+            WinGL.Instance.Color3i(red, green, blue);
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int red, int green, int blue, int alpha)
         {
-            OpenGL.Color4i(red, green, blue, alpha);
+            WinGL.Instance.Color4i(red, green, blue, alpha);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short red, short green, short blue)
         {
-            OpenGL.Color3s(red, green, blue);
+            WinGL.Instance.Color3s(red, green, blue);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short red, short green, short blue, short alpha)
         {
-            OpenGL.Color4s(red, green, blue, alpha);
+            WinGL.Instance.Color4s(red, green, blue, alpha);
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint red, uint green, uint blue)
         {
-            OpenGL.Color3ui(red, green, blue);
+            WinGL.Instance.Color3ui(red, green, blue);
         }
 
         /// <summary>
@@ -338,7 +338,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint red, uint green, uint blue, uint alpha)
         {
-            OpenGL.Color4ui(red, green, blue, alpha);
+            WinGL.Instance.Color4ui(red, green, blue, alpha);
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort red, ushort green, ushort blue)
         {
-            OpenGL.Color3us(red, green, blue);
+            WinGL.Instance.Color3us(red, green, blue);
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
         {
-            OpenGL.Color4us(red, green, blue, alpha);
+            WinGL.Instance.Color4us(red, green, blue, alpha);
         }
 
         /// <summary>
@@ -379,12 +379,12 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float red, float green, float blue, float alpha)
         {
-            OpenGL.Color4f(red, green, blue, alpha);
+            WinGL.Instance.Color4f(red, green, blue, alpha);
         }
 
-        #endregion GL.Color
+        #endregion WinGL.Instance.Color
 
-        #region GL.Vertex
+        #region WinGL.Instance.Vertex
 
         /// <summary>
         /// Set the current vertex (must be called between 'Begin' and 'End').
@@ -395,7 +395,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y)
         {
-            OpenGL.Vertex2d(x, y);
+            WinGL.Instance.Vertex2d(x, y);
         }
 
         /// <summary>
@@ -407,9 +407,9 @@ namespace CSharpGL
         public static void Vertex(double[] v)
         {
             int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2dv(v); }
-            else if (length == 3) { OpenGL.Vertex3dv(v); }
-            else if (length == 4) { OpenGL.Vertex4dv(v); }
+            if (length == 2) { WinGL.Instance.Vertex2dv(v); }
+            else if (length == 3) { WinGL.Instance.Vertex3dv(v); }
+            else if (length == 4) { WinGL.Instance.Vertex4dv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -422,7 +422,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y)
         {
-            OpenGL.Vertex2f(x, y);
+            WinGL.Instance.Vertex2f(x, y);
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y)
         {
-            OpenGL.Vertex2i(x, y);
+            WinGL.Instance.Vertex2i(x, y);
         }
 
         /// <summary>
@@ -446,9 +446,9 @@ namespace CSharpGL
         public static void Vertex(int[] v)
         {
             int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2iv(v); }
-            else if (length == 3) { OpenGL.Vertex3iv(v); }
-            else if (length == 4) { OpenGL.Vertex4iv(v); }
+            if (length == 2) { WinGL.Instance.Vertex2iv(v); }
+            else if (length == 3) { WinGL.Instance.Vertex3iv(v); }
+            else if (length == 4) { WinGL.Instance.Vertex4iv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -461,7 +461,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y)
         {
-            OpenGL.Vertex2s(x, y);
+            WinGL.Instance.Vertex2s(x, y);
         }
 
         /// <summary>
@@ -473,9 +473,9 @@ namespace CSharpGL
         public static void Vertex(short[] v)
         {
             int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2sv(v); }
-            else if (length == 3) { OpenGL.Vertex3sv(v); }
-            else if (length == 4) { OpenGL.Vertex4sv(v); }
+            if (length == 2) { WinGL.Instance.Vertex2sv(v); }
+            else if (length == 3) { WinGL.Instance.Vertex3sv(v); }
+            else if (length == 4) { WinGL.Instance.Vertex4sv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -489,7 +489,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y, double z)
         {
-            OpenGL.Vertex3d(x, y, z);
+            WinGL.Instance.Vertex3d(x, y, z);
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y, float z)
         {
-            OpenGL.Vertex3f(x, y, z);
+            WinGL.Instance.Vertex3f(x, y, z);
         }
 
         /// <summary>
@@ -514,9 +514,9 @@ namespace CSharpGL
         public static void Vertex(float[] v)
         {
             int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2fv(v); }
-            else if (length == 3) { OpenGL.Vertex3fv(v); }
-            else if (length == 4) { OpenGL.Vertex4fv(v); }
+            if (length == 2) { WinGL.Instance.Vertex2fv(v); }
+            else if (length == 3) { WinGL.Instance.Vertex3fv(v); }
+            else if (length == 4) { WinGL.Instance.Vertex4fv(v); }
             else { throw new ArgumentOutOfRangeException(); }
         }
 
@@ -530,7 +530,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y, int z)
         {
-            OpenGL.Vertex3i(x, y, z);
+            WinGL.Instance.Vertex3i(x, y, z);
         }
 
         /// <summary>
@@ -543,7 +543,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y, short z)
         {
-            OpenGL.Vertex3s(x, y, z);
+            WinGL.Instance.Vertex3s(x, y, z);
         }
 
         /// <summary>
@@ -557,7 +557,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y, double z, double w)
         {
-            OpenGL.Vertex4d(x, y, z, w);
+            WinGL.Instance.Vertex4d(x, y, z, w);
         }
 
         /// <summary>
@@ -571,7 +571,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y, float z, float w)
         {
-            OpenGL.Vertex4f(x, y, z, w);
+            WinGL.Instance.Vertex4f(x, y, z, w);
         }
 
         /// <summary>
@@ -585,7 +585,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y, int z, int w)
         {
-            OpenGL.Vertex4i(x, y, z, w);
+            WinGL.Instance.Vertex4i(x, y, z, w);
         }
 
         /// <summary>
@@ -599,12 +599,12 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y, short z, short w)
         {
-            OpenGL.Vertex4s(x, y, z, w);
+            WinGL.Instance.Vertex4s(x, y, z, w);
         }
 
-        #endregion GL.Vertex
+        #endregion WinGL.Instance.Vertex
 
-        #region GL.TexCoord
+        #region WinGL.Instance.TexCoord
 
         /// <summary>
         /// This function sets the current texture coordinates.
@@ -612,7 +612,7 @@ namespace CSharpGL
         /// <param name="s">Texture Coordinate.</param>
         public static void TexCoord(double s)
         {
-            OpenGL.TexCoord1d(s);
+            WinGL.Instance.TexCoord1d(s);
         }
 
         /// <summary>
@@ -622,13 +622,13 @@ namespace CSharpGL
         public static void TexCoord(double[] v)
         {
             if (v.Length == 1)
-                OpenGL.TexCoord1dv(v);
+                WinGL.Instance.TexCoord1dv(v);
             else if (v.Length == 2)
-                OpenGL.TexCoord2dv(v);
+                WinGL.Instance.TexCoord2dv(v);
             else if (v.Length == 3)
-                OpenGL.TexCoord3dv(v);
+                WinGL.Instance.TexCoord3dv(v);
             else if (v.Length == 4)
-                OpenGL.TexCoord4dv(v);
+                WinGL.Instance.TexCoord4dv(v);
         }
 
         /// <summary>
@@ -637,7 +637,7 @@ namespace CSharpGL
         /// <param name="s">Texture Coordinate.</param>
         public static void TexCoord(float s)
         {
-            OpenGL.TexCoord1f(s);
+            WinGL.Instance.TexCoord1f(s);
         }
 
         /// <summary>
@@ -649,13 +649,13 @@ namespace CSharpGL
         public static void TexCoord(float[] v)
         {
             if (v.Length == 1)
-                OpenGL.TexCoord1fv(v);
+                WinGL.Instance.TexCoord1fv(v);
             else if (v.Length == 2)
-                OpenGL.TexCoord2fv(v);
+                WinGL.Instance.TexCoord2fv(v);
             else if (v.Length == 3)
-                OpenGL.TexCoord3fv(v);
+                WinGL.Instance.TexCoord3fv(v);
             else if (v.Length == 4)
-                OpenGL.TexCoord4fv(v);
+                WinGL.Instance.TexCoord4fv(v);
         }
 
         /// <summary>
@@ -664,7 +664,7 @@ namespace CSharpGL
         /// <param name="s">Texture Coordinate.</param>
         public static void TexCoord(int s)
         {
-            OpenGL.TexCoord1i(s);
+            WinGL.Instance.TexCoord1i(s);
         }
 
         /// <summary>
@@ -674,13 +674,13 @@ namespace CSharpGL
         public static void TexCoord(int[] v)
         {
             if (v.Length == 1)
-                OpenGL.TexCoord1iv(v);
+                WinGL.Instance.TexCoord1iv(v);
             else if (v.Length == 2)
-                OpenGL.TexCoord2iv(v);
+                WinGL.Instance.TexCoord2iv(v);
             else if (v.Length == 3)
-                OpenGL.TexCoord3iv(v);
+                WinGL.Instance.TexCoord3iv(v);
             else if (v.Length == 4)
-                OpenGL.TexCoord4iv(v);
+                WinGL.Instance.TexCoord4iv(v);
         }
 
         /// <summary>
@@ -689,7 +689,7 @@ namespace CSharpGL
         /// <param name="s">Texture Coordinate.</param>
         public static void TexCoord(short s)
         {
-            OpenGL.TexCoord1s(s);
+            WinGL.Instance.TexCoord1s(s);
         }
 
         /// <summary>
@@ -699,13 +699,13 @@ namespace CSharpGL
         public static void TexCoord(short[] v)
         {
             if (v.Length == 1)
-                OpenGL.TexCoord1sv(v);
+                WinGL.Instance.TexCoord1sv(v);
             else if (v.Length == 2)
-                OpenGL.TexCoord2sv(v);
+                WinGL.Instance.TexCoord2sv(v);
             else if (v.Length == 3)
-                OpenGL.TexCoord3sv(v);
+                WinGL.Instance.TexCoord3sv(v);
             else if (v.Length == 4)
-                OpenGL.TexCoord4sv(v);
+                WinGL.Instance.TexCoord4sv(v);
         }
 
         /// <summary>
@@ -715,7 +715,7 @@ namespace CSharpGL
         /// <param name="t">Texture Coordinate.</param>
         public static void TexCoord(double s, double t)
         {
-            OpenGL.TexCoord2d(s, t);
+            WinGL.Instance.TexCoord2d(s, t);
         }
 
         /// <summary>
@@ -725,7 +725,7 @@ namespace CSharpGL
         /// <param name="t">Texture Coordinate.</param>
         public static void TexCoord(float s, float t)
         {
-            OpenGL.TexCoord2f(s, t);
+            WinGL.Instance.TexCoord2f(s, t);
         }
 
         /// <summary>
@@ -735,7 +735,7 @@ namespace CSharpGL
         /// <param name="t">Texture Coordinate.</param>
         public static void TexCoord(int s, int t)
         {
-            OpenGL.TexCoord2i(s, t);
+            WinGL.Instance.TexCoord2i(s, t);
         }
 
         /// <summary>
@@ -745,7 +745,7 @@ namespace CSharpGL
         /// <param name="t">Texture Coordinate.</param>
         public static void TexCoord(short s, short t)
         {
-            OpenGL.TexCoord2s(s, t);
+            WinGL.Instance.TexCoord2s(s, t);
         }
 
         /// <summary>
@@ -756,7 +756,7 @@ namespace CSharpGL
         /// <param name="r">Texture Coordinate.</param>
         public static void TexCoord(double s, double t, double r)
         {
-            OpenGL.TexCoord3d(s, t, r);
+            WinGL.Instance.TexCoord3d(s, t, r);
         }
 
         /// <summary>
@@ -767,7 +767,7 @@ namespace CSharpGL
         /// <param name="r">Texture Coordinate.</param>
         public static void TexCoord(float s, float t, float r)
         {
-            OpenGL.TexCoord3f(s, t, r);
+            WinGL.Instance.TexCoord3f(s, t, r);
         }
 
         /// <summary>
@@ -778,7 +778,7 @@ namespace CSharpGL
         /// <param name="r">Texture Coordinate.</param>
         public static void TexCoord(int s, int t, int r)
         {
-            OpenGL.TexCoord3i(s, t, r);
+            WinGL.Instance.TexCoord3i(s, t, r);
         }
 
         /// <summary>
@@ -789,7 +789,7 @@ namespace CSharpGL
         /// <param name="r">Texture Coordinate.</param>
         public static void TexCoord(short s, short t, short r)
         {
-            OpenGL.TexCoord3s(s, t, r);
+            WinGL.Instance.TexCoord3s(s, t, r);
         }
 
         /// <summary>
@@ -801,7 +801,7 @@ namespace CSharpGL
         /// <param name="q">Texture Coordinate.</param>
         public static void TexCoord(double s, double t, double r, double q)
         {
-            OpenGL.TexCoord4d(s, t, r, q);
+            WinGL.Instance.TexCoord4d(s, t, r, q);
         }
 
         /// <summary>
@@ -813,7 +813,7 @@ namespace CSharpGL
         /// <param name="q">Texture Coordinate.</param>
         public static void TexCoord(float s, float t, float r, float q)
         {
-            OpenGL.TexCoord4f(s, t, r, q);
+            WinGL.Instance.TexCoord4f(s, t, r, q);
         }
 
         /// <summary>
@@ -825,7 +825,7 @@ namespace CSharpGL
         /// <param name="q">Texture Coordinate.</param>
         public static void TexCoord(int s, int t, int r, int q)
         {
-            OpenGL.TexCoord4i(s, t, r, q);
+            WinGL.Instance.TexCoord4i(s, t, r, q);
         }
 
         /// <summary>
@@ -837,10 +837,10 @@ namespace CSharpGL
         /// <param name="q">Texture Coordinate.</param>
         public static void TexCoord(short s, short t, short r, short q)
         {
-            OpenGL.TexCoord4s(s, t, r, q);
+            WinGL.Instance.TexCoord4s(s, t, r, q);
         }
 
-        #endregion GL.TexCoord
+        #endregion WinGL.Instance.TexCoord
 
         /// <summary>
         ///
@@ -850,7 +850,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Begin(DrawMode mode)
         {
-            OpenGL.Begin((uint)mode);
+            WinGL.Instance.Begin((uint)mode);
         }
 
         #region Draw vertex array object
@@ -858,13 +858,13 @@ namespace CSharpGL
         /// <summary>
         /// Render	primitives from	array data.
         /// </summary>
-        /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants WinGL.Instance.POINTS, WinGL.Instance.LINE_STRIP, WinGL.Instance.LINE_LOOP, WinGL.Instance.LINES, WinGL.Instance.TRIANGLE_STRIP, WinGL.Instance.TRIANGLE_FAN, WinGL.Instance.TRIANGLES, WinGL.Instance.QUAD_STRIP, WinGL.Instance.QUADS, and WinGL.Instance.POLYGON are accepted.</param>
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
         /// <param name="count">Specifies the number of indices to be rendered.</param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawArrays(DrawMode mode, int first, int count)
         {
-            OpenGL.DrawArrays((uint)mode, first, count);
+            WinGL.Instance.DrawArrays((uint)mode, first, count);
         }
 
         /// <summary>
@@ -884,14 +884,14 @@ namespace CSharpGL
         /// <summary>
         /// Render primitives from array data.
         /// </summary>
-        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants WinGL.Instance.POINTS, WinGL.Instance.LINE_STRIP, WinGL.Instance.LINE_LOOP, WinGL.Instance.LINES, WinGL.Instance.TRIANGLE_STRIP, WinGL.Instance.TRIANGLE_FAN, WinGL.Instance.TRIANGLES, WinGL.Instance.QUAD_STRIP, WinGL.Instance.QUADS, and WinGL.Instance.POLYGON are accepted.</param>
         /// <param name="count">Specifies the number of elements to be rendered.</param>
-        /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
+        /// <param name="type">Specifies the type of the values in indices.	Must be one of WinGL.Instance.UNSIGNED_BYTE, WinGL.Instance.UNSIGNED_SHORT, or WinGL.Instance.UNSIGNED_INT.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawElements(DrawMode mode, int count, uint type, IntPtr indices)
         {
-            OpenGL.DrawElements((uint)mode, count, type, indices);
+            WinGL.Instance.DrawElements((uint)mode, count, type, indices);
         }
 
         /// <summary>
@@ -912,13 +912,13 @@ namespace CSharpGL
         ///// <summary>
         ///// Render primitives from array data.
         ///// </summary>
-        ///// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        ///// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants WinGL.Instance.POINTS, WinGL.Instance.LINE_STRIP, WinGL.Instance.LINE_LOOP, WinGL.Instance.LINES, WinGL.Instance.TRIANGLE_STRIP, WinGL.Instance.TRIANGLE_FAN, WinGL.Instance.TRIANGLES, WinGL.Instance.QUAD_STRIP, WinGL.Instance.QUADS, and WinGL.Instance.POLYGON are accepted.</param>
         ///// <param name="count">Specifies the number of elements to be rendered.</param>
         ///// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
         //public static void DrawElements(DrawMode mode, int count, uint type, uint[] indices)
         //{
-        //    OpenGL.DrawElements((uint)mode, count, type, indices);
+        //    WinGL.Instance.DrawElements((uint)mode, count, type, indices);
         //}
 
         /// <summary>
@@ -947,7 +947,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Hint(HintTarget target, HintMode mode)
         {
-            OpenGL.Hint((uint)target, (uint)mode);
+            WinGL.Instance.Hint((uint)target, (uint)mode);
         }
 
         #region GetTarget
@@ -960,7 +960,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetInteger(GetTarget pname, int[] parameters)
         {
-            OpenGL.GetIntegerv((uint)pname, parameters);
+            WinGL.Instance.GetIntegerv((uint)pname, parameters);
         }
 
         /// <summary>
@@ -971,7 +971,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetInteger(uint pname, int[] parameters)
         {
-            OpenGL.GetIntegerv(pname, parameters);
+            WinGL.Instance.GetIntegerv(pname, parameters);
         }
 
         /// <summary>
@@ -982,7 +982,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetFloat(GetTarget pname, float[] parameters)
         {
-            OpenGL.GetFloatv((uint)pname, parameters);
+            WinGL.Instance.GetFloatv((uint)pname, parameters);
         }
 
         /// <summary>
@@ -993,7 +993,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetDouble(GetTarget pname, double[] parameters)
         {
-            OpenGL.GetDoublev((uint)pname, parameters);
+            WinGL.Instance.GetDoublev((uint)pname, parameters);
         }
 
         /// <summary>
@@ -1004,7 +1004,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetBoolean(GetTarget pname, byte[] parameters)
         {
-            OpenGL.GetBooleanv((uint)pname, parameters);
+            WinGL.Instance.GetBooleanv((uint)pname, parameters);
         }
 
         #endregion GetTarget
@@ -1012,11 +1012,11 @@ namespace CSharpGL
         /// <summary>
         /// Select flat or smooth shading.
         /// </summary>
-        /// <param name="mode">Specifies a symbolic value representing a shading technique. Accepted values are OpenGL.FLAT and OpenGL.SMOOTH. The default is OpenGL.SMOOTH.</param>
+        /// <param name="mode">Specifies a symbolic value representing a shading technique. Accepted values are WinGL.Instance.FLAT and WinGL.Instance.SMOOTH. The default is WinGL.Instance.SMOOTH.</param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ShadeModel(ShadeModel mode)
         {
-            OpenGL.ShadeModel((uint)mode);
+            WinGL.Instance.ShadeModel((uint)mode);
         }
 
         private static GLDelegates.void_uint_int_IntPtr_uint glBufferData;
@@ -1051,7 +1051,7 @@ namespace CSharpGL
             glBufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
         }
 
-        //private static OpenGL.glBindBuffer bindBuffer;
+        //private static WinGL.Instance.glBindBuffer bindBuffer;
         ///// <summary>
         ///// 选择一个VBO作为当前VBO。
         ///// </summary>
@@ -1060,7 +1060,7 @@ namespace CSharpGL
         //public static void BindBuffer(BufferTarget target, uint id)
         //{
         //    if (bindBuffer == null)
-        //    { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+        //    { bindBuffer = WinGL.Instance.GetDelegateFor<WinGL.Instance.glBindBuffer>(); }
         //    bindBuffer((uint)target, id);
         //}
 
@@ -1072,7 +1072,7 @@ namespace CSharpGL
         //public static void BindBuffer(uint target, uint id)
         //{
         //    if (bindBuffer == null)
-        //    { bindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
+        //    { bindBuffer = WinGL.Instance.GetDelegateFor<WinGL.Instance.glBindBuffer>(); }
         //    bindBuffer(target, id);
         //}
 
@@ -1090,7 +1090,7 @@ namespace CSharpGL
         /// <param name="pixels">The actual pixel data.</param>
         public static void TexImage2D(TexImage2DTargets target, int level, TexImage2DFormats internalformat, int width, int height, int border, TexImage2DFormats format, TexImage2DTypes type, IntPtr pixels)
         {
-            OpenGL.TexImage2D((uint)target, level, (uint)internalformat, width, height, border, (uint)format, (uint)type, pixels);
+            WinGL.Instance.TexImage2D((uint)target, level, (uint)internalformat, width, height, border, (uint)format, (uint)type, pixels);
         }
 
         /// <summary>
@@ -1098,7 +1098,7 @@ namespace CSharpGL
         /// Update texture's content.
         /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
+        /// <param name="target">Specifies the target texture. Must be WinGL.Instance.TEXTURE_2D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>
@@ -1109,20 +1109,20 @@ namespace CSharpGL
         /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
         public static void TexSubImage2D(TexSubImage2DTarget target, int level, int xoffset, int yoffset, int width, int height, TexSubImage2DFormats format, TexSubImage2DType type, IntPtr pixels)
         {
-            OpenGL.TexSubImage2D((uint)target, level, xoffset, yoffset, width, height, (uint)format, (uint)type, pixels);
+            WinGL.Instance.TexSubImage2D((uint)target, level, xoffset, yoffset, width, height, (uint)format, (uint)type, pixels);
         }
 
         /// <summary>
         /// Return a texture image.
         /// </summary>
-        /// <param name="target">Specifies which texture is to	be obtained. OpenGL.TEXTURE_1D and OpenGL.TEXTURE_2D are accepted.</param>
+        /// <param name="target">Specifies which texture is to	be obtained. WinGL.Instance.TEXTURE_1D and WinGL.Instance.TEXTURE_2D are accepted.</param>
         /// <param name="level">Specifies the level-of-detail number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
         /// <param name="format">Specifies a pixel format for the returned data.</param>
         /// <param name="type">Specifies a pixel type for the returned data.</param>
         /// <param name="pixels">Returns the texture image.  Should be	a pointer to an array of the type specified by type.</param>
         public static void GetTexImage(GetTexImageTargets target, int level, GetTexImageFormats format, GetTexImageTypes type, UnmanagedArrayBase pixels)
         {
-            OpenGL.GetTexImage((uint)target, level, (uint)format, (uint)type, pixels.Header);
+            WinGL.Instance.GetTexImage((uint)target, level, (uint)format, (uint)type, pixels.Header);
         }
 
         /// <summary>
@@ -1151,7 +1151,7 @@ namespace CSharpGL
         /// <param name="mode">The mode to set to (points, lines, or filled).</param>
         public static void PolygonMode(PolygonModeFaces face, PolygonMode mode)
         {
-            OpenGL.PolygonMode((uint)face, (uint)mode);
+            WinGL.Instance.PolygonMode((uint)face, (uint)mode);
         }
 
         #region debugging and profiling
@@ -1218,13 +1218,13 @@ namespace CSharpGL
         private static DEBUGPROC innerCallbackProc;
         #region debugging and profiling
 
-        // https://www.opengl.org/registry/specs/ARB/debug_output.txt
-        // https://www.opengl.org/wiki/Debug_Output
+        // https://www.WinGL.Instance.org/registry/specs/ARB/debug_output.txt
+        // https://www.WinGL.Instance.org/wiki/Debug_Output
         /// <summary>
         /// 设置Debug模式的回调函数。
         /// </summary>
         /// <param name="callback">使用一个字段来持有
-        /// <para>callback = new GL.DEBUGPROC(this.callbackProc);</para>
+        /// <para>callback = new WinGL.Instance.DEBUGPROC(this.callbackProc);</para>
         /// 这样就可以避免垃圾回收的问题。
         /// </param>
         /// <param name="userParam">建议使用UnmanagedArray.Header</param>
@@ -1295,10 +1295,10 @@ namespace CSharpGL
         /// <param name="message"></param>
         /// <param name="userParam"></param>
         public delegate void DebugProc(
-            CSharpGL.DebugSource source,
-            CSharpGL.DebugType type,
+            DebugSource source,
+            DebugType type,
             uint id,
-            CSharpGL.DebugSeverity severity,
+            DebugSeverity severity,
             int length,
             StringBuilder message,
             IntPtr userParam);
@@ -1313,9 +1313,9 @@ namespace CSharpGL
         /// <param name="ids"></param>
         /// <param name="enabled"></param>
         public static void DebugMessageControl(
-            CSharpGL.DebugMessageControlSource source,
-            CSharpGL.DebugMessageControlType type,
-            CSharpGL.DebugMessageControlSeverity severity,
+            DebugMessageControlSource source,
+            DebugMessageControlType type,
+            DebugMessageControlSeverity severity,
             int count,
             int[] ids,
             bool enabled)
@@ -1334,10 +1334,10 @@ namespace CSharpGL
         /// <param name="length">用-1即可。</param>
         /// <param name="buf"></param>
         public static void DebugMessageInsert(
-            CSharpGL.DebugSource source,
-            CSharpGL.DebugType type,
+            DebugSource source,
+            DebugType type,
             uint id,
-            CSharpGL.DebugSeverity severity,
+            DebugSeverity severity,
             int length,
             StringBuilder buf)
         {
@@ -1420,7 +1420,7 @@ namespace CSharpGL
         ///// <param name="primitiveMode"></param>
         //public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
         //{
-        //    OpenGL.GetDelegateFor<OpenGL.glBeginTransformFeedback>()((uint)primitiveMode);
+        //    WinGL.Instance.GetDelegateFor<WinGL.Instance.glBeginTransformFeedback>()((uint)primitiveMode);
         //}
 
         #endregion transform feedback
@@ -1463,7 +1463,7 @@ namespace CSharpGL
             function((uint)barriers);
         }
 
-        // https://www.opengl.org/wiki/GLAPI/glTexStorage1D
+        // https://www.WinGL.Instance.org/wiki/GLAPI/glTexStorage1D
         /// <summary>
         /// simultaneously specify storage for all levels of a one-dimensional texture
         /// </summary>
@@ -1477,7 +1477,7 @@ namespace CSharpGL
             function((uint)target, levels, internalformat, width);
         }
 
-        // https://www.opengl.org/wiki/GLAPI/glTexStorage2D
+        // https://www.WinGL.Instance.org/wiki/GLAPI/glTexStorage2D
         /// <summary>
         /// simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture
         /// </summary>
@@ -1492,7 +1492,7 @@ namespace CSharpGL
             function((uint)target, levels, internalformat, width, height);
         }
 
-        // https://www.opengl.org/wiki/GLAPI/glTexStorage3D
+        // https://www.WinGL.Instance.org/wiki/GLAPI/glTexStorage3D
         /// <summary>
         /// simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture
         /// </summary>
@@ -1529,9 +1529,9 @@ namespace CSharpGL
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be OpenGL.TEXTURE_ENV_MODE.</param>
-        /// <param name="param">Specifies a single symbolic constant, one of OpenGL.MODULATE, OpenGL.DECAL, OpenGL.BLEND, or OpenGL.REPLACE.</param>
+        /// <param name="target">Specifies a texture environment. Must be WinGL.Instance.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be WinGL.Instance.TEXTURE_ENV_MODE.</param>
+        /// <param name="param">Specifies a single symbolic constant, one of WinGL.Instance.MODULATE, WinGL.Instance.DECAL, WinGL.Instance.BLEND, or WinGL.Instance.REPLACE.</param>
         public static void TexEnv(uint target, uint pname, float param)
         {
             TexEnvf(target, pname, param);
@@ -1540,8 +1540,8 @@ namespace CSharpGL
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are OpenGL.TEXTURE_ENV_MODE and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="target">Specifies a texture environment. Must be WinGL.Instance.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are WinGL.Instance.TEXTURE_ENV_MODE and WinGL.Instance.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Specifies a pointer to a parameter array that contains either a single symbolic constant or an RGBA color.</param>
         public static void TexEnv(uint target, uint pname, float[] parameters)
         {
@@ -1551,9 +1551,9 @@ namespace CSharpGL
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be OpenGL.TEXTURE_ENV_MODE.</param>
-        /// <param name="param">Specifies a single symbolic constant, one of OpenGL.MODULATE, OpenGL.DECAL, OpenGL.BLEND, or OpenGL.REPLACE.</param>
+        /// <param name="target">Specifies a texture environment. Must be WinGL.Instance.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a single-valued texture environment parameter. Must be WinGL.Instance.TEXTURE_ENV_MODE.</param>
+        /// <param name="param">Specifies a single symbolic constant, one of WinGL.Instance.MODULATE, WinGL.Instance.DECAL, WinGL.Instance.BLEND, or WinGL.Instance.REPLACE.</param>
         public static void TexEnv(uint target, uint pname, int param)
         {
             TexEnvi(target, pname, param);
@@ -1562,8 +1562,8 @@ namespace CSharpGL
         /// <summary>
         /// Set texture environment parameters.
         /// </summary>
-        /// <param name="target">Specifies a texture environment. Must be OpenGL.TEXTURE_ENV.</param>
-        /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are OpenGL.TEXTURE_ENV_MODE and OpenGL.TEXTURE_ENV_COLOR.</param>
+        /// <param name="target">Specifies a texture environment. Must be WinGL.Instance.TEXTURE_ENV.</param>
+        /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are WinGL.Instance.TEXTURE_ENV_MODE and WinGL.Instance.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Specifies a pointer to a parameter array that contains either a single symbolic constant or an RGBA color.</param>
         public static void TexEnv(uint target, uint pname, int[] parameters)
         {
@@ -1572,18 +1572,18 @@ namespace CSharpGL
 
         #endregion TexEnv
 
-        /// <summary>
-        /// Return a string	describing the current GL connection.
-        /// </summary>
-        /// <param name="name">Specifies a symbolic constant, one of OpenGL.VENDOR, OpenGL.RENDERER, OpenGL.VERSION, or OpenGL.EXTENSIONS.</param>
-        /// <returns>Pointer to the specified string.</returns>
-        public static unsafe string GetString(StringName name)
-        {
-            sbyte* pStr = OpenGL.glGetString((uint)name);
-            var str = new string(pStr);
+        ///// <summary>
+        ///// Return a string	describing the current GL connection.
+        ///// </summary>
+        ///// <param name="name">Specifies a symbolic constant, one of WinGL.Instance.VENDOR, WinGL.Instance.RENDERER, WinGL.Instance.VERSION, or WinGL.Instance.EXTENSIONS.</param>
+        ///// <returns>Pointer to the specified string.</returns>
+        //public static unsafe string GetString(StringName name)
+        //{
+        //    sbyte* pStr = WinGL.Instance.GetString((uint)name);
+        //    var str = new string(pStr);
 
-            return str;
-        }
+        //    return str;
+        //}
 
         /// <summary>
         /// 读取某一点的颜色
@@ -1596,107 +1596,107 @@ namespace CSharpGL
             var pixel = new Pixel[1];
             GCHandle pinned = GCHandle.Alloc(pixel, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(pixel, 0);
-            OpenGL.ReadPixels(x, y, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, header);
+            WinGL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);
             pinned.Free();
             Color c = pixel[0].ToColor();
             return c;
         }
 
-        #region Text
+        //#region Text
 
-        /// <summary>
-        /// Draws the text.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="color"></param>
-        /// <param name="faceName"></param>
-        /// <param name="fontSize"></param>
-        /// <param name="text"></param>
-        public static void DrawText(int x, int y, Color color,
-            string faceName, float fontSize, string text)
-        {
-            //  Use the font bitmaps object to render the text.
-            FontBitmaps.DrawText(x, y, color, faceName, fontSize, text);
-        }
+        ///// <summary>
+        ///// Draws the text.
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="color"></param>
+        ///// <param name="faceName"></param>
+        ///// <param name="fontSize"></param>
+        ///// <param name="text"></param>
+        //public static void DrawText(int x, int y, Color color,
+        //    string faceName, float fontSize, string text)
+        //{
+        //    //  Use the font bitmaps object to render the text.
+        //    FontBitmaps.DrawText(x, y, color, faceName, fontSize, text);
+        //}
 
-        #endregion Text
+        //#endregion Text
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public static int[] GetViewport()
-        {
-            var viewport = new int[4];
-            OpenGL.GetInteger(GetTarget.Viewport, viewport);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <returns></returns>
+        //public static int[] GetViewport()
+        //{
+        //    var viewport = new int[4];
+        //    WinGL.Instance.GetInteger(GetTarget.Viewport, viewport);
 
-            return viewport;
-        }
+        //    return viewport;
+        //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public static void GetViewport(out int x, out int y, out int width, out int height)
-        {
-            var viewport = new int[4];
-            OpenGL.GetInteger(GetTarget.Viewport, viewport);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        //public static void GetViewport(out int x, out int y, out int width, out int height)
+        //{
+        //    var viewport = new int[4];
+        //    WinGL.Instance.GetInteger(GetTarget.Viewport, viewport);
 
-            x = viewport[0]; y = viewport[1];
-            width = viewport[2]; height = viewport[3];
-        }
+        //    x = viewport[0]; y = viewport[1];
+        //    width = viewport[2]; height = viewport[3];
+        //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="near"></param>
-        /// <param name="far"></param>
-        public static void GetDepthRange(out float near, out float far)
-        {
-            var depthRange = new float[2];
-            OpenGL.GetFloat(GetTarget.DepthRange, depthRange);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="near"></param>
+        ///// <param name="far"></param>
+        //public static void GetDepthRange(out float near, out float far)
+        //{
+        //    var depthRange = new float[2];
+        //    WinGL.Instance.GetFloat(GetTarget.DepthRange, depthRange);
 
-            near = depthRange[0]; far = depthRange[1];
-        }
+        //    near = depthRange[0]; far = depthRange[1];
+        //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        public static void LineWidthRange(out float min, out float max)
-        {
-            float[] lineWidthRange = new float[2];
-            OpenGL.GetFloat(GetTarget.LineWidthRange, lineWidthRange);
-            min = lineWidthRange[0];
-            max = lineWidthRange[1];
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="min"></param>
+        ///// <param name="max"></param>
+        //public static void LineWidthRange(out float min, out float max)
+        //{
+        //    float[] lineWidthRange = new float[2];
+        //    WinGL.Instance.GetFloat(GetTarget.LineWidthRange, lineWidthRange);
+        //    min = lineWidthRange[0];
+        //    max = lineWidthRange[1];
+        //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        public static void PointSizeRange(out float min, out float max)
-        {
-            float[] pointSizeRange = new float[2];
-            OpenGL.GetFloat(GetTarget.PointSizeRange, pointSizeRange);
-            min = pointSizeRange[0];
-            max = pointSizeRange[1];
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="min"></param>
+        ///// <param name="max"></param>
+        //public static void PointSizeRange(out float min, out float max)
+        //{
+        //    float[] pointSizeRange = new float[2];
+        //    WinGL.Instance.GetFloat(GetTarget.PointSizeRange, pointSizeRange);
+        //    min = pointSizeRange[0];
+        //    max = pointSizeRange[1];
+        //}
 
-        /// <summary>
-        /// bind a named texture to a texturing target
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="textureId"></param>
-        public static void BindTexture(TextureTarget target, uint textureId)
-        {
-            OpenGL.BindTexture((uint)target, textureId);
-        }
+        ///// <summary>
+        ///// bind a named texture to a texturing target
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="textureId"></param>
+        //public static void BindTexture(TextureTarget target, uint textureId)
+        //{
+        //    WinGL.Instance.BindTexture((uint)target, textureId);
+        //}
     }
 }

@@ -11,76 +11,76 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        VertexAttribArrayBarrier = OpenGL.GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT,
+        VertexAttribArrayBarrier = GL.GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        ElementArrayBarrier = OpenGL.GL_ELEMENT_ARRAY_BARRIER_BIT,
+        ElementArrayBarrier = GL.GL_ELEMENT_ARRAY_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        UniformBarrier = OpenGL.GL_UNIFORM_BARRIER_BIT,
+        UniformBarrier = GL.GL_UNIFORM_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        TextureFetchBarrier = OpenGL.GL_TEXTURE_FETCH_BARRIER_BIT,
+        TextureFetchBarrier = GL.GL_TEXTURE_FETCH_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        ShaderImageAccessBarrier = OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT,
+        ShaderImageAccessBarrier = GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        CommandBarrier = OpenGL.GL_COMMAND_BARRIER_BIT,
+        CommandBarrier = GL.GL_COMMAND_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        PixelBufferBarrier = OpenGL.GL_PIXEL_BUFFER_BARRIER_BIT,
+        PixelBufferBarrier = GL.GL_PIXEL_BUFFER_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        TextureUpdateBarrier = OpenGL.GL_TEXTURE_UPDATE_BARRIER_BIT,
+        TextureUpdateBarrier = GL.GL_TEXTURE_UPDATE_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        BufferUpdateBarrier = OpenGL.GL_BUFFER_UPDATE_BARRIER_BIT,
+        BufferUpdateBarrier = GL.GL_BUFFER_UPDATE_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        FramebufferBarrier = OpenGL.GL_FRAMEBUFFER_BARRIER_BIT,
+        FramebufferBarrier = GL.GL_FRAMEBUFFER_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        TransformFeedbackBarrier = OpenGL.GL_TRANSFORM_FEEDBACK_BARRIER_BIT,
+        TransformFeedbackBarrier = GL.GL_TRANSFORM_FEEDBACK_BARRIER_BIT,
 
         /// <summary>
         /// only gl 4.4 or higher.
         /// </summary>
-        QueryBufferBarrier = OpenGL.GL_QUERY_BUFFER_BARRIER_BIT,
+        QueryBufferBarrier = GL.GL_QUERY_BUFFER_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        AtomicCounterBarrier = OpenGL.GL_ATOMIC_COUNTER_BARRIER_BIT,
+        AtomicCounterBarrier = GL.GL_ATOMIC_COUNTER_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        ClientMappedBufferBarrier = OpenGL.GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT,
+        ClientMappedBufferBarrier = GL.GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT,
 
         /// <summary>
         ///
         /// </summary>
-        ShaderStorageBarrier = OpenGL.GL_SHADER_STORAGE_BARRIER_BIT,
+        ShaderStorageBarrier = GL.GL_SHADER_STORAGE_BARRIER_BIT,
     }
 }

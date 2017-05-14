@@ -48,52 +48,52 @@ namespace CSharpGL
             if (fontBitmapEntry == null)
                 fontBitmapEntry = CreateFontBitmapEntry(faceName, fontHeight);
 
-            int[] viewport = OpenGL.GetViewport();
+            int[] viewport = WinGL.Instance.GetViewport();
             double width = viewport[2];
             double height = viewport[3];
 
             //  Create the appropriate projection matrix.
-            OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
-            OpenGL.PushMatrix();
-            OpenGL.LoadIdentity();
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PushMatrix();
+            GL.LoadIdentity();
 
-            OpenGL.Ortho(0, width, 0, height, -1, 1);
+            GL.Ortho(0, width, 0, height, -1, 1);
 
             //  Create the appropriate modelview matrix.
-            OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
-            OpenGL.PushMatrix();
-            OpenGL.LoadIdentity();
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PushMatrix();
+            GL.LoadIdentity();
             //GL.Color(color.R, color.G, color.B);
             //GL.RasterPos2i(x, y);
 
             //GL.PushAttrib(GL.GL_LIST_BIT | GL.GL_CURRENT_BIT |
             //    GL.GL_ENABLE_BIT | GL.GL_TRANSFORM_BIT);
-            OpenGL.Color3ub(color.R, color.G, color.B);
+            GL.Color3ub(color.R, color.G, color.B);
             //GL.Disable(GL.GL_LIGHTING);
             //GL.Disable(GL.GL_TEXTURE_2D);
             //GL.Disable(GL.GL_DEPTH_TEST);
-            OpenGL.RasterPos2i(x, y);
+            GL.RasterPos2i(x, y);
 
             //  Set the list base.
-            OpenGL.ListBase(fontBitmapEntry.ListBase);
+            GL.ListBase(fontBitmapEntry.ListBase);
 
             //  Create an array of lists for the glyphs.
             var lists = text.Select(c => (byte)c).ToArray();
 
             //  Call the lists for the string.
-            OpenGL.CallLists(lists.Length, OpenGL.GL_UNSIGNED_BYTE, lists);
-            OpenGL.Flush();
+            GL.CallLists(lists.Length, GL.GL_UNSIGNED_BYTE, lists);
+            GL.Flush();
 
             ////  Reset the list bit.
             //GL.PopAttrib();
 
             //  Pop the modelview.
-            OpenGL.PopMatrix();
+            GL.PopMatrix();
 
             //  back to the projection and pop it, then back to the model view.
-            OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
-            OpenGL.PopMatrix();
-            OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PopMatrix();
+            GL.MatrixMode(GL.GL_MODELVIEW);
         }
 
         private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
@@ -112,7 +112,7 @@ namespace CSharpGL
             var hOldObject = Win32.SelectObject(deviceContext, hFont);
 
             //  Create the list base.
-            var listBase = OpenGL.GenLists(1);
+            var listBase = GL.GenLists(1);
 
             //  Create the font bitmaps.
             bool result = Win32.wglUseFontBitmaps(deviceContext, 0, 255, listBase);
