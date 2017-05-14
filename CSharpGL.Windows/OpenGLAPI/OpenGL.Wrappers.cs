@@ -1019,7 +1019,7 @@ namespace CSharpGL
             OpenGL.ShadeModel((uint)mode);
         }
 
-        private static OpenGL.glBufferData bufferData;
+        private static GLDelegates.void_uint_int_IntPtr_uint glBufferData;
 
         /// <summary>
         /// 设置当前VBO的数据。
@@ -1029,9 +1029,11 @@ namespace CSharpGL
         /// <param name="usage"></param>
         public static void BufferData(BufferTarget target, UnmanagedArrayBase data, BufferUsage usage)
         {
-            if (bufferData == null)
-            { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
-            bufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
+            if (glBufferData == null)
+            {
+                glBufferData = WinGL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
+            }
+            glBufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
         }
 
         /// <summary>
@@ -1042,9 +1044,11 @@ namespace CSharpGL
         /// <param name="usage"></param>
         public static void BufferData(uint target, UnmanagedArrayBase data, BufferUsage usage)
         {
-            if (bufferData == null)
-            { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
-            bufferData(target, data.ByteLength, data.Header, (uint)usage);
+            if (glBufferData == null)
+            {
+                glBufferData = WinGL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
+            }
+            glBufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
         }
 
         //private static OpenGL.glBindBuffer bindBuffer;

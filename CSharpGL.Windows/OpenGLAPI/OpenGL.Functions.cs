@@ -680,7 +680,8 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>()(n, buffers);
+                var function = WinGL.Instance.GetDelegateFor("glDeleteBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+                function(n, buffers);
             }
         }
 
