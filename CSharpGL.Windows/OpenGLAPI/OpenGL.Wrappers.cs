@@ -1308,7 +1308,7 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glBindTransformFeedback>()((uint)target, id);
         }
 
-        private static OpenGL.glBindBufferBase bindBufferBase;
+        private static GLDelegates.void_uint_uint_uint glBindBufferBase;
 
         /// <summary>
         /// 用于transform feedback。
@@ -1319,12 +1319,14 @@ namespace CSharpGL
         /// <param name="buffer">The name of a buffer object to bind to the specified binding point.</param>
         public static void BindBufferBase(BindBufferBaseTarget target, uint index, uint buffer)
         {
-            if (bindBufferBase == null)
-            { bindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
-            bindBufferBase((uint)target, index, buffer);
+            if (glBindBufferBase == null)
+            {
+                glBindBufferBase = WinGL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
+            }
+            glBindBufferBase((uint)target, index, buffer);
         }
 
-        private static OpenGL.glBindBufferRange bindBufferRange;
+        private static GLDelegates.void_uint_uint_uint_int_int glBindBufferRange;
 
         /// <summary>
         /// bind a range within a buffer object to an indexed buffer target
@@ -1336,9 +1338,11 @@ namespace CSharpGL
         /// <param name="size">The amount of data in machine units that can be read from the buffer object while used as an indexed target.</param>
         public static void BindBufferRange(BindBufferBaseTarget target, uint index, uint buffer, int offset, int size)
         {
-            if (bindBufferRange == null)
-            { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
-            bindBufferRange((uint)target, index, buffer, offset, size);
+            if (glBindBufferRange == null)
+            {
+                glBindBufferRange = WinGL.Instance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
+            }
+            glBindBufferRange((uint)target, index, buffer, offset, size);
         }
 
         /// <summary>
@@ -1351,9 +1355,11 @@ namespace CSharpGL
         /// <param name="size">The amount of data in machine units that can be read from the buffer object while used as an indexed target.</param>
         public static void BindBufferRange(uint target, uint index, uint buffer, int offset, int size)
         {
-            if (bindBufferRange == null)
-            { bindBufferRange = OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>(); }
-            bindBufferRange(target, index, buffer, offset, size);
+            if (glBindBufferRange == null)
+            {
+                glBindBufferRange = WinGL.Instance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
+            }
+            glBindBufferRange(target, index, buffer, offset, size);
         }
 
         ///// <summary>
