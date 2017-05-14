@@ -82,15 +82,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="OpenGLAPI\IGLCanvas.cs" />
-    <Compile Include="OpenGLAPI\IGLContext.cs" />
+    <Compile Include="GLAPI\Delegates.cs" />
+    <Compile Include="GLAPI\GL.cs" />
+    <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
+    <Compile Include="IGLCanvas.cs" />
+    <Compile Include="GLAPI\GL.BasicAPI.cs" />
+    <Compile Include="IGLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BaseDataStructures\IBoundingBox\" />
     <Folder Include="BaseDataStructures\ITreeNode\" />
+    <Folder Include="GLObjects\" />
     <Folder Include="Manipulaters\" />
-    <Folder Include="OpenGLObjects\" />
     <Folder Include="Scene\" />
     <Folder Include="Text\" />
     <Folder Include="UI\" />
