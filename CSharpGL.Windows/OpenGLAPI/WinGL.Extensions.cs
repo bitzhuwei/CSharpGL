@@ -4,7 +4,7 @@
 //namespace CSharpGL
 //{
 //    // TODO: members of OpenGL in this file is not organized yet.
-//    public static partial class OpenGL
+//    public partial class OpenGL
 //    {
 //        #region GL_EXT_draw_range_elements
 

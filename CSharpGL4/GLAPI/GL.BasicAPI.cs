@@ -527,7 +527,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="n">Number of textures to delete.</param>
         /// <param name="textures">The array containing the names of the textures to delete.</param>
-        public virtual void glDeleteTextures(int n, uint[] textures) { }
+        public virtual void DeleteTextures(int n, uint[] textures) { }
 
         /// <summary>
         /// This function sets the current depth buffer comparison function, the default it LESS.

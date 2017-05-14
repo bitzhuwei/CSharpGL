@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public static partial class OpenGL
+    public partial class OpenGL
     {
         #region GL_EXT_texture3D
 

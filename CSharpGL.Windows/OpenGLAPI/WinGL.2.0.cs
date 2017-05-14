@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public static partial class OpenGL
+    public partial class WinGL
     {
         #region OpenGL 2.0
 
