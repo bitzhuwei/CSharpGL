@@ -1216,7 +1216,55 @@ namespace CSharpGL
         private static readonly Dictionary<IntPtr, DebugProc> rc2ProcDict = new Dictionary<IntPtr, DebugProc>();
         private static readonly Dictionary<IntPtr, IntPtr> rc2dcDict = new Dictionary<IntPtr, IntPtr>();
         private static DEBUGPROC innerCallbackProc;
+        #region debugging and profiling
 
+        // https://www.opengl.org/registry/specs/ARB/debug_output.txt
+        // https://www.opengl.org/wiki/Debug_Output
+        /// <summary>
+        /// 设置Debug模式的回调函数。
+        /// </summary>
+        /// <param name="callback">使用一个字段来持有
+        /// <para>callback = new GL.DEBUGPROC(this.callbackProc);</para>
+        /// 这样就可以避免垃圾回收的问题。
+        /// </param>
+        /// <param name="userParam">建议使用UnmanagedArray.Header</param>
+        public delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="severity"></param>
+        /// <param name="length"></param>
+        /// <param name="message"></param>
+        /// <param name="userParam"></param>
+        public delegate void DEBUGPROC(
+            uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam);
+        /// <summary>
+        /// 设置哪些属性的消息能够/不能被传入callback函数。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="severity"></param>
+        /// <param name="count"></param>
+        /// <param name="ids"></param>
+        /// <param name="enabled"></param>
+        public delegate void glDebugMessageControl(uint source, uint type, uint severity, int count, int[] ids, bool enabled);
+
+        /// <summary>
+        /// 用户App或工具用此函数可向Debug流写入一条消息。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="severity"></param>
+        /// <param name="length">用-1即可。</param>
+        /// <param name="buf"></param>
+        public delegate void glDebugMessageInsert(uint source, uint type, uint id, uint severity, int length, StringBuilder buf);
+
+        #endregion debugging and profiling
         private static void innerCallback(
             uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam)
         {
