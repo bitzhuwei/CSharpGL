@@ -82,7 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="GLAPI\Delegates.cs" />
+    <Compile Include="GLAPI\GLDelegates.cs" />
     <Compile Include="GLAPI\GL.cs" />
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
     <Compile Include="IGLCanvas.cs" />
