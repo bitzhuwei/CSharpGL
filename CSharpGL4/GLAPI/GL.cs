@@ -23,10 +23,12 @@ namespace CSharpGL
         {
             if (GL.Instance != null)
             {
-                throw new Exception(string.Format("GL instance({0}) already initialized!", _instance));
+                throw new Exception(string.Format("GL instance({0}) already initialized!", GL.Instance));
             }
-
-            GL.Instance = this;
+            else
+            {
+                GL.Instance = this;
+            }
         }
 
         /// <summary>
