@@ -18,7 +18,7 @@ namespace CSharpGL
 
         public override IntPtr GetCurrentContext()
         {
-            throw new NotImplementedException();
+            return Win32.wglGetCurrentContext();
         }
     }
 }
