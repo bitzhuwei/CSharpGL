@@ -14,32 +14,20 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class GL
     {
-        private static GL _instance;
         /// <summary>
         /// 
         /// </summary>
-        public static GL Instance
+        public static GL Instance { get; private set; }
+
+        protected GL()
         {
-            get
+            if (GL.Instance != null)
             {
-                if (_instance == null)
-                {
-                    throw new Exception("GL instance not initialized! Please call GL.Init(GL gl); before anything else!");
-                }
+                throw new Exception(string.Format("GL instance({0}) already initialized!", _instance));
+            }
 
-                return _instance;
-            }
-            private set
-            {
-                if (_instance != null)
-                {
-                    throw new Exception(string.Format("GL instance({0}) already initialized!", _instance));
-                }
-                _instance = value;
-            }
+            GL.Instance = this;
         }
-
-        protected GL() { GL.Instance = this; }
 
         /// <summary>
         /// Gets current render context.
