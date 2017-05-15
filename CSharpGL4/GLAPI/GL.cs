@@ -12,19 +12,7 @@ namespace CSharpGL
     /// <see cref="GL"/> represents functions suppproted in OpenGL32.dll/openGL32.so/... and all extended functions.
     /// </para>
     /// </summary>
-    public partial class GL
+    public abstract partial class GL
     {
-        protected GL() { }
-        private static readonly GL _instance = new GL();
-
-        public static GL Instance
-        {
-            get
-            {
-                return _instance.GetInstance();
-            }
-        }
-
-        protected virtual GL GetInstance() { return _instance; }
     }
 }
