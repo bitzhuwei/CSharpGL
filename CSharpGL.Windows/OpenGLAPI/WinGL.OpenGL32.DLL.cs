@@ -614,7 +614,7 @@ namespace CSharpGL
             {
                 if (glDeleteFramebuffers == null)
                 {
-                    glDeleteFramebuffers = WinGL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
+                    glDeleteFramebuffers = WinGL.WinGLInstance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
                 }
                 glDeleteFramebuffers(n, framebuffers);
             }
@@ -637,7 +637,7 @@ namespace CSharpGL
             {
                 if (glDeleteRenderbuffers == null)
                 {
-                    glDeleteRenderbuffers = WinGL.Instance.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
+                    glDeleteRenderbuffers = WinGL.WinGLInstance.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
                 }
                 glDeleteRenderbuffers(n, renderbuffers);
             }
@@ -653,7 +653,7 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                var function = WinGL.Instance.GetDelegateFor("glDeleteBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+                var function = WinGL.WinGLInstance.GetDelegateFor("glDeleteBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
                 function(n, buffers);
             }
         }
@@ -1053,7 +1053,7 @@ namespace CSharpGL
         {
             if (glGenSamplers == null)
             {
-                glGenSamplers = WinGL.Instance.GetDelegateFor("glGenSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+                glGenSamplers = WinGL.WinGLInstance.GetDelegateFor("glGenSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             }
             glGenSamplers(n, textures);
         }
@@ -2877,7 +2877,7 @@ namespace CSharpGL
         {
             if (glSamplerParameteri == null)
             {
-                glSamplerParameteri = WinGL.Instance.GetDelegateFor("glSamplerParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
+                glSamplerParameteri = WinGL.WinGLInstance.GetDelegateFor("glSamplerParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
             }
             glSamplerParameteri(sampler, pname, param);
         }

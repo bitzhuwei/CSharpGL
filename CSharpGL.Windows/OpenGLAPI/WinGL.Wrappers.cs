@@ -877,7 +877,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawArrays(DrawMode mode, int[] first, int[] count, int primcount)
         {
-            var function = WinGL.Instance.GetDelegateFor("glMultiDrawArrays", GLDelegates.typeof_void_uint_intN_intN_int) as GLDelegates.void_uint_intN_intN_int;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glMultiDrawArrays", GLDelegates.typeof_void_uint_intN_intN_int) as GLDelegates.void_uint_intN_intN_int;
             function((uint)mode, first, count, primcount);
         }
 
@@ -891,7 +891,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawElements(DrawMode mode, int count, uint type, IntPtr indices)
         {
-            WinGL.Instance.DrawElements((uint)mode, count, type, indices);
+            WinGL.WinGLInstance.DrawElements((uint)mode, count, type, indices);
         }
 
         /// <summary>
@@ -905,7 +905,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawElements(DrawMode mode, int[] count, uint type, IntPtr indices, int primcount)
         {
-            var function = WinGL.Instance.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
             function((uint)mode, count, type, indices, primcount);
         }
 
@@ -933,7 +933,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawRangeElements(DrawMode mode, uint start, uint end, int count, uint type, IntPtr indices)
         {
-            var function = WinGL.Instance.GetDelegateFor("glDrawRangeElements", GLDelegates.typeof_void_uint_uint_uint_int_uint_IntPtr) as GLDelegates.void_uint_uint_uint_int_uint_IntPtr;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glDrawRangeElements", GLDelegates.typeof_void_uint_uint_uint_int_uint_IntPtr) as GLDelegates.void_uint_uint_uint_int_uint_IntPtr;
             function((uint)mode, start, end, count, type, indices);
         }
 
@@ -1031,7 +1031,7 @@ namespace CSharpGL
         {
             if (glBufferData == null)
             {
-                glBufferData = WinGL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
+                glBufferData = WinGL.WinGLInstance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
             }
             glBufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
         }
@@ -1046,7 +1046,7 @@ namespace CSharpGL
         {
             if (glBufferData == null)
             {
-                glBufferData = WinGL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
+                glBufferData = WinGL.WinGLInstance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
             }
             glBufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
         }
@@ -1140,7 +1140,7 @@ namespace CSharpGL
         /// <param name="pixels"></param>
         public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
         {
-            var function = WinGL.Instance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr;
             function(target, level, internalformat, width, height, depth, border, format, type, pixels);
         }
 
@@ -1207,7 +1207,7 @@ namespace CSharpGL
                 }
             }
 
-            var function = WinGL.Instance.GetDelegateFor("glDebugMessageCallback", typeof(glDebugMessageCallback)) as glDebugMessageCallback;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glDebugMessageCallback", typeof(glDebugMessageCallback)) as glDebugMessageCallback;
             function(innerCallbackProc, userParam);
         }
 
@@ -1320,7 +1320,7 @@ namespace CSharpGL
             int[] ids,
             bool enabled)
         {
-            var function = WinGL.Instance.GetDelegateFor("glDebugMessageControl", GLDelegates.typeof_void_uint_uint_uint_int_intN_bool) as GLDelegates.void_uint_uint_uint_int_intN_bool;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glDebugMessageControl", GLDelegates.typeof_void_uint_uint_uint_int_intN_bool) as GLDelegates.void_uint_uint_uint_int_intN_bool;
             function((uint)source, (uint)type, (uint)severity, count, ids, enabled);
         }
 
@@ -1341,7 +1341,7 @@ namespace CSharpGL
             int length,
             StringBuilder buf)
         {
-            var function = WinGL.Instance.GetDelegateFor("glDebugMessageInsert", GLDelegates.typeof_void_uint_uint_uint_uint_int_StringBuilder) as GLDelegates.void_uint_uint_uint_uint_int_StringBuilder;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glDebugMessageInsert", GLDelegates.typeof_void_uint_uint_uint_uint_int_StringBuilder) as GLDelegates.void_uint_uint_uint_uint_int_StringBuilder;
             function((uint)source, (uint)type, id, (uint)severity, length, buf);
         }
 
@@ -1356,7 +1356,7 @@ namespace CSharpGL
         /// <param name="id"></param>
         public static void BindTransformFeedback(TransformFeedbackTarget target, uint id)
         {
-            var function = WinGL.Instance.GetDelegateFor("glBindTransformFeedback", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glBindTransformFeedback", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             function((uint)target, id);
         }
 
@@ -1373,7 +1373,7 @@ namespace CSharpGL
         {
             if (glBindBufferBase == null)
             {
-                glBindBufferBase = WinGL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
+                glBindBufferBase = WinGL.WinGLInstance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
             }
             glBindBufferBase((uint)target, index, buffer);
         }
@@ -1392,7 +1392,7 @@ namespace CSharpGL
         {
             if (glBindBufferRange == null)
             {
-                glBindBufferRange = WinGL.Instance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
+                glBindBufferRange = WinGL.WinGLInstance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
             }
             glBindBufferRange((uint)target, index, buffer, offset, size);
         }
@@ -1409,7 +1409,7 @@ namespace CSharpGL
         {
             if (glBindBufferRange == null)
             {
-                glBindBufferRange = WinGL.Instance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
+                glBindBufferRange = WinGL.WinGLInstance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
             }
             glBindBufferRange(target, index, buffer, offset, size);
         }
@@ -1434,7 +1434,7 @@ namespace CSharpGL
         /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
         public static void PatchParameter(PatchParameterName pname, int value)
         {
-            var function = WinGL.Instance.GetDelegateFor("glPatchParameteri", GLDelegates.typeof_void_uint_int) as GLDelegates.void_uint_int;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glPatchParameteri", GLDelegates.typeof_void_uint_int) as GLDelegates.void_uint_int;
             function((uint)pname, value);
         }
 
@@ -1445,7 +1445,7 @@ namespace CSharpGL
         /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
         public static void PatchParameter(PatchParameterName pname, float[] values)
         {
-            var function = WinGL.Instance.GetDelegateFor("glPatchParameterfv", GLDelegates.typeof_void_uint_floatN) as GLDelegates.void_uint_floatN;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glPatchParameterfv", GLDelegates.typeof_void_uint_floatN) as GLDelegates.void_uint_floatN;
             function((uint)pname, values);
         }
 
@@ -1459,7 +1459,7 @@ namespace CSharpGL
         /// <param name="barriers">Specifies the barriers to insert.</param>
         public static void MemoryBarrier(MemoryBarrierFlags barriers)
         {
-            var function = WinGL.Instance.GetDelegateFor("glMemoryBarrier", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glMemoryBarrier", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             function((uint)barriers);
         }
 
@@ -1473,7 +1473,7 @@ namespace CSharpGL
         /// <param name="width"></param>
         public static void TexStorage1D(TexStorage1DTarget target, int levels, uint internalformat, int width)
         {
-            var function = WinGL.Instance.GetDelegateFor("glTexStorage1D", GLDelegates.typeof_void_uint_int_uint_int) as GLDelegates.void_uint_int_uint_int;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glTexStorage1D", GLDelegates.typeof_void_uint_int_uint_int) as GLDelegates.void_uint_int_uint_int;
             function((uint)target, levels, internalformat, width);
         }
 
@@ -1488,7 +1488,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         public static void TexStorage2D(TexStorage2DTarget target, int levels, uint internalformat, int width, int height)
         {
-            var function = WinGL.Instance.GetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;
             function((uint)target, levels, internalformat, width, height);
         }
 
@@ -1504,7 +1504,7 @@ namespace CSharpGL
         /// <param name="depth"></param>
         public static void TexStorage3D(TexStorage3DTarget target, int levels, uint internalformat, int width, int height, int depth)
         {
-            var function = WinGL.Instance.GetDelegateFor("glTexStorage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int) as GLDelegates.void_uint_int_uint_int_int_int;
+            var function = WinGL.WinGLInstance.GetDelegateFor("glTexStorage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int) as GLDelegates.void_uint_int_uint_int_int_int;
             function((uint)target, levels, internalformat, width, height, depth);
         }
 

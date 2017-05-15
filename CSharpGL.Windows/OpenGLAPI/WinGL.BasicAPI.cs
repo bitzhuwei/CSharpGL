@@ -49,7 +49,7 @@ namespace CSharpGL
         {
             if (glBindSampler == null)
             {
-                glBindSampler = WinGL.Instance.GetDelegateFor("glBindSampler", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+                glBindSampler = WinGL.WinGLInstance.GetDelegateFor("glBindSampler", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             }
             glBindSampler(target, sampler);
         }

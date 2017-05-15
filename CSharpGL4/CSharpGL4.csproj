@@ -131,6 +131,93 @@
     <Compile Include="GLAPI\GLDelegates.cs" />
     <Compile Include="GLAPI\GL.cs" />
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\Data2Buffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffer.T[].cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.T[].cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.UnmanagedArrayBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T[].cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\GLBuffer.ClearBufferData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\GLBuffer.Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\GLBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\GLBuffer.IDisposable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\AtomicCounterBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\IndependentBufferTarget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\PixelPackBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\PixelUnpackBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\ShaderStorageBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TextureBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\UniformBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexArrayObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IndexBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IndexBufferElementType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\OneIndexBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\ZeroIndexBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataSize.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataTypeByteLength.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.Parse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IGLCanvas.cs" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
     <Compile Include="IGLContext.cs" />
@@ -139,7 +226,6 @@
   <ItemGroup>
     <Folder Include="BaseDataStructures\IBoundingBox\" />
     <Folder Include="BaseDataStructures\ITreeNode\" />
-    <Folder Include="GLObjects\" />
     <Folder Include="Manipulaters\" />
     <Folder Include="Scene\" />
     <Folder Include="Text\" />
@@ -147,6 +233,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
+    <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
+    <Content Include="GLObjects\GLBuffers\readme.md" />
+    <Content Include="GLObjects\GLBuffers\VertexBuffers\readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GLObjects\GLBuffers\GLBuffers.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

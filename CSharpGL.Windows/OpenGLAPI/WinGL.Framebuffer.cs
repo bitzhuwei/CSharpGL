@@ -184,7 +184,7 @@
         {
             if (_glGenerateMipmap == null)
             {
-                _glGenerateMipmap = WinGL.Instance.GetDelegateFor("glGenerateMipmap", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+                _glGenerateMipmap = WinGL.WinGLInstance.GetDelegateFor("glGenerateMipmap", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             }
             _glGenerateMipmap((uint)target);
         }
