@@ -220,6 +220,9 @@
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.cs" />
+    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.glUniforms.cs" />
+    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
     <Compile Include="GLObjects\Shader\Shader.cs" />
     <Compile Include="GLObjects\Shader\Shader.IDisposable.cs" />
     <Compile Include="IGLCanvas.cs" />

@@ -15,7 +15,7 @@ namespace CSharpGL
     public abstract partial class GL
     {
         /// <summary>
-        /// 
+        /// The only insstance of an OpenGL implementation on current operation system.
         /// </summary>
         public static GL Instance { get; private set; }
 
