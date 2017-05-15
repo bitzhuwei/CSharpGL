@@ -31,18 +31,15 @@ namespace CSharpGL
             }
             private set
             {
+                if (_instance != null)
+                {
+                    throw new Exception(string.Format("GL instance({0}) already initialized!", _instance));
+                }
                 _instance = value;
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="instance"></param>
-        public static void Register(GL instance)
-        {
-            GL.Instance = instance;
-        }
+        protected GL() { GL.Instance = this; }
 
         /// <summary>
         /// Gets current render context.
