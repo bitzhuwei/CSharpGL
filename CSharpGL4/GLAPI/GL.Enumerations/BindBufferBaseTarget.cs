@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
-    // https://www.GL.org/sdk/docs/man4/html/glBindBufferBase.xhtml
-    // https://www.GL.org/wiki/GLAPI/glBindBufferRange
+    // https://www.opengl.org/sdk/docs/man4/html/glBindBufferBase.xhtml
+    // https://www.opengl.org/wiki/GLAPI/glBindBufferRange
     /// <summary>
     /// Used for BindBufferBase() or BindBufferRange()
     /// </summary>

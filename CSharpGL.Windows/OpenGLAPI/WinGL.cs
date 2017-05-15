@@ -16,5 +16,10 @@ namespace CSharpGL
         public static readonly WinGL Instance = new WinGL();
         private WinGL() { }
 
+        //protected override GL GetInstance()
+        //{
+        //    return WinGL.Instance;
+        //}
+
     }
 }

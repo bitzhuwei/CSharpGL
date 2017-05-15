@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class GL
+    public partial class GL
     {
         #region The GL DLL Functions.
 

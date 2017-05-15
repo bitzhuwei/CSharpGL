@@ -4,7 +4,7 @@ using System.Text;
 namespace CSharpGL
 {
     // TODO: members of OpenGL in this file is not organized yet.
-    public abstract partial class GL
+    public partial class GL
     {
         #region GL_EXT_rescale_normal
 

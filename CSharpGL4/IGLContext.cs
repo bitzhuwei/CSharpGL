@@ -21,12 +21,5 @@ namespace CSharpGL
         /// </summary>
         IntPtr DeviceContext { get; }
 
-        /// <summary>
-        /// Gets extended OpenGL method.
-        /// </summary>
-        /// <param name="functionName"></param>
-        /// <param name="delegateType"></param>
-        /// <returns></returns>
-        Delegate GetDelegateFor(string functionName, Type delegateType);
     }
 }

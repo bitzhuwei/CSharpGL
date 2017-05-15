@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class GL
+    public partial class GL
     {
         // extended OpenGL API
         /// <summary>
@@ -15,6 +15,6 @@ namespace CSharpGL
         /// <param name="functionName">function name</param>
         /// <param name="functionDeclaration"></param>
         /// <returns></returns>
-        public abstract Delegate GetDelegateFor(string functionName, Type functionDeclaration);
+        public virtual Delegate GetDelegateFor(string functionName, Type functionDeclaration) { return null; }
     }
 }

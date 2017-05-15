@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class GL
+    public partial class GL
     {
         #region OpenGL 1.5
 

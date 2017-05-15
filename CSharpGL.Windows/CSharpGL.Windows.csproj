@@ -41,37 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OpenGLAPI\Enumerations\BindBufferBaseTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\BlendFunc.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\Buffer.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\ClearBufferMask.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\DebugMessageControlParams.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\DEBUGPROCParams.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\DrawMode.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\ErrorCode.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\FrontFaceMode.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\GetTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\GetTexImage.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\Hint.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\MapBufferAccess.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\MemoryBarrierFlags.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\MipmapTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\PatchParameterName.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\PolugonOffset.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\PolygonMode.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\QueryTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\Samplers.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\ShadeModel.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\ShaderType.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\StringName.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TexImage2D.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TexStorage1DTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TexStorage2DTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TexStorage3DTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TexSubImage2D.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TextureTarget.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\TransformFeedbackTarget.cs" />
     <Compile Include="OpenGLAPI\WinGL.Wrappers.cs" />
     <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />
@@ -107,9 +76,6 @@
   <ItemGroup>
     <Folder Include="Canvas\" />
     <Folder Include="Context\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL4\CSharpGL4.csproj">

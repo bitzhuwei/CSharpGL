@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public abstract partial class GL
+    public partial class GL
     {
 
         //  Constants
