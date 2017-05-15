@@ -42,25 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenGLAPI\readme.md" />
-    <Compile Include="OpenGLAPI\WinGL.Wrappers.cs" />
     <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />
     <Compile Include="OpenGLAPI\WinGL.cs" />
-    <Compile Include="OpenGLAPI\WinGL.1.2.cs" />
-    <Compile Include="OpenGLAPI\WinGL.1.3.cs" />
-    <Compile Include="OpenGLAPI\WinGL.1.4.cs" />
-    <Compile Include="OpenGLAPI\WinGL.1.5.cs" />
-    <Compile Include="OpenGLAPI\WinGL.2.0.cs" />
-    <Compile Include="OpenGLAPI\WinGL.2.1.cs" />
-    <Compile Include="OpenGLAPI\WinGL.3.0.cs" />
-    <Compile Include="OpenGLAPI\WinGL.3.1.cs" />
-    <Compile Include="OpenGLAPI\WinGL.3.2.cs" />
-    <Compile Include="OpenGLAPI\WinGL.3.3.cs" />
-    <Compile Include="OpenGLAPI\WinGL.4.0.cs" />
-    <Compile Include="OpenGLAPI\WinGL.Extensions.cs" />
-    <Compile Include="OpenGLAPI\WinGL.Framebuffer.cs" />
     <Compile Include="OpenGLAPI\WinGL.OpenGL32.DLL.cs" />
-    <Compile Include="OpenGLAPI\WinGL.GL_EXT_texture3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Win32API\BitmapInfo.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
