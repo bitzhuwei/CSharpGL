@@ -39,7 +39,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="instance"></param>
-        public static void Init(GL instance)
+        public static void Register(GL instance)
         {
             GL.Instance = instance;
         }
