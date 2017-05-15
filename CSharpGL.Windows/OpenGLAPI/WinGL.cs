@@ -14,7 +14,7 @@ namespace CSharpGL
         /// Single instance of <see cref="WinGL"/>.
         /// </summary>
         public static readonly WinGL WinGLInstance = new WinGL();
-        private WinGL() { }
+        private WinGL() { GL.Init(this); }
 
         public override IntPtr GetCurrentContext()
         {
