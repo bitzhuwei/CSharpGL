@@ -53,5 +53,72 @@ namespace CSharpGL
             this.ByteLength = byteLength;
         }
 
+
+        /// <summary>
+        ///Bind this buffer.
+        /// </summary>
+        public virtual void Bind()
+        {
+            glBindBuffer((uint)this.Target, this.BufferId);
+        }
+
+        /// <summary>
+        /// Unind this buffer.
+        /// </summary>
+        public virtual void Unbind()
+        {
+            glBindBuffer((uint)this.Target, 0);
+        }
+
+        /// <summary>
+        /// Start to read/write buffer.
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public virtual IntPtr MapBufferRange(int offset, int length, MapBufferRangeAccess access, bool bind = true)
+        {
+            if (bind)
+            {
+                glBindBuffer((uint)this.Target, this.BufferId);
+            }
+
+            IntPtr pointer = glMapBufferRange((uint)this.Target, offset, length, (uint)access);
+            return pointer;
+        }
+
+        /// <summary>
+        /// Start to read/write buffer.
+        /// </summary>
+        /// <param name="access"></param>
+        /// <param name="bind"></param>
+        /// <returns></returns>
+        public virtual IntPtr MapBuffer(MapBufferAccess access, bool bind = true)
+        {
+            if (bind)
+            {
+                glBindBuffer((uint)this.Target, this.BufferId);
+            }
+
+            IntPtr pointer = glMapBuffer((uint)this.Target, (uint)access);
+            return pointer;
+        }
+
+        /// <summary>
+        /// Stop reading/writing buffer.
+        /// </summary>
+        /// <param name="unbind"></param>
+        public virtual bool UnmapBuffer(bool unbind = true)
+        {
+            bool result = glUnmapBuffer((uint)this.Target);
+            if (unbind)
+            {
+                glBindBuffer((uint)this.Target, 0);
+            }
+
+            return result;
+        }
     }
 }

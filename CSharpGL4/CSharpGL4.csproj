@@ -68,6 +68,7 @@
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
     <None Include="BaseDataStructures\readme.md" />
+    <Compile Include="BaseDataStructures\NoisyArray.cs" />
     <Compile Include="BaseDataStructures\Pixel.cs" />
     <Compile Include="BaseDataStructures\GLSL\ILoadFromString.TypeConverter.cs" />
     <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GLObjects\GLBuffers\GLBuffer.Static.cs" />
     <Compile Include="GLObjects\GLBuffers\GLBuffer.ClearBufferData.cs">
       <SubType>Code</SubType>
     </Compile>

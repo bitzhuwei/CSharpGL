@@ -6,21 +6,6 @@ namespace CSharpGL
     public partial class GLBuffer
     {
         /// <summary>
-        ///
-        /// </summary>
-        private static GLDelegates.void_int_uintN glGenBuffers;
-
-        /// <summary>
-        ///
-        /// </summary>
-        private static GLDelegates.void_uint_uint glBindBuffer;
-
-        /// <summary>
-        ///
-        /// </summary>
-        private static GLDelegates.void_uint_int_IntPtr_uint glBufferData;
-
-        /// <summary>
         /// Creates a <see cref="VertexBuffer"/> object(actually an array) directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType">element's type of this 'array'.</param>
@@ -34,10 +19,6 @@ namespace CSharpGL
         public static VertexBuffer Create(Type elementType, int length, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instanceDivisor = 0, int patchVertexes = 0)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
-
-            if (glGenBuffers == null) { glGenBuffers = GL.Instance.GetDelegateFor("glGenBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN; }
-            if (glBindBuffer == null) { glBindBuffer = GL.Instance.GetDelegateFor("glBindBuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint; }
-            if (glBufferData == null) { glBufferData = GL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint; }
 
             int byteLength = Marshal.SizeOf(elementType) * length;
             uint[] buffers = new uint[1];
@@ -79,10 +60,6 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer Create(IndexBufferElementType type, int length, DrawMode mode, BufferUsage usage)
         {
-            if (glGenBuffers == null) { glGenBuffers = GL.Instance.GetDelegateFor("glGenBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN; }
-            if (glBindBuffer == null) { glBindBuffer = GL.Instance.GetDelegateFor("glBindBuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint; }
-            if (glBufferData == null) { glBufferData = GL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint; }
-
             int byteLength = GetSize(type) * length;
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
@@ -132,10 +109,6 @@ namespace CSharpGL
         public static GLBuffer Create(IndependentBufferTarget target, Type elementType, int length, BufferUsage usage)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
-
-            if (glGenBuffers == null) { glGenBuffers = GL.Instance.GetDelegateFor("glGenBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN; }
-            if (glBindBuffer == null) { glBindBuffer = GL.Instance.GetDelegateFor("glBindBuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint; }
-            if (glBufferData == null) { glBufferData = GL.Instance.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint; }
 
             uint bufferTarget = (uint)target;
             int byteLength = Marshal.SizeOf(elementType) * length;
