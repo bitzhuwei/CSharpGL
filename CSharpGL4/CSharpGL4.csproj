@@ -78,12 +78,14 @@
     <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArray`1.cs" />
     <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArray`1.IDisposable.cs" />
     <Compile Include="BaseDataStructures\UpdatingRecord.cs" />
+    <Compile Include="BaseDataStructures\Utilities\ArrayHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\DoubleHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseDataStructures\Utilities\FloatHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseDataStructures\Utilities\StructHelper.cs" />
     <Compile Include="Class1.cs" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="GLAPI\GL.Enumerations\BindBufferBaseTarget.cs" />
@@ -227,10 +229,58 @@
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
     <Compile Include="GLObjects\Shader\Shader.cs" />
     <Compile Include="GLObjects\Shader\Shader.IDisposable.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariable.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformBoolArray.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformBVec2Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformBVec3Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformBVec4Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformFloatArray.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformIVec2Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformIVec3Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformIVec4Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformMat2Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformMat3Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformMat4Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformSamplerXDArray.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformUVec2Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformUVec3Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformUVec4Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformVec2Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformVec3Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformVec4Array.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformBool.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformBVec2.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformBVec3.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformBVec4.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformFloat.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformIVec2.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformIVec3.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformIVec4.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformMat2.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformMat3.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformMat4.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformSamplerXD.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariable.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariableBase.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformUVec2.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformUVec3.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformUVec4.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec2.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
+    <Compile Include="GLObjects\UniformVariables\UniformVariable.cs" />
     <Compile Include="IGLCanvas.cs" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
     <Compile Include="IGLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="GLObjects\UniformVariables\readme.md" />
+    <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
+    <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BaseDataStructures\IBoundingBox\" />

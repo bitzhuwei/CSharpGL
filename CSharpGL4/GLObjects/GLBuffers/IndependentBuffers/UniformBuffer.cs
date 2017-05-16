@@ -40,5 +40,24 @@ namespace CSharpGL
         {
             return (GLBuffer.Create(IndependentBufferTarget.UniformBuffer, elementType, length, usage) as UniformBuffer);
         }
+
+        internal static GLDelegates.void_uint_uint_uint glBindBufferBase;
+        internal static GLDelegates.void_uint_uint_uint glUniformBlockBinding;
+
+        /// <summary>
+        /// Bind this uniform buffer object and a uniform block to the same binding point.
+        /// </summary>
+        /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
+        /// <param name="uniformBlockBindingPoint">binding point maintained by OpenGL context.</param>
+        /// <param name="program">shader program.</param>
+        public void Binding(ShaderProgram program, uint uniformBlockIndex, uint uniformBlockBindingPoint)
+        {
+            if (glBindBufferBase == null) { glBindBufferBase = GL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+            if (glUniformBlockBinding == null) { glBindBufferBase = GL.Instance.GetDelegateFor("glUniformBlockBinding", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+
+            glBindBufferBase(GL.GL_UNIFORM_BUFFER, uniformBlockBindingPoint, this.BufferId);
+            glUniformBlockBinding(program.ProgramId, uniformBlockIndex, uniformBlockBindingPoint);
+        }
+
     }
 }
