@@ -46,7 +46,7 @@ namespace CSharpGL
         //    if (activeTexture == null)
         //    { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
         //    activeTexture(value.activeTextureIndex + GL.GL_TEXTURE0);
-        //    OpenGL.BindTexture(value.target, 0);
+        //    GL.Instance.BindTexture(value.target, 0);
         //    //base.ResetUniform(program);
         //    //if (glActiveTexture == null)
         //    //{ glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }

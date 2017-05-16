@@ -224,6 +224,34 @@
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GLObjects\GLStates\AccumBufferState.cs" />
+    <Compile Include="GLObjects\GLStates\ClearColorState.cs" />
+    <Compile Include="GLObjects\GLStates\ColorMaskState.cs" />
+    <Compile Include="GLObjects\GLStates\DepthMaskState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\AlphaFuncState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\BlendState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\ClipPlaneState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\CullFaceState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\DepthTestState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\DitherState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\EnableState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\LineStippleState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\LogicOperationState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\PointSmoothState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\PolygonOffsetFillState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\PolygonOffsetLineState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\PolygonOffsetPointState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\PolygonOffsetState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\PrimitiveRestartState.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\ScissorTestState.cs" />
+    <Compile Include="GLObjects\GLStates\FrontFaceState.cs" />
+    <Compile Include="GLObjects\GLStates\GLState.cs" />
+    <Compile Include="GLObjects\GLStates\GLStateList.cs" />
+    <Compile Include="GLObjects\GLStates\LineWidthState.cs" />
+    <Compile Include="GLObjects\GLStates\PointSizeState.cs" />
+    <Compile Include="GLObjects\GLStates\PointSpriteState.cs" />
+    <Compile Include="GLObjects\GLStates\PolygonModeState.cs" />
+    <Compile Include="GLObjects\GLStates\ViewportState.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.glUniforms.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />

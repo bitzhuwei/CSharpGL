@@ -132,7 +132,7 @@ namespace CSharpGL
         /// <param name="green">Green component of the color (between 0 and 1).</param>
         /// <param name="blue">Blue component of the color (between 0 and 1)./</param>
         /// <param name="alpha">Alpha component of the color (between 0 and 1).</param>
-        internal virtual void glClearColor(float red, float green, float blue, float alpha) { }
+        internal virtual void ClearColor(float red, float green, float blue, float alpha) { }
 
         /// <summary>
         /// Specify the clear value for the depth buffer.
