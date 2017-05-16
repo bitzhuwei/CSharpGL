@@ -54,12 +54,12 @@ namespace CSharpGL
         /// <param name="texture">The GL texture object.</param>
         public virtual void BindTexture(uint target, uint texture) { }
 
-        /// <summary>
-        /// bind a named sampler to a texturing target.
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="sampler"></param>
-        public virtual void BindSampler(uint target, uint sampler) { }
+        ///// <summary>
+        ///// bind a named sampler to a texturing target.
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="sampler"></param>
+        //public virtual void BindSampler(uint target, uint sampler) { }
 
         /// <summary>
         /// Draw a bitmap.

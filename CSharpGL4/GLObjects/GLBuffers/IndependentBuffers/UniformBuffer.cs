@@ -53,7 +53,7 @@ namespace CSharpGL
         public void Binding(ShaderProgram program, uint uniformBlockIndex, uint uniformBlockBindingPoint)
         {
             if (glBindBufferBase == null) { glBindBufferBase = GL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
-            if (glUniformBlockBinding == null) { glBindBufferBase = GL.Instance.GetDelegateFor("glUniformBlockBinding", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+            if (glUniformBlockBinding == null) { glUniformBlockBinding = GL.Instance.GetDelegateFor("glUniformBlockBinding", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
 
             glBindBufferBase(GL.GL_UNIFORM_BUFFER, uniformBlockBindingPoint, this.BufferId);
             glUniformBlockBinding(program.ProgramId, uniformBlockIndex, uniformBlockBindingPoint);

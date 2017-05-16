@@ -160,6 +160,7 @@
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GLObjects\GLBuffers\GLBuffer.BufferTexture.cs" />
     <Compile Include="GLObjects\GLBuffers\GLBuffer.Static.cs" />
     <Compile Include="GLObjects\GLBuffers\GLBuffer.ClearBufferData.cs">
       <SubType>Code</SubType>
@@ -257,6 +258,23 @@
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
     <Compile Include="GLObjects\Shader\Shader.cs" />
     <Compile Include="GLObjects\Shader\Shader.IDisposable.cs" />
+    <Compile Include="GLObjects\Texture\ImageFillers\BitmapFiller.cs" />
+    <Compile Include="GLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
+    <Compile Include="GLObjects\Texture\ImageFillers\ImageFiller.cs" />
+    <Compile Include="GLObjects\Texture\ImageFillers\NullImageFiller.cs" />
+    <Compile Include="GLObjects\Texture\ImageFillers\TexBufferImageFiller.cs" />
+    <Compile Include="GLObjects\Texture\ImageFillers\TexStorage2DImageFiller.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\FakeSampler.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\NullSampler.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\Sampler.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\Sampler.IDisposable.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\SamplerBase.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\SamplerParameters.cs" />
+    <Compile Include="GLObjects\Texture\Texture.BufferTexture.cs" />
+    <Compile Include="GLObjects\Texture\Texture.cs" />
+    <Compile Include="GLObjects\Texture\Texture.ctors.cs" />
+    <Compile Include="GLObjects\Texture\Texture.IDisposable.cs" />
+    <Compile Include="GLObjects\Texture\TextureHelper.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariable.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformArrayVariables\UniformBoolArray.cs" />
@@ -306,6 +324,7 @@
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
     <Compile Include="IGLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="GLObjects\Texture\readme.md" />
     <None Include="GLObjects\UniformVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />

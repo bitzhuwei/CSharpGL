@@ -31,28 +31,5 @@ namespace CSharpGL
                 glDeleteTextures(n, textures);
             }
         }
-
-
-        /// <summary>
-        /// bind a named sampler to a texturing target.
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="texture"></param>
-        private static GLDelegates.void_uint_uint glBindSampler;
-
-        /// <summary>
-        /// bind a named sampler to a texturing target.
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="sampler"></param>
-        public override void BindSampler(uint target, uint sampler)
-        {
-            if (glBindSampler == null)
-            {
-                glBindSampler = WinGL.WinGLInstance.GetDelegateFor("glBindSampler", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-            }
-            glBindSampler(target, sampler);
-        }
-
     }
 }
