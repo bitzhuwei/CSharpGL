@@ -10,7 +10,6 @@ namespace CSharpGL
     public partial class Query : IDisposable
     {
         private static GLDelegates.void_int_uintN glGenQueries;
-        private static GLDelegates.void_int_uintN glDeleteQueries;
         private static GLDelegates.void_uint glIsQuery;
         private static GLDelegates.void_uint_uint glBeginQuery;
         private static GLDelegates.void_uint glEndQuery;
@@ -19,6 +18,7 @@ namespace CSharpGL
         private static GLDelegates.void_uint_uint_uintN glGetQueryObjectuiv;
         private static GLDelegates.void_uint_uint glBeginConditionalRender;
         private static GLDelegates.void_void glEndConditionalRender;
+        private static GLDelegates.void_int_uintN glDeleteQueries;
 
         /// <summary>
         /// texture's id/name.
@@ -33,7 +33,6 @@ namespace CSharpGL
         static Query()
         {
             glGenQueries = GL.Instance.GetDelegateFor("glGenQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-            glDeleteQueries = GL.Instance.GetDelegateFor("glDeleteQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glIsQuery = GL.Instance.GetDelegateFor("glIsQuery", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glBeginQuery = GL.Instance.GetDelegateFor("glBeginQuery", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glEndQuery = GL.Instance.GetDelegateFor("glEndQuery", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
@@ -42,6 +41,7 @@ namespace CSharpGL
             glEndConditionalRender = GL.Instance.GetDelegateFor("glEndConditionalRender", GLDelegates.typeof_void_void) as GLDelegates.void_void;
             glGetQueryObjectiv = GL.Instance.GetDelegateFor("glGetQueryObjectiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
             glGetQueryObjectuiv = GL.Instance.GetDelegateFor("glGetQueryObjectuiv", GLDelegates.typeof_void_uint_uint_uintN) as GLDelegates.void_uint_uint_uintN;
+            glDeleteQueries = GL.Instance.GetDelegateFor("glDeleteQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
         }
         /// <summary>
         /// Begin query.
