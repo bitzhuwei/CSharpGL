@@ -157,6 +157,16 @@
     <Compile Include="GLObjects\Camera\ICamera\IPerspectiveViewCamera.cs" />
     <Compile Include="GLObjects\Camera\ICamera\IViewCamera.cs" />
     <Compile Include="GLObjects\Camera\IViewCamera.Orientation.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attachments.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Completeness.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Limits.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Parameter.cs" />
+    <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="GLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
+    <Compile Include="GLObjects\Framebuffer\Renderbuffer.Special.cs" />
+    <Compile Include="GLObjects\Framebuffer\RenderbufferType.cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\Data2Buffer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -345,6 +355,7 @@
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
     <Compile Include="IGLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="GLObjects\Framebuffer\readme.md" />
     <None Include="GLObjects\Texture\readme.md" />
     <None Include="GLObjects\UniformVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
