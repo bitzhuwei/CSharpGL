@@ -284,6 +284,8 @@
     <Compile Include="GLObjects\GLStates\PointSpriteState.cs" />
     <Compile Include="GLObjects\GLStates\PolygonModeState.cs" />
     <Compile Include="GLObjects\GLStates\ViewportState.cs" />
+    <Compile Include="GLObjects\Query\Query.cs" />
+    <Compile Include="GLObjects\Query\Query.IDisposable.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.glUniforms.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
@@ -356,6 +358,7 @@
     <Compile Include="IGLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="GLObjects\Framebuffer\readme.md" />
+    <None Include="GLObjects\Query\readme.md" />
     <None Include="GLObjects\Texture\readme.md" />
     <None Include="GLObjects\UniformVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />

@@ -8,14 +8,14 @@
         private static GLDelegates.void_int_uintN glGenRenderbuffers;
         private static GLDelegates.void_uint_uint glBindRenderbuffer;
         private static GLDelegates.void_uint_uint_int_int glRenderbufferStorage;
-        private static GLDelegates.void_uint_uintN glDeleteRenderbuffers;
+        private static GLDelegates.void_int_uintN glDeleteRenderbuffers;
 
         static Renderbuffer()
         {
             glGenRenderbuffers = GL.Instance.GetDelegateFor("glGenRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindRenderbuffer = GL.Instance.GetDelegateFor("glBindRenderbuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glRenderbufferStorage = GL.Instance.GetDelegateFor("glRenderbufferStorage", GLDelegates.typeof_void_uint_uint_int_int) as GLDelegates.void_uint_uint_int_int;
-            glDeleteRenderbuffers = GL.Instance.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
+            glDeleteRenderbuffers = GL.Instance.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
         }
 
         private uint[] renderbuffer = new uint[1];

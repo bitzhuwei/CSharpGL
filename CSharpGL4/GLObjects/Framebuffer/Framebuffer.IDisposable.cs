@@ -49,7 +49,7 @@ namespace CSharpGL
                     }
                 }
                 {
-                    OpenGL.DeleteFramebuffers(1, this.frameBuffer);
+                    glDeleteFramebuffers(this.frameBuffer.Length, this.frameBuffer);
                 }
             }
 

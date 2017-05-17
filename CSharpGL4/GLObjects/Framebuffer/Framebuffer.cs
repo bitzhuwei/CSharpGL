@@ -14,7 +14,7 @@ namespace CSharpGL
         private static GLDelegates.void_uint_uint_uint_uint glFramebufferRenderbuffer;
         private static GLDelegates.void_uint_uint_int glFramebufferParameteri;
         private static GLDelegates.uint_uint glCheckFramebufferStatus;
-        private static GLDelegates.void_uint_uintN glDeleteFramebuffers;
+        private static GLDelegates.void_int_uintN glDeleteFramebuffers;
 
         private uint[] frameBuffer = new uint[1];
 
@@ -41,7 +41,7 @@ namespace CSharpGL
             glFramebufferRenderbuffer = GL.Instance.GetDelegateFor("glFramebufferRenderbuffer", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
             glFramebufferParameteri = GL.Instance.GetDelegateFor("glFramebufferParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
             glCheckFramebufferStatus = GL.Instance.GetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
-            glDeleteFramebuffers = GL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_uint_uintN) as GLDelegates.void_uint_uintN;
+            glDeleteFramebuffers = GL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
         }
 
         /// <summary>
