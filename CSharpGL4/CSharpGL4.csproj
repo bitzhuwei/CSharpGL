@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataStructures\IBoundingBox\BoundingBox.cs" />
+    <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBox.cs" />
+    <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
     <Compile Include="BaseDataStructures\GLSL\bvec2.cs" />
     <Compile Include="BaseDataStructures\GLSL\bvec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\bvec4.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
+    <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
     <Compile Include="BaseDataStructures\NoisyArray.cs" />
     <Compile Include="BaseDataStructures\Pixel.cs" />
@@ -136,6 +140,23 @@
     <Compile Include="GLAPI\GLDelegates.cs" />
     <Compile Include="GLAPI\GL.cs" />
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
+    <Compile Include="GLObjects\Camera\ICamera.LegacyProjection.cs" />
+    <Compile Include="GLObjects\Camera\ICamera.MouseWheel.cs" />
+    <Compile Include="GLObjects\Camera\ICamera.Resize.cs" />
+    <Compile Include="GLObjects\Camera\ICamera.Zoom.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\Camera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\Camera.ICamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\Camera.IOrthoCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\Camera.IPerspectiveCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\Camera.IViewCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\CameraType.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\ICamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\IOrthoCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\IOrthoViewCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\IPerspectiveCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\IPerspectiveViewCamera.cs" />
+    <Compile Include="GLObjects\Camera\ICamera\IViewCamera.cs" />
+    <Compile Include="GLObjects\Camera\IViewCamera.Orientation.cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\Data2Buffer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -330,7 +351,6 @@
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BaseDataStructures\IBoundingBox\" />
     <Folder Include="BaseDataStructures\ITreeNode\" />
     <Folder Include="Manipulaters\" />
     <Folder Include="Scene\" />
