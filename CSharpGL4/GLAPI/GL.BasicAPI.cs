@@ -557,12 +557,11 @@ namespace CSharpGL
         /// <param name="cap">The capability to disable.</param>
         public virtual void Disable(uint cap) { }
 
-        ///// <summary>
-        ///// This function disables a client state array, such as a vertex array.
-        ///// </summary>
-        ///// <param name="array">The array to disable.</param>
-        //[DllImport(Win32.GL32, EntryPoint = "glDisableClientState", SetLastError = true)]
-        //public virtual void DisableClientState(uint array){}
+        /// <summary>
+        /// This function disables a client state array, such as a vertex array.
+        /// </summary>
+        /// <param name="array">The array to disable.</param>
+        public virtual void DisableClientState(uint array) { }
 
         /// <summary>
         /// Render	primitives from	array data.

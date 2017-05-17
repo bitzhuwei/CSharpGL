@@ -690,12 +690,12 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glDisable", SetLastError = true)]
         public static extern void glDisable(uint cap);
 
-        ///// <summary>
-        ///// This function disables a client state array, such as a vertex array.
-        ///// </summary>
-        ///// <param name="array">The array to disable.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glDisableClientState", SetLastError = true)]
-        //public static extern void glDisableClientState(uint array);
+        /// <summary>
+        /// This function disables a client state array, such as a vertex array.
+        /// </summary>
+        /// <param name="array">The array to disable.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDisableClientState", SetLastError = true)]
+        public static extern void glDisableClientState(uint array);
 
         /// <summary>
         /// Render	primitives from	array data.
