@@ -25,5 +25,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         void Repaint();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        GLRenderContext RenderContext { get; }
     }
 }

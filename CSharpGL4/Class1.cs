@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class Class1
+    class Class1
     {
+        public void Design00_HowToUseCSharpGL()
+        {
+            IGLCanvas canvas = GetCanvas();
+            GLRenderContext renderContext = canvas.RenderContext;
+            renderContext.MakeCurrent();
+
+        }
+
+        private IGLCanvas GetCanvas()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

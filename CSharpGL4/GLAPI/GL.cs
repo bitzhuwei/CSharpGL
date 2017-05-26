@@ -15,7 +15,7 @@ namespace CSharpGL
     public abstract partial class GL
     {
         /// <summary>
-        /// The only insstance of an OpenGL implementation on current operation system.
+        /// The only insstance of the OpenGL implementation on current operation system.
         /// </summary>
         public static GL Instance { get; private set; }
 
@@ -23,7 +23,7 @@ namespace CSharpGL
         {
             if (GL.Instance != null)
             {
-                throw new Exception(string.Format("GL instance({0}) already initialized!", GL.Instance));
+                throw new Exception(string.Format("GL instance({0}) already exists! Call it using static property \'GL.Instance\'", GL.Instance));
             }
             else
             {

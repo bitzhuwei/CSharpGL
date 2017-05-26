@@ -15,6 +15,6 @@ namespace CSharpGL
         /// <param name="functionName">function name</param>
         /// <param name="functionDeclaration"></param>
         /// <returns></returns>
-        public virtual Delegate GetDelegateFor(string functionName, Type functionDeclaration) { return null; }
+        public abstract Delegate GetDelegateFor(string functionName, Type functionDeclaration);
     }
 }

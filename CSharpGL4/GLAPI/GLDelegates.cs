@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
     /// <summary>
-    /// Cached delegates
+    /// Cached delegates. Used in GL.GetDelegateFor().
     /// </summary>
     public static class GLDelegates
     {
