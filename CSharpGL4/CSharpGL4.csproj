@@ -90,7 +90,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseDataStructures\Utilities\StructHelper.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="readme.cs" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="GLAPI\GL.Enumerations\BindBufferBaseTarget.cs" />
     <Compile Include="GLAPI\GL.Enumerations\BlendFunc.cs" />
