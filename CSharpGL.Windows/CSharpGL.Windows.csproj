@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="OpenGLAPI\readme.md" />
-    <Compile Include="OpenGLAPI\WInGL.ExtendedAPI.cs" />
-    <Compile Include="OpenGLAPI\WinGL.BasicAPI.cs" />
-    <Compile Include="OpenGLAPI\WinGL.cs" />
-    <Compile Include="OpenGLAPI\WinGL.OpenGL32.DLL.cs" />
+    <None Include="GLAPI\readme.md" />
+    <Compile Include="GLAPI\WInGL.ExtendedAPI.cs" />
+    <Compile Include="GLAPI\WinGL.BasicAPI.cs" />
+    <Compile Include="GLAPI\WinGL.cs" />
+    <Compile Include="GLAPI\WinGL.OpenGL32.DLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Win32API\BitmapInfo.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
