@@ -363,6 +363,7 @@
     <None Include="GLObjects\UniformVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
+    <Content Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BaseDataStructures\ITreeNode\" />

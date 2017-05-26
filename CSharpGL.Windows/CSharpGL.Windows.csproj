@@ -58,6 +58,7 @@
     <Compile Include="Win32API\WindowStylesEx.cs" />
     <Compile Include="Win32API\WNDCLASSEX.cs" />
     <Compile Include="Win32API\WndProc.cs" />
+    <Content Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Canvas\" />
