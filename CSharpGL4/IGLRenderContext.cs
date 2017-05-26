@@ -9,22 +9,22 @@ namespace CSharpGL
     /// <summary>
     /// Window-system-specific functions create and delete graphics contexts.
     /// </summary>
-    public abstract partial class GLRenderContext : IDisposable
+    public interface IGLRenderContext : IDisposable
     {
         /// <summary>
         /// render context.
         /// </summary>
-        public abstract IntPtr RenderContextHandle { get; }
+        IntPtr RenderContextHandle { get; }
 
         /// <summary>
         /// device context.
         /// </summary>
-        public abstract IntPtr DeviceContextHandle { get; }
+        IntPtr DeviceContextHandle { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public abstract void MakeCurrent();
+        void MakeCurrent();
 
     }
 }

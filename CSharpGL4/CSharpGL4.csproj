@@ -353,10 +353,9 @@
     <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformVariable.cs" />
-    <Compile Include="GLRenderContext.IDisposable.cs" />
     <Compile Include="IGLCanvas.cs" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
-    <Compile Include="GLRenderContext.cs" />
+    <Compile Include="IGLRenderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="GLObjects\Framebuffer\readme.md" />
     <None Include="GLObjects\Query\readme.md" />
