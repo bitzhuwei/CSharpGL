@@ -72,6 +72,8 @@
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
+    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
+    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.yield.cs" />
     <Compile Include="BaseDataStructures\NoisyArray.cs" />
     <Compile Include="BaseDataStructures\Pixel.cs" />
     <Compile Include="BaseDataStructures\GLSL\ILoadFromString.TypeConverter.cs" />
@@ -359,16 +361,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="GLObjects\Framebuffer\readme.md" />
     <None Include="GLObjects\Query\readme.md" />
+    <Content Include="GLObjects\readme.md" />
     <None Include="GLObjects\Texture\readme.md" />
     <None Include="GLObjects\UniformVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="readme.md" />
+    <Content Include="Scene\readme.md" />
+    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BaseDataStructures\ITreeNode\" />
     <Folder Include="Manipulaters\" />
-    <Folder Include="Scene\" />
     <Folder Include="Text\" />
     <Folder Include="UI\" />
   </ItemGroup>
