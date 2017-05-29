@@ -13,20 +13,19 @@ namespace CSharpGL
         /// </summary>
         /// <param name="data"></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);</param>
-        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="usage"></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer GenVertexBuffer<T>(this T data, VBOConfig config, string varNameInVertexShader, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
+        public static VertexBuffer GenVertexBuffer<T>(this T data, VBOConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
             var array = new T[] { data };
-            return GenVertexBuffer(array, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
+            return GenVertexBuffer(array, config, usage, instancedDivisor, patchVertexes);
             // another way to do this:
             //using (UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(1))
             //{
             //    Marshal.StructureToPtr(data, unmanagedArray.Header, false);
-            //    VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, config, varNameInVertexShader, usage, instancedDivisor, patchVertexes);
+            //    VertexBuffer buffer = GetVertexBufferObject(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
             //    return buffer;
             //}
         }
