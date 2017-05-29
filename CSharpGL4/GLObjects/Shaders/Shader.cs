@@ -9,7 +9,7 @@ namespace CSharpGL
     /// A GLSL shader(supported extensions: vs, fs, gs, vsh, fsh, gsh, vshader, fshader, gshader, vert, frag, geom, tesc, tese, comp, glsl).
     /// </summary>
     //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public partial class Shader : IDisposable
+    public abstract partial class Shader : IDisposable
     {
         private static GLDelegates.uint_uint glCreateShader;
         private static GLDelegates.void_uint_int_stringN_intN glShaderSource;
@@ -19,11 +19,16 @@ namespace CSharpGL
         private static GLDelegates.void_uint_int_IntPtr_StringBuilder glGetShaderInfoLog;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public abstract void Initialize();
+
+        /// <summary>
         /// Create and compile this shader.
         /// </summary>
         /// <param name="shaderType"></param>
         /// <param name="source"></param>
-        public void Create(uint shaderType, string source)
+        protected void Create(uint shaderType, string source)
         {
             if (glCreateShader == null)
             {

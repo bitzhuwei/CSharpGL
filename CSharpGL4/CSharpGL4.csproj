@@ -71,6 +71,10 @@
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
     <Compile Include="GLObjects\GLStates\IGLState.cs" />
+    <Compile Include="GLObjects\Shaders\Shaders\ComputeShader.cs" />
+    <Compile Include="GLObjects\Shaders\Shaders\GeometryShader.cs" />
+    <Compile Include="GLObjects\Shaders\Shaders\FragmentShader.cs" />
+    <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="Scene\GLStateNode.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
@@ -290,11 +294,11 @@
     <Compile Include="GLObjects\GLStates\ViewportState.cs" />
     <Compile Include="GLObjects\Query\Query.cs" />
     <Compile Include="GLObjects\Query\Query.IDisposable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.glUniforms.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
-    <Compile Include="GLObjects\Shader\Shader.cs" />
-    <Compile Include="GLObjects\Shader\Shader.IDisposable.cs" />
+    <Compile Include="GLObjects\Shaders\ShaderProgram\ShaderProgram.cs" />
+    <Compile Include="GLObjects\Shaders\ShaderProgram\ShaderProgram.glUniforms.cs" />
+    <Compile Include="GLObjects\Shaders\ShaderProgram\ShaderProgram.IDisposable.cs" />
+    <Compile Include="GLObjects\Shaders\Shader.cs" />
+    <Compile Include="GLObjects\Shaders\Shader.IDisposable.cs" />
     <Compile Include="GLObjects\Texture\ImageFillers\BitmapFiller.cs" />
     <Compile Include="GLObjects\Texture\ImageFillers\CubemapImageFiller.cs" />
     <Compile Include="GLObjects\Texture\ImageFillers\ImageFiller.cs" />
