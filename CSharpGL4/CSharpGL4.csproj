@@ -70,6 +70,8 @@
     <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
+    <Compile Include="GLObjects\GLStates\IGLState.cs" />
+    <Compile Include="Scene\GLStateNode.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
@@ -369,6 +371,9 @@
     <Content Include="readme.md" />
     <Content Include="Scene\readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
+    <Content Include="Shaders\readme.md" />
+    <None Include="Shaders\NoLight.frag" />
+    <None Include="Shaders\NoLight.vert" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Manipulaters\" />
