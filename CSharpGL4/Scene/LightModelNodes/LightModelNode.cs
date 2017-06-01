@@ -9,15 +9,22 @@ namespace CSharpGL
     /// <summary>
     /// A node in scene that maintains some <see cref="GLState"/>s.
     /// </summary>
-    public class GLStateNode : SceneNode
+    public class LightModelNode : SceneNode
     {
-        private List<IGLState> stateList = new List<IGLState>();
+        public LightModelNode(LightModel model)
+        {
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public IList<IGLState> StateList { get { return this.stateList; } }
-
+        }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum LightModel
+    {
+        /// <summary>
+        /// Render a model with position and direct color. No light applied.
+        /// </summary>
+        NoLight,
+    }
 }
