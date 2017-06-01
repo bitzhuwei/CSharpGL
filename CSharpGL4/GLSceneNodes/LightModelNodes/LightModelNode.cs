@@ -9,22 +9,14 @@ namespace CSharpGL
     /// <summary>
     /// A node in scene that maintains some <see cref="GLState"/>s.
     /// </summary>
-    public class LightModelNode : SceneNode
+    public abstract class LightModelNode : SceneNode
     {
-        public LightModelNode(LightModel model)
-        {
+        public abstract ShaderProgram GetShaderProgram();
 
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum LightModel
-    {
         /// <summary>
-        /// Render a model with position and direct color. No light applied.
+        /// Names of aLl attributes in vertex shader.
         /// </summary>
-        NoLight,
+        /// <returns></returns>
+        public abstract string[] GetAttributeNames();
     }
 }

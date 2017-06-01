@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render model with the 'NoLight' shader.
     /// </summary>
-    public class NoLightNode : SceneNode
+    public class NoLightNode : LightModelNode
     {
         private ShaderProgram shaderProgram;
         private static readonly string[] attributeNames = new string[] { "inPosition", "inColor" };

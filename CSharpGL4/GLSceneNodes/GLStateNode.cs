@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// A node in scene that maintains some <see cref="GLState"/>s.
+    /// shader program.
     /// </summary>
-    public class GLStateNode : SceneNode
+    public class GLStateNode : GLSceneNode
     {
+
+        private static readonly Type type = typeof(GLStateNode);
+        internal override Type SelfTypeCache { get { return type; } }
+
         private List<IGLState> stateList = new List<IGLState>();
 
         /// <summary>
@@ -19,5 +22,4 @@ namespace CSharpGL
         public IList<IGLState> StateList { get { return this.stateList; } }
 
     }
-
 }
