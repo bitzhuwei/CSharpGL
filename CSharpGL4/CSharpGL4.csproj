@@ -76,29 +76,8 @@
     <Compile Include="GLObjects\Shaders\Shaders\GeometryShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\FragmentShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
-    <Compile Include="Scene+Action+Snippet\GLAction.cs" />
-    <Compile Include="GLActions\RenderAction\RenderAction.cs" />
-    <Compile Include="GLActions\RenderAction\RenderAction.Designer.cs">
-      <DependentUpon>RenderAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GLActions\RenderAction\RenderActionContext.cs" />
-    <Compile Include="Scene+Action+Snippet\GLFieldEventArgs.cs" />
-    <Compile Include="Scene+Action+Snippet\GLField`1.cs" />
-    <Compile Include="Scene+Action+Snippet\GLSceneNode.cs" />
-    <Compile Include="GLSceneNodes\GLCameraNode.cs" />
-    <Compile Include="GLSceneNodes\GLColorsNode.cs" />
-    <Compile Include="GLSceneNodes\GLOneIndexNode.cs" />
-    <Compile Include="GLSceneNodes\GLPositionsNode.cs" />
-    <Compile Include="GLSceneNodes\GLSeparatorNode.cs" />
-    <Compile Include="GLSceneNodes\GLShaderNode.cs" />
-    <Compile Include="GLSceneNodes\GLShapeNode.cs" />
-    <Compile Include="GLSceneNodes\GLStateNode.cs" />
-    <Compile Include="GLSceneNodes\GLVertexNode.cs" />
-    <Compile Include="GLSceneNodes\GLZeroIndexNode.cs" />
-    <Compile Include="Scene+Action+Snippet\GLSnippet.cs" />
-    <Compile Include="GLSceneNodes\LightModelNodes\NoLightNode.cs" />
-    <Compile Include="Scene+Action+Snippet\SceneNode.cs" />
-    <Compile Include="GLSceneNodes\LightModelNodes\LightModelNode.cs" />
+    <None Include="Unity3D\readme.md" />
+    <Compile Include="Unity3D\GameObject.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
@@ -396,23 +375,12 @@
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="readme.md" />
-    <Content Include="GLSceneNodes\readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
     <Content Include="Shaders\readme.md" />
     <EmbeddedResource Include="Shaders\NoLight.frag" />
     <EmbeddedResource Include="Shaders\NoLight.vert" />
-    <None Include="GLActions\RenderAction\xxxAction.cs.md" />
-    <None Include="GLSceneNodes\GLsssNode.cs.md" />
-    <None Include="Snippets\RenderActionSnippets\xxx_sss.cs.md" />
-    <None Include="Scene+Action+Snippet\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GLActions\ReadAction\" />
-    <Folder Include="GLActions\WriteAction\" />
-    <Folder Include="Manipulaters\" />
-    <Folder Include="Text\" />
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />

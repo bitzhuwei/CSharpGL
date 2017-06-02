@@ -4,16 +4,16 @@
     /// 通用的树结点。
     /// <para>General tree node.</para>
     /// </summary>
-    public interface ITreeNode
+    public interface ITreeNode<T>
     {
         /// <summary>
         /// parent node.
         /// </summary>
-        ITreeNode Parent { get; set; }
+        ITreeNode<T> Parent { get; set; }
 
         /// <summary>
         /// children nodes.
         /// </summary>
-        TreeNodeChildren Children { get; }
+        TreeNodeChildren<T> Children { get; }
     }
 }
