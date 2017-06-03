@@ -20,9 +20,6 @@ namespace CSharpGL.Demos
             map.Add("in_Position", position);
             map.Add("in_Normal", normal);
             var renderer = new EmitNormalLineRenderer(model, provider, map, position);
-            renderer.SetUniform("normalLength", 0.5f);
-            renderer.SetUniform("showModel", true);
-            renderer.SetUniform("showNormal", true);
             renderer.ModelSize = lengths;
 
             return renderer;
@@ -37,6 +34,10 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            this.SetUniform("normalLength", 0.5f);
+            this.SetUniform("showModel", true);
+            this.SetUniform("showNormal", true);
         }
 
         private long modelTicks;

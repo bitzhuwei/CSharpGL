@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -13,18 +14,14 @@ namespace CSharpGL
         [Category(strScene)]
         [Description("camera of the scene.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public ICamera FirstCamera
-        {
-            get
-            {
-                foreach (ViewPort item in this.rootViewPort.Traverse(TraverseOrder.Pre))
-                {
-                    if (item.Camera != null) { return item.Camera; }
-                }
+        public ICamera FirstCamera { get; set; }
 
-                return null;
-            }
-        }
+        /// <summary>
+        /// background color in this view port's area.
+        /// </summary>
+        [Category(strScene)]
+        [Description("background color.")]
+        public Color ClearColor { get; set; }
 
         /// <summary>
         /// Canvas that this scene binds to.
@@ -66,14 +63,6 @@ namespace CSharpGL
         [Description("Root object of all objects to be rendered in the scene.")]
         [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public SceneRootObject RootObject { get { return this.rootObject; } }
-
-        /// <summary>
-        /// Root object of all viewports to be rendered in the scene.
-        /// </summary>
-        [Category(strScene)]
-        [Description("Root object of all viewports to be rendered in the scene.")]
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public SceneRootViewPort RootViewPort { get { return this.rootViewPort; } }
 
         /// <summary>
         /// hosts all UI renderers.

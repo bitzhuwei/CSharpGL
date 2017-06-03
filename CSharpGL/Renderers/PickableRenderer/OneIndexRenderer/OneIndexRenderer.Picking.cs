@@ -99,7 +99,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { searcher.Search(arg, x, y, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, PickingGeometryType.Point, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(PickingGeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -119,7 +119,7 @@ namespace CSharpGL
         {
             var vertexIds = searcher.Search(arg, x, y, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, PickingGeometryType.Line, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(PickingGeometryType.Line, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -136,7 +136,7 @@ namespace CSharpGL
         {
             uint[] vertexIds = primitiveInfo.VertexIds;
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, typeOfMode, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(typeOfMode, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }
@@ -158,7 +158,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { lastVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(arg.UsingViewPort, PickingGeometryType.Point, positions, vertexIds, stageVertexId, this);
+            var pickedGeometry = new PickedGeometry(PickingGeometryType.Point, positions, vertexIds, stageVertexId, this);
 
             return pickedGeometry;
         }

@@ -29,12 +29,10 @@ namespace CSharpGL.Demos
                 // move vertex
                 if (pickedGeometry != null)
                 {
-                    ViewPort viewPort = pickedGeometry.FromViewPort;
-                    ICamera camera = viewPort.Camera;
                     var dragParam = new DragParam(
-                        camera.GetPerspectiveProjectionMatrix(),
-                        camera.GetViewMatrix(),
-                        viewPort.Rect.ToViewport(),
+                        this.scene.FirstCamera.GetPerspectiveProjectionMatrix(),
+                        this.scene.FirstCamera.GetViewMatrix(),
+                        this.scene.Canvas.ClientRectangle.ToViewport(),
                         new Point(e.X, glCanvas1.Height - e.Y - 1));
                     dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
                     this.dragParam = dragParam;

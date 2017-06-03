@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Unity3D
+namespace CSharpGL
 {
     public class GameObject : ITreeNode<GameObject>
     {
@@ -15,10 +15,23 @@ namespace CSharpGL.Unity3D
 
         #region ITreeNode<GameObject> 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ITreeNode<GameObject> Parent { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TreeNodeChildren<GameObject> Children { get; private set; }
 
         #endregion
+
+        private List<ComponentBase> components = new List<ComponentBase>();
+
+        public List<ComponentBase> Components
+        {
+            get { return components; }
+        }
     }
 }

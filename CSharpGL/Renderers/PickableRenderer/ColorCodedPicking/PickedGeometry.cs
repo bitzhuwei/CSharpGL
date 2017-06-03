@@ -8,10 +8,10 @@ namespace CSharpGL
     /// </summary>
     public class PickedGeometry : IPickedGeometry
     {
-        /// <summary>
-        /// This geometry is picked from which view port?
-        /// </summary>
-        public ViewPort FromViewPort { get; set; }
+        ///// <summary>
+        ///// This geometry is picked from which view port?
+        ///// </summary>
+        //public ViewPort FromViewPort { get; set; }
 
         /// <summary>
         ///
@@ -49,15 +49,13 @@ namespace CSharpGL
         /// The color-coded picking result.
         /// <para>Representing a primitive(point, line, triangle, quad, polygon).</para>
         /// </summary>
-        /// <param name="fromViewPort"></param>
         /// <param name="geometryType"></param>
         /// <param name="positions"></param>
         /// <param name="vertexIds"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="fromRenderer"></param>
-        public PickedGeometry(ViewPort fromViewPort, PickingGeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IPickable fromRenderer)
+        public PickedGeometry(PickingGeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IPickable fromRenderer)
         {
-            this.FromViewPort = fromViewPort;
             this.GeometryType = geometryType;
             this.Positions = positions;
             this.VertexIds = vertexIds;

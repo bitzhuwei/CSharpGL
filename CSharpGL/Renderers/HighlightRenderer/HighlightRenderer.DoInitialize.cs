@@ -65,6 +65,9 @@ namespace CSharpGL
             this.vertexArrayObject = vertexArrayObject;
 
             this.positionBuffer = positionBuffer;
+
+            this.Program.UniformVariables.Add("highlightColor", new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
+            this.Program.UniformVariables.Add(this.uniformMVP.VarName, this.uniformMVP);
         }
     }
 }

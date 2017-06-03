@@ -26,20 +26,20 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
+        /// <param name="camera"></param>
         /// <param name="canvasRect"></param>
-        /// <param name="viewPort">camera used during rendering.</param>
         /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking; otherwise useless.</param>
-        public RenderEventArgs(Rectangle canvasRect, ViewPort viewPort, PickingGeometryType pickingGeometryType)
+        public RenderEventArgs(ICamera camera, Rectangle canvasRect, PickingGeometryType pickingGeometryType)
         {
+            this.Camera = camera;
             this.CanvasRect = canvasRect;
-            this.UsingViewPort = viewPort;
             this.PickingGeometryType = pickingGeometryType;
         }
 
         /// <summary>
         /// Gets camera used during rendering.
         /// </summary>
-        public ICamera Camera { get { return this.UsingViewPort.Camera; } }
+        public ICamera Camera { get; set; }
 
         /// <summary>
         /// Gets canvas's rectangle.
@@ -51,9 +51,9 @@ namespace CSharpGL
         /// </summary>
         public PickingGeometryType PickingGeometryType { get; private set; }
 
-        /// <summary>
-        /// Gets view port used during rendering.
-        /// </summary>
-        public ViewPort UsingViewPort { get; set; }
+        ///// <summary>
+        ///// Gets view port used during rendering.
+        ///// </summary>
+        //public ViewPort UsingViewPort { get; set; }
     }
 }

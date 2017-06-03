@@ -27,28 +27,19 @@ namespace CSharpGL
             Point position = new Point(x, y);
             var pickingRect = new Rectangle(x, y, 1, 1);
             List<Tuple<Point, PickedGeometry>> allPickedGeometrys = null;
-            foreach (ViewPort viewPort in this.rootViewPort.Traverse(TraverseOrder.Post))
-            {
-                if (viewPort.Visiable && viewPort.Enabled && viewPort.Contains(position))
-                {
-                    allPickedGeometrys = ColorCodedPicking(viewPort, pickingRect, clientRectangle, pickingGeometryType);
-
-                    break;
-                }
-            }
+            allPickedGeometrys = ColorCodedPicking(pickingRect, clientRectangle, pickingGeometryType);
 
             return allPickedGeometrys;
         }
 
         /// <summary>
-        /// Pick primitives in specified <paramref name="viewPort"/>.
+        /// Pick primitives.
         /// </summary>
-        /// <param name="viewPort"></param>
         /// <param name="pickingRect">rect in OpenGL's window coordinate system.(Left Down is (0, 0)), size).</param>
         /// <param name="clientRectangle">whole canvas' rectangle.</param>
         /// <param name="pickingGeometryType"></param>
         /// <returns></returns>
-        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(ViewPort viewPort, Rectangle pickingRect, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
+        private List<Tuple<Point, PickedGeometry>> ColorCodedPicking(Rectangle pickingRect, Rectangle clientRectangle, PickingGeometryType pickingGeometryType)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
 
@@ -57,7 +48,7 @@ namespace CSharpGL
             {
                 lock (this.synObj)
                 {
-                    var arg = new RenderEventArgs(clientRectangle, viewPort, pickingGeometryType);
+                    var arg = new RenderEventArgs(this.FirstCamera, clientRectangle, pickingGeometryType);
                     // Render all PickableRenderers for color-coded picking.
                     List<IPickable> pickableRendererList = Render4Picking(arg);
                     // Read pixels in specified rect and get the VertexIds they represent.
@@ -119,8 +110,6 @@ namespace CSharpGL
         /// <returns></returns>
         internal List<IPickable> Render4Picking(RenderEventArgs arg)
         {
-            arg.UsingViewPort.On();
-
             // record clear color
             var originalClearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
@@ -137,8 +126,6 @@ namespace CSharpGL
             RenderPickableObject(this.rootObject, arg, ref renderedVertexCount, pickedRendererList);
 
             OpenGL.Flush();
-
-            arg.UsingViewPort.Off();
 
             return pickedRendererList;
         }

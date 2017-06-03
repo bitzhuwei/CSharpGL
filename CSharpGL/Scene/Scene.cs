@@ -17,8 +17,6 @@ namespace CSharpGL
 
         private SceneRootObject rootObject;
 
-        private SceneRootViewPort rootViewPort;
-
         private Size canvasLastSize;
 
         /// <summary>
@@ -32,6 +30,7 @@ namespace CSharpGL
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
             {
+                this.FirstCamera = camera;
                 this.Canvas = canvas;
                 this.canvasLastSize = canvas.Size;
             }
@@ -42,14 +41,6 @@ namespace CSharpGL
                 var rootObject = new SceneRootObject(this);
                 rootObject.Children.AddRange(objects);
                 this.rootObject = rootObject;
-            }
-            {
-                var rootViewPort = new SceneRootViewPort(
-                     AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top, new Padding(0, 0, 0, 0), canvas.Size);
-                rootViewPort.Children.Add(new ViewPort(camera,
-                    AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
-                    new Padding(0, 0, 0, 0), canvas.Size));
-                this.rootViewPort = rootViewPort;
             }
             //var cursor = UICursor.CreateDefault();
             //cursor.Enabled = false;
@@ -72,7 +63,6 @@ namespace CSharpGL
             {
                 this.FirstCamera.Resize(this.canvasLastSize, currentSize);
                 this.canvasLastSize = currentSize;
-                this.rootViewPort.Size = currentSize;
                 this.rootUI.Size = currentSize;
                 //this.rootCursor.Size = currentSize;
             }

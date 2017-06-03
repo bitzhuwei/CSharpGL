@@ -177,7 +177,7 @@ namespace CSharpGL
 
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(clientRectangle, this, pickingGeometryType);
+            var arg = new RenderEventArgs(scene.FirstCamera, clientRectangle, pickingGeometryType);
             // render objects.
             // Render all PickableRenderers for color-coded picking.
             List<IPickable> pickableRendererList = scene.Render4Picking(arg);
@@ -196,7 +196,7 @@ namespace CSharpGL
 
         private void RenderNormally(Scene scene, Rectangle clientRectangle)
         {
-            var arg = new RenderEventArgs(clientRectangle, this, PickingGeometryType.None);
+            var arg = new RenderEventArgs(scene.FirstCamera, clientRectangle, PickingGeometryType.None);
 
             vec4 color = this.ClearColor.ToVec4();
             OpenGL.glClearColor(color.x, color.y, color.z, color.w);

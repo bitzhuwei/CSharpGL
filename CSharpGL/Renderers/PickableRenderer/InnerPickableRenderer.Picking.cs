@@ -89,8 +89,6 @@ namespace CSharpGL
         /// <param name="indexBuffer">indicates the primitive to pick a line from.</param>
         internal void Render4InnerPicking(RenderEventArgs arg, IndexBuffer indexBuffer)
         {
-            arg.UsingViewPort.On();
-
             // record clear color
             var originalClearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
@@ -107,7 +105,6 @@ namespace CSharpGL
 
             OpenGL.Flush();
 
-            arg.UsingViewPort.Off();
             //var filename = string.Format("Render4InnerPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
             //Save2PictureHelper.Save2Picture(0, 0,
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
