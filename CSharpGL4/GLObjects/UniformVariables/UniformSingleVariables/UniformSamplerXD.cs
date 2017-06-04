@@ -98,6 +98,17 @@ namespace CSharpGL
         /// <summary>
         /// value for setting/resetting uniform samplerXD variable.
         /// </summary>
+        /// <param name="texture"></param>
+        public samplerValue(Texture texture)
+        {
+            this.target = (uint)texture.Target;
+            this.textureId = texture.Id;
+            this.activeTextureIndex = texture.ActiveTextureIndex;
+        }
+
+        /// <summary>
+        /// value for setting/resetting uniform samplerXD variable.
+        /// </summary>
         /// <param name="target"></param>
         /// <param name="textureId"></param>
         /// <param name="activeTextureIndex">0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1 etc</param>
