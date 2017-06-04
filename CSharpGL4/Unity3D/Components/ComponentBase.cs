@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -14,6 +15,8 @@ namespace CSharpGL
 
         public ComponentBase(GameObject gameObject)
         {
+            Debug.Assert(gameObject != null);
+
             this.gameObject = gameObject;
         }
     }
