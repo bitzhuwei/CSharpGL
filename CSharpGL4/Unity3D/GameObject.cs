@@ -8,8 +8,11 @@ namespace CSharpGL
 {
     public class GameObject : ITreeNode<GameObject>
     {
+        public readonly TransformComponent transform;
+
         public GameObject()
         {
+            this.transform = new TransformComponent(this);
             this.Children = new TreeNodeChildren<GameObject>(this);
         }
 
@@ -27,11 +30,8 @@ namespace CSharpGL
 
         #endregion
 
+
         private List<ComponentBase> components = new List<ComponentBase>();
 
-        public List<ComponentBase> Components
-        {
-            get { return components; }
-        }
     }
 }

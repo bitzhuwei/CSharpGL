@@ -5,7 +5,12 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class RendererComponent
+    public class RendererComponent : ComponentBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public RendererComponent(GameObject gameObject) : base(gameObject) { }
     }
 }

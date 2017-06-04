@@ -21,5 +21,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         public vec3 Rotate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public TransformComponent(GameObject gameObject) : base(gameObject) { }
     }
 }

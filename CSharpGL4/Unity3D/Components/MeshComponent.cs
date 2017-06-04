@@ -7,5 +7,10 @@ namespace CSharpGL
 {
     public class MeshComponent : ComponentBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public MeshComponent(GameObject gameObject) : base(gameObject) { }
     }
 }

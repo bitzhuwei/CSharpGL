@@ -10,6 +10,11 @@ namespace CSharpGL
         /// <summary>
         /// Game object that this componnet belongs to.
         /// </summary>
-        public GameObject GameObject { get; set; }
+        public readonly GameObject gameObject;
+
+        public ComponentBase(GameObject gameObject)
+        {
+            this.gameObject = gameObject;
+        }
     }
 }
