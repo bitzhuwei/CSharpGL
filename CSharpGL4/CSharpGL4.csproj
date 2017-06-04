@@ -77,10 +77,12 @@
     <Compile Include="GLObjects\Shaders\Shaders\FragmentShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <None Include="Unity3D\readme.md" />
+    <Compile Include="Unity3D\Components\ScriptComponent.cs" />
     <Compile Include="Unity3D\Components\MeshComponent.cs" />
     <Compile Include="Unity3D\Components\RendererComponent.cs" />
     <Compile Include="Unity3D\Components\TransformComponent.cs" />
     <Compile Include="Unity3D\Components\ComponentBase.cs" />
+    <Compile Include="Unity3D\GameObject.Scripts.cs" />
     <Compile Include="Unity3D\GameObject.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />

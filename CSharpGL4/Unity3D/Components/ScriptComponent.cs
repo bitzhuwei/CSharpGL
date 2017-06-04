@@ -9,20 +9,14 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ComponentBase
+    public abstract class ScriptComponent : ComponentBase
     {
-        /// <summary>
-        /// Game object that this componnet belongs to.
-        /// </summary>
-        public GameObject gameObject { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="gameObject">Game object that this componnet belongs to.</param>
-        public ComponentBase(GameObject gameObject)
-        {
-            this.gameObject = gameObject;
-        }
+        public ScriptComponent(GameObject gameObject) : base(gameObject) { }
+
+        public virtual void Update() { }
     }
 }

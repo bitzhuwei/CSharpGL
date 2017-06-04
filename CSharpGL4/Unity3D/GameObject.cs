@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class GameObject : ITreeNode<GameObject>
+    public partial class GameObject : ITreeNode<GameObject>
     {
         /// <summary>
         /// 
@@ -51,8 +51,6 @@ namespace CSharpGL
         public TreeNodeChildren<GameObject> Children { get; private set; }
 
         #endregion
-
-        private List<ComponentBase> components = new List<ComponentBase>();
 
     }
 }
