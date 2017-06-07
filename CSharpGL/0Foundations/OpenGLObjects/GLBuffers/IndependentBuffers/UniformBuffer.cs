@@ -44,9 +44,9 @@ namespace CSharpGL
             if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
             if (glUniformBlockBinding == null) { glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>(); }
 
-            // 设置缓冲区与binding point的绑定
+            // 将 缓冲区 绑定到binding point
             glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, bindingPoint, this.BufferId);
-            // 将Uniform Block 的索引值绑定到binding point
+            // 将 Uniform Block 绑定到binding point
             glUniformBlockBinding(program.ProgramId, uniformBlockIndex, bindingPoint);
         }
 

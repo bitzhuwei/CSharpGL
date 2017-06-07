@@ -19,6 +19,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public IMesh Mesh { get; set; }
+        public IMeshBase Mesh { get; set; }
     }
 }
