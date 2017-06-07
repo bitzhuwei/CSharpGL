@@ -61,6 +61,53 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        /// <param name="arg"></param>
+        public override void Render(RenderEventArgs arg)
+        {
+            int primCount = this.PrimCount;
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+
+            uint mode = (uint)this.Mode;
+            IntPtr offset = GetOffset(this.ElementType, this.FirstIndex);
+
+            glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            if (primCount == 1)
+            {
+                GL.Instance.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
+            }
+            else
+            {
+                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
+            }
+            glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
+        }
+
+        private IntPtr GetOffset(IndexBufferElementType elementType, int firstIndex)
+        {
+            IntPtr offset;
+            switch (elementType)
+            {
+                case IndexBufferElementType.UByte:
+                    offset = new IntPtr(firstIndex * sizeof(byte));
+                    break;
+
+                case IndexBufferElementType.UShort:
+                    offset = new IntPtr(firstIndex * sizeof(ushort));
+                    break;
+
+                case IndexBufferElementType.UInt:
+                    offset = new IntPtr(firstIndex * sizeof(uint));
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+            return offset;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public override string ToString()
         {

@@ -84,6 +84,60 @@ namespace CSharpGL
         public int PatchVertexes { get; set; }
 
         /// <summary>
+        /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
+        /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
+        /// </summary>
+        /// <param name="shaderProgram"></param>
+        public void Standby(ShaderProgram shaderProgram, string varNameInVertexShader)
+        {
+            int location = shaderProgram.GetAttributeLocation(varNameInVertexShader);
+            if (location < 0) { throw new ArgumentException(); }
+
+            uint loc = (uint)location;
+            VBOConfigDetail detail = this.Config.Parse();
+            int patchVertexes = this.PatchVertexes;
+            uint divisor = this.InstancedDivisor;
+            // 选中此VBO
+            // select this VBO.
+            glBindBuffer(GL.GL_ARRAY_BUFFER, this.BufferId);
+            for (uint i = 0; i < detail.locationCount; i++)
+            {
+                // 指定格式
+                // set up data format.
+                switch (detail.pointerType)
+                {
+                    case VertexAttribPointerType.Default:
+                        glVertexAttribPointer(loc + i, detail.dataSize, detail.dataType, false, detail.stride, new IntPtr(i * detail.startOffsetUnit));
+                        break;
+
+                    case VertexAttribPointerType.Integer:
+                        glVertexAttribIPointer(loc + i, detail.dataSize, detail.dataType, detail.stride, new IntPtr(i * detail.startOffsetUnit));
+                        break;
+
+                    case VertexAttribPointerType.Long:
+                        glVertexAttribLPointer(loc + i, detail.dataSize, detail.dataType, detail.stride, new IntPtr(i * detail.startOffsetUnit));
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                if (patchVertexes > 0)// tessellation shading.
+                {
+                    glPatchParameteri(GL.GL_PATCH_VERTICES, patchVertexes);
+                }
+                // 启用
+                // enable this VBO.
+                glEnableVertexAttribArray(loc + i);
+                if (divisor > 0)// instanced rendering.
+                {
+                    glVertexAttribDivisor(loc + i, divisor);
+                }
+            }
+            glBindBuffer(GL.GL_ARRAY_BUFFER, 0);
+        }
+
+        /// <summary>
         /// Shallow copy of this <see cref="VertexBuffer"/> instance.
         /// </summary>
         /// <returns></returns>

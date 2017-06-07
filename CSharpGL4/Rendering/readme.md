@@ -1,0 +1,2 @@
+﻿# `RendererBase`
+General rendering type.

@@ -64,8 +64,6 @@ namespace CSharpGL
             {
                 if (autoBind)
                 {
-                    if (glBindBuffer == null) { glBindBuffer = GL.Instance.GetDelegateFor("glBindBuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint; }
-
                     glBindBuffer((uint)this.Target, this.BufferId);
                 }
                 glClearBufferData((uint)this.Target, internalFormat, format, type, data);
@@ -140,7 +138,6 @@ namespace CSharpGL
             {
                 if (autoBind)
                 {
-                    if (glBindBuffer == null) { glBindBuffer = GL.Instance.GetDelegateFor("glBindBuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint; }
                     glBindBuffer((uint)this.Target, this.BufferId);
                 }
                 glClearBufferSubData((uint)this.Target, internalFormat, offset, size, format, type, data);

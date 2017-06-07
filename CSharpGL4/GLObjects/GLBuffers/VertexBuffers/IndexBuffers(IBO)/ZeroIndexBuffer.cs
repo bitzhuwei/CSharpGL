@@ -46,6 +46,27 @@ namespace CSharpGL
         ///// </summary>
         //public int OriginalVertexCount { get; private set; }
 
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="arg"></param>
+        public override void Render(RenderEventArgs arg)
+        {
+            uint mode = (uint)this.Mode;
+
+            int primCount = this.PrimCount;
+            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+            else if (primCount == 1)
+            {
+                GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
+            }
+            else
+            {
+                glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
+            }
+        }
+
         /// <summary>
         ///
         /// </summary>

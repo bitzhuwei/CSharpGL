@@ -36,5 +36,13 @@ namespace CSharpGL
         /// primCount in instanced rendering.
         /// </summary>
         public int PrimCount { get; private set; }
+
+        /// <summary>
+        /// 执行此VBO的渲染操作。
+        /// <para>Render using this VBO.</para>
+        /// </summary>
+        /// <param name="arg"></param>
+        public abstract void Render(RenderEventArgs arg);
+
     }
 }

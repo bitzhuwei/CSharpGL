@@ -200,15 +200,15 @@ namespace CSharpGL
         /// </summary>
         private readonly Dictionary<string, int> attributeNamesToLocations = new Dictionary<string, int>();
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public void PushUniforms()
-        //{
-        //    foreach (UniformVariable item in this.uniformVariables.Values)
-        //    {
-        //        item.SetUniform(this);
-        //    }
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        public void PushUniforms()
+        {
+            foreach (UniformVariable item in this.uniformVariables.Values)
+            {
+                item.SetUniform(this);
+            }
+        }
     }
 }

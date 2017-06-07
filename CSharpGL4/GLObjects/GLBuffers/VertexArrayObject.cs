@@ -11,6 +11,16 @@ namespace CSharpGL
     //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public sealed class VertexArrayObject : IDisposable
     {
+        private static readonly GLDelegates.void_int_uintN glGenVertexArrays;
+        private static readonly GLDelegates.void_uint glBindVertexArray;
+        private static readonly GLDelegates.void_int_uintN glDeleteVertexArrays;
+        static VertexArrayObject()
+        {
+            glGenVertexArrays = GL.Instance.GetDelegateFor("glGenVertexArrays", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glBindVertexArray = GL.Instance.GetDelegateFor("glBindVertexArray", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glDeleteVertexArrays = GL.Instance.GetDelegateFor("glDeleteVertexArrays", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+
+        }
         private const string strVertexArrayObject = "Vertex Array Object";
 
         /// <summary>
@@ -18,7 +28,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strVertexArrayObject)]
         [Description("vertex attribute buffers('in vec3 position;' in shader etc.)")]
-        public VertexBuffer[] VertexAttributeBuffers { get; private set; }
+        public VertexShaderAttribute[] VertexAttributeBuffers { get; private set; }
 
         /// <summary>
         /// The one and only one index buffer used to indexing vertex attribute buffers.
@@ -43,7 +53,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="indexBuffer">index buffer pointer that used to invoke draw command.</param>
         /// <param name="vertexAttributeBuffers">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBuffer indexBuffer, params VertexBuffer[] vertexAttributeBuffers)
+        public VertexArrayObject(IndexBuffer indexBuffer, params VertexShaderAttribute[] vertexAttributeBuffers)
         {
             if (indexBuffer == null)
             {
@@ -57,6 +67,65 @@ namespace CSharpGL
 
             this.IndexBuffer = indexBuffer;
             this.VertexAttributeBuffers = vertexAttributeBuffers;
+        }
+
+        /// <summary>
+        /// 在OpenGL中创建VAO。
+        /// 创建的过程就是执行一次渲染的过程。
+        /// <para>Creates VAO and bind it to specified VBOs.</para>
+        /// <para>The whole process of binding is also the process of rendering.</para>
+        /// </summary>
+        /// <param name="shaderProgram"></param>
+        public void Initialize(ShaderProgram shaderProgram)
+        {
+            if (this.Id != 0)
+            { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
+
+            glGenVertexArrays(1, ids);
+
+            this.Bind();// this vertex array object will record all stand-by actions.
+            VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+            if (vertexAttributeBuffers != null)
+            {
+                foreach (var item in vertexAttributeBuffers)
+                {
+                    item.Buffer.Standby(shaderProgram, item.VarNameInVertexShader);
+                }
+            }
+            this.Unbind();// this vertex array object has recorded all stand-by actions.
+        }
+
+        private void Bind()
+        {
+            glBindVertexArray(this.Id);
+        }
+
+        private void Unbind()
+        {
+            glBindVertexArray(0);
+        }
+
+        /// <summary>
+        /// 执行一次渲染的过程。
+        /// <para>Execute rendering command.</para>
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="shaderProgram"></param>
+        /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
+        public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBuffer temporaryIndexBuffer = null)
+        {
+            if (temporaryIndexBuffer != null)
+            {
+                this.Bind();
+                temporaryIndexBuffer.Render(arg);
+                this.Unbind();
+            }
+            else
+            {
+                this.Bind();
+                this.IndexBuffer.Render(arg);
+                this.Unbind();
+            }
         }
 
         /// <summary>
@@ -106,12 +175,12 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
-                        VertexBuffer[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+                        VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
                         if (vertexAttributeBuffers != null)
                         {
-                            foreach (VertexBuffer item in vertexAttributeBuffers)
+                            foreach (var item in vertexAttributeBuffers)
                             {
-                                item.Dispose();
+                                item.Buffer.Dispose();
                             }
                         }
                     }
