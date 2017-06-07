@@ -36,16 +36,18 @@ namespace CSharpGL
         /// <summary>
         /// Bind this uniform buffer object and a uniform block to the same binding point.
         /// </summary>
-        /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
-        /// <param name="uniformBlockBindingPoint">binding point maintained by OpenGL context.</param>
         /// <param name="program">shader program.</param>
-        public void Binding(ShaderProgram program, uint uniformBlockIndex, uint uniformBlockBindingPoint)
+        /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
+        /// <param name="bindingPoint">binding point maintained by OpenGL context.</param>
+        public void Binding(ShaderProgram program, uint uniformBlockIndex, uint bindingPoint)
         {
             if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
             if (glUniformBlockBinding == null) { glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>(); }
 
-            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uniformBlockBindingPoint, this.BufferId);
-            glUniformBlockBinding(program.ProgramId, uniformBlockIndex, uniformBlockBindingPoint);
+            // 设置缓冲区与binding point的绑定
+            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, bindingPoint, this.BufferId);
+            // 将Uniform Block 的索引值绑定到binding point
+            glUniformBlockBinding(program.ProgramId, uniformBlockIndex, bindingPoint);
         }
 
         /// <summary>
