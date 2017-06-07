@@ -30,7 +30,7 @@ namespace CSharpGL
             return GetDelegateFor(functionName: typeof(T).Name, delegateType: typeof(T)) as T;
         }
 
-        private static Delegate GetDelegateFor(string functionName, Type delegateType)
+        public static Delegate GetDelegateFor(string functionName, Type delegateType)
         {
             // ftlPhysicsGuy - Better way
             Delegate del = null;
