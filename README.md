@@ -1,5 +1,5 @@
 # Object Oriented OpenGL in C\#  
-:crystal_ball:[Wiki](https://github.com/bitzhuwei/CSharpGL/wiki) | :egg:[nuget](https://www.nuget.org/packages/CSharpGL) | :bread:[CSharpGL.dll](https://raw.githubusercontent.com/bitzhuwei/CSharpGL/master/CSharpGL/CSharpGL.dll)  
+:crystal_ball:[Wiki](https://github.com/bitzhuwei/CSharpGL/wiki) | :egg:[nuget](https://www.nuget.org/packages/CSharpGL)  
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a 3D graphics library based on OpenGL in pure C#. It wraps OpenGL API(buffer, shader, state, texture, matrix etc) and demonstrates how to express high-level functions(scene, text, picking, UI etc) with CSharpGL library.  
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.gif?raw=true)
 ## :pushpin:Color-Coded Picking
