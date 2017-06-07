@@ -76,7 +76,11 @@
     <Compile Include="GLObjects\Shaders\Shaders\GeometryShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\FragmentShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
+    <Compile Include="Unity3D\ScriptManager.cs" />
+    <Compile Include="Unity3D\RenderManager.cs" />
     <None Include="Unity3D\readme.md" />
+    <Compile Include="Unity3D\Components\MeshComponent\IMesh.cs" />
+    <Compile Include="Unity3D\Components\RendererComponents\IRenderer.cs" />
     <Compile Include="Unity3D\Components\ScriptComponent.cs" />
     <Compile Include="Unity3D\Components\MeshComponent.cs" />
     <Compile Include="Unity3D\Components\RendererComponent.cs" />

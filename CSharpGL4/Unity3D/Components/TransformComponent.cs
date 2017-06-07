@@ -26,6 +26,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="gameObject"></param>
-        public TransformComponent(GameObject gameObject) : base(gameObject) { }
+        public TransformComponent(GameObject gameObject)
+            : base(gameObject)
+        {
+            this.Scale = new vec3(1, 1, 1);
+        }
     }
 }
