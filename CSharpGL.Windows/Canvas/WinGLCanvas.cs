@@ -17,7 +17,7 @@ namespace CSharpGL
     public partial class WinGLCanvas :
         UserControl,
         ISupportInitialize,
-        IWindowsCanvas
+        IWinGLCanvas
     {
         private Stopwatch stopWatch = new Stopwatch();
         private readonly string fullname;
@@ -125,7 +125,7 @@ namespace CSharpGL
             GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
             if (this.designMode)
             {
-                GLCanvasHelper.ResizeGL(this.Width, this.Height);
+                WinGLCanvasHelper.ResizeGL(this.Width, this.Height);
             }
         }
 
@@ -195,7 +195,7 @@ namespace CSharpGL
             //  Clear the color and depth buffer.
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            GLCanvasHelper.DrawClock();
+            WinGLCanvasHelper.DrawClock();
 
             FontBitmaps.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
@@ -245,7 +245,7 @@ namespace CSharpGL
 
                     if (this.designMode)
                     {
-                        GLCanvasHelper.ResizeGL(width, height);
+                        WinGLCanvasHelper.ResizeGL(width, height);
                     }
 
                     this.Invalidate();

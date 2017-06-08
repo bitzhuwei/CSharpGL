@@ -6,9 +6,9 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace EMGraphics
+//namespace CSharpGL
 //{
-//    class GLCanvasDesignModeRenderer : PickableRenderer
+//    class WinGLCanvasDesignModeRenderer : PickableRenderer
 //    {
 //        const string vertexShader = @"#version 150 core
 //
@@ -39,7 +39,7 @@
 //        static PropertyNameMap map;
 //        static string positionNameInIBufferable;
 
-//        static GLCanvasDesignModeRenderer()
+//        static WinGLCanvasDesignModeRenderer()
 //        {
 //            model = new Tetrahedron();
 //            shaderCodes = new ShaderCode[2];
@@ -51,13 +51,13 @@
 //            positionNameInIBufferable = Tetrahedron.strPosition;
 //        }
 
-//        private GLCanvasDesignModeRenderer()
+//        private WinGLCanvasDesignModeRenderer()
 //            : base(model, shaderProgramProvider, map, positionNameInIBufferable)
 //        { }
 
 //        private static readonly GLCanvasDesignModeRenderer instance = new GLCanvasDesignModeRenderer();
 
-//        public static GLCanvasDesignModeRenderer GetInstance()
+//        public static WinGLCanvasDesignModeRenderer GetInstance()
 //        {
 //            return instance;
 //        }

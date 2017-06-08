@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal static class GLCanvasHelper
+    internal static class WinGLCanvasHelper
     {
         ////  Use the 'look at' helper function to position and aim the camera.
         //OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);

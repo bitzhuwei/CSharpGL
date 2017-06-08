@@ -10,7 +10,7 @@ namespace CSharpGL
     /// OpenGL Canvas on Windows platform.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IWindowsCanvas : IGLCanvas
+    public interface IWinGLCanvas : IGLCanvas
     {
         /// <summary>
         ///
