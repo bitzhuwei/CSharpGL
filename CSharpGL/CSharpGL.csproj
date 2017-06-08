@@ -297,7 +297,6 @@
     <Compile Include="Scene\SceneObjects\SceneObject.IModelSpace.cs" />
     <Compile Include="Scene\SceneObjects\SceneObject.Render.cs" />
     <Compile Include="Scene\Time.cs" />
-    <Compile Include="Scene\SceneRootViewPort.cs" />
     <Compile Include="Scene\ViewPort.cs" />
     <Compile Include="Scene\ViewPort.ILayout.cs" />
     <Compile Include="Layout\ILayoutEvent.cs" />

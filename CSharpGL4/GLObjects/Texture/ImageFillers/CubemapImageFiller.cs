@@ -42,10 +42,10 @@ namespace CSharpGL
         /// </summary>
         public override void Fill()
         {
-            foreach (Tuple<uint, Bitmap> item in this.images)
+            foreach (var item in this.images)
             {
-                uint target = item.Item1;
-                Bitmap image = item.Item2;
+                uint target = item.CubemapPosition;
+                Bitmap image = item.Image;
                 // generate texture.
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
@@ -61,7 +61,7 @@ namespace CSharpGL
     /// <summary>
     /// maintains 6 images for cube map.
     /// </summary>
-    public class CubemapImages : IEnumerable<Tuple<uint, Bitmap>>, IDisposable
+    public class CubemapImages : IEnumerable<CubemapImageItem>, IDisposable
     {
         private Bitmap PositiveX;
         private Bitmap NegativeX;
@@ -94,14 +94,14 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<Tuple<uint, Bitmap>> GetEnumerator()
+        public IEnumerator<CubemapImageItem> GetEnumerator()
         {
-            yield return new Tuple<uint, Bitmap>(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X, this.PositiveX);
-            yield return new Tuple<uint, Bitmap>(GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X, this.NegativeX);
-            yield return new Tuple<uint, Bitmap>(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y, this.PositiveY);
-            yield return new Tuple<uint, Bitmap>(GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, this.NegativeY);
-            yield return new Tuple<uint, Bitmap>(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z, this.PositiveZ);
-            yield return new Tuple<uint, Bitmap>(GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, this.NegativeZ);
+            yield return new CubemapImageItem(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X, this.PositiveX);
+            yield return new CubemapImageItem(GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X, this.NegativeX);
+            yield return new CubemapImageItem(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y, this.PositiveY);
+            yield return new CubemapImageItem(GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, this.NegativeY);
+            yield return new CubemapImageItem(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z, this.PositiveZ);
+            yield return new CubemapImageItem(GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, this.NegativeZ);
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -147,9 +147,9 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                foreach (Tuple<uint, Bitmap> item in this)
+                foreach (var item in this)
                 {
-                    item.Item2.Dispose();
+                    item.Image.Dispose();
                 }
             } // end if
 
@@ -157,5 +157,18 @@ namespace CSharpGL
         } // end sub
 
         #endregion IDisposable
+    }
+
+    public class CubemapImageItem
+    {
+        public uint CubemapPosition { get; private set; }
+        public Bitmap Image { get; private set; }
+
+        public CubemapImageItem(uint cubemapPosition, Bitmap image)
+        {
+            // TODO: Complete member initialization
+            this.CubemapPosition = cubemapPosition;
+            this.Image = image;
+        }
     }
 }
