@@ -287,10 +287,10 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_ATTACHED_SHADERS = 0x8B85;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ACTIVE_UNIFORMS = 0x8B86;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_UNIFORMS = 0x8B86;
         ///// <summary>
         /////
         ///// </summary>

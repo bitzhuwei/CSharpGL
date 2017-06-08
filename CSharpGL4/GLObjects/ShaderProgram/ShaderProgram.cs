@@ -50,6 +50,19 @@ namespace CSharpGL
         private static GLDelegates.void_int_int_bool_floatN glUniformMatrix4fv;
         private static GLDelegates.int_uint_string glGetUniformLocation;
 
+        static ShaderProgram()
+        {
+            glCreateProgram = GL.Instance.GetDelegateFor("glCreateProgram", GLDelegates.typeof_uint_void) as GLDelegates.uint_void;
+            glAttachShader = GL.Instance.GetDelegateFor("glAttachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glLinkProgram = GL.Instance.GetDelegateFor("glLinkProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glDetachShader = GL.Instance.GetDelegateFor("glDetachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glDeleteProgram = GL.Instance.GetDelegateFor("glDeleteProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glGetAttribLocation = GL.Instance.GetDelegateFor("glGetAttribLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
+            glUseProgram = GL.Instance.GetDelegateFor("glUseProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glGetProgramiv = GL.Instance.GetDelegateFor("glGetProgramiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
+            glGetUniformLocation = GL.Instance.GetDelegateFor("glGetUniformLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
+        }
+
         /// <summary>
         /// Initialize this shader program object.
         /// </summary>
@@ -57,19 +70,6 @@ namespace CSharpGL
         public void Initialize(params Shader[] shaders)
         {
             //if (shaders.Length < 1) { throw new ArgumentException(); }
-
-            if (glCreateProgram == null)
-            {
-                glCreateProgram = GL.Instance.GetDelegateFor("glCreateProgram", GLDelegates.typeof_uint_void) as GLDelegates.uint_void;
-                glAttachShader = GL.Instance.GetDelegateFor("glAttachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-                glLinkProgram = GL.Instance.GetDelegateFor("glLinkProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-                glDetachShader = GL.Instance.GetDelegateFor("glDetachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-                glDeleteProgram = GL.Instance.GetDelegateFor("glDeleteProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-                glGetAttribLocation = GL.Instance.GetDelegateFor("glGetAttribLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
-                glUseProgram = GL.Instance.GetDelegateFor("glUseProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-                glGetProgramiv = GL.Instance.GetDelegateFor("glGetProgramiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
-                glGetUniformLocation = GL.Instance.GetDelegateFor("glGetUniformLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
-            }
 
             uint programId = glCreateProgram();
 
@@ -94,6 +94,9 @@ namespace CSharpGL
             }
 
             this.ProgramId = programId;
+
+            int count = GetActivetUniformCount(programId);
+
         }
 
         /// <summary>
@@ -144,6 +147,19 @@ namespace CSharpGL
             return parameters[0] == GL.GL_TRUE;
         }
 
+        /// <summary>
+        /// How many uniform variables are there?
+        /// </summary>
+        /// <param name="programId"></param>
+        /// <returns></returns>
+        private int GetActivetUniformCount(uint programId)
+        {
+            //  Get the info log length.
+            int[] infoLength = new int[] { 0 };
+            glGetProgramiv(programId, GL.GL_ACTIVE_UNIFORMS, infoLength);
+            return infoLength[0];
+        }
+
         private string GetInfoLog(uint programId)
         {
             //  Get the info log length.
@@ -154,8 +170,8 @@ namespace CSharpGL
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
 
-            var function = GL.Instance.GetDelegateFor("glGetProgramInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder;
-            function(programId, bufSize, IntPtr.Zero, il);
+            var glGetProgramInfoLog = GL.Instance.GetDelegateFor("glGetProgramInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder;
+            glGetProgramInfoLog(programId, bufSize, IntPtr.Zero, il);
 
             string log = il.ToString();
             return log;

@@ -49,6 +49,37 @@ namespace CSharpGL
         private static OpenGL.glUniformMatrix3fv glUniformMatrix3fv;
         private static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
         private static OpenGL.glGetUniformLocation glGetUniformLocation;
+        //    void glGetActiveUniform(GLuint program,
+        //GLuint index,
+        //GLsizei bufSize,
+        //GLsizei* length,
+        //GLint* size,
+        //GLenum* type,
+        //GLchar* name);
+        delegate void glGetActiveUniform(uint program, uint index, int bufSize, int[] length, int[] size, int[] type, StringBuilder name);
+        private static glGetActiveUniform getActiveUniform;
+
+        delegate void glGetActiveUniformsiv(uint program, int uniformCount, uint[] uniformIndices, uint pname, int[] parameters);
+        private static glGetActiveUniformsiv getActiveUniformsiv;
+
+        delegate void glGetActiveUniformName(uint program, uint uniformIndex, int bufSize, int[] length, StringBuilder uniformName);
+        private static glGetActiveUniformName getActiveUniformName;
+
+        static ShaderProgram()
+        {
+            glCreateProgram = OpenGL.GetDelegateFor<OpenGL.glCreateProgram>();
+            glAttachShader = OpenGL.GetDelegateFor<OpenGL.glAttachShader>();
+            glLinkProgram = OpenGL.GetDelegateFor<OpenGL.glLinkProgram>();
+            glDetachShader = OpenGL.GetDelegateFor<OpenGL.glDetachShader>();
+            glDeleteProgram = OpenGL.GetDelegateFor<OpenGL.glDeleteProgram>();
+            glGetAttribLocation = OpenGL.GetDelegateFor<OpenGL.glGetAttribLocation>();
+            glUseProgram = OpenGL.GetDelegateFor<OpenGL.glUseProgram>();
+            glGetProgramiv = OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>();
+            glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
+            getActiveUniform = OpenGL.GetDelegateFor<glGetActiveUniform>();
+            getActiveUniformsiv = OpenGL.GetDelegateFor<glGetActiveUniformsiv>();
+            getActiveUniformName = OpenGL.GetDelegateFor<glGetActiveUniformName>();
+        }
 
         /// <summary>
         /// Initialize this shader program object.
@@ -57,19 +88,6 @@ namespace CSharpGL
         public void Initialize(params Shader[] shaders)
         {
             //if (shaders.Length < 1) { throw new ArgumentException(); }
-
-            if (glCreateProgram == null)
-            {
-                glCreateProgram = OpenGL.GetDelegateFor<OpenGL.glCreateProgram>();
-                glAttachShader = OpenGL.GetDelegateFor<OpenGL.glAttachShader>();
-                glLinkProgram = OpenGL.GetDelegateFor<OpenGL.glLinkProgram>();
-                glDetachShader = OpenGL.GetDelegateFor<OpenGL.glDetachShader>();
-                glDeleteProgram = OpenGL.GetDelegateFor<OpenGL.glDeleteProgram>();
-                glGetAttribLocation = OpenGL.GetDelegateFor<OpenGL.glGetAttribLocation>();
-                glUseProgram = OpenGL.GetDelegateFor<OpenGL.glUseProgram>();
-                glGetProgramiv = OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>();
-                glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
-            }
 
             uint programId = glCreateProgram();
 
@@ -94,6 +112,28 @@ namespace CSharpGL
             }
 
             this.ProgramId = programId;
+
+            // TODO; remove this. This is a test.
+            int count = this.GetActivetUniformCount(programId);
+            uint[] indexes = new uint[count];
+            uint pname = OpenGL.GL_UNIFORM_NAME_LENGTH;
+            int[] parameters = new int[count];
+            getActiveUniformsiv(programId, count, indexes, pname, parameters);
+
+            //getActiveUniformName(program, 0, 
+        }
+
+        /// <summary>
+        /// How many uniform variables are there?
+        /// </summary>
+        /// <param name="programId"></param>
+        /// <returns></returns>
+        private int GetActivetUniformCount(uint programId)
+        {
+            //  Get the info log length.
+            int[] infoLength = new int[] { 0 };
+            glGetProgramiv(programId, OpenGL.GL_ACTIVE_UNIFORMS, infoLength);
+            return infoLength[0];
         }
 
         /// <summary>
@@ -153,7 +193,7 @@ namespace CSharpGL
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(programId, bufSize, IntPtr.Zero, il);
+            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(programId, bufSize, 0, il);
 
             string log = il.ToString();
             return log;

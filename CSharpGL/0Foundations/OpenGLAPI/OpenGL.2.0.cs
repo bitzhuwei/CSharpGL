@@ -162,7 +162,7 @@ namespace CSharpGL
         /// <param name="bufSize"></param>
         /// <param name="length"></param>
         /// <param name="infoLog"></param>
-        public delegate void glGetProgramInfoLog(uint program, int bufSize, IntPtr length, StringBuilder infoLog);
+        public delegate void glGetProgramInfoLog(uint program, int bufSize, int length, StringBuilder infoLog);
 
         /// <summary>
         ///
@@ -975,10 +975,10 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_ATTACHED_SHADERS = 0x8B85;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ACTIVE_UNIFORMS = 0x8B86;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_UNIFORMS = 0x8B86;
         ///// <summary>
         /////
         ///// </summary>
