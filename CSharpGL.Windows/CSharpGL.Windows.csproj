@@ -65,8 +65,6 @@
     <Compile Include="Canvas\RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="Canvas\RenderContexts\FBORenderContext.cs" />
     <Compile Include="Canvas\RenderContexts\HiddenWindowRenderContext.cs" />
-    <Compile Include="Canvas\RenderContexts\RenderContext.cs" />
-    <Compile Include="Canvas\RenderContexts\RenderContext.IDisposable.cs" />
     <Compile Include="Canvas\RenderTrigger.cs" />
     <Compile Include="GLAPI\FontBitmapEntry.cs" />
     <Compile Include="GLAPI\FontBitmaps.cs" />

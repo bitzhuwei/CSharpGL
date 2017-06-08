@@ -23,11 +23,6 @@ namespace CSharpGL
         private readonly string fullname;
 
         /// <summary>
-        ///
-        /// </summary>
-        protected FBORenderContext renderContext;
-
-        /// <summary>
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
@@ -118,7 +113,7 @@ namespace CSharpGL
             //  Create the render context.
             renderContext.Create(Width, Height, 32, null);
 
-            this.renderContext = renderContext;
+            this.RenderContext = renderContext;
 
             renderContext.MakeCurrent();
 
@@ -140,7 +135,7 @@ namespace CSharpGL
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            FBORenderContext renderContext = this.renderContext;
+            GLRenderContext renderContext = this.RenderContext;
             if (renderContext == null)
             {
                 base.OnPaint(e);
@@ -239,7 +234,7 @@ namespace CSharpGL
             int width = this.Width, height = this.Height;
             if (width > 0 && height > 0)
             {
-                FBORenderContext renderContext = this.renderContext;
+                GLRenderContext renderContext = this.RenderContext;
                 if (renderContext != null)
                 {
                     renderContext.MakeCurrent();
@@ -271,10 +266,10 @@ namespace CSharpGL
 
         private void DestroyRenderContext()
         {
-            FBORenderContext renderContext = this.renderContext;
+            GLRenderContext renderContext = this.RenderContext;
             if (renderContext != null)
             {
-                this.renderContext = null;
+                this.RenderContext = null;
                 renderContext.Dispose();
             }
         }
@@ -395,10 +390,7 @@ namespace CSharpGL
             this.Invalidate();
         }
 
-        public IGLRenderContext RenderContext
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public GLRenderContext RenderContext { get; private set; }
 
         #endregion
     }

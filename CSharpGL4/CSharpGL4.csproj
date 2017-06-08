@@ -79,6 +79,8 @@
     <Compile Include="GLObjects\Shaders\Shaders\GeometryShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\FragmentShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
+    <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
+    <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
     <Compile Include="Rendering\IModelSpace.cs" />
     <Compile Include="Rendering\IRenderable.cs" />
     <Compile Include="Rendering\RendererBase.cs" />
@@ -381,9 +383,8 @@
     <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
     <Compile Include="GLObjects\UniformVariables\UniformVariable.cs" />
-    <Compile Include="IGLCanvas.cs" />
+    <Compile Include="GLCanvas\IGLCanvas.cs" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
-    <Compile Include="IGLRenderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="GLObjects\Framebuffer\readme.md" />
     <None Include="GLObjects\Query\readme.md" />

@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// creates render device and render context.
     /// </summary>
-    public class HiddenWindowRenderContext : RenderContext
+    public class HiddenWindowRenderContext : GLRenderContext
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
@@ -154,8 +154,12 @@ namespace CSharpGL
             //	Destroy the window.
             Win32.DestroyWindow(windowHandle);
 
-            //	Call the base, which will delete the render context handle.
-            base.DisposeUnmanagedResources();
+            // If we have a render context, destroy it.
+            if (this.RenderContextHandle != IntPtr.Zero)
+            {
+                Win32.wglDeleteContext(this.RenderContextHandle);
+                this.RenderContextHandle = IntPtr.Zero;
+            }
         }
 
         ///// <summary>

@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// All information for creating render context and device context.
     /// </summary>
-    public abstract partial class RenderContext : IDisposable
+    public abstract partial class GLRenderContext : IDisposable
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.

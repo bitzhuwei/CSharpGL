@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public abstract partial class RenderContext
+    public abstract partial class GLRenderContext
     {
         /// <summary>
         ///
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        ~RenderContext()
+        ~GLRenderContext()
         {
             this.Dispose(false);
         }
@@ -45,14 +45,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected virtual void DisposeUnmanagedResources()
-        {
-            // If we have a render context, destroy it.
-            if (this.RenderContextHandle != IntPtr.Zero)
-            {
-                Win32.wglDeleteContext(this.RenderContextHandle);
-                this.RenderContextHandle = IntPtr.Zero;
-            }
-        }
+        protected abstract void DisposeUnmanagedResources();
     }
 }

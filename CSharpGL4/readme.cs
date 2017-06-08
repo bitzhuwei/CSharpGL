@@ -10,7 +10,7 @@ namespace CSharpGL
         public void Design00_HowToUseCSharpGL()
         {
             IGLCanvas canvas = GetCanvas();
-            IGLRenderContext renderContext = canvas.RenderContext;
+            GLRenderContext renderContext = canvas.RenderContext;
             renderContext.MakeCurrent();
 
             RenderScene();

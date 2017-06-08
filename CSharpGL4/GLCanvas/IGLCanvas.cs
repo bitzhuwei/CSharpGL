@@ -28,6 +28,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        IGLRenderContext RenderContext { get; }
+        GLRenderContext RenderContext { get; }
     }
 }
