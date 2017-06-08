@@ -21,12 +21,7 @@ namespace CSharpGL
         /// <param name="value"></param>
         public UniformSampler(string varName, samplerValue value) : base(varName, value) { }
 
-        private static GLDelegates.void_uint glActiveTexture;
-
-        static UniformSampler()
-        {
-            glActiveTexture = OpenGL.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-        }
+        private static OpenGL.glActiveTexture activeTexture;
 
         /// <summary>
         ///
@@ -34,7 +29,9 @@ namespace CSharpGL
         /// <param name="program"></param>
         protected override void DoSetUniform(ShaderProgram program)
         {
-            glActiveTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
+            if (activeTexture == null)
+            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+            activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
             OpenGL.BindTexture(value.target, value.TextureId);
             this.Location = program.glUniform(VarName, (int)value.activeTextureIndex);

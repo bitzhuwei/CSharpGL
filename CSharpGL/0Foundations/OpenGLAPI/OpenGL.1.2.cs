@@ -20,61 +20,61 @@ namespace CSharpGL
         ///// </summary>
         ///// <param name="mode"></param>
         //public delegate void glBlendEquation(uint mode);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="mode"></param>
-        ///// <param name="start"></param>
-        ///// <param name="end"></param>
-        ///// <param name="count"></param>
-        ///// <param name="type"></param>
-        ///// <param name="indices"></param>
-        //public delegate void glDrawRangeElements(uint mode, uint start, uint end, int count, uint type, IntPtr indices);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        public delegate void glDrawRangeElements(uint mode, uint start, uint end, int count, uint type, IntPtr indices);
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="level"></param>
-        ///// <param name="internalformat"></param>
-        ///// <param name="width"></param>
-        ///// <param name="height"></param>
-        ///// <param name="depth"></param>
-        ///// <param name="border"></param>
-        ///// <param name="format"></param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels"></param>
-        //public delegate void glTexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="border"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="pixels"></param>
+        public delegate void glTexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels);
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="level"></param>
-        ///// <param name="xoffset"></param>
-        ///// <param name="yoffset"></param>
-        ///// <param name="width"></param>
-        ///// <param name="height"></param>
-        ///// <param name="format"></param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels"></param>
-        //public delegate void glTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, IntPtr pixels);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="xoffset"></param>
+        /// <param name="yoffset"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="pixels"></param>
+        public delegate void glTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, IntPtr pixels);
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="target"></param>
-        ///// <param name="level"></param>
-        ///// <param name="xoffset"></param>
-        ///// <param name="yoffset"></param>
-        ///// <param name="zoffset"></param>
-        ///// <param name="width"></param>
-        ///// <param name="height"></param>
-        ///// <param name="depth"></param>
-        ///// <param name="format"></param>
-        ///// <param name="type"></param>
-        ///// <param name="pixels"></param>
-        //public delegate void glTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, uint type, IntPtr pixels);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="xoffset"></param>
+        /// <param name="yoffset"></param>
+        /// <param name="zoffset"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="pixels"></param>
+        public delegate void glTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, uint type, IntPtr pixels);
 
         ///// <summary>
         /////

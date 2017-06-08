@@ -195,16 +195,16 @@ namespace CSharpGL
             return this.Program.glUniform(varNameInShader, value) != 0;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="varNameInShader"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public bool SetUniform(string varNameInShader, samplerValue[] value)
-        {
-            return this.Program.glUniform(varNameInShader, value) != 0;
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="varNameInShader"></param>
+        ///// <param name="value"></param>
+        ///// <returns></returns>
+        //public bool SetUniform(string varNameInShader, samplerValue[] value)
+        //{
+        //    return this.Program.glUniform(varNameInShader, value) != 0;
+        //}
 
     }
 }

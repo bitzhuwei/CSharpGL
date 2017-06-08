@@ -12,22 +12,20 @@
         /// <param name="length"></param>
         public UniformSamplerArray(string varName, int length) : base(varName, length) { }
 
-        private static GLDelegates.void_uint glActiveTexture;
+        private static OpenGL.glActiveTexture activeTexture;
 
-        static UniformSamplerArray()
-        {
-            glActiveTexture = OpenGL.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-        }
         /// <summary>
         ///
         /// </summary>
         /// <param name="program"></param>
         protected override void DoSetUniform(ShaderProgram program)
         {
+            if (activeTexture == null)
+            { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
             for (int i = 0; i < this.Value.Length; i++)
             {
                 samplerValue value = this.Value[i];
-                glActiveTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
+                activeTexture(value.activeTextureIndex + OpenGL.GL_TEXTURE0);
                 //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.value[i].TextureId);
                 OpenGL.BindTexture(value.target, value.TextureId);
                 // TODO: assign the first location or last?

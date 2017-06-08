@@ -5,11 +5,11 @@
         #region OpenGL 1.3
 
         //  Delegates
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="texture"></param>
-        //public delegate void glActiveTexture(uint texture);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="texture"></param>
+        public delegate void glActiveTexture(uint texture);
 
         ///// <summary>
         /////

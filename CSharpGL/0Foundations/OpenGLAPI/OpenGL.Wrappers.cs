@@ -877,8 +877,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawArrays(DrawMode mode, int[] first, int[] count, int primcount)
         {
-            var glMultiDrawArrays = OpenGL.GetDelegateFor("glMultiDrawArrays", GLDelegates.typeof_void_uint_intN_intN_int) as GLDelegates.void_uint_intN_intN_int;
-            glMultiDrawArrays((uint)mode, first, count, primcount);
+            GetDelegateFor<glMultiDrawArrays>()((uint)mode, first, count, primcount);
         }
 
         /// <summary>
@@ -905,8 +904,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawElements(DrawMode mode, int[] count, uint type, IntPtr indices, int primcount)
         {
-            var glMultiDrawElements = OpenGL.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
-            glMultiDrawElements((uint)mode, count, type, indices, primcount);
+            GetDelegateFor<glMultiDrawElements>()((uint)mode, count, type, indices, primcount);
         }
 
         ///// <summary>
@@ -933,8 +931,7 @@ namespace CSharpGL
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawRangeElements(DrawMode mode, uint start, uint end, int count, uint type, IntPtr indices)
         {
-            var glDrawRangeElements = GetDelegateFor("glDrawRangeElements", GLDelegates.typeof_void_uint_uint_uint_int_uint_IntPtr) as GLDelegates.void_uint_uint_uint_int_uint_IntPtr;
-            glDrawRangeElements((uint)mode, start, end, count, type, indices);
+            GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
         }
 
         #endregion Draw vertex array object
@@ -1136,9 +1133,7 @@ namespace CSharpGL
         /// <param name="pixels"></param>
         public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
         {
-            //public delegate void glTexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels);
-            var glTexImage3D = GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr;
-            glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
+            OpenGL.GetDelegateFor<OpenGL.glTexImage3D>()(target, level, internalformat, width, height, depth, border, format, type, pixels);
         }
 
         /// <summary>

@@ -15,24 +15,24 @@ namespace CSharpGL
         ///// <param name="sfactorAlpha"></param>
         ///// <param name="dfactorAlpha"></param>
         //public delegate void glBlendFuncSeparate(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="mode"></param>
-        ///// <param name="first"></param>
-        ///// <param name="count"></param>
-        ///// <param name="primcount"></param>
-        //public delegate void glMultiDrawArrays(uint mode, int[] first, int[] count, int primcount);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
+        public delegate void glMultiDrawArrays(uint mode, int[] first, int[] count, int primcount);
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="mode"></param>
-        ///// <param name="count"></param>
-        ///// <param name="type"></param>
-        ///// <param name="indices"></param>
-        ///// <param name="primcount"></param>
-        //public delegate void glMultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int primcount);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
+        public delegate void glMultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int primcount);
 
         ///// <summary>
         /////
