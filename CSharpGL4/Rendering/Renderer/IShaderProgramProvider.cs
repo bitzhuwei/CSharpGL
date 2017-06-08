@@ -29,7 +29,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="shaders"></param>
-        public ShaderArray(Shader[] shaders)
+        public ShaderArray(params Shader[] shaders)
         {
             this.shaders = shaders;
         }
