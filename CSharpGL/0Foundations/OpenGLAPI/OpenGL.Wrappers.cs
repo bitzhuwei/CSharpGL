@@ -1016,33 +1016,33 @@ namespace CSharpGL
             OpenGL.ShadeModel((uint)mode);
         }
 
-        private static OpenGL.glBufferData bufferData;
+        //private static OpenGL.glBufferData bufferData;
 
-        /// <summary>
-        /// 设置当前VBO的数据。
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="data"></param>
-        /// <param name="usage"></param>
-        public static void BufferData(BufferTarget target, UnmanagedArrayBase data, BufferUsage usage)
-        {
-            if (bufferData == null)
-            { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
-            bufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
-        }
+        ///// <summary>
+        ///// 设置当前VBO的数据。
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="data"></param>
+        ///// <param name="usage"></param>
+        //public static void BufferData(BufferTarget target, UnmanagedArrayBase data, BufferUsage usage)
+        //{
+        //    if (bufferData == null)
+        //    { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
+        //    bufferData((uint)target, data.ByteLength, data.Header, (uint)usage);
+        //}
 
-        /// <summary>
-        /// 设置当前VBO的数据。
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="data"></param>
-        /// <param name="usage"></param>
-        public static void BufferData(uint target, UnmanagedArrayBase data, BufferUsage usage)
-        {
-            if (bufferData == null)
-            { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
-            bufferData(target, data.ByteLength, data.Header, (uint)usage);
-        }
+        ///// <summary>
+        ///// 设置当前VBO的数据。
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="data"></param>
+        ///// <param name="usage"></param>
+        //public static void BufferData(uint target, UnmanagedArrayBase data, BufferUsage usage)
+        //{
+        //    if (bufferData == null)
+        //    { bufferData = OpenGL.GetDelegateFor<glBufferData>(); }
+        //    bufferData(target, data.ByteLength, data.Header, (uint)usage);
+        //}
 
         //private static OpenGL.glBindBuffer bindBuffer;
         ///// <summary>

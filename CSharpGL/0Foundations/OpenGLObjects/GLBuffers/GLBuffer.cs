@@ -38,57 +38,71 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glGenBuffers glGenBuffers;
+        internal static readonly GLDelegates.void_int_uintN glGenBuffers;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glBindBuffer glBindBuffer;
+        internal static readonly GLDelegates.void_uint_uint glBindBuffer;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glBufferData glBufferData;
+        internal static readonly GLDelegates.void_uint_int_IntPtr_uint glBufferData;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glDeleteBuffers glDeleteBuffers;
+        internal static readonly GLDelegates.void_int_uintN glDeleteBuffers;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glMapBuffer glMapBuffer;
+        internal static readonly GLDelegates.IntPtr_uint_uint glMapBuffer;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glUnmapBuffer glUnmapBuffer;
+        internal static readonly GLDelegates.bool_uint glUnmapBuffer;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glMapBufferRange glMapBufferRange;
+        internal static readonly GLDelegates.IntPtr_uint_int_int_uint glMapBufferRange;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glClearBufferData glClearBufferData;
+        internal static readonly OpenGL.glClearBufferData glClearBufferData;
 
         /// <summary>
         ///
         /// </summary>
-        internal static OpenGL.glClearBufferSubData glClearBufferSubData;
+        internal static readonly OpenGL.glClearBufferSubData glClearBufferSubData;
 
         ///// <summary>
         /////
         ///// </summary>
-        //internal static OpenGL.glCopyBufferSubData glCopyBufferSubData;
+        //internal static readonly OpenGL.glCopyBufferSubData glCopyBufferSubData;
 
         ///// <summary>
         /////
         ///// </summary>
-        //internal static OpenGL.glGetBufferSubData glGetBufferSubData;
+        //internal static readonly OpenGL.glGetBufferSubData glGetBufferSubData;
+
+        static GLBuffer()
+        {
+            glGenBuffers = OpenGL.GetDelegateFor("glGenBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glBindBuffer = OpenGL.GetDelegateFor("glBindBuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glBufferData = OpenGL.GetDelegateFor("glBufferData", GLDelegates.typeof_void_uint_int_IntPtr_uint) as GLDelegates.void_uint_int_IntPtr_uint;
+            glDeleteBuffers = OpenGL.GetDelegateFor("glDeleteBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glMapBuffer = OpenGL.GetDelegateFor("glMapBuffer", GLDelegates.typeof_IntPtr_uint_uint) as GLDelegates.IntPtr_uint_uint;
+            glUnmapBuffer = OpenGL.GetDelegateFor("glUnmapBuffer", GLDelegates.typeof_bool_uint) as GLDelegates.bool_uint;
+            glMapBufferRange = OpenGL.GetDelegateFor("glMapBufferRange", GLDelegates.typeof_IntPtr_uint_int_int_uint) as GLDelegates.IntPtr_uint_int_int_uint;
+            glClearBufferData = OpenGL.GetDelegateFor<OpenGL.glClearBufferData>();
+            glClearBufferSubData = OpenGL.GetDelegateFor<OpenGL.glClearBufferSubData>();
+
+        }
 
         /// <summary>
         /// 位于服务器端（GPU内存）的定长数组。
@@ -113,7 +127,6 @@ namespace CSharpGL
         /// </summary>
         public virtual void Bind()
         {
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer((uint)this.Target, this.BufferId);
         }
 
@@ -122,7 +135,6 @@ namespace CSharpGL
         /// </summary>
         public virtual void Unbind()
         {
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer((uint)this.Target, 0);
         }
 
@@ -138,11 +150,9 @@ namespace CSharpGL
         {
             if (bind)
             {
-                if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                 glBindBuffer((uint)this.Target, this.BufferId);
             }
 
-            if (glMapBufferRange == null) { glMapBufferRange = OpenGL.GetDelegateFor<OpenGL.glMapBufferRange>(); }
             IntPtr pointer = glMapBufferRange((uint)this.Target, offset, length, (uint)access);
             return pointer;
         }
@@ -157,11 +167,9 @@ namespace CSharpGL
         {
             if (bind)
             {
-                if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                 glBindBuffer((uint)this.Target, this.BufferId);
             }
 
-            if (glMapBuffer == null) { glMapBuffer = OpenGL.GetDelegateFor<OpenGL.glMapBuffer>(); }
             IntPtr pointer = glMapBuffer((uint)this.Target, (uint)access);
             return pointer;
         }
@@ -172,11 +180,9 @@ namespace CSharpGL
         /// <param name="unbind"></param>
         public virtual bool UnmapBuffer(bool unbind = true)
         {
-            if (glUnmapBuffer == null) { glUnmapBuffer = OpenGL.GetDelegateFor<OpenGL.glUnmapBuffer>(); }
             bool result = glUnmapBuffer((uint)this.Target);
             if (unbind)
             {
-                if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                 glBindBuffer((uint)this.Target, 0);
             }
 

@@ -53,15 +53,12 @@ namespace CSharpGL
         {
             if (data == IntPtr.Zero) { throw new ArgumentNullException("data"); }
 
-            if (glClearBufferData == null) { glClearBufferData = OpenGL.GetDelegateFor<OpenGL.glClearBufferData>(); }
-
             bool result = (glClearBufferData != null);
 
             if (result)
             {
                 if (autoBind)
                 {
-                    if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                     glBindBuffer((uint)this.Target, this.BufferId);
                 }
                 glClearBufferData((uint)this.Target, internalFormat, format, type, data);
@@ -128,7 +125,6 @@ namespace CSharpGL
         {
             if (data == IntPtr.Zero) { throw new ArgumentNullException("data"); }
 
-            if (glClearBufferSubData == null) { glClearBufferSubData = OpenGL.GetDelegateFor<OpenGL.glClearBufferSubData>(); }
 
             bool result = (glClearBufferSubData != null);
 
@@ -136,7 +132,6 @@ namespace CSharpGL
             {
                 if (autoBind)
                 {
-                    if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
                     glBindBuffer((uint)this.Target, this.BufferId);
                 }
                 glClearBufferSubData((uint)this.Target, internalFormat, offset, size, format, type, data);

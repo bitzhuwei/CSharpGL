@@ -20,10 +20,6 @@ namespace CSharpGL
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
 
-            if (glGenBuffers == null) { glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>(); }
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
-            if (glBufferData == null) { glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>(); }
-
             int byteLength = Marshal.SizeOf(elementType) * length;
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
@@ -64,10 +60,6 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer Create(IndexBufferElementType type, int length, DrawMode mode, BufferUsage usage)
         {
-            if (glGenBuffers == null) { glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>(); }
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
-            if (glBufferData == null) { glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>(); }
-
             int byteLength = GetSize(type) * length;
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
@@ -117,10 +109,6 @@ namespace CSharpGL
         public static GLBuffer Create(IndependentBufferTarget target, Type elementType, int length, BufferUsage usage)
         {
             if (!elementType.IsValueType) { throw new ArgumentException(string.Format("{0} must be a value type!", elementType)); }
-
-            if (glGenBuffers == null) { glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>(); }
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
-            if (glBufferData == null) { glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>(); }
 
             uint bufferTarget = (uint)target;
             int byteLength = Marshal.SizeOf(elementType) * length;

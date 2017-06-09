@@ -137,7 +137,6 @@ namespace CSharpGL
             uint divisor = this.InstancedDivisor;
             // 选中此VBO
             // select this VBO.
-            if (glBindBuffer == null) { glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>(); }
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             for (uint i = 0; i < detail.locationCount; i++)
             {
