@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="treeNode"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order)
+        public static IEnumerable<ITreeNode<T>> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order) where T : class , ITreeNode<T>
         {
             switch (order)
             {
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> PostorderTraverse<T>(ITreeNode<T> treeNode)
+        public static IEnumerable<ITreeNode<T>> PostorderTraverse<T>(ITreeNode<T> treeNode) where T : class , ITreeNode<T>
         {
             if (treeNode != null)
             {
@@ -67,7 +67,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> PreorderTraverse<T>(ITreeNode<T> treeNode)
+        public static IEnumerable<ITreeNode<T>> PreorderTraverse<T>(ITreeNode<T> treeNode) where T : class , ITreeNode<T>
         {
             if (treeNode != null)
             {
@@ -92,7 +92,7 @@ namespace CSharpGL
         ///// <typeparam name="T"></typeparam>
         ///// <param name="treeNode"></param>
         ///// <returns></returns>
-        //public static IEnumerable<T> DFSEnumerateRecursively<T>(this ITreeNode treeNode)
+        //public static IEnumerable<T> DFSEnumerateRecursively<T>(this ITreeNode treeNode)where T : class , ITreeNode<T>
         //    where T : ITreeNode
         //{
         //    yield return treeNode.Value;
@@ -114,7 +114,7 @@ namespace CSharpGL
         ///// <typeparam name="T"></typeparam>
         ///// <param name="treeNode"></param>
         ///// <returns></returns>
-        //public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode treeNode)
+        //public static IEnumerable<T> BFSEnumerateNonRecursively<T>(this ITreeNode treeNode)where T : class , ITreeNode<T>
         //    where T : ITreeNode
         //{
         //    var stack = new Stack<ITreeNode>();

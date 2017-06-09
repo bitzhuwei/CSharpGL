@@ -120,44 +120,6 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void viewPort_BeforeLayout(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            // cancel layout ILayout's action for this view port.
-            e.Cancel = true;
-        }
-
-        private void leftViewPort_AfterLayout(object sender, EventArgs e)
-        {
-            var viewPort = sender as ViewPort;
-            Size parentSize = (viewPort.Parent as ViewPort).Size;
-            viewPort.Location = new Point(0 + 1, 0 + 1);
-            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
-        }
-
-        private void frontViewPort_AfterLayout(object sender, EventArgs e)
-        {
-            var viewPort = sender as ViewPort;
-            Size parentSize = (viewPort.Parent as ViewPort).Size;
-            viewPort.Location = new Point(parentSize.Width / 2 + 1, parentSize.Height / 2 + 1);
-            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
-        }
-
-        private void topViewPort_AfterLayout(object sender, EventArgs e)
-        {
-            var viewPort = sender as ViewPort;
-            Size parentSize = (viewPort.Parent as ViewPort).Size;
-            viewPort.Location = new Point(0 + 1, parentSize.Height / 2 + 1);
-            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
-        }
-
-        private void perspectiveViewPort_AfterLayout(object sender, EventArgs e)
-        {
-            var viewPort = sender as ViewPort;
-            Size parentSize = (viewPort.Parent as ViewPort).Size;
-            viewPort.Location = new Point(parentSize.Width / 2 + 1, 0 + 1);
-            viewPort.Size = new Size(parentSize.Width / 2 - 2, parentSize.Height / 2 - 2);
-        }
-
         private List<PickableRenderer> GetPickableRenderers()
         {
             List<PickableRenderer> list = new List<PickableRenderer>();
