@@ -22,6 +22,12 @@ namespace CSharpGL.Demos
         private float time = 0;
         private Random random = new Random();
 
+        private static readonly GLDelegates.void_uint_uint_uint glBindBufferBase;
+        static ParticleComputeRenderer()
+        {
+            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+        }
+
         public ParticleComputeRenderer(GLBuffer positionBuffer, GLBuffer velocityBuffer)
         {
             this.positionBuffer = positionBuffer;
@@ -51,7 +57,7 @@ namespace CSharpGL.Demos
                 const int length = 64;
                 UniformBuffer buffer = UniformBuffer.Create(typeof(vec4), length, BufferUsage.DynamicCopy);
                 buffer.Bind();
-                OpenGL.BindBufferBase((BindBufferBaseTarget)BufferTarget.UniformBuffer, 0, buffer.BufferId);
+                glBindBufferBase((uint)BindBufferBaseTarget.UniformBuffer, 0, buffer.BufferId);
                 buffer.Unbind();
                 this.attractorBuffer = buffer;
 

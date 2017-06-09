@@ -48,32 +48,32 @@ namespace CSharpGL
         ///// <param name="index"></param>
         ///// <returns></returns>
         //public delegate bool glIsEnabledi(uint target, uint index);
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="primitiveMode"></param>
-        public delegate void glBeginTransformFeedback(uint primitiveMode);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="primitiveMode"></param>
+        //public delegate void glBeginTransformFeedback(uint primitiveMode);
 
         ///// <summary>
         /////
         ///// </summary>
         //public delegate void glEndTransformFeedback();
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="index"></param>
-        /// <param name="buffer"></param>
-        /// <param name="offset"></param>
-        /// <param name="size"></param>
-        internal delegate void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="index"></param>
+        ///// <param name="buffer"></param>
+        ///// <param name="offset"></param>
+        ///// <param name="size"></param>
+        //internal delegate void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
 
-        /// <summary>
-        /// </summary>
-        /// <param name="target">Specifies the target buffer object.</param>
-        /// <param name="bindingPoint">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
-        /// <param name="bufferName">Buffer name generated from glGenBuffers().</param>
-        internal delegate void glBindBufferBase(uint target, uint bindingPoint, uint bufferName);
+        ///// <summary>
+        ///// </summary>
+        ///// <param name="target">Specifies the target buffer object.</param>
+        ///// <param name="bindingPoint">Specify the index of the binding point within the array specified by <paramref name="target"/></param>
+        ///// <param name="bufferName">Buffer name generated from glGenBuffers().</param>
+        //internal delegate void glBindBufferBase(uint target, uint bindingPoint, uint bufferName);
 
         ///// <summary>
         /////
@@ -100,36 +100,36 @@ namespace CSharpGL
         ///// <param name="target"></param>
         ///// <param name="clamp"></param>
         //public delegate void glClampColor(uint target, uint clamp);
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="mode"></param>
-        internal delegate void glBeginConditionalRender(uint id, uint mode);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <param name="mode"></param>
+        //internal delegate void glBeginConditionalRender(uint id, uint mode);
 
-        /// <summary>
-        ///
-        /// </summary>
-        internal delegate void glEndConditionalRender();
+        ///// <summary>
+        /////
+        ///// </summary>
+        //internal delegate void glEndConditionalRender();
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="size"></param>
-        /// <param name="type"></param>
-        /// <param name="stride"></param>
-        /// <param name="pointer"></param>
-        public delegate void glVertexAttribIPointer(uint index, int size, uint type, int stride, IntPtr pointer);
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="size"></param>
-        /// <param name="type"></param>
-        /// <param name="stride"></param>
-        /// <param name="pointer"></param>
-        public delegate void glVertexAttribLPointer(uint index, int size, uint type, int stride, IntPtr pointer);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="size"></param>
+        ///// <param name="type"></param>
+        ///// <param name="stride"></param>
+        ///// <param name="pointer"></param>
+        //public delegate void glVertexAttribIPointer(uint index, int size, uint type, int stride, IntPtr pointer);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="size"></param>
+        ///// <param name="type"></param>
+        ///// <param name="stride"></param>
+        ///// <param name="pointer"></param>
+        //public delegate void glVertexAttribLPointer(uint index, int size, uint type, int stride, IntPtr pointer);
 
         ///// <summary>
         /////
@@ -284,104 +284,104 @@ namespace CSharpGL
         ///// <param name="location"></param>
         ///// <param name="parameters"></param>
         //public delegate void glGetUniformuiv(uint program, int location, uint[] parameters);
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="colorNumber"></param>
-        /// <param name="name"></param>
-        public delegate void glBindFragDataLocation(uint program, uint colorNumber, string name);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="colorNumber"></param>
+        ///// <param name="name"></param>
+        //public delegate void glBindFragDataLocation(uint program, uint colorNumber, string name);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="colorNumber"></param>
-        /// <param name="index"></param>
-        /// <param name="name"></param>
-        public delegate void glBindFragDataLocationIndexed(uint program, uint colorNumber, uint index, string name);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="colorNumber"></param>
+        ///// <param name="index"></param>
+        ///// <param name="name"></param>
+        //public delegate void glBindFragDataLocationIndexed(uint program, uint colorNumber, uint index, string name);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public delegate int glGetFragDataLocation(uint program, string name);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="name"></param>
+        ///// <returns></returns>
+        //public delegate int glGetFragDataLocation(uint program, string name);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public delegate int glGetFragDataIndex(uint program, string name);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="name"></param>
+        ///// <returns></returns>
+        //public delegate int glGetFragDataIndex(uint program, string name);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="v0"></param>
-        internal delegate void glUniform1ui(int location, uint v0);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="v0"></param>
+        //internal delegate void glUniform1ui(int location, uint v0);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="v0"></param>
-        /// <param name="v1"></param>
-        internal delegate void glUniform2ui(int location, uint v0, uint v1);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="v0"></param>
+        ///// <param name="v1"></param>
+        //internal delegate void glUniform2ui(int location, uint v0, uint v1);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="v0"></param>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        internal delegate void glUniform3ui(int location, uint v0, uint v1, uint v2);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="v0"></param>
+        ///// <param name="v1"></param>
+        ///// <param name="v2"></param>
+        //internal delegate void glUniform3ui(int location, uint v0, uint v1, uint v2);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="v0"></param>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <param name="v3"></param>
-        internal delegate void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="v0"></param>
+        ///// <param name="v1"></param>
+        ///// <param name="v2"></param>
+        ///// <param name="v3"></param>
+        //internal delegate void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="count"></param>
-        /// <param name="value"></param>
-        internal delegate void glUniform1uiv(int location, int count, uint[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="count"></param>
+        ///// <param name="value"></param>
+        //internal delegate void glUniform1uiv(int location, int count, uint[] value);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="count"></param>
-        /// <param name="value"></param>
-        internal delegate void glUniform2uiv(int location, int count, uint[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="count"></param>
+        ///// <param name="value"></param>
+        //internal delegate void glUniform2uiv(int location, int count, uint[] value);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="count"></param>
-        /// <param name="value"></param>
-        internal delegate void glUniform3uiv(int location, int count, uint[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="count"></param>
+        ///// <param name="value"></param>
+        //internal delegate void glUniform3uiv(int location, int count, uint[] value);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="location"></param>
-        /// <param name="count"></param>
-        /// <param name="value"></param>
-        internal delegate void glUniform4uiv(int location, int count, uint[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="location"></param>
+        ///// <param name="count"></param>
+        ///// <param name="value"></param>
+        //internal delegate void glUniform4uiv(int location, int count, uint[] value);
 
         ///// <summary>
         /////
@@ -411,38 +411,38 @@ namespace CSharpGL
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
         //public delegate void glGetTexParameterIuiv(uint target, uint pname, uint[] parameters);
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="drawbuffer"></param>
-        /// <param name="value"></param>
-        public delegate void glClearBufferiv(uint buffer, int drawbuffer, int[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="buffer"></param>
+        ///// <param name="drawbuffer"></param>
+        ///// <param name="value"></param>
+        //public delegate void glClearBufferiv(uint buffer, int drawbuffer, int[] value);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="drawbuffer"></param>
-        /// <param name="value"></param>
-        public delegate void glClearBufferuiv(uint buffer, int drawbuffer, uint[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="buffer"></param>
+        ///// <param name="drawbuffer"></param>
+        ///// <param name="value"></param>
+        //public delegate void glClearBufferuiv(uint buffer, int drawbuffer, uint[] value);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="drawbuffer"></param>
-        /// <param name="value"></param>
-        public delegate void glClearBufferfv(uint buffer, int drawbuffer, float[] value);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="buffer"></param>
+        ///// <param name="drawbuffer"></param>
+        ///// <param name="value"></param>
+        //public delegate void glClearBufferfv(uint buffer, int drawbuffer, float[] value);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="drawbuffer"></param>
-        /// <param name="depth"></param>
-        /// <param name="stencil"></param>
-        public delegate void glClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="buffer"></param>
+        ///// <param name="drawbuffer"></param>
+        ///// <param name="depth"></param>
+        ///// <param name="stencil"></param>
+        //public delegate void glClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil);
 
         ///// <summary>
         /////

@@ -8,10 +8,6 @@ namespace CSharpGL
     /// </summary>
     public partial class UniformBuffer : GLBuffer
     {
-        private static OpenGL.glUniformBlockBinding glUniformBlockBinding;
-        //private static OpenGL.glBindBufferRange glBindBufferRange;
-        private static OpenGL.glBindBufferBase glBindBufferBase;
-
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
@@ -34,23 +30,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Bind this uniform buffer object and a uniform block to the same binding point.
-        /// </summary>
-        /// <param name="program">shader program.</param>
-        /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
-        /// <param name="bindingPoint">binding point maintained by OpenGL context.</param>
-        public void Binding(ShaderProgram program, uint uniformBlockIndex, uint bindingPoint)
-        {
-            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
-            if (glUniformBlockBinding == null) { glUniformBlockBinding = OpenGL.GetDelegateFor<OpenGL.glUniformBlockBinding>(); }
-
-            // 将 缓冲区 绑定到binding point
-            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, bindingPoint, this.BufferId);
-            // 将 Uniform Block 绑定到binding point
-            glUniformBlockBinding(program.ProgramId, uniformBlockIndex, bindingPoint);
-        }
-
-        /// <summary>
         /// Creates a <see cref="UniformBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="elementType"></param>
@@ -61,5 +40,26 @@ namespace CSharpGL
         {
             return (GLBuffer.Create(IndependentBufferTarget.UniformBuffer, elementType, length, usage) as UniformBuffer);
         }
+
+        internal static GLDelegates.void_uint_uint_uint glBindBufferBase;
+        internal static GLDelegates.void_uint_uint_uint glUniformBlockBinding;
+
+        /// <summary>
+        /// Bind this uniform buffer object and a uniform block to the same binding point.
+        /// </summary>
+        /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
+        /// <param name="uniformBlockBindingPoint">binding point maintained by OpenGL context.</param>
+        /// <param name="program">shader program.</param>
+        public void Binding(ShaderProgram program, uint uniformBlockIndex, uint bindingPoint)
+        {
+            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+            if (glUniformBlockBinding == null) { glUniformBlockBinding = OpenGL.GetDelegateFor("glUniformBlockBinding", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+
+            // 将 缓冲区 绑定到binding point
+            glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, bindingPoint, this.BufferId);
+            // 将 Uniform Block 绑定到binding point
+            glUniformBlockBinding(program.ProgramId, uniformBlockIndex, bindingPoint);
+        }
+
     }
 }

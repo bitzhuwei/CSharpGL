@@ -12,12 +12,12 @@
             {
                 vao.Dispose();
             }
-            VertexBuffer[] vbos = this.vertexAttributeBuffers;
+            VertexShaderAttribute[] vbos = this.vertexAttributeBuffers;
             if (vbos != null)
             {
-                foreach (VertexBuffer item in vbos)
+                foreach (var item in vbos)
                 {
-                    item.Dispose();
+                    item.Buffer.Dispose();
                 }
             }
             IndexBuffer indexBuffer = this.indexBuffer;

@@ -9,26 +9,6 @@ namespace CSharpGL
     /// </summary>
     public partial class VertexBuffer : GLBuffer, ICloneable
     {
-        /// <summary>
-        ///
-        /// </summary>
-        internal static OpenGL.glVertexAttribIPointer glVertexAttribIPointer;
-
-        /// <summary>
-        ///
-        /// </summary>
-        internal static OpenGL.glVertexAttribLPointer glVertexAttribLPointer;
-
-        /// <summary>
-        ///
-        /// </summary>
-        internal static OpenGL.glVertexAttribDivisor glVertexAttribDivisor;
-
-        /// <summary>
-        ///
-        /// </summary>
-        internal static OpenGL.glPatchParameteri glPatchParameteri;
-
         ///// <summary>
         ///// TODO: temporary field here. not know where to use it yet.
         ///// </summary>
@@ -48,27 +28,19 @@ namespace CSharpGL
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="config">This <paramref name="config"/> decides parameters' values in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
-        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         internal VertexBuffer(
-            uint bufferId, VBOConfig config, string varNameInVertexShader, int length, int byteLength,
+            uint bufferId, VBOConfig config, int length, int byteLength,
             uint instancedDivisor = 0, int patchVertexes = 0)
             : base(bufferId, length, byteLength)
         {
-            this.VarNameInVertexShader = varNameInVertexShader;
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
             this.PatchVertexes = patchVertexes;
         }
-
-        /// <summary>
-        /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
-        /// <para>Mapping variable's name in vertex shader.</para>
-        /// </summary>
-        public string VarNameInVertexShader { get; set; }
 
         /// <summary>
         /// third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
@@ -116,9 +88,9 @@ namespace CSharpGL
         /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>
         /// <param name="shaderProgram"></param>
-        public void Standby(ShaderProgram shaderProgram)
+        public void Standby(ShaderProgram shaderProgram, string varNameInVertexShader)
         {
-            int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
+            int location = shaderProgram.GetAttributeLocation(varNameInVertexShader);
             if (location < 0) { throw new ArgumentException(); }
 
             uint loc = (uint)location;
@@ -152,11 +124,7 @@ namespace CSharpGL
 
                 if (patchVertexes > 0)// tessellation shading.
                 {
-                    if (glPatchParameteri != null)
-                    {
-                        if (glPatchParameteri == null) { glPatchParameteri = OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>(); }
-                        glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes);
-                    }
+                    glPatchParameteri(OpenGL.GL_PATCH_VERTICES, patchVertexes);
                 }
                 // 启用
                 // enable this VBO.

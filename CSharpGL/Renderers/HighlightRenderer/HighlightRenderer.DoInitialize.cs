@@ -21,9 +21,9 @@ namespace CSharpGL
             // init property buffer objects.
             VertexBuffer positionBuffer = null;
             IBufferable model = this.DataSource;
-            VertexBuffer[] vertexAttributeBuffers;
+            VertexShaderAttribute[] vertexAttributeBuffers;
             {
-                var list = new List<VertexBuffer>();
+                var list = new List<VertexShaderAttribute>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
                     VertexBuffer buffer = model.GetVertexAttributeBuffer(
@@ -34,10 +34,10 @@ namespace CSharpGL
                         if (positionBuffer != null)
                         { throw new Exception(string.Format("Duplicate position buffer is not allowed!")); }
 
-                        positionBuffer = buffer.Clone() as VertexBuffer;
-                        positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
+                        positionBuffer = buffer;
+                        //positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
                     }
-                    list.Add(buffer);
+                    list.Add(new VertexShaderAttribute(buffer, item.VarNameInShader));
                 }
                 vertexAttributeBuffers = list.ToArray();
             }

@@ -17,19 +17,7 @@ namespace CSharpGL
         /// Position buffer pointer.
         /// </summary>
         [Browsable(false)]
-        internal VertexBuffer PositionBuffer
-        {
-            get
-            {
-                VertexBuffer[] pointers = this.vertexAttributeBuffers;
-                if (pointers == null || pointers.Length < 0)
-                {
-                    throw new Exception("Vertex attribute buffers are not readly!");
-                }
-
-                return pointers[0];
-            }
-        }
+        internal VertexBuffer PositionBuffer { get; private set; }
 
         private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
 

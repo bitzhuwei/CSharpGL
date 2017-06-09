@@ -28,7 +28,7 @@ namespace CSharpGL
             glBindBuffer(target, 0);
 
             var buffer = new VertexBuffer(
-                buffers[0], config, varNameInVertexShader, array.Length, array.ByteLength, instancedDivisor, patchVertexes);
+                buffers[0], config, array.Length, array.ByteLength, instancedDivisor, patchVertexes);
 
             return buffer;
         }

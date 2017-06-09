@@ -126,6 +126,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataTypeByteLength.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataSize.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.Parse.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexShaderAttribute.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\AccumBufferState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\EnableStates\AlphaFuncState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\EnableStates\ClipPlaneState.cs" />

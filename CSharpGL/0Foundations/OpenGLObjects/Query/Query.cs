@@ -9,31 +9,16 @@ namespace CSharpGL
     /// </summary>
     public partial class Query : IDisposable
     {
-        private static readonly GLDelegates.void_int_uintN glGenQueries;
-        private static readonly GLDelegates.void_int_uintN glDeleteQueries;
-        private static readonly GLDelegates.bool_uint glIsQuery;
-        private static readonly GLDelegates.void_uint_uint glBeginQuery;
-        private static readonly GLDelegates.void_uint glEndQuery;
-        private static readonly GLDelegates.void_uint_uint_intN glGetQueryiv;
-        private static readonly GLDelegates.void_uint_uint_intN glGetQueryObjectiv;
-        private static readonly GLDelegates.void_uint_uint_uintN glGetQueryObjectuiv;
-        private static readonly OpenGL.glBeginConditionalRender glBeginConditionalRender;
-        private static readonly OpenGL.glEndConditionalRender glEndConditionalRender;
-
-        static Query()
-        {
-            glGenQueries = OpenGL.GetDelegateFor("glGenQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-            glDeleteQueries = OpenGL.GetDelegateFor("glDeleteQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-            glIsQuery = OpenGL.GetDelegateFor("glIsQuery", GLDelegates.typeof_bool_uint) as GLDelegates.bool_uint;
-            glBeginQuery = OpenGL.GetDelegateFor("glBeginQuery", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-            glEndQuery = OpenGL.GetDelegateFor("glEndQuery", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-            glGetQueryiv = OpenGL.GetDelegateFor("glGetQueryiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
-            glGetQueryObjectiv = OpenGL.GetDelegateFor("glGetQueryObjectiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
-            glGetQueryObjectuiv = OpenGL.GetDelegateFor("glGetQueryObjectuiv", GLDelegates.typeof_void_uint_uint_uintN) as GLDelegates.void_uint_uint_uintN;
-            glBeginConditionalRender = OpenGL.GetDelegateFor<OpenGL.glBeginConditionalRender>();
-            glEndConditionalRender = OpenGL.GetDelegateFor<OpenGL.glEndConditionalRender>();
-
-        }
+        private static GLDelegates.void_int_uintN glGenQueries;
+        private static GLDelegates.void_uint glIsQuery;
+        private static GLDelegates.void_uint_uint glBeginQuery;
+        private static GLDelegates.void_uint glEndQuery;
+        private static GLDelegates.void_uint_uint_intN glGetQueryiv;
+        private static GLDelegates.void_uint_uint_intN glGetQueryObjectiv;
+        private static GLDelegates.void_uint_uint_uintN glGetQueryObjectuiv;
+        private static GLDelegates.void_uint_uint glBeginConditionalRender;
+        private static GLDelegates.void_void glEndConditionalRender;
+        private static GLDelegates.void_int_uintN glDeleteQueries;
 
         /// <summary>
         /// texture's id/name.
@@ -45,6 +30,19 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get { return this.ids[0]; } }
 
+        static Query()
+        {
+            glGenQueries = OpenGL.GetDelegateFor("glGenQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glIsQuery = OpenGL.GetDelegateFor("glIsQuery", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glBeginQuery = OpenGL.GetDelegateFor("glBeginQuery", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glEndQuery = OpenGL.GetDelegateFor("glEndQuery", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glGetQueryiv = OpenGL.GetDelegateFor("glGetQueryiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
+            glBeginConditionalRender = OpenGL.GetDelegateFor("glBeginConditionalRender", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glEndConditionalRender = OpenGL.GetDelegateFor("glEndConditionalRender", GLDelegates.typeof_void_void) as GLDelegates.void_void;
+            glGetQueryObjectiv = OpenGL.GetDelegateFor("glGetQueryObjectiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
+            glGetQueryObjectuiv = OpenGL.GetDelegateFor("glGetQueryObjectuiv", GLDelegates.typeof_void_uint_uint_uintN) as GLDelegates.void_uint_uint_uintN;
+            glDeleteQueries = OpenGL.GetDelegateFor("glDeleteQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        }
         /// <summary>
         /// Begin query.
         /// <para>delimit the boundaries of a query object.</para>

@@ -10,11 +10,10 @@ namespace CSharpGL
             // init shader program.
             ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
 
-            VertexBuffer positionBuffer = null;
+            VertexShaderAttribute positionBuffer = null;
             IBufferable model = this.DataSource;
-            VertexBuffer[] vertexAttributeBuffers;
             {
-                var list = new List<VertexBuffer>();
+                var list = new List<VertexShaderAttribute>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
                     VertexBuffer buffer = model.GetVertexAttributeBuffer(
@@ -23,17 +22,15 @@ namespace CSharpGL
 
                     if (item.NameInIBufferable == this.PositionNameInIBufferable)
                     {
-                        positionBuffer = buffer.Clone() as VertexBuffer;
-                        positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
+                        positionBuffer = new VertexShaderAttribute(buffer, item.VarNameInShader);
+                        //positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
                         break;
                     }
-                    list.Add(buffer);
                 }
-                vertexAttributeBuffers = list.ToArray();
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
-            if (positionBuffer == null || positionBuffer.Config != VBOConfig.Vec3)
+            if (positionBuffer == null || positionBuffer.Buffer.Config != VBOConfig.Vec3)
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
             // init index buffer.
@@ -53,7 +50,7 @@ namespace CSharpGL
 
             // sets fields.
             this.Program = program;
-            this.vertexAttributeBuffers = new VertexBuffer[] { positionBuffer };
+            this.vertexAttributeBuffers = new VertexShaderAttribute[] { positionBuffer };
             this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
         }

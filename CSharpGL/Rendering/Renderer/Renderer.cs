@@ -15,7 +15,7 @@
         /// <summary>
         /// Vertex attribute buffers.
         /// </summary>
-        protected VertexBuffer[] vertexAttributeBuffers;
+        protected VertexShaderAttribute[] vertexAttributeBuffers;
 
         /// <summary>
         ///

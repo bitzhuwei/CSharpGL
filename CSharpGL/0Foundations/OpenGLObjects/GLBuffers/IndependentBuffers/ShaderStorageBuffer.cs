@@ -8,9 +8,9 @@ namespace CSharpGL
     /// </summary>
     public partial class ShaderStorageBuffer : GLBuffer
     {
-        private static OpenGL.glShaderStorageBlockBinding glShaderStorageBlockBinding;
-        private static OpenGL.glGetProgramResourceIndex glGetProgramResourceIndex;
-        private static OpenGL.glBindBufferBase glBindBufferBase;
+        GLDelegates.uint_uint_uint_string glGetProgramResourceIndex;
+        GLDelegates.void_uint_uint_uint glBindBufferBase;
+        GLDelegates.void_uint_uint_uint glShaderStorageBlockBinding;
 
         /// <summary>
         /// Target that this buffer should bind to.
@@ -40,9 +40,9 @@ namespace CSharpGL
         /// <param name="storageBlockBindingPoint">binding point maintained by OpenGL context.</param>
         public void Binding(ShaderProgram program, string storageBlockName, uint storageBlockBindingPoint)
         {
-            if (glGetProgramResourceIndex == null) { glGetProgramResourceIndex = OpenGL.GetDelegateFor<OpenGL.glGetProgramResourceIndex>(); }
-            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>(); }
-            if (glShaderStorageBlockBinding == null) { glShaderStorageBlockBinding = OpenGL.GetDelegateFor<OpenGL.glShaderStorageBlockBinding>(); }
+            if (glGetProgramResourceIndex == null) { glGetProgramResourceIndex = OpenGL.GetDelegateFor("glGetProgramResourceIndex", GLDelegates.typeof_uint_uint_uint_string) as GLDelegates.uint_uint_uint_string; }
+            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+            if (glShaderStorageBlockBinding == null) { glShaderStorageBlockBinding = OpenGL.GetDelegateFor("glShaderStorageBlockBinding", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
 
             uint storageBlockIndex = glGetProgramResourceIndex(program.ProgramId, OpenGL.GL_SHADER_STORAGE_BLOCK, storageBlockName);
             glBindBufferBase(OpenGL.GL_SHADER_STORAGE_BUFFER, storageBlockBindingPoint, this.BufferId);

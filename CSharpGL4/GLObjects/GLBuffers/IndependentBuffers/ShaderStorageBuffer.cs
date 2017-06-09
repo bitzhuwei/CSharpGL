@@ -8,6 +8,10 @@ namespace CSharpGL
     /// </summary>
     public partial class ShaderStorageBuffer : GLBuffer
     {
+        GLDelegates.uint_uint_uint_string glGetProgramResourceIndex;
+        GLDelegates.void_uint_uint_uint glBindBufferBase;
+        GLDelegates.void_uint_uint_uint glShaderStorageBlockBinding;
+
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
@@ -26,6 +30,23 @@ namespace CSharpGL
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
+        }
+
+        /// <summary>
+        /// Bind this uniform buffer object and a uniform block to the same binding point.
+        /// </summary>
+        /// <param name="program">shader program.</param>
+        /// <param name="storageBlockName">name of buffer block in shader.</param>
+        /// <param name="storageBlockBindingPoint">binding point maintained by OpenGL context.</param>
+        public void Binding(ShaderProgram program, string storageBlockName, uint storageBlockBindingPoint)
+        {
+            if (glGetProgramResourceIndex == null) { glGetProgramResourceIndex = GL.Instance.GetDelegateFor("glGetProgramResourceIndex", GLDelegates.typeof_uint_uint_uint_string) as GLDelegates.uint_uint_uint_string; }
+            if (glBindBufferBase == null) { glBindBufferBase = GL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+            if (glShaderStorageBlockBinding == null) { glShaderStorageBlockBinding = GL.Instance.GetDelegateFor("glShaderStorageBlockBinding", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+
+            uint storageBlockIndex = glGetProgramResourceIndex(program.ProgramId, GL.GL_SHADER_STORAGE_BLOCK, storageBlockName);
+            glBindBufferBase(GL.GL_SHADER_STORAGE_BUFFER, storageBlockBindingPoint, this.BufferId);
+            glShaderStorageBlockBinding(program.ProgramId, storageBlockIndex, storageBlockBindingPoint);
         }
 
         /// <summary>
