@@ -29,7 +29,8 @@ namespace CSharpGL
         /// </summary>
         public override void Fill()
         {
-            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, internalformat, buffer.BufferId);
+            var function = OpenGL.GetDelegateFor("glTexBuffer", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
+            function(OpenGL.GL_TEXTURE_BUFFER, internalformat, buffer.BufferId);
         }
 
         /// <summary>

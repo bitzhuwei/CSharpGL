@@ -40,7 +40,7 @@
             return string.Format("Restart Index: {0}", RestartIndex);
         }
 
-        private static OpenGL.glPrimitiveRestartIndex glPrimitiveRestartIndex;
+        private static GLDelegates.void_uint glPrimitiveRestartIndex;
 
         /// <summary>
         ///
@@ -52,7 +52,7 @@
             if (this.enableCapacityWhenStateOn)
             {
                 if (glPrimitiveRestartIndex == null)
-                { glPrimitiveRestartIndex = OpenGL.GetDelegateFor<OpenGL.glPrimitiveRestartIndex>(); }
+                { glPrimitiveRestartIndex = OpenGL.GetDelegateFor("glPrimitiveRestartIndex", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
 
                 glPrimitiveRestartIndex(RestartIndex);
             }
