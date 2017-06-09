@@ -48,7 +48,7 @@ namespace CSharpGL
         /// Bind this uniform buffer object and a uniform block to the same binding point.
         /// </summary>
         /// <param name="uniformBlockIndex">index of uniform block got by (glGetUniformBlockIndex).</param>
-        /// <param name="uniformBlockBindingPoint">binding point maintained by OpenGL context.</param>
+        /// <param name="bindingPoint">binding point maintained by OpenGL context.</param>
         /// <param name="program">shader program.</param>
         public void Binding(ShaderProgram program, uint uniformBlockIndex, uint bindingPoint)
         {

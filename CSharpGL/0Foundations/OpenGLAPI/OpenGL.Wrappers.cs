@@ -1264,7 +1264,7 @@ namespace CSharpGL
             int[] ids,
             bool enabled)
         {
-            var glDebugMessageControl = OpenGL.GetDelegateFor("glDebugMessageControl", GLDelegates.typeof_void_uint_uint_uint_int_intN_bool) as GLDelegates.void_uint_uint_uint_int_intN_bool;
+            if (glDebugMessageControl == null) { glDebugMessageControl = OpenGL.GetDelegateFor("glDebugMessageControl", GLDelegates.typeof_void_uint_uint_uint_int_intN_bool) as GLDelegates.void_uint_uint_uint_int_intN_bool; }
             glDebugMessageControl((uint)source, (uint)type, (uint)severity, count, ids, enabled);
         }
 
@@ -1286,7 +1286,7 @@ namespace CSharpGL
             int length,
             StringBuilder buf)
         {
-            var glDebugMessageInsert = OpenGL.GetDelegateFor("glDebugMessageInsert", GLDelegates.typeof_void_uint_uint_uint_uint_int_StringBuilder) as GLDelegates.void_uint_uint_uint_uint_int_StringBuilder;
+            if (glDebugMessageInsert == null) { glDebugMessageInsert = OpenGL.GetDelegateFor("glDebugMessageInsert", GLDelegates.typeof_void_uint_uint_uint_uint_int_StringBuilder) as GLDelegates.void_uint_uint_uint_uint_int_StringBuilder; }
             glDebugMessageInsert((uint)source, (uint)type, id, (uint)severity, length, buf);
         }
 
