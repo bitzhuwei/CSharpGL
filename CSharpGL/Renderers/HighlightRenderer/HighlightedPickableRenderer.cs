@@ -163,9 +163,9 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        public void Render4Picking(RenderEventArgs arg)
+        public void RenderForPicking(RenderEventArgs arg)
         {
-            this.PickableRenderer.Render4Picking(arg);
+            this.PickableRenderer.RenderForPicking(arg);
         }
 
         /// <summary>

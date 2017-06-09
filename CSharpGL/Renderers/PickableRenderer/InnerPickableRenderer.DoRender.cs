@@ -10,7 +10,7 @@
             }
             else
             {
-                this.Render4Picking(arg);
+                this.RenderForPicking(arg);
             }
         }
     }

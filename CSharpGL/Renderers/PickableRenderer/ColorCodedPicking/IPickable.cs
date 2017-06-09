@@ -3,7 +3,7 @@
     /// <summary>
     /// Scene element that implemented this interface will take part in color-coded picking.
     /// </summary>
-    public interface IPickable : IRenderable
+    public interface IPickable
     {
         /// <summary>
         /// Gets how many primitived have been rendered till now during color coded rendering.
@@ -14,7 +14,7 @@
         /// Render for color-coded picking.
         /// </summary>
         /// <param name="arg"></param>
-        void Render4Picking(RenderEventArgs arg);
+        void RenderForPicking(RenderEventArgs arg);
 
         /// <summary>
         /// Gets vertices' count in this element's VBO representing positions.

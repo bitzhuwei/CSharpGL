@@ -31,12 +31,12 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        public void Render4Picking(RenderEventArgs arg)
+        public void RenderForPicking(RenderEventArgs arg)
         {
             InnerPickableRenderer renderer = this.innerPickableRenderer;
             if (renderer == null) { throw new Exception("InnerPickableRenderer is null!"); }
 
-            renderer.Render4Picking(arg);
+            renderer.RenderForPicking(arg);
         }
 
         /// <summary>
