@@ -11,12 +11,22 @@ namespace CSharpGL
     //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class Shader : IDisposable
     {
-        private static GLDelegates.uint_uint glCreateShader;
-        private static GLDelegates.void_uint_int_stringN_intN glShaderSource;
-        private static GLDelegates.void_uint glCompileShader;
-        private static GLDelegates.void_uint glDeleteShader;
-        private static GLDelegates.void_uint_uint_intN glGetShaderiv;
-        private static GLDelegates.void_uint_int_IntPtr_StringBuilder glGetShaderInfoLog;
+        private static readonly GLDelegates.uint_uint glCreateShader;
+        private static readonly GLDelegates.void_uint_int_stringN_intN glShaderSource;
+        private static readonly GLDelegates.void_uint glCompileShader;
+        private static readonly GLDelegates.void_uint glDeleteShader;
+        private static readonly GLDelegates.void_uint_uint_intN glGetShaderiv;
+        private static readonly GLDelegates.void_uint_int_IntPtr_StringBuilder glGetShaderInfoLog;
+        static Shader()
+        {
+            glCreateShader = GL.Instance.GetDelegateFor("glCreateShader", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
+            glShaderSource = GL.Instance.GetDelegateFor("glShaderSource", GLDelegates.typeof_void_uint_int_stringN_intN) as GLDelegates.void_uint_int_stringN_intN; ;
+            glCompileShader = GL.Instance.GetDelegateFor("glCompileShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
+            glDeleteShader = GL.Instance.GetDelegateFor("glDeleteShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
+            glGetShaderiv = GL.Instance.GetDelegateFor("glGetShaderiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN; ;
+            glGetShaderInfoLog = GL.Instance.GetDelegateFor("glGetShaderInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder; ;
+
+        }
 
         /// <summary>
         /// 
@@ -30,16 +40,6 @@ namespace CSharpGL
         /// <param name="source"></param>
         protected void Create(uint shaderType, string source)
         {
-            if (glCreateShader == null)
-            {
-                glCreateShader = GL.Instance.GetDelegateFor("glCreateShader", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
-                glShaderSource = GL.Instance.GetDelegateFor("glShaderSource", GLDelegates.typeof_void_uint_int_stringN_intN) as GLDelegates.void_uint_int_stringN_intN; ;
-                glCompileShader = GL.Instance.GetDelegateFor("glCompileShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
-                glDeleteShader = GL.Instance.GetDelegateFor("glDeleteShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
-                glGetShaderiv = GL.Instance.GetDelegateFor("glGetShaderiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN; ;
-                glGetShaderInfoLog = GL.Instance.GetDelegateFor("glGetShaderInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder; ;
-            }
-
             //  Create the OpenGL shader object.
             uint shaderId = glCreateShader(shaderType);
 

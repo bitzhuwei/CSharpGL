@@ -15,7 +15,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>(); }
+                if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor("glUniform1iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 glUniform1iv(location, values.Length, values);
             }
             return location;
@@ -31,7 +31,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1fv == null) { glUniform1fv = OpenGL.GetDelegateFor<OpenGL.glUniform1fv>(); }
+                if (glUniform1fv == null) { glUniform1fv = OpenGL.GetDelegateFor("glUniform1fv", GLDelegates.typeof_void_int_int_floatN) as GLDelegates.void_int_int_floatN; }
                 glUniform1fv(location, values.Length, values);
             }
             return location;
@@ -47,7 +47,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2iv == null) { glUniform2iv = OpenGL.GetDelegateFor<OpenGL.glUniform2iv>(); }
+                if (glUniform2iv == null) { glUniform2iv = OpenGL.GetDelegateFor("glUniform2iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 int count = values.Length;
                 var value = new int[count * 2];
                 int index = 0;
@@ -71,7 +71,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2uiv == null) { glUniform2uiv = OpenGL.GetDelegateFor<OpenGL.glUniform2uiv>(); }
+                if (glUniform2uiv == null) { glUniform2uiv = OpenGL.GetDelegateFor("glUniform2uiv", GLDelegates.typeof_void_int_int_uintN) as GLDelegates.void_int_int_uintN; }
                 int count = values.Length;
                 var value = new uint[count * 2];
                 int index = 0;
@@ -95,7 +95,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2iv == null) { glUniform2iv = OpenGL.GetDelegateFor<OpenGL.glUniform2iv>(); }
+                if (glUniform2iv == null) { glUniform2iv = OpenGL.GetDelegateFor("glUniform2iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 int count = values.Length;
                 var value = new int[count * 2];
                 int index = 0;
@@ -119,7 +119,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2fv == null) { glUniform2fv = OpenGL.GetDelegateFor<OpenGL.glUniform2fv>(); }
+                if (glUniform2fv == null) { glUniform2fv = OpenGL.GetDelegateFor("glUniform2fv", GLDelegates.typeof_void_int_int_floatN) as GLDelegates.void_int_int_floatN; }
                 int count = values.Length;
                 var value = new float[count * 2];
                 int index = 0;
@@ -143,7 +143,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3iv == null) { glUniform3iv = OpenGL.GetDelegateFor<OpenGL.glUniform3iv>(); }
+                if (glUniform3iv == null) { glUniform3iv = OpenGL.GetDelegateFor("glUniform3iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 int count = values.Length;
                 var value = new int[count * 3];
                 int index = 0;
@@ -168,7 +168,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3uiv == null) { glUniform3uiv = OpenGL.GetDelegateFor<OpenGL.glUniform3uiv>(); }
+                if (glUniform3uiv == null) { glUniform3uiv = OpenGL.GetDelegateFor("glUniform3uiv", GLDelegates.typeof_void_int_int_uintN) as GLDelegates.void_int_int_uintN; }
                 int count = values.Length;
                 var value = new uint[count * 3];
                 int index = 0;
@@ -193,7 +193,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3iv == null) { glUniform3iv = OpenGL.GetDelegateFor<OpenGL.glUniform3iv>(); }
+                if (glUniform3iv == null) { glUniform3iv = OpenGL.GetDelegateFor("glUniform3iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 int count = values.Length;
                 var value = new int[count * 3];
                 int index = 0;
@@ -218,7 +218,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3fv == null) { glUniform3fv = OpenGL.GetDelegateFor<OpenGL.glUniform3fv>(); }
+                if (glUniform3fv == null) { glUniform3fv = OpenGL.GetDelegateFor("glUniform3fv", GLDelegates.typeof_void_int_int_floatN) as GLDelegates.void_int_int_floatN; }
                 int count = values.Length;
                 var value = new float[count * 3];
                 int index = 0;
@@ -243,7 +243,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4iv == null) { glUniform4iv = OpenGL.GetDelegateFor<OpenGL.glUniform4iv>(); }
+                if (glUniform4iv == null) { glUniform4iv = OpenGL.GetDelegateFor("glUniform4iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 int count = values.Length;
                 var value = new int[count * 4];
                 int index = 0;
@@ -269,7 +269,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4uiv == null) { glUniform4uiv = OpenGL.GetDelegateFor<OpenGL.glUniform4uiv>(); }
+                if (glUniform4uiv == null) { glUniform4uiv = OpenGL.GetDelegateFor("glUniform4uiv", GLDelegates.typeof_void_int_int_uintN) as GLDelegates.void_int_int_uintN; }
                 int count = values.Length;
                 var value = new uint[count * 4];
                 int index = 0;
@@ -295,7 +295,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4iv == null) { glUniform4iv = OpenGL.GetDelegateFor<OpenGL.glUniform4iv>(); }
+                if (glUniform4iv == null) { glUniform4iv = OpenGL.GetDelegateFor("glUniform4iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 int count = values.Length;
                 var value = new int[count * 4];
                 int index = 0;
@@ -321,7 +321,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4fv == null) { glUniform4fv = OpenGL.GetDelegateFor<OpenGL.glUniform4fv>(); }
+                if (glUniform4fv == null) { glUniform4fv = OpenGL.GetDelegateFor("glUniform4fv", GLDelegates.typeof_void_int_int_floatN) as GLDelegates.void_int_int_floatN; }
                 int count = values.Length;
                 var value = new float[count * 4];
                 int index = 0;
@@ -346,7 +346,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>(); }
+                if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor("glUniform1i", GLDelegates.typeof_void_int_int) as GLDelegates.void_int_int; }
                 glUniform1i(location, v0 ? 1 : 0);
             }
             return location;
@@ -361,7 +361,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>(); }
+                if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor("glUniform1iv", GLDelegates.typeof_void_int_int_intN) as GLDelegates.void_int_int_intN; }
                 //TODO: not tested yet.
                 var values = new int[v0.Length];
                 for (int i = 0; i < values.Length; i++)
@@ -382,7 +382,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1ui == null) { glUniform1ui = OpenGL.GetDelegateFor<OpenGL.glUniform1ui>(); }
+                if (glUniform1ui == null) { glUniform1ui = OpenGL.GetDelegateFor("glUniform1ui", GLDelegates.typeof_void_int_uint) as GLDelegates.void_int_uint; }
                 glUniform1ui(location, v0);
             }
             return location;
@@ -398,7 +398,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2ui == null) { glUniform2ui = OpenGL.GetDelegateFor<OpenGL.glUniform2ui>(); }
+                if (glUniform2ui == null) { glUniform2ui = OpenGL.GetDelegateFor("glUniform2ui", GLDelegates.typeof_void_int_uint_uint) as GLDelegates.void_int_uint_uint; }
                 glUniform2ui(location, v0, v1);
             }
             return location;
@@ -415,7 +415,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3ui == null) { glUniform3ui = OpenGL.GetDelegateFor<OpenGL.glUniform3ui>(); }
+                if (glUniform3ui == null) { glUniform3ui = OpenGL.GetDelegateFor("glUniform3ui", GLDelegates.typeof_void_int_uint_uint_uint) as GLDelegates.void_int_uint_uint_uint; }
                 glUniform3ui(location, v0, v1, v2);
             }
             return location;
@@ -433,7 +433,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4ui == null) { glUniform4ui = OpenGL.GetDelegateFor<OpenGL.glUniform4ui>(); }
+                if (glUniform4ui == null) { glUniform4ui = OpenGL.GetDelegateFor("glUniform4ui", GLDelegates.typeof_void_int_uint_uint_uint_uint) as GLDelegates.void_int_uint_uint_uint_uint; }
                 glUniform4ui(location, v0, v1, v2, v3);
             }
             return location;
@@ -449,7 +449,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1uiv == null) { glUniform1uiv = OpenGL.GetDelegateFor<OpenGL.glUniform1uiv>(); }
+                if (glUniform1uiv == null) { glUniform1uiv = OpenGL.GetDelegateFor("glUniform1uiv", GLDelegates.typeof_void_int_int_uintN) as GLDelegates.void_int_int_uintN; }
                 glUniform1uiv(location, values.Length, values);
             }
             return location;
@@ -464,7 +464,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>(); }
+                if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor("glUniform1i", GLDelegates.typeof_void_int_int) as GLDelegates.void_int_int; }
                 glUniform1i(location, v0);
             }
             return location;
@@ -480,7 +480,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2i == null) { glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>(); }
+                if (glUniform2i == null) { glUniform2i = OpenGL.GetDelegateFor("glUniform2i", GLDelegates.typeof_void_int_int_int) as GLDelegates.void_int_int_int; }
                 glUniform2i(location, v0, v1);
             }
             return location;
@@ -497,7 +497,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3i == null) { glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>(); }
+                if (glUniform3i == null) { glUniform3i = OpenGL.GetDelegateFor("glUniform3i", GLDelegates.typeof_void_int_int_int_int) as GLDelegates.void_int_int_int_int; }
                 glUniform3i(location, v0, v1, v2);
             }
             return location;
@@ -515,7 +515,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4i == null) { glUniform4i = OpenGL.GetDelegateFor<OpenGL.glUniform4i>(); }
+                if (glUniform4i == null) { glUniform4i = OpenGL.GetDelegateFor("glUniform4i", GLDelegates.typeof_void_int_int_int_int_int) as GLDelegates.void_int_int_int_int_int; }
                 glUniform4i(location, v0, v1, v2, v3);
             }
             return location;
@@ -530,7 +530,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform1f == null) { glUniform1f = OpenGL.GetDelegateFor<OpenGL.glUniform1f>(); }
+                if (glUniform1f == null) { glUniform1f = OpenGL.GetDelegateFor("glUniform1f", GLDelegates.typeof_void_int_float) as GLDelegates.void_int_float; }
                 glUniform1f(location, v0);
             }
             return location;
@@ -546,7 +546,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform2f == null) { glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>(); }
+                if (glUniform2f == null) { glUniform2f = OpenGL.GetDelegateFor("glUniform2f", GLDelegates.typeof_void_int_float_float) as GLDelegates.void_int_float_float; }
                 glUniform2f(location, v0, v1);
             }
             return location;
@@ -563,7 +563,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform3f == null) { glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>(); }
+                if (glUniform3f == null) { glUniform3f = OpenGL.GetDelegateFor("glUniform3f", GLDelegates.typeof_void_int_float_float_float) as GLDelegates.void_int_float_float_float; }
                 glUniform3f(location, v0, v1, v2);
             }
             return location;
@@ -581,7 +581,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniform4f == null) { glUniform4f = OpenGL.GetDelegateFor<OpenGL.glUniform4f>(); }
+                if (glUniform4f == null) { glUniform4f = OpenGL.GetDelegateFor("glUniform4f", GLDelegates.typeof_void_int_float_float_float_float) as GLDelegates.void_int_float_float_float_float; }
                 glUniform4f(location, v0, v1, v2, v3);
             }
             return location;
@@ -596,7 +596,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>(); }
+                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor("glUniformMatrix2fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
                 float[] array = m.ToArray();
                 glUniformMatrix2fv(location, 1, false, array);
             }
@@ -612,7 +612,7 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>(); }
+                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor("glUniformMatrix3fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
                 float[] array = m.ToArray();
                 glUniformMatrix3fv(location, 1, false, array);
             }
@@ -628,7 +628,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>(); }
+                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor("glUniformMatrix4fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 float[] array = m.ToArray();
 
                 glUniformMatrix4fv(location, 1, false, array);
@@ -645,7 +646,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>(); }
+                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor("glUniformMatrix2fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 var values = new float[m.Length * 4];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
@@ -669,7 +671,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>(); }
+                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor("glUniformMatrix3fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 var values = new float[m.Length * 9];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
@@ -693,7 +696,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>(); }
+                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor("glUniformMatrix4fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 var values = new float[m.Length * 16];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
@@ -717,7 +721,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>(); }
+                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor("glUniformMatrix2fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 glUniformMatrix2fv(location, m.Length / 4, false, m);
             }
             return location;
@@ -732,7 +737,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>(); }
+                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor("glUniformMatrix3fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 glUniformMatrix3fv(location, m.Length / 9, false, m);
             }
             return location;
@@ -747,7 +753,8 @@
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
-                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>(); }
+                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor("glUniformMatrix4fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
+
                 glUniformMatrix4fv(location, m.Length / 16, false, m);
             }
             return location;

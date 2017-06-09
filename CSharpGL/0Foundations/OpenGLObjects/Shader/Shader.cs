@@ -11,12 +11,22 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Shader : IDisposable
     {
-        private static OpenGL.glCreateShader glCreateShader;
-        private static OpenGL.glShaderSource glShaderSource;
-        private static OpenGL.glCompileShader glCompileShader;
-        private static OpenGL.glDeleteShader glDeleteShader;
-        private static OpenGL.glGetShaderiv glGetShaderiv;
-        private static OpenGL.glGetShaderInfoLog glGetShaderInfoLog;
+        private static readonly GLDelegates.uint_uint glCreateShader;
+        private static readonly GLDelegates.void_uint_int_stringN_intN glShaderSource;
+        private static readonly GLDelegates.void_uint glCompileShader;
+        private static readonly GLDelegates.void_uint glDeleteShader;
+        private static readonly GLDelegates.void_uint_uint_intN glGetShaderiv;
+        private static readonly GLDelegates.void_uint_int_IntPtr_StringBuilder glGetShaderInfoLog;
+        static Shader()
+        {
+            glCreateShader = OpenGL.GetDelegateFor("glCreateShader", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
+            glShaderSource = OpenGL.GetDelegateFor("glShaderSource", GLDelegates.typeof_void_uint_int_stringN_intN) as GLDelegates.void_uint_int_stringN_intN; ;
+            glCompileShader = OpenGL.GetDelegateFor("glCompileShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
+            glDeleteShader = OpenGL.GetDelegateFor("glDeleteShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
+            glGetShaderiv = OpenGL.GetDelegateFor("glGetShaderiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN; ;
+            glGetShaderInfoLog = OpenGL.GetDelegateFor("glGetShaderInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder; ;
+
+        }
 
         /// <summary>
         /// Create and compile this shader.
@@ -25,16 +35,6 @@ namespace CSharpGL
         /// <param name="source"></param>
         public void Create(uint shaderType, string source)
         {
-            if (glCreateShader == null)
-            {
-                glCreateShader = OpenGL.GetDelegateFor<OpenGL.glCreateShader>();
-                glShaderSource = OpenGL.GetDelegateFor<OpenGL.glShaderSource>();
-                glCompileShader = OpenGL.GetDelegateFor<OpenGL.glCompileShader>();
-                glDeleteShader = OpenGL.GetDelegateFor<OpenGL.glDeleteShader>();
-                glGetShaderiv = OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>();
-                glGetShaderInfoLog = OpenGL.GetDelegateFor<OpenGL.glGetShaderInfoLog>();
-            }
-
             //  Create the OpenGL shader object.
             uint shaderId = glCreateShader(shaderType);
 

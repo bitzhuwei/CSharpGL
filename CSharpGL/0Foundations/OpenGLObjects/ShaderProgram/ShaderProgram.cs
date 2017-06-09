@@ -10,75 +10,57 @@ namespace CSharpGL
     /// <summary>
     /// A shader program object.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class ShaderProgram
     {
-        private static OpenGL.glCreateProgram glCreateProgram;
-        private static OpenGL.glAttachShader glAttachShader;
-        private static OpenGL.glLinkProgram glLinkProgram;
-        private static OpenGL.glDetachShader glDetachShader;
-        private static OpenGL.glDeleteProgram glDeleteProgram;
-        private static OpenGL.glGetAttribLocation glGetAttribLocation;
-        private static OpenGL.glUseProgram glUseProgram;
-        private static OpenGL.glGetProgramiv glGetProgramiv;
-        private static OpenGL.glUniform1ui glUniform1ui;
-        private static OpenGL.glUniform2ui glUniform2ui;
-        private static OpenGL.glUniform3ui glUniform3ui;
-        private static OpenGL.glUniform4ui glUniform4ui;
-        private static OpenGL.glUniform1uiv glUniform1uiv;
-        private static OpenGL.glUniform2uiv glUniform2uiv;
-        private static OpenGL.glUniform3uiv glUniform3uiv;
-        private static OpenGL.glUniform4uiv glUniform4uiv;
-        private static OpenGL.glUniform1i glUniform1i;
-        private static OpenGL.glUniform2i glUniform2i;
-        private static OpenGL.glUniform3i glUniform3i;
-        private static OpenGL.glUniform4i glUniform4i;
-        private static OpenGL.glUniform1iv glUniform1iv;
-        private static OpenGL.glUniform2iv glUniform2iv;
-        private static OpenGL.glUniform3iv glUniform3iv;
-        private static OpenGL.glUniform4iv glUniform4iv;
-        private static OpenGL.glUniform1f glUniform1f;
-        private static OpenGL.glUniform2f glUniform2f;
-        private static OpenGL.glUniform3f glUniform3f;
-        private static OpenGL.glUniform4f glUniform4f;
-        private static OpenGL.glUniform1fv glUniform1fv;
-        private static OpenGL.glUniform2fv glUniform2fv;
-        private static OpenGL.glUniform3fv glUniform3fv;
-        private static OpenGL.glUniform4fv glUniform4fv;
-        private static OpenGL.glUniformMatrix2fv glUniformMatrix2fv;
-        private static OpenGL.glUniformMatrix3fv glUniformMatrix3fv;
-        private static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
-        private static OpenGL.glGetUniformLocation glGetUniformLocation;
-        //    void glGetActiveUniform(GLuint program,
-        //GLuint index,
-        //GLsizei bufSize,
-        //GLsizei* length,
-        //GLint* size,
-        //GLenum* type,
-        //GLchar* name);
-        delegate void glGetActiveUniform(uint program, uint index, int bufSize, int[] length, int[] size, int[] type, StringBuilder name);
-        private static glGetActiveUniform getActiveUniform;
-
-        delegate void glGetActiveUniformsiv(uint program, int uniformCount, uint[] uniformIndices, uint pname, int[] parameters);
-        private static glGetActiveUniformsiv getActiveUniformsiv;
-
-        delegate void glGetActiveUniformName(uint program, uint uniformIndex, int bufSize, int[] length, StringBuilder uniformName);
-        private static glGetActiveUniformName getActiveUniformName;
+        private static GLDelegates.uint_void glCreateProgram;
+        private static GLDelegates.void_uint_uint glAttachShader;
+        private static GLDelegates.void_uint glLinkProgram;
+        private static GLDelegates.void_uint_uint glDetachShader;
+        private static GLDelegates.void_uint glDeleteProgram;
+        private static GLDelegates.int_uint_string glGetAttribLocation;
+        private static GLDelegates.void_uint glUseProgram;
+        private static GLDelegates.void_uint_uint_intN glGetProgramiv;
+        private static GLDelegates.void_int_uint glUniform1ui;
+        private static GLDelegates.void_int_uint_uint glUniform2ui;
+        private static GLDelegates.void_int_uint_uint_uint glUniform3ui;
+        private static GLDelegates.void_int_uint_uint_uint_uint glUniform4ui;
+        private static GLDelegates.void_int_int_uintN glUniform1uiv;
+        private static GLDelegates.void_int_int_uintN glUniform2uiv;
+        private static GLDelegates.void_int_int_uintN glUniform3uiv;
+        private static GLDelegates.void_int_int_uintN glUniform4uiv;
+        private static GLDelegates.void_int_int glUniform1i;
+        private static GLDelegates.void_int_int_int glUniform2i;
+        private static GLDelegates.void_int_int_int_int glUniform3i;
+        private static GLDelegates.void_int_int_int_int_int glUniform4i;
+        private static GLDelegates.void_int_int_intN glUniform1iv;
+        private static GLDelegates.void_int_int_intN glUniform2iv;
+        private static GLDelegates.void_int_int_intN glUniform3iv;
+        private static GLDelegates.void_int_int_intN glUniform4iv;
+        private static GLDelegates.void_int_float glUniform1f;
+        private static GLDelegates.void_int_float_float glUniform2f;
+        private static GLDelegates.void_int_float_float_float glUniform3f;
+        private static GLDelegates.void_int_float_float_float_float glUniform4f;
+        private static GLDelegates.void_int_int_floatN glUniform1fv;
+        private static GLDelegates.void_int_int_floatN glUniform2fv;
+        private static GLDelegates.void_int_int_floatN glUniform3fv;
+        private static GLDelegates.void_int_int_floatN glUniform4fv;
+        private static GLDelegates.void_int_int_bool_floatN glUniformMatrix2fv;
+        private static GLDelegates.void_int_int_bool_floatN glUniformMatrix3fv;
+        private static GLDelegates.void_int_int_bool_floatN glUniformMatrix4fv;
+        private static GLDelegates.int_uint_string glGetUniformLocation;
 
         static ShaderProgram()
         {
-            glCreateProgram = OpenGL.GetDelegateFor<OpenGL.glCreateProgram>();
-            glAttachShader = OpenGL.GetDelegateFor<OpenGL.glAttachShader>();
-            glLinkProgram = OpenGL.GetDelegateFor<OpenGL.glLinkProgram>();
-            glDetachShader = OpenGL.GetDelegateFor<OpenGL.glDetachShader>();
-            glDeleteProgram = OpenGL.GetDelegateFor<OpenGL.glDeleteProgram>();
-            glGetAttribLocation = OpenGL.GetDelegateFor<OpenGL.glGetAttribLocation>();
-            glUseProgram = OpenGL.GetDelegateFor<OpenGL.glUseProgram>();
-            glGetProgramiv = OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>();
-            glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
-            getActiveUniform = OpenGL.GetDelegateFor<glGetActiveUniform>();
-            getActiveUniformsiv = OpenGL.GetDelegateFor<glGetActiveUniformsiv>();
-            getActiveUniformName = OpenGL.GetDelegateFor<glGetActiveUniformName>();
+            glCreateProgram = OpenGL.GetDelegateFor("glCreateProgram", GLDelegates.typeof_uint_void) as GLDelegates.uint_void;
+            glAttachShader = OpenGL.GetDelegateFor("glAttachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glLinkProgram = OpenGL.GetDelegateFor("glLinkProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glDetachShader = OpenGL.GetDelegateFor("glDetachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glDeleteProgram = OpenGL.GetDelegateFor("glDeleteProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glGetAttribLocation = OpenGL.GetDelegateFor("glGetAttribLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
+            glUseProgram = OpenGL.GetDelegateFor("glUseProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glGetProgramiv = OpenGL.GetDelegateFor("glGetProgramiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
+            glGetUniformLocation = OpenGL.GetDelegateFor("glGetUniformLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
         }
 
         /// <summary>
@@ -113,27 +95,8 @@ namespace CSharpGL
 
             this.ProgramId = programId;
 
-            // TODO; remove this. This is a test.
-            int count = this.GetActivetUniformCount(programId);
-            uint[] indexes = new uint[count];
-            uint pname = OpenGL.GL_UNIFORM_NAME_LENGTH;
-            int[] parameters = new int[count];
-            getActiveUniformsiv(programId, count, indexes, pname, parameters);
+            int count = GetActivetUniformCount(programId);
 
-            //getActiveUniformName(program, 0, 
-        }
-
-        /// <summary>
-        /// How many uniform variables are there?
-        /// </summary>
-        /// <param name="programId"></param>
-        /// <returns></returns>
-        private int GetActivetUniformCount(uint programId)
-        {
-            //  Get the info log length.
-            int[] infoLength = new int[] { 0 };
-            glGetProgramiv(programId, OpenGL.GL_ACTIVE_UNIFORMS, infoLength);
-            return infoLength[0];
         }
 
         /// <summary>
@@ -184,6 +147,19 @@ namespace CSharpGL
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
+        /// <summary>
+        /// How many uniform variables are there?
+        /// </summary>
+        /// <param name="programId"></param>
+        /// <returns></returns>
+        private int GetActivetUniformCount(uint programId)
+        {
+            //  Get the info log length.
+            int[] infoLength = new int[] { 0 };
+            glGetProgramiv(programId, OpenGL.GL_ACTIVE_UNIFORMS, infoLength);
+            return infoLength[0];
+        }
+
         private string GetInfoLog(uint programId)
         {
             //  Get the info log length.
@@ -193,7 +169,9 @@ namespace CSharpGL
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(programId, bufSize, 0, il);
+
+            var glGetProgramInfoLog = OpenGL.GetDelegateFor("glGetProgramInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder;
+            glGetProgramInfoLog(programId, bufSize, IntPtr.Zero, il);
 
             string log = il.ToString();
             return log;

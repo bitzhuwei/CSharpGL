@@ -113,6 +113,7 @@
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenIndexBuffer.T[].cs" />
+    <Compile Include="0Foundations\OpenGLObjects\GLBuffers\GLBuffer.Static.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IndexBufferElementType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T[].cs" />

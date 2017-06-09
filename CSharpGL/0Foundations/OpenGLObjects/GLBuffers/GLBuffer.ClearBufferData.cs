@@ -5,6 +5,9 @@ namespace CSharpGL
 {
     public abstract partial class GLBuffer
     {
+        private static GLDelegates.void_uint_uint_uint_uint_IntPtr glClearBufferData;
+        private static GLDelegates.void_uint_uint_IntPtr_uint_uint_uint_IntPtr glClearBufferSubData;
+
         /// <summary>
         /// Fill a buffer object's data store with a fixed value.
         /// </summary>
@@ -52,6 +55,8 @@ namespace CSharpGL
         public bool ClearBufferData(uint internalFormat, uint format, uint type, IntPtr data, bool autoBind = true)
         {
             if (data == IntPtr.Zero) { throw new ArgumentNullException("data"); }
+
+            if (glClearBufferData == null) { glClearBufferData = OpenGL.GetDelegateFor("glClearBufferData", GLDelegates.typeof_void_uint_uint_uint_uint_IntPtr) as GLDelegates.void_uint_uint_uint_uint_IntPtr; }
 
             bool result = (glClearBufferData != null);
 
@@ -125,6 +130,7 @@ namespace CSharpGL
         {
             if (data == IntPtr.Zero) { throw new ArgumentNullException("data"); }
 
+            if (glClearBufferSubData == null) { glClearBufferSubData = OpenGL.GetDelegateFor("glClearBufferSubData", GLDelegates.typeof_void_uint_uint_IntPtr_uint_uint_uint_IntPtr) as GLDelegates.void_uint_uint_IntPtr_uint_uint_uint_IntPtr; }
 
             bool result = (glClearBufferSubData != null);
 
