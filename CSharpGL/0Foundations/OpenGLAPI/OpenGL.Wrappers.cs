@@ -919,20 +919,20 @@ namespace CSharpGL
         //    OpenGL.DrawElements((uint)mode, count, type, indices);
         //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <param name="count"></param>
-        /// <param name="type"></param>
-        /// <param name="indices"></param>
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawRangeElements(DrawMode mode, uint start, uint end, int count, uint type, IntPtr indices)
-        {
-            GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="mode"></param>
+        ///// <param name="start"></param>
+        ///// <param name="end"></param>
+        ///// <param name="count"></param>
+        ///// <param name="type"></param>
+        ///// <param name="indices"></param>
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void DrawRangeElements(DrawMode mode, uint start, uint end, int count, uint type, IntPtr indices)
+        //{
+        //    GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
+        //}
 
         #endregion Draw vertex array object
 
@@ -1118,23 +1118,23 @@ namespace CSharpGL
             OpenGL.GetTexImage((uint)target, level, (uint)format, (uint)type, pixels.Header);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        /// <param name="border"></param>
-        /// <param name="format"></param>
-        /// <param name="type"></param>
-        /// <param name="pixels"></param>
-        public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glTexImage3D>()(target, level, internalformat, width, height, depth, border, format, type, pixels);
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        ///// <param name="border"></param>
+        ///// <param name="format"></param>
+        ///// <param name="type"></param>
+        ///// <param name="pixels"></param>
+        //public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glTexImage3D>()(target, level, internalformat, width, height, depth, border, format, type, pixels);
+        //}
 
         /// <summary>
         /// This sets the current drawing mode of polygons (points, lines, filled).

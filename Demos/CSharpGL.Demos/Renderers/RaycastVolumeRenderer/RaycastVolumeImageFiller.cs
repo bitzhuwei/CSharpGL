@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using CSharpGL;
 
 namespace CSharpGL.Demos
 {
@@ -64,7 +65,9 @@ namespace CSharpGL.Demos
             OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
             GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(data, 0);
-            OpenGL.TexImage3D(OpenGL.GL_TEXTURE_3D, 0, (int)OpenGL.GL_INTENSITY,
+            //uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr
+            var glTexImage3D = OpenGL.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr;
+            glTexImage3D(OpenGL.GL_TEXTURE_3D, 0, (int)OpenGL.GL_INTENSITY,
                 width, height, depth, 0,
                 OpenGL.GL_LUMINANCE, OpenGL.GL_UNSIGNED_BYTE, header);
             pin.Free();
