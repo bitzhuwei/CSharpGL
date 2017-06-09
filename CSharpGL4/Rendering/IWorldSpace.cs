@@ -8,7 +8,7 @@ namespace CSharpGL
     /// transform a model from model's sapce to world's space.
     /// </summary>
     //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IModelSpace
+    public interface IWorldSpace
     {
         /// <summary>
         /// Position in world space.
@@ -39,7 +39,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public static class IModelSpaceHelper
+    public static class IWorldSpaceHelper
     {
         /// <summary>
         /// Gets max and min position of the AABB box that wraps specified <paramref name="model"/>.
@@ -47,7 +47,7 @@ namespace CSharpGL
         /// <param name="model"></param>
         /// <param name="maxPosition"></param>
         /// <param name="minPosition"></param>
-        public static void GetMaxMinPosition(this IModelSpace model, out vec3 maxPosition, out vec3 minPosition)
+        public static void GetMaxMinPosition(this IWorldSpace model, out vec3 maxPosition, out vec3 minPosition)
         {
             if (model == null) { throw new System.ArgumentNullException(); }
 
@@ -57,11 +57,11 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Copy <see cref="IModelSpace"/> state from specified <paramref name="source"/>.
+        /// Copy <see cref="IWorldSpace"/> state from specified <paramref name="source"/>.
         /// </summary>
         /// <param name="dest"></param>
         /// <param name="source"></param>
-        public static void CopyModelSpaceStateFrom(this IModelSpace dest, IModelSpace source)
+        public static void CopyModelSpaceStateFrom(this IWorldSpace dest, IWorldSpace source)
         {
             if (dest == null || source == null) { throw new System.ArgumentNullException(); }
 
@@ -77,7 +77,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static mat4 GetModelMatrix(this IModelSpace model)
+        public static mat4 GetModelMatrix(this IWorldSpace model)
         {
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
@@ -93,7 +93,7 @@ namespace CSharpGL
         /// <param name="model"></param>
         /// <param name="angleDegree">Angle in Degree.</param>
         /// <param name="axis"></param>
-        public static void Rotate(this IModelSpace model, float angleDegree, vec3 axis)
+        public static void Rotate(this IWorldSpace model, float angleDegree, vec3 axis)
         {
             mat4 currentRotationMatrix = glm.rotate(model.RotationAngleDegree, model.RotationAxis);
             mat4 newRotationMatrix = glm.rotate(angleDegree, axis);
@@ -111,7 +111,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static BoundingBox GetBoundingBox(this IModelSpace model)
+        public static BoundingBox GetBoundingBox(this IWorldSpace model)
         {
             vec3 max, min;
             {
@@ -130,7 +130,7 @@ namespace CSharpGL
         /// Run legacy model transform.(from model space to world space)
         /// </summary>
         /// <param name="model"></param>
-        public static void LegacyTransform(this IModelSpace model)
+        public static void LegacyTransform(this IWorldSpace model)
         {
             GL.Instance.Translatef(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
             GL.Instance.Scalef(model.Scale.x, model.Scale.y, model.Scale.z);

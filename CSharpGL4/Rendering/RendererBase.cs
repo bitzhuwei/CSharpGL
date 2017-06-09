@@ -8,7 +8,7 @@ namespace CSharpGL
     /// 用OpenGL初始化和渲染一个模型。
     /// <para>Initialize and render something with OpenGL.</para>
     /// </summary>
-    public abstract partial class RendererBase : IRenderable, IModelSpace, IDisposable
+    public abstract partial class RendererBase : ITreeNode<RendererBase>, IRenderable, IWorldSpace, IDisposable
     {
         private readonly object synObj = new object();
 
@@ -54,8 +54,25 @@ namespace CSharpGL
         /// </summary>
         public RendererBase()
         {
+            // ITreeNode<>
+            this.Children = new TreeNodeChildren<RendererBase>(this);
+
             this.Enabled = true;
             this.Id = idCounter++;
         }
+
+        #region ITreeNode<RendererBase> 成员
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public RendererBase Parent { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TreeNodeChildren<RendererBase> Children { get; private set; }
+
+        #endregion
     }
 }

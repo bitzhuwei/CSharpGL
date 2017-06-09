@@ -81,7 +81,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="Rendering\IModelSpace.cs" />
+    <Compile Include="Rendering\IWorldSpace.cs" />
     <Compile Include="Rendering\IRenderable.cs" />
     <Compile Include="Rendering\RendererBase.cs" />
     <Compile Include="Rendering\RendererBase.IDisposable.cs" />

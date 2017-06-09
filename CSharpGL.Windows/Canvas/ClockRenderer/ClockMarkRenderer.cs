@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockMarkRenderer : RendererBase, IModelSpace
+    internal class ClockMarkRenderer : RendererBase, IWorldSpace
     {
         private readonly List<vec3> markPosition = new List<vec3>();
         private readonly List<vec3> markColor = new List<vec3>();
