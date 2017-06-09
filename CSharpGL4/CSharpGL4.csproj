@@ -98,15 +98,6 @@
     <Compile Include="Rendering\Renderer\Renderer.Property.cs" />
     <Compile Include="Rendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="Rendering\Renderer\Renderer.Uniforms.cs" />
-    <Compile Include="Scene\IWorldSpace.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Scene\Scene.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Scene\SceneElement.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
