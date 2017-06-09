@@ -52,7 +52,13 @@ namespace CSharpGL
             OpenGL.BindTexture(this.Target, 0);
         }
 
-        private static OpenGL.glActiveTexture activeTexture;
+        private static GLDelegates.void_uint glActiveTexture;
+
+        static Texture()
+        {
+            glActiveTexture = OpenGL.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        }
+
         private bool initialized = false;
 
         /// <summary>
@@ -62,9 +68,7 @@ namespace CSharpGL
         {
             if (!this.initialized)
             {
-                if (activeTexture == null)
-                { activeTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-                activeTexture(this.ActiveTextureIndex + OpenGL.GL_TEXTURE0);
+                glActiveTexture(this.ActiveTextureIndex + OpenGL.GL_TEXTURE0);
                 OpenGL.GenTextures(1, id);
                 TextureTarget target = this.Target;
                 OpenGL.BindTexture(target, id[0]);
