@@ -60,7 +60,7 @@ namespace CSharpGL
 
             // sets fields.
             this.Program = program;
-            this.vertexAttributeBuffers = vertexAttributeBuffers;
+            this.vertexShaderAttribute = vertexAttributeBuffers;
             this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
 

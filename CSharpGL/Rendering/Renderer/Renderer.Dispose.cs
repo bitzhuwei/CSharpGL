@@ -12,7 +12,7 @@
             {
                 vao.Dispose();
             }
-            VertexShaderAttribute[] vbos = this.vertexAttributeBuffers;
+            VertexShaderAttribute[] vbos = this.vertexShaderAttribute;
             if (vbos != null)
             {
                 foreach (var item in vbos)

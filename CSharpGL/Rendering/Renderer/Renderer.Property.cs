@@ -46,7 +46,7 @@ namespace CSharpGL
         {
             get
             {
-                return this.vertexAttributeBuffers;
+                return this.vertexShaderAttribute;
             }
         }
 

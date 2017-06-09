@@ -14,11 +14,11 @@ namespace CSharpGL
         private const string strVertexArrayObject = "Vertex Array Object";
 
         /// <summary>
-        /// vertex attribute buffers('in vec3 position;' in shader etc.)
+        /// all 'in type varName;' in vertex shader.
         /// </summary>
         [Category(strVertexArrayObject)]
-        [Description("vertex attribute buffers('in vec3 position;' in shader etc.)")]
-        public VertexShaderAttribute[] VertexAttributeBuffers { get; private set; }
+        [Description("all 'in type varName;' in vertex shader.")]
+        public VertexShaderAttribute[] VertexShaderAttributes { get; private set; }
 
         /// <summary>
         /// The one and only one index buffer used to indexing vertex attribute buffers.
@@ -60,7 +60,7 @@ namespace CSharpGL
             //}
 
             this.IndexBuffer = indexBuffer;
-            this.VertexAttributeBuffers = vertexAttributeBuffers;
+            this.VertexShaderAttributes = vertexAttributeBuffers;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace CSharpGL
             glGenVertexArrays(1, ids);
 
             this.Bind();// this vertex array object will record all stand-by actions.
-            VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+            VertexShaderAttribute[] vertexAttributeBuffers = this.VertexShaderAttributes;
             if (vertexAttributeBuffers != null)
             {
                 foreach (var item in vertexAttributeBuffers)
@@ -174,7 +174,7 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
-                        VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+                        VertexShaderAttribute[] vertexAttributeBuffers = this.VertexShaderAttributes;
                         if (vertexAttributeBuffers != null)
                         {
                             foreach (var item in vertexAttributeBuffers)

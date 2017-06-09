@@ -13,9 +13,9 @@
         protected VertexArrayObject vertexArrayObject;
 
         /// <summary>
-        /// Vertex attribute buffers.
+        /// all 'in type varName;' in vertex shader.
         /// </summary>
-        protected VertexShaderAttribute[] vertexAttributeBuffers;
+        protected VertexShaderAttribute[] vertexShaderAttribute;
 
         /// <summary>
         ///
