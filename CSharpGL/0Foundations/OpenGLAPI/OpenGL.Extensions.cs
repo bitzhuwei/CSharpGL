@@ -4696,74 +4696,74 @@ namespace CSharpGL
 
         #region GL_program_interface_query
 
-        /// <summary>
-        /// Query a property of an interface in a program
-        /// </summary>
-        /// <param name="program">The name of a program object whose interface to query.</param>
-        /// <param name="programInterface">A token identifying the interface within program​ to query.</param>
-        /// <param name="pname">The name of the parameter within programInterface​ to query.</param>
-        /// <param name="parameters">The address of a variable to retrieve the value of pname​ for the program interface..</param>
-        public delegate void glGetProgramInterfaceiv(uint program, uint programInterface, uint pname, int[] parameters);
+        ///// <summary>
+        ///// Query a property of an interface in a program
+        ///// </summary>
+        ///// <param name="program">The name of a program object whose interface to query.</param>
+        ///// <param name="programInterface">A token identifying the interface within program​ to query.</param>
+        ///// <param name="pname">The name of the parameter within programInterface​ to query.</param>
+        ///// <param name="parameters">The address of a variable to retrieve the value of pname​ for the program interface..</param>
+        //public delegate void glGetProgramInterfaceiv(uint program, uint programInterface, uint pname, int[] parameters);
 
-        /// <summary>
-        /// Query the index of a named resource within a program
-        /// </summary>
-        /// <param name="program">The name of a program object whose resources to query.</param>
-        /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
-        /// <param name="name">The name of the resource to query the index of.</param>
-        internal delegate uint glGetProgramResourceIndex(uint program, uint programInterface, string name);
+        ///// <summary>
+        ///// Query the index of a named resource within a program
+        ///// </summary>
+        ///// <param name="program">The name of a program object whose resources to query.</param>
+        ///// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
+        ///// <param name="name">The name of the resource to query the index of.</param>
+        //internal delegate uint glGetProgramResourceIndex(uint program, uint programInterface, string name);
 
-        /// <summary>
-        /// Query the name of an indexed resource within a program
-        /// </summary>
-        /// <param name="program">The name of a program object whose resources to query.</param>
-        /// <param name="programInterface">A token identifying the interface within program​ containing the indexed resource.</param>
-        /// <param name="index">The index of the resource within programInterface​ of program​.</param>
-        /// <param name="bufSize">The size of the character array whose address is given by name​.</param>
-        /// <param name="length">The address of a variable which will receive the length of the resource name.</param>
-        /// <param name="name">The address of a character array into which will be written the name of the resource.</param>
-        public delegate void glGetProgramResourceName(uint program, uint programInterface, uint index, uint bufSize, uint[] length, string[] name);
+        ///// <summary>
+        ///// Query the name of an indexed resource within a program
+        ///// </summary>
+        ///// <param name="program">The name of a program object whose resources to query.</param>
+        ///// <param name="programInterface">A token identifying the interface within program​ containing the indexed resource.</param>
+        ///// <param name="index">The index of the resource within programInterface​ of program​.</param>
+        ///// <param name="bufSize">The size of the character array whose address is given by name​.</param>
+        ///// <param name="length">The address of a variable which will receive the length of the resource name.</param>
+        ///// <param name="name">The address of a character array into which will be written the name of the resource.</param>
+        //public delegate void glGetProgramResourceName(uint program, uint programInterface, uint index, uint bufSize, uint[] length, string[] name);
 
-        /// <summary>
-        /// Retrieve values for multiple properties of a single active resource within a program object
-        /// </summary>
-        /// <param name="program">The name of a program object whose resources to query.</param>
-        /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
-        /// <param name="index">The index within the programInterface​ to query information about.</param>
-        /// <param name="propCount">The number of properties being queried.</param>
-        /// <param name="props">An array of properties of length propCount​ to query.</param>
-        /// <param name="bufSize">The number of GLint values in the params​ array.</param>
-        /// <param name="length">If not NULL, then this value will be filled in with the number of actual parameters written to params​.</param>
-        /// <param name="parameters">The output array of parameters to write.</param>
-        public delegate void glGetProgramResourceiv(uint program, uint programInterface, uint index, uint propCount, uint[] props, uint bufSize, uint[] length, int[] parameters);
+        ///// <summary>
+        ///// Retrieve values for multiple properties of a single active resource within a program object
+        ///// </summary>
+        ///// <param name="program">The name of a program object whose resources to query.</param>
+        ///// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
+        ///// <param name="index">The index within the programInterface​ to query information about.</param>
+        ///// <param name="propCount">The number of properties being queried.</param>
+        ///// <param name="props">An array of properties of length propCount​ to query.</param>
+        ///// <param name="bufSize">The number of GLint values in the params​ array.</param>
+        ///// <param name="length">If not NULL, then this value will be filled in with the number of actual parameters written to params​.</param>
+        ///// <param name="parameters">The output array of parameters to write.</param>
+        //public delegate void glGetProgramResourceiv(uint program, uint programInterface, uint index, uint propCount, uint[] props, uint bufSize, uint[] length, int[] parameters);
 
-        /// <summary>
-        /// Query the location of a named resource within a program.
-        /// </summary>
-        /// <param name="program">The name of a program object whose resources to query.</param>
-        /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
-        /// <param name="name">The name of the resource to query the location of.</param>
-        public delegate int glGetProgramResourceLocation(uint program, uint programInterface, string name);
+        ///// <summary>
+        ///// Query the location of a named resource within a program.
+        ///// </summary>
+        ///// <param name="program">The name of a program object whose resources to query.</param>
+        ///// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
+        ///// <param name="name">The name of the resource to query the location of.</param>
+        //public delegate int glGetProgramResourceLocation(uint program, uint programInterface, string name);
 
-        /// <summary>
-        /// Query the fragment color index of a named variable within a program.
-        /// </summary>
-        /// <param name="program">The name of a program object whose resources to query.</param>
-        /// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
-        /// <param name="name">The name of the resource to query the location of.</param>
-        public delegate int glGetProgramResourceLocationIndex(uint program, uint programInterface, string name);
+        ///// <summary>
+        ///// Query the fragment color index of a named variable within a program.
+        ///// </summary>
+        ///// <param name="program">The name of a program object whose resources to query.</param>
+        ///// <param name="programInterface">A token identifying the interface within program​ containing the resource named name​.</param>
+        ///// <param name="name">The name of the resource to query the location of.</param>
+        //public delegate int glGetProgramResourceLocationIndex(uint program, uint programInterface, string name);
 
         #endregion GL_program_interface_query
 
         #region GL_shader_storage_buffer_object
 
-        /// <summary>
-        /// Change an active shader storage block binding.
-        /// </summary>
-        /// <param name="program">The name of the program containing the block whose binding to change.</param>
-        /// <param name="storageBlockIndex">The index storage block within the program.</param>
-        /// <param name="storageBlockBinding">The index storage block binding to associate with the specified storage block.</param>
-        internal delegate void glShaderStorageBlockBinding(uint program, uint storageBlockIndex, uint storageBlockBinding);
+        ///// <summary>
+        ///// Change an active shader storage block binding.
+        ///// </summary>
+        ///// <param name="program">The name of the program containing the block whose binding to change.</param>
+        ///// <param name="storageBlockIndex">The index storage block within the program.</param>
+        ///// <param name="storageBlockBinding">The index storage block binding to associate with the specified storage block.</param>
+        //internal delegate void glShaderStorageBlockBinding(uint program, uint storageBlockIndex, uint storageBlockBinding);
 
         //  Constants
         /// <summary>
@@ -5223,40 +5223,40 @@ namespace CSharpGL
 
         //public const uint GL_DEBUG_SEVERITY_NOTIFICATION = 0x9149;
 
-        /// <summary>
-        /// 设置哪些属性的消息能够/不能被传入callback函数。
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="type"></param>
-        /// <param name="severity"></param>
-        /// <param name="count"></param>
-        /// <param name="ids"></param>
-        /// <param name="enabled"></param>
-        public delegate void glDebugMessageControl(
-            uint source, uint type, uint severity, int count, int[] ids, bool enabled);
+        ///// <summary>
+        ///// 设置哪些属性的消息能够/不能被传入callback函数。
+        ///// </summary>
+        ///// <param name="source"></param>
+        ///// <param name="type"></param>
+        ///// <param name="severity"></param>
+        ///// <param name="count"></param>
+        ///// <param name="ids"></param>
+        ///// <param name="enabled"></param>
+        //public delegate void glDebugMessageControl(
+        //    uint source, uint type, uint severity, int count, int[] ids, bool enabled);
 
-        /// <summary>
-        /// 用户App或工具用此函数可向Debug流写入一条消息。
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="type"></param>
-        /// <param name="id"></param>
-        /// <param name="severity"></param>
-        /// <param name="length">用-1即可。</param>
-        /// <param name="buf"></param>
-        public delegate void glDebugMessageInsert(
-            uint source, uint type, uint id, uint severity, int length, StringBuilder buf);
+        ///// <summary>
+        ///// 用户App或工具用此函数可向Debug流写入一条消息。
+        ///// </summary>
+        ///// <param name="source"></param>
+        ///// <param name="type"></param>
+        ///// <param name="id"></param>
+        ///// <param name="severity"></param>
+        ///// <param name="length">用-1即可。</param>
+        ///// <param name="buf"></param>
+        //public delegate void glDebugMessageInsert(
+        //    uint source, uint type, uint id, uint severity, int length, StringBuilder buf);
 
         #endregion debugging and profiling
 
         #region transform feedbacks
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="id"></param>
-        public delegate void glBindTransformFeedback(uint target, uint id);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="id"></param>
+        //public delegate void glBindTransformFeedback(uint target, uint id);
 
         /// <summary>
         ///
@@ -5278,28 +5278,28 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BINDING = 0x8E25;
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="id"></param>
-        public delegate void glIsTransformFeedback(uint id);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="id"></param>
+        //public delegate void glIsTransformFeedback(uint id);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="n"></param>
-        /// <param name="ids"></param>
-        public delegate void glDeleteTransformFeedbacks(int n, uint[] ids);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="n"></param>
+        ///// <param name="ids"></param>
+        //public delegate void glDeleteTransformFeedbacks(int n, uint[] ids);
 
-        /// <summary>
-        ///
-        /// </summary>
-        public delegate void glPauseTransformFeedback();
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public delegate void glPauseTransformFeedback();
 
-        /// <summary>
-        ///
-        /// </summary>
-        public delegate void glResumeTransformFeedback();
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public delegate void glResumeTransformFeedback();
 
         /// <summary>
         ///
@@ -5456,31 +5456,31 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_UNIFORM_IS_ROW_MAJOR = 0x8A3E;
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="uniformBlockIndex"></param>
-        /// <param name="uniformBlockBinding"></param>
-        internal delegate void glUniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="uniformBlockIndex"></param>
+        ///// <param name="uniformBlockBinding"></param>
+        //internal delegate void glUniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="uniformBlockName"></param>
-        /// <returns></returns>
-        internal delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="uniformBlockName"></param>
+        ///// <returns></returns>
+        //internal delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="uniformBlockIndex"></param>
-        /// <param name="pname"></param>
-        /// <param name="pointer"></param>
-        /// <returns></returns>
-        internal delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, uint[] pointer);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="uniformBlockIndex"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="pointer"></param>
+        ///// <returns></returns>
+        //internal delegate uint glGetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, uint[] pointer);
 
         /// <summary>
         ///
@@ -5552,30 +5552,30 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_MAP_UNSYNCHRONIZED_BIT = 0x0020;
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="id"></param>
-        public delegate void glDrawTransformFeedback(uint mode, uint id);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="mode"></param>
+        ///// <param name="id"></param>
+        //public delegate void glDrawTransformFeedback(uint mode, uint id);
 
         #endregion transform feedbacks
 
         #region patch
 
-        /// <summary>
-        /// specifies the parameters for patch primitives
-        /// </summary>
-        /// <param name="pname">Specifies the name of the parameter to set.</param>
-        /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
-        internal delegate void glPatchParameteri(uint pname, int value);
+        ///// <summary>
+        ///// specifies the parameters for patch primitives
+        ///// </summary>
+        ///// <param name="pname">Specifies the name of the parameter to set.</param>
+        ///// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
+        //internal delegate void glPatchParameteri(uint pname, int value);
 
-        /// <summary>
-        /// specifies the parameters for patch primitives
-        /// </summary>
-        /// <param name="pname">Specifies the name of the parameter to set.</param>
-        /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
-        internal delegate void glPatchParameterfv(uint pname, float[] values);
+        ///// <summary>
+        ///// specifies the parameters for patch primitives
+        ///// </summary>
+        ///// <param name="pname">Specifies the name of the parameter to set.</param>
+        ///// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
+        //internal delegate void glPatchParameterfv(uint pname, float[] values);
 
         /// <summary>
         ///
@@ -5596,75 +5596,75 @@ namespace CSharpGL
 
         #region texture
 
-        /// <summary>
-        /// bind a level of a texture to an image unit(a uniform image2D in compute shader).
-        /// </summary>
-        /// <param name="unit">Specifies the index of the image unit to which to bind the texture.</param>
-        /// <param name="texture">Specifies the name of the texture to bind to the image unit.</param>
-        /// <param name="level">Specifies the level of the texture that is to be bound.</param>
-        /// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
-        /// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
-        /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.</param>
-        /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.</param>
-        private delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
+        ///// <summary>
+        ///// bind a level of a texture to an image unit(a uniform image2D in compute shader).
+        ///// </summary>
+        ///// <param name="unit">Specifies the index of the image unit to which to bind the texture.</param>
+        ///// <param name="texture">Specifies the name of the texture to bind to the image unit.</param>
+        ///// <param name="level">Specifies the level of the texture that is to be bound.</param>
+        ///// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
+        ///// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
+        ///// <param name="access">Specifies a token indicating the type of access that will be performed on the image.</param>
+        ///// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.</param>
+        //private delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
 
-        private static glBindImageTexture bindImageTexture;
+        //private static glBindImageTexture bindImageTexture;
 
-        /// <summary>
-        /// bind a level of a texture to an image unit(a uniform image2D in compute shader).
-        /// <para>for more information check http://www.unix.com/man-page/debian/3g/GLBINDIMAGETEXTURE/</para>
-        /// </summary>
-        /// <param name="unit">Specifies the index of the image unit to which to bind the texture.<para>a uniform image2D variable's location.</para></param>
-        /// <param name="texture">Specifies the name of the texture to bind to the image unit.<para>texture's id from glGenTexture().</para></param>
-        /// <param name="level">Specifies the level of the texture that is to be bound.</param>
-        /// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
-        /// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
-        /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.<para>OpenGL.GL_READ_ONLY, OpenGL.GL_WRITE_ONLY, OpenGL.GL_READ_WRITE etc.</para></param>
-        /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.<para>OpenGL.GL_RGBA32F etc.</para></param>
-        public static void BindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format)
-        {
-            if (bindImageTexture == null)
-            { bindImageTexture = OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>(); }
-            bindImageTexture(unit, texture, level, layered, layer, access, format);
-        }
+        ///// <summary>
+        ///// bind a level of a texture to an image unit(a uniform image2D in compute shader).
+        ///// <para>for more information check http://www.unix.com/man-page/debian/3g/GLBINDIMAGETEXTURE/</para>
+        ///// </summary>
+        ///// <param name="unit">Specifies the index of the image unit to which to bind the texture.<para>a uniform image2D variable's location.</para></param>
+        ///// <param name="texture">Specifies the name of the texture to bind to the image unit.<para>texture's id from glGenTexture().</para></param>
+        ///// <param name="level">Specifies the level of the texture that is to be bound.</param>
+        ///// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
+        ///// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
+        ///// <param name="access">Specifies a token indicating the type of access that will be performed on the image.<para>OpenGL.GL_READ_ONLY, OpenGL.GL_WRITE_ONLY, OpenGL.GL_READ_WRITE etc.</para></param>
+        ///// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.<para>OpenGL.GL_RGBA32F etc.</para></param>
+        //public static void BindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format)
+        //{
+        //    if (bindImageTexture == null)
+        //    { bindImageTexture = OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>(); }
+        //    bindImageTexture(unit, texture, level, layered, layer, access, format);
+        //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="levels"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        public delegate void glTexStorage1D(uint target, int levels, uint internalformat, int width);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="levels"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        //public delegate void glTexStorage1D(uint target, int levels, uint internalformat, int width);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="levels"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public delegate void glTexStorage2D(uint target, int levels, uint internalformat, int width, int height);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="levels"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        //public delegate void glTexStorage2D(uint target, int levels, uint internalformat, int width, int height);
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="levels"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        public delegate void glTexStorage3D(uint target, int levels, uint internalformat, int width, int height, int depth);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="levels"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        //public delegate void glTexStorage3D(uint target, int levels, uint internalformat, int width, int height, int depth);
 
         #endregion texture
 
-        /// <summary>
-        /// defines a barrier ordering memory transactions
-        /// </summary>
-        /// <param name="barriers">Specifies the barriers to insert.</param>
-        public delegate void glMemoryBarrier(uint barriers);
+        ///// <summary>
+        ///// defines a barrier ordering memory transactions
+        ///// </summary>
+        ///// <param name="barriers">Specifies the barriers to insert.</param>
+        //public delegate void glMemoryBarrier(uint barriers);
 
         /// <summary>
         ///

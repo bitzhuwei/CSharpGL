@@ -36,7 +36,11 @@ namespace CSharpGL
                 }
 
                 // Dispose unmanaged resources.
-                OpenGL.DeleteRenderbuffers(1, this.renderbuffer);
+                IntPtr context = Win32.wglGetCurrentContext();
+                if (context != IntPtr.Zero)
+                {
+                    glDeleteRenderbuffers(this.renderbuffer.Length, this.renderbuffer);
+                }
             }
 
             this.disposedValue = true;

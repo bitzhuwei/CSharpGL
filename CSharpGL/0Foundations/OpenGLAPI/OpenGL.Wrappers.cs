@@ -1246,6 +1246,7 @@ namespace CSharpGL
             StringBuilder message,
             IntPtr userParam);
 
+        private static GLDelegates.void_uint_uint_uint_int_intN_bool glDebugMessageControl;
         /// <summary>
         /// 设置哪些属性的消息能够/不能被传入callback函数。
         /// </summary>
@@ -1263,9 +1264,11 @@ namespace CSharpGL
             int[] ids,
             bool enabled)
         {
-            OpenGL.GetDelegateFor<OpenGL.glDebugMessageControl>()((uint)source, (uint)type, (uint)severity, count, ids, enabled);
+            var glDebugMessageControl = OpenGL.GetDelegateFor("glDebugMessageControl", GLDelegates.typeof_void_uint_uint_uint_int_intN_bool) as GLDelegates.void_uint_uint_uint_int_intN_bool;
+            glDebugMessageControl((uint)source, (uint)type, (uint)severity, count, ids, enabled);
         }
 
+        private static GLDelegates.void_uint_uint_uint_uint_int_StringBuilder glDebugMessageInsert;
         /// <summary>
         /// 用户App或工具用此函数可向Debug流写入一条消息。
         /// </summary>
@@ -1283,22 +1286,23 @@ namespace CSharpGL
             int length,
             StringBuilder buf)
         {
-            OpenGL.GetDelegateFor<OpenGL.glDebugMessageInsert>()((uint)source, (uint)type, id, (uint)severity, length, buf);
+            var glDebugMessageInsert = OpenGL.GetDelegateFor("glDebugMessageInsert", GLDelegates.typeof_void_uint_uint_uint_uint_int_StringBuilder) as GLDelegates.void_uint_uint_uint_uint_int_StringBuilder;
+            glDebugMessageInsert((uint)source, (uint)type, id, (uint)severity, length, buf);
         }
 
         #endregion debugging and profiling
 
         #region transform feedback
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="id"></param>
-        public static void BindTransformFeedback(TransformFeedbackTarget target, uint id)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glBindTransformFeedback>()((uint)target, id);
-        }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="id"></param>
+        //public static void BindTransformFeedback(TransformFeedbackTarget target, uint id)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glBindTransformFeedback>()((uint)target, id);
+        //}
 
         //private static OpenGL.glBindBufferBase bindBufferBase;
 
@@ -1361,80 +1365,80 @@ namespace CSharpGL
 
         #region patch
 
-        /// <summary>
-        /// specifies the parameters for patch primitives
-        /// </summary>
-        /// <param name="pname">Specifies the name of the parameter to set.</param>
-        /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
-        public static void PatchParameter(PatchParameterName pname, int value)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>()((uint)pname, value);
-        }
+        ///// <summary>
+        ///// specifies the parameters for patch primitives
+        ///// </summary>
+        ///// <param name="pname">Specifies the name of the parameter to set.</param>
+        ///// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
+        //public static void PatchParameter(PatchParameterName pname, int value)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glPatchParameteri>()((uint)pname, value);
+        //}
 
-        /// <summary>
-        /// specifies the parameters for patch primitives
-        /// </summary>
-        /// <param name="pname">Specifies the name of the parameter to set.</param>
-        /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
-        public static void PatchParameter(PatchParameterName pname, float[] values)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glPatchParameterfv>()((uint)pname, values);
-        }
+        ///// <summary>
+        ///// specifies the parameters for patch primitives
+        ///// </summary>
+        ///// <param name="pname">Specifies the name of the parameter to set.</param>
+        ///// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
+        //public static void PatchParameter(PatchParameterName pname, float[] values)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glPatchParameterfv>()((uint)pname, values);
+        //}
 
         #endregion patch
 
         #region texture
 
-        /// <summary>
-        /// defines a barrier ordering memory transactions
-        /// </summary>
-        /// <param name="barriers">Specifies the barriers to insert.</param>
-        public static void MemoryBarrier(MemoryBarrierFlags barriers)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()((uint)barriers);
-        }
+        ///// <summary>
+        ///// defines a barrier ordering memory transactions
+        ///// </summary>
+        ///// <param name="barriers">Specifies the barriers to insert.</param>
+        //public static void MemoryBarrier(MemoryBarrierFlags barriers)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()((uint)barriers);
+        //}
 
         // https://www.opengl.org/wiki/GLAPI/glTexStorage1D
-        /// <summary>
-        /// simultaneously specify storage for all levels of a one-dimensional texture
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="levels"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        public static void TexStorage1D(TexStorage1DTarget target, int levels, uint internalformat, int width)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glTexStorage1D>()((uint)target, levels, internalformat, width);
-        }
+        ///// <summary>
+        ///// simultaneously specify storage for all levels of a one-dimensional texture
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="levels"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        //public static void TexStorage1D(TexStorage1DTarget target, int levels, uint internalformat, int width)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glTexStorage1D>()((uint)target, levels, internalformat, width);
+        //}
 
         // https://www.opengl.org/wiki/GLAPI/glTexStorage2D
-        /// <summary>
-        /// simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="levels"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public static void TexStorage2D(TexStorage2DTarget target, int levels, uint internalformat, int width, int height)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glTexStorage2D>()((uint)target, levels, internalformat, width, height);
-        }
+        ///// <summary>
+        ///// simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="levels"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        //public static void TexStorage2D(TexStorage2DTarget target, int levels, uint internalformat, int width, int height)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glTexStorage2D>()((uint)target, levels, internalformat, width, height);
+        //}
 
         // https://www.opengl.org/wiki/GLAPI/glTexStorage3D
-        /// <summary>
-        /// simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="levels"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        public static void TexStorage3D(TexStorage3DTarget target, int levels, uint internalformat, int width, int height, int depth)
-        {
-            OpenGL.GetDelegateFor<OpenGL.glTexStorage3D>()((uint)target, levels, internalformat, width, height, depth);
-        }
+        ///// <summary>
+        ///// simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="levels"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        //public static void TexStorage3D(TexStorage3DTarget target, int levels, uint internalformat, int width, int height, int depth)
+        //{
+        //    OpenGL.GetDelegateFor<OpenGL.glTexStorage3D>()((uint)target, levels, internalformat, width, height, depth);
+        //}
 
         #endregion texture
 

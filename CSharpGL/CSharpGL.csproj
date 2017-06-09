@@ -108,6 +108,16 @@
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.4.0.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.GL_EXT_texture3D.cs" />
     <Compile Include="0Foundations\OpenGLAPI\OpenGL.Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Completeness.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Limits.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Parameter.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.Special.cs" />
+    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\RenderbufferType.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.T[].cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.UnmanagedArrayBase.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T.cs" />
@@ -145,6 +155,7 @@
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
     <Compile Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
     <Content Include="0Foundations\OpenGLObjects\GLBuffers\readme.md" />
+    <None Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
     <None Include="0Foundations\Utilities\Sorting\readme.md" />
     <Compile Include="0Foundations\Utilities\VertexNormalHelper.cs" />
     <Compile Include="0Foundations\Utilities\Sorting\SortingHelper.Comparer`1.CSharpCodeProvider.cs" />
@@ -176,13 +187,6 @@
     <Compile Include="0Foundations\OpenGLObjects\GLStates\ColorMaskState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\DepthMaskState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\EnableStates\LineStippleState.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Limits.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Parameter.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\RenderbufferType.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.Special.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Renderbuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Completeness.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Query\Query.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Query\Query.IDisposable.cs" />
     <Compile Include="Rendering\RendererBase.IModelSpace.cs" />
@@ -192,9 +196,6 @@
     <Compile Include="0Foundations\OpenGLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexBufferImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\NullImageFiller.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.Attachments.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.cs" />
-    <Compile Include="0Foundations\OpenGLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
     <Compile Include="Rendering\IModelSpace.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\TexStorage2DImageFiller.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Samplers\NullSampler.cs" />
@@ -209,7 +210,6 @@
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.ctors.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\Texture.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Texture\ImageFillers\ImageFiller.cs" />
-    <Content Include="0Foundations\OpenGLObjects\Framebuffer\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\GLBuffers\VertexBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\GLBuffers\IndependentBuffers\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\Query\readme.md" />

@@ -15,8 +15,8 @@ namespace CSharpGL
     /// </summary>
     public class UniformBlock<T> : UniformSingleVariable<T> where T : struct, IEquatable<T>
     {
-        internal static OpenGL.glGetUniformBlockIndex glGetUniformBlockIndex;
-        internal static OpenGL.glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
+        internal static GLDelegates.uint_uint_string glGetUniformBlockIndex;
+        internal static GLDelegates.uint_uint_uint_uint_uintN glGetActiveUniformBlockiv;
         //internal static OpenGL.glUniformBlockBinding glUniformBlockBinding;
         //internal static OpenGL.glBindBufferRange glBindBufferRange;
         //internal static OpenGL.glBindBufferBase glBindBufferBase;
@@ -71,8 +71,8 @@ namespace CSharpGL
         {
             if (glGetUniformBlockIndex == null)
             {
-                glGetUniformBlockIndex = OpenGL.GetDelegateFor<OpenGL.glGetUniformBlockIndex>();
-                glGetActiveUniformBlockiv = OpenGL.GetDelegateFor<OpenGL.glGetActiveUniformBlockiv>();
+                glGetUniformBlockIndex = OpenGL.GetDelegateFor("glGetUniformBlockIndex", GLDelegates.typeof_uint_uint_string) as GLDelegates.uint_uint_string;
+                glGetActiveUniformBlockiv = OpenGL.GetDelegateFor("glGetActiveUniformBlockiv", GLDelegates.typeof_uint_uint_uint_uint_uintN) as GLDelegates.uint_uint_uint_uint_uintN;
             }
 
             uint uboIndex = glGetUniformBlockIndex(program.ProgramId, this.VarName);
@@ -92,8 +92,8 @@ namespace CSharpGL
             //    result.UnmapBuffer();
             //}
 
-            //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
-            //glBindBufferBase(OpenGL.GL_UNIFORM_BUFFER, 0, result.BufferId);
+            //glBindBufferBase(GL.GL_UNIFORM_BUFFER, uboIndex, result.BufferId);
+            //glBindBufferBase(GL.GL_UNIFORM_BUFFER, 0, result.BufferId);
             //glUniformBlockBinding(program.ProgramId, uboIndex, 0);
             result.Binding(program, uboIndex, 0);
             result.Unbind();

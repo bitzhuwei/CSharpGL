@@ -611,64 +611,64 @@ namespace CSharpGL
         /// <param name="n">Number of textures to delete.</param>
         /// <param name="textures">The array containing the names of the textures to delete.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDeleteTextures", SetLastError = true)]
-        private static extern void glDeleteTextures(int n, uint[] textures);
+        public static extern void glDeleteTextures(int n, uint[] textures);
 
-        /// <summary>
-        /// This function deletes a set of Texture objects.
-        /// </summary>
-        /// <param name="n">Number of textures to delete.</param>
-        /// <param name="textures">The array containing the names of the textures to delete.</param>
-        public static void DeleteTextures(int n, uint[] textures)
-        {
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                glDeleteTextures(n, textures);
-            }
-        }
+        ///// <summary>
+        ///// This function deletes a set of Texture objects.
+        ///// </summary>
+        ///// <param name="n">Number of textures to delete.</param>
+        ///// <param name="textures">The array containing the names of the textures to delete.</param>
+        //public static void DeleteTextures(int n, uint[] textures)
+        //{
+        //    IntPtr ptr = Win32.wglGetCurrentContext();
+        //    if (ptr != IntPtr.Zero)
+        //    {
+        //        glDeleteTextures(n, textures);
+        //    }
+        //}
 
-        /// <summary>
-        /// This function deletes a set of sampler objects.
-        /// </summary>
-        /// <param name="n">Number of textures to delete.</param>
-        /// <param name="samplers">The array containing the names of the textures to delete.</param>
-        internal delegate void glDeleteSamplers(int n, uint[] samplers);
+        ///// <summary>
+        ///// This function deletes a set of sampler objects.
+        ///// </summary>
+        ///// <param name="n">Number of textures to delete.</param>
+        ///// <param name="samplers">The array containing the names of the textures to delete.</param>
+        //internal delegate void glDeleteSamplers(int n, uint[] samplers);
 
-        private static OpenGL.glDeleteFramebuffers _glDeleteFramebuffers;
+        //private static OpenGL.glDeleteFramebuffers _glDeleteFramebuffers;
 
-        /// <summary>
-        /// This function deletes a set of Texture objects.
-        /// </summary>
-        /// <param name="n">Number of textures to delete.</param>
-        /// <param name="framebuffers">The array containing the names of the textures to delete.</param>
-        public static void DeleteFramebuffers(uint n, uint[] framebuffers)
-        {
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                if (_glDeleteFramebuffers == null)
-                { _glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffers>(); }
-                _glDeleteFramebuffers(n, framebuffers);
-            }
-        }
+        ///// <summary>
+        ///// This function deletes a set of Texture objects.
+        ///// </summary>
+        ///// <param name="n">Number of textures to delete.</param>
+        ///// <param name="framebuffers">The array containing the names of the textures to delete.</param>
+        //public static void DeleteFramebuffers(uint n, uint[] framebuffers)
+        //{
+        //    IntPtr ptr = Win32.wglGetCurrentContext();
+        //    if (ptr != IntPtr.Zero)
+        //    {
+        //        if (_glDeleteFramebuffers == null)
+        //        { _glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffers>(); }
+        //        _glDeleteFramebuffers(n, framebuffers);
+        //    }
+        //}
 
-        private static OpenGL.glDeleteRenderbuffers _glDeleteRenderbuffers;
+        //private static OpenGL.glDeleteRenderbuffers _glDeleteRenderbuffers;
 
-        /// <summary>
-        /// This function deletes a set of Texture objects.
-        /// </summary>
-        /// <param name="n">Number of textures to delete.</param>
-        /// <param name="renderbuffers">The array containing the names of the textures to delete.</param>
-        public static void DeleteRenderbuffers(uint n, uint[] renderbuffers)
-        {
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                if (_glDeleteRenderbuffers == null)
-                { _glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffers>(); }
-                _glDeleteRenderbuffers(n, renderbuffers);
-            }
-        }
+        ///// <summary>
+        ///// This function deletes a set of Texture objects.
+        ///// </summary>
+        ///// <param name="n">Number of textures to delete.</param>
+        ///// <param name="renderbuffers">The array containing the names of the textures to delete.</param>
+        //public static void DeleteRenderbuffers(uint n, uint[] renderbuffers)
+        //{
+        //    IntPtr ptr = Win32.wglGetCurrentContext();
+        //    if (ptr != IntPtr.Zero)
+        //    {
+        //        if (_glDeleteRenderbuffers == null)
+        //        { _glDeleteRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffers>(); }
+        //        _glDeleteRenderbuffers(n, renderbuffers);
+        //    }
+        //}
 
         ///// <summary>
         ///// This function deletes a set of vertex buffer objects.

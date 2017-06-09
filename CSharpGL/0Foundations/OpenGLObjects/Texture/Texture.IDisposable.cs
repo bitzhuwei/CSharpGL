@@ -41,8 +41,7 @@ namespace CSharpGL
 
                 // Dispose unmanaged resources.
                 {
-                    OpenGL.DeleteTextures(this.id.Length, this.id);
-                    this.id[0] = 0;
+                    OpenGL.glDeleteTextures(this.id.Length, this.id);
                 }
                 {
                     var disp = this.ImageFiller as IDisposable;

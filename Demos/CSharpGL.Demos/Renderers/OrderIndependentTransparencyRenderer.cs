@@ -28,6 +28,13 @@ namespace CSharpGL.Demos
             get { return cullFaceState; }
         }
 
+
+        private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
+        static OrderIndependentTransparencyRenderer()
+        {
+            glBindImageTexture = OpenGL.GetDelegateFor("glBindImageTexture", GLDelegates.typeof_void_uint_uint_int_bool_int_uint_uint) as GLDelegates.void_uint_uint_int_bool_int_uint_uint;
+        }
+
         public OrderIndependentTransparencyRenderer(IBufferable model, vec3 lengths,
             string positionName, string normalName)
         {
@@ -67,7 +74,7 @@ namespace CSharpGL.Demos
                     new SamplerParameters(TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat, TextureFilter.Nearest, TextureFilter.Nearest));
                 texture.Initialize();
                 this.headTexture = texture;
-                OpenGL.BindImageTexture(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+                glBindImageTexture(0, this.headTexture.Id, 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
             }
             // Create buffer for clearing the head pointer texture
             {
@@ -114,7 +121,7 @@ namespace CSharpGL.Demos
                 //TextureBuffer buffer = TextureBuffer.Create()
             }
             {
-                OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+                glBindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
             }
             OpenGL.ClearDepth(1.0f);
         }
@@ -144,10 +151,10 @@ namespace CSharpGL.Demos
             //
 
             // Bind head-pointer image for read-write
-            OpenGL.BindImageTexture(0, this.headTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+            glBindImageTexture(0, this.headTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Bind linked-list buffer for write
-            OpenGL.BindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            glBindImageTexture(1, this.linkedListTexture.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
@@ -167,8 +174,8 @@ namespace CSharpGL.Demos
             // second pass
             this.resolve_lists.Render(arg);
 
-            OpenGL.BindImageTexture(1, 0, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
-            OpenGL.BindImageTexture(0, 0, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
+            glBindImageTexture(1, 0, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            glBindImageTexture(0, 0, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             this.cullFaceState.Off();
             this.depthTestState.Off();

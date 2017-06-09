@@ -4,7 +4,7 @@ namespace CSharpGL
 {
     public partial class Sampler
     {
-        private static OpenGL.glDeleteSamplers glDeleteSamplers;
+        private static GLDelegates.void_int_uintN glDeleteSamplers;
 
         #region IDisposable Members
 
@@ -48,7 +48,9 @@ namespace CSharpGL
                 if (ptr != IntPtr.Zero)
                 {
                     if (glDeleteSamplers == null)
-                    { glDeleteSamplers = OpenGL.GetDelegateFor<OpenGL.glDeleteSamplers>(); }
+                    {
+                        glDeleteSamplers = OpenGL.GetDelegateFor("glDeleteSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+                    }
                     glDeleteSamplers(1, new uint[] { this.Id });
                     this.Id = 0;
                 }

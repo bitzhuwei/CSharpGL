@@ -141,8 +141,7 @@ namespace CSharpGL
             if (nextColorAttachmentIndex >= attachment_id.Length)
             { throw new IndexOutOfRangeException("Not enough color attach points!"); }
 
-            glFramebufferTexture2D(
-    OpenGL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], OpenGL.GL_TEXTURE_2D, texture.Id, 0);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], OpenGL.GL_TEXTURE_2D, texture.Id, 0);
         }
 
         /// <summary>
@@ -206,15 +205,15 @@ namespace CSharpGL
         ///// <param name="height"></param>
         //public void Resize(int width, int height)
         //{
-        //    //glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-        //    //glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
-        //    //glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
-        //    //glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, width, height);
-        //    //var complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER);
-        //    this.depthBuffer.Resize(OpenGL.GL_DEPTH_ATTACHMENT, width, height);
+        //    //glBindRenderbuffer(GL.GL_RENDERBUFFER, colourRenderBufferId);
+        //    //glRenderbufferStorage(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
+        //    //glBindRenderbuffer(GL.GL_RENDERBUFFER, depthRenderBufferId);
+        //    //glRenderbufferStorage(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);
+        //    //var complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(GL.GL_FRAMEBUFFER);
+        //    this.depthBuffer.Resize(GL.GL_DEPTH_ATTACHMENT, width, height);
         //    faoreach (var item in this.colorBufferList)
         //    {
-        //        item.Resize(OpenGL.GL_RGBA, width, height);
+        //        item.Resize(GL.GL_RGBA, width, height);
         //    }
         //    this.CheckCompleteness();
         //}

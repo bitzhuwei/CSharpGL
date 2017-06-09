@@ -5,9 +5,18 @@
     /// </summary>
     public partial class Renderbuffer
     {
-        private static OpenGL.glBindRenderbuffer glBindRenderbuffer;
-        private static OpenGL.glGenRenderbuffers glGenRenderbuffers;
-        private static OpenGL.glRenderbufferStorage glRenderbufferStorage;
+        private static GLDelegates.void_int_uintN glGenRenderbuffers;
+        private static GLDelegates.void_uint_uint glBindRenderbuffer;
+        private static GLDelegates.void_uint_uint_int_int glRenderbufferStorage;
+        private static GLDelegates.void_int_uintN glDeleteRenderbuffers;
+
+        static Renderbuffer()
+        {
+            glGenRenderbuffers = OpenGL.GetDelegateFor("glGenRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glBindRenderbuffer = OpenGL.GetDelegateFor("glBindRenderbuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+            glRenderbufferStorage = OpenGL.GetDelegateFor("glRenderbufferStorage", GLDelegates.typeof_void_uint_uint_int_int) as GLDelegates.void_uint_uint_int_int;
+            glDeleteRenderbuffers = OpenGL.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        }
 
         private uint[] renderbuffer = new uint[1];
 
@@ -20,13 +29,6 @@
         /// <param name="bufferType"></param>
         public Renderbuffer(int width, int height, uint internalformat, RenderbufferType bufferType)
         {
-            if (glGenRenderbuffers == null)
-            {
-                glGenRenderbuffers = OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffers>();
-                glBindRenderbuffer = OpenGL.GetDelegateFor<OpenGL.glBindRenderbuffer>();
-                glRenderbufferStorage = OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorage>();
-            }
-
             this.Width = width;
             this.Height = height;
             this.BufferType = bufferType;
@@ -34,7 +36,7 @@
             glGenRenderbuffers(1, renderbuffer);
             glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, renderbuffer[0]);
             glRenderbufferStorage(OpenGL.GL_RENDERBUFFER,
-                internalformat,// TODO: add comment about OpenGL.GL_DEPTH24_STENCIL8, OpenGL.GL_RGBA,
+                internalformat,// TODO: add comment about GL.GL_DEPTH24_STENCIL8, GL.GL_RGBA,
                 width, height);
         }
 
@@ -63,7 +65,7 @@
         ///// </summary>
         //public void Bind()
         //{
-        //    glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, this.Id);
+        //    glBindRenderbuffer(GL.GL_RENDERBUFFER, this.Id);
         //}
 
         //  TODO: We should be able to just use the code below - however we
@@ -78,12 +80,12 @@
         //{
         //    if (autoBind)
         //    {
-        //        glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, this.Id);
+        //        glBindRenderbuffer(GL.GL_RENDERBUFFER, this.Id);
         //    }
-        //    glRenderbufferStorage(OpenGL.GL_RENDERBUFFER, format, width, height);
+        //    glRenderbufferStorage(GL.GL_RENDERBUFFER, format, width, height);
         //    if (autoBind)
         //    {
-        //        glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, 0);
+        //        glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
         //    }
         //}
 
@@ -92,7 +94,7 @@
         ///// </summary>
         //public void Unbind()
         //{
-        //    glBindRenderbuffer(OpenGL.GL_RENDERBUFFER, 0);
+        //    glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
         //}
 
         /// <summary>

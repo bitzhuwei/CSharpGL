@@ -14,6 +14,11 @@ namespace CSharpGL.Demos
 
         private uint[] output_image_buffer = new uint[1];
 
+        private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
+        static SimpleComputeRenderer()
+        {
+            glBindImageTexture = OpenGL.GetDelegateFor("glBindImageTexture", GLDelegates.typeof_void_uint_uint_int_bool_int_uint_uint) as GLDelegates.void_uint_uint_int_bool_int_uint_uint;
+        }
         public static SimpleComputeRenderer Create()
         {
             var shaderCodes = new ShaderCode[2];
@@ -91,13 +96,13 @@ namespace CSharpGL.Demos
         {
             // reset image
             computeResetProgram.Bind();
-            OpenGL.BindImageTexture(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
+            glBindImageTexture(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(maxX, maxY, maxZ);
             computeResetProgram.Unbind();
 
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
-            OpenGL.BindImageTexture(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
+            glBindImageTexture(0, outputImage.Id, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(GroupX, GroupY, GroupZ);
             computeProgram.Unbind();
 

@@ -23,9 +23,11 @@ namespace CSharpGL.Demos
         private Random random = new Random();
 
         private static readonly GLDelegates.void_uint_uint_uint glBindBufferBase;
+        private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
         static ParticleComputeRenderer()
         {
-            if (glBindBufferBase == null) { glBindBufferBase = OpenGL.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+            glBindBufferBase = OpenGL.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
+            glBindImageTexture = OpenGL.GetDelegateFor("glBindImageTexture", GLDelegates.typeof_void_uint_uint_int_bool_int_uint_uint) as GLDelegates.void_uint_uint_int_bool_int_uint_uint;
         }
 
         public ParticleComputeRenderer(GLBuffer positionBuffer, GLBuffer velocityBuffer)
@@ -89,8 +91,8 @@ namespace CSharpGL.Demos
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
-            OpenGL.BindImageTexture(0, this.velocityTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
-            OpenGL.BindImageTexture(1, this.positionTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            glBindImageTexture(0, this.velocityTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            glBindImageTexture(1, this.positionTexture.Id, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Set delta time
             computeProgram.glUniform("dt", deltaTime);
             // Dispatch

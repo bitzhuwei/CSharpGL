@@ -8,6 +8,12 @@ namespace CSharpGL.Demos
         private ParticleRenderer particleRenderer;
         private ParticleComputeRenderer particleComputeRenderer;
 
+        private static readonly GLDelegates.void_uint glMemoryBarrier;
+        static ParticleSimulatorRenderer()
+        {
+            glMemoryBarrier = OpenGL.GetDelegateFor("glMemoryBarrier", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        }
+
         public ParticleSimulatorRenderer()
         {
             this.ModelSize = new vec3(5, 5, 5);
@@ -40,7 +46,7 @@ namespace CSharpGL.Demos
         {
             this.particleComputeRenderer.Render(arg);
 
-            OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            glMemoryBarrier(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
             // Clear, select the rendering program and draw a full screen quad
             mat4 view = arg.Camera.GetViewMatrix();

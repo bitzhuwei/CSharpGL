@@ -31,7 +31,8 @@
         /// </summary>
         public override void Fill()
         {
-            OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, levels, internalFormat, width, height);
+            var function = OpenGL.GetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;
+            function((uint)TexStorage2DTarget.Texture2D, levels, internalFormat, width, height);
         }
     }
 }
