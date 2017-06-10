@@ -41,7 +41,11 @@ namespace CSharpGL
 
                 // Dispose unmanaged resources.
                 {
-                    OpenGL.glDeleteTextures(this.id.Length, this.id);
+                    IntPtr context = Win32.wglGetCurrentContext();
+                    if (context != IntPtr.Zero)
+                    {
+                        OpenGL.glDeleteTextures(this.id.Length, this.id);
+                    }
                 }
                 {
                     var disp = this.ImageFiller as IDisposable;

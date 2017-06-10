@@ -65,6 +65,7 @@ namespace CSharpGL
             var bitmap = new Bitmap(textureWidth, textureHeight);
             using (var graphics = Graphics.FromImage(bitmap))
             {
+                graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
                 foreach (var item in fullDictionary)
                 {
                     Size oneSize = graphics.MeasureString(string.Format("{0}", item.Key), font).ToSize();
