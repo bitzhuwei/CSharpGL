@@ -29,21 +29,14 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="canvasRect"></param>
         /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking; otherwise useless.</param>
-        public RenderEventArgs(ICamera camera, Rectangle canvasRect)
+        public RenderEventArgs(Scene scene)
         {
-            this.Camera = camera;
-            this.CanvasRect = canvasRect;
+            this.Scene = scene;
         }
 
         /// <summary>
-        /// Gets camera used during rendering.
+        /// 
         /// </summary>
-        public ICamera Camera { get; set; }
-
-        /// <summary>
-        /// Gets canvas's rectangle.
-        /// </summary>
-        public Rectangle CanvasRect { get; set; }
-
+        public Scene Scene { get; set; }
     }
 }
