@@ -8,11 +8,11 @@ namespace CSharpGL
     /// 用OpenGL初始化和渲染一个模型。
     /// <para>Initialize and render something with OpenGL.</para>
     /// </summary>
-    public abstract partial class RendererBase : ITreeNode<RendererBase>, IRenderable, IWorldSpace, IDisposable
+    public abstract partial class SceneElement : ITreeNode<SceneElement>, IRenderable, IWorldSpace, IDisposable
     {
         private readonly object synObj = new object();
 
-        private const string strRendererBase = "RendererBase";
+        private const string strSceneElement = "SceneElement";
 
         ///// <summary>
         ///// binding scene object.
@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// Render this or not.
         /// </summary>
-        [Category(strRendererBase)]
+        [Category(strSceneElement)]
         [Description("Render this or not.")]
         public bool Enabled { get; set; }
 
@@ -33,7 +33,7 @@ namespace CSharpGL
         /// 为便于调试而设置的ID值，没有应用意义。
         /// <para>for debugging purpose only.</para>
         /// </summary>
-        [Category(strRendererBase)]
+        [Category(strSceneElement)]
         [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
         public int Id { get; private set; }
 
@@ -52,10 +52,10 @@ namespace CSharpGL
         /// 用OpenGL初始化和渲染一个模型。
         /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
-        public RendererBase()
+        public SceneElement()
         {
             // ITreeNode<>
-            this.Children = new TreeNodeChildren<RendererBase>(this);
+            this.Children = new TreeNodeChildren<SceneElement>(this);
 
             this.Enabled = true;
             this.Id = idCounter++;
@@ -66,12 +66,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public RendererBase Parent { get; set; }
+        public SceneElement Parent { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public TreeNodeChildren<RendererBase> Children { get; private set; }
+        public TreeNodeChildren<SceneElement> Children { get; private set; }
 
         #endregion
     }

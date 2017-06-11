@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class RendererBase
+    public abstract partial class SceneElement
     {
         #region IModelSpace
 

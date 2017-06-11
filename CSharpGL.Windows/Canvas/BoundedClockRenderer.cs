@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// </summary>
-    internal class BoundedClockRenderer : RendererBase
+    internal class BoundedClockRenderer : SceneElement
     {
         public LegacyBoundingBoxRenderer BoxRenderer { get; set; }
         public ClockRenderer ClockRenderer { get; set; }

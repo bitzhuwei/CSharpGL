@@ -3,7 +3,7 @@
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public class LegacyBoundingBoxRenderer : RendererBase, IBoundingBox, IWorldSpace
+    public class LegacyBoundingBoxRenderer : SceneElement, IBoundingBox, IWorldSpace
     {
         /// <summary>
         /// Specify a cuboid that marks a model's edges.

@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class RendererBase
+    public abstract partial class SceneElement
     {
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~RendererBase()
+        ~SceneElement()
         {
             this.Dispose(false);
         }

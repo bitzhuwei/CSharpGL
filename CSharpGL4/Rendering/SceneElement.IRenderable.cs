@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class RendererBase
+    public abstract partial class SceneElement
     {
         //private bool initializing = false;
 
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <summary>
         /// Already initialized.
         /// </summary>
-        [Category(strRendererBase)]
+        [Category(strSceneElement)]
         [Description("Is this renderer initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
