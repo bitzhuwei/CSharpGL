@@ -8,7 +8,12 @@ namespace CSharpGL
     /// 用OpenGL初始化和渲染一个模型。
     /// <para>Initialize and render something with OpenGL.</para>
     /// </summary>
-    public abstract partial class SceneElement : ITreeNode<SceneElement>, IRenderable, IWorldSpace, IDisposable
+    public abstract partial class SceneElement :
+        ITreeNode<SceneElement>,
+        IRenderable,
+        IPickable,
+        IWorldSpace,
+        IDisposable
     {
         private readonly object synObj = new object();
 
@@ -61,18 +66,5 @@ namespace CSharpGL
             this.Id = idCounter++;
         }
 
-        #region ITreeNode<RendererBase> 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SceneElement Parent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TreeNodeChildren<SceneElement> Children { get; private set; }
-
-        #endregion
     }
 }

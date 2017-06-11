@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// Rotation angle in degree.
         /// </summary>
-        float RotationAngleDegree { get; set; }
+        float RotationAngle { get; set; }
 
         /// <summary>
         /// Rotation axis.
@@ -66,7 +66,7 @@ namespace CSharpGL
             if (dest == null || source == null) { throw new System.ArgumentNullException(); }
 
             dest.ModelSize = source.ModelSize;
-            dest.RotationAngleDegree = source.RotationAngleDegree;
+            dest.RotationAngle = source.RotationAngle;
             dest.RotationAxis = source.RotationAxis;
             dest.Scale = source.Scale;
             dest.WorldPosition = source.WorldPosition;
@@ -81,7 +81,7 @@ namespace CSharpGL
         {
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
-            matrix = glm.rotate(matrix, model.RotationAngleDegree, model.RotationAxis);
+            matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
             return matrix;
         }
 
@@ -95,14 +95,14 @@ namespace CSharpGL
         /// <param name="axis"></param>
         public static void Rotate(this IWorldSpace model, float angleDegree, vec3 axis)
         {
-            mat4 currentRotationMatrix = glm.rotate(model.RotationAngleDegree, model.RotationAxis);
+            mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
             mat4 newRotationMatrix = glm.rotate(angleDegree, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
             Quaternion quaternion = latestRotationMatrix.ToQuaternion();
             float latestAngle;
             vec3 latestAxis;
             quaternion.Parse(out latestAngle, out latestAxis);
-            model.RotationAngleDegree = latestAngle;
+            model.RotationAngle = latestAngle;
             model.RotationAxis = latestAxis;
         }
 
@@ -134,7 +134,7 @@ namespace CSharpGL
         {
             GL.Instance.Translatef(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
             GL.Instance.Scalef(model.Scale.x, model.Scale.y, model.Scale.z);
-            GL.Instance.Rotatef(model.RotationAngleDegree, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+            GL.Instance.Rotatef(model.RotationAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
         }
     }
 }

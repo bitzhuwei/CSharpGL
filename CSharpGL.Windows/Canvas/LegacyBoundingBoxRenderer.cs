@@ -55,7 +55,7 @@
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.RotationAngleDegree += 6.0f;// 6°
+            this.RotationAngle += 6.0f;// 6°
             GL.Instance.LoadIdentity();
             this.LegacyTransform();
 
