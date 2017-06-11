@@ -4,7 +4,7 @@ namespace CSharpGL
 {
     public abstract partial class SceneElement
     {
-        #region IModelSpace
+        #region IWorldSpace
 
         /// <summary>
         ///
@@ -103,6 +103,6 @@ namespace CSharpGL
         [Description("Length in X/Y/Z axis.")]
         public virtual vec3 ModelSize { get; set; }
 
-        #endregion IModelSpace
+        #endregion IWorldSpace
     }
 }

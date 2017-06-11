@@ -83,10 +83,11 @@
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
     <Compile Include="Rendering\IWorldSpace.cs" />
     <Compile Include="Rendering\IRenderable.cs" />
+    <Compile Include="Rendering\Scene.cs" />
     <Compile Include="Rendering\SceneElement.cs" />
     <Compile Include="Rendering\SceneElement.IDisposable.cs" />
-    <Compile Include="Rendering\SceneElement.IModelSpace.cs" />
-    <Compile Include="Rendering\SceneElement.IModelSpace.User.cs" />
+    <Compile Include="Rendering\SceneElement.IWorldSpace.cs" />
+    <Compile Include="Rendering\SceneElement.IWorldSpace.User.cs" />
     <Compile Include="Rendering\SceneElement.IRenderable.cs" />
     <Compile Include="Rendering\Renderer\AttributeMap.cs" />
     <Compile Include="Rendering\Renderer\IBufferable.cs" />
