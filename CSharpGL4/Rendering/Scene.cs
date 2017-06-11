@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Scene
     {
         /// <summary>
@@ -18,11 +21,28 @@ namespace CSharpGL
         /// </summary>
         public SceneElement RootElement { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Render()
         {
-            throw new NotImplementedException();
+            var args = new RenderEventArgs(this);
+            this.Render(this.RootElement, args);
         }
 
+        private void Render(SceneElement sceneElement, RenderEventArgs args)
+        {
+            sceneElement.Render(args);
+            foreach (var item in sceneElement.Children)
+            {
+                item.Render(args);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public SceneElement Pick()
         {
             throw new NotImplementedException();
