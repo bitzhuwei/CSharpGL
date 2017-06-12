@@ -130,7 +130,7 @@ namespace CSharpGL
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             int x = viewport[0], y = viewport[1], width = viewport[2], height = viewport[3];
-            var depthRange = new float[2];
+            var depthRange = new float[4];
             GL.Instance.GetFloatv((uint)GetTarget.DepthRange, depthRange);
             float near = depthRange[0], far = depthRange[1];
             for (int i = 0; i < positions.Length; i++)

@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// </summary>
-    internal class BoundedClockRenderer : SceneElementBase
+    internal class BoundedClockRenderer : RendererBase, IModelSpace
     {
         public LegacyBoundingBoxRenderer BoxRenderer { get; set; }
         public ClockRenderer ClockRenderer { get; set; }
@@ -21,26 +21,79 @@
             this.ClockRenderer.Initialize();
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        public void Render(RenderEventArgs arg)
+        {
+            if (!this.IsInitialized) { Initialize(); }
+
+            DoRender(arg);
+        }
+
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        protected void DoRender(RenderEventArgs arg)
         {
             this.BoxRenderer.Render(arg);
             this.ClockRenderer.Render(arg);
         }
 
-        public override uint PickingBaseId { get; set; }
+        #region IModelSpace 成员
 
-        public override void RenderForPicking(PickEventArgs arg)
+        public vec3 WorldPosition
         {
+            get { return this.BoxRenderer.WorldPosition; }
+            set
+            {
+                this.BoxRenderer.WorldPosition = value;
+                this.ClockRenderer.WorldPosition = value;
+            }
         }
 
-        public override uint GetVertexCount()
+        public float RotationAngle
         {
-            return 0;
+            get { return this.BoxRenderer.RotationAngle; }
+            set
+            {
+                this.BoxRenderer.RotationAngle = value;
+                this.ClockRenderer.RotationAngle = value;
+            }
         }
 
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        public vec3 RotationAxis
         {
-            return null;
+            get { return this.BoxRenderer.RotationAxis; }
+            set
+            {
+                this.BoxRenderer.RotationAxis = value;
+                this.ClockRenderer.RotationAxis = value;
+            }
         }
+
+        public vec3 Scale
+        {
+            get { return this.BoxRenderer.Scale; }
+            set
+            {
+                this.BoxRenderer.Scale = value;
+                this.ClockRenderer.Scale = value;
+            }
+        }
+
+        public vec3 ModelSize
+        {
+            get { return this.BoxRenderer.ModelSize; }
+            set
+            {
+                this.BoxRenderer.ModelSize = value;
+                this.ClockRenderer.ModelSize = value;
+            }
+        }
+
+        #endregion
     }
 }

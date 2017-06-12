@@ -3,7 +3,7 @@
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public class LegacyBoundingBoxRenderer : SceneElementBase, IBoundingBox, IWorldSpace
+    public class LegacyBoundingBoxRenderer : RendererBase, IBoundingBox, IModelSpace
     {
         /// <summary>
         /// Specify a cuboid that marks a model's edges.
@@ -50,10 +50,21 @@
         }
 
         /// <summary>
-        ///
+        /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        protected override void DoRender(RenderEventArgs arg)
+        public void Render(RenderEventArgs arg)
+        {
+            if (!this.IsInitialized) { Initialize(); }
+
+            DoRender(arg);
+        }
+
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        protected void DoRender(RenderEventArgs arg)
         {
             this.RotationAngle += 6.0f;// 6°
             GL.Instance.LoadIdentity();
@@ -97,20 +108,69 @@
             GL.Instance.End();
         }
 
-        public override uint PickingBaseId { get; set; }
 
-        public override void RenderForPicking(PickEventArgs arg)
+        #region IModelSpace 成员
+
+        public vec3 WorldPosition
         {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
-        public override uint GetVertexCount()
+        public float RotationAngle
         {
-            return 0;
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        public vec3 RotationAxis
         {
-            return null;
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
         }
+
+        public vec3 Scale
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public vec3 ModelSize
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        #endregion
     }
 }

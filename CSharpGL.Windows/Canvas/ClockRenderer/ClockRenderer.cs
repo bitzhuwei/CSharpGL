@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal class ClockRenderer : SceneElementBase, IWorldSpace
+    internal class ClockRenderer : RendererBase, IModelSpace
     {
         private readonly ClockCircleRenderer circleRenderer = new ClockCircleRenderer();
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();
@@ -21,87 +21,86 @@
             pinRenderer.Initialize();
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        public void Render(RenderEventArgs arg)
+        {
+            if (!this.IsInitialized) { Initialize(); }
+
+            DoRender(arg);
+        }
+
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        protected void DoRender(RenderEventArgs arg)
         {
             circleRenderer.Render(arg);
             markRenderer.Render(arg);
             pinRenderer.Render(arg);
         }
 
-        public override vec3 WorldPosition
+        #region IModelSpace 成员
+
+        public vec3 WorldPosition
         {
-            //get { return this.circleRenderer.WorldPosition; }
+            get { return this.circleRenderer.WorldPosition; }
             set
             {
                 this.circleRenderer.WorldPosition = value;
                 this.markRenderer.WorldPosition = value;
                 this.pinRenderer.WorldPosition = value;
-                base.WorldPosition = value;
             }
         }
 
-        public override float RotationAngle
+        public float RotationAngle
         {
-            //get { return this.circleRenderer.RotationAngle; }
+            get { return this.circleRenderer.RotationAngle; }
             set
             {
                 this.circleRenderer.RotationAngle = value;
                 this.markRenderer.RotationAngle = value;
                 this.pinRenderer.RotationAngle = value;
-                base.RotationAngle = value;
             }
         }
 
-        public override vec3 RotationAxis
+        public vec3 RotationAxis
         {
-            //get { return this.circleRenderer.RotationAxis; }
+            get { return this.circleRenderer.RotationAxis; }
             set
             {
                 this.circleRenderer.RotationAxis = value;
                 this.markRenderer.RotationAxis = value;
                 this.pinRenderer.RotationAxis = value;
-                base.RotationAxis = value;
             }
         }
 
-        public override vec3 Scale
+        public vec3 Scale
         {
-            //get { return this.circleRenderer.Scale; }
+            get { return this.circleRenderer.Scale; }
             set
             {
                 this.circleRenderer.Scale = value;
                 this.markRenderer.Scale = value;
                 this.pinRenderer.Scale = value;
-                base.Scale = value;
             }
         }
 
-        public override vec3 ModelSize
+        public vec3 ModelSize
         {
-            //get { return this.circleRenderer.Lengths; }
+            get { return this.circleRenderer.ModelSize; }
             set
             {
                 this.circleRenderer.ModelSize = value;
                 this.markRenderer.ModelSize = value;
                 this.pinRenderer.ModelSize = value;
-                base.ModelSize = value;
             }
         }
 
-        public override uint PickingBaseId { get; set; }
+        #endregion
 
-        public override void RenderForPicking(PickEventArgs arg)
-        {
-        }
-
-        public override uint GetVertexCount()
-        {
-            return 0;
-        }
-
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
-        {
-            return null;
-        }
     }
 }

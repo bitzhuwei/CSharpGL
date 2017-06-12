@@ -35,38 +35,28 @@ namespace CSharpGL
         PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public class PickEventArgs
     {
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Scene Scene { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Point Position { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public PickingGeometryType PickingGeometry { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="scene"></param>
         /// <param name="position"></param>
-        /// <param name="pickingGeometry"></param>
-        public PickEventArgs(Scene scene, Point position, PickingGeometryType pickingGeometry)
+        /// <param name="geometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).</param>
+        public PickEventArgs(Scene scene, Point position, PickingGeometryType geometryType)
         {
             this.Scene = scene;
             this.Position = position;
-            this.PickingGeometry = pickingGeometry;
+            this.GeometryType = geometryType;
         }
+
+        public Scene Scene { get; set; }
+
+        public Point Position { get; set; }
+
+        /// <summary>
+        /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
+        /// </summary>
+        public PickingGeometryType GeometryType { get; set; }
     }
 }

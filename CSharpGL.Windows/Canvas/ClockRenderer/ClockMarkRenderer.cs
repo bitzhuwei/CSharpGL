@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockMarkRenderer : SceneElementBase, IWorldSpace
+    internal class ClockMarkRenderer : RendererBase, IModelSpace
     {
         private readonly List<vec3> markPosition = new List<vec3>();
         private readonly List<vec3> markColor = new List<vec3>();
@@ -35,7 +35,22 @@ namespace CSharpGL
             }
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        public void Render(RenderEventArgs arg)
+        {
+            if (!this.IsInitialized) { Initialize(); }
+
+            DoRender(arg);
+        }
+
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        protected void DoRender(RenderEventArgs arg)
         {
             GL.Instance.LoadIdentity();
             this.LegacyTransform();
@@ -51,20 +66,18 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
-        public override uint PickingBaseId { get; set; }
+        #region IModelSpace 成员
 
-        public override void RenderForPicking(PickEventArgs arg)
-        {
-        }
+        public vec3 WorldPosition { get; set; }
 
-        public override uint GetVertexCount()
-        {
-            return 0;
-        }
+        public float RotationAngle { get; set; }
 
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
-        {
-            return null;
-        }
+        public vec3 RotationAxis { get; set; }
+
+        public vec3 Scale { get; set; }
+
+        public vec3 ModelSize { get; set; }
+
+        #endregion
     }
 }

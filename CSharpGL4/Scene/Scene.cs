@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public SceneElementBase RootElement { get; set; }
+        public RendererBase RootElement { get; set; }
 
         private vec3 clearColor = new vec3(0.0f, 0.0f, 0.0f);
         /// <summary>
@@ -45,40 +45,48 @@ namespace CSharpGL
             GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, 1.0f);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            var args = new RenderEventArgs(this);
-            this.Render(this.RootElement, args);
+            var arg = new RenderEventArgs(this);
+            this.Render(this.RootElement as IRenderable, arg);
         }
 
-        private void Render(SceneElementBase sceneElement, RenderEventArgs args)
+        private void Render(IRenderable sceneElement, RenderEventArgs arg)
         {
-            sceneElement.Render(args);
-            foreach (var item in sceneElement.Children)
+            if (sceneElement != null)
             {
-                item.Render(args);
+                sceneElement.Render(arg);
+
+                var node = sceneElement as ITreeNode<RendererBase>;
+                if (node != null)
+                {
+                    foreach (var item in node.Children)
+                    {
+                        this.Render(item as IRenderable, arg);
+                    }
+                }
             }
         }
 
-        private Framebuffer pickFramebuffer;
+        private Framebuffer pickingFramebuffer;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="position"></param>
-        /// <param name="pickingGeometry"></param>
+        /// <param name="geometryType"></param>
         /// <returns></returns>
-        public SceneElementBase Pick(Point position, PickingGeometryType pickingGeometry)
+        public RendererBase Pick(Point position, PickingGeometryType geometryType)
         {
-            Framebuffer framebuffer = GetPickFramebuffer();
+            Framebuffer framebuffer = GetPickingFramebuffer();
             framebuffer.Bind();
             {
                 const float one = 1.0f;
                 GL.Instance.ClearColor(one, one, one, one);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                var args = new PickEventArgs(this, position, pickingGeometry);
-                this.RenderForPicking(this.RootElement, args);
+                var arg = new PickEventArgs(this, position, geometryType);
+                this.RenderForPicking(this.RootElement as IPickable, arg);
 
-                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(position.X, position.Y);
+                //uint stageVertexId = ColorCodedPicking.ReadStageVertexId(position.X, position.Y);
 
             }
             framebuffer.Unbind();
@@ -86,21 +94,22 @@ namespace CSharpGL
             throw new NotImplementedException();
         }
 
-        private Framebuffer GetPickFramebuffer()
+        private Framebuffer GetPickingFramebuffer()
         {
-            Framebuffer framebuffer = this.pickFramebuffer;
+            Framebuffer framebuffer = this.pickingFramebuffer;
+
             if (framebuffer == null)
             {
-                this.pickFramebuffer = CreatePickFramebuffer(this.Canvas.Width, this.Canvas.Height);
+                this.pickingFramebuffer = CreatePickFramebuffer(this.Canvas.Width, this.Canvas.Height);
             }
             else if (framebuffer.Width != this.Canvas.Width
                 || framebuffer.Height != this.Canvas.Height)
             {
                 framebuffer.Dispose();
-                this.pickFramebuffer = CreatePickFramebuffer(this.Canvas.Width, this.Canvas.Height);
+                this.pickingFramebuffer = CreatePickFramebuffer(this.Canvas.Width, this.Canvas.Height);
             }
 
-            return this.pickFramebuffer;
+            return this.pickingFramebuffer;
         }
 
         private Framebuffer CreatePickFramebuffer(int width, int height)
@@ -118,19 +127,21 @@ namespace CSharpGL
             return framebuffer;
         }
 
-        private void RenderForPicking(SceneElementBase sceneElement, PickEventArgs args)
+        private void RenderForPicking(IPickable sceneElement, PickEventArgs arg)
         {
-            sceneElement.RenderForPicking(args);
-            foreach (var item in sceneElement.Children)
+            if (sceneElement != null)
             {
-                item.RenderForPicking(args);
+                sceneElement.RenderForPicking(arg);
+                var node = sceneElement as ITreeNode<RendererBase>;
+                if (node != null)
+                {
+                    foreach (var item in node.Children)
+                    {
+                        this.RenderForPicking(item as IPickable, arg);
+                    }
+                }
             }
         }
 
-
-        //public void Write(Stream stream)
-        //{
-
-        //}
     }
 }
