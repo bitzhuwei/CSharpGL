@@ -63,8 +63,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="position"></param>
+        /// <param name="pickingGeometry"></param>
         /// <returns></returns>
-        public SceneElement Pick(Point position, PickingGeometryType pickingPrimitive)
+        public SceneElement Pick(Point position, PickingGeometryType pickingGeometry)
         {
             Framebuffer framebuffer = GetPickFramebuffer();
             framebuffer.Bind();
@@ -73,7 +75,7 @@ namespace CSharpGL
                 GL.Instance.ClearColor(one, one, one, one);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                var args = new PickEventArgs(this, position, pickingPrimitive);
+                var args = new PickEventArgs(this, position, pickingGeometry);
                 this.RenderForPicking(this.RootElement, args);
 
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(position.X, position.Y);

@@ -12,7 +12,10 @@ namespace CSharpGL
 
         public void RenderForPicking(PickEventArgs arg)
         {
-            throw new NotImplementedException();
+            if (this.Enabled)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public uint GetVertexCount()
@@ -20,7 +23,7 @@ namespace CSharpGL
             throw new NotImplementedException();
         }
 
-        public PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y)
+        public PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
         {
             throw new NotImplementedException();
         }

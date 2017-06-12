@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y);
+        PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y);
     }
 
     /// <summary>
