@@ -5,7 +5,6 @@ namespace CSharpGL
 {
     public abstract partial class SceneElementBase
     {
-
         #region ITreeNode<SceneElement> 成员
 
         /// <summary>

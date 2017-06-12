@@ -5,7 +5,6 @@ namespace CSharpGL
 {
     public abstract partial class SceneElementBase
     {
-
         #region IPickable 成员
 
         public abstract uint PickingBaseId { get; set; }
