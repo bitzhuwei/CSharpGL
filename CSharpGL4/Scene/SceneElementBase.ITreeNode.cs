@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace CSharpGL
 {
-    public abstract partial class SceneElement
+    public abstract partial class SceneElementBase
     {
 
         #region ITreeNode<SceneElement> 成员
@@ -11,12 +11,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public SceneElement Parent { get; set; }
+        public SceneElementBase Parent { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public TreeNodeChildren<SceneElement> Children { get; private set; }
+        public TreeNodeChildren<SceneElementBase> Children { get; private set; }
 
         #endregion
     }

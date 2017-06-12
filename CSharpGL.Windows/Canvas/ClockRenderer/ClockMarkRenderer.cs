@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockMarkRenderer : SceneElement, IWorldSpace
+    internal class ClockMarkRenderer : SceneElementBase, IWorldSpace
     {
         private readonly List<vec3> markPosition = new List<vec3>();
         private readonly List<vec3> markColor = new List<vec3>();
@@ -49,6 +49,20 @@ namespace CSharpGL
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
+        }
+
+        public override void RenderForPicking(PickEventArgs arg)
+        {
+        }
+
+        public override uint GetVertexCount()
+        {
+            return 0;
+        }
+
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return null;
         }
     }
 }

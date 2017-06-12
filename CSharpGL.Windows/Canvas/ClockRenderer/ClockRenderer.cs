@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal class ClockRenderer : SceneElement, IWorldSpace
+    internal class ClockRenderer : SceneElementBase, IWorldSpace
     {
         private readonly ClockCircleRenderer circleRenderer = new ClockCircleRenderer();
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();
@@ -86,6 +86,20 @@
                 this.pinRenderer.ModelSize = value;
                 base.ModelSize = value;
             }
+        }
+
+        public override void RenderForPicking(PickEventArgs arg)
+        {
+        }
+
+        public override uint GetVertexCount()
+        {
+            return 0;
+        }
+
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return null;
         }
     }
 }

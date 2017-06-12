@@ -3,7 +3,7 @@
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public class LegacyBoundingBoxRenderer : SceneElement, IBoundingBox, IWorldSpace
+    public class LegacyBoundingBoxRenderer : SceneElementBase, IBoundingBox, IWorldSpace
     {
         /// <summary>
         /// Specify a cuboid that marks a model's edges.
@@ -95,6 +95,20 @@
             GL.Instance.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
             GL.Instance.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             GL.Instance.End();
+        }
+
+        public override void RenderForPicking(PickEventArgs arg)
+        {
+        }
+
+        public override uint GetVertexCount()
+        {
+            return 0;
+        }
+
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return null;
         }
     }
 }

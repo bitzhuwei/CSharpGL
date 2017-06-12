@@ -5,11 +5,10 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用OpenGL初始化和渲染一个模型。
-    /// <para>Initialize and render something with OpenGL.</para>
+    /// 
     /// </summary>
-    public abstract partial class SceneElement :
-        ITreeNode<SceneElement>,
+    public abstract partial class SceneElementBase :
+        ITreeNode<SceneElementBase>,
         IRenderable,
         IPickable,
         IWorldSpace,
@@ -57,10 +56,10 @@ namespace CSharpGL
         /// 用OpenGL初始化和渲染一个模型。
         /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
-        public SceneElement()
+        public SceneElementBase()
         {
             // ITreeNode<>
-            this.Children = new TreeNodeChildren<SceneElement>(this);
+            this.Children = new TreeNodeChildren<SceneElementBase>(this);
 
             this.Enabled = true;
             this.Id = idCounter++;

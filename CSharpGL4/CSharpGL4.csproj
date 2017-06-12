@@ -82,47 +82,31 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\ColorCodedPicking.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\GeometryTypeHelper.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\IPickable.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\IPickableHelper.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\IPickedGeometry.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PickedGeometry.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PickingGeometryType.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PickingShaderHelper.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimitiveModesHelper.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\LinesRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\LineStripRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\PointsRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\QuadsRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\RecognizedPrimitiveInfo.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
-    <Compile Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
-    <Compile Include="Rendering\IWorldSpace.cs" />
-    <Compile Include="Rendering\IRenderable.cs" />
-    <Compile Include="Rendering\Scene.cs" />
-    <Compile Include="Rendering\SceneElement.cs" />
-    <Compile Include="Rendering\SceneElement.IDisposable.cs" />
-    <Compile Include="Rendering\SceneElement.ITreeNode.cs" />
-    <Compile Include="Rendering\SceneElement.IPickable.cs" />
-    <Compile Include="Rendering\SceneElement.IWorldSpace.cs" />
-    <Compile Include="Rendering\SceneElement.IWorldSpace.User.cs" />
-    <Compile Include="Rendering\SceneElement.IRenderable.cs" />
-    <Compile Include="Rendering\Renderer\AttributeMap.cs" />
-    <Compile Include="Rendering\Renderer\IBufferable.cs" />
-    <Compile Include="Rendering\Renderer\IShaderProgramProvider.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.Dispose.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.DoInitialize.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.DoRender.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.Property.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.UniformArrays.cs" />
-    <Compile Include="Rendering\Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="Scene\ColorCodedPicking.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\IPickable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\IPickedGeometry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\IWorldSpace.cs" />
+    <Compile Include="Scene\IRenderable.cs" />
+    <Compile Include="Scene\PickedGeometry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\PickingGeometryType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Scene\SceneElementBase.cs" />
+    <Compile Include="Scene\SceneElementBase.IDisposable.cs" />
+    <Compile Include="Scene\SceneElementBase.ITreeNode.cs" />
+    <Compile Include="Scene\SceneElementBase.IPickable.cs" />
+    <Compile Include="Scene\SceneElementBase.IWorldSpace.cs" />
+    <Compile Include="Scene\SceneElementBase.IWorldSpace.User.cs" />
+    <Compile Include="Scene\SceneElementBase.IRenderable.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
@@ -420,16 +404,14 @@
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
-    <Content Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\RecognizedPrimitiveInfo.jpg" />
     <Content Include="Shaders\readme.md" />
     <EmbeddedResource Include="Shaders\NoLight.frag" />
     <EmbeddedResource Include="Shaders\NoLight.vert" />
-    <Content Include="Rendering\IPickable%28Color-Coded-Picking%29\PrimivitiveRecognizers\readme.md" />
-    <Content Include="Rendering\IPickable%28Color-Coded-Picking%29\readme.md" />
-    <None Include="Rendering\readme.md" />
-    <None Include="Rendering\Renderer\readme.md" />
+    <None Include="Scene\readme.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Rendering\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace CSharpGL
 {
-    public abstract partial class SceneElement
+    public abstract partial class SceneElementBase
     {
         /// <summary>
         /// model matrix that transform this renderer in world space coordinate.

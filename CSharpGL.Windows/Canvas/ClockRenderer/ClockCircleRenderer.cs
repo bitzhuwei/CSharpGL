@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockCircleRenderer : SceneElement, IWorldSpace
+    internal class ClockCircleRenderer : SceneElementBase, IWorldSpace
     {
         private readonly List<vec3> circlePosition = new List<vec3>();
         private readonly List<vec3> circleColor = new List<vec3>();
@@ -46,6 +46,20 @@ namespace CSharpGL
             GL.Instance.End();
 
             circleLineWidthState.Off();
+        }
+
+        public override void RenderForPicking(PickEventArgs arg)
+        {
+        }
+
+        public override uint GetVertexCount()
+        {
+            return 0;
+        }
+
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return null;
         }
     }
 }

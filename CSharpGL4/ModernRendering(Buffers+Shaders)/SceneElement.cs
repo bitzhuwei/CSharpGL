@@ -3,7 +3,7 @@
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class Renderer : SceneElement
+    public partial class Renderer : SceneElementBase
     {
         // data structure for rendering.
 

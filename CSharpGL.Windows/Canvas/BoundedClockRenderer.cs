@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// </summary>
-    internal class BoundedClockRenderer : SceneElement
+    internal class BoundedClockRenderer : SceneElementBase
     {
         public LegacyBoundingBoxRenderer BoxRenderer { get; set; }
         public ClockRenderer ClockRenderer { get; set; }
@@ -25,6 +25,20 @@
         {
             this.BoxRenderer.Render(arg);
             this.ClockRenderer.Render(arg);
+        }
+
+        public override void RenderForPicking(PickEventArgs arg)
+        {
+        }
+
+        public override uint GetVertexCount()
+        {
+            return 0;
+        }
+
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return null;
         }
     }
 }

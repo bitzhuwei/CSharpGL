@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockPinRenderer : SceneElement, IWorldSpace
+    internal class ClockPinRenderer : SceneElementBase, IWorldSpace
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
@@ -100,6 +100,20 @@ namespace CSharpGL
                 GL.Instance.End();
                 hourLineWidthState.Off();
             }
+        }
+
+        public override void RenderForPicking(PickEventArgs arg)
+        {
+        }
+
+        public override uint GetVertexCount()
+        {
+            return 0;
+        }
+
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        {
+            return null;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public SceneElement RootElement { get; set; }
+        public SceneElementBase RootElement { get; set; }
 
         private vec3 clearColor = new vec3(0.0f, 0.0f, 0.0f);
         /// <summary>
@@ -49,7 +49,7 @@ namespace CSharpGL
             this.Render(this.RootElement, args);
         }
 
-        private void Render(SceneElement sceneElement, RenderEventArgs args)
+        private void Render(SceneElementBase sceneElement, RenderEventArgs args)
         {
             sceneElement.Render(args);
             foreach (var item in sceneElement.Children)
@@ -66,7 +66,7 @@ namespace CSharpGL
         /// <param name="position"></param>
         /// <param name="pickingGeometry"></param>
         /// <returns></returns>
-        public SceneElement Pick(Point position, PickingGeometryType pickingGeometry)
+        public SceneElementBase Pick(Point position, PickingGeometryType pickingGeometry)
         {
             Framebuffer framebuffer = GetPickFramebuffer();
             framebuffer.Bind();
@@ -118,7 +118,7 @@ namespace CSharpGL
             return framebuffer;
         }
 
-        private void RenderForPicking(SceneElement sceneElement, PickEventArgs args)
+        private void RenderForPicking(SceneElementBase sceneElement, PickEventArgs args)
         {
             sceneElement.RenderForPicking(args);
             foreach (var item in sceneElement.Children)
