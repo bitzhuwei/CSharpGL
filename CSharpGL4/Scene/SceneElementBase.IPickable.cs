@@ -8,7 +8,7 @@ namespace CSharpGL
 
         #region IPickable 成员
 
-        public uint PickingBaseId { get; set; }
+        public abstract uint PickingBaseId { get; set; }
 
         public abstract void RenderForPicking(PickEventArgs arg);
 

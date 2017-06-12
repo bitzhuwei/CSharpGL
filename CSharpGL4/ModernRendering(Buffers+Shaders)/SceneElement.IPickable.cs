@@ -2,6 +2,17 @@
 {
     public partial class SceneElement
     {
+        public override uint PickingBaseId
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
         public override void RenderForPicking(PickEventArgs arg)
         {

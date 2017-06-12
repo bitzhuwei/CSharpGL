@@ -97,6 +97,8 @@
             GL.Instance.End();
         }
 
+        public override uint PickingBaseId { get; set; }
+
         public override void RenderForPicking(PickEventArgs arg)
         {
         }

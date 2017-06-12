@@ -102,6 +102,8 @@ namespace CSharpGL
             }
         }
 
+        public override uint PickingBaseId { get; set; }
+
         public override void RenderForPicking(PickEventArgs arg)
         {
         }
