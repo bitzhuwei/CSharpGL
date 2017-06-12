@@ -35,6 +35,9 @@ namespace CSharpGL
         PickedGeometry GetPickedGeometry(RenderEventArgs arg, uint stageVertexId, int x, int y);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PickEventArgs
     {
 
