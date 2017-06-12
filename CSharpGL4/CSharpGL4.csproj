@@ -139,26 +139,26 @@
     <Compile Include="ModernRendering%28Buffers+Shaders%29\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.IPickable.cs" />
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.IPickable.cs" />
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.Dispose.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.Dispose.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.DoInitialize.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.DoInitialize.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.DoRender.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.DoRender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.Property.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.Property.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.UniformArrays.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.UniformArrays.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModernRendering%28Buffers+Shaders%29\SceneElement.Uniforms.cs">
+    <Compile Include="ModernRendering%28Buffers+Shaders%29\RenderElement\RenderElement.Uniforms.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\ColorCodedPicking.cs">
@@ -493,6 +493,7 @@
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ModernRendering%28Buffers+Shaders%29\PickElement\" />
     <Folder Include="Rendering\" />
   </ItemGroup>
   <ItemGroup>

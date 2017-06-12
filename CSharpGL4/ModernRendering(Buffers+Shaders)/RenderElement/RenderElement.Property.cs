@@ -4,7 +4,7 @@ using System.Drawing.Design;
 
 namespace CSharpGL
 {
-    public partial class SceneElement
+    public partial class RenderElement
     {
         private const string strRenderer = "Renderer";
 

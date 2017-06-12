@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public partial class SceneElement
+    public partial class RenderElement
     {
         public override uint PickingBaseId
         {
