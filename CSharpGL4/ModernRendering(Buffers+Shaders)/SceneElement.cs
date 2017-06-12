@@ -1,9 +1,9 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Rendering something using GLSL shader and VBO(VAO).
+    /// Rendering/picking something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class Renderer : SceneElementBase
+    public partial class SceneElement : SceneElementBase
     {
         // data structure for rendering.
 
@@ -44,7 +44,7 @@
         /// <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
         /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderProgramProvider"/> and buffers in <see cref="DataSource"/>.</param>
         ///<param name="switches">OpenGL switches.</param>
-        public Renderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
+        public SceneElement(IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
         {
             this.DataSource = model;

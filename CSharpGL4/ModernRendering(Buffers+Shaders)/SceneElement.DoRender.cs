@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public partial class Renderer
+    public partial class SceneElement
     {
         //private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
 
