@@ -33,6 +33,11 @@ namespace CSharpGL
         /// </summary>
         public int Height { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static Framebuffer CurrentFramebuffer { get; private set; }
+
         static Framebuffer()
         {
             glGenFramebuffers = GL.Instance.GetDelegateFor("glGenFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
@@ -59,6 +64,7 @@ namespace CSharpGL
         public void Bind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
             glBindFramebuffer((uint)target, this.Id);
+            Framebuffer.CurrentFramebuffer = this;
         }
 
         /// <summary>
@@ -68,6 +74,7 @@ namespace CSharpGL
         public void Unbind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
             glBindFramebuffer((uint)target, 0);
+            Framebuffer.CurrentFramebuffer = null;
         }
 
         /// <summary>

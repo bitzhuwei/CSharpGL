@@ -71,6 +71,7 @@
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
     <Compile Include="BaseDataStructures\MarkableStruct.cs" />
+    <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexShaderAttribute.cs" />
     <Compile Include="GLObjects\GLStates\IGLState.cs" />

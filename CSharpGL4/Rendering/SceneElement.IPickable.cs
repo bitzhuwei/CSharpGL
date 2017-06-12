@@ -10,7 +10,7 @@ namespace CSharpGL
 
         public uint PickingBaseId { get; set; }
 
-        public void RenderForPicking(RenderEventArgs arg)
+        public void RenderForPicking(PickEventArgs arg)
         {
             throw new NotImplementedException();
         }
