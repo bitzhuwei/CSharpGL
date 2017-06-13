@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
@@ -38,15 +39,25 @@
         protected AttributeMap attributeMap;
 
         /// <summary>
-        /// Rendering something using GLSL shader and VBO(VAO).
+        ///
         /// </summary>
-        /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-        /// <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
-        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderProgramProvider"/> and buffers in <see cref="DataSource"/>.</param>
-        ///<param name="switches">OpenGL switches.</param>
+        [Browsable(false)]
+        public string PositionNameInIBufferable { get; private set; }
+
+        /// <summary>
+        /// 支持"拾取"的渲染器
+        /// </summary>
+        /// <param name="model">一种渲染方式</param>
+        /// <param name="shaderProgramProvider">各种类型的shader代码</param>
+        /// <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderProgramProvider"/>中的属性</param>
+        /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
+        ///<param name="switches"></param>
         public PickableRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
+            AttributeMap attributeMap, string positionNameInIBufferable,
+            params GLState[] switches)
         {
+            this.PositionNameInIBufferable = positionNameInIBufferable;
+
             this.DataSource = model;
             this.shaderProgramProvider = shaderProgramProvider;
             this.attributeMap = attributeMap;
