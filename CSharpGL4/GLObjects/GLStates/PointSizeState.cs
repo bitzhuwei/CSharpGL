@@ -5,8 +5,8 @@
     /// </summary>
     public class PointSizeState : GLState
     {
-        private static float min;
-        private static float max;
+        public static readonly float min;
+        public static readonly float max;
 
         static PointSizeState()
         {

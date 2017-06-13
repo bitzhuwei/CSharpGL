@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class PickableRenderer : RendererBase, IRenderable, IPickable
+    public partial class PickableRenderer : RendererBase, IRenderable, IPickable, IModelSpace
     {
         // data structure for rendering.
 
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected VertexArrayObject pickingVertexArrayObject;
+        protected VertexArrayObject pickVertexArrayObject;
 
         /// <summary>
         /// all 'in type varName;' in vertex shader.

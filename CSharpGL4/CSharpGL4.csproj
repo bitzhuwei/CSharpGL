@@ -104,6 +104,7 @@
     <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
     <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IModelSpace.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.GetPickedGeometry.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.GetVertexCount.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.RenderForPicking.cs" />

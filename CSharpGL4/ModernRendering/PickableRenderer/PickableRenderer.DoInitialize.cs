@@ -72,7 +72,7 @@ namespace CSharpGL
             this.positionAttribute = positionAttribute;
             this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
-            this.pickingVertexArrayObject = pickingVAO;
+            this.pickVertexArrayObject = pickingVAO;
         }
     }
 }
