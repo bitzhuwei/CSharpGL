@@ -406,6 +406,7 @@
     <EmbeddedResource Include="Shaders\NoLight.frag" />
     <EmbeddedResource Include="Shaders\NoLight.vert" />
     <Content Include="Scene\RendererBase\readme.md" />
+    <None Include="Renderer\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rendering\" />
