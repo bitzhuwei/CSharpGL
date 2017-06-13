@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// all 'in type varName;' in vertex shader.
         /// </summary>
-        protected VertexShaderAttribute[] vertexShaderAttribute;
+        protected VertexShaderAttribute[] vertexShaderAttributes;
 
         /// <summary>
         ///

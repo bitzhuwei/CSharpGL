@@ -17,7 +17,7 @@
         /// <summary>
         /// Render something.
         /// </summary>
-        protected void DoRender(RenderEventArgs arg)
+        protected virtual void DoRender(RenderEventArgs arg)
         {
             ShaderProgram program = this.Program;
 
