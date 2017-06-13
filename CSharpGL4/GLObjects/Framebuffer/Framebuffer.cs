@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -36,7 +37,20 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public static Framebuffer CurrentFramebuffer { get; private set; }
+        public static Framebuffer CurrentFramebuffer
+        {
+            get
+            {
+                if (Framebuffer.bindingStack.Count < 1)
+                {
+                    throw new Exception();
+                }
+
+                return Framebuffer.bindingStack.Peek();
+            }
+        }
+
+        private static Stack<Framebuffer> bindingStack = new Stack<Framebuffer>();
 
         static Framebuffer()
         {
@@ -47,6 +61,8 @@ namespace CSharpGL
             glFramebufferParameteri = GL.Instance.GetDelegateFor("glFramebufferParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
             glCheckFramebufferStatus = GL.Instance.GetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
             glDeleteFramebuffers = GL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+
+            Framebuffer.bindingStack.Push(null);// default framebuffer with Id = 0.
         }
 
         /// <summary>
@@ -63,8 +79,9 @@ namespace CSharpGL
         /// <param name="target"></param>
         public void Bind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
+            Framebuffer.bindingStack.Push(this);
+
             glBindFramebuffer((uint)target, this.Id);
-            Framebuffer.CurrentFramebuffer = this;
         }
 
         /// <summary>
@@ -73,8 +90,18 @@ namespace CSharpGL
         /// <param name="target"></param>
         public void Unbind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
-            glBindFramebuffer((uint)target, 0);
-            Framebuffer.CurrentFramebuffer = null;
+            Framebuffer framebuffer = Framebuffer.bindingStack.Pop();
+            if (framebuffer != this) { throw new Exception("FrameBuffer Bind/Unbind not matching!"); }
+
+            Framebuffer top = Framebuffer.bindingStack.Peek();
+            if (top == null)
+            {
+                glBindFramebuffer((uint)target, 0);
+            }
+            else
+            {
+                glBindFramebuffer((uint)target, top.Id);
+            }
         }
 
         /// <summary>
