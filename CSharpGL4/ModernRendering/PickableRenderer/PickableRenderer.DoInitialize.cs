@@ -12,10 +12,11 @@ namespace CSharpGL
         {
             // init shader program.
             ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
+            ShaderProgram pickingProgram = this.pickingProgramProvider.GetShaderProgram();
 
             // init vertex attribute buffer objects.
             IBufferable model = this.DataSource;
-            VertexShaderAttribute positionBuffer = null;
+            VertexShaderAttribute positionAttribute = null;
             VertexShaderAttribute[] vertexAttributeBuffers;
             {
                 var list = new List<VertexShaderAttribute>();
@@ -28,7 +29,7 @@ namespace CSharpGL
 
                     if (item.NameInIBufferable == this.PositionNameInIBufferable)
                     {
-                        positionBuffer = new VertexShaderAttribute(buffer, item.VarNameInShader);
+                        positionAttribute = new VertexShaderAttribute(buffer, item.VarNameInShader);
                         //positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
                         break;
                     }
@@ -37,8 +38,9 @@ namespace CSharpGL
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
-            if (positionBuffer == null || positionBuffer.Buffer.Config != VBOConfig.Vec3)
+            if (positionAttribute == null || positionAttribute.Buffer.Config != VBOConfig.Vec3)
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
+
 
             // init index buffer.
             IndexBuffer indexBuffer = model.GetIndexBuffer();
@@ -60,12 +62,17 @@ namespace CSharpGL
             // init VAO.
             var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
             vertexArrayObject.Initialize(program);
+            var pickingVAO = new VertexArrayObject(indexBuffer, positionAttribute);
+            pickingVAO.Initialize(pickingProgram);
 
             // sets fields.
             this.Program = program;
+            this.PickingProgram = pickingProgram;
             this.vertexShaderAttributes = vertexAttributeBuffers;
+            this.positionAttribute = positionAttribute;
             this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
+            this.pickingVertexArrayObject = pickingVAO;
         }
     }
 }

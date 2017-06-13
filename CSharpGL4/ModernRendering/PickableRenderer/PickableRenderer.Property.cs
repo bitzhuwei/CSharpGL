@@ -16,6 +16,13 @@ namespace CSharpGL
         public ShaderProgram Program { get; protected set; }
 
         /// <summary>
+        /// Shader Program that does the rendering algorithm.
+        /// </summary>
+        [Category(strPickableRenderer)]
+        [Description("Shader Program that does the picking algorithm.")]
+        public ShaderProgram PickingProgram { get; protected set; }
+
+        /// <summary>
         /// model data that can be transfermed into OpenGL Buffer Objects.
         /// </summary>
         [Category(strPickableRenderer)]

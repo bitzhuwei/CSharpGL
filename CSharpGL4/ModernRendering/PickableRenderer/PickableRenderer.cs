@@ -14,9 +14,19 @@ namespace CSharpGL
         protected VertexArrayObject vertexArrayObject;
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected VertexArrayObject pickingVertexArrayObject;
+
+        /// <summary>
         /// all 'in type varName;' in vertex shader.
         /// </summary>
         protected VertexShaderAttribute[] vertexShaderAttributes;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected VertexShaderAttribute positionAttribute;
 
         /// <summary>
         ///
@@ -32,6 +42,11 @@ namespace CSharpGL
         /// Provides shader program for this renderer.
         /// </summary>
         protected IShaderProgramProvider shaderProgramProvider;
+
+        /// <summary>
+        /// Provides shader program that rennders something for picking.
+        /// </summary>
+        protected IShaderProgramProvider pickingProgramProvider;
 
         /// <summary>
         /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="DataSource"/>.
@@ -73,11 +88,13 @@ namespace CSharpGL
             params GLState[] switches)
         {
             this.PositionNameInIBufferable = positionNameInIBufferable;
+            this.pickingProgramProvider = pickingProgramProvider;
 
             this.DataSource = model;
             this.shaderProgramProvider = shaderProgramProvider;
             this.attributeMap = attributeMap;
             this.stateList.AddRange(switches);
         }
+
     }
 }
