@@ -88,20 +88,20 @@
     </Compile>
     <Compile Include="ModernRendering\AttributeMap.cs" />
     <Compile Include="ModernRendering\IBufferable.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.Dispose.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.DoInitialize.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.DoRender.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.Property.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.UniformArrays.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.Uniforms.cs" />
-    <Compile Include="Renderer\Renderer.cs" />
-    <Compile Include="Renderer\Renderer.Dispose.cs" />
-    <Compile Include="Renderer\Renderer.DoInitialize.cs" />
-    <Compile Include="Renderer\Renderer.DoRender.cs" />
-    <Compile Include="Renderer\Renderer.Property.cs" />
-    <Compile Include="Renderer\Renderer.UniformArrays.cs" />
-    <Compile Include="Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Dispose.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoInitialize.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoRender.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Property.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.UniformArrays.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Uniforms.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.Dispose.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.DoInitialize.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.DoRender.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.Property.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.UniformArrays.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.Uniforms.cs" />
     <Compile Include="Scene\IModelSpace.cs" />
     <Compile Include="Scene\IPickable\IPickable.cs" />
     <Compile Include="Scene\IPickable\IPickableHelper.cs" />
@@ -413,8 +413,8 @@
     <EmbeddedResource Include="Shaders\NoLight.frag" />
     <EmbeddedResource Include="Shaders\NoLight.vert" />
     <Content Include="Scene\RendererBase\readme.md" />
-    <Content Include="PickableRenderer\readme.md" />
-    <None Include="Renderer\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\readme.md" />
+    <None Include="ModernRendering\Renderer\readme.md" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
