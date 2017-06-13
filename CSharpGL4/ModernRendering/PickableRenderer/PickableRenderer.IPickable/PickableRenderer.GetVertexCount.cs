@@ -5,7 +5,7 @@ namespace CSharpGL
     {
         #region IPickable 成员
 
-        uint IPickable.GetVertexCount()
+        public virtual uint GetVertexCount()
         {
             throw new System.NotImplementedException();
         }

@@ -7,7 +7,7 @@ namespace CSharpGL
 
         private PickerBase picker;
 
-        PickedGeometry IPickable.GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        public virtual PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
         {
             throw new System.NotImplementedException();
         }
