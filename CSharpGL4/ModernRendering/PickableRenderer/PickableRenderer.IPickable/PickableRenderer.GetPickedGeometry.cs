@@ -9,7 +9,15 @@ namespace CSharpGL
 
         public virtual PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
         {
-            throw new System.NotImplementedException();
+            PickedGeometry result = null;
+
+            PickerBase picker = this.picker;
+            if (picker != null)
+            {
+                result = picker.GetPickedGeometry(this, arg, stageVertexId, x, y);
+            }
+
+            return result;
         }
 
         #endregion

@@ -7,7 +7,21 @@ namespace CSharpGL
 
         public virtual uint GetVertexCount()
         {
-            throw new System.NotImplementedException();
+            uint vertexCount = 0;
+
+            VertexShaderAttribute attribute = this.positionAttribute;
+            if (attribute != null)
+            {
+                VertexBuffer positionBuffer = attribute.Buffer;
+                if (positionBuffer != null)
+                {
+                    int byteLength = positionBuffer.ByteLength;
+                    int vertexLength = positionBuffer.Config.GetDataSize() * positionBuffer.Config.GetDataTypeByteLength();
+                    vertexCount = (uint)(byteLength / vertexLength);
+                }
+            }
+
+            return vertexCount;
         }
 
         #endregion
