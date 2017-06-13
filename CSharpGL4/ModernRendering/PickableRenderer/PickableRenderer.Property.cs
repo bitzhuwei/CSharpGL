@@ -8,6 +8,7 @@ namespace CSharpGL
     {
         private const string strPickableRenderer = "PickableRenderer";
 
+        // TODO: rename to RenderProgram
         /// <summary>
         /// Shader Program that does the rendering algorithm.
         /// </summary>
@@ -20,7 +21,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strPickableRenderer)]
         [Description("Shader Program that does the picking algorithm.")]
-        public ShaderProgram PickingProgram { get; protected set; }
+        public ShaderProgram PickProgram { get; protected set; }
 
         /// <summary>
         /// model data that can be transfermed into OpenGL Buffer Objects.

@@ -41,12 +41,12 @@ namespace CSharpGL
         /// <summary>
         /// Provides shader program for this renderer.
         /// </summary>
-        protected IShaderProgramProvider shaderProgramProvider;
+        protected IShaderProgramProvider renderProgramProvider;
 
         /// <summary>
         /// Provides shader program that rennders something for picking.
         /// </summary>
-        protected IShaderProgramProvider pickingProgramProvider;
+        protected IShaderProgramProvider pickProgramProvider;
 
         /// <summary>
         /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="DataSource"/>.
@@ -78,20 +78,20 @@ namespace CSharpGL
         /// 支持"拾取"的渲染器
         /// </summary>
         /// <param name="model">一种渲染方式</param>
-        /// <param name="shaderProgramProvider">各种类型的shader代码</param>
-        /// <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderProgramProvider"/>中的属性</param>
+        /// <param name="renderProgramProvider">各种类型的shader代码</param>
+        /// <param name="attributeMap">关联<paramref name="model"/>和<paramref name="renderProgramProvider"/>中的属性</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
-        /// <param name="pickingProgramProvider"></param>
+        /// <param name="pickProgramProvider"></param>
         ///<param name="switches"></param>
-        public PickableRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, string positionNameInIBufferable, IShaderProgramProvider pickingProgramProvider,
+        public PickableRenderer(IBufferable model, IShaderProgramProvider renderProgramProvider,
+            AttributeMap attributeMap, string positionNameInIBufferable, IShaderProgramProvider pickProgramProvider,
             params GLState[] switches)
         {
             this.PositionNameInIBufferable = positionNameInIBufferable;
-            this.pickingProgramProvider = pickingProgramProvider;
+            this.pickProgramProvider = pickProgramProvider;
 
             this.DataSource = model;
-            this.shaderProgramProvider = shaderProgramProvider;
+            this.renderProgramProvider = renderProgramProvider;
             this.attributeMap = attributeMap;
             this.stateList.AddRange(switches);
         }

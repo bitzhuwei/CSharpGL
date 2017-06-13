@@ -11,8 +11,8 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program.
-            ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
-            ShaderProgram pickingProgram = this.pickingProgramProvider.GetShaderProgram();
+            ShaderProgram program = this.renderProgramProvider.GetShaderProgram();
+            ShaderProgram pickProgram = this.pickProgramProvider.GetShaderProgram();
 
             // init vertex attribute buffer objects.
             IBufferable model = this.DataSource;
@@ -63,11 +63,11 @@ namespace CSharpGL
             var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
             vertexArrayObject.Initialize(program);
             var pickingVAO = new VertexArrayObject(indexBuffer, positionAttribute);
-            pickingVAO.Initialize(pickingProgram);
+            pickingVAO.Initialize(pickProgram);
 
             // sets fields.
             this.Program = program;
-            this.PickingProgram = pickingProgram;
+            this.PickProgram = pickProgram;
             this.vertexShaderAttributes = vertexAttributeBuffers;
             this.positionAttribute = positionAttribute;
             this.indexBuffer = indexBuffer;
