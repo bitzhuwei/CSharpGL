@@ -88,6 +88,22 @@
     </Compile>
     <Compile Include="ModernRendering\AttributeMap.cs" />
     <Compile Include="ModernRendering\IBufferable.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\ColorCodedPicking.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\GeometryTypeHelper.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PickingShaderHelper.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimitiveModesHelper.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LinesRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LineStripRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\QuadsRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.GetPickedGeometry.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.GetVertexCount.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.RenderForPicking.cs" />
@@ -414,6 +430,7 @@
     <None Include="GLObjects\UniformVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.jpg" />
     <Content Include="readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
     <Content Include="Shaders\readme.md" />
@@ -421,9 +438,13 @@
     <EmbeddedResource Include="Shaders\NoLight.vert" />
     <Content Include="Scene\RendererBase\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\ColorCodedPicking\readme.md" />
     <None Include="ModernRendering\Renderer\readme.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
