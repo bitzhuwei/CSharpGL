@@ -2,11 +2,23 @@
 {
     public partial class Renderer
     {
-        //private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
 
-        //private Stack<UniformArrayVariable> uniformArrayVariableStack = new Stack<UniformArrayVariable>();
         /// <summary>
-        ///
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        public void Render(RenderEventArgs arg)
+        {
+            if (this.Enabled)
+            {
+                if (!this.IsInitialized) { Initialize(); }
+
+                DoRender(arg);
+            }
+        }
+
+        /// <summary>
+        /// Render something.
         /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArgs arg)
