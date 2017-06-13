@@ -1,2 +1,2 @@
 ﻿# `Renderer`
-Modern OpenGL Rendering with VBO(`VertexAttributeBuffer`, `IndexBuffer`), shader(`ShaderCode`) and VAO(`VertexArrayObject`).
+Modern OpenGL Rendering with VBO(`VertexBuffer`, `IndexBuffer`), shader(`ShaderArray`) and VAO(`VertexArrayObject`).

@@ -49,6 +49,12 @@ namespace CSharpGL
             {
                 GLState glState = new PrimitiveRestartState(ptr.ElementType);
                 this.stateList.Add(glState);
+
+                this.picker = new OneIndexPicker();
+            }
+            else
+            {
+                this.picker = new ZeroIndexPicker();
             }
 
             // init VAO.

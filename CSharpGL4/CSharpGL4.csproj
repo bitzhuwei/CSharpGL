@@ -96,6 +96,9 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoInitialize.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoRender.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\PickerBase.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Property.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Uniforms.cs" />
