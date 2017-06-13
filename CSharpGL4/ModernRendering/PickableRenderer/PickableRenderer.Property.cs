@@ -8,13 +8,12 @@ namespace CSharpGL
     {
         private const string strPickableRenderer = "PickableRenderer";
 
-        // TODO: rename to RenderProgram
         /// <summary>
         /// Shader Program that does the rendering algorithm.
         /// </summary>
         [Category(strPickableRenderer)]
         [Description("Shader Program that does the rendering algorithm.")]
-        public ShaderProgram Program { get; protected set; }
+        public ShaderProgram RenderProgram { get; protected set; }
 
         /// <summary>
         /// Shader Program that does the rendering algorithm.

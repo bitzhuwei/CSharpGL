@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <returns></returns>
         public bool GetUniformValue<T>(string varNameInShader, out T value) where T : struct, IEquatable<T>
         {
-            return this.Program.GetUniformValue(varNameInShader, out value);
+            return this.RenderProgram.GetUniformValue(varNameInShader, out value);
         }
         /// <summary>
         /// Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
@@ -38,7 +38,7 @@ namespace CSharpGL
         /// <returns></returns>
         public bool SetUniform<T>(string varNameInShader, T value) where T : struct,IEquatable<T>
         {
-            return this.Program.SetUniform(varNameInShader, value);
+            return this.RenderProgram.SetUniform(varNameInShader, value);
         }
     }
 }

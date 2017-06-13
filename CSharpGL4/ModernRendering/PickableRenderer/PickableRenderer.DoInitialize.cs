@@ -66,7 +66,7 @@ namespace CSharpGL
             pickingVAO.Initialize(pickProgram);
 
             // sets fields.
-            this.Program = program;
+            this.RenderProgram = program;
             this.PickProgram = pickProgram;
             this.vertexShaderAttributes = vertexAttributeBuffers;
             this.positionAttribute = positionAttribute;

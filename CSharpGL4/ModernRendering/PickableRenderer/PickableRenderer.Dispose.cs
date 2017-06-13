@@ -25,7 +25,7 @@
             {
                 indexBuffer.Dispose();
             }
-            ShaderProgram program = this.Program;
+            ShaderProgram program = this.RenderProgram;
             if (program != null)
             {
                 program.Dispose();

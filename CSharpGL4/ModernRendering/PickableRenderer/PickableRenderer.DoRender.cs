@@ -19,7 +19,7 @@
         /// </summary>
         protected virtual void DoRender(RenderEventArgs arg)
         {
-            ShaderProgram program = this.Program;
+            ShaderProgram program = this.RenderProgram;
 
             // 绑定shader
             program.Bind();
