@@ -2,20 +2,38 @@
 {
     public partial class PickableRenderer
     {
+
         /// <summary>
-        ///
+        /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        protected override void DoRender(RenderEventArgs arg)
+        public void Render(RenderEventArgs arg)
         {
-            if (arg.PickingGeometryType == PickingGeometryType.None)
-            {
-                base.DoRender(arg);
-            }
-            else
-            {
-                this.innerPickableRenderer.Render(arg);
-            }
+            if (!this.IsInitialized) { Initialize(); }
+
+            DoRender(arg);
         }
+
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        protected void DoRender(RenderEventArgs arg)
+        {
+            ShaderProgram program = this.Program;
+
+            // 绑定shader
+            program.Bind();
+            program.PushUniforms();
+
+            this.stateList.On();
+
+            this.vertexArrayObject.Render(arg, program);
+
+            this.stateList.Off();
+
+            // 解绑shader
+            program.Unbind();
+        }
+
     }
 }

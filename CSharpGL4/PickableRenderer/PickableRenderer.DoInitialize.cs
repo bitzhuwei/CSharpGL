@@ -3,35 +3,30 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    partial class InnerPickableRenderer
+    public partial class PickableRenderer
     {
+        /// <summary>
+        ///
+        /// </summary>
         protected override void DoInitialize()
         {
             // init shader program.
             ShaderProgram program = this.shaderProgramProvider.GetShaderProgram();
 
-            VertexShaderAttribute positionBuffer = null;
+            // init vertex attribute buffer objects.
             IBufferable model = this.DataSource;
+            VertexShaderAttribute[] vertexAttributeBuffers;
             {
                 var list = new List<VertexShaderAttribute>();
                 foreach (AttributeMap.NamePair item in this.attributeMap)
                 {
                     VertexBuffer buffer = model.GetVertexAttributeBuffer(
-                     item.NameInIBufferable, item.VarNameInShader);
+                        item.NameInIBufferable, item.VarNameInShader);
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
-
-                    if (item.NameInIBufferable == this.PositionNameInIBufferable)
-                    {
-                        positionBuffer = new VertexShaderAttribute(buffer, item.VarNameInShader);
-                        //positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
-                        break;
-                    }
+                    list.Add(new VertexShaderAttribute(buffer, item.VarNameInShader));
                 }
+                vertexAttributeBuffers = list.ToArray();
             }
-
-            // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
-            if (positionBuffer == null || positionBuffer.Buffer.Config != VBOConfig.Vec3)
-            { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
             // init index buffer.
             IndexBuffer indexBuffer = model.GetIndexBuffer();
@@ -45,12 +40,12 @@ namespace CSharpGL
             }
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBuffer, positionBuffer);
+            var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
             vertexArrayObject.Initialize(program);
 
             // sets fields.
             this.Program = program;
-            this.vertexShaderAttribute = new VertexShaderAttribute[] { positionBuffer };
+            this.vertexShaderAttribute = vertexAttributeBuffers;
             this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
         }

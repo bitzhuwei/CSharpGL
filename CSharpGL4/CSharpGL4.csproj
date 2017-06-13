@@ -83,11 +83,18 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="Renderer\IShaderProgramProvider.cs">
+    <Compile Include="ModernRendering\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Renderer\AttributeMap.cs" />
-    <Compile Include="Renderer\IBufferable.cs" />
+    <Compile Include="ModernRendering\AttributeMap.cs" />
+    <Compile Include="ModernRendering\IBufferable.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.Dispose.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.DoInitialize.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.DoRender.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.Property.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.UniformArrays.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.Uniforms.cs" />
     <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="Renderer\Renderer.Dispose.cs" />
     <Compile Include="Renderer\Renderer.DoInitialize.cs" />
@@ -406,11 +413,10 @@
     <EmbeddedResource Include="Shaders\NoLight.frag" />
     <EmbeddedResource Include="Shaders\NoLight.vert" />
     <Content Include="Scene\RendererBase\readme.md" />
+    <Content Include="PickableRenderer\readme.md" />
     <None Include="Renderer\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Rendering\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
