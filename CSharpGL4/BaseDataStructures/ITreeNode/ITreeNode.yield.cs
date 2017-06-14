@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="treeNode"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order) where T : class , ITreeNode<T>
+        public static IEnumerable<ITreeNode<T>> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order) where T : class, ITreeNode<T>
         {
             switch (order)
             {
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> PostorderTraverse<T>(ITreeNode<T> treeNode) where T : class , ITreeNode<T>
+        public static IEnumerable<ITreeNode<T>> PostorderTraverse<T>(ITreeNode<T> treeNode) where T : class, ITreeNode<T>
         {
             if (treeNode != null)
             {
@@ -67,7 +67,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode<T>> PreorderTraverse<T>(ITreeNode<T> treeNode) where T : class , ITreeNode<T>
+        public static IEnumerable<ITreeNode<T>> PreorderTraverse<T>(ITreeNode<T> treeNode) where T : class, ITreeNode<T>
         {
             if (treeNode != null)
             {
