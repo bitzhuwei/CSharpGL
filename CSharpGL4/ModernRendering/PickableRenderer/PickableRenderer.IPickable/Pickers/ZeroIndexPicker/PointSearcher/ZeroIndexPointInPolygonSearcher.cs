@@ -15,13 +15,13 @@ namespace CSharpGL
         /// <returns></returns>
         internal override uint Search(PickEventArgs arg,
             int x, int y,
-            uint lastVertexId, ZeroIndexPicker modernRenderer)
+            uint lastVertexId, ZeroIndexPicker picker)
         {
-            var zeroIndexBuffer = modernRenderer.Renderer.IndexBuffer as ZeroIndexBuffer;
+            var zeroIndexBuffer = picker.Renderer.IndexBuffer as ZeroIndexBuffer;
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.PrimCount);
-            modernRenderer.Renderer.Render4InnerPicking(arg, indexBuffer);
+            picker.Renderer.Render4InnerPicking(arg, indexBuffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
             indexBuffer.Dispose();

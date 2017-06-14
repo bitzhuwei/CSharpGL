@@ -16,13 +16,13 @@ namespace CSharpGL
         internal override uint Search(PickEventArgs arg,
             int x, int y,
             RecognizedPrimitiveInfo primitiveInfo,
-            OneIndexPicker modernRenderer)
+            OneIndexPicker picker)
         {
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length < 3) { throw new ArgumentException(); }
 
             OneIndexBuffer buffer = indexList.GenIndexBuffer(DrawMode.Points, BufferUsage.StaticDraw);
-            modernRenderer.Renderer.Render4InnerPicking(arg, buffer);
+            picker.Renderer.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
             buffer.Dispose();

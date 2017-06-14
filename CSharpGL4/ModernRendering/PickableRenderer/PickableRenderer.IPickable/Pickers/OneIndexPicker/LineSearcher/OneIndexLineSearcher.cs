@@ -14,6 +14,6 @@
         internal abstract uint[] Search(PickEventArgs arg,
             int x, int y,
             RecognizedPrimitiveInfo primitiveInfo,
-            OneIndexPicker modernRenderer);
+            OneIndexPicker picker);
     }
 }

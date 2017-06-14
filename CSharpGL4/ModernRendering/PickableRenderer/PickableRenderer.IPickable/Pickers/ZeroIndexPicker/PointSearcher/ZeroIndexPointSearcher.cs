@@ -13,6 +13,6 @@
         /// <returns></returns>
         internal abstract uint Search(PickEventArgs arg,
             int x, int y,
-            uint lastVertexId, ZeroIndexPicker modernRenderer);
+            uint lastVertexId, ZeroIndexPicker picker);
     }
 }

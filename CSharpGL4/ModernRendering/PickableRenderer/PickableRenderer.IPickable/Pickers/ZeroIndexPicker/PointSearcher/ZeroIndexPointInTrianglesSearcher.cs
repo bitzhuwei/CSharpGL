@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <returns></returns>
         internal override uint Search(PickEventArgs arg,
             int x, int y,
-            uint lastVertexId, ZeroIndexPicker modernRenderer)
+            uint lastVertexId, ZeroIndexPicker picker)
         {
             // 创建临时索引
             OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, DrawMode.Points, BufferUsage.StaticDraw);
@@ -28,7 +28,7 @@ namespace CSharpGL
                 buffer.UnmapBuffer();
             }
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
-            modernRenderer.Renderer.Render4InnerPicking(arg, buffer);
+            picker.Renderer.Render4InnerPicking(arg, buffer);
             // id是拾取到的Line的Last Vertex Id
             uint id = ColorCodedPicking.ReadStageVertexId(x, y);
 
