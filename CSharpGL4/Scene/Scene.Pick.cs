@@ -14,7 +14,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="position"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         /// <param name="geometryType"></param>
         /// <returns></returns>
         public PickedGeometry Pick(int x, int y, PickingGeometryType geometryType)
@@ -29,31 +30,36 @@ namespace CSharpGL
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
                 var arg = new PickEventArgs(this, x, y, geometryType);
-                this.RenderForPicking(this.RootElement as IPickable, arg);
+                this.RenderForPicking(this.RootElement, arg);
 
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
 
-                pickedGeometry = Pick(stageVertexId, arg, this.RootElement as IPickable);
+                pickedGeometry = Pick(stageVertexId, arg, this.RootElement);
             }
             framebuffer.Unbind();
 
             return pickedGeometry;
         }
 
-        private PickedGeometry Pick(uint stageVertexId, PickEventArgs arg, IPickable pickable)
+        private PickedGeometry Pick(uint stageVertexId, PickEventArgs arg, RendererBase renderer)
         {
             PickedGeometry pickedGeometry = null;
-            if (pickable != null)
+            if (renderer != null)
             {
-                pickedGeometry = pickable.GetPickedGeometry(arg, stageVertexId);
+                var pickable = renderer as IPickable;
+                if (pickable != null)
+                {
+                    pickedGeometry = pickable.GetPickedGeometry(arg, stageVertexId);
+                }
+
                 if (pickedGeometry == null)
                 {
-                    var node = pickable as ITreeNode<RendererBase>;
+                    var node = renderer as ITreeNode<RendererBase>;
                     if (node != null)
                     {
                         foreach (var item in node.Children)
                         {
-                            pickedGeometry = Pick(stageVertexId, arg, item as IPickable);
+                            pickedGeometry = Pick(stageVertexId, arg, item);
                             if (pickedGeometry != null)
                             {
                                 break;
@@ -99,17 +105,22 @@ namespace CSharpGL
             return framebuffer;
         }
 
-        private void RenderForPicking(IPickable sceneElement, PickEventArgs arg)
+        private void RenderForPicking(RendererBase sceneElement, PickEventArgs arg)
         {
             if (sceneElement != null)
             {
-                sceneElement.RenderForPicking(arg);
+                var pickable = sceneElement as IPickable;
+                if (pickable != null)
+                {
+                    pickable.RenderForPicking(arg);
+                }
+
                 var node = sceneElement as ITreeNode<RendererBase>;
                 if (node != null)
                 {
                     foreach (var item in node.Children)
                     {
-                        this.RenderForPicking(item as IPickable, arg);
+                        this.RenderForPicking(item, arg);
                     }
                 }
             }
