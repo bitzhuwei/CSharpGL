@@ -48,6 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoundedClockRenderer.cs" />
+    <Compile Include="ClockRenderer\ClockCircleRenderer.cs" />
+    <Compile Include="ClockRenderer\ClockMarkRenderer.cs" />
+    <Compile Include="ClockRenderer\ClockPinRenderer.cs" />
+    <Compile Include="ClockRenderer\ClockRenderer.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +61,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinGLCanvasHelper.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
