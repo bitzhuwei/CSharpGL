@@ -6,11 +6,6 @@
     public enum PickingGeometryType
     {
         /// <summary>
-        /// Not picking.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// Picking a point.
         /// </summary>
         Point,

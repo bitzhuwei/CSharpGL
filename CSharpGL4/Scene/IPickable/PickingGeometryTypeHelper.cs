@@ -17,11 +17,6 @@ namespace CSharpGL
             PolygonMode mode;
             switch (geometryType)
             {
-                case PickingGeometryType.None:
-                    // whatever it is.
-                    mode = PolygonMode.Point;
-                    break;
-
                 case PickingGeometryType.Point:
                     mode = PolygonMode.Point;
                     break;
