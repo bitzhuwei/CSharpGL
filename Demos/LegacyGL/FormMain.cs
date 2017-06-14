@@ -34,8 +34,6 @@ namespace LegacyGL
                 ClearColor = Color.Black,
                 RootElement = new BoundedClockRenderer(),
             };
-
-            winGLCanvas1_Resize(this.winGLCanvas1, EventArgs.Empty);
         }
 
         void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
