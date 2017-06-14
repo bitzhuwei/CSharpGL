@@ -49,13 +49,11 @@ namespace CSharpGL
         [Category(strPickableRenderer)]
         [Description("Vertex attribute buffers.")]
         //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public IEnumerable<VertexShaderAttribute> VertexAttributeBuffers
-        {
-            get
-            {
-                return this.vertexShaderAttributes;
-            }
-        }
+        public IEnumerable<VertexShaderAttribute> VertexAttributeBuffers { get { return this.vertexShaderAttributes; } }
+        /// <summary>
+        /// 
+        /// </summary>
+        public VertexShaderAttribute PositionAttribute { get { return this.positionAttribute; } }
 
         /// <summary>
         /// Vertex Array Object.
@@ -63,5 +61,14 @@ namespace CSharpGL
         [Category(strPickableRenderer)]
         [Description("Vertex Array Object.")]
         public VertexArrayObject VertexArrayObject { get { return this.vertexArrayObject; } }
+
+        /// <summary>
+        /// Vertex Array Object.
+        /// </summary>
+        [Category(strPickableRenderer)]
+        [Description("Vertex Array Object for Picking.")]
+        public VertexArrayObject PickVertexArrayObject { get { return this.pickVertexArrayObject; } }
+
+
     }
 }

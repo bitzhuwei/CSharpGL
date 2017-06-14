@@ -62,7 +62,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        public override void Render(RenderEventArgs arg)
+        public override void Render()
         {
             int primCount = this.PrimCount;
             if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }

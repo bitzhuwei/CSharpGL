@@ -50,8 +50,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="arg"></param>
-        public override void Render(RenderEventArgs arg)
+        public override void Render()
         {
             uint mode = (uint)this.Mode;
 

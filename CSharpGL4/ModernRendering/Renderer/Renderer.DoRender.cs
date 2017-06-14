@@ -27,7 +27,7 @@
 
             this.stateList.On();
 
-            this.vertexArrayObject.Render(arg, program);
+            this.vertexArrayObject.Render(program);
 
             this.stateList.Off();
 

@@ -14,7 +14,7 @@ namespace CSharpGL
             PickerBase picker = this.picker;
             if (picker != null)
             {
-                result = picker.GetPickedGeometry(this, arg, stageVertexId, x, y);
+                result = picker.GetPickedGeometry(arg, stageVertexId, x, y);
             }
 
             return result;
