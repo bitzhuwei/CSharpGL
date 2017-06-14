@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y)
+        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId)
         {
             PickableRenderer renderer = this.Renderer;
 
@@ -36,12 +36,12 @@ namespace CSharpGL
 
             // 找到 lastIndexId
             RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(
-                arg, lastVertexId, x, y);
+                arg, lastVertexId);
             if (lastIndexId == null)
             {
                 Debug.WriteLine(string.Format(
                     "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
-                    lastVertexId, arg, stageVertexId, x, y));
+                    lastVertexId, arg, stageVertexId));
                 { return null; }
             }
 
@@ -65,7 +65,7 @@ namespace CSharpGL
                 {
                     OneIndexPointSearcher searcher = GetPointSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchPoint(arg, stageVertexId, x, y, lastVertexId, lastIndexId, searcher); }
+                    { return SearchPoint(arg, stageVertexId, lastVertexId, lastIndexId, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
@@ -79,7 +79,7 @@ namespace CSharpGL
                 {
                     OneIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchLine(arg, stageVertexId, x, y, lastVertexId, lastIndexId, searcher); }
+                    { return SearchLine(arg, stageVertexId, lastVertexId, lastIndexId, searcher); }
                     else if (mode == DrawMode.Points)// want a line when rendering GL_POINTS
                     { return null; }
                     else
@@ -107,9 +107,9 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
         {
-            var vertexIds = new uint[] { searcher.Search(arg, x, y, primitiveInfo, this), };
+            var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(PickingGeometryType.Point, positions, vertexIds, stageVertexId, this.Renderer);
 
@@ -127,9 +127,9 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(PickEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(PickEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
         {
-            var vertexIds = searcher.Search(arg, x, y, primitiveInfo, this);
+            var vertexIds = searcher.Search(arg, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(PickingGeometryType.Line, positions, vertexIds, stageVertexId, this.Renderer);
 
@@ -185,13 +185,13 @@ namespace CSharpGL
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
             PickEventArgs arg,
-            uint lastVertexId, int x, int y)
+            uint lastVertexId)
         {
             List<RecognizedPrimitiveInfo> primitiveInfoList = GetLastIndexIdList(arg, lastVertexId);
 
             if (primitiveInfoList.Count == 0) { return null; }
 
-            RecognizedPrimitiveInfo lastIndexId = GetLastIndexId(arg, primitiveInfoList, x, y);
+            RecognizedPrimitiveInfo lastIndexId = GetLastIndexId(arg, primitiveInfoList);
 
             return lastIndexId;
         }
@@ -204,12 +204,11 @@ namespace CSharpGL
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        private uint Pick(PickEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer,
-            int x, int y)
+        private uint Pick(PickEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer)
         {
             this.Renderer.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
-            uint pickedIndex = ColorCodedPicking.ReadStageVertexId(x, y);
+            uint pickedIndex = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
 
             return pickedIndex;
         }

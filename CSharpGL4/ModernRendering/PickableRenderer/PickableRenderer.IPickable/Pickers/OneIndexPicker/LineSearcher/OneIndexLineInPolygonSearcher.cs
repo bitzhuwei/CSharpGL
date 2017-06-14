@@ -14,7 +14,6 @@ namespace CSharpGL
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
         internal override uint[] Search(PickEventArgs arg,
-            int x, int y,
             RecognizedPrimitiveInfo primitiveInfo,
             OneIndexPicker picker)
         {
@@ -23,7 +22,7 @@ namespace CSharpGL
 
             OneIndexBuffer buffer = indexList.GenIndexBuffer(DrawMode.LineLoop, BufferUsage.StaticDraw);
             picker.Renderer.Render4InnerPicking(arg, buffer);
-            uint id = ColorCodedPicking.ReadStageVertexId(x, y);
+            uint id = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
 
             buffer.Dispose();
 

@@ -14,7 +14,6 @@ namespace CSharpGL
         /// <param name="modernRenderer">目标Renderer</param>
         /// <returns></returns>
         internal override uint Search(PickEventArgs arg,
-            int x, int y,
             uint lastVertexId, ZeroIndexPicker picker)
         {
             // 创建临时索引
@@ -30,7 +29,7 @@ namespace CSharpGL
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
             picker.Renderer.Render4InnerPicking(arg, buffer);
             // id是拾取到的Line的Last Vertex Id
-            uint id = ColorCodedPicking.ReadStageVertexId(x, y);
+            uint id = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
 
             buffer.Dispose();
 

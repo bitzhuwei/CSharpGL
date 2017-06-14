@@ -19,8 +19,7 @@ namespace CSharpGL
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexId(
             PickEventArgs arg,
-            List<RecognizedPrimitiveInfo> primitiveInfoList,
-            int x, int y)
+            List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             if (primitiveInfoList == null || primitiveInfoList.Count == 0) { return null; }
 #if DEBUG
@@ -42,8 +41,7 @@ namespace CSharpGL
                 AssembleIndexBuffer(
                     primitiveInfoList[current], primitiveInfoList[i], this.Renderer.IndexBuffer.Mode,
                     out twoPrimitivesIndexBuffer, out lastIndex0, out lastIndex1);
-                uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer,
-                    x, y);
+                uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
                 if (pickedIndex == lastIndex1)
                 { current = i; }
                 else if (pickedIndex == lastIndex0)

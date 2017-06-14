@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId, int x, int y);
+        PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId);
     }
 
     public class PickEventArgs
@@ -50,13 +50,24 @@ namespace CSharpGL
             this.GeometryType = geometryType;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Scene Scene { get; set; }
 
+        /// <summary>
+        /// picking at position(Left Down is (0, 0)).</param>
+        /// </summary>
         public Point Position { get; set; }
 
         /// <summary>
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
         /// </summary>
         public PickingGeometryType GeometryType { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} @ [{1}]", this.GeometryType, this.Position);
+        }
     }
 }

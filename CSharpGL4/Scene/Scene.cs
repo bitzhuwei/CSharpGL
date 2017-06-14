@@ -74,8 +74,10 @@ namespace CSharpGL
         /// <param name="position"></param>
         /// <param name="geometryType"></param>
         /// <returns></returns>
-        public RendererBase Pick(Point position, PickingGeometryType geometryType)
+        public PickedGeometry Pick(Point position, PickingGeometryType geometryType)
         {
+            PickedGeometry pickedGeometry = null;
+
             Framebuffer framebuffer = GetPickingFramebuffer();
             framebuffer.Bind();
             {
@@ -86,12 +88,39 @@ namespace CSharpGL
                 var arg = new PickEventArgs(this, position, geometryType);
                 this.RenderForPicking(this.RootElement as IPickable, arg);
 
-                //uint stageVertexId = ColorCodedPicking.ReadStageVertexId(position.X, position.Y);
+                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(position.X, position.Y);
 
+                pickedGeometry = Pick(stageVertexId, arg, this.RootElement as IPickable);
             }
             framebuffer.Unbind();
 
-            throw new NotImplementedException();
+            return pickedGeometry;
+        }
+
+        private PickedGeometry Pick(uint stageVertexId, PickEventArgs arg, IPickable pickable)
+        {
+            PickedGeometry pickedGeometry = null;
+            if (pickable != null)
+            {
+                pickedGeometry = pickable.GetPickedGeometry(arg, stageVertexId);
+                if (pickedGeometry == null)
+                {
+                    var node = pickable as ITreeNode<RendererBase>;
+                    if (node != null)
+                    {
+                        foreach (var item in node.Children)
+                        {
+                            pickedGeometry = Pick(stageVertexId, arg, item as IPickable);
+                            if (pickedGeometry != null)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return pickedGeometry;
         }
 
         private Framebuffer GetPickingFramebuffer()

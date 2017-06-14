@@ -12,7 +12,6 @@
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
         internal override uint[] Search(PickEventArgs arg,
-            int x, int y,
             uint lastVertexId, ZeroIndexPicker picker)
         {
             var zeroIndexBuffer = picker.Renderer.IndexBuffer as ZeroIndexBuffer;
@@ -20,7 +19,7 @@
             // what a great OpenGL API design!
             ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.LineLoop, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.PrimCount);
             picker.Renderer.Render4InnerPicking(arg, indexBuffer);
-            uint id = ColorCodedPicking.ReadStageVertexId(x, y);
+            uint id = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
 
             indexBuffer.Dispose();
 

@@ -12,7 +12,6 @@
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
         internal override uint[] Search(PickEventArgs arg,
-            int x, int y,
             uint lastVertexId, ZeroIndexPicker picker)
         {
             OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 8, DrawMode.Lines, BufferUsage.StaticDraw);
@@ -26,7 +25,7 @@
                 buffer.UnmapBuffer();
             }
             picker.Renderer.Render4InnerPicking(arg, buffer);
-            uint id = ColorCodedPicking.ReadStageVertexId(x, y);
+            uint id = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
 
             buffer.Dispose();
 
