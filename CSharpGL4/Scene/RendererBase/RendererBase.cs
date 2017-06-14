@@ -38,6 +38,8 @@ namespace CSharpGL
         public RendererBase()
         {
             this.Id = idCounter++;
+
+            this.Children = new TreeNodeChildren<RendererBase>(this);
         }
 
         #region ITreeNode<RendererBase> 成员
