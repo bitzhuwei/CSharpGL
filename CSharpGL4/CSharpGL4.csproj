@@ -104,7 +104,7 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
-    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IModelSpace.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IWorldSpace.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.GetPickedGeometry.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.GetVertexCount.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.RenderForPicking.cs" />
@@ -148,7 +148,7 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Property.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Uniforms.cs" />
-    <Compile Include="ModernRendering\Renderer\Renderer.IModelSpace.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.IWorldSpace.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Dispose.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.DoInitialize.cs" />
@@ -156,7 +156,7 @@
     <Compile Include="ModernRendering\Renderer\Renderer.Property.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Uniforms.cs" />
-    <Compile Include="Scene\IModelSpace.cs" />
+    <Compile Include="Scene\IWorldSpace.cs" />
     <Compile Include="Scene\IPickable\IPickable.cs" />
     <Compile Include="Scene\IPickable\IPickableHelper.cs" />
     <Compile Include="Scene\IPickable\IPickedGeometry.cs" />

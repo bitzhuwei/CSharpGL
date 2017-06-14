@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal class ClockRenderer : RendererBase, IModelSpace
+    internal class ClockRenderer : RendererBase, IWorldSpace
     {
         private readonly ClockCircleRenderer circleRenderer = new ClockCircleRenderer();
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();
@@ -43,7 +43,7 @@
             pinRenderer.Render(arg);
         }
 
-        #region IModelSpace 成员
+        #region IWorldSpace 成员
 
         public vec3 WorldPosition
         {
@@ -101,6 +101,5 @@
         }
 
         #endregion
-
     }
 }

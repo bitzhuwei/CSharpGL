@@ -23,7 +23,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 ## v1.0.7.1:
 1. rename `IColorCodedPicking` to `IPickable`.
 2. `Markable` struct supports timestamp when member is updated.
-3. Cascade model matrix.(`IModelSpace` keeps relative model space to parent node.)
+3. Cascade model matrix.(`IWorldSpace` keeps relative model space to parent node.)
 4. Quick sort algorithm of `UnmanagedArray<T>`.
 5. `VertexAttributeBuffer` supports `glVertexAttribPointer`, `glVertexAttribIPointer` and `glVertexAttribLPointer`.
 
@@ -77,7 +77,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 7. Map/Unmap buffer in VertexAttributeBuffer, IndependentBuffer and OneIndexBuffer.
 
 ## v1.0.6.4:
-1. IModelSpace consists of position, scale and rotation.
+1. IWorldSpace consists of position, scale and rotation.
 2. Get quaternion from model matrix.
 3. Wraps framebuffer and use framebuffer in GLCanvas and Color-Coded picking.
 4. Add NullImageBuilder for Texture.
@@ -100,13 +100,13 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 6. SceneRootObject as root object in scene.
 7. Update+Render scene whenever property is changed.
 8. Bigger font for property grid.
-9. Renderer supports IModelSpace.
+9. Renderer supports IWorldSpace.
 10. Zooming camera updates camera's position and target only.
 11. Model matrix should be marked as updated at first.
 
 ## v1.0.6.2:
 1. Wraps texture and sampler.
-2. IModelSpace provides model matrix for rendering in MVP matrix in shader.
+2. IWorldSpace provides model matrix for rendering in MVP matrix in shader.
 3. fix: Scene renders all objects recursively.
 4. Remove initialize method in ScriptComponent because scripts may be executed in non-UI thread.
 
@@ -115,7 +115,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Sampler works.
 
 ## v1.0.6.0:
-1. IModelSpace transforms a model from model's sapce to world's sapce.
+1. IWorldSpace transforms a model from model's sapce to world's sapce.
 2. Start/Stop scene.
 3. fix: LabelRenderer supports updating text right before rendering.
 4. New project for generating Renderer types.(check CSharpGL on GitHub)
@@ -126,7 +126,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Hide/Show system's cursor in GLCanvas.
 3. fix: update UIRoot's size when scene is resized.
 4. TransformComponent is no longer a field member in SceneObject.
-5. IModelSpace transform a model from model's sapce to world's space.
+5. IWorldSpace transform a model from model's sapce to world's space.
 
 ## v1.0.5.1:
 1. TextureUpdater allows for updating texture's content.

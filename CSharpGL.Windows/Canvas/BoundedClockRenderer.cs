@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// </summary>
-    internal class BoundedClockRenderer : RendererBase, IModelSpace
+    internal class BoundedClockRenderer : RendererBase, IWorldSpace
     {
         public LegacyBoundingBoxRenderer BoxRenderer { get; set; }
         public ClockRenderer ClockRenderer { get; set; }
@@ -42,7 +42,7 @@
             this.ClockRenderer.Render(arg);
         }
 
-        #region IModelSpace 成员
+        #region IWorldSpace 成员
 
         public vec3 WorldPosition
         {

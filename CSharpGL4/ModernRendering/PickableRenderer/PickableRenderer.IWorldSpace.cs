@@ -3,7 +3,7 @@ namespace CSharpGL
 {
     public partial class PickableRenderer
     {
-        #region IModelSpace 成员
+        #region IWorldSpace 成员
 
         /// <summary>
         /// 
