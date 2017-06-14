@@ -148,6 +148,7 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Property.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Uniforms.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.IModelSpace.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Dispose.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.DoInitialize.cs" />

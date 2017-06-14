@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class PickableRenderer : RendererBase, IRenderable, IPickable, IModelSpace
+    public abstract partial class PickableRenderer : RendererBase, IRenderable, IPickable, IModelSpace
     {
         // data structure for rendering.
 
@@ -63,38 +63,21 @@ namespace CSharpGL
         /// 支持"拾取"的渲染器
         /// </summary>
         /// <param name="model">一种渲染方式</param>
-        /// <param name="shaderProgramProvider">各种类型的shader代码</param>
+        /// <param name="renderProgramProvider">各种类型的shader代码</param>
         /// <param name="attributeMap">关联<paramref name="model"/>和<paramref name="shaderProgramProvider"/>中的属性</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
-        public PickableRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, string positionNameInIBufferable,
-            params GLState[] switches)
-            : this(model, shaderProgramProvider, attributeMap, positionNameInIBufferable, PickingShaderHelper.GetPickingShaderProgramProvider(), switches)
-        {
-        }
-
-        /// <summary>
-        /// 支持"拾取"的渲染器
-        /// </summary>
-        /// <param name="model">一种渲染方式</param>
-        /// <param name="renderProgramProvider">各种类型的shader代码</param>
-        /// <param name="attributeMap">关联<paramref name="model"/>和<paramref name="renderProgramProvider"/>中的属性</param>
-        /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
-        /// <param name="pickProgramProvider"></param>
-        ///<param name="switches"></param>
         public PickableRenderer(IBufferable model, IShaderProgramProvider renderProgramProvider,
-            AttributeMap attributeMap, string positionNameInIBufferable, IShaderProgramProvider pickProgramProvider,
+            AttributeMap attributeMap, string positionNameInIBufferable,
             params GLState[] switches)
         {
             this.PositionNameInIBufferable = positionNameInIBufferable;
-            this.pickProgramProvider = pickProgramProvider;
+            this.pickProgramProvider = PickingShaderHelper.GetPickingShaderProgramProvider();
 
             this.DataSource = model;
             this.renderProgramProvider = renderProgramProvider;
             this.attributeMap = attributeMap;
             this.stateList.AddRange(switches);
         }
-
     }
 }

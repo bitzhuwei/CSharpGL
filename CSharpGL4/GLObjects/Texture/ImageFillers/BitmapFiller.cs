@@ -95,7 +95,9 @@ namespace CSharpGL
                 if (bmp != this.bitmap) { bmp.Dispose(); }
             }
             else
-            { throw new NotImplementedException(); }
+            {
+                throw new Exception("Unexpected TextureTarget!");
+            }
 
         }
     }

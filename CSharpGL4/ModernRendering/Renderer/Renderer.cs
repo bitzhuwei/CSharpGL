@@ -3,7 +3,7 @@
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public partial class Renderer : RendererBase, IRenderable
+    public abstract partial class Renderer : RendererBase, IRenderable, IModelSpace
     {
         // data structure for rendering.
 

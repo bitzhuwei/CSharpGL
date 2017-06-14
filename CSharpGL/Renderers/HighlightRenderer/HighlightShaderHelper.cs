@@ -16,7 +16,7 @@ namespace CSharpGL
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
-			var provider = new ShaderCodeArray(shaderCodes);
+            var provider = new ShaderCodeArray(shaderCodes);
 
             return provider;
         }
@@ -74,7 +74,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected ShaderType type!");
             }
 
             return result;

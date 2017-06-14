@@ -155,7 +155,7 @@ namespace CSharpGL
                         break;
 
                     default:
-                        throw new NotImplementedException();
+                        throw new Exception("Unexpected PickingGeometryType!");
                 }
             }
 
@@ -345,7 +345,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected DrawMode!");
             }
 
             return result;

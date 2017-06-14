@@ -163,7 +163,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected VBOConfig type!");
             }
 
             return result;

@@ -89,7 +89,7 @@ namespace CSharpGL
             }
             else
             {
-                throw new NotImplementedException();
+                throw new Exception("Unexpected bufferName!");
             }
         }
 

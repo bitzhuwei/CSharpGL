@@ -100,7 +100,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndexBufferElementType!");
             }
             return offset;
         }
@@ -127,7 +127,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndexBufferElementType!");
             }
             int primCount = this.PrimCount;
             if (primCount < 1)

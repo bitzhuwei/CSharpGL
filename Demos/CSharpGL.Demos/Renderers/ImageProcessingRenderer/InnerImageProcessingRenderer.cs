@@ -163,7 +163,9 @@ namespace CSharpGL.Demos
                     return this.uvBuffer;
                 }
                 else
-                { throw new NotImplementedException(); }
+                {
+                    throw new Exception("Unexpected bufferName!");
+                }
             }
 
             public IndexBuffer GetIndexBuffer()
@@ -208,7 +210,7 @@ namespace CSharpGL.Demos
                         break;
 
                     default:
-                        throw new NotImplementedException();
+                        throw new Exception("Unexpected CurrentDisplayImage!");
                 }
             }
             else
@@ -234,7 +236,7 @@ namespace CSharpGL.Demos
                         break;
 
                     default:
-                        throw new NotImplementedException();
+                        throw new Exception("Unexpected CurrentDisplayImage!");
                 }
             }
         }

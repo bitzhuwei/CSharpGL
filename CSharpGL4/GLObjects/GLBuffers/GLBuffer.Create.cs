@@ -91,7 +91,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndexBufferElementType!");
             }
 
             return result;
@@ -145,7 +145,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndependentBufferTarget!");
             }
 
             return buffer;

@@ -37,7 +37,7 @@ namespace CSharpGL
 
         private void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("throw new NotImplementedException();");
             //var sceneObject = context.Instance as SceneObject;
             //if (sceneObject != null)
             //{

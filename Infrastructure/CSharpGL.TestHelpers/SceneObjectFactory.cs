@@ -53,7 +53,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected BuildInSceneObject!");
             }
 
             return lengths;
@@ -86,7 +86,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected BuildInSceneObject!");
             }
 
             return map;
@@ -115,7 +115,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected BuildInSceneObject!");
             }
 
             return model;

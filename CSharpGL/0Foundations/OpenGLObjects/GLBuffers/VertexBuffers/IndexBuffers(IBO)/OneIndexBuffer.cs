@@ -96,7 +96,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndexBuffer type!");
             }
 
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
@@ -133,7 +133,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndexBuffer type!");
             }
             int primCount = this.PrimCount;
             if (primCount < 1)

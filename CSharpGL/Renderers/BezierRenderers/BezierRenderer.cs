@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -54,7 +55,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new System.NotImplementedException();
+                    throw new Exception("Unexpected BezierType type!");
             }
         }
 

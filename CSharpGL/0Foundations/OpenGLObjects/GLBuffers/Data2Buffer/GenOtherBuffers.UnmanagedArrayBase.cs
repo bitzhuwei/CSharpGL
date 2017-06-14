@@ -116,7 +116,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Unexpected IndepentedBuffer type!");
             }
 
             return buffer;

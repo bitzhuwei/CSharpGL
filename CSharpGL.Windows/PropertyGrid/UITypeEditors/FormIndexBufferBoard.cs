@@ -87,7 +87,7 @@ namespace CSharpGL
             }
             else
             {
-                throw new NotImplementedException();
+                throw new Exception("Unexpected IndexBuffer type!");
             }
         }
 
@@ -259,7 +259,7 @@ namespace CSharpGL
                 }
             }
             {
-                throw new NotImplementedException();
+                throw new Exception("Unexpected IndexBuffer type!");
             }
         }
     }

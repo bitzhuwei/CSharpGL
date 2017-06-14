@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     internal static partial class VBOConfigHelper
     {
@@ -101,7 +102,7 @@
                     break;
 
                 default:
-                    throw new System.NotImplementedException();
+                    throw new Exception("Unexpected VBOConfig!");
             }
 
             return result;

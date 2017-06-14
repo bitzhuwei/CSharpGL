@@ -30,7 +30,9 @@ namespace CSharpGL
                 OpenGL.TexImage2D((uint)texture.Target, 0, (int)OpenGL.GL_RGBA, bitmapData.Width, bitmapData.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
             }
             else
-            { throw new NotImplementedException(); }
+            {
+                throw new Exception("Unexpected TextureTarget type!");
+            }
             OpenGL.BindTexture((uint)texture.Target, 0);
 
             //  Unlock the image.
