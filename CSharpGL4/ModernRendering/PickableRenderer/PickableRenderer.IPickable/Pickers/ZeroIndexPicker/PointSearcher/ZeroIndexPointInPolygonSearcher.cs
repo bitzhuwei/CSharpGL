@@ -21,7 +21,7 @@ namespace CSharpGL
             // what a great OpenGL API design!
             ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.PrimCount);
             picker.Renderer.Render4InnerPicking(arg, indexBuffer);
-            uint id = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
+            uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             indexBuffer.Dispose();
 

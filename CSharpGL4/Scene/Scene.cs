@@ -74,7 +74,7 @@ namespace CSharpGL
         /// <param name="position"></param>
         /// <param name="geometryType"></param>
         /// <returns></returns>
-        public PickedGeometry Pick(Point position, PickingGeometryType geometryType)
+        public PickedGeometry Pick(int x, int y, PickingGeometryType geometryType)
         {
             PickedGeometry pickedGeometry = null;
 
@@ -85,10 +85,10 @@ namespace CSharpGL
                 GL.Instance.ClearColor(one, one, one, one);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                var arg = new PickEventArgs(this, position, geometryType);
+                var arg = new PickEventArgs(this, x, y, geometryType);
                 this.RenderForPicking(this.RootElement as IPickable, arg);
 
-                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(position.X, position.Y);
+                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
 
                 pickedGeometry = Pick(stageVertexId, arg, this.RootElement as IPickable);
             }

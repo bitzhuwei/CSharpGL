@@ -27,7 +27,7 @@ namespace CSharpGL
                 buffer.UnmapBuffer();
             }
             picker.Renderer.Render4InnerPicking(arg, buffer);
-            uint id = ColorCodedPicking.ReadStageVertexId(arg.Position.X, arg.Position.Y);
+            uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();
 

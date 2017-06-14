@@ -41,12 +41,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="scene"></param>
-        /// <param name="position"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         /// <param name="geometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).</param>
-        public PickEventArgs(Scene scene, Point position, PickingGeometryType geometryType)
+        public PickEventArgs(Scene scene, int x, int y, PickingGeometryType geometryType)
         {
             this.Scene = scene;
-            this.Position = position;
+            this.X = x;
+            this.Y = y;
             this.GeometryType = geometryType;
         }
 
@@ -58,7 +60,12 @@ namespace CSharpGL
         /// <summary>
         /// picking at position(Left Down is (0, 0)).</param>
         /// </summary>
-        public Point Position { get; set; }
+        public int X { get; set; }
+
+        /// <summary>
+        /// picking at position(Left Down is (0, 0)).</param>
+        /// </summary>
+        public int Y { get; set; }
 
         /// <summary>
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
@@ -67,7 +74,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("{0} @ [{1}]", this.GeometryType, this.Position);
+            return string.Format("{0} @ [{1}, {2}]", this.GeometryType, this.X, this.Y);
         }
     }
 }
