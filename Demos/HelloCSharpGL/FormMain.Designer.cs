@@ -38,17 +38,19 @@
             this.winGLCanvas1.Location = new System.Drawing.Point(0, 0);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(830, 573);
+            this.winGLCanvas1.Size = new System.Drawing.Size(783, 484);
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.winGLCanvas1_OpenGLDraw);
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 573);
+            this.ClientSize = new System.Drawing.Size(783, 484);
             this.Controls.Add(this.winGLCanvas1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormMain";
+            this.Text = "FormMain";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
