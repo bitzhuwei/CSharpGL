@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    class OneIndexPicker : PickerBase
+    partial class OneIndexPicker : PickerBase
     {
         /// <summary>
         /// 

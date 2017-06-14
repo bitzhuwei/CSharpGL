@@ -113,7 +113,16 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoInitialize.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoRender.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInPolygonSearcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInQuad+Searcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInTriangle+Searcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineSearcher.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\OneIndexPicker.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\OneIndexPicker.Searcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\PointSearcher\OneIndexPointInPolygonSearcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\PointSearcher\OneIndexPointInQuad+Searcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\PointSearcher\OneIndexPointInTriangle+Searcher.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\PointSearcher\OneIndexPointSearcher.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\ZeroIndexPicker.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\PickerBase.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInPolygonSearcher.cs" />
@@ -452,6 +461,9 @@
     <None Include="GLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="GLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.jpg" />
+    <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
+    <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInQuad+Searcher.jpg" />
+    <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInTriangle+Searcher.jpg" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInPolygonSearcher.jpg" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInQuadsSearcher.jpg" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInQuadStripSearcher.jpg" />
