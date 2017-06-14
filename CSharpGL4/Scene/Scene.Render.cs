@@ -18,21 +18,27 @@ namespace CSharpGL
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             var arg = new RenderEventArgs(this);
-            this.Render(this.RootElement as IRenderable, arg);
+            this.Render(this.RootElement, arg);
         }
 
-        private void Render(IRenderable sceneElement, RenderEventArgs arg)
+        private void Render(RendererBase sceneElement, RenderEventArgs arg)
         {
             if (sceneElement != null)
             {
-                sceneElement.Render(arg);
+                {
+                    var renderable = sceneElement as IRenderable;
+                    if (renderable != null)
+                    {
+                        renderable.Render(arg);
+                    }
+                }
 
                 var node = sceneElement as ITreeNode<RendererBase>;
                 if (node != null)
                 {
                     foreach (var item in node.Children)
                     {
-                        this.Render(item as IRenderable, arg);
+                        this.Render(item, arg);
                     }
                 }
             }
