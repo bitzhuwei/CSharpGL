@@ -3,6 +3,7 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
+        #region IWorldSpace 成员
 
         /// <summary>
         /// 
