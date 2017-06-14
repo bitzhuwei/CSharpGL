@@ -1,2 +1,2 @@
-﻿* PickableRenderer是支持ColorCodedPicking的渲染器。
-可根据differenceOnScreen来修改指定索引处的顶点位置。
+﻿# `PickableRenderer`
+supports rendering and picking.

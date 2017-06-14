@@ -166,6 +166,10 @@
     <Compile Include="Scene\IRenderable.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IDisposable.cs" />
+    <Content Include="ModernRendering\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\readme.md" />
+    <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\Scene.Pick.cs" />
     <Compile Include="Scene\Scene.Render.cs" />
