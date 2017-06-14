@@ -166,6 +166,8 @@
     <Compile Include="Scene\IRenderable.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IDisposable.cs" />
+    <Compile Include="Scene\Scene.Pick.cs" />
+    <Compile Include="Scene\Scene.Render.cs" />
     <Compile Include="Scene\Scene.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
@@ -476,9 +478,6 @@
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="readme.md" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
-    <Content Include="Shaders\readme.md" />
-    <EmbeddedResource Include="Shaders\NoLight.frag" />
-    <EmbeddedResource Include="Shaders\NoLight.vert" />
     <Content Include="Scene\RendererBase\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
@@ -487,9 +486,7 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.RenderForInnerPicking.cs" />
     <None Include="ModernRendering\Renderer\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
