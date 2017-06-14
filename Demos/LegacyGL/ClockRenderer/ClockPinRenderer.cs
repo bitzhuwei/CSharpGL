@@ -58,6 +58,13 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected void DoRender(RenderEventArgs arg)
         {
+            GL.Instance.MatrixMode(GL.GL_PROJECTION);
+            GL.Instance.LoadIdentity();
+            arg.Scene.Camera.LegacyProjection();
+            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
+            GL.Instance.LoadIdentity();
+            this.LegacyTransform();
+
             DateTime now = DateTime.Now;
             const float speed = 1.0f;
 
