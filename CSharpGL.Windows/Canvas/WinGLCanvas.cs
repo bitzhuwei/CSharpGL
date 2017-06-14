@@ -52,6 +52,7 @@ namespace CSharpGL
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
             this.fullname = this.GetType().FullName;
+
         }
 
         //private bool showingCursor = true;
@@ -97,6 +98,10 @@ namespace CSharpGL
 
         void ISupportInitialize.EndInit()
         {
+            // initialize GL instance before any GL commands.
+            var gl = WinGL.WinGLInstance;
+            gl.Flush();
+
             CreateRenderContext();
         }
 
