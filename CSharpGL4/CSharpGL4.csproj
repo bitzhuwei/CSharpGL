@@ -166,6 +166,7 @@
     <Compile Include="Scene\IRenderable.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IDisposable.cs" />
+    <None Include="Scene\readme.md" />
     <Compile Include="Scene\Scene.Pick.cs" />
     <Compile Include="Scene\Scene.Render.cs" />
     <Compile Include="Scene\Scene.cs" />
