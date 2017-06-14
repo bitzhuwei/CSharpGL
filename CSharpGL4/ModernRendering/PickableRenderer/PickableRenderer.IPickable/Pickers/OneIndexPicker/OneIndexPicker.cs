@@ -79,7 +79,7 @@ namespace CSharpGL
                 {
                     OneIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchLine(arg, stageVertexId, lastVertexId, lastIndexId, searcher); }
+                    { return SearchLine(arg, stageVertexId, lastIndexId, searcher); }
                     else if (mode == DrawMode.Points)// want a line when rendering GL_POINTS
                     { return null; }
                     else
@@ -127,7 +127,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(PickEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(PickEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
         {
             var vertexIds = searcher.Search(arg, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
