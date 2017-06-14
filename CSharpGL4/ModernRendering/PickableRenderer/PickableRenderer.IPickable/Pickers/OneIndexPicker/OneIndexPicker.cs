@@ -7,12 +7,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Get picked geometry from a <see cref="PickableRenderer"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
     /// </summary>
     partial class OneIndexPicker : PickerBase
     {
         /// <summary>
-        /// 
+        /// Get picked geometry from a <see cref="PickableRenderer"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
         /// </summary>
         /// <param name="renderer"></param>
         public OneIndexPicker(PickableRenderer renderer) : base(renderer) { }

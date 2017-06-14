@@ -484,7 +484,7 @@
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\readme.md" />
-    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.RenderForInnerPicking.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.RenderForInnerPicking.cs" />
     <None Include="ModernRendering\Renderer\readme.md" />
   </ItemGroup>
   <ItemGroup>

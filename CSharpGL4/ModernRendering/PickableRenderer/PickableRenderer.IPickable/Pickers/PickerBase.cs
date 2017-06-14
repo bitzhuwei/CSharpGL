@@ -7,12 +7,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Get picked geometry.
     /// </summary>
     abstract class PickerBase
     {
         /// <summary>
-        /// 
+        /// Get picked geometry.
         /// </summary>
         /// <param name="renderer"></param>
         public PickerBase(PickableRenderer renderer)
