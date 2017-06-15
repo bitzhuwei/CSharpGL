@@ -56,7 +56,6 @@
     <Compile Include="Canvas\WinGLCanvas.Designer.cs">
       <DependentUpon>WinGLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Canvas\WinGLCanvasDesignModeRenderer.cs" />
     <Compile Include="Canvas\IWinGLCanvas.cs" />
     <Compile Include="Canvas\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Canvas\RenderContexts\DIBSection.cs" />
