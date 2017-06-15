@@ -69,6 +69,11 @@ namespace CSharpGL
         /// <param name="shaders"></param>
         public void Initialize(params Shader[] shaders)
         {
+            foreach (var item in shaders)
+            {
+                item.Initialize();
+            }
+
             //if (shaders.Length < 1) { throw new ArgumentException(); }
 
             uint programId = glCreateProgram();
