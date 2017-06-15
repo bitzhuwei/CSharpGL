@@ -14,6 +14,7 @@ namespace LegacyGL
     public partial class FormMain : Form
     {
         private Scene scene;
+        private ProperllerRenderer propeller;
         public FormMain()
         {
             InitializeComponent();
@@ -29,12 +30,15 @@ namespace LegacyGL
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            var group = new RendererGroup(new ProperllerRenderer());
+            var propeller = new ProperllerRenderer();
+            var group = new RendererGroup(propeller);
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
                 ClearColor = Color.Black,
                 RootElement = group,
             };
+
+            this.propeller = propeller;
         }
 
         void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -45,6 +49,15 @@ namespace LegacyGL
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            IWorldSpace renderer = this.propeller;
+            if (renderer != null)
+            {
+                renderer.RotationAngle += 1;
+            }
         }
     }
 }
