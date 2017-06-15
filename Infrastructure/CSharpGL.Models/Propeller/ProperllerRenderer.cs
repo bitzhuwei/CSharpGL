@@ -77,8 +77,6 @@ namespace CSharpGL.Models
 
         public void Render(RenderEventArgs arg)
         {
-            this.RotationAngle += 10f;
-
             this.LegacyMVP(arg);
 
             GL.Instance.Begin((uint)DrawMode.Quads);

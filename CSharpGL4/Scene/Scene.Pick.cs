@@ -12,7 +12,7 @@ namespace CSharpGL
         private Framebuffer pickingFramebuffer;
 
         /// <summary>
-        /// 
+        /// Pick geometry at specified positon.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
