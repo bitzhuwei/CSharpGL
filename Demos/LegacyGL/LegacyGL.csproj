@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoundedClockRenderer.cs" />
     <Compile Include="ClockRenderer\ClockCircleRenderer.cs" />
     <Compile Include="ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="ClockRenderer\ClockPinRenderer.cs" />
