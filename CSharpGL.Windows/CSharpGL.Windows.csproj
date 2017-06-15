@@ -46,12 +46,12 @@
     <None Include="RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="AssemblyHelper.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockCircleRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockMarkRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockPinRenderer.cs" />
-    <Compile Include="Canvas\ClockRenderer\ClockRenderer.cs" />
+    <Compile Include="Renderers\ClockRenderer\ClockCircleRenderer.cs" />
+    <Compile Include="Renderers\ClockRenderer\ClockMarkRenderer.cs" />
+    <Compile Include="Renderers\ClockRenderer\ClockPinRenderer.cs" />
+    <Compile Include="Renderers\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="Canvas\DesignModeAssist.cs" />
-    <Compile Include="Canvas\BoxRenderer.cs" />
+    <Compile Include="Renderers\BoxRenderer.cs" />
     <Compile Include="Canvas\WinGLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

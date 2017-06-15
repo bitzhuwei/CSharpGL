@@ -16,6 +16,7 @@ namespace CSharpGL
             var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
             RendererGroup group;
             {
+                var box = new BoxRenderer() { WorldPosition = new vec3(0, -1f, 0), Scale = new vec3(1, 0.3f, 1), };
                 var clock = new ClockRenderer(new vec3());
                 group = new RendererGroup(box, clock);
             }
