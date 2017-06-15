@@ -19,6 +19,8 @@ namespace CSharpGL
         ISupportInitialize,
         IWinGLCanvas
     {
+        private const string strWinGLCanvas = "WinGLCanvas";
+
         private readonly Stopwatch stopWatch = new Stopwatch();
 
         /// <summary>
@@ -258,7 +260,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        [Category("CSharpGL")]
+        [Category(strWinGLCanvas)]
         public double FPS { get; private set; }
 
         ///// <summary>
@@ -298,7 +300,7 @@ namespace CSharpGL
         /// <value>
         /// The render trigger.
         /// </value>
-        [Category("CSharpGL")]
+        [Category(strWinGLCanvas)]
         [Description("The render trigger - determines when rendering will occur.")]
         public RenderTrigger RenderTrigger
         {
@@ -327,7 +329,7 @@ namespace CSharpGL
         /// <summary>
         /// Interval between two rendering passes. Must be greater than 0.(in milliseconds)
         /// </summary>
-        [Category("CSharpGL")]
+        [Category(strWinGLCanvas)]
         [Description("Interval between two rendering passes. Must be greater than 0.(in milliseconds).")]
         [DefaultValue(50)]
         public int TimerTriggerInterval
@@ -374,7 +376,7 @@ namespace CSharpGL
             this.Invalidate();
         }
 
-        [Category("CSharpGL")]
+        [Category(strWinGLCanvas)]
         [Description("OpenGL Render Context.")]
         public GLRenderContext RenderContext { get; private set; }
 
