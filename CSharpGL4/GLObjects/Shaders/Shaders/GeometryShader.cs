@@ -26,7 +26,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="shaderType"></param>
         /// <param name="source"></param>
-        public override void Initialize()
+        protected override void DoInitialize()
         {
             base.Create((uint)ShaderType.GeometryShader, this.Source);
         }

@@ -28,10 +28,19 @@ namespace CSharpGL
 
         }
 
+        private bool isInitialized = false;
+        public void Initialize()
+        {
+            if (!this.isInitialized)
+            {
+                this.DoInitialize();
+                this.isInitialized = true;
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Initialize();
+        protected abstract void DoInitialize();
 
         /// <summary>
         /// Create and compile this shader.
