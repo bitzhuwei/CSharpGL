@@ -79,18 +79,22 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 GetModelMatrix(this IWorldSpace model)
         {
-            var node = model as ITreeNode<RendererBase>;
-            if (node != null)
-            {
-                var parent = node.Parent as RendererBase;
-                if (parent != null)
-                {
-
-                }
-            }
             mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
             matrix = glm.scale(matrix, model.Scale);
             matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
+
+            var node = model as RendererBase;
+            if (node != null)
+            {
+                RendererBase parent = node.Parent;
+                if (parent != null)
+                {
+                    matrix = parent.modelMatrix * matrix;
+                }
+
+                node.modelMatrix = matrix;
+            }
+
             return matrix;
         }
 
