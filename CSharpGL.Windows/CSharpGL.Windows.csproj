@@ -50,6 +50,7 @@
     <Compile Include="Canvas\ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockPinRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockRenderer.cs" />
+    <Compile Include="Canvas\DesignModeAssist.cs" />
     <Compile Include="Canvas\WinGLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -19,14 +19,13 @@ namespace CSharpGL
         ISupportInitialize,
         IWinGLCanvas
     {
-        private Stopwatch stopWatch = new Stopwatch();
-        private readonly string fullname;
+        private readonly Stopwatch stopWatch = new Stopwatch();
 
         /// <summary>
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
-        protected readonly Scene designModeScene;
+        private readonly DesignModeAssist assist;
 
         //private EventHandler mouseEnter;
         //private EventHandler mouseLeave;
@@ -52,22 +51,7 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, this.Width, this.Height);
-                RendererGroup group;
-                {
-                    const float factor = 2.0f;
-                    var box = new LegacyBoundingBoxRenderer() { Scale = new vec3(factor, factor, factor) };
-                    var clock = new ClockRenderer(new vec3(1, 0.8f, 0));
-                    group = new RendererGroup(box, clock);
-                }
-                var scene = new Scene()
-                {
-                    Camera = camera,
-                    ClearColor = Color.Black,
-                    RootElement = group,
-                };
-                this.designModeScene = scene;
-                this.fullname = this.GetType().FullName;
+                this.assist = new DesignModeAssist(this.Width, this.Height, this.GetType().FullName);
                 ////this.mouseEnter = GLCanvas_MouseEnter;
                 //this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
@@ -120,7 +104,7 @@ namespace CSharpGL
         {
             if (this.designMode)
             {
-                this.designModeScene.Camera.AspectRatio = (float)this.Width / (float)this.Height;
+                this.assist.Resize(this.Width, this.Height);
             }
 
             CreateRenderContext();
@@ -174,17 +158,7 @@ namespace CSharpGL
             {
                 try
                 {
-                    this.designModeScene.Render();
-
-                    FontBitmaps.DrawText(10,
-                        10, Color.White, "Courier New",// "Courier New",
-                        25.0f, this.fullname);
-                    if (this.RenderTrigger == RenderTrigger.TimerBased)
-                    {
-                        FontBitmaps.DrawText(10,
-                            this.Height - 20 - 1, Color.Red, "Courier New",// "Courier New",
-                            20.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
-                    }
+                    this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS);
                 }
                 catch (Exception)
                 {
@@ -208,7 +182,7 @@ namespace CSharpGL
                 ErrorCode error = (ErrorCode)GL.Instance.GetError();
                 if (error != ErrorCode.NoError)
                 {
-                    Debug.WriteLine(string.Format("{0}: OpenGL error: {1}", this.fullname, error));
+                    Debug.WriteLine(string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error));
                 }
             }
 
@@ -252,7 +226,7 @@ namespace CSharpGL
 
                     if (this.designMode)
                     {
-                        this.designModeScene.Camera.AspectRatio = (float)this.Width / (float)this.Height;
+                        this.assist.Resize(this.Width, this.Height);
                     }
 
                     this.Invalidate();
@@ -324,7 +298,8 @@ namespace CSharpGL
         /// <value>
         /// The render trigger.
         /// </value>
-        [Description("The render trigger - determines when rendering will occur."), Category("CSharpGL")]
+        [Category("CSharpGL")]
+        [Description("The render trigger - determines when rendering will occur.")]
         public RenderTrigger RenderTrigger
         {
             get
@@ -352,7 +327,9 @@ namespace CSharpGL
         /// <summary>
         /// Interval between two rendering passes. Must be greater than 0.(in milliseconds)
         /// </summary>
-        [Description("Interval between two rendering passes. Must be greater than 0.(in milliseconds)."), Category("CSharpGL"), DefaultValue(50)]
+        [Category("CSharpGL")]
+        [Description("Interval between two rendering passes. Must be greater than 0.(in milliseconds).")]
+        [DefaultValue(50)]
         public int TimerTriggerInterval
         {
             get { return this.redrawTimer.Interval; }
@@ -397,6 +374,8 @@ namespace CSharpGL
             this.Invalidate();
         }
 
+        [Category("CSharpGL")]
+        [Description("OpenGL Render Context.")]
         public GLRenderContext RenderContext { get; private set; }
 
         #endregion
