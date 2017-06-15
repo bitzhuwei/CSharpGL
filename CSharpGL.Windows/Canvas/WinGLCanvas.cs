@@ -53,11 +53,18 @@ namespace CSharpGL
             if (this.designMode)
             {
                 var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, this.Width, this.Height);
+                RendererGroup group;
+                {
+                    const float factor = 2.0f;
+                    var box = new LegacyBoundingBoxRenderer() { Scale = new vec3(factor, factor, factor) };
+                    var clock = new ClockRenderer(new vec3(1, 0.8f, 0));
+                    group = new RendererGroup(box, clock);
+                }
                 var scene = new Scene()
                 {
                     Camera = camera,
                     ClearColor = Color.Black,
-                    RootElement = new BoundedClockRenderer(),
+                    RootElement = group,
                 };
                 this.designModeScene = scene;
                 this.fullname = this.GetType().FullName;

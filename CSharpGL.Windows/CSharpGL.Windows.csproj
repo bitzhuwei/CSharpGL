@@ -46,7 +46,6 @@
     <None Include="Canvas\RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="AssemblyHelper.cs" />
-    <Compile Include="Canvas\BoundedClockRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockCircleRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockPinRenderer.cs" />

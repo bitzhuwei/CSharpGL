@@ -154,6 +154,7 @@
     <Compile Include="ModernRendering\Renderer\Renderer.Property.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="RendererGroup\RendererGroup.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
     <Compile Include="Scene\IPickable\IPickable.cs" />
     <Compile Include="Scene\IPickable\IPickableHelper.cs" />
