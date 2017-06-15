@@ -29,9 +29,8 @@ namespace LegacyGL
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var group = new RendererGroup(new LegacyBoundingBoxRenderer(), new ClockRenderer(new vec3(1, 0.8f, 0)));
-            this.scene = new Scene()
+            this.scene = new Scene(camera, this.winGLCanvas1)
             {
-                Camera = camera,
                 ClearColor = Color.Black,
                 RootElement = group,
             };

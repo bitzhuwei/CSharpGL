@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        IGLCanvas Canvas { get; set; }
+        public IGLCanvas Canvas { get; set; }
 
         /// <summary>
         /// 
@@ -36,6 +36,18 @@ namespace CSharpGL
         {
             get { return clearColor.ToColor(); }
             set { this.clearColor = value.ToVec3(); }
+        }
+
+        /// <summary>
+        /// camera, canvas, renderers.
+        /// rendering, picking. 
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="canvas"></param>
+        public Scene(ICamera camera, IGLCanvas canvas)
+        {
+            this.Camera = camera;
+            this.Canvas = canvas;
         }
     }
 }

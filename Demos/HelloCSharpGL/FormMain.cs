@@ -29,9 +29,8 @@ namespace HelloCSharpGL
         private void FormMain_Load(object sender, EventArgs e)
         {
             var camera = new Camera(new vec3(5, 3, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.scene = new Scene()
+            this.scene = new Scene(camera, this.winGLCanvas1)
             {
-                Camera = camera,
                 ClearColor = Color.SkyBlue,
             };
         }

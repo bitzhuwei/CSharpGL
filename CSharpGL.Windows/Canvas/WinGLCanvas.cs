@@ -53,7 +53,7 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                this.assist = new DesignModeAssist(this.Width, this.Height, this.GetType().FullName);
+                this.assist = new DesignModeAssist(this);
                 ////this.mouseEnter = GLCanvas_MouseEnter;
                 //this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.

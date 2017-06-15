@@ -9,11 +9,11 @@ namespace CSharpGL
     class DesignModeAssist
     {
         private Scene scene;
-        private string fullname;
+        private readonly string fullname;
 
-        public DesignModeAssist(int width, int height, string fullname)
+        public DesignModeAssist(IGLCanvas canvas)
         {
-            var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
             RendererGroup group;
             {
                 const float factor = 2.0f;
@@ -21,14 +21,13 @@ namespace CSharpGL
                 var clock = new ClockRenderer(new vec3(1, 0.8f, 0));
                 group = new RendererGroup(box, clock);
             }
-            var scene = new Scene()
+            var scene = new Scene(camera, canvas)
             {
-                Camera = camera,
                 ClearColor = Color.Black,
                 RootElement = group,
             };
             this.scene = scene;
-            this.fullname = fullname;
+            this.fullname = canvas.GetType().FullName;
         }
 
         public void Render(bool drawText, int height, double fps)
