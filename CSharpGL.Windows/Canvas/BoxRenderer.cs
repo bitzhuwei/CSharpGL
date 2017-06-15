@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Models
+namespace CSharpGL
 {
     //
     //        2-------------------3
@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class ProperllerRenderer : RendererBase, IRenderable
+    internal class BoxRenderer : RendererBase, IRenderable
     {
         private const float height = 0.2f;
         /// <summary>

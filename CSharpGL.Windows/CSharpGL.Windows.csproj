@@ -51,6 +51,7 @@
     <Compile Include="Canvas\ClockRenderer\ClockPinRenderer.cs" />
     <Compile Include="Canvas\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="Canvas\DesignModeAssist.cs" />
+    <Compile Include="Canvas\BoxRenderer.cs" />
     <Compile Include="Canvas\WinGLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,7 +59,6 @@
       <DependentUpon>WinGLCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="Canvas\IWinGLCanvas.cs" />
-    <Compile Include="Canvas\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
     <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="RenderContexts\FBORenderContext.cs" />

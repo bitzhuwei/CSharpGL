@@ -16,9 +16,7 @@ namespace CSharpGL
             var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
             RendererGroup group;
             {
-                const float factor = 2.0f;
-                var box = new LegacyBoundingBoxRenderer() { Scale = new vec3(factor, factor, factor) };
-                var clock = new ClockRenderer(new vec3(1, 0.8f, 0));
+                var clock = new ClockRenderer(new vec3());
                 group = new RendererGroup(box, clock);
             }
             var scene = new Scene(camera, canvas)
