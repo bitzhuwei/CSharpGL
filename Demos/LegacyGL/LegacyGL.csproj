@@ -48,17 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClockRenderer\ClockCircleRenderer.cs" />
-    <Compile Include="ClockRenderer\ClockMarkRenderer.cs" />
-    <Compile Include="ClockRenderer\ClockPinRenderer.cs" />
-    <Compile Include="ClockRenderer\ClockRenderer.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -91,6 +86,10 @@
     <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
       <Project>{704921FB-E30A-4C8A-BC73-F343AB2EB690}</Project>
       <Name>CSharpGL.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\CSharpGL.Models\CSharpGL.Models.csproj">
+      <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
+      <Name>CSharpGL.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

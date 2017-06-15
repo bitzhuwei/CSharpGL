@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
+using CSharpGL.Models;
 
 namespace HelloCSharpGL
 {
@@ -28,10 +29,17 @@ namespace HelloCSharpGL
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var camera = new Camera(new vec3(5, 3, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var position = new vec3(0, 0, 4);
+            var center = new vec3(0, 0, 0);
+            var up = new vec3(0, 1, 0);
+            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var group = new RendererGroup(
+                new LegacyBoundingBoxRenderer() { Scale = new vec3(2, 2, 2), },
+                new ClockRenderer(new vec3(1, 0.8f, 0))
+                );
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
-                ClearColor = Color.SkyBlue,
+                RootElement = group,
             };
         }
     }

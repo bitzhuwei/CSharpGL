@@ -1,9 +1,9 @@
-﻿namespace CSharpGL
+﻿namespace CSharpGL.Models
 {
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    internal class LegacyBoundingBoxRenderer : RendererBase, IRenderable, IBoundingBox
+    public class LegacyBoundingBoxRenderer : RendererBase, IRenderable, IBoundingBox
     {
         /// <summary>
         /// Specify a cuboid that marks a model's edges.

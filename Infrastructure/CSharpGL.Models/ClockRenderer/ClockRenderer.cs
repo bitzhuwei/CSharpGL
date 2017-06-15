@@ -1,6 +1,6 @@
-﻿namespace CSharpGL
+﻿namespace CSharpGL.Models
 {
-    internal class ClockRenderer : RendererBase
+    public class ClockRenderer : RendererBase
     {
         private readonly ClockCircleRenderer circleRenderer = new ClockCircleRenderer();
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();

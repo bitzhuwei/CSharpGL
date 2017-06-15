@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpGL
+namespace CSharpGL.Models
 {
-    internal class ClockPinRenderer : RendererBase, IRenderable
+    public class ClockPinRenderer : RendererBase, IRenderable
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
