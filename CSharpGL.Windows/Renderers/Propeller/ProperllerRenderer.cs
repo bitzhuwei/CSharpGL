@@ -26,22 +26,24 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    internal class BoxRenderer : RendererBase, IRenderable
+    internal class ProperllerRenderer : RendererBase, IRenderable
     {
-        private const float height = 0.2f;
+        private const float xLength = 0.3f;
+        private const float yLength = 0.2f;
+        private const float zLength = 0.3f;
         /// <summary>
         /// eight vertexes.
         /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
-            new vec3(-1, -height, -1),// 0
-            new vec3(-1, -height, +1),// 1
-            new vec3(-1, +height, -1),// 2
-            new vec3(-1, +height, +1),// 3
-            new vec3(+1, -height, -1),// 4
-            new vec3(+1, -height, +1),// 5
-            new vec3(+1, +height, -1),// 6
-            new vec3(+1, +height, +1),// 7
+            new vec3(-xLength, -yLength, -zLength),// 0
+            new vec3(-xLength, -yLength, +zLength),// 1
+            new vec3(-xLength, +yLength, -zLength),// 2
+            new vec3(-xLength, +yLength, +zLength),// 3
+            new vec3(+xLength, -yLength, -zLength),// 4
+            new vec3(+xLength, -yLength, +zLength),// 5
+            new vec3(+xLength, +yLength, -zLength),// 6
+            new vec3(+xLength, +yLength, +zLength),// 7
         };
 
         private static readonly vec3 red = new vec3(1, 0, 0);
@@ -75,7 +77,7 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            this.RotationAngle += 3f;
+            this.RotationAngle += 10f;
 
             this.LegacyMVP(arg);
 
@@ -91,5 +93,17 @@ namespace CSharpGL
         }
 
         #endregion
+
+        public ProperllerRenderer()
+        {
+            var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            var zflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            var nzflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            this.Children.Add(xflabellum);
+            this.Children.Add(nxflabellum);
+            this.Children.Add(zflabellum);
+            this.Children.Add(nzflabellum);
+        }
     }
 }

@@ -51,7 +51,6 @@
     <Compile Include="Renderers\ClockRenderer\ClockPinRenderer.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="Canvas\DesignModeAssist.cs" />
-    <Compile Include="Renderers\BoxRenderer.cs" />
     <Compile Include="Canvas\WinGLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +111,8 @@
     <Compile Include="PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="Renderers\Propeller\FlabellumRenderer.cs" />
+    <Compile Include="Renderers\Propeller\ProperllerRenderer.cs" />
     <Compile Include="Win32API\BitmapInfo.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
     <Compile Include="Win32API\PixelFormatDescriptor.cs" />

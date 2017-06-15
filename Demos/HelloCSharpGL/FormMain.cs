@@ -35,7 +35,7 @@ namespace HelloCSharpGL
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var group = new RendererGroup(
                 new ClockRenderer(new vec3()),
-                new ProperllerRenderer() { WorldPosition = new vec3(0, -1f, 0), Scale = new vec3(1, 0.3f, 1), }
+                new ProperllerRenderer() { WorldPosition = new vec3(0, -1f, 0) }
                 );
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
