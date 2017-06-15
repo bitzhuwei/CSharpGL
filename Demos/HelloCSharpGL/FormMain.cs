@@ -20,12 +20,9 @@ namespace HelloCSharpGL
         {
             InitializeComponent();
 
+            this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
-        }
-
-        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
-        {
-            this.scene.Render();
+            this.winGLCanvas1.Resize += winGLCanvas1_Resize;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -42,6 +39,16 @@ namespace HelloCSharpGL
             };
 
             this.properller = properller;
+        }
+
+        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
+        {
+            this.scene.Render();
+        }
+
+        void winGLCanvas1_Resize(object sender, EventArgs e)
+        {
+            this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

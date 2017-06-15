@@ -57,7 +57,6 @@
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
             this.Text = "Hello CSharpGL";
-            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
