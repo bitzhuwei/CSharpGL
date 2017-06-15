@@ -20,7 +20,7 @@ namespace CSharpGL
 
         public void Off()
         {
-            for (int i = this.Count - 1; i >= 0; i++)
+            for (int i = this.Count - 1; i >= 0; i--)
             {
                 this[i].Off();
             }
