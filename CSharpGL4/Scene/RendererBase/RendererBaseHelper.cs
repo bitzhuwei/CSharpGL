@@ -22,7 +22,8 @@ namespace CSharpGL
             arg.Scene.Camera.LegacyProjection();
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.LoadIdentity();
-            renderer.LegacyTransform();
+            mat4 matrix = renderer.GetModelMatrix();
+            GL.Instance.MultMatrixf(matrix.ToArray());
         }
     }
 }

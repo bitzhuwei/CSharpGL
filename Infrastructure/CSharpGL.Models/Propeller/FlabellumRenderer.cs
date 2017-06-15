@@ -26,11 +26,11 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class ProperllerRenderer : RendererBase, IRenderable
+    public class FlabellumRenderer : RendererBase, IRenderable
     {
-        private const float xLength = 0.3f;
-        private const float yLength = 0.2f;
-        private const float zLength = 0.3f;
+        private const float xLength = 1.6f;
+        private const float yLength = 0.05f;
+        private const float zLength = 0.2f;
         /// <summary>
         /// eight vertexes.
         /// </summary>
@@ -77,8 +77,6 @@ namespace CSharpGL.Models
 
         public void Render(RenderEventArgs arg)
         {
-            this.RotationAngle += 10f;
-
             this.LegacyMVP(arg);
 
             GL.Instance.Begin((uint)DrawMode.Quads);
@@ -93,17 +91,5 @@ namespace CSharpGL.Models
         }
 
         #endregion
-
-        public ProperllerRenderer()
-        {
-            var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            var zflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            var nzflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
-            this.Children.Add(xflabellum);
-            this.Children.Add(nxflabellum);
-            this.Children.Add(zflabellum);
-            this.Children.Add(nzflabellum);
-        }
     }
 }

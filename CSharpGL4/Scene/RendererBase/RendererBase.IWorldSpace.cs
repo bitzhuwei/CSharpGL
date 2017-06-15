@@ -7,7 +7,7 @@ namespace CSharpGL
     public abstract partial class RendererBase
     {
 
-        internal mat4 modelMatrix;
+        internal mat4 modelMatrix = mat4.identity();
 
         #region IWorldSpace 成员
 

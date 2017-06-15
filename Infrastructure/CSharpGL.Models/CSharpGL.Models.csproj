@@ -47,6 +47,7 @@
     <Compile Include="ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="ClockRenderer\ClockPinRenderer.cs" />
     <Compile Include="ClockRenderer\ClockRenderer.cs" />
+    <Compile Include="Propeller\FlabellumRenderer.cs" />
     <Compile Include="Propeller\ProperllerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
