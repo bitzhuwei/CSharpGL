@@ -24,7 +24,6 @@ namespace DemoPLY
             var positions = new List<vec3>();
             var colors = new List<vec3>();
             var indexes = new List<uint>();
-            uint max = 0;
 
             using (var reader = new StreamReader(filename))
             {
@@ -48,13 +47,6 @@ namespace DemoPLY
                         var a = uint.Parse(parts[1]);
                         var b = uint.Parse(parts[2]);
                         var c = uint.Parse(parts[3]);
-                        if (a == 0 || b == 0 || c == 0)
-                        {
-                            Console.WriteLine();
-                        }
-                        if (max < a) { max = a; }
-                        if (max < b) { max = b; }
-                        if (max < c) { max = c; }
                         indexes.Add(a);
                         indexes.Add(b);
                         indexes.Add(c);
@@ -63,7 +55,6 @@ namespace DemoPLY
             }
             {
                 var array = positions.ToArray();
-                IBoundingBox box = array.Move2Center();
                 this.positionBuffer = array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
             }
             {
