@@ -55,6 +55,7 @@ namespace DemoPLY
             }
             {
                 var array = positions.ToArray();
+                array.Move2Center();
                 this.positionBuffer = array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
             }
             {
