@@ -10,7 +10,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, int[] values)
+        internal int glUniform(string uniformName, int[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -26,7 +26,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, float[] values)
+        internal int glUniform(string uniformName, float[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -42,7 +42,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, bvec2[] values)
+        internal int glUniform(string uniformName, bvec2[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -66,7 +66,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, uvec2[] values)
+        internal int glUniform(string uniformName, uvec2[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -90,7 +90,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, ivec2[] values)
+        internal int glUniform(string uniformName, ivec2[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -114,7 +114,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, vec2[] values)
+        internal int glUniform(string uniformName, vec2[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -138,7 +138,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, bvec3[] values)
+        internal int glUniform(string uniformName, bvec3[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -163,7 +163,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, uvec3[] values)
+        internal int glUniform(string uniformName, uvec3[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -188,7 +188,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, ivec3[] values)
+        internal int glUniform(string uniformName, ivec3[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -213,7 +213,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, vec3[] values)
+        internal int glUniform(string uniformName, vec3[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -238,7 +238,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, bvec4[] values)
+        internal int glUniform(string uniformName, bvec4[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -264,7 +264,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, uvec4[] values)
+        internal int glUniform(string uniformName, uvec4[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -290,7 +290,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, ivec4[] values)
+        internal int glUniform(string uniformName, ivec4[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -316,7 +316,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, vec4[] values)
+        internal int glUniform(string uniformName, vec4[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -341,7 +341,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
-        public int glUniform(string uniformName, bool v0)
+        internal int glUniform(string uniformName, bool v0)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -356,7 +356,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
-        public int glUniform(string uniformName, bool[] v0)
+        internal int glUniform(string uniformName, bool[] v0)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -377,7 +377,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
-        public int glUniform(string uniformName, uint v0)
+        internal int glUniform(string uniformName, uint v0)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -393,7 +393,7 @@
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
         /// <param name="v1"></param>
-        public int glUniform(string uniformName, uint v0, uint v1)
+        internal int glUniform(string uniformName, uint v0, uint v1)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -410,7 +410,7 @@
         /// <param name="v0"></param>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
-        public int glUniform(string uniformName, uint v0, uint v1, uint v2)
+        internal int glUniform(string uniformName, uint v0, uint v1, uint v2)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -428,7 +428,7 @@
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <param name="v3"></param>
-        public int glUniform(string uniformName, uint v0, uint v1, uint v2, uint v3)
+        internal int glUniform(string uniformName, uint v0, uint v1, uint v2, uint v3)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -444,7 +444,7 @@
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public int glUniform(string uniformName, uint[] values)
+        internal int glUniform(string uniformName, uint[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -459,7 +459,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
-        public int glUniform(string uniformName, int v0)
+        internal int glUniform(string uniformName, int v0)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -475,7 +475,7 @@
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
         /// <param name="v1"></param>
-        public int glUniform(string uniformName, int v0, int v1)
+        internal int glUniform(string uniformName, int v0, int v1)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -492,7 +492,7 @@
         /// <param name="v0"></param>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
-        public int glUniform(string uniformName, int v0, int v1, int v2)
+        internal int glUniform(string uniformName, int v0, int v1, int v2)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -510,7 +510,7 @@
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <param name="v3"></param>
-        public int glUniform(string uniformName, int v0, int v1, int v2, int v3)
+        internal int glUniform(string uniformName, int v0, int v1, int v2, int v3)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -525,7 +525,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
-        public int glUniform(string uniformName, float v0)
+        internal int glUniform(string uniformName, float v0)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -541,7 +541,7 @@
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
         /// <param name="v1"></param>
-        public int glUniform(string uniformName, float v0, float v1)
+        internal int glUniform(string uniformName, float v0, float v1)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -558,7 +558,7 @@
         /// <param name="v0"></param>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
-        public int glUniform(string uniformName, float v0, float v1, float v2)
+        internal int glUniform(string uniformName, float v0, float v1, float v2)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -576,7 +576,7 @@
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <param name="v3"></param>
-        public int glUniform(string uniformName, float v0, float v1, float v2, float v3)
+        internal int glUniform(string uniformName, float v0, float v1, float v2, float v3)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -591,7 +591,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniform(string uniformName, mat2 m)
+        internal int glUniform(string uniformName, mat2 m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -607,7 +607,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniform(string uniformName, mat3 m)
+        internal int glUniform(string uniformName, mat3 m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -623,7 +623,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniform(string uniformName, mat4 m)
+        internal int glUniform(string uniformName, mat4 m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -641,7 +641,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniform(string uniformName, mat2[] m)
+        internal int glUniform(string uniformName, mat2[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -666,7 +666,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniform(string uniformName, mat3[] m)
+        internal int glUniform(string uniformName, mat3[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -691,7 +691,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniform(string uniformName, mat4[] m)
+        internal int glUniform(string uniformName, mat4[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -716,7 +716,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniformMatrix2(string uniformName, float[] m)
+        internal int glUniformMatrix2(string uniformName, float[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -732,7 +732,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniformMatrix3(string uniformName, float[] m)
+        internal int glUniformMatrix3(string uniformName, float[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
@@ -748,7 +748,7 @@
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
-        public int glUniformMatrix4(string uniformName, float[] m)
+        internal int glUniformMatrix4(string uniformName, float[] m)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
