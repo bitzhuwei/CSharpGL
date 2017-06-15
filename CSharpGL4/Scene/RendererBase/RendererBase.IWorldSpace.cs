@@ -1,8 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Drawing.Design;
+
 namespace CSharpGL
 {
-    public partial class Renderer
+    public abstract partial class RendererBase
     {
+
+        internal mat4 modelMatrix;
+
         #region IWorldSpace 成员
 
         /// <summary>

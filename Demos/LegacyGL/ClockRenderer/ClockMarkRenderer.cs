@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockMarkRenderer : RendererBase, IRenderable, IWorldSpace
+    internal class ClockMarkRenderer : RendererBase, IRenderable
     {
         private readonly List<vec3> markPosition = new List<vec3>();
         private readonly List<vec3> markColor = new List<vec3>();
@@ -52,12 +52,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected void DoRender(RenderEventArgs arg)
         {
-            GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            GL.Instance.LoadIdentity();
-            arg.Scene.Camera.LegacyProjection();
-            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
-            GL.Instance.LoadIdentity();
-            this.LegacyTransform();
+            this.LegacyMVP(arg);
 
             GL.Instance.Begin((uint)DrawMode.Lines);
             for (int i = 0; i < markPosition.Count; i++)
@@ -70,36 +65,5 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
-        #region IWorldSpace 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 WorldPosition { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public float RotationAngle { get; set; }
-
-        private vec3 _rotationAxis = new vec3(0, 1, 0);
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 RotationAxis { get { return this._rotationAxis; } set { this._rotationAxis = value; } }
-
-        private vec3 _scale = new vec3(1, 1, 1);
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 Scale { get { return this._scale; } set { this._scale = value; } }
-
-        private vec3 _modelSize = new vec3(1, 1, 1);
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 ModelSize { get { return this._modelSize; } set { this._modelSize = value; } }
-
-        #endregion
     }
 }

@@ -26,6 +26,7 @@ namespace CSharpGL
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
+        protected readonly Scene designModeScene;
 
         //private EventHandler mouseEnter;
         //private EventHandler mouseLeave;
@@ -42,16 +43,28 @@ namespace CSharpGL
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
+            // initialize GL instance before any GL commands.
+            var gl = WinGL.WinGLInstance;
+            gl.Finish();
+
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
             this.designMode = this.DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
 
-            if (!this.designMode)
+            if (this.designMode)
             {
+                var camera = new Camera(new vec3(0, 0, 2.5f), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, this.Width, this.Height);
+                var scene = new Scene()
+                {
+                    Camera = camera,
+                    ClearColor = Color.Black,
+                    RootElement = new BoundedClockRenderer(),
+                };
+                this.designModeScene = scene;
+                this.fullname = this.GetType().FullName;
                 ////this.mouseEnter = GLCanvas_MouseEnter;
                 //this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
-            this.fullname = this.GetType().FullName;
 
         }
 
@@ -98,9 +111,10 @@ namespace CSharpGL
 
         void ISupportInitialize.EndInit()
         {
-            // initialize GL instance before any GL commands.
-            var gl = WinGL.WinGLInstance;
-            gl.Flush();
+            if (this.designMode)
+            {
+                this.designModeScene.Camera.AspectRatio = (float)this.Width / (float)this.Height;
+            }
 
             CreateRenderContext();
         }
@@ -128,10 +142,6 @@ namespace CSharpGL
             GL.Instance.Enable(GL.GL_DEPTH_TEST);// depth test is disabled by default.
             GL.Instance.DepthFunc(GL.GL_LEQUAL);
             GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
-            if (this.designMode)
-            {
-                WinGLCanvasHelper.ResizeGL(this.Width, this.Height);
-            }
         }
 
         /// <summary>
@@ -157,7 +167,17 @@ namespace CSharpGL
             {
                 try
                 {
-                    DesignModeRendering();
+                    this.designModeScene.Render();
+
+                    FontBitmaps.DrawText(10,
+                        10, Color.White, "Courier New",// "Courier New",
+                        25.0f, this.fullname);
+                    if (this.RenderTrigger == RenderTrigger.TimerBased)
+                    {
+                        FontBitmaps.DrawText(10,
+                            this.Height - 20 - 1, Color.Red, "Courier New",// "Courier New",
+                            20.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
+                    }
                 }
                 catch (Exception)
                 {
@@ -186,31 +206,6 @@ namespace CSharpGL
             }
 
             this.FPS = 1000.0 / stopWatch.Elapsed.TotalMilliseconds;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected virtual void DesignModeRendering()
-        {
-            // Sky blue fore background.
-            //OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            GL.Instance.ClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-            //  Clear the color and depth buffer.
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
-            WinGLCanvasHelper.DrawClock();
-
-            FontBitmaps.DrawText(10,
-                10, Color.White, "Courier New",// "Courier New",
-                25.0f, this.fullname);
-            if (this.RenderTrigger == RenderTrigger.TimerBased)
-            {
-                FontBitmaps.DrawText(10,
-                    this.Height - 20 - 1, Color.Red, "Courier New",// "Courier New",
-                    20.0f, string.Format("FPS: {0}", this.FPS.ToShortString()));
-            }
         }
 
         /// <summary>
@@ -250,7 +245,7 @@ namespace CSharpGL
 
                     if (this.designMode)
                     {
-                        WinGLCanvasHelper.ResizeGL(width, height);
+                        this.designModeScene.Camera.AspectRatio = (float)this.Width / (float)this.Height;
                     }
 
                     this.Invalidate();

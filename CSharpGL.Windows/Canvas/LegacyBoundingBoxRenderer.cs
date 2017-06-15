@@ -3,7 +3,7 @@
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    internal class LegacyBoundingBoxRenderer : RendererBase, IBoundingBox, IWorldSpace
+    internal class LegacyBoundingBoxRenderer : RendererBase, IRenderable, IBoundingBox
     {
         /// <summary>
         /// Specify a cuboid that marks a model's edges.
@@ -43,13 +43,6 @@
         #endregion IBoundingBox 成员
 
         /// <summary>
-        ///
-        /// </summary>
-        protected override void DoInitialize()
-        {
-        }
-
-        /// <summary>
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
@@ -66,9 +59,9 @@
         /// <param name="arg"></param>
         protected void DoRender(RenderEventArgs arg)
         {
+            this.LegacyMVP(arg);
+
             this.RotationAngle += 6.0f;// 6°
-            GL.Instance.LoadIdentity();
-            this.LegacyTransform();
 
             GL.Instance.Begin((uint)DrawMode.Quads);
             GL.Instance.Color3f(1.0f, 0, 0);
@@ -108,36 +101,5 @@
             GL.Instance.End();
         }
 
-        #region IWorldSpace 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 WorldPosition { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public float RotationAngle { get; set; }
-
-        private vec3 _rotationAxis = new vec3(0, 1, 0);
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 RotationAxis { get { return this._rotationAxis; } set { this._rotationAxis = value; } }
-
-        private vec3 _scale = new vec3(1, 1, 1);
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 Scale { get { return this._scale; } set { this._scale = value; } }
-
-        private vec3 _modelSize = new vec3(1, 1, 1);
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 ModelSize { get { return this._modelSize; } set { this._modelSize = value; } }
-
-        #endregion
     }
 }

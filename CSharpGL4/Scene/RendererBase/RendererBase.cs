@@ -8,7 +8,7 @@ namespace CSharpGL
     /// 用OpenGL初始化和渲染一个模型。
     /// <para>Initialize and render something with OpenGL.</para>
     /// </summary>
-    public abstract partial class RendererBase : ITreeNode<RendererBase>, IDisposable
+    public abstract partial class RendererBase : ITreeNode<RendererBase>, IWorldSpace, IDisposable
     {
         private const string strRendererBase = "RendererBase";
 
@@ -102,7 +102,7 @@ namespace CSharpGL
         /// <summary>
         /// This method should only be invoked once.
         /// </summary>
-        protected abstract void DoInitialize();
+        protected virtual void DoInitialize() { }
 
         #endregion Initialize()
     }
