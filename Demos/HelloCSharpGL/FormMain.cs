@@ -30,7 +30,7 @@ namespace HelloCSharpGL
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Ortho, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var propeller = new PropellerRenderer();
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
@@ -73,7 +73,7 @@ namespace HelloCSharpGL
             IWorldSpace renderer = this.scene.RootElement;
             if (renderer != null)
             {
-                renderer.RotationAngle += 5;
+                renderer.RotationAngle += 1;
             }
         }
     }
