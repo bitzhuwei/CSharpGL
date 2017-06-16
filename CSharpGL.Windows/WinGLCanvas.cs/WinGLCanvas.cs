@@ -228,7 +228,7 @@ namespace CSharpGL
 
                     if (this.designMode)
                     {
-                        this.assist.Resize(this.Width, this.Height);
+                        this.assist.Resize(width, height);
                     }
 
                     this.Invalidate();
