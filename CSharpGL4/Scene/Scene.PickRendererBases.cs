@@ -10,27 +10,6 @@ namespace CSharpGL
 
     public partial class Scene
     {
-        class LegacyPickEventArgs : RenderEventArgs
-        {
-            public readonly mat4 pickMatrix;
-            public readonly int x;
-            public readonly int y;
-            public readonly Dictionary<uint, RendererBase> hitMap;
-
-            public LegacyPickEventArgs(mat4 pickMatrix, Scene scene, int x, int y)
-                : base(scene)
-            {
-                this.pickMatrix = pickMatrix;
-                this.x = x;
-                this.y = y;
-                this.hitMap = new Dictionary<uint, RendererBase>();
-            }
-
-            public override mat4 GetProjectionMatrix()
-            {
-                return this.pickMatrix * this.Scene.Camera.GetProjectionMatrix();
-            }
-        }
 
         /// <summary>
         /// Pick geometry at specified positon.
@@ -112,14 +91,14 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                var pickable = sceneElement as IRenderable;
+                var pickable = sceneElement as ILegacyPickable;
                 if (pickable != null)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);
                     arg.hitMap[currentName] = sceneElement;
 
-                    pickable.Render(arg);
+                    pickable.RenderForLegacyPicking(arg);
 
                     //  Increment the name.
                     currentName++;

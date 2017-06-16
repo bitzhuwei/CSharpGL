@@ -15,6 +15,66 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="arg"></param>
+        public static void PushProjection(this RendererBase renderer, RenderEventArgs arg)
+        {
+            GL.Instance.MatrixMode(GL.GL_PROJECTION);
+            GL.Instance.PushMatrix();
+            mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
+            mat4 view = arg.Scene.Camera.GetViewMatrix();
+            GL.Instance.LoadIdentity();
+            GL.Instance.MultMatrixf((projection * view).ToArray());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderer"></param>
+        /// <param name="arg"></param>
+        public static void PushProjection(this RendererBase renderer, LegacyPickEventArgs arg)
+        {
+            GL.Instance.MatrixMode(GL.GL_PROJECTION);
+            GL.Instance.PushMatrix();
+            mat4 projection = arg.pickMatrix * arg.scene.Camera.GetProjectionMatrix();
+            mat4 view = arg.scene.Camera.GetViewMatrix();
+            GL.Instance.LoadIdentity();
+            GL.Instance.MultMatrixf((projection * view).ToArray());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderer"></param>
+        public static void PushModelView(this RendererBase renderer)
+        {
+            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
+            GL.Instance.PushMatrix();
+            GL.Instance.LoadIdentity();
+            renderer.LegacyTransform();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void PopProjection(this RendererBase renderer)
+        {
+            GL.Instance.PopMatrix();
+            GL.Instance.MatrixMode(GL.GL_PROJECTION);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void PopModelView(this RendererBase renderer)
+        {
+            GL.Instance.PopMatrix();
+            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderer"></param>
+        /// <param name="arg"></param>
         public static void LegacyMVP(this RendererBase renderer, RenderEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);

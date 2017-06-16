@@ -156,6 +156,7 @@
     <Compile Include="ModernRendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Uniforms.cs" />
     <Compile Include="Renderers\RendererGroup.cs" />
+    <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
     <Compile Include="Scene\IPickable\IPickable.cs" />
     <Compile Include="Scene\IPickable\IPickableHelper.cs" />
@@ -175,7 +176,7 @@
     <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Scene\Scene.PickRendererBase.cs" />
+    <Compile Include="Scene\Scene.PickRendererBases.cs" />
     <Compile Include="Scene\Scene.PickGeometry.cs" />
     <Compile Include="Scene\Scene.Render.cs" />
     <Compile Include="Scene\Scene.cs" />

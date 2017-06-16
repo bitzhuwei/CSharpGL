@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class ProperllerRenderer : RendererBase, IRenderable
+    public class ProperllerRenderer : RendererBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
@@ -77,19 +77,19 @@ namespace CSharpGL.Models
 
         public void Render(RenderEventArgs arg)
         {
-            //this.LegacyMVP(arg);
-            GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            GL.Instance.PushMatrix();
-            mat4 projection = arg.GetProjectionMatrix();
-            mat4 view = arg.GetViewMatrix();
-            GL.Instance.LoadIdentity();
-            GL.Instance.MultMatrixf((projection * view).ToArray());
+            this.PushProjection(arg);
+            this.PushModelView();
 
-            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
-            GL.Instance.PushMatrix();
-            GL.Instance.LoadIdentity();
-            this.LegacyTransform();
+            DoRender();
 
+            this.PopProjection();
+            this.PopModelView();
+        }
+
+        #endregion
+
+        private static void DoRender()
+        {
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
             {
@@ -99,14 +99,7 @@ namespace CSharpGL.Models
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
-
-            GL.Instance.PopMatrix();
-            GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            GL.Instance.PopMatrix();
-            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
         }
-
-        #endregion
 
         public ProperllerRenderer()
         {
@@ -119,5 +112,20 @@ namespace CSharpGL.Models
             this.Children.Add(zflabellum);
             this.Children.Add(nzflabellum);
         }
+
+        #region ILegacyPickable 成员
+
+        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
+        {
+            this.PushProjection(arg);
+            this.PushModelView();
+
+            DoRender();
+
+            this.PopProjection();
+            this.PopModelView();
+        }
+
+        #endregion
     }
 }
