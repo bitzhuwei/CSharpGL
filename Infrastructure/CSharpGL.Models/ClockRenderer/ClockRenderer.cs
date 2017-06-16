@@ -6,9 +6,8 @@
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();
         private readonly ClockPinRenderer pinRenderer = new ClockPinRenderer();
 
-        public ClockRenderer(vec3 worldPosition)
+        public ClockRenderer()
         {
-            this.WorldPosition = worldPosition;
             const float factor = 0.5f;
             this.Scale = new vec3(factor, factor, factor);
             this.ModelSize = new vec3(2, 2, 2);
