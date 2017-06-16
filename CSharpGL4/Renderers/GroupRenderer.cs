@@ -8,13 +8,13 @@ namespace CSharpGL
     /// <summary>
     /// contains some renderers in its children.
     /// </summary>
-    public class RendererGroup : RendererBase
+    public class GroupRenderer : RendererBase
     {
         /// <summary>
         /// contains some renderers in its children.
         /// </summary>
         /// <param name="renderers"></param>
-        public RendererGroup(params RendererBase[] renderers)
+        public GroupRenderer(params RendererBase[] renderers)
         {
             foreach (var item in renderers)
             {
