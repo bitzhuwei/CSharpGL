@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Render something.
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface IRenderable
     {
         /// <summary>

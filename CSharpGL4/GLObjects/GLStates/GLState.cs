@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class GLState : IGLState
     {
         private bool inUse = false;

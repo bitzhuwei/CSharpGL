@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// A GLSL vertex shader.
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class VertexShader : Shader
     {
 

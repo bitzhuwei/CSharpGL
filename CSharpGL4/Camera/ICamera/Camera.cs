@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// 摄像机。Camera.
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Camera : ICamera
     {
         ///// <summary>

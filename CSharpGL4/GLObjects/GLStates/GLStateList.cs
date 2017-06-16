@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    //[Editor(typeof(IListEditor<GLState>), typeof(UITypeEditor))]
+    [Editor(typeof(IListEditor<GLState>), typeof(UITypeEditor))]
     public class GLStateList : List<GLState>, IGLState
     {
         public void On()

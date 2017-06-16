@@ -41,7 +41,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderer)]
         [Description("Vertex attribute buffers.")]
-        //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public IEnumerable<VertexShaderAttribute> VertexAttributeBuffers
         {
             get

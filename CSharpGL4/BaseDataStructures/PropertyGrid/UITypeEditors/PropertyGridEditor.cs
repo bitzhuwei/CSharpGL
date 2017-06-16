@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// For any single object.
     /// </summary>
-    internal class PropertyGridEditor : UITypeEditor
+    public class PropertyGridEditor : UITypeEditor
     {
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {

@@ -47,7 +47,6 @@
     <None Include="WinGLCanvas.cs\readme.md" />
     <None Include="RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />
-    <Compile Include="AssemblyHelper.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockCircleRenderer.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockPinRenderer.cs" />
@@ -74,47 +73,6 @@
     <Compile Include="GLAPI\WinGL.cs" />
     <Compile Include="GLAPI\WinGL.OpenGL32.DLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
-      <DependentUpon>FormIListEditor`1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
-      <DependentUpon>FormIndexBufferBoard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
-      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
-      <DependentUpon>FormSelectType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
-      <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
-      <DependentUpon>FormUniformVariableType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
-    <Compile Include="PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Win32API\BitmapInfo.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
     <Compile Include="Win32API\PixelFormatDescriptor.cs" />
@@ -127,8 +85,6 @@
     <Compile Include="Win32API\WNDCLASSEX.cs" />
     <Compile Include="Win32API\WndProc.cs" />
     <Content Include="readme.md" />
-    <Content Include="PropertyGrid\TypeConverters\readme.md" />
-    <Content Include="PropertyGrid\UITypeEditors\readme.md" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

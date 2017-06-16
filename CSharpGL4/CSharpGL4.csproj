@@ -53,7 +53,6 @@
     <Compile Include="BaseDataStructures\GLSL\glm_camera.cs" />
     <Compile Include="BaseDataStructures\GLSL\glm_inverse.cs" />
     <Compile Include="BaseDataStructures\GLSL\glm_trigonometric.cs" />
-    <Compile Include="BaseDataStructures\GLSL\ILoadFromString.cs" />
     <Compile Include="BaseDataStructures\GLSL\ivec2.cs" />
     <Compile Include="BaseDataStructures\GLSL\ivec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\ivec4.cs" />
@@ -74,6 +73,8 @@
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
     <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.yield.cs" />
     <Compile Include="BaseDataStructures\MarkableStruct.cs" />
+    <Compile Include="BaseDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
+    <Compile Include="BaseDataStructures\Utilities\AssemblyHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
@@ -161,6 +162,47 @@
     <Compile Include="ModernRendering\Renderer\Renderer.Property.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Uniforms.cs" />
+    <Compile Include="BaseDataStructures\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
+      <DependentUpon>FormIListEditor`1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
+      <DependentUpon>FormIndexBufferBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
+      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormSelectType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
+      <DependentUpon>FormSelectType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
+      <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
+      <DependentUpon>FormUniformVariableType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IListEditor.cs" />
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
@@ -181,6 +223,8 @@
     <Content Include="Scene\IPickable\readme.md" />
     <Content Include="Scene\ILegacyPickable\readme.md" />
     <None Include="BaseDataStructures\ITreeNode`1\readme.md" />
+    <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
+    <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
       <SubType>Code</SubType>
@@ -193,7 +237,6 @@
     <None Include="BaseDataStructures\readme.md" />
     <Compile Include="BaseDataStructures\NoisyArray.cs" />
     <Compile Include="BaseDataStructures\Pixel.cs" />
-    <Compile Include="BaseDataStructures\GLSL\ILoadFromString.TypeConverter.cs" />
     <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
     <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
     <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />

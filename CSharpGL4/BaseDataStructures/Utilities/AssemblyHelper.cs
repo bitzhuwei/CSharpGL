@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    internal static class AssemblyHelper
+    public static class AssemblyHelper
     {
         /// <summary>
         /// Get all derived non-abstract types of specified base type from all loaded assemblies.

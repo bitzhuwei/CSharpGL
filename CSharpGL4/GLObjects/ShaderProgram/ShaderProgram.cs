@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// A shader program object.
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class ShaderProgram
     {
         private static GLDelegates.uint_void glCreateProgram;

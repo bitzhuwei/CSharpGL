@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// children in <see cref="ITreeNode"/>.
     /// </summary>
-    //[Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
+    [Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
     public class TreeNodeChildren : IList<ITreeNode>
     {
         private List<ITreeNode> list = new List<ITreeNode>();

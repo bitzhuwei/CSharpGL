@@ -7,7 +7,7 @@ namespace CSharpGL
     /// gets model's original size.
     /// transform a model from model's sapce to world's space.
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface IWorldSpace
     {
         /// <summary>

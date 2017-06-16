@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// A GLSL shader(supported extensions: vs, fs, gs, vsh, fsh, gsh, vshader, fshader, gshader, vert, frag, geom, tesc, tese, comp, glsl).
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class Shader : IDisposable
     {
         private static readonly GLDelegates.uint_uint glCreateShader;

@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Keeps a struct value and records the latest time when it's udpated.
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class MarkableStruct<T> where T : struct
     {
         private T value;

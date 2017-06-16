@@ -9,7 +9,7 @@ namespace CSharpGL
     /// 位于服务器端（GPU内存）的定长数组。
     /// <para>An array at server side (GPU memory) with fixed length.</para>
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class GLBuffer : IDisposable
     {
         /// <summary>

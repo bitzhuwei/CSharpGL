@@ -8,7 +8,7 @@ namespace CSharpGL
     /// VAO是用来管理VBO的。可以进一步减少DrawCall。
     /// <para>VAO is used to reduce draw-call.</para>
     /// </summary>
-    //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public sealed class VertexArrayObject : IDisposable
     {
         private static readonly GLDelegates.void_int_uintN glGenVertexArrays;

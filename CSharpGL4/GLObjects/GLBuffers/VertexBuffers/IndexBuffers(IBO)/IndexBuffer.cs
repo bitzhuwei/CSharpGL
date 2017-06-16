@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
     /// </summary>
     [Browsable(true)]
-    //[Editor(typeof(IndexBufferEditor), typeof(UITypeEditor))]
+    [Editor(typeof(IndexBufferEditor), typeof(UITypeEditor))]
     public abstract class IndexBuffer : GLBuffer
     {
         /// <summary>
