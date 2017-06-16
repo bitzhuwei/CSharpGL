@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataStructures\FullDictionary.cs" />
     <Compile Include="BaseDataStructures\IBoundingBox\BoundingBox.cs" />
     <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBox.cs" />
     <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
@@ -78,6 +79,15 @@
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
+    <Compile Include="FontTexture\FontBitmap.cs" />
+    <Compile Include="FontTexture\FontBitmap.IDisposable.cs" />
+    <Compile Include="FontTexture\FontBitmapHelper.cs" />
+    <Compile Include="FontTexture\FontTexture.cs" />
+    <Compile Include="FontTexture\FontTexture.Default.cs" />
+    <Compile Include="FontTexture\FontTexture.IDisposable.cs" />
+    <Compile Include="FontTexture\FontTextureHelper.cs" />
+    <Compile Include="FontTexture\GlyphInfo.cs" />
+    <Compile Include="FontTexture\IFontTexture.cs" />
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexShaderAttribute.cs" />
     <Compile Include="GLObjects\GLStates\IGLState.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.UniformArrays.cs" />
@@ -224,6 +234,7 @@
     <Content Include="Scene\ILegacyPickable\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
+    <Content Include="FontTexture\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
       <SubType>Code</SubType>
