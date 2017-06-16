@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <param name="treeNode"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode> Traverse(this ITreeNode treeNode, TraverseOrder order)
+        public static IEnumerable<ITreeNode<T>> Traverse<T>(this ITreeNode<T> treeNode, TraverseOrder order) where T : class, ITreeNode<T>
         {
             switch (order)
             {
@@ -43,14 +43,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode> PostorderTraverse(ITreeNode treeNode)
+        public static IEnumerable<ITreeNode<T>> PostorderTraverse<T>(ITreeNode<T> treeNode) where T : class, ITreeNode<T>
         {
             if (treeNode != null)
             {
                 for (int i = 0; i < treeNode.Children.Count; i++)
                 {
-                    ITreeNode child = treeNode.Children[i];
-                    IEnumerable<ITreeNode> enumerable = PostorderTraverse(child);
+                    ITreeNode<T> child = treeNode.Children[i];
+                    IEnumerable<ITreeNode<T>> enumerable = PostorderTraverse(child);
                     foreach (var item in enumerable)
                     {
                         yield return item;
@@ -67,7 +67,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="treeNode"></param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode> PreorderTraverse(ITreeNode treeNode)
+        public static IEnumerable<ITreeNode<T>> PreorderTraverse<T>(ITreeNode<T> treeNode) where T : class, ITreeNode<T>
         {
             if (treeNode != null)
             {
@@ -75,8 +75,8 @@ namespace CSharpGL
 
                 for (int i = 0; i < treeNode.Children.Count; i++)
                 {
-                    ITreeNode child = treeNode.Children[i];
-                    IEnumerable<ITreeNode> enumerable = PreorderTraverse(child);
+                    ITreeNode<T> child = treeNode.Children[i];
+                    IEnumerable<ITreeNode<T>> enumerable = PreorderTraverse(child);
                     foreach (var item in enumerable)
                     {
                         yield return item;

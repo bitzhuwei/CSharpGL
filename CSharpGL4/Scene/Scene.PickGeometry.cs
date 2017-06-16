@@ -54,12 +54,12 @@ namespace CSharpGL
 
                 if (pickedGeometry == null)
                 {
-                    var node = renderer as ITreeNode<RendererBase>;
+                    var node = renderer as ITreeNode;
                     if (node != null)
                     {
                         foreach (var item in node.Children)
                         {
-                            pickedGeometry = Pick(stageVertexId, arg, item);
+                            pickedGeometry = Pick(stageVertexId, arg, item as RendererBase);
                             if (pickedGeometry != null)
                             {
                                 break;
@@ -115,12 +115,12 @@ namespace CSharpGL
                     pickable.RenderForPicking(arg);
                 }
 
-                var node = sceneElement as ITreeNode<RendererBase>;
+                var node = sceneElement as ITreeNode;
                 if (node != null)
                 {
                     foreach (var item in node.Children)
                     {
-                        this.RenderForPicking(item, arg);
+                        this.RenderForPicking(item as RendererBase, arg);
                     }
                 }
             }

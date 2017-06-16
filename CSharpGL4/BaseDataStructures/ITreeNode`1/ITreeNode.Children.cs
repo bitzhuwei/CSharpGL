@@ -10,20 +10,20 @@ namespace CSharpGL
     /// children in <see cref="ITreeNode"/>.
     /// </summary>
     //[Editor(typeof(IListEditor<ITreeNode>), typeof(UITypeEditor))]
-    public class TreeNodeChildren : IList<ITreeNode>
+    public class TreeNodeChildren<T> : IList<T> where T : class, ITreeNode<T>
     {
-        private List<ITreeNode> list = new List<ITreeNode>();
+        private List<T> list = new List<T>();
 
         /// <summary>
         /// parent of this list's items.
         /// </summary>
-        private readonly ITreeNode parent;
+        private readonly T parent;
 
         /// <summary>
         /// children in <paramref name="parent"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public TreeNodeChildren(ITreeNode parent)
+        public TreeNodeChildren(T parent)
         {
             Debug.Assert(parent != null);
 
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
-        public int IndexOf(ITreeNode item)
+        public int IndexOf(T item)
         {
             return list.IndexOf(item);
         }
@@ -45,7 +45,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">从零开始的索引，应在该位置插入 item。</param>
         /// <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
-        public void Insert(int index, ITreeNode item)
+        public void Insert(int index, T item)
         {
             item.Parent = this.parent;
             list.Insert(index, item);
@@ -57,7 +57,7 @@ namespace CSharpGL
         /// <param name="index">要移除的元素的从零开始的索引。</param>
         public void RemoveAt(int index)
         {
-            ITreeNode obj = list[index];
+            T obj = list[index];
             this.list.RemoveAt(index);
             obj.Parent = null;
         }
@@ -67,7 +67,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">要获得或设置的元素从零开始的索引。</param>
         /// <returns>指定索引处的元素。</returns>
-        public ITreeNode this[int index]
+        public T this[int index]
         {
             get
             {
@@ -83,7 +83,7 @@ namespace CSharpGL
         /// 将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
         /// </summary>
         /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
-        public void Add(ITreeNode item)
+        public void Add(T item)
         {
             item.Parent = this.parent;
             list.Add(item);
@@ -93,7 +93,7 @@ namespace CSharpGL
         /// 将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
         /// </summary>
         /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
-        public void AddRange(IEnumerable<ITreeNode> items)
+        public void AddRange(IEnumerable<T> items)
         {
             foreach (var item in items)
             {
@@ -107,7 +107,7 @@ namespace CSharpGL
         /// </summary>
         public void Clear()
         {
-            ITreeNode[] array = this.list.ToArray();
+            T[] array = this.list.ToArray();
             this.list.Clear();
 
             foreach (var item in array)
@@ -121,7 +121,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
-        public bool Contains(ITreeNode item)
+        public bool Contains(T item)
         {
             return list.Contains(item);
         }
@@ -131,7 +131,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
         /// <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
-        public void CopyTo(ITreeNode[] array, int arrayIndex)
+        public void CopyTo(T[] array, int arrayIndex)
         {
             list.CopyTo(array, arrayIndex);
         }
@@ -149,7 +149,7 @@ namespace CSharpGL
         /// </summary>
         public bool IsReadOnly
         {
-            get { return ((ICollection<ITreeNode>)(this.list)).IsReadOnly; }
+            get { return ((ICollection<T>)(this.list)).IsReadOnly; }
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
-        public bool Remove(ITreeNode item)
+        public bool Remove(T item)
         {
             bool result = list.Remove(item);
             if (result)
@@ -172,7 +172,7 @@ namespace CSharpGL
         /// 返回循环访问 System.Collections.Generic.List&lt;T&gt; 的枚举数。
         /// </summary>
         /// <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
-        public IEnumerator<ITreeNode> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             return list.GetEnumerator();
         }

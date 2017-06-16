@@ -86,7 +86,7 @@ namespace CSharpGL
             var node = model as RendererBase;
             if (node != null)
             {
-                RendererBase parent = node.Parent;
+                var parent = node.Parent as RendererBase;
                 if (parent != null)
                 {
                     matrix = parent.modelMatrix * matrix;

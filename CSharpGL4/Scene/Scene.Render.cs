@@ -33,12 +33,12 @@ namespace CSharpGL
                     }
                 }
 
-                var node = sceneElement as ITreeNode<RendererBase>;
+                var node = sceneElement as ITreeNode;
                 if (node != null)
                 {
                     foreach (var item in node.Children)
                     {
-                        this.Render(item, arg);
+                        this.Render(item as RendererBase, arg);
                     }
                 }
             }

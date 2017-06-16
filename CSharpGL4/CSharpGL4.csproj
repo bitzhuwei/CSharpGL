@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -69,6 +70,9 @@
     <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
+    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
+    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
+    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.yield.cs" />
     <Compile Include="BaseDataStructures\MarkableStruct.cs" />
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
@@ -183,8 +187,6 @@
     <Compile Include="Scene\Scene.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />
-    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
-    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.yield.cs" />
     <Compile Include="BaseDataStructures\NoisyArray.cs" />
     <Compile Include="BaseDataStructures\Pixel.cs" />
     <Compile Include="BaseDataStructures\GLSL\ILoadFromString.TypeConverter.cs" />
@@ -488,7 +490,6 @@
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="readme.md" />
-    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
     <Content Include="Scene\RendererBase\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
