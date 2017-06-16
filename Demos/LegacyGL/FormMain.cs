@@ -51,15 +51,25 @@ namespace LegacyGL
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
+        /// <summary>
+        /// rotate.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             IWorldSpace renderer = this.propeller;
             if (renderer != null)
             {
-                //renderer.RotationAngle += 1;
+                renderer.RotationAngle += 7;
             }
         }
 
+        /// <summary>
+        /// click to pick and toggle the render wireframe state.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void winGLCanvas1_MouseClick(object sender, MouseEventArgs e)
         {
             int x = e.X;
@@ -73,8 +83,6 @@ namespace LegacyGL
                     renderer.RenderWireframe = !renderer.RenderWireframe;
                 }
             }
-
-            this.winGLCanvas1.Invalidate();
         }
 
     }

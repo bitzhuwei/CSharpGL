@@ -23,6 +23,7 @@ namespace HelloCSharpGL
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.MouseClick += winGLCanvas1_MouseClick;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -51,12 +52,32 @@ namespace HelloCSharpGL
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
+        /// <summary>
+        /// click to pick and toggle the render wireframe state.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void winGLCanvas1_MouseClick(object sender, MouseEventArgs e)
+        {
+            int x = e.X;
+            int y = this.winGLCanvas1.Height - e.Y - 1;
+            List<RendererBase> list = this.scene.Pick(x, y);
+            foreach (var item in list)
+            {
+                var renderer = item as IRenderWireframe;
+                if (renderer != null)
+                {
+                    renderer.RenderWireframe = !renderer.RenderWireframe;
+                }
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             IWorldSpace renderer = this.properller;
             if (renderer != null)
             {
-                renderer.RotationAngle += 11;
+                renderer.RotationAngle += 7;
             }
         }
     }

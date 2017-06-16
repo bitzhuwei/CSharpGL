@@ -49,7 +49,8 @@ namespace CSharpGL
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PushMatrix();
             GL.Instance.LoadIdentity();
-            renderer.LegacyTransform();
+            mat4 modelMatrix = renderer.GetModelMatrix();
+            GL.Instance.MultMatrixf(modelMatrix.ToArray());
         }
 
         /// <summary>

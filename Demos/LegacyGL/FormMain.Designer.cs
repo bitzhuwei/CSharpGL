@@ -29,25 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 40;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // winGLCanvas1
             // 
             this.winGLCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.winGLCanvas1.Location = new System.Drawing.Point(0, 0);
             this.winGLCanvas1.Name = "winGLCanvas1";
-            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.Manual;
+            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(745, 477);
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.winGLCanvas1_MouseClick);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 40;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormMain
             // 
