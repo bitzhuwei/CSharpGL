@@ -12,7 +12,7 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// Pick geometry at specified positon.
+        /// Pick <see cref="RendererBase"/>s at specified positon.
         /// </summary>
         /// <param name="x">Left Down is (0, 0)</param>
         /// <param name="y">Left Down is (0, 0)</param>
@@ -34,16 +34,7 @@ namespace CSharpGL
             GL.Instance.PushName(0);
 
             ////	Push matrix, set up projection, then load matrix.
-            //GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            //GL.Instance.PushMatrix();
-            //GL.Instance.LoadIdentity();
             mat4 pickMatrix = glm.pickMatrix(new vec2(x, y), new vec2(4, 4), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
-            //mat4 projectionMatrix = this.Camera.GetProjectionMatrix();
-            //mat4 viewMatrix = this.Camera.GetViewMatrix();
-            //GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            //GL.Instance.LoadIdentity();
-            //GL.Instance.MultMatrixf((pickMatrix * projectionMatrix * viewMatrix).ToArray());
-
             var arg = new LegacyPickEventArgs(pickMatrix, this, x, y);
 
             {
@@ -54,9 +45,6 @@ namespace CSharpGL
                 uint currentName = 1;
                 this.RenderForPicking(this.RootElement, arg, ref currentName);
             }
-
-            //GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            //GL.Instance.PopMatrix();
 
             //	Flush commands.
             GL.Instance.Flush();
