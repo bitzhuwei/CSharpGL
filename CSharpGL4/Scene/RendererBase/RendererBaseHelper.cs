@@ -58,8 +58,8 @@ namespace CSharpGL
         /// </summary>
         public static void PopProjection(this RendererBase renderer)
         {
-            GL.Instance.PopMatrix();
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
+            GL.Instance.PopMatrix();
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace CSharpGL
         /// </summary>
         public static void PopModelView(this RendererBase renderer)
         {
-            GL.Instance.PopMatrix();
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
+            GL.Instance.PopMatrix();
         }
 
         /// <summary>

@@ -73,7 +73,7 @@ namespace HelloCSharpGL
             IWorldSpace renderer = this.scene.RootElement;
             if (renderer != null)
             {
-                renderer.RotationAngle += 7;
+                renderer.RotationAngle += 5;
             }
         }
     }

@@ -89,8 +89,8 @@ namespace CSharpGL.Models
                 DoRender();
             }
 
-            this.PopProjection();
             this.PopModelView();
+            this.PopProjection();
         }
 
         #endregion
