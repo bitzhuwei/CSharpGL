@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -47,6 +48,12 @@
     <Compile Include="ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="ClockRenderer\ClockPinRenderer.cs" />
     <Compile Include="ClockRenderer\ClockRenderer.cs" />
+    <Compile Include="FormProperyGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProperyGrid.Designer.cs">
+      <DependentUpon>FormProperyGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="IRenderWireframe.cs" />
     <Compile Include="Propeller\FlabellumRenderer.cs" />
     <Compile Include="Propeller\PropellerRenderer.cs" />
@@ -61,6 +68,11 @@
   <ItemGroup>
     <Content Include="ClockRenderer\Clock.png" />
     <Content Include="Propeller\Propeller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormProperyGrid.resx">
+      <DependentUpon>FormProperyGrid.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
