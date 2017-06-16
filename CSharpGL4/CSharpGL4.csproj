@@ -222,7 +222,6 @@
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\readme.md" />
     <Content Include="Scene\IPickable\readme.md" />
     <Content Include="Scene\ILegacyPickable\readme.md" />
-    <None Include="BaseDataStructures\ITreeNode`1\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\readme.md" />
