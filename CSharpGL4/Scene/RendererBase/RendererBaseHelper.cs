@@ -19,11 +19,13 @@ namespace CSharpGL
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.LoadIdentity();
-            arg.Scene.Camera.LegacyProjection();
+            mat4 projectionMatrix = arg.GetProjectionMatrix();
+            mat4 viewMatrix = arg.GetViewMatrix();
+            GL.Instance.MultMatrixf((projectionMatrix * viewMatrix).ToArray());
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.LoadIdentity();
-            mat4 matrix = renderer.GetModelMatrix();
-            GL.Instance.MultMatrixf(matrix.ToArray());
+            mat4 modelMatrix = renderer.GetModelMatrix();
+            GL.Instance.MultMatrixf((modelMatrix).ToArray());
         }
     }
 }

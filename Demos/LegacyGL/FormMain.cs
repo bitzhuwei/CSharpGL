@@ -56,8 +56,22 @@ namespace LegacyGL
             IWorldSpace renderer = this.propeller;
             if (renderer != null)
             {
-                renderer.RotationAngle += 1;
+                //renderer.RotationAngle += 1;
             }
         }
+
+        private void winGLCanvas1_MouseClick(object sender, MouseEventArgs e)
+        {
+            int x = e.X;
+            int y = this.winGLCanvas1.Height - e.Y - 1;
+            List<RendererBase> list = this.scene.Pick(x, y);
+            foreach (var item in list)
+            {
+                item.Scale += new vec3(1, 1, 1) * 0.01f;
+            }
+
+            this.winGLCanvas1.Invalidate();
+        }
+
     }
 }

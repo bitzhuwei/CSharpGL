@@ -77,7 +77,22 @@ namespace CSharpGL.Models
 
         public void Render(RenderEventArgs arg)
         {
-            this.LegacyMVP(arg);
+            //this.LegacyMVP(arg);
+            //GL.Instance.MatrixMode(GL.GL_MODELVIEW);
+            //GL.Instance.PushMatrix();
+
+            //this.LegacyTransform();
+            GL.Instance.MatrixMode(GL.GL_PROJECTION);
+            GL.Instance.PushMatrix();
+            mat4 projection = arg.GetProjectionMatrix();
+            mat4 view = arg.GetViewMatrix();
+            GL.Instance.LoadIdentity();
+            GL.Instance.MultMatrixf((projection * view).ToArray());
+
+            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
+            GL.Instance.PushMatrix();
+            GL.Instance.LoadIdentity();
+            this.LegacyTransform();
 
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
@@ -88,6 +103,11 @@ namespace CSharpGL.Models
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
+
+            GL.Instance.PopMatrix();
+            GL.Instance.MatrixMode(GL.GL_PROJECTION);
+            GL.Instance.PopMatrix();
+            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
         }
 
         #endregion

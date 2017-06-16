@@ -14,8 +14,8 @@ namespace CSharpGL
         /// <summary>
         /// Pick geometry at specified positon.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">Left Down is (0, 0)</param>
+        /// <param name="y">Left Down is (0, 0)</param>
         /// <param name="geometryType"></param>
         /// <returns></returns>
         public PickedGeometry Pick(int x, int y, PickingGeometryType geometryType)

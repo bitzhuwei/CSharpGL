@@ -164,7 +164,6 @@
     <Compile Include="Scene\IPickable\PickingGeometryType.cs" />
     <Compile Include="Scene\IPickable\PickingGeometryTypeHelper.cs" />
     <Compile Include="Scene\IRenderable.cs" />
-    <Compile Include="Scene\RendererBase\RendererBaseHelper.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IWorldSpace.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IDisposable.cs" />
@@ -173,7 +172,11 @@
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\readme.md" />
     <None Include="Scene\readme.md" />
-    <Compile Include="Scene\Scene.Pick.cs" />
+    <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\Scene.PickRendererBase.cs" />
+    <Compile Include="Scene\Scene.PickGeometry.cs" />
     <Compile Include="Scene\Scene.Render.cs" />
     <Compile Include="Scene\Scene.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
@@ -248,7 +251,6 @@
     <Compile Include="GLAPI\GLDelegates.cs" />
     <Compile Include="GLAPI\GL.cs" />
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
-    <Compile Include="GLObjects\Camera\ICamera.LegacyProjection.cs" />
     <Compile Include="GLObjects\Camera\ICamera.MouseWheel.cs" />
     <Compile Include="GLObjects\Camera\ICamera.Resize.cs" />
     <Compile Include="GLObjects\Camera\ICamera.Zoom.cs" />

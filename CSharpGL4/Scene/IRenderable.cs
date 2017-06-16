@@ -38,5 +38,23 @@ namespace CSharpGL
         /// 
         /// </summary>
         public Scene Scene { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual mat4 GetViewMatrix()
+        {
+            return this.Scene.Camera.GetViewMatrix();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual mat4 GetProjectionMatrix()
+        {
+            return this.Scene.Camera.GetProjectionMatrix();
+        }
     }
 }
