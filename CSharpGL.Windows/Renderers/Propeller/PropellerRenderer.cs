@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    internal class ProperllerRenderer : RendererBase, IRenderable
+    class PropellerRenderer : RendererBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
@@ -77,10 +77,19 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            this.RotationAngle += 10f;
+            this.PushProjection(arg);
+            this.PushModelView();
 
-            this.LegacyMVP(arg);
+            DoRender();
 
+            this.PopModelView();
+            this.PopProjection();
+        }
+
+        #endregion
+
+        private void DoRender()
+        {
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
             {
@@ -92,9 +101,7 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
-        #endregion
-
-        public ProperllerRenderer()
+        public PropellerRenderer()
         {
             var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
             var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
@@ -105,5 +112,20 @@ namespace CSharpGL
             this.Children.Add(zflabellum);
             this.Children.Add(nzflabellum);
         }
+
+        #region ILegacyPickable 成员
+
+        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
+        {
+            this.PushProjection(arg);
+            this.PushModelView();
+
+            DoRender();
+
+            this.PopProjection();
+            this.PopModelView();
+        }
+
+        #endregion
     }
 }

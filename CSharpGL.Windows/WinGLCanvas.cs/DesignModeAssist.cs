@@ -16,9 +16,9 @@ namespace CSharpGL
             var camera = new Camera(new vec3(0, 0, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
             RendererGroup group;
             {
-                var box = new ProperllerRenderer() { WorldPosition = new vec3(0, -1f, 0) };
-                var clock = new ClockRenderer(new vec3());
-                group = new RendererGroup(box, clock);
+                //var box = new PropellerRenderer() { WorldPosition = new vec3(0, -1f, 0) };
+                var clock = new ClockRenderer();
+                group = new RendererGroup(clock);
             }
             var scene = new Scene(camera, canvas)
             {

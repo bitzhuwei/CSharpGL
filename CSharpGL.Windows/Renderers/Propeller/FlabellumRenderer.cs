@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    internal class FlabellumRenderer : RendererBase, IRenderable
+    class FlabellumRenderer : RendererBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 1.6f;
         private const float yLength = 0.05f;
@@ -77,8 +77,17 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            this.LegacyMVP(arg);
+            this.PushProjection(arg);
+            this.PushModelView();
 
+            DoRender();
+
+            this.PopModelView();
+            this.PopProjection();
+        }
+
+        private void DoRender()
+        {
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
             {
@@ -88,6 +97,21 @@ namespace CSharpGL
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
+        }
+
+        #endregion
+
+        #region ILegacyPickable 成员
+
+        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
+        {
+            this.PushProjection(arg);
+            this.PushModelView();
+
+            DoRender();
+
+            this.PopModelView();
+            this.PopProjection();
         }
 
         #endregion

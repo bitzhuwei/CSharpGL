@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpGL
+namespace CSharpGL.Models
 {
     internal class ClockCircleRenderer : RendererBase, IRenderable
     {
