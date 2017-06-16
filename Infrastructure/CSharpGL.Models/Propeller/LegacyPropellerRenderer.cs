@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class PropellerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
+    public class LegacyPropellerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
@@ -124,12 +124,12 @@ namespace CSharpGL.Models
             GL.Instance.End();
         }
 
-        public PropellerRenderer()
+        public LegacyPropellerRenderer()
         {
-            var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            var zflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            var nzflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
             this.Children.Add(xflabellum);
             this.Children.Add(nxflabellum);
             this.Children.Add(zflabellum);

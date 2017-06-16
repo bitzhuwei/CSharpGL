@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class FlabellumRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
+    public class LegacyFlabellumRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
     {
         private const float xLength = 1.6f;
         private const float yLength = 0.05f;

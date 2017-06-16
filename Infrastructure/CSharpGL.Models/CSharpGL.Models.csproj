@@ -55,8 +55,8 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="IRenderWireframe.cs" />
-    <Compile Include="Propeller\FlabellumRenderer.cs" />
-    <Compile Include="Propeller\PropellerRenderer.cs" />
+    <Compile Include="Propeller\LegacyFlabellumRenderer.cs" />
+    <Compile Include="Propeller\LegacyPropellerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
