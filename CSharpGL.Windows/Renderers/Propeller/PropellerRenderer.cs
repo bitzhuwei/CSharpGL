@@ -90,6 +90,8 @@ namespace CSharpGL
 
         private void DoRender()
         {
+            this.RotationAngle += 5;
+
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
             {
