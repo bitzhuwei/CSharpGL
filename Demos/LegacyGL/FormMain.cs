@@ -67,7 +67,11 @@ namespace LegacyGL
             List<RendererBase> list = this.scene.Pick(x, y);
             foreach (var item in list)
             {
-                item.Scale += new vec3(1, 1, 1) * 0.01f;
+                var renderer = item as IRenderWireframe;
+                if (renderer != null)
+                {
+                    renderer.RenderWireframe = !renderer.RenderWireframe;
+                }
             }
 
             this.winGLCanvas1.Invalidate();

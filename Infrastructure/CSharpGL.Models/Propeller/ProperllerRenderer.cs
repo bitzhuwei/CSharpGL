@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class ProperllerRenderer : RendererBase, IRenderable, ILegacyPickable
+    public class ProperllerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
@@ -80,7 +80,14 @@ namespace CSharpGL.Models
             this.PushProjection(arg);
             this.PushModelView();
 
-            DoRender();
+            if (this.RenderWireframe)
+            {
+                DoRender(new vec3(1, 1, 1));
+            }
+            else
+            {
+                DoRender();
+            }
 
             this.PopProjection();
             this.PopModelView();
@@ -88,7 +95,23 @@ namespace CSharpGL.Models
 
         #endregion
 
-        private static void DoRender()
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+
+        private void DoRender(vec3 lineColor)
+        {
+            polygonModeState.On();
+            GL.Instance.Begin((uint)DrawMode.Quads);
+            GL.Instance.Color3f(lineColor.x, lineColor.y, lineColor.z);
+            for (int i = 0; i < indexes.Length; i++)
+            {
+                vec3 position = positions[indexes[i]];
+                GL.Instance.Vertex3f(position.x, position.y, position.z);
+            }
+            GL.Instance.End();
+            polygonModeState.Off();
+        }
+
+        private void DoRender()
         {
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
@@ -125,6 +148,15 @@ namespace CSharpGL.Models
             this.PopProjection();
             this.PopModelView();
         }
+
+        #endregion
+
+        #region IRenderWireframe 成员
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderWireframe { get; set; }
 
         #endregion
     }
