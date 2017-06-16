@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class ProperllerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
+    public class PropellerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
@@ -124,7 +124,7 @@ namespace CSharpGL.Models
             GL.Instance.End();
         }
 
-        public ProperllerRenderer()
+        public PropellerRenderer()
         {
             var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
             var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
