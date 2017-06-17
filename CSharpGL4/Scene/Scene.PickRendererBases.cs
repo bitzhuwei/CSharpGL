@@ -21,7 +21,7 @@ namespace CSharpGL
         public List<RendererBase> Pick(int x, int y, int selectBufferLength = 512)
         {
             //	Create a select buffer.
-            var selectBuffer = new uint[512];
+            var selectBuffer = new uint[selectBufferLength];
             GL.Instance.SelectBuffer(selectBuffer.Length, selectBuffer);
 
             //	Enter select mode.
