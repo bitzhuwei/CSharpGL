@@ -213,6 +213,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />

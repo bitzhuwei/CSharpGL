@@ -117,6 +117,16 @@ namespace CSharpGL
 
         #region ILegacyPickable 成员
 
+        private bool legacyPickingEnabled = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool LegacyPickingEnabled
+        {
+            get { return legacyPickingEnabled; }
+            set { legacyPickingEnabled = value; }
+        }
+
         public void RenderForLegacyPicking(LegacyPickEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);

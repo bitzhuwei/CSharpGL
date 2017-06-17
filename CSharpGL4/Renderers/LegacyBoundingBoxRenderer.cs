@@ -6,35 +6,18 @@ using System.Text;
 
 namespace CSharpGL
 {
-    //
-    //        2-------------------3
-    //      / .                  /|
-    //     /  .                 / |
-    //    /   .                /  |
-    //   /    .               /   |
-    //  /     .              /    |
-    // 6--------------------7     |
-    // |      .             |     |
-    // |      0 . . . . . . |. . .1
-    // |     .              |    /
-    // |    .               |   /
-    // |   .                |  /
-    // |  .                 | /
-    // | .                  |/
-    // 4 -------------------5
-    //
     /// <summary>
-    /// 
+    /// render a bounding box with legacy opengl.
     /// </summary>
-    class FlabellumRenderer : RendererBase, IRenderable, ILegacyPickable
+    public class LegacyBoundingBoxRenderer : RendererBase, IRenderable, ILegacyPickable
     {
-        private const float xLength = 1.6f;
-        private const float yLength = 0.05f;
-        private const float zLength = 0.2f;
+        private const float xLength = 0.5f;
+        private const float yLength = 0.5f;
+        private const float zLength = 0.5f;
         /// <summary>
         /// eight vertexes.
         /// </summary>
-        private static readonly vec3[] positions = new vec3[]
+        private static readonly vec3[] standardPosiions = new vec3[]
         {
             new vec3(-xLength, -yLength, -zLength),// 0
             new vec3(-xLength, -yLength, +zLength),// 1
@@ -46,22 +29,6 @@ namespace CSharpGL
             new vec3(+xLength, +yLength, +zLength),// 7
         };
 
-        private static readonly vec3 red = new vec3(1, 0, 0);
-        private static readonly vec3 green = new vec3(0, 1, 0);
-        private static readonly vec3 blue = new vec3(0, 0, 1);
-
-        private const float darkFactor = 4.0f;
-        private static readonly vec3[] colors = new vec3[]
-        {
-            (red / darkFactor + green / darkFactor + blue / darkFactor),
-            (red / darkFactor + green / darkFactor + blue),
-            (red / darkFactor + green + blue / darkFactor),
-            (red / darkFactor + green + blue),
-            (red + green / darkFactor + blue / darkFactor),
-            (red + green / darkFactor + blue),
-            (red + green + blue / darkFactor),
-            (red + green + blue),
-        };
 
         /// <summary>
         /// render in GL_QUADS.
@@ -73,6 +40,35 @@ namespace CSharpGL
             4, 5, 7, 6, 0, 2, 3, 1,
         };
 
+        private vec3 lineColor = new vec3(1, 1, 1);
+        /// <summary>
+        /// 
+        /// </summary>
+        public Color LineColor { get { return lineColor.ToColor(); } set { this.lineColor = value.ToVec3(); } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3[] Positions { get; set; }
+
+        /// <summary>
+        /// contains some renderers in its children.
+        /// </summary>
+        /// <param name="xLength"></param>
+        /// <param name="yLength"></param>
+        /// <param name="zLength"></param>
+        public LegacyBoundingBoxRenderer(float xLength, float yLength, float zLength)
+        {
+            var length = new vec3(xLength, yLength, zLength);
+            var positions = new vec3[8];
+            for (int i = 0; i < positions.Length; i++)
+            {
+                positions[i] = standardPosiions[i] * length;
+            }
+
+            this.Positions = positions;
+        }
+
         #region IRenderable 成员
 
         public void Render(RenderEventArgs arg)
@@ -80,24 +76,30 @@ namespace CSharpGL
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
-            DoRender();
+            polygonModeState.On();
+
+            DoRender(this.Positions, indexes, this.lineColor);
+
+            polygonModeState.Off();
 
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();
         }
 
-        private void DoRender()
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+
+        private void DoRender(vec3[] positions, byte[] indexes, vec3 lineColor)
         {
             GL.Instance.Begin((uint)DrawMode.Quads);
+            GL.Instance.Color3f(lineColor.x, lineColor.y, lineColor.z);
             for (int i = 0; i < indexes.Length; i++)
             {
-                vec3 color = colors[indexes[i]];
-                GL.Instance.Color3f(color.x, color.y, color.z);
                 vec3 position = positions[indexes[i]];
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
         }
+
 
         #endregion
 
@@ -118,7 +120,7 @@ namespace CSharpGL
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
-            DoRender();
+            DoRender(this.Positions, indexes, this.lineColor);
 
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();

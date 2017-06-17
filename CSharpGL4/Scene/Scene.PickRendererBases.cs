@@ -80,7 +80,7 @@ namespace CSharpGL
             if (sceneElement != null)
             {
                 var pickable = sceneElement as ILegacyPickable;
-                if (pickable != null)
+                if (pickable != null && pickable.LegacyPickingEnabled)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);

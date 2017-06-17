@@ -11,6 +11,11 @@ namespace CSharpGL
     public interface ILegacyPickable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        bool LegacyPickingEnabled { get; set; }
+
+        /// <summary>
         /// Render this model in legacy OpenGL.
         /// </summary>
         /// <param name="arg"></param>

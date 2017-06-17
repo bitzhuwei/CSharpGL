@@ -125,6 +125,16 @@ void main(void) {
 
         #region ILegacyPickable 成员
 
+        private bool legacyPickingEnabled = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool LegacyPickingEnabled
+        {
+            get { return legacyPickingEnabled; }
+            set { legacyPickingEnabled = value; }
+        }
+
         public void RenderForLegacyPicking(LegacyPickEventArgs arg)
         {
             mat4 projection = arg.pickMatrix * arg.scene.Camera.GetProjectionMatrix();
