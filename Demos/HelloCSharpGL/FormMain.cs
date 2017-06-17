@@ -31,10 +31,10 @@ namespace HelloCSharpGL
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            //var propeller = GetLegacyPropellerLegacyFlabellum();
+            var propeller = GetLegacyPropellerLegacyFlabellum();
             //var propeller = GetLegacyPropellerFlabellum();
             //var propeller = GetPropellerLegacyFlabellum();
-            var propeller = GetPropellerFlabellum();
+            //var propeller = GetPropellerFlabellum();
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
                 RootElement = propeller,
