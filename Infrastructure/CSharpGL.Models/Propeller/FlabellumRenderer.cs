@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// Render flabellum in modern opengl.
     /// </summary>
-    public class FlabellumRenderer : Renderer, ILegacyPickable
+    public class FlabellumRenderer : Renderer
     {
         private const string vertexCode =
             @"#version 150 core
@@ -97,34 +97,6 @@ void main(void) {
             this.SetUniform("modelMatrix", model);
 
             base.DoRender(arg);
-        }
-
-        #endregion
-
-        #region ILegacyPickable 成员
-
-        private bool legacyPickingEnabled = true;
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool LegacyPickingEnabled
-        {
-            get { return legacyPickingEnabled; }
-            set { legacyPickingEnabled = value; }
-        }
-
-        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
-        {
-            mat4 projection = arg.pickMatrix * arg.scene.Camera.GetProjectionMatrix();
-            mat4 view = arg.scene.Camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
-            this.SetUniform("renderWireframe", false);
-
-            base.DoRender(new RenderEventArgs(arg.scene));
         }
 
         #endregion

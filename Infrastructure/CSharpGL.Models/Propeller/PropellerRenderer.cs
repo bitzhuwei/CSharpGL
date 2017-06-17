@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// Render propeller in modern opengl.
     /// </summary>
-    public class PropellerRenderer : Renderer, IRenderable, ILegacyPickable
+    public class PropellerRenderer : Renderer, IRenderable
     {
 
         private const string vertexCode =
@@ -99,36 +99,6 @@ void main(void) {
             this.SetUniform("modelMatrix", model);
 
             base.DoRender(arg);
-        }
-
-        #endregion
-
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
-
-        #region ILegacyPickable 成员
-
-        private bool legacyPickingEnabled = true;
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool LegacyPickingEnabled
-        {
-            get { return legacyPickingEnabled; }
-            set { legacyPickingEnabled = value; }
-        }
-
-        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
-        {
-            mat4 projection = arg.pickMatrix * arg.scene.Camera.GetProjectionMatrix();
-            mat4 view = arg.scene.Camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
-            this.SetUniform("renderWireframe", false);
-
-            base.DoRender(new RenderEventArgs(arg.scene));
         }
 
         #endregion
