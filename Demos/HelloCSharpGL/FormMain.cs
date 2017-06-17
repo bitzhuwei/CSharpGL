@@ -39,6 +39,27 @@ namespace HelloCSharpGL
             {
                 RootElement = propeller,
             };
+
+            Match(this.trvScene, scene.RootElement);
+            this.trvScene.ExpandAll();
+        }
+
+        private void Match(TreeView treeView, RendererBase rendererBase)
+        {
+            treeView.Nodes.Clear();
+            var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
+            treeView.Nodes.Add(node);
+            Match(node, rendererBase);
+        }
+
+        private void Match(TreeNode node, RendererBase rendererBase)
+        {
+            foreach (var item in rendererBase.Children)
+            {
+                var child = new TreeNode(item.ToString()) { Tag = item };
+                node.Nodes.Add(child);
+                Match(child, item as RendererBase);
+            }
         }
 
         private RendererBase GetLegacyPropellerLegacyFlabellum()
@@ -182,6 +203,11 @@ namespace HelloCSharpGL
             {
                 renderer.RotationAngle += 1;
             }
+        }
+
+        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            this.propGrid.SelectedObject = e.Node.Tag;
         }
     }
 }

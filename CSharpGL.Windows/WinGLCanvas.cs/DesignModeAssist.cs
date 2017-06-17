@@ -25,6 +25,7 @@ namespace CSharpGL
                 ClearColor = Color.Black,
                 RootElement = group,
             };
+
             this.scene = scene;
             this.fullname = canvas.GetType().FullName;
         }
