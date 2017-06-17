@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// Render propeller in legacy opengl.
     /// </summary>
-    public class LegacyPropellerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
+    public class LegacyPropellerRenderer : RendererBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
@@ -94,36 +94,13 @@ namespace CSharpGL.Models
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
-            if (this.RenderWireframe)
-            {
-                DoRender(new vec3(1, 1, 1));
-            }
-            else
-            {
-                DoRender();
-            }
+            DoRender();
 
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();
         }
 
         #endregion
-
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
-
-        private void DoRender(vec3 lineColor)
-        {
-            polygonModeState.On();
-            GL.Instance.Begin((uint)DrawMode.Quads);
-            GL.Instance.Color3f(lineColor.x, lineColor.y, lineColor.z);
-            for (int i = 0; i < indexes.Length; i++)
-            {
-                vec3 position = positions[indexes[i]];
-                GL.Instance.Vertex3f(position.x, position.y, position.z);
-            }
-            GL.Instance.End();
-            polygonModeState.Off();
-        }
 
         private void DoRender()
         {
@@ -163,13 +140,5 @@ namespace CSharpGL.Models
 
         #endregion
 
-        #region IRenderWireframe 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool RenderWireframe { get; set; }
-
-        #endregion
     }
 }

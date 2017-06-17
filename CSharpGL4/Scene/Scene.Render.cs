@@ -25,12 +25,12 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
+                sceneElement.modelMatrix = GetModelMatrix(sceneElement);
+
+                var renderable = sceneElement as IRenderable;
+                if (renderable != null && renderable.RenderingEnabled)
                 {
-                    var renderable = sceneElement as IRenderable;
-                    if (renderable != null && renderable.RenderingEnabled)
-                    {
-                        renderable.Render(arg);
-                    }
+                    renderable.Render(arg);
                 }
 
                 var node = sceneElement as ITreeNode;
@@ -42,6 +42,32 @@ namespace CSharpGL
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Get model matrix.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private static mat4 GetModelMatrix(RendererBase model)
+        {
+            mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
+            matrix = glm.scale(matrix, model.Scale);
+            matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
+
+            var node = model as RendererBase;
+            if (node != null)
+            {
+                var parent = node.Parent as RendererBase;
+                if (parent != null)
+                {
+                    matrix = parent.modelMatrix * matrix;
+                }
+
+                node.modelMatrix = matrix;
+            }
+
+            return matrix;
         }
     }
 }

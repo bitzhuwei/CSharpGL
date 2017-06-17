@@ -30,7 +30,7 @@ namespace HelloCSharpGL
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Ortho, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var propeller = GetLegacyPropellerLegacyFlabellum();
             //var propeller = GetLegacyPropellerFlabellum();
             //var propeller = GetPropellerLegacyFlabellum();
@@ -44,10 +44,15 @@ namespace HelloCSharpGL
         private RendererBase GetLegacyPropellerLegacyFlabellum()
         {
             var propeller = new LegacyPropellerRenderer();
+            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
             var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
             var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
             var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
             var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
             propeller.Children.Add(zflabellum);
@@ -119,10 +124,14 @@ namespace HelloCSharpGL
             List<RendererBase> list = this.scene.Pick(x, y);
             foreach (var item in list)
             {
-                var renderer = item as IRenderWireframe;
-                if (renderer != null)
+                var parent = item.Parent;
+                if (parent != null)
                 {
-                    renderer.RenderWireframe = !renderer.RenderWireframe;
+                    var renderer = parent as IRenderable;
+                    if (renderer != null)
+                    {
+                        renderer.RenderingEnabled = !renderer.RenderingEnabled;
+                    }
                 }
             }
         }

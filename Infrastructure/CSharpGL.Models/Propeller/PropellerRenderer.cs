@@ -26,7 +26,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// Render propeller in modern opengl.
     /// </summary>
-    public class PropellerRenderer : Renderer, IRenderable, ILegacyPickable, IRenderWireframe
+    public class PropellerRenderer : Renderer, IRenderable, ILegacyPickable
     {
 
         private const string vertexCode =
@@ -51,19 +51,10 @@ void main(void) {
 
 in vec3 passColor;
 
-uniform bool renderWireframe = false;
-
 out vec4 out_Color;
 
 void main(void) {
-	if (renderWireframe)
-	{
-	    out_Color = vec4(1.0, 1.0, 1.0, 1.0);
-	}
-	else 
-	{
-	    out_Color = vec4(passColor, 1.0);
-	}
+	out_Color = vec4(passColor, 1.0);
 }
 ";
 
@@ -100,25 +91,14 @@ void main(void) {
             //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             //////	Push matrix, set up projection, then load matrix.
             //mat4 pickMatrix = glm.pickMatrix(new vec2(viewport[2] / 2, viewport[3] / 2), new vec2(viewport[2], viewport[3]), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
-            bool wireframe = this.RenderWireframe;
             mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
             mat4 view = arg.Scene.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
             this.SetUniform("modelMatrix", model);
-            this.SetUniform("renderWireframe", wireframe);
 
-
-            if (wireframe)
-            {
-                polygonModeState.On();
-            }
             base.DoRender(arg);
-            if (wireframe)
-            {
-                polygonModeState.Off();
-            }
         }
 
         #endregion
@@ -153,14 +133,6 @@ void main(void) {
 
         #endregion
 
-        #region IRenderWireframe 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool RenderWireframe { get; set; }
-
-        #endregion
     }
 
     class Propeller : IBufferable
