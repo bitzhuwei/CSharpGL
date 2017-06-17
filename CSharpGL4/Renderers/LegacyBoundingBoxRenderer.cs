@@ -49,7 +49,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public vec3[] Positions { get; set; }
+        public vec3[] Positions { get; private set; }
 
         /// <summary>
         /// contains some renderers in its children.
