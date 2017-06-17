@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Renderers\ClockRenderer\Clock.png" />
-    <Content Include="Renderers\Propeller\Propeller.png" />
+    <Content Include="Renderers\Propeller\Propeller+4Flabellum.png" />
     <None Include="WinGLCanvas.cs\readme.md" />
     <None Include="RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />

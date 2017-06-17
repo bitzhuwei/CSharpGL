@@ -24,7 +24,7 @@ namespace CSharpGL
     // 4 -------------------5
     //
     /// <summary>
-    /// 
+    /// Render flabellum in legacy opengl.
     /// </summary>
     class FlabellumRenderer : RendererBase, IRenderable, ILegacyPickable
     {
@@ -73,6 +73,14 @@ namespace CSharpGL
             4, 5, 7, 6, 0, 2, 3, 1,
         };
 
+        /// <summary>
+        /// Render flabellum in legacy opengl.
+        /// </summary>
+        public FlabellumRenderer()
+        {
+            this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
+        }
+
         #region IRenderable 成员
 
         private bool renderingEnabled = true;
@@ -109,7 +117,7 @@ namespace CSharpGL
 
         #region ILegacyPickable 成员
 
-        private bool legacyPickingEnabled = true;
+        private bool legacyPickingEnabled = false;
         /// <summary>
         /// 
         /// </summary>
@@ -131,5 +139,6 @@ namespace CSharpGL
         }
 
         #endregion
+
     }
 }

@@ -41,13 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClockRenderer\ClockCircleRenderer.cs">
-      <SubType>
-      </SubType>
-    </Compile>
-    <Compile Include="ClockRenderer\ClockMarkRenderer.cs" />
-    <Compile Include="ClockRenderer\ClockPinRenderer.cs" />
-    <Compile Include="ClockRenderer\ClockRenderer.cs" />
     <Compile Include="FormProperyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,7 +60,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClockRenderer\Clock.png" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
   </ItemGroup>
   <ItemGroup>

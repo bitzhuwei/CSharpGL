@@ -24,7 +24,7 @@ namespace CSharpGL
     // 4 -------------------5
     //
     /// <summary>
-    /// 
+    /// Render propeller in legacy opengl.
     /// </summary>
     class PropellerRenderer : RendererBase, IRenderable, ILegacyPickable
     {
@@ -73,6 +73,32 @@ namespace CSharpGL
             4, 5, 7, 6, 0, 2, 3, 1,
         };
 
+        /// <summary>
+        /// Render propeller in legacy opengl.
+        /// </summary>
+        public PropellerRenderer()
+        {
+            this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
+            this.Children.Add(new LegacyBoundingBoxRenderer(this.ModelSize));
+
+            var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+
+            var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+
+            var zflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+
+            var nzflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+
+            this.Children.Add(xflabellum);
+            this.Children.Add(nxflabellum);
+            this.Children.Add(zflabellum);
+            this.Children.Add(nzflabellum);
+        }
+
         #region IRenderable 成员
 
         private bool renderingEnabled = true;
@@ -83,6 +109,8 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
+            this.RotationAngle += 4.9f;
+
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
@@ -96,8 +124,6 @@ namespace CSharpGL
 
         private void DoRender()
         {
-            this.RotationAngle += 5;
-
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < indexes.Length; i++)
             {
@@ -109,21 +135,9 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
-        public PropellerRenderer()
-        {
-            var xflabellum = new FlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            var nxflabellum = new FlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            var zflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            var nzflabellum = new FlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
-            this.Children.Add(xflabellum);
-            this.Children.Add(nxflabellum);
-            this.Children.Add(zflabellum);
-            this.Children.Add(nzflabellum);
-        }
-
         #region ILegacyPickable 成员
 
-        private bool legacyPickingEnabled = true;
+        private bool legacyPickingEnabled = false;
         /// <summary>
         /// 
         /// </summary>
@@ -140,10 +154,11 @@ namespace CSharpGL
 
             DoRender();
 
-            this.PopProjectionViewMatrix();
             this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
         #endregion
+
     }
 }
