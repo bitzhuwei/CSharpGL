@@ -41,6 +41,14 @@ namespace CSharpGL
             hourPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.5f);
         }
 
+        #region IRendererable 成员
+
+        private bool renderingEnabled = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
+
         /// <summary>
         /// Render something.
         /// </summary>
@@ -51,6 +59,8 @@ namespace CSharpGL
 
             DoRender(arg);
         }
+
+        #endregion
 
         /// <summary>
         /// Render something.

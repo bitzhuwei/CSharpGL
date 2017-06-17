@@ -27,7 +27,7 @@ namespace CSharpGL
             {
                 {
                     var renderable = sceneElement as IRenderable;
-                    if (renderable != null)
+                    if (renderable != null && renderable.RenderingEnabled)
                     {
                         renderable.Render(arg);
                     }

@@ -11,6 +11,11 @@ namespace CSharpGL
     public interface IRenderable
     {
         /// <summary>
+        /// Render this object or not.
+        /// </summary>
+        bool RenderingEnabled { get; set; }
+
+        /// <summary>
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>

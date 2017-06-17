@@ -2,6 +2,13 @@
 {
     public partial class PickableRenderer
     {
+        #region IRenderable 成员
+
+        private bool renderingEnabled = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
 
         /// <summary>
         /// Render something.
@@ -13,6 +20,8 @@
 
             DoRender(arg);
         }
+
+        #endregion
 
         /// <summary>
         /// Render something.

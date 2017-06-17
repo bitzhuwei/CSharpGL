@@ -75,6 +75,12 @@ namespace CSharpGL
 
         #region IRenderable 成员
 
+        private bool renderingEnabled = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
+
         public void Render(RenderEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
