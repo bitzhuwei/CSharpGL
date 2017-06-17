@@ -25,7 +25,7 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                sceneElement.modelMatrix = GetModelMatrix(sceneElement);
+                sceneElement.modelMatrix = sceneElement.GetModelMatrix();
 
                 var renderable = sceneElement as IRenderable;
                 if (renderable != null && renderable.RenderingEnabled)
@@ -40,26 +40,5 @@ namespace CSharpGL
             }
         }
 
-        /// <summary>
-        /// Get model matrix.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        private static mat4 GetModelMatrix(RendererBase node)
-        {
-            mat4 matrix = glm.translate(mat4.identity(), node.WorldPosition);
-            matrix = glm.scale(matrix, node.Scale);
-            matrix = glm.rotate(matrix, node.RotationAngle, node.RotationAxis);
-
-            var parent = node.Parent as RendererBase;
-            if (parent != null)
-            {
-                matrix = parent.modelMatrix * matrix;
-            }
-
-            node.modelMatrix = matrix;
-
-            return matrix;
-        }
     }
 }

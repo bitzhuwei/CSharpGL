@@ -7,37 +7,61 @@ namespace CSharpGL
     public abstract partial class RendererBase
     {
 
+        internal bool worldSpacePropertyUpdated = true;
         internal mat4 modelMatrix = mat4.identity();
+        internal mat4 thisModelMatrix = mat4.identity();
 
         #region IWorldSpace 成员
 
+        private vec3 worldPosition;
         /// <summary>
         /// 
         /// </summary>
-        public vec3 WorldPosition { get; set; }
+        public vec3 WorldPosition
+        {
+            get { return worldPosition; }
+            set { worldPosition = value; worldSpacePropertyUpdated = true; }
+        }
 
+        private float rotationAngle;
         /// <summary>
         /// 
         /// </summary>
-        public float RotationAngle { get; set; }
+        public float RotationAngle
+        {
+            get { return rotationAngle; }
+            set { rotationAngle = value; worldSpacePropertyUpdated = true; }
+        }
 
         private vec3 _rotationAxis = new vec3(0, 1, 0);
         /// <summary>
         /// 
         /// </summary>
-        public vec3 RotationAxis { get { return this._rotationAxis; } set { this._rotationAxis = value; } }
+        public vec3 RotationAxis
+        {
+            get { return this._rotationAxis; }
+            set { this._rotationAxis = value; worldSpacePropertyUpdated = true; }
+        }
 
         private vec3 _scale = new vec3(1, 1, 1);
         /// <summary>
         /// 
         /// </summary>
-        public vec3 Scale { get { return this._scale; } set { this._scale = value; } }
+        public vec3 Scale
+        {
+            get { return this._scale; }
+            set { this._scale = value; worldSpacePropertyUpdated = true; }
+        }
 
         private vec3 _modelSize = new vec3(1, 1, 1);
         /// <summary>
         /// 
         /// </summary>
-        public vec3 ModelSize { get { return this._modelSize; } set { this._modelSize = value; } }
+        public vec3 ModelSize
+        {
+            get { return this._modelSize; }
+            set { this._modelSize = value; worldSpacePropertyUpdated = true; }
+        }
 
         #endregion
     }

@@ -71,5 +71,36 @@ namespace CSharpGL
             GL.Instance.PopMatrix();
         }
 
+        /// <summary>
+        /// Get model matrix.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public static mat4 GetModelMatrix(this RendererBase node)
+        {
+            mat4 matrix;
+            if (node.worldSpacePropertyUpdated)
+            {
+                matrix = glm.translate(mat4.identity(), node.WorldPosition);
+                matrix = glm.scale(matrix, node.Scale);
+                matrix = glm.rotate(matrix, node.RotationAngle, node.RotationAxis);
+                node.thisModelMatrix = matrix;
+                node.worldSpacePropertyUpdated = false;
+            }
+            else
+            {
+                matrix = node.thisModelMatrix;
+            }
+
+            var parent = node.Parent as RendererBase;
+            if (parent != null)
+            {
+                matrix = parent.modelMatrix * matrix;
+            }
+
+            node.modelMatrix = matrix;
+
+            return matrix;
+        }
     }
 }

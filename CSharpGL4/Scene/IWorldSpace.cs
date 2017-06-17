@@ -72,31 +72,31 @@ namespace CSharpGL
             dest.WorldPosition = source.WorldPosition;
         }
 
-        /// <summary>
-        /// Get model matrix.
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static mat4 GetModelMatrix(this IWorldSpace model)
-        {
-            mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
-            matrix = glm.scale(matrix, model.Scale);
-            matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
+        ///// <summary>
+        ///// Get model matrix.
+        ///// </summary>
+        ///// <param name="model"></param>
+        ///// <returns></returns>
+        //public static mat4 GetModelMatrix(this IWorldSpace model)
+        //{
+        //    mat4 matrix = glm.translate(mat4.identity(), model.WorldPosition);
+        //    matrix = glm.scale(matrix, model.Scale);
+        //    matrix = glm.rotate(matrix, model.RotationAngle, model.RotationAxis);
 
-            var node = model as RendererBase;
-            if (node != null)
-            {
-                var parent = node.Parent as RendererBase;
-                if (parent != null)
-                {
-                    matrix = parent.modelMatrix * matrix;
-                }
+        //    var node = model as RendererBase;
+        //    if (node != null)
+        //    {
+        //        var parent = node.Parent as RendererBase;
+        //        if (parent != null)
+        //        {
+        //            matrix = parent.modelMatrix * matrix;
+        //        }
 
-                node.modelMatrix = matrix;
-            }
+        //        node.modelMatrix = matrix;
+        //    }
 
-            return matrix;
-        }
+        //    return matrix;
+        //}
 
         /// <summary>
         /// Rotate this model based on all previous rotation actions.
