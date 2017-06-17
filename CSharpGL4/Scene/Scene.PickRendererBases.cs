@@ -16,9 +16,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">Left Down is (0, 0)</param>
         /// <param name="y">Left Down is (0, 0)</param>
-        /// <param name="geometryType"></param>
+        /// <param name="selectBufferLength"></param>
         /// <returns></returns>
-        public List<RendererBase> Pick(int x, int y)
+        public List<RendererBase> Pick(int x, int y, int selectBufferLength = 512)
         {
             //	Create a select buffer.
             var selectBuffer = new uint[512];
@@ -41,24 +41,33 @@ namespace CSharpGL
             //	Flush commands.
             GL.Instance.Flush();
 
+            List<RendererBase> pickedRenderer = null;
             //	End selection.
             int hits = GL.Instance.RenderMode(GL.GL_RENDER);
-            //  Create  result set.
-            var pickedRenderer = new List<RendererBase>();
-            uint posinarray = 0;
-            //  Go through each name.
-            for (int hit = 0; hit < hits; hit++)
+            if (hits < 0)// select buffer is not long enough.
             {
-                uint nameCount = selectBuffer[posinarray];
-                posinarray += 3;
-
-                if (nameCount == 0) { continue; }
-
-                //	Add each hit element to the result set to the array.
-                for (int i = 0; i < nameCount; i++)
+                pickedRenderer = this.Pick(x, y, selectBufferLength * 2);
+            }
+            else
+            {
+                pickedRenderer = new List<RendererBase>();
+                //  Create  result set.
+                uint posinarray = 0;
+                //  Go through each name.
+                for (int hit = 0; hit < hits; hit++)
                 {
-                    uint hitName = selectBuffer[posinarray++];
-                    pickedRenderer.Add(arg.hitMap[hitName]);
+                    uint nameCount = selectBuffer[posinarray++];
+                    uint zNear = selectBuffer[posinarray++];
+                    uint zFar = selectBuffer[posinarray++];
+
+                    if (nameCount == 0) { continue; }
+
+                    //	Add each hit element to the result set to the array.
+                    for (int i = 0; i < nameCount; i++)
+                    {
+                        uint hitName = selectBuffer[posinarray++];
+                        pickedRenderer.Add(arg.hitMap[hitName]);
+                    }
                 }
             }
 
