@@ -24,7 +24,7 @@ namespace CSharpGL.Models
     // 4 -------------------5
     //
     /// <summary>
-    /// 
+    /// Render flabellum in legacy opengl.
     /// </summary>
     public class LegacyFlabellumRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
     {

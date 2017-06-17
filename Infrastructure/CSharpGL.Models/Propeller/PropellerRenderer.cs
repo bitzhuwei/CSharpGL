@@ -24,7 +24,7 @@ namespace CSharpGL.Models
     // 4 -------------------5
     //
     /// <summary>
-    /// 
+    /// Render propeller in modern opengl.
     /// </summary>
     public class PropellerRenderer : Renderer, IRenderable, ILegacyPickable, IRenderWireframe
     {
@@ -67,6 +67,10 @@ void main(void) {
 }
 ";
 
+        /// <summary>
+        /// Render propeller in modern opengl.
+        /// </summary>
+        /// <returns></returns>
         public static PropellerRenderer Create()
         {
             var vertexShader = new VertexShader(vertexCode, "inPositoin", "inColor");

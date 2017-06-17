@@ -24,7 +24,7 @@ namespace CSharpGL.Models
     // 4 -------------------5
     //
     /// <summary>
-    /// 
+    /// Render flabellum in modern opengl.
     /// </summary>
     public class FlabellumRenderer : Renderer, ILegacyPickable, IRenderWireframe
     {
@@ -66,6 +66,10 @@ void main(void) {
 }
 ";
 
+        /// <summary>
+        /// Render flabellum in modern opengl.
+        /// </summary>
+        /// <returns></returns>
         public static FlabellumRenderer Create()
         {
             var vertexShader = new VertexShader(vertexCode, "inPositoin", "inColor");

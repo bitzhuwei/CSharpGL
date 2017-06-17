@@ -24,7 +24,7 @@ namespace CSharpGL.Models
     // 4 -------------------5
     //
     /// <summary>
-    /// 
+    /// Render propeller in legacy opengl.
     /// </summary>
     public class LegacyPropellerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
     {
