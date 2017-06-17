@@ -58,6 +58,7 @@
     <Compile Include="Propeller\FlabellumRenderer.cs" />
     <Compile Include="Propeller\LegacyFlabellumRenderer.cs" />
     <Compile Include="Propeller\LegacyPropellerRenderer.cs" />
+    <Compile Include="Propeller\PropellerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClockRenderer\Clock.png" />
-    <Content Include="Propeller\Propeller.png" />
+    <Content Include="Propeller\Propeller+4Flabellum.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormProperyGrid.resx">

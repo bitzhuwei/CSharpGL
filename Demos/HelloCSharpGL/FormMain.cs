@@ -31,11 +31,70 @@ namespace HelloCSharpGL
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Ortho, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            var propeller = new LegacyPropellerRenderer();
+            var propeller = GetLegacyPropellerLegacyFlabellum();
+            //var propeller = GetLegacyPropellerFlabellum();
+            //var propeller = GetPropellerLegacyFlabellum();
+            //var propeller = GetPropellerFlabellum();
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
                 RootElement = propeller,
             };
+        }
+
+        private RendererBase GetLegacyPropellerLegacyFlabellum()
+        {
+            var propeller = new LegacyPropellerRenderer();
+            var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            propeller.Children.Add(xflabellum);
+            propeller.Children.Add(nxflabellum);
+            propeller.Children.Add(zflabellum);
+            propeller.Children.Add(nzflabellum);
+            return propeller;
+        }
+
+        private RendererBase GetLegacyPropellerFlabellum()
+        {
+            var propeller = new LegacyPropellerRenderer();
+            var xflabellum = FlabellumRenderer.Create(); xflabellum.WorldPosition = new vec3(2, 0, 0);
+            var nxflabellum = FlabellumRenderer.Create(); nxflabellum.WorldPosition = new vec3(-2, 0, 0); nxflabellum.RotationAngle = 180;
+            var zflabellum = FlabellumRenderer.Create(); zflabellum.WorldPosition = new vec3(0, 0, -2); zflabellum.RotationAngle = 90;
+            var nzflabellum = FlabellumRenderer.Create(); nzflabellum.WorldPosition = new vec3(0, 0, 2); nzflabellum.RotationAngle = 270;
+            propeller.Children.Add(xflabellum);
+            propeller.Children.Add(nxflabellum);
+            propeller.Children.Add(zflabellum);
+            propeller.Children.Add(nzflabellum);
+            return propeller;
+        }
+
+        private RendererBase GetPropellerLegacyFlabellum()
+        {
+            var propeller = PropellerRenderer.Create();
+            var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            propeller.Children.Add(xflabellum);
+            propeller.Children.Add(nxflabellum);
+            propeller.Children.Add(zflabellum);
+            propeller.Children.Add(nzflabellum);
+            return propeller;
+        }
+
+        private RendererBase GetPropellerFlabellum()
+        {
+            var propeller = PropellerRenderer.Create();
+            var xflabellum = FlabellumRenderer.Create(); xflabellum.WorldPosition = new vec3(2, 0, 0);
+            var nxflabellum = FlabellumRenderer.Create(); nxflabellum.WorldPosition = new vec3(-2, 0, 0); nxflabellum.RotationAngle = 180;
+            var zflabellum = FlabellumRenderer.Create(); zflabellum.WorldPosition = new vec3(0, 0, -2); zflabellum.RotationAngle = 90;
+            var nzflabellum = FlabellumRenderer.Create(); nzflabellum.WorldPosition = new vec3(0, 0, 2); nzflabellum.RotationAngle = 270;
+            propeller.Children.Add(xflabellum);
+            propeller.Children.Add(nxflabellum);
+            propeller.Children.Add(zflabellum);
+            propeller.Children.Add(nzflabellum);
+            return propeller;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

@@ -84,6 +84,7 @@ void main(void) {
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         { }
+
         #region IRenderable 成员
 
         protected override void DoRender(RenderEventArgs arg)

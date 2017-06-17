@@ -124,18 +124,6 @@ namespace CSharpGL.Models
             GL.Instance.End();
         }
 
-        public LegacyPropellerRenderer()
-        {
-            var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
-            this.Children.Add(xflabellum);
-            this.Children.Add(nxflabellum);
-            this.Children.Add(zflabellum);
-            this.Children.Add(nzflabellum);
-        }
-
         #region ILegacyPickable 成员
 
         public void RenderForLegacyPicking(LegacyPickEventArgs arg)

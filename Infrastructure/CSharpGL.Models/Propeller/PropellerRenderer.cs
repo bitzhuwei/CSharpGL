@@ -26,8 +26,132 @@ namespace CSharpGL.Models
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyPropellerRenderer : RendererBase, IRenderable, ILegacyPickable, IRenderWireframe
+    public class PropellerRenderer : Renderer, IRenderable, ILegacyPickable, IRenderWireframe
     {
+
+        private const string vertexCode =
+            @"#version 150 core
+
+in vec3 inPosition;
+in vec3 inColor;
+
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+
+out vec3 passColor;
+
+void main(void) {
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	passColor = inColor;
+}
+";
+        private const string fragmentCode =
+            @"#version 150 core
+
+in vec3 passColor;
+
+uniform bool renderWireframe = false;
+
+out vec4 out_Color;
+
+void main(void) {
+	if (renderWireframe)
+	{
+	    out_Color = vec4(1.0, 1.0, 1.0, 1.0);
+	}
+	else 
+	{
+	    out_Color = vec4(passColor, 1.0);
+	}
+}
+";
+
+        public static PropellerRenderer Create()
+        {
+            var vertexShader = new VertexShader(vertexCode, "inPositoin", "inColor");
+            var fragmentShader = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var map = new AttributeMap();
+            map.Add("inPosition", Flabellum.strPosition);
+            map.Add("inColor", Flabellum.strColor);
+            var renderer = new PropellerRenderer(new Propeller(), provider, map);
+            renderer.Initialize();
+
+            return renderer;
+        }
+
+        private PropellerRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
+            AttributeMap attributeMap, params GLState[] switches)
+            : base(model, shaderProgramProvider, attributeMap, switches)
+        {
+        }
+
+        #region IRenderable 成员
+
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            //var viewport = new int[4];
+            ////	Get the viewport, then convert the mouse point to an opengl point.
+            //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            //////	Push matrix, set up projection, then load matrix.
+            //mat4 pickMatrix = glm.pickMatrix(new vec2(viewport[2] / 2, viewport[3] / 2), new vec2(viewport[2], viewport[3]), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
+            bool wireframe = this.RenderWireframe;
+            mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
+            mat4 view = arg.Scene.Camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            this.SetUniform("projectionMatrix", projection);
+            this.SetUniform("viewMatrix", view);
+            this.SetUniform("modelMatrix", model);
+            this.SetUniform("renderWireframe", wireframe);
+
+
+            if (wireframe)
+            {
+                polygonModeState.On();
+            }
+            base.DoRender(arg);
+            if (wireframe)
+            {
+                polygonModeState.Off();
+            }
+        }
+
+        #endregion
+
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+
+        #region ILegacyPickable 成员
+
+        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
+        {
+            mat4 projection = arg.pickMatrix * arg.scene.Camera.GetProjectionMatrix();
+            mat4 view = arg.scene.Camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            this.SetUniform("projectionMatrix", projection);
+            this.SetUniform("viewMatrix", view);
+            this.SetUniform("modelMatrix", model);
+            this.SetUniform("renderWireframe", false);
+
+            base.DoRender(new RenderEventArgs(arg.scene));
+        }
+
+        #endregion
+
+        #region IRenderWireframe 成员
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderWireframe { get; set; }
+
+        #endregion
+    }
+
+    class Propeller : IBufferable
+    {
+
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
         private const float zLength = 0.3f;
@@ -73,90 +197,48 @@ namespace CSharpGL.Models
             4, 5, 7, 6, 0, 2, 3, 1,
         };
 
-        #region IRenderable 成员
+        public const string strPosition = "position";
+        private VertexBuffer positionBuffer;
+        public const string strColor = "color";
+        private VertexBuffer colorBuffer;
 
-        public void Render(RenderEventArgs arg)
+        private OneIndexBuffer indexBuffer;
+
+        #region IBufferable 成员
+
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
-            this.PushProjection(arg);
-            this.PushModelView();
-
-            if (this.RenderWireframe)
+            if (bufferName == strPosition)
             {
-                DoRender(new vec3(1, 1, 1));
+                if (this.positionBuffer == null)
+                {
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                }
+
+                return this.positionBuffer;
             }
-            else
+            else if (bufferName == strColor)
             {
-                DoRender();
+                if (this.colorBuffer == null)
+                {
+                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                }
+
+                return this.colorBuffer;
             }
 
-            this.PopModelView();
-            this.PopProjection();
+            throw new NotImplementedException();
         }
 
-        #endregion
-
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
-
-        private void DoRender(vec3 lineColor)
+        public IndexBuffer GetIndexBuffer()
         {
-            polygonModeState.On();
-            GL.Instance.Begin((uint)DrawMode.Quads);
-            GL.Instance.Color3f(lineColor.x, lineColor.y, lineColor.z);
-            for (int i = 0; i < indexes.Length; i++)
+            if (this.indexBuffer == null)
             {
-                vec3 position = positions[indexes[i]];
-                GL.Instance.Vertex3f(position.x, position.y, position.z);
+                this.indexBuffer = indexes.GenIndexBuffer(DrawMode.Quads, BufferUsage.StaticDraw);
             }
-            GL.Instance.End();
-            polygonModeState.Off();
+
+            return this.indexBuffer;
         }
-
-        private void DoRender()
-        {
-            GL.Instance.Begin((uint)DrawMode.Quads);
-            for (int i = 0; i < indexes.Length; i++)
-            {
-                vec3 color = colors[indexes[i]];
-                GL.Instance.Color3f(color.x, color.y, color.z);
-                vec3 position = positions[indexes[i]];
-                GL.Instance.Vertex3f(position.x, position.y, position.z);
-            }
-            GL.Instance.End();
-        }
-
-        public LegacyPropellerRenderer()
-        {
-            var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
-            this.Children.Add(xflabellum);
-            this.Children.Add(nxflabellum);
-            this.Children.Add(zflabellum);
-            this.Children.Add(nzflabellum);
-        }
-
-        #region ILegacyPickable 成员
-
-        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
-        {
-            this.PushProjection(arg);
-            this.PushModelView();
-
-            DoRender();
-
-            this.PopModelView();
-            this.PopProjection();
-        }
-
-        #endregion
-
-        #region IRenderWireframe 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool RenderWireframe { get; set; }
 
         #endregion
     }
