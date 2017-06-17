@@ -160,10 +160,10 @@ namespace HelloCSharpGL
         {
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            List<RendererBase> list = this.scene.Pick(x, y);
+            List<HitTarget> list = this.scene.Pick(x, y);
             foreach (var item in list)
             {
-                var parent = item.Parent;
+                var parent = item.renderer.Parent;
                 if (parent != null)
                 {
                     var renderer = parent as IRenderable;

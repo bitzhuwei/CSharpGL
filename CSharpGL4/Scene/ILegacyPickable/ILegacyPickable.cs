@@ -43,4 +43,39 @@ namespace CSharpGL
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public class HitTarget
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly RendererBase renderer;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly uint zNear;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly uint zFar;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sceneElement"></param>
+        /// <param name="zNear"></param>
+        /// <param name="zFar"></param>
+        public HitTarget(RendererBase sceneElement, uint zNear, uint zFar)
+        {
+            this.renderer = sceneElement;
+            this.zNear = zNear;
+            this.zFar = zFar;
+        }
+
+    }
+
 }

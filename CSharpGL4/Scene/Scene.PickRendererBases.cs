@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <param name="deltaY"></param>
         /// <param name="selectBufferLength"></param>
         /// <returns></returns>
-        public List<RendererBase> Pick(int x, int y, int deltaX = 1, int deltaY = 1, int selectBufferLength = 512)
+        public List<HitTarget> Pick(int x, int y, int deltaX = 1, int deltaY = 1, int selectBufferLength = 512)
         {
             //	Create a select buffer.
             var selectBuffer = new uint[selectBufferLength];
@@ -41,7 +41,7 @@ namespace CSharpGL
             //	Flush commands.
             GL.Instance.Flush();
 
-            List<RendererBase> pickedRenderer = null;
+            List<HitTarget> pickedRenderer = null;
             //	End selection.
             int hits = GL.Instance.RenderMode(GL.GL_RENDER);
             if (hits < 0)// select buffer is not long enough.
@@ -50,8 +50,8 @@ namespace CSharpGL
             }
             else
             {
-                pickedRenderer = new List<RendererBase>();
                 //  Create  result set.
+                pickedRenderer = new List<HitTarget>();
                 uint posinarray = 0;
                 //  Go through each name.
                 for (int hit = 0; hit < hits; hit++)
@@ -66,7 +66,7 @@ namespace CSharpGL
                     for (int i = 0; i < nameCount; i++)
                     {
                         uint hitName = selectBuffer[posinarray++];
-                        pickedRenderer.Add(arg.hitMap[hitName]);
+                        pickedRenderer.Add(new HitTarget(arg.hitMap[hitName], zNear, zFar));
                     }
                 }
             }
