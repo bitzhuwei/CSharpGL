@@ -7,8 +7,17 @@ namespace CSharpGL
     public abstract partial class RendererBase
     {
 
+        /// <summary>
+        /// indicates whether <see cref="IWorldSpace"/>'s property value has changed.
+        /// </summary>
         internal bool worldSpacePropertyUpdated = true;
+        /// <summary>
+        /// cascade model matrix.
+        /// </summary>
         internal mat4 modelMatrix = mat4.identity();
+        /// <summary>
+        /// this model's matrix from <see cref="IWorldSpace"/>.
+        /// </summary>
         internal mat4 thisModelMatrix = mat4.identity();
 
         #region IWorldSpace 成员
@@ -64,5 +73,42 @@ namespace CSharpGL
         }
 
         #endregion
+
+
+        /// <summary>
+        /// Get cascade model matrix.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public mat4 GetModelMatrix()
+        {
+            if (this.worldSpacePropertyUpdated)
+            {
+                mat4 matrix = glm.translate(mat4.identity(), this.WorldPosition);
+                matrix = glm.scale(matrix, this.Scale);
+                matrix = glm.rotate(matrix, this.RotationAngle, this.RotationAxis);
+                this.thisModelMatrix = matrix;
+                this.worldSpacePropertyUpdated = false;
+
+                var parent = this.Parent as RendererBase;
+                if (parent != null)
+                {
+                    matrix = parent.modelMatrix * matrix;
+                }
+
+                this.modelMatrix = matrix;
+
+            }
+            else
+            {
+                var parent = this.Parent as RendererBase;
+                if (parent != null)
+                {
+                    this.modelMatrix = parent.modelMatrix * this.thisModelMatrix;
+                }
+            }
+
+            return this.modelMatrix;
+        }
     }
 }
