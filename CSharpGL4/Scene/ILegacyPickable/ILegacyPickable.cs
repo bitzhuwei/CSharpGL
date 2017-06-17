@@ -6,12 +6,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Supports picking in legacy OpenGL.
     /// </summary>
     public interface ILegacyPickable
     {
         /// <summary>
-        /// 
+        /// Render this model in legacy OpenGL.
         /// </summary>
         /// <param name="arg"></param>
         void RenderForLegacyPicking(LegacyPickEventArgs arg);
