@@ -73,6 +73,14 @@ namespace CSharpGL.Models
             4, 5, 7, 6, 0, 2, 3, 1,
         };
 
+        /// <summary>
+        /// Render flabellum in legacy opengl.
+        /// </summary>
+        public LegacyFlabellumRenderer()
+        {
+            this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
+        }
+
         #region IRenderable 成员
 
         public void Render(RenderEventArgs arg)

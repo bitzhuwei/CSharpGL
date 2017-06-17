@@ -54,16 +54,15 @@ namespace CSharpGL
         /// <summary>
         /// contains some renderers in its children.
         /// </summary>
-        /// <param name="xLength"></param>
-        /// <param name="yLength"></param>
-        /// <param name="zLength"></param>
-        public LegacyBoundingBoxRenderer(float xLength, float yLength, float zLength)
+        /// <param name="modelSize"></param>
+        public LegacyBoundingBoxRenderer(vec3 modelSize)
         {
-            var length = new vec3(xLength, yLength, zLength);
+            this.ModelSize = ModelSize;
+
             var positions = new vec3[8];
             for (int i = 0; i < positions.Length; i++)
             {
-                positions[i] = standardPosiions[i] * length;
+                positions[i] = standardPosiions[i] * modelSize;
             }
 
             this.Positions = positions;
