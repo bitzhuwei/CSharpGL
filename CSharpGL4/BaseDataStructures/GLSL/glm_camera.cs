@@ -192,7 +192,7 @@ namespace CSharpGL
         /// <param name="viewport">The viewport.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
-        public static mat4 pickMatrix(vec2 center, vec2 delta, ivec4 viewport)
+        public static mat4 pickMatrix(ivec2 center, ivec2 delta, ivec4 viewport)
         {
             if (delta.x <= 0 || delta.y <= 0)
                 throw new ArgumentOutOfRangeException();
