@@ -52,7 +52,9 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected void DoRender(RenderEventArgs arg)
         {
-            this.LegacyMVP(arg);
+            //this.LegacyMVP(arg);
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             GL.Instance.Begin((uint)DrawMode.Lines);
             for (int i = 0; i < markPosition.Count; i++)
@@ -63,6 +65,9 @@ namespace CSharpGL
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
+
+            this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
     }

@@ -58,7 +58,9 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected void DoRender(RenderEventArgs arg)
         {
-            this.LegacyMVP(arg);
+            //this.LegacyMVP(arg);
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             DateTime now = DateTime.Now;
             const float speed = 1.0f;
@@ -117,6 +119,9 @@ namespace CSharpGL
                 GL.Instance.End();
                 hourLineWidthState.Off();
             }
+
+            this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
     }

@@ -11,11 +11,11 @@ namespace CSharpGL
     public static class RendererBaseHelper
     {
         /// <summary>
-        /// 
+        /// Push and calculate projection+view matrix in legacy OpenGL.
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="arg"></param>
-        public static void PushProjection(this RendererBase renderer, RenderEventArgs arg)
+        public static void PushProjectionViewMatrix(this RendererBase renderer, RenderEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
@@ -26,11 +26,11 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Push and calculate projection+view matrix in legacy OpenGL for picking.
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="arg"></param>
-        public static void PushProjection(this RendererBase renderer, LegacyPickEventArgs arg)
+        public static void PushProjectionViewMatrix(this RendererBase renderer, LegacyPickEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
@@ -41,10 +41,10 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Push and calculate model matrix in legacy OpenGL.
         /// </summary>
         /// <param name="renderer"></param>
-        public static void PushModelView(this RendererBase renderer)
+        public static void PushModelMatrix(this RendererBase renderer)
         {
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PushMatrix();
@@ -54,39 +54,22 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Pop projection+view matrix.
         /// </summary>
-        public static void PopProjection(this RendererBase renderer)
+        public static void PopProjectionViewMatrix(this RendererBase renderer)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PopMatrix();
         }
 
         /// <summary>
-        /// 
+        /// Pop model matrix.
         /// </summary>
-        public static void PopModelView(this RendererBase renderer)
+        public static void PopModelMatrix(this RendererBase renderer)
         {
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PopMatrix();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="renderer"></param>
-        /// <param name="arg"></param>
-        public static void LegacyMVP(this RendererBase renderer, RenderEventArgs arg)
-        {
-            GL.Instance.MatrixMode(GL.GL_PROJECTION);
-            GL.Instance.LoadIdentity();
-            mat4 projectionMatrix = arg.GetProjectionMatrix();
-            mat4 viewMatrix = arg.GetViewMatrix();
-            GL.Instance.MultMatrixf((projectionMatrix * viewMatrix).ToArray());
-            GL.Instance.MatrixMode(GL.GL_MODELVIEW);
-            GL.Instance.LoadIdentity();
-            mat4 modelMatrix = renderer.GetModelMatrix();
-            GL.Instance.MultMatrixf((modelMatrix).ToArray());
-        }
     }
 }

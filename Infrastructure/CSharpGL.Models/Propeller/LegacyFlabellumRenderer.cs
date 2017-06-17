@@ -77,8 +77,8 @@ namespace CSharpGL.Models
 
         public void Render(RenderEventArgs arg)
         {
-            this.PushProjection(arg);
-            this.PushModelView();
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             if (this.RenderWireframe)
             {
@@ -89,8 +89,8 @@ namespace CSharpGL.Models
                 DoRender();
             }
 
-            this.PopModelView();
-            this.PopProjection();
+            this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
         private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
@@ -128,13 +128,13 @@ namespace CSharpGL.Models
 
         public void RenderForLegacyPicking(LegacyPickEventArgs arg)
         {
-            this.PushProjection(arg);
-            this.PushModelView();
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             DoRender();
 
-            this.PopModelView();
-            this.PopProjection();
+            this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
         #endregion

@@ -77,13 +77,13 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            this.PushProjection(arg);
-            this.PushModelView();
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             DoRender();
 
-            this.PopModelView();
-            this.PopProjection();
+            this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
         #endregion
@@ -119,13 +119,13 @@ namespace CSharpGL
 
         public void RenderForLegacyPicking(LegacyPickEventArgs arg)
         {
-            this.PushProjection(arg);
-            this.PushModelView();
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             DoRender();
 
-            this.PopProjection();
-            this.PopModelView();
+            this.PopProjectionViewMatrix();
+            this.PopModelMatrix();
         }
 
         #endregion

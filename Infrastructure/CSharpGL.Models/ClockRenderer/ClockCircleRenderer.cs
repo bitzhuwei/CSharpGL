@@ -46,7 +46,9 @@ namespace CSharpGL.Models
         /// <param name="arg"></param>
         protected void DoRender(RenderEventArgs arg)
         {
-            this.LegacyMVP(arg);
+            //this.LegacyMVP(arg);
+            this.PushProjectionViewMatrix(arg);
+            this.PushModelMatrix();
 
             circleLineWidthState.On();
             GL.Instance.Begin((uint)DrawMode.LineLoop);
@@ -60,6 +62,9 @@ namespace CSharpGL.Models
             GL.Instance.End();
 
             circleLineWidthState.Off();
+
+            this.PopModelMatrix();
+            this.PopProjectionViewMatrix();
         }
 
     }
