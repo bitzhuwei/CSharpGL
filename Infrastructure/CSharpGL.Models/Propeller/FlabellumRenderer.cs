@@ -75,10 +75,12 @@ void main(void) {
             return renderer;
         }
 
-        private FlabellumRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
+        private FlabellumRenderer(Flabellum model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
-        { }
+        {
+            this.ModelSize = model.GetModelSize();
+        }
 
         #region IRenderable 成员
 
@@ -105,6 +107,11 @@ void main(void) {
 
     class Flabellum : IBufferable
     {
+        public vec3 GetModelSize()
+        {
+            return new vec3(xLength * 2, yLength * 2, zLength * 2);
+        }
+
         private const float xLength = 1.6f;
         private const float yLength = 0.05f;
         private const float zLength = 0.2f;

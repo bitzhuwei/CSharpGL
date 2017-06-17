@@ -31,10 +31,10 @@ namespace HelloCSharpGL
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            var propeller = GetLegacyPropellerLegacyFlabellum();
+            //var propeller = GetLegacyPropellerLegacyFlabellum();
             //var propeller = GetLegacyPropellerFlabellum();
             //var propeller = GetPropellerLegacyFlabellum();
-            //var propeller = GetPropellerFlabellum();
+            var propeller = GetPropellerFlabellum();
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
                 RootElement = propeller,
@@ -45,60 +45,99 @@ namespace HelloCSharpGL
         {
             var propeller = new LegacyPropellerRenderer();
             propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+
             var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
             xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+
             var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
             nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+
             var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
             zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+
             var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
             nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
             propeller.Children.Add(zflabellum);
             propeller.Children.Add(nzflabellum);
+
             return propeller;
         }
 
         private RendererBase GetLegacyPropellerFlabellum()
         {
             var propeller = new LegacyPropellerRenderer();
+            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+
             var xflabellum = FlabellumRenderer.Create(); xflabellum.WorldPosition = new vec3(2, 0, 0);
+            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+
             var nxflabellum = FlabellumRenderer.Create(); nxflabellum.WorldPosition = new vec3(-2, 0, 0); nxflabellum.RotationAngle = 180;
+            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+
             var zflabellum = FlabellumRenderer.Create(); zflabellum.WorldPosition = new vec3(0, 0, -2); zflabellum.RotationAngle = 90;
+            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+
             var nzflabellum = FlabellumRenderer.Create(); nzflabellum.WorldPosition = new vec3(0, 0, 2); nzflabellum.RotationAngle = 270;
+            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
             propeller.Children.Add(zflabellum);
             propeller.Children.Add(nzflabellum);
+
             return propeller;
         }
 
         private RendererBase GetPropellerLegacyFlabellum()
         {
             var propeller = PropellerRenderer.Create();
+            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+
             var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
+            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+
             var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
+            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+
             var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
+            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+
             var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
+            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
             propeller.Children.Add(zflabellum);
             propeller.Children.Add(nzflabellum);
+
             return propeller;
         }
 
         private RendererBase GetPropellerFlabellum()
         {
             var propeller = PropellerRenderer.Create();
+            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+
             var xflabellum = FlabellumRenderer.Create(); xflabellum.WorldPosition = new vec3(2, 0, 0);
+            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+
             var nxflabellum = FlabellumRenderer.Create(); nxflabellum.WorldPosition = new vec3(-2, 0, 0); nxflabellum.RotationAngle = 180;
+            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+
             var zflabellum = FlabellumRenderer.Create(); zflabellum.WorldPosition = new vec3(0, 0, -2); zflabellum.RotationAngle = 90;
+            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+
             var nzflabellum = FlabellumRenderer.Create(); nzflabellum.WorldPosition = new vec3(0, 0, 2); nzflabellum.RotationAngle = 270;
+            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
             propeller.Children.Add(zflabellum);
             propeller.Children.Add(nzflabellum);
+
             return propeller;
         }
 

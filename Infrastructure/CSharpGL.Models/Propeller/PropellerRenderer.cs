@@ -76,10 +76,11 @@ void main(void) {
             return renderer;
         }
 
-        private PropellerRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
+        private PropellerRenderer(Propeller model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
+            this.ModelSize = model.GetModelSize();
         }
 
         #region IRenderable 成员
@@ -107,6 +108,10 @@ void main(void) {
 
     class Propeller : IBufferable
     {
+        public vec3 GetModelSize()
+        {
+            return new vec3(xLength * 2, yLength * 2, zLength * 2);
+        }
 
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;
