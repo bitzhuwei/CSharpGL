@@ -41,7 +41,7 @@ uniform mat4 modelMatrix;
 out vec3 passColor;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 	passColor = inColor;
 }
 ";
@@ -88,6 +88,11 @@ void main(void) {
 
         protected override void DoRender(RenderEventArgs arg)
         {
+            //var viewport = new int[4];
+            ////	Get the viewport, then convert the mouse point to an opengl point.
+            //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            //////	Push matrix, set up projection, then load matrix.
+            //mat4 pickMatrix = glm.pickMatrix(new vec2(viewport[2] / 2, viewport[3] / 2), new vec2(viewport[2], viewport[3]), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
             bool wireframe = this.RenderWireframe;
             mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
             mat4 view = arg.Scene.Camera.GetViewMatrix();
