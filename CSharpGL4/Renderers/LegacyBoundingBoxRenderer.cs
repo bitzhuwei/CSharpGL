@@ -76,22 +76,25 @@ namespace CSharpGL
         /// </summary>
         public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
 
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+        private GLState polygonOffsetState = new PolygonOffsetFillState();
         public void Render(RenderEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
             polygonModeState.On();
+            polygonOffsetState.On();
 
             DoRender(this.Positions, indexes, this.lineColor);
 
+            polygonOffsetState.Off();
             polygonModeState.Off();
 
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();
         }
 
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
 
         private void DoRender(vec3[] positions, byte[] indexes, vec3 lineColor)
         {
