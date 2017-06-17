@@ -76,7 +76,7 @@ namespace CSharpGL
         /// </summary>
         public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
 
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+        private GLState polygonModeState = new PolygonModeState(PolygonMode.Line);
         private GLState polygonOffsetState = new PolygonOffsetFillState();
         public void Render(RenderEventArgs arg)
         {
