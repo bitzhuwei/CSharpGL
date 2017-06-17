@@ -10,6 +10,6 @@ uniform mat4 modelMatrix;
 out vec3 passColor;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 	passColor = inColor;
 }
