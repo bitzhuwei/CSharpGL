@@ -28,7 +28,7 @@ namespace CSharpGL
             GL.Instance.RenderMode(GL.GL_SELECT);
             //	Initialise the names, and add the first name.
             GL.Instance.InitNames();
-            GL.Instance.PushName(uint.MaxValue);
+            GL.Instance.PushName(0);
 
             var viewport = new int[4];
             //	Get the viewport, then convert the mouse point to an opengl point.
@@ -36,7 +36,7 @@ namespace CSharpGL
             ////	Push matrix, set up projection, then load matrix.
             mat4 pickMatrix = glm.pickMatrix(new vec2(x, y), new vec2(4, 4), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
             var arg = new LegacyPickEventArgs(pickMatrix, this, x, y);
-            uint currentName = 0;
+            uint currentName = 1;
             this.RenderForPicking(this.RootElement, arg, ref currentName);
             //	Flush commands.
             GL.Instance.Flush();
