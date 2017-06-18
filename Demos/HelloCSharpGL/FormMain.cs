@@ -182,18 +182,33 @@ namespace HelloCSharpGL
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
             List<HitTarget> list = this.scene.Pick(x, y);
-            foreach (var item in list)
+            //foreach (var item in list)
+            //{
+            //    var parent = item.renderer.Parent;
+            //    if (parent != null)
+            //    {
+            //        var renderer = parent as IRenderable;
+            //        if (renderer != null)
+            //        {
+            //            renderer.RenderingEnabled = !renderer.RenderingEnabled;
+            //        }
+            //    }
+            //}
+
+            if (list.Count == 0)
             {
-                var parent = item.renderer.Parent;
-                if (parent != null)
-                {
-                    var renderer = parent as IRenderable;
-                    if (renderer != null)
-                    {
-                        renderer.RenderingEnabled = !renderer.RenderingEnabled;
-                    }
-                }
+                this.propGrid.SelectedObject = null;
             }
+            else if (list.Count == 1)
+            {
+                this.propGrid.SelectedObject = list[0].renderer;
+            }
+            else
+            {
+                this.propGrid.SelectedObjects = (from item in list select item.renderer).ToArray();
+            }
+
+            this.lblState.Text = string.Format("{0} objects selected.", list.Count);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
