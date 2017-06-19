@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloCSharpGL", "Demos\Hell
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Models", "Infrastructure\CSharpGL.Models\CSharpGL.Models.csproj", "{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCodedPicking", "Demos\ColorCodedPicking\ColorCodedPicking.csproj", "{73FBBD9F-3C13-4340-A902-E52A5753282D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73FBBD9F-3C13-4340-A902-E52A5753282D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73FBBD9F-3C13-4340-A902-E52A5753282D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73FBBD9F-3C13-4340-A902-E52A5753282D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73FBBD9F-3C13-4340-A902-E52A5753282D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,6 @@ Global
 		{3568C457-2856-4887-A68D-96D875F37D4B} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{0545A23B-BDDF-44C7-808A-5641C723B425} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
+		{73FBBD9F-3C13-4340-A902-E52A5753282D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
