@@ -8,7 +8,7 @@ namespace CSharpGL
     /// 用OpenGL初始化和渲染一个模型。
     /// <para>Initialize and render something with OpenGL.</para>
     /// </summary>
-    public abstract partial class RendererBase : ITreeNode, IWorldSpace, IDisposable
+    public abstract partial class RendererBase : IWorldSpace, IDisposable
     {
         private const string strRendererBase = "RendererBase";
 
@@ -39,21 +39,21 @@ namespace CSharpGL
         {
             this.Id = idCounter++;
 
-            this.Children = new TreeNodeChildren(this);
+            this.Children = new RendererBaseChildren(this);
         }
 
-        #region ITreeNode 成员
+        #region Tree
 
-        private ITreeNode parent;
+        internal RendererBase parent;
         /// <summary>
         /// 
         /// </summary>
-        public ITreeNode Parent
+        public RendererBase Parent
         {
             get { return this.parent; }
             set
             {
-                ITreeNode old = this.parent;
+                RendererBase old = this.parent;
                 if (old != value)
                 {
                     this.parent = value;
@@ -73,7 +73,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public TreeNodeChildren Children { get; private set; }
+        public RendererBaseChildren Children { get; private set; }
 
         #endregion
 

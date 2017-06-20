@@ -43,7 +43,7 @@ namespace ColorCodedPicking
                 triangleTip.Vertex0 = pickedGeometry.Positions[0];
                 triangleTip.Vertex1 = pickedGeometry.Positions[1];
                 triangleTip.Vertex2 = pickedGeometry.Positions[2];
-                triangleTip.Parent = pickedGeometry.FromRenderer as ITreeNode;
+                triangleTip.Parent = pickedGeometry.FromRenderer as RendererBase;
             }
             else
             {

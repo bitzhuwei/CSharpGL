@@ -92,13 +92,9 @@ namespace CSharpGL
                     currentName++;
                 }
 
-                var node = sceneElement as ITreeNode;
-                if (node != null)
+                foreach (var item in sceneElement.Children)
                 {
-                    foreach (var item in node.Children)
-                    {
-                        this.RenderForPicking(item as RendererBase, arg, ref currentName);
-                    }
+                    this.RenderForPicking(item as RendererBase, arg, ref currentName);
                 }
             }
         }

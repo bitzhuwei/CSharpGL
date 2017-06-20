@@ -70,9 +70,6 @@
     <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
     <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
     <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
-    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.Children.cs" />
-    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.cs" />
-    <Compile Include="BaseDataStructures\ITreeNode\ITreeNode.yield.cs" />
     <Compile Include="BaseDataStructures\MarkableStruct.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
     <Compile Include="BaseDataStructures\Utilities\AssemblyHelper.cs" />
@@ -98,9 +95,6 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="Layout\ILayout.cs" />
-    <Compile Include="Layout\ILayoutEvent.cs" />
-    <Compile Include="Layout\ILayoutHelper.cs" />
     <Compile Include="ModernRendering\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -225,6 +219,9 @@
     <Compile Include="Scene\IPickable\PickingGeometryType.cs" />
     <Compile Include="Scene\IPickable\PickingGeometryTypeHelper.cs" />
     <Compile Include="Scene\IRenderable.cs" />
+    <Compile Include="Scene\RendererBase\RendererBase.Children.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Scene\RendererBase\RendererBase.IWorldSpace.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IDisposable.cs" />
