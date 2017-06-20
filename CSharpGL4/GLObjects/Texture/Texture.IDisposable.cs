@@ -41,7 +41,11 @@ namespace CSharpGL
 
                 // Dispose unmanaged resources.
                 {
-                    GL.Instance.DeleteTextures(this.id.Length, this.id);
+                    IntPtr context = GL.Instance.GetCurrentContext();
+                    if (context != IntPtr.Zero)
+                    {
+                        GL.Instance.DeleteTextures(this.id.Length, this.id);
+                    }
                     this.id[0] = 0;
                 }
                 {
