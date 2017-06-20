@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,6 +53,13 @@
     <Compile Include="Propeller\LegacyPropellerRenderer.cs" />
     <Compile Include="Propeller\PropellerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Teapot\Teapot.cs" />
+    <Compile Include="Teapot\Teapot.Faces.cs" />
+    <Compile Include="Teapot\Teapot.normalData.cs" />
+    <Compile Include="Teapot\Teapot.positionData.cs" />
+    <Compile Include="Teapot\TeapotRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL4\CSharpGL4.csproj">
@@ -61,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Propeller\Propeller+4Flabellum.png" />
+    <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormProperyGrid.resx">

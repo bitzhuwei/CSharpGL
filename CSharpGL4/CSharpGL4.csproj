@@ -215,6 +215,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
+    <Compile Include="Renderers\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
     <Compile Include="Scene\IPickable\IPickable.cs" />
