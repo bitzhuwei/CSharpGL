@@ -68,8 +68,8 @@ void main(void) {
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add("inPosition", Flabellum.strPosition);
-            map.Add("inColor", Flabellum.strColor);
+            map.Add("inPosition", Propeller.strPosition);
+            map.Add("inColor", Propeller.strColor);
             var renderer = new PropellerRenderer(new Propeller(), provider, map);
             renderer.Initialize();
 
