@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render propeller in modern opengl.
     /// </summary>
-    public class TeapotRenderer : PickableRenderer
+    public class PLYRenderer : PickableRenderer
     {
         private const string inPosition = "inPosition";
         private const string inColor = "inColor";
@@ -21,7 +21,6 @@ namespace CSharpGL
             @"#version 150 core
 
 in vec3 " + inPosition + @";
-in vec3 " + inColor + @";
 
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
@@ -31,16 +30,13 @@ out vec3 passColor;
 
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-    vec3 color;
-    if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 3.0; }
-    if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 3.0; }
-    if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 3.0; }
-	passColor = color;
+    vec3 color = normalize(inPosition);
+    if (color.x < 0) { color.x = -color.x / 2.0; }
+    if (color.y < 0) { color.y = -color.y / 2.0; }
+    if (color.z < 0) { color.z = -color.z / 2.0; }
+    passColor = color;
 }
 ";
-        //if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 2.0; }
-        //if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 2.0; }
-        //if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 2.0; }
         private const string fragmentCode =
             @"#version 150 core
 
@@ -66,25 +62,29 @@ void main(void) {
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static TeapotRenderer Create()
+        public static PLYRenderer Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition, inColor);
+            var vertexShader = new VertexShader(vertexCode, inPosition);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add(inPosition, Teapot.strPosition);
-            map.Add(inColor, Teapot.strColor);
-            var renderer = new TeapotRenderer(new Teapot(), provider, map);
+            map.Add(inPosition, PLY.strPosition);
+            //map.Add(inColor, PLY.strColor);
+            var renderer = new PLYRenderer(new PLY(), provider, map);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private TeapotRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
+        private PLYRenderer(PLY model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, inPosition, switches)
         {
-            this.ModelSize = model.GetModelSize();
+            vec3 size = model.ModelSize;
+            this.ModelSize = size;
+            const float factor = 12.0f;
+            float average = (size.x + size.y + size.z) / 3.0f;
+            this.Scale = new vec3(factor / average, factor / average, factor / average);
         }
 
         #region IRenderable 成员
@@ -133,13 +133,6 @@ void main(void) {
 
         #endregion
 
-        public override void RenderForPicking(PickEventArgs arg)
-        {
-            if (this.RenderWireframe || this.RenderBody)
-            {
-                base.RenderForPicking(arg);
-            }
-        }
     }
 
 }

@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCodedPicking", "Demos\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformers", "Demos\Transformers\Transformers.csproj", "{2B8CC388-C807-45D4-AA68-F21BB7FF4F3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderToTexture", "Demos\RenderToTexture\RenderToTexture.csproj", "{5CB29D7F-8DFF-46B8-A7FD-E1A75A4B68EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{2B8CC388-C807-45D4-AA68-F21BB7FF4F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B8CC388-C807-45D4-AA68-F21BB7FF4F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B8CC388-C807-45D4-AA68-F21BB7FF4F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB29D7F-8DFF-46B8-A7FD-E1A75A4B68EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB29D7F-8DFF-46B8-A7FD-E1A75A4B68EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB29D7F-8DFF-46B8-A7FD-E1A75A4B68EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB29D7F-8DFF-46B8-A7FD-E1A75A4B68EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +112,6 @@ Global
 		{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 		{73FBBD9F-3C13-4340-A902-E52A5753282D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{2B8CC388-C807-45D4-AA68-F21BB7FF4F3C} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{5CB29D7F-8DFF-46B8-A7FD-E1A75A4B68EF} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal

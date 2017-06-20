@@ -67,6 +67,7 @@ namespace ColorCodedPicking
 
             this.triangleTip = new LegacyTriangleRenderer();
             this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
+            this.chkRenderBody_CheckedChanged(this.chkRenderBody, EventArgs.Empty);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -91,6 +92,11 @@ namespace ColorCodedPicking
         private void chkRenderWireframe_CheckedChanged(object sender, EventArgs e)
         {
             this.teapot.RenderWireframe = this.chkRenderWireframe.Checked;
+        }
+
+        private void chkRenderBody_CheckedChanged(object sender, EventArgs e)
+        {
+            this.teapot.RenderBody = this.chkRenderBody.Checked;
         }
 
     }
