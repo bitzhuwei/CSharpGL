@@ -16,7 +16,7 @@ namespace CSharpGL
 
             // init vertex attribute buffer objects.
             IBufferable model = this.DataSource;
-            VertexShaderAttribute positionAttribute = null;
+            VertexBuffer positionBuffer = null;
             VertexShaderAttribute[] vertexAttributeBuffers;
             {
                 var list = new List<VertexShaderAttribute>();
@@ -27,18 +27,16 @@ namespace CSharpGL
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     list.Add(new VertexShaderAttribute(buffer, item.VarNameInShader));
 
-                    if (item.NameInIBufferable == this.PositionNameInIBufferable)
+                    if (item.VarNameInShader == this.PositionNameInVertexShader)
                     {
-                        positionAttribute = new VertexShaderAttribute(buffer, item.VarNameInShader);
-                        //positionBuffer.VarNameInVertexShader = "in_Position";// in_Postion same with in the PickingShader.vert shader
-                        break;
+                        positionBuffer = buffer;
                     }
                 }
                 vertexAttributeBuffers = list.ToArray();
             }
 
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
-            if (positionAttribute == null || positionAttribute.Buffer.Config != VBOConfig.Vec3)
+            if (positionBuffer == null || positionBuffer.Config != VBOConfig.Vec3)
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
 
@@ -62,14 +60,14 @@ namespace CSharpGL
             // init VAO.
             var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
             vertexArrayObject.Initialize(program);
-            var pickingVAO = new VertexArrayObject(indexBuffer, positionAttribute);
+            var pickingVAO = new VertexArrayObject(indexBuffer, new VertexShaderAttribute(positionBuffer, "in_Position"));
             pickingVAO.Initialize(pickProgram);
 
             // sets fields.
             this.RenderProgram = program;
             this.PickProgram = pickProgram;
             this.vertexShaderAttributes = vertexAttributeBuffers;
-            this.positionAttribute = positionAttribute;
+            this.positionBuffer = positionBuffer;
             this.indexBuffer = indexBuffer;
             this.vertexArrayObject = vertexArrayObject;
             this.pickVertexArrayObject = pickingVAO;

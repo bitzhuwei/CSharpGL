@@ -11,33 +11,54 @@ namespace CSharpGL
     /// </summary>
     public class TeapotRenderer : PickableRenderer
     {
-
+        private const string inPosition = "inPosition";
+        private const string inColor = "inColor";
+        private const string projectionMatrix = "projectionMatrix";
+        private const string viewMatrix = "viewMatrix";
+        private const string modelMatrix = "modelMatrix";
+        private const string passColor = "passColor";
         private const string vertexCode =
             @"#version 150 core
 
-in vec3 inPosition;
-in vec3 inColor;
+in vec3 " + inPosition + @";
+in vec3 " + inColor + @";
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+uniform mat4 " + projectionMatrix + @";
+uniform mat4 " + viewMatrix + @";
+uniform mat4 " + modelMatrix + @";
 
 out vec3 passColor;
 
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-	passColor = inColor;
+    vec3 color;
+    if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 3.0; }
+    if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 3.0; }
+    if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 3.0; }
+	passColor = color;
 }
 ";
+        //if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 2.0; }
+        //if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 2.0; }
+        //if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 2.0; }
         private const string fragmentCode =
             @"#version 150 core
 
 in vec3 passColor;
 
+uniform bool renderWireframe = false;
+
 out vec4 out_Color;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+    if (renderWireframe)
+    {
+	    out_Color = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+    else
+    {
+	    out_Color = vec4(passColor, 1.0);
+    }
 }
 ";
 
@@ -47,12 +68,12 @@ void main(void) {
         /// <returns></returns>
         public static TeapotRenderer Create()
         {
-            var vertexShader = new VertexShader(vertexCode, "inPositoin", "inColor");
+            var vertexShader = new VertexShader(vertexCode, inPosition, inColor);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add("inPosition", Teapot.strPosition);
-            map.Add("inColor", Teapot.strColor);
+            map.Add(inPosition, Teapot.strPosition);
+            map.Add(inColor, Teapot.strColor);
             var renderer = new TeapotRenderer(new Teapot(), provider, map);
             renderer.Initialize();
 
@@ -61,23 +82,49 @@ void main(void) {
 
         private TeapotRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, Teapot.strPosition, switches)
+            : base(model, shaderProgramProvider, attributeMap, inPosition, switches)
         {
             this.ModelSize = model.GetModelSize();
         }
 
         #region IRenderable 成员
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderWireframe { get; set; }
+
+        private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
+        private GLState polygonOffsetState = new PolygonOffsetFillState();
+
         protected override void DoRender(RenderEventArgs arg)
         {
             mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
             mat4 view = arg.Scene.Camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
+            this.SetUniform(projectionMatrix, projection);
+            this.SetUniform(viewMatrix, view);
+            this.SetUniform(modelMatrix, model);
 
-            base.DoRender(arg);
+            if (this.RenderWireframe)
+            {
+                // render wireframe.
+                this.SetUniform("renderWireframe", true);
+                polygonMode.On();
+                polygonOffsetState.On();
+                base.DoRender(arg);
+                polygonOffsetState.Off();
+                polygonMode.Off();
+
+                // render solid body.
+                this.SetUniform("renderWireframe", false);
+                base.DoRender(arg);
+            }
+            else
+            {
+                base.DoRender(arg);
+            }
         }
 
         #endregion
