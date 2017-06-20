@@ -1,5 +1,4 @@
 ﻿using CSharpGL;
-using CSharpGL.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

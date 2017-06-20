@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Models
+namespace CSharpGL
 {
     //
     //        2-------------------3

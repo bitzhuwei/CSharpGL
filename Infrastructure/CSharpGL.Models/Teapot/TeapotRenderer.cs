@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Models
+namespace CSharpGL
 {
     /// <summary>
     /// Render propeller in modern opengl.

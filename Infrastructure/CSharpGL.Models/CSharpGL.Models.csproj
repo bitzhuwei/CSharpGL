@@ -7,7 +7,7 @@
     <ProjectGuid>{3798671C-D1A4-43AA-A4AE-EDFEF21CAD34}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.Models</RootNamespace>
+    <RootNamespace>CSharpGL</RootNamespace>
     <AssemblyName>CSharpGL.Models</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,6 +48,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighlightPick\LegacyTriangleRenderer.cs" />
     <Compile Include="Propeller\FlabellumRenderer.cs" />
     <Compile Include="Propeller\LegacyFlabellumRenderer.cs" />
     <Compile Include="Propeller\LegacyPropellerRenderer.cs" />
