@@ -9,7 +9,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// Render propeller in modern opengl.
     /// </summary>
-    public class TeapotRenderer : Renderer
+    public class TeapotRenderer : PickableRenderer
     {
 
         private const string vertexCode =
@@ -61,7 +61,7 @@ void main(void) {
 
         private TeapotRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, switches)
+            : base(model, shaderProgramProvider, attributeMap, "inPosition", switches)
         {
             this.ModelSize = model.GetModelSize();
         }
