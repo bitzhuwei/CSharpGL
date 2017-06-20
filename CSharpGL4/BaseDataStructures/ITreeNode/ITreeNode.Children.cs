@@ -86,7 +86,10 @@ namespace CSharpGL
         public void Add(ITreeNode item)
         {
             item.Parent = this.parent;
-            list.Add(item);
+            if (!list.Contains(item))
+            {
+                list.Add(item);
+            }
         }
 
         /// <summary>

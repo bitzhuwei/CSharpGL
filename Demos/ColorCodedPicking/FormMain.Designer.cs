@@ -37,13 +37,13 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.winGLCanvas1.Location = new System.Drawing.Point(12, 42);
+            this.winGLCanvas1.Location = new System.Drawing.Point(12, 38);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(961, 523);
+            this.winGLCanvas1.Size = new System.Drawing.Size(961, 527);
             this.winGLCanvas1.TabIndex = 0;
             // 
             // timer1
@@ -52,14 +52,15 @@
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // checkBox1
+            // chkRenderWireframe
             // 
             this.chkRenderWireframe.AutoSize = true;
             this.chkRenderWireframe.Checked = true;
             this.chkRenderWireframe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRenderWireframe.Font = new System.Drawing.Font("宋体", 12F);
             this.chkRenderWireframe.Location = new System.Drawing.Point(12, 12);
-            this.chkRenderWireframe.Name = "checkBox1";
-            this.chkRenderWireframe.Size = new System.Drawing.Size(120, 16);
+            this.chkRenderWireframe.Name = "chkRenderWireframe";
+            this.chkRenderWireframe.Size = new System.Drawing.Size(155, 20);
             this.chkRenderWireframe.TabIndex = 1;
             this.chkRenderWireframe.Text = "Render Wireframe";
             this.chkRenderWireframe.UseVisualStyleBackColor = true;
@@ -73,7 +74,7 @@
             this.Controls.Add(this.chkRenderWireframe);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "Demo Color-Coded-Picking in CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
