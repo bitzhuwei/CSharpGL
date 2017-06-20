@@ -49,7 +49,11 @@ namespace CSharpGL
                     }
                 }
                 {
-                    glDeleteFramebuffers(this.frameBuffer.Length, this.frameBuffer);
+                    IntPtr context = GL.Instance.GetCurrentContext();
+                    if (context != IntPtr.Zero)
+                    {
+                        glDeleteFramebuffers(this.frameBuffer.Length, this.frameBuffer);
+                    }
                 }
             }
 

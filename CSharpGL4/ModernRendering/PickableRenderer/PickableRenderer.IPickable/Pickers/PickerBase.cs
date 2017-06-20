@@ -39,7 +39,7 @@ namespace CSharpGL
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
-            VertexBuffer buffer = this.Renderer.PositionAttribute.Buffer;
+            VertexBuffer buffer = this.Renderer.PositionBuffer;
             int offset = (int)(firstIndex * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength());
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             IntPtr pointer = buffer.MapBufferRange(
@@ -76,7 +76,7 @@ namespace CSharpGL
         {
             var positions = new vec3[indexes.Length];
 
-            VertexBuffer buffer = this.Renderer.PositionAttribute.Buffer;
+            VertexBuffer buffer = this.Renderer.PositionBuffer;
             buffer.Bind();
             for (int i = 0; i < indexes.Length; i++)
             {

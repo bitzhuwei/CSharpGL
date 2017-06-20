@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected VertexShaderAttribute positionAttribute;
+        protected VertexBuffer positionBuffer;
 
         /// <summary>
         ///

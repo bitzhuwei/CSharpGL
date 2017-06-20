@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public VertexShaderAttribute PositionAttribute { get { return this.positionAttribute; } }
+        public VertexBuffer PositionBuffer { get { return this.positionBuffer; } }
 
         /// <summary>
         /// Vertex Array Object.

@@ -61,7 +61,7 @@ void main(void) {
 
         private TeapotRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, "inPosition", switches)
+            : base(model, shaderProgramProvider, attributeMap, Teapot.strPosition, switches)
         {
             this.ModelSize = model.GetModelSize();
         }

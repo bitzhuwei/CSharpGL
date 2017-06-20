@@ -9,16 +9,12 @@ namespace CSharpGL
         {
             uint vertexCount = 0;
 
-            VertexShaderAttribute attribute = this.positionAttribute;
-            if (attribute != null)
+            VertexBuffer positionBuffer = this.positionBuffer;
+            if (positionBuffer != null)
             {
-                VertexBuffer positionBuffer = attribute.Buffer;
-                if (positionBuffer != null)
-                {
-                    int byteLength = positionBuffer.ByteLength;
-                    int vertexLength = positionBuffer.Config.GetDataSize() * positionBuffer.Config.GetDataTypeByteLength();
-                    vertexCount = (uint)(byteLength / vertexLength);
-                }
+                int byteLength = positionBuffer.ByteLength;
+                int vertexLength = positionBuffer.Config.GetDataSize() * positionBuffer.Config.GetDataTypeByteLength();
+                vertexCount = (uint)(byteLength / vertexLength);
             }
 
             return vertexCount;

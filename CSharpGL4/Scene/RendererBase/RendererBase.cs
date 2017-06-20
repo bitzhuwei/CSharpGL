@@ -44,10 +44,31 @@ namespace CSharpGL
 
         #region ITreeNode 成员
 
+        private ITreeNode parent;
         /// <summary>
         /// 
         /// </summary>
-        public ITreeNode Parent { get; set; }
+        public ITreeNode Parent
+        {
+            get { return this.parent; }
+            set
+            {
+                ITreeNode old = this.parent;
+                if (old != value)
+                {
+                    this.parent = value;
+
+                    if (value == null) // parent != null
+                    {
+                        old.Children.Remove(this);
+                    }
+                    else // value != null && parent == null
+                    {
+                        value.Children.Add(this);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// 

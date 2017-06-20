@@ -13,6 +13,7 @@ namespace ColorCodedPicking
     public partial class FormMain : Form
     {
         private Scene scene;
+        private LegacyTriangleRenderer triangleTip;
         public FormMain()
         {
             InitializeComponent();
@@ -20,7 +21,33 @@ namespace ColorCodedPicking
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.MouseClick += winGLCanvas1_MouseClick;
+            this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
+        }
+
+        /// <summary>
+        /// Color coded picking.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
+        {
+            LegacyTriangleRenderer triangleTip = this.triangleTip;
+            if (triangleTip == null) { return; }
+
+            int x = e.X;
+            int y = this.winGLCanvas1.Height - e.Y - 1;
+            PickedGeometry pickedGeometry = this.scene.Pick(x, y, PickingGeometryType.Triangle);
+            if (pickedGeometry != null)
+            {
+                triangleTip.Vertex0 = pickedGeometry.Positions[0];
+                triangleTip.Vertex1 = pickedGeometry.Positions[1];
+                triangleTip.Vertex2 = pickedGeometry.Positions[2];
+                triangleTip.Parent = pickedGeometry.FromRenderer as ITreeNode;
+            }
+            else
+            {
+                triangleTip.Parent = null;
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -29,19 +56,14 @@ namespace ColorCodedPicking
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            var propeller = GetPropellerFlabellum();
-            this.scene = new Scene(camera, this.winGLCanvas1)
-            {
-                RootElement = propeller,
-            };
-        }
-
-        private RendererBase GetPropellerFlabellum()
-        {
             var teapot = TeapotRenderer.Create();
             teapot.Children.Add(new LegacyBoundingBoxRenderer(teapot.ModelSize));
 
-            return teapot;
+            this.scene = new Scene(camera, this.winGLCanvas1)
+            {
+                RootElement = teapot,
+            };
+
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -52,32 +74,6 @@ namespace ColorCodedPicking
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
-        }
-
-        /// <summary>
-        /// click to pick and toggle the render wireframe state.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void winGLCanvas1_MouseClick(object sender, MouseEventArgs e)
-        {
-            int x = e.X;
-            int y = this.winGLCanvas1.Height - e.Y - 1;
-            List<HitTarget> list = this.scene.Pick(x, y);
-            //foreach (var item in list)
-            //{
-            //    var parent = item.renderer.Parent;
-            //    if (parent != null)
-            //    {
-            //        var renderer = parent as IRenderable;
-            //        if (renderer != null)
-            //        {
-            //            renderer.RenderingEnabled = !renderer.RenderingEnabled;
-            //        }
-            //    }
-            //}
-
-            //this.lblState.Text = string.Format("{0} objects selected.", list.Count);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
