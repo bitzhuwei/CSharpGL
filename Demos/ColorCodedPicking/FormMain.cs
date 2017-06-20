@@ -13,6 +13,7 @@ namespace ColorCodedPicking
     public partial class FormMain : Form
     {
         private Scene scene;
+        private TeapotRenderer teapot;
         private LegacyTriangleRenderer triangleTip;
         public FormMain()
         {
@@ -56,7 +57,7 @@ namespace ColorCodedPicking
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            var teapot = TeapotRenderer.Create();
+            this.teapot = TeapotRenderer.Create();
             teapot.Children.Add(new LegacyBoundingBoxRenderer(teapot.ModelSize));
 
             this.scene = new Scene(camera, this.winGLCanvas1)
@@ -64,6 +65,8 @@ namespace ColorCodedPicking
                 RootElement = teapot,
             };
 
+            this.triangleTip = new LegacyTriangleRenderer();
+            this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -83,6 +86,11 @@ namespace ColorCodedPicking
             {
                 renderer.RotationAngle += 1;
             }
+        }
+
+        private void chkRenderWireframe_CheckedChanged(object sender, EventArgs e)
+        {
+            this.teapot.RenderWireframe = this.chkRenderWireframe.Checked;
         }
 
     }
