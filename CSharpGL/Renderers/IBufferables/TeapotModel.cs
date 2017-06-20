@@ -2,11 +2,6 @@
 {
     internal partial class TeapotModel
     {
-        internal static vec3[] normals;
-
-        public TeapotModel()
-        {
-        }
 
         public vec3[] GetPositions()
         {
@@ -17,8 +12,8 @@
 
         public vec3[] GetNormals()
         {
-            var result = new vec3[normals.Length];
-            normals.CopyTo(result, 0);
+            var result = new vec3[normalData.Length];
+            normalData.CopyTo(result, 0);
             return result;
         }
 
@@ -29,13 +24,11 @@
             return result;
         }
 
-        static TeapotModel()
-        {
-            MovePosition2Center();
-            GenNormals();
-        }
-
-        private static void GenNormals()
+        /// <summary>
+        /// normals already saved in file.
+        /// </summary>
+        /// <returns></returns>
+        private static vec3[] GenNormals()
         {
             var faceNormals = new vec3[faceData.Length];
             for (int i = 0; i < faceData.Length; i++)
@@ -74,9 +67,12 @@
                 }
             }
 
-            TeapotModel.normals = normals;
+            return normals;
         }
 
+        /// <summary>
+        /// positions already adjusted to locate center(0, 0, 0).
+        /// </summary>
         private static void MovePosition2Center()
         {
             vec3 min = positionData[0];

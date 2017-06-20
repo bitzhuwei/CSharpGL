@@ -143,6 +143,12 @@
     <Compile Include="0Foundations\OpenGLObjects\GLStates\EnableStates\DitherState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\EnableStates\LogicOperationState.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLStates\FrontFaceState.cs" />
+    <Compile Include="Renderers\IBufferables\TeapotModel.normalData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Renderers\IBufferables\TeapotModel.positionData.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Rendering\RendererBase.IModelSpace.User.cs" />
     <Compile Include="Rendering\Renderer\IShaderProgramProvider.cs" />
     <Compile Include="Rendering\Renderer\Renderer.Uniforms.cs" />
@@ -260,7 +266,6 @@
     <Compile Include="Renderers\PointsRenderer.cs" />
     <Compile Include="Renderers\SimpleRenderer.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
-    <Compile Include="Renderers\IBufferables\TeapotModel.positionData.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Faces.cs" />
     <Content Include="0Foundations\OpenGLObjects\Texture\readme.md" />
     <None Include="0Foundations\DataStructrues\BoundingBox\readme.md" />
