@@ -79,6 +79,8 @@ namespace CSharpGL
 
         private void DoRender()
         {
+            var texture = this.BindingTexture;
+            if (texture != null) { texture.Bind(); }
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < positions.Length; i++)
             {
@@ -88,6 +90,7 @@ namespace CSharpGL
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
+            if (texture != null) { texture.Unbind(); }
         }
 
         #region ILegacyPickable 成员
@@ -115,5 +118,7 @@ namespace CSharpGL
 
         #endregion
 
+
+        public Texture BindingTexture { get; set; }
     }
 }
