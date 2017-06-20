@@ -34,6 +34,7 @@ namespace RenderToTexture
             framebuffer.Attach(texture);
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
+            this.framebuffer = framebuffer;
 
             this.sourceRenderer = source;
             this.sourceRenderer.RenderingEnabled = false;
