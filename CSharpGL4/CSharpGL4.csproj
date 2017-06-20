@@ -219,7 +219,7 @@
     <Compile Include="Scene\IPickable\PickingGeometryType.cs" />
     <Compile Include="Scene\IPickable\PickingGeometryTypeHelper.cs" />
     <Compile Include="Scene\IRenderable.cs" />
-    <Compile Include="Scene\RendererBase\RendererBase.Children.cs">
+    <Compile Include="Scene\RendererBase\RendererBaseChildren.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\RendererBase\RendererBase.IWorldSpace.cs" />
