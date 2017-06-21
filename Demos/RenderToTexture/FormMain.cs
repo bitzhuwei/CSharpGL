@@ -28,7 +28,7 @@ namespace RenderToTexture
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 1, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -39,7 +39,7 @@ namespace RenderToTexture
             var rectangle = RectangleRenderer.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
             rectangle.BindingTexture = demo.BindingTexture;
-            rectangle.Scale = new vec3(5, 5, 5);
+            rectangle.Scale = new vec3(7, 7, 7);
             this.rectangle = rectangle;
             var group = new GroupRenderer();
             group.Children.Add(demo);
