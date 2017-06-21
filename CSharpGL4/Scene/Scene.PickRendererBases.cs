@@ -93,9 +93,12 @@ namespace CSharpGL
                     currentName++;
                 }
 
-                foreach (var item in sceneElement.Children)
+                if (pickable.LegacyPickingChildrenEnabled)
                 {
-                    this.RenderForPicking(item as RendererBase, arg, ref currentName);
+                    foreach (var item in sceneElement.Children)
+                    {
+                        this.RenderForPicking(item as RendererBase, arg, ref currentName);
+                    }
                 }
 
                 if (picking)
