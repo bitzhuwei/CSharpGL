@@ -31,10 +31,10 @@ namespace RenderToTexture
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer();
             framebuffer.Bind();
-            framebuffer.Attach(texture);
-            framebuffer.Attach(colorBuffer);
-            framebuffer.Attach(depthBuffer);
-            framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 0);
+            framebuffer.Attach(colorBuffer);//0
+            framebuffer.Attach(texture);//1
+            framebuffer.Attach(depthBuffer);// special
+            framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(texture);//1
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
             this.framebuffer = framebuffer;
