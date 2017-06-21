@@ -20,7 +20,7 @@ namespace CSharpGL
 
         private VertexBuffer positionBuffer;
 
-        private VertexBuffer colorBuffer;
+        //private VertexBuffer colorBuffer;
 
         private OneIndexBuffer indexBuffer;
 
