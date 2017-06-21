@@ -40,7 +40,11 @@ namespace RenderToTexture
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render();
+            Scene scene = this.scene;
+            if (scene != null)
+            {
+                this.scene.Render();
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
@@ -50,10 +54,14 @@ namespace RenderToTexture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace renderer = this.scene.RootElement;
-            if (renderer != null)
+            Scene scene = this.scene;
+            if (scene != null)
             {
-                renderer.RotationAngle += 1;
+                IWorldSpace renderer = scene.RootElement;
+                if (renderer != null)
+                {
+                    renderer.RotationAngle += 1;
+                }
             }
         }
     }
