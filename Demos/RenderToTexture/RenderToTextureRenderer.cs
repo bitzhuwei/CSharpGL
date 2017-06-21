@@ -12,7 +12,7 @@ namespace RenderToTexture
     /// </summary>
     class RenderToTextureRenderer : RendererBase, IRenderable
     {
-        public RenderToTextureRenderer(IRenderable source)
+        public RenderToTextureRenderer()
         {
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -38,10 +38,6 @@ namespace RenderToTexture
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
             this.framebuffer = framebuffer;
-
-            this.sourceRenderer = source;
-            this.sourceRenderer.RenderingEnabled = false;
-            this.Children.Add(source as RendererBase);
         }
 
         #region IRenderable 成员
@@ -60,19 +56,18 @@ namespace RenderToTexture
                 GL.Instance.ClearColor(0.5f, 0.5f, 0.5f, 1);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                this.sourceRenderer.RenderBeforeChildren(arg);
+                //this.sourceRenderer.RenderBeforeChildren(arg);
             }
-            this.framebuffer.Unbind();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
         {
+            this.framebuffer.Unbind();
         }
 
         #endregion
 
         private Framebuffer framebuffer;
-        private IRenderable sourceRenderer;
 
         public Texture BindingTexture { get; set; }
 

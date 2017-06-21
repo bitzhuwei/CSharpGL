@@ -33,7 +33,8 @@ namespace RenderToTexture
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var teapot = TeapotRenderer.Create();
-            var demo = new RenderToTextureRenderer(teapot);
+            var demo = new RenderToTextureRenderer();
+            demo.Children.Add(teapot);// rendered to framebuffer, then to texture.
             this.demo = demo;
             var rectangle = RectangleRenderer.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.

@@ -28,7 +28,8 @@ namespace CSharpGL
                 sceneElement.modelMatrix = sceneElement.GetModelMatrix();
 
                 var renderable = sceneElement as IRenderable;
-                if (renderable != null && renderable.RenderingEnabled)
+                bool render = renderable != null && renderable.RenderingEnabled;
+                if (render)
                 {
                     renderable.RenderBeforeChildren(arg);
                 }
@@ -36,6 +37,11 @@ namespace CSharpGL
                 foreach (var item in sceneElement.Children)
                 {
                     this.Render(item as RendererBase, arg);
+                }
+
+                if (render)
+                {
+                    renderable.RenderAfterChildren(arg);
                 }
             }
         }
