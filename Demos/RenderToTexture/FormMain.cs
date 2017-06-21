@@ -14,8 +14,8 @@ namespace RenderToTexture
     public partial class FormMain : Form
     {
         private Scene scene;
-        //private RectangleRenderer rectangle;
-        private LegacyRectangleRenderer rectangle;
+        private RectangleRenderer rectangle;
+        //private LegacyRectangleRenderer rectangle;//LegacyRectangleRenderer dosen't work in rendering-to-texture.
         private RenderToTextureRenderer demo;
         public FormMain()
         {
@@ -35,8 +35,8 @@ namespace RenderToTexture
             var teapot = TeapotRenderer.Create();
             var demo = new RenderToTextureRenderer(teapot);
             this.demo = demo;
-            //var rectangle = RectangleRenderer.Create();
-            var rectangle = new LegacyRectangleRenderer();
+            var rectangle = RectangleRenderer.Create();
+            //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
             rectangle.BindingTexture = demo.BindingTexture;
             rectangle.Scale = new vec3(5, 5, 5);
             this.rectangle = rectangle;

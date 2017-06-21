@@ -57,7 +57,7 @@ namespace RenderToTexture
         {
             this.framebuffer.Bind();
             {
-                GL.Instance.ClearColor(1, 0, 0, 0);
+                GL.Instance.ClearColor(0.5f, 0.5f, 0.5f, 1);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
                 this.sourceRenderer.Render(arg);
