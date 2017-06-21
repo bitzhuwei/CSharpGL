@@ -14,6 +14,8 @@ namespace RenderToTexture
     {
         public RenderToTextureRenderer()
         {
+            this.RenderBackground = true;
+
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             int width = viewport[2], height = viewport[3];
@@ -35,7 +37,15 @@ namespace RenderToTexture
             Framebuffer framebuffer = this.GetFramebuffer();
             framebuffer.Bind();
             {
-                GL.Instance.ClearColor(0.5f, 0.5f, 0.5f, 0.0f);
+                if (this.RenderBackground)
+                {
+                    GL.Instance.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+                }
+                else
+                {
+                    GL.Instance.ClearColor(0.5f, 0.5f, 0.5f, 0.0f);
+                }
+
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
                 // objects will be rendered in this.Children
@@ -52,8 +62,15 @@ namespace RenderToTexture
 
         private Framebuffer framebuffer;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Texture BindingTexture { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderBackground { get; set; }
 
         private Framebuffer GetFramebuffer()
         {
@@ -80,7 +97,7 @@ namespace RenderToTexture
         private Framebuffer CreateFramebuffer(int width, int height)
         {
             var texture = new Texture(TextureTarget.Texture2D,
-            new NullImageFiller(width, height, GL.GL_RGB, GL.GL_RGB, GL.GL_UNSIGNED_BYTE),
+            new NullImageFiller(width, height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
             new SamplerParameters(
                 TextureWrapping.Repeat,
                 TextureWrapping.Repeat,

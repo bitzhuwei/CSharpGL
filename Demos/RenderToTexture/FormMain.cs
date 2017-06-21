@@ -98,5 +98,10 @@ namespace RenderToTexture
         {
             this.rotateTeapot = this.chkRotateTeapot.Checked;
         }
+
+        private void chkRenderBackground_CheckedChanged(object sender, EventArgs e)
+        {
+            this.demo.RenderBackground = this.chkRenderBackground.Checked;
+        }
     }
 }

@@ -33,6 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.chkRotateRect = new System.Windows.Forms.CheckBox();
             this.chkRotateTeapot = new System.Windows.Forms.CheckBox();
+            this.chkRenderBackground = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,11 +82,26 @@
             this.chkRotateTeapot.UseVisualStyleBackColor = true;
             this.chkRotateTeapot.CheckedChanged += new System.EventHandler(this.chkRotateTeapot_CheckedChanged);
             // 
+            // checkBox1
+            // 
+            this.chkRenderBackground.AutoSize = true;
+            this.chkRenderBackground.Checked = true;
+            this.chkRenderBackground.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRenderBackground.Font = new System.Drawing.Font("宋体", 12F);
+            this.chkRenderBackground.Location = new System.Drawing.Point(270, 12);
+            this.chkRenderBackground.Name = "checkBox1";
+            this.chkRenderBackground.Size = new System.Drawing.Size(163, 20);
+            this.chkRenderBackground.TabIndex = 1;
+            this.chkRenderBackground.Text = "Render Background";
+            this.chkRenderBackground.UseVisualStyleBackColor = true;
+            this.chkRenderBackground.CheckedChanged += new System.EventHandler(this.chkRenderBackground_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 542);
+            this.Controls.Add(this.chkRenderBackground);
             this.Controls.Add(this.chkRotateTeapot);
             this.Controls.Add(this.chkRotateRect);
             this.Controls.Add(this.winGLCanvas1);
@@ -103,5 +119,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox chkRotateRect;
         private System.Windows.Forms.CheckBox chkRotateTeapot;
+        private System.Windows.Forms.CheckBox chkRenderBackground;
     }
 }
