@@ -18,7 +18,7 @@ namespace CSharpGL
         private const string modelMatrix = "modelMatrix";
         private const string passColor = "passColor";
         private const string vertexCode =
-            @"#version 150 core
+            @"#version 330 core
 
 in vec3 " + inPosition + @";
 in vec3 " + inColor + @";
@@ -42,13 +42,14 @@ void main(void) {
         //if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 2.0; }
         //if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 2.0; }
         private const string fragmentCode =
-            @"#version 150 core
+            @"#version 330 core
 
 in vec3 passColor;
 
 uniform bool renderWireframe = false;
 
-out vec4 out_Color;
+layout(location = 0) out vec4 out_Color;
+//out vec4 out_Color;
 
 void main(void) {
     if (renderWireframe)
@@ -85,6 +86,8 @@ void main(void) {
             : base(model, shaderProgramProvider, attributeMap, inPosition, switches)
         {
             this.ModelSize = model.GetModelSize();
+            this.RenderWireframe = true;
+            this.RenderBody = true;
         }
 
         #region IRenderable 成员
