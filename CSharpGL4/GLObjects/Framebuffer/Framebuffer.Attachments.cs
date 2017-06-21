@@ -141,8 +141,8 @@ namespace CSharpGL
             if (nextColorAttachmentIndex >= attachment_id.Length)
             { throw new IndexOutOfRangeException("Not enough color attach points!"); }
 
-            glFramebufferTexture2D(
-    GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], GL.GL_TEXTURE_2D, texture.Id, 0);
+            glFramebufferTexture(
+    GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], texture.Id, 0);
         }
 
         /// <summary>
@@ -197,6 +197,14 @@ namespace CSharpGL
             this.depthBuffer = renderbuffer;
         }
 
+        /// <summary>
+        /// et the list of draw buffers.
+        /// </summary>
+        /// <param name="drawBuffers">GL.GL_COLOR_ATTACHMENT0 + [0, 15]</param>
+        public void SetDrawBuffers(params uint[] drawBuffers)
+        {
+            glDrawBuffers(drawBuffers.Length, drawBuffers);
+        }
         //  TODO: We should be able to just use the code below - however we
         //  get invalid dimension issues at the moment, so recreate for now.
         ///// <summary>
