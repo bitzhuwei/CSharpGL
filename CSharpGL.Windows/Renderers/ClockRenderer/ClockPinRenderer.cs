@@ -60,6 +60,10 @@ namespace CSharpGL
             DoRender(arg);
         }
 
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
+
         #endregion
 
         /// <summary>

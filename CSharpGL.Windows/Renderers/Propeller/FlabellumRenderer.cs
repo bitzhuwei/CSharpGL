@@ -113,6 +113,10 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
+
         #endregion
 
         #region ILegacyPickable 成员

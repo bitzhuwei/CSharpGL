@@ -65,11 +65,16 @@ namespace RenderToTexture
             this.framebuffer.Unbind();
         }
 
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
+
         #endregion
 
         private Framebuffer framebuffer;
         private IRenderable sourceRenderer;
 
         public Texture BindingTexture { get; set; }
+
     }
 }

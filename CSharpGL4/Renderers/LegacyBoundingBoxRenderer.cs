@@ -108,6 +108,9 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
 
         #endregion
 

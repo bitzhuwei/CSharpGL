@@ -75,6 +75,10 @@ namespace CSharpGL
             this.PopProjectionViewMatrix();
         }
 
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
+
         #endregion
 
         private GLDelegates.void_uint activeTexture;

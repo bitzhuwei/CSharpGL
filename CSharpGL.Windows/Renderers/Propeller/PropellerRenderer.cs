@@ -120,6 +120,10 @@ namespace CSharpGL
             this.PopProjectionViewMatrix();
         }
 
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
+
         #endregion
 
         private void DoRender()
