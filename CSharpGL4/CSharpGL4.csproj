@@ -123,7 +123,7 @@
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IDisposable.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoInitialize.cs" />
-    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.DoRender.cs" />
+    <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IRenderable.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInPolygonSearcher.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInQuad+Searcher.cs" />
     <Compile Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInTriangle+Searcher.cs" />
@@ -162,7 +162,7 @@
     <Compile Include="ModernRendering\Renderer\Renderer.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.IDisposable.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.DoInitialize.cs" />
-    <Compile Include="ModernRendering\Renderer\Renderer.DoRender.cs" />
+    <Compile Include="ModernRendering\Renderer\Renderer.IRenderable.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Property.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.UniformArrays.cs" />
     <Compile Include="ModernRendering\Renderer\Renderer.Uniforms.cs" />

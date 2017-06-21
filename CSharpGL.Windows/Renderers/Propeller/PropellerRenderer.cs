@@ -107,6 +107,12 @@ namespace CSharpGL
         /// </summary>
         public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
 
+        private bool renderingChildrenEnabled = true;
+        /// <summary>
+        /// Render this object's children or not.
+        /// </summary>
+        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             this.RotationAngle += 4.9f;
@@ -151,7 +157,7 @@ namespace CSharpGL
             set { legacyPickingEnabled = value; }
         }
 
-        public void RenderForLegacyPicking(LegacyPickEventArgs arg)
+        public void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
@@ -161,6 +167,12 @@ namespace CSharpGL
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();
         }
+
+        /// <summary>
+        /// Render this model after rendering its children in legacy OpenGL.
+        /// </summary>
+        /// <param name="arg"></param>
+        public void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg) { }
 
         #endregion
 

@@ -93,6 +93,12 @@ namespace CSharpGL
             set { renderingEnabled = value; }
         }
 
+        private bool renderingChildrenEnabled = true;
+        /// <summary>
+        /// Render this object's children or not.
+        /// </summary>
+        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
+
         private GLState polygonOffsetState = new PolygonOffsetFillState();
         private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
         private LineWidthState lineWidthState = new LineWidthState();

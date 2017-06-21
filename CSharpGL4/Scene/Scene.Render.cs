@@ -34,9 +34,12 @@ namespace CSharpGL
                     renderable.RenderBeforeChildren(arg);
                 }
 
-                foreach (var item in sceneElement.Children)
+                if (renderable != null && renderable.RenderingChildrenEnabled)
                 {
-                    this.Render(item as RendererBase, arg);
+                    foreach (var item in sceneElement.Children)
+                    {
+                        this.Render(item as RendererBase, arg);
+                    }
                 }
 
                 if (render)

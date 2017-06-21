@@ -86,7 +86,7 @@ namespace CSharpGL
                     GL.Instance.LoadName(currentName);
                     arg.hitMap[currentName] = sceneElement;
 
-                    pickable.RenderForLegacyPicking(arg);
+                    pickable.RenderBeforeChildrenForLegacyPicking(arg);
 
                     //  Increment the name.
                     currentName++;

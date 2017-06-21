@@ -43,6 +43,12 @@ namespace CSharpGL
         /// </summary>
         public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
 
+        private bool renderingChildrenEnabled = true;
+        /// <summary>
+        /// Render this object's children or not.
+        /// </summary>
+        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
+
         /// <summary>
         /// Render something.
         /// </summary>

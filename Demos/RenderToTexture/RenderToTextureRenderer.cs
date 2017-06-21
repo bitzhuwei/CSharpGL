@@ -32,6 +32,12 @@ namespace RenderToTexture
             set { this.renderingEnabled = value; }
         }
 
+        private bool renderingChildrenEnabled = true;
+        /// <summary>
+        /// Render this object's children or not.
+        /// </summary>
+        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             Framebuffer framebuffer = this.GetFramebuffer();

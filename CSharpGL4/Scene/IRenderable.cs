@@ -16,6 +16,11 @@ namespace CSharpGL
         bool RenderingEnabled { get; set; }
 
         /// <summary>
+        /// Render this object's children or not.
+        /// </summary>
+        bool RenderingChildrenEnabled { get; set; }
+
+        /// <summary>
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>

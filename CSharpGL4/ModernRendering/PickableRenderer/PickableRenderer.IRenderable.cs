@@ -1,8 +1,7 @@
 ﻿namespace CSharpGL
 {
-    public partial class Renderer
+    public partial class PickableRenderer
     {
-
         #region IRenderable 成员
 
         private bool renderingEnabled = true;
@@ -10,6 +9,12 @@
         /// 
         /// </summary>
         public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
+
+        private bool renderingChildrenEnabled = true;
+        /// <summary>
+        /// Render this object's children or not.
+        /// </summary>
+        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
 
         /// <summary>
         /// Render something.
@@ -33,7 +38,7 @@
         /// </summary>
         protected virtual void DoRender(RenderEventArgs arg)
         {
-            ShaderProgram program = this.Program;
+            ShaderProgram program = this.RenderProgram;
 
             // 绑定shader
             program.Bind();

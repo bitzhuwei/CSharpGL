@@ -16,10 +16,16 @@ namespace CSharpGL
         bool LegacyPickingEnabled { get; set; }
 
         /// <summary>
-        /// Render this model in legacy OpenGL.
+        /// Render this model before rendering its children in legacy OpenGL.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderForLegacyPicking(LegacyPickEventArgs arg);
+        void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg);
+
+        /// <summary>
+        /// Render this model after rendering its children in legacy OpenGL.
+        /// </summary>
+        /// <param name="arg"></param>
+        void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg);
     }
 
     /// <summary>
