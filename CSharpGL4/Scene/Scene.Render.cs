@@ -30,7 +30,7 @@ namespace CSharpGL
                 var renderable = sceneElement as IRenderable;
                 if (renderable != null && renderable.RenderingEnabled)
                 {
-                    renderable.Render(arg);
+                    renderable.RenderBeforeChildren(arg);
                 }
 
                 foreach (var item in sceneElement.Children)

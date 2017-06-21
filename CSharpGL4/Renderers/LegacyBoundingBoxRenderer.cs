@@ -78,7 +78,7 @@ namespace CSharpGL
 
         private GLState polygonModeState = new PolygonModeState(PolygonMode.Line);
         private GLState polygonOffsetState = new PolygonOffsetFillState();
-        public void Render(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();

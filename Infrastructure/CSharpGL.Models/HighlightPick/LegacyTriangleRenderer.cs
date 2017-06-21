@@ -101,7 +101,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void Render(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();

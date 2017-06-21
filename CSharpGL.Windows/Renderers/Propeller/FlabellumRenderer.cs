@@ -89,7 +89,7 @@ namespace CSharpGL
         /// </summary>
         public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
 
-        public void Render(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();

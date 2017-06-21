@@ -14,7 +14,7 @@
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        public void Render(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 

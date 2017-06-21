@@ -19,7 +19,13 @@ namespace CSharpGL
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        void Render(RenderEventArgs arg);
+        void RenderBeforeChildren(RenderEventArgs arg);
+
+        /// <summary>
+        /// Render something.
+        /// </summary>
+        /// <param name="arg"></param>
+        void RenderAfterChildren(RenderEventArgs arg);
     }
 
     /// <summary>
