@@ -65,6 +65,7 @@ namespace RenderToTexture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (this.rotateRect)
             {
                 IWorldSpace renderer = this.rectangle;
                 if (renderer != null)
@@ -73,6 +74,7 @@ namespace RenderToTexture
                 }
             }
 
+            if (this.rotateTeapot)
             {
                 IWorldSpace renderer = this.demo;
                 if (renderer != null)
@@ -80,6 +82,18 @@ namespace RenderToTexture
                     renderer.RotationAngle += 10;
                 }
             }
+        }
+
+        private bool rotateRect = true;
+        private bool rotateTeapot = true;
+        private void chkRotateRect_CheckedChanged(object sender, EventArgs e)
+        {
+            this.rotateRect = this.chkRotateRect.Checked;
+        }
+
+        private void chkRotateTeapot_CheckedChanged(object sender, EventArgs e)
+        {
+            this.rotateTeapot = this.chkRotateTeapot.Checked;
         }
     }
 }
