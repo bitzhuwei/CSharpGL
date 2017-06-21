@@ -9,16 +9,21 @@ namespace CSharpGL
     {
         #region ILegacyPickable 成员
 
+        private bool legacyPickingEnabled = true;
         public bool LegacyPickingEnabled
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return legacyPickingEnabled; }
+            set { legacyPickingEnabled = value; }
+        }
+
+        private bool legacyPickingChildrenEnabled = true;
+        /// <summary>
+        /// picking in children.
+        /// </summary>
+        public bool LegacyPickingChildrenEnabled
+        {
+            get { return legacyPickingChildrenEnabled; }
+            set { legacyPickingChildrenEnabled = value; }
         }
 
         public void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg)

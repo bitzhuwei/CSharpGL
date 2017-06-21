@@ -16,6 +16,11 @@ namespace CSharpGL
         bool LegacyPickingEnabled { get; set; }
 
         /// <summary>
+        /// picking in children.
+        /// </summary>
+        bool LegacyPickingChildrenEnabled { get; set; }
+
+        /// <summary>
         /// Render this model before rendering its children in legacy OpenGL.
         /// </summary>
         /// <param name="arg"></param>
