@@ -77,10 +77,18 @@ namespace CSharpGL
 
         #endregion
 
+        private GLDelegates.void_uint activeTexture;
         private void DoRender()
         {
             var texture = this.BindingTexture;
-            if (texture != null) { texture.Bind(); }
+            if (texture != null)
+            {
+                if (activeTexture == null)
+                { activeTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
+                const uint activeTextureIndex = 0;
+                activeTexture(activeTextureIndex + GL.GL_TEXTURE0);
+                texture.Bind();
+            }
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < positions.Length; i++)
             {
