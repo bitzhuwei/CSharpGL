@@ -80,7 +80,8 @@ namespace CSharpGL
             if (sceneElement != null)
             {
                 var pickable = sceneElement as ILegacyPickable;
-                if (pickable != null && pickable.LegacyPickingEnabled)
+                bool picking = pickable != null && pickable.LegacyPickingEnabled;
+                if (picking)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);
@@ -96,6 +97,12 @@ namespace CSharpGL
                 {
                     this.RenderForPicking(item as RendererBase, arg, ref currentName);
                 }
+
+                if (picking)
+                {
+                    pickable.RenderAfterChildrenForLegacyPicking(arg);
+                }
+
             }
         }
     }
