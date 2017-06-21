@@ -94,10 +94,10 @@ void main(void) {
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            var texture = this.BindingTexture;
-            if (texture != null)
+            var source = this.TextureSource;
+            if (source != null)
             {
-                this.SetUniform("tex", texture);
+                this.SetUniform("tex", source.BindingTexture);
             }
             mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
             mat4 view = arg.Scene.Camera.GetViewMatrix();
@@ -109,7 +109,7 @@ void main(void) {
             base.DoRender(arg);
         }
 
-        public Texture BindingTexture { get; set; }
+        public ITextureSource TextureSource { get; set; }
     }
 
     class RectangleModel : IBufferable

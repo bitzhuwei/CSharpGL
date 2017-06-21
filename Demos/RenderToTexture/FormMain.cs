@@ -38,7 +38,7 @@ namespace RenderToTexture
             this.demo = demo;
             var rectangle = RectangleRenderer.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-            rectangle.BindingTexture = demo.BindingTexture;
+            rectangle.TextureSource = demo;
             rectangle.Scale = new vec3(7, 7, 7);
             this.rectangle = rectangle;
             var group = new GroupRenderer();
