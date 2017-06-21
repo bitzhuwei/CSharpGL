@@ -48,8 +48,7 @@ in vec3 passColor;
 
 uniform bool renderWireframe = false;
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+out vec4 out_Color;
 
 void main(void) {
     if (renderWireframe)
