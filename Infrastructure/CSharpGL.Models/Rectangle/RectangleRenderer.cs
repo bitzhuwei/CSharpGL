@@ -59,7 +59,9 @@ layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
-	out_Color = texture(tex, passUV);
+	vec4 color = texture(tex, passUV);
+    if (color.a == 0) { discard; }
+    else { out_Color = color; }
 }
 ";
 
