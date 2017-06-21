@@ -25,13 +25,15 @@ namespace RenderToTexture
                     TextureWrapping.Repeat,
                     TextureFilter.Linear,
                     TextureFilter.Linear));
-            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
+            texture.Initialize();
+            //Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer();
             framebuffer.Bind();
-            framebuffer.Attach(colorBuffer);
-            framebuffer.Attach(depthBuffer);
+            //framebuffer.Attach(colorBuffer);
             framebuffer.Attach(texture);
+            framebuffer.Attach(depthBuffer);
+            framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 0);
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
             this.framebuffer = framebuffer;
@@ -57,6 +59,9 @@ namespace RenderToTexture
         public void Render(RenderEventArgs arg)
         {
             this.framebuffer.Bind();
+            GL.Instance.ClearColor(1, 0, 0, 0);
+            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
             this.sourceRenderer.Render(arg);
             this.framebuffer.Unbind();
         }
