@@ -18,7 +18,7 @@ namespace RenderToTexture
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             int width = viewport[2], height = viewport[3];
             var texture = new Texture(TextureTarget.Texture2D,
-                new NullImageFiller(width, height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
+                new NullImageFiller(width, height, GL.GL_RGB, GL.GL_RGB, GL.GL_UNSIGNED_BYTE),
                 new SamplerParameters(
                     TextureWrapping.Repeat,
                     TextureWrapping.Repeat,
@@ -26,12 +26,13 @@ namespace RenderToTexture
                     TextureFilter.Linear,
                     TextureFilter.Linear));
             texture.Initialize();
-            //Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
+            this.BindingTexture = texture;
+            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer();
             framebuffer.Bind();
-            //framebuffer.Attach(colorBuffer);
             framebuffer.Attach(texture);
+            framebuffer.Attach(colorBuffer);
             framebuffer.Attach(depthBuffer);
             framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 0);
             framebuffer.CheckCompleteness();
@@ -41,10 +42,6 @@ namespace RenderToTexture
             this.sourceRenderer = source;
             this.sourceRenderer.RenderingEnabled = false;
             this.Children.Add(source as RendererBase);
-
-            this.rectangle = new LegacyRectangleRenderer();
-            this.rectangle.BindingTexture = texture;
-            this.Children.Add(rectangle);
         }
 
         #region IRenderable 成员
@@ -59,10 +56,12 @@ namespace RenderToTexture
         public void Render(RenderEventArgs arg)
         {
             this.framebuffer.Bind();
-            GL.Instance.ClearColor(1, 0, 0, 0);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            {
+                GL.Instance.ClearColor(1, 0, 0, 0);
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            this.sourceRenderer.Render(arg);
+                this.sourceRenderer.Render(arg);
+            }
             this.framebuffer.Unbind();
         }
 
@@ -70,7 +69,7 @@ namespace RenderToTexture
 
         private Framebuffer framebuffer;
         private IRenderable sourceRenderer;
-        private LegacyRectangleRenderer rectangle;
 
+        public Texture BindingTexture { get; set; }
     }
 }

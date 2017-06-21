@@ -56,6 +56,7 @@
     <Compile Include="Propeller\LegacyPropellerRenderer.cs" />
     <Compile Include="Propeller\PropellerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rectangle\RectangleRenderer.cs" />
     <Compile Include="Rectangle\LegacyRectangleRenderer.cs" />
     <Compile Include="Teapot\Teapot.cs" />
     <Compile Include="Teapot\Teapot.Faces.cs" />

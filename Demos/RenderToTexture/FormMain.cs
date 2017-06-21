@@ -14,6 +14,8 @@ namespace RenderToTexture
     public partial class FormMain : Form
     {
         private Scene scene;
+        private RectangleRenderer rectangle;
+        private RenderToTextureRenderer demo;
         public FormMain()
         {
             InitializeComponent();
@@ -31,11 +33,20 @@ namespace RenderToTexture
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var teapot = TeapotRenderer.Create();
             var demo = new RenderToTextureRenderer(teapot);
-
+            this.demo = demo;
+            var rectangle = RectangleRenderer.Create();
+            rectangle.BindingTexture = demo.BindingTexture;
+            rectangle.Scale = new vec3(5, 5, 5);
+            this.rectangle = rectangle;
+            var group = new GroupRenderer();
+            group.Children.Add(demo);
+            group.Children.Add(rectangle);
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
-                RootElement = demo,
+                ClearColor = Color.SkyBlue,
+                RootElement = group,
             };
+
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -43,7 +54,7 @@ namespace RenderToTexture
             Scene scene = this.scene;
             if (scene != null)
             {
-                this.scene.Render();
+                scene.Render();
             }
         }
 
@@ -54,13 +65,19 @@ namespace RenderToTexture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Scene scene = this.scene;
-            if (scene != null)
             {
-                IWorldSpace renderer = scene.RootElement;
+                IWorldSpace renderer = this.rectangle;
                 if (renderer != null)
                 {
                     renderer.RotationAngle += 1;
+                }
+            }
+
+            {
+                IWorldSpace renderer = this.demo;
+                if (renderer != null)
+                {
+                    renderer.RotationAngle += 10;
                 }
             }
         }
