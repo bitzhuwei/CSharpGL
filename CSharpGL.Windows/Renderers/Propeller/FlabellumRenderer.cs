@@ -127,6 +127,7 @@ namespace CSharpGL
 
         #region ILegacyPickable 成员
 
+        private LegacyPickingFlags enableLegacyPicking = LegacyPickingFlags.Children;
         /// <summary>
         /// 
         /// </summary>
