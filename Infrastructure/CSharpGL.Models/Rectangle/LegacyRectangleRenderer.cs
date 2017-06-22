@@ -113,11 +113,11 @@ namespace CSharpGL
 
         #region ILegacyPickable 成员
 
-        private LegacyPickingFlags enableLegacyPicking = LegacyPickingFlags.Children;
+        private ThreeFlags enableLegacyPicking = ThreeFlags.Children;
         /// <summary>
         /// 
         /// </summary>
-        public LegacyPickingFlags EnableLegacyPicking
+        public ThreeFlags EnableLegacyPicking
         {
             get { return this.enableLegacyPicking; }
             set { this.enableLegacyPicking = value; }

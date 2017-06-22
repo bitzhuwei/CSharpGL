@@ -229,6 +229,7 @@
     <Compile Include="Scene\RendererBase\RendererBase.IWorldSpace.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBase.IDisposable.cs" />
+    <Compile Include="Scene\ThreeFlags.cs" />
     <Content Include="ModernRendering\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\readme.md" />
     <Content Include="ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\readme.md" />

@@ -80,8 +80,8 @@ namespace CSharpGL
             var pickable = sceneElement as ILegacyPickable;
             if (pickable != null)
             {
-                LegacyPickingFlags flags = pickable.EnableLegacyPicking;
-                if ((flags & LegacyPickingFlags.BeforeChildren) == LegacyPickingFlags.BeforeChildren)
+                ThreeFlags flags = pickable.EnableLegacyPicking;
+                if ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);
@@ -93,7 +93,7 @@ namespace CSharpGL
                     currentName++;
                 }
 
-                if ((flags & LegacyPickingFlags.Children) == LegacyPickingFlags.Children)
+                if ((flags & ThreeFlags.Children) == ThreeFlags.Children)
                 {
                     foreach (var item in sceneElement.Children)
                     {
@@ -101,7 +101,7 @@ namespace CSharpGL
                     }
                 }
 
-                if ((flags & LegacyPickingFlags.AfterChildren) == LegacyPickingFlags.AfterChildren)
+                if ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);
