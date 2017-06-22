@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        bool LegacyPickingEnabled { get; set; }
+        bool LegacyPickingBeforeChildrenEnabled { get; set; }
 
         /// <summary>
         /// picking in children.

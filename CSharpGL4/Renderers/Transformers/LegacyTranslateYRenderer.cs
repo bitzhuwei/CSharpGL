@@ -10,7 +10,7 @@ namespace CSharpGL
         #region ILegacyPickable 成员
 
         private bool legacyPickingEnabled = true;
-        public bool LegacyPickingEnabled
+        public bool LegacyPickingBeforeChildrenEnabled
         {
             get { return legacyPickingEnabled; }
             set { legacyPickingEnabled = value; }
