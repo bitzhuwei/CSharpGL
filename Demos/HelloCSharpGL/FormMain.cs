@@ -224,6 +224,8 @@ namespace HelloCSharpGL
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.propGrid.SelectedObject = e.Node.Tag;
+
+            this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
     }
 }
