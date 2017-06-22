@@ -113,21 +113,14 @@ namespace CSharpGL
 
         #region ILegacyPickable 成员
 
-        private bool legacyPickingEnabled = false;
-        public bool LegacyPickingBeforeChildrenEnabled
-        {
-            get { return legacyPickingEnabled; }
-            set { legacyPickingEnabled = value; }
-        }
-
-        private bool legacyPickingChildrenEnabled = true;
+        private LegacyPickingFlags enableLegacyPicking = LegacyPickingFlags.Children;
         /// <summary>
-        /// picking in children.
+        /// 
         /// </summary>
-        public bool LegacyPickingChildrenEnabled
+        public LegacyPickingFlags EnableLegacyPicking
         {
-            get { return legacyPickingChildrenEnabled; }
-            set { legacyPickingChildrenEnabled = value; }
+            get { return this.enableLegacyPicking; }
+            set { this.enableLegacyPicking = value; }
         }
 
         public void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg)

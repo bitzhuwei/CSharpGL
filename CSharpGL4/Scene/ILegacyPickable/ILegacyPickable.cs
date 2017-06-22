@@ -13,12 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        bool LegacyPickingBeforeChildrenEnabled { get; set; }
-
-        /// <summary>
-        /// picking in children.
-        /// </summary>
-        bool LegacyPickingChildrenEnabled { get; set; }
+        LegacyPickingFlags EnableLegacyPicking { get; set; }
 
         /// <summary>
         /// Render this model before rendering its children in legacy OpenGL.
@@ -31,6 +26,33 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Flags]
+    public enum LegacyPickingFlags : byte
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        BeforeChildren,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Children,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        AfterChildren,
     }
 
     /// <summary>

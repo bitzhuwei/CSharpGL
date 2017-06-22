@@ -77,11 +77,11 @@ namespace CSharpGL
 
         private void RenderForPicking(RendererBase sceneElement, LegacyPickEventArgs arg, ref uint currentName)
         {
-            if (sceneElement != null)
+            var pickable = sceneElement as ILegacyPickable;
+            if (pickable != null)
             {
-                var pickable = sceneElement as ILegacyPickable;
-                bool picking = pickable != null && pickable.LegacyPickingBeforeChildrenEnabled;
-                if (picking)
+                LegacyPickingFlags flags = pickable.EnableLegacyPicking;
+                if ((flags & LegacyPickingFlags.BeforeChildren) == LegacyPickingFlags.BeforeChildren)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);
@@ -93,7 +93,7 @@ namespace CSharpGL
                     currentName++;
                 }
 
-                if (pickable.LegacyPickingChildrenEnabled)
+                if ((flags & LegacyPickingFlags.Children) == LegacyPickingFlags.Children)
                 {
                     foreach (var item in sceneElement.Children)
                     {
@@ -101,11 +101,17 @@ namespace CSharpGL
                     }
                 }
 
-                if (picking)
+                if ((flags & LegacyPickingFlags.AfterChildren) == LegacyPickingFlags.AfterChildren)
                 {
-                    pickable.RenderAfterChildrenForLegacyPicking(arg);
-                }
+                    //  Load and map the name.
+                    GL.Instance.LoadName(currentName);
+                    arg.hitMap[currentName] = sceneElement;
 
+                    pickable.RenderAfterChildrenForLegacyPicking(arg);
+
+                    //  Increment the name.
+                    currentName++;
+                }
             }
         }
     }
