@@ -35,6 +35,9 @@ namespace CSharpGL
         PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PickEventArgs
     {
         /// <summary>
@@ -66,6 +69,11 @@ namespace CSharpGL
         /// picking at position(Left Down is (0, 0)).</param>
         /// </summary>
         public int Y { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint RenderedVertexCount { get; set; }
 
         /// <summary>
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).

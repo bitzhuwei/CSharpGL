@@ -108,7 +108,9 @@ namespace CSharpGL
                 var pickable = sceneElement as IPickable;
                 if (pickable != null)
                 {
+                    pickable.PickingBaseId += arg.RenderedVertexCount;
                     pickable.RenderForPicking(arg);
+                    arg.RenderedVertexCount += pickable.GetVertexCount();
                 }
 
                 foreach (var item in sceneElement.Children)

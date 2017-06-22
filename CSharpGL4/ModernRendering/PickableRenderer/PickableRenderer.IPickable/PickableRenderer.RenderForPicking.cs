@@ -4,7 +4,6 @@ namespace CSharpGL
 {
     public partial class PickableRenderer
     {
-
         private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
         private LineWidthState lineWidthState = new LineWidthState(LineWidthState.max);
         private PointSizeState pointSizeState = new PointSizeState(PointSizeState.max);
@@ -22,7 +21,6 @@ namespace CSharpGL
         }
 
         #endregion
-
 
     }
 }
