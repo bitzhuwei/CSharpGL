@@ -25,18 +25,12 @@ namespace RenderToTexture
 
         #region IRenderable 成员
 
-        public bool renderingEnabled = true;
-        public bool RenderingEnabled
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        public ThreeFlags EnableRendering
         {
-            get { return this.renderingEnabled; }
-            set { this.renderingEnabled = value; }
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
         }
-
-        private bool renderingChildrenEnabled = true;
-        /// <summary>
-        /// Render this object's children or not.
-        /// </summary>
-        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {

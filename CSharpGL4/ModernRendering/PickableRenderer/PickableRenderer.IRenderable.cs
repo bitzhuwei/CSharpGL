@@ -4,17 +4,12 @@
     {
         #region IRenderable 成员
 
-        private bool renderingEnabled = true;
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool RenderingEnabled { get { return renderingEnabled; } set { renderingEnabled = value; } }
-
-        private bool renderingChildrenEnabled = true;
-        /// <summary>
-        /// Render this object's children or not.
-        /// </summary>
-        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
 
         /// <summary>
         /// Render something.

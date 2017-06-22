@@ -82,22 +82,12 @@ namespace CSharpGL
 
         #region IRenderable 成员
 
-        private bool renderingEnabled = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool RenderingEnabled
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+        public ThreeFlags EnableRendering
         {
-            get { return renderingEnabled; }
-            set { renderingEnabled = value; }
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
         }
-
-        private bool renderingChildrenEnabled = true;
-        /// <summary>
-        /// Render this object's children or not.
-        /// </summary>
-        public bool RenderingChildrenEnabled { get { return renderingChildrenEnabled; } set { renderingChildrenEnabled = value; } }
 
         private GLState polygonOffsetState = new PolygonOffsetFillState();
         private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);

@@ -28,13 +28,17 @@ namespace CSharpGL
                 sceneElement.modelMatrix = sceneElement.GetModelMatrix();
 
                 var renderable = sceneElement as IRenderable;
-                bool render = renderable != null && renderable.RenderingEnabled;
-                if (render)
+                ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
+                bool before = (renderable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
+                bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
+                bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
+
+                if (before)
                 {
                     renderable.RenderBeforeChildren(arg);
                 }
 
-                if (renderable == null || renderable.RenderingChildrenEnabled)
+                if (children)
                 {
                     foreach (var item in sceneElement.Children)
                     {
@@ -42,7 +46,7 @@ namespace CSharpGL
                     }
                 }
 
-                if (render)
+                if (after)
                 {
                     renderable.RenderAfterChildren(arg);
                 }

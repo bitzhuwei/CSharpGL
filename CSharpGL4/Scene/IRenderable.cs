@@ -11,14 +11,9 @@ namespace CSharpGL
     public interface IRenderable
     {
         /// <summary>
-        /// Render this object or not.
+        /// 
         /// </summary>
-        bool RenderingEnabled { get; set; }
-
-        /// <summary>
-        /// Render this object's children or not.
-        /// </summary>
-        bool RenderingChildrenEnabled { get; set; }
+        ThreeFlags EnableRendering { get; set; }
 
         /// <summary>
         /// Render something.
