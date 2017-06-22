@@ -210,10 +210,6 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
-    <Compile Include="Renderers\Transformers\LegacyTranslateYRenderer.cs" />
-    <Compile Include="Renderers\Transformers\LegacyTranslateZRenderer.cs" />
-    <Compile Include="Renderers\Transformers\LegacyTranslateXRenderer.cs" />
-    <Compile Include="Renderers\Transformers\LegacyTranslateRenderer.cs" />
     <Compile Include="Renderers\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />

@@ -1,2 +1,2 @@
 ﻿# `PickableRenderer`
-supports rendering and picking.
+supports modern rendering and picking.
