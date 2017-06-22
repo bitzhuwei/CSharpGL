@@ -106,16 +106,23 @@ namespace CSharpGL
             if (sceneElement != null)
             {
                 var pickable = sceneElement as IPickable;
-                if (pickable != null)
+                TwoFlags flags = (pickable != null) ? pickable.EnablePicking : TwoFlags.None;
+                bool before = (pickable != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (pickable == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+                if (before)
                 {
                     pickable.PickingBaseId += arg.RenderedVertexCount;
                     pickable.RenderForPicking(arg);
                     arg.RenderedVertexCount += pickable.GetVertexCount();
                 }
 
-                foreach (var item in sceneElement.Children)
+                if (children)
                 {
-                    this.RenderForPicking(item as RendererBase, arg);
+                    foreach (var item in sceneElement.Children)
+                    {
+                        this.RenderForPicking(item as RendererBase, arg);
+                    }
                 }
             }
         }

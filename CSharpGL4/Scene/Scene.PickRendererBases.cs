@@ -101,17 +101,17 @@ namespace CSharpGL
                     }
                 }
 
-                if ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren)
-                {
-                    //  Load and map the name.
-                    GL.Instance.LoadName(currentName);
-                    arg.hitMap[currentName] = sceneElement;
+                //if ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren)
+                //{
+                //    //  Load and map the name.
+                //    GL.Instance.LoadName(currentName);
+                //    arg.hitMap[currentName] = sceneElement;
 
-                    pickable.RenderAfterChildrenForLegacyPicking(arg);
+                //    pickable.RenderAfterChildrenForLegacyPicking(arg);
 
-                    //  Increment the name.
-                    currentName++;
-                }
+                //    //  Increment the name.
+                //    currentName++;
+                //}
             }
         }
     }

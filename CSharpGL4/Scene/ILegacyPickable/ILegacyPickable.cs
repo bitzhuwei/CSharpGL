@@ -21,11 +21,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg);
 
-        /// <summary>
-        /// Render this model after rendering its children in legacy OpenGL.
-        /// </summary>
-        /// <param name="arg"></param>
-        void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg);
+        ///// <summary>
+        ///// Render this model after rendering its children in legacy OpenGL.
+        ///// </summary>
+        ///// <param name="arg"></param>
+        //void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg);
     }
 
     /// <summary>

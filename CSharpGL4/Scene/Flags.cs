@@ -9,6 +9,28 @@ namespace CSharpGL
     /// 
     /// </summary>
     [Flags]
+    public enum TwoFlags : byte
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        BeforeChildren,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Children,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Flags]
     public enum ThreeFlags : byte
     {
         /// <summary>

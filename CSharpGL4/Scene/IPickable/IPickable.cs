@@ -7,6 +7,11 @@ namespace CSharpGL
     public interface IPickable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        TwoFlags EnablePicking { get; set; }
+
+        /// <summary>
         /// Gets how many primitived have been rendered till now during color coded rendering.
         /// </summary>
         uint PickingBaseId { get; set; }

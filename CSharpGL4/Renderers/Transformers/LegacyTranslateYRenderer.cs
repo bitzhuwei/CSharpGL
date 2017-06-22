@@ -24,11 +24,11 @@ namespace CSharpGL
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Render this model after rendering its children in legacy OpenGL.
-        /// </summary>
-        /// <param name="arg"></param>
-        public void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg) { }
+        ///// <summary>
+        ///// Render this model after rendering its children in legacy OpenGL.
+        ///// </summary>
+        ///// <param name="arg"></param>
+        //public void RenderAfterChildrenForLegacyPicking(LegacyPickEventArgs arg) { }
 
         #endregion
     }
