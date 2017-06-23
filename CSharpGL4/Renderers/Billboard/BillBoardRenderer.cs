@@ -4,7 +4,6 @@ using System.IO;
 
 namespace CSharpGL
 {
-    // NOTE: The BillboardRenderer of this version keeps its size with the same ratio.
     // Y
     // ^
     // |
@@ -29,7 +28,8 @@ namespace CSharpGL
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
-        private const string billboardSize = "billboardSize";
+        private const string width = "width";
+        private const string height = "height";
         private const string screenSize = "screenSize";
 
         private const string vertexCode =
@@ -38,7 +38,8 @@ namespace CSharpGL
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
-uniform vec2 " + billboardSize + @";
+uniform float " + width + @";
+uniform float " + height + @";
 uniform vec2 " + screenSize + @";
 
 out vec2 passUV;
@@ -52,7 +53,7 @@ void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
     vec2 diffPos = vertexes[gl_VertexID];
-    position.xy += diffPos * billboardSize / screenSize ;
+    position.xy += diffPos * vec2(width, height) / screenSize ;
 	gl_Position = position;
 
 	passUV = texCoord[gl_VertexID];
@@ -85,29 +86,47 @@ void main(void) {
         /// <summary>
         /// Render propeller in modern opengl.
         /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <returns></returns>
-        public static BillboardRenderer Create()
+        public static BillboardRenderer Create(int width, int height)
         {
             var vertexShader = new VertexShader(vertexCode);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            var renderer = new BillboardRenderer(new Billboard(), provider, map);
+            var renderer = new BillboardRenderer(width, height, new Billboard(), provider, map);
             renderer.Initialize();
 
             return renderer;
         }
 
+        private float _width;
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        public ivec2 PixelSize { get; set; }
+        public int Width
+        {
+            get { return (int)_width; }
+            set { _width = (int)value; }
+        }
 
-        private BillboardRenderer(IBufferable model, IShaderProgramProvider shaderProgramProvider,
+        private float _height;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Height
+        {
+            get { return (int)_height; }
+            set { _height = (int)value; }
+        }
+
+        private BillboardRenderer(int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
-            this.PixelSize = new ivec2(100, 10);
+            this.Width = width;
+            this.Height = height;
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -135,7 +154,8 @@ void main(void) {
             this.SetUniform(projectionMatrix, projection);
             this.SetUniform(viewMatrix, view);
             this.SetUniform(modelMatrix, model);
-            this.SetUniform(billboardSize, new vec2(viewport[2], viewport[3]));//this.PixelSize);
+            this.SetUniform(width, this._width);
+            this.SetUniform(height, this._height);
             this.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
 
             base.DoRender(arg);
