@@ -31,6 +31,7 @@ namespace CSharpGL
         private const string width = "width";
         private const string height = "height";
         private const string screenSize = "screenSize";
+        private const string keepFront = "keepFront";
 
         private const string vertexCode =
             @"#version 330 core
@@ -69,6 +70,7 @@ void main(void) {
 in vec3 passColor;
 
 uniform sampler2D tex;
+uniform bool " + keepFront + @" = false;
 
 out vec2 passUV;
 
@@ -79,7 +81,14 @@ void main(void) {
     if (color.a == 0)
     { discard; }
     else 
-    { out_Color = color; }
+    {
+        if (keepFront)
+        {
+            gl_FragDepth = 0;
+        }
+
+        out_Color = color; 
+    }
 }
 ";
 
@@ -121,6 +130,11 @@ void main(void) {
             set { _height = (int)value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool KeepFront { get; set; }
+
         private BillboardRenderer(int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
@@ -157,6 +171,7 @@ void main(void) {
             this.SetUniform(width, this._width);
             this.SetUniform(height, this._height);
             this.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
+            this.SetUniform(keepFront, this.KeepFront);
 
             base.DoRender(arg);
         }
