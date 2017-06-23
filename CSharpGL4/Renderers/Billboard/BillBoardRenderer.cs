@@ -171,9 +171,10 @@ void main(void) {
             if (!this.IsInitialized) { this.Initialize(); }
 
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            this.currentCamera = this.Camera;
-            this.currentCamera.AspectRatio = (float)this.Width / (float)this.Height;
-            arg.CameraStack.Push(this.currentCamera);
+            var camera = this.Camera;
+            camera.AspectRatio = (float)this.Width / (float)this.Height;
+            arg.CameraStack.Push(camera);
+            this.currentCamera = camera;
             this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
             GL.Instance.Viewport(0, 0, this.Width, this.Height);
             this.currentFramebuffer.Bind();
