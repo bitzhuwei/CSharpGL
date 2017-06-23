@@ -65,7 +65,7 @@ namespace CSharpGL
             glCheckFramebufferStatus = GL.Instance.GetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
             glDeleteFramebuffers = GL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
 
-            Framebuffer.bindingStack.Push(null);// default framebuffer with Id = 0.
+            //Framebuffer.bindingStack.Push(null);// default framebuffer with Id = 0.
         }
 
         /// <summary>
