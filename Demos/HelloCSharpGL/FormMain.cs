@@ -31,6 +31,8 @@ namespace HelloCSharpGL
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var propeller = GetLegacyPropellerLegacyFlabellum();
+            var billboard = GetBillboardRenderer();
+            propeller.Children.Add(billboard);
             //var propeller = GetLegacyPropellerFlabellum();
             //var propeller = GetPropellerLegacyFlabellum();
             //var propeller = GetPropellerFlabellum();
@@ -51,8 +53,8 @@ namespace HelloCSharpGL
             int width = 400, height = 300;
             var innerCamera = new Camera(new vec3(0, 1, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
             BillboardRenderer renderer = BillboardRenderer.Create(innerCamera, width, height);
-            renderer.Children.Add(GetLegacyPropellerLegacyFlabellum());
-            //renderer.Children.Add(TeapotRenderer.Create());
+            //renderer.Children.Add(GetLegacyPropellerLegacyFlabellum());
+            renderer.Children.Add(TeapotRenderer.Create());
 
             return renderer;
         }
