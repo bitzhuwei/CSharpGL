@@ -15,14 +15,14 @@
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderBeforeChildren(RenderEventArgs arg)
+        public virtual void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
             DoRender(arg);
         }
 
-        public void RenderAfterChildren(RenderEventArgs arg)
+        public virtual void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 
