@@ -19,7 +19,7 @@ namespace CSharpGL
     // 2--------------------3 --> X
     //
     /// <summary>
-    /// 
+    /// A billboard in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
     public class BillboardRenderer : Renderer
     {
@@ -93,7 +93,7 @@ void main(void) {
 ";
 
         /// <summary>
-        /// Render propeller in modern opengl.
+        /// Creates a billboard in 3D world. Its size is described by Width\Height(in pixels).
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -112,7 +112,7 @@ void main(void) {
 
         private float _width;
         /// <summary>
-        /// 
+        /// Billboard's width(in pixels).
         /// </summary>
         public int Width
         {
@@ -122,7 +122,7 @@ void main(void) {
 
         private float _height;
         /// <summary>
-        /// 
+        /// Billboard's height(in pixels).
         /// </summary>
         public int Height
         {
@@ -131,7 +131,7 @@ void main(void) {
         }
 
         /// <summary>
-        /// 
+        /// Kepp this billboard in front of everything?
         /// </summary>
         public bool KeepFront { get; set; }
 
@@ -185,7 +185,7 @@ void main(void) {
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
         {
-            return null;
+            return null;// not need any vertex buffer.
         }
 
         public IndexBuffer GetIndexBuffer()
