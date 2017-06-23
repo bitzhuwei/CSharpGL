@@ -31,6 +31,7 @@ namespace CSharpGL
         private const string width = "width";
         private const string height = "height";
         private const string screenSize = "screenSize";
+        private const string tex = "tex";
         private const string keepFront = "keepFront";
 
         private const string vertexCode =
@@ -69,7 +70,7 @@ void main(void) {
 
 in vec3 passColor;
 
-uniform sampler2D tex;
+uniform sampler2D " + tex + @";
 uniform bool " + keepFront + @" = false;
 
 out vec2 passUV;
@@ -135,27 +136,57 @@ void main(void) {
         /// </summary>
         public bool KeepFront { get; set; }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TransparentBackground { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Color BackgroundColor { get; set; }
+
         private BillboardRenderer(int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
             this.Width = width;
             this.Height = height;
+
+            this.helper = new RenderToTextureHelper();
+            this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         }
 
+        private Framebuffer currentFramebuffer;
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
+            this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
+            this.currentFramebuffer.Bind();
+            {
+                vec3 color = this.BackgroundColor.ToVec3();
+                if (this.TransparentBackground)
+                {
+                    GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
+                }
+                else
+                {
+                    GL.Instance.ClearColor(color.x, color.y, color.z, 1.0f);
+                }
 
-            //base.RenderBeforeChildren(arg);
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
+                // objects will be rendered in this.Children
+            }
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            this.DoRender(arg);
+            this.currentFramebuffer.Unbind();
 
-            //base.RenderAfterChildren(arg);
+            this.DoRender(arg);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -171,10 +202,13 @@ void main(void) {
             this.SetUniform(width, this._width);
             this.SetUniform(height, this._height);
             this.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
+            this.SetUniform(tex, this.helper.BindingTexture);
             this.SetUniform(keepFront, this.KeepFront);
 
             base.DoRender(arg);
         }
+
+        private RenderToTextureHelper helper;
     }
 
     class Billboard : IBufferable
