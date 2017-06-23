@@ -76,9 +76,9 @@ out vec4 out_Color;
 
 void main(void) {
     vec4 color = texture(tex, passUV);
-    //if (color.a == 0)
-    //{ discard; }
-    //else 
+    if (color.a == 0)
+    { discard; }
+    else 
     { out_Color = color; }
 }
 ";
