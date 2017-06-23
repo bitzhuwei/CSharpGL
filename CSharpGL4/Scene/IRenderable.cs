@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 
@@ -33,23 +34,21 @@ namespace CSharpGL
     /// </summary>
     public class RenderEventArgs
     {
-        // TODO: big bug: when mouse is picking something and move outside of viewport to anothher one, camera will go wrong.
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="canvasRect"></param>
-        /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking; otherwise useless.</param>
-        public RenderEventArgs(Scene scene)
+        public RenderEventArgs(params ICamera[] cameras)
         {
-            this.Scene = scene;
+            var cameraStack = new Stack<ICamera>();
+            foreach (var item in cameras)
+            {
+                cameraStack.Push(item);
+            }
+
+            this.CameraStack = cameraStack;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Scene Scene { get; set; }
-
+        public Stack<ICamera> CameraStack { get; private set; }
         ///// <summary>
         ///// 
         ///// </summary>

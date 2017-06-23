@@ -17,7 +17,7 @@ namespace CSharpGL
             GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, 1.0f);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(this);
+            var arg = new RenderEventArgs(this.Camera);
             this.Render(this.RootElement, arg);
         }
 

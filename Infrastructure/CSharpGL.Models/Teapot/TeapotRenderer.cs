@@ -107,8 +107,9 @@ void main(void) {
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
-            mat4 view = arg.Scene.Camera.GetViewMatrix();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             this.SetUniform(projectionMatrix, projection);
             this.SetUniform(viewMatrix, view);

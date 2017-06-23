@@ -92,8 +92,9 @@ void main(void) {
             //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             //////	Push matrix, set up projection, then load matrix.
             //mat4 pickMatrix = glm.pickMatrix(new vec2(viewport[2] / 2, viewport[3] / 2), new vec2(viewport[2], viewport[3]), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
-            mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
-            mat4 view = arg.Scene.Camera.GetViewMatrix();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
