@@ -50,7 +50,7 @@ namespace CSharpGL
             GL.Instance.PushMatrix();
             GL.Instance.LoadIdentity();
             // note: renderer.modelMatrix has already been updated in Scene.Render(RendererBase sceneElement, RenderEventArgs arg);
-            GL.Instance.MultMatrixf(renderer.modelMatrix.ToArray());
+            GL.Instance.MultMatrixf(renderer.cascadeModelMatrix.ToArray());
         }
 
         /// <summary>

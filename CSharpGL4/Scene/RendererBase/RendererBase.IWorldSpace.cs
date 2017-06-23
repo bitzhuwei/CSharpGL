@@ -14,7 +14,7 @@ namespace CSharpGL
         /// <summary>
         /// cascade model matrix.
         /// </summary>
-        internal mat4 modelMatrix = mat4.identity();
+        internal mat4 cascadeModelMatrix = mat4.identity();
         /// <summary>
         /// this model's matrix from <see cref="IWorldSpace"/>.
         /// </summary>
@@ -93,10 +93,10 @@ namespace CSharpGL
                 var parent = this.Parent as RendererBase;
                 if (parent != null)
                 {
-                    matrix = parent.modelMatrix * matrix;
+                    matrix = parent.cascadeModelMatrix * matrix;
                 }
 
-                this.modelMatrix = matrix;
+                this.cascadeModelMatrix = matrix;
 
             }
             else
@@ -104,11 +104,11 @@ namespace CSharpGL
                 var parent = this.Parent as RendererBase;
                 if (parent != null)
                 {
-                    this.modelMatrix = parent.modelMatrix * this.thisModelMatrix;
+                    this.cascadeModelMatrix = parent.cascadeModelMatrix * this.thisModelMatrix;
                 }
             }
 
-            return this.modelMatrix;
+            return this.cascadeModelMatrix;
         }
     }
 }

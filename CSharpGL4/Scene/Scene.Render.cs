@@ -25,7 +25,7 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                sceneElement.modelMatrix = sceneElement.GetModelMatrix();
+                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix();
 
                 var renderable = sceneElement as IRenderable;
                 ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
