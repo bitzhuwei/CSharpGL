@@ -35,14 +35,26 @@ namespace HelloCSharpGL
             //var propeller = GetPropellerLegacyFlabellum();
             //var propeller = GetPropellerFlabellum();
             //var propeller = new LegacyRectangleRenderer();
-            //propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+            //var propeller = GetBillboardRenderer();
             this.scene = new Scene(camera, this.winGLCanvas1)
-            {
-                RootElement = propeller,
-            };
+          {
+              RootElement = propeller,
+              ClearColor = Color.SkyBlue,
+          };
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+        }
+
+        private BillboardRenderer GetBillboardRenderer()
+        {
+            int width = 400, height = 300;
+            var innerCamera = new Camera(new vec3(0, 1, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            BillboardRenderer renderer = BillboardRenderer.Create(innerCamera, width, height);
+            renderer.Children.Add(GetLegacyPropellerLegacyFlabellum());
+            //renderer.Children.Add(TeapotRenderer.Create());
+
+            return renderer;
         }
 
         private void Match(TreeView treeView, RendererBase rendererBase)
