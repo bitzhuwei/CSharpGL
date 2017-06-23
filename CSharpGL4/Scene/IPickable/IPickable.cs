@@ -78,7 +78,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public uint RenderedVertexCount { get; set; }
+        internal uint RenderedVertexCount { get; set; }
 
         /// <summary>
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
