@@ -154,17 +154,20 @@ void main(void) {
 
             this.helper = new RenderToTextureHelper();
             this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+            this.subCamera = new Camera(new vec3(0, 0, 10), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
         }
 
+        private int[] viewport = new int[4];
         private Framebuffer currentFramebuffer;
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            int width = viewport[2], height = viewport[3];
-            this.currentFramebuffer = this.helper.GetFramebuffer(width, height);
+            (this.subCamera as IPerspectiveViewCamera).AspectRatio = (float)this.Width / (float)this.Height;
+            arg.CameraStack.Push(this.subCamera);
+            this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
+            GL.Instance.Viewport(0, 0, this.Width, this.Height);
             this.currentFramebuffer.Bind();
             {
                 vec3 color = this.BackgroundColor.ToVec3();
@@ -186,6 +189,9 @@ void main(void) {
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
             this.currentFramebuffer.Unbind();
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+            ICamera camera = arg.CameraStack.Pop();
+            if (camera != this.subCamera) { throw new Exception("something wrong about camera!"); }
 
             this.DoRender(arg);
         }
@@ -211,6 +217,7 @@ void main(void) {
         }
 
         private RenderToTextureHelper helper;
+        private Camera subCamera;
     }
 
     class Billboard : IBufferable
