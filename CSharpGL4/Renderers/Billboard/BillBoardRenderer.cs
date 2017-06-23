@@ -161,10 +161,10 @@ void main(void) {
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            //var viewport = new int[4];
-            //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            //int width = viewport[2], height = viewport[3];
-            this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
+            var viewport = new int[4];
+            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            int width = viewport[2], height = viewport[3];
+            this.currentFramebuffer = this.helper.GetFramebuffer(width, height);
             this.currentFramebuffer.Bind();
             {
                 vec3 color = this.BackgroundColor.ToVec3();
