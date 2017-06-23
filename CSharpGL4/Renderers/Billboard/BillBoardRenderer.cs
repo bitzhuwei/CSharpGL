@@ -71,7 +71,7 @@ in vec3 passColor;
 uniform sampler2D " + tex + @";
 uniform bool " + keepFront + @" = false;
 
-out vec2 passUV;
+in vec2 passUV;
 
 out vec4 out_Color;
 
