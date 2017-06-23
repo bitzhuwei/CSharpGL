@@ -208,7 +208,6 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="Renderers\Billboard\BillBoardRenderer.FollowScreen.cs" />
     <Compile Include="Renderers\Billboard\BillBoardRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -244,9 +243,6 @@
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="FontTexture\readme.md" />
-    <None Include="Renderers\Billboard\billboard.FixedPixelSize.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Renderers\Billboard\billboard.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
