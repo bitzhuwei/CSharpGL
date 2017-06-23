@@ -14,17 +14,17 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        None,
+        None = 0,
 
         /// <summary>
         /// 
         /// </summary>
-        BeforeChildren,
+        BeforeChildren = 2,
 
         /// <summary>
         /// 
         /// </summary>
-        Children,
+        Children = 4,
     }
 
     /// <summary>
@@ -36,22 +36,22 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        None,
+        None = 0,
 
         /// <summary>
         /// 
         /// </summary>
-        BeforeChildren,
+        BeforeChildren = 2,
 
         /// <summary>
         /// 
         /// </summary>
-        Children,
+        Children = 4,
 
         /// <summary>
         /// 
         /// </summary>
-        AfterChildren,
+        AfterChildren = 8,
     }
 
 }
