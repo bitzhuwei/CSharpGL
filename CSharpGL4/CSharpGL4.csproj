@@ -208,8 +208,12 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="Renderers\Billboard\BillBoardRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
+    <Compile Include="Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />
     <Compile Include="Renderers\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
@@ -239,6 +243,15 @@
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="FontTexture\readme.md" />
+    <None Include="Renderers\Billboard\billboard.FixedPixelSize.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Renderers\Billboard\billboard.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Renderers\Billboard\billboard.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
       <SubType>Code</SubType>
