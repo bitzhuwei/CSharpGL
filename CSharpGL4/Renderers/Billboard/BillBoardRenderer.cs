@@ -94,16 +94,17 @@ void main(void) {
         /// <summary>
         /// Creates a billboard in 3D world. Its size is described by Width\Height(in pixels).
         /// </summary>
+        /// <param name="camera"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static BillboardRenderer Create(int width, int height)
+        public static BillboardRenderer Create(ICamera camera, int width, int height)
         {
             var vertexShader = new VertexShader(vertexCode);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            var renderer = new BillboardRenderer(width, height, new Billboard(), provider, map);
+            var renderer = new BillboardRenderer(camera, width, height, new Billboard(), provider, map);
             renderer.Initialize();
 
             return renderer;
@@ -145,7 +146,12 @@ void main(void) {
         /// </summary>
         public Color BackgroundColor { get; set; }
 
-        private BillboardRenderer(int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICamera Camera { get; set; }
+
+        private BillboardRenderer(ICamera camera, int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
@@ -154,18 +160,20 @@ void main(void) {
 
             this.helper = new RenderToTextureHelper();
             this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-            this.subCamera = new Camera(new vec3(0, 0, 10), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            this.Camera = camera;
         }
 
         private int[] viewport = new int[4];
+        private ICamera currentCamera;
         private Framebuffer currentFramebuffer;
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            (this.subCamera as IPerspectiveViewCamera).AspectRatio = (float)this.Width / (float)this.Height;
-            arg.CameraStack.Push(this.subCamera);
+            this.currentCamera = this.Camera;
+            this.currentCamera.AspectRatio = (float)this.Width / (float)this.Height;
+            arg.CameraStack.Push(this.currentCamera);
             this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
             GL.Instance.Viewport(0, 0, this.Width, this.Height);
             this.currentFramebuffer.Bind();
@@ -191,7 +199,7 @@ void main(void) {
             this.currentFramebuffer.Unbind();
             GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
             ICamera camera = arg.CameraStack.Pop();
-            if (camera != this.subCamera) { throw new Exception("something wrong about camera!"); }
+            if (camera != this.currentCamera) { throw new Exception("something wrong about camera!"); }
 
             this.DoRender(arg);
         }
@@ -217,7 +225,6 @@ void main(void) {
         }
 
         private RenderToTextureHelper helper;
-        private Camera subCamera;
     }
 
     class Billboard : IBufferable
