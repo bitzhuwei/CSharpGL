@@ -211,6 +211,7 @@
     <Compile Include="Renderers\Billboard\BillBoardRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Renderers\RenderToTextureHelper.cs" />
     <Compile Include="Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
     <Compile Include="Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />

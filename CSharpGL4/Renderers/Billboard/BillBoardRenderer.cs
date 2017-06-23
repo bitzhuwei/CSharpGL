@@ -23,8 +23,6 @@ namespace CSharpGL
     /// </summary>
     public class BillboardRenderer : Renderer
     {
-        private const string inPosition = "inPosition";
-        private const string inColor = "inColor";
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
@@ -163,6 +161,9 @@ void main(void) {
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
+            //var viewport = new int[4];
+            //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            //int width = viewport[2], height = viewport[3];
             this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
             this.currentFramebuffer.Bind();
             {
