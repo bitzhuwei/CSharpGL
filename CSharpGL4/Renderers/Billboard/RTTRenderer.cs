@@ -34,10 +34,10 @@ namespace CSharpGL
         /// </summary>
         public bool KeepFront { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool TransparentBackground { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public bool TransparentBackground { get; set; }
 
         /// <summary>
         /// 
@@ -93,14 +93,14 @@ namespace CSharpGL
                 GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
                 {
                     vec3 color = this.BackgroundColor.ToVec3();
-                    if (this.TransparentBackground)
+                    //if (this.TransparentBackground)
                     {
                         GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
                     }
-                    else
-                    {
-                        GL.Instance.ClearColor(color.x, color.y, color.z, 1.0f);
-                    }
+                    //else
+                    //{
+                    //    GL.Instance.ClearColor(color.x, color.y, color.z, 1.0f);
+                    //}
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
                 }
 
