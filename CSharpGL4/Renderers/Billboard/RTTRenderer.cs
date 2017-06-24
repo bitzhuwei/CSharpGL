@@ -7,8 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render To Texture.
-    /// This demonstracts how to render to texture.
+    /// Render hcildren to framebuffer, then To Texture.
     /// </summary>
     public class RTTRenderer : RendererBase, IRenderable, ITextureSource
     {
@@ -55,6 +54,12 @@ namespace CSharpGL
         /// </summary>
         public Texture BindingTexture { get { return this.helper.BindingTexture; } }
 
+        /// <summary>
+        /// Render hcildren to framebuffer, then To Texture.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="innerCamera"></param>
         public RTTRenderer(int width, int height, ICamera innerCamera)
         {
             this.Width = width;
