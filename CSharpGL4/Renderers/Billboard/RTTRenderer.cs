@@ -50,11 +50,6 @@ namespace CSharpGL
         public ICamera Camera { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public Texture BindingTexture { get { return this.helper.BindingTexture; } }
-
-        /// <summary>
         /// Render hcildren to framebuffer, then To Texture.
         /// </summary>
         /// <param name="width"></param>
@@ -75,7 +70,8 @@ namespace CSharpGL
         public ThreeFlags EnableRendering
         {
             get { return this.enableRendering; }
-            set { this.enableRendering = value; }
+            set { } // nothing to do.
+            //set { this.enableRendering = value; }
         }
 
         public void RenderBeforeChildren(RenderEventArgs arg)
@@ -128,5 +124,11 @@ namespace CSharpGL
         private RTTHelper helper;
         private float _width;
         private float _height;
+
+        #region ITextureSource 成员
+
+        Texture ITextureSource.BindingTexture { get { return this.helper.BindingTexture; } }
+
+        #endregion
     }
 }
