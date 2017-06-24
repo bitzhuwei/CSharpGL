@@ -16,7 +16,7 @@ namespace RenderToTexture
         private Scene scene;
         private RectangleRenderer rectangle;
         //private LegacyRectangleRenderer rectangle;//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-        private RenderToTextureRenderer demo;
+        private RTTRenderer demo;
         public FormMain()
         {
             InitializeComponent();
@@ -33,16 +33,16 @@ namespace RenderToTexture
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var teapot = TeapotRenderer.Create();
-            var demo = new RenderToTextureRenderer();
-            demo.Children.Add(teapot);// rendered to framebuffer, then to texture.
-            this.demo = demo;
+            var rtt = new RTTRenderer();
+            rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
+            this.demo = rtt;
             var rectangle = RectangleRenderer.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-            rectangle.TextureSource = demo;
+            rectangle.TextureSource = rtt;
             rectangle.Scale = new vec3(7, 7, 7);
             this.rectangle = rectangle;
             var group = new GroupRenderer();
-            group.Children.Add(demo);
+            group.Children.Add(rtt);
             group.Children.Add(rectangle);
             this.scene = new Scene(camera, this.winGLCanvas1)
             {

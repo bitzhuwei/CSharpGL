@@ -209,6 +209,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Renderers\Billboard\ITextureSource.cs" />
+    <Compile Include="Renderers\Billboard\RTTRenderer.cs" />
     <Compile Include="Renderers\Billboard\TextureBillboardRenderer.cs">
       <SubType>Code</SubType>
     </Compile>

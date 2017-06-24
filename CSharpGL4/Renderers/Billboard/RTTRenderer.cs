@@ -1,18 +1,17 @@
-﻿using CSharpGL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace RenderToTexture
+namespace CSharpGL
 {
     /// <summary>
+    /// Render To Texture.
     /// This demonstracts how to render to texture.
     /// </summary>
-    class RenderToTextureRenderer : RendererBase, IRenderable, ITextureSource
+    public class RTTRenderer : RendererBase, IRenderable, ITextureSource
     {
-        public RenderToTextureRenderer()
+        public RTTRenderer()
         {
             this.RenderBackground = true;
 
