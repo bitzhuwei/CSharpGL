@@ -84,7 +84,6 @@ namespace CSharpGL
             {
                 mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
                 sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
-                arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
 
                 var renderable = sceneElement as IRenderable;
                 ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
@@ -99,10 +98,12 @@ namespace CSharpGL
 
                 if (children)
                 {
+                    arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
                         RenderAction.Render(item as RendererBase, arg);
                     }
+                    arg.ModelMatrixStack.Pop();
                 }
 
                 if (after)
@@ -110,7 +111,6 @@ namespace CSharpGL
                     renderable.RenderAfterChildren(arg);
                 }
 
-                arg.ModelMatrixStack.Pop();
             }
         }
 
