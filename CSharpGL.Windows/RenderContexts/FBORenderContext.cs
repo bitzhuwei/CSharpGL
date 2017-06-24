@@ -40,8 +40,8 @@ namespace CSharpGL
             framebuffer.Bind();
             framebuffer.Attach(colorBuffer);
             framebuffer.Attach(depthBuffer);
-
             framebuffer.CheckCompleteness();
+            framebuffer.Unbind();
 
             return framebuffer;
         }
