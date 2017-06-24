@@ -80,6 +80,9 @@ namespace CSharpGL
             var pickable = sceneElement as ILegacyPickable;
             if (pickable != null)
             {
+                mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
+                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
+
                 ThreeFlags flags = pickable.EnableLegacyPicking;
                 if ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren)
                 {
@@ -95,10 +98,12 @@ namespace CSharpGL
 
                 if ((flags & ThreeFlags.Children) == ThreeFlags.Children)
                 {
+                    arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
                         this.RenderForPicking(item as RendererBase, arg, ref currentName);
                     }
+                    arg.ModelMatrixStack.Pop();
                 }
 
                 //if ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren)

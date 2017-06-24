@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 namespace CSharpGL
 {
     /// <summary>
@@ -58,6 +59,9 @@ namespace CSharpGL
             this.X = x;
             this.Y = y;
             this.GeometryType = geometryType;
+
+            this.ModelMatrixStack = new Stack<mat4>();
+            this.ModelMatrixStack.Push(mat4.identity());
         }
 
         /// <summary>
@@ -84,6 +88,11 @@ namespace CSharpGL
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
         /// </summary>
         public PickingGeometryType GeometryType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        internal Stack<mat4> ModelMatrixStack { get; private set; }
 
         public override string ToString()
         {

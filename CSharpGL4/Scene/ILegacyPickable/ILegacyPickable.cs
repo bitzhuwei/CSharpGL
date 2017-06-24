@@ -46,7 +46,16 @@ namespace CSharpGL
             this.x = x;
             this.y = y;
             this.hitMap = new Dictionary<uint, RendererBase>();
+
+            this.ModelMatrixStack = new Stack<mat4>();
+            this.ModelMatrixStack.Push(mat4.identity());
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        internal Stack<mat4> ModelMatrixStack { get; private set; }
     }
 
     /// <summary>
