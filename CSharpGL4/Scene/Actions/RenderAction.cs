@@ -110,7 +110,6 @@ namespace CSharpGL
                 {
                     renderable.RenderAfterChildren(arg);
                 }
-
             }
         }
 
