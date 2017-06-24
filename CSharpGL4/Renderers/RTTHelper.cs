@@ -7,9 +7,10 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
+    /// Render To Texture.
     /// contains a framebuffer.
     /// </summary>
-    public class RenderToTextureHelper
+    public class RTTHelper
     {
         private Framebuffer framebuffer;
 
