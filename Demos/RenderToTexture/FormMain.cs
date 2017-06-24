@@ -108,7 +108,7 @@ namespace RenderToTexture
 
         private void chkTransparentBackground_CheckedChanged(object sender, EventArgs e)
         {
-            this.rtt.TransparentBackground = this.chkRenderBackground.Checked;
+            this.rectangle.TransparentBackground = this.chkRenderBackground.Checked;
         }
     }
 }

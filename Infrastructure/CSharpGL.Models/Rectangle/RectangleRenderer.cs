@@ -30,7 +30,8 @@ namespace CSharpGL
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
-        private const string passColor = "passColor";
+        private const string tex = "tex";
+        private const string transparentBackground = "transparentBackground";
         private const string vertexCode =
             @"#version 330 core
 
@@ -53,17 +54,27 @@ void main(void) {
 
 in vec2 passUV;
 
-uniform sampler2D tex;
+uniform sampler2D " + tex + @";
+uniform bool " + transparentBackground + @" = false;
 
 layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
 	vec4 color = texture(tex, passUV);
-    if (color.a == 0) { discard; }
-    else { out_Color = color; }
+    if (transparentBackground)
+    {
+        if (color.a == 0) { discard; }
+        else { out_Color = color; }
+    }
+    else 
+    {
+        out_Color = color;
+    }
 }
 ";
+
+        public bool TransparentBackground { get; set; }
 
         /// <summary>
         /// Render propeller in modern opengl.
@@ -99,7 +110,7 @@ void main(void) {
             var source = this.TextureSource;
             if (source != null)
             {
-                this.SetUniform("tex", source.BindingTexture);
+                this.SetUniform(tex, source.BindingTexture);
             }
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -108,6 +119,7 @@ void main(void) {
             this.SetUniform(projectionMatrix, projection);
             this.SetUniform(viewMatrix, view);
             this.SetUniform(modelMatrix, model);
+            this.SetUniform(transparentBackground, this.TransparentBackground);
 
             base.DoRender(arg);
         }
