@@ -46,7 +46,7 @@ namespace RenderToTexture
             group.Children.Add(rectangle);
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
-                ClearColor = Color.SkyBlue,
+                ClearColor = Color.SkyBlue.ToVec4(),
                 RootElement = group,
             };
 

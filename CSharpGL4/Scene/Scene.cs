@@ -28,14 +28,14 @@ namespace CSharpGL
         /// </summary>
         public RendererBase RootElement { get; set; }
 
-        private vec3 clearColor = new vec3(0.0f, 0.0f, 0.0f);
+        private vec4 clearColor = new vec4(0.0f, 0.0f, 0.0f, 1.0f);
         /// <summary>
         /// 
         /// </summary>
-        public Color ClearColor
+        public vec4 ClearColor
         {
-            get { return clearColor.ToColor(); }
-            set { this.clearColor = value.ToVec3(); }
+            get { return clearColor; }
+            set { this.clearColor = value; }
         }
 
         /// <summary>

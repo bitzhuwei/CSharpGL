@@ -257,6 +257,7 @@
     </Compile>
     <Compile Include="Scene\Scene.PickRendererBases.cs" />
     <Compile Include="Scene\Scene.PickGeometry.cs" />
+    <Compile Include="Scene\RenderAction.cs" />
     <Compile Include="Scene\Scene.Render.cs" />
     <Compile Include="Scene\Scene.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />

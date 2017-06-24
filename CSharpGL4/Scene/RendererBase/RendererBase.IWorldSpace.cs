@@ -74,13 +74,21 @@ namespace CSharpGL
 
         #endregion
 
-
         /// <summary>
-        /// Get cascade model matrix.
+        /// Gets the cascade model matrix.
         /// </summary>
-        /// <param name="node"></param>
         /// <returns></returns>
         public mat4 GetModelMatrix()
+        {
+            return this.cascadeModelMatrix;
+        }
+
+        /// <summary>
+        /// Update and Get cascade model matrix.
+        /// </summary>
+        /// <param name="parentCascadeModelMatrix"></param>
+        /// <returns></returns>
+        public mat4 GetModelMatrix(mat4 parentCascadeModelMatrix)
         {
             if (this.worldSpacePropertyUpdated)
             {
@@ -90,22 +98,14 @@ namespace CSharpGL
                 this.thisModelMatrix = matrix;
                 this.worldSpacePropertyUpdated = false;
 
-                var parent = this.Parent as RendererBase;
-                if (parent != null)
-                {
-                    matrix = parent.cascadeModelMatrix * matrix;
-                }
+                matrix = parentCascadeModelMatrix * matrix;
 
                 this.cascadeModelMatrix = matrix;
 
             }
             else
             {
-                var parent = this.Parent as RendererBase;
-                if (parent != null)
-                {
-                    this.cascadeModelMatrix = parent.cascadeModelMatrix * this.thisModelMatrix;
-                }
+                this.cascadeModelMatrix = parentCascadeModelMatrix * this.thisModelMatrix;
             }
 
             return this.cascadeModelMatrix;
