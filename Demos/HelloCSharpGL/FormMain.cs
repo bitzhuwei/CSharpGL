@@ -26,37 +26,24 @@ namespace HelloCSharpGL
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            var rootElement = GetLegacyPropellerLegacyFlabellum();
+            //var rootElement = GetLegacyPropellerFlabellum();
+            //var rootElement = GetPropellerLegacyFlabellum();
+            //var rootElement = GetPropellerFlabellum();
+            //var rootElement = GetPropellerRTT();
+
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            var propeller = GetLegacyPropellerLegacyFlabellum();
-            var billboard = GetBillboardRenderer();
-            propeller.Children.Add(billboard);
-            //var propeller = GetLegacyPropellerFlabellum();
-            //var propeller = GetPropellerLegacyFlabellum();
-            //var propeller = GetPropellerFlabellum();
-            //var propeller = new LegacyRectangleRenderer();
-            //var propeller = GetBillboardRenderer();
             this.scene = new Scene(camera, this.winGLCanvas1)
           {
-              RootElement = propeller,
-              ClearColor = Color.SkyBlue,
+              RootElement = rootElement,
+              ClearColor = Color.SkyBlue.ToVec4(),
           };
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
-        }
-
-        private BillboardRenderer GetBillboardRenderer()
-        {
-            int width = 400, height = 300;
-            var innerCamera = new Camera(new vec3(0, 1, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
-            BillboardRenderer renderer = BillboardRenderer.Create(innerCamera, width, height);
-            //renderer.Children.Add(GetLegacyPropellerLegacyFlabellum());
-            renderer.Children.Add(TeapotRenderer.Create());
-
-            return renderer;
         }
 
         private void Match(TreeView treeView, RendererBase rendererBase)
@@ -75,6 +62,28 @@ namespace HelloCSharpGL
                 node.Nodes.Add(child);
                 Match(child, item as RendererBase);
             }
+        }
+
+        private RendererBase GetPropellerRTT()
+        {
+            var teapot = TeapotRenderer.Create();
+
+            int width = 400, height = 200;
+            var innerCamera = new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            var rtt = new RTTRenderer(width, height, innerCamera);
+            rtt.Children.Add(teapot);
+
+            var billboard = TextureBillboardRenderer.Create(rtt as ITextureSource, width, height);
+
+            var group = new GroupRenderer();
+            group.Children.Add(rtt);// rtt must be before billboard.
+            group.Children.Add(billboard);
+            group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
+
+            var propeller = GetLegacyPropellerLegacyFlabellum();
+            propeller.Children.Add(group);
+
+            return propeller;
         }
 
         private RendererBase GetLegacyPropellerLegacyFlabellum()
