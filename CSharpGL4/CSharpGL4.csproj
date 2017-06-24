@@ -213,7 +213,7 @@
     <Compile Include="Renderers\Billboard\TextureBillboardRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Renderers\RTTHelper.cs" />
+    <Compile Include="Renderers\Billboard\RTTHelper.cs" />
     <Compile Include="Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Renderers\GroupRenderer.cs" />
     <Compile Include="Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />
