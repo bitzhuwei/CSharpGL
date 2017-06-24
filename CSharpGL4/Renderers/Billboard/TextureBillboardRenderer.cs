@@ -19,10 +19,12 @@ namespace CSharpGL
     // 2--------------------3 --> X
     //
     /// <summary>
-    /// A billboard in 3D world. Its size is described by Width\Height(in pixels).
+    /// A billboard that always faces camera in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
     public class TextureBillboardRenderer : Renderer
     {
+        #region shaders
+
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
@@ -89,16 +91,18 @@ void main(void) {
 }
 ";
 
+        #endregion shaders
+
         /// <summary>
         /// Creates a billboard in 3D world. Its size is described by Width\Height(in pixels).
         /// </summary>
-        /// <param name="camera"></param>
+        /// <param name="textureSource"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
         public static TextureBillboardRenderer Create(ITextureSource textureSource, int width, int height)
         {
-            var vertexShader = new VertexShader(vertexCode);
+            var vertexShader = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
@@ -106,6 +110,16 @@ void main(void) {
             renderer.Initialize();
 
             return renderer;
+        }
+
+        private ITextureSource textureSource;
+        /// <summary>
+        /// Source of texture object.
+        /// </summary>
+        public ITextureSource TextureSource
+        {
+            get { return textureSource; }
+            set { textureSource = value; }
         }
 
         private float _width;
@@ -119,7 +133,6 @@ void main(void) {
         }
 
         private float _height;
-        private ITextureSource textureSource;
         /// <summary>
         /// Billboard's height(in pixels).
         /// </summary>
@@ -138,11 +151,9 @@ void main(void) {
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
+            this.TextureSource = textureSource;
             this.Width = width;
             this.Height = height;
-
-            this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
-            this.textureSource = textureSource;
         }
 
         protected override void DoRender(RenderEventArgs arg)

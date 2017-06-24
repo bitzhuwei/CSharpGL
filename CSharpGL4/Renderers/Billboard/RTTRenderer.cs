@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render hcildren to framebuffer, then To Texture.
+    /// Render children to framebuffer, then To Texture.
     /// </summary>
     public class RTTRenderer : RendererBase, IRenderable, ITextureSource
     {
@@ -30,22 +30,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Kepp this billboard in front of everything?
-        /// </summary>
-        public bool KeepFront { get; set; }
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public bool TransparentBackground { get; set; }
-
-        /// <summary>
-        /// 
+        /// Billboard's background color.
         /// </summary>
         public Color BackgroundColor { get; set; }
 
         /// <summary>
-        /// 
+        /// Camera used in rendering children.
         /// </summary>
         public ICamera Camera { get; set; }
 
@@ -54,7 +44,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="innerCamera"></param>
+        /// <param name="innerCamera">Camera used in rendering children.</param>
         public RTTRenderer(int width, int height, ICamera innerCamera)
         {
             this.Width = width;
@@ -66,7 +56,7 @@ namespace CSharpGL
 
         #region IRenderable 成员
 
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren;
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren;// not render children in Scene.Render().
         public ThreeFlags EnableRendering
         {
             get { return this.enableRendering; }
@@ -89,17 +79,9 @@ namespace CSharpGL
                 GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
                 {
                     vec3 color = this.BackgroundColor.ToVec3();
-                    //if (this.TransparentBackground)
-                    {
-                        GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
-                    }
-                    //else
-                    //{
-                    //    GL.Instance.ClearColor(color.x, color.y, color.z, 1.0f);
-                    //}
+                    GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
                 }
-
                 {
                     var args = new RenderEventArgs(this.Camera);
                     foreach (var item in this.Children)
@@ -107,10 +89,11 @@ namespace CSharpGL
                         RenderAction.Render(item, args);
                     }
                 }
-
-                GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
+                {
+                    GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);// recover clear color.
+                }
             }
-            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
             this.framebuffer.Unbind();
         }
 

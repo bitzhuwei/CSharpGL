@@ -14,6 +14,12 @@ namespace CSharpGL
     {
         private Framebuffer framebuffer;
 
+        /// <summary>
+        /// Gets a framebuffer with specified <paramref name="width"/> and <paramref name="height"/>.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public Framebuffer GetFramebuffer(int width, int height)
         {
             if (this.framebuffer == null)
