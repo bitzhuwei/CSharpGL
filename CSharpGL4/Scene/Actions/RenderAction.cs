@@ -78,7 +78,7 @@ namespace CSharpGL
             }
         }
 
-        private static void Render(RendererBase sceneElement, RenderEventArgs arg)
+        public static void Render(RendererBase sceneElement, RenderEventArgs arg)
         {
             if (sceneElement != null)
             {
@@ -101,7 +101,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item as RendererBase, arg);
+                        RenderAction.Render(item, arg);
                     }
                     arg.ModelMatrixStack.Pop();
                 }
@@ -113,7 +113,6 @@ namespace CSharpGL
 
             }
         }
-
 
         public bool Clear { get; set; }
 
