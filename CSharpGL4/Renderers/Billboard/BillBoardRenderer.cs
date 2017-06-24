@@ -30,6 +30,7 @@ namespace CSharpGL
         private const string height = "height";
         private const string screenSize = "screenSize";
         private const string tex = "tex";
+        private const string transparentBackground = "transparentBackground";
         private const string keepFront = "keepFront";
 
         private const string vertexCode =
@@ -66,9 +67,8 @@ void main(void) {
         private const string fragmentCode =
             @"#version 330 core
 
-in vec3 passColor;
-
 uniform sampler2D " + tex + @";
+uniform bool " + transparentBackground + @" = false;
 uniform bool " + keepFront + @" = false;
 
 in vec2 passUV;
@@ -77,9 +77,21 @@ out vec4 out_Color;
 
 void main(void) {
     vec4 color = texture(tex, passUV);
-    if (color.a == 0)
-    { discard; }
-    else 
+    if (transparentBackground)
+    {
+        if (color.a == 0)
+        { discard; }
+        else 
+        {
+            if (keepFront)
+            {
+                gl_FragDepth = 0;
+            }
+
+            out_Color = color; 
+        }
+    }
+    else
     {
         if (keepFront)
         {
@@ -88,6 +100,7 @@ void main(void) {
 
         out_Color = color; 
     }
+
 }
 ";
 
@@ -161,6 +174,14 @@ void main(void) {
             this.helper = new RenderToTextureHelper();
             this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
             this.Camera = camera;
+
+            var bitmap = new Bitmap(@"test.png");
+            var texture = new Texture(TextureTarget.Texture2D,
+                bitmap, new SamplerParameters(
+                    TextureWrapping.Repeat, TextureWrapping.Repeat, TextureWrapping.Repeat,
+                    TextureFilter.Linear, TextureFilter.Linear));
+            texture.Initialize();
+            this.texture = texture;
         }
 
         private int[] viewport = new int[4];
@@ -170,37 +191,37 @@ void main(void) {
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            var camera = this.Camera;
-            camera.AspectRatio = (float)this.Width / (float)this.Height;
-            arg.CameraStack.Push(camera);
-            this.currentCamera = camera;
-            this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
-            GL.Instance.Viewport(0, 0, this.Width, this.Height);
-            this.currentFramebuffer.Bind();
-            {
-                vec3 color = this.BackgroundColor.ToVec3();
-                if (this.TransparentBackground)
-                {
-                    GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
-                }
-                else
-                {
-                    GL.Instance.ClearColor(color.x, color.y, color.z, 1.0f);
-                }
+            //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            //var camera = this.Camera;
+            //camera.AspectRatio = (float)this.Width / (float)this.Height;
+            //arg.CameraStack.Push(camera);
+            //this.currentCamera = camera;
+            //this.currentFramebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
+            //GL.Instance.Viewport(0, 0, this.Width, this.Height);
+            //this.currentFramebuffer.Bind();
+            //{
+            //    vec3 color = this.BackgroundColor.ToVec3();
+            //    if (this.TransparentBackground)
+            //    {
+            //        GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
+            //    }
+            //    else
+            //    {
+            //        GL.Instance.ClearColor(color.x, color.y, color.z, 1.0f);
+            //    }
 
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            //    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                // objects will be rendered in this.Children
-            }
+            //    // objects will be rendered in this.Children
+            //}
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            this.currentFramebuffer.Unbind();
-            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
-            ICamera camera = arg.CameraStack.Pop();
-            if (camera != this.currentCamera) { throw new Exception("something wrong about camera!"); }
+            //this.currentFramebuffer.Unbind();
+            //GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+            //ICamera camera = arg.CameraStack.Pop();
+            //if (camera != this.currentCamera) { throw new Exception("something wrong about camera!"); }
 
             this.DoRender(arg);
         }
@@ -219,13 +240,16 @@ void main(void) {
             this.SetUniform(width, this._width);
             this.SetUniform(height, this._height);
             this.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
-            this.SetUniform(tex, this.helper.BindingTexture);
+            this.SetUniform(tex, this.texture);
+            //this.SetUniform(tex, this.helper.BindingTexture);
+            this.SetUniform(transparentBackground, this.TransparentBackground);
             this.SetUniform(keepFront, this.KeepFront);
 
             base.DoRender(arg);
         }
 
         private RenderToTextureHelper helper;
+        private Texture texture;
     }
 
     class Billboard : IBufferable
