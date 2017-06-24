@@ -101,7 +101,6 @@ namespace CSharpGL
                 matrix = parentCascadeModelMatrix * matrix;
 
                 this.cascadeModelMatrix = matrix;
-
             }
             else
             {

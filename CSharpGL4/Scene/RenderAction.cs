@@ -82,7 +82,8 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(arg.ModelMatrixStack.Peek());
+                mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
+                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
                 arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
 
                 var renderable = sceneElement as IRenderable;
