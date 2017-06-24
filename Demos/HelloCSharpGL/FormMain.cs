@@ -37,10 +37,10 @@ namespace HelloCSharpGL
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1)
-          {
-              RootElement = rootElement,
-              ClearColor = Color.SkyBlue.ToVec4(),
-          };
+           {
+               RootElement = rootElement,
+               ClearColor = Color.SkyBlue.ToVec4(),
+           };
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
@@ -69,7 +69,7 @@ namespace HelloCSharpGL
             var teapot = TeapotRenderer.Create();
 
             int width = 400, height = 200;
-            var innerCamera = new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
             var rtt = new RTTRenderer(width, height, innerCamera);
             rtt.Children.Add(teapot);
 
