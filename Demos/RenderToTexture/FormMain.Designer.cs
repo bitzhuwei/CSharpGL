@@ -82,19 +82,17 @@
             this.chkRotateTeapot.UseVisualStyleBackColor = true;
             this.chkRotateTeapot.CheckedChanged += new System.EventHandler(this.chkRotateTeapot_CheckedChanged);
             // 
-            // checkBox1
+            // chkRenderBackground
             // 
             this.chkRenderBackground.AutoSize = true;
-            this.chkRenderBackground.Checked = true;
-            this.chkRenderBackground.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRenderBackground.Font = new System.Drawing.Font("宋体", 12F);
             this.chkRenderBackground.Location = new System.Drawing.Point(270, 12);
-            this.chkRenderBackground.Name = "checkBox1";
-            this.chkRenderBackground.Size = new System.Drawing.Size(163, 20);
+            this.chkRenderBackground.Name = "chkRenderBackground";
+            this.chkRenderBackground.Size = new System.Drawing.Size(203, 20);
             this.chkRenderBackground.TabIndex = 1;
-            this.chkRenderBackground.Text = "Render Background";
+            this.chkRenderBackground.Text = "Transparent Background";
             this.chkRenderBackground.UseVisualStyleBackColor = true;
-            this.chkRenderBackground.CheckedChanged += new System.EventHandler(this.chkRenderBackground_CheckedChanged);
+            this.chkRenderBackground.CheckedChanged += new System.EventHandler(this.chkTransparentBackground_CheckedChanged);
             // 
             // FormMain
             // 

@@ -14,9 +14,10 @@ namespace RenderToTexture
     public partial class FormMain : Form
     {
         private Scene scene;
-        private RectangleRenderer rectangle;
         //private LegacyRectangleRenderer rectangle;//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-        private RTTRenderer demo;
+        private TeapotRenderer teapot;
+        private RTTRenderer rtt;
+        private RectangleRenderer rectangle;
         public FormMain()
         {
             InitializeComponent();
@@ -28,22 +29,28 @@ namespace RenderToTexture
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 1, 4);
-            var center = new vec3(0, 0, 0);
-            var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var teapot = TeapotRenderer.Create();
-            var rtt = new RTTRenderer();
+            this.teapot = teapot;
+
+            int width = 400, height = 200;
+            var rtt = new RTTRenderer(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height));
             rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
-            this.demo = rtt;
+            this.rtt = rtt;
+
             var rectangle = RectangleRenderer.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
             rectangle.TextureSource = rtt;
             rectangle.Scale = new vec3(7, 7, 7);
             this.rectangle = rectangle;
+
             var group = new GroupRenderer();
             group.Children.Add(rtt);
             group.Children.Add(rectangle);
+
+            var position = new vec3(5, 1, 4);
+            var center = new vec3(0, 0, 0);
+            var up = new vec3(0, 1, 0);
+            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
                 ClearColor = Color.SkyBlue.ToVec4(),
@@ -79,7 +86,7 @@ namespace RenderToTexture
 
             if (this.rotateTeapot)
             {
-                IWorldSpace renderer = this.demo;
+                IWorldSpace renderer = this.teapot;
                 if (renderer != null)
                 {
                     renderer.RotationAngle += 10;
@@ -99,9 +106,9 @@ namespace RenderToTexture
             this.rotateTeapot = this.chkRotateTeapot.Checked;
         }
 
-        private void chkRenderBackground_CheckedChanged(object sender, EventArgs e)
+        private void chkTransparentBackground_CheckedChanged(object sender, EventArgs e)
         {
-            this.demo.RenderBackground = this.chkRenderBackground.Checked;
+            this.rtt.TransparentBackground = this.chkRenderBackground.Checked;
         }
     }
 }
