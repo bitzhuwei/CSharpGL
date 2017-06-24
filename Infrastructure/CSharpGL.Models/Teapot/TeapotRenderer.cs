@@ -105,8 +105,15 @@ void main(void) {
         private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
         private GLState polygonOffsetState = new PolygonOffsetFillState();
 
+        /// <summary>
+        /// for debugging.
+        /// </summary>
+        public float RotateSpeed { get; set; }
+
         protected override void DoRender(RenderEventArgs arg)
         {
+            this.RotationAngle += this.RotateSpeed;
+
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
