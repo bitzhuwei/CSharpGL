@@ -26,11 +26,11 @@ namespace HelloCSharpGL
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //var rootElement = GetLegacyPropellerLegacyFlabellum();
+            var rootElement = GetLegacyPropellerLegacyFlabellum();
             //var rootElement = GetLegacyPropellerFlabellum();
             //var rootElement = GetPropellerLegacyFlabellum();
             //var rootElement = GetPropellerFlabellum();
-            var rootElement = GetPropellerRTT();
+            //var rootElement = GetPropellerRTT();
 
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
