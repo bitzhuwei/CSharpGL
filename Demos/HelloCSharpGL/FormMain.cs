@@ -26,11 +26,11 @@ namespace HelloCSharpGL
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var rootElement = GetLegacyPropellerLegacyFlabellum();
+            //var rootElement = GetLegacyPropellerLegacyFlabellum();
             //var rootElement = GetLegacyPropellerFlabellum();
             //var rootElement = GetPropellerLegacyFlabellum();
             //var rootElement = GetPropellerFlabellum();
-            //var rootElement = GetPropellerRTT();
+            var rootElement = GetPropellerRTT();
 
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
@@ -67,9 +67,10 @@ namespace HelloCSharpGL
         private RendererBase GetPropellerRTT()
         {
             var teapot = TeapotRenderer.Create();
+            teapot.Scale *= 0.5f;
 
             int width = 400, height = 200;
-            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Ortho, width, height);
             var rtt = new RTTRenderer(width, height, innerCamera);
             rtt.Children.Add(teapot);
 
