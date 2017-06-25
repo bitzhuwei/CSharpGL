@@ -81,7 +81,7 @@ namespace HelloCSharpGL
             group.Children.Add(billboard);
             group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
 
-            var propeller = GetLegacyPropellerLegacyFlabellum();
+            var propeller = GetPropellerFlabellum();
             propeller.Children.Add(group);
 
             return propeller;
