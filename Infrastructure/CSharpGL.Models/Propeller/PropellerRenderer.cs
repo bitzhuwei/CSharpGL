@@ -85,8 +85,15 @@ void main(void) {
 
         #region IRenderable 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public float RotateSpeed { get; set; }
+
         protected override void DoRender(RenderEventArgs arg)
         {
+            this.RotationAngle += this.RotateSpeed;
+
             //var viewport = new int[4];
             ////	Get the viewport, then convert the mouse point to an opengl point.
             //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);

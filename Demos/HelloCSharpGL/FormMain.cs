@@ -238,11 +238,11 @@ namespace HelloCSharpGL
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace renderer = this.scene.RootElement;
-            if (renderer != null)
-            {
-                renderer.RotationAngle += 1;
-            }
+            //IWorldSpace renderer = this.scene.RootElement;
+            //if (renderer != null)
+            //{
+            //    renderer.RotationAngle += 1;
+            //}
         }
 
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
