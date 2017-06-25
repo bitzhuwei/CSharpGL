@@ -69,7 +69,7 @@ namespace HelloCSharpGL
             var teapot = TeapotRenderer.Create();
             teapot.Scale *= 0.5f;
 
-            int width = 400, height = 200;
+            int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Ortho, width, height);
             var rtt = new RTTRenderer(width, height, innerCamera);
             rtt.Children.Add(teapot);
