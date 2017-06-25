@@ -90,8 +90,12 @@ namespace CSharpGL
             set { this.enableRendering = value; }
         }
 
+        public float RotateSpeed { get; set; }
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            this.RotationAngle += this.RotateSpeed;
+
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
