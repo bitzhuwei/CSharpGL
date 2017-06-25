@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.trvScene = new System.Windows.Forms.TreeView();
             this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
@@ -38,12 +37,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 30;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // trvScene
             // 
@@ -56,7 +49,7 @@
             // 
             // propGrid
             // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.propGrid.Location = new System.Drawing.Point(12, 277);
             this.propGrid.Name = "propGrid";
@@ -65,8 +58,8 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(350, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -112,7 +105,6 @@
         #endregion
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TreeView trvScene;
         private System.Windows.Forms.PropertyGrid propGrid;
         private System.Windows.Forms.StatusStrip statusStrip1;

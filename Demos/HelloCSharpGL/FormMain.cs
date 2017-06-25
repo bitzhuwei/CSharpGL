@@ -236,15 +236,6 @@ namespace HelloCSharpGL
             this.lblState.Text = string.Format("{0} objects selected.", list.Count);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //IWorldSpace renderer = this.scene.RootElement;
-            //if (renderer != null)
-            //{
-            //    renderer.RotationAngle += 1;
-            //}
-        }
-
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.propGrid.SelectedObject = e.Node.Tag;
