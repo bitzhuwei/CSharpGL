@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.trvScene = new System.Windows.Forms.TreeView();
             this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
@@ -38,12 +37,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 30;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // trvScene
             // 
@@ -112,7 +105,6 @@
         #endregion
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TreeView trvScene;
         private System.Windows.Forms.PropertyGrid propGrid;
         private System.Windows.Forms.StatusStrip statusStrip1;
