@@ -33,6 +33,7 @@ namespace CSharpGL
         private const string screenSize = "screenSize";
         private const string tex = "tex";
         private const string transparentBackground = "transparentBackground";
+        private const string delta = "delta";
 
         private const string vertexCode =
             @"#version 330 core
@@ -59,7 +60,6 @@ void main(void) {
 	gl_Position = position;
 
 	passUV = texCoord[gl_VertexID];
-    
 }
 ";
         private const string fragmentCode =
@@ -67,6 +67,7 @@ void main(void) {
 
 uniform sampler2D " + tex + @";
 uniform bool " + transparentBackground + @" = false;
+uniform float " + delta + @" = 0.01;
 
 in vec2 passUV;
 
@@ -77,7 +78,25 @@ void main(void) {
     if (transparentBackground)
     {
         if (color.a == 0)
-        { discard; }
+        {
+            vec4 color0 = texture(tex, vec2(passUV.x -  delta, passUV.y - delta));
+            vec4 color1 = texture(tex, vec2(passUV.x -  delta, passUV.y - 0));
+            vec4 color2 = texture(tex, vec2(passUV.x -  delta, passUV.y + delta));
+            vec4 color3 = texture(tex, vec2(passUV.x -  0, passUV.y - delta));
+            vec4 color4 = texture(tex, vec2(passUV.x -  0, passUV.y + delta));
+            vec4 color5 = texture(tex, vec2(passUV.x +  delta, passUV.y - delta));
+            vec4 color6 = texture(tex, vec2(passUV.x +  delta, passUV.y - 0));
+            vec4 color7 = texture(tex, vec2(passUV.x +  delta, passUV.y + delta));
+            if (color0.a != 0 || color1.a != 0 || color2.a != 0 || color3.a != 0
+                || color4.a != 0 || color5.a != 0 || color6.a != 0 || color7.a != 0)
+            {
+                out_Color = (color0 + color1 + color2 + color3 + color + color4 + color5 + color6 + color7) / 9;
+            }
+            else
+            {
+                discard;
+            }
+        }
         else 
         {
             out_Color = color; 
@@ -147,6 +166,8 @@ void main(void) {
         /// </summary>
         public bool TransparentBackground { get; set; }
 
+        public float Delta { get; set; }
+
         private TextureBillboardRenderer(ITextureSource textureSource, int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
@@ -172,6 +193,7 @@ void main(void) {
             this.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
             this.SetUniform(tex, this.textureSource.BindingTexture);
             this.SetUniform(transparentBackground, this.TransparentBackground);
+            this.SetUniform(delta, this.Delta);
 
             base.DoRender(arg);
         }
