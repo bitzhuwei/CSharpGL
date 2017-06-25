@@ -22,6 +22,7 @@ namespace CSharpGL
 
             // Create frame buffer object.
             Framebuffer framebuffer = CreateFramebuffer(width, height);
+            framebuffer.Bind();
             this.framebuffer = framebuffer;
 
             //  Create the DIB section.
@@ -84,6 +85,7 @@ namespace CSharpGL
 
             this.framebuffer.Dispose();
             Framebuffer framebuffer = CreateFramebuffer(width, height);
+            framebuffer.Bind();
             this.framebuffer = framebuffer;
         }
 

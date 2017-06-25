@@ -82,9 +82,13 @@ namespace CSharpGL
         /// <param name="target"></param>
         public void Bind(FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
-            Framebuffer.bindingStack.Push(this);
+            Framebuffer framebuffer = Framebuffer.bindingStack.Peek();
+            if (framebuffer != this)
+            {
+                Framebuffer.bindingStack.Push(this);
 
-            glBindFramebuffer((uint)target, this.Id);
+                glBindFramebuffer((uint)target, this.Id);
+            }
         }
 
         /// <summary>
