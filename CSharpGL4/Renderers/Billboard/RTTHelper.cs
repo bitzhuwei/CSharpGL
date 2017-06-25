@@ -22,6 +22,16 @@ namespace CSharpGL
         /// <returns></returns>
         public Framebuffer GetFramebuffer(int width, int height)
         {
+            if (width <= 0)
+            {
+                throw new ArgumentOutOfRangeException("width");
+            }
+
+            if (height <= 0)
+            {
+                throw new ArgumentOutOfRangeException("height");
+            }
+
             if (this.framebuffer == null)
             {
                 this.framebuffer = CreateFramebuffer(width, height);

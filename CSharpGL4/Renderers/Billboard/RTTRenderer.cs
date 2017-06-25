@@ -14,20 +14,12 @@ namespace CSharpGL
         /// <summary>
         /// Billboard's width(in pixels).
         /// </summary>
-        public int Width
-        {
-            get { return (int)_width; }
-            set { _width = (int)value; }
-        }
+        public int Width { get; set; }
 
         /// <summary>
         /// Billboard's height(in pixels).
         /// </summary>
-        public int Height
-        {
-            get { return (int)_height; }
-            set { _height = (int)value; }
-        }
+        public int Height { get; set; }
 
         /// <summary>
         /// Billboard's background color.
@@ -66,7 +58,7 @@ namespace CSharpGL
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            if (this._width <= 0 || this._height <= 0) { return; }
+            if (this.Width <= 0 || this.Height <= 0) { return; }
 
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -79,7 +71,7 @@ namespace CSharpGL
                 GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
                 {
                     vec3 color = this.BackgroundColor.ToVec3();
-                    GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f);
+                    GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f); // 0.0f for alpha channel, in case that transparent background is needed.
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
                 }
                 {
@@ -105,8 +97,6 @@ namespace CSharpGL
 
         private Framebuffer framebuffer;
         private RTTHelper helper;
-        private float _width;
-        private float _height;
 
         #region ITextureSource 成员
 
