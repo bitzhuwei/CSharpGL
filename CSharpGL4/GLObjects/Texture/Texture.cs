@@ -7,11 +7,12 @@ namespace CSharpGL
     /// </summary>
     public partial class Texture : IDisposable
     {
-        /// GL.GL_TEXTURE0(= 0x84C0 = 33984)
+        // GL.GL_TEXTURE0(= 0x84C0 = 33984)
         /// <summary>
-        /// 0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...
+        /// Which texture unit should I bind to?
+        /// <para>0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...</para>
         /// </summary>
-        public uint ActiveTextureIndex { get; set; }
+        public uint TextureUnit { get; set; }
 
         /// <summary>
         /// binding target of this texture.
@@ -52,7 +53,7 @@ namespace CSharpGL
             GL.Instance.BindTexture((uint)this.Target, 0);
         }
 
-        private static GLDelegates.void_uint activeTexture;
+        private static GLDelegates.void_uint glActiveTexture;
         private bool initialized = false;
 
         /// <summary>
@@ -62,13 +63,13 @@ namespace CSharpGL
         {
             if (!this.initialized)
             {
-                if (activeTexture == null)
-                { activeTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
-                activeTexture(this.ActiveTextureIndex + GL.GL_TEXTURE0);
+                if (glActiveTexture == null)
+                { glActiveTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
+                glActiveTexture(this.TextureUnit + GL.GL_TEXTURE0);
                 GL.Instance.GenTextures(1, id);
                 TextureTarget target = this.Target;
                 GL.Instance.BindTexture((uint)target, id[0]);
-                this.Sampler.Bind(this.ActiveTextureIndex, target);
+                this.Sampler.Bind(this.TextureUnit, target);
                 this.ImageFiller.Fill();
                 //OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
                 //this.SamplerBuilder.Unbind(GL.GL_TEXTURE0 - GL.GL_TEXTURE0, this.Target);
@@ -94,7 +95,7 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("ActiveTexture{0}, Target:{1}, Id:{2}",
-                this.ActiveTextureIndex, this.Target, this.Id);
+                this.TextureUnit, this.Target, this.Id);
         }
     }
 }

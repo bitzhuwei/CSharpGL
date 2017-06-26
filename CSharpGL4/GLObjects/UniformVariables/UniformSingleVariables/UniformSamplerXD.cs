@@ -87,9 +87,10 @@ namespace CSharpGL
         internal uint activeTextureIndex;
 
         /// <summary>
-        /// 0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...
+        /// Which texture unit should I bind to?
+        /// <para>0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...</para>
         /// </summary>
-        public uint ActiveTextureIndex
+        public uint TextureUnit
         {
             get { return activeTextureIndex; }
             set { activeTextureIndex = value; }
@@ -103,7 +104,7 @@ namespace CSharpGL
         {
             this.target = (uint)texture.Target;
             this.textureId = texture.Id;
-            this.activeTextureIndex = texture.ActiveTextureIndex;
+            this.activeTextureIndex = texture.TextureUnit;
         }
 
         /// <summary>
