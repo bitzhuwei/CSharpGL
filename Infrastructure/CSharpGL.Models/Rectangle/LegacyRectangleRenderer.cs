@@ -82,25 +82,24 @@ namespace CSharpGL
 
         #endregion
 
-        private GLDelegates.void_uint activeTexture;
+        private static GLDelegates.void_uint glActiveTexture;
         private void DoRender()
         {
-            var texture = this.BindingTexture;
+            var texture = this.TextureSource.BindingTexture;
             if (texture != null)
             {
-                if (activeTexture == null)
-                { activeTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
-                const uint activeTextureIndex = 0;
-                activeTexture(activeTextureIndex + GL.GL_TEXTURE0);
+                if (glActiveTexture == null)
+                { glActiveTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
+                glActiveTexture(texture.TextureUnit + GL.GL_TEXTURE0);
                 texture.Bind();
             }
             GL.Instance.Begin((uint)DrawMode.Quads);
             for (int i = 0; i < positions.Length; i++)
             {
-                vec2 color = uvs[i];
-                GL.Instance.TexCoord2f(color.x, color.y);
                 vec3 position = positions[i];
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
+                vec2 color = uvs[i];
+                GL.Instance.TexCoord2f(color.x, color.y);
             }
             GL.Instance.End();
             if (texture != null) { texture.Unbind(); }
@@ -137,6 +136,6 @@ namespace CSharpGL
 
         #endregion
 
-        public Texture BindingTexture { get; set; }
+        public ITextureSource TextureSource { get; set; }
     }
 }

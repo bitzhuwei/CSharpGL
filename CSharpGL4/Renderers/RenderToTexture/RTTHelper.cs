@@ -52,13 +52,13 @@ namespace CSharpGL
         private Framebuffer CreateFramebuffer(int width, int height)
         {
             var texture = new Texture(TextureTarget.Texture2D,
-            new NullImageFiller(width, height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
-            new SamplerParameters(
-                TextureWrapping.Repeat,
-                TextureWrapping.Repeat,
-                TextureWrapping.Repeat,
-                TextureFilter.Linear,
-                TextureFilter.Linear));
+                new NullImageFiller(width, height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
+                new SamplerParameters(
+                    TextureWrapping.Repeat,
+                    TextureWrapping.Repeat,
+                    TextureWrapping.Repeat,
+                    TextureFilter.Linear,
+                    TextureFilter.Linear));
             texture.Initialize();
             this.BindingTexture = texture;
             Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
