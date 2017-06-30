@@ -208,6 +208,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="Renderers\RenderToTexture\IFrameufferSource.cs" />
     <Compile Include="Renderers\RenderToTexture\ITextureSource.cs" />
     <Compile Include="Renderers\RenderToTexture\RTTRenderer.cs" />
     <Compile Include="Renderers\Billboard\TextureBillboardRenderer.cs">

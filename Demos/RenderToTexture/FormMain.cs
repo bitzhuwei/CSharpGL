@@ -33,7 +33,7 @@ namespace RenderToTexture
             this.teapot = teapot;
 
             int width = 400, height = 200;
-            var rtt = new RTTRenderer(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height));
+            var rtt = new RTTRenderer(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height), new ColoredFramebufferProvider());
             rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
             this.rtt = rtt;
 

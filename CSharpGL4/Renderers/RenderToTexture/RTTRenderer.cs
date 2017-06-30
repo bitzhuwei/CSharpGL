@@ -37,13 +37,14 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="innerCamera">Camera used in rendering children.</param>
-        public RTTRenderer(int width, int height, ICamera innerCamera)
+        /// <param name="framebufferSource">Provides framebuffer.</param>
+        public RTTRenderer(int width, int height, ICamera innerCamera, IFramebufferSource framebufferSource)
         {
             this.Width = width;
             this.Height = height;
             this.Camera = innerCamera;
 
-            this.helper = new RTTHelper();
+            this.framebufferSource = framebufferSource;
         }
 
         #region IRenderable 成员
@@ -63,7 +64,7 @@ namespace CSharpGL
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            this.framebuffer = this.helper.GetFramebuffer(this.Width, this.Height);
+            this.framebuffer = this.framebufferSource.GetFramebuffer(this.Width, this.Height);
             framebuffer.Bind();
             GL.Instance.Viewport(0, 0, this.Width, this.Height);
             {
@@ -96,11 +97,11 @@ namespace CSharpGL
         #endregion
 
         private Framebuffer framebuffer;
-        private RTTHelper helper;
+        private IFramebufferSource framebufferSource;
 
         #region ITextureSource 成员
 
-        Texture ITextureSource.BindingTexture { get { return this.helper.BindingTexture; } }
+        Texture ITextureSource.BindingTexture { get { return this.framebufferSource.BindingTexture; } }
 
         #endregion
     }

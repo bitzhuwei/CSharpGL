@@ -11,8 +11,10 @@ namespace CSharpGL
         private static GLDelegates.void_int_uintN glGenFramebuffers;
         private static GLDelegates.void_uint_uint glBindFramebuffer;
         private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
-        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
         private static GLDelegates.void_int_uintN glDrawBuffers;
+        private static GLDelegates.void_uint glDrawBuffer;
+        private static GLDelegates.void_uint glReadBuffer;
         private static GLDelegates.void_uint_uint_uint_uint glFramebufferRenderbuffer;
         private static GLDelegates.void_uint_uint_int glFramebufferParameteri;
         private static GLDelegates.uint_uint glCheckFramebufferStatus;
@@ -58,8 +60,10 @@ namespace CSharpGL
             glGenFramebuffers = GL.Instance.GetDelegateFor("glGenFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindFramebuffer = GL.Instance.GetDelegateFor("glBindFramebuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glFramebufferTexture = GL.Instance.GetDelegateFor("glFramebufferTexture", GLDelegates.typeof_void_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_int;
-            //glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
             glDrawBuffers = GL.Instance.GetDelegateFor("glDrawBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glDrawBuffer = GL.Instance.GetDelegateFor("glDrawBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glReadBuffer = GL.Instance.GetDelegateFor("glReadBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glFramebufferRenderbuffer = GL.Instance.GetDelegateFor("glFramebufferRenderbuffer", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
             glFramebufferParameteri = GL.Instance.GetDelegateFor("glFramebufferParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
             glCheckFramebufferStatus = GL.Instance.GetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;

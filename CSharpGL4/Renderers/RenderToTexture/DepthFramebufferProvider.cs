@@ -10,7 +10,7 @@ namespace CSharpGL
     /// Render To Texture.
     /// contains a framebuffer.
     /// </summary>
-    public class RTTHelper
+    public class DepthFramebufferProvider : IFramebufferSource
     {
         private Framebuffer framebuffer;
 
@@ -51,24 +51,16 @@ namespace CSharpGL
 
         private Framebuffer CreateFramebuffer(int width, int height)
         {
-            var texture = new Texture(TextureTarget.Texture2D,
-                new NullImageFiller(width, height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
-                new SamplerParameters(
-                    TextureWrapping.Repeat,
-                    TextureWrapping.Repeat,
-                    TextureWrapping.Repeat,
-                    TextureFilter.Linear,
-                    TextureFilter.Linear));
-            texture.Initialize();
-            this.BindingTexture = texture;
-            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
+            //Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer();
             framebuffer.Bind();
-            framebuffer.Attach(colorBuffer);//0
-            framebuffer.Attach(texture);//1
+            //framebuffer.Attach(colorBuffer);//0
+            this.BindingTexture = framebuffer.Attach(TextureAttachment.DepthAttachment);//1
             framebuffer.Attach(depthBuffer);// special
-            framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(texture);//1
+            //framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(texture);//1
+            framebuffer.SetDrawBuffers(GL.GL_NONE);
+            framebuffer.SetReadBuffer(GL.GL_NONE);
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
             return framebuffer;

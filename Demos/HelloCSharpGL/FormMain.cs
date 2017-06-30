@@ -71,7 +71,7 @@ namespace HelloCSharpGL
 
             int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Ortho, width, height);
-            var rtt = new RTTRenderer(width, height, innerCamera);
+            var rtt = new RTTRenderer(width, height, innerCamera, new ColoredFramebufferProvider());
             rtt.Children.Add(teapot);
 
             var billboard = TextureBillboardRenderer.Create(rtt as ITextureSource, width, height);
