@@ -199,6 +199,7 @@ namespace CSharpGL
                     throw new NotImplementedException();
             }
 
+            result.Bind();
             const int level = 0;
             glFramebufferTexture2D(GL.GL_FRAMEBUFFER, GL.GL_DEPTH_ATTACHMENT, GL.GL_TEXTURE_2D, result.Id, level);
 
@@ -244,8 +245,6 @@ namespace CSharpGL
 
             glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], GL.GL_RENDERBUFFER, renderbuffer.Id);
             this.colorBufferList.Add(renderbuffer);
-            this.Width = renderbuffer.Width;
-            this.Height = renderbuffer.Height;
         }
 
         private void AttachDepthbuffer(Renderbuffer renderbuffer, FramebufferTarget target)

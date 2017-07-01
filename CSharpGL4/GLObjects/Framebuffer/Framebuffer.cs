@@ -30,12 +30,12 @@ namespace CSharpGL
         /// <summary>
         /// 0 means no renderbuffer attached.
         /// </summary>
-        public int Width { get; private set; }
+        public readonly int Width;
 
         /// <summary>
         /// 0 means no renderbuffer attached.
         /// </summary>
-        public int Height { get; private set; }
+        public readonly int Height;
 
         /// <summary>
         /// 
@@ -75,9 +75,12 @@ namespace CSharpGL
         /// <summary>
         /// Create an empty framebuffer object.
         /// </summary>
-        public Framebuffer()
+        public Framebuffer(int width, int height)
         {
             glGenFramebuffers(1, frameBuffer);
+
+            this.Width = width;
+            this.Height = height;
         }
 
         /// <summary>

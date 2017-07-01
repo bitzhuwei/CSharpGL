@@ -63,7 +63,7 @@ namespace CSharpGL
             this.BindingTexture = texture;
             Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
-            var framebuffer = new Framebuffer();
+            var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             framebuffer.Attach(colorBuffer);//0
             framebuffer.Attach(texture);//1
