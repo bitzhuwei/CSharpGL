@@ -26,9 +26,11 @@ namespace ShadowMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var rootElement = GetPropellerRTT();
+            var rootElement = GetRenderer();
+            //var teapot = ShadowMappingRenderer.Create();
+            //var rootElement = teapot;
 
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(0, 0, 1);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -60,22 +62,23 @@ namespace ShadowMapping
             }
         }
 
-        private RendererBase GetPropellerRTT()
+        private RendererBase GetRenderer()
         {
-            var teapot = TeapotRenderer.Create();
-            teapot.Scale *= 0.5f;
+            var teapot = ShadowMappingRenderer.Create();
 
             int width = 600, height = 400;
-            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Ortho, width, height);
-            var rtt = new RTTRenderer(width, height, innerCamera, new ColoredFramebufferProvider());
+            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            (innerCamera as IPerspectiveViewCamera).Far = 50;
+            var rtt = new RTTRenderer(width, height, innerCamera, new DepthFramebufferProvider());
             rtt.Children.Add(teapot);
 
-            var billboard = TextureBillboardRenderer.Create(rtt as ITextureSource, width, height);
+            var billboard = SMRectangleRenderer.Create();
+            billboard.TextureSource = rtt;
 
             var group = new GroupRenderer();
             group.Children.Add(rtt);// rtt must be before billboard.
             group.Children.Add(billboard);
-            group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
+            //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
 
             return group;
         }

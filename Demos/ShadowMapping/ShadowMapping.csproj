@@ -53,6 +53,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMRectangleRenderer.cs" />
+    <Compile Include="ShadowMappingRenderer.cs" />
     <EmbeddedResource Include="FormDepthTexture.resx">
       <DependentUpon>FormDepthTexture.cs</DependentUpon>
     </EmbeddedResource>

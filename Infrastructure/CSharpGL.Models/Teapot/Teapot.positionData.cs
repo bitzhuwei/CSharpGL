@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal partial class Teapot
+    public partial class Teapot
     {
         internal static readonly vec3[] positionData = new vec3[]
         {

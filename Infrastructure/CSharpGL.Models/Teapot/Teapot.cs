@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    partial class Teapot : IBufferable
+    public partial class Teapot : IBufferable
     {
         public vec3 GetModelSize()
         {

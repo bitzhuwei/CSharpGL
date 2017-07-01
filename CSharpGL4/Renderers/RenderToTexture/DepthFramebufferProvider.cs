@@ -52,17 +52,19 @@ namespace CSharpGL
         private Framebuffer CreateFramebuffer(int width, int height)
         {
             //Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
-            Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
+            //Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             //framebuffer.Attach(colorBuffer);//0
             this.BindingTexture = framebuffer.Attach(TextureAttachment.DepthAttachment);//1
-            framebuffer.Attach(depthBuffer);// special
+            //framebuffer.Attach(depthBuffer);// special
             //framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(texture);//1
             //framebuffer.SetDrawBuffers(GL.GL_NONE);
             framebuffer.SetDrawBuffer(GL.GL_NONE);
             framebuffer.SetReadBuffer(GL.GL_NONE);
+            this.BindingTexture.Bind();
             framebuffer.CheckCompleteness();
+            this.BindingTexture.Unbind();
             framebuffer.Unbind();
             return framebuffer;
         }

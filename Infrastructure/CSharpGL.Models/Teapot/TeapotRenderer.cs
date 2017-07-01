@@ -27,15 +27,8 @@ uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
 
-out vec3 passColor;
-
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-    vec3 color;
-    if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 3.0; }
-    if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 3.0; }
-    if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 3.0; }
-	passColor = color;
 }
 ";
         //if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 2.0; }
@@ -43,8 +36,6 @@ void main(void) {
         //if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 2.0; }
         private const string fragmentCode =
             @"#version 330 core
-
-in vec3 passColor;
 
 uniform bool renderWireframe = false;
 
