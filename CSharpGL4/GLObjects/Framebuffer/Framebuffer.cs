@@ -75,6 +75,8 @@ namespace CSharpGL
         /// <summary>
         /// Create an empty framebuffer object.
         /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public Framebuffer(int width, int height)
         {
             glGenFramebuffers(1, frameBuffer);
@@ -99,7 +101,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// stop to use this framebuffer(and use default framebuffer).
+        /// stop to use this framebuffer(and use last framebuffer).
         /// </summary>
         /// <param name="target"></param>
         public void Unbind(FramebufferTarget target = FramebufferTarget.Framebuffer)
