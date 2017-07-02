@@ -28,17 +28,18 @@ void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 }
 ";
-        private const string fragmentCode =
-            @"#version 330 core
-
-layout(location = 0) out float fragmentdepth;
-//out vec4 out_Color;
-
-void main(void) {
-    fragmentdepth = gl_FragCoord.z;
-
-}
-";
+        // this fragment shader is not needed.
+        //        private const string fragmentCode =
+        //            @"#version 330 core
+        //
+        //layout(location = 0) out float fragmentdepth;
+        ////out vec4 out_Color;
+        //
+        //void main(void) {
+        //    fragmentdepth = gl_FragCoord.z;
+        //
+        //}
+        //";
 
         /// <summary>
         /// Render propeller in modern opengl.
@@ -47,9 +48,9 @@ void main(void) {
         public static ShadowMappingRenderer Create()
         {
             var vertexShader = new VertexShader(vertexCode, inPosition);
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
-            //var provider = new ShaderArray(vertexShader);
+            //var fragmentShader = new FragmentShader(fragmentCode);
+            //var provider = new ShaderArray(vertexShader, fragmentShader);
+            var provider = new ShaderArray(vertexShader);
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
             var renderer = new ShadowMappingRenderer(new Teapot(), provider, map);
