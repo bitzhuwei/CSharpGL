@@ -54,9 +54,9 @@ namespace CSharpGL
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             Renderbuffer colorbuffer = framebuffer.Attach(RenderbufferType.ColorBuffer);//0
-            Texture texture = framebuffer.Attach(TextureAttachment.ColorAttachment);//1A
+            Texture texture = framebuffer.Attach(TextureAttachment.ColorAttachment);//1
             Renderbuffer depthbuffer = framebuffer.Attach(RenderbufferType.DepthBuffer);// special
-            framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(texture);//1
+            framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(TextureAttachment.ColorAttachment);//1
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 
