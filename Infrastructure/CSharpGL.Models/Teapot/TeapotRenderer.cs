@@ -27,8 +27,11 @@ uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
 
+out vec3 passColor;
+
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+    passColor = inColor;
 }
 ";
         //if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 2.0; }
@@ -37,6 +40,7 @@ void main(void) {
         private const string fragmentCode =
             @"#version 330 core
 
+in vec3 passColor;
 uniform bool renderWireframe = false;
 
 out vec4 out_Color;
