@@ -19,11 +19,6 @@ namespace CSharpGL
         /// <returns></returns>
         public static VertexBuffer GenVertexBuffer(this UnmanagedArrayBase array, VBOConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
         {
-            if (glGenBuffers == null)
-            {
-                InitFunctions();
-            }
-
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
             const uint target = GL.GL_ARRAY_BUFFER;

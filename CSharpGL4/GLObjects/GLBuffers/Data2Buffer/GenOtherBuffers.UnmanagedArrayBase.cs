@@ -81,11 +81,6 @@ namespace CSharpGL
         /// <returns></returns>
         private static GLBuffer GenIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
         {
-            if (glGenBuffers == null)
-            {
-                InitFunctions();
-            }
-
             uint[] buffers = new uint[1];
             glGenBuffers(1, buffers);
             var target = (uint)bufferTarget;

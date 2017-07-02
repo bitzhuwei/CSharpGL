@@ -64,11 +64,6 @@ namespace CSharpGL
             else if (typeof(T) == typeof(byte)) { elementType = IndexBufferElementType.UByte; }
             else { throw new ArgumentException(string.Format("Only uint/ushort/byte are allowed!")); }
 
-            if (glGenBuffers == null)
-            {
-                InitFunctions();
-            }
-
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
