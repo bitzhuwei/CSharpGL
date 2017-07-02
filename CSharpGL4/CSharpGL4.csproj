@@ -221,6 +221,7 @@
     <Compile Include="Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />
     <Compile Include="Renderers\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
+    <Compile Include="Scene\IShadowMapping.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
     <Compile Include="Scene\IPickable\IPickable.cs" />
     <Compile Include="Scene\IPickable\IPickableHelper.cs" />
