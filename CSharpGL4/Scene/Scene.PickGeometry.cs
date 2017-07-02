@@ -88,12 +88,10 @@ namespace CSharpGL
 
         private Framebuffer CreatePickFramebuffer(int width, int height)
         {
-            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
-            Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
-            framebuffer.Attach(colorBuffer);
-            framebuffer.Attach(depthBuffer);
+            framebuffer.Attach(RenderbufferType.ColorBuffer);
+            framebuffer.Attach(RenderbufferType.DepthBuffer);
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 

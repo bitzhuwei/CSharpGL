@@ -113,6 +113,11 @@ namespace CSharpGL
     public enum TextureAttachment : uint
     {
         /// <summary>
+        /// 
+        /// </summary>
+        ColorAttachment = GL.GL_COLOR_ATTACHMENT0,
+
+        /// <summary>
         ///
         /// </summary>
         DepthAttachment = GL.GL_DEPTH_ATTACHMENT,
@@ -153,19 +158,19 @@ namespace CSharpGL
         private Renderbuffer depthBuffer;
         private int nextColorAttachmentIndex = 0;
 
-        /// <summary>
-        /// Attach a texture.
-        /// <para>Bind() this framebuffer before invoking this method.</para>
-        /// </summary>
-        /// <param name="texture"></param>
-        /// <returns></returns>
-        public void Attach(Texture texture)
-        {
-            if (nextColorAttachmentIndex >= attachment_id.Length)
-            { throw new IndexOutOfRangeException("Not enough color attach points!"); }
+        ///// <summary>
+        ///// Attach a texture.
+        ///// <para>Bind() this framebuffer before invoking this method.</para>
+        ///// </summary>
+        ///// <param name="texture"></param>
+        ///// <returns></returns>
+        //public void Attach(Texture texture)
+        //{
+        //    if (nextColorAttachmentIndex >= attachment_id.Length)
+        //    { throw new IndexOutOfRangeException("Not enough color attach points!"); }
 
-            glFramebufferTexture(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], texture.Id, 0);
-        }
+        //    glFramebufferTexture(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], texture.Id, 0);
+        //}
 
         /// <summary>
         /// Attach a texture.
@@ -175,9 +180,22 @@ namespace CSharpGL
         /// <returns></returns>
         public Texture Attach(TextureAttachment type)
         {
+            const int level = 0;
             Texture result = null;
             switch (type)
             {
+                case TextureAttachment.ColorAttachment:
+                    result = new Texture(TextureTarget.Texture2D,
+                        new NullImageFiller(this.Width, this.Height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
+                        new SamplerParameters(
+                            TextureWrapping.Repeat,
+                            TextureWrapping.Repeat,
+                            TextureWrapping.Repeat,
+                            TextureFilter.Linear,
+                            TextureFilter.Linear));
+                    result.Initialize();
+                    glFramebufferTexture(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], result.Id, level);
+                    break;
                 case TextureAttachment.DepthAttachment:
                     result = new Texture(TextureTarget.Texture2D,
                 new NullImageFiller(this.Width, this.Height, GL.GL_DEPTH_COMPONENT, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT),
@@ -188,6 +206,7 @@ namespace CSharpGL
                     TextureFilter.Linear,
                     TextureFilter.Linear));
                     result.Initialize();
+                    glFramebufferTexture2D(GL.GL_FRAMEBUFFER, GL.GL_DEPTH_ATTACHMENT, GL.GL_TEXTURE_2D, result.Id, level);
                     break;
                 case TextureAttachment.StencilAttachment:
                     throw new NotImplementedException();
@@ -199,61 +218,59 @@ namespace CSharpGL
                     throw new NotImplementedException();
             }
 
-            result.Bind();
-            const int level = 0;
-            glFramebufferTexture2D(GL.GL_FRAMEBUFFER, GL.GL_DEPTH_ATTACHMENT, GL.GL_TEXTURE_2D, result.Id, level);
-
             return result;
         }
 
         /// <summary>
-        /// Attach a render buffer.
-        /// <para>Bind() this framebuffer before invoking this method.</para>
+        /// Attach a renderbuffer.
         /// </summary>
         /// <param name="renderbuffer"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public void Attach(Renderbuffer renderbuffer, FramebufferTarget target = FramebufferTarget.Framebuffer)
+        public Renderbuffer Attach(RenderbufferType renderbuffer, FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
-            switch (renderbuffer.BufferType)
+            Renderbuffer result = null;
+            switch (renderbuffer)
             {
                 case RenderbufferType.DepthBuffer:
-                    AttachDepthbuffer(renderbuffer, target);
+                    result = AttachDepthbuffer(target);
                     break;
 
                 case RenderbufferType.ColorBuffer:
-                    AttachColorbuffer(renderbuffer, target);
+                    result = AttachColorbuffer(target);
                     break;
 
                 default:
                     throw new Exception("Unexpected RenderbufferType!");
             }
+
+            return result;
         }
 
-        private void AttachColorbuffer(Renderbuffer renderbuffer, FramebufferTarget target)
+        private Renderbuffer AttachColorbuffer(FramebufferTarget target)
         {
             if (nextColorAttachmentIndex >= attachment_id.Length)
             { throw new IndexOutOfRangeException("Not enough attach points!"); }
-            if (this.colorBufferList.Count > 0)
-            {
-                if (this.Width != renderbuffer.Width
-                    || this.Height != renderbuffer.Height)
-                {
-                    throw new Exception("Size not match!");
-                }
-            }
 
-            glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], GL.GL_RENDERBUFFER, renderbuffer.Id);
-            this.colorBufferList.Add(renderbuffer);
+            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(this.Width, this.Height, GL.GL_RGBA);
+            glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], GL.GL_RENDERBUFFER, colorBuffer.Id);
+
+            this.colorBufferList.Add(colorBuffer);
+
+            return colorBuffer;
         }
 
-        private void AttachDepthbuffer(Renderbuffer renderbuffer, FramebufferTarget target)
+        private Renderbuffer AttachDepthbuffer(FramebufferTarget target)
         {
             if (this.depthBuffer != null)
             { throw new Exception("Depth buffer already exists!"); }
 
-            glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, GL.GL_RENDERBUFFER, renderbuffer.Id);
-            this.depthBuffer = renderbuffer;
+            Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(this.Width, this.Height, DepthComponentType.DepthComponent24);
+            glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, GL.GL_RENDERBUFFER, depthBuffer.Id);
+
+            this.depthBuffer = depthBuffer;
+
+            return depthBuffer;
         }
 
         /// <summary>
