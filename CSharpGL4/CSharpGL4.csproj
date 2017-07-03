@@ -220,6 +220,7 @@
     <Compile Include="Renderers\GroupRenderer.cs" />
     <Compile Include="Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />
     <Compile Include="Renderers\Transformers\TranslateRenderer.cs" />
+    <Compile Include="Scene\Actions\ShadowMappingAction.cs" />
     <Compile Include="Scene\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\IShadowMapping.cs" />
     <Compile Include="Scene\IWorldSpace.cs" />
