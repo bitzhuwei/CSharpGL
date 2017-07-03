@@ -7,7 +7,7 @@ using CSharpGL;
 
 namespace ShadowMapping
 {
-    class ShadowMappingRenderer : Renderer
+    class ShadowMappingRenderer : Renderer, IShadowMapping
     {
 
         private const string inPosition = "inPosition";
@@ -87,5 +87,26 @@ void main(void) {
 
         #endregion
 
+
+        #region IShadowMapping 成员
+
+        public bool EnableShadowMapping { get { return true; } set { } }
+
+        public void CastShadow(RenderEventArgs arg)
+        {
+            this.RotationAngle += this.RotateSpeed;
+
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            this.SetUniform(projectionMatrix, projection);
+            this.SetUniform(viewMatrix, view);
+            this.SetUniform(modelMatrix, model);
+
+            base.DoRender(arg);
+        }
+
+        #endregion
     }
 }
