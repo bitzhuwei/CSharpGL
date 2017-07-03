@@ -45,6 +45,7 @@ namespace CSharpGL
         /// <param name="clear"></param>
         /// <param name="clearColor"></param>
         /// <param name="rootElement"></param>
+        /// <param name="camera"></param>
         public RenderAction(bool clear, vec4 clearColor, RendererBase rootElement, ICamera camera)
         {
             this.Clear = clear;
