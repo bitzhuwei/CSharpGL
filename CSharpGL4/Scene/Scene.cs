@@ -44,6 +44,11 @@ namespace CSharpGL
         public vec3 AmbientLight { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public List<LightBase> Lights { get; private set; }
+
+        /// <summary>
         /// camera, canvas, renderers.
         /// rendering, picking. 
         /// </summary>
@@ -53,6 +58,8 @@ namespace CSharpGL
         {
             this.Camera = camera;
             this.Canvas = canvas;
+
+            this.Lights = new List<LightBase>();
         }
     }
 }
