@@ -231,10 +231,10 @@
     <Compile Include="Scene\IPickable\PickingGeometryType.cs" />
     <Compile Include="Scene\IPickable\PickingGeometryTypeHelper.cs" />
     <Compile Include="Scene\IRenderable.cs" />
-    <Compile Include="Scene\Light\PointLight.cs" />
-    <Compile Include="Scene\Light\DirectionalLight.cs" />
-    <Compile Include="Scene\Light\SpotLight.cs" />
-    <Compile Include="Scene\Light\LightBase.cs" />
+    <Compile Include="Scene\Lights\PointLight.cs" />
+    <Compile Include="Scene\Lights\DirectionalLight.cs" />
+    <Compile Include="Scene\Lights\SpotLight.cs" />
+    <Compile Include="Scene\Lights\LightBase.cs" />
     <Compile Include="Scene\RendererBase\RendererBaseChildren.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -254,7 +254,7 @@
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="FontTexture\readme.md" />
-    <None Include="Scene\Light\readme.md" />
+    <None Include="Scene\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
       <SubType>Code</SubType>
