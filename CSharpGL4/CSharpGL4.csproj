@@ -254,6 +254,7 @@
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="FontTexture\readme.md" />
+    <None Include="Scene\Light\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\RendererBase\RendererBaseHelper.cs">
       <SubType>Code</SubType>

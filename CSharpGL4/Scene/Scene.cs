@@ -39,6 +39,11 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Ambient light color.
+        /// </summary>
+        public vec3 AmbientLight { get; set; }
+
+        /// <summary>
         /// camera, canvas, renderers.
         /// rendering, picking. 
         /// </summary>
