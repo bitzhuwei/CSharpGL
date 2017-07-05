@@ -29,7 +29,7 @@ namespace CSharpGL
                 GL.Instance.ClearColor(one, one, one, one);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                var arg = new PickEventArgs(this, x, y, geometryType);
+                var arg = new PickingEventArgs(this, x, y, geometryType);
                 this.RenderForPicking(this.RootElement, arg);
 
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
@@ -41,7 +41,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry Pick(uint stageVertexId, PickEventArgs arg, RendererBase renderer)
+        private PickedGeometry Pick(uint stageVertexId, PickingEventArgs arg, RendererBase renderer)
         {
             PickedGeometry pickedGeometry = null;
             if (renderer != null)
@@ -98,7 +98,7 @@ namespace CSharpGL
             return framebuffer;
         }
 
-        private void RenderForPicking(RendererBase sceneElement, PickEventArgs arg)
+        private void RenderForPicking(RendererBase sceneElement, PickingEventArgs arg)
         {
             if (sceneElement != null)
             {

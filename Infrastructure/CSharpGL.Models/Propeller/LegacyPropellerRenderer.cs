@@ -136,7 +136,7 @@ namespace CSharpGL
             set { this.enableLegacyPicking = value; }
         }
 
-        public void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg)
+        public void RenderBeforeChildrenForLegacyPicking(LegacyPickingEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();

@@ -138,7 +138,7 @@ void main(void) {
 
         #endregion
 
-        public override void RenderForPicking(PickEventArgs arg)
+        public override void RenderForPicking(PickingEventArgs arg)
         {
             if (this.RenderWireframe || this.RenderBody)
             {

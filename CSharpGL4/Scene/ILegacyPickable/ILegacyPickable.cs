@@ -19,7 +19,7 @@ namespace CSharpGL
         /// Render this model before rendering its children in legacy OpenGL.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderBeforeChildrenForLegacyPicking(LegacyPickEventArgs arg);
+        void RenderBeforeChildrenForLegacyPicking(LegacyPickingEventArgs arg);
 
         ///// <summary>
         ///// Render this model after rendering its children in legacy OpenGL.
@@ -31,7 +31,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyPickEventArgs
+    public class LegacyPickingEventArgs
     {
         public readonly mat4 pickMatrix;
         public readonly Scene scene;
@@ -39,7 +39,7 @@ namespace CSharpGL
         public readonly int y;
         public readonly Dictionary<uint, RendererBase> hitMap;
 
-        public LegacyPickEventArgs(mat4 pickMatrix, Scene scene, int x, int y)
+        public LegacyPickingEventArgs(mat4 pickMatrix, Scene scene, int x, int y)
         {
             this.pickMatrix = pickMatrix;
             this.scene = scene;

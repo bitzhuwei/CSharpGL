@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public abstract PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId);
+        public abstract PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
 
         /// <summary>
         /// 

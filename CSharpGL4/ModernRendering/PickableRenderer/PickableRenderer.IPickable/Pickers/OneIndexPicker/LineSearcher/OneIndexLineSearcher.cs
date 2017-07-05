@@ -11,7 +11,7 @@
         /// <param name="primitiveInfo"></param>
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
-        internal abstract uint[] Search(PickEventArgs arg,
+        internal abstract uint[] Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
             OneIndexPicker picker);
     }

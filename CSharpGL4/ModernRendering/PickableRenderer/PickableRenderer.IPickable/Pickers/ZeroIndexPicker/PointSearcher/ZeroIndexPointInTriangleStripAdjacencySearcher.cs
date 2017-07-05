@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <param name="lastVertexId"></param>
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
-        internal override uint Search(PickEventArgs arg,
+        internal override uint Search(PickingEventArgs arg,
             uint lastVertexId, ZeroIndexPicker picker)
         {
             OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, DrawMode.Points, BufferUsage.StaticDraw);

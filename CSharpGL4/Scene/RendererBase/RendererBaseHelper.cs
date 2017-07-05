@@ -31,7 +31,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="arg"></param>
-        public static void PushProjectionViewMatrix(this RendererBase renderer, LegacyPickEventArgs arg)
+        public static void PushProjectionViewMatrix(this RendererBase renderer, LegacyPickingEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();

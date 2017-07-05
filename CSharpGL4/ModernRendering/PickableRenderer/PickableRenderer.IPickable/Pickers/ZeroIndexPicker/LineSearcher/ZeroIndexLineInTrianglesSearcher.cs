@@ -11,7 +11,7 @@
         /// <param name="lastVertexId">三角形图元的最后一个顶点</param>
         /// <param name="modernRenderer">目标Renderer</param>
         /// <returns></returns>
-        internal override uint[] Search(PickEventArgs arg,
+        internal override uint[] Search(PickingEventArgs arg,
             uint lastVertexId, ZeroIndexPicker picker)
         {
             // 创建临时索引

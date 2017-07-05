@@ -21,7 +21,7 @@ namespace CSharpGL
         /// Render for color-coded picking.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderForPicking(PickEventArgs arg);
+        void RenderForPicking(PickingEventArgs arg);
 
         /// <summary>
         /// Gets vertices' count in this element's VBO representing positions.
@@ -38,13 +38,13 @@ namespace CSharpGL
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId);
+        PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public class PickEventArgs
+    public class PickingEventArgs
     {
         /// <summary>
         /// 
@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="geometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).</param>
-        public PickEventArgs(Scene scene, int x, int y, PickingGeometryType geometryType)
+        public PickingEventArgs(Scene scene, int x, int y, PickingGeometryType geometryType)
         {
             this.Scene = scene;
             this.X = x;

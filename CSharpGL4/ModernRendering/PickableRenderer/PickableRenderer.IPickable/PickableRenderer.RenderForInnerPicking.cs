@@ -14,7 +14,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="indexBuffer">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(PickEventArgs arg, IndexBuffer indexBuffer)
+        internal void Render4InnerPicking(PickingEventArgs arg, IndexBuffer indexBuffer)
         {
             // record clear color
             var originalClearColor = new float[4];
@@ -37,7 +37,7 @@ namespace CSharpGL
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
-        private void RenderForPicking(PickEventArgs arg, IndexBuffer tempIndexBuffer)
+        private void RenderForPicking(PickingEventArgs arg, IndexBuffer tempIndexBuffer)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 

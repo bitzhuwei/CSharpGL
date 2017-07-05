@@ -35,7 +35,7 @@ namespace CSharpGL
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             mat4 pickMatrix = glm.pickMatrix(new ivec2(x, y), new ivec2(deltaX, deltaY), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
-            var arg = new LegacyPickEventArgs(pickMatrix, this, x, y);
+            var arg = new LegacyPickingEventArgs(pickMatrix, this, x, y);
             uint currentName = 1;
             this.RenderForPicking(this.RootElement, arg, ref currentName);
             //	Flush commands.
@@ -75,7 +75,7 @@ namespace CSharpGL
             return pickedRenderer;
         }
 
-        private void RenderForPicking(RendererBase sceneElement, LegacyPickEventArgs arg, ref uint currentName)
+        private void RenderForPicking(RendererBase sceneElement, LegacyPickingEventArgs arg, ref uint currentName)
         {
             var pickable = sceneElement as ILegacyPickable;
             if (pickable != null)

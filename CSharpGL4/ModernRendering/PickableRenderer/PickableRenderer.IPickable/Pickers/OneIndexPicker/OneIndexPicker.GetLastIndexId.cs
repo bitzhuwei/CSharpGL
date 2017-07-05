@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexId(
-            PickEventArgs arg,
+            PickingEventArgs arg,
             List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             if (primitiveInfoList == null || primitiveInfoList.Count == 0) { return null; }

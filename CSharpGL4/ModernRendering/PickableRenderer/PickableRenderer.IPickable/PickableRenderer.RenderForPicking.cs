@@ -15,7 +15,7 @@ namespace CSharpGL
 
         #region IPickable 成员
 
-        public virtual void RenderForPicking(PickEventArgs arg)
+        public virtual void RenderForPicking(PickingEventArgs arg)
         {
             this.RenderForPicking(arg, null);
         }

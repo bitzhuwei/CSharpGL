@@ -7,7 +7,7 @@ namespace CSharpGL
 
         private PickerBase picker;
 
-        public virtual PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId)
+        public virtual PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
             PickedGeometry result = null;
 

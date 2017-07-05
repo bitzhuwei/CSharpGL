@@ -11,7 +11,7 @@
         /// <param name="lastVertexId"></param>
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
-        internal override uint[] Search(PickEventArgs arg,
+        internal override uint[] Search(PickingEventArgs arg,
             uint lastVertexId, ZeroIndexPicker picker)
         {
             var zeroIndexBuffer = picker.Renderer.IndexBuffer as ZeroIndexBuffer;

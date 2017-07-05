@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId)
+        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
             uint lastVertexId;
             if (!this.Renderer.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
@@ -94,7 +94,7 @@ namespace CSharpGL
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickEventArgs arg, uint stageVertexId, uint lastVertexId, ZeroIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, ZeroIndexPointSearcher searcher)
         {
             var vertexIds = new uint[] { searcher.Search(arg, lastVertexId, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -103,7 +103,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry PickWhateverItIs(PickEventArgs arg, uint stageVertexId, uint lastVertexId, DrawMode mode, PickingGeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, DrawMode mode, PickingGeometryType typeOfMode)
         {
             //PickedGeometry pickedGeometry = new PickedGeometry();
             //pickedGeometry.GeometryType = typeOfMode;
@@ -175,7 +175,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry PickPoint(PickEventArgs arg, uint stageVertexId, uint lastVertexId)
+        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId)
         {
             var vertexIds = new uint[] { lastVertexId, };
             var positions = FillPickedGeometrysPosition(vertexIds);
@@ -196,7 +196,7 @@ namespace CSharpGL
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(PickEventArgs arg, uint stageVertexId,
+        private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId,
             uint lastVertexId, ZeroIndexLineSearcher searcher)
         {
             var vertexIds = searcher.Search(arg, lastVertexId, this);

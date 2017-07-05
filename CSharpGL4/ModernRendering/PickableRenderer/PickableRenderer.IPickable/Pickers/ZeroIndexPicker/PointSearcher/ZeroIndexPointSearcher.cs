@@ -11,7 +11,7 @@
         /// <param name="lastVertexId"></param>
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
-        internal abstract uint Search(PickEventArgs arg,
+        internal abstract uint Search(PickingEventArgs arg,
             uint lastVertexId, ZeroIndexPicker picker);
     }
 }

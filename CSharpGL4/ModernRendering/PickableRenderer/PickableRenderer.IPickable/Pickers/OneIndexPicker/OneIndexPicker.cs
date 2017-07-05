@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public override PickedGeometry GetPickedGeometry(PickEventArgs arg, uint stageVertexId)
+        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
             PickableRenderer renderer = this.Renderer;
 
@@ -107,7 +107,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
         {
             var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -127,7 +127,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(PickEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
         {
             var vertexIds = searcher.Search(arg, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -144,7 +144,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        private PickedGeometry PickWhateverItIs(PickEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, PickingGeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(PickingEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, PickingGeometryType typeOfMode)
         {
             uint[] vertexIds = primitiveInfo.VertexIds;
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -166,7 +166,7 @@ namespace CSharpGL
             return true;
         }
 
-        private PickedGeometry PickPoint(PickEventArgs arg, uint stageVertexId, uint lastVertexId)
+        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId)
         {
             var vertexIds = new uint[] { lastVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -184,7 +184,7 @@ namespace CSharpGL
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
-            PickEventArgs arg,
+            PickingEventArgs arg,
             uint lastVertexId)
         {
             List<RecognizedPrimitiveInfo> primitiveInfoList = GetLastIndexIdList(arg, lastVertexId);
@@ -204,7 +204,7 @@ namespace CSharpGL
         /// <param name="x">mouse position(Left Down is (0, 0)).</param>
         /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
-        private uint Pick(PickEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer)
+        private uint Pick(PickingEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer)
         {
             this.Renderer.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
@@ -221,7 +221,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickEventArgs arg, uint lastVertexId)
+        private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
         {
             var indexBuffer = this.Renderer.IndexBuffer;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(

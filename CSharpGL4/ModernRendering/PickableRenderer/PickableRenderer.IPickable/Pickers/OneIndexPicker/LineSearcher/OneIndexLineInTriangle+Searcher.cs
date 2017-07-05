@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="modernRenderer"></param>
         /// <returns></returns>
-        internal override uint[] Search(PickEventArgs arg,
+        internal override uint[] Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
             OneIndexPicker picker)
         {
