@@ -9,10 +9,10 @@ namespace CSharpGL
     /// <summary>
     /// Provides a <see cref="Framebuffer"/> object.
     /// </summary>
-    public interface IFramebufferSource
+    public interface IFramebufferProvider
     {
         /// <summary>
-        /// Gets a framebuffer with specified <paramref name="width"/> and <paramref name="height"/>.
+        /// Provides a framebuffer object with specified <paramref name="width"/> and <paramref name="height"/>.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>

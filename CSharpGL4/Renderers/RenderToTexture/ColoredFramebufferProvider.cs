@@ -10,7 +10,7 @@ namespace CSharpGL
     /// Render To Texture.
     /// contains a framebuffer.
     /// </summary>
-    public class ColoredFramebufferProvider : IFramebufferSource
+    public class ColoredFramebufferProvider : IFramebufferProvider
     {
         private Framebuffer framebuffer;
 

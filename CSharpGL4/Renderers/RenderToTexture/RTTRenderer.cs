@@ -38,7 +38,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="innerCamera">Camera used in rendering children.</param>
         /// <param name="framebufferSource">Provides framebuffer.</param>
-        public RTTRenderer(int width, int height, ICamera innerCamera, IFramebufferSource framebufferSource)
+        public RTTRenderer(int width, int height, ICamera innerCamera, IFramebufferProvider framebufferSource)
         {
             this.Width = width;
             this.Height = height;
@@ -97,7 +97,7 @@ namespace CSharpGL
         #endregion
 
         private Framebuffer framebuffer;
-        private IFramebufferSource framebufferSource;
+        private IFramebufferProvider framebufferSource;
 
         #region ITextureSource 成员
 

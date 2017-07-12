@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render propeller in modern opengl.
+    /// Render a teapot in modern opengl.
     /// </summary>
     public class TeapotRenderer : PickableRenderer
     {
@@ -58,7 +58,7 @@ void main(void) {
 ";
 
         /// <summary>
-        /// Render propeller in modern opengl.
+        /// Render a teapot in modern opengl.
         /// </summary>
         /// <returns></returns>
         public static TeapotRenderer Create()
