@@ -73,7 +73,7 @@ namespace ShadowMapping
             var rtt = new RTTRenderer(width, height, innerCamera, source);
             rtt.Children.Add(teapot);
 
-            var rectangle = SMRectangleRenderer.Create();
+            var rectangle = RectangleRenderer.Create();
             rectangle.TextureSource = rtt;
 
             var group = new GroupRenderer();

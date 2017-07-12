@@ -72,7 +72,7 @@ namespace ShadowMapping
             var rtt = new RTTRenderer(width, height, innerCamera, new DepthFramebufferProvider());
             rtt.Children.Add(teapot);
 
-            var billboard = SMRectangleRenderer.Create();
+            var billboard = RectangleRenderer.Create();
             billboard.TextureSource = rtt;
 
             var group = new GroupRenderer();
