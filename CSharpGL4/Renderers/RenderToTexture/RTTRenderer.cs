@@ -32,7 +32,7 @@ namespace CSharpGL
         public ICamera Camera { get; set; }
 
         /// <summary>
-        /// Render hcildren to framebuffer, then To Texture.
+        /// Render children to framebuffer, then To Texture.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>

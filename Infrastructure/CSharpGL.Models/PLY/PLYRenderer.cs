@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render propeller in modern opengl.
+    /// Render a PLY model in modern opengl.
     /// </summary>
     public class PLYRenderer : PickableRenderer
     {
@@ -59,7 +59,7 @@ void main(void) {
 ";
 
         /// <summary>
-        /// Render propeller in modern opengl.
+        /// Render a PLY model in modern opengl.
         /// </summary>
         /// <returns></returns>
         public static PLYRenderer Create()

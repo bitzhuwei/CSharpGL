@@ -48,6 +48,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighlightPick\LegacyQuadRenderer.cs" />
     <Compile Include="HighlightPick\LegacyTriangleRenderer.cs" />
     <Compile Include="PLY\PLY.cs" />
     <Compile Include="PLY\PLYRenderer.cs" />

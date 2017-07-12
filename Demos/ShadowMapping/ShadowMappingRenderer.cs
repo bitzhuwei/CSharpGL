@@ -42,7 +42,7 @@ void main(void) {
         //";
 
         /// <summary>
-        /// Render propeller in modern opengl.
+        /// Render teapot to framebuffer in modern opengl.
         /// </summary>
         /// <returns></returns>
         public static ShadowMappingRenderer Create()
