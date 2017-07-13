@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cube\CubeRenderer.cs" />
     <Compile Include="FormProperyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +75,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cube\Cube.jpg" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
