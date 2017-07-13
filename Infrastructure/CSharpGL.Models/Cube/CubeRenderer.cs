@@ -12,7 +12,6 @@ namespace CSharpGL
     public class CubeRenderer : PickableRenderer
     {
         private const string inPosition = "inPosition";
-        private const string inUV = "inUV";
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
@@ -21,23 +20,17 @@ namespace CSharpGL
             @"#version 330 core
 
 in vec3 " + inPosition + @";
-in vec2 " + inUV + @";
 
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
 
-out vec2 passUV;
-
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-	passUV = inUV;
 }
 ";
         private const string fragmentCode =
             @"#version 330 core
-
-in vec2 passUV;
 
 uniform vec4 " + color + @";
 
@@ -59,12 +52,11 @@ void main(void) {
         /// <returns></returns>
         public static CubeRenderer Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition, inUV);
+            var vertexShader = new VertexShader(vertexCode, inPosition);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
             map.Add(inPosition, RectangleModel.strPosition);
-            map.Add(inUV, RectangleModel.strUV);
             var renderer = new CubeRenderer(new CubeModel(), provider, map, inPosition);
             renderer.Initialize();
 
