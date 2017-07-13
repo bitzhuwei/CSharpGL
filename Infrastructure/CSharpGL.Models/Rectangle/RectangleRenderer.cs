@@ -21,7 +21,7 @@ namespace CSharpGL
     // 2--------------------3 --> X
     //
     /// <summary>
-    /// Render propeller in modern opengl.
+    /// Render rectangle with texture in modern opengl.
     /// </summary>
     public class RectangleRenderer : PickableRenderer
     {
@@ -173,7 +173,7 @@ void main(void) {
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, 4);
+                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
             }
 
             return this.indexBuffer;
