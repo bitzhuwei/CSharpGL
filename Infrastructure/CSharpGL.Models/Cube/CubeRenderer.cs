@@ -7,6 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
+    /// Render a Cube with single color in modern opengl.
     /// </summary>
     public class CubeRenderer : PickableRenderer
     {
