@@ -64,7 +64,7 @@ namespace ShadowMapping
 
         private RendererBase GetRenderer()
         {
-            var teapot = ShadowMappingRenderer.Create();
+            var teapot = DepthTextureRenderer.Create();
 
             int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);

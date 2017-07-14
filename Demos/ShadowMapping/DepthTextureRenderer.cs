@@ -7,7 +7,7 @@ using CSharpGL;
 
 namespace ShadowMapping
 {
-    class ShadowMappingRenderer : Renderer, IShadowMapping
+    class DepthTextureRenderer : Renderer, IShadowMapping
     {
 
         private const string inPosition = "inPosition";
@@ -45,7 +45,7 @@ void main(void) {
         /// Render teapot to framebuffer in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static ShadowMappingRenderer Create()
+        public static DepthTextureRenderer Create()
         {
             var vertexShader = new VertexShader(vertexCode, inPosition);
             //var fragmentShader = new FragmentShader(fragmentCode);
@@ -53,13 +53,13 @@ void main(void) {
             var provider = new ShaderArray(vertexShader);
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
-            var renderer = new ShadowMappingRenderer(new Teapot(), provider, map);
+            var renderer = new DepthTextureRenderer(new Teapot(), provider, map);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private ShadowMappingRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
+        private DepthTextureRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
             AttributeMap attributeMap, params GLState[] switches)
             : base(model, shaderProgramProvider, attributeMap, switches)
         {
