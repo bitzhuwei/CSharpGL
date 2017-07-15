@@ -9,55 +9,59 @@ namespace CSharpGL
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class CubeRenderer : PickableRenderer
+    public class TexturedCubeRenderer : PickableRenderer
     {
         private const string inPosition = "inPosition";
+        private const string inUV = "inUV";
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
-        private const string color = "color";
+        private const string tex = "tex";
         private const string vertexCode =
             @"#version 330 core
 
 in vec3 " + inPosition + @";
+in vec2 " + inUV + @";
 
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
 
+out vec2 passUV;
+
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+    passUV = inUV;
 }
 ";
         private const string fragmentCode =
             @"#version 330 core
+in vec2 passUV;
 
-uniform vec4 " + color + @";
+uniform vec4 " + tex + @";
 
 layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
-    out_Color = color;
+    out_Color = texture(tex, passUV);
 }
 ";
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec4 Color { get; set; }
-
+        private Texture texture;
         /// <summary>
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static CubeRenderer Create()
+        public static TexturedCubeRenderer Create(Texture texture)
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition);
+            var vertexShader = new VertexShader(vertexCode, inPosition, inUV);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add(inPosition, CubeModel.strPosition);
-            var renderer = new CubeRenderer(new CubeModel(), provider, map, inPosition);
+            map.Add(inPosition, TexturedCubeModel.strPosition);
+            map.Add(inPosition, TexturedCubeModel.strUV);
+            var renderer = new TexturedCubeRenderer(new TexturedCubeModel(), provider, map, inPosition);
+            renderer.texture = texture;
             renderer.Initialize();
 
             return renderer;
@@ -66,13 +70,12 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private CubeRenderer(CubeModel model, IShaderProgramProvider renderProgramProvider,
+        private TexturedCubeRenderer(TexturedCubeModel model, IShaderProgramProvider renderProgramProvider,
             AttributeMap attributeMap, string positionNameInVertexShader,
             params GLState[] switches)
             : base(model, renderProgramProvider, attributeMap, positionNameInVertexShader, switches)
         {
             this.ModelSize = model.ModelSize;
-            this.Color = new vec4(1, 1, 1, 1);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -84,24 +87,26 @@ void main(void) {
             this.SetUniform(projectionMatrix, projection);
             this.SetUniform(viewMatrix, view);
             this.SetUniform(modelMatrix, model);
-            this.SetUniform(color, this.Color);
+            this.SetUniform(tex, this.texture);
 
             base.DoRender(arg);
         }
 
     }
 
-    class CubeModel : IBufferable
+    class TexturedCubeModel : IBufferable
     {
         public vec3 ModelSize { get; private set; }
 
-        public CubeModel()
+        public TexturedCubeModel()
         {
             this.ModelSize = new vec3(xLength * 2, yLength * 2, (xLength + yLength) * 0.02f);
         }
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
+        public const string strUV = "uv";
+        private VertexBuffer uvBuffer;
 
         private IndexBuffer indexBuffer;
 
@@ -142,20 +147,35 @@ void main(void) {
         /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
-            new vec3(+xLength, +yLength, +zLength),//  0
+            new vec3(+xLength, -yLength, +zLength),//  0
             new vec3(+xLength, -yLength, +zLength),//  1
-            new vec3(+xLength, +yLength, -zLength),//  2
-            new vec3(+xLength, -yLength, -zLength),//  3
-            new vec3(-xLength, -yLength, -zLength),//  4
-            new vec3(+xLength, -yLength, +zLength),//  5
-            new vec3(-xLength, -yLength, +zLength),//  6
+            new vec3(+xLength, +yLength, +zLength),//  2
+            new vec3(-xLength, +yLength, +zLength),//  3
+
+            new vec3(+xLength, -yLength, +zLength),//  4
+            new vec3(+xLength, -yLength, -zLength),//  5
+            new vec3(+xLength, +yLength, -zLength),//  6
             new vec3(+xLength, +yLength, +zLength),//  7
+            
             new vec3(-xLength, +yLength, +zLength),//  8
-            new vec3(+xLength, +yLength, -zLength),//  9
-            new vec3(-xLength, +yLength, -zLength),// 10
-            new vec3(-xLength, -yLength, -zLength),// 11
-            new vec3(-xLength, +yLength, +zLength),// 12
-            new vec3(-xLength, -yLength, +zLength),// 13
+            new vec3(+xLength, +yLength, +zLength),//  9
+            new vec3(+xLength, +yLength, -zLength),// 10
+            new vec3(-xLength, +yLength, -zLength),// 11
+            
+            new vec3(+xLength, -yLength, -zLength),// 12
+            new vec3(-xLength, -yLength, -zLength),// 13
+            new vec3(-xLength, +yLength, -zLength),// 14
+            new vec3(+xLength, +yLength, -zLength),// 15
+            
+            new vec3(-xLength, -yLength, -zLength),// 16
+            new vec3(-xLength, -yLength, +zLength),// 17
+            new vec3(-xLength, +yLength, +zLength),// 18
+            new vec3(-xLength, +yLength, -zLength),// 19
+            
+            new vec3(+xLength, -yLength, -zLength),// 20
+            new vec3(+xLength, -yLength, +zLength),// 21
+            new vec3(-xLength, -yLength, +zLength),// 22
+            new vec3(-xLength, -yLength, -zLength),// 23
         };
     }
 }

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cube\TextureCubeRenderer.cs" />
     <Compile Include="Cube\CubeRenderer.cs" />
     <Compile Include="FormProperyGrid.cs">
       <SubType>Form</SubType>
