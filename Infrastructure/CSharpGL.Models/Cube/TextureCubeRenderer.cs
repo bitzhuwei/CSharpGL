@@ -110,7 +110,7 @@ void main(void) {
 
         public TexturedCubeModel()
         {
-            this.ModelSize = new vec3(xLength * 2, yLength * 2, (xLength + yLength) * 0.02f);
+            this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
         }
 
         public const string strPosition = "position";

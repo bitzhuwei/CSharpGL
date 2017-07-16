@@ -15,6 +15,7 @@ namespace ColorCodedPicking
         private Scene scene;
         private TeapotRenderer teapot;
         private LegacyTriangleRenderer triangleTip;
+        private GroundRenderer ground;
         public FormMain()
         {
             InitializeComponent();
@@ -59,10 +60,12 @@ namespace ColorCodedPicking
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.teapot = TeapotRenderer.Create();
             teapot.Children.Add(new LegacyBoundingBoxRenderer(teapot.ModelSize));
+            this.ground = GroundRenderer.Create(); this.ground.Color = Color.Gray.ToVec4(); this.ground.Scale *= 10; this.ground.WorldPosition = new vec3(0, -3, 0);
+            var group = new GroupRenderer(this.teapot, this.ground);
 
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
-                RootElement = teapot,
+                RootElement = group,
             };
 
             this.triangleTip = new LegacyTriangleRenderer();

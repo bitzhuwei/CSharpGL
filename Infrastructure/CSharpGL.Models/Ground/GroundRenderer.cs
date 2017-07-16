@@ -7,9 +7,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render a Cube with single color in modern opengl.
+    /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class CubeRenderer : PickableRenderer
+    public class GroundRenderer : PickableRenderer
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -50,14 +50,14 @@ void main(void) {
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static CubeRenderer Create()
+        public static GroundRenderer Create()
         {
             var vertexShader = new VertexShader(vertexCode, inPosition);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add(inPosition, CubeModel.strPosition);
-            var renderer = new CubeRenderer(new CubeModel(), provider, map, inPosition);
+            map.Add(inPosition, GroundModel.strPosition);
+            var renderer = new GroundRenderer(new GroundModel(), provider, map, inPosition);
             renderer.Initialize();
 
             return renderer;
@@ -66,7 +66,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private CubeRenderer(CubeModel model, IShaderProgramProvider renderProgramProvider,
+        private GroundRenderer(GroundModel model, IShaderProgramProvider renderProgramProvider,
             AttributeMap attributeMap, string positionNameInVertexShader,
             params GLState[] switches)
             : base(model, renderProgramProvider, attributeMap, positionNameInVertexShader, switches)
@@ -91,11 +91,11 @@ void main(void) {
 
     }
 
-    class CubeModel : IBufferable
+    class GroundModel : IBufferable
     {
         public vec3 ModelSize { get; private set; }
 
-        public CubeModel()
+        public GroundModel()
         {
             this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
         }
@@ -126,7 +126,7 @@ void main(void) {
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, positions.Length);
+                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
             }
 
             return this.indexBuffer;
@@ -142,20 +142,10 @@ void main(void) {
         /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
-            new vec3(+xLength, +yLength, +zLength),//  0
-            new vec3(+xLength, -yLength, +zLength),//  1
-            new vec3(+xLength, +yLength, -zLength),//  2
-            new vec3(+xLength, -yLength, -zLength),//  3
-            new vec3(-xLength, -yLength, -zLength),//  4
-            new vec3(+xLength, -yLength, +zLength),//  5
-            new vec3(-xLength, -yLength, +zLength),//  6
-            new vec3(+xLength, +yLength, +zLength),//  7
-            new vec3(-xLength, +yLength, +zLength),//  8
-            new vec3(+xLength, +yLength, -zLength),//  9
-            new vec3(-xLength, +yLength, -zLength),// 10
-            new vec3(-xLength, -yLength, -zLength),// 11
-            new vec3(-xLength, +yLength, +zLength),// 12
-            new vec3(-xLength, -yLength, +zLength),// 13
+            new vec3(+xLength, 0, +zLength),//  0
+            new vec3(+xLength, 0, -zLength),//  1
+            new vec3(-xLength, 0, -zLength),//  2
+            new vec3(-xLength, 0, +zLength),//  3
         };
     }
 }
