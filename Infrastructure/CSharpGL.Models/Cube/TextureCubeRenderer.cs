@@ -123,6 +123,15 @@ void main(void) {
 
                 return this.positionBuffer;
             }
+            else if (bufferName == strUV)
+            {
+                if (this.uvBuffer == null)
+                {
+                    this.uvBuffer = uvs.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                }
+
+                return this.uvBuffer;
+            }
 
             throw new NotImplementedException();
         }
@@ -143,7 +152,7 @@ void main(void) {
         private const float yLength = 0.5f;
         private const float zLength = 0.5f;
         /// <summary>
-        /// four vertexes.
+        /// six quads' vertexes.
         /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
@@ -176,6 +185,42 @@ void main(void) {
             new vec3(+xLength, -yLength, +zLength),// 21
             new vec3(-xLength, -yLength, +zLength),// 22
             new vec3(-xLength, -yLength, -zLength),// 23
+        };
+
+        /// <summary>
+        /// six quads' uvs.
+        /// </summary>
+        private static readonly vec2[] uvs = new vec2[]
+        {
+            new vec2(0, 0),//  0
+            new vec2(1, 0),//  1
+            new vec2(1, 1),//  2
+            new vec2(0, 1),//  3
+
+            new vec2(0, 0),//  4
+            new vec2(1, 0),//  5
+            new vec2(1, 1),//  6
+            new vec2(0, 1),//  7
+            
+            new vec2(0, 0),//  8
+            new vec2(1, 0),//  9
+            new vec2(1, 1),// 10
+            new vec2(0, 1),// 11
+            
+            new vec2(0, 0),// 12
+            new vec2(1, 0),// 13
+            new vec2(1, 1),// 14
+            new vec2(0, 1),// 15
+            
+            new vec2(0, 0),// 16
+            new vec2(1, 0),// 17
+            new vec2(1, 1),// 18
+            new vec2(0, 1),// 19
+            
+            new vec2(0, 0),// 20
+            new vec2(1, 0),// 21
+            new vec2(1, 1),// 22
+            new vec2(0, 1),// 23
         };
     }
 }

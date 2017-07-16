@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cube\Cube.jpg" />
+    <Content Include="Cube\TextureCubeRenderer.jpg" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
