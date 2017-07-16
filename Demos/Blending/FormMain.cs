@@ -75,8 +75,10 @@ namespace Blending
             var transparentCube = TexturedCubeRenderer.Create(redTexture);
             transparentCube.WorldPosition = new vec3(1, 0, 1);
             transparentCube.Alpha = 0.5f;
+
             var blendingGroup = new BlendingGroupRenderer(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
             blendingGroup.Children.Add(transparentCube);
+
             var group = new GroupRenderer();
             group.Children.Add(solidCube);
             group.Children.Add(blendingGroup);
