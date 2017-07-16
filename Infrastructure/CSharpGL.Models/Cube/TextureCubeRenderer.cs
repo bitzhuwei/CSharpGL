@@ -140,7 +140,7 @@ void main(void) {
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, positions.Length);
+                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
             }
 
             return this.indexBuffer;
@@ -156,7 +156,7 @@ void main(void) {
         /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
-            new vec3(+xLength, -yLength, +zLength),//  0
+            new vec3(-xLength, -yLength, +zLength),//  0
             new vec3(+xLength, -yLength, +zLength),//  1
             new vec3(+xLength, +yLength, +zLength),//  2
             new vec3(-xLength, +yLength, +zLength),//  3
