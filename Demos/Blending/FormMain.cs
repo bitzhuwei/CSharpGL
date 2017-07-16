@@ -62,26 +62,50 @@ namespace Blending
 
         private RendererBase GetTree()
         {
-            var crate = new Bitmap(@"Crate.bmp");
-            var crateTexture = new Texture(TextureTarget.Texture2D, crate, new SamplerParameters());
-            crateTexture.Initialize();
-            crate.Dispose();
-            var solidCube = TexturedCubeRenderer.Create(crateTexture);
-
-            var red = new Bitmap(@"Red.bmp");
-            var redTexture = new Texture(TextureTarget.Texture2D, red, new SamplerParameters());
-            redTexture.Initialize();
-            red.Dispose();
-            var transparentCube = TexturedCubeRenderer.Create(redTexture);
-            transparentCube.WorldPosition = new vec3(1, 0, 1);
-            transparentCube.Alpha = 0.5f;
-
-            var blendingGroup = new BlendingGroupRenderer(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
-            blendingGroup.Children.Add(transparentCube);
-
             var group = new GroupRenderer();
-            group.Children.Add(solidCube);
-            group.Children.Add(blendingGroup);
+            {
+                var crate = new Bitmap(@"Crate.bmp");
+                var crateTexture = new Texture(TextureTarget.Texture2D, crate, new SamplerParameters());
+                crateTexture.Initialize();
+                crate.Dispose();
+                var solidCube = TexturedCubeRenderer.Create(crateTexture);
+
+                group.Children.Add(solidCube);
+            }
+            {
+                var blendingGroup = new BlendingGroupRenderer(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+
+                group.Children.Add(blendingGroup);
+                var list = new List<BlendingConfig>();
+                list.Add(new BlendingConfig(Color.Red, new vec3(1, 0, 1), 0.5f));
+                list.Add(new BlendingConfig(Color.Green, new vec3(0.6f, 0, 0.1f), 0.5f));
+                list.Add(new BlendingConfig(Color.Blue, new vec3(-0.1f, 0, -0.2f), 0.5f));
+                list.Add(new BlendingConfig(Color.Purple, new vec3(0.4f, 0, -0.7f), 0.5f));
+                list.Add(new BlendingConfig(Color.Orange, new vec3(0.8f, 0, 0.1f), 0.5f));
+                for (int i = 0; i < list.Count; i++)
+                {
+                    const float distance = 2.0f;
+                    list[i].position = new vec3(
+                        distance * (float)Math.Cos((double)i / (double)list.Count * Math.PI * 2),
+                        0,
+                        distance * (float)Math.Sin((double)i / (double)list.Count * Math.PI * 2)
+                        );
+                    list[i].alpha = 0.3f;
+                }
+                foreach (var item in list)
+                {
+                    var bmp = new Bitmap(1, 1);
+                    using (var g = Graphics.FromImage(bmp)) { g.Clear(item.color); }
+                    var texture = new Texture(TextureTarget.Texture2D, bmp, new SamplerParameters());
+                    texture.Initialize();
+                    bmp.Dispose();
+                    var transparentCube = TexturedCubeRenderer.Create(texture);
+                    transparentCube.WorldPosition = item.position;
+                    transparentCube.Alpha = item.alpha;
+
+                    blendingGroup.Children.Add(transparentCube);
+                }
+            }
 
             return group;
         }
@@ -141,5 +165,21 @@ namespace Blending
 
             this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
+    }
+
+    class BlendingConfig
+    {
+        public Color color;
+        public vec3 position;
+        public float alpha;
+
+        public BlendingConfig(Color color, vec3 position, float alpha)
+        {
+            // TODO: Complete member initialization
+            this.color = color;
+            this.position = position;
+            this.alpha = alpha;
+        }
+
     }
 }

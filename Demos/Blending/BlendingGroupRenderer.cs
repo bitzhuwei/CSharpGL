@@ -13,6 +13,7 @@ namespace Blending
     class BlendingGroupRenderer : RendererBase, IRenderable
     {
         private BlendState blending;
+        private DepthMaskState depthMask = new DepthMaskState(false);
 
         /// <summary>
         /// 
@@ -39,12 +40,14 @@ namespace Blending
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            this.depthMask.On();
             this.blending.On();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
         {
             this.blending.Off();
+            this.depthMask.Off();
         }
 
         #endregion
