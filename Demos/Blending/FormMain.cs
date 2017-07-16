@@ -28,7 +28,7 @@ namespace Blending
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 1, 4);
+            var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -62,16 +62,24 @@ namespace Blending
 
         private RendererBase GetTree()
         {
-            var bitmap = new Bitmap(@"Crate.bmp");
-            var texture = new Texture(TextureTarget.Texture2D, bitmap, new SamplerParameters());
-            texture.Initialize();
-            var solidCube = TexturedCubeRenderer.Create(texture);
-            var transparentCube = CubeRenderer.Create();
-            transparentCube.Color = new vec4(1, 0, 0, 0.5f);
+            var crate = new Bitmap(@"Crate.bmp");
+            var crateTexture = new Texture(TextureTarget.Texture2D, crate, new SamplerParameters());
+            crateTexture.Initialize();
+            crate.Dispose();
+            var solidCube = TexturedCubeRenderer.Create(crateTexture);
+
+            var red = new Bitmap(@"Red.bmp");
+            var redTexture = new Texture(TextureTarget.Texture2D, red, new SamplerParameters());
+            redTexture.Initialize();
+            red.Dispose();
+            var transparentCube = TexturedCubeRenderer.Create(redTexture);
             transparentCube.WorldPosition = new vec3(1, 0, 1);
+            transparentCube.Alpha = 0.5f;
+            var blendingGroup = new BlendingGroupRenderer(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+            blendingGroup.Children.Add(transparentCube);
             var group = new GroupRenderer();
             group.Children.Add(solidCube);
-            group.Children.Add(transparentCube);
+            group.Children.Add(blendingGroup);
 
             return group;
         }

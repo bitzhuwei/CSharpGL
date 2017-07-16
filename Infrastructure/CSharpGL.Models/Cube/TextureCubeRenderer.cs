@@ -17,6 +17,7 @@ namespace CSharpGL
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
         private const string tex = "tex";
+        private const string alpha = "alpha";
         private const string vertexCode =
             @"#version 330 core
 
@@ -39,14 +40,16 @@ void main(void) {
 in vec2 passUV;
 
 uniform sampler2D " + tex + @";
+uniform float " + alpha + @";
 
 layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
-    out_Color = texture(tex, passUV);
+    out_Color = vec4(texture(tex, passUV).xyz, alpha);
 }
 ";
+
         private Texture texture;
         /// <summary>
         /// Render propeller in modern opengl.
@@ -76,7 +79,13 @@ void main(void) {
             : base(model, renderProgramProvider, attributeMap, positionNameInVertexShader, switches)
         {
             this.ModelSize = model.ModelSize;
+            this.Alpha = 1.0f;
         }
+
+        /// <summary>
+        /// transparent component.
+        /// </summary>
+        public float Alpha { get; set; }
 
         protected override void DoRender(RenderEventArgs arg)
         {
@@ -88,6 +97,7 @@ void main(void) {
             this.SetUniform(viewMatrix, view);
             this.SetUniform(modelMatrix, model);
             this.SetUniform(tex, this.texture);
+            this.SetUniform(alpha, this.Alpha);
 
             base.DoRender(arg);
         }
