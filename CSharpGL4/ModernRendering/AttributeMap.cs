@@ -65,6 +65,9 @@ namespace CSharpGL
         /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
         public void Add(string nameInShader, string nameInIBufferable)
         {
+            if (this.namesInShader.Contains(nameInShader))
+            { throw new ArgumentException(string.Format("name[{0}] in shader already registered!", nameInShader); }
+
             this.namesInShader.Add(nameInShader);
             this.namesInIBufferable.Add(nameInIBufferable);
         }
