@@ -82,6 +82,7 @@ namespace Blending
                 list.Add(new BlendingConfig(Color.Blue, new vec3(-0.1f, 0, -0.2f), 0.5f));
                 list.Add(new BlendingConfig(Color.Purple, new vec3(0.4f, 0, -0.7f), 0.5f));
                 list.Add(new BlendingConfig(Color.Orange, new vec3(0.8f, 0, 0.1f), 0.5f));
+                list.Add(new BlendingConfig(Color.Yellow, new vec3(0.8f, 0, 0.1f), 0.5f));
                 for (int i = 0; i < list.Count; i++)
                 {
                     const float distance = 2.0f;
