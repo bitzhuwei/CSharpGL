@@ -26,11 +26,7 @@ namespace Blending
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //var rootElement = GetLegacyPropellerLegacyFlabellum();
-            //var rootElement = GetLegacyPropellerFlabellum();
-            //var rootElement = GetPropellerLegacyFlabellum();
-            //var rootElement = GetPropellerFlabellum();
-            var rootElement = GetPropellerRTT();
+            var rootElement = GetTree();
 
             var position = new vec3(5, 1, 4);
             var center = new vec3(0, 0, 0);
@@ -64,10 +60,11 @@ namespace Blending
             }
         }
 
-        private RendererBase GetPropellerRTT()
+        private RendererBase GetTree()
         {
             var bitmap = new Bitmap(@"Crate.bmp");
             var texture = new Texture(TextureTarget.Texture2D, bitmap, new SamplerParameters());
+            texture.Initialize();
             var solidCube = TexturedCubeRenderer.Create(texture);
             var transparentCube = CubeRenderer.Create();
             transparentCube.Color = new vec4(1, 0, 0, 0.5f);
