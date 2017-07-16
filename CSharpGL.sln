@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMapping", "Demos\Shad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextBillboard", "Demos\TextBillboard\TextBillboard.csproj", "{18325AC2-4458-47F5-998E-8CF77C6D349A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blending", "Demos\Blending\Blending.csproj", "{5C822C35-044F-452D-8352-540FC7562838}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{18325AC2-4458-47F5-998E-8CF77C6D349A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18325AC2-4458-47F5-998E-8CF77C6D349A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18325AC2-4458-47F5-998E-8CF77C6D349A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C822C35-044F-452D-8352-540FC7562838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C822C35-044F-452D-8352-540FC7562838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C822C35-044F-452D-8352-540FC7562838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C822C35-044F-452D-8352-540FC7562838}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,5 +147,6 @@ Global
 		{52432862-C71D-4553-9ECA-1C64945696BD} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{784AAA8A-8910-4930-9021-F9F8A234C952} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{18325AC2-4458-47F5-998E-8CF77C6D349A} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{5C822C35-044F-452D-8352-540FC7562838} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
