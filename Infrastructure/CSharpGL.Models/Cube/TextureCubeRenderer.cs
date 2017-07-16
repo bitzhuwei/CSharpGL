@@ -38,7 +38,7 @@ void main(void) {
             @"#version 330 core
 in vec2 passUV;
 
-uniform vec4 " + tex + @";
+uniform sampler2D " + tex + @";
 
 layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
