@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     /// <summary>
     /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
@@ -31,4 +32,32 @@
         Polygon,
     }
 
+    [Flags]
+    public enum PickingGeometryTypes : byte
+    {
+        /// <summary>
+        /// Picking a point.
+        /// </summary>
+        Point,
+
+        /// <summary>
+        /// Picking a line.
+        /// </summary>
+        Line,
+
+        /// <summary>
+        /// Picking a triangle.
+        /// </summary>
+        Triangle,
+
+        /// <summary>
+        /// Picking a quad.
+        /// </summary>
+        Quad,
+
+        /// <summary>
+        /// Picking a polygon.
+        /// </summary>
+        Polygon,
+    }
 }
