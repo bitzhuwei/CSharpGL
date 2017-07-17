@@ -35,10 +35,10 @@ namespace ShadowMapping
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1)
-           {
-               RootElement = rootElement,
-               ClearColor = Color.SkyBlue.ToVec4(),
-           };
+            {
+                RootElement = rootElement,
+                ClearColor = Color.SkyBlue.ToVec4(),
+            };
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
@@ -64,20 +64,24 @@ namespace ShadowMapping
 
         private RendererBase GetRenderer()
         {
-            var teapot = DepthTextureRenderer.Create();
-
             int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
             (innerCamera as IPerspectiveViewCamera).Far = 50;
-            var rtt = new RTTRenderer(width, height, innerCamera, new DepthFramebufferProvider());
-            rtt.Children.Add(teapot);
+            IFramebufferProvider source = new DepthFramebufferProvider();
+            var rtt = new RTTRenderer(width, height, innerCamera, source);
+            {
+                var teapot = DepthTextureRenderer.Create();
+                rtt.Children.Add(teapot);
+                var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
+                rtt.Children.Add(ground);
+            }
 
-            var billboard = RectangleRenderer.Create();
-            billboard.TextureSource = rtt;
+            var rectangle = RectangleRenderer.Create();
+            rectangle.TextureSource = rtt;
 
             var group = new GroupRenderer();
-            group.Children.Add(rtt);// rtt must be before billboard.
-            group.Children.Add(billboard);
+            group.Children.Add(rtt);// rtt must be before rectangle.
+            group.Children.Add(rectangle);
             //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
 
             return group;
