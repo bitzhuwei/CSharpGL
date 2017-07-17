@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public abstract class LightBase
+    public abstract class LightBase : SceneNodeBase
     {
         /// <summary>
         /// 
