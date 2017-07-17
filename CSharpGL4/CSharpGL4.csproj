@@ -221,6 +221,7 @@
     <Compile Include="Renderers\GroupRenderer.cs" />
     <Compile Include="Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />
     <Compile Include="Renderers\Transformers\TranslateRenderer.cs" />
+    <Compile Include="Scene\Actions\ActionBase.cs" />
     <Compile Include="Scene\Actions\ShadowMappingAction.cs" />
     <Compile Include="Scene\SceneNodeBase\ILegacyPickable\ILegacyPickable.cs" />
     <Compile Include="Scene\SceneNodeBase\ILegacyPickable\IShadowMapping.cs" />

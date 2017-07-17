@@ -10,37 +10,22 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ShadowMappingAction
+    public class ShadowMappingAction : ActionBase
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
-        public static void CastShadow(RendererBase rootElement, ICamera camera)
-        {
-            GL.Instance.ClearColor(1, 1, 1, 1);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
-            var arg = new RenderEventArgs(camera);
-            ShadowMappingAction.CastShadow(rootElement, arg);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rootElement"></param>
-        /// <param name="camera"></param>
         public ShadowMappingAction(RendererBase rootElement, ICamera camera)
+            : base(rootElement, camera)
         {
-            this.RootElement = rootElement;
-            this.Camera = camera;
         }
 
         /// <summary>
-        /// 
+        /// Cast shadow.(Prepare shadow mapping texture)
         /// </summary>
-        public void CastShadow()
+        public override void Render()
         {
             GL.Instance.ClearColor(1, 1, 1, 1);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -73,8 +58,5 @@ namespace CSharpGL
             }
         }
 
-        public RendererBase RootElement { get; set; }
-
-        public ICamera Camera { get; set; }
     }
 }

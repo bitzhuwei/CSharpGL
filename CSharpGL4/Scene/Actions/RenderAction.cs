@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class RenderAction
+    public class RenderAction : ActionBase
     {
         /// <summary>
         /// 
@@ -47,17 +47,20 @@ namespace CSharpGL
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
         public RenderAction(bool clear, vec4 clearColor, RendererBase rootElement, ICamera camera)
+            : base(rootElement, camera)
         {
             this.Clear = clear;
             this.ClearColor = clearColor;
-            this.RootElement = rootElement;
-            this.Camera = camera;
         }
+
+        public bool Clear { get; set; }
+
+        public vec4 ClearColor { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public void Render()
+        public override void Render()
         {
             int[] value = null;
             bool clear = this.Clear;
@@ -114,12 +117,5 @@ namespace CSharpGL
             }
         }
 
-        public bool Clear { get; set; }
-
-        public vec4 ClearColor { get; set; }
-
-        public RendererBase RootElement { get; set; }
-
-        public ICamera Camera { get; set; }
     }
 }
