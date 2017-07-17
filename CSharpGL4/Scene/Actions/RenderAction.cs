@@ -32,7 +32,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(camera);
-            RenderAction.Render(rootElement, arg, firstPass);
+            RenderAction.Render(rootElement, arg, firstPass, true);
 
             if (clear)
             {
@@ -82,7 +82,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(this.Camera);
-            RenderAction.Render(this.RootElement, arg, firstPass);
+            RenderAction.Render(this.RootElement, arg, firstPass, true);
 
             if (clear)
             {
@@ -90,7 +90,7 @@ namespace CSharpGL
             }
         }
 
-        public static void Render(RendererBase sceneElement, RenderEventArgs arg, bool firstPass)
+        public static void Render(RendererBase sceneElement, RenderEventArgs arg, bool firstPass, bool renderThis)
         {
             if (sceneElement != null)
             {
@@ -106,22 +106,22 @@ namespace CSharpGL
                 bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
                 bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
 
-                if (before)
+                if (before && renderThis)
                 {
                     renderable.RenderBeforeChildren(arg);
                 }
 
-                if (firstPass || children)
+                if (firstPass || (children && renderThis))
                 {
                     if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item as RendererBase, arg, firstPass);
+                        RenderAction.Render(item as RendererBase, arg, firstPass, children);
                     }
                     if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }
 
-                if (after)
+                if (after && renderThis)
                 {
                     renderable.RenderAfterChildren(arg);
                 }
