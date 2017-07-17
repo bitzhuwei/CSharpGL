@@ -8,12 +8,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Render <see cref="IRenderable"/> objects.
     /// </summary>
     public class RenderAction : ActionBase
     {
         /// <summary>
-        /// 
+        /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="clear"></param>
         /// <param name="clearColor"></param>
@@ -40,7 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="clear"></param>
         /// <param name="clearColor"></param>
@@ -53,8 +53,14 @@ namespace CSharpGL
             this.ClearColor = clearColor;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Clear { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec4 ClearColor { get; set; }
 
         /// <summary>

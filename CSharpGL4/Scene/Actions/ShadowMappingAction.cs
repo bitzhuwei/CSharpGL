@@ -8,12 +8,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
     /// </summary>
     public class ShadowMappingAction : ActionBase
     {
         /// <summary>
-        /// 
+        /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
         /// </summary>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
