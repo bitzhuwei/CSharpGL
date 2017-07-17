@@ -14,7 +14,7 @@ namespace CSharpGL
         /// </summary>
         public void Render()
         {
-            RenderAction.Render(true, this.clearColor, this.RootElement, this.Camera);
+            RenderAction.Render(true, this.clearColor, this.RootElement, this.Camera, true);
         }
 
     }

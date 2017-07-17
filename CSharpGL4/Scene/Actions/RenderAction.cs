@@ -19,7 +19,8 @@ namespace CSharpGL
         /// <param name="clearColor"></param>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
-        public static void Render(bool clear, vec4 clearColor, RendererBase rootElement, ICamera camera)
+        /// <param name="firstPass"></param>
+        public static void Render(bool clear, vec4 clearColor, RendererBase rootElement, ICamera camera, bool firstPass)
         {
             int[] value = null;
             if (clear)
@@ -31,7 +32,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(camera);
-            RenderAction.Render(rootElement, arg);
+            RenderAction.Render(rootElement, arg, firstPass);
 
             if (clear)
             {
@@ -66,7 +67,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Render()
+        /// <param name="firstPass"></param>
+        public override void Render(bool firstPass)
         {
             int[] value = null;
             bool clear = this.Clear;
@@ -80,7 +82,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(this.Camera);
-            RenderAction.Render(this.RootElement, arg);
+            RenderAction.Render(this.RootElement, arg, firstPass);
 
             if (clear)
             {
@@ -88,12 +90,15 @@ namespace CSharpGL
             }
         }
 
-        public static void Render(RendererBase sceneElement, RenderEventArgs arg)
+        public static void Render(RendererBase sceneElement, RenderEventArgs arg, bool firstPass)
         {
             if (sceneElement != null)
             {
-                mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
-                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
+                if (firstPass)
+                {
+                    mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
+                    sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
+                }
 
                 var renderable = sceneElement as IRenderable;
                 ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
@@ -106,14 +111,14 @@ namespace CSharpGL
                     renderable.RenderBeforeChildren(arg);
                 }
 
-                if (children)
+                if (firstPass || children)
                 {
-                    arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
+                    if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item as RendererBase, arg);
+                        RenderAction.Render(item as RendererBase, arg, firstPass);
                     }
-                    arg.ModelMatrixStack.Pop();
+                    if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }
 
                 if (after)

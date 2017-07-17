@@ -23,7 +23,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Render();
+        /// <param name="firstPass">Is This the first pass of rendering?</param>
+        public abstract void Render(bool firstPass);
 
         /// <summary>
         /// Base type for rendering actions.
