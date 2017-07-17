@@ -56,7 +56,7 @@ namespace CSharpGL
         /// <param name="y">Left Down is (0, 0)</param>
         /// <param name="geometryType"></param>
         /// <returns></returns>
-        public PickedGeometry Pick(int x, int y, PickingGeometryType geometryType)
+        public PickedGeometry Pick(int x, int y, GeometryType geometryType)
         {
             PickedGeometry pickedGeometry = null;
 

@@ -9,7 +9,7 @@
         /// <summary>
         /// Gets or sets primitive's geometry type.
         /// </summary>
-        PickingGeometryType GeometryType { get; set; }
+        GeometryType Type { get; set; }
 
         /// <summary>
         /// Gets or sets positions of this primitive's vertices.

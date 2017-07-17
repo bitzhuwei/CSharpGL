@@ -2,9 +2,9 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
+    /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking.
     /// </summary>
-    public enum PickingGeometryType : byte
+    public enum GeometryType : byte
     {
         /// <summary>
         /// Picking a point.
@@ -72,25 +72,25 @@ namespace CSharpGL
         /// <param name="pickingType"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        public static bool Contains(this PickingGeometryTypes pickingType, PickingGeometryType typeOfMode)
+        public static bool Contains(this PickingGeometryTypes pickingType, GeometryType typeOfMode)
         {
             bool result = false;
 
             switch (typeOfMode)
             {
-                case PickingGeometryType.Point:
+                case GeometryType.Point:
                     result = (pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point;
                     break;
-                case PickingGeometryType.Line:
+                case GeometryType.Line:
                     result = (pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line;
                     break;
-                case PickingGeometryType.Triangle:
+                case GeometryType.Triangle:
                     result = (pickingType & faceType) != noType;
                     break;
-                case PickingGeometryType.Quad:
+                case GeometryType.Quad:
                     result = (pickingType & faceType) != noType;
                     break;
-                case PickingGeometryType.Polygon:
+                case GeometryType.Polygon:
                     result = (pickingType & faceType) != noType;
                     break;
                 default:
@@ -100,25 +100,25 @@ namespace CSharpGL
             return result;
         }
 
-        public static PickingGeometryTypes ToFlags(this PickingGeometryType type)
+        public static PickingGeometryTypes ToFlags(this GeometryType type)
         {
             PickingGeometryTypes result = 0;
 
             switch (type)
             {
-                case PickingGeometryType.Point:
+                case GeometryType.Point:
                     result = PickingGeometryTypes.Point;
                     break;
-                case PickingGeometryType.Line:
+                case GeometryType.Line:
                     result = PickingGeometryTypes.Line;
                     break;
-                case PickingGeometryType.Triangle:
+                case GeometryType.Triangle:
                     result = PickingGeometryTypes.Triangle;
                     break;
-                case PickingGeometryType.Quad:
+                case GeometryType.Quad:
                     result = PickingGeometryTypes.Quad;
                     break;
-                case PickingGeometryType.Polygon:
+                case GeometryType.Polygon:
                     result = PickingGeometryTypes.Polygon;
                     break;
                 default:

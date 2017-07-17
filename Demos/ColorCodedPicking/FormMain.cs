@@ -44,20 +44,22 @@ namespace ColorCodedPicking
             PickedGeometry pickedGeometry = this.scene.Pick(x, y, true, true, false);
             if (pickedGeometry != null)
             {
-                switch (pickedGeometry.GeometryType)
+                switch (pickedGeometry.Type)
                 {
-                    case PickingGeometryType.Point:
+                    case GeometryType.Point:
+                        throw new NotImplementedException();
                         break;
-                    case PickingGeometryType.Line:
+                    case GeometryType.Line:
+                        throw new NotImplementedException();
                         break;
-                    case PickingGeometryType.Triangle:
+                    case GeometryType.Triangle:
                         triangleTip.Vertex0 = pickedGeometry.Positions[0];
                         triangleTip.Vertex1 = pickedGeometry.Positions[1];
                         triangleTip.Vertex2 = pickedGeometry.Positions[2];
                         triangleTip.Parent = pickedGeometry.FromRenderer as RendererBase;
                         quadTip.Parent = null;
                         break;
-                    case PickingGeometryType.Quad:
+                    case GeometryType.Quad:
                         quadTip.Vertex0 = pickedGeometry.Positions[0];
                         quadTip.Vertex1 = pickedGeometry.Positions[1];
                         quadTip.Vertex2 = pickedGeometry.Positions[2];
@@ -65,7 +67,8 @@ namespace ColorCodedPicking
                         quadTip.Parent = pickedGeometry.FromRenderer as RendererBase;
                         triangleTip.Parent = null;
                         break;
-                    case PickingGeometryType.Polygon:
+                    case GeometryType.Polygon:
+                        throw new NotImplementedException();
                         break;
                     default:
                         break;
