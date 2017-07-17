@@ -106,7 +106,7 @@ namespace CSharpGL
                 bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
                 bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
 
-                if (before && renderThis)
+                if (renderThis && before)
                 {
                     renderable.RenderBeforeChildren(arg);
                 }
@@ -121,7 +121,7 @@ namespace CSharpGL
                     if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }
 
-                if (after && renderThis)
+                if (renderThis && after)
                 {
                     renderable.RenderAfterChildren(arg);
                 }
