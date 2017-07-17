@@ -66,7 +66,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        ShadowMappingAction.CastShadow(item, arg);
+                        ShadowMappingAction.CastShadow(item as RendererBase, arg);
                     }
                     arg.ModelMatrixStack.Pop();
                 }

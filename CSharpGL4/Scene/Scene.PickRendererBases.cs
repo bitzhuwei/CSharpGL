@@ -101,7 +101,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        this.RenderForPicking(item, arg, ref currentName);
+                        this.RenderForPicking(item as RendererBase, arg, ref currentName);
                     }
                     arg.ModelMatrixStack.Pop();
                 }

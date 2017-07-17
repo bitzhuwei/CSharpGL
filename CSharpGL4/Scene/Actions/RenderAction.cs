@@ -102,7 +102,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item, arg);
+                        RenderAction.Render(item as RendererBase, arg);
                     }
                     arg.ModelMatrixStack.Pop();
                 }
