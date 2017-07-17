@@ -64,7 +64,7 @@ namespace CSharpGL
     static class Helper
     {
         private const PickingGeometryTypes noType = 0;
-        private const PickingGeometryTypes faceType = PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad | PickingGeometryTypes.Polygon;
+        private const PickingGeometryTypes faceTypes = PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad | PickingGeometryTypes.Polygon;
 
         /// <summary>
         /// 
@@ -85,13 +85,13 @@ namespace CSharpGL
                     result = (pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line;
                     break;
                 case GeometryType.Triangle:
-                    result = (pickingType & faceType) != noType;
+                    result = (pickingType & faceTypes) != noType;
                     break;
                 case GeometryType.Quad:
-                    result = (pickingType & faceType) != noType;
+                    result = (pickingType & faceTypes) != noType;
                     break;
                 case GeometryType.Polygon:
-                    result = (pickingType & faceType) != noType;
+                    result = (pickingType & faceTypes) != noType;
                     break;
                 default:
                     throw new Exception("not expected PickingGeometryType!");
