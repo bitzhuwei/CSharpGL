@@ -3,7 +3,7 @@
     /// <summary>
     /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
     /// </summary>
-    public enum PickingGeometryType
+    public enum PickingGeometryType : byte
     {
         /// <summary>
         /// Picking a point.
@@ -30,4 +30,5 @@
         /// </summary>
         Polygon,
     }
+
 }
