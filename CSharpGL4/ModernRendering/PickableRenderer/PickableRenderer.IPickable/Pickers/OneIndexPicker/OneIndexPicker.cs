@@ -45,50 +45,50 @@ namespace CSharpGL
                 { return null; }
             }
 
-            PickingGeometryType geometryType = arg.GeometryType;
-            DrawMode mode = renderer.IndexBuffer.Mode;
-            PickingGeometryType typeOfMode = mode.ToGeometryType();
+            PickingGeometryTypes geometryType = arg.GeometryType;
+            DrawMode drawMode = renderer.IndexBuffer.Mode;
+            PickingGeometryType typeOfMode = drawMode.ToGeometryType();
 
-            if (geometryType == PickingGeometryType.Point)
+            if ((geometryType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
                 // 获取pickedGeometry
                 if (typeOfMode == PickingGeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else if (typeOfMode == PickingGeometryType.Line)
                 {
-                    if (this.OnPrimitiveTest(lastVertexId, mode))
+                    if (this.OnPrimitiveTest(lastVertexId, drawMode))
                     { return PickPoint(arg, stageVertexId, lastVertexId); }
                     else
                     { return null; }
                 }
                 else
                 {
-                    OneIndexPointSearcher searcher = GetPointSearcher(mode);
+                    OneIndexPointSearcher searcher = GetPointSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchPoint(arg, stageVertexId, lastVertexId, lastIndexId, searcher); }
                     else
-                    { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
+                    { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
             }
-            else if (geometryType == PickingGeometryType.Line)
+            else if ((geometryType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
                 // 获取pickedGeometry
-                if (geometryType == typeOfMode)
+                if (typeOfMode == PickingGeometryType.Point) // want a line when rendering GL_POINTS
+                { return null; }
+                if (typeOfMode == PickingGeometryType.Line)
                 { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else
                 {
-                    OneIndexLineSearcher searcher = GetLineSearcher(mode);
+                    OneIndexLineSearcher searcher = GetLineSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchLine(arg, stageVertexId, lastIndexId, searcher); }
-                    else if (mode == DrawMode.Points)// want a line when rendering GL_POINTS
-                    { return null; }
                     else
-                    { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
+                    { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
             }
             else
             {
-                if (typeOfMode == geometryType)// I want what it is
+                if (geometryType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else
                 { return null; }
@@ -225,7 +225,7 @@ namespace CSharpGL
         {
             var indexBuffer = this.Renderer.IndexBuffer;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
-                (arg.GeometryType == PickingGeometryType.Point
+                (arg.GeometryType.Contains(PickingGeometryType.Point)
                 && indexBuffer.Mode.ToGeometryType() == PickingGeometryType.Line) ?
                 DrawMode.Points : indexBuffer.Mode);
 

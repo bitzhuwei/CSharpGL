@@ -15,6 +15,7 @@ namespace ColorCodedPicking
         private Scene scene;
         private TeapotRenderer teapot;
         private LegacyTriangleRenderer triangleTip;
+        private LegacyQuadRenderer quadTip;
         private GroundRenderer ground;
         public FormMain()
         {
@@ -35,20 +36,46 @@ namespace ColorCodedPicking
         {
             LegacyTriangleRenderer triangleTip = this.triangleTip;
             if (triangleTip == null) { return; }
+            LegacyQuadRenderer quadTip = this.quadTip;
+            if (quadTip == null) { return; }
 
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            PickedGeometry pickedGeometry = this.scene.Pick(x, y, PickingGeometryType.Triangle);
+            PickedGeometry pickedGeometry = this.scene.Pick(x, y, true, true, false);
             if (pickedGeometry != null)
             {
-                triangleTip.Vertex0 = pickedGeometry.Positions[0];
-                triangleTip.Vertex1 = pickedGeometry.Positions[1];
-                triangleTip.Vertex2 = pickedGeometry.Positions[2];
-                triangleTip.Parent = pickedGeometry.FromRenderer as RendererBase;
+                switch (pickedGeometry.GeometryType)
+                {
+                    case PickingGeometryType.Point:
+                        break;
+                    case PickingGeometryType.Line:
+                        break;
+                    case PickingGeometryType.Triangle:
+                        triangleTip.Vertex0 = pickedGeometry.Positions[0];
+                        triangleTip.Vertex1 = pickedGeometry.Positions[1];
+                        triangleTip.Vertex2 = pickedGeometry.Positions[2];
+                        triangleTip.Parent = pickedGeometry.FromRenderer as RendererBase;
+                        quadTip.Parent = null;
+                        break;
+                    case PickingGeometryType.Quad:
+                        quadTip.Vertex0 = pickedGeometry.Positions[0];
+                        quadTip.Vertex1 = pickedGeometry.Positions[1];
+                        quadTip.Vertex2 = pickedGeometry.Positions[2];
+                        quadTip.Vertex3 = pickedGeometry.Positions[3];
+                        quadTip.Parent = pickedGeometry.FromRenderer as RendererBase;
+                        triangleTip.Parent = null;
+                        break;
+                    case PickingGeometryType.Polygon:
+                        break;
+                    default:
+                        break;
+                }
+
             }
             else
             {
                 triangleTip.Parent = null;
+                quadTip.Parent = null;
             }
         }
 
@@ -69,6 +96,7 @@ namespace ColorCodedPicking
             };
 
             this.triangleTip = new LegacyTriangleRenderer();
+            this.quadTip = new LegacyQuadRenderer();
             this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
             this.chkRenderBody_CheckedChanged(this.chkRenderBody, EventArgs.Empty);
         }

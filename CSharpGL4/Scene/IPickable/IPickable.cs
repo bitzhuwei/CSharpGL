@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="geometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).</param>
-        public PickingEventArgs(Scene scene, int x, int y, PickingGeometryType geometryType)
+        public PickingEventArgs(Scene scene, int x, int y, PickingGeometryTypes geometryType)
         {
             this.Scene = scene;
             this.X = x;
@@ -87,7 +87,7 @@ namespace CSharpGL
         /// <summary>
         /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).
         /// </summary>
-        public PickingGeometryType GeometryType { get; set; }
+        public PickingGeometryTypes GeometryType { get; set; }
 
         /// <summary>
         /// 

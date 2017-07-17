@@ -14,6 +14,44 @@ namespace CSharpGL
         /// <summary>
         /// Pick geometry at specified positon.
         /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="pickTriangle"></param>
+        /// <param name="pickQuad"></param>
+        /// <param name="pickPolygon"></param>
+        /// <returns></returns>
+        public PickedGeometry Pick(int x, int y, bool pickTriangle, bool pickQuad, bool pickPolygon)
+        {
+            PickingGeometryTypes geometryTypes = 0;
+            if (pickTriangle) { geometryTypes |= PickingGeometryTypes.Triangle; }
+            if (pickQuad) { geometryTypes |= PickingGeometryTypes.Quad; }
+            if (pickPolygon) { geometryTypes |= PickingGeometryTypes.Polygon; }
+            if (geometryTypes == 0) { return null; }
+
+            PickedGeometry pickedGeometry = null;
+
+            Framebuffer framebuffer = GetPickingFramebuffer();
+            framebuffer.Bind();
+            {
+                const float one = 1.0f;
+                GL.Instance.ClearColor(one, one, one, one);
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
+                var arg = new PickingEventArgs(this, x, y, geometryTypes);
+                this.RenderForPicking(this.RootElement, arg);
+
+                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
+
+                pickedGeometry = Pick(stageVertexId, arg, this.RootElement);
+            }
+            framebuffer.Unbind();
+
+            return pickedGeometry;
+        }
+
+        /// <summary>
+        /// Pick geometry at specified positon.
+        /// </summary>
         /// <param name="x">Left Down is (0, 0)</param>
         /// <param name="y">Left Down is (0, 0)</param>
         /// <param name="geometryType"></param>
@@ -29,7 +67,7 @@ namespace CSharpGL
                 GL.Instance.ClearColor(one, one, one, one);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                var arg = new PickingEventArgs(this, x, y, geometryType);
+                var arg = new PickingEventArgs(this, x, y, geometryType.ToFlags());
                 this.RenderForPicking(this.RootElement, arg);
 
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);

@@ -31,9 +31,9 @@ namespace CSharpGL
             if (!this.Renderer.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             { return null; }
 
-            PickingGeometryType geometryType = arg.GeometryType;
+            PickingGeometryTypes pickingType = arg.GeometryType;
 
-            if (geometryType == PickingGeometryType.Point)
+            if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
                 DrawMode mode = this.Renderer.IndexBuffer.Mode;
                 PickingGeometryType typeOfMode = mode.ToGeometryType();
@@ -55,11 +55,10 @@ namespace CSharpGL
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
             }
-            else if (geometryType == PickingGeometryType.Line)
+            else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
                 DrawMode mode = this.Renderer.IndexBuffer.Mode;
                 PickingGeometryType typeOfMode = mode.ToGeometryType();
-                if (geometryType == typeOfMode)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
                 else
                 {
@@ -76,7 +75,6 @@ namespace CSharpGL
             {
                 DrawMode mode = this.Renderer.IndexBuffer.Mode;
                 PickingGeometryType typeOfMode = mode.ToGeometryType();
-                if (typeOfMode == geometryType)// I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
                 else
                 { return null; }

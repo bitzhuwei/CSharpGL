@@ -10,36 +10,17 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="geometryType"></param>
+        /// <param name="geometryTypes"></param>
         /// <returns></returns>
-        public static PolygonMode GetPolygonMode(this PickingGeometryType geometryType)
+        public static PolygonMode GetPolygonMode(this PickingGeometryTypes geometryTypes)
         {
             PolygonMode mode;
-            switch (geometryType)
-            {
-                case PickingGeometryType.Point:
-                    mode = PolygonMode.Point;
-                    break;
-
-                case PickingGeometryType.Line:
-                    mode = PolygonMode.Line;
-                    break;
-
-                case PickingGeometryType.Triangle:
-                    mode = PolygonMode.Fill;
-                    break;
-
-                case PickingGeometryType.Quad:
-                    mode = PolygonMode.Fill;
-                    break;
-
-                case PickingGeometryType.Polygon:
-                    mode = PolygonMode.Fill;
-                    break;
-
-                default:
-                    throw new Exception("Unexpected PickingGeometryType!");
-            }
+            if ((geometryTypes & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
+            { mode = PolygonMode.Point; }
+            else if ((geometryTypes & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
+            { mode = PolygonMode.Line; }
+            else
+            { mode = PolygonMode.Fill; }
 
             return mode;
         }
