@@ -209,6 +209,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\Billboard\TextBillboard\TextBillboardRenderer.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\RenderToTexture\DepthFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\RenderToTexture\IFrameufferProvider.cs" />
