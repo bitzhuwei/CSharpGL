@@ -36,10 +36,10 @@ namespace ShadowMapping
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1)
-           {
-               RootElement = rootElement,
-               ClearColor = Color.SkyBlue.ToVec4(),
-           };
+            {
+                RootElement = rootElement,
+                ClearColor = Color.SkyBlue.ToVec4(),
+            };
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();

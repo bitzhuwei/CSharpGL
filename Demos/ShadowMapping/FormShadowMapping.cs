@@ -13,6 +13,7 @@ namespace ShadowMapping
     public partial class FormShadowMapping : Form
     {
         Scene scene;
+        private ActionList actionList;
 
         public FormShadowMapping()
         {
@@ -42,6 +43,12 @@ namespace ShadowMapping
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+
+            var shadowMappingAction = new ShadowMappingAction(rootElement, camera);
+            var renderAction = new RenderAction(true, new vec4(0, 0, 0, 0), rootElement, camera);
+            var actionList = new ActionList();
+            actionList.Add(shadowMappingAction); actionList.Add(renderAction);
+            this.actionList = actionList;
         }
 
         private void Match(TreeView treeView, SceneNodeBase rendererBase)
@@ -89,7 +96,8 @@ namespace ShadowMapping
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render();
+            //this.scene.Render();
+            this.actionList.Render();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
