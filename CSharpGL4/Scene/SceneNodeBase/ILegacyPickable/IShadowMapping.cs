@@ -6,13 +6,13 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// Shadow mapping..
+    /// Supports shadow mapping.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public interface IShadowMapping
     {
         /// <summary>
-        /// 
+        /// Is casting shadow for this object enabled?
         /// </summary>
         bool EnableShadowMapping { get; set; }
 

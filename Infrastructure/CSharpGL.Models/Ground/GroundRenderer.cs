@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class GroundRenderer : PickableRenderer
+    public class GroundRenderer : PickableRenderer, IShadowMapping
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -89,6 +89,32 @@ void main(void) {
             base.DoRender(arg);
         }
 
+
+        #region IShadowMapping 成员
+
+        private bool enableShadowMapping = true;
+
+        public bool EnableShadowMapping1
+        {
+            get { return enableShadowMapping; }
+            set { enableShadowMapping = value; }
+        }
+
+        public void CastShadow(RenderEventArgs arg)
+        {
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            this.SetUniform(projectionMatrix, projection);
+            this.SetUniform(viewMatrix, view);
+            this.SetUniform(modelMatrix, model);
+            this.SetUniform(color, this.Color);
+
+            base.DoRender(arg);
+        }
+
+        #endregion
     }
 
     class GroundModel : IBufferable

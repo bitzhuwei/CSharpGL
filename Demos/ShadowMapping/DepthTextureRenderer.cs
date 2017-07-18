@@ -93,7 +93,13 @@ void main(void) {
 
         #region IShadowMapping 成员
 
-        public bool EnableShadowMapping { get { return true; } set { } }
+        private bool enableShadowMapping = true;
+
+        public bool EnableShadowMapping1
+        {
+            get { return enableShadowMapping; }
+            set { enableShadowMapping = value; }
+        }
 
         public void CastShadow(RenderEventArgs arg)
         {
