@@ -46,7 +46,7 @@ namespace HelloCSharpGL
             this.trvScene.ExpandAll();
         }
 
-        private void Match(TreeView treeView, RendererBase rendererBase)
+        private void Match(TreeView treeView, SceneNodeBase rendererBase)
         {
             treeView.Nodes.Clear();
             var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
@@ -54,17 +54,17 @@ namespace HelloCSharpGL
             Match(node, rendererBase);
         }
 
-        private void Match(TreeNode node, RendererBase rendererBase)
+        private void Match(TreeNode node, SceneNodeBase rendererBase)
         {
             foreach (var item in rendererBase.Children)
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
-                Match(child, item as RendererBase);
+                Match(child, item as SceneNodeBase);
             }
         }
 
-        private RendererBase GetPropellerRTT()
+        private SceneNodeBase GetPropellerRTT()
         {
             var teapot = TeapotRenderer.Create();
             teapot.Scale *= 0.5f;
@@ -87,7 +87,7 @@ namespace HelloCSharpGL
             return propeller;
         }
 
-        private RendererBase GetLegacyPropellerLegacyFlabellum()
+        private SceneNodeBase GetLegacyPropellerLegacyFlabellum()
         {
             var propeller = new LegacyPropellerRenderer();
             propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
@@ -112,7 +112,7 @@ namespace HelloCSharpGL
             return propeller;
         }
 
-        private RendererBase GetLegacyPropellerFlabellum()
+        private SceneNodeBase GetLegacyPropellerFlabellum()
         {
             var propeller = new LegacyPropellerRenderer();
             propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
@@ -137,7 +137,7 @@ namespace HelloCSharpGL
             return propeller;
         }
 
-        private RendererBase GetPropellerLegacyFlabellum()
+        private SceneNodeBase GetPropellerLegacyFlabellum()
         {
             var propeller = PropellerRenderer.Create();
             propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
@@ -162,7 +162,7 @@ namespace HelloCSharpGL
             return propeller;
         }
 
-        private RendererBase GetPropellerFlabellum()
+        private SceneNodeBase GetPropellerFlabellum()
         {
             var propeller = PropellerRenderer.Create();
             propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));

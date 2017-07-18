@@ -12,7 +12,7 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// Pick <see cref="RendererBase"/>s at specified positon.
+        /// Pick <see cref="SceneNodeBase"/>s at specified positon.
         /// </summary>
         /// <param name="x">Left Down is (0, 0)</param>
         /// <param name="y">Left Down is (0, 0)</param>
@@ -75,7 +75,7 @@ namespace CSharpGL
             return pickedRenderer;
         }
 
-        private void RenderForPicking(RendererBase sceneElement, LegacyPickingEventArgs arg, ref uint currentName)
+        private void RenderForPicking(SceneNodeBase sceneElement, LegacyPickingEventArgs arg, ref uint currentName)
         {
             var pickable = sceneElement as ILegacyPickable;
             if (pickable != null)
@@ -101,7 +101,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        this.RenderForPicking(item as RendererBase, arg, ref currentName);
+                        this.RenderForPicking(item as SceneNodeBase, arg, ref currentName);
                     }
                     arg.ModelMatrixStack.Pop();
                 }

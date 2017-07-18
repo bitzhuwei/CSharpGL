@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public RendererBase RootElement { get; set; }
+        public SceneNodeBase RootElement { get; set; }
 
         private vec4 clearColor = new vec4(0.0f, 0.0f, 0.0f, 1.0f);
         /// <summary>

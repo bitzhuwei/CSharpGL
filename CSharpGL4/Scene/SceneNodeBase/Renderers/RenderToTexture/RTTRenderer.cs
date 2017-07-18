@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render children to framebuffer, then To Texture.
     /// </summary>
-    public class RTTRenderer : RendererBase, IRenderable, ITextureSource
+    public class RTTRenderer : SceneNodeBase, IRenderable, ITextureSource
     {
         /// <summary>
         /// Billboard's width(in pixels).
@@ -79,7 +79,7 @@ namespace CSharpGL
                     var args = new RenderEventArgs(this.Camera);
                     foreach (var item in this.Children)
                     {
-                        RenderAction.Render(item as RendererBase, args, true, true);
+                        RenderAction.Render(item as SceneNodeBase, args, true, true);
                     }
                 }
                 {

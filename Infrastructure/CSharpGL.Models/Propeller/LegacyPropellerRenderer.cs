@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render propeller in legacy opengl.
     /// </summary>
-    public class LegacyPropellerRenderer : RendererBase, IRenderable, ILegacyPickable
+    public class LegacyPropellerRenderer : SceneNodeBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 0.3f;
         private const float yLength = 0.2f;

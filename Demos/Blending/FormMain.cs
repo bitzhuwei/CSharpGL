@@ -42,7 +42,7 @@ namespace Blending
             this.trvScene.ExpandAll();
         }
 
-        private void Match(TreeView treeView, RendererBase rendererBase)
+        private void Match(TreeView treeView, SceneNodeBase rendererBase)
         {
             treeView.Nodes.Clear();
             var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
@@ -50,17 +50,17 @@ namespace Blending
             Match(node, rendererBase);
         }
 
-        private void Match(TreeNode node, RendererBase rendererBase)
+        private void Match(TreeNode node, SceneNodeBase rendererBase)
         {
             foreach (var item in rendererBase.Children)
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
-                Match(child, item as RendererBase);
+                Match(child, item as SceneNodeBase);
             }
         }
 
-        private RendererBase GetTree()
+        private SceneNodeBase GetTree()
         {
             var group = new GroupRenderer();
             {

@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyTriangleRenderer : RendererBase, IRenderable
+    public class LegacyTriangleRenderer : SceneNodeBase, IRenderable
     {
         /// <summary>
         /// 

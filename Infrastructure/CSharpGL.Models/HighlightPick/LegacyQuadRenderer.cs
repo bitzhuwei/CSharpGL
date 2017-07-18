@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyQuadRenderer : RendererBase, IRenderable
+    public class LegacyQuadRenderer : SceneNodeBase, IRenderable
     {
         /// <summary>
         /// 

@@ -79,7 +79,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry Pick(uint stageVertexId, PickingEventArgs arg, RendererBase renderer)
+        private PickedGeometry Pick(uint stageVertexId, PickingEventArgs arg, SceneNodeBase renderer)
         {
             PickedGeometry pickedGeometry = null;
             if (renderer != null)
@@ -94,7 +94,7 @@ namespace CSharpGL
                 {
                     foreach (var item in renderer.Children)
                     {
-                        pickedGeometry = Pick(stageVertexId, arg, item as RendererBase);
+                        pickedGeometry = Pick(stageVertexId, arg, item as SceneNodeBase);
                         if (pickedGeometry != null)
                         {
                             break;
@@ -136,7 +136,7 @@ namespace CSharpGL
             return framebuffer;
         }
 
-        private void RenderForPicking(RendererBase sceneElement, PickingEventArgs arg)
+        private void RenderForPicking(SceneNodeBase sceneElement, PickingEventArgs arg)
         {
             if (sceneElement != null)
             {
@@ -160,7 +160,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        this.RenderForPicking(item as RendererBase, arg);
+                        this.RenderForPicking(item as SceneNodeBase, arg);
                     }
                     arg.ModelMatrixStack.Pop();
                 }

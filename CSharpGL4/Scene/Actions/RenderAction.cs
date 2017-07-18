@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
         /// <param name="firstPass"></param>
-        public static void Render(bool clear, vec4 clearColor, RendererBase rootElement, ICamera camera, bool firstPass)
+        public static void Render(bool clear, vec4 clearColor, SceneNodeBase rootElement, ICamera camera, bool firstPass)
         {
             int[] value = null;
             if (clear)
@@ -47,7 +47,7 @@ namespace CSharpGL
         /// <param name="clearColor"></param>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
-        public RenderAction(bool clear, vec4 clearColor, RendererBase rootElement, ICamera camera)
+        public RenderAction(bool clear, vec4 clearColor, SceneNodeBase rootElement, ICamera camera)
             : base(rootElement, camera)
         {
             this.Clear = clear;
@@ -82,7 +82,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(this.Camera);
-            RenderAction.Render(this.RootElement, arg, firstPass, true);
+            RenderAction.Render(this.RootElement as SceneNodeBase, arg, firstPass, true);
 
             if (clear)
             {
@@ -90,7 +90,7 @@ namespace CSharpGL
             }
         }
 
-        public static void Render(RendererBase sceneElement, RenderEventArgs arg, bool firstPass, bool renderThis)
+        public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg, bool firstPass, bool renderThis)
         {
             if (sceneElement != null)
             {
@@ -116,7 +116,7 @@ namespace CSharpGL
                     if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item as RendererBase, arg, firstPass, children);
+                        RenderAction.Render(item as SceneNodeBase, arg, firstPass, children);
                     }
                     if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }

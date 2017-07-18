@@ -15,7 +15,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="arg"></param>
-        public static void PushProjectionViewMatrix(this RendererBase renderer, RenderEventArgs arg)
+        public static void PushProjectionViewMatrix(this SceneNodeBase renderer, RenderEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
@@ -31,7 +31,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="arg"></param>
-        public static void PushProjectionViewMatrix(this RendererBase renderer, LegacyPickingEventArgs arg)
+        public static void PushProjectionViewMatrix(this SceneNodeBase renderer, LegacyPickingEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
@@ -45,7 +45,7 @@ namespace CSharpGL
         /// Push and calculate model matrix in legacy OpenGL.
         /// </summary>
         /// <param name="renderer"></param>
-        public static void PushModelMatrix(this RendererBase renderer)
+        public static void PushModelMatrix(this SceneNodeBase renderer)
         {
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PushMatrix();
@@ -57,7 +57,7 @@ namespace CSharpGL
         /// <summary>
         /// Pop projection+view matrix.
         /// </summary>
-        public static void PopProjectionViewMatrix(this RendererBase renderer)
+        public static void PopProjectionViewMatrix(this SceneNodeBase renderer)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PopMatrix();
@@ -66,7 +66,7 @@ namespace CSharpGL
         /// <summary>
         /// Pop model matrix.
         /// </summary>
-        public static void PopModelMatrix(this RendererBase renderer)
+        public static void PopModelMatrix(this SceneNodeBase renderer)
         {
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PopMatrix();

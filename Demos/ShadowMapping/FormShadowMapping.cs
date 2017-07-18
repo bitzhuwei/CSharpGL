@@ -44,7 +44,7 @@ namespace ShadowMapping
             this.trvScene.ExpandAll();
         }
 
-        private void Match(TreeView treeView, RendererBase rendererBase)
+        private void Match(TreeView treeView, SceneNodeBase rendererBase)
         {
             treeView.Nodes.Clear();
             var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
@@ -52,17 +52,17 @@ namespace ShadowMapping
             Match(node, rendererBase);
         }
 
-        private void Match(TreeNode node, RendererBase rendererBase)
+        private void Match(TreeNode node, SceneNodeBase rendererBase)
         {
             foreach (var item in rendererBase.Children)
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
-                Match(child, item as RendererBase);
+                Match(child, item as SceneNodeBase);
             }
         }
 
-        private RendererBase GetRenderer()
+        private SceneNodeBase GetRenderer()
         {
             int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);

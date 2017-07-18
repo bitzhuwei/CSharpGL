@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public abstract partial class PickableRenderer : RendererBase, IRenderable, IPickable
+    public abstract partial class PickableRenderer : SceneNodeBase, IRenderable, IPickable
     {
         // data structure for rendering.
 

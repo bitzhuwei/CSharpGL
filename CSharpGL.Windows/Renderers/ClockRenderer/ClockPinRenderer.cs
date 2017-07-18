@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    public class ClockPinRenderer : RendererBase, IRenderable
+    public class ClockPinRenderer : SceneNodeBase, IRenderable
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();

@@ -10,7 +10,7 @@ namespace Blending
     /// <summary>
     /// 
     /// </summary>
-    class BlendingGroupRenderer : RendererBase, IRenderable
+    class BlendingGroupRenderer : SceneNodeBase, IRenderable
     {
         private BlendState blending;
         private DepthMaskState depthMask = new DepthMaskState(false);

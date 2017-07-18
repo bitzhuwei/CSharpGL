@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    internal class ClockCircleRenderer : RendererBase, IRenderable
+    internal class ClockCircleRenderer : SceneNodeBase, IRenderable
     {
         private readonly List<vec3> circlePosition = new List<vec3>();
         private readonly List<vec3> circleColor = new List<vec3>();

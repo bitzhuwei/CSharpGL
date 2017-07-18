@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render flabellum in legacy opengl.
     /// </summary>
-    public class LegacyFlabellumRenderer : RendererBase, IRenderable, ILegacyPickable
+    public class LegacyFlabellumRenderer : SceneNodeBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 1.6f;
         private const float yLength = 0.05f;

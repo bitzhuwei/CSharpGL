@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public RendererBase RootElement { get; set; }
+        public SceneNodeBase RootElement { get; set; }
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
-        public ActionBase(RendererBase rootElement, ICamera camera)
+        public ActionBase(SceneNodeBase rootElement, ICamera camera)
         {
             this.RootElement = rootElement;
             this.Camera = camera;

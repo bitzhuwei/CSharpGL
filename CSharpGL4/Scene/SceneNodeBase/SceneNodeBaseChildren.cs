@@ -10,7 +10,7 @@ namespace CSharpGL
     /// children in <see cref="SceneNodeBase"/>.
     /// </summary>
     [Editor(typeof(IListEditor<SceneNodeBase>), typeof(UITypeEditor))]
-    public class SceneNodeBaseChildren : IList<SceneNodeBase>
+    public class RendererBaseChildren : IList<SceneNodeBase>
     {
         private List<SceneNodeBase> list = new List<SceneNodeBase>();
 
@@ -23,7 +23,7 @@ namespace CSharpGL
         /// children in <paramref name="parent"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public SceneNodeBaseChildren(SceneNodeBase parent)
+        public RendererBaseChildren(SceneNodeBase parent)
         {
             Debug.Assert(parent != null);
 

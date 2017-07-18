@@ -37,7 +37,7 @@ namespace CSharpGL
         public readonly Scene scene;
         public readonly int x;
         public readonly int y;
-        public readonly Dictionary<uint, RendererBase> hitMap;
+        public readonly Dictionary<uint, SceneNodeBase> hitMap;
 
         public LegacyPickingEventArgs(mat4 pickMatrix, Scene scene, int x, int y)
         {
@@ -45,7 +45,7 @@ namespace CSharpGL
             this.scene = scene;
             this.x = x;
             this.y = y;
-            this.hitMap = new Dictionary<uint, RendererBase>();
+            this.hitMap = new Dictionary<uint, SceneNodeBase>();
 
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
@@ -66,7 +66,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public readonly RendererBase renderer;
+        public readonly SceneNodeBase renderer;
 
         /// <summary>
         /// 
@@ -84,7 +84,7 @@ namespace CSharpGL
         /// <param name="sceneElement"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public HitTarget(RendererBase sceneElement, uint zNear, uint zFar)
+        public HitTarget(SceneNodeBase sceneElement, uint zNear, uint zFar)
         {
             this.renderer = sceneElement;
             this.zNear = zNear;

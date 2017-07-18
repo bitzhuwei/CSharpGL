@@ -25,7 +25,7 @@ namespace Texture2D
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            RendererBase rootElement = GetRootElement();
+            SceneNodeBase rootElement = GetRootElement();
 
             var position = new vec3(1, 2, 4) / 3;
             var center = new vec3(0, 0, 0);
@@ -41,7 +41,7 @@ namespace Texture2D
             this.trvScene.ExpandAll();
         }
 
-        private RendererBase GetRootElement()
+        private SceneNodeBase GetRootElement()
         {
             var result = RectangleRenderer.Create();
             result.TextureSource = new CrateTextureSource();
@@ -49,7 +49,7 @@ namespace Texture2D
             return result;
         }
 
-        private void Match(TreeView treeView, RendererBase rendererBase)
+        private void Match(TreeView treeView, SceneNodeBase rendererBase)
         {
             treeView.Nodes.Clear();
             var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
@@ -57,13 +57,13 @@ namespace Texture2D
             Match(node, rendererBase);
         }
 
-        private void Match(TreeNode node, RendererBase rendererBase)
+        private void Match(TreeNode node, SceneNodeBase rendererBase)
         {
             foreach (var item in rendererBase.Children)
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
-                Match(child, item as RendererBase);
+                Match(child, item as SceneNodeBase);
             }
         }
 
