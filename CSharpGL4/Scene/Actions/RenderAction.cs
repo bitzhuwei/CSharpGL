@@ -67,7 +67,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="firstPass"></param>
+        /// <param name="firstPass">Update all objects' model matrix if <paramref name="firstPass"/> is true.</param>
         public override void Render(bool firstPass)
         {
             int[] value = null;

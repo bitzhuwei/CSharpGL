@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// Cast shadow.(Prepare shadow mapping texture)
         /// </summary>
-        /// <param name="firstPass"></param>
+        /// <param name="firstPass">Update all objects' model matrix if <paramref name="firstPass"/> is true.</param>
         public override void Render(bool firstPass)
         {
             GL.Instance.ClearColor(1, 1, 1, 1);
