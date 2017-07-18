@@ -1,2 +1,2 @@
-﻿# `RendererBase`
-General rendering type.
+﻿# `SceneNodeBase`
+`SceneNodeBase` onstructs the tree structure in the `Scene`.

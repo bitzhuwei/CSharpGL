@@ -573,6 +573,7 @@
     <Content Include="Scene\SceneNodeBase\ModernRendering\PickableRenderer\PickableRenderer.IPickable\Pickers\ZeroIndexPicker\readme.md" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\PickableRenderer\PickableRenderer.IPickable\PickableRenderer.RenderForInnerPicking.cs" />
     <None Include="Scene\SceneNodeBase\ModernRendering\Renderer\readme.md" />
+    <Content Include="Scene\SceneNodeBase\Renderers\readme.md" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

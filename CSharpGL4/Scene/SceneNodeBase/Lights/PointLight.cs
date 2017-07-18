@@ -13,15 +13,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public vec3 Position { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="position"></param>
         public PointLight(vec3 position)
         {
-            this.Position = position;
+            this.WorldPosition = position;
         }
     }
 }
