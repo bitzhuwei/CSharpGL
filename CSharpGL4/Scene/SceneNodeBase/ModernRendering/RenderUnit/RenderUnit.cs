@@ -56,5 +56,21 @@ namespace CSharpGL
             // 解绑shader
             program.Unbind();
         }
+
+
+        public void Dispose()
+        {
+            VertexArrayObject vao = this.VertexArrayObject;
+            if (vao != null)
+            {
+                vao.Dispose();
+            }
+            ShaderProgram program = this.Program;
+            if (program != null)
+            {
+                program.Dispose();
+            }
+        }
+
     }
 }

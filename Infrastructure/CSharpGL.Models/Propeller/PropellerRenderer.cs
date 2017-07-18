@@ -70,17 +70,18 @@ void main(void) {
             var map = new AttributeMap();
             map.Add("inPosition", Propeller.strPosition);
             map.Add("inColor", Propeller.strColor);
-            var renderer = new PropellerRenderer(new Propeller(), provider, map);
+            var model = new Propeller();
+            var builder = new RenderUnitBuilder(model, provider, map);
+            var renderer = new PropellerRenderer(model.GetModelSize(), builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private PropellerRenderer(Propeller model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, switches)
+        private PropellerRenderer(vec3 modelSize, params RenderUnitBuilder[] builders)
+            : base(builders)
         {
-            this.ModelSize = model.GetModelSize();
+            this.ModelSize = modelSize;
         }
 
         #region IRenderable 成员
@@ -90,8 +91,10 @@ void main(void) {
         /// </summary>
         public float RotateSpeed { get; set; }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             this.RotationAngle += this.RotateSpeed;
 
             //var viewport = new int[4];
@@ -103,11 +106,14 @@ void main(void) {
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("viewMatrix", view);
+            program.SetUniform("modelMatrix", model);
+
+            renderUnit.Render();
         }
 
         #endregion

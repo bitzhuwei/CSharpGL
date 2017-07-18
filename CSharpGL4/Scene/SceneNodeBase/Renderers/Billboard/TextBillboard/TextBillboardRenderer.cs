@@ -125,7 +125,8 @@ void main(void) {
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            var renderer = new TextBillboardRenderer(textureSource, width, height, new TextBillboard(), provider, map);
+            var builder = new RenderUnitBuilder(new TextBillboard(), provider, map);
+            var renderer = new TextBillboardRenderer(textureSource, width, height, builder);
             renderer.Initialize();
 
             return renderer;
@@ -168,34 +169,38 @@ void main(void) {
 
         public float Delta { get; set; }
 
-        private TextBillboardRenderer(ITextureSource textureSource, int width, int height, IBufferable model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, switches)
+        private TextBillboardRenderer(ITextureSource textureSource, int width, int height, RenderUnitBuilder renderUnitBuilder)
+            : base(renderUnitBuilder)
         {
             this.TextureSource = textureSource;
             this.Width = width;
             this.Height = height;
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
-            this.SetUniform(width, this._width);
-            this.SetUniform(height, this._height);
-            this.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
-            this.SetUniform(tex, this.textureSource.BindingTexture);
-            this.SetUniform(transparentBackground, this.TransparentBackground);
-            this.SetUniform(delta, this.Delta);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+            program.SetUniform(width, this._width);
+            program.SetUniform(height, this._height);
+            program.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
+            program.SetUniform(tex, this.textureSource.BindingTexture);
+            program.SetUniform(transparentBackground, this.TransparentBackground);
+            program.SetUniform(delta, this.Delta);
+
+            renderUnit.Render();
         }
 
     }

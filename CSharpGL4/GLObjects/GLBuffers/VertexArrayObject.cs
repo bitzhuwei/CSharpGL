@@ -175,6 +175,7 @@ namespace CSharpGL
                         this.ids[0] = 0;
                     }
                     {
+                        // NOTE: This indicates that all references to these VertexShaderAttribute objects should be disposed.
                         VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
                         if (vertexAttributeBuffers != null)
                         {

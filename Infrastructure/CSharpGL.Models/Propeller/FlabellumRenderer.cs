@@ -69,23 +69,26 @@ void main(void) {
             var map = new AttributeMap();
             map.Add("inPosition", Flabellum.strPosition);
             map.Add("inColor", Flabellum.strColor);
-            var renderer = new FlabellumRenderer(new Flabellum(), provider, map);
+            var model = new Flabellum();
+            var builder = new RenderUnitBuilder(model, provider, map);
+            var renderer = new FlabellumRenderer(model.GetModelSize(), builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private FlabellumRenderer(Flabellum model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, switches)
+        private FlabellumRenderer(vec3 modelSize, params RenderUnitBuilder[] builders)
+            : base(builders)
         {
-            this.ModelSize = model.GetModelSize();
+            this.ModelSize = modelSize;
         }
 
         #region IRenderable 成员
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             //var viewport = new int[4];
             ////	Get the viewport, then convert the mouse point to an opengl point.
             //GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -95,11 +98,14 @@ void main(void) {
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("viewMatrix", view);
+            program.SetUniform("modelMatrix", model);
+
+            renderUnit.Render();
         }
 
         #endregion

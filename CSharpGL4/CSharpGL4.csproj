@@ -96,11 +96,11 @@
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
     <Compile Include="Scene\Actions\ActionList.cs" />
-    <Compile Include="Scene\SceneNodeBase\ModernRendering\IShaderProgramProvider.cs">
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Scene\SceneNodeBase\ModernRendering\AttributeMap.cs" />
-    <Compile Include="Scene\SceneNodeBase\ModernRendering\IBufferable.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\AttributeMap.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IBufferable.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\ColorCodedPicking.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\GeometryTypeHelper.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\PickableRenderer\PickableRenderer.IPickable\ColorCodedPicking\PickingShaderHelper.cs" />
@@ -209,7 +209,9 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IPickableRenderUnitBuilder.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\RenderUnitBuilder.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\RenderUnit.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\Billboard\TextBillboard\TextBillboardRenderer.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\RenderToTexture\DepthFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\RenderToTexture\IFrameufferProvider.cs" />

@@ -56,36 +56,42 @@ void main(void) {
             var provider = new ShaderArray(vertexShader);
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
-            var renderer = new DepthTextureRenderer(new Teapot(), provider, map);
+            var model = new Teapot();
+            var builder = new RenderUnitBuilder(model, provider, map);
+            var renderer = new DepthTextureRenderer(model.GetModelSize(), builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private DepthTextureRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, switches)
+        private DepthTextureRenderer(vec3 modelSize, params RenderUnitBuilder[] builder)
+            : base(builder)
         {
-            this.ModelSize = model.GetModelSize();
+            this.ModelSize = modelSize;
         }
 
         #region IRenderable 成员
 
         public float RotateSpeed { get; set; }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             this.RotationAngle += this.RotateSpeed;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+
+            renderUnit.Render();
         }
 
         #endregion
@@ -103,17 +109,22 @@ void main(void) {
 
         public void CastShadow(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             this.RotationAngle += this.RotateSpeed;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+
+            renderUnit.Render();
         }
 
         #endregion
