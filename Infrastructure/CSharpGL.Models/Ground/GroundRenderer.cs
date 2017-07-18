@@ -94,7 +94,7 @@ void main(void) {
 
         private bool enableShadowMapping = true;
 
-        public bool EnableShadowMapping1
+        public bool EnableShadowMapping
         {
             get { return enableShadowMapping; }
             set { enableShadowMapping = value; }
@@ -115,6 +115,7 @@ void main(void) {
         }
 
         #endregion
+
     }
 
     class GroundModel : IBufferable

@@ -95,6 +95,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
+    <Compile Include="Scene\Actions\ActionList.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
