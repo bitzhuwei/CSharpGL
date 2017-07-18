@@ -79,7 +79,7 @@ namespace CSharpGL
                     var args = new RenderEventArgs(this.Camera);
                     foreach (var item in this.Children)
                     {
-                        RenderAction.Render(item as SceneNodeBase, args, true, true);
+                        RenderAction.Render(item, args, true, true);
                     }
                 }
                 {

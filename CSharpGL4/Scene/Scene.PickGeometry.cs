@@ -94,7 +94,7 @@ namespace CSharpGL
                 {
                     foreach (var item in renderer.Children)
                     {
-                        pickedGeometry = Pick(stageVertexId, arg, item as SceneNodeBase);
+                        pickedGeometry = Pick(stageVertexId, arg, item);
                         if (pickedGeometry != null)
                         {
                             break;
@@ -160,7 +160,7 @@ namespace CSharpGL
                     arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
-                        this.RenderForPicking(item as SceneNodeBase, arg);
+                        this.RenderForPicking(item, arg);
                     }
                     arg.ModelMatrixStack.Pop();
                 }

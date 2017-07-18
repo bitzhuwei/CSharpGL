@@ -32,7 +32,7 @@ namespace CSharpGL
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             var arg = new RenderEventArgs(this.Camera);
-            ShadowMappingAction.CastShadow(this.RootElement as SceneNodeBase, arg, firstPass);
+            ShadowMappingAction.CastShadow(this.RootElement, arg, firstPass);
         }
 
         public static void CastShadow(SceneNodeBase sceneElement, RenderEventArgs arg, bool firstPass)
@@ -55,7 +55,7 @@ namespace CSharpGL
                     if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)
                     {
-                        ShadowMappingAction.CastShadow(item as SceneNodeBase, arg, firstPass);
+                        ShadowMappingAction.CastShadow(item, arg, firstPass);
                     }
                     if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }

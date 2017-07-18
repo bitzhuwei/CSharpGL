@@ -82,7 +82,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(this.Camera);
-            RenderAction.Render(this.RootElement as SceneNodeBase, arg, firstPass, true);
+            RenderAction.Render(this.RootElement, arg, firstPass, true);
 
             if (clear)
             {
@@ -116,7 +116,7 @@ namespace CSharpGL
                     if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item as SceneNodeBase, arg, firstPass, children);
+                        RenderAction.Render(item, arg, firstPass, children);
                     }
                     if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }
