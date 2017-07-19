@@ -39,7 +39,7 @@ namespace CSharpGL
                 OneIndexBuffer twoPrimitivesIndexBuffer;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
-                    primitiveInfoList[current], primitiveInfoList[i], this.Renderer.IndexBuffer.Mode,
+                    primitiveInfoList[current], primitiveInfoList[i], this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode,
                     out twoPrimitivesIndexBuffer, out lastIndex0, out lastIndex1);
                 uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
                 if (pickedIndex == lastIndex1)

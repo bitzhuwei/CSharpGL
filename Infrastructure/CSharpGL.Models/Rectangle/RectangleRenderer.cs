@@ -88,7 +88,8 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, RectangleModel.strPosition);
             map.Add(inUV, RectangleModel.strUV);
-            var renderer = new RectangleRenderer(new RectangleModel(), provider, map, inPosition);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new RectangleRenderer(new RectangleModel(), RectangleModel.strPosition, builder);
             renderer.Initialize();
 
             return renderer;
@@ -97,31 +98,34 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private RectangleRenderer(RectangleModel model, IShaderProgramProvider renderProgramProvider,
-            AttributeMap attributeMap, string positionNameInVertexShader,
-            params GLState[] switches)
-            : base(model, renderProgramProvider, attributeMap, positionNameInVertexShader, switches)
+        private RectangleRenderer(RectangleModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+            : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+
             var source = this.TextureSource;
             if (source != null)
             {
-                this.SetUniform(tex, source.BindingTexture);
+                program.SetUniform(tex, source.BindingTexture);
             }
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
-            this.SetUniform(transparentBackground, this.TransparentBackground);
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+            program.SetUniform(transparentBackground, this.TransparentBackground);
 
-            base.DoRender(arg);
+            renderUnit.Render();
         }
 
         public ITextureSource TextureSource { get; set; }

@@ -43,7 +43,7 @@ namespace CSharpGL
 
             this.polygonModeState.Mode = arg.GeometryType.GetPolygonMode();
 
-            ShaderProgram program = this.PickProgram;
+            ShaderProgram program = this.PickingRenderUnit.Program;
 
             // 绑定shader
             program.Bind();
@@ -64,12 +64,12 @@ namespace CSharpGL
             {
                 PrimitiveRestartState glState = this.GetPrimitiveRestartState(oneIndexBuffer);
                 glState.On();
-                this.pickVertexArrayObject.Render(program, tempIndexBuffer);
+                this.PickingRenderUnit.VertexArrayObject.Render(program, tempIndexBuffer);
                 glState.Off();
             }
             else
             {
-                this.pickVertexArrayObject.Render(program, tempIndexBuffer);
+                this.PickingRenderUnit.VertexArrayObject.Render(program, tempIndexBuffer);
             }
 
             this.pointSizeState.Off();

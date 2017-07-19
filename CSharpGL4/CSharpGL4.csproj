@@ -210,6 +210,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IPickableRenderUnitBuilder.cs" />
+    <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IPickableRenderUnit.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\RenderUnitBuilder.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\RenderUnit.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\Billboard\TextBillboard\TextBillboardRenderer.cs" />

@@ -57,7 +57,9 @@ void main(void) {
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
             map.Add(inPosition, GroundModel.strPosition);
-            var renderer = new GroundRenderer(new GroundModel(), provider, map, inPosition);
+            // TODO: add IRenderable builder
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new GroundRenderer(new GroundModel(), GroundModel.strPosition, builder);
             renderer.Initialize();
 
             return renderer;
@@ -66,27 +68,30 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private GroundRenderer(GroundModel model, IShaderProgramProvider renderProgramProvider,
-            AttributeMap attributeMap, string positionNameInVertexShader,
-            params GLState[] switches)
-            : base(model, renderProgramProvider, attributeMap, positionNameInVertexShader, switches)
+        private GroundRenderer(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+            : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
             this.Color = new vec4(1, 1, 1, 1);
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
-            this.SetUniform(color, this.Color);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0];
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+            program.SetUniform(color, this.Color);
+
+            renderUnit.Render();
         }
 
 
@@ -106,12 +111,15 @@ void main(void) {
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
-            this.SetUniform(color, this.Color);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // this index should be 1.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+            program.SetUniform(color, this.Color);
+
+            renderUnit.Render();
         }
 
         #endregion

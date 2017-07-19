@@ -35,7 +35,7 @@ namespace CSharpGL
 
             if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
-                DrawMode mode = this.Renderer.IndexBuffer.Mode;
+                DrawMode mode = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -57,7 +57,7 @@ namespace CSharpGL
             }
             else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
-                DrawMode mode = this.Renderer.IndexBuffer.Mode;
+                DrawMode mode = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -74,7 +74,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.Renderer.IndexBuffer.Mode;
+                DrawMode mode = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -112,7 +112,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = this.Renderer.PositionBuffer.Length; }
+            if (vertexCount == -1) { vertexCount = this.Renderer.PickingRenderUnit.PositionBuffer.Length; }
 
             uint[] vertexIds; vec3[] positions;
 
@@ -218,7 +218,7 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBuffer = this.Renderer.IndexBuffer as ZeroIndexBuffer;
+            var indexBuffer = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
             int first = indexBuffer.FirstVertex;
             if (first < 0) { return false; }
             int vertexCount = indexBuffer.RenderingVertexCount;
@@ -366,7 +366,7 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
-            VertexBuffer buffer = this.Renderer.PositionBuffer;
+            VertexBuffer buffer = this.Renderer.PickingRenderUnit.PositionBuffer;
             var offsets = new int[vertexCount] { (buffer.Length - 1) * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength(), 0, };
             vertexIds = new uint[vertexCount];
             positions = new vec3[vertexCount];

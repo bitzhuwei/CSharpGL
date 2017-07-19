@@ -69,15 +69,15 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
             map.Add(inColor, Teapot.strColor);
-            var renderer = new TeapotRenderer(new Teapot(), provider, map);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new TeapotRenderer(new Teapot(), Teapot.strPosition, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private TeapotRenderer(Teapot model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, inPosition, switches)
+        private TeapotRenderer(Teapot model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+            : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.GetModelSize();
             this.RenderWireframe = true;
@@ -105,25 +105,30 @@ void main(void) {
         /// </summary>
         public float RotateSpeed { get; set; }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             this.RotationAngle += this.RotateSpeed;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
+
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
 
             if (this.RenderWireframe)
             {
                 // render wireframe.
-                this.SetUniform("renderWireframe", true);
+                program.SetUniform("renderWireframe", true);
                 polygonMode.On();
                 polygonOffsetState.On();
-                base.DoRender(arg);
+                renderUnit.Render();
                 polygonOffsetState.Off();
                 polygonMode.Off();
             }
@@ -131,8 +136,8 @@ void main(void) {
             if (this.RenderBody)
             {
                 // render solid body.
-                this.SetUniform("renderWireframe", false);
-                base.DoRender(arg);
+                program.SetUniform("renderWireframe", false);
+                renderUnit.Render();
             }
         }
 

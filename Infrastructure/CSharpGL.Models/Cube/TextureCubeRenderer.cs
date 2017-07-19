@@ -63,7 +63,8 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, TexturedCubeModel.strPosition);
             map.Add(inUV, TexturedCubeModel.strUV);
-            var renderer = new TexturedCubeRenderer(new TexturedCubeModel(), provider, map, inPosition);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new TexturedCubeRenderer(new TexturedCubeModel(), TexturedCubeModel.strPosition, builder);
             renderer.texture = texture;
             renderer.Initialize();
 
@@ -73,10 +74,8 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private TexturedCubeRenderer(TexturedCubeModel model, IShaderProgramProvider renderProgramProvider,
-            AttributeMap attributeMap, string positionNameInVertexShader,
-            params GLState[] switches)
-            : base(model, renderProgramProvider, attributeMap, positionNameInVertexShader, switches)
+        private TexturedCubeRenderer(TexturedCubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+            : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
             this.Alpha = 1.0f;
@@ -87,19 +86,24 @@ void main(void) {
         /// </summary>
         public float Alpha { get; set; }
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
-            this.SetUniform(tex, this.texture);
-            this.SetUniform(alpha, this.Alpha);
 
-            base.DoRender(arg);
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+            program.SetUniform(tex, this.texture);
+            program.SetUniform(alpha, this.Alpha);
+
+            renderUnit.Render();
         }
 
     }

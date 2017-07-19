@@ -9,7 +9,7 @@ namespace CSharpGL
         {
             uint vertexCount = 0;
 
-            VertexBuffer positionBuffer = this.positionBuffer;
+            VertexBuffer positionBuffer = this.PickingRenderUnit.PositionBuffer;
             if (positionBuffer != null)
             {
                 int byteLength = positionBuffer.ByteLength;

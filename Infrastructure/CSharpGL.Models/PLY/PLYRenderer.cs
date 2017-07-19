@@ -70,15 +70,15 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, PLY.strPosition);
             //map.Add(inColor, PLY.strColor);
-            var renderer = new PLYRenderer(new PLY(), provider, map);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new PLYRenderer(new PLY(), PLY.strPosition, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private PLYRenderer(PLY model, IShaderProgramProvider shaderProgramProvider,
-            AttributeMap attributeMap, params GLState[] switches)
-            : base(model, shaderProgramProvider, attributeMap, inPosition, switches)
+        private PLYRenderer(PLY model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+            : base(model, positionNameInIBufferable, builders)
         {
             vec3 size = model.ModelSize;
             this.ModelSize = size;
@@ -103,23 +103,28 @@ void main(void) {
         private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
         private GLState polygonOffsetState = new PolygonOffsetFillState();
 
-        protected override void DoRender(RenderEventArgs arg)
+        public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            base.RenderBeforeChildren(arg);
+
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            this.SetUniform(projectionMatrix, projection);
-            this.SetUniform(viewMatrix, view);
-            this.SetUniform(modelMatrix, model);
+
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
 
             if (this.RenderWireframe)
             {
                 // render wireframe.
-                this.SetUniform("renderWireframe", true);
+                program.SetUniform("renderWireframe", true);
                 polygonMode.On();
                 polygonOffsetState.On();
-                base.DoRender(arg);
+                renderUnit.Render();
                 polygonOffsetState.Off();
                 polygonMode.Off();
             }
@@ -127,8 +132,8 @@ void main(void) {
             if (this.RenderBody)
             {
                 // render solid body.
-                this.SetUniform("renderWireframe", false);
-                base.DoRender(arg);
+                program.SetUniform("renderWireframe", false);
+                renderUnit.Render();
             }
         }
 

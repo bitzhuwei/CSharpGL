@@ -8,6 +8,11 @@ namespace CSharpGL
     public static class PickingShaderHelper //: IDisposable
     {
         /// <summary>
+        /// vertex's 
+        /// </summary>
+        private const string in_Position = "in_Position";
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
@@ -22,7 +27,8 @@ namespace CSharpGL
         private static readonly string pickVertexShader =
 @"#version 150 core
 
-in vec3 in_Position;
+"
++ @"in vec3 " + in_Position + @";
 flat out vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
 uniform mat4 MVP;
 uniform int pickingBaseId; // how many vertices have been coded so far?

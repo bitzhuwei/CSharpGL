@@ -46,7 +46,7 @@ namespace CSharpGL
             }
 
             PickingGeometryTypes geometryType = arg.GeometryType;
-            DrawMode drawMode = renderer.IndexBuffer.Mode;
+            DrawMode drawMode = renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
             GeometryType typeOfMode = drawMode.ToGeometryType();
 
             if ((geometryType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
@@ -223,7 +223,7 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
         {
-            var indexBuffer = this.Renderer.IndexBuffer;
+            var indexBuffer = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.GeometryType.Contains(GeometryType.Point)
                 && indexBuffer.Mode.ToGeometryType() == GeometryType.Line) ?
@@ -245,7 +245,7 @@ namespace CSharpGL
 
         private PrimitiveRestartState GetPrimitiveRestartState()
         {
-            foreach (GLState item in this.Renderer.StateList)
+            foreach (GLState item in this.Renderer.PickingRenderUnit.StateList)
             {
                 var target = item as PrimitiveRestartState;
                 if (target != null)
