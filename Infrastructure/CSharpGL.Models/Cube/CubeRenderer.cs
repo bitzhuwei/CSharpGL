@@ -107,7 +107,7 @@ void main(void) {
 
         #region IBufferable 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {

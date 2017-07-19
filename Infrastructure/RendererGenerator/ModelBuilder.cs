@@ -112,13 +112,13 @@ namespace RendererGenerator
         }
 
         /// <summary>
-        /// public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
+        /// public PropertyBuffer GetProperty(string bufferName)
         /// </summary>
         /// <param name="modelType"></param>
         /// <param name="dataStructure"></param>
         private void BuildGetVertexAttributeBuffer(CodeTypeDeclaration modelType, DataStructure dataStructure)
         {
-            //public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
+            //public PropertyBuffer GetProperty(string bufferName)
             var method = GetVertexAttributeBufferDeclaration();
             GetVertexAttributeBufferBody(method, dataStructure);
 
@@ -126,7 +126,7 @@ namespace RendererGenerator
         }
 
         /// <summary>
-        /// body of public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
+        /// body of public PropertyBuffer GetProperty(string bufferName)
         /// </summary>
         /// <param name="method"></param>
         private void GetVertexAttributeBufferBody(CodeMemberMethod method, DataStructure dataStructure)
@@ -184,7 +184,7 @@ namespace RendererGenerator
         }
 
         /// <summary>
-        /// public PropertyBuffer GetProperty(string bufferName, string varNameInShader)
+        /// public PropertyBuffer GetProperty(string bufferName)
         /// </summary>
         /// <returns></returns>
         private CodeMemberMethod GetVertexAttributeBufferDeclaration()

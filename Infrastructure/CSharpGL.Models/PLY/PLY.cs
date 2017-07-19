@@ -69,7 +69,7 @@ namespace CSharpGL
             }
         }
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
             VertexBuffer result = null;
 

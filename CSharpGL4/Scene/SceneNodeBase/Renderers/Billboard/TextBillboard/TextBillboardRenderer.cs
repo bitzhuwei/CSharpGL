@@ -211,7 +211,7 @@ void main(void) {
 
         #region IBufferable 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
             return null;// not need any vertex buffer.
         }
