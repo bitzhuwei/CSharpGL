@@ -224,6 +224,7 @@
     <Compile Include="Scene\SceneNodeBase\Renderers\RenderToTexture\ColoredFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\GroupRenderer.cs" />
+    <Compile Include="Scene\SceneNodeBase\Renderers\RenderToTexture\ShadowMapParameters.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\Transformers\ModelHelpers\ArrowHelper.cs" />
     <Compile Include="Scene\SceneNodeBase\Renderers\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\Actions\ActionBase.cs" />
