@@ -70,17 +70,17 @@ void main(void) {
             map.Add("inPosition", Flabellum.strPosition);
             map.Add("inColor", Flabellum.strColor);
             var model = new Flabellum();
-            var builder = new RenderUnitBuilder(model, provider, map);
-            var renderer = new FlabellumRenderer(model.GetModelSize(), builder);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new FlabellumRenderer(model, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private FlabellumRenderer(vec3 modelSize, params RenderUnitBuilder[] builders)
-            : base(builders)
+        private FlabellumRenderer(Flabellum model, params RenderUnitBuilder[] builders)
+            : base(model, builders)
         {
-            this.ModelSize = modelSize;
+            this.ModelSize = model.GetModelSize();
         }
 
         #region IRenderable 成员

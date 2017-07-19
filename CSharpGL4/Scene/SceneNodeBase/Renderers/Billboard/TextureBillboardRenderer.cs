@@ -125,8 +125,8 @@ void main(void) {
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            var builder = new RenderUnitBuilder(new Billboard(), provider, map);
-            var renderer = new TextureBillboardRenderer(textureSource, width, height, builder);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new TextureBillboardRenderer(textureSource, width, height, new Billboard(), builder);
             renderer.Initialize();
 
             return renderer;
@@ -169,8 +169,8 @@ void main(void) {
 
         public float Delta { get; set; }
 
-        private TextureBillboardRenderer(ITextureSource textureSource, int width, int height, RenderUnitBuilder builder)
-            : base(builder)
+        private TextureBillboardRenderer(ITextureSource textureSource, int width, int height, IBufferable model, RenderUnitBuilder builder)
+            : base(model, builder)
         {
             this.TextureSource = textureSource;
             this.Width = width;

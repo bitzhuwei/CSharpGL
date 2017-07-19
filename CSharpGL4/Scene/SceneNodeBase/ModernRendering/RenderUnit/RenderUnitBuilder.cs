@@ -11,32 +11,28 @@ namespace CSharpGL
     public class RenderUnitBuilder
     {
         protected GLState[] states;
-        protected IBufferable model;
         protected IShaderProgramProvider programProvider;
         protected AttributeMap map;
 
         /// <summary>
         /// A smallest unit that can render somthing.
         /// </summary>
-        /// <param name="model"></param>
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
         /// <param name="states"></param>
-        public RenderUnitBuilder(IBufferable model, IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
+        public RenderUnitBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
         {
-            this.model = model;
             this.programProvider = programProvider;
             this.map = map;
             this.states = states;
         }
 
-        public virtual RenderUnit ToRenderUnit()
+        public virtual RenderUnit ToRenderUnit(IBufferable model)
         {
             // init shader program.
             ShaderProgram program = this.programProvider.GetShaderProgram();
 
             // init vertex attribute buffer objects.
-            IBufferable model = this.model;
             VertexShaderAttribute[] vertexAttributeBuffers;
             {
                 var list = new List<VertexShaderAttribute>();

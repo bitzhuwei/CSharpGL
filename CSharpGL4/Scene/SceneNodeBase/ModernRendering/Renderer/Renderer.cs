@@ -39,16 +39,16 @@ namespace CSharpGL
         //protected AttributeMap attributeMap;
 
         private readonly RenderUnitBuilder[] builders;
+        private readonly IBufferable model;
 
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
-        /// <param name="shaderProgramProvider">All shader codes needed for this renderer.</param>
-        /// <param name="attributeMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderProgramProvider"/> and buffers in <see cref="DataSource"/>.</param>
-        ///<param name="switches">OpenGL switches.</param>
-        public Renderer(params RenderUnitBuilder[] builders)
+        ///<param name="builders">OpenGL switches.</param>
+        public Renderer(IBufferable model, params RenderUnitBuilder[] builders)
         {
+            this.model = model;
             this.builders = builders;
             //this.DataSource = model;
             //this.shaderProgramProvider = shaderProgramProvider;

@@ -13,22 +13,20 @@ namespace CSharpGL
         /// <summary>
         /// A smallest unit that can render somthing.
         /// </summary>
-        /// <param name="model"></param>
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
         /// <param name="states"></param>
-        public IPickableRenderUnitBuilder(IBufferable model, IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
-            : base(model, programProvider, map, states)
+        public IPickableRenderUnitBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
+            : base(programProvider, map, states)
         {
         }
 
-        public override RenderUnit ToRenderUnit()
+        public override RenderUnit ToRenderUnit(IBufferable model)
         {
             // init shader program.
             ShaderProgram program = this.programProvider.GetShaderProgram();
 
             // init vertex attribute buffer objects.
-            IBufferable model = this.model;
             VertexShaderAttribute[] vertexAttributeBuffers;
             {
                 var list = new List<VertexShaderAttribute>();

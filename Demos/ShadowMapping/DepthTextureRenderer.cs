@@ -57,17 +57,17 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
             var model = new Teapot();
-            var builder = new RenderUnitBuilder(model, provider, map);
-            var renderer = new DepthTextureRenderer(model.GetModelSize(), builder);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new DepthTextureRenderer(model, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private DepthTextureRenderer(vec3 modelSize, params RenderUnitBuilder[] builder)
-            : base(builder)
+        private DepthTextureRenderer(Teapot model, params RenderUnitBuilder[] builder)
+            : base(model, builder)
         {
-            this.ModelSize = modelSize;
+            this.ModelSize = model.GetModelSize();
         }
 
         #region IRenderable 成员

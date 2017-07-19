@@ -12,7 +12,7 @@ namespace CSharpGL
         {
             foreach (var item in this.builders)
             {
-                var renderUnit = item.ToRenderUnit();
+                var renderUnit = item.ToRenderUnit(this.model);
                 this.renderUnits.Add(renderUnit);
             }
         }

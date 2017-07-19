@@ -71,17 +71,17 @@ void main(void) {
             map.Add("inPosition", Propeller.strPosition);
             map.Add("inColor", Propeller.strColor);
             var model = new Propeller();
-            var builder = new RenderUnitBuilder(model, provider, map);
-            var renderer = new PropellerRenderer(model.GetModelSize(), builder);
+            var builder = new RenderUnitBuilder(provider, map);
+            var renderer = new PropellerRenderer(model, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private PropellerRenderer(vec3 modelSize, params RenderUnitBuilder[] builders)
-            : base(builders)
+        private PropellerRenderer(Propeller model, params RenderUnitBuilder[] builders)
+            : base(model, builders)
         {
-            this.ModelSize = modelSize;
+            this.ModelSize = model.GetModelSize();
         }
 
         #region IRenderable 成员
