@@ -48,6 +48,8 @@ namespace CSharpGL
                         item.Dispose();
                     }
                 }
+                IntPtr renderContext = Win32.wglGetCurrentContext();
+                if (renderContext != IntPtr.Zero)
                 {
                     glDeleteFramebuffers(this.frameBuffer.Length, this.frameBuffer);
                 }
