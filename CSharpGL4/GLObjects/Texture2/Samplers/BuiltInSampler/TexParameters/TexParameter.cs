@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
     /// <summary>
     /// glTexParameteri/f();
@@ -20,14 +20,8 @@ namespace CSharpGL.Texture2
         /// </summary>
         public uint PName { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public TextureTarget Target { get; private set; }
-
-        protected TexParameter(TextureTarget target, uint pname, string pnameString)
+        protected TexParameter(uint pname, string pnameString)
         {
-            this.Target = target;
             this.PName = pname; this.PNameString = pnameString;
         }
 
@@ -38,9 +32,9 @@ namespace CSharpGL.Texture2
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(TextureTarget target, uint pname, string pnameString, int value)
+        public static TexParameter Create(uint pname, string pnameString, int value)
         {
-            return new TexParameteri(target, pname, pnameString, value);
+            return new TexParameteri(pname, pnameString, value);
         }
 
         /// <summary>
@@ -50,14 +44,15 @@ namespace CSharpGL.Texture2
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(TextureTarget target, uint pname, string pnameString, float value)
+        public static TexParameter Create(uint pname, string pnameString, float value)
         {
-            return new TexParameterf(target, pname, pnameString, value);
+            return new TexParameterf(pname, pnameString, value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Apply();
+        /// <param name="target"></param>
+        public abstract void Apply(TextureTarget target);
     }
 }

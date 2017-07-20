@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TexStorage2DMultisample : TexStorageBase
+    public class TexStorage2DMultisample : TexStorageBase
     {
         private uint samples;
         private uint internalFormat;

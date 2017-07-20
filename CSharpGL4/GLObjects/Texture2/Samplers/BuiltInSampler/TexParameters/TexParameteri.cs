@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
     /// <summary>
     /// glTexParameteri();
@@ -15,21 +15,24 @@ namespace CSharpGL.Texture2
         /// </summary>
         public int PValue { get; set; }
 
-        public TexParameteri(TextureTarget target, uint pname, string pnameString, int pValue)
-            : base(target, pname, pnameString)
+        public TexParameteri(uint pname, string pnameString, int pValue)
+            : base(pname, pnameString)
         {
             this.PValue = pValue;
         }
 
-
-        public override void Apply()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        public override void Apply(TextureTarget target)
         {
-            GL.Instance.TexParameteri((uint)Target, PName, PValue);
+            GL.Instance.TexParameteri((uint)target, PName, PValue);
         }
 
         public override string ToString()
         {
-            return string.Format("glTexParameteri({0}, {1}, {2});", this.Target, this.PNameString, this.PValue);
+            return string.Format("glTexParameteri({0}, {1}, {2});", " ", this.PNameString, this.PValue);
         }
     }
 }

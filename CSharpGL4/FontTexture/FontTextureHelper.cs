@@ -13,13 +13,12 @@
         /// <param name="mipmapFiltering"></param>
         /// <returns></returns>
         public static FontTexture GetFontTexture(this FontBitmap fontBitmap,
-            SamplerParameters parameters = null,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
         {
+            var bmp = fontBitmap.GlyphBitmap;
             var texture = new Texture(
                 TextureTarget.Texture2D,
-                fontBitmap.GlyphBitmap,
-                parameters, mipmapFiltering);
+                    new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new BitmapDataProvider(bmp)));
             texture.Initialize();
             var result = new FontTexture();
             result.GlyphFont = fontBitmap.GlyphFont;

@@ -3,10 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
-    public partial class TextureBase
+    /// <summary>
+    /// Setup texture's storage information with a <see cref="GLBuffer"/>.
+    /// </summary>
+    class TexBufferStorage : TexStorageBase, IDisposable
     {
+        private uint internalformat;
+        private GLBuffer buffer;
+        private bool autoDispose;
+
+        private static readonly GLDelegates.void_uint_uint_uint glTexBuffer;
+        static TexBufferStorage()
+        {
+            glTexBuffer = GL.Instance.GetDelegateFor("glTexBuffer", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="internalformat"></param>
+        /// <param name="buffer"></param>
+        /// <param name="autoDispose">Dispose <paramref name="buffer"/> when this <see cref="TexBufferStorage"/> object is disposed?</param>
+        public TexBufferStorage(uint internalformat, GLBuffer buffer, bool autoDispose)
+        {
+            this.internalformat = internalformat;
+            this.buffer = buffer;
+            this.autoDispose = autoDispose;
+        }
+
+        public override void Apply()
+        {
+            glTexBuffer(GL.GL_TEXTURE_BUFFER, internalformat, buffer.BufferId);
+        }
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -19,7 +50,7 @@ namespace CSharpGL.Texture2
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~TextureBase()
+        ~TexBufferStorage()
         {
             this.Dispose(false);
         }
@@ -43,24 +74,11 @@ namespace CSharpGL.Texture2
                 } // end if
 
                 // Dispose unmanaged resources.
+                if (this.autoDispose)
                 {
-                    IntPtr context = GL.Instance.GetCurrentContext();
-                    if (context != IntPtr.Zero)
-                    {
-                        GL.Instance.DeleteTextures(this.id.Length, this.id);
-                    }
-                    this.id[0] = 0;
-                }
-                {
-                    var disp = this.Storage as IDisposable;
+                    var disp = this.buffer as IDisposable;
                     if (disp != null) { disp.Dispose(); }
                 }
-                // A sampler builder can be used in multiple textures.
-                // Thus we shouldn't dispose it here.
-                //{
-                //    var disp = this.SamplerBuilder as IDisposable;
-                //    if (disp != null) { disp.Dispose(); }
-                //}
             } // end if
 
             this.disposedValue = true;

@@ -186,25 +186,23 @@ namespace CSharpGL
             {
                 case TextureAttachment.ColorAttachment:
                     result = new Texture(TextureTarget.Texture2D,
-                        new NullImageFiller(this.Width, this.Height, (int)GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
-                        new SamplerParameters(
-                            TextureWrapping.Repeat,
-                            TextureWrapping.Repeat,
-                            TextureWrapping.Repeat,
-                            TextureFilter.Linear,
-                            TextureFilter.Linear));
+                        new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, this.Width, this.Height, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_S, "GL_TEXTURE_WRAP_S", (int)GL.GL_REPEAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_T, "GL_TEXTURE_WRAP_T", (int)GL.GL_REPEAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_R, "GL_TEXTURE_WRAP_R", (int)GL.GL_REPEAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_MIN_FILTER, "GL_TEXTURE_MIN_FILTER", (int)GL.GL_LINEAR));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_MAG_FILTER, "GL_TEXTURE_MAG_FILTER", (int)GL.GL_LINEAR));
                     result.Initialize();
                     glFramebufferTexture(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], result.Id, level);
                     break;
                 case TextureAttachment.DepthAttachment:
                     result = new Texture(TextureTarget.Texture2D,
-                new NullImageFiller(this.Width, this.Height, (int)GL.GL_DEPTH_COMPONENT32, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT),
-                new SamplerParameters(
-                    TextureWrapping.Repeat,
-                    TextureWrapping.Repeat,
-                    TextureWrapping.Repeat,
-                    TextureFilter.Linear,
-                    TextureFilter.Linear));
+                    new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_DEPTH_COMPONENT32, this.Width, this.Height, 0, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_S, "GL_TEXTURE_WRAP_S", (int)GL.GL_REPEAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_T, "GL_TEXTURE_WRAP_T", (int)GL.GL_REPEAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_R, "GL_TEXTURE_WRAP_R", (int)GL.GL_REPEAT));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_MIN_FILTER, "GL_TEXTURE_MIN_FILTER", (int)GL.GL_LINEAR));
+                    result.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_MAG_FILTER, "GL_TEXTURE_MAG_FILTER", (int)GL.GL_LINEAR));
                     result.Initialize();
                     glFramebufferTexture2D(GL.GL_FRAMEBUFFER, GL.GL_DEPTH_ATTACHMENT, GL.GL_TEXTURE_2D, result.Id, level);
                     break;

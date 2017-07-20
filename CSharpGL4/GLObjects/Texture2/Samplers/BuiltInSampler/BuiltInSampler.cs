@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
     /// <summary>
     /// Built-in sampler object in a texture object.
@@ -13,11 +13,12 @@ namespace CSharpGL.Texture2
         /// <summary>
         /// Apply all texture parameters to currently binding texture object.
         /// </summary>
-        public void Apply()
+        /// <param name="target"></param>
+        public void Apply(TextureTarget target)
         {
             foreach (var item in this)
             {
-                item.Apply();
+                item.Apply(target);
             }
         }
     }

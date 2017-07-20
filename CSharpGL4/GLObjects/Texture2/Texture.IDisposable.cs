@@ -1,41 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// Provides specified bitmap's data as <see cref="Texture"/>'s image content.
-    /// </summary>
-    public class BitmapDataProvider : TexImageDataProvider, IDisposable
+    public partial class Texture
     {
-        private Bitmap bitmap;
-        private System.Drawing.Imaging.BitmapData data;
-
-        /// <summary>
-        /// Provides specified <paramref name="bitmap"/>'s data as <see cref="Texture"/>'s image content.
-        /// </summary>
-        /// <param name="bitmap"></param>
-        public BitmapDataProvider(Bitmap bitmap)
-        {
-            this.bitmap = bitmap;
-        }
-
-        public override IntPtr LockData()
-        {
-            this.data = this.bitmap.LockBits(new Rectangle(0, 0, this.bitmap.Width, this.bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            return data.Scan0;
-        }
-
-        public override void FreeData()
-        {
-            this.bitmap.UnlockBits(this.data);
-        }
-
-        #region IDisposable 成员
-
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -48,7 +19,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~BitmapDataProvider()
+        ~Texture()
         {
             this.Dispose(false);
         }
@@ -69,22 +40,30 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 } // end if
 
                 // Dispose unmanaged resources.
-                var bitmap = this.bitmap;
-                if (bitmap != null)
                 {
-                    this.bitmap = null;
-                    bitmap.Dispose();
+                    IntPtr context = GL.Instance.GetCurrentContext();
+                    if (context != IntPtr.Zero)
+                    {
+                        GL.Instance.DeleteTextures(this.id.Length, this.id);
+                    }
+                    this.id[0] = 0;
                 }
-
+                {
+                    var disp = this.Storage as IDisposable;
+                    if (disp != null) { disp.Dispose(); }
+                }
+                // A sampler builder can be used in multiple textures.
+                // Thus we shouldn't dispose it here.
+                //{
+                //    var disp = this.SamplerBuilder as IDisposable;
+                //    if (disp != null) { disp.Dispose(); }
+                //}
             } // end if
 
             this.disposedValue = true;
         } // end sub
-
-        #endregion
     }
 }

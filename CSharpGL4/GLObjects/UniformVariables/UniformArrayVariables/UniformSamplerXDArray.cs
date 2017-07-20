@@ -10,7 +10,10 @@
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="length"></param>
-        public UniformSamplerArray(string varName, int length) : base(varName, length) { }
+        public UniformSamplerArray(string varName, int length)
+            : base(varName, length)
+        {
+        }
 
         private static GLDelegates.void_uint activeTexture;
 
@@ -25,11 +28,11 @@
             for (int i = 0; i < this.Value.Length; i++)
             {
                 samplerValue value = this.Value[i];
-                activeTexture(value.activeTextureIndex + GL.GL_TEXTURE0);
+                activeTexture(value.TextureUnitIndex + GL.GL_TEXTURE0);
                 //OpenGL.BindTexture(GL.GL_TEXTURE_2D, this.value[i].TextureId);
                 GL.Instance.BindTexture(value.target, value.TextureId);
                 // TODO: assign the first location or last?
-                this.Location = program.glUniform(VarName, (int)value.activeTextureIndex);
+                this.Location = program.glUniform(VarName, (int)value.TextureUnitIndex);
             }
         }
 

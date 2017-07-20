@@ -90,7 +90,8 @@ namespace CSharpGL
             {
                 if (glActiveTexture == null)
                 { glActiveTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
-                glActiveTexture(texture.TextureUnit + GL.GL_TEXTURE0);
+                const uint textureUnitIndex = 0;
+                glActiveTexture(textureUnitIndex + GL.GL_TEXTURE0);
                 texture.Bind();
             }
             GL.Instance.Begin((uint)DrawMode.Quads);

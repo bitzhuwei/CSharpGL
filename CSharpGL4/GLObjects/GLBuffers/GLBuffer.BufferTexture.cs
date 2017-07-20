@@ -11,8 +11,7 @@
         public Texture DumpBufferTexture(uint internalFormat, bool autoDispose)
         {
             var texture = new Texture(TextureTarget.TextureBuffer,
-                new TexBufferImageFiller(internalFormat, this, autoDispose),
-                new NullSampler());
+                new TexBufferStorage(internalFormat, this, autoDispose));
             texture.Initialize();
             return texture;
         }

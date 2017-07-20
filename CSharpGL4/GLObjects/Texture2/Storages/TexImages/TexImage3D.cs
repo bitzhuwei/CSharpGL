@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TexImage3D : TexStorageBase
+    public class TexImage3D : TexStorageBase
     {
         private static readonly GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr glTexImage3D;
         static TexImage3D()

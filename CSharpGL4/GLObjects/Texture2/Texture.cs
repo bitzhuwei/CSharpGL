@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Texture2
+namespace CSharpGL
 {
-    public abstract partial class TextureBase : IDisposable
+    public partial class Texture : IDisposable
     {
+        /// <summary>
+        /// 0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...
+        /// </summary>
+        public uint TextureUnitIndex { get; set; }
+
         /// <summary>
         /// binding target of this texture.
         /// </summary>
@@ -29,7 +34,7 @@ namespace CSharpGL.Texture2
         ///// </summary>
         //public bool UseMipmap { get; private set; }
 
-        public TextureBase(TextureTarget target, TexStorageBase storage)
+        public Texture(TextureTarget target, TexStorageBase storage)
         {
             this.Target = target;
             this.Storage = storage;
@@ -63,7 +68,7 @@ namespace CSharpGL.Texture2
                 TextureTarget target = this.Target;
                 GL.Instance.BindTexture((uint)target, id[0]);
                 this.Storage.Apply();
-                this.BuiltInSampler.Apply();
+                this.BuiltInSampler.Apply(this.Target);
                 //OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
                 GL.Instance.BindTexture((uint)this.Target, 0);
                 this.initialized = true;
@@ -75,10 +80,15 @@ namespace CSharpGL.Texture2
         /// </summary>
         public TexStorageBase Storage { get; private set; }
 
+        private BuiltInSampler builtInSampler = new BuiltInSampler();
+
         /// <summary>
         /// setup texture's sampler properties with default built-in sampler object.
         /// </summary>
-        public BuiltInSampler BuiltInSampler { get; private set; }
+        public BuiltInSampler BuiltInSampler
+        {
+            get { return builtInSampler; }
+        }
 
         /// <summary>
         ///

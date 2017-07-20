@@ -12,14 +12,20 @@ namespace CSharpGL
         /// uniform samplerXD variable;
         /// </summary>
         /// <param name="varName"></param>
-        public UniformSampler(string varName) : base(varName) { }
+        public UniformSampler(string varName)
+            : base(varName)
+        {
+        }
 
         /// <summary>
         /// uniform samplerXD variable;
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
-        public UniformSampler(string varName, samplerValue value) : base(varName, value) { }
+        public UniformSampler(string varName, samplerValue value)
+            : base(varName, value)
+        {
+        }
 
         private static GLDelegates.void_uint glActiveTexture;
 
@@ -31,10 +37,10 @@ namespace CSharpGL
         {
             if (glActiveTexture == null)
             { glActiveTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
-            glActiveTexture(value.activeTextureIndex + GL.GL_TEXTURE0);
+            glActiveTexture(value.TextureUnitIndex + GL.GL_TEXTURE0);
             //OpenGL.BindTexture(GL.GL_TEXTURE_2D, value.TextureId);
             GL.Instance.BindTexture(value.target, value.TextureId);
-            this.Location = program.glUniform(VarName, (int)value.activeTextureIndex);
+            this.Location = program.glUniform(VarName, (int)value.TextureUnitIndex);
         }
 
         ///// <summary>
@@ -54,6 +60,7 @@ namespace CSharpGL
         //    ////OpenGL.BindTexture(GL.GL_TEXTURE_2D, 0);
         //    //OpenGL.BindTexture(value.target, 0);
         //}
+
     }
 
     /// <summary>
@@ -84,16 +91,15 @@ namespace CSharpGL
             set { textureId = value; }
         }
 
-        internal uint activeTextureIndex;
+        private uint textureUnitIndex;
 
         /// <summary>
-        /// Which texture unit should I bind to?
-        /// <para>0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...</para>
+        /// 0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...
         /// </summary>
-        public uint TextureUnit
+        public uint TextureUnitIndex
         {
-            get { return activeTextureIndex; }
-            set { activeTextureIndex = value; }
+            get { return textureUnitIndex; }
+            set { textureUnitIndex = value; }
         }
 
         /// <summary>
@@ -104,7 +110,7 @@ namespace CSharpGL
         {
             this.target = (uint)texture.Target;
             this.textureId = texture.Id;
-            this.activeTextureIndex = texture.TextureUnit;
+            this.textureUnitIndex = texture.TextureUnitIndex;
         }
 
         /// <summary>
@@ -112,12 +118,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="textureId"></param>
-        /// <param name="activeTextureIndex">0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1 etc</param>
-        public samplerValue(TextureTarget target, uint textureId, uint activeTextureIndex)
+        /// <param name="textureUnitIndex"></param>
+        public samplerValue(TextureTarget target, uint textureId, uint textureUnitIndex)
         {
             this.target = (uint)target;
             this.textureId = textureId;
-            this.activeTextureIndex = activeTextureIndex;
+            this.textureUnitIndex = textureUnitIndex;
         }
 
         private static readonly char[] separator = new char[] { '[', ']', };
@@ -127,9 +133,9 @@ namespace CSharpGL
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             TextureTarget target = (TextureTarget)Enum.Parse(typeof(TextureTarget), parts[1]);
             uint textureId = uint.Parse(parts[3]);
-            uint activeTextureIndex = uint.Parse(parts[5]);
+            uint textureUnitIndex = uint.Parse(parts[5]);
 
-            return new samplerValue(target, textureId, activeTextureIndex);
+            return new samplerValue(target, textureId, textureUnitIndex);
         }
 
         /// <summary>
@@ -138,7 +144,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("texture target: [{0}] id:[{1}] active GL_TEXTURE{2}", target, textureId, activeTextureIndex);
+            return string.Format("Target:[{0}], Id:[{1}], TextureUnitIndex:[{2}]", target, textureId, textureUnitIndex);
         }
 
         /// <summary>
@@ -190,7 +196,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return string.Format("{0}#{1}#{2}", target, textureId, activeTextureIndex).GetHashCode();
+            return string.Format("{0}#{1}#{2}", target, textureId, textureUnitIndex).GetHashCode();
         }
 
         /// <summary>
@@ -203,7 +209,7 @@ namespace CSharpGL
             return (
                 this.target == other.target
                 && this.textureId == other.textureId
-                && this.activeTextureIndex == other.activeTextureIndex
+                && this.textureUnitIndex == other.textureUnitIndex
                 );
         }
 
@@ -211,11 +217,9 @@ namespace CSharpGL
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             TextureTarget target = (TextureTarget)Enum.Parse(typeof(TextureTarget), parts[1]);
-            uint textureId = uint.Parse(parts[3]);
-            uint activeTextureIndex = uint.Parse(parts[5]);
             this.target = (uint)target;
-            this.textureId = textureId;
-            this.activeTextureIndex = activeTextureIndex;
+            this.textureId = uint.Parse(parts[3]);
+            this.textureUnitIndex = uint.Parse(parts[5]);
         }
     }
 }
