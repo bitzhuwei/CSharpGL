@@ -186,7 +186,7 @@ namespace CSharpGL
             {
                 case TextureAttachment.ColorAttachment:
                     result = new Texture(TextureTarget.Texture2D,
-                        new NullImageFiller(this.Width, this.Height, GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
+                        new NullImageFiller(this.Width, this.Height, (int)GL.GL_RGBA, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE),
                         new SamplerParameters(
                             TextureWrapping.Repeat,
                             TextureWrapping.Repeat,
@@ -198,7 +198,7 @@ namespace CSharpGL
                     break;
                 case TextureAttachment.DepthAttachment:
                     result = new Texture(TextureTarget.Texture2D,
-                new NullImageFiller(this.Width, this.Height, GL.GL_DEPTH_COMPONENT32, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT),
+                new NullImageFiller(this.Width, this.Height, (int)GL.GL_DEPTH_COMPONENT32, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT),
                 new SamplerParameters(
                     TextureWrapping.Repeat,
                     TextureWrapping.Repeat,

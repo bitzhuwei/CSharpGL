@@ -13,7 +13,7 @@ namespace Texture2D
         static CrateTextureSource()
         {
             texture = new Texture(TextureTarget.Texture2D, new BitmapFiller(
-                new System.Drawing.Bitmap(@"Crate.bmp"), 0, GL.GL_RGBA, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, true),
+                new System.Drawing.Bitmap(@"Crate.bmp"), 0, (int)GL.GL_RGBA, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, true),
                 new SamplerParameters());
             texture.Initialize();
         }

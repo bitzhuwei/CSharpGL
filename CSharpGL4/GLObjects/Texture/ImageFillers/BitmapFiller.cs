@@ -11,7 +11,7 @@ namespace CSharpGL
     {
         private System.Drawing.Bitmap bitmap;
         private int maxLevel;
-        private uint internalformat;
+        private int internalformat;
         private int border;
         private uint format;
         private uint type;
@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <param name="type">GL.GL_UNSIGNED_BYTE etc.</param>
         /// <param name="target2d">true for 2D; false for 1D.</param>
         public BitmapFiller(System.Drawing.Bitmap bitmap,
-            int maxLevel, uint internalformat, int border, uint format, uint type, bool target2d = true)
+            int maxLevel, int internalformat, int border, uint format, uint type, bool target2d = true)
         {
             if (maxLevel < 0) { throw new ArgumentException("texture level must be no less than 0!"); }
 

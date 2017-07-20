@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         private int width;
         private int height;
-        private uint internalFormat;
+        private int internalFormat;
         private uint format;
         private uint type;
 
@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
-        public NullImageFiller(int width, int height, uint internalFormat, uint format, uint type)
+        public NullImageFiller(int width, int height, int internalFormat, uint format, uint type)
         {
             this.width = width;
             this.height = height;

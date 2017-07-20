@@ -37,7 +37,7 @@ namespace CSharpGL
         public Texture(TextureTarget target,
             Bitmap bitmap,
             SamplerBase samplerBuilder, int maxLevel = 0, int border = 0)
-            : this(target, new BitmapFiller(bitmap, maxLevel, GL.GL_RGBA, border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), samplerBuilder)
+            : this(target, new BitmapFiller(bitmap, maxLevel, (int)GL.GL_RGBA, border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), samplerBuilder)
         {
         }
 
@@ -71,7 +71,7 @@ namespace CSharpGL
             Bitmap bitmap,
             SamplerParameters parameters,
             MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear, int maxLevel = 0, int border = 0)
-            : this(target, new BitmapFiller(bitmap, maxLevel, GL.GL_RGBA, border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), new FakeSampler(parameters, mipmapFiltering))
+            : this(target, new BitmapFiller(bitmap, maxLevel, (int)GL.GL_RGBA, border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, target == TextureTarget.Texture2D), new FakeSampler(parameters, mipmapFiltering))
         {
         }
     }

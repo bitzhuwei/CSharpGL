@@ -12,7 +12,7 @@ namespace CSharpGL
     {
         private CubemapImages images;
         private int level;
-        private uint internalformat;
+        private int internalformat;
         private int border;
         private uint format;
         private uint type;
@@ -27,7 +27,7 @@ namespace CSharpGL
         /// <param name="format">GL.GL_BGRA etc.</param>
         /// <param name="type">GL.GL_UNSIGNED_BYTE etc.</param>
         public CubemapImageFiller(CubemapImages images,
-            int level, uint internalformat, int border, uint format, uint type)
+            int level, int internalformat, int border, uint format, uint type)
         {
             this.images = images;
             this.level = level;
