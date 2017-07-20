@@ -17,7 +17,7 @@ namespace CSharpGL
             }
 
             {
-                IPickableRenderUnit renderUnit = this.pickingBuilder.ToRenderUnit(this.model);
+                IPickableRenderUnit renderUnit = this.pickingRenderUnitBuilder.ToRenderUnit(this.model);
                 if (renderUnit.VertexArrayObject.IndexBuffer is ZeroIndexBuffer)
                 {
                     this.picker = new ZeroIndexPicker(this);

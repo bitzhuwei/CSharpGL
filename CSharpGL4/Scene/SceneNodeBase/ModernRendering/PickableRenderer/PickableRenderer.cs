@@ -60,20 +60,22 @@ namespace CSharpGL
         //public string PositionNameInVertexShader { get; private set; }
 
         private readonly RenderUnitBuilder[] builders;
-        private readonly IPickableRenderUnitBuilder pickingBuilder;
+        private readonly IPickableRenderUnitBuilder pickingRenderUnitBuilder;
         private readonly IBufferable model;
         /// <summary>
         /// 支持"拾取"的渲染器
         /// </summary>
-        /// <param name="positionNameInIBufferable">vertex shader种描述顶点位置信息的in变量的名字</param>
+        /// <param name="model">vertex shader种描述顶点位置信息的in变量的名字</param>
         ///<param name="positionNameInIBufferable"></param>
         ///<param name="builders"></param>
         public PickableRenderer(IBufferable model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
         {
             this.model = model;
+
             var pickProgramProvider = PickingShaderHelper.GetPickingShaderProgramProvider();
+            this.pickingRenderUnitBuilder = new IPickableRenderUnitBuilder(pickProgramProvider, positionNameInIBufferable);
+
             this.builders = builders;
-            this.pickingBuilder = new IPickableRenderUnitBuilder(pickProgramProvider, positionNameInIBufferable);
         }
     }
 }
