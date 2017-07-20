@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CSharpGL
 {
@@ -52,7 +49,7 @@ namespace CSharpGL
                     this.id[0] = 0;
                 }
                 {
-                    var disp = this.Storage as IDisposable;
+                    var disp = this.ImageFiller as IDisposable;
                     if (disp != null) { disp.Dispose(); }
                 }
                 // A sampler builder can be used in multiple textures.
