@@ -10,9 +10,13 @@ namespace CSharpGL.Texture2
     /// </summary>
     public partial class Sampler : SamplerBase, IDisposable
     {
+        private static readonly GLDelegates.void_int_uintN glGenSamplers;
+        private static readonly GLDelegates.void_uint_uint glBindSampler;
         private static readonly GLDelegates.void_int_uintN glDeleteSamplers;
         static Sampler()
         {
+            glGenSamplers = GL.Instance.GetDelegateFor("glGenSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+            glBindSampler = GL.Instance.GetDelegateFor("glBindSampler", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glDeleteSamplers = GL.Instance.GetDelegateFor("glDeleteSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
         }
 

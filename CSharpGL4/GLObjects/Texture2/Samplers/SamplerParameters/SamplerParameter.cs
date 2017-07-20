@@ -23,11 +23,10 @@ namespace CSharpGL.Texture2
         /// <summary>
         /// 
         /// </summary>
-        public TextureTarget Target { get; private set; }
-
-        protected SamplerParameter(TextureTarget target, uint pname, string pnameString)
+        /// <param name="pname"></param>
+        /// <param name="pnameString"></param>
+        protected SamplerParameter(uint pname, string pnameString)
         {
-            this.Target = target;
             this.PName = pname; this.PNameString = pnameString;
         }
 
@@ -38,9 +37,9 @@ namespace CSharpGL.Texture2
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static SamplerParameter Create(TextureTarget target, uint pname, string pnameString, int value)
+        public static SamplerParameter Create(uint pname, string pnameString, int value)
         {
-            return new SamplerParameteri(target, pname, pnameString, value);
+            return new SamplerParameteri(pname, pnameString, value);
         }
 
         /// <summary>
@@ -50,14 +49,15 @@ namespace CSharpGL.Texture2
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static SamplerParameter Create(TextureTarget target, uint pname, string pnameString, float value)
+        public static SamplerParameter Create(uint pname, string pnameString, float value)
         {
-            return new SamplerParameterf(target, pname, pnameString, value);
+            return new SamplerParameterf(pname, pnameString, value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Apply();
+        /// <param name="samplerId"></param>
+        public abstract void Apply(uint samplerId);
     }
 }
