@@ -7,20 +7,14 @@ namespace CSharpGL.Texture2
 {
     public abstract partial class TextureBase : IDisposable
     {
-        // GL.GL_TEXTURE0(= 0x84C0 = 33984)
-        /// <summary>
-        /// Which texture unit should I bind to?
-        /// <para>0 means GL.GL_TEXTURE0, 1 means GL.GL_TEXTURE1, ...</para>
-        /// </summary>
-        public uint TextureUnit { get; set; }
-
         /// <summary>
         /// binding target of this texture.
         /// </summary>
         public TextureTarget Target { get; protected set; }
 
         /// <summary>
-        /// texture's id/name.
+        /// texture's id/name from glGenTextures().
+        /// 纹理名（用于标识一个纹理，由OpenGL指定）。
         /// </summary>
         protected uint[] id = new uint[1];
 
@@ -35,13 +29,17 @@ namespace CSharpGL.Texture2
         ///// </summary>
         //public bool UseMipmap { get; private set; }
 
+        public TextureBase(TextureTarget target, TexStorageBase storage)
+        {
+            this.Target = target;
+            this.Storage = storage;
+        }
         /// <summary>
         ///
         /// </summary>
         public void Bind()
         {
             GL.Instance.BindTexture((uint)this.Target, this.Id);
-            //this.SamplerBuilder.Bind(GL.GL_TEXTURE0 - GL.GL_TEXTURE0, this.Target);
         }
 
         /// <summary>
@@ -49,11 +47,9 @@ namespace CSharpGL.Texture2
         /// </summary>
         public void Unbind()
         {
-            //OpenGL.BindTexture(GL.GL_TEXTURE_2D, 0);
             GL.Instance.BindTexture((uint)this.Target, 0);
         }
 
-        private static GLDelegates.void_uint glActiveTexture;
         private bool initialized = false;
 
         /// <summary>
@@ -63,17 +59,13 @@ namespace CSharpGL.Texture2
         {
             if (!this.initialized)
             {
-                //if (glActiveTexture == null)
-                //{ glActiveTexture = GL.Instance.GetDelegateFor("glActiveTexture", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; }
-                //glActiveTexture(this.TextureUnit + GL.GL_TEXTURE0);
-                //GL.Instance.GenTextures(1, id);
-                //TextureTarget target = this.Target;
-                //GL.Instance.BindTexture((uint)target, id[0]);
-                //this.Sampler.Bind(this.TextureUnit, target);
-                //this.ImageFiller.Fill();
-                ////OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
-                ////this.SamplerBuilder.Unbind(GL.GL_TEXTURE0 - GL.GL_TEXTURE0, this.Target);
-                //GL.Instance.BindTexture((uint)this.Target, 0);
+                GL.Instance.GenTextures(1, id);
+                TextureTarget target = this.Target;
+                GL.Instance.BindTexture((uint)target, id[0]);
+                this.Storage.Apply();
+                this.BuiltInSampler.Apply();
+                //OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
+                GL.Instance.BindTexture((uint)this.Target, 0);
                 this.initialized = true;
             }
         }
@@ -81,12 +73,12 @@ namespace CSharpGL.Texture2
         /// <summary>
         /// setup texture's image data.
         /// </summary>
-        public ImageFiller ImageFiller { get; private set; }
+        public TexStorageBase Storage { get; private set; }
 
         /// <summary>
-        /// setup texture's sampler properties.
+        /// setup texture's sampler properties with default built-in sampler object.
         /// </summary>
-        public SamplerBase Sampler { get; private set; }
+        public BuiltInSampler BuiltInSampler { get; private set; }
 
         /// <summary>
         ///
@@ -94,8 +86,7 @@ namespace CSharpGL.Texture2
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("ActiveTexture{0}, Target:{1}, Id:{2}",
-                this.TextureUnit, this.Target, this.Id);
+            return string.Format("Target:{0}, Id:{1}", this.Target, this.Id);
         }
     }
 }

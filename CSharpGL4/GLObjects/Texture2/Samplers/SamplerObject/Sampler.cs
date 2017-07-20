@@ -6,9 +6,9 @@ using System.Text;
 namespace CSharpGL.Texture2
 {
     /// <summary>
-    /// 
+    /// Bind a <see cref="Sampler"/> object to a texture uint('s index), and it will affect all textures that bind to the same texture uint.
     /// </summary>
-    public partial class Sampler : SamplerBase, IDisposable
+    public partial class Sampler : List<SamplerParameter>, IDisposable
     {
         private static readonly GLDelegates.void_int_uintN glGenSamplers;
         private static readonly GLDelegates.void_uint_uint glBindSampler;
@@ -20,13 +20,6 @@ namespace CSharpGL.Texture2
             glDeleteSamplers = GL.Instance.GetDelegateFor("glDeleteSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
         }
 
-        private List<SamplerParameter> parameterList = new List<SamplerParameter>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<SamplerParameter> ParameterList { get { return parameterList; } }
-
         private uint[] ids = new uint[1];
 
         /// <summary>
@@ -35,48 +28,37 @@ namespace CSharpGL.Texture2
         public uint Id { get { return this.ids[0]; } }
 
         /// <summary>
-        /// 
+        /// Bind a <see cref="Sampler"/> object to a texture uint('s index), and it will affect all textures that bind to the same texture uint.
         /// </summary>
         public Sampler()
         {
             glGenSamplers(this.ids.Length, this.ids);
         }
 
-        private bool isBinded = false;
-        private uint samplerUnit = uint.MaxValue;
         /// <summary>
-        /// 
+        /// Bind a <see cref="Sampler"/> object to a texture uint('s index), and it will affect all textures that bind to the same texture uint.
         /// </summary>
-        /// <param name="samplerUnit">similar to texture's unit.</param>
-        public void Bind(uint samplerUnit)
+        /// <param name="textureUnitIndex">texture's unit's index.[0, 1, 2, ..)</param>
+        public void Bind(uint textureUnitIndex)
         {
-            if (!this.isBinded)
-            {
-                glBindSampler(samplerUnit, this.ids[0]);
-                this.samplerUnit = samplerUnit;
-                this.isBinded = true;
-            }
+            glBindSampler(textureUnitIndex, this.ids[0]);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void Unbind()
+        /// <param name="textureUnitIndex">texture's unit's index.[0, 1, 2, ..)</param>
+        public void Unbind(uint textureUnitIndex)
         {
-            if (this.isBinded)
-            {
-                glBindSampler(this.samplerUnit, 0);
-                this.samplerUnit = uint.MaxValue;
-                this.isBinded = false;
-            }
+            glBindSampler(textureUnitIndex, 0);
         }
 
         /// <summary>
-        /// 
+        /// Commit all sampler parameters of this <see cref="Sampler"/> object.
         /// </summary>
-        public override void Apply()
+        public void Commit()
         {
-            foreach (var item in this.parameterList)
+            foreach (var item in this)
             {
                 item.Apply(this.Id);
             }

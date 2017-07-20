@@ -102,7 +102,6 @@
     <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\Sampler.IDisposable.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\Sampler.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\BuiltInSampler.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\SamplerBase.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\SamplerParameters\SamplerParameter.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\SamplerParameters\SamplerParameteri.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\SamplerParameters\SamplerParameterf.cs" />

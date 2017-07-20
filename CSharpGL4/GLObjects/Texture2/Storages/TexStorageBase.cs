@@ -11,7 +11,7 @@ namespace CSharpGL.Texture2
     public abstract class TexStorageBase
     {
         /// <summary>
-        /// 
+        /// Apply storage command to the texture object.
         /// </summary>
         public abstract void Apply();
     }

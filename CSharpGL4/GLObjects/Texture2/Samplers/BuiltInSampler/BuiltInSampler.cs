@@ -5,22 +5,17 @@ using System.Text;
 
 namespace CSharpGL.Texture2
 {
-    public class BuiltInSampler : SamplerBase
+    /// <summary>
+    /// Built-in sampler object in a texture object.
+    /// </summary>
+    public class BuiltInSampler : List<TexParameter>
     {
-
-        private List<TexParameter> parameterList = new List<TexParameter>();
-
         /// <summary>
-        /// 
+        /// Apply all texture parameters to currently binding texture object.
         /// </summary>
-        public List<TexParameter> ParameterList { get { return parameterList; } }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override void Apply()
+        public void Apply()
         {
-            foreach (var item in this.parameterList)
+            foreach (var item in this)
             {
                 item.Apply();
             }

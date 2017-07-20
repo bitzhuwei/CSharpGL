@@ -10,6 +10,7 @@ namespace CSharpGL.Texture2
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Apply();
+        /// <param name="samplerUnit">similar to texture's unit.</param>
+        public abstract void Apply(uint samplerUnit);
     }
 }
