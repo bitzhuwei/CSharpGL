@@ -7,13 +7,17 @@ using System.Text;
 namespace CSharpGL.Texture2
 {
     /// <summary>
-    /// 
+    /// Provides specified bitmap's data as <see cref="Texture"/>'s image content.
     /// </summary>
     public class BitmapDataProvider : TexImageDataProvider, IDisposable
     {
         private Bitmap bitmap;
         private System.Drawing.Imaging.BitmapData data;
 
+        /// <summary>
+        /// Provides specified <paramref name="bitmap"/>'s data as <see cref="Texture"/>'s image content.
+        /// </summary>
+        /// <param name="bitmap"></param>
         public BitmapDataProvider(Bitmap bitmap)
         {
             this.bitmap = bitmap;
