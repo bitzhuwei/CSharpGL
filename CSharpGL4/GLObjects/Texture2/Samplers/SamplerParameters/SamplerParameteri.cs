@@ -10,25 +10,41 @@ namespace CSharpGL.Texture2
     /// </summary>
     public class SamplerParameteri : SamplerParameter
     {
+        private static readonly GLDelegates.void_uint_uint_int glSamplerParameteri;
+        static SamplerParameteri()
+        {
+            glSamplerParameteri = GL.Instance.GetDelegateFor("glSamplerParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
+        }
+
         /// <summary>
         /// 
         /// </summary>
-        public float PValue { get; set; }
+        public int PValue { get; set; }
 
-        public SamplerParameteri(TextureTarget target, uint pname, string pnameString, float pValue)
-            : base(target, pname, pnameString)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="pnameString"></param>
+        /// <param name="pValue"></param>
+        public SamplerParameteri(uint pname, string pnameString, int pValue)
+            : base(pname, pnameString)
         {
             this.PValue = pValue;
         }
 
-        public override void Apply()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="samplerId"></param>
+        public override void Apply(uint samplerId)
         {
-            GL.Instance.TexParameterf((uint)Target, PName, PValue);
+            glSamplerParameteri(samplerId, this.PName, this.PValue);
         }
 
         public override string ToString()
         {
-            return string.Format("glTexParameterf({0}, {1}, {2});", this.Target, this.PNameString, this.PValue);
+            return string.Format("glSamplerParameteri({0}, {1}, {2});", " ", this.PNameString, this.PValue);
         }
     }
 }
