@@ -2163,14 +2163,14 @@ namespace CSharpGL
         //#region GL_internalformat_query2
 
         ////  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_2D_MULTISAMPLE = 0x9100;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9102;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_2D_MULTISAMPLE = 0x9100;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9102;
         ///// <summary>
         /////
         ///// </summary>

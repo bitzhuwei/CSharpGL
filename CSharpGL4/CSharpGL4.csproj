@@ -114,6 +114,8 @@
     <Compile Include="GLObjects\Texture2\Storages\TexImages\TexImage2D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexImages\TexImage1D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexStorageBase.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage3DMultisample.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage2DMultisample.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage3D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage2D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage1D.cs" />
