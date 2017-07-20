@@ -16,9 +16,9 @@
         ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
 
         /// <summary>
-        /// This means that this buffer doesn't have (or need) a valid binding target.
+        /// This buffer doesn't have (or need) a valid binding target.
         /// </summary>
-        InvalidTarget = 0,
+        ZeroIndexBuffer = 0,
 
         /// <summary>
         ///
