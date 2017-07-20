@@ -95,6 +95,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
+    <Compile Include="GLObjects\Texture2\TextureBase.IDisposable.cs" />
     <Compile Include="GLObjects\Texture2\PixelStore\PixelStoref.cs" />
     <Compile Include="GLObjects\Texture2\PixelStore\PixelStorei.cs" />
     <Compile Include="GLObjects\Texture2\PixelStore\PixelStore.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage3D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage2D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage1D.cs" />
+    <Compile Include="GLObjects\Texture2\TextureBase.cs" />
     <Compile Include="Scene\Actions\ActionList.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
