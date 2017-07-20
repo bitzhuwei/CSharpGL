@@ -95,6 +95,10 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
+    <Compile Include="GLObjects\Texture2\PixelStore.cs" />
+    <Compile Include="GLObjects\Texture2\TexParameters\TexParameterf.cs" />
+    <Compile Include="GLObjects\Texture2\TexParameters\TexParameteri.cs" />
+    <Compile Include="GLObjects\Texture2\TexParameters\TexParameter.cs" />
     <Compile Include="Scene\Actions\ActionList.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
