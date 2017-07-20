@@ -13,14 +13,6 @@ namespace CSharpGL
         GLDelegates.void_uint_uint_uint glShaderStorageBlockBinding;
 
         /// <summary>
-        /// Target that this buffer should bind to.
-        /// </summary>
-        public override BufferTarget Target
-        {
-            get { return BufferTarget.ShaderStorageBuffer; }
-        }
-
-        /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
@@ -30,6 +22,7 @@ namespace CSharpGL
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
+            this.Target = BufferTarget.ShaderStorageBuffer;
         }
 
         /// <summary>

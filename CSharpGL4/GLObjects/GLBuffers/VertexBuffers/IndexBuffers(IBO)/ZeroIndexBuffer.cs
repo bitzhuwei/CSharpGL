@@ -9,14 +9,6 @@ namespace CSharpGL
     public sealed partial class ZeroIndexBuffer : IndexBuffer
     {
         /// <summary>
-        /// Invalid for <see cref="ZeroIndexBuffer"/>.
-        /// </summary>
-        public override BufferTarget Target
-        {
-            get { return BufferTarget.InvalidTarget; }
-        }
-
-        /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
@@ -26,6 +18,8 @@ namespace CSharpGL
         internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
+            this.Target = BufferTarget.InvalidTarget;
+
             this.FirstVertex = firstVertex;
             this.RenderingVertexCount = vertexCount;
             //this.OriginalVertexCount = vertexCount;

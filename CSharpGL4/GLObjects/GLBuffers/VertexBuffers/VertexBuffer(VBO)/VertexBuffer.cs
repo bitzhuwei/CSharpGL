@@ -15,14 +15,6 @@ namespace CSharpGL
         //internal static OpenGL.glPatchParameterfv glPatchParameterfv;
 
         /// <summary>
-        /// Target that this buffer should bind to.
-        /// </summary>
-        public override BufferTarget Target
-        {
-            get { return BufferTarget.ArrayBuffer; }
-        }
-
-        /// <summary>
         /// Vertex' attribute buffer's pointer.
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
@@ -37,6 +29,8 @@ namespace CSharpGL
             uint instancedDivisor = 0, int patchVertexes = 0)
             : base(bufferId, length, byteLength)
         {
+            this.Target = BufferTarget.ArrayBuffer;
+
             this.Config = config;
             this.InstancedDivisor = instancedDivisor;
             this.PatchVertexes = patchVertexes;

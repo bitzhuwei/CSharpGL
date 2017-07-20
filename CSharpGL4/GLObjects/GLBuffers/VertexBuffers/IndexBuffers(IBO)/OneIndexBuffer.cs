@@ -9,14 +9,6 @@ namespace CSharpGL
     public sealed partial class OneIndexBuffer : IndexBuffer
     {
         /// <summary>
-        /// Target that this buffer should bind to.
-        /// </summary>
-        public override BufferTarget Target
-        {
-            get { return BufferTarget.ElementArrayBuffer; }
-        }
-
-        /// <summary>
         /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
@@ -30,6 +22,8 @@ namespace CSharpGL
             IndexBufferElementType elementType, int length, int byteLength, int primCount = 1)
             : base(mode, bufferId, length, byteLength, primCount)
         {
+            this.Target = BufferTarget.ElementArrayBuffer;
+
             this.ElementCount = length;
             //this.OriginalElementCount = length;
             this.ElementType = elementType;

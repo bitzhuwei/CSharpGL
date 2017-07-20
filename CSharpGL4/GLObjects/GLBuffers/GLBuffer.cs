@@ -33,7 +33,7 @@ namespace CSharpGL
         /// <summary>
         /// Target that this buffer should bind to.
         /// </summary>
-        public abstract BufferTarget Target { get; }
+        public BufferTarget Target { get; protected set; }
 
         /// <summary>
         /// 位于服务器端（GPU内存）的定长数组。

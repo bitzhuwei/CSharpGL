@@ -8,14 +8,6 @@ namespace CSharpGL
     public partial class PixelUnpackBuffer : GLBuffer
     {
         /// <summary>
-        /// Target that this buffer should bind to.
-        /// </summary>
-        public override BufferTarget Target
-        {
-            get { return BufferTarget.PixelUnpackBuffer; }
-        }
-
-        /// <summary>
         /// pixel unpack buffer's pointer.
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
@@ -25,6 +17,7 @@ namespace CSharpGL
             uint bufferId, int length, int byteLength)
             : base(bufferId, length, byteLength)
         {
+            this.Target = BufferTarget.PixelUnpackBuffer;
         }
 
         /// <summary>
