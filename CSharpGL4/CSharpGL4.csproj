@@ -108,6 +108,7 @@
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameterf.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameteri.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameter.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexImages\ImageDataProvider\BitmapDataProvider.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexImages\ImageDataProvider\TexImageDataProvider.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexImages\TexImage3D.cs" />
     <Compile Include="GLObjects\Texture2\Storages\TexImages\TexImage2D.cs" />

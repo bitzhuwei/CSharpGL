@@ -40,7 +40,7 @@ namespace CSharpGL.Texture2
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage3D(Target target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, TexImageDataProvider dataProvider)
+        public TexImage3D(Target target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, TexImageDataProvider dataProvider = null)
         {
             this.target = target;
             this.level = level; this.internalFormat = internalformat;
@@ -48,7 +48,14 @@ namespace CSharpGL.Texture2
             this.border = border;
             this.format = format;
             this.type = type;
-            this.dataProvider = dataProvider;
+            if (dataProvider == null)
+            {
+                this.dataProvider = new TexImageDataProvider();
+            }
+            else
+            {
+                this.dataProvider = dataProvider;
+            }
         }
 
         /// <summary>
@@ -56,8 +63,11 @@ namespace CSharpGL.Texture2
         /// </summary>
         public override void Apply()
         {
-            IntPtr pixels = dataProvider.GetData();
+            IntPtr pixels = dataProvider.LockData();
+
             glTexImage3D((uint)target, level, internalFormat, width, height, depth, border, format, type, pixels);
+
+            dataProvider.FreeData();
         }
 
         /// <summary>

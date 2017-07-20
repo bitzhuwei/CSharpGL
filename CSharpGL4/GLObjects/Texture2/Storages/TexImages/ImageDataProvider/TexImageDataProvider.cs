@@ -8,12 +8,17 @@ namespace CSharpGL.Texture2
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TexImageDataProvider
+    public class TexImageDataProvider
     {
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IntPtr GetData();
+        public virtual IntPtr LockData() { return IntPtr.Zero; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void FreeData() { }
     }
 }
