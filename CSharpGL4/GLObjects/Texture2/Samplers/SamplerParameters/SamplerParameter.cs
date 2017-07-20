@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
+namespace CSharpGL.Texture2
 {
     /// <summary>
     /// glTexParameteri/f();
     /// </summary>
-    public abstract class TexParameter
+    public abstract class SamplerParameter
     {
         /// <summary>
         /// 
@@ -25,7 +25,7 @@ namespace CSharpGL
         /// </summary>
         public TextureTarget Target { get; private set; }
 
-        protected TexParameter(TextureTarget target, uint pname, string pnameString)
+        protected SamplerParameter(TextureTarget target, uint pname, string pnameString)
         {
             this.Target = target;
             this.PName = pname; this.PNameString = pnameString;
@@ -38,9 +38,9 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(TextureTarget target, uint pname, string pnameString, int value)
+        public static SamplerParameter Create(TextureTarget target, uint pname, string pnameString, int value)
         {
-            return new TexParameteri(target, pname, pnameString, value);
+            return new SamplerParameteri(target, pname, pnameString, value);
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(TextureTarget target, uint pname, string pnameString, float value)
+        public static SamplerParameter Create(TextureTarget target, uint pname, string pnameString, float value)
         {
-            return new TexParameterf(target, pname, pnameString, value);
+            return new SamplerParameterf(target, pname, pnameString, value);
         }
 
         /// <summary>
