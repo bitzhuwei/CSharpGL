@@ -108,6 +108,10 @@
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameterf.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameteri.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameter.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexStorageBase.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage3D.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage2D.cs" />
+    <Compile Include="GLObjects\Texture2\Storages\TexStorages\TexStorage1D.cs" />
     <Compile Include="Scene\Actions\ActionList.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
@@ -594,7 +598,9 @@
     <None Include="Scene\SceneNodeBase\ModernRendering\Renderer\readme.md" />
     <Content Include="Scene\SceneNodeBase\Renderers\readme.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GLObjects\Texture2\Storages\TexImages\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
