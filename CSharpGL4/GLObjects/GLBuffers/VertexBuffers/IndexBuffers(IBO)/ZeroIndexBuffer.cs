@@ -18,7 +18,7 @@ namespace CSharpGL
         internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
         {
-            this.Target = BufferTarget.ZeroIndexBuffer;
+            this.Target = BufferTarget.ZeroIndexArrayBuffer;
 
             this.FirstVertex = firstVertex;
             this.RenderingVertexCount = vertexCount;

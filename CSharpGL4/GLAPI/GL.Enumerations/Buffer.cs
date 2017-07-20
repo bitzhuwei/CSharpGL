@@ -18,7 +18,7 @@
         /// <summary>
         /// This buffer doesn't have (or need) a valid binding target.
         /// </summary>
-        ZeroIndexBuffer = 0,
+        ZeroIndexArrayBuffer = 0,
 
         /// <summary>
         ///
