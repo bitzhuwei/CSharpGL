@@ -98,16 +98,16 @@
     <Compile Include="GLObjects\Texture2\PixelStore\PixelStoref.cs" />
     <Compile Include="GLObjects\Texture2\PixelStore\PixelStorei.cs" />
     <Compile Include="GLObjects\Texture2\PixelStore\PixelStore.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\Sampler.IDisposable.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\Sampler.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\Sampler.IDisposable.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\Sampler.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\BuiltInSampler.cs" />
     <Compile Include="GLObjects\Texture2\Samplers\SamplerBase.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\SamplerParameters\SamplerParameter.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\SamplerParameters\SamplerParameteri.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\SamplerParameters\SamplerParameterf.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\TexParameters\TexParameterf.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\TexParameters\TexParameteri.cs" />
-    <Compile Include="GLObjects\Texture2\Samplers\TexParameters\TexParameter.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\SamplerParameters\SamplerParameter.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\SamplerParameters\SamplerParameteri.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\SamplerObject\SamplerParameters\SamplerParameterf.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameterf.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameteri.cs" />
+    <Compile Include="GLObjects\Texture2\Samplers\BuiltInSampler\TexParameters\TexParameter.cs" />
     <Compile Include="Scene\Actions\ActionList.cs" />
     <Compile Include="Scene\SceneNodeBase\ModernRendering\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>

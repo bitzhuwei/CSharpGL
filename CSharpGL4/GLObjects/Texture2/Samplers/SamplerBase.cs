@@ -7,5 +7,9 @@ namespace CSharpGL.Texture2
 {
     public abstract class SamplerBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract void Apply();
     }
 }
