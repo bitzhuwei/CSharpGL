@@ -15,11 +15,11 @@ namespace Texture2D
             var bmp = new System.Drawing.Bitmap(@"Crate.bmp");
             texture = new Texture(TextureTarget.Texture2D,
                 new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
-            texture.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_S, "GL_TEXTURE_WRAP_S", (int)GL.GL_CLAMP_TO_EDGE));
-            texture.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_T, "GL_TEXTURE_WRAP_T", (int)GL.GL_CLAMP_TO_EDGE));
-            texture.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_WRAP_R, "GL_TEXTURE_WRAP_R", (int)GL.GL_CLAMP_TO_EDGE));
-            texture.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_MIN_FILTER, "GL_TEXTURE_MIN_FILTER", (int)GL.GL_LINEAR));
-            texture.BuiltInSampler.Add(new TexParameteri(GL.GL_TEXTURE_MAG_FILTER, "GL_TEXTURE_MAG_FILTER", (int)GL.GL_LINEAR));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
 
             texture.Initialize();
             bmp.Dispose();
