@@ -11,29 +11,34 @@ namespace CSharpGL
     /// </summary>
     public class ImageDataProvider : TexImageDataProvider, IDisposable
     {
-        private Bitmap bitmap;
-        private int levelCount;
+        private readonly Bitmap bitmap;
+        private readonly bool autoDispose;
+        private readonly int levelCount;
 
         /// <summary>
         /// Provides specified <paramref name="bitmap"/>'s data as <see cref="Texture"/>'s image content.
         /// </summary>
         /// <param name="bitmap"></param>
+        /// <param name="autoDisose">dispose <paramref name="bitmap"/> when disposing this <see cref="IamgeDataProvider"/> object.</param>
         /// <param name="levelCount">[1, 2, 3, 4, 5, 6, 7, 8]</param>
-        public ImageDataProvider(Bitmap bitmap, int levelCount = 1)
+        public ImageDataProvider(Bitmap bitmap, bool autoDisose = false, int levelCount = 1)
         {
+            if (bitmap == null) { throw new ArgumentNullException("bitmap"); }
+
             this.bitmap = bitmap;
+            this.autoDispose = autoDisose;
             this.levelCount = levelCount;
         }
 
         public override IEnumerator<LeveledData> GetEnumerator()
         {
-            yield return new ImageData(this.bitmap, 0);
+            yield return new ImageData(this.bitmap, 0, false);
 
             Bitmap bmp = this.bitmap;
             for (int level = 1; level < levelCount; level++)
             {
                 bmp = new Bitmap(bmp, bmp.Size);
-                yield return new ImageData(bmp, level);
+                yield return new ImageData(bmp, level, true);
             }
         }
 
@@ -76,13 +81,14 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                var bitmap = this.bitmap;
-                if (bitmap != null)
+                if (this.autoDispose)
                 {
-                    this.bitmap = null;
-                    bitmap.Dispose();
+                    var bitmap = this.bitmap;
+                    if (bitmap != null)
+                    {
+                        bitmap.Dispose();
+                    }
                 }
-
             } // end if
 
             this.disposedValue = true;

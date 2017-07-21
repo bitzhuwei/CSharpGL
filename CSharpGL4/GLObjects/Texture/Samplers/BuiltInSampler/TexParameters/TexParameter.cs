@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// glTexParameteri/f();
     /// </summary>
-    public abstract class TexParameter
+    public abstract partial class TexParameter
     {
         /// <summary>
         /// 
