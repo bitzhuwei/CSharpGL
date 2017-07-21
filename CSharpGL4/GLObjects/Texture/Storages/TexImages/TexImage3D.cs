@@ -63,11 +63,16 @@ namespace CSharpGL
         /// </summary>
         public override void Apply()
         {
-            IntPtr pixels = dataProvider.LockData();
+            foreach (var item in dataProvider)
+            {
+                int level;
+                IntPtr pixels;
+                item.LockData(out level, out pixels);
 
-            glTexImage3D((uint)target, level, internalFormat, width, height, depth, border, format, type, pixels);
+                glTexImage3D((uint)target, level, internalFormat, width, height, depth, border, format, type, pixels);
 
-            dataProvider.FreeData();
+                item.FreeData();
+            }
         }
 
         /// <summary>

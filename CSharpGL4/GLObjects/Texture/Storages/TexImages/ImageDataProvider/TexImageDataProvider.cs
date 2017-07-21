@@ -8,17 +8,24 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class TexImageDataProvider
+    public class TexImageDataProvider : IEnumerable<LeveledData>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public virtual IntPtr LockData() { return IntPtr.Zero; }
+        #region IEnumerable<LeveledData> 成员
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual void FreeData() { }
+        public virtual IEnumerator<LeveledData> GetEnumerator()
+        {
+            yield return new LeveledData();
+        }
+
+        #endregion
+
+        #region IEnumerable 成员
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        #endregion
     }
 }

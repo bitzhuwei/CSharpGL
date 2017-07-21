@@ -55,13 +55,15 @@ namespace CSharpGL
         /// </summary>
         public override void Apply()
         {
-            IntPtr pixels = dataProvider.LockData();
-
-            GL.Instance.TexImage2D((uint)target, level, internalFormat, width, height, border, format, type, pixels);
-
-            if (pixels != IntPtr.Zero)
+            foreach (var item in dataProvider)
             {
-                dataProvider.FreeData();
+                int level;
+                IntPtr pixels;
+                item.LockData(out level, out pixels);
+
+                GL.Instance.TexImage2D((uint)target, level, internalFormat, width, height, border, format, type, pixels);
+
+                item.FreeData();
             }
         }
 

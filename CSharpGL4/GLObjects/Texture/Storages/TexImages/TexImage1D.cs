@@ -50,13 +50,15 @@ namespace CSharpGL
         /// </summary>
         public override void Apply()
         {
-            IntPtr pixels = dataProvider.LockData();
-
-            GL.Instance.TexImage1D(GL.GL_TEXTURE_1D, level, internalFormat, width, border, format, type, pixels);
-
-            if (pixels != IntPtr.Zero)
+            foreach (var item in dataProvider)
             {
-                dataProvider.FreeData();
+                int level;
+                IntPtr pixels;
+                item.LockData(out level, out pixels);
+
+                GL.Instance.TexImage1D(GL.GL_TEXTURE_1D, level, internalFormat, width, border, format, type, pixels);
+
+                item.FreeData();
             }
         }
     }

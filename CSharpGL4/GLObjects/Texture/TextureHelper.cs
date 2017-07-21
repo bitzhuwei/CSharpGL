@@ -17,7 +17,7 @@ namespace CSharpGL
         public static void UpdateContent(this Texture texture, Bitmap bitmap)
         {
             //  Lock the image bits (so that we can pass them to OGL).
-            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
             GL.Instance.BindTexture((uint)texture.Target, texture.Id);

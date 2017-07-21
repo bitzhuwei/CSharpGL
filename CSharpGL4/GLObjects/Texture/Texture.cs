@@ -37,6 +37,11 @@ namespace CSharpGL
         ///// </summary>
         //public bool UseMipmap { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="storage"></param>
         public Texture(TextureTarget target, TexStorageBase storage)
         {
             this.Target = target;

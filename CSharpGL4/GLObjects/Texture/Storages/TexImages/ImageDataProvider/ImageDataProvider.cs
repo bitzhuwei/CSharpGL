@@ -9,29 +9,32 @@ namespace CSharpGL
     /// <summary>
     /// Provides specified bitmap's data as <see cref="Texture"/>'s image content.
     /// </summary>
-    public class BitmapDataProvider : TexImageDataProvider, IDisposable
+    public class ImageDataProvider : TexImageDataProvider, IDisposable
     {
         private Bitmap bitmap;
-        private System.Drawing.Imaging.BitmapData data;
+        private int levelCount;
 
         /// <summary>
         /// Provides specified <paramref name="bitmap"/>'s data as <see cref="Texture"/>'s image content.
         /// </summary>
         /// <param name="bitmap"></param>
-        public BitmapDataProvider(Bitmap bitmap)
+        /// <param name="levelCount">[1, 2, 3, 4, 5, 6, 7, 8]</param>
+        public ImageDataProvider(Bitmap bitmap, int levelCount = 1)
         {
             this.bitmap = bitmap;
+            this.levelCount = levelCount;
         }
 
-        public override IntPtr LockData()
+        public override IEnumerator<LeveledData> GetEnumerator()
         {
-            this.data = this.bitmap.LockBits(new Rectangle(0, 0, this.bitmap.Width, this.bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            return data.Scan0;
-        }
+            yield return new ImageData(this.bitmap, 0);
 
-        public override void FreeData()
-        {
-            this.bitmap.UnlockBits(this.data);
+            Bitmap bmp = this.bitmap;
+            for (int level = 1; level < levelCount; level++)
+            {
+                bmp = new Bitmap(bmp, bmp.Size);
+                yield return new ImageData(bmp, level);
+            }
         }
 
         #region IDisposable 成员
@@ -48,7 +51,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~BitmapDataProvider()
+        ~ImageDataProvider()
         {
             this.Dispose(false);
         }
