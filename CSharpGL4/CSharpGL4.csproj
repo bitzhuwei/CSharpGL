@@ -97,8 +97,8 @@
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
     <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameter.PNames.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexBuffer\TexBufferStorage.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\ImageDataProvider\ImageData.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\ImageDataProvider\LeveledData.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\ImageData.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\LeveledData.cs" />
     <Compile Include="GLObjects\Texture\Texture.IDisposable.cs" />
     <Compile Include="GLObjects\Texture\PixelStore\PixelStoref.cs" />
     <Compile Include="GLObjects\Texture\PixelStore\PixelStorei.cs" />
@@ -112,8 +112,8 @@
     <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameterf.cs" />
     <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameteri.cs" />
     <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameter.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\ImageDataProvider\ImageDataProvider.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\ImageDataProvider\TexImageDataProvider.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\ImageDataProvider.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\TexImageDataProvider.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage2DMultisample.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage3D.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage2D.cs" />
