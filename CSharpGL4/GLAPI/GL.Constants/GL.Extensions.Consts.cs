@@ -806,28 +806,28 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH_TEXTURE_MODE = 0x884B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DEPTH_TEXTURE_MODE = 0x884B;
 
         //#endregion
 
         //#region GL_shadow
 
         ////  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_COMPARE_MODE = 0x884C;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_COMPARE_FUNC = 0x884D;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_COMPARE_R_TO_TEXTURE = 0x884E;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_COMPARE_MODE = 0x884C;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_COMPARE_FUNC = 0x884D;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_COMPARE_R_TO_TEXTURE = 0x884E;
 
         //#endregion
 

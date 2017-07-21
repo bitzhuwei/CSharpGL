@@ -41,12 +41,34 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="pname"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TexParameter Create(PropertyName pname, int value)
+        {
+            return new TexParameteri((uint)pname, pname.ToString(), value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
         public static TexParameter Create(uint pname, string pnameString, float value)
         {
             return new TexParameterf(pname, pnameString, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TexParameter Create(PropertyName pname, float value)
+        {
+            return new TexParameterf((uint)pname, pname.ToString(), value);
         }
 
         /// <summary>

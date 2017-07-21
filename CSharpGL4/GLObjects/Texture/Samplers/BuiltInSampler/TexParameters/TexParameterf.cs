@@ -15,8 +15,25 @@ namespace CSharpGL
         /// </summary>
         public float PValue { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="pnameString"></param>
+        /// <param name="pValue"></param>
         public TexParameterf(uint pname, string pnameString, float pValue)
             : base(pname, pnameString)
+        {
+            this.PValue = pValue;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="pValue"></param>
+        public TexParameterf(PropertyName pname, float pValue)
+            : base((uint)pname, pname.ToString())
         {
             this.PValue = pValue;
         }

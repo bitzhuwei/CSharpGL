@@ -95,7 +95,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
     <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameter.PNames.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameter.PropertyName.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexBuffer\TexBufferStorage.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\ImageData.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\LeveledData.cs" />
