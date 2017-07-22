@@ -13,6 +13,7 @@ namespace ColorCodedPicking
     public partial class FormMain : Form
     {
         private Scene scene;
+        private ActionList actionList;
         private TeapotRenderer teapot;
         private LegacyTriangleRenderer triangleTip;
         private LegacyQuadRenderer quadTip;
@@ -98,6 +99,13 @@ namespace ColorCodedPicking
                 RootElement = group,
             };
 
+            var list = new ActionList();
+            var transformAction = new TransformAction(group);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(group, camera);
+            list.Add(renderAction);
+            this.actionList = list;
+
             this.triangleTip = new LegacyTriangleRenderer();
             this.quadTip = new LegacyQuadRenderer();
             this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
@@ -106,7 +114,7 @@ namespace ColorCodedPicking
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render();
+            this.actionList.Render();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

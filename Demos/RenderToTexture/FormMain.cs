@@ -13,6 +13,7 @@ namespace RenderToTexture
     public partial class FormMain : Form
     {
         private Scene scene;
+        private ActionList actionList;
         //private LegacyRectangleRenderer rectangle;//LegacyRectangleRenderer dosen't work in rendering-to-texture.
         private TeapotRenderer teapot;
         private RTTRenderer rtt;
@@ -56,15 +57,18 @@ namespace RenderToTexture
                 RootElement = group,
             };
 
+            var list = new ActionList();
+            var transformAction = new TransformAction(group);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(group, camera);
+            list.Add(renderAction);
+            this.actionList = list;
+
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            Scene scene = this.scene;
-            if (scene != null)
-            {
-                scene.Render();
-            }
+            this.actionList.Render();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

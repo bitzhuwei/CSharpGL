@@ -43,15 +43,13 @@ namespace CSharpGL
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
-        /// <param name="clear"></param>
-        /// <param name="clearColor"></param>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
-        public RenderAction(bool clear, vec4 clearColor, SceneNodeBase rootElement, ICamera camera)
+        public RenderAction(SceneNodeBase rootElement, ICamera camera)
             : base(rootElement, camera)
         {
-            this.Clear = clear;
-            this.ClearColor = clearColor;
+            this.Clear = true;
+            this.ClearColor = Color.SkyBlue.ToVec4();
         }
 
         /// <summary>

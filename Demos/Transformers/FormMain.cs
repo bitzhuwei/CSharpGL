@@ -13,7 +13,9 @@ namespace Transformers
     public partial class FormMain : Form
     {
         private Scene scene;
+        private ActionList actionList;
         private TeapotRenderer teapot;
+
         public FormMain()
         {
             InitializeComponent();
@@ -36,11 +38,19 @@ namespace Transformers
             {
                 RootElement = teapot,
             };
+
+            var list = new ActionList();
+            var transformAction = new TransformAction(teapot);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(teapot, camera);
+            list.Add(renderAction);
+            this.actionList = list;
+
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render();
+            this.actionList.Render();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

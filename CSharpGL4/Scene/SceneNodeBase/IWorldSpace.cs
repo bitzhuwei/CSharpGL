@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Design;
 
 namespace CSharpGL
@@ -34,6 +35,25 @@ namespace CSharpGL
         /// Size in X/Y/Z axis.
         /// </summary>
         vec3 ModelSize { get; set; }
+    }
+
+    /// <summary>
+    /// transform event argument.
+    /// </summary>
+    public class TransformEventArgs
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransformEventArgs"/> class.
+        /// </summary>
+        public TransformEventArgs()
+        {
+            this.ModelMatrixStack = new Stack<mat4>();
+            this.ModelMatrixStack.Push(mat4.identity());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        internal Stack<mat4> ModelMatrixStack { get; private set; }
     }
 
     /// <summary>

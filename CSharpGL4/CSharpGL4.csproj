@@ -76,6 +76,7 @@
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
+    <Compile Include="Scene\Actions\TransformAction.cs" />
     <Compile Include="Scene\FontTexture\FontBitmap.cs" />
     <Compile Include="Scene\FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="Scene\FontTexture\FontBitmapHelper.cs" />
@@ -301,7 +302,6 @@
     <Compile Include="Scene\Scene.PickRendererBases.cs" />
     <Compile Include="Scene\Scene.PickGeometry.cs" />
     <Compile Include="Scene\Actions\RenderAction.cs" />
-    <Compile Include="Scene\Scene.Render.cs" />
     <Compile Include="Scene\Scene.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />
     <None Include="BaseDataStructures\readme.md" />

@@ -45,7 +45,7 @@ namespace ShadowMapping
             this.trvScene.ExpandAll();
 
             var shadowMappingAction = new ShadowMappingAction(rootElement, camera);
-            var renderAction = new RenderAction(true, new vec4(0, 0, 0, 0), rootElement, camera);
+            var renderAction = new RenderAction(rootElement, camera);
             var actionList = new ActionList();
             actionList.Add(shadowMappingAction); actionList.Add(renderAction);
             this.actionList = actionList;

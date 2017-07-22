@@ -12,7 +12,8 @@ namespace HelloCSharpGL
 {
     public partial class FormMain : Form
     {
-        Scene scene;
+        private Scene scene;
+        private ActionList actionList;
 
         public FormMain()
         {
@@ -37,10 +38,17 @@ namespace HelloCSharpGL
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1)
-           {
-               RootElement = rootElement,
-               ClearColor = Color.SkyBlue.ToVec4(),
-           };
+            {
+                RootElement = rootElement,
+                ClearColor = Color.SkyBlue.ToVec4(),
+            };
+
+            var list = new ActionList();
+            var transformAction = new TransformAction(rootElement);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(rootElement, camera);
+            list.Add(renderAction);
+            this.actionList = list;
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
@@ -189,7 +197,7 @@ namespace HelloCSharpGL
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.scene.Render();
+            this.actionList.Render();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
