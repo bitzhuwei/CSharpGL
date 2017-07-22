@@ -31,11 +31,11 @@ namespace CSharpGL
             GL.Instance.ClearColor(1, 1, 1, 1);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(this.Camera);
+            var arg = new ShdowMappingEventArgs(this.Camera);
             ShadowMappingAction.CastShadow(this.RootElement, arg, firstPass);
         }
 
-        public static void CastShadow(SceneNodeBase sceneElement, RenderEventArgs arg, bool firstPass)
+        public static void CastShadow(SceneNodeBase sceneElement, ShdowMappingEventArgs arg, bool firstPass)
         {
             if (sceneElement != null)
             {
@@ -45,12 +45,20 @@ namespace CSharpGL
                     sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
                 }
 
+                var lightListContainer = sceneElement as ILocalLightContainer;
+                if (lightListContainer != null)
+                {
+                    foreach (var item in lightListContainer.LightList)
+                    {
+
+                    }
+                }
+
                 var renderable = sceneElement as IShadowMapping;
                 if (renderable != null && renderable.EnableShadowMapping)
                 {
                     renderable.CastShadow(arg);
                 }
-
                 {
                     if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)

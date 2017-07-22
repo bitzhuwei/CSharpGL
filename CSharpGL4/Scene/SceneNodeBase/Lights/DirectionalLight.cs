@@ -24,9 +24,5 @@ namespace CSharpGL
             this.Direction = direction;
         }
 
-        public override void CastShadow(RenderEventArgs arg)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

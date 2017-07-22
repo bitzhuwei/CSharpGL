@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CSharpGL;
 
 namespace ShadowMapping
@@ -107,9 +106,9 @@ void main(void) {
             set { enableShadowMapping = value; }
         }
 
-        public void CastShadow(RenderEventArgs arg)
+        public void CastShadow(ShdowMappingEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { this.Initialize(); }
 
             this.RotationAngle += this.RotateSpeed;
 
@@ -126,6 +125,11 @@ void main(void) {
 
             renderUnit.Render();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Again { get { return false; } }
 
         #endregion
 

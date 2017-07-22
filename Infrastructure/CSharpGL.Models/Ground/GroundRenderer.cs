@@ -105,7 +105,7 @@ void main(void) {
             set { enableShadowMapping = value; }
         }
 
-        public void CastShadow(RenderEventArgs arg)
+        public void CastShadow(ShdowMappingEventArgs arg)
         {
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -121,6 +121,11 @@ void main(void) {
 
             renderUnit.Render();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Again { get { return false; } }
 
         #endregion
 

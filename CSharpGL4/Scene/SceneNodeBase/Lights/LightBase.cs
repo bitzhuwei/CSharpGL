@@ -8,29 +8,43 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public abstract class LightBase : IShadowMapping
+    public abstract class LightBase
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 Color { get; set; }
+        private IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
+        private PolygonOffsetFillState state = new PolygonOffsetFillState();
 
-        #region IShadowMapping 成员
+        int[] viewport = new int[4];
 
-
-        private bool enableShadowMapping = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool EnableShadowMapping
+        public void Begin()
         {
-            get { return enableShadowMapping; }
-            set { enableShadowMapping = value; }
+            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            int width = viewport[2], height = viewport[3];
+            var framebuffer = this.framebufferProvider.GetFramebuffer(width, height);
+
+            framebuffer.Bind();
+            GL.Instance.Viewport(0, 0, width, height);
+            this.state.On();
+            {
+                GL.Instance.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);// white color means farest position.
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+                //{
+                //    var args = new RenderEventArgs(this.Camera);
+                //    foreach (var item in this.Children)
+                //    {
+                //        RenderAction.Render(item, args, true, true);
+                //    }
+                //}
+            }
         }
 
-        public abstract void CastShadow(RenderEventArgs arg);
+        public void End()
+        {
+            int width = viewport[2], height = viewport[3];
+            var framebuffer = this.framebufferProvider.GetFramebuffer(width, height);
 
-        #endregion
+            this.state.Off();
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
+            framebuffer.Unbind();
+        }
     }
 }

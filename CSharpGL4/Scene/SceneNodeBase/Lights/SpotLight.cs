@@ -31,9 +31,5 @@ namespace CSharpGL
             this.Angle = angle;
         }
 
-        public override void CastShadow(RenderEventArgs arg)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

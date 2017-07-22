@@ -19,11 +19,9 @@ namespace CSharpGL
             this.WorldPosition = position;
         }
 
-        public override void CastShadow(RenderEventArgs arg)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 WorldPosition { get; set; }
     }
 }
