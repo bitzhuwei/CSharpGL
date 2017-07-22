@@ -9,6 +9,7 @@ namespace CSharpGL
     class DesignModeAssist
     {
         private Scene scene;
+        private ActionList actionList;
         private readonly string fullname;
 
         public DesignModeAssist(IGLCanvas canvas)
@@ -27,12 +28,23 @@ namespace CSharpGL
             };
 
             this.scene = scene;
+
+            var list = new ActionList();
+            var transformAction = new TransformAction(group);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(group, camera)
+            {
+                ClearColor = Color.Black.ToVec4(),
+            };
+            list.Add(renderAction);
+            this.actionList = list;
+
             this.fullname = canvas.GetType().FullName;
         }
 
         public void Render(bool drawText, int height, double fps)
         {
-            this.scene.Render();
+            this.actionList.Render();
 
             FontBitmaps.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",
