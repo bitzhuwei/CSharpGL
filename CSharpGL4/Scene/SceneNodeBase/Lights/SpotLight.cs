@@ -30,5 +30,10 @@ namespace CSharpGL
             this.Direction = direciton;
             this.Angle = angle;
         }
+
+        public override void CastShadow(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

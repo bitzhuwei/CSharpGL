@@ -57,6 +57,8 @@ namespace CSharpGL
             //set { this.enableRendering = value; }
         }
 
+        private PolygonOffsetFillState state = new PolygonOffsetFillState();
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (this.Width <= 0 || this.Height <= 0) { return; }
@@ -67,6 +69,7 @@ namespace CSharpGL
             this.framebuffer = this.framebufferSource.GetFramebuffer(this.Width, this.Height);
             framebuffer.Bind();
             GL.Instance.Viewport(0, 0, this.Width, this.Height);
+            this.state.On();
             {
                 int[] value = new int[4];
                 GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
@@ -86,6 +89,7 @@ namespace CSharpGL
                     GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);// recover clear color.
                 }
             }
+            this.state.Off();
             GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
             this.framebuffer.Unbind();
         }

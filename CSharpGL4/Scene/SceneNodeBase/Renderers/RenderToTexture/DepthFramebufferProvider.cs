@@ -61,7 +61,7 @@ namespace CSharpGL
             //framebuffer.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(texture);//1
             //framebuffer.SetDrawBuffers(GL.GL_NONE);
             framebuffer.SetDrawBuffer(GL.GL_NONE);
-            framebuffer.SetReadBuffer(GL.GL_NONE);
+            //framebuffer.SetReadBuffer(GL.GL_NONE);
             this.BindingTexture.Bind();
             framebuffer.CheckCompleteness();
             this.BindingTexture.Unbind();

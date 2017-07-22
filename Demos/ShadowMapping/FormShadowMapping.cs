@@ -27,7 +27,7 @@ namespace ShadowMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var rootElement = GetRenderer();
+            var rootElement = GetRootElement();
             //var teapot = ShadowMappingRenderer.Create();
             //var rootElement = teapot;
 
@@ -69,7 +69,7 @@ namespace ShadowMapping
             }
         }
 
-        private SceneNodeBase GetRenderer()
+        private SceneNodeBase GetRootElement()
         {
             int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
