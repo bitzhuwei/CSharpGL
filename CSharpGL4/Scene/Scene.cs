@@ -38,10 +38,10 @@ namespace CSharpGL
             set { this.clearColor = value; }
         }
 
-        /// <summary>
-        /// Ambient light color.
-        /// </summary>
-        public vec3 AmbientLight { get; set; }
+        ///// <summary>
+        ///// Ambient light color.
+        ///// </summary>
+        //public vec3 AmbientLight { get; set; }
 
         /// <summary>
         /// 
