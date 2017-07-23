@@ -44,10 +44,11 @@ namespace ShadowMapping
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
 
+            var tansformAction = new TransformAction(rootElement);
             var shadowMappingAction = new ShadowMappingAction(rootElement);
             var renderAction = new RenderAction(rootElement, camera);
             var actionList = new ActionList();
-            actionList.Add(shadowMappingAction); actionList.Add(renderAction);
+            actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
             this.actionList = actionList;
         }
 
@@ -72,27 +73,60 @@ namespace ShadowMapping
         private SceneNodeBase GetRootElement()
         {
             int width = 600, height = 400;
-            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            var innerCamera = new Camera(new vec3(5, 5, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
             (innerCamera as IPerspectiveViewCamera).Far = 50;
-            IFramebufferProvider source = new DepthFramebufferProvider();
-            var rtt = new RTTRenderer(width, height, innerCamera, source);
+            innerCamera.GetProjectionMatrix();
+            innerCamera.GetViewMatrix();
+            var localLight = new SpotLight(new vec3(5, 5, 5), new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
+            var lightContainer = new LightsRenderer(localLight);
             {
-                var teapot = DepthTextureRenderer.Create();
-                rtt.Children.Add(teapot);
-                var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
-                rtt.Children.Add(ground);
+                {
+                    var teapot = DepthTextureRenderer.Create();
+                    lightContainer.Children.Add(teapot);
+                }
+                {
+                    var ground = GroundRenderer.Create();
+                    ground.Color = Color.Gray.ToVec4();
+                    ground.Scale *= 10;
+                    ground.WorldPosition = new vec3(0, -3, 0);
+                    lightContainer.Children.Add(ground);
+                }
             }
 
             var rectangle = RectangleRenderer.Create();
-            rectangle.TextureSource = rtt;
+            rectangle.TextureSource = localLight;
 
             var group = new GroupRenderer();
-            group.Children.Add(rtt);// rtt must be before rectangle.
+            group.Children.Add(lightContainer);
             group.Children.Add(rectangle);
-            //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
 
             return group;
         }
+
+        //private SceneNodeBase GetRootElement()
+        //{
+        //    int width = 600, height = 400;
+        //    var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+        //    (innerCamera as IPerspectiveViewCamera).Far = 50;
+        //    IFramebufferProvider source = new DepthFramebufferProvider();
+        //    var rtt = new RTTRenderer(width, height, innerCamera, source);
+        //    {
+        //        var teapot = DepthTextureRenderer.Create();
+        //        rtt.Children.Add(teapot);
+        //        var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
+        //        rtt.Children.Add(ground);
+        //    }
+
+        //    var rectangle = RectangleRenderer.Create();
+        //    rectangle.TextureSource = rtt;
+
+        //    var group = new GroupRenderer();
+        //    group.Children.Add(rtt);// rtt must be before rectangle.
+        //    group.Children.Add(rectangle);
+        //    //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
+
+        //    return group;
+        //}
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
