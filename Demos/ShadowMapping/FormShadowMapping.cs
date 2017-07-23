@@ -72,11 +72,11 @@ namespace ShadowMapping
 
         private SceneNodeBase GetRootElement()
         {
-            int width = 600, height = 400;
-            var innerCamera = new Camera(new vec3(5, 5, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
-            (innerCamera as IPerspectiveViewCamera).Far = 50;
-            innerCamera.GetProjectionMatrix();
-            innerCamera.GetViewMatrix();
+            //int width = 600, height = 400;
+            //var innerCamera = new Camera(new vec3(5, 5, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+            //(innerCamera as IPerspectiveViewCamera).Far = 50;
+            //innerCamera.GetProjectionMatrix();
+            //innerCamera.GetViewMatrix();
             var localLight = new SpotLight(new vec3(5, 5, 5), new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
             var lightContainer = new LightsRenderer(localLight);
             {
