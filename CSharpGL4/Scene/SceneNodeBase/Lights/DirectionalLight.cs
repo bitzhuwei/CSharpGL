@@ -24,5 +24,15 @@ namespace CSharpGL
             this.Direction = direction;
         }
 
+
+        public override mat4 GetProjectionMatrix(ShdowMappingEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override mat4 GetViewMatrix(ShdowMappingEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

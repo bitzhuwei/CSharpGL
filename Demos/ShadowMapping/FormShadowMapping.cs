@@ -44,7 +44,7 @@ namespace ShadowMapping
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
 
-            var shadowMappingAction = new ShadowMappingAction(rootElement, camera);
+            var shadowMappingAction = new ShadowMappingAction(rootElement);
             var renderAction = new RenderAction(rootElement, camera);
             var actionList = new ActionList();
             actionList.Add(shadowMappingAction); actionList.Add(renderAction);

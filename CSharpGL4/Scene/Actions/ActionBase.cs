@@ -16,26 +16,19 @@ namespace CSharpGL
         public SceneNodeBase RootElement { get; set; }
 
         /// <summary>
-        /// 
+        /// Base type for rendering actions.
         /// </summary>
-        public ICamera Camera { get; set; }
+        /// <param name="rootElement"></param>
+        public ActionBase(SceneNodeBase rootElement)
+        {
+            this.RootElement = rootElement;
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="firstPass">Is This the first pass of rendering?</param>
         public abstract void Render(bool firstPass);
-
-        /// <summary>
-        /// Base type for rendering actions.
-        /// </summary>
-        /// <param name="rootElement"></param>
-        /// <param name="camera"></param>
-        public ActionBase(SceneNodeBase rootElement, ICamera camera)
-        {
-            this.RootElement = rootElement;
-            this.Camera = camera;
-        }
 
     }
 }

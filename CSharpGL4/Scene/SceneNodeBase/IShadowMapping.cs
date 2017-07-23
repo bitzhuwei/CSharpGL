@@ -31,26 +31,13 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShdowMappingEventArgs(params ICamera[] cameras)
+        public ShdowMappingEventArgs()
         {
-            var cameraStack = new Stack<ICamera>();
-            foreach (var item in cameras)
-            {
-                cameraStack.Push(item);
-            }
-
-            this.CameraStack = cameraStack;
-
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
 
             this.LightStack = new Stack<LightBase>();
         }
-
-        /// <summary>
-        /// The top ccamera is currently in use.
-        /// </summary>
-        public Stack<ICamera> CameraStack { get; private set; }
 
         /// <summary>
         /// 
@@ -77,5 +64,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         internal Stack<LightBase> LightStack { get; private set; }
+
+        public LightBase CurrentLight { get; set; }
     }
 }

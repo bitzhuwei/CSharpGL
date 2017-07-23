@@ -107,9 +107,9 @@ void main(void) {
 
         public void CastShadow(ShdowMappingEventArgs arg)
         {
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
+            LightBase light = arg.CurrentLight;
+            mat4 projection = light.GetProjectionMatrix(arg);
+            mat4 view = light.GetViewMatrix(arg);
             mat4 model = this.GetModelMatrix();
 
             var renderUnit = this.RenderUnits[0]; // this index should be 1.
@@ -121,11 +121,6 @@ void main(void) {
 
             renderUnit.Render();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool Again { get { return false; } }
 
         #endregion
 

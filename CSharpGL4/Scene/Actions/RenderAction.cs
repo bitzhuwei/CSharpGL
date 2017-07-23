@@ -12,6 +12,12 @@ namespace CSharpGL
     /// </summary>
     public class RenderAction : ActionBase
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICamera Camera { get; set; }
+
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
@@ -46,8 +52,10 @@ namespace CSharpGL
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
         public RenderAction(SceneNodeBase rootElement, ICamera camera)
-            : base(rootElement, camera)
+            : base(rootElement)
         {
+            this.Camera = camera;
+
             this.Clear = true;
             this.ClearColor = Color.SkyBlue.ToVec4();
         }

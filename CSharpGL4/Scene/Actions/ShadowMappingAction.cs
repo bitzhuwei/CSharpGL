@@ -16,9 +16,8 @@ namespace CSharpGL
         /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
         /// </summary>
         /// <param name="rootElement"></param>
-        /// <param name="camera"></param>
-        public ShadowMappingAction(SceneNodeBase rootElement, ICamera camera)
-            : base(rootElement, camera)
+        public ShadowMappingAction(SceneNodeBase rootElement)
+            : base(rootElement)
         {
         }
 
@@ -31,41 +30,51 @@ namespace CSharpGL
             GL.Instance.ClearColor(1, 1, 1, 1);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new ShdowMappingEventArgs(this.Camera);
-            ShadowMappingAction.CastShadow(this.RootElement, arg, firstPass);
+            var arg = new ShdowMappingEventArgs();
+            this.ShadowMapping(this.RootElement, arg);
         }
 
-        public static void CastShadow(SceneNodeBase sceneElement, ShdowMappingEventArgs arg, bool firstPass)
+        private void ShadowMapping(SceneNodeBase sceneElement, ShdowMappingEventArgs arg)
         {
             if (sceneElement != null)
             {
-                if (firstPass)
+                var lightContainer = sceneElement as ILocalLightContainer;
+                if (lightContainer != null)
                 {
-                    mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
-                    sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
-                }
-
-                var lightListContainer = sceneElement as ILocalLightContainer;
-                if (lightListContainer != null)
-                {
-                    foreach (var item in lightListContainer.LightList)
+                    foreach (var light in lightContainer.LightList)
                     {
-
+                        arg.CurrentLight = light;
+                        light.Begin();
+                        foreach (var child in sceneElement.Children)
+                        {
+                            this.CastShadow(child, arg);
+                        }
+                        light.End();
+                        arg.CurrentLight = null;
                     }
                 }
 
+                foreach (var child in sceneElement.Children)
+                {
+                    this.ShadowMapping(child, arg);
+                }
+
+            }
+        }
+
+        private void CastShadow(SceneNodeBase sceneElement, ShdowMappingEventArgs arg)
+        {
+            if (sceneElement != null)
+            {
                 var renderable = sceneElement as IShadowMapping;
                 if (renderable != null && renderable.EnableShadowMapping)
                 {
                     renderable.CastShadow(arg);
                 }
+
+                foreach (var item in sceneElement.Children)
                 {
-                    if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
-                    foreach (var item in sceneElement.Children)
-                    {
-                        ShadowMappingAction.CastShadow(item, arg, firstPass);
-                    }
-                    if (firstPass) { arg.ModelMatrixStack.Pop(); }
+                    CastShadow(item, arg);
                 }
             }
         }

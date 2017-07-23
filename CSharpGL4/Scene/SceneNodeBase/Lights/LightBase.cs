@@ -8,13 +8,25 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public abstract class LightBase
+    public abstract class LightBase : ITextureSource
     {
-        private IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
-        private PolygonOffsetFillState state = new PolygonOffsetFillState();
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Color { get; set; }
 
-        int[] viewport = new int[4];
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Position { get; set; }
 
+        private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
+        private readonly PolygonOffsetFillState state = new PolygonOffsetFillState();
+        private readonly int[] viewport = new int[4];
+
+        /// <summary>
+        /// bind framebuffer, setup viewport, polygon-offset and so on.
+        /// </summary>
         public void Begin()
         {
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -37,6 +49,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// unbind framebuffer, reset viewport, polygon-offset and so on.
+        /// </summary>
         public void End()
         {
             int width = viewport[2], height = viewport[3];
@@ -46,5 +61,27 @@ namespace CSharpGL
             GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
             framebuffer.Unbind();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
+        public abstract mat4 GetProjectionMatrix(ShdowMappingEventArgs arg);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract mat4 GetViewMatrix(ShdowMappingEventArgs arg);
+
+        #region ITextureSource 成员
+
+        Texture ITextureSource.BindingTexture
+        {
+            get { return this.framebufferProvider.BindingTexture; }
+        }
+
+        #endregion
     }
 }

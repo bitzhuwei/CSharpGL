@@ -23,5 +23,15 @@ namespace CSharpGL
         /// 
         /// </summary>
         public vec3 WorldPosition { get; set; }
+
+        public override mat4 GetProjectionMatrix(ShdowMappingEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override mat4 GetViewMatrix(ShdowMappingEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

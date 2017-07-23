@@ -44,7 +44,7 @@ namespace ShadowMapping
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
 
-            var shadowMappingAction = new ShadowMappingAction(rootElement, camera);
+            var shadowMappingAction = new ShadowMappingAction(rootElement);
             var renderAction = new RenderAction(rootElement, camera);
             var actionList = new ActionList();
             actionList.Add(shadowMappingAction); actionList.Add(renderAction);
@@ -67,6 +67,27 @@ namespace ShadowMapping
                 node.Nodes.Add(child);
                 Match(child, item as SceneNodeBase);
             }
+        }
+
+        private SceneNodeBase GetRenderer2()
+        {
+            var localLight = new SpotLight(new vec3(-10, 3, 0), new vec3(-1, 1, 0), 20) { Color = new vec3(1, 1, 1), };
+            var lightContainer = new LightsRenderer(localLight);
+            {
+                var teapot = DepthTextureRenderer.Create();
+                lightContainer.Children.Add(teapot);
+                var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
+                lightContainer.Children.Add(ground);
+            }
+
+            var rectangle = RectangleRenderer.Create();
+            rectangle.TextureSource = localLight;
+
+            var group = new GroupRenderer();
+            group.Children.Add(lightContainer);
+            group.Children.Add(rectangle);
+
+            return group;
         }
 
         private SceneNodeBase GetRenderer()
