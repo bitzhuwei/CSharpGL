@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DepthGroundRenderer.cs" />
     <Compile Include="ShadowTeapotRenderer.cs" />
     <Compile Include="FormShadowMapping.cs">
       <SubType>Form</SubType>
@@ -60,7 +61,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DepthTextureRenderer.cs" />
+    <Compile Include="DepthTeapotRenderer.cs" />
     <EmbeddedResource Include="FormShadowMapping.resx">
       <DependentUpon>FormShadowMapping.cs</DependentUpon>
     </EmbeddedResource>

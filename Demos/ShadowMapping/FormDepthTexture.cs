@@ -81,7 +81,7 @@ namespace ShadowMapping
             var lightContainer = new LightsRenderer(localLight);
             {
                 {
-                    var teapot = DepthTextureRenderer.Create();
+                    var teapot = DepthTeapotRenderer.Create();
                     lightContainer.Children.Add(teapot);
                 }
                 {

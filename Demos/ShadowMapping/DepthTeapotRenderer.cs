@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot only with vertex shader.
     /// </summary>
-    class DepthTextureRenderer : Renderer, IShadowMapping
+    class DepthTeapotRenderer : Renderer, IShadowMapping
     {
 
         private const string inPosition = "inPosition";
@@ -47,7 +47,7 @@ void main(void) {
         /// Render teapot to framebuffer in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static DepthTextureRenderer Create()
+        public static DepthTeapotRenderer Create()
         {
             var vertexShader = new VertexShader(vertexCode, inPosition);
             //var fragmentShader = new FragmentShader(fragmentCode);
@@ -57,13 +57,13 @@ void main(void) {
             map.Add(inPosition, Teapot.strPosition);
             var model = new Teapot();
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new DepthTextureRenderer(model, builder);
+            var renderer = new DepthTeapotRenderer(model, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private DepthTextureRenderer(Teapot model, params RenderUnitBuilder[] builder)
+        private DepthTeapotRenderer(Teapot model, params RenderUnitBuilder[] builder)
             : base(model, builder)
         {
             this.ModelSize = model.GetModelSize();
@@ -75,22 +75,22 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            //base.RenderBeforeChildren(arg);
 
-            this.RotationAngle += this.RotateSpeed;
+            //this.RotationAngle += this.RotateSpeed;
 
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
+            //ICamera camera = arg.CameraStack.Peek();
+            //mat4 projection = camera.GetProjectionMatrix();
+            //mat4 view = camera.GetViewMatrix();
+            //mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
-            ShaderProgram program = renderUnit.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            //var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            //ShaderProgram program = renderUnit.Program;
+            //program.SetUniform(projectionMatrix, projection);
+            //program.SetUniform(viewMatrix, view);
+            //program.SetUniform(modelMatrix, model);
 
-            renderUnit.Render();
+            //renderUnit.Render();
         }
 
         #endregion

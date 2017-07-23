@@ -86,21 +86,21 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            //base.RenderBeforeChildren(arg);
 
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
+            //ICamera camera = arg.CameraStack.Peek();
+            //mat4 projection = camera.GetProjectionMatrix();
+            //mat4 view = camera.GetViewMatrix();
+            //mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // renderBuilder
-            ShaderProgram program = renderUnit.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.Color);
+            //var renderUnit = this.RenderUnits[0]; // renderBuilder
+            //ShaderProgram program = renderUnit.Program;
+            //program.SetUniform(projectionMatrix, projection);
+            //program.SetUniform(viewMatrix, view);
+            //program.SetUniform(modelMatrix, model);
+            //program.SetUniform(color, this.Color);
 
-            renderUnit.Render();
+            //renderUnit.Render();
         }
 
 
