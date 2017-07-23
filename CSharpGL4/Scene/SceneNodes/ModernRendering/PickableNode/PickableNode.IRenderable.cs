@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    public partial class PickableRenderer
+    public partial class PickableNode
     {
         #region IRenderable 成员
 

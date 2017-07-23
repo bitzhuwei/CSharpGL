@@ -4,7 +4,7 @@ using System.Drawing.Design;
 
 namespace CSharpGL
 {
-    public partial class PickableRenderer
+    public partial class PickableNode
     {
         private const string strPickableRenderer = "PickableRenderer";
 

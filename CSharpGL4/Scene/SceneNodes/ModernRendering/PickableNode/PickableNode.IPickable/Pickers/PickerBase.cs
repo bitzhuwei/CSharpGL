@@ -15,7 +15,7 @@ namespace CSharpGL
         /// Get picked geometry.
         /// </summary>
         /// <param name="renderer"></param>
-        public PickerBase(PickableRenderer renderer)
+        public PickerBase(PickableNode renderer)
         {
             this.Renderer = renderer;
         }
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public PickableRenderer Renderer { get; set; }
+        public PickableNode Renderer { get; set; }
 
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)

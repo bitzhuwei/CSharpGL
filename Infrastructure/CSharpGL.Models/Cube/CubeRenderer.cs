@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class CubeRenderer : PickableRenderer
+    public class CubeRenderer : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";

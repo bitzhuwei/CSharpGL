@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class TexturedCubeRenderer : PickableRenderer
+    public class TexturedCubeRenderer : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";

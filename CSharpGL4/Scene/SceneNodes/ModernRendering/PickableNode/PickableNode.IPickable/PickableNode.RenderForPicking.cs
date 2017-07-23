@@ -2,7 +2,7 @@
 using System.ComponentModel;
 namespace CSharpGL
 {
-    public partial class PickableRenderer
+    public partial class PickableNode
     {
         private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
         private LineWidthState lineWidthState = new LineWidthState(LineWidthState.max);

@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace CSharpGL
 {
-    public partial class PickableRenderer
+    public partial class PickableNode
     {
         ///// <summary>
         /////

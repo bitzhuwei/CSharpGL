@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public abstract partial class PickableRenderer : SceneNodeBase, IRenderable, IPickable
+    public abstract partial class PickableNode : SceneNodeBase, IRenderable, IPickable
     {
         // data structure for rendering.
 
@@ -68,7 +68,7 @@ namespace CSharpGL
         /// <param name="model">vertex shader种描述顶点位置信息的in变量的名字</param>
         ///<param name="positionNameInIBufferable"></param>
         ///<param name="builders"></param>
-        public PickableRenderer(IBufferable model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        public PickableNode(IBufferable model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
         {
             this.model = model;
 

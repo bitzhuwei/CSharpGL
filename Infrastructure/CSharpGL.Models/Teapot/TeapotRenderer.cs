@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a teapot in modern opengl.
     /// </summary>
-    public class TeapotRenderer : PickableRenderer
+    public class TeapotRenderer : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string inColor = "inColor";

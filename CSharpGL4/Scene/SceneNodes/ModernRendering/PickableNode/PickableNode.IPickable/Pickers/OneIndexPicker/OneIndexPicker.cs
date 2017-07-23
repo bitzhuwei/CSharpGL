@@ -7,15 +7,15 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Get picked geometry from a <see cref="PickableRenderer"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
     /// </summary>
     partial class OneIndexPicker : PickerBase
     {
         /// <summary>
-        /// Get picked geometry from a <see cref="PickableRenderer"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
         /// </summary>
         /// <param name="renderer"></param>
-        public OneIndexPicker(PickableRenderer renderer) : base(renderer) { }
+        public OneIndexPicker(PickableNode renderer) : base(renderer) { }
 
         /// <summary>
         /// 
@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
-            PickableRenderer renderer = this.Renderer;
+            PickableNode renderer = this.Renderer;
 
             uint lastVertexId;
             if (!renderer.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))

@@ -6,15 +6,15 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Get picked geometry from a <see cref="PickableRenderer"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
     /// </summary>
     partial class ZeroIndexPicker : PickerBase
     {
         /// <summary>
-        /// Get picked geometry from a <see cref="PickableRenderer"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
         /// </summary>
         /// <param name="renderer"></param>
-        public ZeroIndexPicker(PickableRenderer renderer) : base(renderer) { }
+        public ZeroIndexPicker(PickableNode renderer) : base(renderer) { }
 
         /// <summary>
         /// 

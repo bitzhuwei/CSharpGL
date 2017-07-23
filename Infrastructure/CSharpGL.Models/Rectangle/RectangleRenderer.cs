@@ -23,7 +23,7 @@ namespace CSharpGL
     /// <summary>
     /// Render rectangle with texture in modern opengl.
     /// </summary>
-    public class RectangleRenderer : PickableRenderer
+    public class RectangleRenderer : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";

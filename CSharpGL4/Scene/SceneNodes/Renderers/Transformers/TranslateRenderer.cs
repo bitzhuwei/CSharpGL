@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class TranslateRenderer : PickableRenderer
+    public class TranslateRenderer : PickableNode
     {
         public static TranslateRenderer Create()
         {

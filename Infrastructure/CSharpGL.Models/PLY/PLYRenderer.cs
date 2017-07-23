@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a PLY model in modern opengl.
     /// </summary>
-    public class PLYRenderer : PickableRenderer
+    public class PLYRenderer : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string inColor = "inColor";

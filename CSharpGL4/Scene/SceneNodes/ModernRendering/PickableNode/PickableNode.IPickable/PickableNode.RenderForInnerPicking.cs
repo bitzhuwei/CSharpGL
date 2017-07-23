@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    partial class PickableRenderer
+    partial class PickableNode
     {
 
         /// <summary>
