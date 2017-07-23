@@ -47,9 +47,9 @@ namespace CSharpGL
                     IntPtr context = GL.Instance.GetCurrentContext();
                     if (context != IntPtr.Zero)
                     {
-                        GL.Instance.DeleteTextures(this.id.Length, this.id);
+                        GL.Instance.DeleteTextures(this.ids.Length, this.ids);
                     }
-                    this.id[0] = 0;
+                    this.ids[0] = 0;
                 }
                 {
                     var disp = this.Storage as IDisposable;

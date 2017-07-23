@@ -24,13 +24,13 @@ namespace CSharpGL
         /// texture's id/name from glGenTextures().
         /// 纹理名（用于标识一个纹理，由OpenGL指定）。
         /// </summary>
-        protected uint[] id = new uint[1];
+        protected uint[] ids = new uint[1];
 
         /// <summary>
         /// texture's id/name from glGenTextures().
         /// 纹理名（用于标识一个纹理，由OpenGL指定）。
         /// </summary>
-        public uint Id { get { return this.id[0]; } }
+        public uint Id { get { return this.ids[0]; } }
 
         ///// <summary>
         /////
@@ -72,9 +72,9 @@ namespace CSharpGL
         {
             if (!this.initialized)
             {
-                GL.Instance.GenTextures(1, id);
+                GL.Instance.GenTextures(1, ids);
                 TextureTarget target = this.Target;
-                GL.Instance.BindTexture((uint)target, id[0]);
+                GL.Instance.BindTexture((uint)target, ids[0]);
                 this.Storage.Apply();
                 this.BuiltInSampler.Apply(this.Target);
                 //OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
