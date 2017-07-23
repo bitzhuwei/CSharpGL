@@ -8,13 +8,13 @@ namespace CSharpGL
     /// <summary>
     /// contains some lights that affects the children node.
     /// </summary>
-    public class LightsRenderer : SceneNodeBase, ILocalLightContainer
+    public class LightContainerNode : SceneNodeBase, ILocalLightContainer
     {
         /// <summary>
         /// contains some renderers in its children.
         /// </summary>
         /// <param name="localLights">lights that affects the children node.</param>
-        public LightsRenderer(params LightBase[] localLights)
+        public LightContainerNode(params LightBase[] localLights)
         {
             this.lightList.AddRange(localLights);
         }

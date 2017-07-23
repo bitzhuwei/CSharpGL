@@ -82,7 +82,7 @@ namespace HelloCSharpGL
             var rtt = new RTTRenderer(width, height, innerCamera, new ColoredFramebufferProvider());
             rtt.Children.Add(teapot);
 
-            var billboard = TextureBillboardRenderer.Create(rtt as ITextureSource, width, height);
+            var billboard = TextureBillboardNode.Create(rtt as ITextureSource, width, height);
 
             var group = new GroupRenderer();
             group.Children.Add(rtt);// rtt must be before billboard.

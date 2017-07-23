@@ -78,7 +78,7 @@ namespace ShadowMapping
             //innerCamera.GetProjectionMatrix();
             //innerCamera.GetViewMatrix();
             var localLight = new SpotLight(new vec3(5, 5, 5), new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
-            var lightContainer = new LightsRenderer(localLight);
+            var lightContainer = new LightContainerNode(localLight);
             {
                 {
                     var teapot = DepthTeapotRenderer.Create();

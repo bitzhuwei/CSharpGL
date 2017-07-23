@@ -21,7 +21,7 @@ namespace CSharpGL
     /// <summary>
     /// A billboard that always faces camera in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
-    public class TextureBillboardRenderer : ModernNode
+    public class TextureBillboardNode : ModernNode
     {
         #region shaders
 
@@ -119,14 +119,14 @@ void main(void) {
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static TextureBillboardRenderer Create(ITextureSource textureSource, int width, int height)
+        public static TextureBillboardNode Create(ITextureSource textureSource, int width, int height)
         {
             var vertexShader = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new TextureBillboardRenderer(textureSource, width, height, new Billboard(), builder);
+            var renderer = new TextureBillboardNode(textureSource, width, height, new Billboard(), builder);
             renderer.Initialize();
 
             return renderer;
@@ -169,7 +169,7 @@ void main(void) {
 
         public float Delta { get; set; }
 
-        private TextureBillboardRenderer(ITextureSource textureSource, int width, int height, IBufferSource model, RenderUnitBuilder builder)
+        private TextureBillboardNode(ITextureSource textureSource, int width, int height, IBufferSource model, RenderUnitBuilder builder)
             : base(model, builder)
         {
             this.TextureSource = textureSource;
