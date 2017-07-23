@@ -295,7 +295,7 @@
     <Content Include="Scene\FontTexture\readme.md" />
     <None Include="Scene\SceneNodes\Lights\readme.md" />
     <None Include="Scene\readme.md" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBaseHelper.cs" />
+    <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
     <Compile Include="Scene\Scene.PickRendererBases.cs" />
     <Compile Include="Scene\Scene.PickGeometry.cs" />
     <Compile Include="Scene\Actions\RenderAction.cs" />
