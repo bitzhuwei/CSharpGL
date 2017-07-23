@@ -1,11 +1,10 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Data for CPU(model) -&gt; Data for GPU(buffer renderer)
-    /// <para>从模型的数据格式转换为<see cref="GLBuffer"/>，<see cref="GLBuffer"/>转换为<see cref="GLBuffer"/>，
-    /// <see cref="GLBuffer"/>则可用于控制GPU的渲染操作。</para>
+    /// Data for CPU(model) -&gt; Data for GPU(opengl buffer)
+    /// <para>从模型的数据格式转换为<see cref="GLBuffer"/，<see cref="GLBuffer"/>则可用于控制GPU的渲染操作。
     /// </summary>
-    public interface IBufferable
+    public interface IBufferSource
     {
         /// <summary>
         /// 获取顶点某种属性的<see cref="VertexBuffer"/>。

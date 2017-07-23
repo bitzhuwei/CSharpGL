@@ -169,7 +169,7 @@ void main(void) {
 
         public float Delta { get; set; }
 
-        private TextureBillboardRenderer(ITextureSource textureSource, int width, int height, IBufferable model, RenderUnitBuilder builder)
+        private TextureBillboardRenderer(ITextureSource textureSource, int width, int height, IBufferSource model, RenderUnitBuilder builder)
             : base(model, builder)
         {
             this.TextureSource = textureSource;
@@ -208,7 +208,7 @@ void main(void) {
         }
     }
 
-    class Billboard : IBufferable
+    class Billboard : IBufferSource
     {
         private IndexBuffer indexBuffer;
 

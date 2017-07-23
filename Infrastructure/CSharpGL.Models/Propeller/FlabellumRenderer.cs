@@ -115,7 +115,7 @@ void main(void) {
         }
     }
 
-    class Flabellum : IBufferable
+    class Flabellum : IBufferSource
     {
         public vec3 GetModelSize()
         {

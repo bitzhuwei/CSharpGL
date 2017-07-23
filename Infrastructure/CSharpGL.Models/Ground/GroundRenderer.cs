@@ -137,7 +137,7 @@ void main(void) {
 
     }
 
-    class GroundModel : IBufferable
+    class GroundModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 

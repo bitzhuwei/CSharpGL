@@ -7,10 +7,10 @@ using System.Xml.Linq;
 namespace CSharpGL
 {
     /// <summary>
-    /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
-    /// 每个<see cref="IBufferable"/>和每个<see cref="ModernNode"/>都有一个Map关系。
+    /// 持有从<see cref="IBufferSource"/>到GLSL中in变量名的对应关系。
+    /// 每个<see cref="IBufferSource"/>和每个<see cref="ModernNode"/>都有一个Map关系。
     /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
-    /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="ModernNode"/>.</para>
+    /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
     /// </summary>
     public class AttributeMap : IEnumerable<AttributeMap.NamePair>
     {
@@ -18,18 +18,18 @@ namespace CSharpGL
         private List<string> namesInIBufferable = new List<string>();
 
         /// <summary>
-        /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
-        /// 每个<see cref="IBufferable"/>和每个<see cref="ModernNode"/>都有一个Map关系。
+        /// 持有从<see cref="IBufferSource"/>到GLSL中in变量名的对应关系。
+        /// 每个<see cref="IBufferSource"/>和每个<see cref="ModernNode"/>都有一个Map关系。
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
-        /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="ModernNode"/>.</para>
+        /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
         /// </summary>
         public AttributeMap() { }
 
         /// <summary>
-        /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
-        /// 每个<see cref="IBufferable"/>和每个<see cref="ModernNode"/>都有一个Map关系。
+        /// 持有从<see cref="IBufferSource"/>到GLSL中in变量名的对应关系。
+        /// 每个<see cref="IBufferSource"/>和每个<see cref="ModernNode"/>都有一个Map关系。
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
-        /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="ModernNode"/>.</para>
+        /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>
@@ -39,10 +39,10 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 持有从<see cref="IBufferable"/>到GLSL中in变量名的对应关系。
-        /// 每个<see cref="IBufferable"/>和每个<see cref="ModernNode"/>都有一个Map关系。
+        /// 持有从<see cref="IBufferSource"/>到GLSL中in变量名的对应关系。
+        /// 每个<see cref="IBufferSource"/>和每个<see cref="ModernNode"/>都有一个Map关系。
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
-        /// <para>This relation map connects <see cref="IBufferable"/> to <see cref="ModernNode"/>.</para>
+        /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferable">user defined identifier for a buffer.</param>

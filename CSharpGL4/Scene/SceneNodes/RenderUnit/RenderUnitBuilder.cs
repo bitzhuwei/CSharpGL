@@ -27,7 +27,7 @@ namespace CSharpGL
             this.states = states;
         }
 
-        public RenderUnit ToRenderUnit(IBufferable model)
+        public RenderUnit ToRenderUnit(IBufferSource model)
         {
             // init shader program.
             ShaderProgram program = this.programProvider.GetShaderProgram();

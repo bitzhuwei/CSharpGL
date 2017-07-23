@@ -135,7 +135,7 @@ void main(void) {
 
         #endregion
 
-        class GroundModel : IBufferable
+        class GroundModel : IBufferSource
         {
             public vec3 ModelSize { get; private set; }
 

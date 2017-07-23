@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class PLY : IBufferable
+    public class PLY : IBufferSource
     {
         /// <summary>
         /// 

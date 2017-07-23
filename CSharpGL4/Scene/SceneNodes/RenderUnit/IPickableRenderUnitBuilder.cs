@@ -27,7 +27,7 @@ namespace CSharpGL
             this.states = states;
         }
 
-        public IPickableRenderUnit ToRenderUnit(IBufferable model)
+        public IPickableRenderUnit ToRenderUnit(IBufferSource model)
         {
             // init shader program.
             ShaderProgram pickProgram = this.programProvider.GetShaderProgram();

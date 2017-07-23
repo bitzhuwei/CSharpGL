@@ -131,7 +131,7 @@ void main(void) {
         public ITextureSource TextureSource { get; set; }
     }
 
-    class RectangleModel : IBufferable
+    class RectangleModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 

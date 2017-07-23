@@ -39,14 +39,14 @@ namespace CSharpGL
         //protected AttributeMap attributeMap;
 
         private readonly RenderUnitBuilder[] builders;
-        private readonly IBufferable model;
+        private readonly IBufferSource model;
 
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         ///<param name="builders">OpenGL switches.</param>
-        public ModernNode(IBufferable model, params RenderUnitBuilder[] builders)
+        public ModernNode(IBufferSource model, params RenderUnitBuilder[] builders)
         {
             this.model = model;
             this.builders = builders;

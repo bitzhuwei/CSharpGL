@@ -123,7 +123,7 @@ void main(void) {
         }
     }
 
-    class Propeller : IBufferable
+    class Propeller : IBufferSource
     {
         public vec3 GetModelSize()
         {

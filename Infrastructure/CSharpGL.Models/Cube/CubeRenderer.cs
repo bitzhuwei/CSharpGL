@@ -95,7 +95,7 @@ void main(void) {
 
     }
 
-    class CubeModel : IBufferable
+    class CubeModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 

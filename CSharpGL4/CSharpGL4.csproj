@@ -135,7 +135,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\SceneNodes\RenderUnit\AttributeMap.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\IBufferable.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnit\IBufferSource.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\ColorCodedPicking.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\GeometryTypeHelper.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PickingShaderHelper.cs" />

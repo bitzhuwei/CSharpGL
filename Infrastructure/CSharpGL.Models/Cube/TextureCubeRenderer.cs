@@ -108,7 +108,7 @@ void main(void) {
 
     }
 
-    class TexturedCubeModel : IBufferable
+    class TexturedCubeModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 
