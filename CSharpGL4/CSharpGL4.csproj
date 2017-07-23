@@ -131,6 +131,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\Actions\ActionList.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextBillboard\TextBillboardNode.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextureBillboardNode.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\LightContainerNode\ILocalLightContainer.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\LightContainerNode\LightContainerNode.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\RTTNode.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -248,16 +253,9 @@
     <Compile Include="Scene\SceneNodes\RenderUnit\IPickableRenderUnit.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnitBuilder.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnit.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextBillboard\TextBillboardRenderer.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\LightsRenderer\ILocalLightContainer.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\LightsRenderer\LightsRenderer.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\DepthFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\IFrameufferProvider.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\ITextureSource.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\RTTRenderer.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextureBillboardRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\ColoredFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\GroupRenderer.cs" />
