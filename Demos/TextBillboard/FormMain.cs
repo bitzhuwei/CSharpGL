@@ -68,7 +68,7 @@ namespace TextBillboard
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
-                Match(child, item as SceneNodeBase);
+                Match(child, item);
             }
         }
 
