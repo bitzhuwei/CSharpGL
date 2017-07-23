@@ -4,7 +4,7 @@ using System.Drawing.Design;
 
 namespace CSharpGL
 {
-    public partial class Renderer
+    public partial class ModernNode
     {
         private const string strRenderer = "Renderer";
         private List<RenderUnit> renderUnits = new List<RenderUnit>();

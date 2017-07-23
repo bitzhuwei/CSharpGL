@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render flabellum in modern opengl.
     /// </summary>
-    public class FlabellumRenderer : Renderer
+    public class FlabellumRenderer : ModernNode
     {
         private const string vertexCode =
             @"#version 150 core

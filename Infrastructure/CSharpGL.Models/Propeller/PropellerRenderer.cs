@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render propeller in modern opengl.
     /// </summary>
-    public class PropellerRenderer : Renderer
+    public class PropellerRenderer : ModernNode
     {
 
         private const string vertexCode =

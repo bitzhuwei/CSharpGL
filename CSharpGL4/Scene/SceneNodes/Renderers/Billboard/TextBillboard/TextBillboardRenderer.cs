@@ -21,7 +21,7 @@ namespace CSharpGL
     /// <summary>
     /// A billboard that renders text and always faces camera in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
-    public class TextBillboardRenderer : Renderer
+    public class TextBillboardRenderer : ModernNode
     {
         #region shaders
 

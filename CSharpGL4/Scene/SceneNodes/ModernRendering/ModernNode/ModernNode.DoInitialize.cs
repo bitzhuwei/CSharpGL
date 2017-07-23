@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    public partial class Renderer
+    public partial class ModernNode
     {
         /// <summary>
         ///

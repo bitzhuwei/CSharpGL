@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace CSharpGL
 {
-    public partial class Renderer
+    public partial class ModernNode
     {
         ///// <summary>
         /////

@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public abstract partial class Renderer : SceneNodeBase, IRenderable
+    public abstract partial class ModernNode : SceneNodeBase, IRenderable
     {
         // data structure for rendering.
 
@@ -46,7 +46,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         ///<param name="builders">OpenGL switches.</param>
-        public Renderer(IBufferable model, params RenderUnitBuilder[] builders)
+        public ModernNode(IBufferable model, params RenderUnitBuilder[] builders)
         {
             this.model = model;
             this.builders = builders;

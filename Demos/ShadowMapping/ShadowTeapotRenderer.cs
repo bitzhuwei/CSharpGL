@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot with shadow.
     /// </summary>
-    class ShadowTeapotRenderer : Renderer, IShadowMapping
+    class ShadowTeapotRenderer : ModernNode, IShadowMapping
     {
 
         private const string inPosition = "inPosition";
