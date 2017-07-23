@@ -52,14 +52,23 @@ void main(void) {
         /// <returns></returns>
         public static GroundRenderer Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition);
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
-            var map = new AttributeMap();
-            map.Add(inPosition, GroundModel.strPosition);
-            // TODO: add IRenderable builder
-            var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new GroundRenderer(new GroundModel(), GroundModel.strPosition, builder);
+            RenderUnitBuilder renderBuilder, shadowmapBuilder;
+            {
+                var vertexShader = new VertexShader(vertexCode, inPosition);
+                var fragmentShader = new FragmentShader(fragmentCode);
+                var provider = new ShaderArray(vertexShader, fragmentShader);
+                var map = new AttributeMap();
+                map.Add(inPosition, GroundModel.strPosition);
+                renderBuilder = new RenderUnitBuilder(provider, map);
+            }
+            {
+                var vertexShader = new VertexShader(vertexCode, inPosition);
+                var provider = new ShaderArray(vertexShader);
+                var map = new AttributeMap();
+                map.Add(inPosition, GroundModel.strPosition);
+                shadowmapBuilder = new RenderUnitBuilder(provider, map);
+            }
+            var renderer = new GroundRenderer(new GroundModel(), GroundModel.strPosition, renderBuilder, shadowmapBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -84,7 +93,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0];
+            var renderUnit = this.RenderUnits[0]; // renderBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
@@ -107,17 +116,19 @@ void main(void) {
 
         public void CastShadow(ShdowMappingEventArgs arg)
         {
+            if (!this.IsInitialized) { this.Initialize(); }
+
             LightBase light = arg.CurrentLight;
             mat4 projection = light.GetProjectionMatrix(arg);
             mat4 view = light.GetViewMatrix(arg);
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // this index should be 1.
+            var renderUnit = this.RenderUnits[1]; // shadowmapBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.Color);
+            //program.SetUniform(color, this.Color);
 
             renderUnit.Render();
         }
