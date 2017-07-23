@@ -87,7 +87,7 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { Initialize(); }
 
             //var viewport = new int[4];
             ////	Get the viewport, then convert the mouse point to an opengl point.
@@ -110,6 +110,9 @@ void main(void) {
 
         #endregion
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
     }
 
     class Flabellum : IBufferable

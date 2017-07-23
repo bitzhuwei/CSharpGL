@@ -143,7 +143,7 @@ void maint(void)
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { Initialize(); }
 
             this.RotationAngle += this.RotateSpeed;
 
@@ -196,5 +196,9 @@ void maint(void)
 
         #endregion
 
+
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
     }
 }

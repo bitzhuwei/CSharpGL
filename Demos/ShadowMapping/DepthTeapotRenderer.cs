@@ -128,5 +128,8 @@ void main(void) {
 
         #endregion
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
     }
 }

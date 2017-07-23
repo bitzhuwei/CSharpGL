@@ -93,7 +93,7 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { Initialize(); }
 
             this.RotationAngle += this.RotateSpeed;
 
@@ -118,6 +118,9 @@ void main(void) {
 
         #endregion
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
     }
 
     class Propeller : IBufferable
