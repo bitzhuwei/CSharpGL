@@ -38,7 +38,7 @@ namespace CSharpGL
                 var list = new List<VertexShaderAttribute>();
                 foreach (AttributeMap.NamePair item in this.map)
                 {
-                    VertexBuffer buffer = model.GetVertexAttributeBuffer(item.NameInIBufferable);
+                    VertexBuffer buffer = model.GetVertexAttributeBuffer(item.NameInIBufferSource);
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     list.Add(new VertexShaderAttribute(buffer, item.VarNameInShader));
                 }

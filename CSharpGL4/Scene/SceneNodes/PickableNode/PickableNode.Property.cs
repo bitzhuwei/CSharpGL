@@ -35,7 +35,7 @@ namespace CSharpGL
         ///// </summary>
         //[Category(strPickableRenderer)]
         //[Description("model data that can be transfermed into OpenGL Buffer Objects.")]
-        //public IBufferable DataSource { get; private set; }
+        //public IBufferSource DataSource { get; private set; }
 
         ///// <summary>
         /////

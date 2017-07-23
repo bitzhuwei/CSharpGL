@@ -212,7 +212,7 @@ void main(void) {
     {
         private IndexBuffer indexBuffer;
 
-        #region IBufferable 成员
+        #region IBufferSource 成员
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {

@@ -12,7 +12,7 @@ namespace CSharpGL
     {
         protected GLState[] states;
         protected IShaderProgramProvider programProvider;
-        protected string positionNameInIBufferable;
+        protected string positionNameInIBufferSource;
 
         /// <summary>
         /// A smallest unit that can render somthing.
@@ -20,10 +20,10 @@ namespace CSharpGL
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
         /// <param name="states"></param>
-        public IPickableRenderUnitBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferable, params GLState[] states)
+        public IPickableRenderUnitBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLState[] states)
         {
             this.programProvider = programProvider;
-            this.positionNameInIBufferable = positionNameInIBufferable;
+            this.positionNameInIBufferSource = positionNameInIBufferSource;
             this.states = states;
         }
 
@@ -33,7 +33,7 @@ namespace CSharpGL
             ShaderProgram pickProgram = this.programProvider.GetShaderProgram();
 
             // init vertex attribute buffer objects.
-            VertexBuffer positionBuffer = model.GetVertexAttributeBuffer(this.positionNameInIBufferable);
+            VertexBuffer positionBuffer = model.GetVertexAttributeBuffer(this.positionNameInIBufferSource);
 
             // RULE: 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
             if (positionBuffer == null || positionBuffer.Config != VBOConfig.Vec3)
