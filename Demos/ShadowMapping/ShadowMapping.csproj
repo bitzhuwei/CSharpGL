@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShadowGroundRenderer.cs" />
     <Compile Include="DepthGroundRenderer.cs" />
     <Compile Include="ShadowTeapotRenderer.cs" />
     <Compile Include="FormShadowMapping.cs">

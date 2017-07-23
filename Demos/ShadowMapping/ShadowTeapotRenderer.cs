@@ -13,6 +13,7 @@ namespace ShadowMapping
     {
 
         private const string inPosition = "inPosition";
+        private const string inTexCoord = "inTexCoord";
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
@@ -31,7 +32,7 @@ void main(void) {
 }
 ";
         // this fragment shader is not needed.
-        //        private const string fragmentCode =
+        //        private const string shadowFragmentCode =
         //            @"#version 330 core
         //
         //layout(location = 0) out float fragmentdepth;
@@ -45,8 +46,8 @@ void main(void) {
 
         private const string lightVertexCode =
 @"#version 330
-layout (location = 0) in vec3 Position;
-layout (location = 1) in vec2 TexCoord;
+layout (location = 0) in vec3 inPosition;
+layout (location = 1) in vec2 inTexCoord;
 layout (location = 2) in vec3 Normal;
 uniform mat4 gWVP;
 uniform mat4 gLightWVP;
@@ -57,11 +58,11 @@ out vec3 Normal0;
 out vec3 WorldPos0;
 void main()
 {
-    gl_Position = gWVP * vec4(Position, 1.0);
-    LightSpacePos = gLightWVP * vec4(Position, 1.0);
-    TexCoord0 = TexCoord;
+    gl_Position = gWVP * vec4(inPosition, 1.0);
+    LightSpacePos = gLightWVP * vec4(inPosition, 1.0);
+    TexCoord0 = inTexCoord;
     Normal0 = (gWorld * vec4(Normal, 0.0)).xyz;
-    WorldPos0 = (gWorld * vec4(Position, 1.0)).xyz;
+    WorldPos0 = (gWorld * vec4(inPosition, 1.0)).xyz;
 } 
 ";
         private const string lightFragmentCode =
@@ -107,14 +108,24 @@ void maint(void)
         /// <returns></returns>
         public static ShadowTeapotRenderer Create()
         {
-            var shadowVertexShader = new VertexShader(shadowVertexCode, inPosition);
-            var shadowProvider = new ShaderArray(shadowVertexShader);
-            //var lightVertexShader = new VertexShader(lightVertexCode,)
-            var map = new AttributeMap();
-            map.Add(inPosition, Teapot.strPosition);
+            RenderUnitBuilder shadowBuilder, lightBuilder;
+            {
+                var vs = new VertexShader(shadowVertexCode, inPosition);
+                var provider = new ShaderArray(vs);
+                var map = new AttributeMap();
+                map.Add(inPosition, Teapot.strPosition);
+                shadowBuilder = new RenderUnitBuilder(provider, map);
+            }
+            {
+                var vs = new VertexShader(lightVertexCode, inPosition);
+                var fs = new FragmentShader(lightFragmentCode);
+                var provider = new ShaderArray(vs, fs);
+                var map = new AttributeMap();
+                map.Add(inPosition, Teapot.strPosition);
+                lightBuilder = new RenderUnitBuilder(provider, map);
+            }
             var model = new Teapot();
-            var builder = new RenderUnitBuilder(shadowProvider, map);
-            var renderer = new ShadowTeapotRenderer(model, builder);
+            var renderer = new ShadowTeapotRenderer(model, shadowBuilder, lightBuilder);
             renderer.Initialize();
 
             return renderer;
