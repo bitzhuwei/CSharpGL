@@ -96,7 +96,7 @@ namespace ShadowMapping
             var rectangle = RectangleRenderer.Create();
             rectangle.TextureSource = localLight;
 
-            var group = new GroupRenderer();
+            var group = new GroupNode();
             group.Children.Add(lightContainer);
             group.Children.Add(rectangle);
 

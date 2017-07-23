@@ -135,7 +135,7 @@
     <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\LightContainerNode\ILocalLightContainer.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\LightContainerNode\LightContainerNode.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\RTTNode.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\RenderToTexttureNode.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -253,12 +253,12 @@
     <Compile Include="Scene\SceneNodes\RenderUnit\IPickableRenderUnit.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnitBuilder.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnit.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\DepthFramebufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\IFrameufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\ITextureSource.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTexture\ColoredFramebufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\LegacyBoundingBoxRenderer.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\GroupRenderer.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\DepthFramebufferProvider.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\IFrameufferProvider.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\ITextureSource.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\ColoredFramebufferProvider.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\LegacyBoundingBoxNode.cs" />
+    <Compile Include="Scene\SceneNodes\Nodes\GroupNode.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\Transformers\ModelHelpers\ArrowHelper.cs" />
     <Compile Include="Scene\SceneNodes\Nodes\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\Actions\ActionBase.cs" />

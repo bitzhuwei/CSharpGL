@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render children to framebuffer, then To Texture.
     /// </summary>
-    public class RTTNode : SceneNodeBase, IRenderable, ITextureSource
+    public class RenderToTexttureNode : SceneNodeBase, IRenderable, ITextureSource
     {
         /// <summary>
         /// Billboard's width(in pixels).
@@ -38,7 +38,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="innerCamera">Camera used in rendering children.</param>
         /// <param name="framebufferSource">Provides framebuffer.</param>
-        public RTTNode(int width, int height, ICamera innerCamera, IFramebufferProvider framebufferSource)
+        public RenderToTexttureNode(int width, int height, ICamera innerCamera, IFramebufferProvider framebufferSource)
         {
             this.Width = width;
             this.Height = height;

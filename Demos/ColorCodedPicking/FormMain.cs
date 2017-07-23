@@ -90,9 +90,9 @@ namespace ColorCodedPicking
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.teapot = TeapotRenderer.Create();
-            teapot.Children.Add(new LegacyBoundingBoxRenderer(teapot.ModelSize));
+            teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
             this.ground = GroundRenderer.Create(); this.ground.Color = Color.Gray.ToVec4(); this.ground.Scale *= 10; this.ground.WorldPosition = new vec3(0, -3, 0);
-            var group = new GroupRenderer(this.teapot, this.ground);
+            var group = new GroupNode(this.teapot, this.ground);
 
             this.scene = new Scene(camera, this.winGLCanvas1)
             {

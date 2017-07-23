@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// render a bounding box with legacy opengl.
     /// </summary>
-    public class LegacyBoundingBoxRenderer : SceneNodeBase, IRenderable, ILegacyPickable
+    public class LegacyBoundingBoxNode : SceneNodeBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 0.5f;
         private const float yLength = 0.5f;
@@ -55,7 +55,7 @@ namespace CSharpGL
         /// contains some renderers in its children.
         /// </summary>
         /// <param name="modelSize"></param>
-        public LegacyBoundingBoxRenderer(vec3 modelSize)
+        public LegacyBoundingBoxNode(vec3 modelSize)
         {
             this.ModelSize = ModelSize;
 

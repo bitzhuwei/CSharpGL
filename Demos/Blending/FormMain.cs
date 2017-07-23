@@ -70,7 +70,7 @@ namespace Blending
 
         private SceneNodeBase GetTree()
         {
-            var group = new GroupRenderer();
+            var group = new GroupNode();
             {
                 var bmp = new Bitmap(@"Crate.bmp");
                 var texture = new Texture(TextureTarget.Texture2D,

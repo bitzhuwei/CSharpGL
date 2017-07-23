@@ -15,11 +15,11 @@ namespace CSharpGL
         public DesignModeAssist(IGLCanvas canvas)
         {
             var camera = new Camera(new vec3(0, 0, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
-            GroupRenderer group;
+            GroupNode group;
             {
                 var propeller = new PropellerRenderer() { WorldPosition = new vec3(0, -1.5f, 0) };
                 var clock = new ClockRenderer();
-                group = new GroupRenderer(propeller, clock);
+                group = new GroupNode(propeller, clock);
             }
             var scene = new Scene(camera, canvas)
             {

@@ -79,12 +79,12 @@ namespace TextBillboard
 
             int width = 600, height = 400;
             var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Ortho, width, height);
-            var rtt = new RTTNode(width, height, innerCamera, new ColoredFramebufferProvider());
+            var rtt = new RenderToTexttureNode(width, height, innerCamera, new ColoredFramebufferProvider());
             rtt.Children.Add(teapot);
 
             var billboard = TextureBillboardNode.Create(rtt as ITextureSource, width, height);
 
-            var group = new GroupRenderer();
+            var group = new GroupNode();
             group.Children.Add(rtt);// rtt must be before billboard.
             group.Children.Add(billboard);
             group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
@@ -98,19 +98,19 @@ namespace TextBillboard
         private SceneNodeBase GetLegacyPropellerLegacyFlabellum()
         {
             var propeller = new LegacyPropellerRenderer();
-            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+            propeller.Children.Add(new LegacyBoundingBoxNode(propeller.ModelSize));
 
             var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+            xflabellum.Children.Add(new LegacyBoundingBoxNode(xflabellum.ModelSize));
 
             var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+            nxflabellum.Children.Add(new LegacyBoundingBoxNode(nxflabellum.ModelSize));
 
             var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+            zflabellum.Children.Add(new LegacyBoundingBoxNode(zflabellum.ModelSize));
 
             var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
-            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+            nzflabellum.Children.Add(new LegacyBoundingBoxNode(nzflabellum.ModelSize));
 
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
@@ -123,19 +123,19 @@ namespace TextBillboard
         private SceneNodeBase GetLegacyPropellerFlabellum()
         {
             var propeller = new LegacyPropellerRenderer();
-            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+            propeller.Children.Add(new LegacyBoundingBoxNode(propeller.ModelSize));
 
             var xflabellum = FlabellumRenderer.Create(); xflabellum.WorldPosition = new vec3(2, 0, 0);
-            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+            xflabellum.Children.Add(new LegacyBoundingBoxNode(xflabellum.ModelSize));
 
             var nxflabellum = FlabellumRenderer.Create(); nxflabellum.WorldPosition = new vec3(-2, 0, 0); nxflabellum.RotationAngle = 180;
-            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+            nxflabellum.Children.Add(new LegacyBoundingBoxNode(nxflabellum.ModelSize));
 
             var zflabellum = FlabellumRenderer.Create(); zflabellum.WorldPosition = new vec3(0, 0, -2); zflabellum.RotationAngle = 90;
-            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+            zflabellum.Children.Add(new LegacyBoundingBoxNode(zflabellum.ModelSize));
 
             var nzflabellum = FlabellumRenderer.Create(); nzflabellum.WorldPosition = new vec3(0, 0, 2); nzflabellum.RotationAngle = 270;
-            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+            nzflabellum.Children.Add(new LegacyBoundingBoxNode(nzflabellum.ModelSize));
 
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
@@ -148,19 +148,19 @@ namespace TextBillboard
         private SceneNodeBase GetPropellerLegacyFlabellum()
         {
             var propeller = PropellerRenderer.Create();
-            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+            propeller.Children.Add(new LegacyBoundingBoxNode(propeller.ModelSize));
 
             var xflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(2, 0, 0) };
-            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+            xflabellum.Children.Add(new LegacyBoundingBoxNode(xflabellum.ModelSize));
 
             var nxflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(-2, 0, 0), RotationAngle = 180, };
-            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+            nxflabellum.Children.Add(new LegacyBoundingBoxNode(nxflabellum.ModelSize));
 
             var zflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, -2), RotationAngle = 90, };
-            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+            zflabellum.Children.Add(new LegacyBoundingBoxNode(zflabellum.ModelSize));
 
             var nzflabellum = new LegacyFlabellumRenderer() { WorldPosition = new vec3(0, 0, 2), RotationAngle = 270, };
-            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+            nzflabellum.Children.Add(new LegacyBoundingBoxNode(nzflabellum.ModelSize));
 
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);
@@ -173,19 +173,19 @@ namespace TextBillboard
         private SceneNodeBase GetPropellerFlabellum()
         {
             var propeller = PropellerRenderer.Create();
-            propeller.Children.Add(new LegacyBoundingBoxRenderer(propeller.ModelSize));
+            propeller.Children.Add(new LegacyBoundingBoxNode(propeller.ModelSize));
 
             var xflabellum = FlabellumRenderer.Create(); xflabellum.WorldPosition = new vec3(2, 0, 0);
-            xflabellum.Children.Add(new LegacyBoundingBoxRenderer(xflabellum.ModelSize));
+            xflabellum.Children.Add(new LegacyBoundingBoxNode(xflabellum.ModelSize));
 
             var nxflabellum = FlabellumRenderer.Create(); nxflabellum.WorldPosition = new vec3(-2, 0, 0); nxflabellum.RotationAngle = 180;
-            nxflabellum.Children.Add(new LegacyBoundingBoxRenderer(nxflabellum.ModelSize));
+            nxflabellum.Children.Add(new LegacyBoundingBoxNode(nxflabellum.ModelSize));
 
             var zflabellum = FlabellumRenderer.Create(); zflabellum.WorldPosition = new vec3(0, 0, -2); zflabellum.RotationAngle = 90;
-            zflabellum.Children.Add(new LegacyBoundingBoxRenderer(zflabellum.ModelSize));
+            zflabellum.Children.Add(new LegacyBoundingBoxNode(zflabellum.ModelSize));
 
             var nzflabellum = FlabellumRenderer.Create(); nzflabellum.WorldPosition = new vec3(0, 0, 2); nzflabellum.RotationAngle = 270;
-            nzflabellum.Children.Add(new LegacyBoundingBoxRenderer(nzflabellum.ModelSize));
+            nzflabellum.Children.Add(new LegacyBoundingBoxNode(nzflabellum.ModelSize));
 
             propeller.Children.Add(xflabellum);
             propeller.Children.Add(nxflabellum);

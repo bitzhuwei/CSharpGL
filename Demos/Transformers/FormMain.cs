@@ -32,7 +32,7 @@ namespace Transformers
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.teapot = TeapotRenderer.Create();
-            teapot.Children.Add(new LegacyBoundingBoxRenderer(teapot.ModelSize));
+            teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
 
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
