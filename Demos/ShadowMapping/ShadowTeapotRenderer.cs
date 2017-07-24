@@ -12,7 +12,18 @@ namespace ShadowMapping
     class ShadowTeapotRenderer : ModernNode, IShadowMapping
     {
         private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
         private const string mvpMatrix = "mvpMatrix";
+        private const string model_matrix = "model_matrix";
+        private const string view_matrix = "view_matrix";
+        private const string projection_matrix = "projection_matrix";
+        private const string shadow_matrix = "shadow_matrix";
+        private const string depth_texture = "depth_texture";
+        private const string light_position = "light_position";
+        private const string material_ambient = "material_ambient";
+        private const string material_diffuse = "material_diffuse";
+        private const string material_specular = "material_specular";
+        private const string material_specular_power = "material_specular_power";
 
         private const string shadowVertexCode =
             @"#version 330
@@ -42,14 +53,14 @@ void main(void)
         private const string lightVertexCode =
             @"#version 330
 
-uniform mat4 model_matrix;
-uniform mat4 view_matrix;
-uniform mat4 projection_matrix;
+uniform mat4 " + model_matrix + @";
+uniform mat4 " + view_matrix + @";
+uniform mat4 " + projection_matrix + @";
 
-uniform mat4 shadow_matrix;
+uniform mat4 " + shadow_matrix + @";
 
-layout (location = 0) in vec4 position;
-layout (location = 1) in vec3 normal;
+layout (location = 0) in vec4 " + inPosition + @";
+layout (location = 1) in vec3 " + inNormal + @";
 
 out VS_FS_INTERFACE
 {
@@ -61,14 +72,14 @@ out VS_FS_INTERFACE
 
 void main(void)
 {
-	vec4 world_pos = model_matrix * position;
+	vec4 world_pos = model_matrix * inPosition;
 	vec4 eye_pos = view_matrix * world_pos;
 	vec4 clip_pos = projection_matrix * eye_pos;
 	
 	vertex.world_coord = world_pos.xyz;
 	vertex.eye_coord = eye_pos.xyz;
 	vertex.shadow_coord = shadow_matrix * world_pos;
-	vertex.normal = mat3(view_matrix * model_matrix) * normal;
+	vertex.normal = mat3(view_matrix * model_matrix) * inNormal;
 	
 	gl_Position = clip_pos;
 }
@@ -76,13 +87,13 @@ void main(void)
         private const string lightFragmentCode =
             @"#version 330
 
-uniform sampler2DShadow depth_texture;
-uniform vec3 light_position;
+uniform sampler2DShadow " + depth_texture + @";
+uniform vec3 " + light_position + @";
 
-uniform vec3 material_ambient;
-uniform vec3 material_diffuse;
-uniform vec3 material_specular;
-uniform float material_specular_power;
+uniform vec3 " + material_ambient + @";
+uniform vec3 " + material_diffuse + @";
+uniform vec3 " + material_specular + @";
+uniform float " + material_specular_power + @";
 
 layout (location = 0) out vec4 color;
 
