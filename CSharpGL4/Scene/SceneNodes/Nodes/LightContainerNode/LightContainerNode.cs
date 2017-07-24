@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// contains some lights that affects the children node.
     /// </summary>
-    public class LightContainerNode : SceneNodeBase, ILocalLightContainer
+    public class LightContainerNode : SceneNodeBase, ILocalLightContainer, IRenderable
     {
         /// <summary>
         /// contains some renderers in its children.
@@ -26,6 +26,30 @@ namespace CSharpGL
         /// 
         /// </summary>
         public List<LightBase> LightList { get { return this.lightList; } }
+
+        #endregion
+
+        #region IRenderable 成员
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+
+        public ThreeFlags EnableRendering
+        {
+            get { return enableRendering; }
+            set { enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
+        {
+            // prepare lights for children.
+            arg.CurrentLights.Push(this.lightList);
+        }
+
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+            // reset stack.
+            arg.CurrentLights.Pop();
+        }
 
         #endregion
     }

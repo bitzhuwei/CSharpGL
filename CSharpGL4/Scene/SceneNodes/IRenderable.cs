@@ -59,6 +59,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        public Stack<List<LightBase>> CurrentLights { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         internal Stack<mat4> ModelMatrixStack { get; private set; }
         ///// <summary>
         ///// 
