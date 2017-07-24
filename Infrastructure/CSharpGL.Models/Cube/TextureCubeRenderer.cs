@@ -88,7 +88,7 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { this.Initialize(); }
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -106,6 +106,10 @@ void main(void) {
             renderUnit.Render();
         }
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class TexturedCubeModel : IBufferSource

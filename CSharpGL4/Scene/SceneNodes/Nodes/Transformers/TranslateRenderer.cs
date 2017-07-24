@@ -25,5 +25,15 @@ namespace CSharpGL
             : base(model, positionNameInIBufferSource, builders)
         {
         }
+
+        public override void RenderBeforeChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

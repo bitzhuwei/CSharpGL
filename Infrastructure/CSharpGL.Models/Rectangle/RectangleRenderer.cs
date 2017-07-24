@@ -106,7 +106,7 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { this.Initialize(); }
 
             var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
             ShaderProgram program = renderUnit.Program;
@@ -128,7 +128,13 @@ void main(void) {
             renderUnit.Render();
         }
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
         public ITextureSource TextureSource { get; set; }
+
     }
 
     class RectangleModel : IBufferSource

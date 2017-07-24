@@ -15,14 +15,9 @@
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        public virtual void RenderBeforeChildren(RenderEventArgs arg)
-        {
-            if (!this.IsInitialized) { Initialize(); }
-        }
+        public abstract void RenderBeforeChildren(RenderEventArgs arg);
 
-        public virtual void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
+        public abstract void RenderAfterChildren(RenderEventArgs arg);
 
         #endregion
     }

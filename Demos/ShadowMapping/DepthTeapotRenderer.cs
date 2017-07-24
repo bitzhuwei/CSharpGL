@@ -93,6 +93,10 @@ void main(void) {
             //renderUnit.Render();
         }
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
+
         #endregion
 
 
@@ -128,8 +132,5 @@ void main(void) {
 
         #endregion
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
     }
 }

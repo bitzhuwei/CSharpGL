@@ -103,6 +103,10 @@ void main(void) {
             //renderUnit.Render();
         }
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
 
         #region IShadowMapping 成员
 
@@ -134,6 +138,7 @@ void main(void) {
         }
 
         #endregion
+
 
     }
 

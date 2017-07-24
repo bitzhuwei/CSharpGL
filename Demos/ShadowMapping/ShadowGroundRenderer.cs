@@ -103,6 +103,10 @@ void main(void) {
             //renderUnit.Render();
         }
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
 
         #region IShadowMapping 成员
 
@@ -185,12 +189,13 @@ void main(void) {
             /// four vertexes.
             /// </summary>
             private static readonly vec3[] positions = new vec3[]
-        {
-            new vec3(+xLength, 0, +zLength),//  0
-            new vec3(+xLength, 0, -zLength),//  1
-            new vec3(-xLength, 0, -zLength),//  2
-            new vec3(-xLength, 0, +zLength),//  3
-        };
+            {
+                new vec3(+xLength, 0, +zLength),//  0
+                new vec3(+xLength, 0, -zLength),//  1
+                new vec3(-xLength, 0, -zLength),//  2
+                new vec3(-xLength, 0, +zLength),//  3
+            };
         }
+
     }
 }

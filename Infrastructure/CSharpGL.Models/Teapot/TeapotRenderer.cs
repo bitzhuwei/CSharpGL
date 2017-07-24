@@ -107,7 +107,7 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { this.Initialize(); }
 
             this.RotationAngle += this.RotateSpeed;
 
@@ -141,6 +141,11 @@ void main(void) {
             }
         }
 
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         public override void RenderForPicking(PickingEventArgs arg)
@@ -150,6 +155,7 @@ void main(void) {
                 base.RenderForPicking(arg);
             }
         }
+
     }
 
 }
