@@ -11,24 +11,19 @@ namespace ShadowMapping
     /// </summary>
     class ShadowTeapotRenderer : ModernNode, IShadowMapping
     {
-
         private const string inPosition = "inPosition";
-        private const string inTexCoord = "inTexCoord";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string mvpMatrix = "mvpMatrix";
 
         private const string shadowVertexCode =
-            @"#version 330 core
+            @"#version 330
 
-in vec3 " + inPosition + @";
+uniform mat4 " + mvpMatrix + @";
 
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
+layout (location = 0) in vec4 " + inPosition + @";;
 
-void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+void main(void)
+{
+	gl_Position = mvpMatrix * inPosition;
 }
 ";
         // this fragment shader is not needed.
@@ -45,25 +40,38 @@ void main(void) {
         //";
 
         private const string lightVertexCode =
-@"#version 330
-layout (location = 0) in vec3 inPosition;
-layout (location = 1) in vec2 inTexCoord;
-layout (location = 2) in vec3 Normal;
-uniform mat4 gWVP;
-uniform mat4 gLightWVP;
-uniform mat4 gWorld;
-out vec4 LightSpacePos;
-out vec2 TexCoord0;
-out vec3 Normal0;
-out vec3 WorldPos0;
-void main()
+            @"#version 330
+
+uniform mat4 model_matrix;
+uniform mat4 view_matrix;
+uniform mat4 projection_matrix;
+
+uniform mat4 shadow_matrix;
+
+layout (location = 0) in vec4 position;
+layout (location = 1) in vec3 normal;
+
+out VS_FS_INTERFACE
 {
-    gl_Position = gWVP * vec4(inPosition, 1.0);
-    LightSpacePos = gLightWVP * vec4(inPosition, 1.0);
-    TexCoord0 = inTexCoord;
-    Normal0 = (gWorld * vec4(Normal, 0.0)).xyz;
-    WorldPos0 = (gWorld * vec4(inPosition, 1.0)).xyz;
-} 
+	vec4 shadow_coord;
+	vec3 world_coord;
+	vec4 eye_coord;
+	vec3 normal;
+} vertex;
+
+void main(void)
+{
+	vec4 world_pos = model_matrix * position;
+	vec4 eye_pos = view_matrix * world_pos;
+	vec4 clip_pos = projection_matrix * eye_pos;
+	
+	vertex.world_coord = world_pos.xyz;
+	vertex.eye_coord = eye_pos.xyz;
+	vertex.shadow_coord = shadow_matrix * world_pos;
+	vertex.normal = mat3(view_matrix * model_matrix) * normal;
+	
+	gl_Position = clip_pos;
+}
 ";
         private const string lightFragmentCode =
             @"#version 330
@@ -152,11 +160,9 @@ void maint(void)
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[1]; // the only render unit in this renderer.
             ShaderProgram program = renderUnit.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(mvpMatrix, projection * view * model);
 
             renderUnit.Render();
         }
@@ -187,9 +193,7 @@ void maint(void)
 
             var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
             ShaderProgram program = renderUnit.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(mvpMatrix, projection * view * model);
 
             renderUnit.Render();
         }
