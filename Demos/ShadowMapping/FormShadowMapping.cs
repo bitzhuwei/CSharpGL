@@ -85,7 +85,7 @@ namespace ShadowMapping
                     lightContainer.Children.Add(teapot);
                 }
                 {
-                    var ground = GroundRenderer.Create();
+                    var ground = DepthGroundRenderer.Create();
                     ground.Color = Color.Gray.ToVec4();
                     ground.Scale *= 10;
                     ground.WorldPosition = new vec3(0, -3, 0);

@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class GroundRenderer : PickableNode, IShadowMapping
+    public class GroundRenderer : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -52,7 +52,7 @@ void main(void) {
         /// <returns></returns>
         public static GroundRenderer Create()
         {
-            RenderUnitBuilder renderBuilder, shadowmapBuilder;
+            RenderUnitBuilder renderBuilder;
             {
                 var vertexShader = new VertexShader(vertexCode, inPosition);
                 var fragmentShader = new FragmentShader(fragmentCode);
@@ -61,14 +61,7 @@ void main(void) {
                 map.Add(inPosition, GroundModel.strPosition);
                 renderBuilder = new RenderUnitBuilder(provider, map);
             }
-            {
-                var vertexShader = new VertexShader(vertexCode, inPosition);
-                var provider = new ShaderArray(vertexShader);
-                var map = new AttributeMap();
-                map.Add(inPosition, GroundModel.strPosition);
-                shadowmapBuilder = new RenderUnitBuilder(provider, map);
-            }
-            var renderer = new GroundRenderer(new GroundModel(), GroundModel.strPosition, renderBuilder, shadowmapBuilder);
+            var renderer = new GroundRenderer(new GroundModel(), GroundModel.strPosition, renderBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -86,60 +79,26 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            //base.RenderBeforeChildren(arg);
-
-            //ICamera camera = arg.CameraStack.Peek();
-            //mat4 projection = camera.GetProjectionMatrix();
-            //mat4 view = camera.GetViewMatrix();
-            //mat4 model = this.GetModelMatrix();
-
-            //var renderUnit = this.RenderUnits[0]; // renderBuilder
-            //ShaderProgram program = renderUnit.Program;
-            //program.SetUniform(projectionMatrix, projection);
-            //program.SetUniform(viewMatrix, view);
-            //program.SetUniform(modelMatrix, model);
-            //program.SetUniform(color, this.Color);
-
-            //renderUnit.Render();
-        }
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-            throw new NotImplementedException();
-        }
-
-        #region IShadowMapping 成员
-
-        private bool enableShadowMapping = true;
-
-        public bool EnableShadowMapping
-        {
-            get { return enableShadowMapping; }
-            set { enableShadowMapping = value; }
-        }
-
-        public void CastShadow(ShdowMappingEventArgs arg)
-        {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            LightBase light = arg.CurrentLight;
-            mat4 projection = light.GetProjectionMatrix();
-            mat4 view = light.GetViewMatrix();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[1]; // shadowmapBuilder
+            var renderUnit = this.RenderUnits[0]; // renderBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            //program.SetUniform(color, this.Color);
+            program.SetUniform(color, this.Color);
 
             renderUnit.Render();
         }
 
-        #endregion
-
-
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
+        }
     }
 
     class GroundModel : IBufferSource

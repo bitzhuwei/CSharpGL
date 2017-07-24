@@ -46,6 +46,7 @@ namespace CSharpGL
             }
 
             this.CameraStack = cameraStack;
+            this.CurrentLights = new Stack<List<LightBase>>();
 
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
