@@ -141,6 +141,7 @@ void maint(void)
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(inPosition, Teapot.strPosition);
+                map.Add(inNormal, Teapot.strNormal);
                 lightBuilder = new RenderUnitBuilder(provider, map);
             }
             var model = new Teapot();
@@ -154,6 +155,10 @@ void maint(void)
             : base(model, builder)
         {
             this.ModelSize = model.GetModelSize();
+            this.Ambient = new vec3(1, 1, 1) * 0.1f;
+            this.Diffuse = new vec3(1, 1, 1) * 0.3f;
+            this.Specular = new vec3(1, 1, 1) * 0.1f;
+            this.SpecularPower = 0.2f;
         }
 
         #region IRenderable 成员
