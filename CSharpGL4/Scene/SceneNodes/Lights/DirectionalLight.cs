@@ -25,12 +25,12 @@ namespace CSharpGL
         }
 
 
-        public override mat4 GetProjectionMatrix(ShdowMappingEventArgs arg)
+        public override mat4 GetProjectionMatrix()
         {
             throw new NotImplementedException();
         }
 
-        public override mat4 GetViewMatrix(ShdowMappingEventArgs arg)
+        public override mat4 GetViewMatrix()
         {
             throw new NotImplementedException();
         }

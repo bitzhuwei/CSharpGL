@@ -53,7 +53,7 @@ namespace CSharpGL
             this.Far = far;
         }
 
-        public override mat4 GetProjectionMatrix(ShdowMappingEventArgs arg)
+        public override mat4 GetProjectionMatrix()
         {
             const float aspectRatio = 1.0f;
 
@@ -61,7 +61,7 @@ namespace CSharpGL
             return projection;
         }
 
-        public override mat4 GetViewMatrix(ShdowMappingEventArgs arg)
+        public override mat4 GetViewMatrix()
         {
             mat4 view = glm.lookAt(this.Position, this.Target, this.upVector);
             return view;

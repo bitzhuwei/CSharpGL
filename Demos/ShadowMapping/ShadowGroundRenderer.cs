@@ -203,8 +203,8 @@ void maint(void)
             if (!this.IsInitialized) { this.Initialize(); }
 
             LightBase light = arg.CurrentLight;
-            mat4 projection = light.GetProjectionMatrix(arg);
-            mat4 view = light.GetViewMatrix(arg);
+            mat4 projection = light.GetProjectionMatrix();
+            mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
             var renderUnit = this.RenderUnits[0]; // shadowmapBuilder

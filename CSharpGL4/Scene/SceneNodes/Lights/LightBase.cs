@@ -65,19 +65,18 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="arg"></param>
         /// <returns></returns>
-        public abstract mat4 GetProjectionMatrix(ShdowMappingEventArgs arg);
+        public abstract mat4 GetProjectionMatrix();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract mat4 GetViewMatrix(ShdowMappingEventArgs arg);
+        public abstract mat4 GetViewMatrix();
 
         #region ITextureSource 成员
 
-        Texture ITextureSource.BindingTexture
+        public Texture BindingTexture
         {
             get { return this.framebufferProvider.BindingTexture; }
         }

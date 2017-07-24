@@ -160,6 +160,12 @@ void maint(void)
 
         public float RotateSpeed { get; set; }
 
+        public vec3 Ambient { get; set; }
+        public vec3 Diffuse { get; set; }
+        public vec3 Specular { get; set; }
+
+        public float SpecularPower { get; set; }
+
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
@@ -170,10 +176,23 @@ void maint(void)
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
+            List<LightBase> lights = arg.CurrentLights.Peek();
+            LightBase light = lights[0];// now we only use one light for testing.
+            mat4 lightProjection = light.GetProjectionMatrix();
+            mat4 lightView = light.GetViewMatrix();
 
             var renderUnit = this.RenderUnits[1]; // the only render unit in this renderer.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
+            program.SetUniform(model_matrix, model);
+            program.SetUniform(view_matrix, view);
+            program.SetUniform(projection_matrix, projection);
+            program.SetUniform(shadow_matrix, lightProjection * lightView);
+            program.SetUniform(depth_texture, light.BindingTexture);
+            program.SetUniform(material_ambient, this.Ambient);
+            program.SetUniform(material_diffuse, this.Diffuse);
+            program.SetUniform(material_specular, this.Specular);
+            program.SetUniform(material_specular_power, this.SpecularPower);
 
             renderUnit.Render();
         }
@@ -198,8 +217,8 @@ void maint(void)
             this.RotationAngle += this.RotateSpeed;
 
             LightBase light = arg.CurrentLight;
-            mat4 projection = light.GetProjectionMatrix(arg);
-            mat4 view = light.GetViewMatrix(arg);
+            mat4 projection = light.GetProjectionMatrix();
+            mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
             var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
