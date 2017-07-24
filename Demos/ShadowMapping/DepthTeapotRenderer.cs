@@ -11,23 +11,19 @@ namespace ShadowMapping
     /// </summary>
     class DepthTeapotRenderer : ModernNode, IShadowMapping
     {
-
         private const string inPosition = "inPosition";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string mvpMatrix = "mvpMatrix";
 
         private const string vertexCode =
-            @"#version 330 core
+            @"#version 330
 
-in vec3 " + inPosition + @";
+uniform mat4 " + mvpMatrix + @";
 
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
+layout (location = 0) in vec4 " + inPosition + @";;
 
-void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+void main(void)
+{
+	gl_Position = mvpMatrix * inPosition;
 }
 ";
         // this fragment shader is not needed.
@@ -107,9 +103,7 @@ void main(void) {
 
             var renderUnit = this.RenderUnits[0]; // shadowmapBuilder.
             ShaderProgram program = renderUnit.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(mvpMatrix, projection * view * model);
 
             renderUnit.Render();
         }
