@@ -49,15 +49,16 @@ void main(void) {
         /// <returns></returns>
         public static DepthTeapotRenderer Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition);
-            //var fragmentShader = new FragmentShader(fragmentCode);
-            //var provider = new ShaderArray(vertexShader, fragmentShader);
-            var provider = new ShaderArray(vertexShader);
-            var map = new AttributeMap();
-            map.Add(inPosition, Teapot.strPosition);
+            RenderUnitBuilder shadowmapBuilder;
+            {
+                var vs = new VertexShader(vertexCode, inPosition);
+                var provider = new ShaderArray(vs);
+                var map = new AttributeMap();
+                map.Add(inPosition, Teapot.strPosition);
+                shadowmapBuilder = new RenderUnitBuilder(provider, map);
+            }
             var model = new Teapot();
-            var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new DepthTeapotRenderer(model, builder);
+            var renderer = new DepthTeapotRenderer(model, shadowmapBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -75,22 +76,6 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            //base.RenderBeforeChildren(arg);
-
-            //this.RotationAngle += this.RotateSpeed;
-
-            //ICamera camera = arg.CameraStack.Peek();
-            //mat4 projection = camera.GetProjectionMatrix();
-            //mat4 view = camera.GetViewMatrix();
-            //mat4 model = this.GetModelMatrix();
-
-            //var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
-            //ShaderProgram program = renderUnit.Program;
-            //program.SetUniform(projectionMatrix, projection);
-            //program.SetUniform(viewMatrix, view);
-            //program.SetUniform(modelMatrix, model);
-
-            //renderUnit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -98,7 +83,6 @@ void main(void) {
         }
 
         #endregion
-
 
         #region IShadowMapping 成员
 
@@ -121,7 +105,7 @@ void main(void) {
             mat4 view = light.GetViewMatrix(arg);
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // shadowmapBuilder.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

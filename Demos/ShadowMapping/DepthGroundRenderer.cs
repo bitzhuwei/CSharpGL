@@ -29,18 +29,19 @@ void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 }
 ";
-        private const string fragmentCode =
-            @"#version 330 core
-
-uniform vec4 " + color + @";
-
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
-
-void main(void) {
-    out_Color = color;
-}
-";
+        // this fragment shader is not needed.
+        //        private const string fragmentCode =
+        //            @"#version 330 core
+        //
+        //uniform vec4 " + color + @";
+        //
+        //layout(location = 0) out vec4 out_Color;
+        ////out vec4 out_Color;
+        //
+        //void main(void) {
+        //    out_Color = color;
+        //}
+        //";
         /// <summary>
         /// 
         /// </summary>
@@ -52,23 +53,15 @@ void main(void) {
         /// <returns></returns>
         public static DepthGroundRenderer Create()
         {
-            RenderUnitBuilder renderBuilder, shadowmapBuilder;
+            RenderUnitBuilder shadowmapBuilder;
             {
-                var vertexShader = new VertexShader(vertexCode, inPosition);
-                var fragmentShader = new FragmentShader(fragmentCode);
-                var provider = new ShaderArray(vertexShader, fragmentShader);
-                var map = new AttributeMap();
-                map.Add(inPosition, GroundModel.strPosition);
-                renderBuilder = new RenderUnitBuilder(provider, map);
-            }
-            {
-                var vertexShader = new VertexShader(vertexCode, inPosition);
-                var provider = new ShaderArray(vertexShader);
+                var vs = new VertexShader(vertexCode, inPosition);
+                var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, GroundModel.strPosition);
                 shadowmapBuilder = new RenderUnitBuilder(provider, map);
             }
-            var renderer = new DepthGroundRenderer(new GroundModel(), GroundModel.strPosition, renderBuilder, shadowmapBuilder);
+            var renderer = new DepthGroundRenderer(new GroundModel(), GroundModel.strPosition, shadowmapBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -86,26 +79,10 @@ void main(void) {
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            //base.RenderBeforeChildren(arg);
-
-            //ICamera camera = arg.CameraStack.Peek();
-            //mat4 projection = camera.GetProjectionMatrix();
-            //mat4 view = camera.GetViewMatrix();
-            //mat4 model = this.GetModelMatrix();
-
-            //var renderUnit = this.RenderUnits[0]; // renderBuilder
-            //ShaderProgram program = renderUnit.Program;
-            //program.SetUniform(projectionMatrix, projection);
-            //program.SetUniform(viewMatrix, view);
-            //program.SetUniform(modelMatrix, model);
-            //program.SetUniform(color, this.Color);
-
-            //renderUnit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
 
         #region IShadowMapping 成员
@@ -127,12 +104,11 @@ void main(void) {
             mat4 view = light.GetViewMatrix(arg);
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[1]; // shadowmapBuilder
+            var renderUnit = this.RenderUnits[0]; // shadowmapBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            //program.SetUniform(color, this.Color);
 
             renderUnit.Render();
         }
