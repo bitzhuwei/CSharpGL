@@ -77,7 +77,7 @@ namespace ShadowMapping
             //(innerCamera as IPerspectiveViewCamera).Far = 50;
             //innerCamera.GetProjectionMatrix();
             //innerCamera.GetViewMatrix();
-            var localLight = new SpotLight(new vec3(5, 3, 1) * 2, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
+            var localLight = new SpotLight(new vec3(5, 3, 1), new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
             var lightContainer = new LightContainerNode(localLight);
             {
                 {
