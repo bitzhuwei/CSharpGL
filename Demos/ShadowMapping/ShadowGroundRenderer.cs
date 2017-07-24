@@ -123,7 +123,14 @@ void maint(void)
         /// <returns></returns>
         public static ShadowGroundRenderer Create()
         {
-            RenderUnitBuilder renderBuilder, shadowmapBuilder;
+            RenderUnitBuilder shadowmapBuilder, renderBuilder;
+            {
+                var vs = new VertexShader(shadowVertexCode, inPosition);
+                var provider = new ShaderArray(vs);
+                var map = new AttributeMap();
+                map.Add(inPosition, GroundModel.strPosition);
+                shadowmapBuilder = new RenderUnitBuilder(provider, map);
+            }
             {
                 var vs = new VertexShader(lightVertexCode, inPosition);
                 var fs = new FragmentShader(lightFragmentCode);
@@ -132,14 +139,7 @@ void maint(void)
                 map.Add(inPosition, GroundModel.strPosition);
                 renderBuilder = new RenderUnitBuilder(provider, map);
             }
-            {
-                var vs = new VertexShader(shadowVertexCode, inPosition);
-                var provider = new ShaderArray(vs);
-                var map = new AttributeMap();
-                map.Add(inPosition, GroundModel.strPosition);
-                shadowmapBuilder = new RenderUnitBuilder(provider, map);
-            }
-            var renderer = new ShadowGroundRenderer(new GroundModel(), GroundModel.strPosition, renderBuilder, shadowmapBuilder);
+            var renderer = new ShadowGroundRenderer(new GroundModel(), GroundModel.strPosition, shadowmapBuilder, renderBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -164,7 +164,7 @@ void maint(void)
             //mat4 view = camera.GetViewMatrix();
             //mat4 model = this.GetModelMatrix();
 
-            //var renderUnit = this.RenderUnits[0]; // renderBuilder
+            //var renderUnit = this.RenderUnits[1]; // renderBuilder
             //ShaderProgram program = renderUnit.Program;
             //program.SetUniform(projectionMatrix, projection);
             //program.SetUniform(viewMatrix, view);
@@ -197,7 +197,7 @@ void maint(void)
             mat4 view = light.GetViewMatrix(arg);
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[1]; // shadowmapBuilder
+            var renderUnit = this.RenderUnits[0]; // shadowmapBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 
