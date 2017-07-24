@@ -66,7 +66,7 @@ out VS_FS_INTERFACE
 {
 	vec4 shadow_coord;
 	vec3 world_coord;
-	vec4 eye_coord;
+	vec3 eye_coord;
 	vec3 normal;
 } vertex;
 
@@ -105,27 +105,22 @@ in VS_FS_INTERFACE
 	vec3 normal;
 } fragment;
 
-void maint(void)
+void main(void)
 {
-	vec3 N = fragment.normal;
-	vec3 L = normalize(light_position - fragment.world_coord);
-	vec3 R = reflect(-L, N);
-	vec3 E = normalize(fragment.eye_coord);
-	float NdotL = dot(N, L);
-	float EdotR = dot(-E, R);
-	float diffuse = max(NdotL, 0.0);
-	float specular = max(pow(EdotR, material_specular_power), 0.0);
-	float f = textureProj(depth_texture, fragment. shadow_coord);
-	
-	color = vec4(material_ambient + f * (material_diffuse * diffuse + material_specular * specular), 1.0);
+    vec3 N = fragment.normal;
+    vec3 L = normalize(light_position - fragment.world_coord);
+    float LdotN = dot(N, L);
+    vec3 R = reflect(-L, N);
+
+    float diffuse = max(LdotN, 0.0);
+    float specular = max(pow(dot(normalize(-fragment.eye_coord), R), material_specular_power), 0.0);
+
+    float f = textureProj(depth_texture, fragment.shadow_coord);
+
+    color = vec4(material_ambient + f * (material_diffuse * diffuse + material_specular * specular), 1.0);
+    //color = vec4(0,f,f,1) + color * 0.01f;
 }
 ";
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec4 Color { get; set; }
 
         /// <summary>
         /// Render propeller in modern opengl.
@@ -142,11 +137,12 @@ void maint(void)
                 shadowmapBuilder = new RenderUnitBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(lightVertexCode, inPosition);
+                var vs = new VertexShader(lightVertexCode, inPosition, inNormal);
                 var fs = new FragmentShader(lightFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(inPosition, GroundModel.strPosition);
+                map.Add(inNormal, GroundModel.strNormal);
                 renderBuilder = new RenderUnitBuilder(provider, map);
             }
             var renderer = new ShadowGroundRenderer(new GroundModel(), GroundModel.strPosition, shadowmapBuilder, renderBuilder);
@@ -162,26 +158,47 @@ void maint(void)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
-            this.Color = new vec4(1, 1, 1, 1);
+            this.Ambient = new vec3(1, 1, 1) * 0.1f;
+            this.Diffuse = System.Drawing.Color.Orange.ToVec3();
+            this.Specular = new vec3(1, 1, 1) * 0.2f;
+            this.SpecularPower = 0.2f;
         }
+
+        public vec3 Ambient { get; set; }
+        public vec3 Diffuse { get; set; }
+        public vec3 Specular { get; set; }
+        public float SpecularPower { get; set; }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            //base.RenderBeforeChildren(arg);
+            if (!this.IsInitialized) { Initialize(); }
 
-            //ICamera camera = arg.CameraStack.Peek();
-            //mat4 projection = camera.GetProjectionMatrix();
-            //mat4 view = camera.GetViewMatrix();
-            //mat4 model = this.GetModelMatrix();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            List<LightBase> lights = arg.CurrentLights.Peek();
+            LightBase light = lights[0];// now we only use one light for testing.
+            mat4 lightBias = glm.scale(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
+            lightBias = glm.translate(lightBias, new vec3(1, 1, 1) * 0.5f);
+            mat4 lightProjection = light.GetProjectionMatrix();
+            mat4 lightView = light.GetViewMatrix();
 
-            //var renderUnit = this.RenderUnits[1]; // renderBuilder
-            //ShaderProgram program = renderUnit.Program;
-            //program.SetUniform(projectionMatrix, projection);
-            //program.SetUniform(viewMatrix, view);
-            //program.SetUniform(modelMatrix, model);
-            //program.SetUniform(color, this.Color);
+            var renderUnit = this.RenderUnits[1]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
+            program.SetUniform(mvpMatrix, projection * view * model);
+            program.SetUniform(model_matrix, model);
+            program.SetUniform(view_matrix, view);
+            program.SetUniform(projection_matrix, projection);
+            program.SetUniform(shadow_matrix, lightProjection * lightView);
+            program.SetUniform(depth_texture, light.BindingTexture);
+            program.SetUniform(light_position, light.Position);
+            program.SetUniform(material_ambient, this.Ambient);
+            program.SetUniform(material_diffuse, this.Diffuse);
+            program.SetUniform(material_specular, this.Specular);
+            program.SetUniform(material_specular_power, this.SpecularPower);
 
-            //renderUnit.Render();
+            renderUnit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -227,6 +244,8 @@ void maint(void)
 
             public const string strPosition = "position";
             private VertexBuffer positionBuffer;
+            public const string strNormal = "normal";
+            private VertexBuffer normalBuffer;
 
             private IndexBuffer indexBuffer;
 
@@ -242,6 +261,15 @@ void maint(void)
                     }
 
                     return this.positionBuffer;
+                }
+                else if (bufferName == strNormal)
+                {
+                    if (this.normalBuffer == null)
+                    {
+                        this.normalBuffer = normals.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    }
+
+                    return this.normalBuffer;
                 }
 
                 throw new NotImplementedException();
@@ -271,6 +299,16 @@ void maint(void)
                 new vec3(+xLength, 0, -zLength),//  1
                 new vec3(-xLength, 0, -zLength),//  2
                 new vec3(-xLength, 0, +zLength),//  3
+            };
+            /// <summary>
+            /// four vertexes.
+            /// </summary>
+            private static readonly vec3[] normals = new vec3[]
+            {
+                new vec3(0, 1, 0),//  0
+                new vec3(0, 1, 0),//  1
+                new vec3(0, 1, 0),//  2
+                new vec3(0, 1, 0),//  3
             };
         }
 

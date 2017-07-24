@@ -66,7 +66,7 @@ out VS_FS_INTERFACE
 {
 	vec4 shadow_coord;
 	vec3 world_coord;
-	vec4 eye_coord;
+	vec3 eye_coord;
 	vec3 normal;
 } vertex;
 
@@ -105,19 +105,21 @@ in VS_FS_INTERFACE
 	vec3 normal;
 } fragment;
 
-void maint(void)
+void main(void)
 {
-	vec3 N = fragment.normal;
-	vec3 L = normalize(light_position - fragment.world_coord);
-	vec3 R = reflect(-L, N);
-	vec3 E = normalize(fragment.eye_coord);
-	float NdotL = dot(N, L);
-	float EdotR = dot(-E, R);
-	float diffuse = max(NdotL, 0.0);
-	float specular = max(pow(EdotR, material_specular_power), 0.0);
-	float f = textureProj(depth_texture, fragment. shadow_coord);
-	
-	color = vec4(material_ambient + f * (material_diffuse * diffuse + material_specular * specular), 1.0);
+    vec3 N = fragment.normal;
+    vec3 L = normalize(light_position - fragment.world_coord);
+    float LdotN = dot(N, L);
+    vec3 R = reflect(-L, N);
+
+    float diffuse = max(LdotN, 0.0);
+    float specular = max(pow(dot(normalize(-fragment.eye_coord), R), material_specular_power), 0.0);
+
+    float f = textureProj(depth_texture, fragment.shadow_coord);
+
+    color = vec4(material_ambient + f * (material_diffuse * diffuse + material_specular * specular), 1.0);
+    //color = vec4(f,f,0,1) * 0.5 + color * 0.01f;
+
 }
 ";
 
@@ -136,7 +138,7 @@ void maint(void)
                 shadowBuilder = new RenderUnitBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(lightVertexCode, inPosition);
+                var vs = new VertexShader(lightVertexCode, inPosition, inNormal);
                 var fs = new FragmentShader(lightFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -156,7 +158,7 @@ void maint(void)
         {
             this.ModelSize = model.GetModelSize();
             this.Ambient = new vec3(1, 1, 1) * 0.1f;
-            this.Diffuse = new vec3(1, 1, 1) * 0.3f;
+            this.Diffuse = System.Drawing.Color.SkyBlue.ToVec3();
             this.Specular = new vec3(1, 1, 1) * 0.1f;
             this.SpecularPower = 0.2f;
         }
@@ -168,7 +170,6 @@ void maint(void)
         public vec3 Ambient { get; set; }
         public vec3 Diffuse { get; set; }
         public vec3 Specular { get; set; }
-
         public float SpecularPower { get; set; }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -183,6 +184,8 @@ void maint(void)
             mat4 model = this.GetModelMatrix();
             List<LightBase> lights = arg.CurrentLights.Peek();
             LightBase light = lights[0];// now we only use one light for testing.
+            mat4 lightBias = glm.scale(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
+            lightBias = glm.translate(lightBias, new vec3(1, 1, 1) * 0.5f);
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
@@ -194,12 +197,17 @@ void maint(void)
             program.SetUniform(projection_matrix, projection);
             program.SetUniform(shadow_matrix, lightProjection * lightView);
             program.SetUniform(depth_texture, light.BindingTexture);
+            program.SetUniform(light_position, light.Position);
             program.SetUniform(material_ambient, this.Ambient);
             program.SetUniform(material_diffuse, this.Diffuse);
             program.SetUniform(material_specular, this.Specular);
             program.SetUniform(material_specular_power, this.SpecularPower);
 
             renderUnit.Render();
+        }
+
+        public override void RenderAfterChildren(RenderEventArgs arg)
+        {
         }
 
         #endregion
@@ -234,10 +242,5 @@ void maint(void)
         }
 
         #endregion
-
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
     }
 }

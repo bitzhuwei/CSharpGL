@@ -44,7 +44,8 @@ namespace CSharpGL
         public SpotLight(vec3 position, vec3 target, float angle, float near = 0.1f, float far = 50.0f)
         {
             if (position == target) { throw new ArgumentException(); }
-            if (position - target == upVector) { upVector = new vec3(1, 1, 1); }
+            if ((position - target).normalize() == upVector
+                || (target - position).normalize() == upVector) { upVector = new vec3(1, 1, 1); }
 
             this.Position = position;
             this.Target = target;
