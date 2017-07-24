@@ -107,7 +107,7 @@ in VS_FS_INTERFACE
 
 void main(void)
 {
-    vec3 N = fragment.normal;
+    vec3 N = normalize(fragment.normal);
     vec3 L = normalize(light_position - fragment.world_coord);
     float LdotN = dot(N, L);
     vec3 R = reflect(-L, N);
