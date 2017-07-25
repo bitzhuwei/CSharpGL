@@ -105,6 +105,7 @@ namespace ShadowMapping
                 group.Children.Add(rectangle);
             }
             {
+                var cube = LightPostionNode.Create();
                 cube.WorldPosition = lightPosition;
                 cube.SetLight(localLight);
                 group.Children.Add(cube);
