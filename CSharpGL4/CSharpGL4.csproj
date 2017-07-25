@@ -131,11 +131,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\Actions\ActionList.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextBillboard\TextBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\Billboard\TextureBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\LightContainerNode\ILocalLightContainer.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\LightContainerNode\LightContainerNode.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\RenderToTexttureNode.cs" />
+    <Compile Include="Scene\Nodes\Billboard\TextBillboard\TextBillboardNode.cs" />
+    <Compile Include="Scene\Nodes\Billboard\TextureBillboardNode.cs" />
+    <Compile Include="Scene\Nodes\LightContainerNode\ILocalLightContainer.cs" />
+    <Compile Include="Scene\Nodes\LightContainerNode\LightContainerNode.cs" />
+    <Compile Include="Scene\Nodes\RenderToTextureNode\RenderToTexttureNode.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -253,26 +253,26 @@
     <Compile Include="Scene\SceneNodes\RenderUnit\IPickableRenderUnit.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnitBuilder.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnit.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\DepthFramebufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\IFrameufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\ITextureSource.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\RenderToTextureNode\ColoredFramebufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\LegacyBoundingBoxNode.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\GroupNode.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\Transformers\ModelHelpers\ArrowHelper.cs" />
-    <Compile Include="Scene\SceneNodes\Nodes\Transformers\TranslateRenderer.cs" />
+    <Compile Include="Scene\Nodes\RenderToTextureNode\DepthFramebufferProvider.cs" />
+    <Compile Include="Scene\Nodes\RenderToTextureNode\IFrameufferProvider.cs" />
+    <Compile Include="Scene\Nodes\RenderToTextureNode\ITextureSource.cs" />
+    <Compile Include="Scene\Nodes\RenderToTextureNode\ColoredFramebufferProvider.cs" />
+    <Compile Include="Scene\Nodes\LegacyBoundingBoxNode.cs" />
+    <Compile Include="Scene\Nodes\GroupNode.cs" />
+    <Compile Include="Scene\Nodes\Transformers\ModelHelpers\ArrowHelper.cs" />
+    <Compile Include="Scene\Nodes\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\Actions\ActionBase.cs" />
     <Compile Include="Scene\Actions\ShadowMappingAction.cs" />
     <Compile Include="Scene\SceneNodes\ILegacyPickable\ILegacyPickable.cs" />
-    <Compile Include="Scene\SceneNodes\IShadowMapping.cs" />
-    <Compile Include="Scene\SceneNodes\IWorldSpace.cs" />
+    <Compile Include="Scene\Actions\IShadowMapping.cs" />
+    <Compile Include="Scene\Actions\IWorldSpace.cs" />
     <Compile Include="Scene\SceneNodes\IPickable\IPickable.cs" />
     <Compile Include="Scene\SceneNodes\IPickable\IPickableHelper.cs" />
     <Compile Include="Scene\SceneNodes\IPickable\IPickedGeometry.cs" />
     <Compile Include="Scene\SceneNodes\IPickable\PickedGeometry.cs" />
     <Compile Include="Scene\SceneNodes\IPickable\PickingGeometryType.cs" />
     <Compile Include="Scene\SceneNodes\IPickable\PickingGeometryTypeHelper.cs" />
-    <Compile Include="Scene\SceneNodes\IRenderable.cs" />
+    <Compile Include="Scene\Actions\IRenderable.cs" />
     <Compile Include="Scene\SceneNodes\Lights\PointLight.cs" />
     <Compile Include="Scene\SceneNodes\Lights\DirectionalLight.cs" />
     <Compile Include="Scene\SceneNodes\Lights\SpotLight.cs" />
@@ -285,9 +285,9 @@
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\readme.md" />
-    <Content Include="Scene\SceneNodes\Nodes\Transformers\ratete.png" />
-    <Content Include="Scene\SceneNodes\Nodes\Transformers\scale.png" />
-    <Content Include="Scene\SceneNodes\Nodes\Transformers\translate.png" />
+    <Content Include="Scene\Nodes\Transformers\ratete.png" />
+    <Content Include="Scene\Nodes\Transformers\scale.png" />
+    <Content Include="Scene\Nodes\Transformers\translate.png" />
     <Content Include="Scene\SceneNodes\IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\ILegacyPickable\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
@@ -593,9 +593,11 @@
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\ZeroIndexPicker\readme.md" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.RenderForInnerPicking.cs" />
     <None Include="Scene\SceneNodes\ModernNode\readme.md" />
-    <Content Include="Scene\SceneNodes\Nodes\readme.md" />
+    <Content Include="Scene\Nodes\readme.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scene\SceneNodes\CameraNode\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
