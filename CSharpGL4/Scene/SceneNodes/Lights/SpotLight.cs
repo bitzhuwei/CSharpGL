@@ -10,10 +10,10 @@ namespace CSharpGL
     /// </summary>
     public class SpotLight : LightBase
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 Position { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public vec3 Position { get; set; }
 
         /// <summary>
         /// 
