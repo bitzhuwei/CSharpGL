@@ -21,7 +21,7 @@ namespace CSharpGL
         public vec3 Position { get; set; }
 
         private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
-        private readonly PolygonOffsetFillState state = new PolygonOffsetFillState(false);// TODO: other offset also needed?
+        private readonly PolygonOffsetFillState state = new PolygonOffsetFillState(false);// TODO: other offsets also needed?
         private readonly int[] viewport = new int[4];
 
         /// <summary>
