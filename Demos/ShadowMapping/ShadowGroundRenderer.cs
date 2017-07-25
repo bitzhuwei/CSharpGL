@@ -109,10 +109,10 @@ void main(void)
 {
 	vec3 N = normalize(fragment.normal);
 	vec3 L = normalize(light_position - fragment.eye_coord);
-	vec3 R = reflect(-L, N);
+	vec3 R = reflect(L, N);
 	vec3 E = normalize(fragment.eye_coord);
 	float NdotL = dot(N, L);
-	float EdotR = dot(-E, R);
+	float EdotR = dot(E, R);
 	float diffuse = max(NdotL, 0.0);
 	float specular = max(pow(EdotR, material_specular_power), 0.0);
 	float f = textureProj(depth_texture, fragment.shadow_coord);

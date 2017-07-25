@@ -31,7 +31,7 @@ namespace ShadowMapping
             //var teapot = ShadowMappingRenderer.Create();
             //var rootElement = teapot;
 
-            var position = new vec3(5, 3, 0) * 5;
+            var position = new vec3(5, 3, 5) * 5;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -98,8 +98,8 @@ namespace ShadowMapping
             {
                 var rectangle = RectangleRenderer.Create();
                 rectangle.TextureSource = localLight;
-                rectangle.RotationAngle = 90;
-                rectangle.WorldPosition = new vec3(5, 0, -2);
+                rectangle.RotationAngle = 45;
+                rectangle.WorldPosition = new vec3(5, 1, 5) * 3;
                 rectangle.Scale *= 4;
 
                 group.Children.Add(rectangle);
