@@ -11,8 +11,8 @@ namespace ShadowMapping
     /// </summary>
     class ShadowTeapotRenderer : ModernNode, IShadowMapping
     {
-        private const string inPosition = "inPosition";
-        private const string inNormal = "inNormal";
+        private const string inPosition = "position";
+        private const string inNormal = "normal";
         private const string mvpMatrix = "mvpMatrix";
         private const string model_matrix = "model_matrix";
         private const string view_matrix = "view_matrix";
@@ -34,7 +34,7 @@ layout (location = 0) in vec4 " + inPosition + @";;
 
 void main(void)
 {
-	gl_Position = mvpMatrix * inPosition;
+	gl_Position = mvpMatrix * position;
 }
 ";
         // this fragment shader is not needed.
@@ -72,14 +72,14 @@ out VS_FS_INTERFACE
 
 void main(void)
 {
-	vec4 world_pos = model_matrix * inPosition;
+	vec4 world_pos = model_matrix * position;
 	vec4 eye_pos = view_matrix * world_pos;
 	vec4 clip_pos = projection_matrix * eye_pos;
 	
 	vertex.world_coord = world_pos.xyz;
 	vertex.eye_coord = eye_pos.xyz;
 	vertex.shadow_coord = shadow_matrix * world_pos;
-	vertex.normal = mat3(view_matrix * model_matrix) * inNormal;
+	vertex.normal = normalize(mat3(view_matrix * model_matrix) * normal);
 	
 	gl_Position = clip_pos;
 }
@@ -107,19 +107,17 @@ in VS_FS_INTERFACE
 
 void main(void)
 {
-    vec3 N = normalize(fragment.normal);
-    vec3 L = normalize(light_position - fragment.world_coord);
-    float LdotN = dot(N, L);
-    vec3 R = reflect(-L, N);
-
-    float diffuse = max(LdotN, 0.0);
-    float specular = max(pow(dot(normalize(-fragment.eye_coord), R), material_specular_power), 0.0);
-
-    float f = textureProj(depth_texture, fragment.shadow_coord);
-
-    color = vec4(material_ambient + f * (material_diffuse * diffuse + material_specular * specular), 1.0);
-    //color = vec4(f,f,0,1) * 0.5 + color * 0.01f;
-
+	vec3 N = normalize(fragment.normal);
+	vec3 L = normalize(light_position - fragment.eye_coord);
+	vec3 R = reflect(-L, N);
+	vec3 E = normalize(fragment.eye_coord);
+	float NdotL = dot(N, L);
+	float EdotR = dot(-E, R);
+	float diffuse = max(NdotL, 0.0);
+	float specular = max(pow(EdotR, material_specular_power), 0.0);
+	float f = textureProj(depth_texture, fragment.shadow_coord);
+	
+	color = vec4(material_ambient + f * (material_diffuse * diffuse + material_specular * specular), 1.0);
 }
 ";
 
@@ -157,7 +155,7 @@ void main(void)
             : base(model, builder)
         {
             this.ModelSize = model.GetModelSize();
-            this.Ambient = new vec3(1, 1, 1) * 0.1f;
+            this.Ambient = new vec3(1, 1, 1) * 0.2f;
             this.Diffuse = System.Drawing.Color.SkyBlue.ToVec3();
             this.Specular = new vec3(1, 1, 1) * 0.1f;
             this.SpecularPower = 0.2f;
@@ -197,7 +195,8 @@ void main(void)
             program.SetUniform(projection_matrix, projection);
             program.SetUniform(shadow_matrix, lightProjection * lightView);
             program.SetUniform(depth_texture, light.BindingTexture);
-            program.SetUniform(light_position, light.Position);
+            program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
+            //program.SetUniform(light_position, light.Position);
             program.SetUniform(material_ambient, this.Ambient);
             program.SetUniform(material_diffuse, this.Diffuse);
             program.SetUniform(material_specular, this.Specular);

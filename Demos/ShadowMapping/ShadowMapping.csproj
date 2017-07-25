@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LightPostionNode.cs" />
     <Compile Include="ShadowGroundRenderer.cs" />
     <Compile Include="DepthGroundRenderer.cs" />
     <Compile Include="ShadowTeapotRenderer.cs" />
