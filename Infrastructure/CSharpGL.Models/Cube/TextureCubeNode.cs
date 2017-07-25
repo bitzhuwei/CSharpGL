@@ -57,9 +57,9 @@ void main(void) {
         /// <returns></returns>
         public static TexturedCubeNode Create(Texture texture)
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition, inUV);
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(vertexCode, inPosition, inUV);
+            var fs = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, TexturedCubeModel.strPosition);
             map.Add(inUV, TexturedCubeModel.strUV);

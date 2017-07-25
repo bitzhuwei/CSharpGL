@@ -52,9 +52,9 @@ void main(void) {
         /// <returns></returns>
         public static CubeNode Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition);
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(vertexCode, inPosition);
+            var fs = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
             var builder = new RenderUnitBuilder(provider, map);

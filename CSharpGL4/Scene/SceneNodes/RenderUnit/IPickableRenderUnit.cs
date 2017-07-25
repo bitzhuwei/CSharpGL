@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -10,24 +11,33 @@ namespace CSharpGL
     /// </summary>
     public class IPickableRenderUnit
     {
+        private const string strIPickableRenderUnit = "IPickableRenderUnit";
         /// <summary>
-        /// 
+        /// Shader Program that does the rendering algorithm.
         /// </summary>
+        [Category(strIPickableRenderUnit)]
+        [Description("Shader Program that does the picking algorithm.")]
         public ShaderProgram Program { get; private set; }
 
         /// <summary>
-        /// 
+        /// Vertex Array Object.
         /// </summary>
+        [Category(strIPickableRenderUnit)]
+        [Description("Vertex Array Object.")]
         public VertexArrayObject VertexArrayObject { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Category(strIPickableRenderUnit)]
+        [Description("Position buffer.")]
         public VertexBuffer PositionBuffer { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Category(strIPickableRenderUnit)]
+        [Description("OpenGL toggles.")]
         public GLStateList StateList { get; private set; }
 
         /// <summary>

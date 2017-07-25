@@ -63,9 +63,9 @@ void main(void) {
         /// <returns></returns>
         public static TeapotNode Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition, inColor);
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(vertexCode, inPosition, inColor);
+            var fs = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
             map.Add(inColor, Teapot.strColor);

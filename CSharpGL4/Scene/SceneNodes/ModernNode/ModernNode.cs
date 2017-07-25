@@ -7,37 +7,6 @@ namespace CSharpGL
     public abstract partial class ModernNode : SceneNodeBase, IRenderable
     {
         // data structure for rendering.
-
-        ///// <summary>
-        ///// Vertex Array Object.
-        ///// </summary>
-        //protected VertexArrayObject vertexArrayObject;
-
-        ///// <summary>
-        ///// all 'in type varName;' in vertex shader.
-        ///// </summary>
-        //protected VertexShaderAttribute[] vertexShaderAttribute;
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        //protected IndexBuffer indexBuffer;
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        //protected GLStateList stateList = new GLStateList();
-
-        ///// <summary>
-        ///// Provides shader program for this renderer.
-        ///// </summary>
-        //protected IShaderProgramProvider shaderProgramProvider;
-
-        ///// <summary>
-        ///// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="DataSource"/>.
-        ///// </summary>
-        //protected AttributeMap attributeMap;
-
         private readonly RenderUnitBuilder[] builders;
         private readonly IBufferSource model;
 
@@ -50,10 +19,6 @@ namespace CSharpGL
         {
             this.model = model;
             this.builders = builders;
-            //this.DataSource = model;
-            //this.shaderProgramProvider = shaderProgramProvider;
-            //this.attributeMap = attributeMap;
-            //this.stateList.AddRange(switches);
         }
     }
 }

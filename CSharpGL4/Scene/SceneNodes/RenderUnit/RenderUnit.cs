@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -10,19 +11,26 @@ namespace CSharpGL
     /// </summary>
     public class RenderUnit
     {
+        private const string strRenderUnit = "RenderUnit";
         /// <summary>
-        /// 
+        /// Shader Program that does the rendering algorithm.
         /// </summary>
+        [Category(strRenderUnit)]
+        [Description("Shader Program that does the rendering algorithm.")]
         public ShaderProgram Program { get; private set; }
 
         /// <summary>
-        /// 
+        /// Vertex Array Object.
         /// </summary>
+        [Category(strRenderUnit)]
+        [Description("Vertex Array Object.")]
         public VertexArrayObject VertexArrayObject { get; private set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
+        [Category(strRenderUnit)]
+        [Description("OpenGL toggles.")]
         public GLStateList StateList { get; private set; }
 
         /// <summary>

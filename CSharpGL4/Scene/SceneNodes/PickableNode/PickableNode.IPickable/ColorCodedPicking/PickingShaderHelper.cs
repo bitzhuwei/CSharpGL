@@ -18,9 +18,9 @@ namespace CSharpGL
         /// <returns></returns>
         public static IShaderProgramProvider GetPickingShaderProgramProvider()
         {
-            var vertexShader = new VertexShader(pickVertexShader, "in_Position");
-            var fragmentShader = new FragmentShader(pickFragmentShader);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(pickVertexShader, "in_Position");
+            var fs = new FragmentShader(pickFragmentShader);
+            var provider = new ShaderArray(vs, fs);
             return provider;
         }
 

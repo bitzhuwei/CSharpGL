@@ -82,9 +82,9 @@ void main(void) {
         /// <returns></returns>
         public static RectangleNode Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition, inUV);
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(vertexCode, inPosition, inUV);
+            var fs = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, RectangleModel.strPosition);
             map.Add(inUV, RectangleModel.strUV);

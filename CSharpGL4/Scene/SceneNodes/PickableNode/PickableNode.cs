@@ -7,58 +7,6 @@ namespace CSharpGL
     public abstract partial class PickableNode : SceneNodeBase, IRenderable, IPickable
     {
         // data structure for rendering.
-
-        ///// <summary>
-        ///// Vertex Array Object.
-        ///// </summary>
-        //protected VertexArrayObject vertexArrayObject;
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //protected VertexArrayObject pickVertexArrayObject;
-
-        ///// <summary>
-        ///// all 'in type varName;' in vertex shader.
-        ///// </summary>
-        //protected VertexShaderAttribute[] vertexShaderAttributes;
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //protected VertexBuffer positionBuffer;
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        //protected IndexBuffer indexBuffer;
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        //protected GLStateList stateList = new GLStateList();
-
-        ///// <summary>
-        ///// Provides shader program for this renderer.
-        ///// </summary>
-        //protected IShaderProgramProvider renderProgramProvider;
-
-        ///// <summary>
-        ///// Provides shader program that rennders something for picking.
-        ///// </summary>
-        //protected IShaderProgramProvider pickProgramProvider;
-
-        ///// <summary>
-        ///// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="DataSource"/>.
-        ///// </summary>
-        //protected AttributeMap attributeMap;
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        //[Browsable(false)]
-        //public string PositionNameInVertexShader { get; private set; }
-
         private readonly RenderUnitBuilder[] builders;
         private readonly IPickableRenderUnitBuilder pickingRenderUnitBuilder;
         private readonly IBufferSource model;

@@ -121,9 +121,9 @@ void main(void) {
         /// <returns></returns>
         public static TextBillboardNode Create(ITextureSource textureSource, int width, int height)
         {
-            var vertexShader = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
+            var fs = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             var builder = new RenderUnitBuilder(provider, map);
             var renderer = new TextBillboardNode(textureSource, width, height, new TextBillboard(), builder);

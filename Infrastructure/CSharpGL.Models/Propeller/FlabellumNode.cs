@@ -63,9 +63,9 @@ void main(void) {
         /// <returns></returns>
         public static FlabellumNode Create()
         {
-            var vertexShader = new VertexShader(vertexCode, "inPositoin", "inColor");
-            var fragmentShader = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vertexShader, fragmentShader);
+            var vs = new VertexShader(vertexCode, "inPositoin", "inColor");
+            var fs = new FragmentShader(fragmentCode);
+            var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", Flabellum.strPosition);
             map.Add("inColor", Flabellum.strColor);
