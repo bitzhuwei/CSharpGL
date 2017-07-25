@@ -140,9 +140,6 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
-                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
-
                 var pickable = sceneElement as IPickable;
                 TwoFlags flags = (pickable != null) ? pickable.EnablePicking : TwoFlags.None;
                 bool before = (pickable != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
@@ -157,12 +154,10 @@ namespace CSharpGL
 
                 if (children)
                 {
-                    arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
                         this.RenderForPicking(item, arg);
                     }
-                    arg.ModelMatrixStack.Pop();
                 }
             }
         }
