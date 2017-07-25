@@ -64,11 +64,11 @@ void main(void) {
             map.Add(inPosition, TexturedCubeModel.strPosition);
             map.Add(inUV, TexturedCubeModel.strUV);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new TexturedCubeNode(new TexturedCubeModel(), TexturedCubeModel.strPosition, builder);
-            renderer.texture = texture;
-            renderer.Initialize();
+            var node = new TexturedCubeNode(new TexturedCubeModel(), TexturedCubeModel.strPosition, builder);
+            node.texture = texture;
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

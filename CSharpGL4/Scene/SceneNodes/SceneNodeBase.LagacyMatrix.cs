@@ -13,9 +13,9 @@ namespace CSharpGL
         /// <summary>
         /// Push and calculate projection+view matrix in legacy OpenGL.
         /// </summary>
-        /// <param name="renderer"></param>
+        /// <param name="node"></param>
         /// <param name="arg"></param>
-        public static void PushProjectionViewMatrix(this SceneNodeBase renderer, RenderEventArgs arg)
+        public static void PushProjectionViewMatrix(this SceneNodeBase node, RenderEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
@@ -29,9 +29,9 @@ namespace CSharpGL
         /// <summary>
         /// Push and calculate projection+view matrix in legacy OpenGL for picking.
         /// </summary>
-        /// <param name="renderer"></param>
+        /// <param name="node"></param>
         /// <param name="arg"></param>
-        public static void PushProjectionViewMatrix(this SceneNodeBase renderer, LegacyPickingEventArgs arg)
+        public static void PushProjectionViewMatrix(this SceneNodeBase node, LegacyPickingEventArgs arg)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
@@ -44,20 +44,20 @@ namespace CSharpGL
         /// <summary>
         /// Push and calculate model matrix in legacy OpenGL.
         /// </summary>
-        /// <param name="renderer"></param>
-        public static void PushModelMatrix(this SceneNodeBase renderer)
+        /// <param name="node"></param>
+        public static void PushModelMatrix(this SceneNodeBase node)
         {
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PushMatrix();
             GL.Instance.LoadIdentity();
-            // note: renderer.modelMatrix has already been updated in Scene.Render(RendererBase sceneElement, RenderEventArgs arg);
-            GL.Instance.MultMatrixf(renderer.cascadeModelMatrix.ToArray());
+            // note: node.modelMatrix has already been updated in Scene.Render(RendererBase sceneElement, RenderEventArgs arg);
+            GL.Instance.MultMatrixf(node.cascadeModelMatrix.ToArray());
         }
 
         /// <summary>
         /// Pop projection+view matrix.
         /// </summary>
-        public static void PopProjectionViewMatrix(this SceneNodeBase renderer)
+        public static void PopProjectionViewMatrix(this SceneNodeBase node)
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PopMatrix();
@@ -66,7 +66,7 @@ namespace CSharpGL
         /// <summary>
         /// Pop model matrix.
         /// </summary>
-        public static void PopModelMatrix(this SceneNodeBase renderer)
+        public static void PopModelMatrix(this SceneNodeBase node)
         {
             GL.Instance.MatrixMode(GL.GL_MODELVIEW);
             GL.Instance.PopMatrix();

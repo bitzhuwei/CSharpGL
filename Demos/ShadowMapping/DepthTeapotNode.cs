@@ -54,10 +54,10 @@ void main(void)
                 shadowmapBuilder = new RenderUnitBuilder(provider, map);
             }
             var model = new Teapot();
-            var renderer = new DepthTeapotNode(model, shadowmapBuilder);
-            renderer.Initialize();
+            var node = new DepthTeapotNode(model, shadowmapBuilder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         private DepthTeapotNode(Teapot model, params RenderUnitBuilder[] builder)

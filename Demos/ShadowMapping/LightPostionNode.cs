@@ -60,10 +60,10 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
-            renderer.Initialize();
+            var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

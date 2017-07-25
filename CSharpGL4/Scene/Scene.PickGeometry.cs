@@ -79,12 +79,12 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry Pick(uint stageVertexId, PickingEventArgs arg, SceneNodeBase renderer)
+        private PickedGeometry Pick(uint stageVertexId, PickingEventArgs arg, SceneNodeBase node)
         {
             PickedGeometry pickedGeometry = null;
-            if (renderer != null)
+            if (node != null)
             {
-                var pickable = renderer as IPickable;
+                var pickable = node as IPickable;
                 if (pickable != null)
                 {
                     pickedGeometry = pickable.GetPickedGeometry(arg, stageVertexId);
@@ -92,7 +92,7 @@ namespace CSharpGL
 
                 if (pickedGeometry == null)
                 {
-                    foreach (var item in renderer.Children)
+                    foreach (var item in node.Children)
                     {
                         pickedGeometry = Pick(stageVertexId, arg, item);
                         if (pickedGeometry != null)

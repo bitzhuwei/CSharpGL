@@ -124,10 +124,10 @@ namespace ColorCodedPicking
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace renderer = this.scene.RootElement;
-            if (renderer != null)
+            IWorldSpace node = this.scene.RootElement;
+            if (node != null)
             {
-                renderer.RotationAngle += 1;
+                node.RotationAngle += 1;
             }
         }
 

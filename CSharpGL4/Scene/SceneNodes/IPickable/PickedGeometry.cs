@@ -40,7 +40,7 @@ namespace CSharpGL
         public uint StageVertexId { get; set; }
 
         /// <summary>
-        /// The renderer that this picked primitive belongs to.
+        /// The node that this picked primitive belongs to.
         /// </summary>
         public virtual IPickable FromRenderer { get; set; }
 

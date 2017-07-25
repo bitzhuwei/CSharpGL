@@ -11,7 +11,7 @@ namespace CSharpGL
     public class LightContainerNode : SceneNodeBase, ILocalLightContainer, IRenderable
     {
         /// <summary>
-        /// contains some renderers in its children.
+        /// contains some nodes in its children.
         /// </summary>
         /// <param name="localLights">lights that affects the children node.</param>
         public LightContainerNode(params LightBase[] localLights)

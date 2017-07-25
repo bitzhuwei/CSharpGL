@@ -14,20 +14,17 @@ namespace CSharpGL
         /// <summary>
         /// Get picked geometry.
         /// </summary>
-        /// <param name="renderer"></param>
-        public PickerBase(PickableNode renderer)
+        /// <param name="node"></param>
+        public PickerBase(PickableNode node)
         {
-            this.Renderer = renderer;
+            this.Renderer = node;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="renderer"></param>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         /// <returns></returns>
         public abstract PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
 

@@ -70,10 +70,10 @@ void main(void) {
             map.Add(inPosition, Teapot.strPosition);
             map.Add(inColor, Teapot.strColor);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new TeapotNode(new Teapot(), Teapot.strPosition, builder);
-            renderer.Initialize();
+            var node = new TeapotNode(new Teapot(), Teapot.strPosition, builder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         private TeapotNode(Teapot model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
@@ -116,7 +116,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

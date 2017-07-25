@@ -71,10 +71,10 @@ void main(void) {
             map.Add(inPosition, PLY.strPosition);
             //map.Add(inColor, PLY.strColor);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new PLYNode(new PLY(), PLY.strPosition, builder);
-            renderer.Initialize();
+            var node = new PLYNode(new PLY(), PLY.strPosition, builder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         private PLYNode(PLY model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
@@ -112,7 +112,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

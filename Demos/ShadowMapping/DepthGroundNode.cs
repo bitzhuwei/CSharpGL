@@ -58,10 +58,10 @@ void main(void)
                 map.Add(inPosition, GroundModel.strPosition);
                 shadowmapBuilder = new RenderUnitBuilder(provider, map);
             }
-            var renderer = new DepthGroundNode(new GroundModel(), GroundModel.strPosition, shadowmapBuilder);
-            renderer.Initialize();
+            var node = new DepthGroundNode(new GroundModel(), GroundModel.strPosition, shadowmapBuilder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace CSharpGL
         public vec3[] Positions { get; private set; }
 
         /// <summary>
-        /// contains some renderers in its children.
+        /// contains some nodes in its children.
         /// </summary>
         /// <param name="modelSize"></param>
         public LegacyBoundingBoxNode(vec3 modelSize)

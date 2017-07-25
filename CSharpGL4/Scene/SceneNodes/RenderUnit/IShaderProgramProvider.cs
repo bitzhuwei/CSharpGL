@@ -4,7 +4,7 @@ using System.Linq;
 namespace CSharpGL
 {
     /// <summary>
-    /// Data for CPU(model) -&gt; Data for GPU(buffer renderer)
+    /// Data for CPU(model) -&gt; Data for GPU(buffer node)
     /// <para>从模型的数据格式转换为<see cref="GLBuffer"/>，<see cref="GLBuffer"/>转换为<see cref="GLBuffer"/>，
     /// <see cref="GLBuffer"/>则可用于控制GPU的渲染操作。</para>
     /// </summary>

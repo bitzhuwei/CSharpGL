@@ -57,17 +57,17 @@ namespace Texture2D
             return result;
         }
 
-        private void Match(TreeView treeView, SceneNodeBase rendererBase)
+        private void Match(TreeView treeView, SceneNodeBase nodeBase)
         {
             treeView.Nodes.Clear();
-            var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
+            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
             treeView.Nodes.Add(node);
-            Match(node, rendererBase);
+            Match(node, nodeBase);
         }
 
-        private void Match(TreeNode node, SceneNodeBase rendererBase)
+        private void Match(TreeNode node, SceneNodeBase nodeBase)
         {
-            foreach (var item in rendererBase.Children)
+            foreach (var item in nodeBase.Children)
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);

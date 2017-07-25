@@ -89,10 +89,10 @@ void main(void) {
             map.Add(inPosition, RectangleModel.strPosition);
             map.Add(inUV, RectangleModel.strUV);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new RectangleNode(new RectangleModel(), RectangleModel.strPosition, builder);
-            renderer.Initialize();
+            var node = new RectangleNode(new RectangleModel(), RectangleModel.strPosition, builder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ void main(void) {
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
 
             var source = this.TextureSource;

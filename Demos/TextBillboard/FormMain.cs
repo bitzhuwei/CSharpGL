@@ -54,17 +54,17 @@ namespace TextBillboard
             this.trvScene.ExpandAll();
         }
 
-        private void Match(TreeView treeView, SceneNodeBase rendererBase)
+        private void Match(TreeView treeView, SceneNodeBase nodeBase)
         {
             treeView.Nodes.Clear();
-            var node = new TreeNode(rendererBase.ToString()) { Tag = rendererBase };
+            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
             treeView.Nodes.Add(node);
-            Match(node, rendererBase);
+            Match(node, nodeBase);
         }
 
-        private void Match(TreeNode node, SceneNodeBase rendererBase)
+        private void Match(TreeNode node, SceneNodeBase nodeBase)
         {
-            foreach (var item in rendererBase.Children)
+            foreach (var item in nodeBase.Children)
             {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
@@ -217,13 +217,13 @@ namespace TextBillboard
             List<HitTarget> list = this.scene.Pick(x, y);
             //foreach (var item in list)
             //{
-            //    var parent = item.renderer.Parent;
+            //    var parent = item.node.Parent;
             //    if (parent != null)
             //    {
-            //        var renderer = parent as IRenderable;
-            //        if (renderer != null)
+            //        var node = parent as IRenderable;
+            //        if (node != null)
             //        {
-            //            renderer.RenderingEnabled = !renderer.RenderingEnabled;
+            //            node.RenderingEnabled = !node.RenderingEnabled;
             //        }
             //    }
             //}
@@ -234,11 +234,11 @@ namespace TextBillboard
             }
             else if (list.Count == 1)
             {
-                this.propGrid.SelectedObject = list[0].renderer;
+                this.propGrid.SelectedObject = list[0].node;
             }
             else
             {
-                this.propGrid.SelectedObjects = (from item in list select item.renderer).ToArray();
+                this.propGrid.SelectedObjects = (from item in list select item.node).ToArray();
             }
 
             this.lblState.Text = string.Format("{0} objects selected.", list.Count);

@@ -66,7 +66,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public readonly SceneNodeBase renderer;
+        public readonly SceneNodeBase node;
 
         /// <summary>
         /// 
@@ -86,7 +86,7 @@ namespace CSharpGL
         /// <param name="zFar"></param>
         public HitTarget(SceneNodeBase sceneElement, uint zNear, uint zFar)
         {
-            this.renderer = sceneElement;
+            this.node = sceneElement;
             this.zNear = zNear;
             this.zFar = zFar;
         }

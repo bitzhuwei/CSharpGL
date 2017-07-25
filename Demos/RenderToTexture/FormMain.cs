@@ -80,19 +80,19 @@ namespace RenderToTexture
         {
             if (this.rotateRect)
             {
-                IWorldSpace renderer = this.rectangle;
-                if (renderer != null)
+                IWorldSpace node = this.rectangle;
+                if (node != null)
                 {
-                    renderer.RotationAngle += 1;
+                    node.RotationAngle += 1;
                 }
             }
 
             if (this.rotateTeapot)
             {
-                IWorldSpace renderer = this.teapot;
-                if (renderer != null)
+                IWorldSpace node = this.teapot;
+                if (node != null)
                 {
-                    renderer.RotationAngle += 10;
+                    node.RotationAngle += 10;
                 }
             }
         }

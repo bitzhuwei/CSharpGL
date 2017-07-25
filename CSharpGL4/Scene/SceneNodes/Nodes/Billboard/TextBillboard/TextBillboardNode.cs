@@ -126,10 +126,10 @@ void main(void) {
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new TextBillboardNode(textureSource, width, height, new TextBillboard(), builder);
-            renderer.Initialize();
+            var node = new TextBillboardNode(textureSource, width, height, new TextBillboard(), builder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         private ITextureSource textureSource;
@@ -188,7 +188,7 @@ void main(void) {
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

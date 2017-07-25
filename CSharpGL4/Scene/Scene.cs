@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// camera, canvas, renderers.
+    /// camera, canvas, nodes.
     /// rendering, picking.
     /// </summary>
     public partial class Scene
@@ -49,7 +49,7 @@ namespace CSharpGL
         public List<LightBase> Lights { get; private set; }
 
         /// <summary>
-        /// camera, canvas, renderers.
+        /// camera, canvas, nodes.
         /// rendering, picking. 
         /// </summary>
         /// <param name="camera"></param>

@@ -13,17 +13,14 @@ namespace CSharpGL
         /// <summary>
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
         /// </summary>
-        /// <param name="renderer"></param>
-        public ZeroIndexPicker(PickableNode renderer) : base(renderer) { }
+        /// <param name="node"></param>
+        public ZeroIndexPicker(PickableNode node) : base(node) { }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="renderer"></param>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         /// <returns></returns>
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {

@@ -61,10 +61,10 @@ void main(void) {
                 map.Add(inPosition, GroundModel.strPosition);
                 renderBuilder = new RenderUnitBuilder(provider, map);
             }
-            var renderer = new GroundNode(new GroundModel(), GroundModel.strPosition, renderBuilder);
-            renderer.Initialize();
+            var node = new GroundNode(new GroundModel(), GroundModel.strPosition, renderBuilder);
+            node.Initialize();
 
-            return renderer;
+            return node;
         }
 
         /// <summary>

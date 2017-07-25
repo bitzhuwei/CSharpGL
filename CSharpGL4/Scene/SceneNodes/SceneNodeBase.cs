@@ -97,7 +97,7 @@ namespace CSharpGL
         /// Already initialized.
         /// </summary>
         [Category(strSceneNodeBase)]
-        [Description("Is this renderer initialized or not?")]
+        [Description("Is this node initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
         /// <summary>
