@@ -6,24 +6,10 @@ using System.Text;
 
 namespace CSharpGL
 {
-    // Y
-    // ^
-    // |
-    // |
-    // 1--------------------0
-    // |      .             |
-    // |      |             |
-    // |                    |
-    // |    .               |
-    // |   .                |
-    // |  .                 |
-    // | .                  |
-    // 2--------------------3 --> X
-    //
     /// <summary>
-    /// Render rectangle with texture in modern opengl.
+    /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class RectangleRenderer : PickableNode
+    public class TexturedCubeNode : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
@@ -31,7 +17,7 @@ namespace CSharpGL
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
         private const string tex = "tex";
-        private const string transparentBackground = "transparentBackground";
+        private const string alpha = "alpha";
         private const string vertexCode =
             @"#version 330 core
 
@@ -46,50 +32,40 @@ out vec2 passUV;
 
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-	passUV = inUV;
+    passUV = inUV;
 }
 ";
         private const string fragmentCode =
             @"#version 330 core
-
 in vec2 passUV;
 
 uniform sampler2D " + tex + @";
-uniform bool " + transparentBackground + @" = false;
+uniform float " + alpha + @";
 
 layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
-	vec4 color = texture(tex, passUV);
-    if (transparentBackground)
-    {
-        if (color.a == 0) { discard; }
-        else { out_Color = color; }
-    }
-    else 
-    {
-        out_Color = color;
-    }
+    out_Color = vec4(texture(tex, passUV).xyz, alpha);
 }
 ";
 
-        public bool TransparentBackground { get; set; }
-
+        private Texture texture;
         /// <summary>
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static RectangleRenderer Create()
+        public static TexturedCubeNode Create(Texture texture)
         {
             var vertexShader = new VertexShader(vertexCode, inPosition, inUV);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add(inPosition, RectangleModel.strPosition);
-            map.Add(inUV, RectangleModel.strUV);
+            map.Add(inPosition, TexturedCubeModel.strPosition);
+            map.Add(inUV, TexturedCubeModel.strUV);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new RectangleRenderer(new RectangleModel(), RectangleModel.strPosition, builder);
+            var renderer = new TexturedCubeNode(new TexturedCubeModel(), TexturedCubeModel.strPosition, builder);
+            renderer.texture = texture;
             renderer.Initialize();
 
             return renderer;
@@ -98,32 +74,34 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private RectangleRenderer(RectangleModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private TexturedCubeNode(TexturedCubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
+            this.Alpha = 1.0f;
         }
+
+        /// <summary>
+        /// transparent component.
+        /// </summary>
+        public float Alpha { get; set; }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
-            ShaderProgram program = renderUnit.Program;
-
-            var source = this.TextureSource;
-            if (source != null)
-            {
-                program.SetUniform(tex, source.BindingTexture);
-            }
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
+
+            var renderUnit = this.RenderUnits[0]; // the only render unit in this renderer.
+            ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(transparentBackground, this.TransparentBackground);
+            program.SetUniform(tex, this.texture);
+            program.SetUniform(alpha, this.Alpha);
 
             renderUnit.Render();
         }
@@ -132,18 +110,15 @@ void main(void) {
         {
             throw new NotImplementedException();
         }
-
-        public ITextureSource TextureSource { get; set; }
-
     }
 
-    class RectangleModel : IBufferSource
+    class TexturedCubeModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 
-        public RectangleModel()
+        public TexturedCubeModel()
         {
-            this.ModelSize = new vec3(xLength * 2, yLength * 2, (xLength + yLength) * 0.02f);
+            this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
         }
 
         public const string strPosition = "position";
@@ -193,26 +168,77 @@ void main(void) {
 
         private const float xLength = 0.5f;
         private const float yLength = 0.5f;
+        private const float zLength = 0.5f;
         /// <summary>
-        /// four vertexes.
+        /// six quads' vertexes.
         /// </summary>
         private static readonly vec3[] positions = new vec3[]
         {
-            new vec3(+xLength, +yLength, 0),// 0
-            new vec3(-xLength, +yLength, 0),// 1
-            new vec3(-xLength, -yLength, 0),// 2
-            new vec3(+xLength, -yLength, 0),// 3
+            new vec3(-xLength, -yLength, +zLength),//  0
+            new vec3(+xLength, -yLength, +zLength),//  1
+            new vec3(+xLength, +yLength, +zLength),//  2
+            new vec3(-xLength, +yLength, +zLength),//  3
+
+            new vec3(+xLength, -yLength, +zLength),//  4
+            new vec3(+xLength, -yLength, -zLength),//  5
+            new vec3(+xLength, +yLength, -zLength),//  6
+            new vec3(+xLength, +yLength, +zLength),//  7
+            
+            new vec3(-xLength, +yLength, +zLength),//  8
+            new vec3(+xLength, +yLength, +zLength),//  9
+            new vec3(+xLength, +yLength, -zLength),// 10
+            new vec3(-xLength, +yLength, -zLength),// 11
+            
+            new vec3(+xLength, -yLength, -zLength),// 12
+            new vec3(-xLength, -yLength, -zLength),// 13
+            new vec3(-xLength, +yLength, -zLength),// 14
+            new vec3(+xLength, +yLength, -zLength),// 15
+            
+            new vec3(-xLength, -yLength, -zLength),// 16
+            new vec3(-xLength, -yLength, +zLength),// 17
+            new vec3(-xLength, +yLength, +zLength),// 18
+            new vec3(-xLength, +yLength, -zLength),// 19
+            
+            new vec3(+xLength, -yLength, -zLength),// 20
+            new vec3(+xLength, -yLength, +zLength),// 21
+            new vec3(-xLength, -yLength, +zLength),// 22
+            new vec3(-xLength, -yLength, -zLength),// 23
         };
+
         /// <summary>
-        /// four uvs.
+        /// six quads' uvs.
         /// </summary>
         private static readonly vec2[] uvs = new vec2[]
         {
-            new vec2(1, 1),// 0
-            new vec2(0, 1),// 1
-            new vec2(0, 0),// 2
-            new vec2(1, 0),// 3
-        };
+            new vec2(0, 0),//  0
+            new vec2(1, 0),//  1
+            new vec2(1, 1),//  2
+            new vec2(0, 1),//  3
 
+            new vec2(0, 0),//  4
+            new vec2(1, 0),//  5
+            new vec2(1, 1),//  6
+            new vec2(0, 1),//  7
+            
+            new vec2(0, 0),//  8
+            new vec2(1, 0),//  9
+            new vec2(1, 1),// 10
+            new vec2(0, 1),// 11
+            
+            new vec2(0, 0),// 12
+            new vec2(1, 0),// 13
+            new vec2(1, 1),// 14
+            new vec2(0, 1),// 15
+            
+            new vec2(0, 0),// 16
+            new vec2(1, 0),// 17
+            new vec2(1, 1),// 18
+            new vec2(0, 1),// 19
+            
+            new vec2(0, 0),// 20
+            new vec2(1, 0),// 21
+            new vec2(1, 1),// 22
+            new vec2(0, 1),// 23
+        };
     }
 }

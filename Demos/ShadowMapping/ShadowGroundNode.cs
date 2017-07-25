@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class ShadowGroundRenderer : PickableNode, IShadowMapping
+    public class ShadowGroundNode : PickableNode, IShadowMapping
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
@@ -125,7 +125,7 @@ void main(void)
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static ShadowGroundRenderer Create()
+        public static ShadowGroundNode Create()
         {
             RenderUnitBuilder shadowmapBuilder, renderBuilder;
             {
@@ -144,7 +144,7 @@ void main(void)
                 map.Add(inNormal, GroundModel.strNormal);
                 renderBuilder = new RenderUnitBuilder(provider, map);
             }
-            var renderer = new ShadowGroundRenderer(new GroundModel(), GroundModel.strPosition, shadowmapBuilder, renderBuilder);
+            var renderer = new ShadowGroundNode(new GroundModel(), GroundModel.strPosition, shadowmapBuilder, renderBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -153,7 +153,7 @@ void main(void)
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private ShadowGroundRenderer(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private ShadowGroundNode(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;

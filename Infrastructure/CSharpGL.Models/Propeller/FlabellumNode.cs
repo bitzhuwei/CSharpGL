@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render flabellum in modern opengl.
     /// </summary>
-    public class FlabellumRenderer : ModernNode
+    public class FlabellumNode : ModernNode
     {
         private const string vertexCode =
             @"#version 150 core
@@ -61,7 +61,7 @@ void main(void) {
         /// Render flabellum in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static FlabellumRenderer Create()
+        public static FlabellumNode Create()
         {
             var vertexShader = new VertexShader(vertexCode, "inPositoin", "inColor");
             var fragmentShader = new FragmentShader(fragmentCode);
@@ -71,13 +71,13 @@ void main(void) {
             map.Add("inColor", Flabellum.strColor);
             var model = new Flabellum();
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new FlabellumRenderer(model, builder);
+            var renderer = new FlabellumNode(model, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private FlabellumRenderer(Flabellum model, params RenderUnitBuilder[] builders)
+        private FlabellumNode(Flabellum model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
             this.ModelSize = model.GetModelSize();

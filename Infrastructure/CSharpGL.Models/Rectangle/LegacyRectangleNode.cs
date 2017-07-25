@@ -23,7 +23,7 @@ namespace CSharpGL
     /// <summary>
     /// Render propeller in legacy opengl.
     /// </summary>
-    public class LegacyRectangleRenderer : SceneNodeBase, IRenderable, ILegacyPickable
+    public class LegacyRectangleNode : SceneNodeBase, IRenderable, ILegacyPickable
     {
         private const float xLength = 0.5f;
         private const float yLength = 0.5f;
@@ -51,7 +51,7 @@ namespace CSharpGL
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        public LegacyRectangleRenderer()
+        public LegacyRectangleNode()
         {
             this.ModelSize = new vec3(xLength * 2, yLength * 2, 0.01f);
         }

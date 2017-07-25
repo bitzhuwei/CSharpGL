@@ -46,9 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LightPostionNode.cs" />
-    <Compile Include="ShadowGroundRenderer.cs" />
-    <Compile Include="DepthGroundRenderer.cs" />
-    <Compile Include="ShadowTeapotRenderer.cs" />
+    <Compile Include="ShadowGroundNode.cs" />
+    <Compile Include="DepthGroundNode.cs" />
+    <Compile Include="ShadowTeapotNode.cs" />
     <Compile Include="FormShadowMapping.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,7 +63,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DepthTeapotRenderer.cs" />
+    <Compile Include="DepthTeapotNode.cs" />
     <EmbeddedResource Include="FormShadowMapping.resx">
       <DependentUpon>FormShadowMapping.cs</DependentUpon>
     </EmbeddedResource>

@@ -7,9 +7,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render a PLY model in modern opengl.
+    /// Render a teapot in modern opengl.
     /// </summary>
-    public class PLYRenderer : PickableNode
+    public class TeapotNode : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string inColor = "inColor";
@@ -18,9 +18,10 @@ namespace CSharpGL
         private const string modelMatrix = "modelMatrix";
         private const string passColor = "passColor";
         private const string vertexCode =
-            @"#version 150 core
+            @"#version 330 core
 
 in vec3 " + inPosition + @";
+in vec3 " + inColor + @";
 
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
@@ -30,18 +31,16 @@ out vec3 passColor;
 
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-    vec3 color = normalize(inPosition);
-    if (color.x < 0) { color.x = -color.x / 2.0; }
-    if (color.y < 0) { color.y = -color.y / 2.0; }
-    if (color.z < 0) { color.z = -color.z / 2.0; }
-    passColor = color;
+    passColor = inColor;
 }
 ";
+        //if (inColor.x >= 0) { color.x = inColor.x; } else { color.x = -inColor.x / 2.0; }
+        //if (inColor.y >= 0) { color.y = inColor.y; } else { color.y = -inColor.y / 2.0; }
+        //if (inColor.z >= 0) { color.z = inColor.z; } else { color.z = -inColor.z / 2.0; }
         private const string fragmentCode =
-            @"#version 150 core
+            @"#version 330 core
 
 in vec3 passColor;
-
 uniform bool renderWireframe = false;
 
 out vec4 out_Color;
@@ -59,32 +58,30 @@ void main(void) {
 ";
 
         /// <summary>
-        /// Render a PLY model in modern opengl.
+        /// Render a teapot in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static PLYRenderer Create()
+        public static TeapotNode Create()
         {
-            var vertexShader = new VertexShader(vertexCode, inPosition);
+            var vertexShader = new VertexShader(vertexCode, inPosition, inColor);
             var fragmentShader = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vertexShader, fragmentShader);
             var map = new AttributeMap();
-            map.Add(inPosition, PLY.strPosition);
-            //map.Add(inColor, PLY.strColor);
+            map.Add(inPosition, Teapot.strPosition);
+            map.Add(inColor, Teapot.strColor);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new PLYRenderer(new PLY(), PLY.strPosition, builder);
+            var renderer = new TeapotNode(new Teapot(), Teapot.strPosition, builder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private PLYRenderer(PLY model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private TeapotNode(Teapot model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
-            vec3 size = model.ModelSize;
-            this.ModelSize = size;
-            const float factor = 12.0f;
-            float average = (size.x + size.y + size.z) / 3.0f;
-            this.Scale = new vec3(factor / average, factor / average, factor / average);
+            this.ModelSize = model.GetModelSize();
+            this.RenderWireframe = true;
+            this.RenderBody = true;
         }
 
         #region IRenderable 成员
@@ -103,9 +100,16 @@ void main(void) {
         private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
         private GLState polygonOffsetState = new PolygonOffsetFillState();
 
+        /// <summary>
+        /// for debugging.
+        /// </summary>
+        public float RotateSpeed { get; set; }
+
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
+
+            this.RotationAngle += this.RotateSpeed;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -144,6 +148,13 @@ void main(void) {
 
         #endregion
 
+        public override void RenderForPicking(PickingEventArgs arg)
+        {
+            if (this.RenderWireframe || this.RenderBody)
+            {
+                base.RenderForPicking(arg);
+            }
+        }
 
     }
 

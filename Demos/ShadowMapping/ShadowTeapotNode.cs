@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot with shadow.
     /// </summary>
-    class ShadowTeapotRenderer : ModernNode, IShadowMapping
+    class ShadowTeapotNode : ModernNode, IShadowMapping
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
@@ -125,7 +125,7 @@ void main(void)
         /// Render teapot to framebuffer in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static ShadowTeapotRenderer Create()
+        public static ShadowTeapotNode Create()
         {
             RenderUnitBuilder shadowBuilder, lightBuilder;
             {
@@ -145,13 +145,13 @@ void main(void)
                 lightBuilder = new RenderUnitBuilder(provider, map);
             }
             var model = new Teapot();
-            var renderer = new ShadowTeapotRenderer(model, shadowBuilder, lightBuilder);
+            var renderer = new ShadowTeapotNode(model, shadowBuilder, lightBuilder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private ShadowTeapotRenderer(Teapot model, params RenderUnitBuilder[] builder)
+        private ShadowTeapotNode(Teapot model, params RenderUnitBuilder[] builder)
             : base(model, builder)
         {
             this.ModelSize = model.GetModelSize();

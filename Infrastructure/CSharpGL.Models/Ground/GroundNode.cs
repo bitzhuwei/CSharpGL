@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class GroundRenderer : PickableNode
+    public class GroundNode : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -50,7 +50,7 @@ void main(void) {
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static GroundRenderer Create()
+        public static GroundNode Create()
         {
             RenderUnitBuilder renderBuilder;
             {
@@ -61,7 +61,7 @@ void main(void) {
                 map.Add(inPosition, GroundModel.strPosition);
                 renderBuilder = new RenderUnitBuilder(provider, map);
             }
-            var renderer = new GroundRenderer(new GroundModel(), GroundModel.strPosition, renderBuilder);
+            var renderer = new GroundNode(new GroundModel(), GroundModel.strPosition, renderBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -70,7 +70,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private GroundRenderer(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private GroundNode(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;

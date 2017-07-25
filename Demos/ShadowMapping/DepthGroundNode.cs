@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class DepthGroundRenderer : PickableNode, IShadowMapping
+    public class DepthGroundNode : PickableNode, IShadowMapping
     {
         private const string inPosition = "inPosition";
         private const string mvpMatrix = "mvpMatrix";
@@ -48,7 +48,7 @@ void main(void)
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static DepthGroundRenderer Create()
+        public static DepthGroundNode Create()
         {
             RenderUnitBuilder shadowmapBuilder;
             {
@@ -58,7 +58,7 @@ void main(void)
                 map.Add(inPosition, GroundModel.strPosition);
                 shadowmapBuilder = new RenderUnitBuilder(provider, map);
             }
-            var renderer = new DepthGroundRenderer(new GroundModel(), GroundModel.strPosition, shadowmapBuilder);
+            var renderer = new DepthGroundNode(new GroundModel(), GroundModel.strPosition, shadowmapBuilder);
             renderer.Initialize();
 
             return renderer;
@@ -67,7 +67,7 @@ void main(void)
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private DepthGroundRenderer(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private DepthGroundNode(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;

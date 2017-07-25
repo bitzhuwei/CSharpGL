@@ -14,7 +14,7 @@ namespace Transformers
     {
         private Scene scene;
         private ActionList actionList;
-        private TeapotRenderer teapot;
+        private TeapotNode teapot;
 
         public FormMain()
         {
@@ -31,7 +31,7 @@ namespace Transformers
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.teapot = TeapotRenderer.Create();
+            this.teapot = TeapotNode.Create();
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
 
             this.scene = new Scene(camera, this.winGLCanvas1)

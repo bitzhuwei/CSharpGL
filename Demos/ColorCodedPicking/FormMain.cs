@@ -14,10 +14,10 @@ namespace ColorCodedPicking
     {
         private Scene scene;
         private ActionList actionList;
-        private TeapotRenderer teapot;
-        private LegacyTriangleRenderer triangleTip;
-        private LegacyQuadRenderer quadTip;
-        private GroundRenderer ground;
+        private TeapotNode teapot;
+        private LegacyTriangleNode triangleTip;
+        private LegacyQuadNode quadTip;
+        private GroundNode ground;
         public FormMain()
         {
             InitializeComponent();
@@ -35,9 +35,9 @@ namespace ColorCodedPicking
         /// <param name="e"></param>
         void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            LegacyTriangleRenderer triangleTip = this.triangleTip;
+            LegacyTriangleNode triangleTip = this.triangleTip;
             if (triangleTip == null) { return; }
-            LegacyQuadRenderer quadTip = this.quadTip;
+            LegacyQuadNode quadTip = this.quadTip;
             if (quadTip == null) { return; }
 
             int x = e.X;
@@ -89,9 +89,9 @@ namespace ColorCodedPicking
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.teapot = TeapotRenderer.Create();
+            this.teapot = TeapotNode.Create();
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
-            this.ground = GroundRenderer.Create(); this.ground.Color = Color.Gray.ToVec4(); this.ground.Scale *= 10; this.ground.WorldPosition = new vec3(0, -3, 0);
+            this.ground = GroundNode.Create(); this.ground.Color = Color.Gray.ToVec4(); this.ground.Scale *= 10; this.ground.WorldPosition = new vec3(0, -3, 0);
             var group = new GroupNode(this.teapot, this.ground);
 
             this.scene = new Scene(camera, this.winGLCanvas1)
@@ -106,8 +106,8 @@ namespace ColorCodedPicking
             list.Add(renderAction);
             this.actionList = list;
 
-            this.triangleTip = new LegacyTriangleRenderer();
-            this.quadTip = new LegacyQuadRenderer();
+            this.triangleTip = new LegacyTriangleNode();
+            this.quadTip = new LegacyQuadNode();
             this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
             this.chkRenderBody_CheckedChanged(this.chkRenderBody, EventArgs.Empty);
         }

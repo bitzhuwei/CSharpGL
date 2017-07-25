@@ -24,13 +24,13 @@ namespace CSharpGL
     // 4 -------------------5
     //
     /// <summary>
-    /// Render flabellum in legacy opengl.
+    /// Render propeller in legacy opengl.
     /// </summary>
-    public class LegacyFlabellumRenderer : SceneNodeBase, IRenderable, ILegacyPickable
+    public class LegacyPropellerNode : SceneNodeBase, IRenderable, ILegacyPickable
     {
-        private const float xLength = 1.6f;
-        private const float yLength = 0.05f;
-        private const float zLength = 0.2f;
+        private const float xLength = 0.3f;
+        private const float yLength = 0.2f;
+        private const float zLength = 0.3f;
         /// <summary>
         /// eight vertexes.
         /// </summary>
@@ -74,9 +74,9 @@ namespace CSharpGL
         };
 
         /// <summary>
-        /// Render flabellum in legacy opengl.
+        /// Render propeller in legacy opengl.
         /// </summary>
-        public LegacyFlabellumRenderer()
+        public LegacyPropellerNode()
         {
             this.ModelSize = new vec3(xLength * 2, yLength * 2, zLength * 2);
         }
@@ -90,39 +90,26 @@ namespace CSharpGL
             set { this.enableRendering = value; }
         }
 
+        public float RotateSpeed { get; set; }
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            this.RotationAngle += this.RotateSpeed;
+
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
-            if (this.RenderWireframe)
-            {
-                DoRender(new vec3(1, 1, 1));
-            }
-            else
-            {
-                DoRender();
-            }
+            DoRender();
 
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();
         }
 
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
-
-        private void DoRender(vec3 lineColor)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
-            polygonModeState.On();
-            GL.Instance.Begin((uint)DrawMode.Quads);
-            GL.Instance.Color3f(lineColor.x, lineColor.y, lineColor.z);
-            for (int i = 0; i < indexes.Length; i++)
-            {
-                vec3 position = positions[indexes[i]];
-                GL.Instance.Vertex3f(position.x, position.y, position.z);
-            }
-            GL.Instance.End();
-            polygonModeState.Off();
         }
+
+        #endregion
 
         private void DoRender()
         {
@@ -136,12 +123,6 @@ namespace CSharpGL
             }
             GL.Instance.End();
         }
-
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
-
-        #endregion
 
         #region ILegacyPickable 成员
 
@@ -174,13 +155,5 @@ namespace CSharpGL
 
         #endregion
 
-        #region IRenderWireframe 成员
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool RenderWireframe { get; set; }
-
-        #endregion
     }
 }

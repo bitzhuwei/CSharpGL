@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot only with vertex shader.
     /// </summary>
-    class DepthTeapotRenderer : ModernNode, IShadowMapping
+    class DepthTeapotNode : ModernNode, IShadowMapping
     {
         private const string inPosition = "inPosition";
         private const string mvpMatrix = "mvpMatrix";
@@ -43,7 +43,7 @@ void main(void)
         /// Render teapot to framebuffer in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static DepthTeapotRenderer Create()
+        public static DepthTeapotNode Create()
         {
             RenderUnitBuilder shadowmapBuilder;
             {
@@ -54,13 +54,13 @@ void main(void)
                 shadowmapBuilder = new RenderUnitBuilder(provider, map);
             }
             var model = new Teapot();
-            var renderer = new DepthTeapotRenderer(model, shadowmapBuilder);
+            var renderer = new DepthTeapotNode(model, shadowmapBuilder);
             renderer.Initialize();
 
             return renderer;
         }
 
-        private DepthTeapotRenderer(Teapot model, params RenderUnitBuilder[] builder)
+        private DepthTeapotNode(Teapot model, params RenderUnitBuilder[] builder)
             : base(model, builder)
         {
             this.ModelSize = model.GetModelSize();

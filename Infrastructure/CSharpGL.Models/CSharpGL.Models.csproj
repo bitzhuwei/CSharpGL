@@ -42,31 +42,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cube\TextureCubeRenderer.cs" />
-    <Compile Include="Cube\CubeRenderer.cs" />
-    <Compile Include="Ground\GroundRenderer.cs" />
+    <Compile Include="Cube\TextureCubeNode.cs" />
+    <Compile Include="Cube\CubeNode.cs" />
+    <Compile Include="Ground\GroundNode.cs" />
     <Compile Include="FormProperyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="HighlightPick\LegacyQuadRenderer.cs" />
-    <Compile Include="HighlightPick\LegacyTriangleRenderer.cs" />
+    <Compile Include="HighlightPick\LegacyQuadNode.cs" />
+    <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
     <Compile Include="PLY\PLY.cs" />
-    <Compile Include="PLY\PLYRenderer.cs" />
-    <Compile Include="Propeller\FlabellumRenderer.cs" />
-    <Compile Include="Propeller\LegacyFlabellumRenderer.cs" />
-    <Compile Include="Propeller\LegacyPropellerRenderer.cs" />
+    <Compile Include="PLY\PLYNode.cs" />
+    <Compile Include="Propeller\FlabellumNode.cs" />
+    <Compile Include="Propeller\LegacyFlabellumNode.cs" />
+    <Compile Include="Propeller\LegacyPropellerNode.cs" />
     <Compile Include="Propeller\PropellerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle\RectangleRenderer.cs" />
-    <Compile Include="Rectangle\LegacyRectangleRenderer.cs" />
+    <Compile Include="Rectangle\RectangleNode.cs" />
+    <Compile Include="Rectangle\LegacyRectangleNode.cs" />
     <Compile Include="Teapot\Teapot.cs" />
     <Compile Include="Teapot\Teapot.Faces.cs" />
     <Compile Include="Teapot\Teapot.normalData.cs" />
     <Compile Include="Teapot\Teapot.positionData.cs" />
-    <Compile Include="Teapot\TeapotRenderer.cs">
+    <Compile Include="Teapot\TeapotNode.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -77,8 +77,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cube\Cube.jpg" />
-    <Content Include="Cube\TextureCubeRenderer.jpg" />
+    <Content Include="Cube\CubeNode.jpg" />
+    <Content Include="Cube\TextureCubeNode.jpg" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>

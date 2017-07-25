@@ -83,12 +83,12 @@ namespace ShadowMapping
                 //innerCamera.GetViewMatrix();
                 var lightContainer = new LightContainerNode(localLight);
                 {
-                    var teapot = ShadowTeapotRenderer.Create();
+                    var teapot = ShadowTeapotNode.Create();
                     teapot.RotateSpeed = 1;
                     lightContainer.Children.Add(teapot);
                 }
                 {
-                    var ground = ShadowGroundRenderer.Create();
+                    var ground = ShadowGroundNode.Create();
                     ground.Scale *= 100;
                     ground.WorldPosition = new vec3(0, -3, 0);
                     lightContainer.Children.Add(ground);
@@ -96,7 +96,7 @@ namespace ShadowMapping
                 group.Children.Add(lightContainer);
             }
             {
-                var rectangle = RectangleRenderer.Create();
+                var rectangle = RectangleNode.Create();
                 rectangle.TextureSource = localLight;
                 rectangle.RotationAngle = 45;
                 rectangle.WorldPosition = new vec3(5, 1, 5) * 3;

@@ -82,7 +82,7 @@ namespace Blending
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
                 texture.Initialize();
                 bmp.Dispose();
-                var solidCube = TexturedCubeRenderer.Create(texture);
+                var solidCube = TexturedCubeNode.Create(texture);
 
                 group.Children.Add(solidCube);
             }
@@ -121,7 +121,7 @@ namespace Blending
 
                     texture.Initialize();
                     bmp.Dispose();
-                    var transparentCube = TexturedCubeRenderer.Create(texture);
+                    var transparentCube = TexturedCubeNode.Create(texture);
                     transparentCube.WorldPosition = item.position;
                     transparentCube.Alpha = item.alpha;
 

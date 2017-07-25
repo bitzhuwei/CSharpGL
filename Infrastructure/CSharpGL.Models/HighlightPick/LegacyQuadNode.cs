@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyTriangleRenderer : SceneNodeBase, IRenderable
+    public class LegacyQuadNode : SceneNodeBase, IRenderable
     {
         /// <summary>
         /// 
@@ -28,6 +28,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        public vec3 Vertex3 { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 Color0 { get; set; }
 
         /// <summary>
@@ -39,6 +44,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         public vec3 Color2 { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Color3 { get; set; }
 
         /// <summary>
         /// 
@@ -70,11 +80,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public LegacyTriangleRenderer()
+        public LegacyQuadNode()
         {
             this.Color0 = new vec3(1, 1, 1);
             this.Color1 = new vec3(1, 1, 1);
             this.Color2 = new vec3(1, 1, 1);
+            this.Color3 = new vec3(1, 1, 1);
         }
 
         #region IRenderable 成员
@@ -103,13 +114,15 @@ namespace CSharpGL
             this.polygonModeState.On();
             this.lineWidthState.On();
 
-            GL.Instance.Begin((uint)DrawMode.Triangles);
+            GL.Instance.Begin((uint)DrawMode.Quads);
             GL.Instance.Color3f(this.Color0.x, this.Color0.y, this.Color0.z);
             GL.Instance.Vertex3f(this.Vertex0.x, this.Vertex0.y, this.Vertex0.z);
             GL.Instance.Color3f(this.Color1.x, this.Color1.y, this.Color1.z);
             GL.Instance.Vertex3f(this.Vertex1.x, this.Vertex1.y, this.Vertex1.z);
             GL.Instance.Color3f(this.Color2.x, this.Color2.y, this.Color2.z);
             GL.Instance.Vertex3f(this.Vertex2.x, this.Vertex2.y, this.Vertex2.z);
+            GL.Instance.Color3f(this.Color3.x, this.Color3.y, this.Color3.z);
+            GL.Instance.Vertex3f(this.Vertex3.x, this.Vertex3.y, this.Vertex3.z);
             GL.Instance.End();
 
             this.lineWidthState.Off();

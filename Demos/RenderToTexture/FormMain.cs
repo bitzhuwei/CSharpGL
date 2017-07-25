@@ -15,9 +15,9 @@ namespace RenderToTexture
         private Scene scene;
         private ActionList actionList;
         //private LegacyRectangleRenderer rectangle;//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-        private TeapotRenderer teapot;
+        private TeapotNode teapot;
         private RenderToTexttureNode rtt;
-        private RectangleRenderer rectangle;
+        private RectangleNode rectangle;
         public FormMain()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace RenderToTexture
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var teapot = TeapotRenderer.Create();
+            var teapot = TeapotNode.Create();
             this.teapot = teapot;
 
             int width = 400, height = 200;
@@ -37,7 +37,7 @@ namespace RenderToTexture
             rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
             this.rtt = rtt;
 
-            var rectangle = RectangleRenderer.Create();
+            var rectangle = RectangleNode.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
             rectangle.TextureSource = rtt;
             rectangle.Scale = new vec3(7, 7, 7);

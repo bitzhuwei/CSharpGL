@@ -81,11 +81,11 @@ namespace ShadowMapping
             var lightContainer = new LightContainerNode(localLight);
             {
                 {
-                    var teapot = DepthTeapotRenderer.Create();
+                    var teapot = DepthTeapotNode.Create();
                     lightContainer.Children.Add(teapot);
                 }
                 {
-                    var ground = DepthGroundRenderer.Create();
+                    var ground = DepthGroundNode.Create();
                     ground.Color = Color.Gray.ToVec4();
                     ground.Scale *= 10;
                     ground.WorldPosition = new vec3(0, -3, 0);
@@ -93,7 +93,7 @@ namespace ShadowMapping
                 }
             }
 
-            var rectangle = RectangleRenderer.Create();
+            var rectangle = RectangleNode.Create();
             rectangle.TextureSource = localLight;
 
             var group = new GroupNode();

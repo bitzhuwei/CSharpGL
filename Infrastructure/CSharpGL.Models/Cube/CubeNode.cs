@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class CubeRenderer : PickableNode
+    public class CubeNode : PickableNode
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -50,7 +50,7 @@ void main(void) {
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static CubeRenderer Create()
+        public static CubeNode Create()
         {
             var vertexShader = new VertexShader(vertexCode, inPosition);
             var fragmentShader = new FragmentShader(fragmentCode);
@@ -58,7 +58,7 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
             var builder = new RenderUnitBuilder(provider, map);
-            var renderer = new CubeRenderer(new CubeModel(), CubeModel.strPosition, builder);
+            var renderer = new CubeNode(new CubeModel(), CubeModel.strPosition, builder);
             renderer.Initialize();
 
             return renderer;
@@ -67,7 +67,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private CubeRenderer(CubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private CubeNode(CubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;

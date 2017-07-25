@@ -51,7 +51,7 @@ namespace Texture2D
 
         private SceneNodeBase GetRootElement()
         {
-            var result = RectangleRenderer.Create();
+            var result = RectangleNode.Create();
             result.TextureSource = new CrateTextureSource();
 
             return result;
