@@ -9,7 +9,7 @@ namespace Blending
     /// <summary>
     /// 
     /// </summary>
-    class BlendingGroupRenderer : SceneNodeBase, IRenderable
+    class BlendingGroupNode : SceneNodeBase, IRenderable
     {
         private BlendState blending;
         private DepthMaskState depthMask = new DepthMaskState(false);
@@ -19,7 +19,7 @@ namespace Blending
         /// </summary>
         /// <param name="source"></param>
         /// <param name="dest"></param>
-        public BlendingGroupRenderer(BlendingSourceFactor source, BlendingDestinationFactor dest)
+        public BlendingGroupNode(BlendingSourceFactor source, BlendingDestinationFactor dest)
         {
             this.blending = new BlendState(source, dest);
         }

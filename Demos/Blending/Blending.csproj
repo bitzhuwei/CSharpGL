@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlendingGroupRenderer.cs" />
+    <Compile Include="BlendingGroupNode.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

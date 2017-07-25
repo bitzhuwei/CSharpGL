@@ -87,7 +87,7 @@ namespace Blending
                 group.Children.Add(solidCube);
             }
             {
-                var blendingGroup = new BlendingGroupRenderer(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+                var blendingGroup = new BlendingGroupNode(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
 
                 group.Children.Add(blendingGroup);
                 var list = new List<BlendingConfig>();
