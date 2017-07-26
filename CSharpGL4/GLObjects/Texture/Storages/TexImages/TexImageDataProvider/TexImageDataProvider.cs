@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class TexImageDataProvider : IEnumerable<LeveledData>
+    public abstract class TexImageDataProvider<T> : IEnumerable<T>
     {
         #region IEnumerable<LeveledData> 成员
 
@@ -16,10 +16,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerator<LeveledData> GetEnumerator()
-        {
-            yield return new LeveledData();
-        }
+        public abstract IEnumerator<T> GetEnumerator();
 
         #endregion
 

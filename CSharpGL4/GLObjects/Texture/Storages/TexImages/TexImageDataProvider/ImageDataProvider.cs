@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Provides specified bitmap's data as <see cref="Texture"/>'s image content.
     /// </summary>
-    public class ImageDataProvider : TexImageDataProvider, IDisposable
+    public class ImageDataProvider : LeveledDataProvider
     {
         private readonly Bitmap bitmap;
         private readonly bool autoDispose;

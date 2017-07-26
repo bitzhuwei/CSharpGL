@@ -8,41 +8,37 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class TexImage1D : TexStorageBase
+    public class CubemapTexImage2D : TexStorageBase
     {
-        private int level;
+        //private int level;
         private int internalFormat;
         private int width;
+        private int height;
         private int border;
         private uint format;
         private uint type;
-        private TexImageDataProvider<LeveledData> dataProvider;
+        private CubemapDataProvider dataProvider;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
         /// <param name="internalformat"></param>
         /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <param name="border"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage1D(int level, int internalformat, int width, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public CubemapTexImage2D(int internalformat, int width, int height, int border, uint format, uint type, CubemapDataProvider dataProvider)
         {
-            this.level = level; this.internalFormat = internalformat;
-            this.width = width;
+            if (dataProvider == null) { throw new ArgumentNullException("dataProvider"); }
+
+            this.internalFormat = internalformat;
+            this.width = width; this.height = height;
             this.border = border;
             this.format = format;
             this.type = type;
-            if (dataProvider == null)
-            {
-                this.dataProvider = new LeveledDataProvider();
-            }
-            else
-            {
-                this.dataProvider = dataProvider;
-            }
+            this.dataProvider = dataProvider;
         }
 
         /// <summary>
@@ -52,13 +48,14 @@ namespace CSharpGL
         {
             foreach (var item in dataProvider)
             {
-                int level = item.level;
+                uint target = (uint)item.target;
                 IntPtr pixels = item.LockData();
 
-                GL.Instance.TexImage1D(GL.GL_TEXTURE_1D, level, internalFormat, width, border, format, type, pixels);
+                GL.Instance.TexImage2D(target, 0, internalFormat, width, height, border, format, type, pixels);
 
                 item.FreeData();
             }
         }
+
     }
 }

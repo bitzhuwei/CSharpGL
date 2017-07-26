@@ -13,10 +13,29 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public virtual void LockData(out int level, out IntPtr data)
+        public readonly int level;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public LeveledData() : this(0) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level"></param>
+        public LeveledData(int level)
         {
-            level = 0; data = IntPtr.Zero;
+            this.level = level;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual IntPtr LockData()
+        {
+            return IntPtr.Zero;
         }
 
         /// <summary>

@@ -25,7 +25,7 @@ namespace CSharpGL
         private int border;
         private uint format;
         private uint type;
-        private TexImageDataProvider dataProvider;
+        private TexImageDataProvider<LeveledData> dataProvider;
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage3D(Target target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, TexImageDataProvider dataProvider = null)
+        public TexImage3D(Target target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
         {
             this.target = target;
             this.level = level; this.internalFormat = internalformat;
@@ -50,7 +50,7 @@ namespace CSharpGL
             this.type = type;
             if (dataProvider == null)
             {
-                this.dataProvider = new TexImageDataProvider();
+                this.dataProvider = new LeveledDataProvider();
             }
             else
             {
@@ -65,9 +65,8 @@ namespace CSharpGL
         {
             foreach (var item in dataProvider)
             {
-                int level;
-                IntPtr pixels;
-                item.LockData(out level, out pixels);
+                int level = item.level;
+                IntPtr pixels = item.LockData();
 
                 glTexImage3D((uint)target, level, internalFormat, width, height, depth, border, format, type, pixels);
 

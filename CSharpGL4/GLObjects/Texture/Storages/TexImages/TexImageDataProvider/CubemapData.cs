@@ -9,9 +9,48 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ImageData : LeveledData, IDisposable
+    public class CubemapData : IDisposable
     {
-        private readonly Bitmap bitmap;
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum Target : uint
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            PositiveX = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+            /// <summary>
+            /// 
+            /// </summary>
+            NegtiveX = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+            /// <summary>
+            /// 
+            /// </summary>
+            PositiveY = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+            /// <summary>
+            /// 
+            /// </summary>
+            NegtiveY = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
+            /// <summary>
+            /// 
+            /// </summary>
+            PositiveZ = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+            /// <summary>
+            /// 
+            /// </summary>
+            NegtiveZ = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Bitmap bitmap;
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Target target;
+        //private readonly int level;
         private readonly bool autoDispose;
 
         private System.Drawing.Imaging.BitmapData bmpData;
@@ -20,12 +59,12 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="bitmap"></param>
-        /// <param name="level"></param>
+        /// <param name="target"></param>
         /// <param name="autoDispose"></param>
-        public ImageData(Bitmap bitmap, int level, bool autoDispose)
-            : base(level)
+        public CubemapData(Bitmap bitmap, Target target, bool autoDispose)
         {
             this.bitmap = bitmap;
+            this.target = target;
             this.autoDispose = autoDispose;
         }
 
@@ -33,7 +72,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override IntPtr LockData()
+        public IntPtr LockData()
         {
             this.bmpData = this.bitmap.LockBits(new Rectangle(0, 0, this.bitmap.Width, this.bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             return bmpData.Scan0;
@@ -42,7 +81,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void FreeData()
+        public void FreeData()
         {
             this.bitmap.UnlockBits(this.bmpData);
         }
@@ -59,7 +98,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~ImageData()
+        ~CubemapData()
         {
             this.Dispose(false);
         }

@@ -130,7 +130,6 @@ void main(void) {
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
 
         public ITextureSource TextureSource { get; set; }
