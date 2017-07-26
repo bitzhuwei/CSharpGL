@@ -33,12 +33,34 @@ namespace CSharpGL
     /// </summary>
     public class LegacyPickingEventArgs
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly mat4 pickMatrix;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly Scene scene;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly int x;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly int y;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly Dictionary<uint, SceneNodeBase> hitMap;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pickMatrix"></param>
+        /// <param name="scene"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public LegacyPickingEventArgs(mat4 pickMatrix, Scene scene, int x, int y)
         {
             this.pickMatrix = pickMatrix;

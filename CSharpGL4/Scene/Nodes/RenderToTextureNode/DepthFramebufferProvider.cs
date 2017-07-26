@@ -69,6 +69,9 @@ namespace CSharpGL
             return framebuffer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Texture BindingTexture { get; set; }
     }
 }

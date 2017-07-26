@@ -33,18 +33,29 @@ namespace CSharpGL
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ThreeFlags EnableRendering
         {
             get { return enableRendering; }
             set { enableRendering = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             // prepare lights for children.
             arg.CurrentLights.Push(this.lightList);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderAfterChildren(RenderEventArgs arg)
         {
             // reset stack.

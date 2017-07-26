@@ -92,6 +92,10 @@ namespace CSharpGL
         /// </summary>
         internal Stack<mat4> ModelMatrixStack { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0} @ [{1}, {2}]", this.GeometryType, this.X, this.Y);

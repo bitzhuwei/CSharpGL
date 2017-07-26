@@ -76,6 +76,9 @@ namespace CSharpGL
 
         #region ITextureSource 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Texture BindingTexture
         {
             get { return this.framebufferProvider.BindingTexture; }

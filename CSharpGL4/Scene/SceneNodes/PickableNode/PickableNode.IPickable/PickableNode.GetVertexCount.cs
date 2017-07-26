@@ -5,6 +5,10 @@ namespace CSharpGL
     {
         #region IPickable 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public virtual uint GetVertexCount()
         {
             uint vertexCount = 0;

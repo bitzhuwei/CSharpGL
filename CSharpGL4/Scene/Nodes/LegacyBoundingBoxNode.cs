@@ -71,6 +71,9 @@ namespace CSharpGL
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+        /// <summary>
+        /// 
+        /// </summary>
         public ThreeFlags EnableRendering
         {
             get { return this.enableRendering; }
@@ -79,6 +82,10 @@ namespace CSharpGL
 
         private GLState polygonModeState = new PolygonModeState(PolygonMode.Line);
         private GLState polygonOffsetState = new PolygonOffsetFillState();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);
@@ -109,6 +116,10 @@ namespace CSharpGL
             GL.Instance.End();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
@@ -127,6 +138,10 @@ namespace CSharpGL
             set { this.enableLegacyPicking = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderBeforeChildrenForLegacyPicking(LegacyPickingEventArgs arg)
         {
             this.PushProjectionViewMatrix(arg);

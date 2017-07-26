@@ -10,6 +10,9 @@ namespace CSharpGL
     [Editor(typeof(IListEditor<GLState>), typeof(UITypeEditor))]
     public class GLStateList : List<GLState>, IGLState
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public void On()
         {
             for (int i = 0; i < this.Count; i++)
@@ -18,6 +21,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Off()
         {
             for (int i = this.Count - 1; i >= 0; i--)

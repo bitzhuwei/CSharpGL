@@ -25,11 +25,19 @@ namespace CSharpGL
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override mat4 GetProjectionMatrix()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override mat4 GetViewMatrix()
         {
             throw new NotImplementedException();

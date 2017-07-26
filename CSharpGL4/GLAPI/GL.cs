@@ -18,6 +18,12 @@ namespace CSharpGL
         /// </summary>
         public static GL Instance { get; private set; }
 
+        /// <summary>
+        /// OpenGL is a specification of 3D graphics library.
+        /// <para>
+        /// <see cref="GL"/> represents functions suppproted in OpenGL32.dll/openGL32.so/... and all extended functions.
+        /// </para>
+        /// </summary>
         protected GL()
         {
             if (GL.Instance != null)

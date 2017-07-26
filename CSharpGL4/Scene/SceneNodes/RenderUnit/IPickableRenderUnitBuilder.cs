@@ -10,9 +10,9 @@ namespace CSharpGL
     /// </summary>
     public class IPickableRenderUnitBuilder
     {
-        protected GLState[] states;
-        protected IShaderProgramProvider programProvider;
-        protected string positionNameInIBufferSource;
+        private GLState[] states;
+        private IShaderProgramProvider programProvider;
+        private string positionNameInIBufferSource;
 
         /// <summary>
         /// A smallest unit that can render somthing.
@@ -27,6 +27,11 @@ namespace CSharpGL
             this.states = states;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public IPickableRenderUnit ToRenderUnit(IBufferSource model)
         {
             // init shader program.

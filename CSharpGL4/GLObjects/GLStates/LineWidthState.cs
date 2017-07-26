@@ -5,7 +5,14 @@
     /// </summary>
     public class LineWidthState : GLState
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly float min;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly float max;
 
         static LineWidthState()

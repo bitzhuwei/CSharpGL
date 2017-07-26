@@ -7,6 +7,12 @@ namespace CSharpGL
 
         private PickerBase picker;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <returns></returns>
         public virtual PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
             PickedGeometry result = null;

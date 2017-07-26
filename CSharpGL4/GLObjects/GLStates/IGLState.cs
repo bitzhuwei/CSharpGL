@@ -10,7 +10,14 @@ namespace CSharpGL
     [Editor(typeof(IListEditor<GLState>), typeof(UITypeEditor))]
     public interface IGLState
     {
+        /// <summary>
+        /// 
+        /// </summary>
         void On();
+
+        /// <summary>
+        /// 
+        /// </summary>
         void Off();
     }
 }

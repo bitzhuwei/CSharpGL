@@ -7,20 +7,20 @@ namespace CSharpGL
 {
     public abstract partial class GLBuffer
     {
-        protected static readonly GLDelegates.void_int_uintN glGenBuffers;
-        protected static readonly GLDelegates.void_uint_uint glBindBuffer;
-        protected static readonly GLDelegates.void_uint_int_IntPtr_uint glBufferData;
-        protected static readonly GLDelegates.IntPtr_uint_uint glMapBuffer;
-        protected static readonly GLDelegates.IntPtr_uint_int_int_uint glMapBufferRange;
-        protected static readonly GLDelegates.bool_uint glUnmapBuffer;
-        protected static readonly GLDelegates.void_uint_int_uint_bool_int_IntPtr glVertexAttribPointer;
-        protected static readonly GLDelegates.void_uint_int_uint_int_IntPtr glVertexAttribIPointer;
-        protected static readonly GLDelegates.void_uint_int_uint_int_IntPtr glVertexAttribLPointer;
-        protected static readonly GLDelegates.void_uint_int glPatchParameteri;
-        protected static readonly GLDelegates.void_uint glEnableVertexAttribArray;
-        protected static readonly GLDelegates.void_uint_uint glVertexAttribDivisor;
-        protected static readonly GLDelegates.void_uint_int_int_int glDrawArraysInstanced;
-        protected static readonly GLDelegates.void_uint_int_uint_IntPtr_int glDrawElementsInstanced;
+        internal static readonly GLDelegates.void_int_uintN glGenBuffers;
+        internal static readonly GLDelegates.void_uint_uint glBindBuffer;
+        internal static readonly GLDelegates.void_uint_int_IntPtr_uint glBufferData;
+        internal static readonly GLDelegates.IntPtr_uint_uint glMapBuffer;
+        internal static readonly GLDelegates.IntPtr_uint_int_int_uint glMapBufferRange;
+        internal static readonly GLDelegates.bool_uint glUnmapBuffer;
+        internal static readonly GLDelegates.void_uint_int_uint_bool_int_IntPtr glVertexAttribPointer;
+        internal static readonly GLDelegates.void_uint_int_uint_int_IntPtr glVertexAttribIPointer;
+        internal static readonly GLDelegates.void_uint_int_uint_int_IntPtr glVertexAttribLPointer;
+        internal static readonly GLDelegates.void_uint_int glPatchParameteri;
+        internal static readonly GLDelegates.void_uint glEnableVertexAttribArray;
+        internal static readonly GLDelegates.void_uint_uint glVertexAttribDivisor;
+        internal static readonly GLDelegates.void_uint_int_int_int glDrawArraysInstanced;
+        internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int glDrawElementsInstanced;
 
         static GLBuffer()
         {
