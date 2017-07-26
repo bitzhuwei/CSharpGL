@@ -58,9 +58,9 @@ namespace RenderToTexture
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(group);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(group, camera);
+            var renderAction = new RenderAction(scene, camera);
             list.Add(renderAction);
             this.actionList = list;
 

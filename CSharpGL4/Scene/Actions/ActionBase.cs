@@ -13,21 +13,15 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public SceneNodeBase RootElement { get; set; }
+        public Scene Scene { get; set; }
 
         /// <summary>
         /// Base type for rendering actions.
         /// </summary>
-        /// <param name="rootElement"></param>
-        public ActionBase(SceneNodeBase rootElement)
+        /// <param name="scene"></param>
+        public ActionBase(Scene scene)
         {
-            this.RootElement = rootElement;
+            this.Scene = scene;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public abstract void Act();
-
     }
 }

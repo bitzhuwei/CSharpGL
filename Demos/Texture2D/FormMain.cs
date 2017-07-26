@@ -39,9 +39,9 @@ namespace Texture2D
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(rootElement);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(rootElement, camera);
+            var renderAction = new RenderAction(scene, camera);
             list.Add(renderAction);
             this.actionList = list;
 

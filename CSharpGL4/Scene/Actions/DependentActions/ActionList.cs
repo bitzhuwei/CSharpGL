@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// A list of <see cref="ActionBase"/>.
     /// </summary>
-    public class ActionList : List<ActionBase>
+    public class ActionList : List<DependentActionBase>
     {
         /// <summary>
         /// 

@@ -10,16 +10,13 @@ namespace CSharpGL
     /// <summary>
     /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
     /// </summary>
-    public class ShadowMappingAction : ActionBase
+    public class ShadowMappingAction : DependentActionBase
     {
         /// <summary>
         /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
         /// </summary>
         /// <param name="rootElement"></param>
-        public ShadowMappingAction(SceneNodeBase rootElement)
-            : base(rootElement)
-        {
-        }
+        public ShadowMappingAction(Scene scene) : base(scene) { }
 
         /// <summary>
         /// Cast shadow.(Prepare shadow mapping texture)
@@ -30,7 +27,7 @@ namespace CSharpGL
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             var arg = new ShdowMappingEventArgs();
-            this.ShadowMapping(this.RootElement, arg);
+            this.ShadowMapping(this.Scene.RootElement, arg);
         }
 
         private void ShadowMapping(SceneNodeBase sceneElement, ShdowMappingEventArgs arg)

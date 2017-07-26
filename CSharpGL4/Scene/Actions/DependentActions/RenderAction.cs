@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// Render <see cref="IRenderable"/> objects.
     /// </summary>
-    public class RenderAction : ActionBase
+    public class RenderAction : DependentActionBase
     {
 
         /// <summary>
@@ -23,8 +23,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="rootElement"></param>
         /// <param name="camera"></param>
-        public RenderAction(SceneNodeBase rootElement, ICamera camera)
-            : base(rootElement)
+        public RenderAction(Scene scene, ICamera camera)
+            : base(scene)
         {
             this.Camera = camera;
 
@@ -59,7 +59,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(this.Camera);
-            RenderAction.Render(this.RootElement, arg);
+            RenderAction.Render(this.Scene.RootElement, arg);
 
             if (clear)
             {

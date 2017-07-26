@@ -40,9 +40,9 @@ namespace Transformers
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(teapot);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(teapot, camera);
+            var renderAction = new RenderAction(scene, camera);
             list.Add(renderAction);
             this.actionList = list;
 

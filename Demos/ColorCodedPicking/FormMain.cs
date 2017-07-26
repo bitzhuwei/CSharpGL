@@ -18,6 +18,7 @@ namespace ColorCodedPicking
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
         private GroundNode ground;
+        private PickingAction pickingAction;
         public FormMain()
         {
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace ColorCodedPicking
 
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            PickedGeometry pickedGeometry = this.scene.Pick(x, y, true, true, false);
+            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
             if (pickedGeometry != null)
             {
                 switch (pickedGeometry.Type)
@@ -100,11 +101,13 @@ namespace ColorCodedPicking
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(group);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(group, camera);
+            var renderAction = new RenderAction(scene, camera);
             list.Add(renderAction);
             this.actionList = list;
+
+            this.pickingAction = new PickingAction(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
