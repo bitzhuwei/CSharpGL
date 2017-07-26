@@ -36,7 +36,7 @@ namespace CSharpGL
     /// 
     /// </summary>
     [Flags]
-    public enum PickingGeometryTypes : byte
+    enum PickingGeometryTypes : byte
     {
         /// <summary>
         /// Picking a point.
