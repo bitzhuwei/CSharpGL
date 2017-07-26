@@ -182,8 +182,8 @@ void main(void)
             mat4 model = this.GetModelMatrix();
             List<LightBase> lights = arg.CurrentLights.Peek();
             LightBase light = lights[0];// now we only use one light for testing.
-            mat4 lightBias = glm.scale(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
-            lightBias = glm.translate(lightBias, new vec3(1, 1, 1) * 0.5f);
+            mat4 lightBias = glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
+            lightBias = glm.scale(lightBias, new vec3(1, 1, 1) * 0.5f);
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
@@ -193,7 +193,7 @@ void main(void)
             program.SetUniform(model_matrix, model);
             program.SetUniform(view_matrix, view);
             program.SetUniform(projection_matrix, projection);
-            program.SetUniform(shadow_matrix, lightProjection * lightView);
+            program.SetUniform(shadow_matrix, lightBias * lightProjection * lightView);
             program.SetUniform(depth_texture, light.BindingTexture);
             program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
             //program.SetUniform(light_position, light.Position);
