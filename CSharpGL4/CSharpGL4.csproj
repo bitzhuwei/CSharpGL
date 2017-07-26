@@ -136,6 +136,7 @@
     <Compile Include="Scene\Nodes\LightContainerNode\ILocalLightContainer.cs" />
     <Compile Include="Scene\Nodes\LightContainerNode\LightContainerNode.cs" />
     <Compile Include="Scene\Nodes\RenderToTextureNode\RenderToTexttureNode.cs" />
+    <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -595,9 +596,7 @@
     <None Include="Scene\SceneNodes\ModernNode\readme.md" />
     <Content Include="Scene\Nodes\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scene\SceneNodes\CameraNode\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />

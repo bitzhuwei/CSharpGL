@@ -45,8 +45,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="firstPass">Update all objects' model matrix if <paramref name="firstPass"/> is true.</param>
-        public override void Render(bool firstPass)
+        public override void Render()
         {
             int[] value = null;
             bool clear = this.Clear;
@@ -60,7 +59,7 @@ namespace CSharpGL
             }
 
             var arg = new RenderEventArgs(this.Camera);
-            RenderAction.Render(this.RootElement, arg, firstPass, true);
+            RenderAction.Render(this.RootElement, arg);
 
             if (clear)
             {
@@ -75,38 +74,30 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="firstPass"></param>
         /// <param name="renderThis"></param>
-        public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg, bool firstPass, bool renderThis)
+        public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg)
         {
             if (sceneElement != null)
             {
-                if (firstPass)
-                {
-                    mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
-                    sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
-                }
-
                 var renderable = sceneElement as IRenderable;
                 ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
                 bool before = (renderable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
                 bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
                 bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
 
-                if (renderThis && before)
+                if (before)
                 {
                     renderable.RenderBeforeChildren(arg);
                 }
 
-                if (firstPass || (children && renderThis))
+                if (children)
                 {
-                    if (firstPass) { arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix); }
                     foreach (var item in sceneElement.Children)
                     {
-                        RenderAction.Render(item, arg, firstPass, children);
+                        RenderAction.Render(item, arg);
                     }
-                    if (firstPass) { arg.ModelMatrixStack.Pop(); }
                 }
 
-                if (renderThis && after)
+                if (after)
                 {
                     renderable.RenderAfterChildren(arg);
                 }

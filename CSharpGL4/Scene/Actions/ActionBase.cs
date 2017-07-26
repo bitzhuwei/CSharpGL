@@ -27,8 +27,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="firstPass">Is This the first pass of rendering?</param>
-        public abstract void Render(bool firstPass);
+        public abstract void Render();
 
     }
 }

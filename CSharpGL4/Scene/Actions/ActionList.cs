@@ -15,16 +15,9 @@ namespace CSharpGL
         /// </summary>
         public void Render()
         {
-            if (this.Count > 0)
+            for (int i = 0; i < this.Count; i++)
             {
-                const bool firstPass = true;
-                ActionBase firstAction = this[0];
-                firstAction.Render(firstPass);
-
-                for (int i = 1; i < this.Count; i++)
-                {
-                    this[i].Render(!firstPass);
-                }
+                this[i].Render();
             }
         }
     }

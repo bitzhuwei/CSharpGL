@@ -24,14 +24,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="firstPass">Update all objects' model matrix if <paramref name="firstPass"/> is true.</param>
-        public override void Render(bool firstPass)
+        public override void Render()
         {
-            if (firstPass)
-            {
-                var arg = new TransformEventArgs();
-                this.Render(this.RootElement, arg);
-            }
+            var arg = new TransformEventArgs();
+            this.Render(this.RootElement, arg);
         }
 
         private void Render(SceneNodeBase sceneElement, TransformEventArgs arg)

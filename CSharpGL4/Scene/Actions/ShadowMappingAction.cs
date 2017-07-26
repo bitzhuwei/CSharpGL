@@ -24,8 +24,7 @@ namespace CSharpGL
         /// <summary>
         /// Cast shadow.(Prepare shadow mapping texture)
         /// </summary>
-        /// <param name="firstPass">Update all objects' model matrix if <paramref name="firstPass"/> is true.</param>
-        public override void Render(bool firstPass)
+        public override void Render()
         {
             GL.Instance.ClearColor(1, 1, 1, 1);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
