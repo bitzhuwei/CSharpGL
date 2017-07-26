@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
         /// </summary>
-        /// <param name="rootElement"></param>
+        /// <param name="scene"></param>
         public ShadowMappingAction(Scene scene) : base(scene) { }
 
         /// <summary>

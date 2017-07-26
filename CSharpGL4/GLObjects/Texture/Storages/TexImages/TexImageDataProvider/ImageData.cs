@@ -22,6 +22,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bitmap"></param>
         /// <param name="level"></param>
+        /// <param name="autoDispose"></param>
         public ImageData(Bitmap bitmap, int level, bool autoDispose)
         {
             this.bitmap = bitmap;

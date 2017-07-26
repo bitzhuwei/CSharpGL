@@ -18,7 +18,7 @@ namespace CSharpGL
         /// A smallest unit that can render somthing.
         /// </summary>
         /// <param name="programProvider"></param>
-        /// <param name="map"></param>
+        /// <param name="positionNameInIBufferSource"></param>
         /// <param name="states"></param>
         public IPickableRenderUnitBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLState[] states)
         {

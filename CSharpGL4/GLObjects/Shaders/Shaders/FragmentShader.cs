@@ -24,8 +24,6 @@ namespace CSharpGL
         /// <summary>
         /// Create and compile this shader.
         /// </summary>
-        /// <param name="shaderType"></param>
-        /// <param name="source"></param>
         protected override void DoInitialize()
         {
             base.Create((uint)ShaderType.FragmentShader, this.Source);

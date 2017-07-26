@@ -41,6 +41,8 @@ namespace CSharpGL
         /// <param name="position"></param>
         /// <param name="target"></param>
         /// <param name="angle">in degree.</param>
+        /// <param name="near"></param>
+        /// <param name="far"></param>
         public SpotLight(vec3 position, vec3 target, float angle, float near = 0.1f, float far = 50.0f)
         {
             if (position == target) { throw new ArgumentException(); }

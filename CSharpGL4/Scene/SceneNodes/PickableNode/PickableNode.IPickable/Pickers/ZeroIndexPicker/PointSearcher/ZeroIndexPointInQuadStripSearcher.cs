@@ -8,13 +8,10 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId"></param>
-        /// <param name="modernRenderer"></param>
+        /// <param name="picker"></param>
         /// <returns></returns>
-        internal override uint Search(PickingEventArgs arg,
-            uint lastVertexId, ZeroIndexPicker picker)
+        internal override uint Search(PickingEventArgs arg, uint lastVertexId, ZeroIndexPicker picker)
         {
             OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 4, DrawMode.Points, BufferUsage.StaticDraw);
             unsafe

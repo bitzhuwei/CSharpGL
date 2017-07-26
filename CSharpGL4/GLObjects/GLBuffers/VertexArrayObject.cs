@@ -109,7 +109,6 @@ namespace CSharpGL
         /// 执行一次渲染的过程。
         /// <para>Execute rendering command.</para>
         /// </summary>
-        /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
         public void Render(ShaderProgram shaderProgram, IndexBuffer temporaryIndexBuffer = null)

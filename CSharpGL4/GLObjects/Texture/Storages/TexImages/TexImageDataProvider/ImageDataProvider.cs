@@ -19,7 +19,7 @@ namespace CSharpGL
         /// Provides specified <paramref name="bitmap"/>'s data as <see cref="Texture"/>'s image content.
         /// </summary>
         /// <param name="bitmap"></param>
-        /// <param name="autoDisose">dispose <paramref name="bitmap"/> when disposing this <see cref="IamgeDataProvider"/> object.</param>
+        /// <param name="autoDisose">dispose <paramref name="bitmap"/> when disposing this <see cref="ImageDataProvider"/> object.</param>
         /// <param name="levelCount">[1, 2, 3, 4, 5, 6, 7, 8]</param>
         public ImageDataProvider(Bitmap bitmap, bool autoDisose = false, int levelCount = 1)
         {
@@ -30,6 +30,10 @@ namespace CSharpGL
             this.levelCount = levelCount;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerator<LeveledData> GetEnumerator()
         {
             yield return new ImageData(this.bitmap, 0, false);

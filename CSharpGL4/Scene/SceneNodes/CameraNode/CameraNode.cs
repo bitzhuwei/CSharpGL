@@ -5,10 +5,17 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CameraNode : SceneNodeBase, IRenderable
     {
         private ICamera camera;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="camera"></param>
         public CameraNode(ICamera camera)
         {
             this.camera = camera;
@@ -18,6 +25,9 @@ namespace CSharpGL
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ThreeFlags EnableRendering
         {
             get { return enableRendering; }
@@ -36,6 +46,10 @@ namespace CSharpGL
             this.camera.Position = new vec3(cascadePosition);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderAfterChildren(RenderEventArgs arg)
         {
         }

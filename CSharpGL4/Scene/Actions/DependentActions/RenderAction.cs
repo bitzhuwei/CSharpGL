@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
-        /// <param name="rootElement"></param>
+        /// <param name="scene"></param>
         /// <param name="camera"></param>
         public RenderAction(Scene scene, ICamera camera)
             : base(scene)
@@ -72,8 +72,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneElement"></param>
         /// <param name="arg"></param>
-        /// <param name="firstPass"></param>
-        /// <param name="renderThis"></param>
         public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg)
         {
             if (sceneElement != null)

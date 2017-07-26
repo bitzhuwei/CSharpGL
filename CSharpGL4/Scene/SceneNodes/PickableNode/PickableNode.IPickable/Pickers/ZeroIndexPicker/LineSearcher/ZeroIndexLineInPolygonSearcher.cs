@@ -6,13 +6,10 @@
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId"></param>
-        /// <param name="modernRenderer"></param>
+        /// <param name="picker"></param>
         /// <returns></returns>
-        internal override uint[] Search(PickingEventArgs arg,
-            uint lastVertexId, ZeroIndexPicker picker)
+        internal override uint[] Search(PickingEventArgs arg, uint lastVertexId, ZeroIndexPicker picker)
         {
             var zeroIndexBuffer = picker.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
             // when the temp index buffer could be long, it's no longer needed.

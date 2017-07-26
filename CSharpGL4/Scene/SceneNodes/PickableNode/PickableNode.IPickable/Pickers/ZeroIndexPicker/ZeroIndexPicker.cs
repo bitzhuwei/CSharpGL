@@ -86,8 +86,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
@@ -188,8 +186,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>

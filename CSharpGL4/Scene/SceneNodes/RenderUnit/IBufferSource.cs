@@ -2,7 +2,8 @@
 {
     /// <summary>
     /// Data for CPU(model) -&gt; Data for GPU(opengl buffer)
-    /// <para>从模型的数据格式转换为<see cref="GLBuffer"/，<see cref="GLBuffer"/>则可用于控制GPU的渲染操作。
+    /// <para>从模型的数据格式转换为<see cref="GLBuffer"/></para>，
+    /// <see cref="GLBuffer"/>则可用于控制GPU的渲染操作。
     /// </summary>
     public interface IBufferSource
     {

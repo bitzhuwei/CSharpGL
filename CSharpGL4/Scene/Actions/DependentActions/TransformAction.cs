@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// Render <see cref="IWorldSpace"/> objects.
         /// </summary>
-        /// <param name="rootElement"></param>
+        /// <param name="scene"></param>
         public TransformAction(Scene scene) : base(scene) { }
 
         /// <summary>

@@ -98,8 +98,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <param name="lastVertexId"></param>
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
@@ -118,9 +116,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="lastVertexId"></param>
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
@@ -177,8 +172,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
             PickingEventArgs arg,
@@ -198,8 +191,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="twoPrimitivesIndexBuffer"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         private uint Pick(PickingEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer)
         {

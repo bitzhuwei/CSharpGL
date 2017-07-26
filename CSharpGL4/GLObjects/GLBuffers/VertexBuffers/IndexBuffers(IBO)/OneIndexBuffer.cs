@@ -55,7 +55,6 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="arg"></param>
         public override void Render()
         {
             int primCount = this.PrimCount;

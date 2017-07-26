@@ -14,8 +14,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="primitiveInfoList"></param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexId(
             PickingEventArgs arg,

@@ -9,11 +9,8 @@
         /// Gets an instance of <see cref="FontTexture"/>.
         /// </summary>
         /// <param name="fontBitmap"></param>
-        /// <param name="parameters"></param>
-        /// <param name="mipmapFiltering"></param>
         /// <returns></returns>
-        public static FontTexture GetFontTexture(this FontBitmap fontBitmap,
-            MipmapFilter mipmapFiltering = MipmapFilter.LinearMipmapLinear)
+        public static FontTexture GetFontTexture(this FontBitmap fontBitmap)
         {
             var bmp = fontBitmap.GlyphBitmap;
             var texture = new Texture(

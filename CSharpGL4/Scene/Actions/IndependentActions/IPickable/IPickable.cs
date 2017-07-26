@@ -35,8 +35,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
-        /// <param name="x">mouse position(Left Down is (0, 0)).</param>
-        /// <param name="y">mouse position(Left Down is (0, 0)).</param>
         /// <returns></returns>
         PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
     }
@@ -70,12 +68,12 @@ namespace CSharpGL
         public Scene Scene { get; set; }
 
         /// <summary>
-        /// picking at position(Left Down is (0, 0)).</param>
+        /// picking at position(Left Down is (0, 0)).
         /// </summary>
         public int X { get; set; }
 
         /// <summary>
-        /// picking at position(Left Down is (0, 0)).</param>
+        /// picking at position(Left Down is (0, 0)).
         /// </summary>
         public int Y { get; set; }
 
