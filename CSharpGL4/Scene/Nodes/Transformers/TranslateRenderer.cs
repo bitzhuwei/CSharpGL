@@ -10,6 +10,10 @@ namespace CSharpGL
     /// </summary>
     public class TranslateRenderer : PickableNode
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static TranslateRenderer Create()
         {
             throw new System.NotImplementedException();
@@ -26,11 +30,19 @@ namespace CSharpGL
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
             throw new NotImplementedException();

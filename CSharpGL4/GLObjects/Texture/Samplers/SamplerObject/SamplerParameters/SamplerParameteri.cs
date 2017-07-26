@@ -42,6 +42,10 @@ namespace CSharpGL
             glSamplerParameteri(samplerId, this.PName, this.PValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("glSamplerParameteri({0}, {1}, {2});", " ", this.PNameString, this.PValue);

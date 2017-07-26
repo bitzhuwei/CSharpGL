@@ -32,6 +32,9 @@ namespace CSharpGL
         Polygon,
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     [Flags]
     public enum PickingGeometryTypes : byte
     {

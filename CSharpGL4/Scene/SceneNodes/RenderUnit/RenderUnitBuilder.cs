@@ -10,8 +10,17 @@ namespace CSharpGL
     /// </summary>
     public class RenderUnitBuilder
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected GLState[] states;
+        /// <summary>
+        /// 
+        /// </summary>
         protected IShaderProgramProvider programProvider;
+        /// <summary>
+        /// 
+        /// </summary>
         protected AttributeMap map;
 
         /// <summary>
@@ -27,6 +36,11 @@ namespace CSharpGL
             this.states = states;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public RenderUnit ToRenderUnit(IBufferSource model)
         {
             // init shader program.

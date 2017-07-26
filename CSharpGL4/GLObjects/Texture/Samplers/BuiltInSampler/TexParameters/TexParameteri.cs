@@ -47,6 +47,10 @@ namespace CSharpGL
             GL.Instance.TexParameteri((uint)target, PName, PValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override string ToString()
         {
             return string.Format("glTexParameteri({0}, {1}, {2});", " ", this.PNameString, this.PValue);

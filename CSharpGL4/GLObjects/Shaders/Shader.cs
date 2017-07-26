@@ -29,6 +29,9 @@ namespace CSharpGL
         }
 
         private bool isInitialized = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public void Initialize()
         {
             if (!this.isInitialized)

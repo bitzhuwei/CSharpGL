@@ -167,6 +167,9 @@ void main(void) {
         /// </summary>
         public bool TransparentBackground { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float Delta { get; set; }
 
         private TextureBillboardNode(ITextureSource textureSource, int width, int height, IBufferSource model, RenderUnitBuilder builder)
@@ -177,6 +180,10 @@ void main(void) {
             this.Height = height;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
@@ -203,6 +210,10 @@ void main(void) {
             renderUnit.Render();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
         }

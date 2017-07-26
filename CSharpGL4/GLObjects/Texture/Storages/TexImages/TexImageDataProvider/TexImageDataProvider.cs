@@ -12,6 +12,10 @@ namespace CSharpGL
     {
         #region IEnumerable<LeveledData> 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public virtual IEnumerator<LeveledData> GetEnumerator()
         {
             yield return new LeveledData();

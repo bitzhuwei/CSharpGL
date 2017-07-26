@@ -20,7 +20,11 @@ namespace CSharpGL
         /// </summary>
         public uint PName { get; private set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="pnameString"></param>
         protected PixelStore(uint pname, string pnameString)
         {
             this.PName = pname; this.PNameString = pnameString;

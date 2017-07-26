@@ -20,6 +20,11 @@ namespace CSharpGL
         /// </summary>
         public uint PName { get; private set; }
 
+        /// <summary>
+        /// glTexParameteri/f();
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="pnameString"></param>
         protected TexParameter(uint pname, string pnameString)
         {
             this.PName = pname; this.PNameString = pnameString;

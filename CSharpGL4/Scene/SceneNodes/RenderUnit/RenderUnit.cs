@@ -47,6 +47,9 @@ namespace CSharpGL
             this.StateList.AddRange(states);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Render()
         {
             ShaderProgram program = this.Program;
@@ -65,7 +68,9 @@ namespace CSharpGL
             program.Unbind();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             VertexArrayObject vao = this.VertexArrayObject;

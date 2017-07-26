@@ -50,6 +50,9 @@ namespace CSharpGL
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren;// not render children in Scene.Render().
+        /// <summary>
+        /// 
+        /// </summary>
         public ThreeFlags EnableRendering
         {
             get { return this.enableRendering; }
@@ -59,6 +62,10 @@ namespace CSharpGL
 
         private PolygonOffsetFillState state = new PolygonOffsetFillState();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (this.Width <= 0 || this.Height <= 0) { return; }
@@ -94,6 +101,10 @@ namespace CSharpGL
             this.framebuffer.Unbind();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
@@ -105,7 +116,10 @@ namespace CSharpGL
 
         #region ITextureSource 成员
 
-        Texture ITextureSource.BindingTexture { get { return this.framebufferSource.BindingTexture; } }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture BindingTexture { get { return this.framebufferSource.BindingTexture; } }
 
         #endregion
     }

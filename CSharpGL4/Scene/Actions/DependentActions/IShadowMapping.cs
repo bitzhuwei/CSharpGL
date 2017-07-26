@@ -36,7 +36,7 @@ namespace CSharpGL
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
 
-            this.LightStack = new Stack<LightBase>();
+            //this.LightStack = new Stack<LightBase>();
         }
 
         /// <summary>
@@ -59,12 +59,15 @@ namespace CSharpGL
         //public virtual mat4 GetProjectionMatrix()
         //{
         //    return this.Scene.Camera.GetProjectionMatrix();
-        //}
+        ////}
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //internal Stack<LightBase> LightStack { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        internal Stack<LightBase> LightStack { get; private set; }
-
         public LightBase CurrentLight { get; set; }
     }
 }

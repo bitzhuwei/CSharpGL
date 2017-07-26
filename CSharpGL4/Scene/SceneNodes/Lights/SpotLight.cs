@@ -10,11 +10,6 @@ namespace CSharpGL
     /// </summary>
     public class SpotLight : LightBase
     {
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public vec3 Position { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -56,6 +51,10 @@ namespace CSharpGL
             this.Far = far;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override mat4 GetProjectionMatrix()
         {
             const float aspectRatio = 1.0f;
@@ -64,6 +63,10 @@ namespace CSharpGL
             return projection;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override mat4 GetViewMatrix()
         {
             mat4 view = glm.lookAt(this.Position, this.Target, this.upVector);

@@ -9,6 +9,13 @@ namespace CSharpGL
     /// </summary>
     public class PropertyGridEditor : UITypeEditor
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="provider"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据
@@ -18,6 +25,11 @@ namespace CSharpGL
             return value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)
         {
             // 指定为模式窗体属性编辑器类型
