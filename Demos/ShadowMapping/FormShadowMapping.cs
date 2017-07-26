@@ -49,6 +49,9 @@ namespace ShadowMapping
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
             this.actionList = actionList;
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
