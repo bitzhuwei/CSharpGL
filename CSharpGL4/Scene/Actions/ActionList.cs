@@ -17,7 +17,7 @@ namespace CSharpGL
         {
             for (int i = 0; i < this.Count; i++)
             {
-                this[i].Render();
+                this[i].Act();
             }
         }
     }

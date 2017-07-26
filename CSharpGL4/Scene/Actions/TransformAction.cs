@@ -24,7 +24,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Render()
+        public override void Act()
         {
             var arg = new TransformEventArgs();
             this.Render(this.RootElement, arg);

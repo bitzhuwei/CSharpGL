@@ -27,7 +27,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Render();
+        public abstract void Act();
 
     }
 }

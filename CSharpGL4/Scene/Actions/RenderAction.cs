@@ -45,7 +45,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Render()
+        public override void Act()
         {
             int[] value = null;
             bool clear = this.Clear;
