@@ -301,7 +301,7 @@
     <None Include="Scene\SceneNodes\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
-    <Compile Include="Scene\Scene.PickRendererBases.cs" />
+    <Compile Include="Scene\Actions\IndependentActions\LegacyPickingAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\RenderAction.cs" />
     <Compile Include="Scene\Scene.cs" />
     <None Include="BaseDataStructures\IBoundingBox\readme.md" />

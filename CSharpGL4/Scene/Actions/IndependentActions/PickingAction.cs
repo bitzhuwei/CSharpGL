@@ -7,6 +7,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PickingAction : ActionBase
     {
         private Framebuffer pickingFramebuffer;

@@ -7,9 +7,17 @@ using System.Text;
 
 namespace CSharpGL
 {
-
-    public partial class Scene
+    /// <summary>
+    /// 
+    /// </summary>
+    public class LegacyPickingAction : ActionBase
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scene"></param>
+        public LegacyPickingAction(Scene scene) : base(scene) { }
 
         /// <summary>
         /// Pick <see cref="SceneNodeBase"/>s at specified positon.
@@ -35,9 +43,9 @@ namespace CSharpGL
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             mat4 pickMatrix = glm.pickMatrix(new ivec2(x, y), new ivec2(deltaX, deltaY), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
-            var arg = new LegacyPickingEventArgs(pickMatrix, this, x, y);
+            var arg = new LegacyPickingEventArgs(pickMatrix, this.Scene, x, y);
             uint currentName = 1;
-            this.RenderForPicking(this.RootElement, arg, ref currentName);
+            this.RenderForPicking(this.Scene.RootElement, arg, ref currentName);
             //	Flush commands.
             GL.Instance.Flush();
 
@@ -77,14 +85,14 @@ namespace CSharpGL
 
         private void RenderForPicking(SceneNodeBase sceneElement, LegacyPickingEventArgs arg, ref uint currentName)
         {
-            var pickable = sceneElement as ILegacyPickable;
-            if (pickable != null)
+            if (sceneElement != null)
             {
-                mat4 parentCascadeModelMatrix = arg.ModelMatrixStack.Peek();
-                sceneElement.cascadeModelMatrix = sceneElement.GetModelMatrix(parentCascadeModelMatrix);
+                var pickable = sceneElement as ILegacyPickable;
+                ThreeFlags flags = (pickable != null) ? (pickable.EnableLegacyPicking) : ThreeFlags.None;
+                bool before = (pickable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
+                bool children = (pickable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
 
-                ThreeFlags flags = pickable.EnableLegacyPicking;
-                if ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren)
+                if (before)
                 {
                     //  Load and map the name.
                     GL.Instance.LoadName(currentName);
@@ -96,27 +104,13 @@ namespace CSharpGL
                     currentName++;
                 }
 
-                if ((flags & ThreeFlags.Children) == ThreeFlags.Children)
+                if (children)
                 {
-                    arg.ModelMatrixStack.Push(sceneElement.cascadeModelMatrix);
                     foreach (var item in sceneElement.Children)
                     {
                         this.RenderForPicking(item, arg, ref currentName);
                     }
-                    arg.ModelMatrixStack.Pop();
                 }
-
-                //if ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren)
-                //{
-                //    //  Load and map the name.
-                //    GL.Instance.LoadName(currentName);
-                //    arg.hitMap[currentName] = sceneElement;
-
-                //    pickable.RenderAfterChildrenForLegacyPicking(arg);
-
-                //    //  Increment the name.
-                //    currentName++;
-                //}
             }
         }
     }

@@ -22,7 +22,6 @@ namespace ShadowMapping
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.MouseClick += winGLCanvas1_MouseClick;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -147,45 +146,6 @@ namespace ShadowMapping
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
-        }
-
-        /// <summary>
-        /// click to pick and toggle the render wireframe state.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void winGLCanvas1_MouseClick(object sender, MouseEventArgs e)
-        {
-            int x = e.X;
-            int y = this.winGLCanvas1.Height - e.Y - 1;
-            List<HitTarget> list = this.scene.Pick(x, y);
-            //foreach (var item in list)
-            //{
-            //    var parent = item.node.Parent;
-            //    if (parent != null)
-            //    {
-            //        var node = parent as IRenderable;
-            //        if (node != null)
-            //        {
-            //            node.RenderingEnabled = !node.RenderingEnabled;
-            //        }
-            //    }
-            //}
-
-            if (list.Count == 0)
-            {
-                this.propGrid.SelectedObject = null;
-            }
-            else if (list.Count == 1)
-            {
-                this.propGrid.SelectedObject = list[0].node;
-            }
-            else
-            {
-                this.propGrid.SelectedObjects = (from item in list select item.node).ToArray();
-            }
-
-            this.lblState.Text = string.Format("{0} objects selected.", list.Count);
         }
 
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)

@@ -14,6 +14,7 @@ namespace HelloCSharpGL
     {
         private Scene scene;
         private ActionList actionList;
+        private LegacyPickingAction legacyPickingAction;
 
         public FormMain()
         {
@@ -49,6 +50,8 @@ namespace HelloCSharpGL
             var renderAction = new RenderAction(scene, camera);
             list.Add(renderAction);
             this.actionList = list;
+
+            this.legacyPickingAction = new LegacyPickingAction(scene);
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
@@ -214,7 +217,7 @@ namespace HelloCSharpGL
         {
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            List<HitTarget> list = this.scene.Pick(x, y);
+            List<HitTarget> list = this.legacyPickingAction.Pick(x, y);
             //foreach (var item in list)
             //{
             //    var parent = item.node.Parent;
