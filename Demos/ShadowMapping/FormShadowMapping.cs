@@ -30,7 +30,7 @@ namespace ShadowMapping
             //var teapot = ShadowMappingRenderer.Create();
             //var rootElement = teapot;
 
-            var position = new vec3(5, 3, 5) * 5;
+            var position = new vec3(5, 3, 5) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -88,7 +88,7 @@ namespace ShadowMapping
                 }
                 {
                     var ground = ShadowGroundNode.Create();
-                    ground.Scale *= 100;
+                    ground.Scale *= 30;
                     ground.WorldPosition = new vec3(0, -3, 0);
                     lightContainer.Children.Add(ground);
                 }
