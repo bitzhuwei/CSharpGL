@@ -18,7 +18,9 @@ namespace Skybox
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
         private GroundNode ground;
+        private SkyboxNode skybox;
         private PickingAction pickingAction;
+
         public FormMain()
         {
             InitializeComponent();
@@ -93,7 +95,8 @@ namespace Skybox
             this.teapot = TeapotNode.Create();
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
             this.ground = GroundNode.Create(); this.ground.Color = Color.Gray.ToVec4(); this.ground.Scale *= 10; this.ground.WorldPosition = new vec3(0, -3, 0);
-            var group = new GroupNode(this.teapot, this.ground);
+            this.skybox = SkyboxNode.Create(); this.skybox.Scale *= 10;
+            var group = new GroupNode(this.teapot, this.ground, this.skybox);
 
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
