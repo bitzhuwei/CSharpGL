@@ -56,10 +56,6 @@ namespace EnvironmentMapping
                         throw new NotImplementedException();
                         break;
                     case GeometryType.Triangle:
-                        if (pickedGeometry.FromRenderer == this.teapot)
-                        {
-                            Console.WriteLine();
-                        }
                         triangleTip.Vertex0 = pickedGeometry.Positions[0];
                         triangleTip.Vertex1 = pickedGeometry.Positions[1];
                         triangleTip.Vertex2 = pickedGeometry.Positions[2];
