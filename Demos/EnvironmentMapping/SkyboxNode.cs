@@ -60,9 +60,11 @@ void main()
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Skybox.strPosition);
-            var builder = new RenderUnitBuilder(provider, map, new CullFaceState(CullFaceMode.Front));
+            var cullface = new CullFaceState(CullFaceMode.Back);
+            var builder = new RenderUnitBuilder(provider, map, cullface);
             var model = new Skybox();
             var node = new SkyboxNode(model, Skybox.strPosition, totalBmp, builder);
+            node.EnablePicking = TwoFlags.Children;// sky box should not take part in picking.
             node.Initialize();
 
             return node;
@@ -194,7 +196,7 @@ void main()
             {
                 if (this.indexBuffer == null)
                 {
-                    this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
+                    this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, positions.Length);
                 }
 
                 return this.indexBuffer;
@@ -210,35 +212,47 @@ void main()
             /// </summary>
             private static readonly vec3[] positions = new vec3[]
 			{
-				new vec3(-xLength, -yLength, +zLength),//  0
-				new vec3(+xLength, -yLength, +zLength),//  1
-				new vec3(+xLength, +yLength, +zLength),//  2
-				new vec3(-xLength, +yLength, +zLength),//  3
+				new vec3(-xLength,  yLength, -zLength),
+				new vec3(-xLength, -yLength, -zLength),
+				new vec3( xLength, -yLength, -zLength),
+				new vec3( xLength, -yLength, -zLength),
+				new vec3( xLength,  yLength, -zLength),
+				new vec3(-xLength,  yLength, -zLength),
 
-				new vec3(+xLength, -yLength, +zLength),//  4
-				new vec3(+xLength, -yLength, -zLength),//  5
-				new vec3(+xLength, +yLength, -zLength),//  6
-				new vec3(+xLength, +yLength, +zLength),//  7
-				
-				new vec3(-xLength, +yLength, +zLength),//  8
-				new vec3(+xLength, +yLength, +zLength),//  9
-				new vec3(+xLength, +yLength, -zLength),// 10
-				new vec3(-xLength, +yLength, -zLength),// 11
-				
-				new vec3(+xLength, -yLength, -zLength),// 12
-				new vec3(-xLength, -yLength, -zLength),// 13
-				new vec3(-xLength, +yLength, -zLength),// 14
-				new vec3(+xLength, +yLength, -zLength),// 15
-				
-				new vec3(-xLength, -yLength, -zLength),// 16
-				new vec3(-xLength, -yLength, +zLength),// 17
-				new vec3(-xLength, +yLength, +zLength),// 18
-				new vec3(-xLength, +yLength, -zLength),// 19
-				
-				new vec3(+xLength, -yLength, -zLength),// 20
-				new vec3(+xLength, -yLength, +zLength),// 21
-				new vec3(-xLength, -yLength, +zLength),// 22
-				new vec3(-xLength, -yLength, -zLength),// 23
+				new vec3(-xLength, -yLength,  zLength),
+				new vec3(-xLength, -yLength, -zLength),
+				new vec3(-xLength,  yLength, -zLength),
+				new vec3(-xLength,  yLength, -zLength),
+				new vec3(-xLength,  yLength,  zLength),
+				new vec3(-xLength, -yLength,  zLength),
+
+				new vec3( xLength, -yLength, -zLength),
+				new vec3( xLength, -yLength,  zLength),
+				new vec3( xLength,  yLength,  zLength),
+				new vec3( xLength,  yLength,  zLength),
+				new vec3( xLength,  yLength, -zLength),
+				new vec3( xLength, -yLength, -zLength),
+
+				new vec3(-xLength, -yLength,  zLength),
+				new vec3(-xLength,  yLength,  zLength),
+				new vec3( xLength,  yLength,  zLength),
+				new vec3( xLength,  yLength,  zLength),
+				new vec3( xLength, -yLength,  zLength),
+				new vec3(-xLength, -yLength,  zLength),
+
+				new vec3(-xLength,  yLength, -zLength),
+				new vec3( xLength,  yLength, -zLength),
+				new vec3( xLength,  yLength,  zLength),
+				new vec3( xLength,  yLength,  zLength),
+				new vec3(-xLength,  yLength,  zLength),
+				new vec3(-xLength,  yLength, -zLength),
+
+				new vec3(-xLength, -yLength, -zLength),
+				new vec3(-xLength, -yLength,  zLength),
+				new vec3( xLength, -yLength, -zLength),
+				new vec3( xLength, -yLength, -zLength),
+				new vec3(-xLength, -yLength,  zLength),
+				new vec3( xLength, -yLength,  zLength),
 			};
 
         }
