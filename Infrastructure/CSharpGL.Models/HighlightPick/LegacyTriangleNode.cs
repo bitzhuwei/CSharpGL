@@ -87,9 +87,9 @@ namespace CSharpGL
         }
 
         private GLState polygonOffsetState = new PolygonOffsetFillState();
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
-        private LineWidthState lineWidthState = new LineWidthState();
-        private PointSizeState pointSizeState = new PointSizeState();
+        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+        private LineWidthState lineWidthState = new LineWidthState(2.0f);
+        private PointSizeState pointSizeState = new PointSizeState(5.0f);
         /// <summary>
         /// 
         /// </summary>
@@ -102,6 +102,7 @@ namespace CSharpGL
             this.polygonOffsetState.On();
             this.polygonModeState.On();
             this.lineWidthState.On();
+            this.pointSizeState.On();
 
             GL.Instance.Begin((uint)DrawMode.Triangles);
             GL.Instance.Color3f(this.Color0.x, this.Color0.y, this.Color0.z);
@@ -112,6 +113,7 @@ namespace CSharpGL
             GL.Instance.Vertex3f(this.Vertex2.x, this.Vertex2.y, this.Vertex2.z);
             GL.Instance.End();
 
+            this.pointSizeState.Off();
             this.lineWidthState.Off();
             this.polygonModeState.Off();
             this.polygonOffsetState.Off();

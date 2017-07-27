@@ -28,7 +28,7 @@ namespace Texture2D
         {
             SceneNodeBase rootElement = GetRootElement();
 
-            var position = new vec3(1, 2, 4) / 3;
+            var position = new vec3(1, 2, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
