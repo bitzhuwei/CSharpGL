@@ -42,10 +42,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="storage"></param>
-        public Texture(TextureTarget target, TexStorageBase storage)
+        /// <param name="texParameters"></param>
+        public Texture(TextureTarget target, TexStorageBase storage, params TexParameter[] texParameters)
         {
             this.Target = target;
             this.Storage = storage;
+            this.builtInSampler.AddRange(texParameters);
         }
         /// <summary>
         ///

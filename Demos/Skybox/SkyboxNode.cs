@@ -73,12 +73,12 @@ void main()
         {
             var dataProvider = GetCubemapDataProvider(totalBmp);
             var storage = new CubemapTexImage2D((int)GL.GL_RGBA, totalBmp.Width / 4, totalBmp.Height / 3, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, dataProvider);
-            var texture = new Texture(TextureTarget.TextureCubeMap, storage);
-            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR));
-            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
-            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
-            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
+            var texture = new Texture(TextureTarget.TextureCubeMap, storage,
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
             texture.Initialize();
 
             return texture;
@@ -122,7 +122,6 @@ void main()
             right.RotateFlip(flip); left.RotateFlip(flip);
             top.RotateFlip(flip); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
             back.RotateFlip(flip); front.RotateFlip(flip);
-
 #if DEBUG
             right.Save("right.png"); left.Save("left.png");
             top.Save("top.png"); bottom.Save("bottom.png");
