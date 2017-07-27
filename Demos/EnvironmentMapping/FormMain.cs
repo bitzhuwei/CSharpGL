@@ -136,5 +136,21 @@ namespace EnvironmentMapping
                 node.RotationAngle += 1;
             }
         }
+
+        private void rdoReflection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoReflection.Checked)
+            {
+                this.teapot.Method = EnvironmentMappingTeapotNode.RenderMethod.Reflection;
+            }
+        }
+
+        private void rdoRefraction_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoRefraction.Checked)
+            {
+                this.teapot.Method = EnvironmentMappingTeapotNode.RenderMethod.Refraction;
+            }
+        }
     }
 }

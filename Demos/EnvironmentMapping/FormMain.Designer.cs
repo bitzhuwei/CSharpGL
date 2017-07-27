@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.rdoReflection = new System.Windows.Forms.RadioButton();
+            this.rdoRefraction = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,10 +41,10 @@
             this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.winGLCanvas1.Location = new System.Drawing.Point(12, 12);
+            this.winGLCanvas1.Location = new System.Drawing.Point(12, 38);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(961, 553);
+            this.winGLCanvas1.Size = new System.Drawing.Size(961, 527);
             this.winGLCanvas1.TabIndex = 0;
             // 
             // timer1
@@ -51,16 +53,45 @@
             this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // rdoReflection
+            // 
+            this.rdoReflection.AutoSize = true;
+            this.rdoReflection.Checked = true;
+            this.rdoReflection.Font = new System.Drawing.Font("宋体", 12F);
+            this.rdoReflection.Location = new System.Drawing.Point(12, 12);
+            this.rdoReflection.Name = "rdoReflection";
+            this.rdoReflection.Size = new System.Drawing.Size(106, 20);
+            this.rdoReflection.TabIndex = 1;
+            this.rdoReflection.TabStop = true;
+            this.rdoReflection.Text = "Reflection";
+            this.rdoReflection.UseVisualStyleBackColor = true;
+            this.rdoReflection.CheckedChanged += new System.EventHandler(this.rdoReflection_CheckedChanged);
+            // 
+            // rdoRefraction
+            // 
+            this.rdoRefraction.AutoSize = true;
+            this.rdoRefraction.Font = new System.Drawing.Font("宋体", 12F);
+            this.rdoRefraction.Location = new System.Drawing.Point(124, 12);
+            this.rdoRefraction.Name = "rdoRefraction";
+            this.rdoRefraction.Size = new System.Drawing.Size(106, 20);
+            this.rdoRefraction.TabIndex = 1;
+            this.rdoRefraction.Text = "Refraction";
+            this.rdoRefraction.UseVisualStyleBackColor = true;
+            this.rdoRefraction.CheckedChanged += new System.EventHandler(this.rdoRefraction_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 577);
+            this.Controls.Add(this.rdoRefraction);
+            this.Controls.Add(this.rdoReflection);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
             this.Text = "Demo Color-Coded-Picking in CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,5 +99,7 @@
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.RadioButton rdoReflection;
+        private System.Windows.Forms.RadioButton rdoRefraction;
     }
 }

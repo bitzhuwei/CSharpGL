@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A12CF4BE-7227-45B4-9694-D6FC7CF22436}</ProjectGuid>
+    <ProjectGuid>{4F115574-9EC9-4F29-891C-3673844196F3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnvironmentMapping.Reflection</RootNamespace>
-    <AssemblyName>EnvironmentMapping.Reflection</AssemblyName>
+    <RootNamespace>EnvironmentMapping</RootNamespace>
+    <AssemblyName>EnvironmentMapping</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

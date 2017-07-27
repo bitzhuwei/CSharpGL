@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blending", "Demos\Blending\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybox", "Demos\Skybox\Skybox.csproj", "{74614A27-0055-465C-A608-FDD33BA90335}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMapping", "EnvironmentMapping\EnvironmentMapping.csproj", "{4F115574-9EC9-4F29-891C-3673844196F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMapping", "Demos\EnvironmentMapping\EnvironmentMapping.csproj", "{4F115574-9EC9-4F29-891C-3673844196F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
