@@ -56,6 +56,10 @@ namespace EnvironmentMapping
                         throw new NotImplementedException();
                         break;
                     case GeometryType.Triangle:
+                        if (pickedGeometry.FromRenderer == this.teapot)
+                        {
+                            Console.WriteLine();
+                        }
                         triangleTip.Vertex0 = pickedGeometry.Positions[0];
                         triangleTip.Vertex1 = pickedGeometry.Positions[1];
                         triangleTip.Vertex2 = pickedGeometry.Positions[2];
@@ -93,7 +97,8 @@ namespace EnvironmentMapping
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var totalBmp = new Bitmap(@"cubemaps_skybox.png");
             this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
-            this.teapot = EnvironmentMappingTeapotNode.Create(this.skybox.SkyboxTexture); this.teapot.Scale *= 3;
+            this.teapot = EnvironmentMappingTeapotNode.Create(this.skybox.SkyboxTexture);
+            this.teapot.Scale *= 3;
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
             var group = new GroupNode(this.teapot, this.skybox);
 
