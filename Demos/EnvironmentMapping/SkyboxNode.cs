@@ -78,7 +78,7 @@ void main()
         private Texture GetCubemapTexture(Bitmap totalBmp)
         {
             var dataProvider = GetCubemapDataProvider(totalBmp);
-            var storage = new CubemapTexImage2D((int)GL.GL_RGBA, totalBmp.Width / 4, totalBmp.Height / 3, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, dataProvider);
+            var storage = new CubemapTexImage2D((int)GL.GL_RGBA, totalBmp.Width / 4, totalBmp.Height / 3, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, dataProvider);
             var texture = new Texture(TextureTarget.TextureCubeMap, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),

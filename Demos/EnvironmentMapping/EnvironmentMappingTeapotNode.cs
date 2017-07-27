@@ -67,7 +67,7 @@ void main()
     float ratio = 1.00 / 1.52;
     vec3 I = normalize(Position - cameraPos);
     vec3 R = refract(I, normalize(Normal), ratio);
-    FragColor = vec4(texture(skybox, R).rgb, 0.1);
+    FragColor = vec4(texture(skybox, R).rgb, 1);
 }
 ";
 
@@ -93,7 +93,7 @@ void main()
                 var map = new AttributeMap();
                 map.Add(inPosition, Teapot.strPosition);
                 map.Add(inNormal, Teapot.strNormal);
-                refractBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                refractBuilder = new RenderUnitBuilder(provider, map);
             }
             var node = new EnvironmentMappingTeapotNode(model, Teapot.strPosition, reflectBuilder, refractBuilder);
             node.ModelSize = model.GetModelSize();
