@@ -60,7 +60,7 @@ void main()
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Skybox.strPosition);
-            var cullface = new CullFaceState(CullFaceMode.Back);
+            var cullface = new CullFaceState(CullFaceMode.Back);// display back faces only.
             var builder = new RenderUnitBuilder(provider, map, cullface);
             var model = new Skybox();
             var node = new SkyboxNode(model, Skybox.strPosition, totalBmp, builder);
