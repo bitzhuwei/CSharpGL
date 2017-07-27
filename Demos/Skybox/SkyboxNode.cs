@@ -89,34 +89,42 @@ void main()
             var top = new Bitmap(width, height);
             using (var g = Graphics.FromImage(top))
             {
-                g.DrawImage(totalBmp, new Rectangle(width, 0, width, height));
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, 0, width, height), GraphicsUnit.Pixel);
             }
             var left = new Bitmap(width, height);
             using (var g = Graphics.FromImage(left))
             {
-                g.DrawImage(totalBmp, new Rectangle(0, height, width, height));
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(0, height, width, height), GraphicsUnit.Pixel);
             }
             var front = new Bitmap(width, height);
             using (var g = Graphics.FromImage(front))
             {
-                g.DrawImage(totalBmp, new Rectangle(width, height, width, height));
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height, width, height), GraphicsUnit.Pixel);
             }
             var right = new Bitmap(width, height);
             using (var g = Graphics.FromImage(right))
             {
-                g.DrawImage(totalBmp, new Rectangle(width * 2, height, width, height));
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 2, height, width, height), GraphicsUnit.Pixel);
             }
             var back = new Bitmap(width, height);
             using (var g = Graphics.FromImage(back))
             {
-                g.DrawImage(totalBmp, new Rectangle(width * 3, height, width, height));
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 3, height, width, height), GraphicsUnit.Pixel);
             }
             var bottom = new Bitmap(width, height);
             using (var g = Graphics.FromImage(bottom))
             {
-                g.DrawImage(totalBmp, new Rectangle(width, height * 2, width, height));
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height * 2, width, height), GraphicsUnit.Pixel);
             }
 
+            var flip = RotateFlipType.Rotate180FlipY;
+            right.RotateFlip(flip); left.RotateFlip(flip);
+            top.RotateFlip(flip); bottom.RotateFlip(flip);
+            back.RotateFlip(flip); front.RotateFlip(flip);
+
+            right.Save("right.png"); left.Save("left.png");
+            top.Save("top.png"); bottom.Save("bottom.png");
+            back.Save("back.png"); front.Save("front.png");
             var result = new CubemapDataProvider(right, left, top, bottom, back, front);
             return result;
         }
