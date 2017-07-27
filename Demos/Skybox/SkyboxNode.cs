@@ -22,7 +22,8 @@ out vec3 texCoord;
 
 void main()
 {
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0); 
+    vec4 position = mvpMatrix * vec4(inPosition, 1.0); 
+    gl_Position = position.xyww;
     texCoord = inPosition;
 }
 ";
@@ -44,32 +45,32 @@ void main()
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="totalBmp"></param>
         /// <returns></returns>
-        public static SkyboxNode Create()
+        public static SkyboxNode Create(Bitmap totalBmp)
         {
             var vs = new VertexShader(vertexCode, inPosition);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Skybox.strPosition);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderUnitBuilder(provider, map, new CullFaceState(CullFaceMode.Front));
             var model = new Skybox();
-            var node = new SkyboxNode(model, Skybox.strPosition, builder);
+            var node = new SkyboxNode(model, Skybox.strPosition, totalBmp, builder);
             node.Initialize();
 
             return node;
         }
 
-        private SkyboxNode(Skybox model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private SkyboxNode(Skybox model, string positionNameInIBufferSource, Bitmap totalBmp, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
             this.ModelSize = model.ModelSize;
-            this.texture = GetCubemapTexture();
+            this.texture = GetCubemapTexture(totalBmp);
         }
 
-        private Texture GetCubemapTexture()
+        private Texture GetCubemapTexture(Bitmap totalBmp)
         {
-            var totalBmp = new Bitmap(@"cubemaps_skybox.png");
             var dataProvider = GetCubemapDataProvider(totalBmp);
             var storage = new CubemapTexImage2D((int)GL.GL_RGBA, totalBmp.Width / 4, totalBmp.Height / 3, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, dataProvider);
             var texture = new Texture(TextureTarget.TextureCubeMap, storage);
@@ -119,7 +120,7 @@ void main()
 
             var flip = RotateFlipType.Rotate180FlipY;
             right.RotateFlip(flip); left.RotateFlip(flip);
-            top.RotateFlip(flip); bottom.RotateFlip(flip);
+            top.RotateFlip(flip); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
             back.RotateFlip(flip); front.RotateFlip(flip);
 
             right.Save("right.png"); left.Save("left.png");
