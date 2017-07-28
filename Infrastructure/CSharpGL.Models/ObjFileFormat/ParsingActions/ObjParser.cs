@@ -31,16 +31,48 @@ namespace CSharpGL.Models
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<ObjMesh> Parse()
+        public ParsingResult Parse()
         {
+            var result = new ParsingResult();
             var context = new ObjParsingContext(this.objFilename);
 
-            foreach (var item in this.parsingActions)
+            try
             {
-                item.Parse(context);
+                foreach (var item in this.parsingActions)
+                {
+                    item.Parse(context);
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
             }
 
-            return context.MeshList;
+            return result;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ParsingResult
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public Exception Error { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ObjMesh> MeshList { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ParsingResult()
+        {
+            this.MeshList = new List<ObjMesh>();
         }
     }
 }
