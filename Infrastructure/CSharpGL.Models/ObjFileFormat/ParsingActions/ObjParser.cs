@@ -26,5 +26,21 @@ namespace CSharpGL.Models
             this.objFilename = objFilename;
             this.parsingActions = new ParsingActionBase[] { summaryParsing, meshParsing, normalParsing, locationParsing, };
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<ObjMesh> Parse()
+        {
+            var context = new ObjParsingContext(this.objFilename);
+
+            foreach (var item in this.parsingActions)
+            {
+                item.Parse(context);
+            }
+
+            return context.MeshList;
+        }
     }
 }

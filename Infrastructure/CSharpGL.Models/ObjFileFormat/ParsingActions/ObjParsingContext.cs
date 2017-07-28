@@ -10,6 +10,17 @@ namespace CSharpGL.Models
     /// </summary>
     public class ObjParsingContext
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ObjFilename { get; private set; }
 
+        public ObjParsingContext(string objFilename)
+        {
+            this.ObjFilename = objFilename;
+        }
+
+
+        public List<ObjMesh> MeshList { get; private set; }
     }
 }
