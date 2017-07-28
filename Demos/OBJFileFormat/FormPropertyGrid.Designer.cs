@@ -1,4 +1,4 @@
-﻿namespace EnvironmentMapping
+﻿namespace OBJFileFormat
 {
     partial class FormPropertyGrid
     {

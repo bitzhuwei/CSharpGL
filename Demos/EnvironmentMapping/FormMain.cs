@@ -1,5 +1,4 @@
 ﻿using CSharpGL;
-using CSharpGL.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +14,8 @@ namespace EnvironmentMapping
     {
         private Scene scene;
         private ActionList actionList;
+        private SkyboxNode skybox;
+        private EnvironmentMappingTeapotNode teapot;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
         private PickingAction pickingAction;
@@ -90,8 +91,17 @@ namespace EnvironmentMapping
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var totalBmp = new Bitmap(@"cubemaps_skybox.png");
+            this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
+            this.teapot = EnvironmentMappingTeapotNode.Create(this.skybox.SkyboxTexture);
+            this.teapot.Scale *= 3;
+            teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
+            var group = new GroupNode(this.teapot, this.skybox);
 
-            this.scene = new Scene(camera, this.winGLCanvas1);
+            this.scene = new Scene(camera, this.winGLCanvas1)
+            {
+                RootElement = group,
+            };
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
@@ -119,37 +129,29 @@ namespace EnvironmentMapping
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.openFileDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            IWorldSpace node = this.teapot;
+            if (node != null)
             {
-                string filename = this.openFileDlg.FileName;
-                var parser = new ObjParser();
-                ParsingResult result = parser.Parse(filename);
-                if (result.Error != null)
-                {
-                    MessageBox.Show(result.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    SceneNodeBase currentRoot = this.scene.RootElement;
-                    if (currentRoot != null) { currentRoot.Dispose(); }
-
-                    ObjFile file = result.ObjFile;
-                    ObjFileNode node = file.ToNode();
-                    this.scene.RootElement = node;
-                }
+                node.RotationAngle += 1;
             }
         }
 
-        private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+        private void rdoReflection_CheckedChanged(object sender, EventArgs e)
         {
-            this.Close();
+            if (rdoReflection.Checked)
+            {
+                this.teapot.Method = EnvironmentMappingTeapotNode.RenderMethod.Reflection;
+            }
         }
 
-        private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)
+        private void rdoRefraction_CheckedChanged(object sender, EventArgs e)
         {
-            (new FormPropertyGrid(this.scene)).Show();
+            if (rdoRefraction.Checked)
+            {
+                this.teapot.Method = EnvironmentMappingTeapotNode.RenderMethod.Refraction;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace EnvironmentMapping
+namespace OBJFileFormat
 {
     public partial class FormPropertyGrid : Form
     {
