@@ -16,7 +16,7 @@ namespace CSharpGL.Models
         /// <param name="context"></param>
         public override void Parse(ObjParsingContext context)
         {
-            foreach (var mesh in context.MeshList)
+            foreach (var mesh in context.ObjFile.MeshList)
             {
                 PrepareNormals(mesh);
             }

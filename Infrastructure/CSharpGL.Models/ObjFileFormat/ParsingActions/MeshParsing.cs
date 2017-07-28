@@ -48,7 +48,7 @@ namespace CSharpGL.Models
 
         private string FillCurrentMeshFaces(System.IO.StreamReader reader, string currentLine, int meshIndex, ObjParsingContext context)
         {
-            ObjMesh mesh = context.MeshList[meshIndex];
+            ObjMesh mesh = context.ObjFile.MeshList[meshIndex];
             ObjFace[] faces;
             if (mesh.faces == null)
             {
@@ -110,7 +110,7 @@ namespace CSharpGL.Models
 
         private string FillCurrentMeshNormals(System.IO.StreamReader reader, string currentLine, int meshIndex, ObjParsingContext context)
         {
-            ObjMesh mesh = context.MeshList[meshIndex];
+            ObjMesh mesh = context.ObjFile.MeshList[meshIndex];
             vec3[] normals;
             if (mesh.normals == null)
             {
@@ -139,7 +139,7 @@ namespace CSharpGL.Models
 
         private string FillCurrentMeshVertexes(System.IO.StreamReader reader, string currentLine, int meshIndex, ObjParsingContext context)
         {
-            ObjMesh mesh = context.MeshList[meshIndex];
+            ObjMesh mesh = context.ObjFile.MeshList[meshIndex];
             vec3[] vertexes;
             if (mesh.vertexes == null)
             {

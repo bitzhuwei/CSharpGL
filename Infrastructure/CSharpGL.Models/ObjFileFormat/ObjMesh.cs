@@ -21,5 +21,10 @@ namespace CSharpGL.Models
 
         internal vec3 size;
         internal vec3 position;
+
+        internal void CalculateSizePosition()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

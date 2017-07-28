@@ -42,7 +42,7 @@ namespace CSharpGL.Models
             if (mesh.normalCount > 0 && mesh.normalCount != mesh.vertexCount)
             {
                 throw new Exception(string.Format("mesh[{0}]'s normal count[{1}] not equal to vertex count[{2}]!",
-                    context.MeshList.IndexOf(mesh), mesh.normalCount, mesh.vertexCount));
+                    context.ObjFile.MeshList.IndexOf(mesh), mesh.normalCount, mesh.vertexCount));
             }
         }
 
@@ -93,7 +93,7 @@ namespace CSharpGL.Models
                 else { break; }
             }
 
-            context.MeshList.Add(mesh);
+            context.ObjFile.MeshList.Add(mesh);
         }
     }
 }

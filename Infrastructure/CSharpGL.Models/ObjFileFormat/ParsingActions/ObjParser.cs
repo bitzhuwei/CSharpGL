@@ -45,6 +45,8 @@ namespace CSharpGL.Models
                 {
                     item.Parse(context);
                 }
+
+                result.ObjFile = context.ObjFile;
             }
             catch (Exception ex)
             {
@@ -68,14 +70,7 @@ namespace CSharpGL.Models
         /// <summary>
         /// 
         /// </summary>
-        public List<ObjMesh> MeshList { get; private set; }
+        public ObjFile ObjFile { get; internal set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ParsingResult()
-        {
-            this.MeshList = new List<ObjMesh>();
-        }
     }
 }

@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
+    <Compile Include="ObjFileFormat\ObjFile.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\LocationParsing.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\NormalParsing.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\ObjParsingContext.cs" />
@@ -88,6 +89,7 @@
   <ItemGroup>
     <Content Include="Cube\CubeNode.jpg" />
     <Content Include="Cube\TextureCubeNode.jpg" />
+    <Content Include="ObjFileFormat\ParsingActions\LocationParsing.jpg" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>

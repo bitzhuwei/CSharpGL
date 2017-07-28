@@ -22,18 +22,18 @@ namespace CSharpGL.Models
         public ObjParsingContext(string objFilename)
         {
             this.ObjFilename = objFilename;
-            this.MeshList = new List<ObjMesh>();
-            this.MeshList.Add(new ObjMesh());
+            this.ObjFile = new ObjFile();
+            this.ObjFile.MeshList.Add(new ObjMesh());
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<ObjMesh> MeshList { get; private set; }
+        public ObjFile ObjFile { get; private set; }
 
         internal ObjMesh GetCurrentMesh()
         {
-            return this.MeshList[this.MeshList.Count - 1];
+            return this.ObjFile.MeshList[this.ObjFile.MeshList.Count - 1];
         }
     }
 }
