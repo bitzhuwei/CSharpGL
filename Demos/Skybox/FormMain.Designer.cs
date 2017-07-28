@@ -90,7 +90,7 @@
             this.Controls.Add(this.chkRenderWireframe);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Demo Color-Coded-Picking in CSharpGL";
+            this.Text = "Skybox - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
