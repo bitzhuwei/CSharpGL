@@ -1,4 +1,5 @@
 ﻿using CSharpGL;
+using CSharpGL.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,7 +121,35 @@ namespace EnvironmentMapping
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (this.openFileDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = this.openFileDlg.FileName;
+                var parser = new ObjParser();
+                ParsingResult result = parser.Parse(filename);
+                if (result.Error != null)
+                {
+                    MessageBox.Show(result.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    SceneNodeBase currentRoot = this.scene.RootElement;
+                    if (currentRoot != null) { currentRoot.Dispose(); }
 
+                    ObjFile file = result.ObjFile;
+                    ObjFileNode node = file.ToNode();
+                    this.scene.RootElement = node;
+                }
+            }
+        }
+
+        private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new FormPropertyGrid(this.scene)).ShowDialog();
         }
     }
 }
