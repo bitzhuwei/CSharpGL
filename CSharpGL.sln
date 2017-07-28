@@ -49,8 +49,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybox", "Demos\Skybox\Skyb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMapping", "Demos\EnvironmentMapping\EnvironmentMapping.csproj", "{4F115574-9EC9-4F29-891C-3673844196F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBJFileFormat", "Demos\OBJFileFormat\OBJFileFormat.csproj", "{03FA1090-BE92-4681-B275-EEBE175FF25E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,10 +139,6 @@ Global
 		{4F115574-9EC9-4F29-891C-3673844196F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F115574-9EC9-4F29-891C-3673844196F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F115574-9EC9-4F29-891C-3673844196F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03FA1090-BE92-4681-B275-EEBE175FF25E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03FA1090-BE92-4681-B275-EEBE175FF25E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03FA1090-BE92-4681-B275-EEBE175FF25E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03FA1090-BE92-4681-B275-EEBE175FF25E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,6 +162,5 @@ Global
 		{5C822C35-044F-452D-8352-540FC7562838} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{74614A27-0055-465C-A608-FDD33BA90335} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{4F115574-9EC9-4F29-891C-3673844196F3} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
-		{03FA1090-BE92-4681-B275-EEBE175FF25E} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal

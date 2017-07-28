@@ -53,20 +53,6 @@
     </Compile>
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
-    <Compile Include="ObjFileFormat\ObjFile2Node.cs" />
-    <Compile Include="ObjFileFormat\ObjMesh2Buffer.cs" />
-    <Compile Include="ObjFileFormat\ObjMeshNode.cs" />
-    <Compile Include="ObjFileFormat\ObjFileNode.cs" />
-    <Compile Include="ObjFileFormat\ObjFile.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\LocationParsing.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\NormalParsing.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\ObjParsingContext.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\ObjParser.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\MeshParsing.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\GeneralityParsing.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\ParsingActionBase.cs" />
-    <Compile Include="ObjFileFormat\ObjFace.cs" />
-    <Compile Include="ObjFileFormat\ObjMesh.cs" />
     <Compile Include="PLY\PLY.cs" />
     <Compile Include="PLY\PLYNode.cs" />
     <Compile Include="Propeller\FlabellumNode.cs" />
@@ -93,7 +79,6 @@
   <ItemGroup>
     <Content Include="Cube\CubeNode.jpg" />
     <Content Include="Cube\TextureCubeNode.jpg" />
-    <Content Include="ObjFileFormat\ParsingActions\LocationParsing.jpg" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
@@ -102,7 +87,6 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

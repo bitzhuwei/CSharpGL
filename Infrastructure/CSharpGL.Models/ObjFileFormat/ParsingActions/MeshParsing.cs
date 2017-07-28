@@ -18,61 +18,42 @@ namespace CSharpGL.Models
         {
             using (var reader = new System.IO.StreamReader(context.ObjFilename))
             {
-                string line = reader.ReadLine().Trim();
-                int meshIndex = -1;
-                while (true)
+                ObjMesh mesh = null;
+                int vertexIndex = 0, normalIndex = 0, faceIndex = 0, meshIndex = 0;
+                string lastLine = string.Empty;
+                while (!reader.EndOfStream)
                 {
-                    if (line == null || line == string.Empty) { continue; }
-
-                    if (line.StartsWith("vn"))
+                    string line = reader.ReadLine().Trim();
+                    if (line == null || line == string.Empty)
                     {
-                        line = FillCurrentMeshNormals(reader, line, meshIndex, context);
                     }
-                    else if (line[0] == 'v')
+                    else if (line.StartsWith("vn"))
                     {
-                        meshIndex++;
-                        line = FillCurrentMeshVertexes(reader, line, meshIndex, context);
+                        if (mesh.normals == null) { mesh.normals = new vec3[mesh.normalCount]; }
+                        mesh.normals[normalIndex++] = ParseVec3(line);
+                    }
+                    else if (line[0] == 'v') // we assume that a new mesh starts with 'v' property.
+                    {
+                        if (lastLine[0] == 'v')
+                        {
+                            mesh.vertexes[vertexIndex++] = ParseVec3(line);
+                        }
+                        else
+                        {
+                            if (mesh == null) { mesh = context.ObjFile.MeshList[meshIndex++]; }
+                            vertexIndex = 0; normalIndex = 0; faceIndex = 0;
+                            mesh.vertexes[vertexIndex++] = ParseVec3(line);
+                        }
                     }
                     else if (line[0] == 'f')
                     {
-                        line = FillCurrentMeshFaces(reader, line, meshIndex, context);
+                        if (mesh.faces == null) { mesh.faces = new ObjFace[mesh.faceCount]; }
+                        mesh.faces[faceIndex++] = ParseFace(line);
                     }
-                    else
-                    {
-                        if (reader.EndOfStream) { break; }
-                        else { line = reader.ReadLine().Trim(); }
-                    }
+
+                    lastLine = line;
                 }
             }
-        }
-
-        private string FillCurrentMeshFaces(System.IO.StreamReader reader, string currentLine, int meshIndex, ObjParsingContext context)
-        {
-            ObjMesh mesh = context.ObjFile.MeshList[meshIndex];
-            ObjFace[] faces;
-            if (mesh.faces == null)
-            {
-                faces = new ObjFace[mesh.faceCount];
-                mesh.faces = faces;
-            }
-            else
-            {
-                faces = mesh.faces;
-            }
-            faces[0] = ParseFace(currentLine);
-            int index = 1;
-
-            string line = string.Empty;
-            while (!reader.EndOfStream)
-            {
-                line = reader.ReadLine().Trim();
-                if (line == null || line == string.Empty) { break; }
-
-                if (line[0] == 'f') { faces[index++] = ParseFace(line); }
-                else { break; }
-            }
-
-            return line;
         }
 
         private ObjFace ParseFace(string currentLine)
@@ -106,65 +87,6 @@ namespace CSharpGL.Models
                 v = int.Parse(parts[0]) - 1;
                 n = int.Parse(parts[parts.Length - 1]) - 1;
             }
-        }
-
-        private string FillCurrentMeshNormals(System.IO.StreamReader reader, string currentLine, int meshIndex, ObjParsingContext context)
-        {
-            ObjMesh mesh = context.ObjFile.MeshList[meshIndex];
-            vec3[] normals;
-            if (mesh.normals == null)
-            {
-                normals = new vec3[mesh.vertexCount];
-                mesh.normals = normals;
-            }
-            else
-            {
-                normals = mesh.normals;
-            }
-            normals[0] = ParseVec3(currentLine);
-            int index = 1;
-
-            string line = string.Empty;
-            while (!reader.EndOfStream)
-            {
-                line = reader.ReadLine().Trim();
-                if (line == null || line == string.Empty) { break; }
-
-                if (line.StartsWith("vn")) { normals[index++] = ParseVec3(line); }
-                else { break; }
-            }
-
-            return line;
-        }
-
-        private string FillCurrentMeshVertexes(System.IO.StreamReader reader, string currentLine, int meshIndex, ObjParsingContext context)
-        {
-            ObjMesh mesh = context.ObjFile.MeshList[meshIndex];
-            vec3[] vertexes;
-            if (mesh.vertexes == null)
-            {
-                vertexes = new vec3[mesh.vertexCount];
-                mesh.vertexes = vertexes;
-            }
-            else
-            {
-                vertexes = mesh.vertexes;
-            }
-            vertexes[0] = ParseVec3(currentLine);
-            int index = 1;
-
-            string line = string.Empty;
-            while (!reader.EndOfStream)
-            {
-                line = reader.ReadLine().Trim();
-                if (line == null || line == string.Empty) { break; }
-
-                if (line.StartsWith("vn")) { break; }
-                else if (line[0] == 'v') { vertexes[index++] = ParseVec3(line); }
-                else { break; }
-            }
-
-            return line;
         }
 
         private static readonly char[] space = new char[] { ' ' };
