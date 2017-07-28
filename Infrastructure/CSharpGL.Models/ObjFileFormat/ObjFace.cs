@@ -18,7 +18,7 @@ namespace CSharpGL.Models
         /// <summary>
         /// 
         /// </summary>
-        public ivec3 NormalIndexes { get; set; }
+        internal ivec3 NormalIndexes { get; set; }
 
         /// <summary>
         /// contains indexes of a triangle.
