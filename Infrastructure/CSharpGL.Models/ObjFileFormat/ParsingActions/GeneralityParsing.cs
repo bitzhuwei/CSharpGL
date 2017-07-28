@@ -10,7 +10,10 @@ namespace CSharpGL.Models
     /// </summary>
     public class GeneralityParsing : ParsingActionBase
     {
-
+        /// <summary>
+        /// Gets generality information for all meshes.
+        /// </summary>
+        /// <param name="context"></param>
         public override void Parse(ObjParsingContext context)
         {
             using (var reader = new System.IO.StreamReader(context.ObjFilename))
@@ -24,7 +27,7 @@ namespace CSharpGL.Models
                     {
                         UpdateCurrentMeshNormalCount(reader, context);
                     }
-                    else if (line[0] == 'v')
+                    else if (line[0] == 'v') // we assume that a new mesh starts with 'v' property.
                     {
                         UpdateCurrentMeshVertexCount(reader, context);
                     }
@@ -77,7 +80,7 @@ namespace CSharpGL.Models
 
         private void UpdateCurrentMeshVertexCount(System.IO.StreamReader reader, ObjParsingContext context)
         {
-            ObjMesh mesh = context.GetCurrentMesh();
+            ObjMesh mesh = new ObjMesh();
             mesh.vertexCount++;
             while (!reader.EndOfStream)
             {
@@ -89,6 +92,8 @@ namespace CSharpGL.Models
                 else if (line[0] == 'f') { mesh.faceCount++; break; }
                 else { break; }
             }
+
+            context.MeshList.Add(mesh);
         }
     }
 }

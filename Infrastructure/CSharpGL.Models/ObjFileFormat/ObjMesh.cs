@@ -16,6 +16,7 @@ namespace CSharpGL.Models
         internal int faceCount;
 
         internal vec3[] vertexes;
+        internal vec3[] normals;
         internal ObjFace[] faces;
 
         internal vec3 size;

@@ -10,7 +10,15 @@ namespace CSharpGL.Models
     /// </summary>
     public class ObjFace
     {
-        private readonly int[] vertexIndexes = new int[3];
+        /// <summary>
+        /// 
+        /// </summary>
+        public ivec3 VertexIndexes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ivec3 NormalIndexes { get; set; }
 
         /// <summary>
         /// contains indexes of a triangle.
@@ -18,11 +26,8 @@ namespace CSharpGL.Models
         /// <param name="index0"></param>
         /// <param name="index1"></param>
         /// <param name="index2"></param>
-        public ObjFace(int index0, int index1, int index2)
+        public ObjFace()
         {
-            this.vertexIndexes[0] = index0;
-            this.vertexIndexes[1] = index1;
-            this.vertexIndexes[2] = index2;
         }
 
         /// <summary>
@@ -31,7 +36,7 @@ namespace CSharpGL.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}, {1}, {2}", vertexIndexes[0], vertexIndexes[1], vertexIndexes[2]);
+            return string.Format("v:[{0}], n:[{1}]", this.VertexIndexes, this.NormalIndexes);
         }
     }
 }
