@@ -187,7 +187,7 @@ void main(void)
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
-            var renderUnit = this.RenderUnits[1]; // the only render unit in this node.
+            var renderUnit = this.RenderUnits[1];
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
             program.SetUniform(model_matrix, model);
@@ -233,7 +233,7 @@ void main(void)
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnits[0];
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 

@@ -53,6 +53,10 @@
     </Compile>
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
+    <Compile Include="ObjFileFormat\ObjFile2Node.cs" />
+    <Compile Include="ObjFileFormat\ObjMesh2Buffer.cs" />
+    <Compile Include="ObjFileFormat\ObjMeshNode.cs" />
+    <Compile Include="ObjFileFormat\ObjFileNode.cs" />
     <Compile Include="ObjFileFormat\ObjFile.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\LocationParsing.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\NormalParsing.cs" />
