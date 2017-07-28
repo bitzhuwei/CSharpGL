@@ -12,6 +12,7 @@ namespace CSharpGL.Models
     public class ObjMesh
     {
         internal int vertexCount;
+        internal int normalCount;
         internal int faceCount;
 
         internal vec3[] vertexes;

@@ -60,7 +60,6 @@
     <Compile Include="ObjFileFormat\ParsingActions\MeshParsing.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\GeneralityParsing.cs" />
     <Compile Include="ObjFileFormat\ParsingActions\ParsingActionBase.cs" />
-    <Compile Include="ObjFileFormat\ParsingActions\ObjGenerality.cs" />
     <Compile Include="ObjFileFormat\ObjFace.cs" />
     <Compile Include="ObjFileFormat\ObjMesh.cs" />
     <Compile Include="PLY\PLY.cs" />
