@@ -10,9 +10,8 @@ namespace CSharpGL.Models
     /// </summary>
     public class ObjParser
     {
-        private readonly string objFilename;
         private readonly ParsingActionBase[] parsingActions;
-        private readonly GeneralityParsing summaryParsing = new GeneralityParsing();
+        private readonly GeneralityParsing generalityParsing = new GeneralityParsing();
         private readonly MeshParsing meshParsing = new MeshParsing();
         private readonly NormalParsing normalParsing = new NormalParsing();
         private readonly LocationParsing locationParsing = new LocationParsing();
@@ -20,21 +19,25 @@ namespace CSharpGL.Models
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="objFilename"></param>
-        public ObjParser(string objFilename)
+        public ObjParser()
         {
-            this.objFilename = objFilename;
-            this.parsingActions = new ParsingActionBase[] { summaryParsing, meshParsing, normalParsing, locationParsing, };
+            this.parsingActions = new ParsingActionBase[] 
+            {
+                generalityParsing,
+                meshParsing, 
+                normalParsing, 
+                locationParsing, 
+            };
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public ParsingResult Parse()
+        public ParsingResult Parse(string objFilename)
         {
             var result = new ParsingResult();
-            var context = new ObjParsingContext(this.objFilename);
+            var context = new ObjParsingContext(objFilename);
 
             try
             {
