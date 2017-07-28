@@ -149,7 +149,7 @@ namespace EnvironmentMapping
 
         private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new FormPropertyGrid(this.scene)).ShowDialog();
+            (new FormPropertyGrid(this.scene)).Show();
         }
     }
 }
