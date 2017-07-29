@@ -28,7 +28,7 @@ namespace CSharpGL
         /// </summary>
         public SceneNodeBase RootElement { get; set; }
 
-        private vec4 clearColor = new vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        private vec4 clearColor = Color.SkyBlue.ToVec4();
         /// <summary>
         /// 
         /// </summary>

@@ -141,7 +141,7 @@ void main(void)
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[1]; // the only render unit in this node.
+            var renderUnit = this.RenderUnits[0];
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(model_matrix, model);
             program.SetUniform(view_matrix, view);

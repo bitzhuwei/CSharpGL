@@ -27,20 +27,7 @@ namespace CSharpGL
             : base(scene)
         {
             this.Camera = camera;
-
-            this.Clear = true;
-            this.ClearColor = Color.SkyBlue.ToVec4();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool Clear { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec4 ClearColor { get; set; }
 
         /// <summary>
         /// 
@@ -48,23 +35,16 @@ namespace CSharpGL
         public override void Act()
         {
             int[] value = null;
-            bool clear = this.Clear;
-            if (clear)
-            {
-                value = new int[4];
-                GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
-                vec4 clearColor = this.ClearColor;
-                GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-            }
+            value = new int[4];
+            GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
+            vec4 clearColor = this.Scene.ClearColor;
+            GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             var arg = new RenderEventArgs(this.Camera);
             RenderAction.Render(this.Scene.RootElement, arg);
 
-            if (clear)
-            {
-                GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
-            }
+            GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
         }
 
         /// <summary>
