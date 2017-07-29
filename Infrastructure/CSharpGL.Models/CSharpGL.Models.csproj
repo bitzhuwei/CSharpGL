@@ -67,6 +67,8 @@
     <Compile Include="SimpleObjFileFormat\MeshParser.cs" />
     <Compile Include="SimpleObjFileFormat\NormalParser.cs" />
     <Compile Include="SimpleObjFileFormat\ObjParserBase.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjVNFFace.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjVNFMesh.cs" />
     <Compile Include="SimpleObjFileFormat\ObjVNF.cs" />
     <Compile Include="SimpleObjFileFormat\ObjVNFResult.cs" />
     <Compile Include="SimpleObjFileFormat\ObjVNFContext.cs" />

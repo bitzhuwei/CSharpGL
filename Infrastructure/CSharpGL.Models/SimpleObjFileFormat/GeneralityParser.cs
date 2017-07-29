@@ -19,6 +19,7 @@ namespace CSharpGL
                     string line = reader.ReadLine();
                     string[] parts = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                     if (parts.Length <= 0) { continue; }
+
                     if (parts[0] == "v") { vertexCount++; }
                     else if (parts[0] == "vn") { normalCount++; }
                     else if (parts[0] == "f") { faceCount++; }

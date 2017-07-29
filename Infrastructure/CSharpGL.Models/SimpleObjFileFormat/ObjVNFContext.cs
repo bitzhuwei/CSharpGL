@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ObjVNF Mesh { get; internal set; }
+        public ObjVNFMesh Mesh { get; internal set; }
 
         /// <summary>
         /// 
