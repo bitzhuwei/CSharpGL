@@ -10,6 +10,27 @@ namespace CSharpGL
     /// </summary>
     public class ObjVNFContext
     {
+        internal int vertexCount;
+        internal int normalCount;
+        internal int faceCount;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        public ObjVNFContext(string filename)
+        {
+            this.ObjFilename = filename;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ObjVNF Mesh { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ObjFilename { get; internal set; }
     }
 }
