@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    // TODO: how to deal with keyboard/mouse events?
+    // TODO: how to deal with keyboard/mouse events? Where put events?
     /// <summary>
     /// OpenGL Canvas on Windows platform.
     /// </summary>
