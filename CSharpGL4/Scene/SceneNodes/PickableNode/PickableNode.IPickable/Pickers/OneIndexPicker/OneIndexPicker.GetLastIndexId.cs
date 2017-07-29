@@ -28,29 +28,38 @@ namespace CSharpGL
                 return primitiveInfoList[0];
             }
 
-            int current = 0;
+            int target = 0;
 #if DEBUG
             NoPrimitiveRestartIndex(primitiveInfoList);
 #endif
-            for (int i = 1; i < primitiveInfoList.Count; i++)
+            for (int left = 0; left < primitiveInfoList.Count - 1; left++)
             {
-                OneIndexBuffer twoPrimitivesIndexBuffer;
-                uint lastIndex0, lastIndex1;
-                AssembleIndexBuffer(
-                    primitiveInfoList[current], primitiveInfoList[i], this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode,
-                    out twoPrimitivesIndexBuffer, out lastIndex0, out lastIndex1);
-                uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
-                if (pickedIndex == lastIndex1)
-                { current = i; }
-                else if (pickedIndex == lastIndex0)
-                { /* nothing to do */}
-                else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
-                { /* nothing to do */}
-                else
-                { throw new Exception("This should not happen!"); }
+                for (int right = left + 1; right < primitiveInfoList.Count; right++)
+                {
+                    OneIndexBuffer twoPrimitivesIndexBuffer;
+                    uint leftLastIndex, rightLastIndex;
+                    AssembleIndexBuffer(
+                        primitiveInfoList[left], primitiveInfoList[right], this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode,
+                        out twoPrimitivesIndexBuffer, out leftLastIndex, out rightLastIndex);
+                    uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
+                    if (pickedIndex == rightLastIndex)
+                    {
+                        target = right;
+                        break;
+                    }
+                    else if (pickedIndex == leftLastIndex)
+                    {
+                        target = left;
+                        break;
+                    }
+                    else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
+                    { /* nothing to do */}
+                    else
+                    { throw new Exception("This should not happen!"); }
+                }
             }
 
-            return primitiveInfoList[current];
+            return primitiveInfoList[target];
         }
 
         private void SameLengths(List<RecognizedPrimitiveInfo> primitiveInfoList)
