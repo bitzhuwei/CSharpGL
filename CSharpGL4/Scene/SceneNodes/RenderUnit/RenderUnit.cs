@@ -19,7 +19,6 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderUnit)]
         [Description("Shader Program that does the rendering algorithm.")]
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public ShaderProgram Program { get; private set; }
 
         /// <summary>
@@ -27,7 +26,6 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderUnit)]
         [Description("Vertex Array Object.")]
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public VertexArrayObject VertexArrayObject { get; private set; }
 
         /// <summary>
@@ -35,7 +33,6 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderUnit)]
         [Description("OpenGL toggles.")]
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public GLStateList StateList { get; private set; }
 
         /// <summary>

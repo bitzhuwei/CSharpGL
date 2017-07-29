@@ -42,7 +42,13 @@ namespace SimpleObjFile
 
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
+            PickedGeometry pickedGeometry = null;
+            try
+            {
+                pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
+            }
+            catch (Exception)
+            { }
             if (pickedGeometry != null)
             {
                 switch (pickedGeometry.Type)
