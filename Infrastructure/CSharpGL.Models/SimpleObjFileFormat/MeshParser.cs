@@ -8,6 +8,10 @@ namespace CSharpGL
     public class MeshParser : ObjParserBase
     {
         private readonly char[] separator = new char[] { ' ' };
+        /// <summary>
+        /// Reads mesh's vertexes, normals and faces.
+        /// </summary>
+        /// <param name="context"></param>
         public override void Parse(ObjVNFContext context)
         {
             var objVNF = new ObjVNFMesh();
@@ -34,6 +38,8 @@ namespace CSharpGL
             objVNF.normals = normals;
             objVNF.faces = faces;
 
+            context.Mesh = objVNF;
+
             if (vertexIndex != context.vertexCount)
             { throw new Exception(string.Format("v: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
             if (normalIndex != context.normalCount)
@@ -58,7 +64,7 @@ namespace CSharpGL
             ObjVNFFace result = null;
             if (parts.Length == 4)// f 1 2 3
             {
-                int v0, v1, v2, n0, n1, n2;
+                uint v0, v1, v2, n0, n1, n2;
                 ParseFaceUnit(parts[1], out v0, out n0);
                 ParseFaceUnit(parts[2], out v1, out n1);
                 ParseFaceUnit(parts[3], out v2, out n2);
@@ -67,7 +73,7 @@ namespace CSharpGL
             }
             else if (parts.Length == 5)// f 1 2 3 4
             {
-                int v0, v1, v2, v3, n0, n1, n2, n3;
+                uint v0, v1, v2, v3, n0, n1, n2, n3;
                 ParseFaceUnit(parts[1], out v0, out n0);
                 ParseFaceUnit(parts[2], out v1, out n1);
                 ParseFaceUnit(parts[3], out v2, out n2);
@@ -90,11 +96,11 @@ namespace CSharpGL
         /// <param name="unit"></param>
         /// <param name="vertexIndex"></param>
         /// <param name="normalIndex"></param>
-        private void ParseFaceUnit(string unit, out int vertexIndex, out int normalIndex)
+        private void ParseFaceUnit(string unit, out uint vertexIndex, out uint normalIndex)
         {
             string[] parts = unit.Split('/');
-            vertexIndex = int.Parse(parts[0]);
-            normalIndex = int.Parse(parts[parts.Length - 1]);
+            vertexIndex = uint.Parse(parts[0]);
+            normalIndex = uint.Parse(parts[parts.Length - 1]);
         }
 
         /// <summary>

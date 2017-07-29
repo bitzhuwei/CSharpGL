@@ -8,6 +8,10 @@ namespace CSharpGL
     public class GeneralityParser : ObjParserBase
     {
         private readonly char[] separator = new char[] { ' ' };
+        /// <summary>
+        /// Reads mesh's vertex count, normal count and face count.
+        /// </summary>
+        /// <param name="context"></param>
         public override void Parse(ObjVNFContext context)
         {
             string filename = context.ObjFilename;

@@ -14,13 +14,13 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<int> VertexIndexes();
+        public abstract IEnumerable<uint> VertexIndexes();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<int> NormalIndexes();
+        public abstract IEnumerable<uint> NormalIndexes();
 
     }
 
@@ -29,8 +29,8 @@ namespace CSharpGL
     /// </summary>
     public class ObjVNFTriangle : ObjVNFFace
     {
-        public readonly int[] vertexIndexes = new int[3];
-        public readonly int[] normalIndexes = new int[3];
+        public readonly uint[] vertexIndexes = new uint[3];
+        public readonly uint[] normalIndexes = new uint[3];
 
         /// <summary>
         /// 
@@ -41,13 +41,13 @@ namespace CSharpGL
         /// <param name="n0"></param>
         /// <param name="n1"></param>
         /// <param name="n2"></param>
-        public ObjVNFTriangle(int v0, int v1, int v2, int n0, int n1, int n2)
+        public ObjVNFTriangle(uint v0, uint v1, uint v2, uint n0, uint n1, uint n2)
         {
             vertexIndexes[0] = v0; vertexIndexes[1] = v1; vertexIndexes[2] = v2;
             normalIndexes[0] = n0; normalIndexes[1] = n1; normalIndexes[2] = n2;
         }
 
-        public override IEnumerable<int> VertexIndexes()
+        public override IEnumerable<uint> VertexIndexes()
         {
             foreach (var item in vertexIndexes)
             {
@@ -55,7 +55,7 @@ namespace CSharpGL
             }
         }
 
-        public override IEnumerable<int> NormalIndexes()
+        public override IEnumerable<uint> NormalIndexes()
         {
             foreach (var item in normalIndexes)
             {
@@ -69,8 +69,8 @@ namespace CSharpGL
     /// </summary>
     public class ObjVNFQuad : ObjVNFFace
     {
-        public readonly int[] vertexIndexes = new int[4];
-        public readonly int[] normalIndexes = new int[4];
+        public readonly uint[] vertexIndexes = new uint[4];
+        public readonly uint[] normalIndexes = new uint[4];
 
         /// <summary>
         /// 
@@ -83,13 +83,13 @@ namespace CSharpGL
         /// <param name="n1"></param>
         /// <param name="n2"></param>
         /// <param name="n3"></param>
-        public ObjVNFQuad(int v0, int v1, int v2, int v3, int n0, int n1, int n2, int n3)
+        public ObjVNFQuad(uint v0, uint v1, uint v2, uint v3, uint n0, uint n1, uint n2, uint n3)
         {
             vertexIndexes[0] = v0; vertexIndexes[1] = v1; vertexIndexes[2] = v2; vertexIndexes[3] = v3;
             normalIndexes[0] = n0; normalIndexes[1] = n1; normalIndexes[2] = n2; normalIndexes[3] = n3;
         }
 
-        public override IEnumerable<int> VertexIndexes()
+        public override IEnumerable<uint> VertexIndexes()
         {
             foreach (var item in vertexIndexes)
             {
@@ -97,7 +97,7 @@ namespace CSharpGL
             }
         }
 
-        public override IEnumerable<int> NormalIndexes()
+        public override IEnumerable<uint> NormalIndexes()
         {
             foreach (var item in normalIndexes)
             {

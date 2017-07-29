@@ -10,5 +10,15 @@ namespace CSharpGL
         public vec3[] vertexes;
         public vec3[] normals;
         public ObjVNFFace[] faces;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Position { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Size { get; internal set; }
     }
 }

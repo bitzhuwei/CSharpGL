@@ -9,7 +9,28 @@ namespace CSharpGL
     {
         public override void Parse(ObjVNFContext context)
         {
-            throw new NotImplementedException();
+            var normals = new vec3[context.vertexCount];
+            ObjVNFMesh mesh = context.Mesh;
+            for (int i = 0; i < context.faceCount; i++)
+            {
+                ObjVNFFace face = mesh.faces[i];
+                uint[] normalIndexes = (from item in face.NormalIndexes() select item).ToArray();
+                uint[] vertexIndexes = (from item in face.VertexIndexes() select item).ToArray();
+
+                if (normalIndexes.Length != vertexIndexes.Length)
+                {
+                    throw new Exception(string.Format(
+                        "normalIndexes.Length [{0}] != vertexIndexes.Length [{0}]!",
+                    normalIndexes.Length, vertexIndexes.Length));
+                }
+
+                for (int t = 0; t < vertexIndexes.Length; t++)
+                {
+                    normals[vertexIndexes[t]] = mesh.normals[normalIndexes[t]];
+                }
+            }
+
+            mesh.normals = normals;
         }
     }
 }
