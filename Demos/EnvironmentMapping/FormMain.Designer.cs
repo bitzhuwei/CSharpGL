@@ -88,7 +88,7 @@
             this.Controls.Add(this.rdoReflection);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Demo Color-Coded-Picking in CSharpGL";
+            this.Text = "Environment Mapping - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

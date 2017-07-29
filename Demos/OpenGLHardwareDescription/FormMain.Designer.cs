@@ -60,7 +60,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "Hardware Description - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
