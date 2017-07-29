@@ -33,18 +33,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filename"></param>
-        public ObjVNF(string filename)
+        /// <param name="mesh"></param>
+        public ObjVNF(ObjVNFMesh mesh)
         {
-            var parser = new ObjVNFParser();
-            ObjVNFResult result = parser.Parse(filename);
-            if (result.Error != null)
-            { throw result.Error; }
-            else
-            {
-                this.mesh = result.Mesh;
-            }
+            this.mesh = mesh;
         }
+
         #region IBufferSource 成员
 
         public const string strPosition = "position";

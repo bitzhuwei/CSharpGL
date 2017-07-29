@@ -129,11 +129,19 @@ namespace SimpleObjFile
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string filename = this.openFileDialog1.FileName;
-                var model = new ObjVNF(filename);
-                var node = ObjVNFNode.Create(model);
-                var rootElement = this.scene.RootElement;
-                this.scene.RootElement = node;
-                if (rootElement != null) { rootElement.Dispose(); }
+                var parser = new ObjVNFParser();
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null)
+                {
+                    MessageBox.Show(result.Error.ToString());
+                }
+                else
+                {
+                    var node = ObjVNFNode.Create(result.Mesh);
+                    var rootElement = this.scene.RootElement;
+                    this.scene.RootElement = node;
+                    if (rootElement != null) { rootElement.Dispose(); }
+                }
             }
         }
 

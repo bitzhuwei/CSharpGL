@@ -68,8 +68,8 @@ namespace CSharpGL
                 ParseFaceUnit(parts[1], out v0, out n0);
                 ParseFaceUnit(parts[2], out v1, out n1);
                 ParseFaceUnit(parts[3], out v2, out n2);
-
-                result = new ObjVNFTriangle(v0, v1, v2, n0, n1, n2);
+                // index in obj files starts with 1.
+                result = new ObjVNFTriangle(v0 - 1, v1 - 1, v2 - 1, n0 - 1, n1 - 1, n2 - 1);
             }
             else if (parts.Length == 5)// f 1 2 3 4
             {
@@ -79,7 +79,8 @@ namespace CSharpGL
                 ParseFaceUnit(parts[3], out v2, out n2);
                 ParseFaceUnit(parts[4], out v3, out n3);
 
-                result = new ObjVNFQuad(v0, v1, v2, v3, n0, n1, n2, n3);
+                // index in obj files starts with 1.
+                result = new ObjVNFQuad(v0 - 1, v1 - 1, v2 - 1, v3 - 1, n0 - 1, n1 - 1, n2 - 1, n3 - 1);
             }
             else
             {

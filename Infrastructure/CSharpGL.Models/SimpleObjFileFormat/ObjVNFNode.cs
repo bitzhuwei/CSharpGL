@@ -90,8 +90,9 @@ void main(void)
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static ObjVNFNode Create(ObjVNF model)
+        public static ObjVNFNode Create(ObjVNFMesh mesh)
         {
+            var model = new ObjVNF(mesh);
             RenderUnitBuilder builder;
             {
                 var vs = new VertexShader(vertexCode, inPosition, inNormal);
@@ -139,7 +140,6 @@ void main(void)
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            List<LightBase> lights = arg.CurrentLights.Peek();
 
             var renderUnit = this.RenderUnits[1]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
