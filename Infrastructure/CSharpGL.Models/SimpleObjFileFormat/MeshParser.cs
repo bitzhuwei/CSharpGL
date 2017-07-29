@@ -15,9 +15,9 @@ namespace CSharpGL
             var normals = new vec3[context.normalCount];
             var faces = new ObjVNFFace[context.faceCount];
             string filename = context.ObjFilename;
+            int vertexIndex = 0, normalIndex = 0, faceIndex = 0;
             using (var reader = new System.IO.StreamReader(filename))
             {
-                int vertexIndex = 0, normalIndex = 0, faceIndex = 0;
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
@@ -28,28 +28,88 @@ namespace CSharpGL
                     else if (parts[0] == "vn") { normals[normalIndex++] = ParseVec3(parts); }
                     else if (parts[0] == "f") { faces[faceIndex++] = ParseFace(parts); }
                 }
+            }
 
-                objVNF.vertexes = vertexes;
-                objVNF.normals = normals;
-                objVNF.faces = faces;
+            objVNF.vertexes = vertexes;
+            objVNF.normals = normals;
+            objVNF.faces = faces;
 
-                if (vertexIndex != context.vertexCount)
-                { throw new Exception(string.Format("v: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
-                if (normalIndex != context.normalCount)
-                { throw new Exception(string.Format("vn: [{0}] not equals to [{1}] in MeshParser!", normalIndex, context.normalCount)); }
-                if (faceIndex != context.faceCount)
-                { throw new Exception(string.Format("f: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
+            if (vertexIndex != context.vertexCount)
+            { throw new Exception(string.Format("v: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
+            if (normalIndex != context.normalCount)
+            { throw new Exception(string.Format("vn: [{0}] not equals to [{1}] in MeshParser!", normalIndex, context.normalCount)); }
+            if (faceIndex != context.faceCount)
+            { throw new Exception(string.Format("f: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
+            if (faceIndex > 0)
+            {
+                Type type = faces[0].GetType();
+                for (int i = 1; i < faceIndex; i++)
+                {
+                    if (faces[i].GetType() != type)
+                    {
+                        throw new Exception(string.Format("Different face types [{0}] vs [{1}]!", type, faces[i].GetType()));
+                    }
+                }
             }
         }
 
         private ObjVNFFace ParseFace(string[] parts)
         {
-            throw new NotImplementedException();
+            ObjVNFFace result = null;
+            if (parts.Length == 4)// f 1 2 3
+            {
+                int v0, v1, v2, n0, n1, n2;
+                ParseFaceUnit(parts[1], out v0, out n0);
+                ParseFaceUnit(parts[2], out v1, out n1);
+                ParseFaceUnit(parts[3], out v2, out n2);
+
+                result = new ObjVNFTriangle(v0, v1, v2, n0, n1, n2);
+            }
+            else if (parts.Length == 5)// f 1 2 3 4
+            {
+                int v0, v1, v2, v3, n0, n1, n2, n3;
+                ParseFaceUnit(parts[1], out v0, out n0);
+                ParseFaceUnit(parts[2], out v1, out n1);
+                ParseFaceUnit(parts[3], out v2, out n2);
+                ParseFaceUnit(parts[4], out v3, out n3);
+
+                result = new ObjVNFQuad(v0, v1, v2, v3, n0, n1, n2, n3);
+            }
+            else
+            {
+                throw new Exception(string.Format("unexpected line parts[{0}]", parts.Length));
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// 1/2/3
+        /// 1//3
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="vertexIndex"></param>
+        /// <param name="normalIndex"></param>
+        private void ParseFaceUnit(string unit, out int vertexIndex, out int normalIndex)
+        {
+            string[] parts = unit.Split('/');
+            vertexIndex = int.Parse(parts[0]);
+            normalIndex = int.Parse(parts[parts.Length - 1]);
+        }
+
+        /// <summary>
+        /// v 1 2 3
+        /// vn 1 2 3
+        /// </summary>
+        /// <param name="parts"></param>
+        /// <returns></returns>
         private vec3 ParseVec3(string[] parts)
         {
-            throw new NotImplementedException();
+            var x = float.Parse(parts[1]);
+            var y = float.Parse(parts[2]);
+            var z = float.Parse(parts[3]);
+
+            return new vec3(x, y, z);
         }
     }
 }
