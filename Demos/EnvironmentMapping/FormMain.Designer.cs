@@ -33,6 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.rdoReflection = new System.Windows.Forms.RadioButton();
             this.rdoRefraction = new System.Windows.Forms.RadioButton();
+            this.cmbRatios = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,11 +80,23 @@
             this.rdoRefraction.UseVisualStyleBackColor = true;
             this.rdoRefraction.CheckedChanged += new System.EventHandler(this.rdoRefraction_CheckedChanged);
             // 
+            // cmbRatios
+            // 
+            this.cmbRatios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRatios.Enabled = false;
+            this.cmbRatios.FormattingEnabled = true;
+            this.cmbRatios.Location = new System.Drawing.Point(236, 12);
+            this.cmbRatios.Name = "cmbRatios";
+            this.cmbRatios.Size = new System.Drawing.Size(121, 20);
+            this.cmbRatios.TabIndex = 2;
+            this.cmbRatios.SelectedIndexChanged += new System.EventHandler(this.cmbRatios_SelectedIndexChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 577);
+            this.Controls.Add(this.cmbRatios);
             this.Controls.Add(this.rdoRefraction);
             this.Controls.Add(this.rdoReflection);
             this.Controls.Add(this.winGLCanvas1);
@@ -101,5 +114,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RadioButton rdoReflection;
         private System.Windows.Forms.RadioButton rdoRefraction;
+        private System.Windows.Forms.ComboBox cmbRatios;
     }
 }

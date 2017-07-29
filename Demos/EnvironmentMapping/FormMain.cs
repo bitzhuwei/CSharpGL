@@ -86,7 +86,12 @@ namespace EnvironmentMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(8, 6, 4) * 3;
+            foreach (var item in Enum.GetNames(typeof(EnvironmentMappingNode.Ratio)))
+            {
+                this.cmbRatios.Items.Add(item);
+            }
+
+            var position = new vec3(8, 0, 4) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -107,7 +112,7 @@ namespace EnvironmentMapping
                     this.skybox.SkyboxTexture,
                     model, ObjVNF.strPosition, ObjVNF.strNormal);
                 node.ModelSize = model.GetSize();
-                node.Scale *= 3;
+                node.Scale *= 2;
                 node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
                 this.environmentMappingNode = node;
             }
@@ -164,10 +169,18 @@ namespace EnvironmentMapping
 
         private void rdoRefraction_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdoRefraction.Checked)
+            bool refraction = this.rdoRefraction.Checked;
+            if (refraction)
             {
                 this.environmentMappingNode.Method = EnvironmentMappingNode.RenderMethod.Refraction;
             }
+
+            this.cmbRatios.Enabled = refraction;
+        }
+
+        private void cmbRatios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.environmentMappingNode.RefractRatio = (EnvironmentMappingNode.Ratio)Enum.Parse(typeof(EnvironmentMappingNode.Ratio), this.cmbRatios.SelectedItem.ToString());
         }
     }
 }

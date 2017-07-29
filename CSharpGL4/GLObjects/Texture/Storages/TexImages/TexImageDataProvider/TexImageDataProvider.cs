@@ -8,6 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class TexImageDataProvider<T> : IEnumerable<T>
     {
         #region IEnumerable<LeveledData> 成员

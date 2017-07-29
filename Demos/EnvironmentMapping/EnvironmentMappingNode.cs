@@ -8,13 +8,14 @@ namespace EnvironmentMapping
 {
     class EnvironmentMappingNode : PickableNode
     {
-        private const string inPosition = "aPos";
-        private const string inNormal = "aNormal";
+        private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
         private const string projection = "projection";
         private const string view = "view";
         private const string model = "model";
         private const string cameraPos = "cameraPos";
         private const string skybox = "skybox";
+        private const string ratio = "ratio";
 
         private const string vertexCode = @"#version 330 core
 
@@ -25,14 +26,15 @@ uniform mat4 " + projection + @";
 uniform mat4 " + view + @";
 uniform mat4 " + model + @";
 
-out vec3 Normal;
-out vec3 Position;
+out vec3 passNormal;
+out vec3 passPosition;
 
 void main()
 {
-    Normal = mat3(transpose(inverse(model))) * aNormal;
-    Position = vec3(model * vec4(aPos, 1.0));
-    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    gl_Position = projection * view * model * vec4(inPosition, 1.0);
+
+    passNormal = mat3(transpose(inverse(model))) * inNormal;
+    passPosition = vec3(model * vec4(inPosition, 1.0));
 }
 ";
         private const string reflectFragmentCode = @"#version 330 core
@@ -40,15 +42,15 @@ void main()
 uniform vec3 " + cameraPos + @";
 uniform samplerCube " + skybox + @";
 
-in vec3 Normal;
-in vec3 Position;
+in vec3 passNormal;
+in vec3 passPosition;
 
 out vec4 FragColor;
 
 void main()
 {             
-    vec3 I = normalize(Position - cameraPos);
-    vec3 R = reflect(I, normalize(Normal));
+    vec3 I = normalize(passPosition - cameraPos);
+    vec3 R = reflect(I, normalize(passNormal));
     FragColor = vec4(texture(skybox, R).rgb, 1.0);
 }
 ";
@@ -56,17 +58,17 @@ void main()
 
 uniform vec3 " + cameraPos + @";
 uniform samplerCube " + skybox + @";
+uniform float " + ratio + @";
 
-in vec3 Normal;
-in vec3 Position;
+in vec3 passNormal;
+in vec3 passPosition;
 
 out vec4 FragColor;
 
 void main()
 {             
-    float ratio = 1.00 / 1.52;
-    vec3 I = normalize(Position - cameraPos);
-    vec3 R = refract(I, normalize(Normal), ratio);
+    vec3 I = normalize(passPosition - cameraPos);
+    vec3 R = refract(I, normalize(passNormal), ratio);
     FragColor = vec4(texture(skybox, R).rgb, 1);
 }
 ";
@@ -105,7 +107,10 @@ void main()
 
         private EnvironmentMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
-        { }
+        {
+            this.Method = RenderMethod.Reflection;
+            this.RefractRatio = Ratio.Diamond;
+        }
 
         /// <summary>
         /// 
@@ -125,7 +130,35 @@ void main()
         /// <summary>
         /// 
         /// </summary>
+        public enum Ratio
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            Ice = 1309,
+            /// <summary>
+            /// 
+            /// </summary>
+            Water = 1330,
+            /// <summary>
+            /// 
+            /// </summary>
+            Glass = 1520,
+            /// <summary>
+            /// 
+            /// </summary>
+            Diamond = 2420,
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public RenderMethod Method { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Ratio RefractRatio { get; set; }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -143,6 +176,7 @@ void main()
             program.SetUniform(model, m);
             program.SetUniform(cameraPos, camera.Position);
             program.SetUniform(skybox, this.skyboxTexture);
+            program.SetUniform(ratio, 1000.0f / (float)(this.RefractRatio));
 
             unit.Render();
         }
