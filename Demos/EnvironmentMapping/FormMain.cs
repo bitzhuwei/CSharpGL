@@ -15,7 +15,7 @@ namespace EnvironmentMapping
         private Scene scene;
         private ActionList actionList;
         private SkyboxNode skybox;
-        private EnvironmentMappingTeapotNode teapot;
+        private EnvironmentMappingNode environmentMappingNode;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
         private PickingAction pickingAction;
@@ -91,12 +91,29 @@ namespace EnvironmentMapping
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+
             var totalBmp = new Bitmap(@"cubemaps_skybox.png");
             this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
-            this.teapot = EnvironmentMappingTeapotNode.Create(this.skybox.SkyboxTexture);
-            this.teapot.Scale *= 3;
-            teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
-            var group = new GroupNode(this.teapot, this.skybox);
+            string objFilename = "triceratops.obj_";
+            var parser = new ObjVNFParser();
+            ObjVNFResult result = parser.Parse(objFilename);
+            if (result.Error != null)
+            {
+                MessageBox.Show(result.Error.ToString());
+            }
+            else
+            {
+                var model = new ObjVNF(result.Mesh);
+                var node = EnvironmentMappingNode.Create(
+                    this.skybox.SkyboxTexture,
+                    model, ObjVNF.strPosition, ObjVNF.strNormal);
+                node.ModelSize = model.GetSize();
+                node.Scale *= 3;
+                node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
+                this.environmentMappingNode = node;
+            }
+
+            var group = new GroupNode(this.environmentMappingNode, this.skybox);
 
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
@@ -131,7 +148,7 @@ namespace EnvironmentMapping
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.teapot;
+            IWorldSpace node = this.environmentMappingNode;
             if (node != null)
             {
                 node.RotationAngle += 1;
@@ -142,7 +159,7 @@ namespace EnvironmentMapping
         {
             if (rdoReflection.Checked)
             {
-                this.teapot.Method = EnvironmentMappingTeapotNode.RenderMethod.Reflection;
+                this.environmentMappingNode.Method = EnvironmentMappingNode.RenderMethod.Reflection;
             }
         }
 
@@ -150,7 +167,7 @@ namespace EnvironmentMapping
         {
             if (rdoRefraction.Checked)
             {
-                this.teapot.Method = EnvironmentMappingTeapotNode.RenderMethod.Refraction;
+                this.environmentMappingNode.Method = EnvironmentMappingNode.RenderMethod.Refraction;
             }
         }
     }

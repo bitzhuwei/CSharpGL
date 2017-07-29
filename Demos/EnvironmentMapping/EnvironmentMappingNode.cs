@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace EnvironmentMapping
 {
-    class EnvironmentMappingTeapotNode : PickableNode
+    class EnvironmentMappingNode : PickableNode
     {
         private const string inPosition = "aPos";
         private const string inNormal = "aNormal";
@@ -73,17 +73,17 @@ void main()
 
         private Texture skyboxTexture;
 
-        public static EnvironmentMappingTeapotNode Create(Texture skybox)
+        public static EnvironmentMappingNode Create(Texture skybox,
+            IBufferSource model, string position, string normal)
         {
-            var model = new Teapot();
             RenderUnitBuilder reflectBuilder, refractBuilder;
             {
                 var vs = new VertexShader(vertexCode, inPosition, inNormal);
                 var fs = new FragmentShader(relectFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(inPosition, Teapot.strPosition);
-                map.Add(inNormal, Teapot.strNormal);
+                map.Add(inPosition, position);
+                map.Add(inNormal, normal);
                 reflectBuilder = new RenderUnitBuilder(provider, map);
             }
             {
@@ -91,19 +91,19 @@ void main()
                 var fs = new FragmentShader(refractFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(inPosition, Teapot.strPosition);
-                map.Add(inNormal, Teapot.strNormal);
+                map.Add(inPosition, position);
+                map.Add(inNormal, normal);
                 refractBuilder = new RenderUnitBuilder(provider, map);
             }
-            var node = new EnvironmentMappingTeapotNode(model, Teapot.strPosition, reflectBuilder, refractBuilder);
-            node.ModelSize = model.GetModelSize();
+            var node = new EnvironmentMappingNode(model, Teapot.strPosition, reflectBuilder, refractBuilder);
             node.skyboxTexture = skybox;
+
             node.Initialize();
 
             return node;
         }
 
-        private EnvironmentMappingTeapotNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private EnvironmentMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         { }
 

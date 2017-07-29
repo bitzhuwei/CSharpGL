@@ -84,8 +84,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="triceratops.obj" />
-    <None Include="worgenmale.obj" />
+    <None Include="worgenmale.obj_" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
