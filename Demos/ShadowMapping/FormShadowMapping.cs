@@ -143,7 +143,7 @@ namespace ShadowMapping
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             //this.scene.Render();
-            this.actionList.Render();
+            this.actionList.Act();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

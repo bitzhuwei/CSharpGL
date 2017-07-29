@@ -44,7 +44,7 @@ namespace CSharpGL
 
         public void Render(bool drawText, int height, double fps)
         {
-            this.actionList.Render();
+            this.actionList.Act();
 
             FontBitmaps.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",

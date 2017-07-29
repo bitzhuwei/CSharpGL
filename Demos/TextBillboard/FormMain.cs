@@ -196,7 +196,7 @@ namespace TextBillboard
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Render();
+            this.actionList.Act();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

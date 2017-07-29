@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public void Render()
+        public void Act()
         {
             for (int i = 0; i < this.Count; i++)
             {

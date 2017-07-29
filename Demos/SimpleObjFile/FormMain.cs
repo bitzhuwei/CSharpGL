@@ -107,7 +107,7 @@ namespace SimpleObjFile
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Render();
+            this.actionList.Act();
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
@@ -122,6 +122,21 @@ namespace SimpleObjFile
             {
                 node.RotationAngle += 1;
             }
+        }
+
+        private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new FormPropertyGrid(this.scene)).Show();
         }
     }
 }
