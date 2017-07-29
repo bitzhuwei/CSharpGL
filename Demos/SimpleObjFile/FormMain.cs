@@ -139,6 +139,7 @@ namespace SimpleObjFile
                 else
                 {
                     var node = ObjVNFNode.Create(result.Mesh);
+                    node.WorldPosition = new vec3(0, 0, 0);
                     var rootElement = this.scene.RootElement;
                     this.scene.RootElement = node;
                     if (rootElement != null) { rootElement.Dispose(); }
