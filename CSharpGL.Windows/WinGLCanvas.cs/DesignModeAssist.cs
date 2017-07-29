@@ -32,10 +32,7 @@ namespace CSharpGL
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(scene, camera)
-            {
-                ClearColor = Color.Black.ToVec4(),
-            };
+            var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 

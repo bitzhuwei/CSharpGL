@@ -45,7 +45,7 @@ namespace ShadowMapping
 
             var tansformAction = new TransformAction(scene);
             var shadowMappingAction = new ShadowMappingAction(scene);
-            var renderAction = new RenderAction(scene, camera);
+            var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
             this.actionList = actionList;

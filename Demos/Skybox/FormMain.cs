@@ -105,7 +105,7 @@ namespace Skybox
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(scene, camera);
+            var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 

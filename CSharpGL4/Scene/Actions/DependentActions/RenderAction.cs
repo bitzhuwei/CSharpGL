@@ -12,22 +12,11 @@ namespace CSharpGL
     /// </summary>
     public class RenderAction : DependentActionBase
     {
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICamera Camera { get; set; }
-
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="scene"></param>
-        /// <param name="camera"></param>
-        public RenderAction(Scene scene, ICamera camera)
-            : base(scene)
-        {
-            this.Camera = camera;
-        }
+        public RenderAction(Scene scene) : base(scene) { }
 
         /// <summary>
         /// 
@@ -41,7 +30,7 @@ namespace CSharpGL
             GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(this.Camera);
+            var arg = new RenderEventArgs(this.Scene.Camera);
             RenderAction.Render(this.Scene.RootElement, arg);
 
             GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);

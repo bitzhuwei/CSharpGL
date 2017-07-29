@@ -63,6 +63,21 @@ namespace CSharpGL
         event MouseEventHandler MouseWheel;
 
         /// <summary>
+        ///
+        /// </summary>
+        event KeyEventHandler KeyDown;
+
+        /// <summary>
+        ///
+        /// </summary>
+        event KeyEventHandler KeyUp;
+
+        /// <summary>
+        ///
+        /// </summary>
+        event EventHandler Resize;
+
+        /// <summary>
         /// 
         /// </summary>
         bool IsDisposed { get; }
