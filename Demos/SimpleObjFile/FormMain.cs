@@ -128,13 +128,14 @@ namespace SimpleObjFile
         {
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                string filename = this.openFileDialog1.FileName;
 
             }
         }
 
         private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)

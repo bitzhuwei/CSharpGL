@@ -11,6 +11,25 @@ namespace CSharpGL
     public partial class ObjVNF : IBufferSource
     {
         private ObjVNFMesh mesh;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public vec3 GetSize()
+        {
+            return mesh.Size;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public vec3 GetPosition()
+        {
+            return mesh.Position;
+        }
+
         /// <summary>
         /// 
         /// </summary>
