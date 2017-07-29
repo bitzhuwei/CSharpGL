@@ -35,7 +35,7 @@ void main()
     gl_Position = projection * view * model * vec4(aPos, 1.0);
 }
 ";
-        private const string relectFragmentCode = @"#version 330 core
+        private const string reflectFragmentCode = @"#version 330 core
 
 uniform vec3 " + cameraPos + @";
 uniform samplerCube " + skybox + @";
@@ -79,7 +79,7 @@ void main()
             RenderUnitBuilder reflectBuilder, refractBuilder;
             {
                 var vs = new VertexShader(vertexCode, inPosition, inNormal);
-                var fs = new FragmentShader(relectFragmentCode);
+                var fs = new FragmentShader(reflectFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(inPosition, position);

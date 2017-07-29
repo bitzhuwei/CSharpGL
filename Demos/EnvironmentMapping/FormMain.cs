@@ -76,7 +76,6 @@ namespace EnvironmentMapping
                     default:
                         break;
                 }
-
             }
             else
             {
