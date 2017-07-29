@@ -126,7 +126,10 @@ namespace SimpleObjFile
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
 
+            }
         }
 
         private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)

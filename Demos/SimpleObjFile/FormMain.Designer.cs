@@ -38,6 +38,7 @@
             this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
@@ -117,6 +118,10 @@
             this.winGLCanvas1.Size = new System.Drawing.Size(751, 438);
             this.winGLCanvas1.TabIndex = 2;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "*.obj|*.obj";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -146,5 +151,6 @@
         private System.Windows.Forms.ToolStripMenuItem 选项OToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private CSharpGL.WinGLCanvas winGLCanvas1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
