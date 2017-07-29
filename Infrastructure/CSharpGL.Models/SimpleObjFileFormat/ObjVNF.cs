@@ -9,10 +9,7 @@ namespace CSharpGL
     {
         public ObjVNF(string filename)
         {
-            var generality = new GeneralityParser();
-            var meshParser = new MeshParser();
-            var normalParser = new NormalParser();
-
+            var parser = new ObjVNFParser();
 
         }
         #region IBufferSource 成员

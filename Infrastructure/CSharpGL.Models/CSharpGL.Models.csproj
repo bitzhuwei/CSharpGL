@@ -62,6 +62,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle\RectangleNode.cs" />
     <Compile Include="Rectangle\LegacyRectangleNode.cs" />
+    <Compile Include="SimpleObjFileFormat\GeneralityParser.cs" />
+    <Compile Include="SimpleObjFileFormat\LocationParser.cs" />
+    <Compile Include="SimpleObjFileFormat\MeshParser.cs" />
+    <Compile Include="SimpleObjFileFormat\NormalParser.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjParserBase.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjVNF.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjVNFResult.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjVNFContext.cs" />
+    <Compile Include="SimpleObjFileFormat\ObjVNFParser.cs" />
     <Compile Include="Teapot\Teapot.cs" />
     <Compile Include="Teapot\Teapot.Faces.cs" />
     <Compile Include="Teapot\Teapot.normalData.cs" />
@@ -87,6 +96,7 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

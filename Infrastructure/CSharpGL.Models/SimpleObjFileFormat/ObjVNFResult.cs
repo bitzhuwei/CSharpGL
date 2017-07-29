@@ -8,8 +8,16 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ObjVNFContext
+    public class ObjVNFResult
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public Exception Error { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ObjVNF Mesh { get; internal set; }
     }
 }
