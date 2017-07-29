@@ -37,11 +37,11 @@
             this.退出XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.旋转RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.旋转RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
@@ -101,9 +101,16 @@
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.选项OToolStripMenuItem.Text = "属性(&P)";
             this.选项OToolStripMenuItem.Click += new System.EventHandler(this.选项OToolStripMenuItem_Click);
+            // 
+            // 旋转RToolStripMenuItem
+            // 
+            this.旋转RToolStripMenuItem.Name = "旋转RToolStripMenuItem";
+            this.旋转RToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.旋转RToolStripMenuItem.Text = "旋转(&R)";
+            this.旋转RToolStripMenuItem.Click += new System.EventHandler(this.旋转RToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -124,18 +131,11 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "*.obj|*.obj";
+            this.openFileDialog1.Filter = "*.obj|*.obj|*.obj_|*.obj_";
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // 旋转RToolStripMenuItem
-            // 
-            this.旋转RToolStripMenuItem.Name = "旋转RToolStripMenuItem";
-            this.旋转RToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.旋转RToolStripMenuItem.Text = "旋转(&R)";
-            this.旋转RToolStripMenuItem.Click += new System.EventHandler(this.旋转RToolStripMenuItem_Click);
             // 
             // FormMain
             // 
