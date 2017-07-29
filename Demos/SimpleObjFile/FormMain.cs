@@ -103,6 +103,9 @@ namespace SimpleObjFile
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -115,14 +118,6 @@ namespace SimpleObjFile
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            IWorldSpace node = this.scene.RootElement;
-            if (node != null)
-            {
-                node.RotationAngle += 1;
-            }
-        }
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -153,6 +148,20 @@ namespace SimpleObjFile
         private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new FormPropertyGrid(this.scene)).Show();
+        }
+
+        private void 旋转RToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = !this.timer1.Enabled;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            IWorldSpace node = this.scene.RootElement;
+            if (node != null)
+            {
+                node.RotationAngle += 1;
+            }
         }
     }
 }

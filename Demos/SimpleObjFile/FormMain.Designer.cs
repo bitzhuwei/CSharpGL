@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +40,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.旋转RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +92,8 @@
             // 工具TToolStripMenuItem
             // 
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.选项OToolStripMenuItem});
+            this.选项OToolStripMenuItem,
+            this.旋转RToolStripMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -122,6 +126,17 @@
             // 
             this.openFileDialog1.Filter = "*.obj|*.obj";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // 旋转RToolStripMenuItem
+            // 
+            this.旋转RToolStripMenuItem.Name = "旋转RToolStripMenuItem";
+            this.旋转RToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.旋转RToolStripMenuItem.Text = "旋转(&R)";
+            this.旋转RToolStripMenuItem.Click += new System.EventHandler(this.旋转RToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -152,5 +167,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private CSharpGL.WinGLCanvas winGLCanvas1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem 旋转RToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
