@@ -128,7 +128,7 @@ void main()
 
             var flip = RotateFlipType.Rotate180FlipY;
             right.RotateFlip(flip); left.RotateFlip(flip);
-            top.RotateFlip(flip); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
+            top.RotateFlip(RotateFlipType.Rotate180FlipX); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
             back.RotateFlip(flip); front.RotateFlip(flip);
 #if DEBUG
             right.Save("right.png"); left.Save("left.png");
