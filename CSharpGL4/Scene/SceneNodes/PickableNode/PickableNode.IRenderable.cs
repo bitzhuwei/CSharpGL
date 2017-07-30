@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     public partial class PickableNode
     {
@@ -8,6 +9,8 @@
         /// <summary>
         /// 
         /// </summary>
+        [Category(strPickableRenderer)]
+        [Description("Render before/after children? Render children?")]
         public ThreeFlags EnableRendering
         {
             get { return this.enableRendering; }

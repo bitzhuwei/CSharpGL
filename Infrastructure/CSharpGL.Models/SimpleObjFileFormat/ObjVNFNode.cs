@@ -122,7 +122,32 @@ void main(void)
             this.LightPosition = new vec3(1, 1, 1) * 10;
         }
 
-        public vec3 Ambient { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Ambient
+        {
+            get
+            {
+                vec3 value = new vec3();
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    var renderUnit = this.RenderUnits[0];
+                    ShaderProgram program = renderUnit.Program;
+                    program.GetUniformValue(material_ambient, out value);
+                }
+                return value;
+            }
+            set
+            {
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    var renderUnit = this.RenderUnits[0];
+                    ShaderProgram program = renderUnit.Program;
+                    program.SetUniform(material_ambient, value);
+                }
+            }
+        }
         public vec3 Diffuse { get; set; }
         public vec3 Specular { get; set; }
         public float SpecularPower { get; set; }
@@ -147,7 +172,7 @@ void main(void)
             program.SetUniform(view_matrix, view);
             program.SetUniform(projection_matrix, projection);
             program.SetUniform(light_position, new vec3(view * new vec4(LightPosition, 1.0f)));
-            program.SetUniform(material_ambient, this.Ambient);
+            //program.SetUniform(material_ambient, this.Ambient);
             program.SetUniform(material_diffuse, this.Diffuse);
             program.SetUniform(material_specular, this.Specular);
             program.SetUniform(material_specular_power, this.SpecularPower);

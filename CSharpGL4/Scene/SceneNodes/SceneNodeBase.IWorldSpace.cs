@@ -26,6 +26,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Position in world space.")]
         public vec3 WorldPosition
         {
             get { return worldPosition; }
@@ -36,6 +38,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Rotation angle in degrees in world space.")]
         public float RotationAngle
         {
             get { return rotationAngle; }
@@ -46,6 +50,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Rotation axis in world space.")]
         public vec3 RotationAxis
         {
             get { return this._rotationAxis; }
@@ -56,6 +62,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Scale in world space.")]
         public vec3 Scale
         {
             get { return this._scale; }
@@ -66,6 +74,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("This model's size.")]
         public vec3 ModelSize
         {
             get { return this._modelSize; }

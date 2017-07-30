@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System.ComponentModel;
+namespace CSharpGL
 {
     public partial class ModernNode
     {
@@ -9,6 +10,8 @@
         /// <summary>
         /// 
         /// </summary>
+        [Category(strModernNode)]
+        [Description("Render before/after children? Render children?")]
         public ThreeFlags EnableRendering
         {
             get { return this.enableRendering; }

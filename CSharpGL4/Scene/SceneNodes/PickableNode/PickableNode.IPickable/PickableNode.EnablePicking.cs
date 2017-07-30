@@ -9,6 +9,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strPickableRenderer)]
+        [Description("Pick before children? Pick children?")]
         public TwoFlags EnablePicking
         {
             get { return this.enablePicking; }

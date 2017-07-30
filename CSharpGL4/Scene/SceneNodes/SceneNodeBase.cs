@@ -39,7 +39,7 @@ namespace CSharpGL
         {
             this.Id = idCounter++;
 
-            this.Children = new RendererBaseChildren(this);
+            this.Children = new SceneNodeBaseChildren(this);
         }
 
         #region Tree
@@ -48,6 +48,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Parent node. This node inherits parent's IWorldSpace properties.")]
         public SceneNodeBase Parent
         {
             get { return this.parent; }
@@ -73,7 +75,9 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public RendererBaseChildren Children { get; private set; }
+        [Category(strSceneNodeBase)]
+        [Description("Children Nodes. Inherits this node's IWorldSpace properties.")]
+        public SceneNodeBaseChildren Children { get; private set; }
 
         #endregion
 
