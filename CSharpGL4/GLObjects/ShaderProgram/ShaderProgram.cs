@@ -110,7 +110,10 @@ namespace CSharpGL
             foreach (var item in variables)
             {
                 UniformVariable var = item.GetUniformVariable(programId);
-                this.uniformVariables.Add(var.VarName, var);
+                if (var != null)
+                {
+                    this.uniformVariables.Add(var.VarName, var);
+                }
             }
         }
 
