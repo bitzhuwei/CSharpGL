@@ -20,6 +20,8 @@ namespace CSharpGL
         private static GLDelegates.void_uint glDeleteProgram;
         private static GLDelegates.int_uint_string glGetAttribLocation;
         private static GLDelegates.void_uint_uint_int_intN_intN_uintN_string glGetActiveUniform;
+        private static GLDelegates.void_uint_int_floatN glGetUniformfv;
+        private static GLDelegates.void_uint_int_intN glGetUniformiv;
         private static GLDelegates.void_uint glUseProgram;
         private static GLDelegates.void_uint_uint_intN glGetProgramiv;
         private static GLDelegates.void_int_uint glUniform1ui;
@@ -60,6 +62,8 @@ namespace CSharpGL
             glDeleteProgram = GL.Instance.GetDelegateFor("glDeleteProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glGetAttribLocation = GL.Instance.GetDelegateFor("glGetAttribLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
             glGetActiveUniform = GL.Instance.GetDelegateFor("glGetActiveUniform", GLDelegates.typeof_void_uint_uint_int_intN_intN_uintN_string) as GLDelegates.void_uint_uint_int_intN_intN_uintN_string;
+            glGetUniformfv = GL.Instance.GetDelegateFor("glGetUniformfv", GLDelegates.typeof_void_uint_int_floatN) as GLDelegates.void_uint_int_floatN;
+            glGetUniformiv = GL.Instance.GetDelegateFor("glGetUniformiv", GLDelegates.typeof_void_uint_int_intN) as GLDelegates.void_uint_int_intN;
             glUseProgram = GL.Instance.GetDelegateFor("glUseProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glGetProgramiv = GL.Instance.GetDelegateFor("glGetProgramiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
             glGetUniformLocation = GL.Instance.GetDelegateFor("glGetUniformLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
@@ -102,7 +106,12 @@ namespace CSharpGL
 
             this.ProgramId = programId;
 
-            LoadAllUniforms();
+            UniformVarInShader[] variables = LoadAllUniformsInShader();
+            foreach (var item in variables)
+            {
+                UniformVariable var = item.GetUniformVariable(programId);
+                this.uniformVariables.Add(var.VarName, var);
+            }
         }
 
         /// <summary>

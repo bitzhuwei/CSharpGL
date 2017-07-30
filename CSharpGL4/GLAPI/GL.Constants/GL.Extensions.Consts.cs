@@ -1123,90 +1123,90 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_OBJECT_SUBTYPE = 0x8B4F;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_VEC2 = 0x8B50;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_VEC3 = 0x8B51;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_VEC4 = 0x8B52;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INT_VEC2 = 0x8B53;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INT_VEC3 = 0x8B54;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INT_VEC4 = 0x8B55;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL = 0x8B56;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL_VEC2 = 0x8B57;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL_VEC3 = 0x8B58;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL_VEC4 = 0x8B59;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_MAT2 = 0x8B5A;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_MAT3 = 0x8B5B;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_MAT4 = 0x8B5C;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_1D = 0x8B5D;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_2D = 0x8B5E;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_3D = 0x8B5F;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_CUBE = 0x8B60;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_1D_SHADOW = 0x8B61;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_2D_SHADOW = 0x8B62;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_2D_RECT = 0x8B63;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_2D_RECT_SHADOW = 0x8B64;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_VEC2 = 0x8B50;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_VEC3 = 0x8B51;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_VEC4 = 0x8B52;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INT_VEC2 = 0x8B53;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INT_VEC3 = 0x8B54;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INT_VEC4 = 0x8B55;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL = 0x8B56;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL_VEC2 = 0x8B57;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL_VEC3 = 0x8B58;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL_VEC4 = 0x8B59;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_MAT2 = 0x8B5A;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_MAT3 = 0x8B5B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_MAT4 = 0x8B5C;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_1D = 0x8B5D;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_2D = 0x8B5E;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_3D = 0x8B5F;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_CUBE = 0x8B60;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_1D_SHADOW = 0x8B61;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_2D_SHADOW = 0x8B62;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_2D_RECT = 0x8B63;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_2D_RECT_SHADOW = 0x8B64;
         ///// <summary>
         /////
         ///// </summary>

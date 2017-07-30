@@ -7,15 +7,15 @@ namespace CSharpGL
         #region OpenGL 3.1
 
         //  Constants
-        /// <summary>
-        ///
-        /// </summary>
-        public const uint GL_SAMPLER_2D_RECT = 0x8B63;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public const uint GL_SAMPLER_2D_RECT = 0x8B63;
 
-        /// <summary>
-        ///
-        /// </summary>
-        public const uint GL_SAMPLER_2D_RECT_SHADOW = 0x8B64;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public const uint GL_SAMPLER_2D_RECT_SHADOW = 0x8B64;
 
         /// <summary>
         ///

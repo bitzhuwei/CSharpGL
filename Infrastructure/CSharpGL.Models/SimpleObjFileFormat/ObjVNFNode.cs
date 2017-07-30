@@ -54,7 +54,7 @@ void main(void)
         private const string fragmentCode =
             @"#version 330
 
-uniform vec3 " + material_ambient + @";
+uniform vec3 " + material_ambient + @" = vec3(0.2, 0.2, 0.2);
 uniform vec3 " + material_diffuse + @";
 uniform vec3 " + material_specular + @";
 uniform float " + material_specular_power + @";
@@ -115,7 +115,6 @@ void main(void)
         private ObjVNFNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.Ambient = new vec3(1, 1, 1) * 0.2f;
             this.Diffuse = System.Drawing.Color.Orange.ToVec3();
             this.Specular = new vec3(1, 1, 1) * 0.2f;
             this.SpecularPower = 0.2f;
