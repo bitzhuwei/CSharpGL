@@ -1708,7 +1708,7 @@ namespace CSharpGL
         /// <param name="_4"></param>
         /// <param name="_5"></param>
         /// <param name="_6"></param>
-        public delegate void void_uint_uint_int_intN_intN_uintN_string(uint _0, uint _1, int _2, int[] _3, int[] _4, uint[] _5, string _6);
+        public delegate void void_uint_uint_int_intN_intN_uintN_string(uint _0, uint _1, int _2, int[] _3, int[] _4, uint[] _5, StringBuilder _6);
         /// <summary>
         /// 
         /// </summary>

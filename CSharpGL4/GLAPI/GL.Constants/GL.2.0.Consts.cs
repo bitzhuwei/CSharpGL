@@ -283,42 +283,42 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_INFO_LOG_LENGTH = 0x8B84;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ATTACHED_SHADERS = 0x8B85;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ATTACHED_SHADERS = 0x8B85;
         /// <summary>
         ///
         /// </summary>
         public const uint GL_ACTIVE_UNIFORMS = 0x8B86;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ACTIVE_UNIFORM_MAX_LENGTH = 0x8B87;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SHADER_SOURCE_LENGTH = 0x8B88;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ACTIVE_ATTRIBUTES = 0x8B89;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = 0x8B8A;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FRAGMENT_SHADER_DERIVATIVE_HINT = 0x8B8B;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SHADING_LANGUAGE_VERSION = 0x8B8C;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_CURRENT_PROGRAM = 0x8B8D;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_UNIFORM_MAX_LENGTH = 0x8B87;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SHADER_SOURCE_LENGTH = 0x8B88;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_ATTRIBUTES = 0x8B89;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = 0x8B8A;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FRAGMENT_SHADER_DERIVATIVE_HINT = 0x8B8B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SHADING_LANGUAGE_VERSION = 0x8B8C;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_CURRENT_PROGRAM = 0x8B8D;
         ///// <summary>
         /////
         ///// </summary>

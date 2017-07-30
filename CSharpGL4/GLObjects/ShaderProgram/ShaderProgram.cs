@@ -19,6 +19,7 @@ namespace CSharpGL
         private static GLDelegates.void_uint_uint glDetachShader;
         private static GLDelegates.void_uint glDeleteProgram;
         private static GLDelegates.int_uint_string glGetAttribLocation;
+        private static GLDelegates.void_uint_uint_int_intN_intN_uintN_string glGetActiveUniform;
         private static GLDelegates.void_uint glUseProgram;
         private static GLDelegates.void_uint_uint_intN glGetProgramiv;
         private static GLDelegates.void_int_uint glUniform1ui;
@@ -58,6 +59,7 @@ namespace CSharpGL
             glDetachShader = GL.Instance.GetDelegateFor("glDetachShader", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glDeleteProgram = GL.Instance.GetDelegateFor("glDeleteProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glGetAttribLocation = GL.Instance.GetDelegateFor("glGetAttribLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
+            glGetActiveUniform = GL.Instance.GetDelegateFor("glGetActiveUniform", GLDelegates.typeof_void_uint_uint_int_intN_intN_uintN_string) as GLDelegates.void_uint_uint_int_intN_intN_uintN_string;
             glUseProgram = GL.Instance.GetDelegateFor("glUseProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glGetProgramiv = GL.Instance.GetDelegateFor("glGetProgramiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
             glGetUniformLocation = GL.Instance.GetDelegateFor("glGetUniformLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
@@ -100,8 +102,7 @@ namespace CSharpGL
 
             this.ProgramId = programId;
 
-            int count = GetActivetUniformCount(programId);
-
+            LoadAllUniforms();
         }
 
         /// <summary>
@@ -150,19 +151,6 @@ namespace CSharpGL
             int[] parameters = new int[] { 0 };
             glGetProgramiv(programId, GL.GL_LINK_STATUS, parameters);
             return parameters[0] == GL.GL_TRUE;
-        }
-
-        /// <summary>
-        /// How many uniform variables are there?
-        /// </summary>
-        /// <param name="programId"></param>
-        /// <returns></returns>
-        private int GetActivetUniformCount(uint programId)
-        {
-            //  Get the info log length.
-            int[] infoLength = new int[] { 0 };
-            glGetProgramiv(programId, GL.GL_ACTIVE_UNIFORMS, infoLength);
-            return infoLength[0];
         }
 
         private string GetInfoLog(uint programId)
