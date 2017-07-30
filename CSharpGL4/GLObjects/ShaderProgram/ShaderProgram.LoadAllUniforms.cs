@@ -128,7 +128,7 @@ namespace CSharpGL
                         new vec4(value[8], value[9], value[10], value[11]),
                         new vec4(value[12], value[13], value[14], value[15])));
                 }
-                else
+                else // TODO: not dealt with uniform array or blocks.
                 {
                     throw new NotImplementedException();
                 }
