@@ -149,17 +149,18 @@ namespace CSharpGL
         {
             uint programId = this.ProgramId;
             int count = GetActivetUniformCount(programId);
-            int maxLength = GetActionUniformNameMaxLength(programId);
+            int maxNameLength = GetActionUniformNameMaxLength(programId);
             var variables = new UniformVarInShader[count];
-            var nameLength = new int[1];// useless in C#.
+            //var nameLength = new int[1];// useless in C#.
             var uniformVarSize = new int[1];
             var uniformVarType = new uint[1];
             for (uint index = 0; index < count; index++)
             {
-                var il = new StringBuilder(maxLength);
-                glGetActiveUniform(programId, index, maxLength, nameLength, uniformVarSize, uniformVarType, il);
-                int location = this.GetUniformLocation(il.ToString());
-                variables[index] = new UniformVarInShader(uniformVarType[0], il.ToString(), uniformVarSize[0], location);
+                var il = new StringBuilder(maxNameLength);
+                glGetActiveUniform(programId, index, maxNameLength, null, uniformVarSize, uniformVarType, il);
+                string name = il.ToString();
+                int location = this.GetUniformLocation(name);
+                variables[index] = new UniformVarInShader(uniformVarType[0], name, uniformVarSize[0], location);
             }
 
             return variables;
