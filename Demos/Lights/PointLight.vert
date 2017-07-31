@@ -14,7 +14,7 @@ void main()
 {
 	vEyeSpacePosition = (MV * vec4(vPosition, 1)).xyz;
 
-	vEyeSpacePosition = N * vNormal;
+	vEyeSpaceNormal = N * vNormal;
 
 	gl_Position = MVP * vec4(vPosition, 1);
 }

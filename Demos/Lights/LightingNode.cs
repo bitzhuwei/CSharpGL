@@ -11,7 +11,21 @@ namespace Lights
     /// </summary>
     public partial class LightingNode : PickableNode
     {
+        private const string vPosition = "vPosition";
+        private const string vNormal = "vNormal";
+        private const string MVP = "MVP";
+        private const string MV = "MV";
+        private const string N = "N";
+        private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string lightDirection = "lightDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string diffuseColor = "diffuseColor";
+        private const string constantAttenuation = "constantAttenuation";
+        private const string linearAttenuation = "linearAttenuation";
+        private const string quadraticAttenuation = "quadraticAttenuation";
+        private const string ambientColor = "ambientColor";
+
         const int pointLightIndex = 0;
+        class Tuple { public readonly string vs, fs; public Tuple(string vs, string fs) { this.vs = vs; this.fs = fs; } }
         /// <summary>
         /// 
         /// </summary>
@@ -23,9 +37,13 @@ namespace Lights
         public static LightingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
             var builders = new List<RenderUnitBuilder>();
+            var shaders = new List<Tuple>();
+            shaders.Add(new Tuple(pointLightVert, pointLightFrag));
+            shaders.Add(new Tuple(directionalLightVert, directionalLightFrag));
+            foreach (var item in shaders)
             {
-                var vs = new VertexShader(pointLightVert, vPosition, vNormal);
-                var fs = new FragmentShader(pointLightFrag);
+                var vs = new VertexShader(item.vs, vPosition, vNormal);
+                var fs = new FragmentShader(item.fs);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(vPosition, position);
