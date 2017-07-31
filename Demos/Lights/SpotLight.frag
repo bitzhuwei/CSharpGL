@@ -1,6 +1,5 @@
 ﻿#version 330 core
 
-uniform mat4 MV; // model view matrix
 uniform vec3 lightPosition; // spot light position in eye space
 uniform vec3 spotDirection; // spot light direction in eye space
 uniform float spotCutoff; // spot light cutoff
@@ -12,14 +11,14 @@ uniform float quadraticAttenuation = 0;
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 
 // inputs from vertex shader
-smooth in vec3 vEyeSpacePosition; / interpolated position in eye space
+smooth in vec3 vEyeSpacePosition; // interpolated position in eye space
 smooth in vec3 vEyeSpaceNormal; // interpolated normal in eye space
 
 layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
-	vec3 L = (lightPosition.xyz - vEyeSpacePosition);
+	vec3 L = lightPosition.xyz - vEyeSpacePosition;
 	float distance = length(L); // distance of point light source.
 	L = normalize(L);
 	vec3 D = normalize(spotDirection);
@@ -30,7 +29,7 @@ void main()
 	// if the spot effect is > cutoff we shade the surface.
 	if (spotEffect > spotCutoff)
 	{
-		vec3 diffuse = max(0, dot(vEyeSpaceNormal, L));
+		float diffuse = max(0, dot(vEyeSpaceNormal, L));
 		spotEffect = pow(spotEffect, spotExponent);
 		float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 		diffuse *= attenuationAmount;

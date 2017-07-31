@@ -18,6 +18,9 @@ namespace Lights
         private const string N = "N";
         private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
         private const string lightDirection = "lightDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string spotDirection = "spotDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string spotCutoff = "spotCutoff";
+        private const string spotExponent = "spotExponent";
         private const string diffuseColor = "diffuseColor";
         private const string constantAttenuation = "constantAttenuation";
         private const string linearAttenuation = "linearAttenuation";
@@ -38,8 +41,8 @@ namespace Lights
         {
             var builders = new List<RenderUnitBuilder>();
             var shaders = new List<Tuple>();
-            shaders.Add(new Tuple(pointLightVert, pointLightFrag));
-            shaders.Add(new Tuple(directionalLightVert, directionalLightFrag));
+            //shaders.Add(new Tuple(pointLightVert, pointLightFrag));
+            //shaders.Add(new Tuple(directionalLightVert, directionalLightFrag));
             shaders.Add(new Tuple(spotLightVert, spotLightFrag));
             foreach (var item in shaders)
             {
@@ -66,12 +69,11 @@ namespace Lights
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 }

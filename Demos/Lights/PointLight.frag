@@ -9,14 +9,14 @@ uniform float quadraticAttenuation = 0;
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 
 // inputs from vertex shader
-smooth in vec3 vEyeSpacePosition; / interpolated position in eye space
+smooth in vec3 vEyeSpacePosition; // interpolated position in eye space
 smooth in vec3 vEyeSpaceNormal; // interpolated normal in eye space
 
 layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
-	vec3 vEyeSpaceLightPosition = (MV * vec4(lightPosition)).xyz;
+	vec3 vEyeSpaceLightPosition = (MV * vec4(lightPosition, 1)).xyz;
 	vec3 L = vEyeSpaceLightPosition - vEyeSpacePosition;
 	float distance = length(L); // distance of point light source.
 	L = normalize(L);

@@ -1,6 +1,6 @@
 ﻿#version 330 core
 
-in vec3 vPosition; / per-vertex position
+in vec3 vPosition; // per-vertex position
 in vec3 vNormal; // per-vertex normal
 
 uniform mat4 MVP; // combined model view projection matrix

@@ -58,8 +58,8 @@
     <None Include="PointLight.frag" />
     <None Include="PointLight.vert" />
     <Compile Include="LightingNode.DirectionalLight.cs" />
-    <Compile Include="LightingNode.SpotLight.cs" />
     <Compile Include="LightingNode.PointLight.cs" />
+    <Compile Include="LightingNode.SpotLight.cs" />
     <Compile Include="LightingNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +85,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="triceratops.obj_">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

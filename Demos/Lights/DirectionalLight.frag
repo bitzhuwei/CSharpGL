@@ -12,7 +12,7 @@ layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
-	vec3 vEyeSpaceLightDirection = (MV * vec4(lightDirection)).xyz;
+	vec4 vEyeSpaceLightDirection = MV * vec4(lightDirection, 0);
 	vec3 L = normalize(vEyeSpaceLightDirection.xyz); // light vector
 
 	float diffuse = max(0, dot(vEyeSpaceNormal, L));

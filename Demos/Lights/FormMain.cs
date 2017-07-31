@@ -41,6 +41,7 @@ namespace Lights
             else
             {
                 var model = new ObjVNF(result.Mesh);
+                var node = LightingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
             }
 
             this.scene = new Scene(camera, this.winGLCanvas1);
