@@ -8,7 +8,7 @@ namespace Lights
 {
     public partial class LightingNode
     {
-        private const string spotLightVert = @"#version 330 core
+        private const string pointLightVert = @"#version 330 core
 
 in vec3 " + vPosition + @"; / per-vertex position
 in vec3 " + vNormal + @"; // per-vertex normal
@@ -29,7 +29,7 @@ void main()
 	gl_Position = MVP * vec4(vPosition, 1);
 }
 ";
-        private const string spotLightFrag = @"#version 330 core
+        private const string pointLightFrag = @"#version 330 core
 
 uniform mat4 " + MV + @"; // model view matrix
 uniform vec3 " + lightPosition + @"; // light position in model space
@@ -47,17 +47,26 @@ layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
-	vec3 vEyeSpaceLightPosition = (MV * vec4(lightPosition)).xyz;
-	vec3 L = vEyeSpaceLightPosition - vEyeSpacePosition;
+	vec3 L = (lightPosition.xyz - vEyeSpacePosition);
 	float distance = length(L); // distance of point light source.
 	L = normalize(L);
+	vec3 D = normalize(spotDirection);
+	// calculate the overlap between the spot and the light direciton
+	vec3 V = -L;
+	float spotEffect = dot(V, D);
 
-	float diffuse = max(0, dot(vEyeSpaceNormal, L));
-	float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
-	diffuse *= attenuationAmount;
-	if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
+	// if the spot effect is > cutoff we shade the surface.
+	if (spotEffect > spotCutoff)
+	{
+		vec3 diffuse = max(0, dot(vEyeSpaceNormal, L));
+		spotEffect = pow(spotEffect, spotExponent);
+		float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
+		diffuse *= attenuationAmount;
+		if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
-	vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);
+		vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);
+	}
+	// else { discard; }
 }
 ";
 

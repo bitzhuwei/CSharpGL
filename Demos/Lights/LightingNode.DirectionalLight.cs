@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace Lights
 {
-    public partial class LightingNode : PickableNode
+    public partial class LightingNode
     {
         private const string directionalLightVert = @"#version 330 core
 

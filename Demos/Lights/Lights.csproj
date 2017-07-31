@@ -53,9 +53,12 @@
     </Compile>
     <None Include="DirectionalLight.vert" />
     <None Include="DirectionalLight.frag" />
+    <None Include="SpotLight.frag" />
+    <None Include="SpotLight.vert" />
     <None Include="PointLight.frag" />
     <None Include="PointLight.vert" />
     <Compile Include="LightingNode.DirectionalLight.cs" />
+    <Compile Include="LightingNode.SpotLight.cs" />
     <Compile Include="LightingNode.PointLight.cs" />
     <Compile Include="LightingNode.cs" />
     <Compile Include="Program.cs" />
