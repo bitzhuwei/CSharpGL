@@ -13,7 +13,7 @@ namespace Lights
         private const string MVP = "MVP";
         private const string MV = "MV";
         private const string N = "N";
-        private const string lightPosition = "lightPosition";
+        private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
         private const string diffuseColor = "diffuseColor";
         private const string constantAttenuation = "constantAttenuation";
         private const string linearAttenuation = "linearAttenuation";
@@ -42,8 +42,6 @@ void main()
 }";
         private const string pointLightFrag = @"#version 330 core
 
-layout (location = 0) out vec4 vFragColor; // fargment shader output
-
 uniform mat4 " + MV + @"; // model view matrix
 uniform vec3 " + lightPosition + @"; // light position in model space
 uniform vec3 " + diffuseColor + @"; // diffuse color of surface
@@ -55,6 +53,8 @@ uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 // inputs from vertex shader
 smooth in vec3 vPosition; / interpolated position in eye space
 smooth in vec3 vNormal; // interpolated normal in eye space
+
+layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
