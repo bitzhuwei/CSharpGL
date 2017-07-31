@@ -40,6 +40,7 @@ namespace Lights
             var shaders = new List<Tuple>();
             shaders.Add(new Tuple(pointLightVert, pointLightFrag));
             shaders.Add(new Tuple(directionalLightVert, directionalLightFrag));
+            shaders.Add(new Tuple(spotLightVert, spotLightFrag));
             foreach (var item in shaders)
             {
                 var vs = new VertexShader(item.vs, vPosition, vNormal);
