@@ -10,12 +10,12 @@ namespace Lights
     {
         private const string spotLightVert = @"#version 330 core
 
-in vec3 vPosition; // per-vertex position
-in vec3 vNormal; // per-vertex normal
+in vec3 " + vPosition + @"; // per-vertex position
+in vec3 " + vNormal + @"; // per-vertex normal
 
-uniform mat4 MVP; // combined model view projection matrix
-uniform mat4 MV; // model view matrix
-uniform mat3 N; // normal matrix
+uniform mat4 " + MVP + @"; // combined model view projection matrix
+uniform mat4 " + MV + @"; // model view matrix
+uniform mat3 " + N + @"; // normal matrix
 
 smooth out vec3 vEyeSpacePosition; // position in eye space
 smooth out vec3 vEyeSpaceNormal; // normal in eye space
@@ -31,15 +31,15 @@ void main()
 ";
         private const string spotLightFrag = @"#version 330 core
 
-uniform vec3 lightPosition; // spot light position in eye space
-uniform vec3 spotDirection; // spot light direction in eye space
-uniform float spotCutoff; // spot light cutoff
-uniform float spotExponent; // spot light exponent
-uniform vec3 diffuseColor; // diffuse color of surface
-uniform float constantAttenuation = 1.0;
-uniform float linearAttenuation = 0;
-uniform float quadraticAttenuation = 0;
-uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
+uniform vec3 " + lightPosition + @"; // spot light position in eye space
+uniform vec3 " + spotDirection + @"; // spot light direction in eye space
+uniform float " + spotCutoff + @"; // spot light cutoff
+uniform float " + spotExponent + @"; // spot light exponent
+uniform vec3 " + diffuseColor + @"; // diffuse color of surface
+uniform float " + constantAttenuation + @" = 1.0;
+uniform float " + linearAttenuation + @" = 0;
+uniform float " + quadraticAttenuation + @" = 0;
+uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 
 // inputs from vertex shader
 smooth in vec3 vEyeSpacePosition; // interpolated position in eye space
