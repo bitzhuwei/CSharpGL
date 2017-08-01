@@ -254,11 +254,11 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
       <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
-      <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
+    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.Designer.cs">
+      <DependentUpon>FormUniformVariableDictEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>

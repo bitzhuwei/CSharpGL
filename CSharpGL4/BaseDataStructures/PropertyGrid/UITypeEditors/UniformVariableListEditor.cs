@@ -13,7 +13,7 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据
-            var editor = new FormUniformVariableListEditor(context, provider, value as List<UniformVariable>);
+            var editor = new FormUniformVariableDictEditor(context, provider, value as IDictionary<string, UniformVariable>);
             editor.ShowDialog();
 
             return value;

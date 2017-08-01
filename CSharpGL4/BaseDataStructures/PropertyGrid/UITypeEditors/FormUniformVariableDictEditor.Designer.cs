@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    partial class FormUniformVariableListEditor
+    partial class FormUniformVariableDictEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -45,8 +45,8 @@
             // 
             // propertyGrid
             // 
-            this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGrid.Font = new System.Drawing.Font("宋体", 12F);
             this.propertyGrid.Location = new System.Drawing.Point(5, 21);
@@ -93,7 +93,6 @@
             this.btnMoveDown.TabIndex = 9;
             this.btnMoveDown.Text = "↓";
             this.btnMoveDown.UseVisualStyleBackColor = true;
-            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
             // 
             // btnMoveUp
             // 
@@ -106,7 +105,6 @@
             this.btnMoveUp.TabIndex = 10;
             this.btnMoveUp.Text = "↑";
             this.btnMoveUp.UseVisualStyleBackColor = true;
-            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
             // 
             // btnAdd
             // 
@@ -123,8 +121,8 @@
             // 
             // lstMember
             // 
-            this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstMember.Font = new System.Drawing.Font("宋体", 12F);
             this.lstMember.FormattingEnabled = true;
@@ -160,8 +158,8 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(10, 12);
             this.splitContainer1.Name = "splitContainer1";

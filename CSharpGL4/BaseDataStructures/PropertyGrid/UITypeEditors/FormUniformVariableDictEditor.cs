@@ -7,13 +7,13 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    partial class FormUniformVariableListEditor : Form
+    partial class FormUniformVariableDictEditor : Form
     {
         private ITypeDescriptorContext context;
         private IServiceProvider provider;
-        private IList<UniformVariable> list;
+        private IDictionary<string, UniformVariable> dict;
 
-        public FormUniformVariableListEditor(ITypeDescriptorContext context, IServiceProvider provider, IList<UniformVariable> list)
+        public FormUniformVariableDictEditor(ITypeDescriptorContext context, IServiceProvider provider, IDictionary<string, UniformVariable> dict)
         {
             InitializeComponent();
 
@@ -22,14 +22,14 @@ namespace CSharpGL
             this.context = context;
             this.provider = provider;
 
-            if (list != null)
+            if (dict != null)
             {
-                foreach (UniformVariable item in list)
+                foreach (var item in dict)
                 {
-                    this.lstMember.Items.Add(item);
+                    this.lstMember.Items.Add(item.Value);
                 }
 
-                this.list = list;
+                this.dict = dict;
             }
         }
 
@@ -41,9 +41,10 @@ namespace CSharpGL
                 Type type = frmSelectType.SelectedType;
                 try
                 {
-                    var obj = Activator.CreateInstance(type, frmSelectType.VarNameInShader) as UniformVariable;
+                    string varName = frmSelectType.VarNameInShader;
+                    var obj = Activator.CreateInstance(type, varName) as UniformVariable;
                     this.lstMember.Items.Add(obj);
-                    this.list.Add(obj);
+                    this.dict.Add(varName, obj);
                     this.propertyGrid.SelectedObject = obj;
                 }
                 catch (Exception ex)
@@ -60,8 +61,9 @@ namespace CSharpGL
             int index = this.lstMember.SelectedIndex;
             if (index >= 0)
             {
+                var item = this.lstMember.Items[index] as UniformVariable;
                 this.lstMember.Items.RemoveAt(index);
-                this.list.RemoveAt(index);
+                this.dict.Remove(item.VarName);
             }
         }
 
@@ -78,40 +80,6 @@ namespace CSharpGL
             { this.lblSelectedType.Text = string.Format("{0}", obj.GetType()); }
             else
             { this.lblSelectedType.Text = string.Format("NULL"); }
-        }
-
-        private void btnMoveUp_Click(object sender, EventArgs e)
-        {
-            int index = this.lstMember.SelectedIndex;
-            if (0 < index)
-            {
-                object item = this.lstMember.Items[index];
-                this.lstMember.Items.RemoveAt(index);
-                UniformVariable obj = this.list[index];
-                this.list.RemoveAt(index);
-
-                this.lstMember.Items.Insert(index - 1, item);
-                this.list.Insert(index - 1, obj);
-
-                this.lstMember.SelectedIndex = index - 1;
-            }
-        }
-
-        private void btnMoveDown_Click(object sender, EventArgs e)
-        {
-            int index = this.lstMember.SelectedIndex;
-            if (0 <= index && index + 1 < this.lstMember.Items.Count)
-            {
-                object item = this.lstMember.Items[index];
-                this.lstMember.Items.RemoveAt(index);
-                UniformVariable obj = this.list[index];
-                this.list.RemoveAt(index);
-
-                this.lstMember.Items.Insert(index + 1, item);
-                this.list.Insert(index + 1, obj);
-
-                this.lstMember.SelectedIndex = index + 1;
-            }
         }
     }
 }

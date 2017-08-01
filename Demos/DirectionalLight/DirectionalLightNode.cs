@@ -28,13 +28,6 @@ namespace DirectionalLight
         /// <summary>
         /// 
         /// </summary>
-        public vec3 DiffuseColor { get; set; }
-
-        class Tuple { public readonly string vs, fs; public Tuple(string vs, string fs) { this.vs = vs; this.fs = fs; } }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="model"></param>
         /// <param name="position"></param>
         /// <param name="normal"></param>
@@ -63,7 +56,6 @@ namespace DirectionalLight
         private DirectionalLightNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.DiffuseColor = Color.Gold.ToVec3();
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -79,13 +71,37 @@ namespace DirectionalLight
             program.SetUniform(N, n);
             vec3 viewDirection = new vec3(view * new vec4(this.Light.Direction, 0.0f));
             program.SetUniform(lightDirection, viewDirection);
-            program.SetUniform(diffuseColor, this.DiffuseColor);
 
             unit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
+        }
+
+        public vec3 DiffuseColor
+        {
+            get
+            {
+                vec3 value = new vec3();
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    RenderUnit unit = this.RenderUnits[0];
+                    ShaderProgram program = unit.Program;
+                    program.GetUniformValue(diffuseColor, out value);
+                }
+
+                return value;
+            }
+            set
+            {
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    RenderUnit unit = this.RenderUnits[0];
+                    ShaderProgram program = unit.Program;
+                    program.SetUniform(diffuseColor, value);
+                }
+            }
         }
     }
 }
