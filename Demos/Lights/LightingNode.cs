@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CSharpGL;
+using System.Drawing;
 
 namespace Lights
 {
@@ -91,7 +92,10 @@ namespace Lights
 
         private LightingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
-        { }
+        {
+            this.LightPostion = new vec3(1, 1, 1) * 33;
+            this.DiffuseColor = Color.Gold.ToVec3();
+        }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {

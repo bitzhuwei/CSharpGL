@@ -26,7 +26,7 @@ namespace Lights
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(8, 0, 4) * 3;
+            var position = new vec3(1, 0.5f, 1) * 7;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -44,6 +44,7 @@ namespace Lights
                 var model = new ObjVNF(result.Mesh);
                 var node = LightingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 this.scene.RootElement = node;
+                (new FormProperyGrid(node)).Show();
             }
 
 
@@ -70,11 +71,31 @@ namespace Lights
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //IWorldSpace node = this.environmentMappingNode;
-            //if (node != null)
-            //{
-            //    node.RotationAngle += 1;
-            //}
+            IWorldSpace node = this.scene.RootElement;
+            if (node != null)
+            {
+                node.RotationAngle += 1;
+            }
+        }
+
+        private void chkRotate_CheckedChanged(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = this.chkRotate.Checked;
+        }
+
+        private void lblColorDisply_Click(object sender, EventArgs e)
+        {
+            if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Color color = this.colorDialog1.Color;
+                var node = this.scene.RootElement as LightingNode;
+                if (node != null)
+                {
+                    node.DiffuseColor = color.ToVec3();
+                    this.lblColor.Text = string.Format("{0}", color);
+                    this.lblColorDisply.BackColor = color;
+                }
+            }
         }
 
     }
