@@ -77,6 +77,17 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="matrix"></param>
+        public mat3(mat4 matrix)
+        {
+            this.col0 = new vec3(matrix.col0);
+            this.col1 = new vec3(matrix.col1);
+            this.col2 = new vec3(matrix.col2);
+        }
+
+        /// <summary>
         /// Gets or sets the <see cref="vec3"/> column at the specified index.
         /// </summary>
         /// <value>

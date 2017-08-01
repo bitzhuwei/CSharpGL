@@ -15,6 +15,7 @@ namespace Lights
         private const string vNormal = "vNormal";
         private const string MVP = "MVP";
         private const string MV = "MV";
+        private const string V = "V";
         private const string N = "N";
         private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
         private const string lightDirection = "lightDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
@@ -28,7 +29,32 @@ namespace Lights
         private const string ambientColor = "ambientColor";
 
         const int pointLightIndex = 0;
+        const int directionalLightIndex = 1;
+        const int spotLightIndex = 2;
+        public enum LightingMode
+        {
+            PointLight = pointLightIndex,
+            DirectionalLight = directionalLightIndex,
+            SpotLight = spotLightIndex,
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public LightingMode LightMode { get; set; }
+
+        /// <summary>
+        /// light's position in world space.
+        /// </summary>
+        public vec3 LightPostion { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 DiffuseColor { get; set; }
+
         class Tuple { public readonly string vs, fs; public Tuple(string vs, string fs) { this.vs = vs; this.fs = fs; } }
+
         /// <summary>
         /// 
         /// </summary>
@@ -69,7 +95,60 @@ namespace Lights
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            switch (this.LightMode)
+            {
+                case LightingMode.PointLight:
+                    RenderPointLight(arg);
+                    break;
+                case LightingMode.DirectionalLight:
+                    RenderDirectionalLight(arg);
+                    break;
+                case LightingMode.SpotLight:
+                    RenderSpotLight(arg);
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        private void RenderSpotLight(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RenderDirectionalLight(RenderEventArgs arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RenderPointLight(RenderEventArgs arg)
+        {
+            /*
+            uniform mat4 MVP; // combined model view projection matrix
+uniform mat4 MV; // model view matrix
+uniform mat3 N; // normal matrix
+             uniform mat4 V; // model view matrix
+uniform vec3 lightPosition; // light position in model space
+uniform vec3 diffuseColor; // diffuse color of surface
+uniform float constantAttenuation = 1.0;
+uniform float linearAttenuation = 0;
+uniform float quadraticAttenuation = 0;
+uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
+             */
+            RenderUnit unit = this.RenderUnits[pointLightIndex];
+            ShaderProgram program = unit.Program;
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            program.SetUniform(MVP, projection * view * model);
+            program.SetUniform(MV, projection * view);
+            program.SetUniform(N, new mat3(glm.transpose(glm.inverse(view * model))));
+            program.SetUniform(V, view);
+            program.SetUniform(lightPosition, this.LightPostion);
+            program.SetUniform(diffuseColor, this.DiffuseColor);
+
+            unit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
