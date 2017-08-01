@@ -264,7 +264,7 @@ namespace CSharpGL
                 vec4 front1 = rotationMatrix * front;
                 rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.Y - e.Y), this.camera.GetRight());
                 vec4 front2 = rotationMatrix * front1;
-                front2 = front2.normalize();
+                //front2 = front2.normalize();
                 this.camera.Target = this.camera.Position + new vec3(front2);
 
                 this.lastPosition = e.Location;

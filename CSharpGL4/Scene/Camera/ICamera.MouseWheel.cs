@@ -11,7 +11,7 @@
         {
             //if (camera.CameraType == CameraTypes.Perspecitive)
             {
-                var target2Position = camera.Position - camera.Target;
+                var target2Position = (camera.Position - camera.Target);
                 if (target2Position.length() < 0.01)
                 {
                     target2Position = target2Position.normalize();

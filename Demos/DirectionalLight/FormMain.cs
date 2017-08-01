@@ -14,6 +14,7 @@ namespace DirectionalLight
     {
         private Scene scene;
         private ActionList actionList;
+        private DirectionalLightNode node;
 
         public FormMain()
         {
@@ -26,7 +27,7 @@ namespace DirectionalLight
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(1, 0.5f, 1) * 9;
+            var position = new vec3(1, 0.6f, 1) * 14;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -43,7 +44,7 @@ namespace DirectionalLight
             {
                 var light = new CSharpGL.DirectionalLight(new vec3(1, 1, 1));
                 var model = new ObjVNF(result.Mesh);
-                var node = DirectionalLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                this.node = DirectionalLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 var lightNode = LightPostionNode.Create();
                 lightNode.SetLight(light);
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;
@@ -92,7 +93,7 @@ namespace DirectionalLight
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.scene.RootElement as DirectionalLightNode;
+                var node = this.node as DirectionalLightNode;
                 if (node != null)
                 {
                     node.DiffuseColor = color.ToVec3();
