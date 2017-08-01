@@ -21,10 +21,10 @@ void main()
 	float distance = length(L); // distance of point light source.
 	L = normalize(L);
 
-	float diffuse = max(0, dot(vEyeSpaceNormal, L));
+	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
 	float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 	diffuse *= attenuationAmount;
-	if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
+	//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
 	vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);
 }
