@@ -66,7 +66,7 @@ void main()
 		diffuse *= attenuationAmount;
 		//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
-		vFragColor = vec4(vec3(1,0,0) + diffuse * diffuseColor, 1.0);
+		vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);
 	}
 	else { vFragColor = vec4(ambientColor, 1.0); }
 }
