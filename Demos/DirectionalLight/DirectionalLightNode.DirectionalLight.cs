@@ -40,7 +40,7 @@ void main()
 {
 	vec3 L = normalize(lightDirection); // light vector
 
-	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
+	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), -L));
 	//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
 	vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);

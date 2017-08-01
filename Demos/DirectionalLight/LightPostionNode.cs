@@ -69,22 +69,33 @@ void main(void) {
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = new vec3(1, 1, 1) * 0.3f;
+            this.AutoRotate = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool AutoRotate { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            float delta = 1;
-            this.RotationAngle += delta * 31;
-            var position = new vec3(
-                (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0),
-                (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0),
-                (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 9;
-
-            this.light.Position = position;
-            this.light.Direction = position;
-            this.WorldPosition = position;
+            if (this.AutoRotate)
+            {
+                float delta = 1;
+                this.RotationAngle += delta * 31;
+                var position = new vec3(
+                    (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0),
+                    (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0),
+                    (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 9;
+                this.light.Position = position;
+                this.light.Direction = -position;
+                this.WorldPosition = position;
+            }
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();

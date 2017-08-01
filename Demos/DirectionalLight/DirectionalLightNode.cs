@@ -77,7 +77,8 @@ namespace DirectionalLight
             mat3 n = new mat3(glm.transpose(glm.inverse(view * model)));
             program.SetUniform(MVP, projection * view * model);
             program.SetUniform(N, n);
-            program.SetUniform(lightDirection, n * this.Light.Direction);
+            vec3 viewDirection = new vec3(view * new vec4(this.Light.Direction, 0.0f));
+            program.SetUniform(lightDirection, viewDirection);
             program.SetUniform(diffuseColor, this.DiffuseColor);
 
             unit.Render();

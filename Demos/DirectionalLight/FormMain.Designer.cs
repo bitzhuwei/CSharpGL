@@ -35,13 +35,14 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.lblColorDisply = new System.Windows.Forms.Label();
             this.lblColor = new System.Windows.Forms.Label();
+            this.chkRotateLight = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 38);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -63,9 +64,9 @@
             this.chkRotate.Font = new System.Drawing.Font("宋体", 12F);
             this.chkRotate.Location = new System.Drawing.Point(12, 12);
             this.chkRotate.Name = "chkRotate";
-            this.chkRotate.Size = new System.Drawing.Size(75, 20);
+            this.chkRotate.Size = new System.Drawing.Size(123, 20);
             this.chkRotate.TabIndex = 1;
-            this.chkRotate.Text = "Rotate";
+            this.chkRotate.Text = "Rotate Model";
             this.chkRotate.UseVisualStyleBackColor = true;
             this.chkRotate.CheckedChanged += new System.EventHandler(this.chkRotate_CheckedChanged);
             // 
@@ -74,7 +75,7 @@
             this.lblColorDisply.AutoSize = true;
             this.lblColorDisply.BackColor = System.Drawing.Color.Gold;
             this.lblColorDisply.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblColorDisply.Location = new System.Drawing.Point(162, 13);
+            this.lblColorDisply.Location = new System.Drawing.Point(292, 13);
             this.lblColorDisply.Name = "lblColorDisply";
             this.lblColorDisply.Size = new System.Drawing.Size(48, 16);
             this.lblColorDisply.TabIndex = 2;
@@ -85,11 +86,25 @@
             // 
             this.lblColor.AutoSize = true;
             this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblColor.Location = new System.Drawing.Point(216, 16);
+            this.lblColor.Location = new System.Drawing.Point(346, 13);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(40, 16);
             this.lblColor.TabIndex = 2;
             this.lblColor.Text = "Gold";
+            // 
+            // chkRotateLight
+            // 
+            this.chkRotateLight.AutoSize = true;
+            this.chkRotateLight.Checked = true;
+            this.chkRotateLight.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRotateLight.Font = new System.Drawing.Font("宋体", 12F);
+            this.chkRotateLight.Location = new System.Drawing.Point(141, 12);
+            this.chkRotateLight.Name = "chkRotateLight";
+            this.chkRotateLight.Size = new System.Drawing.Size(123, 20);
+            this.chkRotateLight.TabIndex = 1;
+            this.chkRotateLight.Text = "Rotate Light";
+            this.chkRotateLight.UseVisualStyleBackColor = true;
+            this.chkRotateLight.CheckedChanged += new System.EventHandler(this.chkRotateLight_CheckedChanged);
             // 
             // FormMain
             // 
@@ -98,6 +113,7 @@
             this.ClientSize = new System.Drawing.Size(985, 577);
             this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblColorDisply);
+            this.Controls.Add(this.chkRotateLight);
             this.Controls.Add(this.chkRotate);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
@@ -116,5 +132,6 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Label lblColorDisply;
         private System.Windows.Forms.Label lblColor;
+        private System.Windows.Forms.CheckBox chkRotateLight;
     }
 }

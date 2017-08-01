@@ -15,6 +15,7 @@ namespace DirectionalLight
         private Scene scene;
         private ActionList actionList;
         private DirectionalLightNode node;
+        private LightPostionNode lightNode;
 
         public FormMain()
         {
@@ -45,7 +46,7 @@ namespace DirectionalLight
                 var light = new CSharpGL.DirectionalLight(new vec3(1, 1, 1));
                 var model = new ObjVNF(result.Mesh);
                 this.node = DirectionalLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                var lightNode = LightPostionNode.Create();
+                this.lightNode = LightPostionNode.Create();
                 lightNode.SetLight(light);
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;
                 var groupNode = new GroupNode(node, lightNode);
@@ -76,7 +77,7 @@ namespace DirectionalLight
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.node;
             if (node != null)
             {
                 node.RotationAngle += 1;
@@ -100,6 +101,15 @@ namespace DirectionalLight
                     this.lblColor.Text = string.Format("{0}", color);
                     this.lblColorDisply.BackColor = color;
                 }
+            }
+        }
+
+        private void chkRotateLight_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.lightNode;
+            if (node != null)
+            {
+                this.lightNode.AutoRotate = this.chkRotateLight.Checked;
             }
         }
 
