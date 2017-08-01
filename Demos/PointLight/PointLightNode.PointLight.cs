@@ -31,7 +31,8 @@ void main()
 ";
         private const string pointLightFrag = @"#version 330 core
 
-uniform vec3 " + lightPosition + @"; // light position in view space
+uniform mat4 " + V + @"; // view matrix
+uniform vec3 " + lightPosition + @"; // light position in world space
 uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of surface
 uniform float " + constantAttenuation + @" = 1.0;
 uniform float " + linearAttenuation + @" = 0.0001;
@@ -46,11 +47,13 @@ layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
-	vec3 L = lightPosition - vEyeSpacePosition;
+	vec3 vEyeSpaceLightPosition = (V * vec4(lightPosition, 1)).xyz;
+	vec3 L = vEyeSpaceLightPosition - vEyeSpacePosition;
+	//vec3 L = lightPosition - vEyeSpacePosition;
 	float distance = length(L); // distance of point light source.
 	L = normalize(L);
 
-	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), -L));
+	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
 	float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 	diffuse *= attenuationAmount;
 	//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }

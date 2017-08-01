@@ -114,7 +114,7 @@ namespace Lights
         private LightingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.LightMode = LightingMode.SpotLight;
+            this.LightMode = LightingMode.PointLight;
 
             this.DiffuseColor = Color.Gold.ToVec3();
             this.LightPostion = new vec3(1, 0.5f, 1) * 33;

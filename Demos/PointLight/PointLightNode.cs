@@ -74,7 +74,8 @@ namespace PointLight
             program.SetUniform(MVP, projection * view * model);
             program.SetUniform(MV, projection * view);
             program.SetUniform(N, new mat3(glm.transpose(glm.inverse(view * model))));
-            program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
+            program.SetUniform(V, view);
+            program.SetUniform(lightPosition, light.Position);//new vec3(view * new vec4(light.Position, 1.0f)));
 
             unit.Render();
         }
