@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="DirectionalLightNode.cs" />
     <Compile Include="DirectionalLightNode.DirectionalLight.cs" />
+    <Compile Include="LightPostionNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

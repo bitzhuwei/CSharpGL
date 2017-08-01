@@ -23,7 +23,7 @@ namespace DirectionalLight
         /// <summary>
         /// directional light's direction.
         /// </summary>
-        public vec3 LightDirection { get; set; }
+        public CSharpGL.DirectionalLight Light { get; set; }
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace DirectionalLight
         /// <param name="normal"></param>
         /// <param name="size"></param>
         /// <returns></returns>
-        public static DirectionalLightNode Create(IBufferSource model, string position, string normal, vec3 size)
+        public static DirectionalLightNode Create(CSharpGL.DirectionalLight light, IBufferSource model, string position, string normal, vec3 size)
         {
             var vs = new VertexShader(directionalLightVert, vPosition, vNormal);
             var fs = new FragmentShader(directionalLightFrag);
@@ -51,6 +51,7 @@ namespace DirectionalLight
             var builder = new RenderUnitBuilder(provider, map);
 
             var node = new DirectionalLightNode(model, position, builder);
+            node.Light = light;
             node.ModelSize = size;
             node.Children.Add(new LegacyBoundingBoxNode(size));
 
@@ -62,7 +63,6 @@ namespace DirectionalLight
         private DirectionalLightNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.LightDirection = new vec3(1, 0.5f, 1);
             this.DiffuseColor = Color.Gold.ToVec3();
         }
 
@@ -74,9 +74,10 @@ namespace DirectionalLight
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
+            mat3 n = new mat3(glm.transpose(glm.inverse(view * model)));
             program.SetUniform(MVP, projection * view * model);
-            program.SetUniform(N, new mat3(glm.transpose(glm.inverse(view * model))));
-            program.SetUniform(lightDirection, this.LightDirection);
+            program.SetUniform(N, n);
+            program.SetUniform(lightDirection, n * this.Light.Direction);
             program.SetUniform(diffuseColor, this.DiffuseColor);
 
             unit.Render();

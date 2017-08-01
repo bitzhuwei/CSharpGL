@@ -26,7 +26,7 @@ namespace DirectionalLight
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(1, 0.5f, 1) * 7;
+            var position = new vec3(1, 0.5f, 1) * 9;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -41,12 +41,16 @@ namespace DirectionalLight
             }
             else
             {
+                var light = new CSharpGL.DirectionalLight(new vec3(1, 1, 1));
                 var model = new ObjVNF(result.Mesh);
-                var node = DirectionalLightNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                this.scene.RootElement = node;
-                (new FormProperyGrid(node)).Show();
+                var node = DirectionalLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                var lightNode = LightPostionNode.Create();
+                lightNode.SetLight(light);
+                lightNode.WorldPosition = new vec3(1, 1, 1) * 4;
+                var groupNode = new GroupNode(node, lightNode);
+                this.scene.RootElement = groupNode;
+                (new FormProperyGrid(groupNode)).Show();
             }
-
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
