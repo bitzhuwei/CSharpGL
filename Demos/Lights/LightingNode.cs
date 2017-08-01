@@ -55,6 +55,22 @@ namespace Lights
         public vec3 LightDirection { get; set; }
 
         /// <summary>
+        /// spot light's direction.
+        /// </summary>
+        public vec3 SpotDirection { get; set; }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public float SpotCutoff { get; set; }
+
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public float SpotExponent { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         public vec3 DiffuseColor { get; set; }
@@ -98,11 +114,12 @@ namespace Lights
         private LightingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.LightMode = LightingMode.DirectionalLight;
+            this.LightMode = LightingMode.SpotLight;
 
             this.DiffuseColor = Color.Gold.ToVec3();
-            this.LightPostion = new vec3(1, 1, 1) * 33;
-            this.LightDirection = new vec3(1, 1, 1);
+            this.LightPostion = new vec3(1, 0.5f, 1) * 33;
+            this.LightDirection = new vec3(1, 0.5f, 1);
+            this.SpotDirection = new vec3(1, 0.5f, 1);
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -125,7 +142,21 @@ namespace Lights
 
         private void RenderSpotLight(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            RenderUnit unit = this.RenderUnits[spotLightIndex];
+            ShaderProgram program = unit.Program;
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            program.SetUniform(MVP, projection * view * model);
+            program.SetUniform(MV, view * model);
+            mat3 n = new mat3(glm.transpose(glm.inverse(view * model)));
+            program.SetUniform(N, n);
+            program.SetUniform(lightPosition, this.LightPostion);
+            program.SetUniform(spotDirection, n * this.SpotDirection);
+            program.SetUniform(diffuseColor, this.DiffuseColor);
+
+            unit.Render();
         }
 
         private void RenderDirectionalLight(RenderEventArgs arg)

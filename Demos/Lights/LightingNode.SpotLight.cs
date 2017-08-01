@@ -33,8 +33,8 @@ void main()
 
 uniform vec3 " + lightPosition + @"; // spot light position in eye space
 uniform vec3 " + spotDirection + @"; // spot light direction in eye space
-uniform float " + spotCutoff + @"; // spot light cutoff
-uniform float " + spotExponent + @"; // spot light exponent
+uniform float " + spotCutoff + @" = 0; // spot light cutoff
+uniform float " + spotExponent + @" = 0.2; // spot light exponent
 uniform vec3 " + diffuseColor + @"; // diffuse color of surface
 uniform float " + constantAttenuation + @" = 1.0;
 uniform float " + linearAttenuation + @" = 0;
@@ -60,15 +60,15 @@ void main()
 	// if the spot effect is > cutoff we shade the surface.
 	if (spotEffect > spotCutoff)
 	{
-		float diffuse = max(0, dot(vEyeSpaceNormal, L));
+		float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
 		spotEffect = pow(spotEffect, spotExponent);
 		float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 		diffuse *= attenuationAmount;
-		if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
+		//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
-		vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);
+		vFragColor = vec4(vec3(1,0,0) + diffuse * diffuseColor, 1.0);
 	}
-	// else { discard; }
+	else { vFragColor = vec4(ambientColor, 1.0); }
 }
 ";
 
