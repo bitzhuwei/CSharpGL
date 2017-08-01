@@ -45,9 +45,14 @@ namespace Lights
         public LightingMode LightMode { get; set; }
 
         /// <summary>
-        /// light's position in world space.
+        /// point light's position in world space.
         /// </summary>
         public vec3 LightPostion { get; set; }
+
+        /// <summary>
+        /// directional light's direction.
+        /// </summary>
+        public vec3 LightDirection { get; set; }
 
         /// <summary>
         /// 
@@ -93,8 +98,11 @@ namespace Lights
         private LightingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.LightPostion = new vec3(1, 1, 1) * 33;
+            this.LightMode = LightingMode.DirectionalLight;
+
             this.DiffuseColor = Color.Gold.ToVec3();
+            this.LightPostion = new vec3(1, 1, 1) * 33;
+            this.LightDirection = new vec3(1, 1, 1);
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -122,23 +130,23 @@ namespace Lights
 
         private void RenderDirectionalLight(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            RenderUnit unit = this.RenderUnits[directionalLightIndex];
+            ShaderProgram program = unit.Program;
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            program.SetUniform(MVP, projection * view * model);
+            program.SetUniform(N, new mat3(glm.transpose(glm.inverse(view * model))));
+            program.SetUniform(V, view);
+            program.SetUniform(lightDirection, this.LightDirection);
+            program.SetUniform(diffuseColor, this.DiffuseColor);
+
+            unit.Render();
         }
 
         private void RenderPointLight(RenderEventArgs arg)
         {
-            /*
-            uniform mat4 MVP; // combined model view projection matrix
-uniform mat4 MV; // model view matrix
-uniform mat3 N; // normal matrix
-             uniform mat4 V; // model view matrix
-uniform vec3 lightPosition; // light position in model space
-uniform vec3 diffuseColor; // diffuse color of surface
-uniform float constantAttenuation = 1.0;
-uniform float linearAttenuation = 0;
-uniform float quadraticAttenuation = 0;
-uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
-             */
             RenderUnit unit = this.RenderUnits[pointLightIndex];
             ShaderProgram program = unit.Program;
             ICamera camera = arg.CameraStack.Peek();

@@ -1,7 +1,7 @@
 ﻿#version 330 core
 
-uniform mat4 MV; // model view matrix
-uniform vec3 lightDirection; // light direction in model space
+uniform mat4 V; // model view matrix
+uniform vec3 lightDirection; // light direction in world space
 uniform vec3 diffuseColor; // diffuse color of surface
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 
@@ -12,7 +12,7 @@ layout (location = 0) out vec4 vFragColor; // fargment shader output
 
 void main()
 {
-	vec4 vEyeSpaceLightDirection = MV * vec4(lightDirection, 0);
+	vec4 vEyeSpaceLightDirection = V * vec4(lightDirection, 0);
 	vec3 L = normalize(vEyeSpaceLightDirection.xyz); // light vector
 
 	float diffuse = max(0, dot(vEyeSpaceNormal, L));
