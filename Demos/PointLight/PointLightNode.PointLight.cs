@@ -34,8 +34,8 @@ void main()
 uniform vec3 " + lightPosition + @"; // light position in view space
 uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of surface
 uniform float " + constantAttenuation + @" = 1.0;
-uniform float " + linearAttenuation + @" = 0;
-uniform float " + quadraticAttenuation + @" = 0;
+uniform float " + linearAttenuation + @" = 0.0001;
+uniform float " + quadraticAttenuation + @" = 0.0001;
 uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 
 // inputs from vertex shader
@@ -50,12 +50,12 @@ void main()
 	float distance = length(L); // distance of point light source.
 	L = normalize(L);
 
-	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
+	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), -L));
 	float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 	diffuse *= attenuationAmount;
 	//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
-	vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1.0);
+	vFragColor = vec4(ambientColor + (diffuse + 0.1) * diffuseColor, 1.0);
 }
 ";
 
