@@ -35,7 +35,7 @@ namespace PointLight
             this.scene = new Scene(camera, this.winGLCanvas1);
 
             string objFilename = "triceratops.obj_";
-            var parser = new ObjVNFParser();
+            var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
             {

@@ -99,7 +99,7 @@ namespace EnvironmentMapping
             var totalBmp = new Bitmap(@"cubemaps_skybox.png");
             this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
             string objFilename = "triceratops.obj_";
-            var parser = new ObjVNFParser();
+            var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
             {

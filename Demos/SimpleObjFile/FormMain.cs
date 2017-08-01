@@ -130,7 +130,7 @@ namespace SimpleObjFile
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string filename = this.openFileDialog1.FileName;
-                var parser = new ObjVNFParser();
+                var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null)
                 {
