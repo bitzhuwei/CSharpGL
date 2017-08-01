@@ -42,7 +42,7 @@ namespace Normal
             }
             {
                 var vs = new VertexShader(normalVertex, vPosition, vNormal);
-                var gs = new FragmentShader(normalGeometry);
+                var gs = new GeometryShader(normalGeometry);
                 var fs = new FragmentShader(normalFragment);
                 var provider = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
@@ -70,7 +70,7 @@ namespace Normal
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            mat3 normal = new mat3(glm.transpose(glm.inverse(view * model)));
+            mat4 normal = glm.transpose(glm.inverse(view * model));
 
             // render model.
             {

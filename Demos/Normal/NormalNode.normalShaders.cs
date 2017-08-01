@@ -26,7 +26,7 @@ void main(void)
         private const string normalGeometry = @"#version 150 core
 
 layout (triangles) in;
-layout (lines, max_vertices = 2) out;
+layout (line_strip, max_vertices = 2) out;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
