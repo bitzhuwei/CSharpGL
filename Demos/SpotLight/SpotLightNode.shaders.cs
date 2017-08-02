@@ -31,6 +31,8 @@ void main(void)
 ";
         private const string spotLightFrag = @"#version 150 core
 
+uniform float shiness = 6;
+uniform float strength = 1;
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
 uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
@@ -48,18 +50,29 @@ out vec4 vFragColor;
 
 void main(void)
 {
+    vec3 normal = normalize(passNormal);
     vec3 L = lightPosition - passPosition;
 	vec3 D = normalize(spotDirection);
 	// calculate the overlap between the spot and the light direciton
 	float spotEffect = dot(-L, D);
 	if (spotEffect > spotCutoff)
     {
-        float diffuse = max(0, dot(normalize(L), normalize(passNormal)));
+        float diffuse = max(0, dot(normalize(L), normal));
         float distance = length(L);
         float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
+        attenuationAmount *= pow(spotEffect, spotExponent);
 	    diffuse *= attenuationAmount;
-	
-        vFragColor = vec4((ambientColor + diffuse) * diffuseColor, 1);
+        
+        float specular = 0;
+        if (diffuse > 0)
+        {
+            vec3 halfVector = normalize(L + vec3(0, 0, 1));// vec3(0, 0, 1) is camera's direction.
+            specular = max(0, dot(halfVector, normal));
+            specular = pow(specular, shiness) * strength;
+            specular *= attenuationAmount;
+	    }
+
+        vFragColor = vec4((ambientColor + diffuse) * diffuseColor + specular, 1);
     }
 	else
     {
