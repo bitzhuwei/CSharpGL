@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SimpleObjFile
+namespace OrderIndependentTransparency
 {
     public partial class FormMain : Form
     {
