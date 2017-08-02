@@ -11,7 +11,7 @@ namespace CSharpGL
     public class DirectionalLight : LightBase
     {
         /// <summary>
-        /// 
+        /// Direction towards light source.
         /// </summary>
         public vec3 Direction { get; set; }
 

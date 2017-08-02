@@ -72,10 +72,10 @@ namespace DirectionalLight
             mat3 normal = new mat3(glm.transpose(glm.inverse(view * model)));
             program.SetUniform(MVP, projection * view * model);
             program.SetUniform(normalMatrix, normal);
-            vec3 viewDirection = new vec3(view * new vec4(this.Light.Direction, 0.0f));
-            program.SetUniform(lightDirection, viewDirection);
+            vec3 lightDir = new vec3(view * new vec4(this.Light.Direction, 0.0f));
+            program.SetUniform(lightDirection, lightDir);
             var cameraDrection = new vec3(0, 0, 1); // camera direction in eye/view/camera space.
-            program.SetUniform(halfVector, (-viewDirection + cameraDrection).normalize());
+            program.SetUniform(halfVector, (lightDir + cameraDrection).normalize());
 
             unit.Render();
         }

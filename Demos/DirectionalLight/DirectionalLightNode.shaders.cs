@@ -30,7 +30,7 @@ void main()
 uniform vec3 " + halfVector + @";
 uniform float " + shiness + @" = 6;
 uniform float " + strength + @" = 1;
-uniform vec3 " + lightDirection + @"; // light direction in view space
+uniform vec3 " + lightDirection + @"; // direction towards light source in view space
 uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of surface
 uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 
@@ -43,7 +43,7 @@ void main()
 {
 	vec3 L = normalize(lightDirection); // light vector
 
-	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), -L));
+	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
     float specular = 0;
     if (diffuse > 0)
     {

@@ -93,7 +93,7 @@ void main(void) {
                     (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0),
                     (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 9;
                 this.light.Position = position;
-                this.light.Direction = -position;
+                this.light.Direction = position;
                 this.WorldPosition = position;
             }
 
