@@ -31,8 +31,8 @@ namespace CSharpGL.Demos
                 this.scene.RootObject.Children.Add(obj);
             }
 
-            this.form03 = new Form03OrderDependentTransparency(this);
-            this.form03.Show();
+            //this.form03 = new Form03OrderDependentTransparency(this);
+            //this.form03.Show();
 
             {
                 var builder = new StringBuilder();
