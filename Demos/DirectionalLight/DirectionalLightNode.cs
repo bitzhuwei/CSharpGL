@@ -15,7 +15,10 @@ namespace DirectionalLight
         private const string vPosition = "vPosition";
         private const string vNormal = "vNormal";
         private const string MVP = "MVP";
-        private const string N = "N";
+        private const string normalMatrix = "normalMatrix";
+        private const string halfVector = "halfVector";
+        private const string shiness = "shiness";
+        private const string strength = "strength";
         private const string lightDirection = "lightDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
         private const string diffuseColor = "diffuseColor";
         private const string ambientColor = "ambientColor";
@@ -66,11 +69,13 @@ namespace DirectionalLight
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            mat3 n = new mat3(glm.transpose(glm.inverse(view * model)));
+            mat3 normal = new mat3(glm.transpose(glm.inverse(view * model)));
             program.SetUniform(MVP, projection * view * model);
-            program.SetUniform(N, n);
+            program.SetUniform(normalMatrix, normal);
             vec3 viewDirection = new vec3(view * new vec4(this.Light.Direction, 0.0f));
             program.SetUniform(lightDirection, viewDirection);
+            var cameraEyeSpace = new vec3(0, 0, 0);
+            program.SetUniform(halfVector, (viewDirection + cameraEyeSpace).normalize());
 
             unit.Render();
         }

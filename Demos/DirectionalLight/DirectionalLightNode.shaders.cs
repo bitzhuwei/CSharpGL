@@ -14,19 +14,22 @@ in vec3 " + vPosition + @"; // per-vertex position
 in vec3 " + vNormal + @"; // per-vertex normal
 
 uniform mat4 " + MVP + @"; // combined model view projection matrix
-uniform mat3 " + N + @"; // normal matrix
+uniform mat3 " + normalMatrix + @"; // normal matrix
 
 smooth out vec3 vEyeSpaceNormal; // normal in eye space
 
 void main()
 {
-	vEyeSpaceNormal = N * vNormal;
+	vEyeSpaceNormal = normalMatrix * vNormal;
 
 	gl_Position = MVP * vec4(vPosition, 1);
 }
 ";
         private const string directionalLightFrag = @"#version 330 core
 
+uniform vec3 " + halfVector + @";
+uniform float " + shiness + @" = 0.2;
+uniform float " + strength + @" = 2;
 uniform vec3 " + lightDirection + @"; // light direction in view space
 uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of surface
 uniform vec3 " + ambientColor + @" = vec3(0.4, 0.4, 0.4);
@@ -41,7 +44,6 @@ void main()
 	vec3 L = normalize(lightDirection); // light vector
 
 	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), -L));
-	//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 
 	vFragColor = vec4((ambientColor + diffuse) * diffuseColor, 1.0);
 }
