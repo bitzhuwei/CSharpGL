@@ -156,7 +156,7 @@ namespace SimpleObjFile
 
         private void 选项OToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new FormPropertyGrid(this.scene)).Show();
+            (new FormProperyGrid(this.scene)).Show();
         }
 
         private void 旋转RToolStripMenuItem_Click(object sender, EventArgs e)
