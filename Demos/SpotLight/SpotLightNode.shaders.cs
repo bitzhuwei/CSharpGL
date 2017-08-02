@@ -31,7 +31,7 @@ void main(void)
 ";
         private const string spotLightFrag = @"#version 150 core
 
-uniform vec3 ambientColor = vec3(0.4, 0.4, 0.4);
+uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
 uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
 uniform float constantAttenuation = 1.0;

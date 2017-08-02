@@ -74,8 +74,8 @@ namespace DirectionalLight
             program.SetUniform(normalMatrix, normal);
             vec3 viewDirection = new vec3(view * new vec4(this.Light.Direction, 0.0f));
             program.SetUniform(lightDirection, viewDirection);
-            var cameraEyeSpace = new vec3(0, 0, 0);
-            program.SetUniform(halfVector, (viewDirection + cameraEyeSpace).normalize());
+            var cameraDrection = new vec3(0, 0, 1); // camera direction in eye/view/camera space.
+            program.SetUniform(halfVector, (-viewDirection + cameraDrection).normalize());
 
             unit.Render();
         }
