@@ -33,7 +33,7 @@ namespace Normal
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
 
-            string objFilename = "triceratops.obj_";
+            string objFilename = "nanosuit.obj_";
             var parser = new ObjVNFParser(true);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
