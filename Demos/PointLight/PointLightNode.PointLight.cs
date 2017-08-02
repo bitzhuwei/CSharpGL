@@ -33,7 +33,7 @@ void main(void)
 
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
-uniform vec3 lightPosition = vec3(0, 0, 0); // flash light's position in eye space.
+uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
 uniform float constantAttenuation = 1.0;
 uniform float linearAttenuation = 0.0001;
 uniform float quadraticAttenuation = 0.0001;
@@ -46,8 +46,8 @@ out vec4 vFragColor;
 void main(void)
 {
     vec3 L = lightPosition - passPosition;
-    float distance = length(L);
     float diffuse = max(0, dot(normalize(L), normalize(passNormal)));
+    float distance = length(L);
     float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 	diffuse *= attenuationAmount;
 	

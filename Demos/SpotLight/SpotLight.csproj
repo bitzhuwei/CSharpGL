@@ -52,8 +52,8 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="LightPostionNode.cs" />
-    <Compile Include="PointLightNode.cs" />
-    <Compile Include="PointLightNode.PointLight.cs" />
+    <Compile Include="SpotLightNode.cs" />
+    <Compile Include="SpotLightNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

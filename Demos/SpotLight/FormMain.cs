@@ -43,7 +43,7 @@ namespace SpotLight
             }
             else
             {
-                var light = new CSharpGL.PointLight(new vec3(1, 1, 1));
+                var light = new CSharpGL.SpotLight(new vec3(1, 1, 1), new vec3(), 60);
                 var model = new ObjVNF(result.Mesh);
                 this.node = SpotLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 this.lightNode = LightPostionNode.Create();

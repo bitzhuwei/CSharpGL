@@ -33,13 +33,13 @@ void main(void)
 
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
-uniform vec3 lightPosition = vec3(0, 0, 0); // flash light's position in eye space.
+uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
 uniform float constantAttenuation = 1.0;
 uniform float linearAttenuation = 0.0001;
 uniform float quadraticAttenuation = 0.0001;
 uniform vec3 spotDirection; // spot light direction in eye space
-uniform float spotCutoff = 0; // spot light cutoff
-uniform float spotExponent = 0.2; // spot light exponent
+uniform float spotCutoff = 0.5; // spot light cutoff
+uniform float spotExponent = 1; // spot light exponent
 
 in vec3 passPosition;
 in vec3 passNormal;
@@ -49,12 +49,22 @@ out vec4 vFragColor;
 void main(void)
 {
     vec3 L = lightPosition - passPosition;
-    float diffuse = max(0, dot(normalize(L), normalize(passNormal)));
-    float distance = length(L);
-    float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
-	diffuse *= attenuationAmount;
+	vec3 D = normalize(spotDirection);
+	// calculate the overlap between the spot and the light direciton
+	float spotEffect = dot(-L, D);
+	if (spotEffect > spotCutoff)
+    {
+        float diffuse = max(0, dot(normalize(L), normalize(passNormal)));
+        float distance = length(L);
+        float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
+	    diffuse *= attenuationAmount;
 	
-    vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1);
+        vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1);
+    }
+	else
+    {
+        vFragColor = vec4(ambientColor, 1.0);
+    }
 }
 ";
 

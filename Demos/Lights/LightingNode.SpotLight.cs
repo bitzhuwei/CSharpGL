@@ -62,7 +62,7 @@ void main()
 	{
 		float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
 		spotEffect = pow(spotEffect, spotExponent);
-		float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
+		float attenuationAmount = spotEffect / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 		diffuse *= attenuationAmount;
 		//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
 

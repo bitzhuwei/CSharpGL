@@ -20,13 +20,14 @@ namespace SpotLight
         private const string modelMatrix = "modelMatrix";
         private const string normalMatrix = "normalMatrix";
         private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string spotDirection = "spotDirection";
         private const string diffuseColor = "diffuseColor";
         private const string ambientColor = "ambientColor";
         //private const string constantAttenuation = "constantAttenuation";
         //private const string linearAttenuation = "linearAttenuation";
         //private const string quadraticAttenuation = "quadraticAttenuation";
 
-        private CSharpGL.PointLight light;
+        private CSharpGL.SpotLight light;
 
         /// <summary>
         /// 
@@ -36,7 +37,7 @@ namespace SpotLight
         /// <param name="normal"></param>
         /// <param name="size"></param>
         /// <returns></returns>
-        public static SpotLightNode Create(CSharpGL.PointLight light, IBufferSource model, string position, string normal, vec3 size)
+        public static SpotLightNode Create(CSharpGL.SpotLight light, IBufferSource model, string position, string normal, vec3 size)
         {
             var vs = new VertexShader(spotLightVert, vPosition, vNormal);
             var fs = new FragmentShader(spotLightFrag);
@@ -74,6 +75,7 @@ namespace SpotLight
             program.SetUniform(modelMatrix, model);
             program.SetUniform(normalMatrix, normal);
             program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
+            program.SetUniform(spotDirection, new vec3(view * new vec4(-light.Position, 0.0f)));
 
             unit.Render();
         }
