@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace PointLight
+namespace SpotLight
 {
-    public partial class PointLightNode
+    public partial class SpotLightNode
     {
-        private const string pointLightVert = @"#version 150 core
+        private const string spotLightVert = @"#version 150 core
 
 in vec3 vPosition;
 in vec3 vNormal;
@@ -29,7 +29,7 @@ void main(void)
     passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
 }
 ";
-        private const string pointLightFrag = @"#version 150 core
+        private const string spotLightFrag = @"#version 150 core
 
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
@@ -37,6 +37,9 @@ uniform vec3 lightPosition = vec3(0, 0, 0); // flash light's position in eye spa
 uniform float constantAttenuation = 1.0;
 uniform float linearAttenuation = 0.0001;
 uniform float quadraticAttenuation = 0.0001;
+uniform vec3 spotDirection; // spot light direction in eye space
+uniform float spotCutoff = 0; // spot light cutoff
+uniform float spotExponent = 0.2; // spot light exponent
 
 in vec3 passPosition;
 in vec3 passNormal;
@@ -46,8 +49,8 @@ out vec4 vFragColor;
 void main(void)
 {
     vec3 L = lightPosition - passPosition;
-    float distance = length(L);
     float diffuse = max(0, dot(normalize(L), normalize(passNormal)));
+    float distance = length(L);
     float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 	diffuse *= attenuationAmount;
 	
