@@ -46,6 +46,8 @@ namespace DirectionalLight
                 var light = new CSharpGL.DirectionalLight(new vec3(1, 1, 1));
                 var model = new ObjVNF(result.Mesh);
                 this.node = DirectionalLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                float max = node.ModelSize.max();
+                this.node.Scale *= 16.0f / max;
                 this.lightNode = LightPostionNode.Create();
                 lightNode.SetLight(light);
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;

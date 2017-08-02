@@ -308,6 +308,30 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// max value of x, y, z.
+        /// </summary>
+        /// <returns></returns>
+        public float max()
+        {
+            float value = x < y ? y : x;
+            if (value < z) { value = z; }
+
+            return value;
+        }
+
+        /// <summary>
+        /// min value of x, y, z.
+        /// </summary>
+        /// <returns></returns>
+        public float min()
+        {
+            float value = x < y ? x : y;
+            if (z < value) { value = z; }
+
+            return value;
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>

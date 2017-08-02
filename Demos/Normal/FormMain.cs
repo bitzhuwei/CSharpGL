@@ -44,6 +44,8 @@ namespace Normal
             {
                 var model = new ObjVNF(result.Mesh);
                 this.node = NormalNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                float max = node.ModelSize.max();
+                this.node.Scale *= 16.0f / max;
                 this.scene.RootElement = node;
             }
 

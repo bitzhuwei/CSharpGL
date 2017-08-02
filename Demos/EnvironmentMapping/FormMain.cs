@@ -112,7 +112,8 @@ namespace EnvironmentMapping
                     this.skybox.SkyboxTexture,
                     model, ObjVNF.strPosition, ObjVNF.strNormal);
                 node.ModelSize = model.GetSize();
-                node.Scale *= 2;
+                float max = node.ModelSize.max();
+                node.Scale *= 20.0f / max;
                 node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
                 this.environmentMappingNode = node;
             }

@@ -46,6 +46,8 @@ namespace SpotLight
                 var light = new CSharpGL.SpotLight(new vec3(1, 1, 1), new vec3(), 60);
                 var model = new ObjVNF(result.Mesh);
                 this.node = SpotLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                float max = node.ModelSize.max();
+                this.node.Scale *= 16.0f / max;
                 this.lightNode = LightPostionNode.Create();
                 lightNode.SetLight(light);
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;

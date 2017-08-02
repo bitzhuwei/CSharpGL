@@ -139,6 +139,8 @@ namespace SimpleObjFile
                 else
                 {
                     var node = ObjVNFNode.Create(result.Mesh);
+                    float max = node.ModelSize.max();
+                    node.Scale *= 16.0f / max;
                     node.WorldPosition = new vec3(0, 0, 0);
                     var rootElement = this.scene.RootElement;
                     this.scene.RootElement = node;
