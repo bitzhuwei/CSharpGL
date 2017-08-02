@@ -28,10 +28,12 @@ void main(void)
 layout (triangles) in;
 layout (line_strip, max_vertices = 2) out;
 
+uniform float normalLength = 0.5;
+uniform vec3 vertexColor = vec3(1, 1, 1);
+uniform vec3 pointerColor = vec3(0.5, 0.5, 0.5);
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
-uniform float normalLength = 0.5;
 
 in VS_GS_VERTEX
 {
@@ -48,13 +50,13 @@ void main(void)
 	for (int i = 0; i < gl_in.length(); i++)
 	{
 		vec4 position = gl_in[i].gl_Position;
-		vec4 target = vec4(position.xyz + normalize(vertex_in[i].normal) * normalLength, 1.0f);
 		
-		vertex_out.color = vec3(1, 1, 1);
+		vertex_out.color = vertexColor;
         gl_Position = projectionMatrix * viewMatrix * modelMatrix * position;
 		EmitVertex();
         
-		vertex_out.color = vec3(1, 0, 0);
+		vertex_out.color = pointerColor;
+		vec4 target = vec4(position.xyz + normalize(vertex_in[i].normal) * normalLength, 1.0f);
         gl_Position = projectionMatrix * viewMatrix * modelMatrix * target;
 		EmitVertex();
 

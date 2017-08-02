@@ -14,20 +14,17 @@ namespace PointLight
     {
         private const string vPosition = "vPosition";
         private const string vNormal = "vNormal";
-        private const string MVP = "MVP";
-        private const string MV = "MV";
-        private const string V = "V";
-        private const string N = "N";
+
+        private const string projectionMatrix = "projectionMatrix";
+        private const string viewMatrix = "viewMatrix";
+        private const string modelMatrix = "modelMatrix";
+        private const string normalMatrix = "normalMatrix";
         private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
-        private const string lightDirection = "lightDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
-        private const string spotDirection = "spotDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
-        private const string spotCutoff = "spotCutoff";
-        private const string spotExponent = "spotExponent";
         private const string diffuseColor = "diffuseColor";
-        private const string constantAttenuation = "constantAttenuation";
-        private const string linearAttenuation = "linearAttenuation";
-        private const string quadraticAttenuation = "quadraticAttenuation";
         private const string ambientColor = "ambientColor";
+        //private const string constantAttenuation = "constantAttenuation";
+        //private const string linearAttenuation = "linearAttenuation";
+        //private const string quadraticAttenuation = "quadraticAttenuation";
 
         private CSharpGL.PointLight light;
 
@@ -71,11 +68,12 @@ namespace PointLight
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            program.SetUniform(MVP, projection * view * model);
-            program.SetUniform(MV, projection * view);
-            program.SetUniform(N, new mat3(glm.transpose(glm.inverse(view * model))));
-            program.SetUniform(V, view);
-            program.SetUniform(lightPosition, light.Position);//new vec3(view * new vec4(light.Position, 1.0f)));
+            mat4 normal = glm.transpose(glm.inverse(view * model));
+            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(viewMatrix, view);
+            program.SetUniform(modelMatrix, model);
+            program.SetUniform(normalMatrix, normal);
+            program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
 
             unit.Render();
         }

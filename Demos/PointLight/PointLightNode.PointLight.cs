@@ -8,57 +8,50 @@ namespace PointLight
 {
     public partial class PointLightNode
     {
-        private const string pointLightVert = @"#version 330 core
+        private const string pointLightVert = @"#version 150 core
 
-in vec3 " + vPosition + @"; // per-vertex position
-in vec3 " + vNormal + @"; // per-vertex normal
+in vec3 vPosition;
+in vec3 vNormal;
 
-uniform mat4 " + MVP + @"; // combined model view projection matrix
-uniform mat4 " + MV + @"; // model view matrix
-uniform mat3 " + N + @"; // normal matrix
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+uniform mat4 normalMatrix;
 
-smooth out vec3 vEyeSpacePosition; // position in eye space
-smooth out vec3 vEyeSpaceNormal; // normal in eye space
+out vec3 passPosition; // position in eye space.
+out vec3 passNormal; // normal in eye space.
 
-void main()
+void main(void)
 {
-	vEyeSpacePosition = (MV * vec4(vPosition, 1)).xyz;
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPosition, 1.0f);
 
-	vEyeSpaceNormal = N * vNormal;
-
-	gl_Position = MVP * vec4(vPosition, 1);
+    passPosition = (viewMatrix * modelMatrix * vec4(vPosition, 1.0f)).xyz;
+    passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
 }
 ";
-        private const string pointLightFrag = @"#version 330 core
+        private const string pointLightFrag = @"#version 150 core
 
-uniform mat4 " + V + @"; // view matrix
-uniform vec3 " + lightPosition + @"; // light position in world space
-uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of surface
-uniform float " + constantAttenuation + @" = 1.0;
-uniform float " + linearAttenuation + @" = 0.0001;
-uniform float " + quadraticAttenuation + @" = 0.0001;
-uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
+uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
+uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
+uniform vec3 lightPosition = vec3(0, 0, 0); // flash light's position in eye space.
+uniform float constantAttenuation = 1.0;
+uniform float linearAttenuation = 0.0001;
+uniform float quadraticAttenuation = 0.0001;
 
-// inputs from vertex shader
-smooth in vec3 vEyeSpacePosition; // interpolated position in eye space
-smooth in vec3 vEyeSpaceNormal; // interpolated normal in eye space
+in vec3 passPosition;
+in vec3 passNormal;
 
-layout (location = 0) out vec4 vFragColor; // fargment shader output
+out vec4 vFragColor;
 
-void main()
+void main(void)
 {
-	vec3 vEyeSpaceLightPosition = (V * vec4(lightPosition, 1)).xyz;
-	vec3 L = vEyeSpaceLightPosition - vEyeSpacePosition;
-	//vec3 L = lightPosition - vEyeSpacePosition;
-	float distance = length(L); // distance of point light source.
-	L = normalize(L);
-
-	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
-	float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
+    vec3 L = normalize(lightPosition - passPosition);
+    float diffuse = max(0, dot(L, normalize(passNormal)));
+    float distance = length(L);
+    float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
 	diffuse *= attenuationAmount;
-	//if (vEyeSpaceNormal != normalize(vEyeSpaceNormal)) { diffuse = 1; }
-
-	vFragColor = vec4(ambientColor + (diffuse + 0.1) * diffuseColor, 1.0);
+	
+    vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1);
 }
 ";
 

@@ -25,8 +25,8 @@ void main(void)
 {
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPosition, 1.0f);
 
-    passPosition = vec3(viewMatrix * modelMatrix * vec4(vPosition, 1.0f));
-    passNormal = vec3(normalMatrix * vec4(vNormal, 0));
+    passPosition = (viewMatrix * modelMatrix * vec4(vPosition, 1.0f)).xyz;
+    passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
 }
 ";
         private const string fragmentShader = @"#version 150 core

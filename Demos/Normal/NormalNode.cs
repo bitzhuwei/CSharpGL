@@ -19,6 +19,8 @@ namespace Normal
         private const string modelMatrix = "modelMatrix";
         private const string normalMatrix = "normalMatrix";
         private const string diffuseColor = "diffuseColor";
+        private const string vertexColor = "vertexColor";
+        private const string pointerColor = "pointerColor";
 
         /// <summary>
         /// 
@@ -32,6 +34,7 @@ namespace Normal
         {
             var builders = new RenderUnitBuilder[2];
             {
+                // render model
                 var vs = new VertexShader(vertexShader, vPosition, vNormal);
                 var fs = new FragmentShader(fragmentShader);
                 var provider = new ShaderArray(vs, fs);
@@ -41,6 +44,7 @@ namespace Normal
                 builders[0] = new RenderUnitBuilder(provider, map);
             }
             {
+                // render normal
                 var vs = new VertexShader(normalVertex, vPosition, vNormal);
                 var gs = new GeometryShader(normalGeometry);
                 var fs = new FragmentShader(normalFragment);
@@ -62,6 +66,8 @@ namespace Normal
         private NormalNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
+            this.RenderModel = true;
+            this.RenderNormal = true;
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -72,7 +78,7 @@ namespace Normal
             mat4 model = this.GetModelMatrix();
             mat4 normal = glm.transpose(glm.inverse(view * model));
 
-            // render model.
+            if (this.RenderModel)
             {
                 RenderUnit unit = this.RenderUnits[0];
                 ShaderProgram program = unit.Program;
@@ -84,7 +90,7 @@ namespace Normal
                 unit.Render();
             }
 
-            // render normal.
+            if (this.RenderNormal)
             {
                 RenderUnit unit = this.RenderUnits[1];
                 ShaderProgram program = unit.Program;
@@ -124,5 +130,65 @@ namespace Normal
                 }
             }
         }
+
+        public vec3 VertexColor
+        {
+            get
+            {
+                vec3 value = new vec3();
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    RenderUnit unit = this.RenderUnits[1];
+                    ShaderProgram program = unit.Program;
+                    program.GetUniformValue(vertexColor, out value);
+                }
+
+                return value;
+            }
+            set
+            {
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    RenderUnit unit = this.RenderUnits[1];
+                    ShaderProgram program = unit.Program;
+                    program.SetUniform(vertexColor, value);
+                }
+            }
+        }
+
+        public vec3 PointerColor
+        {
+            get
+            {
+                vec3 value = new vec3();
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    RenderUnit unit = this.RenderUnits[1];
+                    ShaderProgram program = unit.Program;
+                    program.GetUniformValue(pointerColor, out value);
+                }
+
+                return value;
+            }
+            set
+            {
+                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                {
+                    RenderUnit unit = this.RenderUnits[1];
+                    ShaderProgram program = unit.Program;
+                    program.SetUniform(pointerColor, value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderModel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RenderNormal { get; set; }
     }
 }

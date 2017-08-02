@@ -82,7 +82,7 @@ namespace Normal
             this.timer1.Enabled = this.chkRotate.Checked;
         }
 
-        private void lblColorDisply_Click(object sender, EventArgs e)
+        private void lblModelColor_Click(object sender, EventArgs e)
         {
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -91,9 +91,54 @@ namespace Normal
                 if (node != null)
                 {
                     node.DiffuseColor = color.ToVec3();
-                    this.lblColor.Text = string.Format("{0}", color);
-                    this.lblColorDisply.BackColor = color;
+                    this.lblModelColor.BackColor = color;
                 }
+            }
+        }
+
+        private void lblVertexColor_Click(object sender, EventArgs e)
+        {
+            if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Color color = this.colorDialog1.Color;
+                var node = this.node as NormalNode;
+                if (node != null)
+                {
+                    node.VertexColor = color.ToVec3();
+                    this.lblVertexColor.BackColor = color;
+                }
+            }
+        }
+
+        private void lblPointerColor_Click(object sender, EventArgs e)
+        {
+            if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Color color = this.colorDialog1.Color;
+                var node = this.node as NormalNode;
+                if (node != null)
+                {
+                    node.PointerColor = color.ToVec3();
+                    this.lblPointerColor.BackColor = color;
+                }
+            }
+        }
+
+        private void chkRenderModel_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.node as NormalNode;
+            if (node != null)
+            {
+                node.RenderModel = this.chkRenderModel.Checked;
+            }
+        }
+
+        private void chkRenderNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.node as NormalNode;
+            if (node != null)
+            {
+                node.RenderNormal = this.chkRenderNormal.Checked;
             }
         }
     }
