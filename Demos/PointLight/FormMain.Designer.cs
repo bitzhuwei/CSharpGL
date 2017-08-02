@@ -117,7 +117,7 @@
             this.Controls.Add(this.chkRotate);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Environment Mapping - CSharpGL";
+            this.Text = "Point Light - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
