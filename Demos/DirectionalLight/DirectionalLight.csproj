@@ -52,7 +52,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="DirectionalLightNode.cs" />
-    <Compile Include="DirectionalLightNode.DirectionalLight.cs" />
+    <Compile Include="DirectionalLightNode.shaders.cs" />
     <Compile Include="LightPostionNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

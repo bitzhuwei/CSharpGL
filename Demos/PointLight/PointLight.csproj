@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PointLightNode.cs" />
-    <Compile Include="PointLightNode.PointLight.cs" />
+    <Compile Include="PointLightNode.shaders.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
