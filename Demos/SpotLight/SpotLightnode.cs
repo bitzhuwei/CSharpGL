@@ -50,6 +50,7 @@ namespace SpotLight
             var node = new SpotLightNode(model, position, builder);
             node.light = light;
             node.ModelSize = size;
+            node.Children.Add(new LegacyBoundingBoxNode(size));
 
             node.Initialize();
 
