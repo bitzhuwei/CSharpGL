@@ -113,25 +113,31 @@ namespace OrderIndependentTransparency
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
-            string filename = "nanosuit.obj_";
-            var parser = new ObjVNFParser(false);
-            ObjVNFResult result = parser.Parse(filename);
-            if (result.Error != null)
-            {
-                MessageBox.Show(result.Error.ToString());
-            }
-            else
-            {
-                var model = new ObjVNF(result.Mesh);
-                var node = OITNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
-                float max = node.ModelSize.max();
-                node.Scale *= 7.0f / max;
-                node.WorldPosition = new vec3(0, 0, 0);
-                var rootElement = this.scene.RootElement;
-                this.scene.RootElement = node;
-                if (rootElement != null) { rootElement.Dispose(); }
-            }
+            //string filename = "nanosuit.obj_";
+            //var parser = new ObjVNFParser(false);
+            //ObjVNFResult result = parser.Parse(filename);
+            //if (result.Error != null)
+            //{
+            //    MessageBox.Show(result.Error.ToString());
+            //}
+            //else
+            //{
+            //    var model = new ObjVNF(result.Mesh);
+            //    var node = OITNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+            //    float max = node.ModelSize.max();
+            //    node.Scale *= 7.0f / max;
+            //    node.WorldPosition = new vec3(0, 0, 0);
+            //    var rootElement = this.scene.RootElement;
+            //    this.scene.RootElement = node;
+            //    if (rootElement != null) { rootElement.Dispose(); }
+            //}
+            // use teapot instead.
+            var model = new Teapot();
+            var node = OITNode.Create(model, Teapot.strPosition, Teapot.strNormal, model.GetModelSize());
+            float max = node.ModelSize.max();
+            node.Scale *= 7.0F / max;
+            node.WorldPosition = new vec3(0, 0, 0);
+            this.scene.RootElement = node;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
