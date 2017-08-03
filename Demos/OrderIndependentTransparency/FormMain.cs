@@ -122,7 +122,8 @@ namespace OrderIndependentTransparency
             }
             else
             {
-                var node = ObjVNFNode.Create(result.Mesh);
+                var model = new ObjVNF(result.Mesh);
+                var node = OITNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
                 float max = node.ModelSize.max();
                 node.Scale *= 7.0f / max;
@@ -157,9 +158,11 @@ namespace OrderIndependentTransparency
                 }
                 else
                 {
-                    var node = ObjVNFNode.Create(result.Mesh);
+                    var model = new ObjVNF(result.Mesh);
+                    var node = OITNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
                     float max = node.ModelSize.max();
-                    node.Scale *= 16.0f / max;
+                    node.Scale *= 7.0f / max;
                     node.WorldPosition = new vec3(0, 0, 0);
                     var rootElement = this.scene.RootElement;
                     this.scene.RootElement = node;

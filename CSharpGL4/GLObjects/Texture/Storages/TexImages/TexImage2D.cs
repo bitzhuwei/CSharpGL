@@ -12,7 +12,7 @@ namespace CSharpGL
     {
         private Target target;
         private int level;
-        private int internalFormat;
+        private uint internalFormat;
         private int width;
         private int height;
         private int border;
@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage2D(Target target, int level, int internalformat, int width, int height, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage2D(Target target, int level, uint internalformat, int width, int height, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
         {
             this.target = target;
             this.level = level; this.internalFormat = internalformat;

@@ -11,7 +11,7 @@ namespace CSharpGL
     public class TexImage1D : TexStorageBase
     {
         private int level;
-        private int internalFormat;
+        private uint internalFormat;
         private int width;
         private int border;
         private uint format;
@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage1D(int level, int internalformat, int width, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage1D(int level, uint internalformat, int width, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
         {
             this.level = level; this.internalFormat = internalformat;
             this.width = width;

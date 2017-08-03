@@ -2804,7 +2804,7 @@ namespace CSharpGL
         /// <param name="pixels">The actual pixel data.</param>
 
         [DllImport(Win32.opengl32, EntryPoint = "glTexImage1D", SetLastError = true)]
-        private static extern void glTexImage1D(uint target, int level, int internalformat, int width, int border, uint format, uint type, IntPtr pixels);
+        private static extern void glTexImage1D(uint target, int level, uint internalformat, int width, int border, uint format, uint type, IntPtr pixels);
 
         /// <summary>
         /// This function sets the image for the currently binded texture.
@@ -2819,7 +2819,7 @@ namespace CSharpGL
         /// <param name="type">The type of data you are passing, e.g GL_BYTE.</param>
         /// <param name="pixels">The actual pixel data.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glTexImage2D", SetLastError = true)]
-        private static extern void glTexImage2D(uint target, int level, int internalformat, int width, int height, int border, uint format, uint type, IntPtr pixels);
+        private static extern void glTexImage2D(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, IntPtr pixels);
 
         /// <summary>
         ///	This function sets the parameters for the currently binded texture object.
