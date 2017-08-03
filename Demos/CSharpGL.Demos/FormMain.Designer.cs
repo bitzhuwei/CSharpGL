@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnForm00GLCanvas = new System.Windows.Forms.Button();
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
@@ -36,7 +35,6 @@
             this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn18PickingInScene = new System.Windows.Forms.Button();
-            this.btn20GLSceneCanvas = new System.Windows.Forms.Button();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.btn25GreyFilter = new System.Windows.Forms.Button();
@@ -45,20 +43,6 @@
             this.btn28HemisphereLighting = new System.Windows.Forms.Button();
             this.btn29FixedSize = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnForm00GLCanvas
-            // 
-            this.btnForm00GLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnForm00GLCanvas.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm00GLCanvas.Location = new System.Drawing.Point(9, 9);
-            this.btnForm00GLCanvas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnForm00GLCanvas.Name = "btnForm00GLCanvas";
-            this.btnForm00GLCanvas.Size = new System.Drawing.Size(575, 30);
-            this.btnForm00GLCanvas.TabIndex = 0;
-            this.btnForm00GLCanvas.Text = "00 GLCanvas";
-            this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
-            this.btnForm00GLCanvas.Click += new System.EventHandler(this.btn00GLCanvas_Click);
             // 
             // btnForm06ImageProcessing
             // 
@@ -157,20 +141,6 @@
             this.btn18PickingInScene.Text = "18 PickingInScene";
             this.btn18PickingInScene.UseVisualStyleBackColor = true;
             this.btn18PickingInScene.Click += new System.EventHandler(this.btn18PickingInScene_Click);
-            // 
-            // btn20GLSceneCanvas
-            // 
-            this.btn20GLSceneCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn20GLSceneCanvas.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn20GLSceneCanvas.Location = new System.Drawing.Point(9, 281);
-            this.btn20GLSceneCanvas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn20GLSceneCanvas.Name = "btn20GLSceneCanvas";
-            this.btn20GLSceneCanvas.Size = new System.Drawing.Size(575, 30);
-            this.btn20GLSceneCanvas.TabIndex = 0;
-            this.btn20GLSceneCanvas.Text = "20 GLSceneCanvas";
-            this.btn20GLSceneCanvas.UseVisualStyleBackColor = true;
-            this.btn20GLSceneCanvas.Click += new System.EventHandler(this.btn20GLSceneCanvas_Click);
             // 
             // btn21ConditionalRendering
             // 
@@ -277,7 +247,6 @@
             this.ClientSize = new System.Drawing.Size(593, 647);
             this.Controls.Add(this.btn23SingleRenderer);
             this.Controls.Add(this.btn21ConditionalRendering);
-            this.Controls.Add(this.btn20GLSceneCanvas);
             this.Controls.Add(this.btn18PickingInScene);
             this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
@@ -290,7 +259,6 @@
             this.Controls.Add(this.btn26DirectionalLight);
             this.Controls.Add(this.btn25GreyFilter);
             this.Controls.Add(this.btnForm06ImageProcessing);
-            this.Controls.Add(this.btnForm00GLCanvas);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -301,7 +269,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnForm00GLCanvas;
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07PointSprite;
         private System.Windows.Forms.Button btn11IFontTexture;
@@ -309,7 +276,6 @@
         private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn18PickingInScene;
-        private System.Windows.Forms.Button btn20GLSceneCanvas;
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
         private System.Windows.Forms.Button btn25GreyFilter;

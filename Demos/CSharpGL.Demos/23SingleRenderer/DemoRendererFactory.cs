@@ -22,11 +22,6 @@ namespace CSharpGL.Demos
             {
                 renderer = ConditionalRenderer.Create();
             }
-            else if (rendererType == typeof(EmitNormalLineRenderer))
-            {
-                var model = new Teapot();
-                renderer = EmitNormalLineRenderer.Create(model, Teapot.strPosition, Teapot.strNormal, model.Size);
-            }
             else if (rendererType == typeof(ImageProcessingRenderer))
             {
                 renderer = new ImageProcessingRenderer();

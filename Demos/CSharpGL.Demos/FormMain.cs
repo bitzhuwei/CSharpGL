@@ -16,11 +16,6 @@ namespace CSharpGL.Demos
             Process.Start("https://github.com/bitzhuwei/CSharpGL.Data");
         }
 
-        private void btn00GLCanvas_Click(object sender, EventArgs e)
-        {
-            (new Form00GLCanvas()).Show();
-        }
-
         private void btn06ImageProcessing_Click(object sender, EventArgs e)
         {
             (new Form06ImageProcessing()).Show();
@@ -54,11 +49,6 @@ namespace CSharpGL.Demos
         private void btn18PickingInScene_Click(object sender, EventArgs e)
         {
             (new Form18PickingInScene()).Show();
-        }
-
-        private void btn20GLSceneCanvas_Click(object sender, EventArgs e)
-        {
-            (new Form20GLSceneCanvas()).Show();
         }
 
         private void btn21ConditionalRendering_Click(object sender, EventArgs e)

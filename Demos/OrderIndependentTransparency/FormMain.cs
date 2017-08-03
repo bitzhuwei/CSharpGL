@@ -55,10 +55,8 @@ namespace OrderIndependentTransparency
                 {
                     case GeometryType.Point:
                         throw new NotImplementedException();
-                        break;
                     case GeometryType.Line:
                         throw new NotImplementedException();
-                        break;
                     case GeometryType.Triangle:
                         triangleTip.Vertex0 = pickedGeometry.Positions[0];
                         triangleTip.Vertex1 = pickedGeometry.Positions[1];
@@ -76,7 +74,6 @@ namespace OrderIndependentTransparency
                         break;
                     case GeometryType.Polygon:
                         throw new NotImplementedException();
-                        break;
                     default:
                         break;
                 }
