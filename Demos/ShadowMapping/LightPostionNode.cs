@@ -67,8 +67,11 @@ void main(void) {
         }
 
         /// <summary>
-        /// Render propeller in legacy opengl.
+        /// Render propeller in legacy opengl. 
         /// </summary>
+        /// <param name="model"></param>
+        /// <param name="positionNameInIBufferable"></param>
+        /// <param name="builders"></param>
         private LightPostionNode(CubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
