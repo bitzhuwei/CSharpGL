@@ -38,9 +38,6 @@
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.btn25GreyFilter = new System.Windows.Forms.Button();
-            this.btn26DirectionalLight = new System.Windows.Forms.Button();
-            this.btn27PointLight = new System.Windows.Forms.Button();
-            this.btn28HemisphereLighting = new System.Windows.Forms.Button();
             this.btn29FixedSize = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -184,48 +181,6 @@
             this.btn25GreyFilter.UseVisualStyleBackColor = true;
             this.btn25GreyFilter.Click += new System.EventHandler(this.btn25reyFilter_Click);
             // 
-            // btn26DirectionalLight
-            // 
-            this.btn26DirectionalLight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn26DirectionalLight.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn26DirectionalLight.Location = new System.Drawing.Point(9, 450);
-            this.btn26DirectionalLight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn26DirectionalLight.Name = "btn26DirectionalLight";
-            this.btn26DirectionalLight.Size = new System.Drawing.Size(575, 30);
-            this.btn26DirectionalLight.TabIndex = 0;
-            this.btn26DirectionalLight.Text = "26 Directional Light";
-            this.btn26DirectionalLight.UseVisualStyleBackColor = true;
-            this.btn26DirectionalLight.Click += new System.EventHandler(this.btn26DirectionalLight_Click);
-            // 
-            // btn27PointLight
-            // 
-            this.btn27PointLight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn27PointLight.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn27PointLight.Location = new System.Drawing.Point(9, 484);
-            this.btn27PointLight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn27PointLight.Name = "btn27PointLight";
-            this.btn27PointLight.Size = new System.Drawing.Size(575, 30);
-            this.btn27PointLight.TabIndex = 0;
-            this.btn27PointLight.Text = "27 Point Light";
-            this.btn27PointLight.UseVisualStyleBackColor = true;
-            this.btn27PointLight.Click += new System.EventHandler(this.btn27PointLight_Click);
-            // 
-            // btn28HemisphereLighting
-            // 
-            this.btn28HemisphereLighting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn28HemisphereLighting.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn28HemisphereLighting.Location = new System.Drawing.Point(9, 518);
-            this.btn28HemisphereLighting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn28HemisphereLighting.Name = "btn28HemisphereLighting";
-            this.btn28HemisphereLighting.Size = new System.Drawing.Size(575, 30);
-            this.btn28HemisphereLighting.TabIndex = 0;
-            this.btn28HemisphereLighting.Text = "28 Hemisphere Lighting";
-            this.btn28HemisphereLighting.UseVisualStyleBackColor = true;
-            this.btn28HemisphereLighting.Click += new System.EventHandler(this.btn28SemisphereLighting_Click);
-            // 
             // btn29FixedSize
             // 
             this.btn29FixedSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -254,9 +209,6 @@
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
             this.Controls.Add(this.btn29FixedSize);
-            this.Controls.Add(this.btn28HemisphereLighting);
-            this.Controls.Add(this.btn27PointLight);
-            this.Controls.Add(this.btn26DirectionalLight);
             this.Controls.Add(this.btn25GreyFilter);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -279,9 +231,6 @@
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
         private System.Windows.Forms.Button btn25GreyFilter;
-        private System.Windows.Forms.Button btn26DirectionalLight;
-        private System.Windows.Forms.Button btn27PointLight;
-        private System.Windows.Forms.Button btn28HemisphereLighting;
         private System.Windows.Forms.Button btn29FixedSize;
     }
 }

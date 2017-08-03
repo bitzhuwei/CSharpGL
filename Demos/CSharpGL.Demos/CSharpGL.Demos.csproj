@@ -56,45 +56,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
-    <Compile Include="26DirectionalLight\ModelScript.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="26DirectionalLight\Form26DirectonalLight.Picking.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="26DirectionalLight\LightScript.cs" />
-    <Compile Include="26DirectionalLight\UpdateDirectionalLightDirection.cs" />
-    <Compile Include="26DirectionalLight\PickingScript.cs" />
-    <Compile Include="28HemisphereLighting\Form28HemisphereLighting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="28HemisphereLighting\Form28HemisphereLighting.Designer.cs">
-      <DependentUpon>Form28HemisphereLighting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="28HemisphereLighting\Form28HemisphereLighting.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="27PointLight\Form27PointLight.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="27PointLight\Form27PointLight.Designer.cs">
-      <DependentUpon>Form27PointLight.cs</DependentUpon>
-    </Compile>
-    <Compile Include="27PointLight\Form27PointLight.Picking.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="27PointLight\Form27PointLight.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="26DirectionalLight\Form26DirectonalLight.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="26DirectionalLight\Form26DirectonalLight.Designer.cs">
-      <DependentUpon>Form26DirectonalLight.cs</DependentUpon>
-    </Compile>
-    <Compile Include="26DirectionalLight\Form26DirectonalLight.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="25GreyFilter\Form25GreyFilter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,7 +133,6 @@
     <Compile Include="15UIRenderer\Form15UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="27PointLight\UpdatePointLightPosition.cs" />
     <Compile Include="Models\TrefoilKnotModel.cs" />
     <Compile Include="Models\KleinBottleModel.cs" />
     <Compile Include="Models\PlaneModel.cs" />
@@ -183,9 +143,6 @@
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
     <Compile Include="Renderers\FixedPercentRenderer.cs" />
-    <Compile Include="Renderers\HemisphereLightingRenderer.cs" />
-    <Compile Include="Renderers\PointLightRenderer.cs" />
-    <Compile Include="Renderers\DirectonalLightRenderer.cs" />
     <Compile Include="Renderers\GreyFilterRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingComputeRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\InnerImageProcessingRenderer.cs" />
@@ -293,24 +250,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\FixedPercent.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\HemisphereLighting\HemisphereLighting.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\HemisphereLighting\HemisphereLighting.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\PointLight\PointLight.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\PointLight\PointLight.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\DirectionalLight\DirectionalLight.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\DirectionalLight\DirectionalLight.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\GreyFilterRenderer\GreyFilter.vert">
@@ -447,9 +386,6 @@
     </None>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="26DirectionalLight\Form26DirectonalLight.resx">
-      <DependentUpon>Form26DirectonalLight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

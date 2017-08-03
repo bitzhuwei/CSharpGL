@@ -66,21 +66,6 @@ namespace CSharpGL.Demos
             (new Form25GreyFilter()).Show();
         }
 
-        private void btn26DirectionalLight_Click(object sender, EventArgs e)
-        {
-            (new Form26DirectionalLight()).Show();
-        }
-
-        private void btn27PointLight_Click(object sender, EventArgs e)
-        {
-            (new Form27PointLight()).Show();
-        }
-
-        private void btn28SemisphereLighting_Click(object sender, EventArgs e)
-        {
-            (new Form28HemisphereLighting()).Show();
-        }
-
         private void btn29FixedSize_Click(object sender, EventArgs e)
         {
             (new Form29FixedPercent()).Show();
