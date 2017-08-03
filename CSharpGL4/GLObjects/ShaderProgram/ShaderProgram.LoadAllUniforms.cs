@@ -131,7 +131,11 @@ namespace CSharpGL
                 else if (type == GL.GL_SAMPLER_1D
                     || type == GL.GL_SAMPLER_2D
                     || type == GL.GL_SAMPLER_3D
-                    || type == GL.GL_SAMPLER_CUBE)
+                    || type == GL.GL_SAMPLER_CUBE
+                    || type == 0x92DB // uniform atomic_uint xxx;
+                    || type == 0x9063 // uniform uimage2D xxx;
+                    || type == 0x9067 // uniform uimageBuffer xxx;
+                    )
                 {
                     return null;// not need to deal with these.
                 }

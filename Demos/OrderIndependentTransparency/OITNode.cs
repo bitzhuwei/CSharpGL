@@ -37,7 +37,6 @@ namespace OrderIndependentTransparency
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(vPosition, position);
-                map.Add(vNormal, normal);
                 builders[resolveLists] = new RenderUnitBuilder(provider, map);
             }
             var node = new OITNode(model, position, builders);
