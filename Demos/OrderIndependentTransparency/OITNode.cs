@@ -56,24 +56,20 @@ namespace OrderIndependentTransparency
         {
         }
 
-        private const int MAX_FRAMEBUFFER_WIDTH = 1024;
-        private const int MAX_FRAMEBUFFER_HEIGHT = 1024;
+        private int canvasWidth = 0;
+        private int canvasHeight = 0;
         private Texture headTexture;
-        /// <summary>
-        /// buffer for clearing the head pointer texture
-        /// </summary>
         private PixelUnpackBuffer headClearBuffer;
         private AtomicCounterBuffer atomicCountBuffer;
         private Texture linkedListTexture;
         private DepthTestState depthTestState;
         private CullFaceState cullFaceState;
 
-        protected override void DoInitialize()
+        private void UpdateResources(int width, int height)
         {
-            base.DoInitialize();
-
             {
-                int width = MAX_FRAMEBUFFER_WIDTH, height = MAX_FRAMEBUFFER_HEIGHT;
+                if (this.headTexture != null) { this.headTexture.Dispose(); }
+
                 int level = 0, border = 0;
                 uint internalformat = GL.GL_R32UI, format = GL.GL_RED_INTEGER, type = GL.GL_UNSIGNED_BYTE;
                 var storage = new TexImage2D(TexImage2D.Target.Texture2D, level, internalformat, width, height, border, format, type);
@@ -85,11 +81,14 @@ namespace OrderIndependentTransparency
                     TexParameter.Create(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST)
                     );
                 texture.Initialize();
+
                 this.headTexture = texture;
             }
             // Create buffer for clearing the head pointer texture
             {
-                const int length = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT;
+                if (this.headClearBuffer != null) { this.headClearBuffer.Dispose(); }
+
+                int length = width * height;
                 // NOTE: not all initial values are zero in this unmanged array.
                 PixelUnpackBuffer buffer = PixelUnpackBuffer.Create(typeof(uint), length, BufferUsage.StaticDraw);
                 // initialize buffer's value to 0.
@@ -108,8 +107,28 @@ namespace OrderIndependentTransparency
                 //    data[0] = 0;
                 //    ptr.ClearBufferData(OpenGL.GL_UNSIGNED_INT, OpenGL.GL_RED, OpenGL.GL_UNSIGNED_INT, data);
                 //}
+
                 this.headClearBuffer = buffer;
             }
+            // Bind it to a texture (for use as a TBO)
+            {
+                if (this.linkedListTexture != null) { this.linkedListTexture.Dispose(); }
+
+                int length = width * height * 3;
+                TextureBuffer buffer = TextureBuffer.Create(typeof(vec4), length, BufferUsage.DynamicCopy);
+                uint internalFormat = GL.GL_RGBA32UI;
+                Texture texture = buffer.DumpBufferTexture(internalFormat, autoDispose: true);
+                texture.Initialize();
+                buffer.Dispose();// dispose it ASAP.
+
+                this.linkedListTexture = texture;
+            }
+        }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
             // Create the atomic counter buffer
             {
                 const int length = 1;
@@ -119,16 +138,6 @@ namespace OrderIndependentTransparency
                 //AtomicCounterBuffer buffer = data.GenAtomicCounterBuffer(BufferUsage.DynamicCopy);
                 this.atomicCountBuffer = buffer;
             }
-            // Bind it to a texture (for use as a TBO)
-            {
-                const int length = MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3;
-                TextureBuffer buffer = TextureBuffer.Create(typeof(vec4), length, BufferUsage.DynamicCopy);
-                uint internalFormat = GL.GL_RGBA32UI;
-                Texture texture = buffer.DumpBufferTexture(internalFormat, autoDispose: true);
-                texture.Initialize();
-                buffer.Dispose();// dispose it ASAP.
-                this.linkedListTexture = texture;
-            }
             {
                 this.depthTestState = new DepthTestState(false);
                 this.cullFaceState = new CullFaceState(false);
@@ -137,6 +146,15 @@ namespace OrderIndependentTransparency
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            {
+                int width = arg.Scene.Canvas.Width, height = arg.Scene.Canvas.Height;
+                if (width != this.canvasWidth || height != this.canvasHeight)
+                {
+                    UpdateResources(width, height);
+                    this.canvasWidth = width;
+                    this.canvasHeight = height;
+                }
+            }
             {
                 this.cullFaceState.On();
                 this.depthTestState.On();
@@ -155,7 +173,7 @@ namespace OrderIndependentTransparency
                 // Clear head-pointer image
                 this.headClearBuffer.Bind();
                 this.headTexture.Bind();
-                int width = MAX_FRAMEBUFFER_WIDTH, height = MAX_FRAMEBUFFER_HEIGHT;
+                int width = this.canvasWidth, height = this.canvasHeight;
                 uint format = GL.GL_RED_INTEGER, type = GL.GL_UNSIGNED_BYTE;
                 GL.Instance.TexSubImage2D((uint)GL.GL_TEXTURE_2D, 0, 0, 0, width, height, format, type, IntPtr.Zero);
                 this.headTexture.Unbind();

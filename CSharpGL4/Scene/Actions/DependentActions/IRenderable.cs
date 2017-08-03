@@ -37,8 +37,10 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public RenderEventArgs(params ICamera[] cameras)
+        public RenderEventArgs(Scene scene, params ICamera[] cameras)
         {
+            this.Scene = scene;
+
             var cameraStack = new Stack<ICamera>();
             foreach (var item in cameras)
             {
@@ -83,5 +85,10 @@ namespace CSharpGL
         //{
         //    return this.Scene.Camera.GetProjectionMatrix();
         //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Scene Scene { get; private set; }
     }
 }
