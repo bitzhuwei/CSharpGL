@@ -30,11 +30,6 @@ namespace CSharpGL.Demos
             {
                 renderer = KleinBottleRenderer.Create(new KleinBottleModel());
             }
-            else if (rendererType == typeof(OrderDependentTransparencyRenderer))
-            {
-                var model = new Teapot();
-                renderer = OrderDependentTransparencyRenderer.Create(model, model.Size, Teapot.strPosition, Teapot.strColor);
-            }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {
                 renderer = new ParticleSimulatorRenderer();

@@ -53,7 +53,7 @@ void main()
         /// </summary>
         /// <param name="totalBmp"></param>
         /// <returns></returns>
-        public static SkyboxNode Create(Bitmap totalBmp)
+        public static SkyboxNode Create(Bitmap[] bitmaps)
         {
             var vs = new VertexShader(vertexCode, inPosition);
             var fs = new FragmentShader(fragmentCode);
@@ -63,24 +63,25 @@ void main()
             var cullface = new CullFaceState(CullFaceMode.Back);// display back faces only.
             var builder = new RenderUnitBuilder(provider, map, cullface);
             var model = new Skybox();
-            var node = new SkyboxNode(model, Skybox.strPosition, totalBmp, builder);
+            var node = new SkyboxNode(model, Skybox.strPosition, bitmaps, builder);
             node.EnablePicking = TwoFlags.Children;// sky box should not take part in picking.
             node.Initialize();
 
             return node;
         }
 
-        private SkyboxNode(Skybox model, string positionNameInIBufferSource, Bitmap totalBmp, params RenderUnitBuilder[] builders)
+        private SkyboxNode(Skybox model, string positionNameInIBufferSource, Bitmap[] bitmaps, params RenderUnitBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
             this.ModelSize = model.ModelSize;
-            this.texture = GetCubemapTexture(totalBmp);
+            this.texture = GetCubemapTexture(bitmaps);
         }
 
-        private Texture GetCubemapTexture(Bitmap totalBmp)
+        private Texture GetCubemapTexture(Bitmap[] bitmaps)
         {
-            var dataProvider = GetCubemapDataProvider(totalBmp);
-            var storage = new CubemapTexImage2D((int)GL.GL_RGBA, totalBmp.Width / 4, totalBmp.Height / 3, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, dataProvider);
+            var dataProvider = new CubemapDataProvider(
+                bitmaps[0], bitmaps[1], bitmaps[2], bitmaps[3], bitmaps[4], bitmaps[5]);
+            var storage = new CubemapTexImage2D((int)GL.GL_RGBA, bitmaps[0].Width, bitmaps[0].Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, dataProvider);
             var texture = new Texture(TextureTarget.TextureCubeMap, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
@@ -90,53 +91,6 @@ void main()
             texture.Initialize();
 
             return texture;
-        }
-
-        private CubemapDataProvider GetCubemapDataProvider(Bitmap totalBmp)
-        {
-            int width = totalBmp.Width / 4, height = totalBmp.Height / 3;
-            var top = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(top))
-            {
-                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, 0, width, height), GraphicsUnit.Pixel);
-            }
-            var left = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(left))
-            {
-                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(0, height, width, height), GraphicsUnit.Pixel);
-            }
-            var front = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(front))
-            {
-                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height, width, height), GraphicsUnit.Pixel);
-            }
-            var right = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(right))
-            {
-                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 2, height, width, height), GraphicsUnit.Pixel);
-            }
-            var back = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(back))
-            {
-                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 3, height, width, height), GraphicsUnit.Pixel);
-            }
-            var bottom = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(bottom))
-            {
-                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height * 2, width, height), GraphicsUnit.Pixel);
-            }
-
-            var flip = RotateFlipType.Rotate180FlipY;
-            right.RotateFlip(flip); left.RotateFlip(flip);
-            top.RotateFlip(RotateFlipType.Rotate180FlipX); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
-            back.RotateFlip(flip); front.RotateFlip(flip);
-#if DEBUG
-            right.Save("right.png"); left.Save("left.png");
-            top.Save("top.png"); bottom.Save("bottom.png");
-            back.Save("back.png"); front.Save("front.png");
-#endif
-            var result = new CubemapDataProvider(right, left, top, bottom, back, front);
-            return result;
         }
 
         public override void RenderBeforeChildren(CSharpGL.RenderEventArgs arg)

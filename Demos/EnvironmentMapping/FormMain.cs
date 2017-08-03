@@ -97,7 +97,8 @@ namespace EnvironmentMapping
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
             var totalBmp = new Bitmap(@"cubemaps_skybox.png");
-            this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
+            Bitmap[] bitmaps = GetBitmaps(totalBmp);
+            this.skybox = SkyboxNode.Create(bitmaps); this.skybox.Scale *= 60;
             string objFilename = "nanosuit.obj_";
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
@@ -139,6 +140,48 @@ namespace EnvironmentMapping
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
+        }
+
+        private Bitmap[] GetBitmaps(Bitmap totalBmp)
+        {
+            int width = totalBmp.Width / 4, height = totalBmp.Height / 3;
+            var top = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(top))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, 0, width, height), GraphicsUnit.Pixel);
+            }
+            var left = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(left))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(0, height, width, height), GraphicsUnit.Pixel);
+            }
+            var front = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(front))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height, width, height), GraphicsUnit.Pixel);
+            }
+            var right = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(right))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 2, height, width, height), GraphicsUnit.Pixel);
+            }
+            var back = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(back))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 3, height, width, height), GraphicsUnit.Pixel);
+            }
+            var bottom = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(bottom))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height * 2, width, height), GraphicsUnit.Pixel);
+            }
+
+            var flip = RotateFlipType.Rotate180FlipY;
+            right.RotateFlip(flip); left.RotateFlip(flip);
+            top.RotateFlip(RotateFlipType.Rotate180FlipX); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
+            back.RotateFlip(flip); front.RotateFlip(flip);
+
+            return new Bitmap[] { right, left, top, bottom, back, front };
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

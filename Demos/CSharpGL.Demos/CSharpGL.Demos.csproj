@@ -168,7 +168,6 @@
     <Compile Include="Renderers\RaycastVolumeRenderer\ByteImageFiller.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
-    <Compile Include="Renderers\OrderDependentTransparencyRenderer.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
     <Compile Include="Renderers\PointCloudRenderer.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeImageFiller.cs" />
@@ -192,18 +191,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingRenderer.cs" />
-    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Designer.cs">
-      <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
-    </Compile>
-    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Renderers\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="Renderers\PointSpriteRenderer.cs" />
     <Compile Include="12Billboard\Form12Billboard.cs">
@@ -378,15 +365,6 @@
     <None Include="shaders\SimpleComputeRenderer\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\ODT\Transparent.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\ODT\Transparent.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
-      <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
