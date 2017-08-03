@@ -45,11 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroundModel.cs" />
     <Compile Include="LightPostionNode.cs" />
-    <Compile Include="ShadowGroundNode.cs" />
     <Compile Include="DepthGroundNode.cs" />
     <Compile Include="ShadowMappingNode.cs" />
-    <Compile Include="ShadowTeapotNode.cs" />
     <Compile Include="FormShadowMapping.cs">
       <SubType>Form</SubType>
     </Compile>

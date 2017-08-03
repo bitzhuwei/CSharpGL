@@ -78,22 +78,21 @@ namespace ShadowMapping
             var lightPosition = new vec3(0, 3, 5) * 2;
             var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
             {
-                //int width = 600, height = 400;
-                //var innerCamera = new Camera(new vec3(5, 5, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
-                //(innerCamera as IPerspectiveViewCamera).Far = 50;
-                //innerCamera.GetProjectionMatrix();
-                //innerCamera.GetViewMatrix();
                 var lightContainer = new LightContainerNode(localLight);
                 {
-                    var teapot = ShadowTeapotNode.Create();
-                    teapot.RotateSpeed = 1;
-                    lightContainer.Children.Add(teapot);
+                    var model = new Teapot();
+                    var node = ShadowMappingNode.Create(model, Teapot.strPosition, Teapot.strNormal, model.GetModelSize());
+                    node.Diffuse = Color.Gold.ToVec3();
+                    node.RotateSpeed = 1;
+                    lightContainer.Children.Add(node);
                 }
                 {
-                    var ground = ShadowGroundNode.Create();
-                    ground.Scale *= 30;
-                    ground.WorldPosition = new vec3(0, -3, 0);
-                    lightContainer.Children.Add(ground);
+                    var model = new GroundModel();
+                    var node = ShadowMappingNode.Create(model, GroundModel.strPosition, GroundModel.strNormal, model.ModelSize);
+                    node.Diffuse = Color.AliceBlue.ToVec3();
+                    node.Scale *= 30;
+                    node.WorldPosition = new vec3(0, -3, 0);
+                    lightContainer.Children.Add(node);
                 }
                 group.Children.Add(lightContainer);
             }
