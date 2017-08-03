@@ -71,7 +71,8 @@ namespace ShadowMapping
 
         private SceneNodeBase GetRootElement()
         {
-            var localLight = new SpotLight(new vec3(5, 5, 5), new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
+            var lightPosition = new vec3(0, 3, 5) * 2;
+            var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
             var lightContainer = new LightContainerNode(localLight);
             {
                 {
