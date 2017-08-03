@@ -48,6 +48,8 @@
     <Compile Include="GroundModel.cs" />
     <Compile Include="LightPostionNode.cs" />
     <Compile Include="DepthGroundNode.cs" />
+    <Compile Include="ShadowMappingNode.shadowMapping.cs" />
+    <Compile Include="ShadowMappingNode.depthTexture.cs" />
     <Compile Include="ShadowMappingNode.cs" />
     <Compile Include="FormShadowMapping.cs">
       <SubType>Form</SubType>
