@@ -146,7 +146,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FormMain";
-            this.Text = "Simple *.obj File - CSharpGL";
+            this.Text = "Order Independent Transparency - CSharpGL";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();

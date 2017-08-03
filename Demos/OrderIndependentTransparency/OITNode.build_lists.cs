@@ -10,12 +10,10 @@ namespace OrderIndependentTransparency
     {
         private const string buildListsVert = @"#version 330
 
-layout (location = 0) in vec3 vPosition;
-layout (location = 1) in vec3 vNormal;
+in vec3 vPosition;
+in vec3 vNormal;
 
-uniform mat4 model_matrix;
-uniform mat4 view_matrix;
-uniform mat4 projection_matrix;
+uniform mat4 mvpMatrix;
 
 uniform float minAlpha = 0.5f;
 
@@ -35,7 +33,7 @@ void main(void)
 	float a = (0.75f - minAlpha) * (1.0f - variance) + minAlpha;
     surface_color = vec4(normalized, a);
 
-    gl_Position = projection_matrix * view_matrix * model_matrix * vec4(vPosition, 1.0f);
+    gl_Position = mvpMatrix * vec4(vPosition, 1.0f);
 }
 ";
         private const string buildListsFrag = @"#version 420 core

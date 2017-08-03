@@ -10,9 +10,13 @@ namespace OrderIndependentTransparency
     {
         private const string vPosition = "vPosition";
         private const string vNormal = "vNormal";
+        private const string mvpMatrix = "mvpMatrix";
 
         const int buildLists = 0;
         const int resolveLists = 1;
+        /// <summary>
+        /// bind texture to an image unit.(which reminds me of texture unit)
+        /// </summary>
         private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
         static OITNode()
         {
@@ -41,7 +45,6 @@ namespace OrderIndependentTransparency
             }
             var node = new OITNode(model, position, builders);
             node.ModelSize = size;
-            node.Children.Add(new LegacyBoundingBoxNode(size));
 
             node.Initialize();
 
@@ -174,18 +177,14 @@ namespace OrderIndependentTransparency
                     // first pass
                     RenderUnit unit = this.RenderUnits[buildLists];
                     ShaderProgram program = unit.Program;
-                    program.SetUniform("projection_matrix", projection);
-                    program.SetUniform("view_matrix", view);
-                    program.SetUniform("model_matrix", model);
+                    program.SetUniform(mvpMatrix, projection * view * model);
                     unit.Render();
                 }
                 {
                     // second pass
                     RenderUnit unit = this.RenderUnits[resolveLists];
                     ShaderProgram program = unit.Program;
-                    program.SetUniform("projection_matrix", projection);
-                    program.SetUniform("view_matrix", view);
-                    program.SetUniform("model_matrix", model);
+                    program.SetUniform(mvpMatrix, projection * view * model);
                     unit.Render();
                 }
             }

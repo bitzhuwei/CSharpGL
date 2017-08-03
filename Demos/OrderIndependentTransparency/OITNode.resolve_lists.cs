@@ -12,13 +12,11 @@ namespace OrderIndependentTransparency
 
 in vec3 vPosition;
 
-uniform mat4 model_matrix;
-uniform mat4 view_matrix;
-uniform mat4 projection_matrix;
+uniform mat4 mvpMatrix;
 
 void main(void)
 {
-    gl_Position = projection_matrix * view_matrix * model_matrix * vec4(vPosition, 1.0f);
+    gl_Position = mvpMatrix * vec4(vPosition, 1.0f);
     //gl_Position = vec4(position, 1.0f);
 }
 ";
