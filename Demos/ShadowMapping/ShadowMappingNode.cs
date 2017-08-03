@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot with shadow.
     /// </summary>
-    class ShadowMappingNode : ModernNode, IShadowMapping
+    public partial class ShadowMappingNode : PickableNode, IShadowMapping
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
@@ -148,15 +148,15 @@ void main(void)
                 map.Add(inNormal, normal);
                 lightBuilder = new RenderUnitBuilder(provider, map);
             }
-            var node = new ShadowMappingNode(model, shadowBuilder, lightBuilder);
+            var node = new ShadowMappingNode(model, position, shadowBuilder, lightBuilder);
             node.ModelSize = size;
             node.Initialize();
 
             return node;
         }
 
-        private ShadowMappingNode(IBufferSource model, params RenderUnitBuilder[] builder)
-            : base(model, builder)
+        private ShadowMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builder)
+            : base(model, positionNameInIBufferSource, builder)
         {
             this.Ambient = new vec3(1, 1, 1) * 0.2f;
             this.Diffuse = System.Drawing.Color.SkyBlue.ToVec3();
