@@ -21,11 +21,6 @@ namespace CSharpGL.Demos
             (new Form00GLCanvas()).Show();
         }
 
-        private void btn02OrderIndependentTransparency_Click(object sender, EventArgs e)
-        {
-            (new Form02OrderIndependentTransparency()).Show();
-        }
-
         private void btn06ImageProcessing_Click(object sender, EventArgs e)
         {
             (new Form06ImageProcessing()).Show();

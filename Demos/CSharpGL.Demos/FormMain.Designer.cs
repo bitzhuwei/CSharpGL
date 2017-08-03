@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
-            this.btn02OriderIndependentTransparency = new System.Windows.Forms.Button();
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
@@ -60,20 +59,6 @@
             this.btnForm00GLCanvas.Text = "00 GLCanvas";
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
             this.btnForm00GLCanvas.Click += new System.EventHandler(this.btn00GLCanvas_Click);
-            // 
-            // btn02OriderIndependentTransparency
-            // 
-            this.btn02OriderIndependentTransparency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn02OriderIndependentTransparency.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn02OriderIndependentTransparency.Location = new System.Drawing.Point(9, 348);
-            this.btn02OriderIndependentTransparency.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn02OriderIndependentTransparency.Name = "btn02OriderIndependentTransparency";
-            this.btn02OriderIndependentTransparency.Size = new System.Drawing.Size(575, 30);
-            this.btn02OriderIndependentTransparency.TabIndex = 0;
-            this.btn02OriderIndependentTransparency.Text = "02 Orider-Independent Transparency";
-            this.btn02OriderIndependentTransparency.UseVisualStyleBackColor = true;
-            this.btn02OriderIndependentTransparency.Click += new System.EventHandler(this.btn02OrderIndependentTransparency_Click);
             // 
             // btnForm06ImageProcessing
             // 
@@ -305,7 +290,6 @@
             this.Controls.Add(this.btn26DirectionalLight);
             this.Controls.Add(this.btn25GreyFilter);
             this.Controls.Add(this.btnForm06ImageProcessing);
-            this.Controls.Add(this.btn02OriderIndependentTransparency);
             this.Controls.Add(this.btnForm00GLCanvas);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
@@ -318,7 +302,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnForm00GLCanvas;
-        private System.Windows.Forms.Button btn02OriderIndependentTransparency;
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07PointSprite;
         private System.Windows.Forms.Button btn11IFontTexture;

@@ -14,7 +14,6 @@ namespace CSharpGL.Demos
 
             if (sender == this.glCanvas1)
             {
-                form02.glCanvas1_MouseDown(sender, e);
             }
             else
             {
@@ -31,7 +30,6 @@ namespace CSharpGL.Demos
 
             if (sender == this.glCanvas1)
             {
-                form02.glCanvas1_MouseMove(sender, e);
             }
             else
             {
@@ -46,7 +44,6 @@ namespace CSharpGL.Demos
 
             if (sender == this.glCanvas1)
             {
-                form02.glCanvas1_MouseUp(sender, e);
             }
             else
             {

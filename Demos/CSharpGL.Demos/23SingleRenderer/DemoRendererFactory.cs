@@ -40,11 +40,6 @@ namespace CSharpGL.Demos
                 var model = new Teapot();
                 renderer = OrderDependentTransparencyRenderer.Create(model, model.Size, Teapot.strPosition, Teapot.strColor);
             }
-            else if (rendererType == typeof(OrderIndependentTransparencyRenderer))
-            {
-                var model = new Teapot();
-                renderer = new OrderIndependentTransparencyRenderer(model, model.Size, Teapot.strPosition, Teapot.strColor);
-            }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {
                 renderer = new ParticleSimulatorRenderer();

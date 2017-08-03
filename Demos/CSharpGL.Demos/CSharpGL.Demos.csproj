@@ -248,22 +248,10 @@
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Designer.cs">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </Compile>
-    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Designer.cs">
-      <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
-    </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renderers\AnalyzedPointSpriteRenderer.cs" />
@@ -311,7 +299,6 @@
     </Compile>
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleSimulatorRenderer.cs" />
     <Compile Include="Renderers\SimpleComputeRenderer.cs" />
-    <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
@@ -444,12 +431,6 @@
     <None Include="shaders\ImageProcessingRenderer\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\OIT\build_lists.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\OIT\build_lists.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="shaders\SimpleComputeRenderer\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -475,12 +456,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ODT\Transparent.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\OIT\resolve_lists.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\OIT\resolve_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">

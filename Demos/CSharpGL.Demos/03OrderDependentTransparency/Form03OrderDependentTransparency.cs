@@ -8,11 +8,9 @@ namespace CSharpGL.Demos
     {
         private IMouseHandler rotator;
 
-        public Form03OrderDependentTransparency(Form02OrderIndependentTransparency form02)
+        public Form03OrderDependentTransparency()
         {
             InitializeComponent();
-
-            this.form02 = form02;
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -51,13 +49,10 @@ namespace CSharpGL.Demos
             this.scene.Render();
         }
 
-        private Form02OrderIndependentTransparency form02;
-
         internal void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             if (sender == this.glCanvas1)
             {
-                this.form02.glCanvas1_MouseWheel(sender, e);
             }
             else
             {
