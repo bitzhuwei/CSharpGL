@@ -124,15 +124,19 @@ void main(void)
         /// <summary>
         /// Render teapot to framebuffer in modern opengl.
         /// </summary>
+        /// <param name="model"></param>
+        /// <param name="position"></param>
+        /// <param name="normal"></param>
+        /// <param name="size"></param>
         /// <returns></returns>
-        public static ShadowMappingNode Create()
+        public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
             RenderUnitBuilder shadowBuilder, lightBuilder;
             {
                 var vs = new VertexShader(shadowVertexCode, inPosition);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
-                map.Add(inPosition, Teapot.strPosition);
+                map.Add(inPosition, position);
                 shadowBuilder = new RenderUnitBuilder(provider, map);
             }
             {
@@ -140,21 +144,20 @@ void main(void)
                 var fs = new FragmentShader(lightFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(inPosition, Teapot.strPosition);
-                map.Add(inNormal, Teapot.strNormal);
+                map.Add(inPosition, position);
+                map.Add(inNormal, normal);
                 lightBuilder = new RenderUnitBuilder(provider, map);
             }
-            var model = new Teapot();
             var node = new ShadowMappingNode(model, shadowBuilder, lightBuilder);
+            node.ModelSize = size;
             node.Initialize();
 
             return node;
         }
 
-        private ShadowMappingNode(Teapot model, params RenderUnitBuilder[] builder)
+        private ShadowMappingNode(IBufferSource model, params RenderUnitBuilder[] builder)
             : base(model, builder)
         {
-            this.ModelSize = model.GetModelSize();
             this.Ambient = new vec3(1, 1, 1) * 0.2f;
             this.Diffuse = System.Drawing.Color.SkyBlue.ToVec3();
             this.Specular = new vec3(1, 1, 1) * 0.1f;
