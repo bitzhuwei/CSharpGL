@@ -3,7 +3,7 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Buffer object that not work as input variable in shader.
+    /// TextureBufferObject matches <code>uniform samplerBuffer xxx;</code> in GLSL shader.
     /// </summary>
     public partial class TextureBuffer : GLBuffer
     {
