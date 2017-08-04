@@ -166,7 +166,7 @@ namespace CSharpGL
             glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
             glBindBuffer(target, 0);
 
-            var buffer = new TransformFeedbackBuffer(buffers[0], byteLength, byteLength);
+            var buffer = new TransformFeedbackBuffer(buffers[0], byteLength);
 
             return buffer;
         }

@@ -17,10 +17,9 @@ namespace CSharpGL
         /// <para>An array at server side (GPU memory) with fixed length.</para>
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-        /// <param name="length">此VBO含有多少个元素？<para>How many elements?</para></param>
-        /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal TransformFeedbackBuffer(uint bufferId, int length, int byteLength)
-            : base(bufferId, length, byteLength)
+        /// <param name="byteLength">此buffer中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
+        internal TransformFeedbackBuffer(uint bufferId, int byteLength)
+            : base(bufferId, byteLength, byteLength)
         {
             this.Target = BufferTarget.TransformFeedbackBuffer;
         }
