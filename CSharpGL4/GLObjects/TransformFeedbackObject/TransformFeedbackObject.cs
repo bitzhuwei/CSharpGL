@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// manages <see cref="TransformFeedbackBuffer"/>s.
     /// </summary>
-    public partial class TransformFeedbackObject
+    public partial class TransformFeedbackObject : IDisposable
     {
         private readonly uint[] ids = new uint[1];
 
@@ -22,7 +22,23 @@ namespace CSharpGL
         /// </summary>
         public TransformFeedbackObject()
         {
-            glGenTransformFeedbacks(ids.Length, ids);
+            glGenTransformFeedbacks(1, this.ids);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Bind()
+        {
+            glBindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, this.ids[0]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Unbind()
+        {
+            glBindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, 0);
         }
 
         /// <summary>

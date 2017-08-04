@@ -39,35 +39,5 @@ namespace CSharpGL
             glResumeTransformFeedback = GL.Instance.GetDelegateFor("glResumeTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
             glEndTransformFeedback = GL.Instance.GetDelegateFor("glEndTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="attributeNames"></param>
-        /// <param name="program"></param>
-        /// <param name="bufferMode"></param>
-        public void Capture(string[] attributeNames, ShaderProgram program, BufferMode bufferMode)
-        {
-            glTransformFeedbackVaryings(program.ProgramId, attributeNames.Length, attributeNames, (uint)bufferMode);
-            ShaderProgram.glLinkProgram(program.ProgramId);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum BufferMode : uint
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            Separate = GL.GL_SEPARATE_ATTRIBS,
-
-            /// <summary>
-            /// 
-            /// </summary>
-            InterLeaved = GL.GL_INTERLEAVED_ATTRIBS,
-        }
-
     }
 }
