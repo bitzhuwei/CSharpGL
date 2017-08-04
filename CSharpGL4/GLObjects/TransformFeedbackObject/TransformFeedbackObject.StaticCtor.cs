@@ -5,7 +5,10 @@ using System.Drawing.Design;
 
 namespace CSharpGL
 {
-    public partial class TransformFeedbackBuffer
+    /// <summary>
+    /// manages <see cref="TransformFeedbackBuffer"/>s.
+    /// </summary>
+    public partial class TransformFeedbackObject
     {
         internal static readonly GLDelegates.void_int_uintN glGenTransformFeedbacks;
         internal static readonly GLDelegates.void_uint_uint glBindTransformFeedback;
@@ -22,7 +25,7 @@ namespace CSharpGL
         internal static readonly GLDelegates.void_void glResumeTransformFeedback;
         internal static readonly GLDelegates.void_void glEndTransformFeedback;
 
-        static TransformFeedbackBuffer()
+        static TransformFeedbackObject()
         {
             glGenTransformFeedbacks = GL.Instance.GetDelegateFor("glGenTransformFeedbacks", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindTransformFeedback = GL.Instance.GetDelegateFor("glBindTransformFeedback", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
@@ -36,5 +39,35 @@ namespace CSharpGL
             glResumeTransformFeedback = GL.Instance.GetDelegateFor("glResumeTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
             glEndTransformFeedback = GL.Instance.GetDelegateFor("glEndTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attributeNames"></param>
+        /// <param name="program"></param>
+        /// <param name="bufferMode"></param>
+        public void Capture(string[] attributeNames, ShaderProgram program, BufferMode bufferMode)
+        {
+            glTransformFeedbackVaryings(program.ProgramId, attributeNames.Length, attributeNames, (uint)bufferMode);
+            ShaderProgram.glLinkProgram(program.ProgramId);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum BufferMode : uint
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            Separate = GL.GL_SEPARATE_ATTRIBS,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            InterLeaved = GL.GL_INTERLEAVED_ATTRIBS,
+        }
+
     }
 }

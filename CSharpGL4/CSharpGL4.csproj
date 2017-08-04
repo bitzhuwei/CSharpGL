@@ -82,13 +82,14 @@
     <None Include="Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
+    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.StaticCtor.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.LoadAllUniforms.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapDataProvider.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapData.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\LeveledDataProvider.cs" />
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer\TransformFeedbackBuffer.StaticCtor.cs" />
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer\TransformFeedbackBuffer.cs" />
+    <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.cs" />
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
@@ -305,7 +306,7 @@
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />
     <Compile Include="Scene\Actions\Flags.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBaseChildren.cs" />
-    <Content Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer\TransformFeedbackBuffer.BindBufferBase.png" />
+    <Content Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.BindBufferBase.png" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\readme.md" />
