@@ -303,6 +303,7 @@
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />
     <Compile Include="Scene\Actions\Flags.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBaseChildren.cs" />
+    <Content Include="GLObjects\TransformFeedback\TansformFeedback.BindBufferBase.png" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\readme.md" />
