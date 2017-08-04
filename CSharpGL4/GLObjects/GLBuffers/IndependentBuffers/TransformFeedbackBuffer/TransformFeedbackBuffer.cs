@@ -51,14 +51,31 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a <see cref="TransformFeedbackBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// 
         /// </summary>
-        /// <param name="byteLength"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static TransformFeedbackBuffer Create(int byteLength, BufferUsage usage)
+        /// <param name="attributeNames"></param>
+        /// <param name="program"></param>
+        /// <param name="bufferMode"></param>
+        public void Capture(string[] attributeNames, ShaderProgram program, BufferMode bufferMode)
         {
-            return (GLBuffer.Create(byteLength, usage) as TransformFeedbackBuffer);
+            glTransformFeedbackVaryings(program.ProgramId, attributeNames.Length, attributeNames, (uint)bufferMode);
+            ShaderProgram.glLinkProgram(program.ProgramId);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum BufferMode : uint
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            Separate = GL.GL_SEPARATE_ATTRIBS,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            InterLeaved = GL.GL_INTERLEAVED_ATTRIBS,
         }
     }
 }
