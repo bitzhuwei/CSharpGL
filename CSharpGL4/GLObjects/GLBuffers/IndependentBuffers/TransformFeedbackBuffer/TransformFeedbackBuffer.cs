@@ -17,9 +17,10 @@ namespace CSharpGL
         /// <para>An array at server side (GPU memory) with fixed length.</para>
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+        /// <param name="length">此buffer含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此buffer中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        internal TransformFeedbackBuffer(uint bufferId, int byteLength)
-            : base(bufferId, byteLength, byteLength)
+        internal TransformFeedbackBuffer(uint bufferId, int length, int byteLength)
+            : base(bufferId, length, byteLength)
         {
             this.Target = BufferTarget.TransformFeedbackBuffer;
         }
@@ -75,6 +76,18 @@ namespace CSharpGL
             /// 
             /// </summary>
             InterLeaved = GL.GL_INTERLEAVED_ATTRIBS,
+        }
+
+        /// <summary>
+        /// Creates a <see cref="AtomicCounterBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// </summary>
+        /// <param name="elementType"></param>
+        /// <param name="length"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static TransformFeedbackBuffer Create(Type elementType, int length, BufferUsage usage)
+        {
+            return (GLBuffer.Create(IndependentBufferTarget.TransformFeedbackBuffer, elementType, length, usage) as TransformFeedbackBuffer);
         }
     }
 }

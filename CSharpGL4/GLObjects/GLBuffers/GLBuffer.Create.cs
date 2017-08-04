@@ -144,6 +144,10 @@ namespace CSharpGL
                     buffer = new UniformBuffer(buffers[0], length, byteLength);
                     break;
 
+                case IndependentBufferTarget.TransformFeedbackBuffer:
+                    buffer = new TransformFeedbackBuffer(buffers[0], length, byteLength);
+                    break;
+
                 default:
                     throw new Exception("Unexpected IndependentBufferTarget!");
             }
@@ -151,24 +155,5 @@ namespace CSharpGL
             return buffer;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="byteLength"></param>
-        /// <param name="usage"></param>
-        /// <returns></returns>
-        public static TransformFeedbackBuffer Create(int byteLength, BufferUsage usage)
-        {
-            uint[] buffers = new uint[1];
-            glGenBuffers(1, buffers);
-            const uint target = GL.GL_TRANSFORM_FEEDBACK_BUFFER;
-            glBindBuffer(target, buffers[0]);
-            glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
-            glBindBuffer(target, 0);
-
-            var buffer = new TransformFeedbackBuffer(buffers[0], byteLength);
-
-            return buffer;
-        }
     }
 }

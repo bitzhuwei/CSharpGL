@@ -34,5 +34,10 @@
         ///
         /// </summary>
         UniformBuffer = GL.GL_UNIFORM_BUFFER,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackBuffer = GL.GL_TRANSFORM_FEEDBACK_BUFFER,
     }
 }

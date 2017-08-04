@@ -115,6 +115,10 @@ namespace CSharpGL
                     buffer = new UniformBuffer(buffers[0], array.Length, array.ByteLength);
                     break;
 
+                case IndependentBufferTarget.TransformFeedbackBuffer:
+                    buffer = new TransformFeedbackBuffer(buffers[0], array.Length, array.ByteLength);
+                    break;
+
                 default:
                     throw new Exception("Unexpected IndependentBufferTarget!");
             }
