@@ -87,6 +87,8 @@
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapDataProvider.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapData.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\LeveledDataProvider.cs" />
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer\TransformFeedbackBuffer.StaticCtor.cs" />
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer\TransformFeedbackBuffer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
@@ -303,7 +305,7 @@
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />
     <Compile Include="Scene\Actions\Flags.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBaseChildren.cs" />
-    <Content Include="GLObjects\TransformFeedback\TansformFeedback.BindBufferBase.png" />
+    <Content Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer\TransformFeedbackBuffer.BindBufferBase.png" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\readme.md" />

@@ -150,5 +150,25 @@ namespace CSharpGL
 
             return buffer;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byteLength"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static TransformFeedbackBuffer Create(int byteLength, BufferUsage usage)
+        {
+            uint[] buffers = new uint[1];
+            glGenBuffers(1, buffers);
+            const uint target = GL.GL_TRANSFORM_FEEDBACK_BUFFER;
+            glBindBuffer(target, buffers[0]);
+            glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
+            glBindBuffer(target, 0);
+
+            var buffer = new TransformFeedbackBuffer(buffers[0], byteLength, byteLength);
+
+            return buffer;
+        }
     }
 }
