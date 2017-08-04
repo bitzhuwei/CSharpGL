@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotLight", "Demos\SpotLigh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderIndependentTransparency", "Demos\OrderIndependentTransparency\OrderIndependentTransparency.csproj", "{A37A407D-6489-4F5C-BA2A-B50A87942592}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticleSystem.TransformFeedback", "Demos\ParticleSystem.TransformFeedback\ParticleSystem.TransformFeedback.csproj", "{5F581792-C2EF-4E89-9019-25DD1212E648}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{A37A407D-6489-4F5C-BA2A-B50A87942592}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A37A407D-6489-4F5C-BA2A-B50A87942592}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A37A407D-6489-4F5C-BA2A-B50A87942592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F581792-C2EF-4E89-9019-25DD1212E648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F581792-C2EF-4E89-9019-25DD1212E648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F581792-C2EF-4E89-9019-25DD1212E648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F581792-C2EF-4E89-9019-25DD1212E648}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,5 +210,6 @@ Global
 		{1EFB4E96-8DAC-4F2A-A01F-4E831370079D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{8B9C9151-9057-44EB-9905-285DD5D622FC} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{A37A407D-6489-4F5C-BA2A-B50A87942592} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{5F581792-C2EF-4E89-9019-25DD1212E648} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
