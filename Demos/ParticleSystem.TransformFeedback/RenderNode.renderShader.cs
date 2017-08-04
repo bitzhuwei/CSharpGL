@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace ParticleSystem.TransformFeedback
 {
-    public partial class ParticleSimulatorNode
+    public partial class RenderNode
     {
         private const string renderVert = @"#version 330 core
 precision highp float;

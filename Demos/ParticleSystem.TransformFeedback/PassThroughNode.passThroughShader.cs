@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace ParticleSystem.TransformFeedback
 {
-    public partial class ParticleSimulatorNode
+    public partial class PassThroughNode
     {
         private const string passThroughVert = @"#version 330 core
 precision highp float;

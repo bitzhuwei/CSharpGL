@@ -51,6 +51,13 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ParticleModel.cs" />
+    <Compile Include="RenderNode.cs" />
+    <Compile Include="PassThroughNode.cs" />
+    <Compile Include="ParticleSimulatorNode.particleShader.cs" />
+    <Compile Include="RenderNode.renderShader.cs" />
+    <Compile Include="PassThroughNode.passThroughShader.cs" />
+    <Compile Include="ParticleSimulatorNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
