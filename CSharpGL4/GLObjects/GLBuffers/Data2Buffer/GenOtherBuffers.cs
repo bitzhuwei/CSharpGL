@@ -76,5 +76,17 @@ namespace CSharpGL
             var array = new T[] { data };
             return GenUniformBuffer(array, usage);
         }
+
+        /// <summary>
+        /// Generates an uniform buffer.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static TransformFeedbackBuffer GenTransformFeedbackBuffer<T>(this T data, BufferUsage usage) where T : struct
+        {
+            var array = new T[] { data };
+            return GenTransformFeedbackBuffer(array, usage);
+        }
     }
 }
