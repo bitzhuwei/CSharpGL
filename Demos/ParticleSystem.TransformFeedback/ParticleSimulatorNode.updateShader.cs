@@ -11,7 +11,7 @@ namespace ParticleSystem.TransformFeedback
         /// <summary>
         /// update particles.
         /// </summary>
-        private const string particleVert = @"#version 330 core
+        private const string udpateVert = @"#version 330 core
 precision highp float;
 
 #extension EXT_gpu_shader4 : require

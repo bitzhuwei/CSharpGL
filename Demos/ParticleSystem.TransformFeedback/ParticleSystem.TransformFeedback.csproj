@@ -53,7 +53,7 @@
     </Compile>
     <Compile Include="ParticleModel.cs" />
     <Compile Include="DataNode.cs" />
-    <Compile Include="ParticleSimulatorNode.particleShader.cs" />
+    <Compile Include="ParticleSimulatorNode.updateShader.cs" />
     <Compile Include="ParticleSimulatorNode.renderShader.cs" />
     <Compile Include="ParticleSimulatorNode.cs" />
     <Compile Include="Program.cs" />
@@ -97,6 +97,10 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ParticleSimulatorNode.jpg" />
+    <Content Include="ParticleSimulatorNode.Render.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
