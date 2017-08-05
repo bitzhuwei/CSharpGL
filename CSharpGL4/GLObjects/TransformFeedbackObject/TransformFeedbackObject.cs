@@ -44,13 +44,42 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="index"></param>
+        /// <param name="bufferId"></param>
+        public void BindBufferBase(uint index, uint bufferId)
+        {
+            glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, index, bufferId);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        public void Begin(DrawMode mode)
+        {
+            glBeginTransformFeedback((uint)mode);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void End()
+        {
+            glEndTransformFeedback();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="attributeNames"></param>
         /// <param name="program"></param>
         /// <param name="bufferMode"></param>
         public void Capture(string[] attributeNames, ShaderProgram program, BufferMode bufferMode)
         {
+            this.Bind();
             glTransformFeedbackVaryings(program.ProgramId, attributeNames.Length, attributeNames, (uint)bufferMode);
             ShaderProgram.glLinkProgram(program.ProgramId);
+            this.Unbind();
         }
 
         /// <summary>

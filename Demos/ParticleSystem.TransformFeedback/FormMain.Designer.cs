@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chkRenderWireframe = new System.Windows.Forms.CheckBox();
-            this.chkRenderBody = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,41 +51,11 @@
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // chkRenderWireframe
-            // 
-            this.chkRenderWireframe.AutoSize = true;
-            this.chkRenderWireframe.Checked = true;
-            this.chkRenderWireframe.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRenderWireframe.Font = new System.Drawing.Font("宋体", 12F);
-            this.chkRenderWireframe.Location = new System.Drawing.Point(12, 12);
-            this.chkRenderWireframe.Name = "chkRenderWireframe";
-            this.chkRenderWireframe.Size = new System.Drawing.Size(155, 20);
-            this.chkRenderWireframe.TabIndex = 1;
-            this.chkRenderWireframe.Text = "Render Wireframe";
-            this.chkRenderWireframe.UseVisualStyleBackColor = true;
-            this.chkRenderWireframe.CheckedChanged += new System.EventHandler(this.chkRenderWireframe_CheckedChanged);
-            // 
-            // chkRenderBody
-            // 
-            this.chkRenderBody.AutoSize = true;
-            this.chkRenderBody.Checked = true;
-            this.chkRenderBody.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRenderBody.Font = new System.Drawing.Font("宋体", 12F);
-            this.chkRenderBody.Location = new System.Drawing.Point(173, 12);
-            this.chkRenderBody.Name = "chkRenderBody";
-            this.chkRenderBody.Size = new System.Drawing.Size(115, 20);
-            this.chkRenderBody.TabIndex = 2;
-            this.chkRenderBody.Text = "Render Body";
-            this.chkRenderBody.UseVisualStyleBackColor = true;
-            this.chkRenderBody.CheckedChanged += new System.EventHandler(this.chkRenderBody_CheckedChanged);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 577);
-            this.Controls.Add(this.chkRenderBody);
-            this.Controls.Add(this.chkRenderWireframe);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
             this.Text = "Color Coded Picking - CSharpGL";
@@ -101,7 +69,5 @@
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.CheckBox chkRenderWireframe;
-        private System.Windows.Forms.CheckBox chkRenderBody;
     }
 }

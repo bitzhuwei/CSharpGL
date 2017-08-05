@@ -23,7 +23,7 @@ namespace CSharpGL
     public class ShaderArray : IShaderProgramProvider
     {
         private Shader[] shaders;
-        //private ShaderProgram program;
+        private ShaderProgram program;
 
         /// <summary>
         /// 
@@ -40,10 +40,15 @@ namespace CSharpGL
         /// <returns></returns>
         public ShaderProgram GetShaderProgram()
         {
-            var program = new ShaderProgram();
-            program.Initialize(shaders);
+            if (this.program == null)
+            {
+                var program = new ShaderProgram();
+                program.Initialize(shaders);
 
-            return program;
+                this.program = program;
+            }
+
+            return this.program;
         }
     }
 }

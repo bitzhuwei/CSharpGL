@@ -19,21 +19,20 @@ precision highp float;
 layout( location = 0 )  in vec4 position;           //xyz pos, w speed
 layout( location = 1 )  in vec4 prev_position;      //xyz prevPos, w life
 layout( location = 2 )  in vec4 direction;			//xyz direction, w 0
- 
+
 uniform mat4 MVP; //combine modelview projection matrix
- 
 uniform float time; //current time
-   
+    
+//shader outputs
+out vec4 out_position;
+out	vec4 out_prev_position;
+out vec4 out_direction;
+
 //constants
 const float PI = 3.14159;
 const float TWO_PI = 2*PI;
 const float PI_BY_2 = PI*0.5;
 const float PI_BY_4 = PI_BY_2*0.5;
- 
-//shader outputs
-out vec4 out_position;
-out	vec4 out_prev_position;
-out vec4 out_direction;
 
 const float DAMPING_COEFFICIENT =  0.9995;			//velocity damping coefficient
 const vec3 emitterForce = vec3(0.0f,-0.001f, 0.0f);	//the default force direction
