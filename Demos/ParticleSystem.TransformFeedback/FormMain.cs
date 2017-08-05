@@ -19,6 +19,7 @@ namespace ParticleSystem.TransformFeedback
         {
             InitializeComponent();
 
+            this.winGLCanvas1.TimerTriggerInterval = 1 + (int)(1000.0f / 60.0f);
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
@@ -33,7 +34,7 @@ namespace ParticleSystem.TransformFeedback
 
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                int particleCount = 10000;
+                int particleCount = 1;
                 var node = new ParticleSimulatorNode(particleCount);
                 var ground = GroundNode.Create();
                 ground.RenderUnits[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
@@ -64,11 +65,11 @@ namespace ParticleSystem.TransformFeedback
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
-            if (node != null)
-            {
-                node.RotationAngle += 1;
-            }
+            //IWorldSpace node = this.scene.RootElement;
+            //if (node != null)
+            //{
+            //    node.RotationAngle += 1;
+            //}
         }
     }
 }

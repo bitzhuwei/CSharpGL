@@ -32,7 +32,19 @@ namespace ParticleSystem.TransformFeedback
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = VertexBuffer.Create(typeof(vec4), particleCount, VBOConfig.Vec4, BufferUsage.DynamicCopy);
+                    var data = new vec4[particleCount];
+                    var random = new Random();
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        data[i] = new vec4(
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble()
+                            ) - new vec4(1, 1, 1, 1) * 0.5f;
+                    }
+                    this.positionBuffer = data.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.DynamicCopy);
+                    //this.positionBuffer = VertexBuffer.Create(typeof(vec4), particleCount, VBOConfig.Vec4, BufferUsage.DynamicCopy);
                 }
 
                 return this.positionBuffer;
@@ -50,7 +62,19 @@ namespace ParticleSystem.TransformFeedback
             {
                 if (this.directionBuffer == null)
                 {
-                    this.directionBuffer = VertexBuffer.Create(typeof(vec4), particleCount, VBOConfig.Vec4, BufferUsage.DynamicCopy); ;
+                    var data = new vec4[particleCount];
+                    var random = new Random();
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        data[i] = new vec4(
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble()
+                            ) - new vec4(1, 1, 1, 1) * 0.5f;
+                    }
+                    this.directionBuffer = data.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.DynamicCopy);
+                    //this.directionBuffer = VertexBuffer.Create(typeof(vec4), particleCount, VBOConfig.Vec4, BufferUsage.DynamicCopy); ;
                 }
 
                 return this.directionBuffer;

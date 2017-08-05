@@ -42,11 +42,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Bind specified buffer to specified binding point of this transform feedback object.
+        /// Then data will be dumped to the specified buffer when this transform feedback object works.
         /// </summary>
         /// <param name="index"></param>
         /// <param name="bufferId"></param>
-        public void BindBufferBase(uint index, uint bufferId)
+        public void BindBuffer(uint index, uint bufferId)
         {
             glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, index, bufferId);
         }

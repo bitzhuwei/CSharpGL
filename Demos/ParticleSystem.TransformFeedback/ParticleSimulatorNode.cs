@@ -76,13 +76,9 @@ namespace ParticleSystem.TransformFeedback
 
                 this.transformFeedback = tf;
             }
-            {
-                this.dateTime = DateTime.Now;
-            }
         }
 
-        private bool firstTime;
-        private DateTime dateTime;
+        private float time;
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -90,16 +86,7 @@ namespace ParticleSystem.TransformFeedback
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            var now = DateTime.Now;
-            float time = 0;
-            if (firstTime)
-            {
-                dateTime = now;
-                firstTime = false;
-            }
-
-            time = (float)((now.Subtract(this.dateTime)).TotalMilliseconds);
-            dateTime = now;
+            time += 10;
 
             // update
             {
@@ -111,7 +98,7 @@ namespace ParticleSystem.TransformFeedback
                         var attributes = unit1.VertexArrayObject.VertexAttributeBuffers;
                         for (uint i = 0; i < attributes.Length; i++)
                         {
-                            tf.BindBufferBase(i, attributes[i].Buffer.BufferId);
+                            tf.BindBuffer(i, attributes[i].Buffer.BufferId);
                         }
                     }
                     {
@@ -129,6 +116,19 @@ namespace ParticleSystem.TransformFeedback
                     }
                 }
                 tf.Unbind();
+                //unsafe
+                //{
+                //    var buffer = this.dataNodes[1].RenderUnits[updateUnit].VertexArrayObject.VertexAttributeBuffers[0].Buffer;
+                //    var array = (vec4*)buffer.MapBuffer(MapBufferAccess.ReadOnly);
+                //    int length = buffer.Length;
+                //    var data = new vec4[length];
+                //    for (int i = 0; i < length; i++)
+                //    {
+                //        data[i] = array[i];
+                //    }
+                //    buffer.UnmapBuffer();
+                //    Console.WriteLine();
+                //}
             }
             // exchange
             {
