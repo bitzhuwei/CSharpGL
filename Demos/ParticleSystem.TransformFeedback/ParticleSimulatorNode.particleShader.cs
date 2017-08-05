@@ -8,6 +8,9 @@ namespace ParticleSystem.TransformFeedback
 {
     public partial class ParticleSimulatorNode
     {
+        /// <summary>
+        /// update particles.
+        /// </summary>
         private const string particleVert = @"#version 330 core
 precision highp float;
 

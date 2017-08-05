@@ -14,10 +14,14 @@ namespace ParticleSystem.TransformFeedback
 
         public static ParticleSimulatorNode Create()
         {
+
             {
                 var vs = new VertexShader(particleVert, vPosition, prev_position, vDirection);
             }
-
+            {
+                var vs = new VertexShader(renderVert, vPosition);
+                var fs = new FragmentShader(renderFrag);
+            }
             throw new NotImplementedException();
         }
 

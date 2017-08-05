@@ -6,8 +6,11 @@ using CSharpGL;
 
 namespace ParticleSystem.TransformFeedback
 {
-    public partial class RenderNode
+    public partial class ParticleSimulatorNode
     {
+        /// <summary>
+        /// render(and pass to another data node via transform feedback)
+        /// </summary>
         private const string renderVert = @"#version 330 core
 precision highp float;
 
@@ -33,6 +36,9 @@ void main()
 	color = vec4(mix(YELLOW, RED, t), t);
 }
 ";
+        /// <summary>
+        /// render(and pass to another data node via transform feedback)
+        /// </summary>
         private const string renderFrag = @"#version 330 core
 
 layout(location=0) smooth out vec4 vFragColor;	//fragment shader output
