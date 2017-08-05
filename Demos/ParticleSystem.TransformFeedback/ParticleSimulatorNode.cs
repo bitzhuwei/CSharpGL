@@ -40,7 +40,7 @@ namespace ParticleSystem.TransformFeedback
                 var fs = new FragmentShader(renderFrag);
                 providers[1] = new ShaderArray(vs, fs);
             }
-            var maps = new AttributeMap[0];
+            var maps = new AttributeMap[2];
             {
                 maps[0] = new AttributeMap();// don't change the order.
                 maps[0].Add(vPosition, ParticleModel.position);
@@ -49,12 +49,20 @@ namespace ParticleSystem.TransformFeedback
                 maps[1] = new AttributeMap();
                 maps[1].Add(vPosition, ParticleModel.position);
             }
+            var builders = new RenderUnitBuilder[2];
+            {
+                var pointSize = new PointSizeState(10);
+                for (int i = 0; i < builders.Length; i++)
+                {
+                    builders[i] = new RenderUnitBuilder(providers[i], maps[i], pointSize);
+                }
+            }
             {
                 var nodes = new DataNode[2];
                 for (int i = 0; i < 2; i++)
                 {
                     var model = new ParticleModel(particleCount);
-                    var node = DataNode.Create(model, providers, maps);
+                    var node = new DataNode(model, builders);
                     node.Initialize();
                     nodes[i] = node;
                 }

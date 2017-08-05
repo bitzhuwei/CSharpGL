@@ -14,7 +14,7 @@ namespace ParticleSystem.TransformFeedback
         private const string udpateVert = @"#version 330 core
 precision highp float;
 
-#extension EXT_gpu_shader4 : require
+//#extension EXT_gpu_shader4 : require
 
 layout( location = 0 )  in vec4 position;           //xyz pos, w speed
 layout( location = 1 )  in vec4 prev_position;      //xyz prevPos, w life

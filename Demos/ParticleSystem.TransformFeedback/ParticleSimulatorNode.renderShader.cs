@@ -18,7 +18,7 @@ layout (location=0) in vec4 position;	//particle object space position
 
 uniform mat4 MVP;						//combine modelview projection matrix
 
-smooth out vec4 color;					//output colour varying to the fragment shader 
+out vec4 color;					//output colour varying to the fragment shader 
 
 //colormap colours
 const vec3 RED = vec3(1,0,0);
@@ -41,8 +41,8 @@ void main()
         /// </summary>
         private const string renderFrag = @"#version 330 core
 
-layout(location=0) smooth out vec4 vFragColor;	//fragment shader output
-smooth in vec4 color;							//input interpolated colour from the vertex shader
+layout(location=0) out vec4 vFragColor;	//fragment shader output
+in vec4 color;							//input interpolated colour from the vertex shader
 
 void main()
 { 		

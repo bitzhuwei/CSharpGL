@@ -9,14 +9,7 @@ namespace ParticleSystem.TransformFeedback
     // TODO: make this node as private class.
     public partial class DataNode : ModernNode
     {
-        public static DataNode Create(IBufferSource model, IShaderProgramProvider[] providers, AttributeMap[] maps)
-        {
-
-
-            throw new NotImplementedException();
-        }
-
-        private DataNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        public DataNode(IBufferSource model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
 
