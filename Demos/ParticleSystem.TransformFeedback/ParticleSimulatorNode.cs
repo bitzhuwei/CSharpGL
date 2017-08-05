@@ -52,9 +52,10 @@ namespace ParticleSystem.TransformFeedback
             var builders = new RenderUnitBuilder[2];
             {
                 var pointSize = new PointSizeState(10);
+                var blend = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
                 for (int i = 0; i < builders.Length; i++)
                 {
-                    builders[i] = new RenderUnitBuilder(providers[i], maps[i], pointSize);
+                    builders[i] = new RenderUnitBuilder(providers[i], maps[i], pointSize, blend);
                 }
             }
             {
@@ -71,7 +72,7 @@ namespace ParticleSystem.TransformFeedback
             {
                 var tf = new TransformFeedbackObject();
                 var varying_names = new string[] { "out_position", "out_prev_position", "out_direction" };
-                tf.Capture(varying_names, providers[0].GetShaderProgram(), TransformFeedbackObject.BufferMode.Separate);
+                tf.Capture(varying_names, this.dataNodes[0].RenderUnits[0].Program, TransformFeedbackObject.BufferMode.Separate);
 
                 this.transformFeedback = tf;
             }
@@ -80,6 +81,7 @@ namespace ParticleSystem.TransformFeedback
             }
         }
 
+        private bool firstTime;
         private DateTime dateTime;
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -89,8 +91,16 @@ namespace ParticleSystem.TransformFeedback
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             var now = DateTime.Now;
-            float time = (float)((now.Subtract(this.dateTime)).TotalMilliseconds);
+            float time = 0;
+            if (firstTime)
+            {
+                dateTime = now;
+                firstTime = false;
+            }
+
+            time = (float)((now.Subtract(this.dateTime)).TotalMilliseconds);
             dateTime = now;
+
             // update
             {
                 TransformFeedbackObject tf = this.transformFeedback;
@@ -111,7 +121,7 @@ namespace ParticleSystem.TransformFeedback
                         {
                             ShaderProgram program = unit0.Program;
                             program.SetUniform("MVP", projection * view * model);
-                            program.SetUniform("t", time);
+                            program.SetUniform("time", time);
                             unit0.Render();
                         }
                         tf.End();
@@ -131,7 +141,6 @@ namespace ParticleSystem.TransformFeedback
                 RenderUnit unit = this.dataNodes[0].RenderUnits[renderUnit];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("MVP", projection * view * model);
-                program.SetUniform("t", time);
                 unit.Render();
             }
         }
