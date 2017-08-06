@@ -68,17 +68,19 @@ namespace CSharpGL
 
             GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-            program.Bind();
 
             TransformFeedbackObject.glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo.BufferId);
 
-            TransformFeedbackObject.glBeginTransformFeedback(GL.GL_POINTS);
+            program.Bind();
 
+            TransformFeedbackObject.glBeginTransformFeedback(GL.GL_POINTS);
 
             //GL.Instance.DrawArrays(GL.GL_POINTS, 0, data.Length);
             vao.Render();
 
             TransformFeedbackObject.glEndTransformFeedback();
+
+            program.Unbind();
 
             GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
 
