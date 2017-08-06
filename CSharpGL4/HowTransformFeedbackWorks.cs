@@ -55,15 +55,17 @@ namespace CSharpGL
 
             var data = new float[] { 1, 2, 3, 4, 5 };
 
-            var vbo = new uint[1];
-            VertexBuffer.glGenBuffers(1, vbo);
-            VertexBuffer.glBindBuffer(GL.GL_ARRAY_BUFFER, vbo[0]);
-            {
-                GCHandle pinned = GCHandle.Alloc(data, GCHandleType.Pinned);
-                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(data, 0);
-                VertexBuffer.glBufferData(GL.GL_ARRAY_BUFFER, sizeof(float) * data.Length, header, GL.GL_STATIC_DRAW);
-                pinned.Free();
-            }
+            //var vbo = new uint[1];
+            //VertexBuffer.glGenBuffers(1, vbo);
+            //VertexBuffer.glBindBuffer(GL.GL_ARRAY_BUFFER, vbo[0]);
+            //{
+            //    GCHandle pinned = GCHandle.Alloc(data, GCHandleType.Pinned);
+            //    IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(data, 0);
+            //    VertexBuffer.glBufferData(GL.GL_ARRAY_BUFFER, sizeof(float) * data.Length, header, GL.GL_STATIC_DRAW);
+            //    pinned.Free();
+            //}
+            VertexBuffer vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
+            vbo.Bind();
 
             uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program.ProgramId, "inValue");
             VertexBuffer.glEnableVertexAttribArray(inputAttrib);
