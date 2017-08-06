@@ -55,7 +55,6 @@
     <Compile Include="SimpleTransformFeedBackNode.render.cs" />
     <Compile Include="SimpleTransformFeedBackNode.update.cs" />
     <Compile Include="SimpleTransformFeedBackNode.cs" />
-    <Compile Include="SimpleParticleModel.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

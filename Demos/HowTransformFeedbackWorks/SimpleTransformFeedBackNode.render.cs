@@ -16,7 +16,7 @@ uniform mat4 mvpMatrix;
 
 void main()
 {
-    gl_Position = mapMatrix * vec4(inPosition, 1);
+    gl_Position = mvpMatrix * vec4(inPosition, 1);
 }
 ";
         private const string renderFrag = @"#version 330

@@ -34,12 +34,11 @@ namespace HowTransformFeedbackWorks
 
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                int particleCount = 1;
-                //var node = new ParticleSimulatorNode(particleCount);
-                //var ground = GroundNode.Create();
-                //ground.RenderUnits[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
-                //var group = new GroupNode(node, ground);
-                //this.scene.RootElement = group;
+                var node = new SimpleTransformFeedBackNode();
+                var ground = GroundNode.Create();
+                ground.RenderUnits[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
+                var group = new GroupNode(node, ground);
+                this.scene.RootElement = group;
             }
 
             var list = new ActionList();

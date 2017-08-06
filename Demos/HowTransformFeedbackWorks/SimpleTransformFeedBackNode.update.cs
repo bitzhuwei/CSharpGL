@@ -27,8 +27,9 @@ void main()
     }
     
     outPosition = pos;
+    outVelocity = inVelocity;
 
-    gl_Position = pos; 
+    gl_Position = vec4(pos, 1); 
 }
 ";
     }
