@@ -28,7 +28,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strVertexArrayObject)]
         [Description("vertex attribute buffers('in vec3 position;' in shader etc.)")]
-        public VertexShaderAttribute[] VertexAttributeBuffers { get; private set; }
+        public VertexShaderAttribute[] VertexAttributes { get; private set; }
 
         /// <summary>
         /// The one and only one index buffer used to indexing vertex attribute buffers.
@@ -52,8 +52,8 @@ namespace CSharpGL
         /// <para>VAO is used to reduce draw-call.</para>
         /// </summary>
         /// <param name="indexBuffer">index buffer pointer that used to invoke draw command.</param>
-        /// <param name="vertexAttributeBuffers">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBuffer indexBuffer, params VertexShaderAttribute[] vertexAttributeBuffers)
+        /// <param name="vertexAttributes">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
+        public VertexArrayObject(IndexBuffer indexBuffer, params VertexShaderAttribute[] vertexAttributes)
         {
             if (indexBuffer == null)
             {
@@ -66,7 +66,7 @@ namespace CSharpGL
             //}
 
             this.IndexBuffer = indexBuffer;
-            this.VertexAttributeBuffers = vertexAttributeBuffers;
+            this.VertexAttributes = vertexAttributes;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace CSharpGL
             glGenVertexArrays(1, ids);
 
             this.Bind();// this vertex array object will record all stand-by actions.
-            VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+            VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributes;
             if (vertexAttributeBuffers != null)
             {
                 foreach (var item in vertexAttributeBuffers)
@@ -109,9 +109,8 @@ namespace CSharpGL
         /// 执行一次渲染的过程。
         /// <para>Execute rendering command.</para>
         /// </summary>
-        /// <param name="shaderProgram"></param>
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
-        public void Render(ShaderProgram shaderProgram, IndexBuffer temporaryIndexBuffer = null)
+        public void Render(IndexBuffer temporaryIndexBuffer = null)
         {
             if (temporaryIndexBuffer != null)
             {
@@ -175,7 +174,7 @@ namespace CSharpGL
                     }
                     {
                         // NOTE: This indicates that all references to these VertexShaderAttribute objects should be disposed.
-                        VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributeBuffers;
+                        VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributes;
                         if (vertexAttributeBuffers != null)
                         {
                             foreach (var item in vertexAttributeBuffers)

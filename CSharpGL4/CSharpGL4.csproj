@@ -82,6 +82,9 @@
     <None Include="Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
+    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.StaticCtor.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.LoadAllUniforms.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />

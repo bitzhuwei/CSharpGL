@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F581792-C2EF-4E89-9019-25DD1212E648}</ProjectGuid>
+    <ProjectGuid>{9D56B0DE-ABE1-4FB4-935B-A1EDA97C2C13}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ParticleSystem.TransformFeedback</RootNamespace>
-    <AssemblyName>ParticleSystem.TransformFeedback</AssemblyName>
+    <RootNamespace>RedBook.TransformFeedback.ParticleSystem</RootNamespace>
+    <AssemblyName>RedBook.TransformFeedback.ParticleSystem</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,7 +32,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,16 +51,8 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataNode.cs" />
-    <Compile Include="ParticleModel.cs" />
-    <Compile Include="ParticleSimulatorNode.updateShader.cs" />
-    <Compile Include="ParticleSimulatorNode.renderShader.cs" />
-    <Compile Include="ParticleSimulatorNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,10 +89,6 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ParticleSimulatorNode.jpg" />
-    <Content Include="ParticleSimulatorNode.Render.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

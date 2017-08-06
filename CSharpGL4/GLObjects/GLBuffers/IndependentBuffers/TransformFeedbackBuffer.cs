@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <para>An array at server side (GPU memory) with fixed length.</para>
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class TransformFeedbackBuffer : GLBuffer, IDisposable
+    public partial class TransformFeedbackBuffer : GLBuffer, IDisposable
     {
         /// <summary>
         /// 位于服务器端（GPU内存）的定长数组。

@@ -62,7 +62,7 @@ namespace CSharpGL
 
             this.StateList.On();
 
-            this.VertexArrayObject.Render(program);
+            this.VertexArrayObject.Render();
 
             this.StateList.Off();
 
