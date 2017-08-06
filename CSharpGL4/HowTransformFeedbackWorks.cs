@@ -31,8 +31,6 @@ namespace CSharpGL
             var feedbackVaryings = new string[] { "outValue" };
             program.Initialize(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
 
-            program.Bind();
-
             var data = new float[] { 1, 2, 3, 4, 5 };
             //var vbo = new uint[1];
             //VertexBuffer.glGenBuffers(1, vbo);
@@ -70,9 +68,12 @@ namespace CSharpGL
 
             GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
+            program.Bind();
+
             TransformFeedbackObject.glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo.BufferId);
 
             TransformFeedbackObject.glBeginTransformFeedback(GL.GL_POINTS);
+
 
             //GL.Instance.DrawArrays(GL.GL_POINTS, 0, data.Length);
             vao.Render();
