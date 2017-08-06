@@ -16,7 +16,7 @@ namespace CSharpGL
         private uint height;
         private bool fixedSampleLocations;
 
-        private static readonly GLDelegates.void_uint_uint_uint_uint_uint_bool glTexImage2DMultisample;
+        internal static readonly GLDelegates.void_uint_uint_uint_uint_uint_bool glTexImage2DMultisample;
         static TexImage2DMultisample()
         {
             glTexImage2DMultisample = GL.Instance.GetDelegateFor("glTexImage2DMultisample", GLDelegates.typeof_void_uint_uint_uint_uint_uint_bool) as GLDelegates.void_uint_uint_uint_uint_uint_bool;

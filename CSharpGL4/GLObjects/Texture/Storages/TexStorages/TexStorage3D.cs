@@ -17,7 +17,7 @@ namespace CSharpGL
         private int height;
         private int depth;
 
-        private static readonly GLDelegates.void_uint_int_uint_int_int_int glTexStorage3D;
+        internal static readonly GLDelegates.void_uint_int_uint_int_int_int glTexStorage3D;
         static TexStorage3D()
         {
             glTexStorage3D = GL.Instance.GetDelegateFor("glTexStorage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int) as GLDelegates.void_uint_int_uint_int_int_int;

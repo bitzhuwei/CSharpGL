@@ -14,7 +14,7 @@ namespace CSharpGL
         private uint internalFormat;
         private int width;
 
-        private static readonly GLDelegates.void_uint_int_uint_int glTexStorage1D;
+        internal static readonly GLDelegates.void_uint_int_uint_int glTexStorage1D;
         static TexStorage1D()
         {
             glTexStorage1D = GL.Instance.GetDelegateFor("glTexStorage1D", GLDelegates.typeof_void_uint_int_uint_int) as GLDelegates.void_uint_int_uint_int;

@@ -27,6 +27,7 @@ namespace HowTransformFeedbackWorks
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            CSharpGL.HowTransformFeedbackWorks.Run();
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);

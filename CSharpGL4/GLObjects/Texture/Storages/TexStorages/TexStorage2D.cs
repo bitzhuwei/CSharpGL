@@ -16,7 +16,7 @@ namespace CSharpGL
         private int width;
         private int height;
 
-        private static readonly GLDelegates.void_uint_int_uint_int_int glTexStorage2D;
+        internal static readonly GLDelegates.void_uint_int_uint_int_int glTexStorage2D;
         static TexStorage2D()
         {
             glTexStorage2D = GL.Instance.GetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;

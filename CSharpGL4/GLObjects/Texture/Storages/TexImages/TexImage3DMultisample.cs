@@ -17,7 +17,7 @@ namespace CSharpGL
         private uint depth;
         private bool fixedSampleLocations;
 
-        private static readonly GLDelegates.void_uint_uint_uint_uint_uint_uint_bool glTexImage3DMultisample;
+        internal static readonly GLDelegates.void_uint_uint_uint_uint_uint_uint_bool glTexImage3DMultisample;
         static TexImage3DMultisample()
         {
             glTexImage3DMultisample = GL.Instance.GetDelegateFor("glTexImage3DMultisample", GLDelegates.typeof_void_uint_uint_uint_uint_uint_uint_bool) as GLDelegates.void_uint_uint_uint_uint_uint_uint_bool;

@@ -10,9 +10,9 @@ namespace CSharpGL
     /// </summary>
     public partial class Sampler : List<SamplerParameter>, IDisposable
     {
-        private static readonly GLDelegates.void_int_uintN glGenSamplers;
-        private static readonly GLDelegates.void_uint_uint glBindSampler;
-        private static readonly GLDelegates.void_int_uintN glDeleteSamplers;
+        internal static readonly GLDelegates.void_int_uintN glGenSamplers;
+        internal static readonly GLDelegates.void_uint_uint glBindSampler;
+        internal static readonly GLDelegates.void_int_uintN glDeleteSamplers;
         static Sampler()
         {
             glGenSamplers = GL.Instance.GetDelegateFor("glGenSamplers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;

@@ -10,7 +10,7 @@ namespace CSharpGL
     /// </summary>
     public class TexImage3D : TexStorageBase
     {
-        private static readonly GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr glTexImage3D;
+        internal static readonly GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr glTexImage3D;
         static TexImage3D()
         {
             glTexImage3D = GL.Instance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr;

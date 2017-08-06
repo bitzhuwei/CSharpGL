@@ -11,9 +11,9 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public sealed class VertexArrayObject : IDisposable
     {
-        private static readonly GLDelegates.void_int_uintN glGenVertexArrays;
-        private static readonly GLDelegates.void_uint glBindVertexArray;
-        private static readonly GLDelegates.void_int_uintN glDeleteVertexArrays;
+        internal static readonly GLDelegates.void_int_uintN glGenVertexArrays;
+        internal static readonly GLDelegates.void_uint glBindVertexArray;
+        internal static readonly GLDelegates.void_int_uintN glDeleteVertexArrays;
         static VertexArrayObject()
         {
             glGenVertexArrays = GL.Instance.GetDelegateFor("glGenVertexArrays", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;

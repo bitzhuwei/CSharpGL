@@ -10,7 +10,7 @@ namespace CSharpGL
     /// </summary>
     public class SamplerParameterf : SamplerParameter
     {
-        private static readonly GLDelegates.void_uint_uint_float glSamplerParameterf;
+        internal static readonly GLDelegates.void_uint_uint_float glSamplerParameterf;
         static SamplerParameterf()
         {
             glSamplerParameterf = GL.Instance.GetDelegateFor("glSamplerParameterf", GLDelegates.typeof_void_uint_uint_float) as GLDelegates.void_uint_uint_float;

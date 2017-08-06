@@ -14,7 +14,7 @@ namespace CSharpGL
         private GLBuffer buffer;
         private bool autoDispose;
 
-        private static readonly GLDelegates.void_uint_uint_uint glTexBuffer;
+        internal static readonly GLDelegates.void_uint_uint_uint glTexBuffer;
         static TexBufferStorage()
         {
             glTexBuffer = GL.Instance.GetDelegateFor("glTexBuffer", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;

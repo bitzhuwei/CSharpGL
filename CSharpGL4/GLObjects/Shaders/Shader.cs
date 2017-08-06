@@ -11,12 +11,12 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class Shader : IDisposable
     {
-        private static readonly GLDelegates.uint_uint glCreateShader;
-        private static readonly GLDelegates.void_uint_int_stringN_intN glShaderSource;
-        private static readonly GLDelegates.void_uint glCompileShader;
-        private static readonly GLDelegates.void_uint glDeleteShader;
-        private static readonly GLDelegates.void_uint_uint_intN glGetShaderiv;
-        private static readonly GLDelegates.void_uint_int_IntPtr_StringBuilder glGetShaderInfoLog;
+        internal static readonly GLDelegates.uint_uint glCreateShader;
+        internal static readonly GLDelegates.void_uint_int_stringN_intN glShaderSource;
+        internal static readonly GLDelegates.void_uint glCompileShader;
+        internal static readonly GLDelegates.void_uint glDeleteShader;
+        internal static readonly GLDelegates.void_uint_uint_intN glGetShaderiv;
+        internal static readonly GLDelegates.void_uint_int_IntPtr_StringBuilder glGetShaderInfoLog;
         static Shader()
         {
             glCreateShader = GL.Instance.GetDelegateFor("glCreateShader", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;

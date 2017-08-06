@@ -23,13 +23,15 @@ namespace HowTransformFeedbackWorks
         private VertexArrayObject[] renderVAOs = new VertexArrayObject[2];
         private int currentIndex = 0;
 
-        private static readonly vec3[] positions = new vec3[4]
+        private static readonly vec3[] positions = new vec3[3]
         {
-            new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0), new vec3(0, 0, -1),
+            new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0),
+            //new vec3(0, 0, -1),
         };
-        private static readonly vec3[] velocitys = new vec3[4]
+        private static readonly vec3[] velocitys = new vec3[3]
         {
-            new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0), new vec3(0, 0, -1),
+            new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0), 
+            //new vec3(0, 0, -1),
         };
 
         public SimpleTransformFeedBackNode()
@@ -69,7 +71,7 @@ namespace HowTransformFeedbackWorks
                 }
                 for (int i = 0; i < 2; i++)
                 {
-                    IndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
+                    IndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, positions.Length);
                     this.indexBuffers[i] = buffer;
                 }
             }
@@ -108,10 +110,11 @@ namespace HowTransformFeedbackWorks
                 TransformFeedbackObject tf = this.transformFeedbackObject;
                 tf.Bind();
                 {
+                    tf.Begin(DrawMode.Triangles);
+
                     tf.BindBuffer(0, this.positionBuffers[(currentIndex + 1) % 2].BufferId);
                     tf.BindBuffer(1, this.velocityBuffers[(currentIndex + 1) % 2].BufferId);
 
-                    tf.Begin(DrawMode.Quads);
                     program.Bind();
                     program.PushUniforms();
                     vao.Render();
