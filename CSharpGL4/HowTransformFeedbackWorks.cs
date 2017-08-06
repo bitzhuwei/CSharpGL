@@ -49,12 +49,7 @@ namespace CSharpGL
 
             program.Bind();
 
-            var vao = new uint[1];
-            VertexArrayObject.glGenVertexArrays(1, vao);
-            VertexArrayObject.glBindVertexArray(vao[0]);
-
             var data = new float[] { 1, 2, 3, 4, 5 };
-
             //var vbo = new uint[1];
             //VertexBuffer.glGenBuffers(1, vbo);
             //VertexBuffer.glBindBuffer(GL.GL_ARRAY_BUFFER, vbo[0]);
@@ -65,6 +60,11 @@ namespace CSharpGL
             //    pinned.Free();
             //}
             VertexBuffer vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
+
+            var vao = new uint[1];
+            VertexArrayObject.glGenVertexArrays(1, vao);
+            VertexArrayObject.glBindVertexArray(vao[0]);
+
             vbo.Bind();
 
             uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program.ProgramId, "inValue");
