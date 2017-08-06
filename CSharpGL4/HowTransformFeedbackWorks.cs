@@ -38,9 +38,8 @@ namespace CSharpGL
         public static void Run()
         {
             // Compile shader
-            uint shader = Shader.glCreateShader(GL.GL_VERTEX_SHADER);
-            Shader.glShaderSource(shader, 1, new string[] { vertexShaderSrc }, null);
-            Shader.glCompileShader(shader);
+            var shader = new VertexShader(vertexShaderSrc, "inValue");
+            shader.Initialize();
 
             // Create program and specify transform feedback variables
             uint program = ShaderProgram.glCreateProgram();
@@ -48,7 +47,7 @@ namespace CSharpGL
             var feedbackVaryings = new string[] { "outValue" };
             TransformFeedbackObject.glTransformFeedbackVaryings(program, 1, feedbackVaryings, GL.GL_INTERLEAVED_ATTRIBS);
 
-            ShaderProgram.glAttachShader(program, shader);
+            ShaderProgram.glAttachShader(program, shader.ShaderId);
 
             ShaderProgram.glLinkProgram(program);
             ShaderProgram.glUseProgram(program);
