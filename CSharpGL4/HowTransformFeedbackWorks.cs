@@ -65,9 +65,8 @@ namespace CSharpGL
             VertexArrayObject.glGenVertexArrays(1, vao);
             VertexArrayObject.glBindVertexArray(vao[0]);
 
-            vbo.Bind();
-
             uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program.ProgramId, "inValue");
+            vbo.Bind();
             VertexBuffer.glEnableVertexAttribArray(inputAttrib);
             VertexBuffer.glVertexAttribPointer(inputAttrib, 1, GL.GL_FLOAT, false, 0, IntPtr.Zero);
 
