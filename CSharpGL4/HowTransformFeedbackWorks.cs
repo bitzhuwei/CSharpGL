@@ -27,6 +27,13 @@ namespace CSharpGL
 
             // Create program and specify transform feedback variables
             var program = new ShaderProgram();
+
+            var feedbackVaryings = new string[] { "outValue" };
+            TransformFeedbackObject.glTransformFeedbackVaryings(program.ProgramId, 1, feedbackVaryings, GL.GL_INTERLEAVED_ATTRIBS);
+
+            program.Initialize(shader);
+
+
         }
         public static void Run()
         {
