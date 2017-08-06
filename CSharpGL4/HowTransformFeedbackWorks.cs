@@ -72,19 +72,20 @@ namespace CSharpGL
             VertexBuffer.glVertexAttribPointer(inputAttrib, 1, GL.GL_FLOAT, false, 0, IntPtr.Zero);
 
             // Create transform feedback buffer
-            var tbo = new uint[1];
-            VertexBuffer.glGenBuffers(1, tbo);
-            VertexBuffer.glBindBuffer(GL.GL_ARRAY_BUFFER, tbo[0]);
-            {
-                GCHandle pinned = GCHandle.Alloc(data, GCHandleType.Pinned);
-                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(data, 0);
-                VertexBuffer.glBufferData(GL.GL_ARRAY_BUFFER, sizeof(float) * data.Length, IntPtr.Zero, GL.GL_STATIC_READ);
-                pinned.Free();
-            }
+            //var tbo = new uint[1];
+            //VertexBuffer.glGenBuffers(1, tbo);
+            //VertexBuffer.glBindBuffer(GL.GL_ARRAY_BUFFER, tbo[0]);
+            //{
+            //    GCHandle pinned = GCHandle.Alloc(data, GCHandleType.Pinned);
+            //    IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(data, 0);
+            //    VertexBuffer.glBufferData(GL.GL_ARRAY_BUFFER, sizeof(float) * data.Length, IntPtr.Zero, GL.GL_STATIC_READ);
+            //    pinned.Free();
+            //}
+            VertexBuffer tbo = VertexBuffer.Create(typeof(float), data.Length, VBOConfig.Float, BufferUsage.StaticRead);
 
             GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-            TransformFeedbackObject.glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo[0]);
+            TransformFeedbackObject.glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo.BufferId);
 
             TransformFeedbackObject.glBeginTransformFeedback(GL.GL_POINTS);
             GL.Instance.DrawArrays(GL.GL_POINTS, 0, data.Length);
