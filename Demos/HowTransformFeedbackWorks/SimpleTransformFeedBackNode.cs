@@ -102,6 +102,7 @@ namespace HowTransformFeedbackWorks
         {
             // update
             {
+                GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
                 ShaderProgram program = this.updateProgram;
                 VertexArrayObject vao = this.updateVAOs[currentIndex];
                 TransformFeedbackObject tf = this.transformFeedbackObject;
@@ -118,6 +119,17 @@ namespace HowTransformFeedbackWorks
                     tf.End();
                 }
                 tf.Unbind();
+                GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
+            }
+            unsafe
+            {
+                var array = (vec3*)this.positionBuffers[(currentIndex + 1) % 2].MapBuffer(MapBufferAccess.ReadOnly);
+                var data = new vec3[this.positionBuffers[(currentIndex + 1) % 2].Length];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = array[i];
+                }
+                this.positionBuffers[(currentIndex + 1) % 2].UnmapBuffer();
             }
             // render
             {

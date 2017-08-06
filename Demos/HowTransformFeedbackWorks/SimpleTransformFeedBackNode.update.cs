@@ -16,7 +16,7 @@ in vec3 inVelocity;// world space.
 out vec3 outPosition;// world space
 out vec3 outVelocity;// world space
 
-uniform float time = 0.1;
+uniform float time = 0.01;
 
 void main()
 {
