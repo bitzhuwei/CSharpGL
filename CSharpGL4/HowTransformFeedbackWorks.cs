@@ -42,15 +42,12 @@ namespace CSharpGL
             shader.Initialize();
 
             // Create program and specify transform feedback variables
-            uint program = ShaderProgram.glCreateProgram();
-
+            var program = new ShaderProgram();
             var feedbackVaryings = new string[] { "outValue" };
-            TransformFeedbackObject.glTransformFeedbackVaryings(program, 1, feedbackVaryings, GL.GL_INTERLEAVED_ATTRIBS);
+            TransformFeedbackObject.glTransformFeedbackVaryings(program.ProgramId, 1, feedbackVaryings, GL.GL_INTERLEAVED_ATTRIBS);
+            program.Initialize(shader);
 
-            ShaderProgram.glAttachShader(program, shader.ShaderId);
-
-            ShaderProgram.glLinkProgram(program);
-            ShaderProgram.glUseProgram(program);
+            program.Bind();
 
             var vao = new uint[1];
             VertexArrayObject.glGenVertexArrays(1, vao);
@@ -68,7 +65,7 @@ namespace CSharpGL
                 pinned.Free();
             }
 
-            uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program, "inValue");
+            uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program.ProgramId, "inValue");
             VertexBuffer.glEnableVertexAttribArray(inputAttrib);
             VertexBuffer.glVertexAttribPointer(inputAttrib, 1, GL.GL_FLOAT, false, 0, IntPtr.Zero);
 
