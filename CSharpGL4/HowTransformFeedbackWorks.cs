@@ -80,7 +80,7 @@ namespace CSharpGL
             GL.Instance.Flush();
 
             // Fetch and print results
-            var feedback = new float[data.Length];
+            var feedback = new float[data.Length]; // all are 0.
             {
                 GCHandle pinned = GCHandle.Alloc(feedback, GCHandleType.Pinned);
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(feedback, 0);
@@ -89,7 +89,7 @@ namespace CSharpGL
                 pinned.Free();
             }
 
-            Console.WriteLine(feedback);
+            Console.WriteLine(feedback); // values changed.
         }
     }
 }
