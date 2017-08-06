@@ -61,14 +61,16 @@ namespace CSharpGL
             //}
             VertexBuffer vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
 
-            var vao = new uint[1];
-            VertexArrayObject.glGenVertexArrays(1, vao);
-            VertexArrayObject.glBindVertexArray(vao[0]);
-
-            uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program.ProgramId, "inValue");
-            vbo.Bind();
-            VertexBuffer.glEnableVertexAttribArray(inputAttrib);
-            VertexBuffer.glVertexAttribPointer(inputAttrib, 1, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            //var vao = new uint[1];
+            //VertexArrayObject.glGenVertexArrays(1, vao);
+            //VertexArrayObject.glBindVertexArray(vao[0]);
+            //uint inputAttrib = (uint)ShaderProgram.glGetAttribLocation(program.ProgramId, "inValue");
+            //vbo.Bind();
+            //VertexBuffer.glEnableVertexAttribArray(inputAttrib);
+            //VertexBuffer.glVertexAttribPointer(inputAttrib, 1, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, data.Length);
+            var vao = new VertexArrayObject(indexBuffer, new VertexShaderAttribute(vbo, "inValue"));
+            vao.Initialize(program);
 
             // Create transform feedback buffer
             //var tbo = new uint[1];
@@ -87,7 +89,10 @@ namespace CSharpGL
             TransformFeedbackObject.glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo.BufferId);
 
             TransformFeedbackObject.glBeginTransformFeedback(GL.GL_POINTS);
-            GL.Instance.DrawArrays(GL.GL_POINTS, 0, data.Length);
+
+            //GL.Instance.DrawArrays(GL.GL_POINTS, 0, data.Length);
+            vao.Render();
+
             TransformFeedbackObject.glEndTransformFeedback();
 
             GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
