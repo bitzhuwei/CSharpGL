@@ -17,7 +17,7 @@ namespace CSharpGL
         //void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
         internal static readonly GLDelegates.void_uint_uint_uint_int_int glBindBufferRange;
         //void glTransformFeedbackVaryings(uint program, int count, string[] varyings, uint bufferMode);
-        internal static readonly GLDelegates.void_uint_int_stringN_uint glTransformFeedbackVaryings;
+        //internal static readonly GLDelegates.void_uint_int_stringN_uint glTransformFeedbackVaryings;
         //void glGetTransformFeedbackVarying(uint program, uint index, int bufSize, int[] length, int[] size, uint[] type, string name);
         internal static readonly GLDelegates.void_uint_uint_int_intN_intN_uintN_string glGetTransformFeedbackVarying;
         internal static readonly GLDelegates.void_uint glBeginTransformFeedback;
@@ -32,7 +32,7 @@ namespace CSharpGL
             glDeleteTransformFeedbacks = GL.Instance.GetDelegateFor("glDeleteTransformFeedbacks", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindBufferBase = GL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
             glBindBufferRange = GL.Instance.GetDelegateFor("glBindBufferRange", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
-            glTransformFeedbackVaryings = GL.Instance.GetDelegateFor("glTransformFeedbackVaryings", GLDelegates.typeof_void_uint_int_stringN_uint) as GLDelegates.void_uint_int_stringN_uint;
+            //glTransformFeedbackVaryings = GL.Instance.GetDelegateFor("glTransformFeedbackVaryings", GLDelegates.typeof_void_uint_int_stringN_uint) as GLDelegates.void_uint_int_stringN_uint;
             glGetTransformFeedbackVarying = GL.Instance.GetDelegateFor("glGetTransformFeedbackVarying", GLDelegates.typeof_void_uint_uint_int_intN_intN_uintN_string) as GLDelegates.void_uint_uint_int_intN_intN_uintN_string;
             glBeginTransformFeedback = GL.Instance.GetDelegateFor("glBeginTransformFeedback", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glPauseTransformFeedback = GL.Instance.GetDelegateFor("glPauseTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;

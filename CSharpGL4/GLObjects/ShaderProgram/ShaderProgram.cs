@@ -40,6 +40,39 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public enum BufferMode : uint
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            Separate = GL.GL_SEPARATE_ATTRIBS,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            InterLeaved = GL.GL_INTERLEAVED_ATTRIBS,
+        }
+
+        /// <summary>
+        /// Initialize this shader program object.
+        /// </summary>
+        /// <param name="feedbackVaryings"></param>
+        /// <param name="mode"></param>
+        /// <param name="shaders"></param>
+        public void Initialize(string[] feedbackVaryings, BufferMode mode, params Shader[] shaders)
+        {
+            if (glTransformFeedbackVaryings == null)
+            {
+                glTransformFeedbackVaryings = GL.Instance.GetDelegateFor("glTransformFeedbackVaryings", GLDelegates.typeof_void_uint_int_stringN_uint) as GLDelegates.void_uint_int_stringN_uint;
+            }
+            glTransformFeedbackVaryings(this.ProgramId, 1, feedbackVaryings, (uint)mode);
+
+            this.Initialize(shaders);
+        }
+
+        /// <summary>
         /// Initialize this shader program object.
         /// </summary>
         /// <param name="shaders"></param>

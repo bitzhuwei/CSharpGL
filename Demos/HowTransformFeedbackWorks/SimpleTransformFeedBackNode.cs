@@ -39,16 +39,11 @@ namespace HowTransformFeedbackWorks
             {
                 var vs = new VertexShader(updateVert, inPosition, inVelocity);
                 var program = new ShaderProgram();
-                var tf = new TransformFeedbackObject();
-                tf.Bind();
-                {
-                    var capture = new string[] { outPosition, outVelocity };
-                    tf.TransformFeedbackVaryings(capture, program, TransformFeedbackObject.BufferMode.Separate);
-                    program.Initialize(vs);
-                }
-                tf.Unbind();
-
+                var capture = new string[] { outPosition, outVelocity };
+                program.Initialize(capture, ShaderProgram.BufferMode.Separate, vs);
                 this.updateProgram = program;
+
+                var tf = new TransformFeedbackObject();
                 this.transformFeedbackObject = tf;
             }
             {

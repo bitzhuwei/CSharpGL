@@ -55,16 +55,10 @@ namespace ParticleSystem.TransformFeedback
             {
                 var vs = new VertexShader(updateVert, "inposition", "invelocity");
                 var program = new ShaderProgram();
-                var tf = new TransformFeedbackObject();
-                tf.Bind();
-                {
-                    var varying_names = new string[] { "outposition", "outvelocity" };
-                    //tf.Capture(varying_names, program, TransformFeedbackObject.BufferMode.Separate);
-                    tf.TransformFeedbackVaryings(varying_names, program, TransformFeedbackObject.BufferMode.Separate);
-                    program.Initialize(vs);
-                }
-                tf.Unbind();
+                var varying_names = new string[] { "outposition", "outvelocity" };
+                program.Initialize(varying_names, ShaderProgram.BufferMode.Separate, vs);
                 this.updateProgram = program;
+                var tf = new TransformFeedbackObject();
                 this.transformFeedback = tf;
 
                 int loc = this.updateProgram.GetAttributeLocation("inposition");

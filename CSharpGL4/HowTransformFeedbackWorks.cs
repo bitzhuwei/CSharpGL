@@ -19,22 +19,7 @@ namespace CSharpGL
         outValue = sqrt(inValue);
     }
 ";
-        public static void Run2()
-        {
-            // Compile shader
-            var shader = new VertexShader(vertexShaderSrc, "inValue");
-            shader.Initialize();
 
-            // Create program and specify transform feedback variables
-            var program = new ShaderProgram();
-
-            var feedbackVaryings = new string[] { "outValue" };
-            TransformFeedbackObject.glTransformFeedbackVaryings(program.ProgramId, 1, feedbackVaryings, GL.GL_INTERLEAVED_ATTRIBS);
-
-            program.Initialize(shader);
-
-
-        }
         public static void Run()
         {
             // Compile shader
@@ -44,8 +29,7 @@ namespace CSharpGL
             // Create program and specify transform feedback variables
             var program = new ShaderProgram();
             var feedbackVaryings = new string[] { "outValue" };
-            TransformFeedbackObject.glTransformFeedbackVaryings(program.ProgramId, 1, feedbackVaryings, GL.GL_INTERLEAVED_ATTRIBS);
-            program.Initialize(shader);
+            program.Initialize(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
 
             program.Bind();
 

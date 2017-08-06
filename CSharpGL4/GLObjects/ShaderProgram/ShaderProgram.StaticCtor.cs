@@ -48,6 +48,7 @@ namespace CSharpGL
         internal static GLDelegates.void_int_int_bool_floatN glUniformMatrix3fv;
         internal static GLDelegates.void_int_int_bool_floatN glUniformMatrix4fv;
         internal static GLDelegates.int_uint_string glGetUniformLocation;
+        internal static GLDelegates.void_uint_int_stringN_uint glTransformFeedbackVaryings;
 
         static ShaderProgram()
         {
