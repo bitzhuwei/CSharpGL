@@ -95,7 +95,7 @@ namespace ParticleSystem.TransformFeedback
                 {
                     {
                         RenderUnit unit1 = this.dataNodes[1].RenderUnits[updateUnit];
-                        var attributes = unit1.VertexArrayObject.VertexAttributeBuffers;
+                        var attributes = unit1.VertexArrayObject.VertexAttributes;
                         for (uint i = 0; i < attributes.Length; i++)
                         {
                             tf.BindBuffer(i, attributes[i].Buffer.BufferId);
