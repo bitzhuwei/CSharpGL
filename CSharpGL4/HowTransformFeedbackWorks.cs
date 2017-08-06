@@ -24,7 +24,6 @@ namespace CSharpGL
         {
             // Compile shader
             var shader = new VertexShader(vertexShaderSrc, "inValue");
-            shader.Initialize();
 
             // Create program and specify transform feedback variables
             var program = new ShaderProgram();
