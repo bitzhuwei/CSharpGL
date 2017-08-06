@@ -75,11 +75,25 @@ namespace CSharpGL
         /// <param name="attributeNames"></param>
         /// <param name="program"></param>
         /// <param name="bufferMode"></param>
+        public void TransformFeedbackVaryings(string[] attributeNames, ShaderProgram program, BufferMode bufferMode)
+        {
+            glTransformFeedbackVaryings(program.ProgramId, attributeNames.Length, attributeNames, (uint)bufferMode);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attributeNames"></param>
+        /// <param name="program"></param>
+        /// <param name="bufferMode"></param>
         public void Capture(string[] attributeNames, ShaderProgram program, BufferMode bufferMode)
         {
             this.Bind();
             glTransformFeedbackVaryings(program.ProgramId, attributeNames.Length, attributeNames, (uint)bufferMode);
+            // TODO: attribute locations missed after this link.
             ShaderProgram.glLinkProgram(program.ProgramId);
+            program.CheckLinkStatus();
+
             this.Unbind();
         }
 

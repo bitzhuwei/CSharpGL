@@ -31,6 +31,15 @@ namespace CSharpGL
         private readonly Dictionary<string, int> attributeNamesToLocations = new Dictionary<string, int>();
 
         /// <summary>
+        /// 
+        /// </summary>
+        public ShaderProgram()
+        {
+            uint programId = glCreateProgram();
+            this.ProgramId = programId;
+        }
+
+        /// <summary>
         /// Initialize this shader program object.
         /// </summary>
         /// <param name="shaders"></param>
@@ -42,8 +51,7 @@ namespace CSharpGL
             }
 
             //if (shaders.Length < 1) { throw new ArgumentException(); }
-
-            uint programId = glCreateProgram();
+            uint programId = this.ProgramId;
 
             foreach (Shader item in shaders)
             {
@@ -52,13 +60,7 @@ namespace CSharpGL
 
             glLinkProgram(programId);
 
-            if (this.GetLinkStatus(programId) == false)
-            {
-                string log = this.GetInfoLog(programId);
-                throw new Exception(
-                    string.Format("Failed to compile shader with ID {0}: {1}",
-                        programId.ToString(), log));
-            }
+            this.CheckLinkStatus(programId);
 
             foreach (Shader item in shaders)
             {
@@ -76,6 +78,25 @@ namespace CSharpGL
                     this.uniformVariables.Add(var.VarName, var);
                 }
             }
+        }
+
+        private void CheckLinkStatus(uint id)
+        {
+            if (this.GetLinkStatus(id) == false)
+            {
+                string log = this.GetInfoLog(id);
+                throw new Exception(
+                    string.Format("Failed to compile shader with ID {0}: {1}",
+                        id.ToString(), log));
+            }
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CheckLinkStatus()
+        {
+            this.CheckLinkStatus(this.ProgramId);
         }
 
         /// <summary>

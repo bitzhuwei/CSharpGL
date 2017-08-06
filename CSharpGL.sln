@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticleSystem.TransformFee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBook.TransformFeedback.ParticleSystem", "Demos\RedBook.TransformFeedback.ParticleSystem\RedBook.TransformFeedback.ParticleSystem.csproj", "{9D56B0DE-ABE1-4FB4-935B-A1EDA97C2C13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowTransformFeedbackWorks", "Demos\HowTransformFeedbackWorks\HowTransformFeedbackWorks.csproj", "{665098AF-D0AD-44F1-9BC1-265AD559C1FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{9D56B0DE-ABE1-4FB4-935B-A1EDA97C2C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D56B0DE-ABE1-4FB4-935B-A1EDA97C2C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D56B0DE-ABE1-4FB4-935B-A1EDA97C2C13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,5 +224,6 @@ Global
 		{A37A407D-6489-4F5C-BA2A-B50A87942592} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{5F581792-C2EF-4E89-9019-25DD1212E648} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{9D56B0DE-ABE1-4FB4-935B-A1EDA97C2C13} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{665098AF-D0AD-44F1-9BC1-265AD559C1FC} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
