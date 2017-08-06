@@ -49,7 +49,9 @@ namespace CSharpGL
         /// <param name="bufferId"></param>
         public void BindBuffer(uint index, uint bufferId)
         {
+            this.Bind();
             glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, index, bufferId);
+            this.Unbind();
         }
 
         /// <summary>

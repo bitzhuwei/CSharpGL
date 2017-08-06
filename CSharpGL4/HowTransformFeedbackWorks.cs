@@ -41,9 +41,7 @@ namespace CSharpGL
             VertexBuffer tbo = VertexBuffer.Create(typeof(float), data.Length, VBOConfig.Float, BufferUsage.StaticRead);
 
             var tfo = new TransformFeedbackObject();
-            tfo.Bind();
-            TransformFeedbackObject.glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo.BufferId);
-            tfo.Unbind();
+            tfo.BindBuffer(0, tbo.BufferId);
 
             GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
