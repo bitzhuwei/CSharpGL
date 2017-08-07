@@ -3,14 +3,14 @@
     partial class FormMain
     {
         /// <summary>
-        /// 必需的设计器变量。
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// 清理所有正在使用的资源。
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,20 +20,54 @@
             base.Dispose(disposing);
         }
 
-        #region Windows 窗体设计器生成的代码
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// 设计器支持所需的方法 - 不要
-        /// 使用代码编辑器修改此方法的内容。
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // winGLCanvas1
+            // 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.winGLCanvas1.Location = new System.Drawing.Point(12, 38);
+            this.winGLCanvas1.Name = "winGLCanvas1";
+            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
+            this.winGLCanvas1.Size = new System.Drawing.Size(961, 527);
+            this.winGLCanvas1.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 40;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // FormMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(985, 577);
+            this.Controls.Add(this.winGLCanvas1);
+            this.Name = "FormMain";
+            this.Text = "Color Coded Picking - CSharpGL";
+            ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private CSharpGL.WinGLCanvas winGLCanvas1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
-
