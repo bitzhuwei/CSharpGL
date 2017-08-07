@@ -62,7 +62,21 @@ namespace CSharpGL
 
         class DemoNode : ModernNode
         {
-            public DemoNode(IBufferSource model, params RenderUnitBuilder[] builders)
+            public static DemoNode Create()
+            {
+                var shader = new VertexShader(vertexShaderSrc, "inValue");
+                var feedbackVaryings = new string[] { "outValue" };
+                var provider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
+
+                var model = new DataModel();
+                var map = new AttributeMap(); map.Add("inValue", DataModel.inValue);
+                var builder = new RenderUnitBuilder(provider, map);
+                var node = new DemoNode(model, builder);
+                node.Initialize();
+
+                return node;
+            }
+            private DemoNode(IBufferSource model, params RenderUnitBuilder[] builders)
                 : base(model, builders)
             { }
 
@@ -85,16 +99,7 @@ namespace CSharpGL
         public static void Run()
         {
             // Compile shader
-            var shader = new VertexShader(vertexShaderSrc, "inValue");
-
-            var feedbackVaryings = new string[] { "outValue" };
-            var provider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
-
-            var model = new DataModel();
-            var map = new AttributeMap(); map.Add("inValue", DataModel.inValue);
-            var builder = new RenderUnitBuilder(provider, map);
-            var node = new DemoNode(model, builder);
-            node.Initialize();
+            DemoNode node = DemoNode.Create();
 
             // Create transform feedback buffer
             const int length = 5;
