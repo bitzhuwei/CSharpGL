@@ -22,7 +22,13 @@ namespace CSharpGL
     /// </summary>
     public class ShaderArray : IShaderProgramProvider
     {
+        private string[] feedbackVaryings;
+        private ShaderProgram.BufferMode mode;
         private Shader[] shaders;
+
+        /// <summary>
+        /// result.
+        /// </summary>
         private ShaderProgram program;
 
         /// <summary>
@@ -37,13 +43,31 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="shaders"></param>
+        public ShaderArray(string[] feedbackVaryings, ShaderProgram.BufferMode mode, params Shader[] shaders)
+        {
+            this.feedbackVaryings = feedbackVaryings;
+            this.mode = mode;
+            this.shaders = shaders;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public ShaderProgram GetShaderProgram()
         {
             if (this.program == null)
             {
                 var program = new ShaderProgram();
-                program.Initialize(shaders);
+                if (this.feedbackVaryings != null)
+                {
+                    program.Initialize(this.feedbackVaryings, this.mode, this.shaders);
+                }
+                else
+                {
+                    program.Initialize(this.shaders);
+                }
 
                 this.program = program;
             }

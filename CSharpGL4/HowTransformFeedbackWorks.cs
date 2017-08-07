@@ -19,48 +19,120 @@ namespace CSharpGL
         outValue = sqrt(inValue);
     }
 ";
+        class DataModel : IBufferSource
+        {
+            public const string inValue = "inValue";
+            private VertexBuffer vbo;
 
+            private IndexBuffer indexBuffer;
+
+            private static readonly float[] data = new float[] { 1, 2, 3, 4, 5 };
+
+            #region IBufferSource 成员
+
+            public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+            {
+                if (bufferName == inValue)
+                {
+                    if (this.vbo == null)
+                    {
+                        this.vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
+                    }
+
+                    return this.vbo;
+                }
+                else
+                {
+                    throw new ArgumentException("bufferName");
+                }
+            }
+
+            public IndexBuffer GetIndexBuffer()
+            {
+                if (this.indexBuffer == null)
+                {
+                    this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, data.Length);
+                }
+
+                return this.indexBuffer;
+            }
+
+            #endregion
+        }
+
+        class DemoNode : ModernNode
+        {
+            public DemoNode(IBufferSource model, params RenderUnitBuilder[] builders)
+                : base(model, builders)
+            { }
+
+            public override void RenderBeforeChildren(RenderEventArgs arg)
+            {
+                GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
+
+                RenderUnit unit = this.RenderUnits[0]; //  the only render unit of this node.
+                unit.Render(this.TransformFeedBackObj);
+
+                GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
+            }
+
+            public override void RenderAfterChildren(RenderEventArgs arg)
+            {
+            }
+
+            public TransformFeedbackObject TransformFeedBackObj { get; set; }
+        }
         public static void Run()
         {
             // Compile shader
             var shader = new VertexShader(vertexShaderSrc, "inValue");
 
             // Create program and specify transform feedback variables
-            var program = new ShaderProgram();
+            //var program = new ShaderProgram();
+            //var feedbackVaryings = new string[] { "outValue" };
+            //program.Initialize(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
             var feedbackVaryings = new string[] { "outValue" };
-            program.Initialize(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
+            var provider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
 
-            var data = new float[] { 1, 2, 3, 4, 5 };
-            VertexBuffer vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
+            //var data = new float[] { 1, 2, 3, 4, 5 };
+            //VertexBuffer vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
 
-            var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, data.Length);
-            var vao = new VertexArrayObject(indexBuffer, new VertexShaderAttribute(vbo, "inValue"));
-            vao.Initialize(program);
+            //var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, data.Length);
+            //var vao = new VertexArrayObject(indexBuffer, new VertexShaderAttribute(vbo, "inValue"));
+            //vao.Initialize(program);
+            var model = new DataModel();
+            var map = new AttributeMap(); map.Add("inValue", DataModel.inValue);
+            var builder = new RenderUnitBuilder(provider, map);
+            var node = new DemoNode(model, builder);
+            node.Initialize();
 
             // Create transform feedback buffer
-            VertexBuffer tbo = VertexBuffer.Create(typeof(float), data.Length, VBOConfig.Float, BufferUsage.StaticRead);
+            const int length = 5;
+            VertexBuffer tbo = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, BufferUsage.StaticRead);
 
             var tfo = new TransformFeedbackObject();
+            node.TransformFeedBackObj = tfo;
             tfo.BindBuffer(0, tbo.BufferId);
 
-            GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
+            //GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-            tfo.Bind();
-            program.Bind(); program.PushUniforms();
+            //tfo.Bind();
+            //program.Bind(); program.PushUniforms();
 
-            tfo.Begin(DrawMode.Points);
-            vao.Render();
-            tfo.End();
+            //tfo.Begin(DrawMode.Points);
+            //vao.Render();
+            //tfo.End();
 
-            program.Unbind();
-            tfo.Unbind();
+            //program.Unbind();
+            //tfo.Unbind();
 
-            GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
+            //GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
+            node.RenderBeforeChildren(null);
 
             GL.Instance.Flush();
 
             // Fetch and print results
-            var feedback = new float[data.Length]; // all are 0.
+            var feedback = new float[length]; // all are 0.
             {
                 GCHandle pinned = GCHandle.Alloc(feedback, GCHandleType.Pinned);
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(feedback, 0);
