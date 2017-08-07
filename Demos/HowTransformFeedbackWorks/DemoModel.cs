@@ -9,15 +9,15 @@ namespace HowTransformFeedbackWorks
     partial class DemoModel : IBufferSource
     {
         public const string inPosition = "inPosition";
+        public const string inPosition2 = "inPosition2";
         public const string inVelocity = "inVelocity";
-        public const string outPosition = "outPosition";
-        public const string outVelocity = "outVelocity";
-        private VertexBuffer[] positionBuffers = new VertexBuffer[2];
-        private VertexBuffer[] velocityBuffers = new VertexBuffer[2];
-        private IndexBuffer[] indexBuffers = new IndexBuffer[2];
-        private VertexArrayObject[] updateVAOs = new VertexArrayObject[2];
-        private VertexArrayObject[] renderVAOs = new VertexArrayObject[2];
-        private int currentIndex = 0;
+        public const string inVelocity2 = "inVelocity2";
+        private VertexBuffer positionBuffer;
+        private VertexBuffer positionBuffer2;
+        private VertexBuffer velocityBuffer;
+        private VertexBuffer velocityBuffer2;
+
+        private IndexBuffer indexBuffer;
 
         private static readonly vec3[] positions = new vec3[3];
         //{
@@ -35,12 +35,56 @@ namespace HowTransformFeedbackWorks
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
-            throw new NotImplementedException();
+            if (bufferName == inPosition)
+            {
+                if (this.positionBuffer == null)
+                {
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
+                }
+
+                return this.positionBuffer;
+            }
+            else if (bufferName == inPosition2)
+            {
+                if (this.positionBuffer2 == null)
+                {
+                    this.positionBuffer2 = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
+                }
+
+                return this.positionBuffer2;
+            }
+            else if (bufferName == inVelocity)
+            {
+                if (this.velocityBuffer == null)
+                {
+                    this.velocityBuffer = velocitys.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
+                }
+
+                return this.velocityBuffer;
+            }
+            else if (bufferName == inVelocity2)
+            {
+                if (this.velocityBuffer2 == null)
+                {
+                    this.velocityBuffer2 = velocitys.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
+                }
+
+                return this.velocityBuffer2;
+            }
+            else
+            {
+                throw new ArgumentException("bufferName");
+            }
         }
 
         public IndexBuffer GetIndexBuffer()
         {
-            throw new NotImplementedException();
+            if (this.indexBuffer == null)
+            {
+                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, positions.Length);
+            }
+
+            return this.indexBuffer;
         }
 
         #endregion
