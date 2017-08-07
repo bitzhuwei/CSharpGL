@@ -52,7 +52,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public void Render()
+        /// <param name="transformFeedbackObj"></param>
+        public void Render(TransformFeedbackObject transformFeedbackObj = null)
         {
             ShaderProgram program = this.Program;
 
@@ -62,7 +63,17 @@ namespace CSharpGL
 
             this.StateList.On();
 
+            if (transformFeedbackObj != null)
+            {
+                transformFeedbackObj.Bind();
+                transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode);
+            }
             this.VertexArrayObject.Render();
+            if (transformFeedbackObj != null)
+            {
+                transformFeedbackObj.End();
+                transformFeedbackObj.Unbind();
+            }
 
             this.StateList.Off();
 
