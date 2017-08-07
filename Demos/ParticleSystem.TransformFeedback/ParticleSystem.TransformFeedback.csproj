@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DemoModel.cs" />
+    <Compile Include="DemoNode.cs" />
+    <Compile Include="DemoNode.render.cs" />
+    <Compile Include="DemoNode.update.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
