@@ -45,17 +45,15 @@ namespace CSharpGL
 
             GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-            program.Bind();
-
             tfo.Bind();
+            program.Bind();
 
             tfo.Begin(DrawMode.Points);
             vao.Render();
             tfo.End();
 
-            tfo.Unbind();
-
             program.Unbind();
+            tfo.Unbind();
 
             GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
 
