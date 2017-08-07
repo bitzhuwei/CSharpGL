@@ -116,16 +116,29 @@ namespace CSharpGL
             GL.Instance.Flush();
 
             // Fetch and print results
-            var feedback = new float[length]; // all are 0.
             {
+                var feedback = new float[length]; // all are 0.
                 GCHandle pinned = GCHandle.Alloc(feedback, GCHandleType.Pinned);
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(feedback, 0);
                 var glGetBufferSubData = GL.Instance.GetDelegateFor("glGetBufferSubData", GLDelegates.typeof_void_uint_uint_uint_IntPtr) as GLDelegates.void_uint_uint_uint_IntPtr;
-                glGetBufferSubData(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, (uint)(sizeof(float) * feedback.Length), header);
+                glGetBufferSubData(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, (uint)(sizeof(float) * length), header);
                 pinned.Free();
+
+                Console.WriteLine(feedback); // values changed.
+            }
+            unsafe
+            {
+                var array = (float*)tbo.MapBuffer(MapBufferAccess.ReadOnly);
+                var feedback = new float[length]; // all are 0.
+                for (int i = 0; i < tbo.Length; i++)
+                {
+                    feedback[i] = array[i];
+                }
+                tbo.UnmapBuffer();
+
+                Console.WriteLine(feedback); // values changed.
             }
 
-            Console.WriteLine(feedback); // values changed.
         }
     }
 }
