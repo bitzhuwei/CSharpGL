@@ -58,9 +58,69 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="mode"></param>
-        public void Begin(DrawMode mode)
+        /// <returns></returns>
+        public bool Begin(DrawMode mode)
         {
-            glBeginTransformFeedback((uint)mode);
+            bool sucessful = false;
+            switch (mode)
+            {
+                case DrawMode.Points:
+                    glBeginTransformFeedback((uint)DrawMode.Points);
+                    sucessful = true;
+                    break;
+                case DrawMode.Lines:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.LineLoop:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.LineStrip:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.Triangles:
+                    glBeginTransformFeedback((uint)DrawMode.Triangles);
+                    sucessful = true;
+                    break;
+                case DrawMode.TriangleStrip:
+                    glBeginTransformFeedback((uint)DrawMode.Triangles);
+                    sucessful = true;
+                    break;
+                case DrawMode.TriangleFan:
+                    glBeginTransformFeedback((uint)DrawMode.Triangles);
+                    sucessful = true;
+                    break;
+                case DrawMode.Quads:
+                    break;
+                case DrawMode.QuadStrip:
+                    break;
+                case DrawMode.Polygon:
+                    break;
+                case DrawMode.LinesAdjacency:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.LineStripAdjacency:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.TrianglesAdjacency:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.TriangleStripAdjacency:
+                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    sucessful = true;
+                    break;
+                case DrawMode.Patches:
+                    break;
+                default:
+                    break;
+            }
+
+            return sucessful;
         }
 
         /// <summary>

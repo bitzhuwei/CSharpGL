@@ -66,7 +66,10 @@ namespace CSharpGL
             if (transformFeedbackObj != null)
             {
                 transformFeedbackObj.Bind();
-                transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode);
+                if (!transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode))
+                {
+                    throw new Exception(string.Format("{0} not acceptable as input parameter for glBeginTransformFeedback(uint primitiveMode);", this.VertexArrayObject.IndexBuffer.Mode));
+                }
             }
             this.VertexArrayObject.Render();
             if (transformFeedbackObj != null)
