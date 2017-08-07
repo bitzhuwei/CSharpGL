@@ -87,19 +87,9 @@ namespace CSharpGL
             // Compile shader
             var shader = new VertexShader(vertexShaderSrc, "inValue");
 
-            // Create program and specify transform feedback variables
-            //var program = new ShaderProgram();
-            //var feedbackVaryings = new string[] { "outValue" };
-            //program.Initialize(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
             var feedbackVaryings = new string[] { "outValue" };
             var provider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.InterLeaved, shader);
 
-            //var data = new float[] { 1, 2, 3, 4, 5 };
-            //VertexBuffer vbo = data.GenVertexBuffer(VBOConfig.Float, BufferUsage.StaticDraw);
-
-            //var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, data.Length);
-            //var vao = new VertexArrayObject(indexBuffer, new VertexShaderAttribute(vbo, "inValue"));
-            //vao.Initialize(program);
             var model = new DataModel();
             var map = new AttributeMap(); map.Add("inValue", DataModel.inValue);
             var builder = new RenderUnitBuilder(provider, map);
@@ -114,19 +104,6 @@ namespace CSharpGL
             node.TransformFeedBackObj = tfo;
             tfo.BindBuffer(0, tbo.BufferId);
 
-            //GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
-
-            //tfo.Bind();
-            //program.Bind(); program.PushUniforms();
-
-            //tfo.Begin(DrawMode.Points);
-            //vao.Render();
-            //tfo.End();
-
-            //program.Unbind();
-            //tfo.Unbind();
-
-            //GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             node.RenderBeforeChildren(null);
 
             GL.Instance.Flush();
