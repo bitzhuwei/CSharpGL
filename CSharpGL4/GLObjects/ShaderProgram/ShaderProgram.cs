@@ -98,22 +98,20 @@ namespace CSharpGL
             UniformVarInShader[] variables = LoadAllUniformsInShader();
             foreach (var item in variables)
             {
-                UniformVariable var = item.GetUniformVariable(programId);
-                if (var != null)
+                UniformVariable variable = item.GetUniformVariable(programId);
+                if (variable != null)
                 {
-                    this.uniformVariables.Add(var.VarName, var);
+                    this.uniformVariables.Add(variable.VarName, variable);
                 }
             }
         }
 
-        private void CheckLinkStatus(uint id)
+        private void CheckLinkStatus(uint programId)
         {
-            if (this.GetLinkStatus(id) == false)
+            if (this.GetLinkStatus(programId) == false)
             {
-                string log = this.GetInfoLog(id);
-                throw new Exception(
-                    string.Format("Failed to compile shader with ID {0}: {1}",
-                        id.ToString(), log));
+                string log = this.GetInfoLog(programId);
+                throw new Exception(string.Format("Failed to compile shader with ID {0}: {1}", programId, log));
             }
 
         }
