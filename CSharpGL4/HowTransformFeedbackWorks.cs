@@ -62,7 +62,9 @@ namespace CSharpGL
 
         class DemoNode : ModernNode
         {
-            public static DemoNode Create()
+            private TransformFeedbackObject transformFeedBackObj;
+
+            public static DemoNode Create(TransformFeedbackObject tfo)
             {
                 var shader = new VertexShader(vertexShaderSrc, "inValue");
                 var feedbackVaryings = new string[] { "outValue" };
@@ -72,6 +74,7 @@ namespace CSharpGL
                 var map = new AttributeMap(); map.Add("inValue", DataModel.inValue);
                 var builder = new RenderUnitBuilder(provider, map);
                 var node = new DemoNode(model, builder);
+                node.transformFeedBackObj = tfo;
                 node.Initialize();
 
                 return node;
@@ -85,7 +88,7 @@ namespace CSharpGL
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
                 RenderUnit unit = this.RenderUnits[0]; //  the only render unit of this node.
-                unit.Render(this.TransformFeedBackObj);
+                unit.Render(this.transformFeedBackObj);
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }
@@ -94,19 +97,18 @@ namespace CSharpGL
             {
             }
 
-            public TransformFeedbackObject TransformFeedBackObj { get; set; }
         }
         public static void Run()
         {
+            var tfo = new TransformFeedbackObject();
+
             // Compile shader
-            DemoNode node = DemoNode.Create();
+            DemoNode node = DemoNode.Create(tfo);
 
             // Create transform feedback buffer
             const int length = 5;
             VertexBuffer tbo = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, BufferUsage.StaticRead);
 
-            var tfo = new TransformFeedbackObject();
-            node.TransformFeedBackObj = tfo;
             tfo.BindBuffer(0, tbo.BufferId);
 
             node.RenderBeforeChildren(null);
