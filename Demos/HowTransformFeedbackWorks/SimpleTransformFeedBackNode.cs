@@ -23,14 +23,14 @@ namespace HowTransformFeedbackWorks
         private VertexArrayObject[] renderVAOs = new VertexArrayObject[2];
         private int currentIndex = 0;
 
-        private static readonly vec3[] positions = new vec3[3]
-        {
-            new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0),
-            //new vec3(0, 0, -1),
-        };
+        private static readonly vec3[] positions = new vec3[3];
+        //{
+        //new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0),
+        //new vec3(0, 0, -1),
+        //};
         private static readonly vec3[] velocitys = new vec3[3]
         {
-            new vec3(1, 0, 0), new vec3(0, 0, 1), new vec3(-1, 0, 0), 
+            new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1), 
             //new vec3(0, 0, -1),
         };
 
@@ -82,8 +82,9 @@ namespace HowTransformFeedbackWorks
                 }
                 for (int i = 0; i < 2; i++)
                 {
-                    var attributes = new VertexShaderAttribute[1];
+                    var attributes = new VertexShaderAttribute[2];
                     attributes[0] = new VertexShaderAttribute(this.positionBuffers[i], inPosition);
+                    attributes[1] = new VertexShaderAttribute(this.velocityBuffers[i], inVelocity);
                     var vao = new VertexArrayObject(this.indexBuffers[i], attributes);
                     vao.Initialize(this.renderProgram);
                     this.renderVAOs[i] = vao;
