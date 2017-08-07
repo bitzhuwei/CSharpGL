@@ -8,16 +8,29 @@ namespace HowTransformFeedbackWorks
 {
     partial class SimpleTransformFeedBackNode
     {
-        private const string updateVert = @"
-    #version 150 core
+        private const string updateVert = @"#version 330
 
-    in float inValue;
-    out float geoValue;
+in vec3 inPosition;// world space.
+in vec3 inVelocity;// world space.
 
-    void main()
+out vec3 outPosition;// world space
+out vec3 outVelocity;// world space
+
+uniform float time = 0.01;
+
+void main()
+{
+    vec3 pos = inPosition + inVelocity * time;
+    if (pos.x >3 || pos.y > 3 || pos.z > 3)
     {
-        geoValue = sqrt(inValue);
+        pos = vec3(0, 0, 0);
     }
+    
+    outPosition = pos;
+    outVelocity = inVelocity;
+
+    gl_Position = vec4(pos, 1); 
+}
 ";
     }
 }

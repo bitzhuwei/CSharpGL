@@ -100,22 +100,24 @@ namespace HowTransformFeedbackWorks
             // update
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
+
+
                 ShaderProgram program = this.updateProgram;
                 VertexArrayObject vao = this.updateVAOs[currentIndex];
                 TransformFeedbackObject tf = this.transformFeedbackObject;
+
+                tf.BindBuffer(0, this.positionBuffers[(currentIndex + 1) % 2].BufferId);
+                tf.BindBuffer(1, this.velocityBuffers[(currentIndex + 1) % 2].BufferId);
+
                 tf.Bind();
+                program.Bind();
+                program.PushUniforms();
                 {
                     tf.Begin(DrawMode.Triangles);
-
-                    tf.BindBuffer(0, this.positionBuffers[(currentIndex + 1) % 2].BufferId);
-                    tf.BindBuffer(1, this.velocityBuffers[(currentIndex + 1) % 2].BufferId);
-
-                    program.Bind();
-                    program.PushUniforms();
                     vao.Render();
-                    program.Unbind();
                     tf.End();
                 }
+                program.Unbind();
                 tf.Unbind();
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }

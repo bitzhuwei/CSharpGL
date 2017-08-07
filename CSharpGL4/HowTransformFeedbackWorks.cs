@@ -46,7 +46,7 @@ namespace CSharpGL
             GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
             tfo.Bind();
-            program.Bind();
+            program.Bind(); program.PushUniforms();
 
             tfo.Begin(DrawMode.Points);
             vao.Render();
