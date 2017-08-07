@@ -13,7 +13,8 @@ namespace ParticleSystem.TransformFeedback
         public const string View = "View";
         private ShaderProgram renderProgram;
         private ShaderProgram updateProgram;
-        private VertexArrayObject[] vaos = new VertexArrayObject[2];
+        private VertexArrayObject[] updateVAOs = new VertexArrayObject[2];
+        private VertexArrayObject[] renderVAOs = new VertexArrayObject[2];
         private VertexBuffer[] positionBuffers = new VertexBuffer[2];
         private VertexBuffer[] velocityBuffers = new VertexBuffer[2];
 
@@ -97,8 +98,16 @@ namespace ParticleSystem.TransformFeedback
                     var attributes = new VertexShaderAttribute[2];
                     attributes[0] = new VertexShaderAttribute(this.positionBuffers[i], "inposition");
                     attributes[1] = new VertexShaderAttribute(this.velocityBuffers[i], "invelocity");
-                    this.vaos[i] = new VertexArrayObject(indexBuffer, attributes);
-                    this.vaos[i].Initialize(this.updateProgram);
+                    this.updateVAOs[i] = new VertexArrayObject(indexBuffer, attributes);
+                    this.updateVAOs[i].Initialize(this.updateProgram);
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, particleCount);
+                    var attributes = new VertexShaderAttribute[1];
+                    attributes[0] = new VertexShaderAttribute(this.positionBuffers[i], "vPosition");
+                    this.renderVAOs[i] = new VertexArrayObject(indexBuffer, attributes);
+                    this.renderVAOs[i].Initialize(this.renderProgram);
                 }
             }
             //{
@@ -141,7 +150,7 @@ namespace ParticleSystem.TransformFeedback
             {
                 TransformFeedbackObject tf = this.transformFeedback;
                 {
-                    var vao = this.vaos[(current_buffer) % 2];
+                    var vao = this.updateVAOs[(current_buffer) % 2];
                     var attributes = vao.VertexAttributes;
                     for (uint i = 0; i < attributes.Length; i++)
                     {
@@ -151,7 +160,7 @@ namespace ParticleSystem.TransformFeedback
 
                 {
                     GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
-                    var vao = this.vaos[(current_buffer + 1) % 2];
+                    var vao = this.updateVAOs[(current_buffer + 1) % 2];
                     {
                         ShaderProgram program = this.updateProgram;
                         program.SetUniform("center", this.center);
@@ -191,7 +200,7 @@ namespace ParticleSystem.TransformFeedback
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
 
-                var vao = this.vaos[(current_buffer) % 2];
+                var vao = this.renderVAOs[(current_buffer) % 2];
                 ShaderProgram program = this.renderProgram;
                 program.SetUniform(Projection, projection);
                 program.SetUniform(View, view * model);
