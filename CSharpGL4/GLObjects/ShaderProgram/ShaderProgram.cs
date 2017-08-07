@@ -95,8 +95,6 @@ namespace CSharpGL
 
             this.CheckLinkStatus(programId);
 
-            this.ProgramId = programId;
-
             UniformVarInShader[] variables = LoadAllUniformsInShader();
             foreach (var item in variables)
             {
