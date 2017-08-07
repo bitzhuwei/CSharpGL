@@ -51,7 +51,7 @@
                 int count = values.Length;
                 var value = new int[count * 2];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x ? 1 : 0;
                     value[index++] = values[i].y ? 1 : 0;
@@ -75,7 +75,7 @@
                 int count = values.Length;
                 var value = new uint[count * 2];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -99,7 +99,7 @@
                 int count = values.Length;
                 var value = new int[count * 2];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -123,7 +123,7 @@
                 int count = values.Length;
                 var value = new float[count * 2];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -147,7 +147,7 @@
                 int count = values.Length;
                 var value = new int[count * 3];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x ? 1 : 0;
                     value[index++] = values[i].y ? 1 : 0;
@@ -172,7 +172,7 @@
                 int count = values.Length;
                 var value = new uint[count * 3];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -197,7 +197,7 @@
                 int count = values.Length;
                 var value = new int[count * 3];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -222,7 +222,7 @@
                 int count = values.Length;
                 var value = new float[count * 3];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -247,7 +247,7 @@
                 int count = values.Length;
                 var value = new int[count * 4];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x ? 1 : 0;
                     value[index++] = values[i].y ? 1 : 0;
@@ -273,7 +273,7 @@
                 int count = values.Length;
                 var value = new uint[count * 4];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -299,7 +299,7 @@
                 int count = values.Length;
                 var value = new int[count * 4];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -325,7 +325,7 @@
                 int count = values.Length;
                 var value = new float[count * 4];
                 int index = 0;
-                for (int i = 0; i < value.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     value[index++] = values[i].x;
                     value[index++] = values[i].y;
@@ -640,24 +640,24 @@
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
-        /// <param name="m"></param>
-        internal int glUniform(string uniformName, mat2[] m)
+        /// <param name="matrixes"></param>
+        internal int glUniform(string uniformName, mat2[] matrixes)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
                 if (glUniformMatrix2fv == null) { glUniformMatrix2fv = GL.Instance.GetDelegateFor("glUniformMatrix2fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
 
-                var values = new float[m.Length * 4];
-                for (int index = 0, i = 0; i < m.Length; i++)
+                var values = new float[matrixes.Length * 4];
+                for (int index = 0, i = 0; i < matrixes.Length; i++)
                 {
-                    float[] array = m[i].ToArray();
-                    for (int j = 0; j < 4; j++)
-                    {
-                        values[index++] = array[j];
-                    }
+                    mat2 matrix = matrixes[i];
+                    values[index++] = matrix.col0.x;
+                    values[index++] = matrix.col0.y;
+                    values[index++] = matrix.col1.x;
+                    values[index++] = matrix.col1.y;
                 }
-                glUniformMatrix2fv(location, m.Length / 4, false, values);
+                glUniformMatrix2fv(location, matrixes.Length, false, values);
             }
             return location;
         }
@@ -665,24 +665,29 @@
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
-        /// <param name="m"></param>
-        internal int glUniform(string uniformName, mat3[] m)
+        /// <param name="matrixes"></param>
+        internal int glUniform(string uniformName, mat3[] matrixes)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
                 if (glUniformMatrix3fv == null) { glUniformMatrix3fv = GL.Instance.GetDelegateFor("glUniformMatrix3fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
 
-                var values = new float[m.Length * 9];
-                for (int index = 0, i = 0; i < m.Length; i++)
+                var values = new float[matrixes.Length * 9];
+                for (int index = 0, i = 0; i < matrixes.Length; i++)
                 {
-                    float[] array = m[i].ToArray();
-                    for (int j = 0; j < 9; j++)
-                    {
-                        values[index++] = array[j];
-                    }
+                    mat3 matrix = matrixes[i];
+                    values[index++] = matrix.col0.x;
+                    values[index++] = matrix.col0.y;
+                    values[index++] = matrix.col0.z;
+                    values[index++] = matrix.col1.x;
+                    values[index++] = matrix.col1.y;
+                    values[index++] = matrix.col1.z;
+                    values[index++] = matrix.col2.x;
+                    values[index++] = matrix.col2.y;
+                    values[index++] = matrix.col2.z;
                 }
-                glUniformMatrix3fv(location, m.Length / 9, false, values);
+                glUniformMatrix3fv(location, matrixes.Length, false, values);
             }
             return location;
         }
@@ -690,24 +695,36 @@
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
-        /// <param name="m"></param>
-        internal int glUniform(string uniformName, mat4[] m)
+        /// <param name="matrixes"></param>
+        internal int glUniform(string uniformName, mat4[] matrixes)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
                 if (glUniformMatrix4fv == null) { glUniformMatrix4fv = GL.Instance.GetDelegateFor("glUniformMatrix4fv", GLDelegates.typeof_void_int_int_bool_floatN) as GLDelegates.void_int_int_bool_floatN; }
 
-                var values = new float[m.Length * 16];
-                for (int index = 0, i = 0; i < m.Length; i++)
+                var values = new float[matrixes.Length * 16];
+                for (int index = 0, i = 0; i < matrixes.Length; i++)
                 {
-                    float[] array = m[i].ToArray();
-                    for (int j = 0; j < 16; j++)
-                    {
-                        values[index++] = array[j];
-                    }
+                    mat4 matrix = matrixes[i];
+                    values[index++] = matrix.col0.x;
+                    values[index++] = matrix.col0.y;
+                    values[index++] = matrix.col0.z;
+                    values[index++] = matrix.col0.w;
+                    values[index++] = matrix.col1.x;
+                    values[index++] = matrix.col1.y;
+                    values[index++] = matrix.col1.z;
+                    values[index++] = matrix.col1.w;
+                    values[index++] = matrix.col2.x;
+                    values[index++] = matrix.col2.y;
+                    values[index++] = matrix.col2.z;
+                    values[index++] = matrix.col2.w;
+                    values[index++] = matrix.col3.x;
+                    values[index++] = matrix.col3.y;
+                    values[index++] = matrix.col3.z;
+                    values[index++] = matrix.col3.w;
                 }
-                glUniformMatrix4fv(location, m.Length / 16, false, values);
+                glUniformMatrix4fv(location, matrixes.Length, false, values);
             }
             return location;
         }

@@ -36,6 +36,8 @@ namespace HowTransformFeedbackWorks
 
         public SimpleTransformFeedBackNode()
         {
+            var tf = new TransformFeedbackObject();
+            this.transformFeedbackObject = tf;
             {
                 var vs = new VertexShader(updateVert, inPosition, inVelocity);
                 var program = new ShaderProgram();
@@ -43,8 +45,6 @@ namespace HowTransformFeedbackWorks
                 program.Initialize(capture, ShaderProgram.BufferMode.Separate, vs);
                 this.updateProgram = program;
 
-                var tf = new TransformFeedbackObject();
-                this.transformFeedbackObject = tf;
             }
             {
                 var vs = new VertexShader(renderVert, inPosition);

@@ -45,6 +45,9 @@ namespace ParticleSystem.TransformFeedback
         /// <param name="particleCount"></param>
         public ParticleSimulatorNode(int particleCount = 128*1024)
         {
+            var tf = new TransformFeedbackObject();
+            this.transformFeedback = tf;
+
             {
                 var vs = new VertexShader(renderVert, vPosition);
                 var gs = new GeometryShader(renderGeom);
@@ -58,10 +61,8 @@ namespace ParticleSystem.TransformFeedback
                 var varying_names = new string[] { "outposition", "outvelocity" };
                 program.Initialize(varying_names, ShaderProgram.BufferMode.Separate, vs);
                 this.updateProgram = program;
-                var tf = new TransformFeedbackObject();
-                this.transformFeedback = tf;
 
-                int loc = this.updateProgram.GetAttributeLocation("inposition");
+                //int loc = this.updateProgram.GetAttributeLocation("inposition");
                 //Console.WriteLine(loc);
                 //loc = this.updateProgram.GetAttributeLocation("invelocity");
                 //Console.WriteLine(loc);
@@ -139,37 +140,36 @@ namespace ParticleSystem.TransformFeedback
             // update
             {
                 TransformFeedbackObject tf = this.transformFeedback;
-                tf.Bind();
                 {
+                    var vao = this.vaos[(current_buffer) % 2];
+                    var attributes = vao.VertexAttributes;
+                    for (uint i = 0; i < attributes.Length; i++)
                     {
-                        var vao = this.vaos[(current_buffer) % 2];
-                        var attributes = vao.VertexAttributes;
-                        for (uint i = 0; i < attributes.Length; i++)
-                        {
-                            tf.BindBuffer(i, attributes[i].Buffer.BufferId);
-                        }
-                    }
-                    {
-                        GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
-                        var vao = this.vaos[(current_buffer + 1) % 2];
-                        tf.Begin(vao.IndexBuffer.Mode);
-                        {
-                            ShaderProgram program = this.updateProgram;
-                            program.SetUniform("center", this.center);
-                            program.SetUniform("radius", this.radius);
-                            program.SetUniform("g", this.g);
-                            program.SetUniform("dt", this.dt);
-                            program.SetUniform("bounce", this.bounce);
-                            program.SetUniform("seed", this.random.Next());
-                            program.Bind();
-                            { vao.Render(); }
-                            program.Unbind();
-                        }
-                        tf.End();
-                        GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
+                        tf.BindBuffer(i, attributes[i].Buffer.BufferId);
                     }
                 }
-                tf.Unbind();
+
+                {
+                    GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
+                    var vao = this.vaos[(current_buffer + 1) % 2];
+                    {
+                        ShaderProgram program = this.updateProgram;
+                        program.SetUniform("center", this.center);
+                        program.SetUniform("radius", this.radius);
+                        program.SetUniform("g", this.g);
+                        program.SetUniform("dt", this.dt);
+                        program.SetUniform("bounce", this.bounce);
+                        program.SetUniform("seed", this.random.Next());
+                        program.Bind(); program.PushUniforms();
+                        tf.Bind();
+                        tf.Begin(vao.IndexBuffer.Mode);
+                        { vao.Render(); }
+                        tf.End();
+                        tf.Unbind();
+                        program.Unbind();
+                    }
+                    GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
+                }
                 //unsafe
                 //{
                 //    var buffer = this.dataNodes[1].RenderUnits[updateUnit].VertexArrayObject.VertexAttributeBuffers[0].Buffer;
@@ -195,7 +195,7 @@ namespace ParticleSystem.TransformFeedback
                 ShaderProgram program = this.renderProgram;
                 program.SetUniform(Projection, projection);
                 program.SetUniform(View, view * model);
-                program.Bind();
+                program.Bind(); program.PushUniforms();
                 { vao.Render(); }
                 program.Unbind();
             }
