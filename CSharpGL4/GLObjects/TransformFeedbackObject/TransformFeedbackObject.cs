@@ -6,7 +6,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// manages <see cref="TransformFeedbackBuffer"/>s.
+    /// manages transform feedback states.
     /// </summary>
     public partial class TransformFeedbackObject : IDisposable
     {
@@ -18,7 +18,7 @@ namespace CSharpGL
         public uint Id { get { return this.ids[0]; } }
 
         /// <summary>
-        /// manages <see cref="TransformFeedbackBuffer"/>s.
+        /// manages transform feedback states.
         /// </summary>
         public TransformFeedbackObject()
         {
