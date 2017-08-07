@@ -6,6 +6,9 @@ using CSharpGL;
 
 namespace HowTransformFeedbackWorks
 {
+    /// <summary>
+    /// totally same with <see cref="DemoNode"/>.
+    /// </summary>
     partial class SimpleTransformFeedBackNode : SceneNodeBase, IRenderable
     {
         private const string inPosition = "inPosition";

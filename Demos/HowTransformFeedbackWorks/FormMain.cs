@@ -35,7 +35,8 @@ namespace HowTransformFeedbackWorks
 
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                var node = new SimpleTransformFeedBackNode();
+                //var node = new SimpleTransformFeedBackNode();
+                var node = DemoNode.Create();
                 var ground = GroundNode.Create();
                 ground.RenderUnits[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
                 var group = new GroupNode(node, ground);
