@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
+    <Compile Include="KleinBottle\KleinBottleModel.cs" />
+    <Compile Include="KleinBottle\KleinBottleNode.shaders.cs" />
+    <Compile Include="KleinBottle\KleinBottleNode.cs" />
     <Compile Include="PLY\PLY.cs" />
     <Compile Include="PLY\PLYNode.cs" />
     <Compile Include="Propeller\FlabellumNode.cs" />
@@ -93,6 +96,7 @@
   <ItemGroup>
     <Content Include="Cube\CubeNode.jpg" />
     <Content Include="Cube\TextureCubeNode.jpg" />
+    <Content Include="KleinBottle\KleinBottle.png" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
@@ -102,6 +106,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="KleinBottle\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
     <None Include="nanosuit.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

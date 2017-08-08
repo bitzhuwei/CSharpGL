@@ -37,7 +37,6 @@
             this.btn18PickingInScene = new System.Windows.Forms.Button();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
-            this.btn25GreyFilter = new System.Windows.Forms.Button();
             this.btn29FixedSize = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -167,20 +166,6 @@
             this.btn23SingleRenderer.UseVisualStyleBackColor = true;
             this.btn23SingleRenderer.Click += new System.EventHandler(this.btn23SingleRenderer_Click);
             // 
-            // btn25GreyFilter
-            // 
-            this.btn25GreyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn25GreyFilter.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn25GreyFilter.Location = new System.Drawing.Point(9, 417);
-            this.btn25GreyFilter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn25GreyFilter.Name = "btn25GreyFilter";
-            this.btn25GreyFilter.Size = new System.Drawing.Size(575, 30);
-            this.btn25GreyFilter.TabIndex = 0;
-            this.btn25GreyFilter.Text = "25 Grey Filter";
-            this.btn25GreyFilter.UseVisualStyleBackColor = true;
-            this.btn25GreyFilter.Click += new System.EventHandler(this.btn25reyFilter_Click);
-            // 
             // btn29FixedSize
             // 
             this.btn29FixedSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -209,7 +194,6 @@
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
             this.Controls.Add(this.btn29FixedSize);
-            this.Controls.Add(this.btn25GreyFilter);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
@@ -230,7 +214,6 @@
         private System.Windows.Forms.Button btn18PickingInScene;
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
-        private System.Windows.Forms.Button btn25GreyFilter;
         private System.Windows.Forms.Button btn29FixedSize;
     }
 }

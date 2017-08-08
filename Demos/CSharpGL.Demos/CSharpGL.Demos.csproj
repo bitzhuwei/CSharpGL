@@ -56,15 +56,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
-    <Compile Include="25GreyFilter\Form25GreyFilter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="25GreyFilter\Form25GreyFilter.Designer.cs">
-      <DependentUpon>Form25GreyFilter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="25GreyFilter\Form25GreyFilter.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="18PickingInScene\UpdatingBoxScript.cs" />
     <Compile Include="23SingleRenderer\DemoRendererFactory.cs" />
     <Compile Include="23SingleRenderer\Form23SingleRenderer.cs">
@@ -143,7 +134,6 @@
     <Compile Include="DemoRendererAttribute.cs" />
     <None Include="Renderers\BufferBlockRenderer.ZeroIndexBuffer.cs.backup" />
     <Compile Include="Renderers\FixedPercentRenderer.cs" />
-    <Compile Include="Renderers\GreyFilterRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingComputeRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\InnerImageProcessingRenderer.cs" />
     <Compile Include="Renderers\KleinBottleRenderer\KleinBottleRenderer.cs" />
@@ -237,12 +227,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\FixedPercent.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\GreyFilterRenderer\GreyFilter.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\GreyFilterRenderer\GreyFilter.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\TrefoilKnotRenderer\TrefoilKnot.frag">
