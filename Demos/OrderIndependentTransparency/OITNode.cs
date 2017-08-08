@@ -60,7 +60,7 @@ namespace OrderIndependentTransparency
         private int canvasHeight = 0;
         private Texture headTexture;
         private PixelUnpackBuffer headClearBuffer;
-        private AtomicCounterBuffer atomicCountBuffer;
+        private AtomicCounterBuffer atomicCounterBuffer;
         private Texture linkedListTexture;
         private DepthTestState depthTestState;
         private CullFaceState cullFaceState;
@@ -136,8 +136,18 @@ namespace OrderIndependentTransparency
                 // another way to do this:
                 //uint data = 1;
                 //AtomicCounterBuffer buffer = data.GenAtomicCounterBuffer(BufferUsage.DynamicCopy);
-                this.atomicCountBuffer = buffer;
+                // Reset atomic counter
+                IntPtr data = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                unsafe
+                {
+                    var array = (uint*)data.ToPointer();
+                    array[0] = 0;
+                }
+                buffer.UnmapBuffer();
+
+                this.atomicCounterBuffer = buffer;
             }
+
             {
                 this.depthTestState = new DepthTestState(false);
                 this.cullFaceState = new CullFaceState(false);
@@ -158,16 +168,6 @@ namespace OrderIndependentTransparency
             {
                 this.cullFaceState.On();
                 this.depthTestState.On();
-            }
-            {
-                // Reset atomic counter
-                IntPtr data = this.atomicCountBuffer.MapBuffer(MapBufferAccess.WriteOnly);
-                unsafe
-                {
-                    var array = (uint*)data.ToPointer();
-                    array[0] = 0;
-                }
-                this.atomicCountBuffer.UnmapBuffer();
             }
             {
                 // Clear head-pointer image
