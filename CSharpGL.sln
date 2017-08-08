@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderIndependentTransparenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowTransformFeedbackWorks", "Demos\HowTransformFeedbackWorks\HowTransformFeedbackWorks.csproj", "{665098AF-D0AD-44F1-9BC1-265AD559C1FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessing.GrayFilter", "Demos\ImageProcessing.GrayFilter\ImageProcessing.GrayFilter.csproj", "{83A8465F-A835-4DF9-87C0-5924943884DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,10 @@ Global
 		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{665098AF-D0AD-44F1-9BC1-265AD559C1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A8465F-A835-4DF9-87C0-5924943884DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A8465F-A835-4DF9-87C0-5924943884DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A8465F-A835-4DF9-87C0-5924943884DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A8465F-A835-4DF9-87C0-5924943884DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +217,6 @@ Global
 		{8B9C9151-9057-44EB-9905-285DD5D622FC} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{A37A407D-6489-4F5C-BA2A-B50A87942592} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{665098AF-D0AD-44F1-9BC1-265AD559C1FC} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{83A8465F-A835-4DF9-87C0-5924943884DA} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
