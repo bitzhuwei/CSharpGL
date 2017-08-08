@@ -125,7 +125,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\TrefoilKnotModel.cs" />
-    <Compile Include="Models\KleinBottleModel.cs" />
     <Compile Include="Models\PlaneModel.cs" />
     <Compile Include="Models\WaterPlaneModel.cs" />
     <Compile Include="Models\RandomPointsModel.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="Renderers\FixedPercentRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingComputeRenderer.cs" />
     <Compile Include="Renderers\ImageProcessingRenderer\InnerImageProcessingRenderer.cs" />
-    <Compile Include="Renderers\KleinBottleRenderer\KleinBottleRenderer.cs" />
     <Compile Include="Renderers\TrefoilKnotRenderer\KleinBottleRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -222,7 +220,6 @@
     <Compile Include="Renderers\SimpleComputeRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Renderers\KleinBottleRenderer\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
     <None Include="shaders\FixedPercent.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -233,12 +230,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\TrefoilKnotRenderer\TrefoilKnot.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\KleinBottleRenderer\KleinBottle.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\KleinBottleRenderer\KleinBottle.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\RandomPoints.frag">
@@ -438,9 +429,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\data\TrefoilKnot.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\data\KleinBottle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\data\water_neg_x.png">

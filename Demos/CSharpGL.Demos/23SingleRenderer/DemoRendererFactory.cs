@@ -26,10 +26,6 @@ namespace CSharpGL.Demos
             {
                 renderer = new ImageProcessingRenderer();
             }
-            else if (rendererType == typeof(KleinBottleRenderer))
-            {
-                renderer = KleinBottleRenderer.Create(new KleinBottleModel());
-            }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {
                 renderer = new ParticleSimulatorRenderer();
