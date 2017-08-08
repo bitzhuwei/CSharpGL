@@ -30,6 +30,7 @@
         {
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.btnOpenImage = new System.Windows.Forms.Button();
+            this.openImageDlg = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +54,11 @@
             this.btnOpenImage.TabIndex = 1;
             this.btnOpenImage.Text = "Open Image ...";
             this.btnOpenImage.UseVisualStyleBackColor = true;
+            this.btnOpenImage.Click += new System.EventHandler(this.btnOpenImage_Click);
+            // 
+            // OpenImageDlg
+            // 
+            this.openImageDlg.Filter = "*.*|*.*";
             // 
             // FormMain
             // 
@@ -72,5 +78,6 @@
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
         private System.Windows.Forms.Button btnOpenImage;
+        private System.Windows.Forms.OpenFileDialog openImageDlg;
     }
 }

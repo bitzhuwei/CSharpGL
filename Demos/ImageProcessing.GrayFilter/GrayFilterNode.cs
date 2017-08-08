@@ -41,13 +41,14 @@ namespace ImageProcessing.GrayFilter
                 g.Clear(Color.Red);
                 g.DrawString("CSharpGL", new Font("宋体", 18F), new SolidBrush(Color.Gold), new PointF(0, 40));
             }
-            bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
             this.UpdateTexture(bitmap);
             bitmap.Dispose();
         }
 
         public void UpdateTexture(Bitmap bitmap)
         {
+            bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+
             var texture = new Texture(TextureTarget.Texture2D,
                 new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap)));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));

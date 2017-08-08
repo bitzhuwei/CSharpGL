@@ -25,7 +25,7 @@ namespace ImageProcessing.GrayFilter
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(1, 0.6f, 1);
+            var position = new vec3(0, 0, 3);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -53,6 +53,28 @@ namespace ImageProcessing.GrayFilter
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+        }
+
+        private void btnOpenImage_Click(object sender, EventArgs e)
+        {
+            if (this.openImageDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    string filename = this.openImageDlg.FileName;
+                    var bitmap = new Bitmap(filename);
+                    var node = this.scene.RootElement as GrayFilterNode;
+                    if (node != null)
+                    {
+                        node.UpdateTexture(bitmap);
+                    }
+                    bitmap.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }
