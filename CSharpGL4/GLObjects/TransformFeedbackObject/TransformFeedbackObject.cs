@@ -59,7 +59,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public bool Begin(DrawMode mode)
+        internal void Begin(DrawMode mode)
         {
             bool sucessful = false;
             switch (mode)
@@ -120,9 +120,42 @@ namespace CSharpGL
                     break;
             }
 
-            return sucessful;
+            if (!sucessful)
+            {
+                throw new Exception(string.Format("{0} not acceptable as input parameter for glBeginTransformFeedback(uint primitiveMode);", mode));
+            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        public void Begin(Mode mode)
+        {
+            glBeginTransformFeedback((uint)Mode.Lines);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public enum Mode : uint
+        {
+            /// <summary>
+            /// GL_POINTS = 0x0000;
+            /// </summary>
+            Points = GL.GL_POINTS,
+
+            /// <summary>
+            /// GL_LINES = 0x0001;
+            /// </summary>
+            Lines = GL.GL_LINES,
+
+            /// <summary>
+            /// GL_TRIANGLES = 0x0004;
+            /// </summary>
+            Triangles = GL.GL_TRIANGLES,
+
+        }
         /// <summary>
         /// 
         /// </summary>
