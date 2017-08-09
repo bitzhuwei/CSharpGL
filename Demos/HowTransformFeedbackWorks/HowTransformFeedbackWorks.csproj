@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParticleDemoModel.cs" />
     <Compile Include="DemoModel.cs" />
     <Compile Include="ParticleDemoNode.render.cs" />
     <Compile Include="ParticleDemoNode.update.cs" />

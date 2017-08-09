@@ -8,63 +8,81 @@ namespace HowTransformFeedbackWorks
 {
     partial class ParticleDemoNode : ModernNode
     {
-        private const string inPosition = "inPosition";
-        private const string inVelocity = "inVelocity";
-        private const string outPosition = "outPosition";
-        private const string outVelocity = "outVelocity";
-        private const string mvpMatrix = "mvpMatrix";
+        private const string inPosition = "inposition";
+        private const string inVelocity = "invelocity";
+        private const string outPosition = "outposition";
+        private const string outVelocity = "outvelocity";
+
+        private const string vposition = "vposition";
+
         private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
         private int currentIndex = 0;
 
-        public static ParticleDemoNode Create()
+        public static ParticleDemoNode Create(int particleCount)
         {
             IShaderProgramProvider updateProvider, renderProvider;
             {
                 var vs = new VertexShader(updateVert, inPosition, inVelocity);
-                var feedbackVaryings = new string[] { "outposition", "outvelocity" };
+                var feedbackVaryings = new string[] { outPosition, outVelocity };
                 updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
             }
             {
-                var vs = new VertexShader(renderVert, inPosition);
+                var vs = new VertexShader(renderVert, vposition);
+                var gs = new GeometryShader(renderGeom);
                 var fs = new FragmentShader(renderFrag);
-                renderProvider = new ShaderArray(vs, fs);
+                renderProvider = new ShaderArray(vs, gs, fs);
             }
             RenderUnitBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
+            var blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
             {
                 var map = new AttributeMap();
-                map.Add(inPosition, DemoModel.inPosition);
-                map.Add(inVelocity, DemoModel.inVelocity);
+                map.Add(inPosition, ParticleDemoModel.inPosition);
+                map.Add(inVelocity, ParticleDemoModel.inVelocity);
                 updateBuilder = new RenderUnitBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
-                map.Add(inPosition, DemoModel.inPosition2);
-                map.Add(inVelocity, DemoModel.inVelocity2);
+                map.Add(inPosition, ParticleDemoModel.inPosition2);
+                map.Add(inVelocity, ParticleDemoModel.inVelocity2);
                 updateBuilder2 = new RenderUnitBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
-                map.Add(inPosition, DemoModel.inPosition);
-                map.Add(inVelocity, DemoModel.inVelocity);
-                renderBuilder = new RenderUnitBuilder(renderProvider, map);
+                map.Add(vposition, ParticleDemoModel.inPosition);
+                renderBuilder = new RenderUnitBuilder(renderProvider, map, blend);
             }
             {
                 var map = new AttributeMap();
-                map.Add(inPosition, DemoModel.inPosition2);
-                map.Add(inVelocity, DemoModel.inVelocity2);
-                renderBuilder2 = new RenderUnitBuilder(renderProvider, map);
+                map.Add(vposition, ParticleDemoModel.inPosition2);
+                renderBuilder2 = new RenderUnitBuilder(renderProvider, map, blend);
             }
 
-            var model = new DemoModel();
+            var model = new ParticleDemoModel(particleCount);
             var node = new ParticleDemoNode(model, updateBuilder, updateBuilder2, renderBuilder, renderBuilder2);
             node.Initialize();
 
             return node;
         }
+        // define spheres for the particles to bounce off 
+        const int spheres = 3;
+        vec3[] center = new vec3[spheres];
+        float[] radius = new float[spheres];
+
+        // physical parameters 
+        float dt = 1.0f / 60.0f;
+        vec3 g = new vec3(0.0f, -9.81f, 0.0f);
+        float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
+        Random random = new Random();
 
         private ParticleDemoNode(IBufferSource model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
+            center[0] = new vec3(0, 0, 1);
+            radius[0] = 3;
+            center[1] = new vec3(-3, 0, 0);
+            radius[1] = 7;
+            center[2] = new vec3(5, -10, 0);
+            radius[2] = 12;
         }
 
         protected override void DoInitialize()
@@ -94,7 +112,13 @@ namespace HowTransformFeedbackWorks
 
                 RenderUnit unit = this.RenderUnits[currentIndex];
                 ShaderProgram program = unit.Program;
-                //program.SetUniform("xxx", value);
+                // set the uniforms 
+                program.SetUniform("center", center);
+                program.SetUniform("radius", radius);
+                program.SetUniform("g", g);
+                program.SetUniform("dt", dt);
+                program.SetUniform("bounce", bounce);
+                program.SetUniform("seed", random.Next());
                 unit.Render(tf); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
@@ -108,7 +132,8 @@ namespace HowTransformFeedbackWorks
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
 
-                program.SetUniform(mvpMatrix, projection * view * model);
+                program.SetUniform("Projection", projection);
+                program.SetUniform("View", view * model);
                 //unit.Render(); // this methos must specify vertes count.
                 tf.Draw(unit); // render updated buffersi without specifying vertex count.
             }
