@@ -78,7 +78,6 @@
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
-    <Compile Include="HowTransformFeedbackWorks.cs" />
     <None Include="GLCanvas\GLRenderContext\readme.md" />
     <None Include="Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
@@ -307,6 +306,7 @@
     <Compile Include="Scene\SceneNodes\Lights\DirectionalLight.cs" />
     <Compile Include="Scene\SceneNodes\Lights\SpotLight.cs" />
     <Compile Include="Scene\SceneNodes\Lights\LightBase.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnit\TransformFeedbackObjectHelper.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />

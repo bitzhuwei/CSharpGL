@@ -118,7 +118,7 @@ namespace HowTransformFeedbackWorks
                 program.PushUniforms();
                 {
                     tf.Begin(TransformFeedbackObject.Mode.Triangles);
-                    vao.Render();
+                    vao.Draw();
                     tf.End();
                 }
                 program.Unbind();
@@ -150,7 +150,7 @@ namespace HowTransformFeedbackWorks
                     program.Bind();
                     program.PushUniforms();
 
-                    vao.Render();
+                    vao.Draw();
                     program.Unbind();
                 }
             }

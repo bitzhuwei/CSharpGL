@@ -43,6 +43,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="feedbackVaryings"></param>
+        /// <param name="mode"></param>
         /// <param name="shaders"></param>
         public ShaderArray(string[] feedbackVaryings, ShaderProgram.BufferMode mode, params Shader[] shaders)
         {

@@ -56,26 +56,27 @@ namespace CSharpGL
         public void Render(TransformFeedbackObject transformFeedbackObj = null)
         {
             ShaderProgram program = this.Program;
+            GLStateList stateList = this.StateList;
 
             // 绑定shader
             program.Bind();
-            program.PushUniforms();
+            program.PushUniforms(); // push new uniform values to GPU side.
 
-            this.StateList.On();
+            stateList.On();
 
             if (transformFeedbackObj != null)
             {
                 transformFeedbackObj.Bind();
                 transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode);
             }
-            this.VertexArrayObject.Render();
+            this.VertexArrayObject.Draw();
             if (transformFeedbackObj != null)
             {
                 transformFeedbackObj.End();
                 transformFeedbackObj.Unbind();
             }
 
-            this.StateList.Off();
+            stateList.Off();
 
             // 解绑shader
             program.Unbind();

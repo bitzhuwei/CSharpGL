@@ -107,11 +107,11 @@ namespace CSharpGL
                     sucessful = true;
                     break;
                 case DrawMode.TrianglesAdjacency:
-                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    glBeginTransformFeedback((uint)DrawMode.Triangles);
                     sucessful = true;
                     break;
                 case DrawMode.TriangleStripAdjacency:
-                    glBeginTransformFeedback((uint)DrawMode.Lines);
+                    glBeginTransformFeedback((uint)DrawMode.Triangles);
                     sucessful = true;
                     break;
                 case DrawMode.Patches:
@@ -130,9 +130,98 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="mode"></param>
+        /// <returns></returns>
+        internal void Draw(DrawMode mode)
+        {
+            bool sucessful = false;
+            switch (mode)
+            {
+                case DrawMode.Points:
+                    glDrawTransformFeedback((uint)DrawMode.Points, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.Lines:
+                    glDrawTransformFeedback((uint)DrawMode.Lines, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.LineLoop:
+                    glDrawTransformFeedback((uint)DrawMode.Lines, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.LineStrip:
+                    glDrawTransformFeedback((uint)DrawMode.Lines, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.Triangles:
+                    glDrawTransformFeedback((uint)DrawMode.Triangles, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.TriangleStrip:
+                    glDrawTransformFeedback((uint)DrawMode.Triangles, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.TriangleFan:
+                    glDrawTransformFeedback((uint)DrawMode.Triangles, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.Quads:
+                    break;
+                case DrawMode.QuadStrip:
+                    break;
+                case DrawMode.Polygon:
+                    break;
+                case DrawMode.LinesAdjacency:
+                    glDrawTransformFeedback((uint)DrawMode.Lines, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.LineStripAdjacency:
+                    glDrawTransformFeedback((uint)DrawMode.Lines, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.TrianglesAdjacency:
+                    glDrawTransformFeedback((uint)DrawMode.Triangles, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.TriangleStripAdjacency:
+                    glDrawTransformFeedback((uint)DrawMode.Triangles, this.Id);
+                    sucessful = true;
+                    break;
+                case DrawMode.Patches:
+                    break;
+                default:
+                    break;
+            }
+
+            if (!sucessful)
+            {
+                throw new Exception(string.Format("{0} not acceptable as input parameter for glDrawTransformFeedback(id, (uint)primitiveMode);", mode));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
         public void Begin(Mode mode)
         {
-            glBeginTransformFeedback((uint)Mode.Lines);
+            glBeginTransformFeedback((uint)mode);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        public void Draw(Mode mode)
+        {
+            glDrawTransformFeedback((uint)mode, this.Id);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void End()
+        {
+            glEndTransformFeedback();
         }
 
         /// <summary>
@@ -155,13 +244,6 @@ namespace CSharpGL
             /// </summary>
             Triangles = GL.GL_TRIANGLES,
 
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void End()
-        {
-            glEndTransformFeedback();
         }
     }
 }

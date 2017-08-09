@@ -110,7 +110,7 @@ namespace CSharpGL
         /// <para>Execute rendering command.</para>
         /// </summary>
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
-        public void Render(IndexBuffer temporaryIndexBuffer = null)
+        public void Draw(IndexBuffer temporaryIndexBuffer = null)
         {
             if (temporaryIndexBuffer != null)
             {

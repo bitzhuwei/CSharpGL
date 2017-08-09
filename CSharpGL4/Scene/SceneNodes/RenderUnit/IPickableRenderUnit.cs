@@ -75,7 +75,7 @@ namespace CSharpGL
                 transformFeedbackObj.Bind();
                 transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode);
             }
-            this.VertexArrayObject.Render();
+            this.VertexArrayObject.Draw();
             if (transformFeedbackObj != null)
             {
                 transformFeedbackObj.End();

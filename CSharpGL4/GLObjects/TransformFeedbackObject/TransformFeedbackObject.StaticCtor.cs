@@ -24,6 +24,7 @@ namespace CSharpGL
         internal static readonly GLDelegates.void_void glPauseTransformFeedback;
         internal static readonly GLDelegates.void_void glResumeTransformFeedback;
         internal static readonly GLDelegates.void_void glEndTransformFeedback;
+        internal static readonly GLDelegates.void_uint_uint glDrawTransformFeedback;
 
         static TransformFeedbackObject()
         {
@@ -38,6 +39,7 @@ namespace CSharpGL
             glPauseTransformFeedback = GL.Instance.GetDelegateFor("glPauseTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
             glResumeTransformFeedback = GL.Instance.GetDelegateFor("glResumeTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
             glEndTransformFeedback = GL.Instance.GetDelegateFor("glEndTransformFeedback", GLDelegates.typeof_void_void) as GLDelegates.void_void;
+            glDrawTransformFeedback = GL.Instance.GetDelegateFor("glDrawTransformFeedback", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
         }
     }
 }

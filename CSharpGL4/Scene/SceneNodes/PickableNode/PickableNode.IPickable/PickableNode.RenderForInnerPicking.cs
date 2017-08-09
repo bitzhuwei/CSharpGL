@@ -64,12 +64,12 @@ namespace CSharpGL
             {
                 PrimitiveRestartState glState = this.GetPrimitiveRestartState(oneIndexBuffer);
                 glState.On();
-                this.PickingRenderUnit.VertexArrayObject.Render(tempIndexBuffer);
+                this.PickingRenderUnit.VertexArrayObject.Draw(tempIndexBuffer);
                 glState.Off();
             }
             else
             {
-                this.PickingRenderUnit.VertexArrayObject.Render(tempIndexBuffer);
+                this.PickingRenderUnit.VertexArrayObject.Draw(tempIndexBuffer);
             }
 
             this.pointSizeState.Off();
