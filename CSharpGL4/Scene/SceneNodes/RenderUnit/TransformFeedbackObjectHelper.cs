@@ -27,6 +27,7 @@ namespace CSharpGL
 
             ShaderProgram program = unit.Program;
             GLStateList stateList = unit.StateList;
+            VertexArrayObject vao = unit.VertexArrayObject;
 
             // 绑定shader
             program.Bind();
@@ -37,7 +38,9 @@ namespace CSharpGL
             DrawMode mode = unit.VertexArrayObject.IndexBuffer.Mode;
             transformFeedbackObj.Bind();
             transformFeedbackObj.Begin(mode);
+            vao.Bind();
             transformFeedbackObj.Draw(mode);
+            vao.Unbind();
             transformFeedbackObj.End();
             transformFeedbackObj.Unbind();
 

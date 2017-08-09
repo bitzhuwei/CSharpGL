@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Render()
+        public override void Draw()
         {
             int primCount = this.PrimCount;
             if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }

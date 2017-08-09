@@ -44,7 +44,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Render()
+        public override void Draw()
         {
             uint mode = (uint)this.Mode;
 

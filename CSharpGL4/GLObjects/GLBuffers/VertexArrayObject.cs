@@ -95,12 +95,12 @@ namespace CSharpGL
             this.Unbind();// this vertex array object has recorded all stand-by actions.
         }
 
-        private void Bind()
+        internal void Bind()
         {
             glBindVertexArray(this.Id);
         }
 
-        private void Unbind()
+        internal void Unbind()
         {
             glBindVertexArray(0);
         }
@@ -115,13 +115,13 @@ namespace CSharpGL
             if (temporaryIndexBuffer != null)
             {
                 this.Bind();
-                temporaryIndexBuffer.Render();
+                temporaryIndexBuffer.Draw();
                 this.Unbind();
             }
             else
             {
                 this.Bind();
-                this.IndexBuffer.Render();
+                this.IndexBuffer.Draw();
                 this.Unbind();
             }
         }

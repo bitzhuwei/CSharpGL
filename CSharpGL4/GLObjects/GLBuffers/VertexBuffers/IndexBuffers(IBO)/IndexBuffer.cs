@@ -41,7 +41,7 @@ namespace CSharpGL
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
         /// </summary>
-        public abstract void Render();
+        public abstract void Draw();
 
     }
 }
