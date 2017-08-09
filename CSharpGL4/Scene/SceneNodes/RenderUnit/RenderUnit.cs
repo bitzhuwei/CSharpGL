@@ -68,12 +68,13 @@ namespace CSharpGL
             {
                 transformFeedbackObj.Bind();
                 transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode);
-            }
-            this.VertexArrayObject.Draw();
-            if (transformFeedbackObj != null)
-            {
+                this.VertexArrayObject.Draw();
                 transformFeedbackObj.End();
                 transformFeedbackObj.Unbind();
+            }
+            else
+            {
+                this.VertexArrayObject.Draw();
             }
 
             stateList.Off();
