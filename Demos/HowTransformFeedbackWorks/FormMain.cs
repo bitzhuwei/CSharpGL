@@ -36,8 +36,8 @@ namespace HowTransformFeedbackWorks
             this.scene = new Scene(camera, this.winGLCanvas1);
             //this.scene.ClearColor = Color.Black.ToVec4();
             {
-                //var node = DemoNode.Create();
-                var node = ParticleDemoNode.Create(10000);
+                //var node = ParticleDemoNode.Create(10000);
+                var node = DemoNode.Create();
                 var ground = GroundNode.Create();
                 ground.RenderUnits[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
                 var group = new GroupNode(node, ground);
