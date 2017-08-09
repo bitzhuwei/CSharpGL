@@ -25,29 +25,7 @@ namespace CSharpGL
                 throw new ArgumentNullException();
             }
 
-            ShaderProgram program = unit.Program;
-            GLStateList stateList = unit.StateList;
-            VertexArrayObject vao = unit.VertexArrayObject;
-
-            // 绑定shader
-            program.Bind();
-            program.PushUniforms(); // push new uniform values to GPU side.
-
-            stateList.On();
-
-            DrawMode mode = unit.VertexArrayObject.IndexBuffer.Mode;
-            transformFeedbackObj.Bind();
-            transformFeedbackObj.Begin(mode);
-            vao.Bind();
-            transformFeedbackObj.Draw(mode);
-            vao.Unbind();
-            transformFeedbackObj.End();
-            transformFeedbackObj.Unbind();
-
-            stateList.Off();
-
-            // 解绑shader
-            program.Unbind();
+            transformFeedbackObj.Draw(unit.Program, unit.VertexArrayObject, unit.StateList);
         }
     }
 }

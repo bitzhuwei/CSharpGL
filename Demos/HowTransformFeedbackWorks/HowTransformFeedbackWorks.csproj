@@ -55,10 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DemoNode.cs" />
     <Compile Include="DemoNode.render.cs" />
-    <Compile Include="SimpleTransformFeedBackNode.render.cs" />
     <Compile Include="DemoNode.update.cs" />
-    <Compile Include="SimpleTransformFeedBackNode.update.cs" />
-    <Compile Include="SimpleTransformFeedBackNode.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

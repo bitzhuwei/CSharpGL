@@ -46,11 +46,11 @@ namespace CSharpGL
         /// Then data will be dumped to the specified buffer when this transform feedback object works.
         /// </summary>
         /// <param name="index"></param>
-        /// <param name="bufferId"></param>
-        public void BindBuffer(uint index, uint bufferId)
+        /// <param name="buffer"></param>
+        public void BindBuffer(uint index, GLBuffer buffer)
         {
             this.Bind();
-            glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, index, bufferId);
+            glBindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, index, buffer.BufferId);
             this.Unbind();
         }
 
@@ -244,6 +244,35 @@ namespace CSharpGL
             /// </summary>
             Triangles = GL.GL_TRIANGLES,
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="vao"></param>
+        /// <param name="stateList"></param>
+        public void Draw(ShaderProgram program, VertexArrayObject vao, GLStateList stateList = null)
+        {
+            // 绑定shader
+            program.Bind();
+            program.PushUniforms(); // push new uniform values to GPU side.
+
+            if (stateList != null) { stateList.On(); }
+
+            DrawMode mode = vao.IndexBuffer.Mode;
+            this.Bind();
+            this.Begin(mode);
+            vao.Bind();
+            this.Draw(mode);
+            vao.Unbind();
+            this.End();
+            this.Unbind();
+
+            if (stateList != null) { stateList.Off(); }
+
+            // 解绑shader
+            program.Unbind();
         }
     }
 }
