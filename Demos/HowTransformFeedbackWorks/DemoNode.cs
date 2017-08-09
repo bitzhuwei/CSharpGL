@@ -16,7 +16,7 @@ namespace HowTransformFeedbackWorks
         private const string outPosition = "outPosition";
         private const string outVelocity = "outVelocity";
         private const string mvpMatrix = "mvpMatrix";
-        private TransformFeedbackObject transformFeedbackObject;
+        private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
         private int currentIndex = 0;
 
         public static DemoNode Create()
@@ -68,45 +68,40 @@ namespace HowTransformFeedbackWorks
         private DemoNode(IBufferSource model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
-            this.transformFeedbackObject = new TransformFeedbackObject();
         }
 
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            for (int i = 0; i < 2; i++)
+            {
+                var tf = new TransformFeedbackObject();
+                RenderUnit unit = this.RenderUnits[i];
+                var attributes = unit.VertexArrayObject.VertexAttributes;
+                for (uint t = 0; t < attributes.Length; t++)
+                {
+                    tf.BindBuffer(t, attributes[t].Buffer.BufferId);
+                }
+                this.transformFeedbackObjects[i] = tf;
+            }
+        }
         #region IRenderable 成员
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
+            TransformFeedbackObject tf = transformFeedbackObjects[(currentIndex + 1) % 2];
             // update
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-                TransformFeedbackObject tf = this.transformFeedbackObject;
-                {
-                    RenderUnit unit = this.RenderUnits[(currentIndex + 1) % 2];
-                    var attributes = unit.VertexArrayObject.VertexAttributes;
-                    for (uint i = 0; i < attributes.Length; i++)
-                    {
-                        tf.BindBuffer(i, attributes[i].Buffer.BufferId);
-                    }
-                }
-                {
+                RenderUnit unit = this.RenderUnits[currentIndex];
+                ShaderProgram program = unit.Program;
+                //program.SetUniform("xxx", value);
+                unit.Render(tf); // update buffers and record output to tf's binding.
 
-                    RenderUnit unit = this.RenderUnits[currentIndex];
-                    ShaderProgram program = unit.Program;
-                    //program.SetUniform("xxx", value);
-                    unit.Render(tf);
-                }
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }
-            //unsafe
-            //{
-            //    var array = (vec3*)this.positionBuffers[(currentIndex + 1) % 2].MapBuffer(MapBufferAccess.ReadOnly);
-            //    var data = new vec3[this.positionBuffers[(currentIndex + 1) % 2].Length];
-            //    for (int i = 0; i < data.Length; i++)
-            //    {
-            //        data[i] = array[i];
-            //    }
-            //    this.positionBuffers[(currentIndex + 1) % 2].UnmapBuffer();
-            //}
             // render
             {
                 RenderUnit unit = this.RenderUnits[(currentIndex + 1) % 2 + 2];
@@ -117,7 +112,8 @@ namespace HowTransformFeedbackWorks
                 mat4 model = this.GetModelMatrix();
 
                 program.SetUniform(mvpMatrix, projection * view * model);
-                unit.Render();
+                //unit.Render(); // this methos must specify vertes count.
+                tf.Draw(unit); // render updated buffersi without specifying vertex count.
             }
             // exchange
             {
