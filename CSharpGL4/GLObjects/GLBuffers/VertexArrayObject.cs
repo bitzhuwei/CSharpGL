@@ -52,8 +52,9 @@ namespace CSharpGL
         /// <para>VAO is used to reduce draw-call.</para>
         /// </summary>
         /// <param name="indexBuffer">index buffer pointer that used to invoke draw command.</param>
+        /// <param name="shaderProgram">shader program that <paramref name="vertexAttributes"/> bind to.</param>
         /// <param name="vertexAttributes">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBuffer indexBuffer, params VertexShaderAttribute[] vertexAttributes)
+        public VertexArrayObject(IndexBuffer indexBuffer, ShaderProgram shaderProgram, params VertexShaderAttribute[] vertexAttributes)
         {
             if (indexBuffer == null)
             {
@@ -67,24 +68,15 @@ namespace CSharpGL
 
             this.IndexBuffer = indexBuffer;
             this.VertexAttributes = vertexAttributes;
-        }
-
-        /// <summary>
-        /// 在OpenGL中创建VAO。
-        /// 创建的过程就是执行一次渲染的过程。
-        /// <para>Creates VAO and bind it to specified VBOs.</para>
-        /// <para>The whole process of binding is also the process of rendering.</para>
-        /// </summary>
-        /// <param name="shaderProgram"></param>
-        public void Initialize(ShaderProgram shaderProgram)
-        {
-            if (this.Id != 0)
-            { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
 
             glGenVertexArrays(1, ids);
 
+            if (this.Id != 0)
+            { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
+
+
             this.Bind();// this vertex array object will record all stand-by actions.
-            VertexShaderAttribute[] vertexAttributeBuffers = this.VertexAttributes;
+            VertexShaderAttribute[] vertexAttributeBuffers = vertexAttributes;
             if (vertexAttributeBuffers != null)
             {
                 foreach (var item in vertexAttributeBuffers)

@@ -63,8 +63,7 @@ namespace CSharpGL
             IndexBuffer indexBuffer = model.GetIndexBuffer();
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBuffer, vertexAttributeBuffers);
-            vertexArrayObject.Initialize(program);
+            var vertexArrayObject = new VertexArrayObject(indexBuffer, program, vertexAttributeBuffers);
 
             var result = new RenderUnit(program, vertexArrayObject, this.states);
 

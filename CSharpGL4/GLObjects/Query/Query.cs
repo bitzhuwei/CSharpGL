@@ -43,6 +43,17 @@ namespace CSharpGL
             glGetQueryObjectuiv = GL.Instance.GetDelegateFor("glGetQueryObjectuiv", GLDelegates.typeof_void_uint_uint_uintN) as GLDelegates.void_uint_uint_uintN;
             glDeleteQueries = GL.Instance.GetDelegateFor("glDeleteQueries", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
         }
+
+        /// <summary>
+        /// A query object.
+        /// <para>Occlusion Querys enable you to determine if a representative set of geometry will be visible after depth testing.</para>
+        /// <para>Conditional rendering is for a single object that takes a lot of rendering resources. That means you only want to render it if it is absolutely necessary.</para>
+        /// </summary>
+        public Query()
+        {
+            glGenQueries(1, this.ids);
+        }
+
         /// <summary>
         /// Begin query.
         /// <para>delimit the boundaries of a query object.</para>
@@ -50,8 +61,6 @@ namespace CSharpGL
         /// <param name="target">Specifies the target type of query object established between glBeginQuery and the subsequent glEndQuery.</param>
         public void BeginQuery(QueryTarget target)
         {
-            if (!this.initialized) { this.Initialize(); }
-
             glBeginQuery((uint)target, this.Id);
         }
 
@@ -71,8 +80,6 @@ namespace CSharpGL
         /// <param name="target">Specifies the target type of query object established between glBeginQuery and the subsequent glEndQuery. The symbolic constant must be one of GL_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED, GL_ANY_SAMPLES_PASSED_CONSERVATIVE, GL_PRIMITIVES_GENERATED, GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN, or GL_TIME_ELAPSED.</param>
         public void BeginQuery(uint target)
         {
-            if (!this.initialized) { this.Initialize(); }
-
             glBeginQuery(target, this.Id);
         }
 
@@ -133,21 +140,6 @@ namespace CSharpGL
             }
 
             return result[0] != 0;
-        }
-
-        private bool initialized = false;
-
-        /// <summary>
-        /// resources(bitmap etc.) can be disposed  after this initialization.
-        /// </summary>
-        public void Initialize()
-        {
-            if (!this.initialized)
-            {
-                glGenQueries(1, this.ids);
-
-                this.initialized = true;
-            }
         }
 
         /// <summary>
