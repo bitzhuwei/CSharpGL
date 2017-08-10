@@ -77,7 +77,8 @@ namespace CSharpGL
             {
                 foreach (var item in vertexAttributeBuffers)
                 {
-                    item.Buffer.Standby(shaderProgram, item.VarNameInVertexShader);
+                    VertexBuffer buffer = item.Buffer;
+                    buffer.Standby(shaderProgram, item.VarNameInVertexShader);
                 }
             }
             this.Unbind();// this vertex array object has recorded all stand-by actions.
