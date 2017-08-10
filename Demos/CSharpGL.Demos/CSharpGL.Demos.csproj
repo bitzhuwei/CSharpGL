@@ -56,7 +56,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
-    <Compile Include="18PickingInScene\UpdatingBoxScript.cs" />
     <Compile Include="23SingleRenderer\DemoRendererFactory.cs" />
     <Compile Include="23SingleRenderer\Form23SingleRenderer.cs">
       <SubType>Form</SubType>
@@ -86,9 +85,6 @@
     <Compile Include="07PointSprite\Form07PointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="18PickingInScene\Form18PickingInScene.Picking.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="11IFontTexture\Form11IFontTexture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,15 +93,6 @@
     </Compile>
     <Compile Include="12Billboard\UpdateBillboardPosition.cs" />
     <Compile Include="12Billboard\UpdateLabelPosition.cs" />
-    <Compile Include="18PickingInScene\Form18PickingInScene.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="18PickingInScene\Form18PickingInScene.Designer.cs">
-      <DependentUpon>Form18PickingInScene.cs</DependentUpon>
-    </Compile>
-    <Compile Include="18PickingInScene\Form18PickingInScene.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,7 +152,6 @@
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ConditionalRenderer.cs" />
-    <Compile Include="18PickingInScene\DragParam.cs" />
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleComputeRenderer.cs" />
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleRenderer.cs" />
     <Compile Include="Models\ParticleModel.cs" />

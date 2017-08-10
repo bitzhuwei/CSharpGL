@@ -34,7 +34,6 @@
             this.btn12Billboard = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
-            this.btn18PickingInScene = new System.Windows.Forms.Button();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.btn29FixedSize = new System.Windows.Forms.Button();
@@ -124,20 +123,6 @@
             this.btn16ArcBallManipulater.UseVisualStyleBackColor = true;
             this.btn16ArcBallManipulater.Click += new System.EventHandler(this.btn16ArcBallManipulater_Click);
             // 
-            // btn18PickingInScene
-            // 
-            this.btn18PickingInScene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn18PickingInScene.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn18PickingInScene.Location = new System.Drawing.Point(9, 246);
-            this.btn18PickingInScene.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn18PickingInScene.Name = "btn18PickingInScene";
-            this.btn18PickingInScene.Size = new System.Drawing.Size(575, 30);
-            this.btn18PickingInScene.TabIndex = 0;
-            this.btn18PickingInScene.Text = "18 PickingInScene";
-            this.btn18PickingInScene.UseVisualStyleBackColor = true;
-            this.btn18PickingInScene.Click += new System.EventHandler(this.btn18PickingInScene_Click);
-            // 
             // btn21ConditionalRendering
             // 
             this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -187,7 +172,6 @@
             this.ClientSize = new System.Drawing.Size(593, 647);
             this.Controls.Add(this.btn23SingleRenderer);
             this.Controls.Add(this.btn21ConditionalRendering);
-            this.Controls.Add(this.btn18PickingInScene);
             this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
             this.Controls.Add(this.btn12Billboard);
@@ -211,7 +195,6 @@
         private System.Windows.Forms.Button btn12Billboard;
         private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
-        private System.Windows.Forms.Button btn18PickingInScene;
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
         private System.Windows.Forms.Button btn29FixedSize;

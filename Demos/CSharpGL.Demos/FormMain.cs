@@ -46,11 +46,6 @@ namespace CSharpGL.Demos
             (new Form16ArcBallManipulater()).Show();
         }
 
-        private void btn18PickingInScene_Click(object sender, EventArgs e)
-        {
-            (new Form18PickingInScene()).Show();
-        }
-
         private void btn21ConditionalRendering_Click(object sender, EventArgs e)
         {
             (new Form21ConditionalRendering()).Show();
