@@ -71,10 +71,6 @@ namespace CSharpGL
 
             glGenVertexArrays(1, ids);
 
-            if (this.Id != 0)
-            { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
-
-
             this.Bind();// this vertex array object will record all stand-by actions.
             VertexShaderAttribute[] vertexAttributeBuffers = vertexAttributes;
             if (vertexAttributeBuffers != null)
