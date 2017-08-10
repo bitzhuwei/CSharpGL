@@ -10,7 +10,7 @@ namespace CSharpGL
         /// <summary>
         /// vertex's 
         /// </summary>
-        private const string in_Position = "in_Position";
+        internal const string in_Position = "in_Position";
 
         /// <summary>
         ///

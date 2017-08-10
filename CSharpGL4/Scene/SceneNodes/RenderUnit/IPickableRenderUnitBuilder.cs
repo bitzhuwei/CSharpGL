@@ -49,7 +49,7 @@ namespace CSharpGL
             IndexBuffer indexBuffer = model.GetIndexBuffer();
 
             // init VAO.
-            var pickingVAO = new VertexArrayObject(indexBuffer, pickProgram, new VertexShaderAttribute(positionBuffer, "in_Position"));
+            var pickingVAO = new VertexArrayObject(indexBuffer, pickProgram, new VertexShaderAttribute(positionBuffer, PickingShaderHelper.in_Position));
 
             var renderUnit = new IPickableRenderUnit(pickProgram, pickingVAO, positionBuffer, this.states);
 
