@@ -20,26 +20,29 @@ namespace ColorCodedPicking
         {
             this.lastMousePosition = e.Location;
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (this.operationState == OperationState.PickingDraging)
             {
-                //// operate camera
-                //rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-                //rotator.MouseDown(e.X, e.Y);
-            }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                // move vertex
-                if (pickedGeometry != null)
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
-                    Rectangle rect = this.scene.Canvas.ClientRectangle;
-                    var viewport = new vec4(rect.X, rect.Y, rect.Width, rect.Height);
-                    var dragParam = new DragParam(
-                        this.scene.Camera.GetProjectionMatrix(),
-                        this.scene.Camera.GetViewMatrix(),
-                        viewport,
-                        new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1));
-                    dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
-                    this.dragParam = dragParam;
+                    //// operate camera
+                    //rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                    //rotator.MouseDown(e.X, e.Y);
+                }
+                else if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    // move vertex
+                    if (pickedGeometry != null)
+                    {
+                        Rectangle rect = this.scene.Canvas.ClientRectangle;
+                        var viewport = new vec4(rect.X, rect.Y, rect.Width, rect.Height);
+                        var dragParam = new DragParam(
+                            this.scene.Camera.GetProjectionMatrix(),
+                            this.scene.Camera.GetViewMatrix(),
+                            viewport,
+                            new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1));
+                        dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
+                        this.dragParam = dragParam;
+                    }
                 }
             }
         }
@@ -56,24 +59,27 @@ namespace ColorCodedPicking
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                // move vertex
-                DragParam dragParam = this.dragParam;
-                if (dragParam != null && this.pickedGeometry != null)
+                if (this.operationState == OperationState.PickingDraging)
                 {
-                    var current = new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1);
-                    var differenceOnScreen = new ivec2(
-                        current.x - dragParam.lastMousePositionOnScreen.x,
-                        current.y - dragParam.lastMousePositionOnScreen.y);
-                    dragParam.lastMousePositionOnScreen = current;
-                    var node = this.pickedGeometry.FromRenderer as PickableNode;
+                    // move vertex
+                    DragParam dragParam = this.dragParam;
+                    if (dragParam != null && this.pickedGeometry != null)
+                    {
+                        var current = new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1);
+                        var differenceOnScreen = new ivec2(
+                            current.x - dragParam.lastMousePositionOnScreen.x,
+                            current.y - dragParam.lastMousePositionOnScreen.y);
+                        dragParam.lastMousePositionOnScreen = current;
+                        var node = this.pickedGeometry.FromRenderer as PickableNode;
 
-                    IList<vec3> newPositions = node.MovePositions(
-                          differenceOnScreen,
-                          dragParam.viewMatrix, dragParam.projectionMatrix,
-                          dragParam.viewport,
-                          dragParam.pickedVertexIds);
+                        IList<vec3> newPositions = node.MovePositions(
+                              differenceOnScreen,
+                              dragParam.viewMatrix, dragParam.projectionMatrix,
+                              dragParam.viewport,
+                              dragParam.pickedVertexIds);
 
-                    this.UpdateHightlight(newPositions);
+                        this.UpdateHightlight(newPositions);
+                    }
                 }
             }
             else
@@ -107,8 +113,10 @@ namespace ColorCodedPicking
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-
-                this.dragParam = null;
+                if (this.operationState == OperationState.PickingDraging)
+                {
+                    this.dragParam = null;
+                }
             }
 
             this.lastMousePosition = e.Location;

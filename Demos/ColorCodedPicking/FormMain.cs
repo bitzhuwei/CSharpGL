@@ -19,6 +19,7 @@ namespace ColorCodedPicking
         private LegacyQuadNode quadTip;
         private GroundNode ground;
         private PickingAction pickingAction;
+        private OperationState operationState = OperationState.PickingDraging;
         public FormMain()
         {
             InitializeComponent();
@@ -127,11 +128,14 @@ namespace ColorCodedPicking
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //IWorldSpace node = this.scene.RootElement;
-            //if (node != null)
-            //{
-            //    node.RotationAngle += 1;
-            //}
+            if (this.operationState == OperationState.Rotating)
+            {
+                IWorldSpace node = this.scene.RootElement;
+                if (node != null)
+                {
+                    node.RotationAngle += 1;
+                }
+            }
         }
 
         private void chkRenderWireframe_CheckedChanged(object sender, EventArgs e)
@@ -144,5 +148,28 @@ namespace ColorCodedPicking
             this.teapot.RenderBody = this.chkRenderBody.Checked;
         }
 
+
+        enum OperationState
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            PickingDraging,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            Rotating,
+        }
+
+        private void rdoPickingDraging_CheckedChanged(object sender, EventArgs e)
+        {
+            this.operationState = OperationState.PickingDraging;
+        }
+
+        private void rdoRotating_CheckedChanged(object sender, EventArgs e)
+        {
+            this.operationState = OperationState.Rotating;
+        }
     }
 }
