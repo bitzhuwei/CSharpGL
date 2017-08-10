@@ -26,7 +26,10 @@ namespace ColorCodedPicking
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
+            //this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
+            this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
         }
 
         /// <summary>
@@ -124,11 +127,11 @@ namespace ColorCodedPicking
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
-            if (node != null)
-            {
-                node.RotationAngle += 1;
-            }
+            //IWorldSpace node = this.scene.RootElement;
+            //if (node != null)
+            //{
+            //    node.RotationAngle += 1;
+            //}
         }
 
         private void chkRenderWireframe_CheckedChanged(object sender, EventArgs e)

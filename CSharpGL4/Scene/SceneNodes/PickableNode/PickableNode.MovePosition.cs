@@ -14,9 +14,12 @@ namespace CSharpGL
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(ivec2 differenceOnScreen,
+        /// <returns></returns>
+        public IList<vec3> MovePositions(ivec2 differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
+            var list = new List<vec3>();
+
             VertexBuffer buffer = this.PickingRenderUnit.PositionBuffer;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
@@ -31,10 +34,14 @@ namespace CSharpGL
                         windowPos.x + differenceOnScreen.x,
                         windowPos.y + differenceOnScreen.y,
                         windowPos.z);
-                    array[index] = glm.unProject(newWindowPos, modelViewMatrix, projectionMatrix, viewport);
+                    var result = glm.unProject(newWindowPos, modelViewMatrix, projectionMatrix, viewport);
+                    array[index] = result;
+                    list.Add(result);
                 }
             }
             buffer.UnmapBuffer();
+
+            return list;
         }
 
         /// <summary>
@@ -46,9 +53,12 @@ namespace CSharpGL
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(ivec2 differenceOnScreen,
+        /// <returns></returns>
+        public vec3[] MovePositions(ivec2 differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
+            var list = new vec3[positionIndexes.Length];
+
             VertexBuffer buffer = this.PickingRenderUnit.PositionBuffer;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
             unsafe
@@ -63,10 +73,14 @@ namespace CSharpGL
                         windowPos.x + differenceOnScreen.x,
                         windowPos.y + differenceOnScreen.y,
                         windowPos.z);
-                    array[index] = glm.unProject(newWindowPos, modelViewMatrix, projectionMatrix, viewport);
+                    vec3 result = glm.unProject(newWindowPos, modelViewMatrix, projectionMatrix, viewport);
+                    array[index] = result;
+                    list[index] = result;
                 }
             }
             buffer.UnmapBuffer();
+
+            return list;
         }
     }
 }
