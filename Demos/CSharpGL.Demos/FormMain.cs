@@ -56,10 +56,5 @@ namespace CSharpGL.Demos
             (new Form23SingleRenderer()).Show();
         }
 
-        private void btn29FixedSize_Click(object sender, EventArgs e)
-        {
-            (new Form29FixedPercent()).Show();
-        }
-
     }
 }

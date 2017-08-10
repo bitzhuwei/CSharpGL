@@ -36,7 +36,6 @@
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
-            this.btn29FixedSize = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm06ImageProcessing
@@ -151,20 +150,6 @@
             this.btn23SingleRenderer.UseVisualStyleBackColor = true;
             this.btn23SingleRenderer.Click += new System.EventHandler(this.btn23SingleRenderer_Click);
             // 
-            // btn29FixedSize
-            // 
-            this.btn29FixedSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn29FixedSize.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn29FixedSize.Location = new System.Drawing.Point(9, 551);
-            this.btn29FixedSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn29FixedSize.Name = "btn29FixedSize";
-            this.btn29FixedSize.Size = new System.Drawing.Size(575, 30);
-            this.btn29FixedSize.TabIndex = 0;
-            this.btn29FixedSize.Text = "29 Fixed Percent";
-            this.btn29FixedSize.UseVisualStyleBackColor = true;
-            this.btn29FixedSize.Click += new System.EventHandler(this.btn29FixedSize_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -177,7 +162,6 @@
             this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
-            this.Controls.Add(this.btn29FixedSize);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
@@ -197,6 +181,5 @@
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
-        private System.Windows.Forms.Button btn29FixedSize;
     }
 }

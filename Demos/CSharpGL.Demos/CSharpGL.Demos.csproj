@@ -46,15 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="29FixedPercent\Form29FixedPercent.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="29FixedPercent\Form29FixedPercent.Designer.cs">
-      <DependentUpon>Form29FixedPercent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="29FixedPercent\Form29FixedPercent.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
     <Compile Include="23SingleRenderer\DemoRendererFactory.cs" />
     <Compile Include="23SingleRenderer\Form23SingleRenderer.cs">
