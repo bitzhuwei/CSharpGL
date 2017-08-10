@@ -71,17 +71,15 @@ namespace CSharpGL
 
             glGenVertexArrays(1, ids);
 
-            this.Bind();// this vertex array object will record all stand-by actions.
-            VertexShaderAttribute[] vertexAttributeBuffers = vertexAttributes;
-            if (vertexAttributeBuffers != null)
+            glBindVertexArray(this.Id); // this vertex array object will record all stand-by actions.
+
+            foreach (var item in vertexAttributes)
             {
-                foreach (var item in vertexAttributeBuffers)
-                {
-                    VertexBuffer buffer = item.Buffer;
-                    buffer.Standby(shaderProgram, item.VarNameInVertexShader);
-                }
+                VertexBuffer buffer = item.Buffer;
+                buffer.Standby(shaderProgram, item.VarNameInVertexShader);
             }
-            this.Unbind();// this vertex array object has recorded all stand-by actions.
+
+            glBindVertexArray(0); // this vertex array object has recorded all stand-by actions.
         }
 
         internal void Bind()
@@ -101,18 +99,18 @@ namespace CSharpGL
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
         public void Draw(IndexBuffer temporaryIndexBuffer = null)
         {
+            this.Bind();
+
             if (temporaryIndexBuffer != null)
             {
-                this.Bind();
                 temporaryIndexBuffer.Draw();
-                this.Unbind();
             }
             else
             {
-                this.Bind();
                 this.IndexBuffer.Draw();
-                this.Unbind();
             }
+
+            this.Unbind();
         }
 
         /// <summary>
