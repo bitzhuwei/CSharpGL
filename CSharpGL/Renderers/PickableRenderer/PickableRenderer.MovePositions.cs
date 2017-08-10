@@ -17,7 +17,7 @@ namespace CSharpGL
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>
         /// </summary>
-        /// <param name="differenceOnScreen"></param>
+        /// <param name="differenceOnScreen">(0, 0) is at left botton.</param>
         /// <param name="viewMatrix"></param>
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>

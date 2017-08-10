@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="readme.md" />
     <Compile Include="OGLDevParticleModel.cs" />
     <Compile Include="ParticleDemoModel.cs" />
     <Compile Include="DemoModel.cs" />

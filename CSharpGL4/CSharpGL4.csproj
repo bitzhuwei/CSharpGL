@@ -165,6 +165,7 @@
     <Compile Include="Scene\Nodes\LightContainerNode\LightContainerNode.cs" />
     <Compile Include="Scene\Nodes\RenderToTextureNode\RenderToTexttureNode.cs" />
     <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
+    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.MovePosition.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
