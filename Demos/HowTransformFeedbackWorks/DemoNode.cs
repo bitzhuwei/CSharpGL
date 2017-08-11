@@ -112,8 +112,8 @@ namespace HowTransformFeedbackWorks
                 mat4 model = this.GetModelMatrix();
 
                 program.SetUniform(mvpMatrix, projection * view * model);
-                //unit.Render(); // this methos must specify vertes count.
-                tf.Draw(unit); // render updated buffersi without specifying vertex count.
+                //unit.Render(); // this method must specify vertex count.
+                tf.Draw(unit); // render updated buffers without specifying vertex count.
             }
             // exchange
             {
