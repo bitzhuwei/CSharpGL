@@ -82,8 +82,6 @@
     <Compile Include="11IFontTexture\Form11IFontTexture.Designer.cs">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
     </Compile>
-    <Compile Include="12Billboard\UpdateBillboardPosition.cs" />
-    <Compile Include="12Billboard\UpdateLabelPosition.cs" />
     <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,7 +128,6 @@
     <Compile Include="Renderers\Water\WaterRenderer.DoRenderer.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.cs" />
-    <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer\ByteImageFiller.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
@@ -158,15 +155,6 @@
     <Compile Include="Renderers\ImageProcessingRenderer\ImageProcessingRenderer.cs" />
     <Compile Include="Renderers\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="Renderers\PointSpriteRenderer.cs" />
-    <Compile Include="12Billboard\Form12Billboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="12Billboard\Form12Billboard.Designer.cs">
-      <DependentUpon>Form12Billboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="12Billboard\Form12Billboard.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.Initialize.cs" />
     <Compile Include="Models\RaycastModel.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.cs" />
@@ -352,12 +340,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\data\tff.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\billboard.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

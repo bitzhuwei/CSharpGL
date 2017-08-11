@@ -31,7 +31,6 @@
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
-            this.btn12Billboard = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
             this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
@@ -79,20 +78,6 @@
             this.btn11IFontTexture.Text = "11 FontTexture";
             this.btn11IFontTexture.UseVisualStyleBackColor = true;
             this.btn11IFontTexture.Click += new System.EventHandler(this.btn11IFontTexture_Click);
-            // 
-            // btn12Billboard
-            // 
-            this.btn12Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn12Billboard.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn12Billboard.Location = new System.Drawing.Point(9, 178);
-            this.btn12Billboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn12Billboard.Name = "btn12Billboard";
-            this.btn12Billboard.Size = new System.Drawing.Size(575, 30);
-            this.btn12Billboard.TabIndex = 0;
-            this.btn12Billboard.Text = "12 Billboard";
-            this.btn12Billboard.UseVisualStyleBackColor = true;
-            this.btn12Billboard.Click += new System.EventHandler(this.btn12Billboard_Click);
             // 
             // btn15UIRenderer
             // 
@@ -159,7 +144,6 @@
             this.Controls.Add(this.btn21ConditionalRendering);
             this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
-            this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
             this.Controls.Add(this.btnForm06ImageProcessing);
@@ -176,7 +160,6 @@
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07PointSprite;
         private System.Windows.Forms.Button btn11IFontTexture;
-        private System.Windows.Forms.Button btn12Billboard;
         private System.Windows.Forms.Button btn15UIRenderer;
         private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn21ConditionalRendering;

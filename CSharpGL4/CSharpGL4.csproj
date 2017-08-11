@@ -327,6 +327,15 @@
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <Content Include="Scene\FontTexture\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
+    <None Include="Scene\Nodes\Billboard\readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Nodes\Billboard\billboard.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Nodes\Billboard\billboard.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Scene\SceneNodes\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />

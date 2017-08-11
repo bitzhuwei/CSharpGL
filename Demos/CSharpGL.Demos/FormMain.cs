@@ -31,11 +31,6 @@ namespace CSharpGL.Demos
             (new Form11IFontTexture()).Show();
         }
 
-        private void btn12Billboard_Click(object sender, EventArgs e)
-        {
-            (new Form12Billboard()).Show();
-        }
-
         private void btn15UIRenderer_Click(object sender, EventArgs e)
         {
             (new Form15UIRenderer()).Show();
