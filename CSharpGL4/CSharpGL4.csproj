@@ -82,6 +82,7 @@
     <None Include="Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
+    <Compile Include="GLAPI\GL.DrawText.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -48,6 +48,7 @@
     <None Include="WinGLCanvas.cs\readme.md" />
     <None Include="RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />
+    <Compile Include="GLAPI\WinGL.DrawText.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockCircleRenderer.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="Renderers\ClockRenderer\ClockPinRenderer.cs" />
