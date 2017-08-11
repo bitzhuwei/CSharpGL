@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ImageProcessing.GrayFilter
+namespace ComputeShader.EdgeDetection
 {
     static class Program
     {
         /// <summary>
-        /// 应用程序的主入口点。http://wwwibaidu.com
+        /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new Form1());
         }
     }
 }
