@@ -90,11 +90,15 @@ namespace ColorCodedPicking
 
                 if (this.pickedGeometry != null)
                 {
-                    this.toolStripStatusLabel1.Text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
+                    var text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
+                    this.toolStripStatusLabel1.Text = text;
+                    this.textNode.Text = text;
                 }
                 else
                 {
-                    this.toolStripStatusLabel1.Text = string.Format("picked: nothing");
+                    var text = string.Format("picked: nothing");
+                    this.toolStripStatusLabel1.Text = text;
+                    this.textNode.Text = text;
                 }
 
                 this.UpdateHightlight();
@@ -122,10 +126,10 @@ namespace ColorCodedPicking
             this.lastMousePosition = e.Location;
         }
 
-        private Color UpdateColorInformationAtMouse(int x, int y)
+        private Color GetColorAtMouse(int x, int y)
         {
             byte[] colors = new byte[4];
-            GL.Instance.ReadPixels(x, this.winGLCanvas1.Height - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, colors);
+            GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, colors);
             Color c = Color.FromArgb(colors[3], colors[0], colors[1], colors[2]);
 
             return c;

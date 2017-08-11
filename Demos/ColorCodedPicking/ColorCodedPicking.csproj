@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectTextNode.cs" />
     <Compile Include="DragParam.cs" />
     <Compile Include="FormMain.MovePositions.cs">
       <SubType>Form</SubType>

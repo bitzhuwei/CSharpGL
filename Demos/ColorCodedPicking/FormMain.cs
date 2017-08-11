@@ -13,13 +13,15 @@ namespace ColorCodedPicking
     public partial class FormMain : Form
     {
         private Scene scene;
-        private ActionList actionList;
         private TeapotNode teapot;
+        private DirectTextNode textNode;
+        private ActionList actionList;
+
+        private OperationState operationState = OperationState.PickingDraging;
+        private PickingAction pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
-        private GroundNode ground;
-        private PickingAction pickingAction;
-        private OperationState operationState = OperationState.PickingDraging;
+
         public FormMain()
         {
             InitializeComponent();
@@ -27,62 +29,9 @@ namespace ColorCodedPicking
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            //this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
             this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
             this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
             this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
-        }
-
-        /// <summary>
-        /// Color coded picking.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
-        {
-            LegacyTriangleNode triangleTip = this.triangleTip;
-            if (triangleTip == null) { return; }
-            LegacyQuadNode quadTip = this.quadTip;
-            if (quadTip == null) { return; }
-
-            int x = e.X;
-            int y = this.winGLCanvas1.Height - e.Y - 1;
-            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
-            if (pickedGeometry != null)
-            {
-                switch (pickedGeometry.Type)
-                {
-                    case GeometryType.Point:
-                        throw new NotImplementedException();
-                    case GeometryType.Line:
-                        throw new NotImplementedException();
-                    case GeometryType.Triangle:
-                        triangleTip.Vertex0 = pickedGeometry.Positions[0];
-                        triangleTip.Vertex1 = pickedGeometry.Positions[1];
-                        triangleTip.Vertex2 = pickedGeometry.Positions[2];
-                        triangleTip.Parent = pickedGeometry.FromRenderer as SceneNodeBase;
-                        quadTip.Parent = null;
-                        break;
-                    case GeometryType.Quad:
-                        quadTip.Vertex0 = pickedGeometry.Positions[0];
-                        quadTip.Vertex1 = pickedGeometry.Positions[1];
-                        quadTip.Vertex2 = pickedGeometry.Positions[2];
-                        quadTip.Vertex3 = pickedGeometry.Positions[3];
-                        quadTip.Parent = pickedGeometry.FromRenderer as SceneNodeBase;
-                        triangleTip.Parent = null;
-                        break;
-                    case GeometryType.Polygon:
-                        throw new NotImplementedException();
-                    default:
-                        break;
-                }
-
-            }
-            else
-            {
-                triangleTip.Parent = null;
-                quadTip.Parent = null;
-            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -93,8 +42,9 @@ namespace ColorCodedPicking
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.teapot = TeapotNode.Create();
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
-            this.ground = GroundNode.Create(); this.ground.Color = Color.Gray.ToVec4(); this.ground.Scale *= 10; this.ground.WorldPosition = new vec3(0, -3, 0);
-            var group = new GroupNode(this.teapot, this.ground);
+            var ground = GroundNode.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
+            this.textNode = new DirectTextNode() { Text = "Color Coded Picking" };
+            var group = new GroupNode(this.teapot, ground, this.textNode);
 
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
@@ -119,6 +69,10 @@ namespace ColorCodedPicking
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             this.actionList.Act();
+            {
+                DirectTextNode node = this.textNode;
+                GL.Instance.DrawText(node.Position.X, node.Position.Y, node.TextColor, node.FontName, node.FontSize, node.Text);
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
