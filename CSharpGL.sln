@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessing.GrayFilter"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputeShader.EdgeDetection", "Demos\ComputeShader.EdgeDetection\ComputeShader.EdgeDetection.csproj", "{32FE823D-5818-4593-9534-C2AEFBD044EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaycastVolumeRendering", "Demos\RaycastVolumeRendering\RaycastVolumeRendering.csproj", "{CF531203-CC19-45F5-8926-3B8A54601FB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,10 @@ Global
 		{32FE823D-5818-4593-9534-C2AEFBD044EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32FE823D-5818-4593-9534-C2AEFBD044EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32FE823D-5818-4593-9534-C2AEFBD044EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF531203-CC19-45F5-8926-3B8A54601FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF531203-CC19-45F5-8926-3B8A54601FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF531203-CC19-45F5-8926-3B8A54601FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF531203-CC19-45F5-8926-3B8A54601FB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +217,6 @@ Global
 		{665098AF-D0AD-44F1-9BC1-265AD559C1FC} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{83A8465F-A835-4DF9-87C0-5924943884DA} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{32FE823D-5818-4593-9534-C2AEFBD044EA} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{CF531203-CC19-45F5-8926-3B8A54601FB0} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
