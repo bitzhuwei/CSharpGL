@@ -48,6 +48,7 @@ namespace CSharpGL
         {
             var shader = new Shader();
             shader.Create((uint)this.ShaderType, this.SourceCode);
+            shader.SourceCode = this.SourceCode;
 
             return shader;
         }

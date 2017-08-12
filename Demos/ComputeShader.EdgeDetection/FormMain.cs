@@ -14,6 +14,7 @@ namespace ComputeShader.EdgeDetection
     {
         private Scene scene;
         private ActionList actionList;
+        private EdgeDetectNode edgeDetectNode;
         public FormMain()
         {
             InitializeComponent();
@@ -31,8 +32,11 @@ namespace ComputeShader.EdgeDetection
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                var node = EdgeDetectNode.Create();
-                this.scene.RootElement = node;
+                this.edgeDetectNode = new EdgeDetectNode();
+                var rectangleNode = RectangleNode.Create();
+                rectangleNode.TextureSource = this.edgeDetectNode;
+                var group = new GroupNode(this.edgeDetectNode, rectangleNode);
+                this.scene.RootElement = group;
             }
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
@@ -63,7 +67,7 @@ namespace ComputeShader.EdgeDetection
                 {
                     string filename = this.openImageDlg.FileName;
                     var bitmap = new Bitmap(filename);
-                    var node = this.scene.RootElement as EdgeDetectNode;
+                    var node = this.edgeDetectNode;
                     if (node != null)
                     {
                         node.UpdateTexture(bitmap);

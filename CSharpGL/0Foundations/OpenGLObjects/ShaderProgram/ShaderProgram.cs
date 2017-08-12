@@ -112,6 +112,7 @@ namespace CSharpGL
             if (!attributeNamesToLocations.TryGetValue(attributeName, out location))
             {
                 location = glGetAttribLocation(this.ProgramId, attributeName);
+                var code = (ErrorCode)OpenGL.GetError();
                 if (location < 0)
                 {
                     Debug.WriteLine(string.Format("Failed to getAttribLocation for [{0}]", attributeName));

@@ -30,7 +30,7 @@ namespace CSharpGL
                 if (item.NameInIBufferable == positionNameInIBufferable)
                 {
                     map = new AttributeMap();
-                    map.Add(item.VarNameInShader, item.NameInIBufferable);
+                    map.Add("in_Position", item.NameInIBufferable);
                     break;
                 }
             }

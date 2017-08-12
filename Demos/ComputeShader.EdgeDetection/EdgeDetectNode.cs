@@ -7,33 +7,30 @@ using System.Drawing;
 
 namespace ComputeShader.EdgeDetection
 {
-    partial class EdgeDetectNode : PickableNode
+    partial class EdgeDetectNode : SceneNodeBase, IRenderable, ITextureSource
     {
-        public static EdgeDetectNode Create()
+        private static readonly GLDelegates.void_uint glMemoryBarrier;
+        private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
+        private static readonly GLDelegates.void_uint_uint_uint glDispatchCompute;
+        static EdgeDetectNode()
         {
-            var model = new GrayFilterModel();
-            var vs = new VertexShader(renderVert, "a_vertex", "a_texCoord");
-            var fs = new FragmentShader(renderFrag);
-            var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
-            map.Add("a_vertex", GrayFilterModel.position);
-            map.Add("a_texCoord", GrayFilterModel.texCoord);
-            var builder = new RenderUnitBuilder(provider, map);
-
-            var node = new EdgeDetectNode(model, GrayFilterModel.position, builder);
-            node.Initialize();
-
-            return node;
+            glMemoryBarrier = GL.Instance.GetDelegateFor("glMemoryBarrier", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glBindImageTexture = GL.Instance.GetDelegateFor("glBindImageTexture", GLDelegates.typeof_void_uint_uint_int_bool_int_uint_uint) as GLDelegates.void_uint_uint_int_bool_int_uint_uint;
+            glDispatchCompute = GL.Instance.GetDelegateFor("glDispatchCompute", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
         }
 
-        private EdgeDetectNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
-            : base(model, positionNameInIBufferSource, builders)
-        {
-        }
+        private const int width = 512;
+        private const int height = 512;
+        private ShaderProgram program;
+        private Texture texture;
+        private Texture intermediateTexture;
+        private Texture finalTexture;
 
-        protected override void DoInitialize()
+        public EdgeDetectNode()
         {
-            base.DoInitialize();
+            var cs = new CSharpGL.ComputeShader(computeShader);
+            var shaders = new ShaderArray(cs);
+            this.program = shaders.GetShaderProgram();
 
             var bitmap = new Bitmap(100, 100);
             using (var g = Graphics.FromImage(bitmap))
@@ -43,6 +40,27 @@ namespace ComputeShader.EdgeDetection
             }
             this.UpdateTexture(bitmap);
             bitmap.Dispose();
+
+            InitIntermediateTexture();
+            InitFinalTexture();
+        }
+
+        private void InitFinalTexture()
+        {
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 0, GL.GL_RGBA, 512, 512);
+            var texture = new Texture(TextureTarget.Texture2D, storage);
+            texture.Initialize();
+
+            this.finalTexture = texture;
+        }
+
+        private void InitIntermediateTexture()
+        {
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 0, GL.GL_RGBA, 512, 512);
+            var texture = new Texture(TextureTarget.Texture2D, storage);
+            texture.Initialize();
+
+            this.intermediateTexture = texture;
         }
 
         public void UpdateTexture(Bitmap bitmap)
@@ -50,7 +68,7 @@ namespace ComputeShader.EdgeDetection
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 
             var texture = new Texture(TextureTarget.Texture2D,
-                new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap)));
+                new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap)));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
@@ -59,86 +77,46 @@ namespace ComputeShader.EdgeDetection
 
             texture.Initialize();
 
-            RenderUnit unit = this.RenderUnits[0];
-            ShaderProgram program = unit.Program;
-            program.SetUniform("u_texture", texture);
+            this.texture = texture;
         }
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        #region IRenderable 成员
+
+        public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren | ThreeFlags.Children; } set { } }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
+            ShaderProgram computeProgram = this.program;
+            // Activate the compute program and bind the output texture image
+            computeProgram.Bind();
+            glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.texture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            glBindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            // Dispatch
+            glDispatchCompute(1, 512, 1);
+            glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            computeProgram.Unbind();
 
-            RenderUnit unit = this.RenderUnits[0];
-            ShaderProgram program = unit.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
-
-            unit.Render();
-        }
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
-    }
-
-    class GrayFilterModel : IBufferSource
-    {
-        public const string position = "positoin";
-        private VertexBuffer positionBuffer;
-        public const string texCoord = "texCoord";
-        private VertexBuffer texCoordBuffer;
-
-        private IndexBuffer indexBuffer;
-
-        private static readonly vec3[] positions = new vec3[]
-        {
-            new vec3(-1,  1, 0), new vec3( 1,  1, 0),
-            new vec3(-1, -1, 0), new vec3( 1, -1, 0),
-        };
-
-        private static readonly vec2[] texCoords = new vec2[]
-        {
-            new vec2(0, 1), new vec2(1, 1),
-            new vec2(0, 0), new vec2(1, 0),
-        };
-
-        #region IBufferSource 成员
-
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
-        {
-            if (bufferName == position)
-            {
-                if (this.positionBuffer == null)
-                {
-                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
-                }
-
-                return this.positionBuffer;
-            }
-            else if (bufferName == texCoord)
-            {
-                if (this.texCoordBuffer == null)
-                {
-                    this.texCoordBuffer = texCoords.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
-                }
-
-                return this.texCoordBuffer;
-            }
-            else
-            {
-                throw new ArgumentException("bufferName");
-            }
+            computeProgram.Bind();
+            glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            glBindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), this.finalTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            // Dispatch
+            glDispatchCompute(1, 512, 1);
+            glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            computeProgram.Unbind();
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
-            if (this.indexBuffer == null)
-            {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.QuadStrip, 0, positions.Length);
-            }
+        }
 
-            return this.indexBuffer;
+        #endregion
+
+        #region ITextureSource 成员
+
+        public Texture BindingTexture
+        {
+            //get { return this.finalTexture; }
+            get { return this.intermediateTexture; }
+            //get { return this.texture; }
         }
 
         #endregion

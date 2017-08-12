@@ -88,5 +88,7 @@ namespace CSharpGL
         /// Gets the shader object.
         /// </summary>
         public uint ShaderId { get; private set; }
+
+        public string SourceCode { get; set; }
     }
 }

@@ -136,9 +136,10 @@ namespace CSharpGL
                     || type == GL.GL_SAMPLER_2D_SHADOW
                     || type == GL.GL_SAMPLER_2D_RECT
                     || type == GL.GL_SAMPLER_2D_RECT_SHADOW
-                    || type == 0x92DB // uniform atomic_uint xxx;
+                    || type == 0x904D // uniform image2D xxx;
                     || type == 0x9063 // uniform uimage2D xxx;
                     || type == 0x9067 // uniform uimageBuffer xxx;
+                    || type == 0x92DB // uniform atomic_uint xxx;
                     )
                 {
                     return null;// not need to deal with these.

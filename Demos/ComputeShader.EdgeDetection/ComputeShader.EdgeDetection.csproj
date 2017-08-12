@@ -50,7 +50,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="EdgeDetectNode.cs" />
-    <Compile Include="EdgeDetectNode.shaders.cs" />
+    <Compile Include="EdgeDetectNode.computeShader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
