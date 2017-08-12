@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
@@ -36,20 +35,6 @@
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnForm06ImageProcessing
-            // 
-            this.btnForm06ImageProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnForm06ImageProcessing.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm06ImageProcessing.Location = new System.Drawing.Point(9, 382);
-            this.btnForm06ImageProcessing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnForm06ImageProcessing.Name = "btnForm06ImageProcessing";
-            this.btnForm06ImageProcessing.Size = new System.Drawing.Size(575, 30);
-            this.btnForm06ImageProcessing.TabIndex = 0;
-            this.btnForm06ImageProcessing.Text = "06 ImageProcessing";
-            this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
-            this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btn06ImageProcessing_Click);
             // 
             // btnForm07PointSprite
             // 
@@ -146,7 +131,6 @@
             this.Controls.Add(this.btn15UIRenderer);
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
-            this.Controls.Add(this.btnForm06ImageProcessing);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -157,7 +141,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07PointSprite;
         private System.Windows.Forms.Button btn11IFontTexture;
         private System.Windows.Forms.Button btn15UIRenderer;

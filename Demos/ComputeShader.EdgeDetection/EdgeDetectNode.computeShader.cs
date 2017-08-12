@@ -23,9 +23,8 @@ void main(void)
     scanline[pos.x] = imageLoad(input_image, pos);
     barrier();
 	// Compute our result and write it back to the image
-	//vec4 result = scanline[min(pos.x + 1, 511)] - scanline[max(pos.x - 1, 0)];
-    vec4 result = scanline[pos.x];
-    imageStore(output_image, pos.xy, result);
+	vec4 result = scanline[min(pos.x + 1, 511)] - scanline[max(pos.x - 1, 0)];
+    imageStore(output_image, pos.yx, result);
 }
 ";
     }

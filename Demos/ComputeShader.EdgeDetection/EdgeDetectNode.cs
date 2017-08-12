@@ -32,22 +32,22 @@ namespace ComputeShader.EdgeDetection
             var shaders = new ShaderArray(cs);
             this.program = shaders.GetShaderProgram();
 
-            var bitmap = new Bitmap(100, 100);
+            var bitmap = new Bitmap(width, height);
             using (var g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.Red);
-                g.DrawString("CSharpGL", new Font("宋体", 18F), new SolidBrush(Color.Gold), new PointF(0, 40));
+                g.DrawString("CSharpGL", new Font("宋体", 88F), new SolidBrush(Color.Gold), new PointF(0, height / 2));
             }
-            this.UpdateTexture(bitmap);
-            bitmap.Dispose();
+            this.texture = this.GetTexture(bitmap);
+            this.InitIntermediateTexture();
+            this.InitFinalTexture();
 
-            InitIntermediateTexture();
-            InitFinalTexture();
+            bitmap.Dispose();
         }
 
         private void InitFinalTexture()
         {
-            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 0, GL.GL_RGBA, 512, 512);
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 8, GL.GL_RGBA32F, width, height);
             var texture = new Texture(TextureTarget.Texture2D, storage);
             texture.Initialize();
 
@@ -56,7 +56,7 @@ namespace ComputeShader.EdgeDetection
 
         private void InitIntermediateTexture()
         {
-            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 0, GL.GL_RGBA, 512, 512);
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 8, GL.GL_RGBA32F, width, height);
             var texture = new Texture(TextureTarget.Texture2D, storage);
             texture.Initialize();
 
@@ -65,10 +65,16 @@ namespace ComputeShader.EdgeDetection
 
         public void UpdateTexture(Bitmap bitmap)
         {
+            var bmp = new Bitmap(bitmap, width, height);
+            this.texture = GetTexture(bmp);
+        }
+
+        private Texture GetTexture(Bitmap bitmap)
+        {
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 
             var texture = new Texture(TextureTarget.Texture2D,
-                new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap)));
+                new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA32F, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap)));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
@@ -77,8 +83,9 @@ namespace ComputeShader.EdgeDetection
 
             texture.Initialize();
 
-            this.texture = texture;
+            return texture;
         }
+
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren | ThreeFlags.Children; } set { } }
@@ -91,7 +98,7 @@ namespace ComputeShader.EdgeDetection
             glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.texture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             glBindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             // Dispatch
-            glDispatchCompute(1, 512, 1);
+            glDispatchCompute(1, width, 1);
             glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
             computeProgram.Unbind();
 
@@ -99,7 +106,7 @@ namespace ComputeShader.EdgeDetection
             glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             glBindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), this.finalTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             // Dispatch
-            glDispatchCompute(1, 512, 1);
+            glDispatchCompute(1, height, 1);
             glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
             computeProgram.Unbind();
         }
@@ -114,8 +121,8 @@ namespace ComputeShader.EdgeDetection
 
         public Texture BindingTexture
         {
-            //get { return this.finalTexture; }
-            get { return this.intermediateTexture; }
+            get { return this.finalTexture; }
+            //get { return this.intermediateTexture; }
             //get { return this.texture; }
         }
 

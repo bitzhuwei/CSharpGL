@@ -26,7 +26,7 @@ namespace ComputeShader.EdgeDetection
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(0, 0, 3);
+            var position = new vec3(0, 0, 0.9f);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -47,6 +47,7 @@ namespace ComputeShader.EdgeDetection
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+            manipulater.StepLength = 0.1f;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

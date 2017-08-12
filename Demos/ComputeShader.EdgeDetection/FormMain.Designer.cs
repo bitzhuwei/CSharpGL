@@ -36,13 +36,13 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 41);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(679, 346);
+            this.winGLCanvas1.Size = new System.Drawing.Size(679, 631);
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
             // 
@@ -56,7 +56,7 @@
             this.btnOpenImage.UseVisualStyleBackColor = true;
             this.btnOpenImage.Click += new System.EventHandler(this.btnOpenImage_Click);
             // 
-            // OpenImageDlg
+            // openImageDlg
             // 
             this.openImageDlg.Filter = "*.*|*.*";
             // 
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 399);
+            this.ClientSize = new System.Drawing.Size(703, 684);
             this.Controls.Add(this.btnOpenImage);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";

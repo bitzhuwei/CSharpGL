@@ -22,10 +22,6 @@ namespace CSharpGL.Demos
             {
                 renderer = ConditionalRenderer.Create();
             }
-            else if (rendererType == typeof(ImageProcessingRenderer))
-            {
-                renderer = new ImageProcessingRenderer();
-            }
             else if (rendererType == typeof(ParticleSimulatorRenderer))
             {
                 renderer = new ParticleSimulatorRenderer();

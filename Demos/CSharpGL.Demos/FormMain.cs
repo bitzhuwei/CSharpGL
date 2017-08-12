@@ -16,11 +16,6 @@ namespace CSharpGL.Demos
             Process.Start("https://github.com/bitzhuwei/CSharpGL.Data");
         }
 
-        private void btn06ImageProcessing_Click(object sender, EventArgs e)
-        {
-            (new Form06ImageProcessing()).Show();
-        }
-
         private void btn07PointSprite_Click(object sender, EventArgs e)
         {
             (new Form07PointSprite()).Show();
