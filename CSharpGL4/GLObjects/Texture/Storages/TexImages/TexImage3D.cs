@@ -10,15 +10,15 @@ namespace CSharpGL
     /// </summary>
     public class TexImage3D : TexStorageBase
     {
-        internal static readonly GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr glTexImage3D;
+        internal static readonly GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr glTexImage3D;
         static TexImage3D()
         {
-            glTexImage3D = GL.Instance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_int_int_int_int_int_uint_uint_IntPtr;
+            glTexImage3D = GL.Instance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr;
         }
 
         private Target target;
         private int level;
-        private int internalFormat;
+        private uint internalFormat;
         private int width;
         private int height;
         private int depth;
@@ -40,7 +40,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage3D(Target target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage3D(Target target, int level, uint internalformat, int width, int height, int depth, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
         {
             this.target = target;
             this.level = level; this.internalFormat = internalformat;

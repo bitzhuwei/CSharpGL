@@ -916,11 +916,11 @@ namespace CSharpGL
         /// <param name="_7"></param>
         /// <param name="_8"></param>
         /// <param name="_9"></param>
-        public delegate void void_uint_int_int_int_int_int_int_uint_uint_IntPtr(uint _0, int _1, int _2, int _3, int _4, int _5, int _6, uint _7, uint _8, IntPtr _9);
+        public delegate void void_uint_int_uint_int_int_int_int_uint_uint_IntPtr(uint _0, int _1, uint _2, int _3, int _4, int _5, int _6, uint _7, uint _8, IntPtr _9);
         /// <summary>
         /// 
         /// </summary>
-        public static readonly Type typeof_void_uint_int_int_int_int_int_int_uint_uint_IntPtr = typeof(void_uint_int_int_int_int_int_int_uint_uint_IntPtr);
+        public static readonly Type typeof_void_uint_int_uint_int_int_int_int_uint_uint_IntPtr = typeof(void_uint_int_uint_int_int_int_int_uint_uint_IntPtr);
 
         /// <summary>
         /// 

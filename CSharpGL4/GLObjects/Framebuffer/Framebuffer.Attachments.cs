@@ -158,19 +158,19 @@ namespace CSharpGL
         private Renderbuffer depthBuffer;
         private int nextColorAttachmentIndex = 0;
 
-        ///// <summary>
-        ///// Attach a texture.
-        ///// <para>Bind() this framebuffer before invoking this method.</para>
-        ///// </summary>
-        ///// <param name="texture"></param>
-        ///// <returns></returns>
-        //public void Attach(Texture texture)
-        //{
-        //    if (nextColorAttachmentIndex >= attachment_id.Length)
-        //    { throw new IndexOutOfRangeException("Not enough color attach points!"); }
+        /// <summary>
+        /// Attach a texture.
+        /// <para>Bind() this framebuffer before invoking this method.</para>
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <returns></returns>
+        public void Attach(Texture texture)
+        {
+            if (nextColorAttachmentIndex >= attachment_id.Length)
+            { throw new IndexOutOfRangeException("Not enough color attach points!"); }
 
-        //    glFramebufferTexture(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], texture.Id, 0);
-        //}
+            glFramebufferTexture(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], texture.Id, 0);
+        }
 
         /// <summary>
         /// Attach a texture.

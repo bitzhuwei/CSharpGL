@@ -48,12 +48,44 @@ namespace RaycastVolumeRendering
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+
+            if (this.width != viewport[2] || this.height != viewport[3])
+            {
+                Resize(viewport[2], viewport[3]);
+
+                this.width = viewport[2];
+                this.height = viewport[3];
+            }
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            mat4 mvp = projection * view * model;
+            {
+                RenderUnit unit = this.RenderUnits[0];
+                ShaderProgram program = unit.Program;
+                program.SetUniform("MVP", mvp);
+
+                // render to texture
+                this.framebuffer.Bind(FramebufferTarget.Framebuffer);
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+                {
+                    unit.Render();
+                }
+                this.framebuffer.Unbind(FramebufferTarget.Framebuffer);
+            }
+            {
+                RenderUnit unit = this.RenderUnits[1];
+                ShaderProgram program = unit.Program;
+                program.SetUniform("MVP", mvp);
+
+                unit.Render();
+            }
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 }
