@@ -67,8 +67,8 @@
             this.ClientSize = new System.Drawing.Size(703, 684);
             this.Controls.Add(this.btnOpenImage);
             this.Controls.Add(this.winGLCanvas1);
-            this.Name = "Compute Shader - Edge Detection - CSharpGL";
-            this.Text = "FormMain";
+            this.Name = "FormMain";
+            this.Text = "Compute Shader - Edge Detection - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
