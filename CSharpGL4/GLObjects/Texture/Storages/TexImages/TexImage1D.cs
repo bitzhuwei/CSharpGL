@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Set up texture's content with 'glTexImage1D()'.
     /// </summary>
     public class TexImage1D : TexStorageBase
     {
@@ -19,7 +19,7 @@ namespace CSharpGL
         private TexImageDataProvider<LeveledData> dataProvider;
 
         /// <summary>
-        /// 
+        /// Set up texture's content with 'glTexImage1D()'.
         /// </summary>
         /// <param name="level"></param>
         /// <param name="internalformat"></param>

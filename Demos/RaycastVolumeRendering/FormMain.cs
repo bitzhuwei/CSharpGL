@@ -39,6 +39,10 @@ namespace RaycastVolumeRendering
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
             this.scene = new Scene(camera, this.winGLCanvas1);
+            {
+                var node = RaycastNode.Create();
+                this.scene.RootElement = node;
+            }
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);

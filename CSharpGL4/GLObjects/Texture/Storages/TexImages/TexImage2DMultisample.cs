@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Set up texture's content with 'glTexImage2DMultisample()'.
     /// </summary>
     public class TexImage2DMultisample : TexStorageBase
     {
@@ -23,7 +23,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Set up texture's content with 'glTexImage2DMultisample()'.
         /// </summary>
         /// <param name="samples"></param>
         /// <param name="internalFormat"></param>
