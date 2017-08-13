@@ -106,10 +106,6 @@
     <Compile Include="Models\GroundModel.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
     <Compile Include="Renderers\PointCloudRenderer.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.Dispose.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ConditionalRenderer.cs" />
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleComputeRenderer.cs" />
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleRenderer.cs" />
@@ -201,12 +197,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Ground.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\ShaderToy.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\ShaderToy.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ParticleSimulatorRenderer\particleSimulator-fountain.comp">

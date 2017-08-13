@@ -49,10 +49,6 @@ namespace CSharpGL.Demos
                 const int particleCount = 10000;
                 renderer = PointSpriteRenderer.Create(particleCount);
             }
-            else if (rendererType == typeof(ShaderToyRenderer))
-            {
-                renderer = ShaderToyRenderer.Create();
-            }
             else if (rendererType == typeof(SimpleComputeRenderer))
             {
                 renderer = SimpleComputeRenderer.Create();
