@@ -58,7 +58,6 @@ namespace RaycastVolumeRendering
         class ByteData : LeveledData
         {
             private byte[] data;
-            private int width;
             private GCHandle pinned;
 
             /// <summary>
