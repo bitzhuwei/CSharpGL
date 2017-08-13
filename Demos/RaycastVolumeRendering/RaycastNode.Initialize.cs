@@ -44,7 +44,7 @@ namespace RaycastVolumeRendering
             // TransferFunc
             // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
             // VolumeTex the texture that hold the volume data i.e. head256.raw
-            RenderUnit unit = this.RenderUnits[0];
+            RenderUnit unit = this.RenderUnits[1];
             ShaderProgram program = unit.Program;
             program.SetUniform("ScreenSize", new vec2(width, height));
             program.SetUniform("StepSize", g_stepSize);
