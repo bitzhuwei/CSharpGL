@@ -46,6 +46,29 @@ namespace RaycastVolumeRendering
         {
         }
 
+        private ArcBallManipulater manipulater;
+
+        public void BindManipulater(ArcBallManipulater manipulater)
+        {
+            this.manipulater = manipulater;
+        }
+
+        private void UpdateRotation()
+        {
+            var manipulater = this.manipulater;
+            if (manipulater != null)
+            {
+                mat4 model = this.manipulater.GetRotationMatrix();
+                Quaternion quaternion = model.ToQuaternion();
+                float angleDegree;
+                vec3 axis;
+                quaternion.Parse(out angleDegree, out axis);
+
+                this.RotationAngle = angleDegree;
+                this.RotationAxis = axis;
+            }
+        }
+
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -60,6 +83,7 @@ namespace RaycastVolumeRendering
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
+            this.UpdateRotation();
             mat4 model = this.GetModelMatrix();
             mat4 mvp = projection * view * model;
             {

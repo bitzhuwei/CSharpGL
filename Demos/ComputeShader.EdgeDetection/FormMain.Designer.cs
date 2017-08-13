@@ -36,8 +36,8 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 41);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -67,7 +67,7 @@
             this.ClientSize = new System.Drawing.Size(703, 684);
             this.Controls.Add(this.btnOpenImage);
             this.Controls.Add(this.winGLCanvas1);
-            this.Name = "FormMain";
+            this.Name = "Compute Shader - Edge Detection - CSharpGL";
             this.Text = "FormMain";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);

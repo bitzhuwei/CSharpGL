@@ -26,9 +26,11 @@ namespace RaycastVolumeRendering
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
-            this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
-            this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
+
+            // picking events
+            //this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
+            //this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
+            //this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -40,7 +42,10 @@ namespace RaycastVolumeRendering
 
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
+                var manipulater = new ArcBallManipulater(System.Windows.Forms.MouseButtons.Right);
+                manipulater.Bind(camera, this.winGLCanvas1);
                 var node = RaycastNode.Create();
+                node.BindManipulater(manipulater);
                 this.scene.RootElement = node;
             }
 
@@ -55,6 +60,7 @@ namespace RaycastVolumeRendering
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
+
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

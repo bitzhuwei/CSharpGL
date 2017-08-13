@@ -60,6 +60,7 @@
     <Compile Include="RaycastNode.raycasting.cs" />
     <Compile Include="RaycastNode.backface.cs" />
     <Compile Include="RaycastNode.cs" />
+    <Content Include="RaycastVolumeRendering.png" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +85,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="readme.md" />
     <None Include="tff.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

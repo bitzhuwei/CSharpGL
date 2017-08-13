@@ -82,17 +82,6 @@ namespace RaycastVolumeRendering
                 int y = this.winGLCanvas1.Height - e.Y - 1;
                 this.pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
 
-                if (this.pickedGeometry != null)
-                {
-                    var text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
-                    this.toolStripStatusLabel1.Text = text;
-                }
-                else
-                {
-                    var text = string.Format("picked: nothing");
-                    this.toolStripStatusLabel1.Text = text;
-                }
-
                 this.UpdateHightlight();
             }
 
