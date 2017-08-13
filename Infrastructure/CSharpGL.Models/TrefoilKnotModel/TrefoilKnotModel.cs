@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace CSharpGL.Demos
+namespace CSharpGL
 {
     /// <summary>
     /// Trefoil knot model.
     /// </summary>
-    internal class TrefoilKnotModel : IBufferable
+    internal class TrefoilKnotModel : IBufferSource
     {
         private double interval;
 
@@ -55,15 +55,14 @@ namespace CSharpGL.Demos
         /// <para>Gets specified vertex buffer object.</para>
         /// </summary>
         /// <param name="bufferName">buffer name(Gets this name from 'strPosition' etc.</param>
-        /// <param name="varNameInShader">name in vertex shader like `in vec3 in_Position;`.</param>
         /// <returns>Vertex Buffer Object.</returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = GetPositionBuffer(varNameInShader);
+                    this.positionBuffer = GetPositionBuffer();
                 }
                 return this.positionBuffer;
             }
@@ -71,7 +70,7 @@ namespace CSharpGL.Demos
             {
                 if (this.colorBuffer == null)
                 {
-                    this.colorBuffer = GetTexCoordBuffer(varNameInShader);
+                    this.colorBuffer = GetTexCoordBuffer();
                 }
                 return this.colorBuffer;
             }
@@ -81,11 +80,11 @@ namespace CSharpGL.Demos
             }
         }
 
-        private VertexBuffer GetTexCoordBuffer(string varNameInShader)
+        private VertexBuffer GetTexCoordBuffer()
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, varNameInShader, BufferUsage.StaticDraw);
+            VertexBuffer buffer = VertexBuffer.Create(typeof(float), length, VBOConfig.Float, BufferUsage.StaticDraw);
             unsafe
             {
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -101,11 +100,11 @@ namespace CSharpGL.Demos
             return buffer;
         }
 
-        private VertexBuffer GetPositionBuffer(string varNameInShader)
+        private VertexBuffer GetPositionBuffer()
         {
             int uCount = GetUCount(interval);
             int length = uCount;
-            VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+            VertexBuffer buffer = VertexBuffer.Create(typeof(vec3), length, VBOConfig.Vec3, BufferUsage.StaticDraw);
             bool initialized = false;
             vec3 max = new vec3();
             vec3 min = new vec3();
@@ -169,11 +168,5 @@ namespace CSharpGL.Demos
 
             return this.indexBuffer;
         }
-
-        /// <summary>
-        /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
-        /// </summary>
-        /// <returns></returns>
-        public bool UsesZeroIndexBuffer() { return true; }
     }
 }
