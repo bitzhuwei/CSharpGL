@@ -32,8 +32,6 @@ namespace RaycastVolumeRendering
             this.volume3DTexture = initVol3DTex(volumeData, 256, 256, 225);
 
             this.Resize(width, height);
-
-            this.RaycastingSetupUniforms(width, height);
         }
 
         private void RaycastingSetupUniforms(int width, int height)
@@ -65,6 +63,8 @@ namespace RaycastVolumeRendering
             this.width = width; this.height = height;
             this.backface2DTexture = InitFace2DTexture(width, height);
             this.framebuffer = InitFramebuffer(width, height);
+
+            this.RaycastingSetupUniforms(width, height);
         }
 
         private Framebuffer InitFramebuffer(int texWidth, int texHeight)

@@ -125,13 +125,10 @@
     <Compile Include="Renderers\Water\WaterRenderer.DoRenderer.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\Water\WaterRenderer.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer\ByteImageFiller.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
     <Compile Include="Renderers\PointCloudRenderer.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeImageFiller.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.Render.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.Dispose.cs" />
     <Compile Include="Renderers\ShaderToyRenderer\ShaderToyRenderer.DoInitialize.cs" />
@@ -142,9 +139,7 @@
     <Compile Include="Models\ParticleModel.cs" />
     <Compile Include="Renderers\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="Renderers\PointSpriteRenderer.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.Initialize.cs" />
     <Compile Include="Models\RaycastModel.cs" />
-    <Compile Include="Renderers\RaycastVolumeRenderer\RaycastVolumeRenderer.cs" />
     <Compile Include="Models\BillboardModel.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.Dispose.cs" />
     <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.DoRender.cs" />
@@ -317,9 +312,6 @@
     <None Include="shaders\RaycastVolumeRenderer\backface.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\data\tff.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -396,9 +388,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\PointSprite.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\data\head256.raw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\ExampleBillboard.png">
