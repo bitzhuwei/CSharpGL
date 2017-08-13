@@ -1,4 +1,25 @@
-﻿#version 150 core
+﻿namespace SimpleNoise.Sun
+{
+    partial class SimplexNoiseNode
+    {
+        private const string renderVert = @"#version 150 core
+
+in vec3 in_Position;
+
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+uniform float granularity = 4.0f;
+
+out vec3 v_texCoord3D;
+
+void main(void) {
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+
+	v_texCoord3D = normalize(in_Position) * granularity;
+}
+";
+        private const string renderFrag = @"#version 150 core
 
 in vec3 v_texCoord3D;
 
@@ -132,6 +153,9 @@ void main(void)
   float maximum = (0.5 + 0.25 + 0.125 + 0.0625 + 0.03125);
   n = n / (maximum - minimum) - minimum;// make n to (0 ~ 1)
   // n = n * 0.7;
-  // A "hot" colormap - cheesy but effective 
+  // A hot colormap - cheesy but effective 
   out_Color = texture(sunColor, n);
+}
+";
+    }
 }

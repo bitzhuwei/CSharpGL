@@ -118,10 +118,6 @@
     <Compile Include="Renderers\PointSpriteRenderer.cs" />
     <Compile Include="Models\RaycastModel.cs" />
     <Compile Include="Models\BillboardModel.cs" />
-    <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.Dispose.cs" />
-    <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.DoRender.cs" />
-    <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\SimplexNoiseRenderer\SimplexNoiseRenderer.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,12 +207,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ShaderToy.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\SimplexNoise.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\SimplexNoise.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ParticleSimulatorRenderer\particleSimulator-fountain.comp">
@@ -329,9 +319,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\ExampleBillboard.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\sunColor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

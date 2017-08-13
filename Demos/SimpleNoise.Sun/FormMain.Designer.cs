@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -41,9 +40,9 @@
             // 
             this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.propGrid.Location = new System.Drawing.Point(12, 277);
+            this.propGrid.Location = new System.Drawing.Point(12, 12);
             this.propGrid.Name = "propGrid";
-            this.propGrid.Size = new System.Drawing.Size(332, 308);
+            this.propGrid.Size = new System.Drawing.Size(332, 573);
             this.propGrid.TabIndex = 2;
             // 
             // winGLCanvas1
@@ -56,6 +55,7 @@
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
             // 
             // statusStrip1
             // 

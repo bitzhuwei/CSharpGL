@@ -51,6 +51,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimplexNoiseNode\SimplexNoiseNode.cs" />
+    <Compile Include="SimplexNoiseNode\SimplexNoiseNode.shaders.cs" />
+    <Compile Include="SimplexNoiseNode\SimplexNoiseNode.DoInitialize.cs" />
+    <Compile Include="SimplexNoiseNode\SimplexNoiseNode.DoRender.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +90,11 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sunColor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
