@@ -49,10 +49,6 @@ namespace CSharpGL.Demos
                 const int particleCount = 10000;
                 renderer = PointSpriteRenderer.Create(particleCount);
             }
-            else if (rendererType == typeof(RaycastVolumeRenderer))
-            {
-                renderer = new RaycastVolumeRenderer();
-            }
             else if (rendererType == typeof(ShaderToyRenderer))
             {
                 renderer = ShaderToyRenderer.Create();
