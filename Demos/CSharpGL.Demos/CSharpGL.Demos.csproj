@@ -116,15 +116,6 @@
     <Compile Include="Renderers\UniformStructRenderer.cs" />
     <Compile Include="Renderers\UniformBlockRenderer.cs" />
     <Compile Include="Renderers\ZeroAttributeRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterBackgroundRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterTextureRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterBackgroundRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\Water\WaterTextureRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\Water\WaterBackgroundRenderer.DoRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterTextureRenderer.DoRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterRenderer.DoRenderer.cs" />
-    <Compile Include="Renderers\Water\WaterRenderer.DoInitialize.cs" />
-    <Compile Include="Renderers\Water\WaterRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
@@ -309,24 +300,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="shaders\water\Background.frag.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\water\Background.vert.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\water\Water.frag.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\water\Water.vert.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\water\WaterTexture.frag.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\water\WaterTexture.vert.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -366,9 +339,6 @@
     <Content Include="Resources\data\water_pos_z.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="shaders\water\background.c" />
-    <Content Include="shaders\water\water.c" />
-    <Content Include="shaders\water\waterTexture.c" />
     <Content Include="Textures\box.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
