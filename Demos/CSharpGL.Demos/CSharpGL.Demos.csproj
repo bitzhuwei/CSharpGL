@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="16ArcBallManipulater\ArcballScript.cs" />
     <Compile Include="23SingleRenderer\DemoRendererFactory.cs" />
     <Compile Include="23SingleRenderer\Form23SingleRenderer.cs">
       <SubType>Form</SubType>
@@ -80,15 +79,6 @@
     </Compile>
     <Compile Include="11IFontTexture\Form11IFontTexture.Designer.cs">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
-    </Compile>
-    <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.Designer.cs">
-      <DependentUpon>Form16ArcBallManipulater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.Load.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="15UIRenderer\Form15UIRenderer.cs">
       <SubType>Form</SubType>

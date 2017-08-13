@@ -31,7 +31,6 @@
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
             this.btn11IFontTexture = new System.Windows.Forms.Button();
             this.btn15UIRenderer = new System.Windows.Forms.Button();
-            this.btn16ArcBallManipulater = new System.Windows.Forms.Button();
             this.btn21ConditionalRendering = new System.Windows.Forms.Button();
             this.btn23SingleRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -78,20 +77,6 @@
             this.btn15UIRenderer.UseVisualStyleBackColor = true;
             this.btn15UIRenderer.Click += new System.EventHandler(this.btn15UIRenderer_Click);
             // 
-            // btn16ArcBallManipulater
-            // 
-            this.btn16ArcBallManipulater.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn16ArcBallManipulater.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn16ArcBallManipulater.Location = new System.Drawing.Point(9, 76);
-            this.btn16ArcBallManipulater.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn16ArcBallManipulater.Name = "btn16ArcBallManipulater";
-            this.btn16ArcBallManipulater.Size = new System.Drawing.Size(575, 30);
-            this.btn16ArcBallManipulater.TabIndex = 0;
-            this.btn16ArcBallManipulater.Text = "16 ArcBall Manipulater";
-            this.btn16ArcBallManipulater.UseVisualStyleBackColor = true;
-            this.btn16ArcBallManipulater.Click += new System.EventHandler(this.btn16ArcBallManipulater_Click);
-            // 
             // btn21ConditionalRendering
             // 
             this.btn21ConditionalRendering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -127,7 +112,6 @@
             this.ClientSize = new System.Drawing.Size(593, 647);
             this.Controls.Add(this.btn23SingleRenderer);
             this.Controls.Add(this.btn21ConditionalRendering);
-            this.Controls.Add(this.btn16ArcBallManipulater);
             this.Controls.Add(this.btn15UIRenderer);
             this.Controls.Add(this.btn11IFontTexture);
             this.Controls.Add(this.btnForm07PointSprite);
@@ -144,7 +128,6 @@
         private System.Windows.Forms.Button btnForm07PointSprite;
         private System.Windows.Forms.Button btn11IFontTexture;
         private System.Windows.Forms.Button btn15UIRenderer;
-        private System.Windows.Forms.Button btn16ArcBallManipulater;
         private System.Windows.Forms.Button btn21ConditionalRendering;
         private System.Windows.Forms.Button btn23SingleRenderer;
     }
