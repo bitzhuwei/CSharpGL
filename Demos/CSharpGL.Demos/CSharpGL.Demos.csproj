@@ -184,15 +184,6 @@
     <None Include="shaders\ZeroAttributeRenderer\ZeroAttribute.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\RayTracingRenderer\fullscreen.vert.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\RayTracingRenderer\raytrace.comp.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\RayTracingRenderer\texture.frag.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="shaders\Ground.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
