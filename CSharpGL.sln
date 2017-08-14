@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaycastVolumeRendering", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNoise.Sun", "Demos\SimpleNoise.Sun\SimpleNoise.Sun.csproj", "{6547C6FD-FE3C-450A-9A90-8AFA8BE17F3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputeShader.HelloComputeShader", "Demos\ComputeShader.HelloComputeShader\ComputeShader.HelloComputeShader.csproj", "{9CCA31E6-75FC-4803-B637-59946B0C488D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +195,10 @@ Global
 		{6547C6FD-FE3C-450A-9A90-8AFA8BE17F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6547C6FD-FE3C-450A-9A90-8AFA8BE17F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6547C6FD-FE3C-450A-9A90-8AFA8BE17F3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CCA31E6-75FC-4803-B637-59946B0C488D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CCA31E6-75FC-4803-B637-59946B0C488D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CCA31E6-75FC-4803-B637-59946B0C488D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CCA31E6-75FC-4803-B637-59946B0C488D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,5 +231,6 @@ Global
 		{32FE823D-5818-4593-9534-C2AEFBD044EA} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{CF531203-CC19-45F5-8926-3B8A54601FB0} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{6547C6FD-FE3C-450A-9A90-8AFA8BE17F3D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{9CCA31E6-75FC-4803-B637-59946B0C488D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
