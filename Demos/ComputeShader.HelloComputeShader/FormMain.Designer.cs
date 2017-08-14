@@ -82,7 +82,7 @@
             this.Controls.Add(this.propGrid);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Hello CSharpGL";
+            this.Text = "Hello compute shader - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
