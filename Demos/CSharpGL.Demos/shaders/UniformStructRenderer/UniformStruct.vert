@@ -6,7 +6,7 @@ struct Uniforms {
 	mat4 model;
 };
 
-uniform Uniforms transformMatrix;
+uniform Uniforms transform;
 
 in vec3 vPos;
 in vec3 vColor;
@@ -14,7 +14,7 @@ out vec3 fColor;
 
 void main(void) {
  
-	gl_Position = transformMatrix.projection * transformMatrix.view * transformMatrix.model * vec4(vPos, 1.0);
+	gl_Position = transform.projection * transform.view * transform.model * vec4(vPos, 1.0);
 	
 	fColor = vColor;
 }

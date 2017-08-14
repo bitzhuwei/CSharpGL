@@ -52,12 +52,12 @@ namespace CSharpGL.Demos
         {
             mat4 projection = arg.Camera.GetProjectionMatrix();
             mat4 view = arg.Camera.GetViewMatrix();
-            this.SetUniform("transformMatrix.projection", projection);
-            this.SetUniform("transformMatrix.view", view);
+            this.SetUniform("transform.projection", projection);
+            this.SetUniform("transform.view", view);
             MarkableStruct<mat4> model = this.GetModelMatrix();
             if (this.modelTicks != model.UpdateTicks)
             {
-                this.SetUniform("transformMatrix.model", model.Value);
+                this.SetUniform("transform.model", model.Value);
                 this.modelTicks = model.UpdateTicks;
             }
 
