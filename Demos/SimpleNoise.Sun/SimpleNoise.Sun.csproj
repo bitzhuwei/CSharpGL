@@ -76,6 +76,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
@@ -92,6 +93,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SimpleNoise.Sun.png" />
     <Content Include="sunColor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
