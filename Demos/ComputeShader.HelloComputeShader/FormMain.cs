@@ -26,16 +26,15 @@ namespace ComputeShader.HelloComputeShader
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4) * 0.5f;
+            var position = new vec3(0, 0, 1);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                //var node = SimplexNoiseNode.Create();
-                //node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
-                //this.scene.RootElement = node;
-                //this.propGrid.SelectedObject = node;
+                var node = SimpleComputeNode.Create();
+                this.scene.RootElement = node;
+                this.propGrid.SelectedObject = node;
             }
             var list = new ActionList();
             var transformAction = new TransformAction(scene);

@@ -51,6 +51,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleComputeNode.renderShaders.cs" />
+    <Compile Include="SimpleComputeNode.computeShader.cs" />
+    <Compile Include="SimpleComputeNode.ResetShader.cs" />
+    <Compile Include="SimpleCompute.cs" />
+    <Compile Include="SimpleComputeNode.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

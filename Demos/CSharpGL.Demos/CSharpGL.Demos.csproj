@@ -133,7 +133,6 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Renderers\ParticleSimulatorRenderer\ParticleSimulatorRenderer.cs" />
-    <Compile Include="Renderers\SimpleComputeRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="shaders\FixedPercent.frag">
@@ -193,9 +192,6 @@
     <None Include="shaders\ParticleSimulatorRenderer\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\SimpleComputeRenderer\computeReset.comp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="shaders\ParticleSimulatorRenderer\particleSimulator.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -203,15 +199,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\ParticleSimulatorRenderer\particleSimulator.comp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\SimpleComputeRenderer\compute.comp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\SimpleComputeRenderer\compute.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\SimpleComputeRenderer\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="FormMain.resx">
