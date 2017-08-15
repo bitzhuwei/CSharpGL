@@ -11,6 +11,8 @@ namespace CSharpGL
         {
             var normals = new vec3[context.vertexCount];
             ObjVNFMesh mesh = context.Mesh;
+            if (mesh.normals.Length == 0) { mesh.normals = new vec3[context.vertexCount]; }
+
             for (int i = 0; i < context.faceCount; i++)
             {
                 ObjVNFFace face = mesh.faces[i];

@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicTessellationNode.shaders.cs" />
+    <Compile Include="BasicTessellationNode.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
