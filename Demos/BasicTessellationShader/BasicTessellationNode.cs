@@ -11,6 +11,13 @@ namespace BasicTessellationShader
 
         public static BasicTessellationNode Create()
         {
+            {
+                var vs = new VertexShader(renderVert, "Position_VS_in", "TexCoord_VS_in", "Normal_VS_in");
+                var tc = new TessControlShader(renderTesc);
+                var te = new TessEvaluationShader(renderTese);
+                var fs = new FragmentShader(renderFrag);
+                var provider = new ShaderArray(vs, tc, te, fs);
+            }
             throw new NotImplementedException();
         }
 
@@ -26,7 +33,6 @@ namespace BasicTessellationShader
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 }

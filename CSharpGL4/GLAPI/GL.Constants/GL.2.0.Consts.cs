@@ -152,118 +152,118 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_VERTEX_SHADER = 0x8B31;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TESS_CONTROL_SHADER = 0x8E88;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TESS_EVALUATION_SHADER = 0x8E87;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX_FRAGMENT_UNIFORM_COMPONENTS = 0x8B49;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX_VERTEX_UNIFORM_COMPONENTS = 0x8B4A;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX_VARYING_FLOATS = 0x8B4B;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SHADER_TYPE = 0x8B4F;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_VEC2 = 0x8B50;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_VEC3 = 0x8B51;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_VEC4 = 0x8B52;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INT_VEC2 = 0x8B53;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INT_VEC3 = 0x8B54;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INT_VEC4 = 0x8B55;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL = 0x8B56;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL_VEC2 = 0x8B57;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL_VEC3 = 0x8B58;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BOOL_VEC4 = 0x8B59;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_MAT2 = 0x8B5A;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_MAT3 = 0x8B5B;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_MAT4 = 0x8B5C;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_1D = 0x8B5D;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_2D = 0x8B5E;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_3D = 0x8B5F;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_CUBE = 0x8B60;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_1D_SHADOW = 0x8B61;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_SAMPLER_2D_SHADOW = 0x8B62;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DELETE_STATUS = 0x8B80;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TESS_CONTROL_SHADER = 0x8E88;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TESS_EVALUATION_SHADER = 0x8E87;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_FRAGMENT_UNIFORM_COMPONENTS = 0x8B49;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_VERTEX_UNIFORM_COMPONENTS = 0x8B4A;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_VARYING_FLOATS = 0x8B4B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SHADER_TYPE = 0x8B4F;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_VEC2 = 0x8B50;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_VEC3 = 0x8B51;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_VEC4 = 0x8B52;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INT_VEC2 = 0x8B53;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INT_VEC3 = 0x8B54;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INT_VEC4 = 0x8B55;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL = 0x8B56;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL_VEC2 = 0x8B57;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL_VEC3 = 0x8B58;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BOOL_VEC4 = 0x8B59;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_MAT2 = 0x8B5A;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_MAT3 = 0x8B5B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_MAT4 = 0x8B5C;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_1D = 0x8B5D;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_2D = 0x8B5E;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_3D = 0x8B5F;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_CUBE = 0x8B60;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_1D_SHADOW = 0x8B61;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_SAMPLER_2D_SHADOW = 0x8B62;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DELETE_STATUS = 0x8B80;
         /// <summary>
         ///
         /// </summary>
@@ -274,10 +274,10 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_LINK_STATUS = 0x8B82;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_VALIDATE_STATUS = 0x8B83;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_VALIDATE_STATUS = 0x8B83;
         /// <summary>
         ///
         /// </summary>
@@ -319,18 +319,18 @@ namespace CSharpGL
         ///
         /// </summary>
         public const uint GL_CURRENT_PROGRAM = 0x8B8D;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_POINT_SPRITE_COORD_ORIGIN = 0x8CA0;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_LOWER_LEFT = 0x8CA1;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_UPPER_LEFT = 0x8CA2;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_POINT_SPRITE_COORD_ORIGIN = 0x8CA0;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_LOWER_LEFT = 0x8CA1;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_UPPER_LEFT = 0x8CA2;
         /// <summary>
         ///
         /// </summary>

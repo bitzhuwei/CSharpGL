@@ -88,6 +88,8 @@
     </Compile>
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.StaticCtor.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.LoadAllUniforms.cs" />
+    <Compile Include="GLObjects\Shaders\Shaders\TessEvaluationShader.cs" />
+    <Compile Include="GLObjects\Shaders\Shaders\TessControlShader.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapDataProvider.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapData.cs" />
