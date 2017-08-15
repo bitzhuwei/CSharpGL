@@ -306,10 +306,10 @@
     <Compile Include="Scene\Actions\IndependentActions\IPickable\PickingGeometryType.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\PickingGeometryTypeHelper.cs" />
     <Compile Include="Scene\Actions\DependentActions\IRenderable.cs" />
-    <Compile Include="Scene\SceneNodes\Lights\PointLight.cs" />
-    <Compile Include="Scene\SceneNodes\Lights\DirectionalLight.cs" />
-    <Compile Include="Scene\SceneNodes\Lights\SpotLight.cs" />
-    <Compile Include="Scene\SceneNodes\Lights\LightBase.cs" />
+    <Compile Include="Scene\Lights\PointLight.cs" />
+    <Compile Include="Scene\Lights\DirectionalLight.cs" />
+    <Compile Include="Scene\Lights\SpotLight.cs" />
+    <Compile Include="Scene\Lights\LightBase.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnit\TransformFeedbackObjectHelper.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IDisposable.cs" />
@@ -320,7 +320,7 @@
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\readme.md" />
-    <Content Include="Scene\Nodes\Transformers\ratete.png" />
+    <Content Include="Scene\Nodes\Transformers\rotate.png" />
     <Content Include="Scene\Nodes\Transformers\scale.png" />
     <Content Include="Scene\Nodes\Transformers\translate.png" />
     <Content Include="Scene\Actions\IndependentActions\IPickable\readme.md" />
@@ -338,7 +338,7 @@
     <None Include="Scene\Nodes\Billboard\billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Scene\SceneNodes\Lights\readme.md" />
+    <None Include="Scene\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
     <Compile Include="Scene\Actions\IndependentActions\LegacyPickingAction.cs" />
