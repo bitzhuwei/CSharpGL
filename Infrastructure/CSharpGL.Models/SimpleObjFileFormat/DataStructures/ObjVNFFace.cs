@@ -62,6 +62,13 @@ namespace CSharpGL
                 yield return item;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("v:{0}, {1}, {2}, n:{3}, {4}, {5}",
+                vertexIndexes[0], vertexIndexes[1], vertexIndexes[2],
+                normalIndexes[0], normalIndexes[1], normalIndexes[2]);
+        }
     }
 
     /// <summary>
@@ -103,6 +110,13 @@ namespace CSharpGL
             {
                 yield return item;
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("v:{0}, {1}, {2}, {3}, n:{4}, {5}, {6}, {7}",
+                vertexIndexes[0], vertexIndexes[1], vertexIndexes[2], vertexIndexes[3],
+                normalIndexes[0], normalIndexes[1], normalIndexes[2], normalIndexes[3]);
         }
     }
 

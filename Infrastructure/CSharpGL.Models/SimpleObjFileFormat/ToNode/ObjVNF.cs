@@ -43,6 +43,8 @@ namespace CSharpGL
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
+        public const string strTexCoord = "texCoord";
+        private VertexBuffer texCoordBuffer;
         public const string strNormal = "normal";
         private VertexBuffer normalBuffer;
 
@@ -58,6 +60,15 @@ namespace CSharpGL
                 }
 
                 return this.positionBuffer;
+            }
+            else if (bufferName == strTexCoord)
+            {
+                if (this.texCoordBuffer == null)
+                {
+                    this.texCoordBuffer = mesh.texCoords.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                }
+
+                return this.texCoordBuffer;
             }
             else if (bufferName == strNormal)
             {
