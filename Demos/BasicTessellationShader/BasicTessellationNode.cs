@@ -11,7 +11,7 @@ namespace BasicTessellationShader
 
         public static BasicTessellationNode Create()
         {
-
+            throw new NotImplementedException();
         }
 
         private BasicTessellationNode(IBufferSource model, params RenderUnitBuilder[] builders)
