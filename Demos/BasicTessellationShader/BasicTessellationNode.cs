@@ -35,7 +35,30 @@ namespace BasicTessellationShader
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            RenderUnit unit = this.RenderUnits[0];
+            ShaderProgram program = unit.Program;
+            //program.SetUniform()
+            //uniform mat4 gWorld;                                                                            
+            //uniform vec3 gEyeWorldPos;                                                                      
+            //uniform mat4 gVP;                                                                               
+            //uniform sampler2D gDisplacementMap;                                                             
+            //uniform float gDispFactor;                                                                      
+            //uniform int gNumPointLights;                                                                
+            //uniform int gNumSpotLights;                                                                 
+            //uniform DirectionalLight gDirectionalLight;                                                 
+            //uniform PointLight gPointLights[MAX_POINT_LIGHTS];                                          
+            //uniform SpotLight gSpotLights[MAX_SPOT_LIGHTS];                                             
+            //uniform sampler2D gColorMap;                                                                
+            //uniform vec3 gEyeWorldPos;                                                                  
+            //uniform float gMatSpecularIntensity;                                                        
+            //uniform float gSpecularPower;                                                               
+
+            unit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
