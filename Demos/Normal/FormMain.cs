@@ -14,7 +14,7 @@ namespace Normal
     {
         private Scene scene;
         private ActionList actionList;
-        private NormalNode node;
+        //private NormalNode node;
 
         public FormMain()
         {
@@ -43,9 +43,9 @@ namespace Normal
             else
             {
                 var model = new ObjVNF(result.Mesh);
-                this.node = NormalNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                var node = NormalNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 float max = node.ModelSize.max();
-                this.node.Scale *= 16.0f / max;
+                node.Scale *= 16.0f / max;
                 this.scene.RootElement = node;
             }
 
@@ -72,7 +72,7 @@ namespace Normal
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.node;
+            IWorldSpace node = this.scene.RootElement;
             if (node != null)
             {
                 node.RotationAngle += 1;
@@ -89,7 +89,7 @@ namespace Normal
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.node as NormalNode;
+                var node = this.scene.RootElement as NormalNode;
                 if (node != null)
                 {
                     node.DiffuseColor = color.ToVec3();
@@ -103,7 +103,7 @@ namespace Normal
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.node as NormalNode;
+                var node = this.scene.RootElement as NormalNode;
                 if (node != null)
                 {
                     node.VertexColor = color.ToVec3();
@@ -117,7 +117,7 @@ namespace Normal
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.node as NormalNode;
+                var node = this.scene.RootElement as NormalNode;
                 if (node != null)
                 {
                     node.PointerColor = color.ToVec3();
@@ -128,7 +128,7 @@ namespace Normal
 
         private void chkRenderModel_CheckedChanged(object sender, EventArgs e)
         {
-            var node = this.node as NormalNode;
+            var node = this.scene.RootElement as NormalNode;
             if (node != null)
             {
                 node.RenderModel = this.chkRenderModel.Checked;
@@ -137,10 +137,37 @@ namespace Normal
 
         private void chkRenderNormal_CheckedChanged(object sender, EventArgs e)
         {
-            var node = this.node as NormalNode;
+            var node = this.scene.RootElement as NormalNode;
             if (node != null)
             {
                 node.RenderNormal = this.chkRenderNormal.Checked;
+            }
+        }
+
+        private void btnOpenObjFile_Click(object sender, EventArgs e)
+        {
+            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = this.openFileDialog1.FileName;
+                //
+                var parser = new ObjVNFParser(true);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null)
+                {
+                    MessageBox.Show(result.Error.ToString());
+                }
+                else
+                {
+                    var model = new ObjVNF(result.Mesh);
+                    var node = NormalNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    float max = node.ModelSize.max();
+                    node.Scale *= 16.0f / max;
+                    node.WorldPosition = new vec3(0, 0, 0);
+
+                    var rootElement = this.scene.RootElement;
+                    this.scene.RootElement = node;
+                    if (rootElement != null) { rootElement.Dispose(); }
+                }
             }
         }
     }

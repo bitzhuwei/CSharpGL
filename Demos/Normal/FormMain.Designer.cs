@@ -41,19 +41,22 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblPointerColor = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnOpenObjFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 54);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(961, 511);
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
             // 
             // timer1
             // 
@@ -169,11 +172,26 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Pointer Color:";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "*.obj|*.obj|*.obj_|*.obj_";
+            // 
+            // btnOpenObjFile
+            // 
+            this.btnOpenObjFile.Location = new System.Drawing.Point(898, 9);
+            this.btnOpenObjFile.Name = "btnOpenObjFile";
+            this.btnOpenObjFile.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenObjFile.TabIndex = 3;
+            this.btnOpenObjFile.Text = "Open ...";
+            this.btnOpenObjFile.UseVisualStyleBackColor = true;
+            this.btnOpenObjFile.Click += new System.EventHandler(this.btnOpenObjFile_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 577);
+            this.Controls.Add(this.btnOpenObjFile);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblPointerColor);
@@ -206,5 +224,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblPointerColor;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnOpenObjFile;
     }
 }
