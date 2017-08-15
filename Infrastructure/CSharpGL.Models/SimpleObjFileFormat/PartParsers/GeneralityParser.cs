@@ -17,7 +17,7 @@ namespace CSharpGL
             string filename = context.ObjFilename;
             using (var reader = new System.IO.StreamReader(filename))
             {
-                int vertexCount = 0, normalCount = 0, faceCount = 0;
+                int vertexCount = 0, normalCount = 0, texCoordCount = 0, faceCount = 0;
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
@@ -26,10 +26,12 @@ namespace CSharpGL
 
                     if (parts[0] == "v") { vertexCount++; }
                     else if (parts[0] == "vn") { normalCount++; }
+                    else if (parts[0] == "vt") { texCoordCount++; }
                     else if (parts[0] == "f") { faceCount++; }
                 }
                 context.vertexCount = vertexCount;
                 context.normalCount = normalCount;
+                context.texCoordCount = texCoordCount;
                 context.faceCount = faceCount;
             }
         }

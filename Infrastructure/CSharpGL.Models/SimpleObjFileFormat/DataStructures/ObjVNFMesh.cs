@@ -9,6 +9,7 @@ namespace CSharpGL
     {
         public vec3[] vertexes;
         public vec3[] normals;
+        public vec2[] texCoords;
         public ObjVNFFace[] faces;
 
         /// <summary>

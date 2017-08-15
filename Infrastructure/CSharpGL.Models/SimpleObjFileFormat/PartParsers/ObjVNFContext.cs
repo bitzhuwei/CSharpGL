@@ -12,6 +12,7 @@ namespace CSharpGL
     {
         internal int vertexCount;
         internal int normalCount;
+        internal int texCoordCount;
         internal int faceCount;
 
         /// <summary>

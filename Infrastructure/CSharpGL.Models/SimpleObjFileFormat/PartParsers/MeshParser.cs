@@ -17,9 +17,10 @@ namespace CSharpGL
             var objVNF = new ObjVNFMesh();
             var vertexes = new vec3[context.vertexCount];
             var normals = new vec3[context.normalCount];
+            var texCoords = new vec2[context.texCoordCount];
             var faces = new ObjVNFFace[context.faceCount];
             string filename = context.ObjFilename;
-            int vertexIndex = 0, normalIndex = 0, faceIndex = 0;
+            int vertexIndex = 0, normalIndex = 0, texCoordIndex = 0, faceIndex = 0;
             using (var reader = new System.IO.StreamReader(filename))
             {
                 while (!reader.EndOfStream)
@@ -30,12 +31,14 @@ namespace CSharpGL
 
                     if (parts[0] == "v") { vertexes[vertexIndex++] = ParseVec3(parts); }
                     else if (parts[0] == "vn") { normals[normalIndex++] = ParseVec3(parts); }
+                    else if (parts[0] == "vt") { texCoords[texCoordIndex++] = ParseVec2(parts); }
                     else if (parts[0] == "f") { faces[faceIndex++] = ParseFace(parts); }
                 }
             }
 
             objVNF.vertexes = vertexes;
             objVNF.normals = normals;
+            objVNF.texCoords = texCoords;
             objVNF.faces = faces;
 
             context.Mesh = objVNF;
@@ -44,6 +47,8 @@ namespace CSharpGL
             { throw new Exception(string.Format("v: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
             if (normalIndex != context.normalCount)
             { throw new Exception(string.Format("vn: [{0}] not equals to [{1}] in MeshParser!", normalIndex, context.normalCount)); }
+            if (texCoordIndex != context.texCoordCount)
+            { throw new Exception(string.Format("vt: [{0}] not equals to [{1}] in MeshParser!", texCoordIndex, context.texCoordCount)); }
             if (faceIndex != context.faceCount)
             { throw new Exception(string.Format("f: [{0}] not equals to [{1}] in MeshParser!", vertexIndex, context.vertexCount)); }
             if (faceIndex > 0)
@@ -117,6 +122,19 @@ namespace CSharpGL
             var z = float.Parse(parts[3]);
 
             return new vec3(x, y, z);
+        }
+
+        /// <summary>
+        /// vt 1 2
+        /// </summary>
+        /// <param name="parts"></param>
+        /// <returns></returns>
+        private vec2 ParseVec2(string[] parts)
+        {
+            var x = float.Parse(parts[1]);
+            var y = float.Parse(parts[2]);
+
+            return new vec2(x, y);
         }
     }
 }
