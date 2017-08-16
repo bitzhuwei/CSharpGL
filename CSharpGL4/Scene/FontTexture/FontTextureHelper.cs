@@ -15,7 +15,7 @@
             var bmp = fontBitmap.GlyphBitmap;
             var texture = new Texture(
                 TextureTarget.Texture2D,
-                    new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
+                    new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
             texture.Initialize();
             var result = new FontTexture();
             result.GlyphFont = fontBitmap.GlyphFont;

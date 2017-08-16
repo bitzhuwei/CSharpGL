@@ -76,7 +76,7 @@ void main()
     gl_TessLevelOuter[1] = GetTessLevel(EyeToVertexDistance2, EyeToVertexDistance0);            
     gl_TessLevelOuter[2] = GetTessLevel(EyeToVertexDistance0, EyeToVertexDistance1);            
     gl_TessLevelInner[0] = gl_TessLevelOuter[2];                                                
-}                                                                                               
+}
 ";
         private const string renderTese = @"#version 410 core                                                                               
                                                                                                 
@@ -157,11 +157,7 @@ struct PointLight
 };                                                                                          
                                                                                             
 struct SpotLight                                                                            
-{                                                         
-            else if (rendererType == typeof(ZeroAttributeRenderer))
-            {
-                renderer = ZeroAttributeRenderer.Create();
-                                              
+{                                                                                           
     PointLight Base;                                                                 
     vec3 Direction;                                                                         
     float Cutoff;                                                                           
