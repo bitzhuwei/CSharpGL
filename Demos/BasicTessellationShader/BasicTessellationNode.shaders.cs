@@ -157,7 +157,11 @@ struct PointLight
 };                                                                                          
                                                                                             
 struct SpotLight                                                                            
-{                                                                                           
+{                                                         
+            else if (rendererType == typeof(ZeroAttributeRenderer))
+            {
+                renderer = ZeroAttributeRenderer.Create();
+                                              
     PointLight Base;                                                                 
     vec3 Direction;                                                                         
     float Cutoff;                                                                           
