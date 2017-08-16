@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputeShader.HelloComputeS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicTessellationShader", "Demos\BasicTessellationShader\BasicTessellationShader.csproj", "{F49F593B-E875-4362-9D3F-BFDFD8873189}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroAttributeInVertexShader", "Demos\ZeroAttributeInVertexShader\ZeroAttributeInVertexShader.csproj", "{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -205,6 +207,10 @@ Global
 		{F49F593B-E875-4362-9D3F-BFDFD8873189}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F49F593B-E875-4362-9D3F-BFDFD8873189}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F49F593B-E875-4362-9D3F-BFDFD8873189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -239,5 +245,6 @@ Global
 		{6547C6FD-FE3C-450A-9A90-8AFA8BE17F3D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{9CCA31E6-75FC-4803-B637-59946B0C488D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{F49F593B-E875-4362-9D3F-BFDFD8873189} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal

@@ -101,7 +101,6 @@
     <Compile Include="Renderers\BufferBlockRenderer.cs" />
     <Compile Include="Renderers\UniformStructRenderer.cs" />
     <Compile Include="Renderers\UniformBlockRenderer.cs" />
-    <Compile Include="Renderers\ZeroAttributeRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
     <Compile Include="Renderers\RandomPointsRenderer.cs" />
@@ -175,12 +174,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\UniformBlockRenderer\UniformBlock.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\ZeroAttributeRenderer\ZeroAttribute.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="shaders\ZeroAttributeRenderer\ZeroAttribute.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Ground.frag">

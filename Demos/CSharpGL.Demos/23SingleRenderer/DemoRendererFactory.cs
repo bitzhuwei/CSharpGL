@@ -61,10 +61,6 @@ namespace CSharpGL.Demos
             {
                 renderer = UniformStructRenderer.Create();
             }
-            else if (rendererType == typeof(ZeroAttributeRenderer))
-            {
-                renderer = ZeroAttributeRenderer.Create();
-            }
 
             return renderer;
         }
