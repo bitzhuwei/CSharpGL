@@ -3094,6 +3094,11 @@ namespace CSharpGL
         public const uint GL_PATCH_DEFAULT_OUTER_LEVEL = 0x8E74;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_MAX_PATCH_VERTICES = 0x8E7D;
+
+        /// <summary>
         ///
         /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT = 0x00000001;
