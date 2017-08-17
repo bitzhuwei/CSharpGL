@@ -47,6 +47,7 @@ namespace BasicTessellationShader
                 var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
                 var texture = new Texture(TextureTarget.Texture2D, storage);
                 texture.Initialize();
+                texture.TextureUnitIndex = 0;
                 bitmap.Dispose();
                 this.displacementMap = texture;
             }
@@ -55,6 +56,7 @@ namespace BasicTessellationShader
                 var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
                 var texture = new Texture(TextureTarget.Texture2D, storage);
                 texture.Initialize();
+                texture.TextureUnitIndex = 1;
                 bitmap.Dispose();
                 this.colorMap = texture;
             }
