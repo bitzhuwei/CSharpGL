@@ -188,7 +188,7 @@ void main()
     vec3 Normal = normalize(Normal_FS_in);                                                  
     vec4 TotalLight = CalcDirectionalLight(Normal);                                         
                                                                                             
-    FragColor = texture(gColorMap, TexCoord_FS_in.xy) * TotalLight;                         
+    FragColor = texture(gColorMap, TexCoord_FS_in.xy) * TotalLight;
 }
 ";
     }
