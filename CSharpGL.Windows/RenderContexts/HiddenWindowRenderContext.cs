@@ -31,7 +31,8 @@ namespace CSharpGL
             this.MakeCurrent();
 
             //  Update the context if required.
-            this.UpdateContextVersion();
+            // if I update context, something in legacy opengl will not work...
+            //this.UpdateContextVersion();
 
             //  Return success.
             return true;
@@ -111,24 +112,49 @@ namespace CSharpGL
 
             //  Now the none-trivial case. We must use the WGL_create_context extension to
             //  attempt to create a 3.0+ context.
+            int major, minor;
+            GetHighestVersion(out major, out minor);
+            if ((major > 2) || (major == 2 && minor > 1))
+            {
+                try
+                {
+                    //OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  kw
+                    //OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
+                    //OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+
+                    int[] attributes =
+                    {
+                        GL.WGL_CONTEXT_MAJOR_VERSION, major,
+                        GL.WGL_CONTEXT_MINOR_VERSION, minor,
+                        GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT,// compatible profile
+//#if DEBUG
+//                        GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
+//#endif
+                        0
+                    };
+                    var wglCreateContextAttribs = GL.Instance.GetDelegateFor("wglCreateContextAttribsARB", GLDelegates.typeof_IntPtr_IntPtr_IntPtr_intN) as GLDelegates.IntPtr_IntPtr_IntPtr_intN;
+                    IntPtr hrc = wglCreateContextAttribs(this.DeviceContextHandle, IntPtr.Zero, attributes);
+                    Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
+                    Win32.wglDeleteContext(this.RenderContextHandle);
+                    Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
+                    this.RenderContextHandle = hrc;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
+        }
+
+        private void GetHighestVersion(out int major, out int minor)
+        {
+            major = 2; minor = 1;
             try
             {
-                int[] attributes =
-                {
-                    GL.WGL_CONTEXT_MAJOR_VERSION, 2,
-                    GL.WGL_CONTEXT_MINOR_VERSION, 1,
-                    GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT,// compatible profile
-#if DEBUG
-                    GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
-#endif
-                    0
-                };
-                var wglCreateContextAttribs = GL.Instance.GetDelegateFor("wglCreateContextAttribs", GLDelegates.typeof_IntPtr_IntPtr_IntPtr_intN) as GLDelegates.IntPtr_IntPtr_IntPtr_intN;
-                IntPtr hrc = wglCreateContextAttribs(this.DeviceContextHandle, IntPtr.Zero, attributes);
-                Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                Win32.wglDeleteContext(this.RenderContextHandle);
-                Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
-                this.RenderContextHandle = hrc;
+                string version = GL.Instance.GetString(GL.GL_VERSION);
+                string[] parts = version.Split('.');
+                major = int.Parse(parts[0]);
+                minor = int.Parse(parts[1]);
             }
             catch (Exception ex)
             {
