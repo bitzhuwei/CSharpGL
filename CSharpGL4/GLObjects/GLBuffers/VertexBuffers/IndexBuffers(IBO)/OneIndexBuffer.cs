@@ -63,6 +63,7 @@ namespace CSharpGL
             uint mode = (uint)this.Mode;
             IntPtr offset = GetOffset(this.ElementType, this.FirstIndex);
 
+            GL.Instance.PrintError();
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             if (primCount == 1)
             {
@@ -72,7 +73,9 @@ namespace CSharpGL
             {
                 glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
             }
+            GL.Instance.PrintError();
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
+            GL.Instance.PrintError();
         }
 
         private IntPtr GetOffset(IndexBufferElementType elementType, int firstIndex)

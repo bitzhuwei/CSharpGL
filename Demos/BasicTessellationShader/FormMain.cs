@@ -32,10 +32,23 @@ namespace BasicTessellationShader
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                //var node = SimplexNoiseNode.Create();
-                //node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
-                //this.scene.RootElement = node;
-                //this.propGrid.SelectedObject = node;
+                string objFilename = "quad2.obj_";
+                var parser = new ObjVNFParser(true);
+                ObjVNFResult result = parser.Parse(objFilename);
+                if (result.Error != null)
+                {
+                    MessageBox.Show(result.Error.ToString());
+                }
+                else
+                {
+                    var model = new ObjVNF(result.Mesh);
+                    var node = BasicTessellationNode.Create(model);
+                    float max = node.ModelSize.max();
+                    node.Scale *= 16.0f / max;
+                    node.WorldPosition = new vec3(0, 0, 0);
+                    this.scene.RootElement = node;
+                    this.propGrid.SelectedObject = node;
+                }
             }
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
@@ -43,6 +56,9 @@ namespace BasicTessellationShader
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

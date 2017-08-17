@@ -149,25 +149,7 @@ struct Attenuation
     float Exp;                                                                              
 };                                                                                          
                                                                                             
-struct PointLight                                                                           
-{                                                                                           
-    BaseLight Base;                                                                  
-    vec3 Position;                                                                          
-    Attenuation Atten;                                                                      
-};                                                                                          
-                                                                                            
-struct SpotLight                                                                            
-{                                                                                           
-    PointLight Base;                                                                 
-    vec3 Direction;                                                                         
-    float Cutoff;                                                                           
-};                                                                                          
-                                                                                            
-uniform int gNumPointLights;                                                                
-uniform int gNumSpotLights;                                                                 
 uniform DirectionalLight gDirectionalLight;                                                 
-uniform PointLight gPointLights[MAX_POINT_LIGHTS];                                          
-uniform SpotLight gSpotLights[MAX_SPOT_LIGHTS];                                             
 uniform sampler2D gColorMap;                                                                
 uniform vec3 gEyeWorldPos;                                                                  
 uniform float gMatSpecularIntensity;                                                        
@@ -201,46 +183,10 @@ vec4 CalcDirectionalLight(vec3 Normal)
     return CalcLightInternal(gDirectionalLight.Base, gDirectionalLight.Direction, Normal);  
 }                                                                                           
                                                                                             
-vec4 CalcPointLight(PointLight l, vec3 Normal)                                       
-{                                                                                           
-    vec3 LightDirection = WorldPos_FS_in - l.Position;                                      
-    float Distance = length(LightDirection);                                                
-    LightDirection = normalize(LightDirection);                                             
-                                                                                            
-    vec4 Color = CalcLightInternal(l.Base, LightDirection, Normal);                         
-    float Attenuation =  l.Atten.Constant +                                                 
-                         l.Atten.Linear * Distance +                                        
-                         l.Atten.Exp * Distance * Distance;                                 
-                                                                                            
-    return Color / Attenuation;                                                             
-}                                                                                           
-                                                                                            
-vec4 CalcSpotLight(SpotLight l, vec3 Normal)                                         
-{                                                                                           
-    vec3 LightToPixel = normalize(WorldPos_FS_in - l.Base.Position);                        
-    float SpotFactor = dot(LightToPixel, l.Direction);                                      
-                                                                                            
-    if (SpotFactor > l.Cutoff) {                                                            
-        vec4 Color = CalcPointLight(l.Base, Normal);                                        
-        return Color * (1.0 - (1.0 - SpotFactor) * 1.0/(1.0 - l.Cutoff));                   
-    }                                                                                       
-    else {                                                                                  
-        return vec4(0,0,0,0);                                                               
-    }                                                                                       
-}                                                                                           
-                                                                                            
 void main()                                                                                 
 {                                                                                           
     vec3 Normal = normalize(Normal_FS_in);                                                  
     vec4 TotalLight = CalcDirectionalLight(Normal);                                         
-                                                                                            
-    for (int i = 0 ; i < gNumPointLights ; i++) {                                           
-        TotalLight += CalcPointLight(gPointLights[i], Normal);                              
-    }                                                                                       
-                                                                                            
-    for (int i = 0 ; i < gNumSpotLights ; i++) {                                            
-        TotalLight += CalcSpotLight(gSpotLights[i], Normal);                                
-    }                                                                                       
                                                                                             
     FragColor = texture(gColorMap, TexCoord_FS_in.xy) * TotalLight;                         
 }

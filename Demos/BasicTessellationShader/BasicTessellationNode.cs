@@ -12,6 +12,7 @@ namespace BasicTessellationShader
         private DirectionalLight directionalLight;
         private Texture displacementMap;
         private float dispFactor = 0.25f;
+        private Texture colorMap;
 
         public static BasicTessellationNode Create(ObjVNF model)
         {
@@ -27,6 +28,7 @@ namespace BasicTessellationShader
             var builder = new RenderUnitBuilder(provider, map);
 
             var node = new BasicTessellationNode(model, builder);
+            node.ModelSize = model.GetSize();
             node.Initialize();
 
             return node;
@@ -49,7 +51,27 @@ namespace BasicTessellationShader
                 this.displacementMap = texture;
             }
             {
+                var bitmap = new Bitmap(@"diffuse.jpg");
+                var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
+                var texture = new Texture(TextureTarget.Texture2D, storage);
+                texture.Initialize();
+                bitmap.Dispose();
+                this.colorMap = texture;
+            }
+            {
+                var light = new DirectionalLight();
+                light.Color = new vec3(1, 1, 1);
+                light.AmbientIntensity = 1.0f;
+                light.DiffuseIntensity = 0.01f;
+                light.direction = new vec3(1, -1, 0);
 
+                this.directionalLight = light;
+            }
+            {
+                RenderUnit unit = this.RenderUnits[0];
+                VertexArrayObject vao = unit.VertexArrayObject;
+                IndexBuffer indexBuffer = vao.IndexBuffer;
+                indexBuffer.Mode = DrawMode.Patches;
             }
         }
 
@@ -73,15 +95,17 @@ namespace BasicTessellationShader
             program.SetUniform("gDisplacementMap", this.displacementMap);
             //uniform float gDispFactor;
             program.SetUniform("gDispFactor", this.dispFactor);
-            //uniform int gNumPointLights;                                                                
-            //uniform int gNumSpotLights;                                                                 
-            //uniform DirectionalLight gDirectionalLight;                                                 
-            //uniform PointLight gPointLights[MAX_POINT_LIGHTS];                                          
-            //uniform SpotLight gSpotLights[MAX_SPOT_LIGHTS];                                             
-            //uniform sampler2D gColorMap;                                                                
-            //uniform vec3 gEyeWorldPos;                                                                  
-            //uniform float gMatSpecularIntensity;                                                        
-            //uniform float gSpecularPower;                                                               
+            //uniform DirectionalLight gDirectionalLight;
+            program.SetUniform("gDirectionalLight.Base.Color", this.directionalLight.Color);
+            program.SetUniform("gDirectionalLight.Base.AmbientIntensity", this.directionalLight.AmbientIntensity);
+            program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", this.directionalLight.DiffuseIntensity);
+            program.SetUniform("gDirectionalLight.Direction", this.directionalLight.direction);
+            //uniform sampler2D gColorMap;
+            program.SetUniform("gColorMap", this.colorMap);
+            //uniform float gMatSpecularIntensity;
+            program.SetUniform("gMatSpecularIntensity", 0.1f);
+            //uniform float gSpecularPower;
+            program.SetUniform("gSpecularPower", 0.1f);
 
             unit.Render();
         }
