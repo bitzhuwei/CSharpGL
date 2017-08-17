@@ -72,7 +72,6 @@ namespace CSharpGL
             {
                 glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
             }
-            GL.Instance.PrintError();
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
