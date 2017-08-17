@@ -97,10 +97,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="diffuse.jpg">
+    <Content Include="diffuse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="heightmap.jpg">
+    <Content Include="heightmap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

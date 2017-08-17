@@ -43,7 +43,7 @@ namespace BasicTessellationShader
         {
             base.DoInitialize();
             {
-                var bitmap = new Bitmap(@"heightmap.jpg");
+                var bitmap = new Bitmap(@"heightmap.png");
                 var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
                 var texture = new Texture(TextureTarget.Texture2D, storage);
                 texture.Initialize();
@@ -52,7 +52,7 @@ namespace BasicTessellationShader
                 this.displacementMap = texture;
             }
             {
-                var bitmap = new Bitmap(@"diffuse.jpg");
+                var bitmap = new Bitmap(@"diffuse.png");
                 var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
                 var texture = new Texture(TextureTarget.Texture2D, storage);
                 texture.Initialize();
@@ -65,7 +65,7 @@ namespace BasicTessellationShader
                 light.Color = new vec3(1, 1, 1);
                 light.AmbientIntensity = 1.0f;
                 light.DiffuseIntensity = 0.01f;
-                light.direction = new vec3(1, -1, 0);
+                light.direction = new vec3(1, 1, 0);
 
                 this.directionalLight = light;
             }
