@@ -86,6 +86,10 @@ namespace BasicTessellationShader
                 VertexArrayObject vao = unit.VertexArrayObject;
                 IndexBuffer indexBuffer = vao.IndexBuffer;
                 indexBuffer.Mode = DrawMode.Patches;
+
+                var polygonModeState = new PolygonModeState(CSharpGL.PolygonMode.Fill);
+                unit.StateList.Add(polygonModeState);
+                this.PolygonMode = polygonModeState;
             }
         }
 
@@ -127,5 +131,7 @@ namespace BasicTessellationShader
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
+        public PolygonModeState PolygonMode { get; set; }
     }
 }

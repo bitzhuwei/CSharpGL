@@ -69,23 +69,23 @@ namespace CSharpGL
             ObjVNFFace result = null;
             if (parts.Length == 4)// f 1 2 3
             {
-                uint v0, v1, v2, n0, n1, n2;
-                ParseFaceUnit(parts[1], out v0, out n0);
-                ParseFaceUnit(parts[2], out v1, out n1);
-                ParseFaceUnit(parts[3], out v2, out n2);
+                uint v0, v1, v2, n0, n1, n2, t0, t1, t2;
+                ParseFaceUnit(parts[1], out v0, out n0, out t0);
+                ParseFaceUnit(parts[2], out v1, out n1, out t1);
+                ParseFaceUnit(parts[3], out v2, out n2, out t2);
                 // index in obj files starts with 1.
-                result = new ObjVNFTriangle(v0 - 1, v1 - 1, v2 - 1, n0 - 1, n1 - 1, n2 - 1);
+                result = new ObjVNFTriangle(v0 - 1, v1 - 1, v2 - 1, n0 - 1, n1 - 1, n2 - 1, t0 - 1, t1 - 1, t2 - 1);
             }
             else if (parts.Length == 5)// f 1 2 3 4
             {
-                uint v0, v1, v2, v3, n0, n1, n2, n3;
-                ParseFaceUnit(parts[1], out v0, out n0);
-                ParseFaceUnit(parts[2], out v1, out n1);
-                ParseFaceUnit(parts[3], out v2, out n2);
-                ParseFaceUnit(parts[4], out v3, out n3);
+                uint v0, v1, v2, v3, n0, n1, n2, n3, t0, t1, t2, t3;
+                ParseFaceUnit(parts[1], out v0, out n0, out t0);
+                ParseFaceUnit(parts[2], out v1, out n1, out t1);
+                ParseFaceUnit(parts[3], out v2, out n2, out t2);
+                ParseFaceUnit(parts[4], out v3, out n3, out t3);
 
                 // index in obj files starts with 1.
-                result = new ObjVNFQuad(v0 - 1, v1 - 1, v2 - 1, v3 - 1, n0 - 1, n1 - 1, n2 - 1, n3 - 1);
+                result = new ObjVNFQuad(v0 - 1, v1 - 1, v2 - 1, v3 - 1, n0 - 1, n1 - 1, n2 - 1, n3 - 1, t0 - 1, t1 - 1, t2 - 1, t3 - 1);
             }
             else
             {
@@ -95,6 +95,7 @@ namespace CSharpGL
             return result;
         }
 
+        private readonly char[] separator2 = new char[] { '/' };
         /// <summary>
         /// 1/2/3
         /// 1//3
@@ -102,12 +103,33 @@ namespace CSharpGL
         /// <param name="unit"></param>
         /// <param name="vertexIndex"></param>
         /// <param name="normalIndex"></param>
-        private void ParseFaceUnit(string unit, out uint vertexIndex, out uint normalIndex)
+        private void ParseFaceUnit(string unit, out uint vertexIndex, out uint normalIndex, out uint texCoordIndex)
         {
-            string[] parts = unit.Split('/');
-            vertexIndex = uint.Parse(parts[0]);
-            normalIndex = uint.Parse(parts[parts.Length - 1]);
+            string[] parts = unit.Split(separator2, StringSplitOptions.None);
+            if (parts.Length == 1)
+            {
+                vertexIndex = uint.Parse(parts[0]);
+                texCoordIndex = 0;
+                normalIndex = 0;
+            }
+            else if (parts.Length == 2)
+            {
+                vertexIndex = uint.Parse(parts[0]);
+                texCoordIndex = uint.Parse(parts[1]);
+                normalIndex = 0;
+            }
+            else if (parts.Length == 3)
+            {
+                vertexIndex = uint.Parse(parts[0]);
+                texCoordIndex = uint.Parse(parts[2]);
+                normalIndex = uint.Parse(parts[1]);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
+
 
         /// <summary>
         /// v 1 2 3

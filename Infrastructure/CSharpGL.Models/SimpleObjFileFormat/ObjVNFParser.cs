@@ -21,14 +21,15 @@ namespace CSharpGL
             var generality = new GeneralityParser();
             var meshParser = new MeshParser();
             var normalParser = new NormalParser();
+            var texCoordParser = new TexCoordParser();
             var locationParser = new LocationParser();
             if (quad2triangle)
             {
-                this.parserList = new ObjParserBase[] { generality, meshParser, normalParser, new Quad2TriangleParser(), locationParser, };
+                this.parserList = new ObjParserBase[] { generality, meshParser, normalParser, texCoordParser, new Quad2TriangleParser(), locationParser, };
             }
             else
             {
-                this.parserList = new ObjParserBase[] { generality, meshParser, normalParser, locationParser, };
+                this.parserList = new ObjParserBase[] { generality, meshParser, normalParser, texCoordParser, locationParser, };
             }
         }
 

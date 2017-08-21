@@ -54,10 +54,12 @@ namespace CSharpGL
                         var quad = face as ObjVNFQuad;
                         faces[j++] = new ObjVNFTriangle(
                             quad.vertexIndexes[0], quad.vertexIndexes[1], quad.vertexIndexes[2],
-                            quad.normalIndexes[0], quad.normalIndexes[1], quad.normalIndexes[2]);
+                            quad.normalIndexes[0], quad.normalIndexes[1], quad.normalIndexes[2],
+                            quad.texCoordIndexes[0], quad.texCoordIndexes[1], quad.texCoordIndexes[2]);
                         faces[j++] = new ObjVNFTriangle(
                             quad.vertexIndexes[0], quad.vertexIndexes[2], quad.vertexIndexes[3],
-                            quad.normalIndexes[0], quad.normalIndexes[2], quad.normalIndexes[3]);
+                            quad.normalIndexes[0], quad.normalIndexes[2], quad.normalIndexes[3],
+                            quad.texCoordIndexes[0], quad.texCoordIndexes[2], quad.texCoordIndexes[3]);
                     }
                 }
                 mesh.faces = faces;

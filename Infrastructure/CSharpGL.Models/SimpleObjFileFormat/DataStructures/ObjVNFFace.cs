@@ -22,6 +22,12 @@ namespace CSharpGL
         /// <returns></returns>
         public abstract IEnumerable<uint> NormalIndexes();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract IEnumerable<uint> TexCoordIndexes();
+
     }
 
     /// <summary>
@@ -31,6 +37,7 @@ namespace CSharpGL
     {
         public readonly uint[] vertexIndexes = new uint[3];
         public readonly uint[] normalIndexes = new uint[3];
+        public readonly uint[] texCoordIndexes = new uint[3];
 
         /// <summary>
         /// 
@@ -41,10 +48,11 @@ namespace CSharpGL
         /// <param name="n0"></param>
         /// <param name="n1"></param>
         /// <param name="n2"></param>
-        public ObjVNFTriangle(uint v0, uint v1, uint v2, uint n0, uint n1, uint n2)
+        public ObjVNFTriangle(uint v0, uint v1, uint v2, uint n0, uint n1, uint n2, uint t0, uint t1, uint t2)
         {
             vertexIndexes[0] = v0; vertexIndexes[1] = v1; vertexIndexes[2] = v2;
             normalIndexes[0] = n0; normalIndexes[1] = n1; normalIndexes[2] = n2;
+            texCoordIndexes[0] = t0; texCoordIndexes[1] = t1; texCoordIndexes[2] = t2;
         }
 
         public override IEnumerable<uint> VertexIndexes()
@@ -58,6 +66,14 @@ namespace CSharpGL
         public override IEnumerable<uint> NormalIndexes()
         {
             foreach (var item in normalIndexes)
+            {
+                yield return item;
+            }
+        }
+
+        public override IEnumerable<uint> TexCoordIndexes()
+        {
+            foreach (var item in texCoordIndexes)
             {
                 yield return item;
             }
@@ -78,6 +94,7 @@ namespace CSharpGL
     {
         public readonly uint[] vertexIndexes = new uint[4];
         public readonly uint[] normalIndexes = new uint[4];
+        public readonly uint[] texCoordIndexes = new uint[4];
 
         /// <summary>
         /// 
@@ -90,10 +107,11 @@ namespace CSharpGL
         /// <param name="n1"></param>
         /// <param name="n2"></param>
         /// <param name="n3"></param>
-        public ObjVNFQuad(uint v0, uint v1, uint v2, uint v3, uint n0, uint n1, uint n2, uint n3)
+        public ObjVNFQuad(uint v0, uint v1, uint v2, uint v3, uint n0, uint n1, uint n2, uint n3, uint t0, uint t1, uint t2, uint t3)
         {
             vertexIndexes[0] = v0; vertexIndexes[1] = v1; vertexIndexes[2] = v2; vertexIndexes[3] = v3;
             normalIndexes[0] = n0; normalIndexes[1] = n1; normalIndexes[2] = n2; normalIndexes[3] = n3;
+            texCoordIndexes[0] = t0; texCoordIndexes[1] = t1; texCoordIndexes[2] = t2; texCoordIndexes[3] = t3;
         }
 
         public override IEnumerable<uint> VertexIndexes()
@@ -107,6 +125,14 @@ namespace CSharpGL
         public override IEnumerable<uint> NormalIndexes()
         {
             foreach (var item in normalIndexes)
+            {
+                yield return item;
+            }
+        }
+
+        public override IEnumerable<uint> TexCoordIndexes()
+        {
+            foreach (var item in texCoordIndexes)
             {
                 yield return item;
             }

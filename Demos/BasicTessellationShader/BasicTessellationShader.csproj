@@ -81,6 +81,7 @@
     <None Include="quad2.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
@@ -97,6 +98,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BasicTessellationShader.png" />
+    <Content Include="BasicTessellationShader2.png" />
+    <Content Include="BasicTessellationShader3.png" />
+    <Content Include="BasicTessellationShader4.png" />
     <Content Include="diffuse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
