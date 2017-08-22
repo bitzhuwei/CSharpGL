@@ -82,7 +82,7 @@
             this.Controls.Add(this.propGrid);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Simple Noise - Sun - CSharpGL";
+            this.Text = "Basic Tessellation Shader - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
