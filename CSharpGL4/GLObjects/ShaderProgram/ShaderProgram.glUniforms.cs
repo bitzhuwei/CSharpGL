@@ -632,7 +632,7 @@
 
                 float[] array = m.ToArray();
 
-                glUniformMatrix4fv(location, 1, false, array);
+                glUniformMatrix4fv(location, 1, false, array); // NOTE: assign'uniform mat4 M[4];' in instanced rendering.
             }
             return location;
         }
