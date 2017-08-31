@@ -1,4 +1,6 @@
-﻿using System;
+﻿// nolonger in use from 20170901
+
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 

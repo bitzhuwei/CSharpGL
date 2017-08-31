@@ -105,7 +105,11 @@ namespace CSharpGL
         /// <returns></returns>
         public bool SetUniform(string varNameInShader, Texture texture)
         {
-            return this.SetUniform(varNameInShader, texture.ToSamplerValue());
+            var value = new samplerValue(
+                texture.Target,
+                texture.Id,
+                texture.TextureUnitIndex);
+            return this.SetUniform(varNameInShader, value);
         }
 
         /// <summary>
