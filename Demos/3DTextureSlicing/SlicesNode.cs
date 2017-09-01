@@ -22,7 +22,7 @@ namespace _3DTextureSlicing
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", SlicesModel.position);
-                textureSlicerBuilder = new RenderUnitBuilder(provider, map);
+                textureSlicerBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
 
             var node = new SlicesNode(model, textureSlicerBuilder);
