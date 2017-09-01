@@ -163,7 +163,7 @@ namespace RaycastVolumeRendering
             return texture;
         }
 
-        class ByteDataProvider : LeveledDataProvider
+        class ByteDataProvider : TexImageDataProvider<LeveledData>
         {
             private byte[] data;
 

@@ -15,15 +15,8 @@ namespace _3DTextureSlicing
 
         const int MAX_SLICES = 512;
         private vec3[] vTextureSlices = new vec3[MAX_SLICES * 12];
-        //dimensions of volume data
-        const int XDIM = 256;
-        const int YDIM = 256;
-        const int ZDIM = 256;
-        private string volume_file = "Engine256.raw";
-
         //total number of slices current used
         int num_slices = 256;
-
 
         //unit cube vertices
         vec3[] vertexList = new vec3[]
