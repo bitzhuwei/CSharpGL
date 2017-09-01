@@ -32,11 +32,6 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get { return this.ids[0]; } }
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public bool UseMipmap { get; private set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -49,6 +44,22 @@ namespace CSharpGL
             this.Storage = storage;
             this.builtInSampler.AddRange(texParameters);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="storage"></param>
+        /// <param name="mipmapBuilder"></param>
+        /// <param name="texParameters"></param>
+        public Texture(TextureTarget target, TexStorageBase storage, MipmapBuilder mipmapBuilder, params TexParameter[] texParameters)
+        {
+            this.Target = target;
+            this.Storage = storage;
+            this.mipmapBuilder = mipmapBuilder;
+            this.builtInSampler.AddRange(texParameters);
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -77,10 +88,14 @@ namespace CSharpGL
                 GL.Instance.GenTextures(1, ids);
                 TextureTarget target = this.Target;
                 GL.Instance.BindTexture((uint)target, ids[0]);
+
                 this.Storage.Apply();
-                this.BuiltInSampler.Apply(this.Target);
-                //OpenGL.GenerateMipmap((MipmapTarget)((uint)target));// TODO: does this work?
+                this.builtInSampler.Apply(this.Target);
+                MipmapBuilder mipmapBuilder = this.mipmapBuilder;
+                if (mipmapBuilder != null) { mipmapBuilder.GenerateMipmmap((uint)this.Target); }
+
                 GL.Instance.BindTexture((uint)this.Target, 0);
+
                 this.initialized = true;
             }
         }
@@ -99,6 +114,8 @@ namespace CSharpGL
         {
             get { return builtInSampler; }
         }
+
+        private MipmapBuilder mipmapBuilder;
 
         /// <summary>
         ///
