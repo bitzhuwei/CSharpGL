@@ -56,12 +56,29 @@ namespace _3DTextureSlicing
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
-            throw new NotImplementedException();
+            if (bufferName == position)
+            {
+                if (this.slicesBuffer == null)
+                {
+                    this.slicesBuffer = this.vTextureSlices.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicDraw);
+                }
+
+                return this.slicesBuffer;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IndexBuffer GetIndexBuffer()
         {
-            throw new NotImplementedException();
+            if (this.indexBuffer == null)
+            {
+                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, this.vTextureSlices.Length);
+            }
+
+            return this.indexBuffer;
         }
 
         #endregion
