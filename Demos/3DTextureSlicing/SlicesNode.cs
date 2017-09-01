@@ -42,16 +42,36 @@ namespace _3DTextureSlicing
             base.DoInitialize();
 
             this.vVertexBuffer = this.model.GetVertexAttributeBuffer(SlicesModel.position);
+
+            Texture texture = VolumeDataLoader.LoadData();
+            RenderUnit unit = this.RenderUnits[0];
+            ShaderProgram program = unit.Program;
+            program.SetUniform("volume", texture);
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            mat4 mv = view * model;
+            vec3 viewDirection = new vec3(-mv[0][2], -mv[1][2], -mv[2][2]);
+            if (this.viewDir != viewDirection)
+            {
+                this.viewDir = viewDirection;
+                SliceVolume();
+            }
+
+            RenderUnit unit = this.RenderUnits[0];
+            ShaderProgram program = unit.Program;
+            program.SetUniform("MVP", projection * mv);
+            unit.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 }
