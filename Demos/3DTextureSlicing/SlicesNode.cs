@@ -8,6 +8,7 @@ namespace _3DTextureSlicing
 {
     partial class SlicesNode : ModernNode
     {
+        private VertexBuffer vVertexBuffer;
         /// <summary>
         /// 
         /// </summary>
@@ -34,6 +35,13 @@ namespace _3DTextureSlicing
         private SlicesNode(IBufferSource model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
+        }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            this.vVertexBuffer = this.model.GetVertexAttributeBuffer(SlicesModel.position);
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)

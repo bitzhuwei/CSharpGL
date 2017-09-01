@@ -52,7 +52,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlicesModel.cs" />
+    <Compile Include="SlicesNode.SliceVolume.cs" />
+    <Compile Include="SlicesNode.shaders.cs" />
     <Compile Include="SlicesNode.cs" />
+    <Compile Include="VolumeDataLoader.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
