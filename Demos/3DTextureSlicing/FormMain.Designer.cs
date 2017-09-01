@@ -34,6 +34,7 @@
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +50,7 @@
             // 
             // propGrid
             // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.propGrid.Location = new System.Drawing.Point(12, 277);
             this.propGrid.Name = "propGrid";
@@ -58,14 +59,15 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(350, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
             // 
             // statusStrip1
             // 
@@ -82,6 +84,12 @@
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(62, 17);
             this.lblState.Text = "state info";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 30;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormMain
             // 
@@ -109,5 +117,6 @@
         private System.Windows.Forms.PropertyGrid propGrid;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblState;
+        private System.Windows.Forms.Timer timer1;
     }
 }

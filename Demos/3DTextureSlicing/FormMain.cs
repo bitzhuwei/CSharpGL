@@ -28,7 +28,7 @@ namespace _3DTextureSlicing
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 3, 4) * 0.2f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -69,9 +69,11 @@ namespace _3DTextureSlicing
 
         private SceneNodeBase GetTree()
         {
-            var group = new GroupNode();
+            var node = SlicesNode.Create();
+            return node;
+            //var group = new GroupNode();
 
-            return group;
+            //return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -89,6 +91,15 @@ namespace _3DTextureSlicing
             this.propGrid.SelectedObject = e.Node.Tag;
 
             this.lblState.Text = string.Format("{0} objects selected.", 1);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            IWorldSpace node = this.scene.RootElement;
+            if (node != null)
+            {
+                node.RotationAngle += 0.3f;
+            }
         }
     }
 
