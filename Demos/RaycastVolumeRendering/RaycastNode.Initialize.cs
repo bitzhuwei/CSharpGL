@@ -111,7 +111,7 @@ namespace RaycastVolumeRendering
 
         private Texture initVol3DTex(byte[] data, int width, int height, int depth)
         {
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, 0, GL.GL_INTENSITY, width, height, depth, 0, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ByteDataProvider(data));
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, 0, GL.GL_INTENSITY, width, height, depth, 0, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(
                 TextureTarget.Texture3D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
@@ -151,7 +151,7 @@ namespace RaycastVolumeRendering
             }
 
             const int width = 256;
-            var storage = new TexImage1D(0, GL.GL_RGBA8, width, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ByteDataProvider(tff));
+            var storage = new TexImage1D(0, GL.GL_RGBA8, width, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(tff));
             var texture = new Texture(
                 TextureTarget.Texture1D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
@@ -161,49 +161,6 @@ namespace RaycastVolumeRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
             return texture;
-        }
-
-        class ByteDataProvider : LeveledDataProvider
-        {
-            private byte[] data;
-
-            public ByteDataProvider(byte[] data)
-            {
-                this.data = data;
-            }
-            public override IEnumerator<LeveledData> GetEnumerator()
-            {
-                yield return new ByteData(this.data);
-            }
-        }
-
-        class ByteData : LeveledData
-        {
-            private byte[] data;
-            private GCHandle pinned;
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="data"></param>
-            public ByteData(byte[] data)
-            {
-                this.data = data;
-            }
-
-            public override IntPtr LockData()
-            {
-                this.pinned = GCHandle.Alloc(this.data, GCHandleType.Pinned);
-                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(this.data, 0);
-                return header;
-                //GL.Instance.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-                //GL.Instance.TexImage1D((uint)TextureTarget.Texture1D, 0, GL.GL_RGBA8, this.width, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);
-            }
-
-            public override void FreeData()
-            {
-                this.pinned.Free();
-            }
         }
     }
 }
