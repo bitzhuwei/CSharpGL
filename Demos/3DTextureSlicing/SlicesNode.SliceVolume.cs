@@ -17,7 +17,23 @@ namespace _3DTextureSlicing
         const int HEIGHT = 960;
 
         //total number of slices current used
-        int num_slices = 256;
+        int sliceCount = 256;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int SliceCount
+        {
+            get { return sliceCount; }
+            set
+            {
+                if (value != sliceCount)
+                {
+                    sliceCount = value;
+                    SliceVolume(this.viewDir, sliceCount);
+                }
+            }
+        }
 
         //unit cube vertices
         vec3[] vertexList = new vec3[]
@@ -78,7 +94,7 @@ namespace _3DTextureSlicing
         /// <summary>
         /// main slicing function
         /// </summary>
-        private unsafe void SliceVolume(vec3 viewDir)
+        private unsafe void SliceVolume(vec3 viewDir, int num_slices)
         {
             vec3* vTextureSlices = (vec3*)this.vVertexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
 
