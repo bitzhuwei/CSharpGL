@@ -66,7 +66,7 @@ namespace _3DTextureSlicing
                 }
             }
 
-            var storage = new TexImage1D(0, GL.GL_RGBA, 256, 0, GL.GL_RGBA, GL.GL_FLOAT, new FloatDataProvider(pData));
+            var storage = new TexImage1D(0, GL.GL_RGBA, 256, 0, GL.GL_RGBA, GL.GL_FLOAT, new ArrayDataProvider<vec4>(pData));
             var texture = new Texture(TextureTarget.Texture1D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
@@ -75,49 +75,6 @@ namespace _3DTextureSlicing
             texture.Initialize();
 
             return texture;
-        }
-    }
-
-    class FloatDataProvider : LeveledDataProvider
-    {
-        private vec4[] data;
-
-        public FloatDataProvider(vec4[] data)
-        {
-            this.data = data;
-        }
-        public override IEnumerator<LeveledData> GetEnumerator()
-        {
-            yield return new FloatData(this.data);
-        }
-    }
-
-    class FloatData : LeveledData
-    {
-        private vec4[] data;
-        private GCHandle pinned;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="data"></param>
-        public FloatData(vec4[] data)
-        {
-            this.data = data;
-        }
-
-        public override IntPtr LockData()
-        {
-            this.pinned = GCHandle.Alloc(this.data, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(this.data, 0);
-            return header;
-            //GL.Instance.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-            //GL.Instance.TexImage1D((uint)TextureTarget.Texture1D, 0, GL.GL_RGBA8, this.width, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);
-        }
-
-        public override void FreeData()
-        {
-            this.pinned.Free();
         }
     }
 }

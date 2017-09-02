@@ -95,6 +95,7 @@
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapDataProvider.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\CubemapData.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\ArrayDataProvider`1.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\LeveledDataProvider.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.IDisposable.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.StaticCtor.cs" />

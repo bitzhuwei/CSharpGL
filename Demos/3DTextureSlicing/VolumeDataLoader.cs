@@ -30,7 +30,7 @@ namespace _3DTextureSlicing
             }
 
             // generate OpenGL texture
-            var dataProvider = new ByteDataProvider(bytes);
+            var dataProvider = new ArrayDataProvider<byte>(bytes);
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, 0, GL.GL_RED, XDIM, YDIM, ZDIM, 0, GL.GL_RED, GL.GL_UNSIGNED_BYTE, dataProvider);
             var texture = new Texture(
               TextureTarget.Texture3D, storage, new MipmapBuilder(),
@@ -46,47 +46,5 @@ namespace _3DTextureSlicing
             return texture;
         }
 
-        class ByteDataProvider : LeveledDataProvider
-        {
-            private byte[] data;
-
-            public ByteDataProvider(byte[] data)
-            {
-                this.data = data;
-            }
-            public override IEnumerator<LeveledData> GetEnumerator()
-            {
-                yield return new ByteData(this.data);
-            }
-        }
-
-        class ByteData : LeveledData
-        {
-            private byte[] data;
-            private GCHandle pinned;
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="data"></param>
-            public ByteData(byte[] data)
-            {
-                this.data = data;
-            }
-
-            public override IntPtr LockData()
-            {
-                this.pinned = GCHandle.Alloc(this.data, GCHandleType.Pinned);
-                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(this.data, 0);
-                return header;
-                //GL.Instance.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-                //GL.Instance.TexImage1D((uint)TextureTarget.Texture1D, 0, GL.GL_RGBA8, this.width, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);
-            }
-
-            public override void FreeData()
-            {
-                this.pinned.Free();
-            }
-        }
     }
 }
