@@ -67,8 +67,8 @@ namespace _3DTextureSlicing
             vec3 viewDirection = new vec3(-mv[0][2], -mv[1][2], -mv[2][2]);
             if (this.viewDir != viewDirection)
             {
+                SliceVolume(viewDirection);
                 this.viewDir = viewDirection;
-                SliceVolume();
             }
 
             RenderUnit unit = this.RenderUnits[0];

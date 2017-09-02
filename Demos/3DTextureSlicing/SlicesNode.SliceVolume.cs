@@ -78,7 +78,7 @@ namespace _3DTextureSlicing
         /// <summary>
         /// main slicing function
         /// </summary>
-        private unsafe void SliceVolume()
+        private unsafe void SliceVolume(vec3 viewDir)
         {
             vec3* vTextureSlices = (vec3*)this.vVertexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
 
@@ -266,7 +266,9 @@ namespace _3DTextureSlicing
 
                 //Using the indices, pass the intersection vertices to the vTextureSlices vector
                 for (int t = 0; t < 12; t++)
+                {
                     vTextureSlices[count++] = intersection[indices[t]];
+                }
             }
 
             ////update buffer object with the new vertices
