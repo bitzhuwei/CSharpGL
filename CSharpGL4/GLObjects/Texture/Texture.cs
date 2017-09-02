@@ -89,8 +89,8 @@ namespace CSharpGL
                 TextureTarget target = this.Target;
                 GL.Instance.BindTexture((uint)target, ids[0]);
 
-                this.Storage.Apply();
                 this.builtInSampler.Apply(this.Target);
+                this.Storage.Apply();
                 MipmapBuilder mipmapBuilder = this.mipmapBuilder;
                 if (mipmapBuilder != null) { mipmapBuilder.GenerateMipmmap((uint)this.Target); }
 
