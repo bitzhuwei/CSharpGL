@@ -43,10 +43,17 @@ namespace _3DTextureSlicing
 
             this.vVertexBuffer = this.model.GetVertexAttributeBuffer(SlicesModel.position);
 
-            Texture texture = VolumeDataLoader.LoadData();
-            RenderUnit unit = this.RenderUnits[0];
-            ShaderProgram program = unit.Program;
-            program.SetUniform("volume", texture);
+            {
+                Texture volume = VolumeDataLoader.LoadData();
+                volume.TextureUnitIndex = 0;
+                Texture lut = TransferFunctionLoader.LoadTransferFunction();
+                lut.TextureUnitIndex = 1;
+
+                RenderUnit unit = this.RenderUnits[0];
+                ShaderProgram program = unit.Program;
+                program.SetUniform("volume", volume);
+                program.SetUniform("lut", lut);
+            }
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)

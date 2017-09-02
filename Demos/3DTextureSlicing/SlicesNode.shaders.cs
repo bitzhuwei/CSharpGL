@@ -10,12 +10,12 @@ namespace _3DTextureSlicing
     {
         private const string textureSlicerVert = @"#version 330 core
   
-layout(location = 0) in vec3 vVertex; //object space vertex position
+layout(location = 0) in vec3 vVertex;	//object space vertex position
 
 //uniform
-uniform mat4 MVP;   //combined modelview projection matrix
+uniform mat4 MVP;		//combined modelview projection matrix
 
-smooth out vec3 vUV; //3D texture coordinates for texture lookup in the fragment shader
+smooth out vec3 vUV;	//3D texture coordinates for texture lookup in the fragment shader
 
 void main()
 {  
@@ -33,19 +33,20 @@ void main()
 
 layout(location = 0) out vec4 vFragColor;	//fragment shader output
 
-smooth in vec3 vUV;				//3D texture coordinates form vertex shader 
-								//interpolated by rasterizer
+smooth in vec3 vUV;			//3D texture coordinates form vertex shader interpolated by rasterizer
 
-//uniform
-uniform sampler3D volume;		//volume dataset
+//uniforms
+uniform sampler3D volume;	//volume dataset
+uniform sampler1D lut;		//transfer function (lookup table) texture
 
 void main()
 {
-	//Here we sample the volume dataset using the 3D texture coordinates from the vertex shader.
+    //Here we sample the volume dataset using the 3D texture coordinates from the vertex shader.
 	//Note that since at the time of texture creation, we gave the internal format as GL_RED
-	//we can get the sample value from the texture using the red channel. Here, we set all 4
-	//components as the sample value in the texture which gives us a shader of grey.
-	vFragColor = texture(volume, vUV).rrrr;
+	//we can get the sample value from the texture using the red channel. Then, we use the density 
+	//value obtained from the volume dataset and lookup the colour from the transfer function texture 
+	//by doing a dependent texture lookup.
+	vFragColor = texture(lut, texture(volume, vUV).r);
 }
 ";
 

@@ -98,7 +98,7 @@ namespace _3DTextureSlicing
             IWorldSpace node = this.scene.RootElement;
             if (node != null)
             {
-                node.RotationAngle += 0.3f;
+                node.RotationAngle += 1.3f;
             }
         }
     }
