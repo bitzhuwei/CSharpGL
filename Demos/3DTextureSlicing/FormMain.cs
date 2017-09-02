@@ -47,6 +47,10 @@ namespace _3DTextureSlicing
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.StepLength = 0.1f;
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)

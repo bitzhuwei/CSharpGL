@@ -20,7 +20,7 @@ namespace _3DTextureSlicing
         /// load a volume from the given raw data file and generates an OpenGL 3D texture from it
         /// </summary>
         /// <returns></returns>
-        public static Texture LoadData()
+        public static Texture Load()
         {
             var bytes = new byte[XDIM * YDIM * ZDIM];
             // read the volume data file

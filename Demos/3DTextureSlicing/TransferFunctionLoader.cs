@@ -22,7 +22,7 @@ namespace _3DTextureSlicing
             new vec4(0.5f,0,0,0)
         };
 
-        public static Texture LoadTransferFunction()
+        public static Texture Load()
         {
 
             //function to generate interpolated colours from the set of colour values (jet_values)

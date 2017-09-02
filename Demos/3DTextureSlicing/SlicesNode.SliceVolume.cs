@@ -8,7 +8,6 @@ namespace _3DTextureSlicing
 {
     partial class SlicesNode
     {
-        vec3 viewDir;
         //for floating point inaccuracy
         const float EPSILON = 0.0001f;
 
@@ -17,6 +16,26 @@ namespace _3DTextureSlicing
         const int HEIGHT = 960;
 
         //total number of slices current used
+        bool reSliceVolume = true;
+
+        vec3 viewDir;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private vec3 ViewDirection
+        {
+            get { return viewDir; }
+            set
+            {
+                if (viewDir != value)
+                {
+                    viewDir = value;
+                    reSliceVolume = true;
+                }
+            }
+        }
+
         int sliceCount = 256;
 
         /// <summary>
@@ -27,10 +46,11 @@ namespace _3DTextureSlicing
             get { return sliceCount; }
             set
             {
-                if (value != sliceCount)
+                int tmp = value > 512 ? 512 : value;
+                if (tmp != sliceCount)
                 {
-                    sliceCount = value;
-                    SliceVolume(this.viewDir, sliceCount);
+                    sliceCount = tmp;
+                    reSliceVolume = true;
                 }
             }
         }

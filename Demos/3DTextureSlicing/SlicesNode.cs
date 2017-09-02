@@ -44,9 +44,9 @@ namespace _3DTextureSlicing
             this.vVertexBuffer = this.model.GetVertexAttributeBuffer(SlicesModel.position);
 
             {
-                Texture volume = VolumeDataLoader.LoadData();
+                Texture volume = VolumeDataLoader.Load();
                 volume.TextureUnitIndex = 0;
-                Texture lut = TransferFunctionLoader.LoadTransferFunction();
+                Texture lut = TransferFunctionLoader.Load();
                 lut.TextureUnitIndex = 1;
 
                 RenderUnit unit = this.RenderUnits[0];
@@ -64,11 +64,13 @@ namespace _3DTextureSlicing
             mat4 model = this.GetModelMatrix();
 
             mat4 mv = view * model;
-            vec3 viewDirection = new vec3(-mv[0][2], -mv[1][2], -mv[2][2]);
-            if (this.viewDir != viewDirection)
+            this.ViewDirection = new vec3(-mv[0][2], -mv[1][2], -mv[2][2]);
+
+            if (this.reSliceVolume)
             {
-                SliceVolume(viewDirection, this.sliceCount);
-                this.viewDir = viewDirection;
+                SliceVolume(this.viewDir, this.sliceCount);
+
+                this.reSliceVolume = false;
             }
 
             RenderUnit unit = this.RenderUnits[0];
