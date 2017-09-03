@@ -17,7 +17,7 @@ namespace CSharpGL
         private int _width;
         private ICamera camera;
         private CameraState cameraState = new CameraState();
-        private ICanvas canvas;
+        private IGLCanvas canvas;
 
         private bool mouseDownFlag;
         private MouseButtons lastBindingMouseButtons;
@@ -65,7 +65,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
-        public override void Bind(ICamera camera, ICanvas canvas)
+        public override void Bind(ICamera camera, IGLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 

@@ -1,16 +1,16 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("CSharpGL")]
-[assembly: AssemblyDescription(
-@"CSharpGL wraps modern OpenGL features and some high-level common functions(text, scene, picking, UI etc) and offers general demostrations and documents. Inspired by SharpGL. For more information please check (http://bitzhuwei.github.io/CSharpGL/)")]
+[assembly: AssemblyTitle("CSharpGL4")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("bitzhuwei")]
-[assembly: AssemblyProduct("CSharpGL")]
-[assembly: AssemblyCopyright("Copyright © 2016")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("CSharpGL4")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,17 +20,17 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("bbae5fc4-9f20-4b2d-b59c-95639c58d089")]
+[assembly: Guid("7d3d1cf4-6dbb-48ca-8132-9875bb3099d7")]
 
-// 程序集的版本信息由下面四个值组成:
+// 程序集的版本信息由下面四个值组成: 
 //
 //      主版本
-//      次版本
+//      次版本 
 //      生成号
 //      修订号
 //
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
-// 方法是按如下所示使用“*”:
+// 方法是按如下所示使用“*”: 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.7.4")]
-[assembly: AssemblyFileVersion("1.0.7.4")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

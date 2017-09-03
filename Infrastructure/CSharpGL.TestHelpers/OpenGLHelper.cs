@@ -10,9 +10,9 @@ namespace CSharpGL
     {
         public static void DumpConstants()
         {
-            Type type = typeof(OpenGL);
+            Type type = typeof(GL);
             var builder = new StringBuilder();
-            builder.Append(string.Format("public static partial class OpenGL"));
+            builder.Append(string.Format("public static partial class GL"));
             builder.Append(("{"));
             builder.AppendLine();
             FieldInfo[] fieldsInfo = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
@@ -24,14 +24,14 @@ namespace CSharpGL
                 builder.AppendLine(string.Format("    {0} {1} = 0x{2:X};", item.FieldType.Name, item.Name, item.GetValue(null)));
             }
             builder.Append(("}"));
-            System.IO.File.WriteAllText("OpenGL.constants.cs", builder.ToString());
+            System.IO.File.WriteAllText("GL.constants.cs", builder.ToString());
         }
 
         public static void DumpMethods()
         {
-            Type type = typeof(OpenGL);
+            Type type = typeof(GL);
             var builder = new StringBuilder();
-            builder.Append(string.Format("public static partial class OpenGL"));
+            builder.Append(string.Format("public static partial class GL"));
             builder.Append(("{"));
             builder.AppendLine();
             MethodInfo[] methodInfo = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
@@ -43,13 +43,13 @@ namespace CSharpGL
                 builder.AppendLine(string.Format("    {0};", item));
             }
             builder.Append(("}"));
-            System.IO.File.WriteAllText("OpenGL.methods.cs", builder.ToString());
+            System.IO.File.WriteAllText("GL.methods.cs", builder.ToString());
         }
         public static void DumpDelegates()
         {
-            Type type = typeof(OpenGL);
+            Type type = typeof(GL);
             var builder = new StringBuilder();
-            builder.Append(string.Format("public static partial class OpenGL"));
+            builder.Append(string.Format("public static partial class GL"));
             builder.Append(("{"));
             builder.AppendLine();
             Type[] methodInfo = type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
@@ -61,7 +61,7 @@ namespace CSharpGL
                 builder.AppendLine(string.Format("    {0};", item));
             }
             builder.Append(("}"));
-            System.IO.File.WriteAllText("OpenGL.delegates.cs", builder.ToString());
+            System.IO.File.WriteAllText("GL.delegates.cs", builder.ToString());
         }
     }
 }

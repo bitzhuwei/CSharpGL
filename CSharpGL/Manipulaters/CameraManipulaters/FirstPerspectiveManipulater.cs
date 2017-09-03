@@ -13,7 +13,7 @@ namespace CSharpGL
     {
         private char backKey;
         private ICamera camera;
-        private ICanvas canvas;
+        private IGLCanvas canvas;
 
         private char downKey;
         private char frontKey;
@@ -39,7 +39,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public FirstPerspectiveManipulater()
-            : this(6f, 0.12f, 0.12f, MouseButtons.Right) { }
+            : this(1f, 0.12f, 0.12f, MouseButtons.Left | MouseButtons.Right) { }
 
         /// <summary>
         ///
@@ -174,7 +174,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
-        public override void Bind(ICamera camera, ICanvas canvas)
+        public override void Bind(ICamera camera, IGLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
@@ -240,8 +240,6 @@ namespace CSharpGL
 
             if (updated)
             {
-                if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-                { this.canvas.Repaint(); }
             }
         }
 
@@ -266,13 +264,10 @@ namespace CSharpGL
                 vec4 front1 = rotationMatrix * front;
                 rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.Y - e.Y), this.camera.GetRight());
                 vec4 front2 = rotationMatrix * front1;
-                front2 = front2.normalize();
+                //front2 = front2.normalize();
                 this.camera.Target = this.camera.Position + new vec3(front2);
 
                 this.lastPosition = e.Location;
-
-                if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-                { this.canvas.Repaint(); }
             }
         }
 
@@ -287,9 +282,6 @@ namespace CSharpGL
         void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
-
-            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-            { this.canvas.Repaint(); }
         }
 
         /// <summary>

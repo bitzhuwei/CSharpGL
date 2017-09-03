@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// 正方形
     /// </summary>
-    public class Ground : IBufferable
+    public class Ground : IBufferSource
     {
         internal vec3[] positions;
         internal vec3[] colors;
@@ -105,13 +105,15 @@ namespace CSharpGL
         private VertexBuffer positionBuffer;
         private VertexBuffer colorBuffer;
 
+        private IndexBuffer indexBuffer;
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName, string varNameInShader)
+        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -130,7 +132,7 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.positionBuffer = buffer;
-                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 return this.positionBuffer;
             }
@@ -151,7 +153,7 @@ namespace CSharpGL
                     //    buffer.UnmapBuffer();
                     //}
                     //this.colorBuffer = buffer;
-                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, varNameInShader, BufferUsage.StaticDraw);
+                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 return this.colorBuffer;
             }
@@ -177,12 +179,5 @@ namespace CSharpGL
             return this.indexBuffer;
         }
 
-        private IndexBuffer indexBuffer = null;
-
-        /// <summary>
-        /// Uses <see cref="ZeroIndexBuffer"/> or <see cref="OneIndexBuffer"/>.
-        /// </summary>
-        /// <returns></returns>
-        public bool UsesZeroIndexBuffer() { return true; }
     }
 }

@@ -21,11 +21,11 @@ namespace CSharpGL.TestHelpers
                         {
                             for (int z = -length; z < length; z++)
                             {
-                                OpenGL.MatrixMode(OpenGL.GL_MODELVIEW_MATRIX);
-                                OpenGL.LoadIdentity();
-                                OpenGL.Rotatef(angleDegree, x, y, z);
+                                GL.Instance.MatrixMode(GL.GL_MODELVIEW_MATRIX);
+                                GL.Instance.LoadIdentity();
+                                GL.Instance.Rotatef(angleDegree, x, y, z);
                                 float[] matrix1 = new float[16];
-                                OpenGL.GetFloat(GetTarget.ModelviewMatix, matrix1);
+                                GL.Instance.GetFloatv((uint)GetTarget.ModelviewMatix, matrix1);
                                 mat4 matrix2 = glm.rotate(angleDegree, new vec3(x, y, z));
                                 //mat4 matrix2 = glm.rotate((float)(angleDegree * Math.PI / 180.0), new vec3(x, y, z));
                                 writer.WriteLine("====================");

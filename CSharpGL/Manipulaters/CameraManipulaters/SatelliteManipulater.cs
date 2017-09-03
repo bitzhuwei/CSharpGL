@@ -14,7 +14,7 @@ namespace CSharpGL
         private vec3 back;
         private Size bound = new Size();
         private ICamera camera;
-        private ICanvas canvas;
+        private IGLCanvas canvas;
 
         private MouseButtons lastBindingMouseButtons;
         private Point lastPosition = new Point();
@@ -58,7 +58,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Bind(ICamera camera, ICanvas canvas)
+        public override void Bind(ICamera camera, IGLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
@@ -132,9 +132,6 @@ namespace CSharpGL
                 this.right = right;
                 this.up = up;
                 this.lastPosition = e.Location;
-
-                if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-                { this.canvas.Repaint(); }
             }
         }
 
@@ -149,9 +146,6 @@ namespace CSharpGL
         void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
-
-            if (this.canvas.RenderTrigger == RenderTrigger.Manual)
-            { this.canvas.Repaint(); }
         }
 
         /// <summary>

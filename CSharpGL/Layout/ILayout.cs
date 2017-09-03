@@ -9,7 +9,7 @@
         //event EventHandler afterLayout;
 
         /// <summary>
-        /// the edges of the <see cref="GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
+        /// the edges of the <see cref="IGLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
         /// <para>something like AnchorStyles.Left | AnchorStyles.Bottom.</para>
         /// </summary>
         System.Windows.Forms.AnchorStyles Anchor { get; set; }

@@ -17,7 +17,7 @@ namespace CSharpGL
         private vec3 _vectorUp;
         private ICamera camera;
         private CameraState cameraState = new CameraState();
-        private ICanvas canvas;
+        private IGLCanvas canvas;
 
         private bool mouseDownFlag;
         private MouseButtons lastBindingMouseButtons;
@@ -26,7 +26,7 @@ namespace CSharpGL
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
         private bool isBinded = false;
-        private RendererBase renderer;
+        private SceneNodeBase renderer;
 
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderer"></param>
         /// <param name="bindingMouseButtons"></param>
-        public TranslateManipulater(RendererBase renderer, MouseButtons bindingMouseButtons = MouseButtons.Left)
+        public TranslateManipulater(SceneNodeBase renderer, MouseButtons bindingMouseButtons = MouseButtons.Left)
         {
             this.renderer = renderer;
             this.MouseSensitivity = 6.0f;
@@ -68,7 +68,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
-        public override void Bind(ICamera camera, ICanvas canvas)
+        public override void Bind(ICamera camera, IGLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
@@ -117,12 +117,13 @@ namespace CSharpGL
 
                 Point location = new Point(e.X, this.canvas.ClientRectangle.Height - e.Y - 1);
                 Point differenceOnScreen = new Point(location.X - this._lastPosition.X, location.Y - this._lastPosition.Y);
-                mat4 model = this.renderer.GetModelMatrix().Value;
+                mat4 model = this.renderer.GetModelMatrix();
                 mat4 view = this.camera.GetViewMatrix();
                 mat4 projection = this.camera.GetProjectionMatrix();
                 vec4 viewport;
                 {
-                    int[] result = OpenGL.GetViewport();
+                    var result = new int[4];
+                    GL.Instance.GetIntegerv((uint)GetTarget.Viewport, result);
                     viewport = new vec4(result[0], result[1], result[2], result[3]);
                 }
                 var position = new vec3(0.0f);// imangine we have a point at (0, 0, 0).
