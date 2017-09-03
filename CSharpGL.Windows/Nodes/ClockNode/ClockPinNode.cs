@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    public class ClockPinRenderer : SceneNodeBase, IRenderable
+    public class ClockPinNode : SceneNodeBase, IRenderable
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
@@ -15,7 +15,7 @@ namespace CSharpGL
         private readonly List<vec3> hourColor = new List<vec3>();
         private readonly LineWidthState hourLineWidthState = new LineWidthState(8);
 
-        public ClockPinRenderer()
+        public ClockPinNode()
         {
             this.Scale = new vec3(1, 1, 1);
             this.RotationAxis = new vec3(0, 0, -1);

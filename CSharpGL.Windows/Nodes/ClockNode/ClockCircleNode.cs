@@ -3,12 +3,13 @@ using System.Collections.Generic;
 
 namespace CSharpGL
 {
-    public class ClockMarkRenderer : SceneNodeBase, IRenderable
+    internal class ClockCircleNode : SceneNodeBase, IRenderable
     {
-        private readonly List<vec3> markPosition = new List<vec3>();
-        private readonly List<vec3> markColor = new List<vec3>();
+        private readonly List<vec3> circlePosition = new List<vec3>();
+        private readonly List<vec3> circleColor = new List<vec3>();
+        private readonly LineWidthState circleLineWidthState = new LineWidthState(8);
 
-        public ClockMarkRenderer()
+        public ClockCircleNode()
         {
             this.Scale = new vec3(1, 1, 1);
             this.ModelSize = new vec3(2, 2, 2);
@@ -16,22 +17,15 @@ namespace CSharpGL
 
         protected override void DoInitialize()
         {
-            int markCount = 60;
-            for (int i = 0; i < markCount; i++)
+            int circleParts = 60;
+            for (int i = 0; i < circleParts; i++)
             {
                 var position = new vec3(
-                    (float)Math.Cos((double)i / (double)markCount * Math.PI * 2),
-                    (float)Math.Sin((double)i / (double)markCount * Math.PI * 2),
+                    (float)Math.Cos((double)i / (double)circleParts * Math.PI * 2),
+                    (float)Math.Sin((double)i / (double)circleParts * Math.PI * 2),
                     0);
-                markPosition.Add(position);
-                markColor.Add(new vec3(1, 1, 1));
-
-                var position2 = new vec3(
-                    (float)Math.Cos((double)i / (double)markCount * Math.PI * 2),
-                    (float)Math.Sin((double)i / (double)markCount * Math.PI * 2),
-                    0) * (i % 5 == 0 ? 0.8f : 0.9f);
-                markPosition.Add(position2);
-                markColor.Add(new vec3(1, 1, 1));
+                circlePosition.Add(position);
+                circleColor.Add(new vec3(1, 1, 1));
             }
         }
 
@@ -71,15 +65,18 @@ namespace CSharpGL
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
-            GL.Instance.Begin((uint)DrawMode.Lines);
-            for (int i = 0; i < markPosition.Count; i++)
+            circleLineWidthState.On();
+            GL.Instance.Begin((uint)DrawMode.LineLoop);
+            for (int i = 0; i < circlePosition.Count; i++)
             {
-                vec3 color = markColor[i];
+                vec3 color = circleColor[i];
                 GL.Instance.Color3f(color.x, color.y, color.z);
-                vec3 position = markPosition[i];
+                vec3 position = circlePosition[i];
                 GL.Instance.Vertex3f(position.x, position.y, position.z);
             }
             GL.Instance.End();
+
+            circleLineWidthState.Off();
 
             this.PopModelMatrix();
             this.PopProjectionViewMatrix();

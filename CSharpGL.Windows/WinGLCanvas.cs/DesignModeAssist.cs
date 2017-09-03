@@ -18,7 +18,7 @@ namespace CSharpGL
             GroupNode group;
             {
                 var propeller = new PropellerRenderer() { WorldPosition = new vec3(0, -1.5f, 0) };
-                var clock = new ClockRenderer();
+                var clock = new ClockNode();
                 group = new GroupNode(propeller, clock);
             }
             var scene = new Scene(camera, canvas)

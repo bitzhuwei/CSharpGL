@@ -43,18 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Renderers\ClockRenderer\Clock.png" />
-    <Content Include="Renderers\Propeller\Propeller+4Flabellum.png" />
+    <Content Include="Nodes\ClockNode\Clock.png" />
+    <Content Include="Nodes\Propeller\Propeller+4Flabellum.png" />
     <None Include="WinGLCanvas.cs\readme.md" />
     <None Include="RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="GLAPI\WinGL.DrawText.cs" />
-    <Compile Include="Renderers\ClockRenderer\ClockCircleRenderer.cs" />
-    <Compile Include="Renderers\ClockRenderer\ClockMarkRenderer.cs" />
-    <Compile Include="Renderers\ClockRenderer\ClockPinRenderer.cs" />
-    <Compile Include="Renderers\ClockRenderer\ClockRenderer.cs" />
-    <Compile Include="Renderers\Propeller\FlabellumRenderer.cs" />
-    <Compile Include="Renderers\Propeller\PropellerRenderer.cs" />
+    <Compile Include="Nodes\ClockNode\ClockCircleNode.cs" />
+    <Compile Include="Nodes\ClockNode\ClockMarkNode.cs" />
+    <Compile Include="Nodes\ClockNode\ClockPinNode.cs" />
+    <Compile Include="Nodes\ClockNode\ClockNode.cs" />
+    <Compile Include="Nodes\Propeller\FlabellumRenderer.cs" />
+    <Compile Include="Nodes\Propeller\PropellerRenderer.cs" />
     <Compile Include="WinGLCanvas.cs\DesignModeAssist.cs" />
     <Compile Include="WinGLCanvas.cs\WinGLCanvas.cs">
       <SubType>UserControl</SubType>
