@@ -50,7 +50,8 @@ namespace CSharpGL
         public override IntPtr LockData()
         {
             this.pinned = GCHandle.Alloc(this.data, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(this.data, 0);
+            IntPtr header = pinned.AddrOfPinnedObject();
+            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(this.data, 0);
             return header;
             //GL.Instance.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
             //GL.Instance.TexImage1D((uint)TextureTarget.Texture1D, 0, GL.GL_RGBA8, this.width, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);

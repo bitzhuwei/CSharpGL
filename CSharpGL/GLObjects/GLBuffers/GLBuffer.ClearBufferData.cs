@@ -18,11 +18,12 @@ namespace CSharpGL
         {
             //buffer.ClearBufferData(GL.GL_RGB32F, GL.GL_RGB, GL.GL_FLOAT, array);
             var array = new vec3[] { data };
-            GCHandle pin = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = pinned.AddrOfPinnedObject();
+            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<vec3>(header, 1);
             bool result = ClearBufferData(GL.GL_RGB32F, GL.GL_RGB, GL.GL_FLOAT, unmanagedArray, autoBind);
-            pin.Free();
+            pinned.Free();
 
             return result;
         }
@@ -88,11 +89,12 @@ namespace CSharpGL
         public bool ClearBufferSubData(int offset, uint size, vec3 data, bool autoBind = true)
         {
             var array = new vec3[] { data };
-            GCHandle pin = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = pinned.AddrOfPinnedObject();
+            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<vec3>(header, 1);
             bool result = ClearBufferSubData(GL.GL_RGB32F, new IntPtr(offset), size, GL.GL_RGB, GL.GL_FLOAT, unmanagedArray, autoBind);
-            pin.Free();
+            pinned.Free();
 
             return result;
         }

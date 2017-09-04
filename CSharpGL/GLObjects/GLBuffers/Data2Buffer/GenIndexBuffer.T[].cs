@@ -65,7 +65,8 @@ namespace CSharpGL
             else { throw new ArgumentException(string.Format("Only uint/ushort/byte are allowed!")); }
 
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            IntPtr header = pinned.AddrOfPinnedObject();
+            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
             var buffers = new uint[1];
             {

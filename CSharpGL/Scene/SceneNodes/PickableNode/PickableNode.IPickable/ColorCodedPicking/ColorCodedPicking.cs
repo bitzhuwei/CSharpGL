@@ -18,7 +18,8 @@ namespace CSharpGL
         {
             var array = new Pixel[1];
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            IntPtr header = pinned.AddrOfPinnedObject();
+            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             // get coded color.
             GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);
             pinned.Free();
