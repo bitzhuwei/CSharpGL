@@ -5,16 +5,16 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace _3DTextureSlicing
+namespace CSharpGL
 {
-    class VolumeDataLoader
+    public class Engine256Loader
     {
 
         //dimensions of volume data
-        const int XDIM = 256;
-        const int YDIM = 256;
-        const int ZDIM = 256;
-        private const string volume_file = "Engine256.raw";
+        public const int XDIM = 256;
+        public const int YDIM = 256;
+        public const int ZDIM = 256;
+        private const string volume_file = @"Engine256\Engine256.raw";
 
         /// <summary>
         /// load a volume from the given raw data file and generates an OpenGL 3D texture from it

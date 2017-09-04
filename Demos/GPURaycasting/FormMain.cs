@@ -73,9 +73,9 @@ namespace GPURaycasting
 
         private SceneNodeBase GetTree()
         {
-            throw new NotImplementedException();
-            //var node = SlicesNode.Create();
-            //return node;
+            var node = RaycastingNode.Create();
+
+            return node;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

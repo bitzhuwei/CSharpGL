@@ -4,35 +4,34 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace _3DTextureSlicing
+namespace GPURaycasting
 {
-    partial class SlicesNode : ModernNode
+    partial class RaycastingNode : ModernNode
     {
-        private VertexBuffer vVertexBuffer;
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public static SlicesNode Create()
+        public static RaycastingNode Create()
         {
-            var model = new SlicesModel();
+            var model = new RaycastingModel();
             RenderUnitBuilder textureSlicerBuilder;
             {
                 var vs = new VertexShader(textureSlicerVert, "vVertex");
                 var fs = new FragmentShader(textureSlicerFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", SlicesModel.position);
+                map.Add("vVertex", RaycastingModel.position);
                 textureSlicerBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
 
-            var node = new SlicesNode(model, textureSlicerBuilder);
+            var node = new RaycastingNode(model, textureSlicerBuilder);
             node.Initialize();
 
             return node;
         }
 
-        private SlicesNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private RaycastingNode(IBufferSource model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -41,18 +40,15 @@ namespace _3DTextureSlicing
         {
             base.DoInitialize();
 
-            this.vVertexBuffer = this.model.GetVertexAttributeBuffer(SlicesModel.position);
-
             {
                 Texture volume = Engine256Loader.Load();
                 volume.TextureUnitIndex = 0;
-                Texture lut = TransferFunctionLoader.Load();
-                lut.TextureUnitIndex = 1;
 
                 RenderUnit unit = this.RenderUnits[0];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("volume", volume);
-                program.SetUniform("lut", lut);
+
+                program.SetUniform("step_size", new vec3(1.0f / Engine256Loader.XDIM, 1.0f / Engine256Loader.YDIM, 1.0f / Engine256Loader.ZDIM));
             }
         }
 
@@ -64,18 +60,13 @@ namespace _3DTextureSlicing
             mat4 model = this.GetModelMatrix();
 
             mat4 mv = view * model;
-            this.ViewDirection = new vec3(-mv[0][2], -mv[1][2], -mv[2][2]);
-
-            if (this.reSliceVolume)
-            {
-                SliceVolume(this.viewDir, this.sliceCount);
-
-                this.reSliceVolume = false;
-            }
+            vec3 cameraPos = new vec3(glm.inverse(mv) * new vec4(0, 0, 0, 1));
 
             RenderUnit unit = this.RenderUnits[0];
             ShaderProgram program = unit.Program;
-            program.SetUniform("MVP", projection * mv);
+            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("camPos", cameraPos);
+
             unit.Render();
         }
 

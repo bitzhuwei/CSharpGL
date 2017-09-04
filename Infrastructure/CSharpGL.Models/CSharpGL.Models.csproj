@@ -90,6 +90,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TrefoilKnotModel\TrefoilKnotModel.cs" />
+    <Compile Include="Engine256\VolumeDataLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
@@ -111,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KleinBottle\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
+    <None Include="Engine256\Engine256.raw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="nanosuit.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
