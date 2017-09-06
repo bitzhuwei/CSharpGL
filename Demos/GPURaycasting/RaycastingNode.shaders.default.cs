@@ -8,7 +8,7 @@ namespace GPURaycasting
 {
     partial class RaycastingNode
     {
-        private const string textureSlicerVert = @"#version 330 core
+        private const string defaultVert = @"#version 330 core
   
 layout(location = 0) in vec3 vVertex; //object space vertex position
 
@@ -29,7 +29,7 @@ void main()
 	vUV = vVertex + vec3(0.5);
 }
 ";
-        private const string textureSlicerFrag = @"#version 330 core
+        private const string defaultFrag = @"#version 330 core
 
 layout(location = 0) out vec4 vFragColor;	//fragment shader output
 
