@@ -49,6 +49,7 @@ namespace GPURaycasting
         private RaycastingNode(IBufferSource model, params RenderUnitBuilder[] builders)
             : base(model, builders)
         {
+            this.CurrentMode = RenderMode.ISOSurface;
         }
 
         protected override void DoInitialize()

@@ -122,6 +122,8 @@ void main()
 	//flag to indicate if the raymarch loop should terminate
 	bool stop = false; 
 	
+    bool isDiscard = true;
+
 	//for all samples along the ray
 	for (int i = 0; i < MAX_SAMPLES; i++) {
 		// advance ray by dirstep
@@ -142,7 +144,9 @@ void main()
 
 		//if the stopping condition is true we brek out of the ray marching loop		
 		if (stop) 
-			break;
+        {
+            break;
+        }
 		
 		// data fetching from the red channel of volume texture
 		float sample = texture(volume, dataPos).r;			//current sample
@@ -178,9 +182,15 @@ void main()
 			//vFragColor =  PhongLighting(L,N,V,250,  tc); to get a multi colour
 			//iso-surface
 			vFragColor =  PhongLighting(L,N,V,250, vec3(0.5));	
+            isDiscard = false;
 			break;
 		} 
 	} 
+    
+    if (isDiscard)
+    {
+        discard;
+    }
 }
 ";
 

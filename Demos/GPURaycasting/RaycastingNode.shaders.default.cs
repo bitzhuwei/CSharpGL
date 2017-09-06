@@ -64,6 +64,8 @@ void main()
 	//flag to indicate if the raymarch loop should terminate
 	bool stop = false; 
 
+    bool isDiscard = true;
+
 	//for all samples along the ray
 	for (int i = 0; i < MAX_SAMPLES; i++) {
 		// advance ray by dirstep
@@ -100,6 +102,7 @@ void main()
 		float prev_alpha = sample - (sample * vFragColor.a);
 		vFragColor.rgb = prev_alpha * vec3(sample) + vFragColor.rgb; 
 		vFragColor.a += prev_alpha; 
+        isDiscard = false;
 			
 		//early ray termination
 		//if the currently composited colour alpha is already fully saturated
@@ -107,6 +110,11 @@ void main()
 		if( vFragColor.a>0.99)
 			break;
 	} 
+    
+    if (isDiscard)
+    {
+         discard;
+    }
 }
 ";
 

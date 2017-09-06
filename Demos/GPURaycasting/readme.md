@@ -1,2 +1,3 @@
 ﻿# GPURaycasting.
-![GPURaycasting](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/GPURaycasting/GPURaycasting.png?raw=true)
+![default](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/GPURaycasting/GPURaycasting.default.png?raw=true)
+![iso surface](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/GPURaycasting/GPURaycasting.isosurface.png?raw=true)
