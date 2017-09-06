@@ -53,8 +53,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlicesModel.cs" />
+    <Compile Include="SlicesNode.shaders.classifcation.cs" />
     <Compile Include="SlicesNode.SliceVolume.cs" />
-    <Compile Include="SlicesNode.shaders.cs" />
+    <Compile Include="SlicesNode.shaders.default.cs" />
     <Compile Include="SlicesNode.cs" />
     <Compile Include="TransferFunctionLoader.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -95,6 +96,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="3DTextureSlicing.classification.png" />
     <Content Include="3DTextureSlicing.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@ namespace _3DTextureSlicing
 {
     partial class SlicesNode
     {
-        private const string textureSlicerVert = @"#version 330 core
+        private const string defaultVert = @"#version 330 core
   
 layout(location = 0) in vec3 vVertex;	//object space vertex position
 
@@ -29,24 +29,23 @@ void main()
 	vUV = vVertex + vec3(0.5);
 }
 ";
-        private const string textureSlicerFrag = @"#version 330 core
+        private const string defaultFrag = @"#version 330 core
 
 layout(location = 0) out vec4 vFragColor;	//fragment shader output
 
-smooth in vec3 vUV;			//3D texture coordinates form vertex shader interpolated by rasterizer
+smooth in vec3 vUV;				//3D texture coordinates form vertex shader 
+								//interpolated by rasterizer
 
-//uniforms
-uniform sampler3D volume;	//volume dataset
-uniform sampler1D lut;		//transfer function (lookup table) texture
+//uniform
+uniform sampler3D volume;		//volume dataset
 
 void main()
 {
-    //Here we sample the volume dataset using the 3D texture coordinates from the vertex shader.
+	//Here we sample the volume dataset using the 3D texture coordinates from the vertex shader.
 	//Note that since at the time of texture creation, we gave the internal format as GL_RED
-	//we can get the sample value from the texture using the red channel. Then, we use the density 
-	//value obtained from the volume dataset and lookup the colour from the transfer function texture 
-	//by doing a dependent texture lookup.
-	vFragColor = texture(lut, texture(volume, vUV).r);
+	//we can get the sample value from the texture using the red channel. Here, we set all 4
+	//components as the sample value in the texture which gives us a shader of grey.
+	vFragColor = texture(volume, vUV).rrrr;
 }
 ";
 

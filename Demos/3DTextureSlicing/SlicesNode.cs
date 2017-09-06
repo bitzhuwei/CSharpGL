@@ -8,6 +8,13 @@ namespace _3DTextureSlicing
 {
     partial class SlicesNode : ModernNode
     {
+        public enum RenderMode { Default = 0, Classification = 1, };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public RenderMode CurrentMode { get; set; }
+
         private VertexBuffer vVertexBuffer;
         /// <summary>
         /// 
@@ -16,17 +23,25 @@ namespace _3DTextureSlicing
         public static SlicesNode Create()
         {
             var model = new SlicesModel();
-            RenderUnitBuilder textureSlicerBuilder;
+            RenderUnitBuilder defaultBuilder, classificationBuilder;
             {
-                var vs = new VertexShader(textureSlicerVert, "vVertex");
-                var fs = new FragmentShader(textureSlicerFrag);
+                var vs = new VertexShader(defaultVert, "vVertex");
+                var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", SlicesModel.position);
-                textureSlicerBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                defaultBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            }
+            {
+                var vs = new VertexShader(classificationVert, "vVertex");
+                var fs = new FragmentShader(classificationFrag);
+                var provider = new ShaderArray(vs, fs);
+                var map = new AttributeMap();
+                map.Add("vVertex", SlicesModel.position);
+                classificationBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
 
-            var node = new SlicesNode(model, textureSlicerBuilder);
+            var node = new SlicesNode(model, defaultBuilder, classificationBuilder);
             node.Initialize();
 
             return node;
@@ -43,13 +58,18 @@ namespace _3DTextureSlicing
 
             this.vVertexBuffer = this.model.GetVertexAttributeBuffer(SlicesModel.position);
 
-            {
-                Texture volume = Engine256Loader.Load();
-                volume.TextureUnitIndex = 0;
-                Texture lut = TransferFunctionLoader.Load();
-                lut.TextureUnitIndex = 1;
+            Texture volume = Engine256Loader.Load();
+            volume.TextureUnitIndex = 0;
+            Texture lut = TransferFunctionLoader.Load();
+            lut.TextureUnitIndex = 1;
 
-                RenderUnit unit = this.RenderUnits[0];
+            {
+                RenderUnit unit = this.RenderUnits[(int)RenderMode.Default];
+                ShaderProgram program = unit.Program;
+                program.SetUniform("volume", volume);
+            }
+            {
+                RenderUnit unit = this.RenderUnits[(int)RenderMode.Classification];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("volume", volume);
                 program.SetUniform("lut", lut);
@@ -73,7 +93,7 @@ namespace _3DTextureSlicing
                 this.reSliceVolume = false;
             }
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderUnit unit = this.RenderUnits[(int)this.CurrentMode];
             ShaderProgram program = unit.Program;
             program.SetUniform("MVP", projection * mv);
             unit.Render();
