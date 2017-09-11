@@ -72,9 +72,6 @@ namespace TerrainLoading
         {
             var node = TerainNode.Create();
             return node;
-            //var group = new GroupNode();
-
-            //return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
