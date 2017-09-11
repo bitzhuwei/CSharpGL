@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DTextureSlicing", "Demos\3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPURaycasting", "Demos\GPURaycasting\GPURaycasting.csproj", "{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerrainLoading", "Demos\TerrainLoading\TerrainLoading.csproj", "{660A540B-6292-45B9-B15A-4A0B261DDBBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +201,10 @@ Global
 		{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{660A540B-6292-45B9-B15A-4A0B261DDBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{660A540B-6292-45B9-B15A-4A0B261DDBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{660A540B-6292-45B9-B15A-4A0B261DDBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{660A540B-6292-45B9-B15A-4A0B261DDBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -233,5 +239,6 @@ Global
 		{E3B6ACF3-EE83-47A8-B800-7F60D0302EDB} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{2CA16683-8E1B-4463-B5B8-BCCDFB672407} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{660A540B-6292-45B9-B15A-4A0B261DDBBD} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
