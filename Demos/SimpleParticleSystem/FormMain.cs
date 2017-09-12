@@ -14,6 +14,7 @@ namespace SimpleParticleSystem
     {
         private Scene scene;
         private ActionList actionList;
+        private ParticleNode particleNode;
 
         public FormMain()
         {
@@ -46,33 +47,19 @@ namespace SimpleParticleSystem
             this.actionList = list;
 
             var manipulater = new FirstPerspectiveManipulater();
-            //manipulater.StepLength = 0.1f;
+            manipulater.StepLength = 0.1f;
             manipulater.Bind(camera, this.winGLCanvas1);
-        }
-
-        private void Match(TreeView treeView, SceneNodeBase nodeBase)
-        {
-            treeView.Nodes.Clear();
-            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
-            treeView.Nodes.Add(node);
-            Match(node, nodeBase);
-        }
-
-        private void Match(TreeNode node, SceneNodeBase nodeBase)
-        {
-            foreach (var item in nodeBase.Children)
-            {
-                var child = new TreeNode(item.ToString()) { Tag = item };
-                node.Nodes.Add(child);
-                Match(child, item);
-            }
         }
 
         private SceneNodeBase GetTree()
         {
-            throw new NotImplementedException();
-            //var node = TerainNode.Create();
-            //return node;
+            var node = ParticleNode.Create();
+            var ground = GroundNode.Create();
+            var group = new GroupNode(ground, node);
+
+            this.particleNode = node;
+
+            return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -100,9 +87,18 @@ namespace SimpleParticleSystem
             {
                 string filename = openDlg.FileName;
                 Bitmap bmp = new Bitmap(filename);
-                //var node = this.scene.RootElement as TerainNode;
-                //node.UpdateHeightmap(bmp);
+                this.particleNode.UpdateTexture(bmp);
             }
+        }
+
+        private void rdoDefaultMode_CheckedChanged(object sender, EventArgs e)
+        {
+            this.particleNode.Mode = this.rdoDefaultMode.Checked ? ParticleNode.RenderMode.Default : ParticleNode.RenderMode.Textured;
+        }
+
+        private void rdoTexturedMode_CheckedChanged(object sender, EventArgs e)
+        {
+            this.particleNode.Mode = this.rdoTexturedMode.Checked ? ParticleNode.RenderMode.Textured : ParticleNode.RenderMode.Default;
         }
     }
 

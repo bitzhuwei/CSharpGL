@@ -35,6 +35,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnOpen = new System.Windows.Forms.Button();
             this.openDlg = new System.Windows.Forms.OpenFileDialog();
+            this.rdoDefaultMode = new System.Windows.Forms.RadioButton();
+            this.rdoTexturedMode = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,16 +85,42 @@
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
+            // rdoDefaultMode
+            // 
+            this.rdoDefaultMode.AutoSize = true;
+            this.rdoDefaultMode.Checked = true;
+            this.rdoDefaultMode.Location = new System.Drawing.Point(126, 15);
+            this.rdoDefaultMode.Name = "rdoDefaultMode";
+            this.rdoDefaultMode.Size = new System.Drawing.Size(95, 16);
+            this.rdoDefaultMode.TabIndex = 5;
+            this.rdoDefaultMode.TabStop = true;
+            this.rdoDefaultMode.Text = "Default Mode";
+            this.rdoDefaultMode.UseVisualStyleBackColor = true;
+            this.rdoDefaultMode.CheckedChanged += new System.EventHandler(this.rdoDefaultMode_CheckedChanged);
+            // 
+            // rdoTexturedMode
+            // 
+            this.rdoTexturedMode.AutoSize = true;
+            this.rdoTexturedMode.Location = new System.Drawing.Point(227, 15);
+            this.rdoTexturedMode.Name = "rdoTexturedMode";
+            this.rdoTexturedMode.Size = new System.Drawing.Size(101, 16);
+            this.rdoTexturedMode.TabIndex = 6;
+            this.rdoTexturedMode.Text = "Textured Mode";
+            this.rdoTexturedMode.UseVisualStyleBackColor = true;
+            this.rdoTexturedMode.CheckedChanged += new System.EventHandler(this.rdoTexturedMode_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 610);
+            this.Controls.Add(this.rdoTexturedMode);
+            this.Controls.Add(this.rdoDefaultMode);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "TerrainLoading - CSharpGL";
+            this.Text = "Simple Particle System - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -109,5 +137,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.OpenFileDialog openDlg;
+        private System.Windows.Forms.RadioButton rdoDefaultMode;
+        private System.Windows.Forms.RadioButton rdoTexturedMode;
     }
 }

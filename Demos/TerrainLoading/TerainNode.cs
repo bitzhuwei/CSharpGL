@@ -67,7 +67,6 @@ namespace TerrainLoading
         {
         }
 
-        private Bitmap heightmap;
         private Texture heightTexture;
 
         /// <summary>

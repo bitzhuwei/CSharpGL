@@ -50,24 +50,6 @@ namespace TerrainLoading
             manipulater.Bind(camera, this.winGLCanvas1);
         }
 
-        private void Match(TreeView treeView, SceneNodeBase nodeBase)
-        {
-            treeView.Nodes.Clear();
-            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
-            treeView.Nodes.Add(node);
-            Match(node, nodeBase);
-        }
-
-        private void Match(TreeNode node, SceneNodeBase nodeBase)
-        {
-            foreach (var item in nodeBase.Children)
-            {
-                var child = new TreeNode(item.ToString()) { Tag = item };
-                node.Nodes.Add(child);
-                Match(child, item);
-            }
-        }
-
         private SceneNodeBase GetTree()
         {
             var node = TerainNode.Create();
