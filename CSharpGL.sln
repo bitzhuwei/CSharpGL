@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerrainLoading", "Demos\Ter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParticleSystem", "Demos\SimpleParticleSystem\SimpleParticleSystem.csproj", "{38314542-9FD3-4808-8ACA-06408D425BEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontToBackPeeling", "Demos\FrontToBackPeeling\FrontToBackPeeling.csproj", "{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,10 @@ Global
 		{38314542-9FD3-4808-8ACA-06408D425BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38314542-9FD3-4808-8ACA-06408D425BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38314542-9FD3-4808-8ACA-06408D425BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -247,5 +253,6 @@ Global
 		{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{660A540B-6292-45B9-B15A-4A0B261DDBBD} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{38314542-9FD3-4808-8ACA-06408D425BEE} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
