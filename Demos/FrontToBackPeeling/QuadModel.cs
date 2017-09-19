@@ -12,16 +12,38 @@ namespace FrontToBackPeeling
         private static readonly vec2[] quadVerts = new vec2[4] { new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1), };
         private static readonly ushort[] quadIndices = new ushort[] { 0, 1, 2, 0, 2, 3 };
 
+        public const string positions = "positions";
+        private VertexBuffer positionBuffer;
+
+        private IndexBuffer indexBuffer;
+
         #region IBufferSource 成员
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
-            throw new NotImplementedException();
+            if (positions == bufferName)
+            {
+                if (this.positionBuffer == null)
+                {
+                    this.positionBuffer = quadVerts.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                }
+
+                return this.positionBuffer;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IndexBuffer GetIndexBuffer()
         {
-            throw new NotImplementedException();
+            if (this.indexBuffer == null)
+            {
+                this.indexBuffer = quadIndices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+            }
+
+            return this.indexBuffer;
         }
 
         #endregion
