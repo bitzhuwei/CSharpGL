@@ -6,24 +6,21 @@ using CSharpGL;
 
 namespace FrontToBackPeeling
 {
-    class PeelingNode : SceneNodeBase, IRenderable
+    partial class PeelingNode : SceneNodeBase, IRenderable
     {
+
+        public PeelingNode()
+        {
+
+        }
+
         #region IRenderable 成员
 
-        public ThreeFlags EnableRendering
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+
             throw new NotImplementedException();
         }
 
