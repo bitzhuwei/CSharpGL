@@ -15,6 +15,39 @@ namespace FrontToBackPeeling
         /// </summary>
         public RenderMode Mode { get; set; }
 
+        private vec4 vColor;
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec4 Color
+        {
+            get { return vColor; }
+            set
+            {
+                for (int i = 0; i < this.RenderUnits.Count; i++)
+                {
+                    RenderUnit unit = this.RenderUnits[i];
+                    ShaderProgram program = unit.Program;
+                    program.SetUniform("vColor", value);
+                }
+            }
+        }
+
+        private Texture depthTexture;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture DepthTexture
+        {
+            get { return this.depthTexture; }
+            set
+            {
+                RenderUnit unit = this.RenderUnits[(int)RenderMode.FrontPeel];
+                ShaderProgram program = unit.Program;
+                program.SetUniform("depthTexture", value);
+            }
+        }
+
         public static CubeNode Create()
         {
             RenderUnitBuilder blendBuilder, finalBuilder;

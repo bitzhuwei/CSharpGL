@@ -121,6 +121,18 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
+        public int SampleCount()
+        {
+            var result = new int[1];
+            glGetQueryObjectiv(this.Id, GL.GL_QUERY_RESULT, result);
+
+            return result[0];
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public bool SampleRendered()
         {
             var result = new int[1];

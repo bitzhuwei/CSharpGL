@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CubeMode.cs" />
+    <Compile Include="CubeModel.cs" />
     <Compile Include="CubeNode.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

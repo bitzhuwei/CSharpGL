@@ -339,35 +339,35 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_EXT_blend_minmax
+        #region GL_EXT_blend_minmax
 
-        ////  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FUNC_ADD = 0x8006;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MIN = 0x8007;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX = 0x8008;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FUNC_SUBTRACT = 0x800A;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FUNC_REVERSE_SUBTRACT = 0x800B;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_BLEND_EQUATION = 0x8009;
+        //  Constants
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FUNC_ADD = 0x8006;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MIN = 0x8007;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX = 0x8008;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FUNC_SUBTRACT = 0x800A;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FUNC_REVERSE_SUBTRACT = 0x800B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_BLEND_EQUATION = 0x8009;
 
-        //#endregion
+        #endregion
 
         //#region GL_multitexture
 

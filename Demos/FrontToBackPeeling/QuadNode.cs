@@ -8,12 +8,28 @@ namespace FrontToBackPeeling
 {
     class QuadNode : ModernNode
     {
-        public enum RenderMode { Blend = 0, FInal = 1 };
+        public enum RenderMode { Blend = 0, Final = 1 };
 
         /// <summary>
         /// 
         /// </summary>
         public RenderMode Mode { get; set; }
+
+
+        private Texture tempTexture;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture TempTexture
+        {
+            get { return this.tempTexture; }
+            set
+            {
+                RenderUnit unit = this.RenderUnits[(int)RenderMode.Blend];
+                ShaderProgram program = unit.Program;
+                program.SetUniform("tempTexture", value);
+            }
+        }
 
         public static QuadNode Create()
         {
