@@ -34,5 +34,10 @@
         ///
         /// </summary>
         TextureBuffer = GL.GL_TEXTURE_BUFFER,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        TextureRectangle = GL.GL_TEXTURE_RECTANGLE,
     }
 }

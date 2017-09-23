@@ -80,6 +80,11 @@ namespace CSharpGL
             /// 
             /// </summary>
             Texture2D = GL.GL_TEXTURE_2D,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            TextureRectangle = GL.GL_TEXTURE_RECTANGLE,
         }
     }
 }

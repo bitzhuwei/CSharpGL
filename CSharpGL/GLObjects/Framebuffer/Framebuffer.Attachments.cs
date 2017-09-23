@@ -176,6 +176,28 @@ namespace CSharpGL
         /// Attach a texture.
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="depthAttachment">true for depth attachment; otherwise, color attachment.</param>
+        /// <returns></returns>
+        public void Attach(Texture texture, bool depthAttachment)
+        {
+            if (depthAttachment)
+            {
+                glFramebufferTexture2D(GL.GL_FRAMEBUFFER, GL.GL_DEPTH_ATTACHMENT, (uint)texture.Target, texture.Id, 0);
+            }
+            else
+            {
+                if (nextColorAttachmentIndex >= attachment_id.Length)
+                { throw new IndexOutOfRangeException("Not enough color attach points!"); }
+
+                glFramebufferTexture2D(GL.GL_FRAMEBUFFER, attachment_id[nextColorAttachmentIndex++], (uint)texture.Target, texture.Id, 0);
+            }
+        }
+
+        /// <summary>
+        /// Attach a texture.
+        /// <para>Bind() this framebuffer before invoking this method.</para>
+        /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         public Texture Attach(TextureAttachment type)

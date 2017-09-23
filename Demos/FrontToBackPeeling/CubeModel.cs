@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace FrontToBackPeeling
 {
-    class CubeMode : IBufferSource
+    class CubeModel : IBufferSource
     {
         private static vec3[] vertices = new vec3[8] { new vec3(-0.5f, -0.5f, -0.5f), new vec3(0.5f, -0.5f, -0.5f), new vec3(0.5f, 0.5f, -0.5f), new vec3(-0.5f, 0.5f, -0.5f), new vec3(-0.5f, -0.5f, 0.5f), new vec3(0.5f, -0.5f, 0.5f), new vec3(0.5f, 0.5f, 0.5f), new vec3(-0.5f, 0.5f, 0.5f) };
 
