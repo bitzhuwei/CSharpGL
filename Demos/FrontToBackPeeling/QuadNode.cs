@@ -64,25 +64,6 @@ namespace FrontToBackPeeling
 
         }
 
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            Texture tempTexture = GetTempTexture();
-            for (int i = 0; i < this.RenderUnits.Count; i++)
-            {
-                RenderUnit unit = this.RenderUnits[i];
-                ShaderProgram program = unit.Program;
-                program.SetUniform("tempTexture", tempTexture);
-            }
-
-        }
-
-        private Texture GetTempTexture()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             //ICamera camera = arg.CameraStack.Peek();

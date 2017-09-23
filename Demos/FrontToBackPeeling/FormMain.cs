@@ -28,7 +28,7 @@ namespace FrontToBackPeeling
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4) * 0.2f;
+            var position = new vec3(5, 3, 4) * 1f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -73,12 +73,8 @@ namespace FrontToBackPeeling
 
         private SceneNodeBase GetTree()
         {
-            throw new NotImplementedException();
-            //var node = SlicesNode.Create();
-            //return node;
-            //var group = new GroupNode();
-
-            //return group;
+            var node = new PeelingNode();
+            return node;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

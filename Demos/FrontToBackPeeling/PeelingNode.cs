@@ -39,6 +39,7 @@ namespace FrontToBackPeeling
                         }
                     }
                 }
+                this.Children.Add(groupNode);
 
                 this.cubeNodeGroup = groupNode;
             }
@@ -62,7 +63,7 @@ namespace FrontToBackPeeling
         private DepthTestState depthTestState = new DepthTestState(true);
 
         private const int NUM_PASSES = 6;
-        private bool bUseOQ = true;
+        private bool bUseOQ = false;
         private static readonly GLDelegates.void_uint glBlendEquation;
         private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
 
