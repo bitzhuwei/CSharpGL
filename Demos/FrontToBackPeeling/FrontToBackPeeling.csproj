@@ -58,6 +58,7 @@
     <Compile Include="QuadModel.cs" />
     <Compile Include="shaders.blend.cs" />
     <Compile Include="shaders.cube_shader.cs" />
+    <None Include="readme.md" />
     <Compile Include="shaders.front_peel.cs" />
     <Compile Include="shaders.final.cs" />
     <Compile Include="shaders.shader.cs" />
