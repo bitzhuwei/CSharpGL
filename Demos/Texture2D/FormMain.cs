@@ -28,7 +28,7 @@ namespace Texture2D
         {
             SceneNodeBase rootElement = GetRootElement();
 
-            var position = new vec3(0, 0, 4);
+            var position = new vec3(1, 0, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -51,16 +51,24 @@ namespace Texture2D
 
         private SceneNodeBase GetRootElement()
         {
+
             var rectangle = RectangleNode.Create();
             rectangle.Scale *= 3;
             rectangle.TextureSource = new CrateTextureSource(@"Crate.bmp");
 
             var blend = RectangleNode.Create();
             blend.Scale *= 3;
+            blend.WorldPosition = new vec3(1, 0, 0.1f);
             blend.RenderUnits[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             blend.TextureSource = new CrateTextureSource(@"particle.png");
 
-            var group = new GroupNode(rectangle, blend);
+            var blend2 = RectangleNode.Create();
+            blend2.Scale *= 3;
+            blend2.WorldPosition = new vec3(-1, 0, 0.2f);
+            blend2.RenderUnits[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            blend2.TextureSource = new CrateTextureSource(@"particle.png");
+
+            var group = new GroupNode(rectangle, blend, blend2);
 
             return group;
         }
