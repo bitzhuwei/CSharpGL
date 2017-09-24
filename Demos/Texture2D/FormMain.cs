@@ -28,7 +28,7 @@ namespace Texture2D
         {
             SceneNodeBase rootElement = GetRootElement();
 
-            var position = new vec3(1, 2, 4);
+            var position = new vec3(0, 0, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -51,11 +51,18 @@ namespace Texture2D
 
         private SceneNodeBase GetRootElement()
         {
-            var result = RectangleNode.Create();
-            result.Scale *= 3;
-            result.TextureSource = new CrateTextureSource();
+            var rectangle = RectangleNode.Create();
+            rectangle.Scale *= 3;
+            rectangle.TextureSource = new CrateTextureSource(@"Crate.bmp");
 
-            return result;
+            var blend = RectangleNode.Create();
+            blend.Scale *= 3;
+            blend.RenderUnits[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            blend.TextureSource = new CrateTextureSource(@"particle.png");
+
+            var group = new GroupNode(rectangle, blend);
+
+            return group;
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)

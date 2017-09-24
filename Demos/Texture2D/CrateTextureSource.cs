@@ -8,10 +8,10 @@ namespace Texture2D
 {
     class CrateTextureSource : ITextureSource
     {
-        private static readonly Texture texture;
-        static CrateTextureSource()
+        private readonly Texture texture;
+        public CrateTextureSource(string filename)
         {
-            var bmp = new System.Drawing.Bitmap(@"Crate.bmp");
+            var bmp = new System.Drawing.Bitmap(filename);
             texture = new Texture(TextureTarget.Texture2D,
                 new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
