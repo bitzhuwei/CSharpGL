@@ -8,42 +8,53 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public interface IGLControl
+    public class CtrlRect : IGLControl
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        IGLControl Parent { get; set; }
+        #region IGLControl 成员
 
         /// <summary>
         /// 
         /// </summary>
-        List<IGLControl> Children { get; }
+        public IGLControl Parent { get; set; }
+
+        private List<IGLControl> children = new List<IGLControl>();
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<IGLControl> Children { get { return this.children; } }
 
         /// <summary>
         /// 
         /// </summary>
-        ivec2 LeftUp { get; set; }
+        public ivec2 LeftUp { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        int Width { get; set; }
+        public int Width { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        int Height { get; set; }
+        public int Height { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        void Layout();
+        public void Layout()
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="renderer"></param>
-        void Render(IControlRenderer renderer);
+        public void Render(IControlRenderer renderer)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
