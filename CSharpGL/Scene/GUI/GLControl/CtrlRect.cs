@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// A rectangle control. // TODO: what's this?
     /// </summary>
     public class CtrlRect : IGLControl
     {
