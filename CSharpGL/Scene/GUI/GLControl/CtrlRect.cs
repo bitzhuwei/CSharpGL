@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Layout();
+        public virtual void Layout() { }
 
         /// <summary>
         /// 

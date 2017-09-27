@@ -28,6 +28,11 @@ namespace CSharpGL
         /// </summary>
         public SceneNodeBase RootElement { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public IGLControl RootControl { get; set; }
+
         private vec4 clearColor = Color.SkyBlue.ToVec4();
         /// <summary>
         /// 

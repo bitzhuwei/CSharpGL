@@ -23,7 +23,20 @@ namespace CSharpGL
         /// </summary>
         public override void Act()
         {
-            throw new NotImplementedException();
+            GUILayoutAction.Layout(this.Scene.RootControl);
+        }
+
+        private static void Layout(IGLControl control)
+        {
+            if (control != null)
+            {
+                control.Layout();
+
+                foreach (var item in control.Children)
+                {
+                    GUILayoutAction.Layout(item);
+                }
+            }
         }
     }
 }

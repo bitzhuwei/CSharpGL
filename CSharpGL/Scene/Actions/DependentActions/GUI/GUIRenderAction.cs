@@ -23,7 +23,24 @@ namespace CSharpGL
         /// </summary>
         public override void Act()
         {
-            throw new NotImplementedException();
+            GUIRenderAction.Render(this.Scene.RootControl);
+        }
+
+        private static void Render(IGLControl control)
+        {
+            if (control != null)
+            {
+                IGLControlRenderer renderer = control.Renderer;
+                if (renderer != null)
+                {
+                    renderer.Render(control);
+                }
+
+                foreach (var item in control.Children)
+                {
+                    GUIRenderAction.Render(item);
+                }
+            }
         }
     }
 }
