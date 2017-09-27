@@ -6,9 +6,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// A rectangle control. // TODO: what's this?
+    /// A rectangle control that displays an image.
     /// </summary>
-    public class CtrlRect : IGLControl
+    public class CtrlImage : IGLControl
     {
         #region IGLControl 成员
 
