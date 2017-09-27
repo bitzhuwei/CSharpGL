@@ -41,19 +41,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public void Layout()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Layout();
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="renderer"></param>
-        public void Render(IControlRenderer renderer)
-        {
-            throw new NotImplementedException();
-        }
+        public IGLControlRenderer Renderer { get; set; }
 
         #endregion
     }

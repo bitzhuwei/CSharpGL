@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CSharpGL.GUI;
 
 namespace CSharpGL
 {
@@ -43,7 +44,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="renderer"></param>
-        void Render(IControlRenderer renderer);
+        IGLControlRenderer Renderer { get; set; }
     }
 }

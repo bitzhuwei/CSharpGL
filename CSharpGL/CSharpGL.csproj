@@ -101,9 +101,10 @@
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.StaticCtor.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
-    <Compile Include="GUI\GLControl\CtrlRect.cs" />
-    <Compile Include="GUI\IControlRenderer.cs" />
-    <Compile Include="GUI\IGLControl.cs" />
+    <Compile Include="Scene\GUI\GLControl\CtrlRect.cs" />
+    <Compile Include="Scene\GUI\IControlRenderer.cs" />
+    <Compile Include="Scene\GUI\IGLControl.cs" />
+    <Compile Include="Scene\GUI\IGLControlRenderer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
@@ -636,7 +637,7 @@
     <Content Include="Scene\Nodes\readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\GLControlRenderer\" />
+    <Folder Include="Scene\GUI\GLControlRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
