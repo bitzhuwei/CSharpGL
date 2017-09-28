@@ -31,7 +31,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public IGLControl RootControl { get; set; }
+        public GLControl RootControl { get; set; }
 
         private vec4 clearColor = Color.SkyBlue.ToVec4();
         /// <summary>

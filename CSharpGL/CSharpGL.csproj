@@ -103,8 +103,8 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
-    <Compile Include="Scene\GUI\GLControl\CtrlImage.cs" />
-    <Compile Include="Scene\GUI\IGLControl.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage.cs" />
+    <Compile Include="Scene\GUI\GLControl.cs" />
     <Compile Include="Scene\GUI\IGLControlRenderer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />

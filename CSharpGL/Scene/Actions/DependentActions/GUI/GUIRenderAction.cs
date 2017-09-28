@@ -26,7 +26,7 @@ namespace CSharpGL
             GUIRenderAction.Render(this.Scene.RootControl);
         }
 
-        private static void Render(IGLControl control)
+        private static void Render(GLControl control)
         {
             if (control != null)
             {

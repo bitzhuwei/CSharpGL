@@ -14,6 +14,6 @@ namespace CSharpGL
         /// Renders the specified <paramref name="control"/>.
         /// </summary>
         /// <param name="control"></param>
-        void Render(IGLControl control);
+        void Render(GLControl control);
     }
 }

@@ -26,7 +26,7 @@ namespace CSharpGL
             GUILayoutAction.Layout(this.Scene.RootControl);
         }
 
-        private static void Layout(IGLControl control)
+        private static void Layout(GLControl control)
         {
             if (control != null)
             {
