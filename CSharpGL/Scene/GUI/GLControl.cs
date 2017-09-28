@@ -42,10 +42,21 @@ namespace CSharpGL
         /// </summary>
         public int Height { get; set; }
 
+        protected int absLeft;
+        protected int absBottom;
+
         /// <summary>
         /// Layout for this control.
         /// </summary>
-        public virtual void Layout() { }
+        public virtual void Layout()
+        {
+            GLControl parent = this.Parent;
+            if (parent != null)
+            {
+                this.absLeft = parent.Left + this.Left;
+                this.absBottom = parent.Bottom + this.Bottom;
+            }
+        }
 
         /// <summary>
         /// Who renders this control?
