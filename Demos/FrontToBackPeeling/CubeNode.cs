@@ -24,6 +24,8 @@ namespace FrontToBackPeeling
             get { return vColor; }
             set
             {
+                this.vColor = value;
+
                 for (int i = 0; i < this.RenderUnits.Count; i++)
                 {
                     RenderUnit unit = this.RenderUnits[i];
@@ -42,6 +44,8 @@ namespace FrontToBackPeeling
             get { return this.depthTexture; }
             set
             {
+                this.depthTexture = value;
+
                 RenderUnit unit = this.RenderUnits[(int)RenderMode.FrontPeel];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("depthTexture", value);

@@ -85,6 +85,7 @@ namespace FrontToBackPeeling
                 framebuffer.Unbind();
 
                 this.colorBlenderFramebuffer = framebuffer;
+                this.colorBlenderColorAttachment = colorTexture;
             }
         }
 

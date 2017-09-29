@@ -10,9 +10,12 @@ namespace CSharpGL
     /// </summary>
     public class CtrlImage : GLControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public CtrlImage()
         {
-            this.Renderer = null;
+            this.Renderer = new CtrlImageRenderer();
         }
     }
 }

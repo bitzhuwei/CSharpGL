@@ -25,6 +25,8 @@ namespace FrontToBackPeeling
             get { return this.tempTexture; }
             set
             {
+                this.tempTexture = value;
+
                 RenderUnit unit = this.RenderUnits[(int)RenderMode.Blend];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("tempTexture", value);

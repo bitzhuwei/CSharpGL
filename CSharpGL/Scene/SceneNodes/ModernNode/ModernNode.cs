@@ -7,7 +7,13 @@ namespace CSharpGL
     public abstract partial class ModernNode : SceneNodeBase, IRenderable
     {
         // data structure for rendering.
+        /// <summary>
+        /// 
+        /// </summary>
         protected readonly RenderUnitBuilder[] builders;
+        /// <summary>
+        /// 
+        /// </summary>
         protected readonly IBufferSource model;
 
         /// <summary>

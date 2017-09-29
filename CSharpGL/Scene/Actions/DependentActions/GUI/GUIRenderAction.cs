@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render <see cref="IGLControl"/> objects.
+    /// Render <see cref="GLControl"/> objects.
     /// </summary>
     public class GUIRenderAction : DependentActionBase
     {

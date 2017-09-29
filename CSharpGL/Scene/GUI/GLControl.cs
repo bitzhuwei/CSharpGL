@@ -42,7 +42,13 @@ namespace CSharpGL
         /// </summary>
         public int Height { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected int absLeft;
+        /// <summary>
+        /// 
+        /// </summary>
         protected int absBottom;
 
         /// <summary>
