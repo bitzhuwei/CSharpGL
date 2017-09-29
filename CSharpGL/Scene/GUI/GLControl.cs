@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Control(widget) in OpenGL window.
     /// </summary>
-    public abstract class GLControl
+    public abstract partial class GLControl
     {
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace CSharpGL
         /// <summary>
         /// Who renders this control?
         /// </summary>
-        public IGLControlRenderer Renderer { get; set; }
+        public GLControlRendererBase Renderer { get; set; }
 
     }
 }

@@ -30,7 +30,7 @@ namespace CSharpGL
         {
             if (control != null)
             {
-                IGLControlRenderer renderer = control.Renderer;
+                GLControlRendererBase renderer = control.Renderer;
                 if (renderer != null)
                 {
                     renderer.Render(control);
