@@ -67,7 +67,7 @@ namespace Texture2D
             blend2.RenderUnits[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             blend2.TextureSource = new CrateTextureSource(@"particle.png");
 
-            // note: this tells us that the right way is to render the nearest transparenct object last.
+            // note: this tells us that the right way is to render the nearest transparenct object at last.
             var group = new GroupNode(rectangle, blend, blend2);
 
             return group;
