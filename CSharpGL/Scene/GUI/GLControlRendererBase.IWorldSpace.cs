@@ -4,7 +4,7 @@ using System.Drawing.Design;
 
 namespace CSharpGL
 {
-    public abstract partial class SceneNodeBase
+    public abstract partial class GLControlRendererBase
     {
 
         /// <summary>

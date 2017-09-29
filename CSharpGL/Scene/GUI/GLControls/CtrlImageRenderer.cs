@@ -12,7 +12,7 @@ namespace CSharpGL
     {
         #region IGLControlRenderer 成员
 
-        public void Render(GLControl control)
+        public override void Render(GLControl control)
         {
             var ctrl = control as CtrlImage;
             if (ctrl != null)
