@@ -27,6 +27,7 @@ namespace Texture2D
         private void FormMain_Load(object sender, EventArgs e)
         {
             SceneNodeBase rootElement = GetRootElement();
+            GLControl rootControl = GetRootControl();
 
             var position = new vec3(1, 0, 4);
             var center = new vec3(0, 0, 0);
@@ -35,6 +36,7 @@ namespace Texture2D
             this.scene = new Scene(camera, this.winGLCanvas1)
             {
                 RootElement = rootElement,
+                RootControl = rootControl,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
@@ -47,6 +49,13 @@ namespace Texture2D
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+        }
+
+        private GLControl GetRootControl()
+        {
+            var control = new CtrlImage();
+
+            return control;
         }
 
         private SceneNodeBase GetRootElement()
