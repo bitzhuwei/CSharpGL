@@ -8,10 +8,16 @@ namespace CSharpGL
     /// <summary>
     /// Renders a <see cref="GLControl"/>.
     /// </summary>
-    public class CtrlImageRenderer : GLControlRendererBase
+    public partial class CtrlImageRenderer : GLControlRendererBase
     {
         #region IGLControlRenderer 成员
 
+        public CtrlImageRenderer()
+            : base()
+        {
+            var model = new CtrlImageModel();
+
+        }
         /// <summary>
         /// 
         /// </summary>
