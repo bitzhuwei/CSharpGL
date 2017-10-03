@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Renders a <see cref="GLControl"/>.
     /// </summary>
-    public abstract partial class GLControlRendererBase : IWorldSpace, IDisposable
+    public abstract partial class GLControlRendererBase : IDisposable
     {
         private const string strSceneNodeBase = "SceneNodeBase";
 
