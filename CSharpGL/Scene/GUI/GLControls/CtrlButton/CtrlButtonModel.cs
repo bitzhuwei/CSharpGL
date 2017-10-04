@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Renders a <see cref="GLControl"/>.
     /// </summary>
-    public class CtrlImageModel : IBufferSource
+    public class CtrlButtonModel : IBufferSource
     {
         private static readonly vec3[] eightPositions = new vec3[] { new vec3(1, 1, 1), new vec3(-1, 1, 1), new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, 1, -1), new vec3(-1, 1, -1), new vec3(-1, -1, -1), new vec3(1, -1, -1) };
 

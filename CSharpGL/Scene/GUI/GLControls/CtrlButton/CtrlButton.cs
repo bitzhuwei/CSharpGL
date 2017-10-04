@@ -8,10 +8,14 @@ namespace CSharpGL
     /// <summary>
     /// A rectangle control that displays an image.
     /// </summary>
-    public partial class CtrlImageRenderer
+    public class CtrlButton : GLControl
     {
-        private const string vert = @"";
-
-        private const string farg = @"";
+        /// <summary>
+        /// 
+        /// </summary>
+        public CtrlButton()
+        {
+            this.Renderer = new CtrlButtonRenderer();
+        }
     }
 }

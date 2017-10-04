@@ -103,11 +103,15 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImageRenderer.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonModel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonRenderer.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonRenderer.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageRenderer.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
     <Compile Include="Scene\GUI\GLControl.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImageModel.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImageRenderer.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageRenderer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
@@ -639,10 +643,9 @@
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.RenderForInnerPicking.cs" />
     <None Include="Scene\SceneNodes\ModernNode\readme.md" />
     <Content Include="Scene\SceneNodes\ConcreteNodes\readme.md" />
+    <Content Include="Scene\SceneNodes\RenderUnits\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scene\GUI\GLControlRenderer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
