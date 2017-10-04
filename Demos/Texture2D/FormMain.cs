@@ -41,10 +41,17 @@ namespace Texture2D
             };
 
             var list = new ActionList();
+
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
+
+            var guiLayoutAction = new GUILayoutAction(scene);
+            list.Add(guiLayoutAction);
+            var guiRenderAction = new GUIRenderAction(scene);
+            list.Add(guiRenderAction);
+
             this.actionList = list;
 
             Match(this.trvScene, scene.RootElement);
@@ -53,7 +60,12 @@ namespace Texture2D
 
         private GLControl GetRootControl()
         {
-            var control = new CtrlImage();
+            var bitmap = new Bitmap(@"particle.png");
+            var control = new CtrlImage(bitmap, false);
+            control.Left = 10; control.Bottom = 10;
+            control.Width = 100; control.Height = 50;
+
+            bitmap.Dispose();
 
             return control;
         }

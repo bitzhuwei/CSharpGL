@@ -23,7 +23,15 @@ namespace CSharpGL
         /// </summary>
         public override void Act()
         {
+            var scissor = new int[4];
+            var viewport = new int[4];
+            GL.Instance.GetIntegerv((uint)GetTarget.ScissorBox, scissor);
+            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+
             GUIRenderAction.Render(this.Scene.RootControl);
+
+            GL.Instance.Scissor(scissor[0], scissor[1], scissor[2], scissor[3]);
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
         }
 
         private static void Render(GLControl control)

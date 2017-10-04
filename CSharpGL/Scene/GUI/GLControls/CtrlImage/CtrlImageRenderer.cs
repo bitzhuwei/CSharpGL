@@ -77,8 +77,8 @@ namespace CSharpGL
             var ctrl = control as CtrlImage;
             if (ctrl != null)
             {
-                GL.Instance.Scissor(ctrl.Left, ctrl.Bottom, ctrl.Width, ctrl.Height);
-                GL.Instance.Viewport(ctrl.Left, ctrl.Bottom, ctrl.Width, ctrl.Height);
+                ctrl.Scissor();
+                ctrl.Viewport();
 
                 RenderMethod method = this.RenderUnit.Methods[0];
 

@@ -62,6 +62,27 @@ namespace CSharpGL
                 this.absLeft = parent.Left + this.Left;
                 this.absBottom = parent.Bottom + this.Bottom;
             }
+            else
+            {
+                this.absLeft = this.Left;
+                this.absBottom = this.Bottom;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Scissor()
+        {
+            GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Viewport()
+        {
+            GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
         }
 
         /// <summary>
