@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public abstract partial class PickableNode : SceneNodeBase, IRenderable, IPickable
+    public abstract partial class PickableNode : ModernNode, IPickable
     {
         // data structure for rendering.
         //private readonly RenderMethodBuilder[] builders;
@@ -18,11 +18,10 @@ namespace CSharpGL
         ///<param name="positionNameInIBufferSource"></param>
         ///<param name="builders"></param>
         public PickableNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
+            : base(model, builders)
         {
             var pickProgramProvider = PickingShaderHelper.GetPickingShaderProgramProvider();
             this.pickingRenderUnitBuilder = new IPickableRenderMethodBuilder(pickProgramProvider, positionNameInIBufferSource);
-
-            this.RenderUnit = new ModernRenderUnit(model, builders);
         }
     }
 }

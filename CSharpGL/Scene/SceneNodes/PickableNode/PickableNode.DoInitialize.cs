@@ -10,7 +10,7 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            this.RenderUnit.Initialize();
+            base.DoInitialize();
 
             {
                 IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);

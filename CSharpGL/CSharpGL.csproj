@@ -209,7 +209,6 @@
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.DoInitialize.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IRenderable.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInPolygonSearcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInQuad+Searcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\LineSearcher\OneIndexLineInTriangle+Searcher.cs" />
@@ -243,8 +242,6 @@
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\ZeroIndexPicker\PointSearcher\ZeroIndexPointSearcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\ZeroIndexPicker\ZeroIndexPicker.Searcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.Property.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.UniformArrays.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.Uniforms.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.DoInitialize.cs" />

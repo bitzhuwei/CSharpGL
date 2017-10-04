@@ -8,12 +8,12 @@ namespace CSharpGL
     {
         private const string strPickableRenderer = "PickableRenderer";
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [Category(strPickableRenderer)]
-        [Description("rendering in multiple ways.")]
-        public ModernRenderUnit RenderUnit { get; private set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //[Category(strPickableRenderer)]
+        //[Description("rendering in multiple ways.")]
+        //public ModernRenderUnit RenderUnit { get; private set; }
 
 
         /// <summary>

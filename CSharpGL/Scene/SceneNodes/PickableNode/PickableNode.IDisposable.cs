@@ -7,7 +7,8 @@
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            this.RenderUnit.Dispose();
+            base.DisposeUnmanagedResources();
+
             this.PickingRenderUnit.Dispose();
         }
     }
