@@ -54,7 +54,7 @@ void main()
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Skybox.strPosition);
-            var builder = new RenderUnitBuilder(provider, map, new CullFaceState(CullFaceMode.Front));
+            var builder = new RenderMethodBuilder(provider, map, new CullFaceState(CullFaceMode.Front));
             var model = new Skybox();
             var node = new SkyboxNode(model, Skybox.strPosition, totalBmp, builder);
             node.Initialize();
@@ -62,7 +62,7 @@ void main()
             return node;
         }
 
-        private SkyboxNode(Skybox model, string positionNameInIBufferSource, Bitmap totalBmp, params RenderUnitBuilder[] builders)
+        private SkyboxNode(Skybox model, string positionNameInIBufferSource, Bitmap totalBmp, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -140,7 +140,7 @@ void main()
             mat4 viewMatrix = camera.GetViewMatrix();
             mat4 modelMatrix = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform(mvpMatrix, projectionMatrix * viewMatrix * modelMatrix);
             program.SetUniform(skybox, this.texture);

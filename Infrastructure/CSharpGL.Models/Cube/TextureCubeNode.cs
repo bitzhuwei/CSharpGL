@@ -63,7 +63,7 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, TexturedCubeModel.strPosition);
             map.Add(inUV, TexturedCubeModel.strUV);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new TexturedCubeNode(new TexturedCubeModel(), TexturedCubeModel.strPosition, builder);
             node.texture = texture;
             node.Initialize();
@@ -74,7 +74,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private TexturedCubeNode(TexturedCubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private TexturedCubeNode(TexturedCubeModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -95,7 +95,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

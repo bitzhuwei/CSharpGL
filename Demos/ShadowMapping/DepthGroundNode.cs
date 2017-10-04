@@ -50,13 +50,13 @@ void main(void)
         /// <returns></returns>
         public static DepthGroundNode Create()
         {
-            RenderUnitBuilder shadowmapBuilder;
+            RenderMethodBuilder shadowmapBuilder;
             {
                 var vs = new VertexShader(vertexCode, inPosition);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, GroundModel.strPosition);
-                shadowmapBuilder = new RenderUnitBuilder(provider, map);
+                shadowmapBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new DepthGroundNode(new GroundModel(), GroundModel.strPosition, shadowmapBuilder);
             node.Initialize();
@@ -67,7 +67,7 @@ void main(void)
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private DepthGroundNode(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private DepthGroundNode(GroundModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -101,7 +101,7 @@ void main(void)
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // shadowmapBuilder
+            var renderUnit = this.RenderUnit.Methods[0]; // shadowmapBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 

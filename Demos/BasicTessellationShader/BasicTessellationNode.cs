@@ -25,7 +25,7 @@ namespace BasicTessellationShader
             map.Add("Position_VS_in", ObjVNF.strPosition);
             map.Add("TexCoord_VS_in", ObjVNF.strTexCoord);
             map.Add("Normal_VS_in", ObjVNF.strNormal);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
 
             var node = new BasicTessellationNode(model, builder);
             node.ModelSize = model.GetSize();
@@ -34,7 +34,7 @@ namespace BasicTessellationShader
             return node;
         }
 
-        private BasicTessellationNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private BasicTessellationNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -82,7 +82,7 @@ namespace BasicTessellationShader
                 this.directionalLight = light;
             }
             {
-                RenderUnit unit = this.RenderUnits[0];
+                RenderMethod unit = this.RenderUnit.Methods[0];
                 VertexArrayObject vao = unit.VertexArrayObject;
                 IndexBuffer indexBuffer = vao.IndexBuffer;
                 indexBuffer.Mode = DrawMode.Patches;
@@ -100,7 +100,7 @@ namespace BasicTessellationShader
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             //program.SetUniform()
             //uniform mat4 gWorld;                                                                           

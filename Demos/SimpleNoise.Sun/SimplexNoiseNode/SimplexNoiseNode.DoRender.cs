@@ -52,7 +52,7 @@ namespace SimpleNoise.Sun
             float time = (float)now.Subtract(this.lastTime).TotalMilliseconds * 0.001f;
             this.RotationAngle += this.RotateSpeed;
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             // setup uniforms
             program.SetUniform("projectionMatrix", projection);

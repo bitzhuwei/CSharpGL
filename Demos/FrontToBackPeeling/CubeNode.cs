@@ -26,9 +26,9 @@ namespace FrontToBackPeeling
             {
                 this.vColor = value;
 
-                for (int i = 0; i < this.RenderUnits.Count; i++)
+                for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
                 {
-                    RenderUnit unit = this.RenderUnits[i];
+                    RenderMethod unit = this.RenderUnit.Methods[i];
                     ShaderProgram program = unit.Program;
                     program.SetUniform("vColor", value);
                 }
@@ -46,7 +46,7 @@ namespace FrontToBackPeeling
             {
                 this.depthTexture = value;
 
-                RenderUnit unit = this.RenderUnits[(int)RenderMode.FrontPeel];
+                RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.FrontPeel];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("depthTexture", value);
             }
@@ -54,14 +54,14 @@ namespace FrontToBackPeeling
 
         public static CubeNode Create()
         {
-            RenderUnitBuilder blendBuilder, finalBuilder;
+            RenderMethodBuilder blendBuilder, finalBuilder;
             {
                 var vs = new VertexShader(Shaders.cube_shaderVert, "vVertex");
                 var fs = new FragmentShader(Shaders.cube_shaderFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", CubeModel.positions);
-                blendBuilder = new RenderUnitBuilder(provider, map);
+                blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(Shaders.front_peelVert, "vVertex");// reuse blend vertex shader.
@@ -69,7 +69,7 @@ namespace FrontToBackPeeling
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", CubeModel.positions);
-                finalBuilder = new RenderUnitBuilder(provider, map);
+                finalBuilder = new RenderMethodBuilder(provider, map);
             }
 
             var model = new CubeModel();
@@ -79,7 +79,7 @@ namespace FrontToBackPeeling
             return node;
         }
 
-        private CubeNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private CubeNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -91,7 +91,7 @@ namespace FrontToBackPeeling
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[(int)this.Mode];
+            RenderMethod unit = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = unit.Program;
             program.SetUniform("MVP", projection * view * model);
 

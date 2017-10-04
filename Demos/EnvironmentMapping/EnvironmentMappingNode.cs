@@ -78,7 +78,7 @@ void main()
         public static EnvironmentMappingNode Create(Texture skybox,
             IBufferSource model, string position, string normal)
         {
-            RenderUnitBuilder reflectBuilder, refractBuilder;
+            RenderMethodBuilder reflectBuilder, refractBuilder;
             {
                 var vs = new VertexShader(vertexCode, inPosition, inNormal);
                 var fs = new FragmentShader(reflectFragmentCode);
@@ -86,7 +86,7 @@ void main()
                 var map = new AttributeMap();
                 map.Add(inPosition, position);
                 map.Add(inNormal, normal);
-                reflectBuilder = new RenderUnitBuilder(provider, map);
+                reflectBuilder = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(vertexCode, inPosition, inNormal);
@@ -95,7 +95,7 @@ void main()
                 var map = new AttributeMap();
                 map.Add(inPosition, position);
                 map.Add(inNormal, normal);
-                refractBuilder = new RenderUnitBuilder(provider, map);
+                refractBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new EnvironmentMappingNode(model, Teapot.strPosition, reflectBuilder, refractBuilder);
             node.skyboxTexture = skybox;
@@ -105,7 +105,7 @@ void main()
             return node;
         }
 
-        private EnvironmentMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private EnvironmentMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
             this.Method = RenderMethod.Reflection;
@@ -169,7 +169,7 @@ void main()
             mat4 v = camera.GetViewMatrix();
             mat4 m = this.GetModelMatrix();
 
-            var unit = this.RenderUnits[(int)this.Method];
+            var unit = this.RenderUnit.Methods[(int)this.Method];
             var program = unit.Program;
             program.SetUniform(projection, p);
             program.SetUniform(view, v);

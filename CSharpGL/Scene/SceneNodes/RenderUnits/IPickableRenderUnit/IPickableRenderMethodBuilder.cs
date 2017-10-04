@@ -8,10 +8,19 @@ namespace CSharpGL
     /// <summary>
     /// A smallest unit that can render somthing.
     /// </summary>
-    public class IPickableRenderUnitBuilder
+    public class IPickableRenderMethodBuilder
     {
-        private GLState[] states;
-        private IShaderProgramProvider programProvider;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected GLState[] states;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected IShaderProgramProvider programProvider;
+        /// <summary>
+        /// 
+        /// </summary>
         private string positionNameInIBufferSource;
 
         /// <summary>
@@ -20,7 +29,7 @@ namespace CSharpGL
         /// <param name="programProvider"></param>
         /// <param name="positionNameInIBufferSource"></param>
         /// <param name="states"></param>
-        public IPickableRenderUnitBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLState[] states)
+        public IPickableRenderMethodBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLState[] states)
         {
             this.programProvider = programProvider;
             this.positionNameInIBufferSource = positionNameInIBufferSource;
@@ -32,7 +41,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IPickableRenderUnit ToRenderUnit(IBufferSource model)
+        public IPickableRenderMethod ToRenderMethod(IBufferSource model)
         {
             // init shader program.
             ShaderProgram pickProgram = this.programProvider.GetShaderProgram();
@@ -51,7 +60,7 @@ namespace CSharpGL
             // init VAO.
             var pickingVAO = new VertexArrayObject(indexBuffer, pickProgram, new VertexShaderAttribute(positionBuffer, PickingShaderHelper.in_Position));
 
-            var renderUnit = new IPickableRenderUnit(pickProgram, pickingVAO, positionBuffer, this.states);
+            var renderUnit = new IPickableRenderMethod(pickProgram, pickingVAO, positionBuffer, this.states);
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
             var ptr = indexBuffer as OneIndexBuffer;

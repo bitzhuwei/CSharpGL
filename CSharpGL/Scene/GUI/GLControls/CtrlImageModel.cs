@@ -22,6 +22,9 @@ namespace CSharpGL
             eightPositions[2], eightPositions[6], eightPositions[7], eightPositions[3],
         };
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string position = "position";
         private VertexBuffer posiitonBuffer;
 
@@ -29,6 +32,11 @@ namespace CSharpGL
 
         #region IBufferSource 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <returns></returns>
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == position)
@@ -46,6 +54,10 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBuffer GetIndexBuffer()
         {
             if (this.indexBuffer == null)

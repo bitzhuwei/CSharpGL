@@ -44,7 +44,7 @@ namespace PointLight
             var map = new AttributeMap();
             map.Add(vPosition, position);
             map.Add(vNormal, normal);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
 
             var node = new PointLightNode(model, position, builder);
             node.light = light;
@@ -56,14 +56,14 @@ namespace PointLight
             return node;
         }
 
-        private PointLightNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private PointLightNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -88,9 +88,9 @@ namespace PointLight
             get
             {
                 vec3 value = new vec3();
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[0];
+                    RenderMethod unit = this.RenderUnit.Methods[0];
                     ShaderProgram program = unit.Program;
                     program.GetUniformValue(diffuseColor, out value);
                 }
@@ -99,9 +99,9 @@ namespace PointLight
             }
             set
             {
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[0];
+                    RenderMethod unit = this.RenderUnit.Methods[0];
                     ShaderProgram program = unit.Program;
                     program.SetUniform(diffuseColor, value);
                 }

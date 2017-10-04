@@ -70,14 +70,14 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, PLY.strPosition);
             //map.Add(inColor, PLY.strColor);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new PLYNode(new PLY(), PLY.strPosition, builder);
             node.Initialize();
 
             return node;
         }
 
-        private PLYNode(PLY model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private PLYNode(PLY model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             vec3 size = model.ModelSize;
@@ -112,7 +112,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

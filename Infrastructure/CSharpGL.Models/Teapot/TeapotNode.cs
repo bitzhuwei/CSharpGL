@@ -69,14 +69,14 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, Teapot.strPosition);
             map.Add(inColor, Teapot.strColor);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new TeapotNode(new Teapot(), Teapot.strPosition, builder);
             node.Initialize();
 
             return node;
         }
 
-        private TeapotNode(Teapot model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private TeapotNode(Teapot model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.GetModelSize();
@@ -116,7 +116,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

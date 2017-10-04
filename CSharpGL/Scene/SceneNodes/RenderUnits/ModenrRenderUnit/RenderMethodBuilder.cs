@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// A smallest unit that can render somthing.
     /// </summary>
-    public class RenderUnitBuilder
+    public class RenderMethodBuilder
     {
         /// <summary>
         /// 
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
         /// <param name="states"></param>
-        public RenderUnitBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
+        public RenderMethodBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
         {
             this.programProvider = programProvider;
             this.map = map;
@@ -41,7 +41,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public RenderUnit ToRenderUnit(IBufferSource model)
+        public RenderMethod ToRenderMethod(IBufferSource model)
         {
             // init shader program.
             ShaderProgram program = this.programProvider.GetShaderProgram();
@@ -65,7 +65,7 @@ namespace CSharpGL
             // init VAO.
             var vertexArrayObject = new VertexArrayObject(indexBuffer, program, vertexAttributeBuffers);
 
-            var result = new RenderUnit(program, vertexArrayObject, this.states);
+            var result = new RenderMethod(program, vertexArrayObject, this.states);
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
             var ptr = indexBuffer as OneIndexBuffer;

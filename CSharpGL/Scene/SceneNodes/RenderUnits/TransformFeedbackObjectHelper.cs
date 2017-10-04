@@ -18,7 +18,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="transformFeedbackObj"></param>
         /// <param name="unit"></param>
-        public static void Draw(this TransformFeedbackObject transformFeedbackObj, RenderUnit unit)
+        public static void Draw(this TransformFeedbackObject transformFeedbackObj, RenderMethod unit)
         {
             if (transformFeedbackObj == null || unit == null)
             {

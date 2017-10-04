@@ -13,20 +13,20 @@ namespace SimpleParticleSystem
         {
             var blend = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
             var depthTest = new DepthTestState(false);
-            RenderUnitBuilder defaultBuilder, textureBuilder;
+            RenderMethodBuilder defaultBuilder, textureBuilder;
             {
                 var vs = new VertexShader(vert);
                 var fs = new FragmentShader(frag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                defaultBuilder = new RenderUnitBuilder(provider, map, blend, depthTest);
+                defaultBuilder = new RenderMethodBuilder(provider, map, blend, depthTest);
             }
             {
                 var vs = new VertexShader(vert);
                 var fs = new FragmentShader(texturedFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                textureBuilder = new RenderUnitBuilder(provider, map, blend, depthTest);
+                textureBuilder = new RenderMethodBuilder(provider, map, blend, depthTest);
             }
 
             var model = new ParticleModel();
@@ -36,7 +36,7 @@ namespace SimpleParticleSystem
             return node;
         }
 
-        private ParticleNode(IBufferSource model, params RenderUnitBuilder[] builders) : base(model, builders) { }
+        private ParticleNode(IBufferSource model, params RenderMethodBuilder[] builders) : base(model, builders) { }
 
         protected override void DoInitialize()
         {
@@ -63,7 +63,7 @@ namespace SimpleParticleSystem
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[(int)this.Mode];
+            RenderMethod unit = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = unit.Program;
             program.SetUniform("MVP", projection * view * model);
             program.SetUniform("time", time); time += this.DeltaTime;
@@ -99,7 +99,7 @@ namespace SimpleParticleSystem
             texture.TextureUnitIndex = 0;
             texture.Initialize();
 
-            RenderUnit unit = this.RenderUnits[(int)RenderMode.Textured];
+            RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.Textured];
             ShaderProgram program = unit.Program;
             program.SetUniform("textureMap", texture);
 

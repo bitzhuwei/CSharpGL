@@ -10,14 +10,10 @@ namespace CSharpGL
         /// </summary>
         protected override void DoInitialize()
         {
-            foreach (var item in this.builders)
-            {
-                RenderUnit renderUnit = item.ToRenderUnit(this.model);
-                this.renderUnits.Add(renderUnit);
-            }
+            this.RenderUnit.Initialize();
 
             {
-                IPickableRenderUnit renderUnit = this.pickingRenderUnitBuilder.ToRenderUnit(this.model);
+                IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
                 if (renderUnit.VertexArrayObject.IndexBuffer is ZeroIndexBuffer)
                 {
                     this.picker = new ZeroIndexPicker(this);

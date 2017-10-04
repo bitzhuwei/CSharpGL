@@ -67,13 +67,13 @@ namespace Texture2D
             var blend = RectangleNode.Create();
             blend.Scale *= 1.5f;
             blend.WorldPosition = new vec3(-0.5f, 0, 0.1f);
-            blend.RenderUnits[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            blend.RenderUnit.Methods[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             blend.TextureSource = new CrateTextureSource(@"particle.png");
 
             var blend2 = RectangleNode.Create();
             blend2.Scale *= 1.5f;
             blend2.WorldPosition = new vec3(0.5f, 0, 0.2f);
-            blend2.RenderUnits[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            blend2.RenderUnit.Methods[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             blend2.TextureSource = new CrateTextureSource(@"particle.png");
 
             // note: this tells us that the right way is to render the nearest transparenct object at last.

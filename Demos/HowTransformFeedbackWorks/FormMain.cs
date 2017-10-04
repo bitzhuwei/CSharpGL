@@ -39,7 +39,7 @@ namespace HowTransformFeedbackWorks
                 //var node = ParticleDemoNode.Create(10000);
                 var node = DemoNode.Create();
                 var ground = GroundNode.Create();
-                ground.RenderUnits[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
+                ground.RenderUnit.Methods[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
                 var group = new GroupNode(node, ground);
                 this.scene.RootElement = group;
             }

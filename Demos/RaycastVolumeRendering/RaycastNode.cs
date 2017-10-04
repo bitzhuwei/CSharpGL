@@ -15,7 +15,7 @@ namespace RaycastVolumeRendering
         public static RaycastNode Create()
         {
             var model = new RaycastModel();
-            RenderUnitBuilder backfaceBuilder, raycastingBuilder;
+            RenderMethodBuilder backfaceBuilder, raycastingBuilder;
             {
                 var vs = new VertexShader(backfaceVert, "position", "boundingBox");
                 var fs = new FragmentShader(backfaceFrag);
@@ -23,7 +23,7 @@ namespace RaycastVolumeRendering
                 var map = new AttributeMap();
                 map.Add("position", RaycastModel.strposition);
                 map.Add("boundingBox", RaycastModel.strcolor);
-                backfaceBuilder = new RenderUnitBuilder(provider, map, new CullFaceState(CullFaceMode.Front, true));
+                backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceState(CullFaceMode.Front, true));
             }
             {
                 var vs = new VertexShader(raycastingVert, "position", "boundingBox");
@@ -32,7 +32,7 @@ namespace RaycastVolumeRendering
                 var map = new AttributeMap();
                 map.Add("position", RaycastModel.strposition);
                 map.Add("boundingBox", RaycastModel.strcolor);
-                raycastingBuilder = new RenderUnitBuilder(provider, map, new CullFaceState(CullFaceMode.Back, true));
+                raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceState(CullFaceMode.Back, true));
             }
 
             var node = new RaycastNode(model, RaycastModel.strposition, backfaceBuilder, raycastingBuilder);
@@ -41,7 +41,7 @@ namespace RaycastVolumeRendering
             return node;
         }
 
-        private RaycastNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private RaycastNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }
@@ -87,7 +87,7 @@ namespace RaycastVolumeRendering
             mat4 model = this.GetModelMatrix();
             mat4 mvp = projection * view * model;
             {
-                RenderUnit unit = this.RenderUnits[0];
+                RenderMethod unit = this.RenderUnit.Methods[0];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("MVP", mvp);
 
@@ -100,7 +100,7 @@ namespace RaycastVolumeRendering
                 this.framebuffer.Unbind(FramebufferTarget.Framebuffer);
             }
             {
-                RenderUnit unit = this.RenderUnits[1];
+                RenderMethod unit = this.RenderUnit.Methods[1];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("MVP", mvp);
 

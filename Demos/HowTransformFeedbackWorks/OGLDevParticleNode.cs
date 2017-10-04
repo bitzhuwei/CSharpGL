@@ -32,29 +32,29 @@ namespace HowTransformFeedbackWorks
                 var fs = new FragmentShader(renderFrag);
                 renderProvider = new ShaderArray(vs, gs, fs);
             }
-            RenderUnitBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
+            RenderMethodBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
             var blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, OGLDevParticleModel.inPosition);
                 map.Add(inVelocity, OGLDevParticleModel.inVelocity);
-                updateBuilder = new RenderUnitBuilder(updateProvider, map);
+                updateBuilder = new RenderMethodBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, OGLDevParticleModel.inPosition2);
                 map.Add(inVelocity, OGLDevParticleModel.inVelocity2);
-                updateBuilder2 = new RenderUnitBuilder(updateProvider, map);
+                updateBuilder2 = new RenderMethodBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
                 map.Add(vposition, OGLDevParticleModel.inPosition);
-                renderBuilder = new RenderUnitBuilder(renderProvider, map, blend);
+                renderBuilder = new RenderMethodBuilder(renderProvider, map, blend);
             }
             {
                 var map = new AttributeMap();
                 map.Add(vposition, OGLDevParticleModel.inPosition2);
-                renderBuilder2 = new RenderUnitBuilder(renderProvider, map, blend);
+                renderBuilder2 = new RenderMethodBuilder(renderProvider, map, blend);
             }
 
             var model = new OGLDevParticleModel(particleCount);
@@ -74,7 +74,7 @@ namespace HowTransformFeedbackWorks
         float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
         Random random = new Random();
 
-        private OGLDevParticleNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private OGLDevParticleNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             center[0] = new vec3(0, 0, 1);
@@ -92,7 +92,7 @@ namespace HowTransformFeedbackWorks
             for (int i = 0; i < 2; i++)
             {
                 var tf = new TransformFeedbackObject();
-                RenderUnit unit = this.RenderUnits[i];
+                RenderMethod unit = this.RenderUnit.Methods[i];
                 VertexShaderAttribute[] attributes = unit.VertexArrayObject.VertexAttributes;
                 for (uint t = 0; t < attributes.Length; t++)
                 {
@@ -111,7 +111,7 @@ namespace HowTransformFeedbackWorks
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-                RenderUnit unit = this.RenderUnits[currentIndex];
+                RenderMethod unit = this.RenderUnit.Methods[currentIndex];
                 ShaderProgram program = unit.Program;
                 // set the uniforms 
                 program.SetUniform("center", center);
@@ -126,7 +126,7 @@ namespace HowTransformFeedbackWorks
             }
             // render
             {
-                RenderUnit unit = this.RenderUnits[(currentIndex + 1) % 2 + 2];
+                RenderMethod unit = this.RenderUnit.Methods[(currentIndex + 1) % 2 + 2];
                 ShaderProgram program = unit.Program;
                 ICamera camera = arg.CameraStack.Peek();
                 mat4 projection = camera.GetProjectionMatrix();

@@ -93,7 +93,7 @@ void main(void)
         public static ObjVNFNode Create(ObjVNFMesh mesh)
         {
             var model = new ObjVNF(mesh);
-            RenderUnitBuilder builder;
+            RenderMethodBuilder builder;
             {
                 var vs = new VertexShader(vertexCode, inPosition, inNormal);
                 var fs = new FragmentShader(fragmentCode);
@@ -101,7 +101,7 @@ void main(void)
                 var map = new AttributeMap();
                 map.Add(inPosition, Teapot.strPosition);
                 map.Add(inNormal, Teapot.strNormal);
-                builder = new RenderUnitBuilder(provider, map);
+                builder = new RenderMethodBuilder(provider, map);
             }
             var node = new ObjVNFNode(model, ObjVNF.strPosition, builder);
             node.ModelSize = model.GetSize();
@@ -112,7 +112,7 @@ void main(void)
             return node;
         }
 
-        private ObjVNFNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private ObjVNFNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
             this.Diffuse = System.Drawing.Color.Orange.ToVec3();
@@ -129,9 +129,9 @@ void main(void)
             get
             {
                 vec3 value = new vec3();
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    var renderUnit = this.RenderUnits[0];
+                    var renderUnit = this.RenderUnit.Methods[0];
                     ShaderProgram program = renderUnit.Program;
                     program.GetUniformValue(material_ambient, out value);
                 }
@@ -139,9 +139,9 @@ void main(void)
             }
             set
             {
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    var renderUnit = this.RenderUnits[0];
+                    var renderUnit = this.RenderUnit.Methods[0];
                     ShaderProgram program = renderUnit.Program;
                     program.SetUniform(material_ambient, value);
                 }
@@ -165,7 +165,7 @@ void main(void)
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0];
+            var renderUnit = this.RenderUnit.Methods[0];
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(model_matrix, model);
             program.SetUniform(view_matrix, view);

@@ -25,7 +25,7 @@ namespace OrderIndependentTransparency
 
         public static OITNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            var builders = new RenderUnitBuilder[2];
+            var builders = new RenderMethodBuilder[2];
             {
                 var vs = new VertexShader(buildListsVert, vPosition, vNormal);
                 var fs = new FragmentShader(buildListsFrag);
@@ -33,7 +33,7 @@ namespace OrderIndependentTransparency
                 var map = new AttributeMap();
                 map.Add(vPosition, position);
                 map.Add(vNormal, normal);
-                builders[buildLists] = new RenderUnitBuilder(provider, map);
+                builders[buildLists] = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(resolveListsVert, vPosition, vNormal);
@@ -41,7 +41,7 @@ namespace OrderIndependentTransparency
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(vPosition, position);
-                builders[resolveLists] = new RenderUnitBuilder(provider, map);
+                builders[resolveLists] = new RenderMethodBuilder(provider, map);
             }
             var node = new OITNode(model, position, builders);
             node.ModelSize = size;
@@ -51,7 +51,7 @@ namespace OrderIndependentTransparency
             return node;
         }
 
-        private OITNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private OITNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }
@@ -193,14 +193,14 @@ namespace OrderIndependentTransparency
                 mat4 model = this.GetModelMatrix();
                 {
                     // first pass
-                    RenderUnit unit = this.RenderUnits[buildLists];
+                    RenderMethod unit = this.RenderUnit.Methods[buildLists];
                     ShaderProgram program = unit.Program;
                     program.SetUniform(mvpMatrix, projection * view * model);
                     unit.Render();
                 }
                 {
                     // second pass
-                    RenderUnit unit = this.RenderUnits[resolveLists];
+                    RenderMethod unit = this.RenderUnit.Methods[resolveLists];
                     ShaderProgram program = unit.Program;
                     program.SetUniform(mvpMatrix, projection * view * model);
                     unit.Render();

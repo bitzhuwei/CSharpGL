@@ -59,7 +59,7 @@ void main(void) {
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
-            var builder = new RenderUnitBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
             var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
             node.Initialize();
 
@@ -72,7 +72,7 @@ void main(void) {
         /// <param name="model"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="builders"></param>
-        private LightPostionNode(CubeModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private LightPostionNode(CubeModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -90,7 +90,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

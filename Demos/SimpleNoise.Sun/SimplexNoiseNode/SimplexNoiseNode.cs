@@ -8,14 +8,14 @@ namespace SimpleNoise.Sun
         public static SimplexNoiseNode Create()
         {
             var model = new Sphere(1, 180, 360);
-            RenderUnitBuilder renderBuilder;
+            RenderMethodBuilder renderBuilder;
             {
                 var vs = new VertexShader(renderVert, "in_Position");
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("in_Position", Sphere.strPosition);
-                renderBuilder = new RenderUnitBuilder(provider, map);
+                renderBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new SimplexNoiseNode(model, Sphere.strPosition, renderBuilder);
             node.ModelSize = model.Size;
@@ -24,7 +24,7 @@ namespace SimpleNoise.Sun
             return node;
         }
 
-        private SimplexNoiseNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private SimplexNoiseNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }

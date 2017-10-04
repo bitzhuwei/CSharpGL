@@ -32,7 +32,7 @@ namespace Normal
         /// <returns></returns>
         public static NormalNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            var builders = new RenderUnitBuilder[2];
+            var builders = new RenderMethodBuilder[2];
             {
                 // render model
                 var vs = new VertexShader(vertexShader, vPosition, vNormal);
@@ -41,7 +41,7 @@ namespace Normal
                 var map = new AttributeMap();
                 map.Add(vPosition, position);
                 map.Add(vNormal, normal);
-                builders[0] = new RenderUnitBuilder(provider, map);
+                builders[0] = new RenderMethodBuilder(provider, map);
             }
             {
                 // render normal
@@ -52,7 +52,7 @@ namespace Normal
                 var map = new AttributeMap();
                 map.Add(vPosition, position);
                 map.Add(vNormal, normal);
-                builders[1] = new RenderUnitBuilder(provider, map);
+                builders[1] = new RenderMethodBuilder(provider, map);
             }
 
             var node = new NormalNode(model, position, builders);
@@ -63,7 +63,7 @@ namespace Normal
             return node;
         }
 
-        private NormalNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private NormalNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
             this.RenderModel = true;
@@ -80,7 +80,7 @@ namespace Normal
 
             if (this.RenderModel)
             {
-                RenderUnit unit = this.RenderUnits[0];
+                RenderMethod unit = this.RenderUnit.Methods[0];
                 ShaderProgram program = unit.Program;
                 program.SetUniform(projectionMatrix, projection);
                 program.SetUniform(viewMatrix, view);
@@ -92,7 +92,7 @@ namespace Normal
 
             if (this.RenderNormal)
             {
-                RenderUnit unit = this.RenderUnits[1];
+                RenderMethod unit = this.RenderUnit.Methods[1];
                 ShaderProgram program = unit.Program;
                 program.SetUniform(projectionMatrix, projection);
                 program.SetUniform(viewMatrix, view);
@@ -111,9 +111,9 @@ namespace Normal
             get
             {
                 vec3 value = new vec3();
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[0];
+                    RenderMethod unit = this.RenderUnit.Methods[0];
                     ShaderProgram program = unit.Program;
                     program.GetUniformValue(diffuseColor, out value);
                 }
@@ -122,9 +122,9 @@ namespace Normal
             }
             set
             {
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[0];
+                    RenderMethod unit = this.RenderUnit.Methods[0];
                     ShaderProgram program = unit.Program;
                     program.SetUniform(diffuseColor, value);
                 }
@@ -136,9 +136,9 @@ namespace Normal
             get
             {
                 vec3 value = new vec3();
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[1];
+                    RenderMethod unit = this.RenderUnit.Methods[1];
                     ShaderProgram program = unit.Program;
                     program.GetUniformValue(vertexColor, out value);
                 }
@@ -147,9 +147,9 @@ namespace Normal
             }
             set
             {
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[1];
+                    RenderMethod unit = this.RenderUnit.Methods[1];
                     ShaderProgram program = unit.Program;
                     program.SetUniform(vertexColor, value);
                 }
@@ -161,9 +161,9 @@ namespace Normal
             get
             {
                 vec3 value = new vec3();
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[1];
+                    RenderMethod unit = this.RenderUnit.Methods[1];
                     ShaderProgram program = unit.Program;
                     program.GetUniformValue(pointerColor, out value);
                 }
@@ -172,9 +172,9 @@ namespace Normal
             }
             set
             {
-                if (this.RenderUnits != null && this.RenderUnits.Count > 0)
+                if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderUnit unit = this.RenderUnits[1];
+                    RenderMethod unit = this.RenderUnit.Methods[1];
                     ShaderProgram program = unit.Program;
                     program.SetUniform(pointerColor, value);
                 }

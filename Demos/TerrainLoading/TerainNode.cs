@@ -17,13 +17,13 @@ namespace TerrainLoading
         public static TerainNode Create()
         {
             var model = new TerainModel();
-            RenderUnitBuilder defaultBuilder;
+            RenderMethodBuilder defaultBuilder;
             {
                 var vs = new VertexShader(vert, "vVertex");
                 var fs = new FragmentShader(frag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                defaultBuilder = new RenderUnitBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
+                defaultBuilder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
             }
 
             var node = new TerainNode(model, defaultBuilder);
@@ -32,7 +32,7 @@ namespace TerrainLoading
             return node;
         }
 
-        private TerainNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private TerainNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -41,7 +41,7 @@ namespace TerrainLoading
         {
             base.DoInitialize();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("TERRAIN_SIZE", new ivec2(TerainModel.TERRAIN_WIDTH, TerainModel.TERRAIN_DEPTH));
             program.SetUniform("scale", (TerainModel.TERRAIN_WIDTH + TerainModel.TERRAIN_DEPTH) * 0.08f);
@@ -57,7 +57,7 @@ namespace TerrainLoading
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("MVP", projection * view * model);
             unit.Render();
@@ -91,7 +91,7 @@ namespace TerrainLoading
             heightMapTexture.TextureUnitIndex = 0;
             heightMapTexture.Initialize();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("heightMapTexture", heightMapTexture);
 

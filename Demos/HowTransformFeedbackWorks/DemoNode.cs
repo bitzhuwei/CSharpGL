@@ -32,30 +32,30 @@ namespace HowTransformFeedbackWorks
                 var fs = new FragmentShader(renderFrag);
                 renderProvider = new ShaderArray(vs, fs);
             }
-            RenderUnitBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
+            RenderMethodBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, DemoModel.inPosition);
                 map.Add(inVelocity, DemoModel.inVelocity);
-                updateBuilder = new RenderUnitBuilder(updateProvider, map);
+                updateBuilder = new RenderMethodBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, DemoModel.inPosition2);
                 map.Add(inVelocity, DemoModel.inVelocity2);
-                updateBuilder2 = new RenderUnitBuilder(updateProvider, map);
+                updateBuilder2 = new RenderMethodBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, DemoModel.inPosition);
                 map.Add(inVelocity, DemoModel.inVelocity);
-                renderBuilder = new RenderUnitBuilder(renderProvider, map);
+                renderBuilder = new RenderMethodBuilder(renderProvider, map);
             }
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, DemoModel.inPosition2);
                 map.Add(inVelocity, DemoModel.inVelocity2);
-                renderBuilder2 = new RenderUnitBuilder(renderProvider, map);
+                renderBuilder2 = new RenderMethodBuilder(renderProvider, map);
             }
 
             var model = new DemoModel();
@@ -65,7 +65,7 @@ namespace HowTransformFeedbackWorks
             return node;
         }
 
-        private DemoNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private DemoNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -77,7 +77,7 @@ namespace HowTransformFeedbackWorks
             for (int i = 0; i < 2; i++)
             {
                 var tf = new TransformFeedbackObject();
-                RenderUnit unit = this.RenderUnits[i];
+                RenderMethod unit = this.RenderUnit.Methods[i];
                 VertexShaderAttribute[] attributes = unit.VertexArrayObject.VertexAttributes;
                 for (uint t = 0; t < attributes.Length; t++)
                 {
@@ -95,7 +95,7 @@ namespace HowTransformFeedbackWorks
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-                RenderUnit unit = this.RenderUnits[currentIndex];
+                RenderMethod unit = this.RenderUnit.Methods[currentIndex];
                 ShaderProgram program = unit.Program;
                 //program.SetUniform("xxx", value);
                 unit.Render(tf); // update buffers and record output to tf's binding.
@@ -104,7 +104,7 @@ namespace HowTransformFeedbackWorks
             }
             // render
             {
-                RenderUnit unit = this.RenderUnits[(currentIndex + 1) % 2 + 2];
+                RenderMethod unit = this.RenderUnit.Methods[(currentIndex + 1) % 2 + 2];
                 ShaderProgram program = unit.Program;
                 ICamera camera = arg.CameraStack.Peek();
                 mat4 projection = camera.GetProjectionMatrix();

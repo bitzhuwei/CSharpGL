@@ -125,7 +125,7 @@ void main(void) {
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new TextBillboardNode(textureSource, width, height, new TextBillboard(), builder);
             node.Initialize();
 
@@ -172,7 +172,7 @@ void main(void) {
         /// </summary>
         public float Delta { get; set; }
 
-        private TextBillboardNode(ITextureSource textureSource, int width, int height, IBufferSource model, RenderUnitBuilder renderUnitBuilder)
+        private TextBillboardNode(ITextureSource textureSource, int width, int height, IBufferSource model, RenderMethodBuilder renderUnitBuilder)
             : base(model, renderUnitBuilder)
         {
             this.TextureSource = textureSource;
@@ -195,7 +195,7 @@ void main(void) {
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

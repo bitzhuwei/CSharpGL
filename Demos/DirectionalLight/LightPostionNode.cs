@@ -55,7 +55,7 @@ void main(void) {
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
-            var builder = new RenderUnitBuilder(provider, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(3));
+            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(3));
             var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
             node.Initialize();
 
@@ -65,7 +65,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private LightPostionNode(IBufferSource model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private LightPostionNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = new vec3(1, 1, 1) * 0.3f;
@@ -102,7 +102,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

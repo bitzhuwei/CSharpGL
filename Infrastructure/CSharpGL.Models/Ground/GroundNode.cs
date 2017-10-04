@@ -52,14 +52,14 @@ void main(void) {
         /// <returns></returns>
         public static GroundNode Create()
         {
-            RenderUnitBuilder renderBuilder;
+            RenderMethodBuilder renderBuilder;
             {
                 var vs = new VertexShader(vertexCode, inPosition);
                 var fs = new FragmentShader(fragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(inPosition, GroundModel.strPosition);
-                renderBuilder = new RenderUnitBuilder(provider, map);
+                renderBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new GroundNode(new GroundModel(), GroundModel.strPosition, renderBuilder);
             node.Initialize();
@@ -70,7 +70,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private GroundNode(GroundModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private GroundNode(GroundModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -86,7 +86,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // renderBuilder
+            var renderUnit = this.RenderUnit.Methods[0]; // renderBuilder
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);

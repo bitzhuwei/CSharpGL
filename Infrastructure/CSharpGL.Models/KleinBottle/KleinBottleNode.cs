@@ -16,14 +16,14 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
-            var builder = new RenderUnitBuilder(provider, map, new LineWidthState(3));
+            var builder = new RenderMethodBuilder(provider, map, new LineWidthState(3));
             var node = new KleinBottleNode(model, KleinBottleModel.strPosition, builder);
             node.ModelSize = model.Size;
 
             return node;
         }
 
-        private KleinBottleNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private KleinBottleNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }
@@ -43,7 +43,7 @@ namespace CSharpGL
             texture.Initialize();
             bmp.Dispose();
 
-            RenderUnit unit = this.RenderUnits[0];
+            var unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("tex", texture);
         }
@@ -55,7 +55,7 @@ namespace CSharpGL
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[0];
+            var unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("projectionMatrix", projection);
             program.SetUniform("viewMatrix", view);

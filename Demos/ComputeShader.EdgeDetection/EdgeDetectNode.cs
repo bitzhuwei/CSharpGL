@@ -27,12 +27,12 @@ namespace ComputeShader.EdgeDetection
 
         public static EdgeDetectNode Create()
         {
-            RenderUnitBuilder compute, render;
+            RenderMethodBuilder compute, render;
             {
                 var cs = new CSharpGL.ComputeShader(computeShader);
                 var provider = new ShaderArray(cs);
                 var map = new AttributeMap();
-                compute = new RenderUnitBuilder(provider, map);
+                compute = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(vertexCode, inPosition, inUV);
@@ -41,7 +41,7 @@ namespace ComputeShader.EdgeDetection
                 var map = new AttributeMap();
                 map.Add(inPosition, RectangleModel.strPosition);
                 map.Add(inUV, RectangleModel.strUV);
-                render = new RenderUnitBuilder(provider, map);
+                render = new RenderMethodBuilder(provider, map);
             }
 
             var node = new EdgeDetectNode(new RectangleModel(), RectangleModel.strPosition, compute, render);
@@ -50,7 +50,7 @@ namespace ComputeShader.EdgeDetection
             return node;
         }
 
-        private EdgeDetectNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private EdgeDetectNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }
@@ -74,7 +74,7 @@ namespace ComputeShader.EdgeDetection
             }
 
             {
-                var renderUnit = this.RenderUnits[1]; // the only render unit in this node.
+                var renderUnit = this.RenderUnit.Methods[1]; // the only render unit in this node.
                 ShaderProgram program = renderUnit.Program;
                 program.SetUniform(tex, this.finalTexture);
             }
@@ -120,7 +120,7 @@ namespace ComputeShader.EdgeDetection
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             {
-                RenderUnit unit = this.RenderUnits[0];
+                RenderMethod unit = this.RenderUnit.Methods[0];
                 ShaderProgram computeProgram = unit.Program;
                 // Activate the compute program and bind the output texture image
                 computeProgram.Bind();
@@ -145,7 +145,7 @@ namespace ComputeShader.EdgeDetection
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
 
-                var renderUnit = this.RenderUnits[1]; // the only render unit in this node.
+                var renderUnit = this.RenderUnit.Methods[1]; // the only render unit in this node.
                 ShaderProgram program = renderUnit.Program;
                 program.SetUniform(tex, this.finalTexture);
                 program.SetUniform(projectionMatrix, projection);

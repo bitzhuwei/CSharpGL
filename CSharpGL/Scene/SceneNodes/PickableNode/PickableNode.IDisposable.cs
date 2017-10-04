@@ -7,11 +7,7 @@
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            foreach (var item in this.renderUnits)
-            {
-                item.Dispose();
-            }
-
+            this.RenderUnit.Dispose();
             this.PickingRenderUnit.Dispose();
         }
     }

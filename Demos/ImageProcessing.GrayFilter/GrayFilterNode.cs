@@ -18,7 +18,7 @@ namespace ImageProcessing.GrayFilter
             var map = new AttributeMap();
             map.Add("a_vertex", GrayFilterModel.position);
             map.Add("a_texCoord", GrayFilterModel.texCoord);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
 
             var node = new GrayFilterNode(model, GrayFilterModel.position, builder);
             node.Initialize();
@@ -26,7 +26,7 @@ namespace ImageProcessing.GrayFilter
             return node;
         }
 
-        private GrayFilterNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        private GrayFilterNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
         }
@@ -59,7 +59,7 @@ namespace ImageProcessing.GrayFilter
 
             texture.Initialize();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("u_texture", texture);
         }
@@ -70,7 +70,7 @@ namespace ImageProcessing.GrayFilter
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[0];
+            RenderMethod unit = this.RenderUnit.Methods[0];
             ShaderProgram program = unit.Program;
             program.SetUniform("mvpMatrix", projection * view * model);
 

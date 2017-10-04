@@ -24,18 +24,18 @@ namespace ComputeShader.HelloComputeShader
         public static SimpleComputeNode Create()
         {
             var model = new SimpleCompute();
-            RenderUnitBuilder reset, compute, render;
+            RenderMethodBuilder reset, compute, render;
             {
                 var cs = new CSharpGL.ComputeShader(resetCompute);
                 var map = new AttributeMap();
                 var provider = new ShaderArray(cs);
-                reset = new RenderUnitBuilder(provider, map);
+                reset = new RenderMethodBuilder(provider, map);
             }
             {
                 var cs = new CSharpGL.ComputeShader(computeShader);
                 var map = new AttributeMap();
                 var provider = new ShaderArray(cs);
-                compute = new RenderUnitBuilder(provider, map);
+                compute = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(renderVert, "position");
@@ -43,7 +43,7 @@ namespace ComputeShader.HelloComputeShader
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("position", SimpleCompute.strPosition);
-                render = new RenderUnitBuilder(provider, map);
+                render = new RenderMethodBuilder(provider, map);
             }
 
             var node = new SimpleComputeNode(model, reset, compute, render);
@@ -52,7 +52,7 @@ namespace ComputeShader.HelloComputeShader
             return node;
         }
 
-        private SimpleComputeNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private SimpleComputeNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         { }
 
@@ -72,7 +72,7 @@ namespace ComputeShader.HelloComputeShader
                 this.outputTexture = texture;
             }
             {
-                RenderUnit unit = this.RenderUnits[2];
+                RenderMethod unit = this.RenderUnit.Methods[2];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("output_image", this.outputTexture);
             }
@@ -116,7 +116,7 @@ namespace ComputeShader.HelloComputeShader
         {
             // reset image
             {
-                RenderUnit unit = this.RenderUnits[0];
+                RenderMethod unit = this.RenderUnit.Methods[0];
                 ShaderProgram program = unit.Program;
                 program.Bind();
                 glBindImageTexture(0, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
@@ -126,7 +126,7 @@ namespace ComputeShader.HelloComputeShader
 
             {
                 // Activate the compute program and bind the output texture image
-                RenderUnit unit = this.RenderUnits[1];
+                RenderMethod unit = this.RenderUnit.Methods[1];
                 ShaderProgram program = unit.Program;
                 program.Bind();
                 glBindImageTexture(0, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
@@ -139,7 +139,7 @@ namespace ComputeShader.HelloComputeShader
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = mat4.identity();
 
-                RenderUnit unit = this.RenderUnits[2];
+                RenderMethod unit = this.RenderUnit.Methods[2];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("projectionMatrix", projection);
                 program.SetUniform("viewMatrix", view);

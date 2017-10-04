@@ -45,13 +45,13 @@ void main(void)
         /// <returns></returns>
         public static DepthTeapotNode Create()
         {
-            RenderUnitBuilder shadowmapBuilder;
+            RenderMethodBuilder shadowmapBuilder;
             {
                 var vs = new VertexShader(vertexCode, inPosition);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, Teapot.strPosition);
-                shadowmapBuilder = new RenderUnitBuilder(provider, map);
+                shadowmapBuilder = new RenderMethodBuilder(provider, map);
             }
             var model = new Teapot();
             var node = new DepthTeapotNode(model, shadowmapBuilder);
@@ -60,7 +60,7 @@ void main(void)
             return node;
         }
 
-        private DepthTeapotNode(Teapot model, params RenderUnitBuilder[] builder)
+        private DepthTeapotNode(Teapot model, params RenderMethodBuilder[] builder)
             : base(model, builder)
         {
             this.ModelSize = model.GetModelSize();
@@ -101,7 +101,7 @@ void main(void)
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // shadowmapBuilder.
+            var renderUnit = this.RenderUnit.Methods[0]; // shadowmapBuilder.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 

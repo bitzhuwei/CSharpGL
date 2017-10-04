@@ -34,13 +34,13 @@ namespace ShadowMapping
         /// <returns></returns>
         public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            RenderUnitBuilder shadowBuilder, lightBuilder;
+            RenderMethodBuilder shadowBuilder, lightBuilder;
             {
                 var vs = new VertexShader(shadowVertexCode, inPosition);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, position);
-                shadowBuilder = new RenderUnitBuilder(provider, map);
+                shadowBuilder = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(lightVertexCode, inPosition, inNormal);
@@ -49,7 +49,7 @@ namespace ShadowMapping
                 var map = new AttributeMap();
                 map.Add(inPosition, position);
                 map.Add(inNormal, normal);
-                lightBuilder = new RenderUnitBuilder(provider, map);
+                lightBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new ShadowMappingNode(model, position, shadowBuilder, lightBuilder);
             node.ModelSize = size;
@@ -58,7 +58,7 @@ namespace ShadowMapping
             return node;
         }
 
-        private ShadowMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builder)
+        private ShadowMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builder)
             : base(model, positionNameInIBufferSource, builder)
         {
             this.Ambient = new vec3(1, 1, 1) * 0.2f;
@@ -93,7 +93,7 @@ namespace ShadowMapping
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
-            var renderUnit = this.RenderUnits[1];
+            var renderUnit = this.RenderUnit.Methods[1];
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
             program.SetUniform(model_matrix, model);
@@ -139,7 +139,7 @@ namespace ShadowMapping
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0];
+            var renderUnit = this.RenderUnit.Methods[0];
             ShaderProgram program = renderUnit.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 

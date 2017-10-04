@@ -7,23 +7,22 @@ namespace CSharpGL
     public abstract partial class PickableNode : SceneNodeBase, IRenderable, IPickable
     {
         // data structure for rendering.
-        private readonly RenderUnitBuilder[] builders;
-        private readonly IPickableRenderUnitBuilder pickingRenderUnitBuilder;
-        private readonly IBufferSource model;
+        //private readonly RenderMethodBuilder[] builders;
+        private readonly IPickableRenderMethodBuilder pickingRenderUnitBuilder;
+        //private readonly IBufferSource model;
+
         /// <summary>
         /// 支持"拾取"的渲染器
         /// </summary>
         /// <param name="model">vertex shader种描述顶点位置信息的in变量的名字</param>
         ///<param name="positionNameInIBufferSource"></param>
         ///<param name="builders"></param>
-        public PickableNode(IBufferSource model, string positionNameInIBufferSource, params RenderUnitBuilder[] builders)
+        public PickableNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
         {
-            this.model = model;
-
             var pickProgramProvider = PickingShaderHelper.GetPickingShaderProgramProvider();
-            this.pickingRenderUnitBuilder = new IPickableRenderUnitBuilder(pickProgramProvider, positionNameInIBufferSource);
+            this.pickingRenderUnitBuilder = new IPickableRenderMethodBuilder(pickProgramProvider, positionNameInIBufferSource);
 
-            this.builders = builders;
+            this.RenderUnit = new ModernRenderUnit(model, builders);
         }
     }
 }

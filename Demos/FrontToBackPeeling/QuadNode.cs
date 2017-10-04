@@ -27,7 +27,7 @@ namespace FrontToBackPeeling
             {
                 this.tempTexture = value;
 
-                RenderUnit unit = this.RenderUnits[(int)RenderMode.Blend];
+                RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.Blend];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("tempTexture", value);
             }
@@ -35,14 +35,14 @@ namespace FrontToBackPeeling
 
         public static QuadNode Create()
         {
-            RenderUnitBuilder blendBuilder, finalBuilder;
+            RenderMethodBuilder blendBuilder, finalBuilder;
             {
                 var vs = new VertexShader(Shaders.blendVert, "vVertex");
                 var fs = new FragmentShader(Shaders.blendFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", QuadModel.positions);
-                blendBuilder = new RenderUnitBuilder(provider, map);
+                blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(Shaders.blendVert, "vVertex");// reuse blend vertex shader.
@@ -50,7 +50,7 @@ namespace FrontToBackPeeling
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", QuadModel.positions);
-                finalBuilder = new RenderUnitBuilder(provider, map);
+                finalBuilder = new RenderMethodBuilder(provider, map);
             }
 
             var model = new QuadModel();
@@ -60,7 +60,7 @@ namespace FrontToBackPeeling
             return node;
         }
 
-        private QuadNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private QuadNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
 
@@ -73,7 +73,7 @@ namespace FrontToBackPeeling
             //mat4 view = camera.GetViewMatrix();
             //mat4 model = this.GetModelMatrix();
 
-            RenderUnit unit = this.RenderUnits[(int)this.Mode];
+            RenderMethod unit = this.RenderUnit.Methods[(int)this.Mode];
             //ShaderProgram program = unit.Program;
 
             unit.Render();

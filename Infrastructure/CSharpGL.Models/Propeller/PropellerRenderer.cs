@@ -71,14 +71,14 @@ void main(void) {
             map.Add("inPosition", Propeller.strPosition);
             map.Add("inColor", Propeller.strColor);
             var model = new Propeller();
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new PropellerRenderer(model, builder);
             node.Initialize();
 
             return node;
         }
 
-        private PropellerRenderer(Propeller model, params RenderUnitBuilder[] builders)
+        private PropellerRenderer(Propeller model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             this.ModelSize = model.GetModelSize();
@@ -107,7 +107,7 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
             program.SetUniform("projectionMatrix", projection);
             program.SetUniform("viewMatrix", view);

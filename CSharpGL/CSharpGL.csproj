@@ -179,11 +179,13 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTexttureNode.cs" />
     <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.MovePosition.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\IShaderProgramProvider.cs">
+    <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderUnit.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\ModernRenderUnit.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Scene\SceneNodes\RenderUnit\AttributeMap.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\IBufferSource.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\AttributeMap.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\IBufferSource.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\ColorCodedPicking.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\GeometryTypeHelper.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PickingShaderHelper.cs" />
@@ -292,10 +294,10 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\IPickableRenderUnitBuilder.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\IPickableRenderUnit.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnitBuilder.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\RenderUnit.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethodBuilder.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethod.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethodBuilder.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethod.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\DepthFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\IFrameufferProvider.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\ITextureSource.cs" />
@@ -320,7 +322,7 @@
     <Compile Include="Scene\Lights\DirectionalLight.cs" />
     <Compile Include="Scene\Lights\SpotLight.cs" />
     <Compile Include="Scene\Lights\LightBase.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnit\TransformFeedbackObjectHelper.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\TransformFeedbackObjectHelper.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />

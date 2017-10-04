@@ -88,7 +88,7 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, RectangleModel.strPosition);
             map.Add(inUV, RectangleModel.strUV);
-            var builder = new RenderUnitBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new RectangleNode(new RectangleModel(), RectangleModel.strPosition, builder);
             node.Initialize();
 
@@ -98,7 +98,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private RectangleNode(RectangleModel model, string positionNameInIBufferable, params RenderUnitBuilder[] builders)
+        private RectangleNode(RectangleModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -108,7 +108,7 @@ void main(void) {
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            var renderUnit = this.RenderUnits[0]; // the only render unit in this node.
+            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = renderUnit.Program;
 
             var source = this.TextureSource;

@@ -12,6 +12,9 @@ namespace CSharpGL
     {
         #region IGLControlRenderer 成员
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CtrlImageRenderer()
             : base()
         {

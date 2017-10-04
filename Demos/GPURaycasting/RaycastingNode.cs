@@ -22,14 +22,14 @@ namespace GPURaycasting
         public static RaycastingNode Create()
         {
             var model = new RaycastingModel();
-            RenderUnitBuilder defaultBuilder, isosurfaceBuilder;
+            RenderMethodBuilder defaultBuilder, isosurfaceBuilder;
             {
                 var vs = new VertexShader(defaultVert, "vVertex");
                 var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", RaycastingModel.position);
-                defaultBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                defaultBuilder = new RenderMethodBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
             {
                 var vs = new VertexShader(isourfaceVert, "vVertex");
@@ -37,7 +37,7 @@ namespace GPURaycasting
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", RaycastingModel.position);
-                isosurfaceBuilder = new RenderUnitBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                isosurfaceBuilder = new RenderMethodBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
 
             var node = new RaycastingNode(model, defaultBuilder, isosurfaceBuilder);
@@ -46,7 +46,7 @@ namespace GPURaycasting
             return node;
         }
 
-        private RaycastingNode(IBufferSource model, params RenderUnitBuilder[] builders)
+        private RaycastingNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             this.CurrentMode = RenderMode.ISOSurface;
@@ -59,9 +59,9 @@ namespace GPURaycasting
             Texture volume = Engine256Loader.Load();
             volume.TextureUnitIndex = 0;
 
-            for (int i = 0; i < this.RenderUnits.Count; i++)
+            for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
             {
-                RenderUnit unit = this.RenderUnits[i];
+                RenderMethod unit = this.RenderUnit.Methods[i];
                 ShaderProgram program = unit.Program;
                 program.SetUniform("volume", volume);
                 program.SetUniform("step_size", new vec3(1.0f / Engine256Loader.XDIM, 1.0f / Engine256Loader.YDIM, 1.0f / Engine256Loader.ZDIM));
@@ -78,7 +78,7 @@ namespace GPURaycasting
             mat4 mv = view * model;
             vec3 cameraPos = new vec3(glm.inverse(mv) * new vec4(0, 0, 0, 1));
 
-            RenderUnit unit = this.RenderUnits[(int)this.CurrentMode];
+            RenderMethod unit = this.RenderUnit.Methods[(int)this.CurrentMode];
             ShaderProgram program = unit.Program;
             program.SetUniform("MVP", projection * view * model);
             program.SetUniform("camPos", cameraPos);
