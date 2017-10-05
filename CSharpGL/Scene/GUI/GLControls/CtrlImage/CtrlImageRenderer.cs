@@ -34,13 +34,16 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, CtrlImageModel.position);
             map.Add(inUV, CtrlImageModel.uv);
-            var methodBuilder = new RenderMethodBuilder(codes, map);
+            var methodBuilder = new RenderMethodBuilder(codes, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 
             this.bitmap = bitmap;
             this.autoDispose = autoDispose;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             base.DoInitialize();
