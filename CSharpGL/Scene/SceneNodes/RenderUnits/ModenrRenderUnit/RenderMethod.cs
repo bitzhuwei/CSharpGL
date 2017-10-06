@@ -11,7 +11,7 @@ namespace CSharpGL
     /// A smallest unit that can render somthing.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class RenderMethod
+    public partial class RenderMethod
     {
         private const string strRenderMethod = "RenderMethod";
         /// <summary>
@@ -83,23 +83,5 @@ namespace CSharpGL
             // 解绑shader
             program.Unbind();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Dispose()
-        {
-            VertexArrayObject vao = this.VertexArrayObject;
-            if (vao != null)
-            {
-                vao.Dispose();
-            }
-            ShaderProgram program = this.Program;
-            if (program != null)
-            {
-                program.Dispose();
-            }
-        }
-
     }
 }

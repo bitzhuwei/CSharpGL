@@ -195,8 +195,8 @@ void main(void) {
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+            ShaderProgram program = method.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
@@ -207,7 +207,7 @@ void main(void) {
             program.SetUniform(transparentBackground, this.TransparentBackground);
             program.SetUniform(delta, this.Delta);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         /// <summary>

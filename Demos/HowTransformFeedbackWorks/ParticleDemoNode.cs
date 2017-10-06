@@ -92,8 +92,8 @@ namespace HowTransformFeedbackWorks
             for (int i = 0; i < 2; i++)
             {
                 var tf = new TransformFeedbackObject();
-                RenderMethod unit = this.RenderUnit.Methods[i];
-                VertexShaderAttribute[] attributes = unit.VertexArrayObject.VertexAttributes;
+                RenderMethod method = this.RenderUnit.Methods[i];
+                VertexShaderAttribute[] attributes = method.VertexArrayObject.VertexAttributes;
                 for (uint t = 0; t < attributes.Length; t++)
                 {
                     tf.BindBuffer(t, attributes[t].Buffer);
@@ -111,8 +111,8 @@ namespace HowTransformFeedbackWorks
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
-                RenderMethod unit = this.RenderUnit.Methods[currentIndex];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[currentIndex];
+                ShaderProgram program = method.Program;
                 // set the uniforms 
                 program.SetUniform("center", center);
                 program.SetUniform("radius", radius);
@@ -120,14 +120,14 @@ namespace HowTransformFeedbackWorks
                 program.SetUniform("dt", dt);
                 program.SetUniform("bounce", bounce);
                 program.SetUniform("seed", random.Next());
-                unit.Render(this.ControlMode, tf); // update buffers and record output to tf's binding.
+                method.Render(this.ControlMode, tf); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }
             // render
             {
-                RenderMethod unit = this.RenderUnit.Methods[(currentIndex + 1) % 2 + 2];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[(currentIndex + 1) % 2 + 2];
+                ShaderProgram program = method.Program;
                 ICamera camera = arg.CameraStack.Peek();
                 mat4 projection = camera.GetProjectionMatrix();
                 mat4 view = camera.GetViewMatrix();
@@ -136,7 +136,7 @@ namespace HowTransformFeedbackWorks
                 program.SetUniform("Projection", projection);
                 program.SetUniform("View", view * model);
                 //unit.Render(); // this methos must specify vertes count.
-                tf.Draw(unit); // render updated buffersi without specifying vertex count.
+                tf.Draw(method); // render updated buffersi without specifying vertex count.
             }
             // exchange
             {

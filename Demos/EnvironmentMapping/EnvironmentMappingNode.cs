@@ -169,8 +169,8 @@ void main()
             mat4 v = camera.GetViewMatrix();
             mat4 m = this.GetModelMatrix();
 
-            var unit = this.RenderUnit.Methods[(int)this.Method];
-            var program = unit.Program;
+            var method = this.RenderUnit.Methods[(int)this.Method];
+            var program = method.Program;
             program.SetUniform(projection, p);
             program.SetUniform(view, v);
             program.SetUniform(model, m);
@@ -178,7 +178,7 @@ void main()
             program.SetUniform(skybox, this.skyboxTexture);
             program.SetUniform(ratio, 1000.0f / (float)(this.RefractRatio));
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

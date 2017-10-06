@@ -74,8 +74,8 @@ namespace ComputeShader.EdgeDetection
             }
 
             {
-                var renderUnit = this.RenderUnit.Methods[1]; // the only render unit in this node.
-                ShaderProgram program = renderUnit.Program;
+                var method = this.RenderUnit.Methods[1]; // the only render unit in this node.
+                ShaderProgram program = method.Program;
                 program.SetUniform(tex, this.finalTexture);
             }
         }
@@ -120,8 +120,8 @@ namespace ComputeShader.EdgeDetection
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             {
-                RenderMethod unit = this.RenderUnit.Methods[0];
-                ShaderProgram computeProgram = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[0];
+                ShaderProgram computeProgram = method.Program;
                 // Activate the compute program and bind the output texture image
                 computeProgram.Bind();
                 glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.texture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
@@ -145,14 +145,14 @@ namespace ComputeShader.EdgeDetection
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
 
-                var renderUnit = this.RenderUnit.Methods[1]; // the only render unit in this node.
-                ShaderProgram program = renderUnit.Program;
+                var method = this.RenderUnit.Methods[1]; // the only render unit in this node.
+                ShaderProgram program = method.Program;
                 program.SetUniform(tex, this.finalTexture);
                 program.SetUniform(projectionMatrix, projection);
                 program.SetUniform(viewMatrix, view);
                 program.SetUniform(modelMatrix, model);
 
-                renderUnit.Render();
+                method.Render();
             }
         }
 

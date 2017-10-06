@@ -41,8 +41,8 @@ namespace TerrainLoading
         {
             base.DoInitialize();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("TERRAIN_SIZE", new ivec2(TerainModel.TERRAIN_WIDTH, TerainModel.TERRAIN_DEPTH));
             program.SetUniform("scale", (TerainModel.TERRAIN_WIDTH + TerainModel.TERRAIN_DEPTH) * 0.08f);
 
@@ -57,10 +57,10 @@ namespace TerrainLoading
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("MVP", projection * view * model);
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -91,8 +91,8 @@ namespace TerrainLoading
             heightMapTexture.TextureUnitIndex = 0;
             heightMapTexture.Initialize();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("heightMapTexture", heightMapTexture);
 
             this.heightTexture = heightMapTexture;

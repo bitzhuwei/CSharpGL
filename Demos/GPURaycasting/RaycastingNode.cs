@@ -61,8 +61,8 @@ namespace GPURaycasting
 
             for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
             {
-                RenderMethod unit = this.RenderUnit.Methods[i];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[i];
+                ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
                 program.SetUniform("step_size", new vec3(1.0f / Engine256Loader.XDIM, 1.0f / Engine256Loader.YDIM, 1.0f / Engine256Loader.ZDIM));
             }
@@ -78,12 +78,12 @@ namespace GPURaycasting
             mat4 mv = view * model;
             vec3 cameraPos = new vec3(glm.inverse(mv) * new vec4(0, 0, 0, 1));
 
-            RenderMethod unit = this.RenderUnit.Methods[(int)this.CurrentMode];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[(int)this.CurrentMode];
+            ShaderProgram program = method.Program;
             program.SetUniform("MVP", projection * view * model);
             program.SetUniform("camPos", cameraPos);
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

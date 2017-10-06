@@ -108,8 +108,8 @@ void main(void) {
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+            ShaderProgram program = method.Program;
 
             var source = this.TextureSource;
             if (source != null)
@@ -125,7 +125,7 @@ void main(void) {
             program.SetUniform(modelMatrix, model);
             program.SetUniform(transparentBackground, this.TransparentBackground);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

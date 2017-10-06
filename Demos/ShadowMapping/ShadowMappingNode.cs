@@ -93,8 +93,8 @@ namespace ShadowMapping
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
-            var renderUnit = this.RenderUnit.Methods[1];
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[1];
+            ShaderProgram program = method.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
             program.SetUniform(model_matrix, model);
             program.SetUniform(view_matrix, view);
@@ -108,7 +108,7 @@ namespace ShadowMapping
             program.SetUniform(material_specular, this.Specular);
             program.SetUniform(material_specular_power, this.SpecularPower);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -139,11 +139,11 @@ namespace ShadowMapping
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnit.Methods[0];
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         #endregion

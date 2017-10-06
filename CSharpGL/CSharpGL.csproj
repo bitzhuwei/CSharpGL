@@ -296,6 +296,7 @@
     <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethodBuilder.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethod.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethod.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethodBuilder.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethod.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\DepthFramebufferProvider.cs" />
@@ -322,6 +323,7 @@
     <Compile Include="Scene\Lights\DirectionalLight.cs" />
     <Compile Include="Scene\Lights\SpotLight.cs" />
     <Compile Include="Scene\Lights\LightBase.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\ModernRenderUnit.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\TransformFeedbackObjectHelper.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IDisposable.cs" />

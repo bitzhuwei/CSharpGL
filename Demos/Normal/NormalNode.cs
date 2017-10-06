@@ -80,25 +80,25 @@ namespace Normal
 
             if (this.RenderModel)
             {
-                RenderMethod unit = this.RenderUnit.Methods[0];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[0];
+                ShaderProgram program = method.Program;
                 program.SetUniform(projectionMatrix, projection);
                 program.SetUniform(viewMatrix, view);
                 program.SetUniform(modelMatrix, model);
                 program.SetUniform(normalMatrix, normal);
 
-                unit.Render();
+                method.Render();
             }
 
             if (this.RenderNormal)
             {
-                RenderMethod unit = this.RenderUnit.Methods[1];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[1];
+                ShaderProgram program = method.Program;
                 program.SetUniform(projectionMatrix, projection);
                 program.SetUniform(viewMatrix, view);
                 program.SetUniform(modelMatrix, model);
 
-                unit.Render();
+                method.Render();
             }
         }
 
@@ -113,8 +113,8 @@ namespace Normal
                 vec3 value = new vec3();
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.GetUniformValue(diffuseColor, out value);
                 }
 
@@ -124,8 +124,8 @@ namespace Normal
             {
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(diffuseColor, value);
                 }
             }
@@ -138,8 +138,8 @@ namespace Normal
                 vec3 value = new vec3();
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[1];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[1];
+                    ShaderProgram program = method.Program;
                     program.GetUniformValue(vertexColor, out value);
                 }
 
@@ -149,8 +149,8 @@ namespace Normal
             {
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[1];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[1];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(vertexColor, value);
                 }
             }
@@ -163,8 +163,8 @@ namespace Normal
                 vec3 value = new vec3();
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[1];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[1];
+                    ShaderProgram program = method.Program;
                     program.GetUniformValue(pointerColor, out value);
                 }
 
@@ -174,8 +174,8 @@ namespace Normal
             {
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[1];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[1];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(pointerColor, value);
                 }
             }

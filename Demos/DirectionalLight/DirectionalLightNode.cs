@@ -63,8 +63,8 @@ namespace DirectionalLight
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
@@ -77,7 +77,7 @@ namespace DirectionalLight
             var cameraDrection = new vec3(0, 0, 1); // camera direction in eye/view/camera space.
             program.SetUniform(halfVector, (lightDir + cameraDrection).normalize());
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -91,8 +91,8 @@ namespace DirectionalLight
                 vec3 value = new vec3();
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.GetUniformValue(diffuseColor, out value);
                 }
 
@@ -102,8 +102,8 @@ namespace DirectionalLight
             {
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(diffuseColor, value);
                 }
             }

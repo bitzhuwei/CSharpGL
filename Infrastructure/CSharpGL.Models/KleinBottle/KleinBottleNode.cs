@@ -43,8 +43,8 @@ namespace CSharpGL
             texture.Initialize();
             bmp.Dispose();
 
-            var unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            var method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("tex", texture);
         }
 
@@ -55,13 +55,13 @@ namespace CSharpGL
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            var method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("projectionMatrix", projection);
             program.SetUniform("viewMatrix", view);
             program.SetUniform("modelMatrix", model);
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

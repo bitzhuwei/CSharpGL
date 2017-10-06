@@ -87,24 +87,24 @@ namespace RaycastVolumeRendering
             mat4 model = this.GetModelMatrix();
             mat4 mvp = projection * view * model;
             {
-                RenderMethod unit = this.RenderUnit.Methods[0];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[0];
+                ShaderProgram program = method.Program;
                 program.SetUniform("MVP", mvp);
 
                 // render to texture
                 this.framebuffer.Bind(FramebufferTarget.Framebuffer);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
                 {
-                    unit.Render();
+                    method.Render();
                 }
                 this.framebuffer.Unbind(FramebufferTarget.Framebuffer);
             }
             {
-                RenderMethod unit = this.RenderUnit.Methods[1];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[1];
+                ShaderProgram program = method.Program;
                 program.SetUniform("MVP", mvp);
 
-                unit.Render();
+                method.Render();
             }
         }
 

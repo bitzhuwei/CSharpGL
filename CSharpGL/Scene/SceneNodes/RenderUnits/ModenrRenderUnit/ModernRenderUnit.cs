@@ -1,10 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public class ModernRenderUnit
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    public partial class ModernRenderUnit : IDisposable
     {
         private const string strRenderUnit = "RenderUnit";
 
@@ -96,17 +99,6 @@ namespace CSharpGL
             if (index < 0 || this.Methods.Length <= index) { throw new System.IndexOutOfRangeException(); }
 
             this.Methods[index].Render(controlMode, transformFeedbackObj);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Dispose()
-        {
-            foreach (var item in this.Methods)
-            {
-                item.Dispose();
-            }
         }
     }
 }

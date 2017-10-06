@@ -59,8 +59,8 @@ namespace ImageProcessing.GrayFilter
 
             texture.Initialize();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("u_texture", texture);
         }
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -70,11 +70,11 @@ namespace ImageProcessing.GrayFilter
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("mvpMatrix", projection * view * model);
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

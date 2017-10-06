@@ -28,8 +28,8 @@ namespace FrontToBackPeeling
 
                 for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[i];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[i];
+                    ShaderProgram program = method.Program;
                     program.SetUniform("vColor", value);
                 }
             }
@@ -46,8 +46,8 @@ namespace FrontToBackPeeling
             {
                 this.depthTexture = value;
 
-                RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.FrontPeel];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.FrontPeel];
+                ShaderProgram program = method.Program;
                 program.SetUniform("depthTexture", value);
             }
         }
@@ -91,11 +91,11 @@ namespace FrontToBackPeeling
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderMethod unit = this.RenderUnit.Methods[(int)this.Mode];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
+            ShaderProgram program = method.Program;
             program.SetUniform("MVP", projection * view * model);
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

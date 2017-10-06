@@ -25,8 +25,8 @@ namespace SimpleNoise.Sun
             texture.Initialize();
             bitmap.Dispose();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform("sunColor", texture);
         }
     }

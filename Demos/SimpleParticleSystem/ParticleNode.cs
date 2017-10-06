@@ -63,11 +63,11 @@ namespace SimpleParticleSystem
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderMethod unit = this.RenderUnit.Methods[(int)this.Mode];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
+            ShaderProgram program = method.Program;
             program.SetUniform("MVP", projection * view * model);
             program.SetUniform("time", time); time += this.DeltaTime;
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -99,8 +99,8 @@ namespace SimpleParticleSystem
             texture.TextureUnitIndex = 0;
             texture.Initialize();
 
-            RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.Textured];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Textured];
+            ShaderProgram program = method.Program;
             program.SetUniform("textureMap", texture);
 
             this.currentTexture = texture;

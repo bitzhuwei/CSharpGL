@@ -72,8 +72,8 @@ namespace ComputeShader.HelloComputeShader
                 this.outputTexture = texture;
             }
             {
-                RenderMethod unit = this.RenderUnit.Methods[2];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[2];
+                ShaderProgram program = method.Program;
                 program.SetUniform("output_image", this.outputTexture);
             }
         }
@@ -116,8 +116,8 @@ namespace ComputeShader.HelloComputeShader
         {
             // reset image
             {
-                RenderMethod unit = this.RenderUnit.Methods[0];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[0];
+                ShaderProgram program = method.Program;
                 program.Bind();
                 glBindImageTexture(0, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
                 glDispatchCompute(maxX, maxY, maxZ);
@@ -126,8 +126,8 @@ namespace ComputeShader.HelloComputeShader
 
             {
                 // Activate the compute program and bind the output texture image
-                RenderMethod unit = this.RenderUnit.Methods[1];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[1];
+                ShaderProgram program = method.Program;
                 program.Bind();
                 glBindImageTexture(0, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
                 glDispatchCompute(GroupX, GroupY, GroupZ);
@@ -139,13 +139,13 @@ namespace ComputeShader.HelloComputeShader
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = mat4.identity();
 
-                RenderMethod unit = this.RenderUnit.Methods[2];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[2];
+                ShaderProgram program = method.Program;
                 program.SetUniform("projectionMatrix", projection);
                 program.SetUniform("viewMatrix", view);
                 program.SetUniform("modelMatrix", model);
 
-                unit.Render();
+                method.Render();
             }
         }
 

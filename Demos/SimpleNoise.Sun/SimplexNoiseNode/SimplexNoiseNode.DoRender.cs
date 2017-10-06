@@ -52,8 +52,8 @@ namespace SimpleNoise.Sun
             float time = (float)now.Subtract(this.lastTime).TotalMilliseconds * 0.001f;
             this.RotationAngle += this.RotateSpeed;
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             // setup uniforms
             program.SetUniform("projectionMatrix", projection);
             program.SetUniform("viewMatrix", view);
@@ -62,7 +62,7 @@ namespace SimpleNoise.Sun
             program.SetUniform("rainDrop", this.rainDrop);
             program.SetUniform("granularity", this.granularity);
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

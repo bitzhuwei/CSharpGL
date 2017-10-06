@@ -193,17 +193,17 @@ namespace OrderIndependentTransparency
                 mat4 model = this.GetModelMatrix();
                 {
                     // first pass
-                    RenderMethod unit = this.RenderUnit.Methods[buildLists];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[buildLists];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(mvpMatrix, projection * view * model);
-                    unit.Render();
+                    method.Render();
                 }
                 {
                     // second pass
-                    RenderMethod unit = this.RenderUnit.Methods[resolveLists];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[resolveLists];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(mvpMatrix, projection * view * model);
-                    unit.Render();
+                    method.Render();
                 }
             }
             {

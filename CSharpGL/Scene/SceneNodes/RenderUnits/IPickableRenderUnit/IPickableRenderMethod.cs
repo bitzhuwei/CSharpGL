@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
@@ -9,6 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// A smallest unit that can render somthing.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class IPickableRenderMethod : RenderMethod
     {
         private const string strIPickableRenderMethod = "IPickableRenderMethod";

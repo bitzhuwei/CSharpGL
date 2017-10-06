@@ -63,8 +63,8 @@ namespace PointLight
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
@@ -76,7 +76,7 @@ namespace PointLight
             program.SetUniform(normalMatrix, normal);
             program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
@@ -90,8 +90,8 @@ namespace PointLight
                 vec3 value = new vec3();
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.GetUniformValue(diffuseColor, out value);
                 }
 
@@ -101,8 +101,8 @@ namespace PointLight
             {
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    RenderMethod unit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = unit.Program;
+                    RenderMethod method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(diffuseColor, value);
                 }
             }

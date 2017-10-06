@@ -64,13 +64,13 @@ namespace _3DTextureSlicing
             lut.TextureUnitIndex = 1;
 
             {
-                RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.Default];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Default];
+                ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
             }
             {
-                RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.Classification];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Classification];
+                ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
                 program.SetUniform("lut", lut);
             }
@@ -93,10 +93,10 @@ namespace _3DTextureSlicing
                 this.reSliceVolume = false;
             }
 
-            RenderMethod unit = this.RenderUnit.Methods[(int)this.CurrentMode];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[(int)this.CurrentMode];
+            ShaderProgram program = method.Program;
             program.SetUniform("MVP", projection * mv);
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

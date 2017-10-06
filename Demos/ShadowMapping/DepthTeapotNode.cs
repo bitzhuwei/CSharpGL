@@ -101,11 +101,11 @@ void main(void)
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnit.Methods[0]; // shadowmapBuilder.
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[0]; // shadowmapBuilder.
+            ShaderProgram program = method.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         #endregion

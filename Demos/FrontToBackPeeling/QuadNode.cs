@@ -27,8 +27,8 @@ namespace FrontToBackPeeling
             {
                 this.tempTexture = value;
 
-                RenderMethod unit = this.RenderUnit.Methods[(int)RenderMode.Blend];
-                ShaderProgram program = unit.Program;
+                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Blend];
+                ShaderProgram program = method.Program;
                 program.SetUniform("tempTexture", value);
             }
         }
@@ -73,10 +73,10 @@ namespace FrontToBackPeeling
             //mat4 view = camera.GetViewMatrix();
             //mat4 model = this.GetModelMatrix();
 
-            RenderMethod unit = this.RenderUnit.Methods[(int)this.Mode];
-            //ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
+            //ShaderProgram program = method.Program;
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

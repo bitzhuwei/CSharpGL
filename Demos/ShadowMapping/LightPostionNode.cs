@@ -90,14 +90,14 @@ void main(void) {
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+            ShaderProgram program = method.Program;
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
             program.SetUniform(color, this.Color);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

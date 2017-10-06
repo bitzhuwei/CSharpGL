@@ -140,12 +140,12 @@ void main()
             mat4 viewMatrix = camera.GetViewMatrix();
             mat4 modelMatrix = this.GetModelMatrix();
 
-            RenderMethod unit = this.RenderUnit.Methods[0];
-            ShaderProgram program = unit.Program;
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform(mvpMatrix, projectionMatrix * viewMatrix * modelMatrix);
             program.SetUniform(skybox, this.texture);
 
-            unit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(CSharpGL.RenderEventArgs arg)

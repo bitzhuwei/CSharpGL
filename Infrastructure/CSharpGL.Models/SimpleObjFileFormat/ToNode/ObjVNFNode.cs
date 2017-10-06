@@ -131,8 +131,8 @@ void main(void)
                 vec3 value = new vec3();
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    var renderUnit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = renderUnit.Program;
+                    var method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.GetUniformValue(material_ambient, out value);
                 }
                 return value;
@@ -141,8 +141,8 @@ void main(void)
             {
                 if (this.RenderUnit != null && this.RenderUnit.Methods.Length > 0)
                 {
-                    var renderUnit = this.RenderUnit.Methods[0];
-                    ShaderProgram program = renderUnit.Program;
+                    var method = this.RenderUnit.Methods[0];
+                    ShaderProgram program = method.Program;
                     program.SetUniform(material_ambient, value);
                 }
             }
@@ -165,8 +165,8 @@ void main(void)
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var renderUnit = this.RenderUnit.Methods[0];
-            ShaderProgram program = renderUnit.Program;
+            var method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
             program.SetUniform(model_matrix, model);
             program.SetUniform(view_matrix, view);
             program.SetUniform(projection_matrix, projection);
@@ -176,7 +176,7 @@ void main(void)
             program.SetUniform(material_specular, this.Specular);
             program.SetUniform(material_specular_power, this.SpecularPower);
 
-            renderUnit.Render();
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
