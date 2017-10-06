@@ -15,38 +15,18 @@ namespace CSharpGL
         /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="elementType">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
-        /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+        /// <param name="vertexCount">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
         internal OneIndexBuffer(uint bufferId, DrawMode mode,
-            IndexBufferElementType elementType, int length, int byteLength, int primCount = 1, int frameCount = 1)
-            : base(mode, bufferId, length, byteLength, primCount, frameCount)
+            IndexBufferElementType elementType, int vertexCount, int byteLength, int primCount = 1, int frameCount = 1)
+            : base(mode, bufferId, 0, vertexCount, byteLength, primCount, frameCount)
         {
             this.Target = BufferTarget.ElementArrayBuffer;
 
-            this.ElementCount = length;
-            //this.OriginalElementCount = length;
             this.ElementType = elementType;
         }
-
-        /// <summary>
-        /// 要渲染的第一个索引的位置。
-        /// <para>First index to be rendered.</para>
-        /// </summary>
-        public int FirstIndex { get; set; }
-
-        /// <summary>
-        /// 要渲染多少个索引。
-        /// <para>How many indexes to be rendered?</para>
-        /// </summary>
-        public int ElementCount { get; set; }
-
-        ///// <summary>
-        ///// 实际上一共有多少个索引？
-        ///// <para>How many indexes exists?</para>
-        ///// </summary>
-        //public int OriginalElementCount { get; set; }
 
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
@@ -65,31 +45,65 @@ namespace CSharpGL
             if (FrameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
             uint mode = (uint)this.Mode;
-            IntPtr offset = GetOffset(this.ElementType, this.FirstIndex);
+            int vertexCount = this.VertexCount;
+            IntPtr offset = GetOffset(this.ElementType, this.FirstVertex);
+
 
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            if (primCount == 1)
+            switch (controlMode)
             {
-                if (frameCount == 1)
-                {
-                    GL.Instance.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
-                }
-                else
-                {
-                    glDrawElementsBaseVertex(mode, this.ElementCount, (uint)this.ElementType, offset, this.CurrentFrame * frameCount);
-                }
+                case ControlMode.ByFrame:
+                    if (primCount == 1)
+                    {
+                        if (frameCount == 1)
+                        {
+                            GL.Instance.DrawElements(mode, vertexCount, (uint)this.ElementType, offset);
+                        }
+                        else
+                        {
+                            glDrawElementsBaseVertex(mode, vertexCount, (uint)this.ElementType, offset, this.CurrentFrame * vertexCount);
+                        }
+                    }
+                    else
+                    {
+                        if (frameCount == 1)
+                        {
+                            glDrawElementsInstanced(mode, vertexCount, (uint)this.ElementType, offset, primCount);
+                        }
+                        else
+                        {
+                            glDrawElementsInstancedBaseVertex(mode, vertexCount, (uint)this.ElementType, offset, primCount, this.CurrentFrame * vertexCount);
+                        }
+                    }
+                    break;
+                case ControlMode.Random:
+                    if (primCount == 1)
+                    {
+                        if (frameCount == 1)
+                        {
+                            GL.Instance.DrawElements(mode, this.RenderingVertexCount, (uint)this.ElementType, offset);
+                        }
+                        else
+                        {
+                            glDrawElementsBaseVertex(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, this.CurrentFrame * vertexCount);
+                        }
+                    }
+                    else
+                    {
+                        if (frameCount == 1)
+                        {
+                            glDrawElementsInstanced(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, primCount);
+                        }
+                        else
+                        {
+                            glDrawElementsInstancedBaseVertex(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, primCount, this.CurrentFrame * vertexCount);
+                        }
+                    }
+                    break;
+                default:
+                    throw new ArgumentException(string.Format("Invalid value[{0}]", controlMode));
             }
-            else
-            {
-                if (frameCount == 1)
-                {
-                    glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
-                }
-                else
-                {
-                    glDrawElementsInstancedBaseVertex(mode, this.ElementCount, (uint)this.ElementType, offset, primCount, this.CurrentFrame * frameCount);
-                }
-            }
+
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
@@ -148,12 +162,12 @@ namespace CSharpGL
             else if (primCount == 1)
             {
                 return string.Format("glDrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
-                    this.Mode, this.ElementCount, this.ElementType, this.FirstIndex, type);
+                    this.Mode, this.RenderingVertexCount, this.ElementType, this.FirstVertex, type);
             }
             else
             {
                 return string.Format("glDrawElementsInstanced({0}, {1}, {2}, new IntPtr({3} * sizeof({4}), {5})",
-                    this.Mode, this.ElementCount, this.ElementType, this.FirstIndex, type, primCount);
+                    this.Mode, this.RenderingVertexCount, this.ElementType, this.FirstVertex, type, primCount);
             }
         }
     }

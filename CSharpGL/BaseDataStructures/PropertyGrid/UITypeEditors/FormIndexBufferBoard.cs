@@ -176,7 +176,7 @@ namespace CSharpGL
 
         public override int OriginalCount()
         {
-            return this.indexBuffer.Length;
+            return this.indexBuffer.VertexCount;
         }
 
         public override void SetFirst(int value)
@@ -211,27 +211,27 @@ namespace CSharpGL
 
         public override int First()
         {
-            return this.indexBuffer.FirstIndex;
+            return this.indexBuffer.FirstVertex;
         }
 
         public override int Count()
         {
-            return this.indexBuffer.ElementCount;
+            return this.indexBuffer.RenderingVertexCount;
         }
 
         public override int OriginalCount()
         {
-            return indexBuffer.Length;
+            return indexBuffer.VertexCount;
         }
 
         public override void SetFirst(int value)
         {
-            this.indexBuffer.FirstIndex = value;
+            this.indexBuffer.FirstVertex = value;
         }
 
         internal override void SetCount(int value)
         {
-            this.indexBuffer.ElementCount = value;
+            this.indexBuffer.RenderingVertexCount = value;
         }
 
         public override string ToString()

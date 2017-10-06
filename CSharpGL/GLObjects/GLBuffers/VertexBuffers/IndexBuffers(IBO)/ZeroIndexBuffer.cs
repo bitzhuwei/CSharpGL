@@ -17,30 +17,10 @@ namespace CSharpGL
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
         internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1, int frameCount = 1)
-            : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount, frameCount)
+            : base(mode, 0, firstVertex, vertexCount, vertexCount * sizeof(uint), primCount, frameCount)
         {
             this.Target = BufferTarget.ZeroIndexArrayBuffer;
-
-            this.FirstVertex = firstVertex;
-            this.RenderingVertexCount = vertexCount;
-            //this.OriginalVertexCount = vertexCount;
         }
-
-        /// <summary>
-        /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
-        /// </summary>
-        public int FirstVertex { get; set; }
-
-        /// <summary>
-        /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
-        /// </summary>
-        public int RenderingVertexCount { get; set; }
-
-        ///// <summary>
-        ///// 总共有多少个元素？<para>How many vertexes are there in total?</para>
-        ///// </summary>
-        //public int OriginalVertexCount { get; private set; }
-
 
         /// <summary>
         ///
@@ -55,21 +35,49 @@ namespace CSharpGL
             int frameCount = this.FrameCount;
             if (FrameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
-            if (primCount == 1)
+            switch (controlMode)
             {
-                if (frameCount == 1)
-                {
-                    GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
-                }
-                else
-                {
-                    // todo:
-                }
+                case ControlMode.ByFrame:
+                    int vertexCount = this.VertexCount;
+                    if (primCount == 1)
+                    {
+                        if (frameCount == 1)
+                        {
+                            GL.Instance.DrawArrays(mode, 0, vertexCount);
+                        }
+                        else
+                        {
+                            int vertexCountPerFrame = vertexCount / frameCount;
+                            GL.Instance.DrawArrays(mode, this.CurrentFrame * vertexCountPerFrame, vertexCountPerFrame);
+                        }
+                    }
+                    else
+                    {
+                        if (frameCount == 1)
+                        {
+                            glDrawArraysInstanced(mode, 0, this.VertexCount, primCount);
+                        }
+                        else
+                        {
+                            int vertexCountPerFrame = vertexCount / frameCount;
+                            glDrawArraysInstanced(mode, this.CurrentFrame * vertexCountPerFrame, vertexCountPerFrame, primCount);
+                        }
+                    }
+                    break;
+                case ControlMode.Random:
+                    if (primCount == 1)
+                    {
+                        GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
+                    }
+                    else
+                    {
+                        glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
+                    }
+                    break;
+                default:
+                    throw new ArgumentException(string.Format("Invalid value[{0}]", controlMode));
             }
-            else
-            {
-                glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, primCount);
-            }
+
         }
 
         /// <summary>

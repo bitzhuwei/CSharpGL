@@ -22,7 +22,8 @@ namespace CSharpGL
         /// 此VBO含有多少个元素？
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
-        public int Length { get; private set; }
+        [Category("By Frame")]
+        public int VertexCount { get; private set; }
 
         /// <summary>
         /// 此VBO中的数据在内存中占用多少个字节？
@@ -40,16 +41,16 @@ namespace CSharpGL
         /// <para>An array at server side (GPU memory) with fixed length.</para>
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
-        /// <param name="length">此VBO含有多少个元素？<para>How many elements?</para></param>
+        /// <param name="vertexCount">此VBO含有多少个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        protected GLBuffer(uint bufferId, int length, int byteLength)
+        protected GLBuffer(uint bufferId, int vertexCount, int byteLength)
         {
             Debug.Assert(bufferId >= 0);
-            Debug.Assert(length >= 0);
+            Debug.Assert(vertexCount >= 0);
             Debug.Assert(byteLength >= 0);
 
             this.BufferId = bufferId;
-            this.Length = length;
+            this.VertexCount = vertexCount;
             this.ByteLength = byteLength;
         }
 

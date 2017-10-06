@@ -22,16 +22,20 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="bufferId"></param>
-        /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+        /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
+        /// <param name="vertexCount">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
-        internal IndexBuffer(DrawMode mode, uint bufferId, int length, int byteLength, int primCount, int frameCount)
-            : base(bufferId, length, byteLength)
+        internal IndexBuffer(DrawMode mode, uint bufferId, int firstVertex, int vertexCount, int byteLength, int primCount, int frameCount)
+            : base(bufferId, vertexCount, byteLength)
         {
             this.Mode = mode;
             this.PrimCount = primCount;
             this.FrameCount = frameCount;
+
+            this.FirstVertex = firstVertex;
+            this.RenderingVertexCount = vertexCount;
         }
 
         /// <summary>
@@ -42,12 +46,27 @@ namespace CSharpGL
         /// <summary>
         /// How many frames are there?
         /// </summary>
+        [Category("ControlMode.ByFrame")]
         public int FrameCount { get; private set; }
 
         /// <summary>
         /// Gets or sets index of current frame.
         /// </summary>
+        [Category("ControlMode.ByFrame")]
         public int CurrentFrame { get; set; }
+
+
+        /// <summary>
+        /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
+        /// </summary>
+        [Category("ControlMode.Random")]
+        public int FirstVertex { get; set; }
+
+        /// <summary>
+        /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
+        /// </summary>
+        [Category("ControlMode.Random")]
+        public int RenderingVertexCount { get; set; }
 
         /// <summary>
         /// 执行此VBO的渲染操作。

@@ -11,7 +11,7 @@ namespace CSharpGL
         /// <returns></returns>
         public VertexBuffer AsVertexBuffer(VBOConfig config)
         {
-            var buffer = new VertexBuffer(this.BufferId, config, this.Length, this.ByteLength);
+            var buffer = new VertexBuffer(this.BufferId, config, this.VertexCount, this.ByteLength);
 
             return buffer;
         }
