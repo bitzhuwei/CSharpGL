@@ -15,8 +15,9 @@ namespace CSharpGL
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
-        internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
-            : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount)
+        /// <param name="frameCount">How many frames are there?</param>
+        internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1, int frameCount = 1)
+            : base(mode, 0, vertexCount, vertexCount * sizeof(uint), primCount, frameCount)
         {
             this.Target = BufferTarget.ZeroIndexArrayBuffer;
 

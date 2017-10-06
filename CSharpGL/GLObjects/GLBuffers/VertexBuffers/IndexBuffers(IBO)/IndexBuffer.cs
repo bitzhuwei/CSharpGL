@@ -25,17 +25,29 @@ namespace CSharpGL
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="primCount">primCount in instanced rendering.</param>
-        internal IndexBuffer(DrawMode mode, uint bufferId, int length, int byteLength, int primCount)
+        /// <param name="frameCount">How many frames are there?</param>
+        internal IndexBuffer(DrawMode mode, uint bufferId, int length, int byteLength, int primCount, int frameCount)
             : base(bufferId, length, byteLength)
         {
             this.Mode = mode;
             this.PrimCount = primCount;
+            this.FrameCount = frameCount;
         }
 
         /// <summary>
         /// primCount in instanced rendering.
         /// </summary>
         public int PrimCount { get; private set; }
+
+        /// <summary>
+        /// How many frames are there?
+        /// </summary>
+        public int FrameCount { get; private set; }
+
+        /// <summary>
+        /// Gets or sets index of current frame.
+        /// </summary>
+        public int CurrentFrame { get; set; }
 
         /// <summary>
         /// 执行此VBO的渲染操作。
