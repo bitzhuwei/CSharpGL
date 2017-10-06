@@ -1339,6 +1339,21 @@ namespace CSharpGL
         /// <param name="_1"></param>
         /// <param name="_2"></param>
         /// <param name="_3"></param>
+        /// <param name="_4"></param>
+        /// <param name="_5"></param>
+        public delegate void void_uint_int_uint_IntPtr_int_int(uint _0, int _1, uint _2, IntPtr _3, int _4, int _5);
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly Type typeof_void_uint_int_uint_IntPtr_int_int = typeof(void_uint_int_uint_IntPtr_int_int);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_0"></param>
+        /// <param name="_1"></param>
+        /// <param name="_2"></param>
+        /// <param name="_3"></param>
         public delegate void void_uint_int_uint_uint(uint _0, int _1, uint _2, uint _3);
         /// <summary>
         /// 
