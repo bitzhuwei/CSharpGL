@@ -53,7 +53,7 @@ namespace CSharpGL
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
         /// </summary>
-        /// <param name="controlMode"></param>
+        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public abstract void Draw(ControlMode controlMode);
 
         /// <summary>

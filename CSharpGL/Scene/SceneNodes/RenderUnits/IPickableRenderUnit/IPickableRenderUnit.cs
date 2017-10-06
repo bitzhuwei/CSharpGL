@@ -89,7 +89,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="index"></param>
-        /// <param name="controlMode"></param>
+        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="transformFeedbackObj"></param>
         public void Render(int index, IndexBuffer.ControlMode controlMode, TransformFeedbackObject transformFeedbackObj = null)
         {

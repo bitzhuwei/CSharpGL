@@ -45,7 +45,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controlMode"></param>
+        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public override void Draw(ControlMode controlMode)
         {
             uint mode = (uint)this.Mode;
