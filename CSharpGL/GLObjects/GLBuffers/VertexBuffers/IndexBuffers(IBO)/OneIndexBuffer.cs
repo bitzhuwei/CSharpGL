@@ -60,6 +60,8 @@ namespace CSharpGL
         {
             int primCount = this.PrimCount;
             if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+            int frameCount = this.FrameCount;
+            if (FrameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
             uint mode = (uint)this.Mode;
             IntPtr offset = GetOffset(this.ElementType, this.FirstIndex);
@@ -67,11 +69,25 @@ namespace CSharpGL
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             if (primCount == 1)
             {
-                GL.Instance.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
+                if (frameCount == 1)
+                {
+                    GL.Instance.DrawElements(mode, this.ElementCount, (uint)this.ElementType, offset);
+                }
+                else
+                {
+                    glDrawElementsBaseVertex(mode, this.ElementCount, (uint)this.ElementType, offset, this.CurrentFrame * frameCount);
+                }
             }
             else
             {
-                glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
+                if (frameCount == 1)
+                {
+                    glDrawElementsInstanced(mode, this.ElementCount, (uint)this.ElementType, offset, primCount);
+                }
+                else
+                {
+                    glDrawElementsInstancedBaseVertex(mode, this.ElementCount, (uint)this.ElementType, offset, primCount, this.CurrentFrame * frameCount);
+                }
             }
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
