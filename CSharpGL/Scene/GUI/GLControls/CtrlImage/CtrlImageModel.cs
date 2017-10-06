@@ -19,6 +19,9 @@ namespace CSharpGL
         public const string position = "position";
         private VertexBuffer posiitonBuffer;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string uv = "uv";
         private VertexBuffer uvBuffer;
 

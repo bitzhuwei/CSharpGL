@@ -32,6 +32,9 @@ namespace CSharpGL
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             base.DoInitialize();
