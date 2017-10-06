@@ -89,12 +89,13 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="index"></param>
+        /// <param name="controlMode"></param>
         /// <param name="transformFeedbackObj"></param>
-        public void Render(int index, TransformFeedbackObject transformFeedbackObj = null)
+        public void Render(int index, IndexBuffer.ControlMode controlMode, TransformFeedbackObject transformFeedbackObj = null)
         {
             if (index < 0 || this.Methods.Length <= index) { throw new System.IndexOutOfRangeException(); }
 
-            this.Methods[index].Render(transformFeedbackObj);
+            this.Methods[index].Render(controlMode, transformFeedbackObj);
         }
 
         /// <summary>

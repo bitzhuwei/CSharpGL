@@ -15,5 +15,11 @@ namespace CSharpGL
         [Description("rendering in multiple ways.")]
         public ModernRenderUnit RenderUnit { get; private set; }
 
+        /// <summary>
+        /// index buffer is accessable randomly or only by frame.
+        /// </summary>
+        [Category(strModernNode)]
+        [Description("index buffer is accessable randomly or only by frame.")]
+        public IndexBuffer.ControlMode ControlMode { get; set; }
     }
 }

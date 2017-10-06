@@ -96,18 +96,19 @@ namespace CSharpGL
         /// 执行一次渲染的过程。
         /// <para>Execute rendering command.</para>
         /// </summary>
+        /// <param name="controlMode"></param>
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
-        public void Draw(IndexBuffer temporaryIndexBuffer = null)
+        public void Draw(IndexBuffer.ControlMode controlMode, IndexBuffer temporaryIndexBuffer = null)
         {
             this.Bind();
 
             if (temporaryIndexBuffer != null)
             {
-                temporaryIndexBuffer.Draw();
+                temporaryIndexBuffer.Draw(controlMode);
             }
             else
             {
-                this.IndexBuffer.Draw();
+                this.IndexBuffer.Draw(controlMode);
             }
 
             this.Unbind();

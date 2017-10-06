@@ -56,7 +56,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Draw()
+        /// <param name="controlMode"></param>
+        public override void Draw(ControlMode controlMode)
         {
             int primCount = this.PrimCount;
             if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }

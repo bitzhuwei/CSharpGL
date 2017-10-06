@@ -45,15 +45,26 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override void Draw()
+        /// <param name="controlMode"></param>
+        public override void Draw(ControlMode controlMode)
         {
             uint mode = (uint)this.Mode;
 
             int primCount = this.PrimCount;
             if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
-            else if (primCount == 1)
+            int frameCount = this.FrameCount;
+            if (FrameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
+
+            if (primCount == 1)
             {
-                GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
+                if (frameCount == 1)
+                {
+                    GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
+                }
+                else
+                {
+                    // todo:
+                }
             }
             else
             {

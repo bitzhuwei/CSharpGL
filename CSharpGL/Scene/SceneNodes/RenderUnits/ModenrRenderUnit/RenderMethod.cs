@@ -52,8 +52,9 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="controlMode"></param>
         /// <param name="transformFeedbackObj"></param>
-        public void Render(TransformFeedbackObject transformFeedbackObj = null)
+        public void Render(IndexBuffer.ControlMode controlMode = IndexBuffer.ControlMode.ByFrame, TransformFeedbackObject transformFeedbackObj = null)
         {
             ShaderProgram program = this.Program;
             GLStateList stateList = this.StateList;
@@ -68,13 +69,13 @@ namespace CSharpGL
             {
                 transformFeedbackObj.Bind();
                 transformFeedbackObj.Begin(this.VertexArrayObject.IndexBuffer.Mode);
-                this.VertexArrayObject.Draw();
+                this.VertexArrayObject.Draw(controlMode);
                 transformFeedbackObj.End();
                 transformFeedbackObj.Unbind();
             }
             else
             {
-                this.VertexArrayObject.Draw();
+                this.VertexArrayObject.Draw(controlMode);
             }
 
             stateList.Off();

@@ -53,7 +53,24 @@ namespace CSharpGL
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
         /// </summary>
-        public abstract void Draw();
+        /// <param name="controlMode"></param>
+        public abstract void Draw(ControlMode controlMode);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum ControlMode
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            ByFrame,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            Random,
+
+        }
     }
 }
