@@ -87,20 +87,49 @@ namespace CSharpGL
         public override string ToString()
         {
             int primCount = this.PrimCount;
-            if (primCount < 1)
+            if (primCount < 1) { return string.Format("error: primCount is less than 1."); }
+            int frameCount = this.FrameCount;
+            if (FrameCount < 1) { return string.Format("error: frameCount is less than 1."); }
+
+            var builder = new System.Text.StringBuilder();
+
+            var mode = this.Mode;
+            int vertexCount = this.VertexCount;
+            if (primCount == 1)
             {
-                return string.Format("error: primCount is less than 1.");
-            }
-            else if (primCount == 1)
-            {
-                return string.Format("OpenGL.DrawArrays({0}, {1}, {2})",
-                    this.Mode, this.FirstVertex, this.RenderingVertexCount);
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount));
+                }
+                else
+                {
+                    int vertexCountPerFrame = vertexCount / frameCount;
+                    builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first = currentFrame * vertexCountPerFrame: {1} = {2} * {3}, count = vertexCountPerFrame: {4});", mode, this.CurrentFrame * vertexCountPerFrame, this.CurrentFrame, vertexCountPerFrame, vertexCountPerFrame));
+                }
             }
             else
             {
-                return string.Format("OpenGL.glDrawArraysInstanced({0}, {1}, {2}, {3})",
-                    this.Mode, this.FirstVertex, this.RenderingVertexCount, this.PrimCount);
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", mode, 0, vertexCount, primCount));
+                }
+                else
+                {
+                    int vertexCountPerFrame = vertexCount / frameCount;
+                    builder.AppendLine(string.Format("glDrawArraysInstanced(mode: {0}, first = currentFrame * vertexCountPerFrame: {1} = {2} * {3}, count = vertexCountPerFrame: {4}, primCount: {5});", mode, this.CurrentFrame * vertexCountPerFrame, this.CurrentFrame, vertexCountPerFrame, vertexCountPerFrame, primCount));
+                }
             }
+
+            if (primCount == 1)
+            {
+                builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, this.FirstVertex, this.RenderingVertexCount));
+            }
+            else
+            {
+                builder.AppendLine(string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", mode, this.FirstVertex, this.RenderingVertexCount, this.PrimCount));
+            }
+
+            return builder.ToString();
         }
     }
 }
