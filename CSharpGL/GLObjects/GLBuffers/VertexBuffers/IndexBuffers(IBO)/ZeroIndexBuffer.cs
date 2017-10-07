@@ -95,6 +95,8 @@ namespace CSharpGL
 
             var mode = this.Mode;
             int vertexCount = this.VertexCount;
+
+            builder.AppendLine("ControlMode.ByFrame:");
             if (primCount == 1)
             {
                 if (frameCount == 1)
@@ -120,6 +122,7 @@ namespace CSharpGL
                 }
             }
 
+            builder.AppendLine("ControlMode.Random:");
             if (primCount == 1)
             {
                 builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, this.FirstVertex, this.RenderingVertexCount));

@@ -136,39 +136,66 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            string type = string.Empty;
-            switch (this.ElementType)
-            {
-                case IndexBufferElementType.UByte:
-                    type = "byte";
-                    break;
-
-                case IndexBufferElementType.UShort:
-                    type = "ushort";
-                    break;
-
-                case IndexBufferElementType.UInt:
-                    type = "uint";
-                    break;
-
-                default:
-                    throw new Exception("Unexpected IndexBufferElementType!");
-            }
             int primCount = this.PrimCount;
-            if (primCount < 1)
+            if (primCount < 1) { return string.Format("error: primCount is less than 1."); }
+            int frameCount = this.FrameCount;
+            if (FrameCount < 1) { return string.Format("error: frameCount is less than 1."); }
+
+            var mode = this.Mode;
+            int vertexCount = this.VertexCount;
+            IntPtr offset = GetOffset(this.ElementType, this.FirstVertex);
+
+            var builder = new System.Text.StringBuilder();
+
+            builder.AppendLine("ControlMode.ByFrame:");
+            if (primCount == 1)
             {
-                return string.Format("error: primCount is less than 1.");
-            }
-            else if (primCount == 1)
-            {
-                return string.Format("glDrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
-                    this.Mode, this.RenderingVertexCount, this.ElementType, this.FirstVertex, type);
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, vertexCount, this.ElementType, offset));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, baseVertex = currentFrame * vertexCount: {4} = {5} * {6});", mode, vertexCount, this.ElementType, offset, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
             }
             else
             {
-                return string.Format("glDrawElementsInstanced({0}, {1}, {2}, new IntPtr({3} * sizeof({4}), {5})",
-                    this.Mode, this.RenderingVertexCount, this.ElementType, this.FirstVertex, type, primCount);
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", mode, vertexCount, this.ElementType, offset, primCount));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstancedBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4}, baseVertex = currentFrame * vertexCount: {5} = {6} * {7});", mode, vertexCount, this.ElementType, offset, primCount, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
             }
+
+            builder.AppendLine("ControlMode.Random:");
+            if (primCount == 1)
+            {
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, this.RenderingVertexCount, this.ElementType, offset));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, baseVertex = currentFrame * vertexCount: {4} = {5} * {6});", mode, this.RenderingVertexCount, this.ElementType, offset, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
+            }
+            else
+            {
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", mode, this.RenderingVertexCount, this.ElementType, offset, primCount));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstancedBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4}, baseVertex = currentFrame * vertexCount: {5} = {6} * {7});", mode, this.RenderingVertexCount, this.ElementType, offset, primCount, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
+            }
+
+            return builder.ToString();
         }
     }
 }
