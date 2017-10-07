@@ -5,6 +5,7 @@ namespace CSharpGL
 {
     public abstract partial class PickableNode
     {
+        // TODO: big problem: farther vertex will be moved by a greater distance! Take z-depth into calculation process and solve the problem!
         /// <summary>
         /// Move vertexes' position accroding to difference on screen.
         /// <para>根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。</para>

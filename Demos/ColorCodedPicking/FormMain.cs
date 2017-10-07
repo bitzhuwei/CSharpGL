@@ -64,6 +64,11 @@ namespace ColorCodedPicking
             this.quadTip = new LegacyQuadNode();
             this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
             this.chkRenderBody_CheckedChanged(this.chkRenderBody, EventArgs.Empty);
+
+            // uncomment these lines to enable manipualter of camera!
+            //var manipulater = new FirstPerspectiveManipulater();
+            //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
+            //manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
