@@ -22,7 +22,6 @@ namespace CSharpGL
         /// 此VBO含有多少个元素？
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
-        [Category("By Frame")]
         public int VertexCount { get; private set; }
 
         /// <summary>

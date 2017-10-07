@@ -47,7 +47,7 @@ namespace CSharpGL
         /// How many frames are there?
         /// </summary>
         [Category("ControlMode.ByFrame")]
-        public int FrameCount { get; private set; }
+        public int FrameCount { get; set; }
 
         /// <summary>
         /// Gets or sets index of current frame.
