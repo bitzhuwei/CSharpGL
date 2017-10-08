@@ -29,7 +29,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, CtrlButtonModel.position);
             map.Add(inColor, CtrlButtonModel.color);
-            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(2));
+            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeState(PolygonMode.Fill), new LineWidthState(2));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
         }
 
@@ -49,11 +49,13 @@ namespace CSharpGL
         /// <param name="control"></param>
         public override void Render(GLControl control)
         {
-            if (control != null)
+            var ctrl = control as CtrlButton;
+            if (ctrl != null)
             {
-                control.Scissor();
-                control.Viewport();
+                ctrl.Scissor();
+                ctrl.Viewport();
 
+                this.RenderUnit.Methods[0].VertexArrayObject.IndexBuffer.CurrentFrame = ctrl.PressDown ? 1 : 0;
                 this.RenderUnit.Methods[0].Render(IndexBuffer.ControlMode.ByFrame);
             }
         }

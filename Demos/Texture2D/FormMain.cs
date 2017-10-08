@@ -22,6 +22,22 @@ namespace Texture2D
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'p')
+            {
+                foreach (var item in this.scene.RootControl.Children)
+                {
+                    var button = item as CtrlButton;
+                    if (button != null)
+                    {
+                        button.PressDown = !button.PressDown;
+                    }
+                }
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)

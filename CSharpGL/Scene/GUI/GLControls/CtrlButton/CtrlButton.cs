@@ -18,5 +18,10 @@ namespace CSharpGL
             this.Renderer = new CtrlButtonRenderer();
             this.Renderer.Initialize();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool PressDown { get; set; }
     }
 }
