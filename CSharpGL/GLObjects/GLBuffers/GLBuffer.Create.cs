@@ -41,10 +41,11 @@ namespace CSharpGL
         /// <param name="firstVertex"></param>
         /// <param name="vertexCount"></param>
         /// <param name="primCount"></param>
+        /// <param name="frameCount"></param>
         /// <returns></returns>
-        public static ZeroIndexBuffer Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1)
+        public static ZeroIndexBuffer Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1, int frameCount = 1)
         {
-            ZeroIndexBuffer buffer = new ZeroIndexBuffer(mode, firstVertex, vertexCount, primCount);
+            ZeroIndexBuffer buffer = new ZeroIndexBuffer(mode, firstVertex, vertexCount, primCount, frameCount);
 
             return buffer;
         }

@@ -60,14 +60,24 @@ namespace Texture2D
 
         private GLControl GetRootControl()
         {
+            var root = new CtrlRoot();
+
             var bitmap = new Bitmap(@"particle.png");
-            var control = new CtrlImage(bitmap, false);
-            control.Left = 10; control.Bottom = 10;
-            control.Width = 100; control.Height = 50;
+            {
+                var control = new CtrlImage(bitmap, false);
+                control.Left = 10; control.Bottom = 10;
+                control.Width = 100; control.Height = 50;
+                bitmap.Dispose();
+                root.Children.Add(control);
+            }
+            {
+                var control = new CtrlButton();
+                control.Left = 10; control.Bottom = 70;
+                control.Width = 100; control.Height = 50;
+                root.Children.Add(control);
+            }
 
-            bitmap.Dispose();
-
-            return control;
+            return root;
         }
 
         private SceneNodeBase GetRootElement()

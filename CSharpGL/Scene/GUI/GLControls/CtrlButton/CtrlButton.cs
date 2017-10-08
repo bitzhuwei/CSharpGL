@@ -16,6 +16,7 @@ namespace CSharpGL
         public CtrlButton()
         {
             this.Renderer = new CtrlButtonRenderer();
+            this.Renderer.Initialize();
         }
     }
 }

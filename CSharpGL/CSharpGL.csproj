@@ -175,6 +175,7 @@
     <Compile Include="Scene\Actions\DependentActions\ActionList.cs" />
     <Compile Include="Scene\GUI\GLControlRendererBase.cs" />
     <Compile Include="Scene\GUI\GLControlRendererBase.IDisposable.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextBillboard\TextBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />

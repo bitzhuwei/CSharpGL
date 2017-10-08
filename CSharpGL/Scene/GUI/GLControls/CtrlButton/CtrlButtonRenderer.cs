@@ -22,13 +22,14 @@ namespace CSharpGL
         /// </summary>
         public CtrlButtonRenderer()
         {
-            var model = new CtrlImageModel();
-            var vs = new VertexShader(vert, inPosition, inUV);
+            var model = new CtrlButtonModel();
+            var vs = new VertexShader(vert, inPosition, inColor);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, CtrlImageModel.position);
-            var methodBuilder = new RenderMethodBuilder(codes, map);
+            map.Add(inPosition, CtrlButtonModel.position);
+            map.Add(inColor, CtrlButtonModel.color);
+            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(2));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
         }
 
@@ -48,12 +49,12 @@ namespace CSharpGL
         /// <param name="control"></param>
         public override void Render(GLControl control)
         {
-            var ctrl = control as CtrlImage;
-            if (ctrl != null)
+            if (control != null)
             {
-                GL.Instance.Scissor(ctrl.Left, ctrl.Bottom, ctrl.Width, ctrl.Height);
-                GL.Instance.Viewport(ctrl.Left, ctrl.Bottom, ctrl.Width, ctrl.Height);
-                this.RenderUnit.Methods[0].Render();
+                control.Scissor();
+                control.Viewport();
+
+                this.RenderUnit.Methods[0].Render(IndexBuffer.ControlMode.ByFrame);
             }
         }
 

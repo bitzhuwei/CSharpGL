@@ -77,11 +77,10 @@ namespace CSharpGL
         /// <param name="control"></param>
         public override void Render(GLControl control)
         {
-            var ctrl = control as CtrlImage;
-            if (ctrl != null)
+            if (control != null)
             {
-                ctrl.Scissor();
-                ctrl.Viewport();
+                control.Scissor();
+                control.Viewport();
 
                 RenderMethod method = this.RenderUnit.Methods[0];
 
