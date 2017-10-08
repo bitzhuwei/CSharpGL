@@ -19,6 +19,11 @@ namespace CSharpGL
         public string ErrorInfo { get; set; }
 
         /// <summary>
+        /// Where mouse points.(Window space position)
+        /// </summary>
+        public vec3 PickedPosition { get; set; }
+
+        /// <summary>
         /// Gets or sets primitive's geometry type.
         /// </summary>
         public GeometryType Type { get; set; }

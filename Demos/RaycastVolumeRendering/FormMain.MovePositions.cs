@@ -33,7 +33,14 @@ namespace RaycastVolumeRendering
                 {
                     Rectangle rect = this.scene.Canvas.ClientRectangle;
                     var viewport = new vec4(rect.X, rect.Y, rect.Width, rect.Height);
+                    var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
+                    mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
+                    mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
+                    mat4 modelMatrix = (pickedGeometry.FromRenderer as PickableNode).GetModelMatrix();
+                    var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
+
                     var dragParam = new DragParam(
+                        lastModelSpacePos,
                         this.scene.Camera.GetProjectionMatrix(),
                         this.scene.Camera.GetViewMatrix(),
                         viewport,
@@ -60,17 +67,13 @@ namespace RaycastVolumeRendering
                 DragParam dragParam = this.dragParam;
                 if (dragParam != null && this.pickedGeometry != null)
                 {
-                    var current = new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1);
-                    var differenceOnScreen = new ivec2(
-                        current.x - dragParam.lastMousePositionOnScreen.x,
-                        current.y - dragParam.lastMousePositionOnScreen.y);
-                    dragParam.lastMousePositionOnScreen = current;
                     var node = this.pickedGeometry.FromRenderer as PickableNode;
-
+                    var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
+                    var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
+                    var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
+                    dragParam.lastModelSpacePos = currentModelSpacePos;
                     IList<vec3> newPositions = node.MovePositions(
-                          differenceOnScreen,
-                          dragParam.viewMatrix, dragParam.projectionMatrix,
-                          dragParam.viewport,
+                          modelSpacePositionDiff,
                           dragParam.pickedVertexIds);
 
                     this.UpdateHightlight(newPositions);

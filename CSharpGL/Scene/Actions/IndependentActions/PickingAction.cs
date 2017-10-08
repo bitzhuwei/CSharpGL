@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace CSharpGL
@@ -52,6 +53,18 @@ namespace CSharpGL
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
 
                 pickedGeometry = Pick(stageVertexId, arg, this.Scene.RootElement);
+
+                if (pickedGeometry != null)
+                {
+                    var depth = new float[1];
+                    GCHandle pinned = GCHandle.Alloc(depth, GCHandleType.Pinned);
+                    IntPtr header = pinned.AddrOfPinnedObject();
+                    // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+                    GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, header);
+                    pinned.Free();
+
+                    pickedGeometry.PickedPosition = new vec3(x, y, depth[0]);
+                }
             }
             framebuffer.Unbind();
 

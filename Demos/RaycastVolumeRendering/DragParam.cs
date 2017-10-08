@@ -6,30 +6,32 @@ namespace RaycastVolumeRendering
 {
     internal class DragParam
     {
+        public vec3 lastModelSpacePos;
         public List<uint> pickedVertexIds = new List<uint>();
         public mat4 projectionMatrix;
         public mat4 viewMatrix;
         public ivec2 lastMousePositionOnScreen;
         public vec4 viewport;
 
-        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, ivec2 lastMousePositionOnScreen)
+        public DragParam(vec3 lastModelPos, mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, ivec2 lastMousePositionOnScreen)
         {
+            this.lastModelSpacePos = lastModelPos;
             this.projectionMatrix = projectionMatrix;
             this.viewMatrix = viewMatrix;
             this.lastMousePositionOnScreen = lastMousePositionOnScreen;
             this.viewport = viewport;
         }
 
-        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, ivec2 lastMousePositionOnScreen,
+        public DragParam(vec3 lastModelPos, mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, ivec2 lastMousePositionOnScreen,
            IEnumerable<uint> indexes)
-            : this(projectionMatrix, viewMatrix, viewport, lastMousePositionOnScreen)
+            : this(lastModelPos, projectionMatrix, viewMatrix, viewport, lastMousePositionOnScreen)
         {
             this.pickedVertexIds.AddRange(indexes);
         }
 
-        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, ivec2 lastMousePositionOnScreen,
+        public DragParam(vec3 lastModelPos, mat4 projectionMatrix, mat4 viewMatrix, vec4 viewport, ivec2 lastMousePositionOnScreen,
             params uint[] indexes)
-            : this(projectionMatrix, viewMatrix, viewport, lastMousePositionOnScreen)
+            : this(lastModelPos, projectionMatrix, viewMatrix, viewport, lastMousePositionOnScreen)
         {
             this.pickedVertexIds.AddRange(indexes);
         }
