@@ -9,7 +9,18 @@ namespace CSharpGL
     /// <summary>
     /// Root control in control tree.
     /// </summary>
-    public class CtrlRoot : GLControl
+    public abstract class CtrlRoot : GLControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="canvas"></param>
+        public abstract void Bind(IGLCanvas canvas);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract void Unbind();
+
     }
 }

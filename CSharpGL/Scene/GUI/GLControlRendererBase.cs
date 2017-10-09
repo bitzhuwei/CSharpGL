@@ -9,13 +9,13 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class GLControlRendererBase : IDisposable
     {
-        private const string strSceneNodeBase = "SceneNodeBase";
+        private const string strGLControlRendererBase = "GLControlRendererBase";
 
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
         /// <para>for debugging purpose only.</para>
         /// </summary>
-        [Category(strSceneNodeBase)]
+        [Category(strGLControlRendererBase)]
         [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
         public int Id { get; private set; }
 
@@ -64,7 +64,7 @@ namespace CSharpGL
         /// <summary>
         /// Already initialized.
         /// </summary>
-        [Category(strSceneNodeBase)]
+        [Category(strGLControlRendererBase)]
         [Description("Is this node initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
