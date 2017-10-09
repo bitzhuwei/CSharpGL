@@ -8,20 +8,64 @@ namespace CSharpGL
     /// <summary>
     /// A rectangle control that displays an image.
     /// </summary>
-    public class CtrlButton : GLControl
+    public partial class CtrlButton : GLControl
     {
+
         /// <summary>
         /// 
         /// </summary>
         public CtrlButton()
         {
-            this.Renderer = new CtrlButtonRenderer();
-            this.Renderer.Initialize();
+            var model = new CtrlButtonModel();
+            var vs = new VertexShader(vert, inPosition, inColor);
+            var fs = new FragmentShader(frag);
+            var codes = new ShaderArray(vs, fs);
+            var map = new AttributeMap();
+            map.Add(inPosition, CtrlButtonModel.position);
+            map.Add(inColor, CtrlButtonModel.color);
+            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeState(PolygonMode.Fill), new LineWidthState(2));
+            this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
+
+            this.Initialize();
         }
 
         /// <summary>
         /// 
         /// </summary>
         public bool PressDown { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ModernRenderUnit RenderUnit { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void DoInitialize()
+        {
+            this.RenderUnit.Initialize();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public override void RenderBeforeChildren(GUIRenderEventArgs arg)
+        {
+            this.Scissor();
+            this.Viewport();
+
+            this.RenderUnit.Methods[0].VertexArrayObject.IndexBuffer.CurrentFrame = this.PressDown ? 1 : 0;
+            this.RenderUnit.Methods[0].Render(IndexBuffer.ControlMode.ByFrame);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public override void RenderAfterChildren(GUIRenderEventArgs arg)
+        {
+        }
     }
 }

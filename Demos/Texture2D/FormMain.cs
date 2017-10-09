@@ -59,7 +59,7 @@ namespace Texture2D
         private void FormMain_Load(object sender, EventArgs e)
         {
             SceneNodeBase rootElement = GetRootElement();
-            GLControl rootControl = GetRootControl();
+            WinCtrlRoot rootControl = GetRootControl();
 
             var position = new vec3(1, 0, 4);
             var center = new vec3(0, 0, 0);
@@ -71,6 +71,7 @@ namespace Texture2D
                 RootControl = rootControl,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
+            rootControl.Bind(this.winGLCanvas1);
 
             var list = new ActionList();
 
@@ -88,11 +89,13 @@ namespace Texture2D
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+
+
         }
 
-        private GLControl GetRootControl()
+        private WinCtrlRoot GetRootControl()
         {
-            var root = new CtrlRoot();
+            var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
             var bitmap = new Bitmap(@"particle.png");
             {

@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public abstract partial class GLControlRendererBase
+    public abstract partial class GLControl
     {
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~GLControlRendererBase()
+        ~GLControl()
         {
             this.Dispose(false);
         }

@@ -14,6 +14,17 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public CtrlRoot(int width, int height)
+        {
+            this.Width = width;
+            this.Height = height;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="canvas"></param>
         public abstract void Bind(IGLCanvas canvas);
 

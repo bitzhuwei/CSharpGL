@@ -28,25 +28,39 @@ namespace CSharpGL
             GL.Instance.GetIntegerv((uint)GetTarget.ScissorBox, scissor);
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            GUIRenderAction.Render(this.Scene.RootControl);
+            var arg = new GUIRenderEventArgs(this.Scene, this.Scene.Camera);
+            GUIRenderAction.Render(this.Scene.RootControl, arg);
 
             GL.Instance.Scissor(scissor[0], scissor[1], scissor[2], scissor[3]);
             GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
         }
 
-        private static void Render(GLControl control)
+        private static void Render(GLControl control, GUIRenderEventArgs arg)
         {
             if (control != null)
             {
-                GLControlRendererBase renderer = control.Renderer;
-                if (renderer != null)
+                var renderable = control as IGUIRenderable;
+                ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
+                bool before = (renderable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
+                bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
+                bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
+
+                if (before)
                 {
-                    renderer.Render(control);
+                    renderable.RenderBeforeChildren(arg);
                 }
 
-                foreach (var item in control.Children)
+                if (children)
                 {
-                    GUIRenderAction.Render(item);
+                    foreach (var item in control.Children)
+                    {
+                        GUIRenderAction.Render(item, arg);
+                    }
+                }
+
+                if (after)
+                {
+                    renderable.RenderAfterChildren(arg);
                 }
             }
         }

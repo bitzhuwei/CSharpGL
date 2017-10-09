@@ -40,9 +40,16 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                foreach (var item in this.Methods)
+                var methods = this.Methods;
+                if (methods != null)
                 {
-                    item.Dispose();
+                    foreach (var item in methods)
+                    {
+                        if (item != null)
+                        {
+                            item.Dispose();
+                        }
+                    }
                 }
             } // end if
 

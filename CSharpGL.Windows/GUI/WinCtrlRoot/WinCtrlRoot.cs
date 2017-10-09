@@ -17,17 +17,23 @@ namespace CSharpGL
         private readonly System.Windows.Forms.MouseEventHandler mouseUp;
         private readonly System.Windows.Forms.KeyEventHandler keyDown;
         private readonly System.Windows.Forms.KeyEventHandler keyUp;
-
+        private readonly System.EventHandler resize;
         /// <summary>
         /// 
         /// </summary>
-        public WinCtrlRoot()
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public WinCtrlRoot(int width, int height)
+            : base(width, height)
         {
             this.mouseMove = new System.Windows.Forms.MouseEventHandler(winCanvas_MouseMove);
             this.mouseDown = new System.Windows.Forms.MouseEventHandler(winCanvas_MouseDown);
             this.mouseUp = new System.Windows.Forms.MouseEventHandler(winCanvas_MouseUp);
             this.keyDown = new System.Windows.Forms.KeyEventHandler(winCanvas_KeyDown);
             this.keyUp = new System.Windows.Forms.KeyEventHandler(winCanvas_KeyUp);
+            this.resize = new EventHandler(winCanvas_Resize);
+
+            this.EnableRendering = ThreeFlags.Children;
         }
 
         /// <summary>
@@ -44,33 +50,36 @@ namespace CSharpGL
             winCanvas.MouseUp += mouseUp;
             winCanvas.KeyDown += keyDown;
             winCanvas.KeyUp += keyUp;
+            winCanvas.Resize += resize;
 
             this.BindingCanvas = winCanvas;
         }
 
+        void winCanvas_Resize(object sender, EventArgs e)
+        {
+            var control = sender as System.Windows.Forms.Control;
+            this.Width = control.Width;
+            this.Height = control.Height;
+        }
+
         void winCanvas_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         void winCanvas_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         void winCanvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         void winCanvas_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         void winCanvas_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -89,6 +98,14 @@ namespace CSharpGL
 
                 this.BindingCanvas = null;
             }
+        }
+
+        public override void RenderBeforeChildren(GUIRenderEventArgs arg)
+        {
+        }
+
+        public override void RenderAfterChildren(GUIRenderEventArgs arg)
+        {
         }
     }
 }

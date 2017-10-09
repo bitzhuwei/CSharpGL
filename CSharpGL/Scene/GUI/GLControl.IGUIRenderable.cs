@@ -7,43 +7,52 @@ namespace CSharpGL
     /// <summary>
     /// Renders a <see cref="GLControl"/>.
     /// </summary>
-    public abstract partial class GLControlRendererBase : IDisposable
+    public abstract partial class GLControl
     {
-        private const string strGLControlRendererBase = "GLControlRendererBase";
-
-        /// <summary>
-        /// 为便于调试而设置的ID值，没有应用意义。
-        /// <para>for debugging purpose only.</para>
-        /// </summary>
-        [Category(strGLControlRendererBase)]
-        [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
-        public int Id { get; private set; }
-
-        private static int idCounter = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="control"></param>
-        public abstract void Render(GLControl control);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
+        public void Scissor()
         {
-            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
+            GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
         }
 
         /// <summary>
-        /// 用OpenGL初始化和渲染一个模型。
-        /// <para>Initialize and render something with OpenGL.</para>
+        /// 
         /// </summary>
-        public GLControlRendererBase()
+        public void Viewport()
         {
-            this.Id = idCounter++;
+            GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
         }
+
+
+        #region IGUIRenderable 成员
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+        /// <summary>
+        /// 
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public abstract void RenderBeforeChildren(GUIRenderEventArgs arg);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public abstract void RenderAfterChildren(GUIRenderEventArgs arg);
+
+        #endregion
+
 
         #region Initialize()
 
@@ -64,7 +73,7 @@ namespace CSharpGL
         /// <summary>
         /// Already initialized.
         /// </summary>
-        [Category(strGLControlRendererBase)]
+        [Category(strGLControl)]
         [Description("Is this node initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
