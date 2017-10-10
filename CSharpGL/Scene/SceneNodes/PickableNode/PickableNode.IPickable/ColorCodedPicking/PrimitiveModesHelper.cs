@@ -60,7 +60,7 @@ namespace CSharpGL
 
                 case DrawMode.Patches:// this is about tessellation shader. I've no idea about it now.
                     throw new NotImplementedException();
-                    break;
+                //break;
 
                 case DrawMode.QuadStrip:
                     result = GeometryType.Quad;

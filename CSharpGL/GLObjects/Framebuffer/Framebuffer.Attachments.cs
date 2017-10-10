@@ -237,10 +237,10 @@ namespace CSharpGL
                     break;
                 case TextureAttachment.StencilAttachment:
                     throw new NotImplementedException();
-                    break;
+                //break;
                 case TextureAttachment.DepthStencilAttachment:
                     throw new NotImplementedException();
-                    break;
+                //break;
                 default:
                     throw new NotImplementedException();
             }
