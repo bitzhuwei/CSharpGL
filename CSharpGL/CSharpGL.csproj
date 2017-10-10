@@ -104,6 +104,7 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GUI\Events\GUIEventHandlers.cs" />
     <Compile Include="Scene\GUI\Events\GUIMouseEventArgs.cs" />
     <Compile Include="Scene\GUI\Events\GUIEventArgs.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
