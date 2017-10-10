@@ -58,6 +58,9 @@ namespace CSharpGL
         /// </summary>
         public const string position = "position";
         private VertexBuffer posiitonBuffer;
+        /// <summary>
+        /// 
+        /// </summary>
         public const string color = "color";
         private VertexBuffer colorBuffer;
 
