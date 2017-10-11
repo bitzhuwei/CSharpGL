@@ -72,14 +72,29 @@ namespace CSharpGL
 
         void winCanvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            var args = e.Translate();
+            foreach (var item in this.Children)
+            {
+                item.InvokeEvent(EventType.MouseUp, args);
+            }
         }
 
         void winCanvas_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            var args = e.Translate();
+            foreach (var item in this.Children)
+            {
+                item.InvokeEvent(EventType.MouseDown, args);
+            }
         }
 
         void winCanvas_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            var args = e.Translate();
+            foreach (var item in this.Children)
+            {
+                item.InvokeEvent(EventType.MouseMove, args);
+            }
         }
 
         /// <summary>
