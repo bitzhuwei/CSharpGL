@@ -22,5 +22,17 @@ namespace CSharpGL
 
             return args;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static GUIKeyEventArgs Translate(this System.Windows.Forms.KeyEventArgs e)
+        {
+            var args = new GUIKeyEventArgs((GUIKeys)e.KeyData);
+
+            return args;
+        }
     }
 }

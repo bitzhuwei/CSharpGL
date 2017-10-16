@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// Root Control in CSharpGL's scene's GUI system.
+    /// </summary>
     public class WinCtrlRoot : CtrlRoot
     {
         /// <summary>
@@ -18,8 +21,9 @@ namespace CSharpGL
         private readonly System.Windows.Forms.KeyEventHandler keyDown;
         private readonly System.Windows.Forms.KeyEventHandler keyUp;
         private readonly System.EventHandler resize;
+
         /// <summary>
-        /// 
+        /// Root Control in CSharpGL's scene's GUI system.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -64,10 +68,20 @@ namespace CSharpGL
 
         void winCanvas_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
+            var args = e.Translate();
+            foreach (var item in this.Children)
+            {
+                item.InvokeEvent(EventType.KeyUp, args);
+            }
         }
 
         void winCanvas_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
+            var args = e.Translate();
+            foreach (var item in this.Children)
+            {
+                item.InvokeEvent(EventType.KeyDown, args);
+            }
         }
 
         void winCanvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
