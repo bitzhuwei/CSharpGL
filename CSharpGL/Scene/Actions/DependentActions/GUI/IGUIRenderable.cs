@@ -14,19 +14,19 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        ThreeFlags EnableRendering { get; set; }
+        ThreeFlags EnableGUIRendering { get; set; }
 
         /// <summary>
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderBeforeChildren(GUIRenderEventArgs arg);
+        void RenderGUIBeforeChildren(GUIRenderEventArgs arg);
 
         /// <summary>
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderAfterChildren(GUIRenderEventArgs arg);
+        void RenderGUIAfterChildren(GUIRenderEventArgs arg);
     }
 
     /// <summary>

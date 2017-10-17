@@ -37,7 +37,7 @@ namespace CSharpGL
             this.keyUp = new System.Windows.Forms.KeyEventHandler(winCanvas_KeyUp);
             this.resize = new EventHandler(winCanvas_Resize);
 
-            this.EnableRendering = ThreeFlags.Children;
+            this.EnableGUIRendering = ThreeFlags.Children;
         }
 
         /// <summary>
@@ -133,11 +133,11 @@ namespace CSharpGL
             }
         }
 
-        public override void RenderBeforeChildren(GUIRenderEventArgs arg)
+        public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
         {
         }
 
-        public override void RenderAfterChildren(GUIRenderEventArgs arg)
+        public override void RenderGUIAfterChildren(GUIRenderEventArgs arg)
         {
         }
     }

@@ -40,14 +40,14 @@ namespace CSharpGL
             if (control != null)
             {
                 var renderable = control as IGUIRenderable;
-                ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
+                ThreeFlags flags = (renderable != null) ? renderable.EnableGUIRendering : ThreeFlags.None;
                 bool before = (renderable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
                 bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
                 bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
 
                 if (before)
                 {
-                    renderable.RenderBeforeChildren(arg);
+                    renderable.RenderGUIBeforeChildren(arg);
                 }
 
                 if (children)
@@ -60,7 +60,7 @@ namespace CSharpGL
 
                 if (after)
                 {
-                    renderable.RenderAfterChildren(arg);
+                    renderable.RenderGUIAfterChildren(arg);
                 }
             }
         }

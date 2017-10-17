@@ -70,7 +70,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderBeforeChildren(GUIRenderEventArgs arg)
+        public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
         {
             this.Scissor();
             this.Viewport();
@@ -83,7 +83,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderAfterChildren(GUIRenderEventArgs arg)
+        public override void RenderGUIAfterChildren(GUIRenderEventArgs arg)
         {
         }
     }

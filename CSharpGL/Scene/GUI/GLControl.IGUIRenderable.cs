@@ -33,7 +33,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ThreeFlags EnableRendering
+        public ThreeFlags EnableGUIRendering
         {
             get { return this.enableRendering; }
             set { this.enableRendering = value; }
@@ -43,13 +43,13 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public abstract void RenderBeforeChildren(GUIRenderEventArgs arg);
+        public abstract void RenderGUIBeforeChildren(GUIRenderEventArgs arg);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public abstract void RenderAfterChildren(GUIRenderEventArgs arg);
+        public abstract void RenderGUIAfterChildren(GUIRenderEventArgs arg);
 
         #endregion
 
