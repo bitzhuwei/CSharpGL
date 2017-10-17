@@ -98,7 +98,11 @@ namespace CSharpGL
             GUIMouseEventArgs args = e.Translate();
             foreach (var item in this.Children)
             {
-                item.InvokeEvent(EventType.MouseDown, args);
+                int x = e.X, y = this.BindingCanvas.Height - e.Y;
+                if (item.ContainsPoint(x, y))
+                {
+                    item.InvokeEvent(EventType.MouseDown, args);
+                }
             }
         }
 

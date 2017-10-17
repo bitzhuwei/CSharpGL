@@ -114,6 +114,19 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Indicates whether the specified point(x, y) is inside the conrol or not?
+        /// </summary>
+        /// <param name="x">absolute location of x(0 -- x -- width).</param>
+        /// <param name="y">absolute location of y(0 means bottom, height means top).</param>
+        /// <returns></returns>
+        public bool ContainsPoint(int x, int y)
+        {
+            if (x < this.absLeft || this.absLeft + this.Width <= x) { return false; }
+            if (y < this.absBottom || this.absBottom + this.Height <= y) { return false; }
+
+            return true;
+        }
+        /// <summary>
         /// 
         /// </summary>
         public enum EventType
