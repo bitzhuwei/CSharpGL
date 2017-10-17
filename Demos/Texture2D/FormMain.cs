@@ -22,38 +22,6 @@ namespace Texture2D
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.KeyDown += winGLCanvas1_KeyDown;
-            this.winGLCanvas1.KeyUp += winGLCanvas1_KeyUp;
-        }
-
-        void winGLCanvas1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.P)
-            {
-                foreach (var item in this.scene.RootControl.Children)
-                {
-                    var button = item as CtrlButton;
-                    if (button != null)
-                    {
-                        button.PressDown = false;
-                    }
-                }
-            }
-        }
-
-        void winGLCanvas1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.P)
-            {
-                foreach (var item in this.scene.RootControl.Children)
-                {
-                    var button = item as CtrlButton;
-                    if (button != null)
-                    {
-                        button.PressDown = true;
-                    }
-                }
-            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -110,6 +78,7 @@ namespace Texture2D
                 control.Left = 10; control.Bottom = 70;
                 control.Width = 100; control.Height = 50;
                 root.Children.Add(control);
+                control.Focused = true;
             }
 
             return root;
