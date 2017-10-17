@@ -49,7 +49,7 @@ namespace CSharpGL
             this.Updated = true;
         }
 
-        private EventHandler<NoisyArrayEventArgs<T>> eventHandler;
+        private GUIEventHandler<NoisyArrayEventArgs<T>> eventHandler;
 
         /// <summary>
         /// shader中的一个数组类型的uniform变量。
@@ -59,7 +59,7 @@ namespace CSharpGL
         public UniformArrayVariable(string varName, int length)
             : base(varName)
         {
-            this.eventHandler = new EventHandler<NoisyArrayEventArgs<T>>(value_ItemUpdated);
+            this.eventHandler = new GUIEventHandler<NoisyArrayEventArgs<T>>(value_ItemUpdated);
             this.Value = new NoisyArray<T>(length);
         }
 

@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <summary>
         /// Invoked when a new value is set for an item.
         /// </summary>
-        public event EventHandler<NoisyArrayEventArgs<T>> ItemUpdated;
+        public event GUIEventHandler<NoisyArrayEventArgs<T>> ItemUpdated;
 
         /// <summary>
         /// Invoke ItemUpdated event when item is updated.
@@ -62,7 +62,7 @@ namespace CSharpGL
                 if (!value.Equals(this.array[index]))
                 {
                     this.array[index] = value;
-                    EventHandler<NoisyArrayEventArgs<T>> itemUpdated = this.ItemUpdated;
+                    GUIEventHandler<NoisyArrayEventArgs<T>> itemUpdated = this.ItemUpdated;
                     if (itemUpdated != null)
                     {
                         itemUpdated(this, new NoisyArrayEventArgs<T>(value, index));

@@ -77,6 +77,7 @@
     <Compile Include="BaseDataStructures\Utilities\AssemblyHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
+    <Compile Include="BaseDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
     <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
     <None Include="GLCanvas\GLRenderContext\readme.md" />
     <None Include="Manipulaters\readme.md" />

@@ -353,7 +353,7 @@ namespace CSharpGL
         /// </summary>
         private void DoOpenGLDraw(PaintEventArgs e)
         {
-            EventHandler<PaintEventArgs> handler = this.OpenGLDraw;
+            GUIEventHandler<PaintEventArgs> handler = this.OpenGLDraw;
             if (handler != null)
             {
                 handler(this, e);
@@ -364,7 +364,7 @@ namespace CSharpGL
         /// Occurs when OpenGL drawing should be performed.
         /// </summary>
         [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
-        public event EventHandler<PaintEventArgs> OpenGLDraw;
+        public event GUIEventHandler<PaintEventArgs> OpenGLDraw;
 
         #region IGLCanvas 成员
 
