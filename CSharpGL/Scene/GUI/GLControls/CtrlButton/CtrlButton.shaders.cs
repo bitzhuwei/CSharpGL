@@ -16,13 +16,13 @@ namespace CSharpGL
         private const string vert =
             @"#version 330 core
 
-in vec3 " + inPosition + @";
+in vec2 " + inPosition + @";
 in vec3 " + inColor + @";
 
 out vec3 passColor;
 
 void main(void) {
-	gl_Position = vec4(inPosition, 1.0);
+	gl_Position = vec4(inPosition, 0.0, 1.0);
     passColor = inColor;
 }
 ";
