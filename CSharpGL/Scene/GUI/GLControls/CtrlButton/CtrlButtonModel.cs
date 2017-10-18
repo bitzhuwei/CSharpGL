@@ -27,12 +27,12 @@ namespace CSharpGL
         private const float scaleFactor = 0.95f;
         private static readonly vec2[] positions = new vec2[] 
         {
-            // button up.
+            // button pressed up.
             sixPositions[0], sixPositions[1],
             sixPositions[2], sixPositions[3],
             sixPositions[4], sixPositions[5],
 
-            // button down.
+            // button pressed down.
             sixPositions[0] * scaleFactor, sixPositions[1] * scaleFactor,
             sixPositions[2] * scaleFactor, sixPositions[3] * scaleFactor,
             sixPositions[4] * scaleFactor, sixPositions[5] * scaleFactor,
