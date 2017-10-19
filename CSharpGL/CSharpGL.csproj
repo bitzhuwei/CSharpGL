@@ -83,6 +83,7 @@
     <None Include="Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
+    <Compile Include="BaseDataStructures\Utilities\RotateLeftHelper.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GL.DrawText.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
@@ -181,6 +182,12 @@
     <Compile Include="Scene\GUI\GLControl.IDisposable.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIPadding.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
+    <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
+    <Compile Include="Scene\GUI\Structs\GUISize.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextBillboard\TextBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />
@@ -653,7 +660,6 @@
     <Content Include="Scene\SceneNodes\ConcreteNodes\readme.md" />
     <Content Include="Scene\SceneNodes\RenderUnits\readme.md" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
     <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
