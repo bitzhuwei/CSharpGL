@@ -17,8 +17,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static GUIMouseEventArgs Translate(this System.Windows.Forms.MouseEventArgs e)
         {
-            var button = (GUIMouseButtons)e.Button;
-            var args = new GUIMouseEventArgs(button, e.Clicks, e.X, e.Y, e.Delta);
+            var args = new GUIMouseEventArgs((GUIMouseButtons)e.Button, e.Clicks, e.X, e.Y, e.Delta);
 
             return args;
         }
