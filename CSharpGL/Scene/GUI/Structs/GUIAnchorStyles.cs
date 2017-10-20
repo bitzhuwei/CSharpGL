@@ -11,7 +11,7 @@ namespace CSharpGL
     /// 指定控件如何锚定到其容器的边缘。
     /// </summary>
     [Flags]
-    public enum AnchorStyles
+    public enum GUIAnchorStyles
     {
         /// <summary>
         /// 该控件未锚定到其容器的任何边缘。

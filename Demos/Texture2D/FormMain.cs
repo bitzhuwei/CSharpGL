@@ -68,14 +68,14 @@ namespace Texture2D
             var bitmap = new Bitmap(@"particle.png");
             {
                 var control = new CtrlImage(bitmap, false);
-                control.Left = 10; control.Bottom = 10;
+                control.Margin = new GUIPadding(10, 10, 10, 10);
                 control.Width = 100; control.Height = 50;
                 bitmap.Dispose();
                 root.Children.Add(control);
             }
             {
-                var control = new CtrlButton();
-                control.Left = 10; control.Bottom = 70;
+                var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Margin = new GUIPadding(10, 10, 10, 70);
                 control.Width = 100; control.Height = 50;
                 root.Children.Add(control);
                 control.Focused = true;

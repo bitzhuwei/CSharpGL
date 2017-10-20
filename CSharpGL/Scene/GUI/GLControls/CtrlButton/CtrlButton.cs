@@ -15,6 +15,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         public CtrlButton()
+            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top, new GUIPadding(3, 3, 3, 3))
         {
             var model = new CtrlButtonModel();
             var vs = new VertexShader(vert, inPosition, inColor);

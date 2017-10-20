@@ -46,17 +46,17 @@ namespace CSharpGL
         [Description("Children Nodes. Inherits this node's IWorldSpace properties.")]
         public GLControlChildren Children { get; private set; }
 
-        /// <summary>
-        /// Left distance to parent control.
-        /// </summary>
-        [Category(strGLControl)]
-        public int Left { get; set; }
+        ///// <summary>
+        ///// Left distance to parent control.
+        ///// </summary>
+        //[Category(strGLControl)]
+        //public int Left { get; set; }
 
-        /// <summary>
-        /// Bottom distance to parent control.
-        /// </summary>
-        [Category(strGLControl)]
-        public int Bottom { get; set; }
+        ///// <summary>
+        ///// Bottom distance to parent control.
+        ///// </summary>
+        //[Category(strGLControl)]
+        //public int Bottom { get; set; }
 
         /// <summary>
         /// Width of this control.
@@ -95,39 +95,15 @@ namespace CSharpGL
         /// 用OpenGL初始化和渲染一个模型。
         /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
-        public GLControl()
+        /// <param name="anchor"></param>
+        /// <param name="margin"></param>
+        public GLControl(GUIAnchorStyles anchor, GUIPadding margin)
         {
             this.Id = idCounter++;
             this.Children = new GLControlChildren(this);
+
+            this.Anchor = anchor;
+            this.Margin = margin;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected int absLeft;
-        /// <summary>
-        /// 
-        /// </summary>
-        protected int absBottom;
-
-        /// <summary>
-        /// Layout for this control.
-        /// </summary>
-        public virtual void Layout()
-        {
-            GLControl parent = this.Parent;
-            if (parent != null)
-            {
-                this.absLeft = parent.Left + this.Left;
-                this.absBottom = parent.Bottom + this.Bottom;
-            }
-            else
-            {
-                this.absLeft = this.Left;
-                this.absBottom = this.Bottom;
-            }
-        }
-
-
     }
 }

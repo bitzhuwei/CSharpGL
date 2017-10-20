@@ -17,6 +17,7 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         public CtrlRoot(int width, int height)
+            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Bottom | GUIAnchorStyles.Right | GUIAnchorStyles.Top, new GUIPadding(0, 0, 0, 0))
         {
             this.Width = width;
             this.Height = height;

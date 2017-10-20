@@ -110,6 +110,9 @@
     <Compile Include="Scene\GUI\EventArgs\GUIMouseEventArgs.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIEventArgs.cs" />
     <Compile Include="Scene\GUI\GLControl.Events.cs" />
+    <Compile Include="Scene\GUI\GLControl.Layout.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonModel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.shaders.cs" />
