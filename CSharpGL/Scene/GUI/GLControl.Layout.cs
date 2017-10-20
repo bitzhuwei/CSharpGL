@@ -30,9 +30,9 @@ namespace CSharpGL
         public GUISize Size { get; set; }
 
         /// <summary>
-        ///
+        /// 上次更新之后，parent的Size属性值。
         /// </summary>
-        GUISize ParentLastSize { get; set; }
+        private GUISize parentLastSize;
 
         /// <summary>
         ///
@@ -144,7 +144,7 @@ namespace CSharpGL
 
             if (parent != null)
             {
-                node.ParentLastSize = parent.Size;
+                node.parentLastSize = parent.Size;
             }
         }
 
