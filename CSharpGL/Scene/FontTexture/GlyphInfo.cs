@@ -16,22 +16,27 @@ namespace CSharpGL
         /// <summary>
         /// 此字符的字形在纹理的横向偏移量（左上角）
         /// </summary>
-        public int xoffset;
+        public readonly int xoffset;
 
         /// <summary>
         /// 此字符的字形在纹理的纵向偏移量（左上角）
         /// </summary>
-        public int yoffset;
+        public readonly int yoffset;
 
         /// <summary>
         /// 此字符的字形宽度
         /// </summary>
-        public int width;
+        public readonly int width;
 
         /// <summary>
         /// 此字符的字形高度
         /// </summary>
-        public int height;
+        public readonly int height;
+
+        /// <summary>
+        /// 此字符所在的字形贴图的索引。
+        /// </summary>
+        public readonly int glyphMapIndex;
 
         /// <summary>
         /// 绘制一个字符所需要的所有信息

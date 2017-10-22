@@ -106,6 +106,8 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
+    <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIKeyEventArgs.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIMouseEventArgs.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIEventArgs.cs" />
@@ -130,15 +132,6 @@
     <Compile Include="Scene\Actions\DependentActions\DependentActionBase.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\TransformAction.cs" />
     <Compile Include="Scene\Actions\IndependentActions\PickingAction.cs" />
-    <Compile Include="Scene\FontTexture\FontBitmap.cs" />
-    <Compile Include="Scene\FontTexture\FontBitmap.IDisposable.cs" />
-    <Compile Include="Scene\FontTexture\FontBitmapHelper.cs" />
-    <Compile Include="Scene\FontTexture\FontTexture.cs" />
-    <Compile Include="Scene\FontTexture\FontTexture.Default.cs" />
-    <Compile Include="Scene\FontTexture\FontTexture.IDisposable.cs" />
-    <Compile Include="Scene\FontTexture\FontTextureHelper.cs" />
-    <Compile Include="Scene\FontTexture\GlyphInfo.cs" />
-    <Compile Include="Scene\FontTexture\IFontTexture.cs" />
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexShaderAttribute.cs" />
     <Compile Include="GLObjects\GLStates\IGLState.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.UniformArrays.cs" />
@@ -357,7 +350,6 @@
     <Content Include="Scene\Actions\IndependentActions\ILegacyPickable\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
-    <Content Include="Scene\FontTexture\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
     <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\readme.md" />
     <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.frag" />
