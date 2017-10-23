@@ -19,6 +19,16 @@ namespace Texture2D
         {
             InitializeComponent();
 
+            // How to use GlyphServer:
+            //var builder = new StringBuilder();
+            //for (int c = 20; c < 127; c++)
+            //{
+            //    builder.Append((char)c);
+            //}
+            //string charset = builder.ToString();
+            //var font = new Font("仿宋", 32, GraphicsUnit.Pixel);
+            //var server = GlyphServer.Create(font, charset);
+
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
