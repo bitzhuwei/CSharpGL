@@ -21,9 +21,9 @@ namespace Texture2D
 
             // How to use GlyphServer:
             //var builder = new StringBuilder();
-            //for (int c = 20; c < 127; c++)
+            //for (char c = (char)20; c < (char)127; c++)
             //{
-            //    builder.Append((char)c);
+            //    builder.Append(c);
             //}
             //string charset = builder.ToString();
             //var font = new Font("仿宋", 32, GraphicsUnit.Pixel);
