@@ -15,6 +15,28 @@ namespace Texture2D
         private Scene scene;
         private ActionList actionList;
 
+        class CharDumper : IEnumerable<string>
+        {
+            private string text;
+
+            public CharDumper(string text)
+            {
+                this.text = text;
+            }
+            public IEnumerator<string> GetEnumerator()
+            {
+                foreach (var item in this.text)
+                {
+                    yield return item.ToString();
+                }
+            }
+
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         public FormMain()
         {
             InitializeComponent();
@@ -25,9 +47,9 @@ namespace Texture2D
             //{
             //    builder.Append(c);
             //}
-            //string charset = builder.ToString();
+            //var charset = new CharDumper(builder.ToString());
             //var font = new Font("仿宋", 32, GraphicsUnit.Pixel);
-            //var server = GlyphServer.Create(font, charset);
+            //var server = GlyphServer.Create(font, charset, 64, 64, 100);
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;

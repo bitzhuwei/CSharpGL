@@ -106,8 +106,11 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
     <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
     <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
+    <Compile Include="Scene\GlyphMap\PagesContext.cs" />
+    <Compile Include="Scene\GlyphMap\StringChunk.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIKeyEventArgs.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIMouseEventArgs.cs" />
     <Compile Include="Scene\GUI\EventArgs\GUIEventArgs.cs" />
