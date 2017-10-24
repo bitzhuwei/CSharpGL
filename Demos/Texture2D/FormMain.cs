@@ -50,6 +50,19 @@ namespace Texture2D
             var charset = new CharDumper(builder.ToString());
             var font = new Font("仿宋", 32, GraphicsUnit.Pixel);
             var server = GlyphServer.Create(font, charset, 60, 60, 21);
+            var keys = new CharDumper("Hello CSharpGL!");
+            foreach (var item in keys)
+            {
+                GlyphInfo info;
+                if (server.GetGlyphInfo(item, out info))
+                {
+                    Console.WriteLine(info);
+                }
+                else
+                {
+                    Console.WriteLine("Glyph of [{0}] not exists!", item);
+                }
+            }
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
