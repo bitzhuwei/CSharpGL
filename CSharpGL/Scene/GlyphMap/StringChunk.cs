@@ -59,7 +59,7 @@ namespace CSharpGL
                         this.Size = new SizeF(width, height);
                         this.PageIndex = context.CurrentIndex;
 
-                        context.CurrentLeftTop = new Point(0, 0);
+                        context.CurrentLeftTop = new PointF(width, 0);
                         //context.MaxLineHeight = 0;
                     }
                 }
