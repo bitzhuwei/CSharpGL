@@ -33,7 +33,7 @@ namespace CSharpGL
             if (context == null) { throw new ArgumentNullException("context"); }
             Graphics graphics = context.UnitGraphics;
             if (graphics == null) { throw new Exception("Context already disposed!"); }
-            if (context.PageList.Count > context.MaxPageCount) { return; }
+            if (context.CurrentIndex >= context.PageList.Count) { return; } // 超过了允许的最多的页数。
 
             Page page = context.PageList[context.CurrentIndex];
             PointF leftTop = context.CurrentLeftTop;

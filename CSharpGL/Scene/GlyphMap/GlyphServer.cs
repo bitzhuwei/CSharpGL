@@ -68,12 +68,13 @@ namespace CSharpGL
             float currentWidth = 0;
             foreach (var chunk in chunkList)
             {
-                if (currentIndex >= context.PageList.Count) { continue; } // not enough pages for speicifed chearacters.
                 if (currentIndex != chunk.PageIndex) // new page starts.
                 {
                     currentIndex = chunk.PageIndex;
                     currentWidth = 0;
                 }
+
+                if (currentIndex >= context.PageList.Count) { continue; } // not enough pages for speicifed chearacters.
 
                 string characters = chunk.Text;
                 float x0 = currentWidth, x1 = currentWidth + chunk.Size.Width;
