@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 布局状态。
     /// </summary>
-    public class PagesContext : IDisposable
+    class PagesContext : IDisposable
     {
         private List<Page> pageList = new List<Page>();
         private Image unitImage = new Bitmap(1, 1);

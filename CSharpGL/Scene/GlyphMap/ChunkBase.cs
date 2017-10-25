@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 一个要处理的单元（一个字符串）。
     /// </summary>
-    public abstract class ChunkBase
+    abstract class ChunkBase
     {
         /// <summary>
         /// 
