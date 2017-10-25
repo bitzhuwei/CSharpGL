@@ -52,17 +52,15 @@ namespace CSharpGL
         /// </summary>
         /// <param name="characters">此字符（串）。</param>
         /// <param name="leftTop">此字符的字形在纹理的横向偏移量（左上角uv）</param>
-        /// <param name="leftBottom">此字符的字形在纹理的纵向偏移量（左下角uv）</param>
         /// <param name="rightBottom">此字符的字形在纹理的纵向偏移量（右下角uv）</param>
-        /// <param name="rightTop">此字符的字形在纹理的纵向偏移量（右上角uv）</param>
         /// <param name="texture">此字符的字形所在的纹理</param>
-        public GlyphInfo(string characters, vec2 leftTop, vec2 leftBottom, vec2 rightBottom, vec2 rightTop, Texture texture)
+        public GlyphInfo(string characters, vec2 leftTop, vec2 rightBottom, Texture texture)
         {
             this.characters = characters;
             this.leftTop = leftTop;
-            this.leftBottom = leftBottom;
+            this.leftBottom = new vec2(leftTop.x, rightBottom.y);
             this.rightBottom = rightBottom;
-            this.rightTop = rightTop;
+            this.rightTop = new vec2(rightBottom.x, leftTop.y);
             this.texture = texture;
         }
 

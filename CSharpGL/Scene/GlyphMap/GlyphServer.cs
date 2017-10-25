@@ -81,26 +81,9 @@ namespace CSharpGL
                 float y0 = 0;
                 float y1 = chunk.Size.Height;
                 var glyphInfo = new GlyphInfo(characters,
-                    new vec2(x0, y0), new vec2(x0, y1), new vec2(x1, y1), new vec2(x1, y0), textures[currentIndex]);
+                    new vec2(x0, y0), new vec2(x1, y1), textures[currentIndex]);
                 dictionary.Add(characters, glyphInfo);
                 currentWidth += chunk.Size.Width;
-            }
-        }
-
-        private static void FillDictionary(IEnumerable<string> charset, SizeF[] sizes, Dictionary<string, GlyphInfo> dictionary, Texture texture)
-        {
-            int index = 0;
-            float currentWidth = 0;
-            foreach (var item in charset)
-            {
-                SizeF size = sizes[index++];
-                float x0 = currentWidth, x1 = currentWidth + size.Width;
-                float y0 = 0;
-                float y1 = size.Height;
-                var glyphInfo = new GlyphInfo(item,
-                    new vec2(x0, y0), new vec2(x0, y1), new vec2(x1, y1), new vec2(x1, y0), texture);
-                dictionary.Add(item, glyphInfo);
-                currentWidth += size.Width;
             }
         }
 
