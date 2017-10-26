@@ -107,6 +107,7 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
     <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
+    <Compile Include="Scene\GlyphMap\Class1.cs" />
     <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
     <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
     <Compile Include="Scene\GlyphMap\PagesContext.cs" />
@@ -179,6 +180,9 @@
     <Compile Include="Scene\Actions\DependentActions\ActionList.cs" />
     <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
     <Compile Include="Scene\GUI\GLControl.IDisposable.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabelModel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
     <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />

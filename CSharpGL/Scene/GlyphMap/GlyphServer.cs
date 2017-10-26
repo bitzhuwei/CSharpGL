@@ -16,6 +16,53 @@ namespace CSharpGL
 
         private GlyphServer() { }
 
+        public static readonly GlyphServer defaultServer;
+
+        static GlyphServer()
+        {
+            var builder = new StringBuilder();
+            for (char c = (char)20; c < (char)127; c++)
+            {
+                builder.Append(c);
+            }
+            string charSet = builder.ToString();
+            var font = new Font("Arial", 32, GraphicsUnit.Pixel);
+            defaultServer = GlyphServer.Create(font, charSet);
+            font.Dispose();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="font"></param>
+        /// <param name="charset"></param>
+        /// <returns></returns>
+        public static GlyphServer Create(Font font, IEnumerable<char> charset)
+        {
+            int maxTextureSize = GetMaxTextureSize();
+            return Create(font, charset, maxTextureSize, maxTextureSize, 100);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="font"></param>
+        /// <param name="charset"></param>
+        /// <param name="textureWidth"></param>
+        /// <param name="textureHeight"></param>
+        /// <param name="maxTextureCount"></param>
+        /// <returns></returns>
+        public static GlyphServer Create(Font font, IEnumerable<char> charset, int textureWidth, int textureHeight, int maxTextureCount)
+        {
+            var server = new GlyphServer();
+            if (charset == null || charset.Count() == 0) { return server; }
+
+            List<ChunkBase> chunkList = GetChunkList(font, charset);
+            Create(textureWidth, textureHeight, maxTextureCount, server, chunkList);
+
+            return server;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -43,6 +90,13 @@ namespace CSharpGL
             if (charset == null || charset.Count() == 0) { return server; }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
+            Create(textureWidth, textureHeight, maxTextureCount, server, chunkList);
+
+            return server;
+        }
+
+        private static void Create(int textureWidth, int textureHeight, int maxTextureCount, GlyphServer server, List<ChunkBase> chunkList)
+        {
             var context = new PagesContext(textureWidth, textureHeight, maxTextureCount);
             foreach (var item in chunkList)
             {
@@ -51,15 +105,13 @@ namespace CSharpGL
 
             Bitmap[] bitmaps = GenerateBitmaps(chunkList, context);
             PrintChunks(chunkList, context, bitmaps);
-            for (int i = 0; i < bitmaps.Length; i++)
-            {
-                bitmaps[i].Save(string.Format("{0}.png", i));
-            }
+            //for (int i = 0; i < bitmaps.Length; i++)
+            //{
+            //    bitmaps[i].Save(string.Format("{0}.png", i));
+            //}
             Texture[] textures = GenerateTextures(bitmaps);
             server.textures = textures;
             FillDictionary(chunkList, context, textures, server.dictionary);
-
-            return server;
         }
 
         private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Texture[] textures, Dictionary<string, GlyphInfo> dictionary)
@@ -193,6 +245,17 @@ namespace CSharpGL
             return maxTextureSize[0];
         }
 
+        private static List<ChunkBase> GetChunkList(Font font, IEnumerable<char> charset)
+        {
+            var result = new List<ChunkBase>();
+            foreach (var item in charset)
+            {
+                var chunk = new StringChunk(item.ToString(), font);
+                result.Add(chunk);
+            }
+
+            return result;
+        }
 
         private static List<ChunkBase> GetChunkList(Font font, IEnumerable<string> charset)
         {
@@ -212,9 +275,20 @@ namespace CSharpGL
         /// <param name="character"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public bool GetGlyphInfo(string character, out GlyphInfo result)
+        public bool GetGlyphInfo(char character, out GlyphInfo result)
         {
-            return this.dictionary.TryGetValue(character, out result);
+            return this.dictionary.TryGetValue(character.ToString(), out result);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="characters"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public bool GetGlyphInfo(string characters, out GlyphInfo result)
+        {
+            return this.dictionary.TryGetValue(characters, out result);
         }
     }
 
