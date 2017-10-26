@@ -37,10 +37,10 @@ namespace CSharpGL
         /// </summary>
         public readonly vec2 rightTop;
 
-        /// <summary>
-        /// 高宽比。
-        /// </summary>
-        public float WidthByHeight { get { return (rightBottom.x - leftTop.x) / (rightBottom.y - leftTop.y); } }
+        ///// <summary>
+        ///// 高宽比。
+        ///// </summary>
+        //public float WidthByHeight { get { return (rightBottom.x - leftTop.x) / (rightBottom.y - leftTop.y); } }
 
         /// <summary>
         /// 此字符的字形所在的纹理。

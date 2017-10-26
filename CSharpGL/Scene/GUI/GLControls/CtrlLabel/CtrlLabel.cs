@@ -12,11 +12,14 @@ namespace CSharpGL
     {
         private string text = string.Empty;
         private CtrlLabelModel labelModel;
+        private VertexBuffer positionBuffer;
+        private VertexBuffer uvBuffer;
+        private IndexBuffer indexBuffer;
 
         /// <summary>
         /// 
         /// </summary>
-        public string Text
+        public unsafe string Text
         {
             get { return text; }
             set
@@ -25,11 +28,34 @@ namespace CSharpGL
                 if (v != text)
                 {
                     text = v;
+
+                    var server = GlyphServer.defaultServer;
+                    float height = 1.0f; // let's say height is 1.0f.
+                    float totalWidth = 0;
+                    var positionArray = (QuadStruct*)this.positionBuffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    var uvArray = (QuadStruct*)this.uvBuffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    int index = 0;
                     foreach (var c in v)
                     {
                         GlyphInfo glyphInfo;
-
+                        if (server.GetGlyphInfo(c, out glyphInfo))
+                        {
+                            float w = glyphInfo.rightBottom.x - glyphInfo.leftBottom.x;
+                            float h = glyphInfo.rightBottom.y - glyphInfo.rightTop.y;
+                            var leftTop = new vec2(totalWidth, h / 2.0f);
+                            var leftBottom = new vec2(totalWidth, -h / 2.0f);
+                            var rightBottom = new vec2(totalWidth + w, -h / 2.0f);
+                            var rightTop = new vec2(totalWidth + w, h / 2.0f);
+                            positionArray[index] = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
+                            uvArray[index] = new QuadStruct(glyphInfo.leftTop, glyphInfo.leftBottom, glyphInfo.rightBottom, glyphInfo.rightTop);
+                            totalWidth += w; // let's say height is 1.0f.
+                        }
+                        else
+                        {
+                            totalWidth += 1.0f; // put an empty glyph here.
+                        }
                     }
+
                 }
             }
         }
@@ -66,6 +92,10 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             this.RenderUnit.Initialize();
+
+            this.positionBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.position);
+            this.uvBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.uv);
+            this.indexBuffer = this.labelModel.GetIndexBuffer();
         }
 
         /// <summary>

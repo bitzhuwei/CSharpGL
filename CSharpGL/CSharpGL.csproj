@@ -183,6 +183,7 @@
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabelModel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\QuadStruct.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
     <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
