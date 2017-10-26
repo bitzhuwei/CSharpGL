@@ -107,7 +107,7 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
     <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
-    <Compile Include="Scene\GlyphMap\Class1.cs" />
+    <Compile Include="Scene\GlyphMap\CharDumper.cs" />
     <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
     <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
     <Compile Include="Scene\GlyphMap\PagesContext.cs" />
