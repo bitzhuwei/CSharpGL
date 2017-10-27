@@ -229,9 +229,16 @@ namespace CSharpGL
                 sizes[index].Height = Math.Max(sizes[index].Height, chunk.Size.Height);
             }
 
+            float maxWidth = 0.0f, maxHeight = 0.0f;
+            foreach (var size in sizes)
+            {
+                if (maxWidth < size.Width) { maxWidth = size.Width; }
+                if (maxHeight < size.Height) { maxHeight = size.Height; }
+            }
+
             for (int i = 0; i < bitmaps.Length; i++)
             {
-                var bmp = new Bitmap((int)sizes[i].Width, (int)sizes[i].Height);
+                var bmp = new Bitmap((int)maxWidth, (int)maxHeight);
                 bitmaps[i] = bmp;
             }
 
