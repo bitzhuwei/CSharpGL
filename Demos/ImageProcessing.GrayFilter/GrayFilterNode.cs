@@ -49,8 +49,7 @@ namespace ImageProcessing.GrayFilter
         {
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 
-            var texture = new Texture(TextureTarget.Texture2D,
-                new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap)));
+            var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(bitmap));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));

@@ -114,29 +114,29 @@ namespace EnvironmentMapping
                 node.Scale *= 20.0f / max;
                 node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
                 this.environmentMappingNode = node;
+
+                var group = new GroupNode(this.environmentMappingNode, this.skybox);
+
+                this.scene = new Scene(camera, this.winGLCanvas1)
+                {
+                    RootElement = group,
+                };
+
+                var list = new ActionList();
+                var transformAction = new TransformAction(scene);
+                list.Add(transformAction);
+                var renderAction = new RenderAction(scene);
+                list.Add(renderAction);
+                this.actionList = list;
+
+                var manipulater = new FirstPerspectiveManipulater();
+                manipulater.Bind(camera, this.winGLCanvas1);
+
+                this.pickingAction = new PickingAction(scene);
+
+                this.triangleTip = new LegacyTriangleNode();
+                this.quadTip = new LegacyQuadNode();
             }
-
-            var group = new GroupNode(this.environmentMappingNode, this.skybox);
-
-            this.scene = new Scene(camera, this.winGLCanvas1)
-            {
-                RootElement = group,
-            };
-
-            var list = new ActionList();
-            var transformAction = new TransformAction(scene);
-            list.Add(transformAction);
-            var renderAction = new RenderAction(scene);
-            list.Add(renderAction);
-            this.actionList = list;
-
-            var manipulater = new FirstPerspectiveManipulater();
-            manipulater.Bind(camera, this.winGLCanvas1);
-
-            this.pickingAction = new PickingAction(scene);
-
-            this.triangleTip = new LegacyTriangleNode();
-            this.quadTip = new LegacyQuadNode();
         }
 
         private Bitmap[] GetBitmaps(Bitmap totalBmp)

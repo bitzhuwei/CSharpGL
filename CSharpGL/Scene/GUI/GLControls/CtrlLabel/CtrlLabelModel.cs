@@ -23,6 +23,10 @@ namespace CSharpGL
 
         private IndexBuffer indexBuffer;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="capacity"></param>
         public CtrlLabelModel(int capacity)
         {
             this.Capacity = capacity;

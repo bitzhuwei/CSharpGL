@@ -135,6 +135,7 @@ namespace CSharpGL
                     || type == GL.GL_SAMPLER_1D_SHADOW
                     || type == GL.GL_SAMPLER_2D_SHADOW
                     || type == GL.GL_SAMPLER_2D_RECT
+                    || type == GL.GL_SAMPLER_2D_ARRAY
                     || type == GL.GL_SAMPLER_2D_RECT_SHADOW
                     || type == 0x904D // uniform image2D xxx;
                     || type == 0x9063 // uniform uimage2D xxx;
@@ -146,7 +147,7 @@ namespace CSharpGL
                 }
                 else // TODO: not dealt with uniform array or blocks.
                 {
-                    throw new NotImplementedException();
+                    throw new NotImplementedException(string.Format("Not dealt with uniform type:[{0}]", type));
                 }
             }
         }

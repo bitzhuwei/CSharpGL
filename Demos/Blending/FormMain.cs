@@ -72,8 +72,7 @@ namespace Blending
             var group = new GroupNode();
             {
                 var bmp = new Bitmap(@"Crate.bmp");
-                var texture = new Texture(TextureTarget.Texture2D,
-                    new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
+                var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(bmp));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
@@ -110,8 +109,7 @@ namespace Blending
                 {
                     var bmp = new Bitmap(1, 1);
                     using (var g = Graphics.FromImage(bmp)) { g.Clear(item.color); }
-                    var texture = new Texture(TextureTarget.Texture2D,
-                          new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, bmp.Width, bmp.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
+                    var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(bmp));
                     texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
                     texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
                     texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));

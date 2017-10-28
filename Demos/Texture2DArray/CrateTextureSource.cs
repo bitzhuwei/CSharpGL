@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace Texture2D
+namespace Texture2DArray
 {
     class CrateTextureSource : ITextureSource
     {

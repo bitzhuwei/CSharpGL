@@ -88,7 +88,7 @@ namespace SimpleParticleSystem
                 this.currentTexture.Dispose();
             }
 
-            var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RGBA, image.Width, image.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(image));
+            var storage = new TexImageBitmap(image);
             var texture = new Texture(TextureTarget.Texture2D, storage,
                 //new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),

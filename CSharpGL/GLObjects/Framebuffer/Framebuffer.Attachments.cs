@@ -207,8 +207,7 @@ namespace CSharpGL
             switch (type)
             {
                 case TextureAttachment.ColorAttachment:
-                    result = new Texture(TextureTarget.Texture2D,
-                        new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_RGBA, this.Width, this.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE));
+                    result = new Texture(TextureTarget.Texture2D, new TexImageBitmap(this.Width, this.Height));
                     result.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));
                     result.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT));
                     result.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT));

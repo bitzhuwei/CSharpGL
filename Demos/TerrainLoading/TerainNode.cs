@@ -80,7 +80,7 @@ namespace TerrainLoading
                 this.heightTexture.Dispose();
             }
 
-            var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0, GL.GL_RED, image.Width, image.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(image));
+            var storage = new TexImageBitmap(image, GL.GL_RED);
             var heightMapTexture = new Texture(TextureTarget.Texture2D, storage,
                 //new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),

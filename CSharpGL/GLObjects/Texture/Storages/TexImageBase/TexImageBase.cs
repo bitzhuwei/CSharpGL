@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TexImageBase
+    public abstract class TexImageBase : TexStorageBase
     {
         /// <summary>
         /// 
@@ -28,15 +28,10 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="internalformat"></param>
         /// <param name="border"></param>
-        /// <param name="contentProvider"></param>
         public TexImageBase(TextureTarget target, uint internalformat, int border)
         {
             this.target = target; this.internalFormat = internalformat; this.border = border;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public abstract void Apply();
     }
 }

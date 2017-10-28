@@ -16,6 +16,9 @@ namespace CSharpGL
 
         private GlyphServer() { }
 
+        /// <summary>
+        /// default server only accepts visible ASCII code.
+        /// </summary>
         public static readonly GlyphServer defaultServer;
 
         static GlyphServer()
@@ -146,9 +149,7 @@ namespace CSharpGL
             for (int i = 0; i < bitmaps.Length; i++)
             {
                 var bmp = bitmaps[i];
-                var storage = new TexImage2D(TexImage2D.Target.Texture2D, 0,
-                    GL.GL_RGBA, bmp.Width, bmp.Height, 0,
-                    GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp));
+                var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(TextureTarget.Texture2D, storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),

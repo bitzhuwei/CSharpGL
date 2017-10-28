@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParticleSystem", "Dem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontToBackPeeling", "Demos\FrontToBackPeeling\FrontToBackPeeling.csproj", "{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texture2DArray", "Demos\Texture2DArray\Texture2DArray.csproj", "{EBBB33B4-F841-45FA-8891-4A9C563B870B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -205,6 +207,10 @@ Global
 		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,5 +246,6 @@ Global
 		{660A540B-6292-45B9-B15A-4A0B261DDBBD} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{38314542-9FD3-4808-8ACA-06408D425BEE} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{EBBB33B4-F841-45FA-8891-4A9C563B870B} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
