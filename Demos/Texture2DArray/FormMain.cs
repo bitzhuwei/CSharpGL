@@ -14,6 +14,7 @@ namespace Texture2DArray
     {
         private Scene scene;
         private ActionList actionList;
+        private LayeredRectangleNode node;
 
         public FormMain()
         {
@@ -52,10 +53,7 @@ namespace Texture2DArray
 
             this.actionList = list;
 
-            Match(this.trvScene, scene.RootElement);
-            this.trvScene.ExpandAll();
-
-
+            MessageBox.Show("Press 'n' to switch texture indexes!");
         }
 
         private WinCtrlRoot GetRootControl()
@@ -90,6 +88,8 @@ namespace Texture2DArray
             }
 
             var node = LayeredRectangleNode.Create(bmps);
+            node.Scale = new vec3(3, -3, 3);
+            this.node = node;
             return node;
         }
 
@@ -121,11 +121,17 @@ namespace Texture2DArray
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
+        private void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            this.propGrid.SelectedObject = e.Node.Tag;
-
-            this.lblState.Text = string.Format("{0} objects selected.", 1);
+            if (e.KeyChar == 'n')
+            {
+                this.node.LayerIndex++;
+                if (this.node.LayerIndex >= 5)
+                {
+                    this.node.LayerIndex = 0;
+                }
+            }
         }
+
     }
 }

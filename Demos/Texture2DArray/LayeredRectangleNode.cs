@@ -18,7 +18,7 @@ namespace Texture2DArray
             var map = new AttributeMap();
             map.Add(inPosition, LayeredRectangleModel.strPosition);
             map.Add(inUV, LayeredRectangleModel.strUV);
-            var builder = new RenderMethodBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             var node = new LayeredRectangleNode(new LayeredRectangleModel(), builder);
             node.bitmaps = bitmaps;
             node.Initialize();
