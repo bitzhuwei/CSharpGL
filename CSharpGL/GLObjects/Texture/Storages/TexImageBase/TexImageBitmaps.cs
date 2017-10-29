@@ -36,7 +36,9 @@ namespace CSharpGL
         internal static readonly GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr glTexImage3D;
         //void glTexStorage3D( GLenum target​, GLint levels​, GLint internalformat​, GLsizei width​, GLsizei height​, GLsizei depth​ );
         internal static readonly GLDelegates.void_uint_int_uint_int_int_int glTexStorage3D;
-        //void glTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const GLvoid* pixels)
+        /// <summary>
+        /// void glTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const GLvoid* pixels)
+        /// </summary>
         internal static readonly GLDelegates.void_uint_int_int_int_int_int_int_int_uint_uint_IntPtr glTexSubImage3D;
         static TexImageBitmaps()
         {
@@ -52,7 +54,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImageBitmaps(Bitmap[] layers, uint internalFormat = GL.GL_RGBA, int mipmapLevelCount = 1, int border = 0)
+        public TexImageBitmaps(Bitmap[] layers, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, int border = 0)
             : base(TextureTarget.Texture2DArray, internalFormat, border)
         {
             if (layers == null || layers.Length < 1) { throw new ArgumentNullException("bitmap"); }
@@ -77,10 +79,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="height"></param>
         /// <param name="width"></param>
+        /// <param name="layerCount"></param>
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImageBitmaps(int width, int height, int layerCount, uint internalFormat = GL.GL_RGBA, int mipmapLevelCount = 1, int border = 0)
+        public TexImageBitmaps(int width, int height, int layerCount, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, int border = 0)
             : base(TextureTarget.Texture2DArray, internalFormat, border)
         {
             if (width < 1) { throw new ArgumentException("width must be greater than 0!"); }
@@ -101,9 +104,12 @@ namespace CSharpGL
         {
             int mipmapLevelCount = this.mipmapLevelCount;
 
-            var layers = this.layers;
-
-            if (layers == null)
+            // allocate space.
+            if (glTexStorage3D != null)
+            {
+                glTexStorage3D((uint)this.target, mipmapLevelCount, this.internalFormat, this.width, this.height, this.layerCount);
+            }
+            else if (glTexImage3D != null)
             {
                 int w = this.width, h = this.height;
                 for (int i = 0; i < mipmapLevelCount; i++)
@@ -114,18 +120,24 @@ namespace CSharpGL
             }
             else
             {
-                // allocate space.
-                glTexStorage3D((uint)this.target, mipmapLevelCount, this.internalFormat, this.width, this.height, this.layerCount);
+                throw new Exception(string.Format("glTexImage3D and glTexStorage3D are not supported on this graphics card!"));
+            }
+
+            var layers = this.layers;
+            if (layers != null)
+            {
                 // set up contents for each mipmap level of each layer.
-                for (int i = 0; i < layers.Length; i++)
+                for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
                 {
-                    Bitmap layer = layers[i]; // layers[i]
+                    Bitmap layer = layers[layerIndex]; // layers[i]
+                    const int xoffset = 0, yoffset = 0;
+                    const int depth = 1;
                     // first mipmap.
                     {
+                        const int level = 0;
                         BitmapData data = layer.LockBits(new Rectangle(0, 0, this.width, this.height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                         IntPtr pixels = data.Scan0;
-                        GL.Instance.TexImage2D((uint)this.target, 0, this.internalFormat, this.width, this.height, this.border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
-                        glTexSubImage3D((uint)this.target, 0, 0, 0, i, this.width, this.height, this.layerCount, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
+                        glTexSubImage3D((uint)this.target, level, xoffset, yoffset, layerIndex, this.width, this.height, depth, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
                         layer.UnlockBits(data);
                     }
                     // other mipmaps.
@@ -135,7 +147,7 @@ namespace CSharpGL
                         bmp = (Bitmap)bmp.GetThumbnailImage(bmp.Width / 2, bmp.Height / 2, new Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);
                         BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                         IntPtr pixels = data.Scan0;
-                        glTexSubImage3D((uint)this.target, level, 0, 0, i, bmp.Width, bmp.Height, this.layerCount, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
+                        glTexSubImage3D((uint)this.target, level, xoffset, yoffset, layerIndex, bmp.Width, bmp.Height, depth, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
                         bmp.UnlockBits(data);
                         bmp.Dispose();
                     }

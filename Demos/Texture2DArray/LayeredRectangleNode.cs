@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Texture2DArray
 {
@@ -39,13 +38,13 @@ namespace Texture2DArray
 
             var storage = new TexImageBitmaps(this.bitmaps);
             var texture = new Texture(TextureTarget.Texture2DArray, storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();
-            this.RenderUnit.Methods[0].Program.SetUniform("tex", texture);
+            this.RenderUnit.Methods[0].Program.SetUniform(tex, texture);
         }
 
         public int LayerIndex { get; set; }
@@ -64,6 +63,7 @@ namespace Texture2DArray
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
+            //program.SetUniform(tex, texture);
             program.SetUniform(layerIndex, this.LayerIndex);
 
             method.Render();

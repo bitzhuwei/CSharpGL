@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Texture2DArray
 {
@@ -45,7 +44,7 @@ layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
-	out_Color = texture(tex, vec3(passUV, layerIndex));
+	out_Color = texture(tex, vec3(passUV, floor(layerIndex)));
 }
 ";
     }
