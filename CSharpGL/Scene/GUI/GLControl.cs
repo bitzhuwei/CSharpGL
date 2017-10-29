@@ -58,17 +58,29 @@ namespace CSharpGL
         //[Category(strGLControl)]
         //public int Bottom { get; set; }
 
+        private int width;
+
         /// <summary>
         /// Width of this control.
         /// </summary>
         [Category(strGLControl)]
-        public int Width { get; set; }
+        public int Width
+        {
+            get { return width; }
+            set { width = value; }
+        }
 
+        private int height;
         /// <summary>
         /// Height of this control.
         /// </summary>
         [Category(strGLControl)]
-        public int Height { get; set; }
+        public int Height
+        {
+            get { return height; }
+            set { height = value; }
+        }
+
 
         private const string strGLControl = "GLControl";
 

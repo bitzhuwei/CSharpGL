@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -11,23 +12,31 @@ namespace CSharpGL
         /// the edges of the <see cref="IGLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
         /// <para>something like AnchorStyles.Left | AnchorStyles.Bottom.</para>
         /// </summary>
+        [Category(strGLControl)]
         public GUIAnchorStyles Anchor { get; set; }
 
         /// <summary>
         /// Gets or sets the space between viewport and SimpleRect.
         /// </summary>
+        [Category(strGLControl)]
         public GUIPadding Margin { get; set; }
 
         /// <summary>
         /// 相对于Parent左下角的位置(Left Down location)
         /// </summary>
+        [Category(strGLControl)]
         public GUIPoint Location { get; set; }
 
         /// <summary>
         /// Stores width when <see cref="Anchor"/>.Left &amp; <see cref="Anchor"/>.Right is <see cref="Anchor"/>.None.
         /// <para> and height when <see cref="Anchor"/>.Top &amp; <see cref="Anchor"/>.Bottom is <see cref="Anchor"/>.None.</para>
         /// </summary>
-        public GUISize Size { get; set; }
+        [Category(strGLControl)]
+        public GUISize Size
+        {
+            get { return new GUISize(width, height); }
+            set { this.width = value.Width; this.height = value.Height; }
+        }
 
         /// <summary>
         /// 上次更新之后，parent的Size属性值。
@@ -37,20 +46,24 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
+        [Category(strGLControl)]
         public int zNear { get; set; }
 
         /// <summary>
         ///
         /// </summary>
+        [Category(strGLControl)]
         public int zFar { get; set; }
 
         /// <summary>
         /// Do something before layout of this control and its children controls.
         /// </summary>
+        [Category(strGLControl)]
         public event EventHandler<CancelEventArgs> BeforeLayout;
         /// <summary>
         /// Do something after layout of this control and its children controls.
         /// </summary>
+        [Category(strGLControl)]
         public event EventHandler AfterLayout;
 
         private bool DoBeforeLayout()

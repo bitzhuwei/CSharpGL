@@ -34,7 +34,7 @@ void main(void) {
             @"#version 330 core
 
 in vec2 passUV;
-out float passTextureIndex;
+in float passTextureIndex;
 
 uniform sampler2DArray glyphTexture;
 

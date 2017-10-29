@@ -108,10 +108,10 @@ namespace CSharpGL
 
             Bitmap[] bitmaps = GenerateBitmaps(chunkList, context);
             PrintChunks(chunkList, context, bitmaps);
-            //for (int i = 0; i < bitmaps.Length; i++)
-            //{
-            //    bitmaps[i].Save(string.Format("{0}.png", i));
-            //}
+            for (int i = 0; i < bitmaps.Length; i++)
+            {
+                bitmaps[i].Save(string.Format("{0}.png", i));
+            }
             Texture[] textures = GenerateTextures(bitmaps);
             server.textures = textures;
             FillDictionary(chunkList, context, server.dictionary);
@@ -131,12 +131,13 @@ namespace CSharpGL
 
                 if (currentIndex >= context.PageList.Count) { continue; } // not enough pages for speicifed chearacters.
 
+                Page page = context.PageList[chunk.PageIndex];
                 string characters = chunk.Text;
                 float x0 = currentWidth, x1 = currentWidth + chunk.Size.Width;
                 float y0 = 0;
                 float y1 = chunk.Size.Height;
                 var glyphInfo = new GlyphInfo(characters,
-                    new vec2(x0, y0), new vec2(x1, y1), currentIndex);
+                    new vec2(x0 / page.Width, y0 / page.Height), new vec2(x1 / page.Width, y1 / page.Height), currentIndex);
                 dictionary.Add(characters, glyphInfo);
                 currentWidth += chunk.Size.Width;
             }

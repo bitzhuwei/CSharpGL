@@ -30,7 +30,6 @@ namespace CSharpGL
                 {
                     text = v;
                     ArrangeCharaters(v, GlyphServer.defaultServer);
-
                 }
             }
         }
@@ -66,13 +65,13 @@ namespace CSharpGL
             {
                 QuadStruct position = positionArray[i];
                 var newPos = new QuadStruct(
-					// y are already in [-1, 1], so just shrink x to [-1, 1]
+                    // y are already in [-1, 1], so just shrink x to [-1, 1]
                     new vec2((position.leftTop.x - halfWidth) / totalWidth, position.leftTop.y),
                     new vec2((position.leftBottom.x - halfWidth) / totalWidth, position.leftBottom.y),
                     new vec2((position.rightBottom.x - halfWidth) / totalWidth, position.rightBottom.y),
                     new vec2((position.rightTop.x - halfWidth) / totalWidth, position.rightTop.y)
                     );
-					
+
                 positionArray[i] = newPos;
             }
         }
@@ -82,12 +81,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="text"></param>
         /// <param name="server"></param>
-        /// <param name="height"></param>
-        /// <param name="totalWidth"></param>
         /// <param name="positionArray"></param>
         /// <param name="uvArray"></param>
         /// <param name="textureIndexArray"></param>
-        /// <param name="index"></param>
+        /// <param name="indexBuffer"></param>
+        /// <param name="totalWidth"></param>
+        /// <param name="totalHeight"></param>
         unsafe private static void FirstPass(string text, GlyphServer server,
             QuadStruct* positionArray, QuadStruct* uvArray, float* textureIndexArray,
             ZeroIndexBuffer indexBuffer,
@@ -145,6 +144,9 @@ namespace CSharpGL
             : base(anchor, margin)
         {
             if (capacity < 0) { throw new ArgumentException("capacity"); }
+
+            this.Size = new GUISize(20, 20);
+
             var model = new CtrlLabelModel(capacity);
             this.labelModel = model;
             var vs = new VertexShader(vert, inPosition, inUV, inTextureIndex);
