@@ -96,6 +96,13 @@ namespace Texture2D
                 root.Children.Add(control);
                 control.Focused = true;
             }
+            {
+                var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Margin = new GUIPadding(10, 10, 10, 130);
+                control.Width = 100; control.Height = 30;
+                control.Text = "Hello CSharpGL!";
+                root.Children.Add(control);
+            }
 
             return root;
         }

@@ -20,6 +20,11 @@ namespace CSharpGL
         /// </summary>
         public const string uv = "color";
         private VertexBuffer colorBuffer;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string textureIndex = "textureIndex";
+        private VertexBuffer textureIndexBuffer;
 
         private IndexBuffer indexBuffer;
 
@@ -45,7 +50,7 @@ namespace CSharpGL
             {
                 if (this.posiitonBuffer == null)
                 {
-                    this.posiitonBuffer = VertexBuffer.Create(typeof(vec2), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
+                    this.posiitonBuffer = VertexBuffer.Create(typeof(QuadStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
                 }
 
                 return this.posiitonBuffer;
@@ -54,10 +59,19 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    this.colorBuffer = VertexBuffer.Create(typeof(vec2), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
+                    this.colorBuffer = VertexBuffer.Create(typeof(QuadStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
                 }
 
                 return this.colorBuffer;
+            }
+            else if (bufferName == textureIndex)
+            {
+                if (this.textureIndexBuffer == null)
+                {
+                    this.textureIndexBuffer = VertexBuffer.Create(typeof(float), this.Capacity, VBOConfig.Float, BufferUsage.DynamicDraw);
+                }
+
+                return this.textureIndexBuffer;
             }
             else
             {
