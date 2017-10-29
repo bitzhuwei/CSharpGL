@@ -121,8 +121,8 @@ namespace CSharpGL
             else if (parts.Length == 3)
             {
                 vertexIndex = uint.Parse(parts[0]);
-                texCoordIndex = uint.Parse(parts[2]);
-                normalIndex = uint.Parse(parts[1]);
+                texCoordIndex = uint.Parse(parts[1]);
+                normalIndex = uint.Parse(parts[2]);
             }
             else
             {
