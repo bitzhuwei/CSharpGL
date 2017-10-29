@@ -114,10 +114,10 @@ namespace CSharpGL
             //}
             Texture[] textures = GenerateTextures(bitmaps);
             server.textures = textures;
-            FillDictionary(chunkList, context, textures, server.dictionary);
+            FillDictionary(chunkList, context, server.dictionary);
         }
 
-        private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Texture[] textures, Dictionary<string, GlyphInfo> dictionary)
+        private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary)
         {
             int currentIndex = 0;
             float currentWidth = 0;
@@ -136,7 +136,7 @@ namespace CSharpGL
                 float y0 = 0;
                 float y1 = chunk.Size.Height;
                 var glyphInfo = new GlyphInfo(characters,
-                    new vec2(x0, y0), new vec2(x1, y1), textures[currentIndex]);
+                    new vec2(x0, y0), new vec2(x1, y1), currentIndex);
                 dictionary.Add(characters, glyphInfo);
                 currentWidth += chunk.Size.Width;
             }

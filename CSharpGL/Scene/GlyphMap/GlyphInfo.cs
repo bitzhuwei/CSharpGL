@@ -43,9 +43,9 @@ namespace CSharpGL
         //public float WidthByHeight { get { return (rightBottom.x - leftTop.x) / (rightBottom.y - leftTop.y); } }
 
         /// <summary>
-        /// 此字符的字形所在的纹理。
+        /// 此字符的字形所在的纹理，在的数组中的索引。
         /// </summary>
-        public readonly Texture texture;
+        public readonly int textureIndex;
 
         /// <summary>
         /// 绘制一个字符所需要的所有信息
@@ -53,15 +53,15 @@ namespace CSharpGL
         /// <param name="characters">此字符（串）。</param>
         /// <param name="leftTop">此字符的字形在纹理的横向偏移量（左上角uv）</param>
         /// <param name="rightBottom">此字符的字形在纹理的纵向偏移量（右下角uv）</param>
-        /// <param name="texture">此字符的字形所在的纹理</param>
-        public GlyphInfo(string characters, vec2 leftTop, vec2 rightBottom, Texture texture)
+        /// <param name="textureIndex">此字符的字形所在的纹理，在的数组中的索引</param>
+        public GlyphInfo(string characters, vec2 leftTop, vec2 rightBottom, int textureIndex)
         {
             this.characters = characters;
             this.leftTop = leftTop;
             this.leftBottom = new vec2(leftTop.x, rightBottom.y);
             this.rightBottom = rightBottom;
             this.rightTop = new vec2(rightBottom.x, leftTop.y);
-            this.texture = texture;
+            this.textureIndex = textureIndex;
         }
 
         /// <summary>
