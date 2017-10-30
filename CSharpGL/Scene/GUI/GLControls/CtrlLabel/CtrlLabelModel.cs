@@ -14,7 +14,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const string position = "position";
-        private VertexBuffer posiitonBuffer;
+        private VertexBuffer positionBuffer;
         /// <summary>
         /// 
         /// </summary>
@@ -48,12 +48,12 @@ namespace CSharpGL
         {
             if (bufferName == position)
             {
-                if (this.posiitonBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    this.posiitonBuffer = VertexBuffer.Create(typeof(QuadStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
+                    this.positionBuffer = VertexBuffer.Create(typeof(QuadStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
                 }
 
-                return this.posiitonBuffer;
+                return this.positionBuffer;
             }
             else if (bufferName == uv)
             {
@@ -88,7 +88,7 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int primCount = 1;
-                int frameCount = 2;
+                int frameCount = 1;
                 var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, this.Capacity, primCount, frameCount);
                 // note: use ZeroIndexBuffer.Draw(ControlMode.Random) to enable this property.
                 indexBuffer.RenderingVertexCount = 0;

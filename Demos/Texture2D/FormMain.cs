@@ -71,10 +71,11 @@ namespace Texture2D
 
             this.actionList = list;
 
-            Match(this.trvScene, scene.RootElement);
-            this.trvScene.ExpandAll();
+            Match(this.trvSceneObject, scene.RootElement);
+            this.trvSceneObject.ExpandAll();
 
-
+            Match(this.trvSceneGUI, scene.RootControl);
+            this.trvSceneGUI.ExpandAll();
         }
 
         private WinCtrlRoot GetRootControl()
@@ -129,6 +130,24 @@ namespace Texture2D
             var group = new GroupNode(rectangle, blend, blend2);
 
             return group;
+        }
+
+        private void Match(TreeView treeView, GLControl nodeBase)
+        {
+            treeView.Nodes.Clear();
+            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
+            treeView.Nodes.Add(node);
+            Match(node, nodeBase);
+        }
+
+        private void Match(TreeNode node, GLControl nodeBase)
+        {
+            foreach (var item in nodeBase.Children)
+            {
+                var child = new TreeNode(item.ToString()) { Tag = item };
+                node.Nodes.Add(child);
+                Match(child, item);
+            }
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)

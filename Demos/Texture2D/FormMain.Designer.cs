@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.trvScene = new System.Windows.Forms.TreeView();
+            this.trvSceneObject = new System.Windows.Forms.TreeView();
             this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.trvSceneGUI = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // trvScene
+            // trvSceneObject
             // 
-            this.trvScene.Font = new System.Drawing.Font("宋体", 12F);
-            this.trvScene.Location = new System.Drawing.Point(12, 12);
-            this.trvScene.Name = "trvScene";
-            this.trvScene.Size = new System.Drawing.Size(332, 259);
-            this.trvScene.TabIndex = 1;
-            this.trvScene.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvScene_AfterSelect);
+            this.trvSceneObject.Font = new System.Drawing.Font("宋体", 12F);
+            this.trvSceneObject.Location = new System.Drawing.Point(12, 12);
+            this.trvSceneObject.Name = "trvSceneObject";
+            this.trvSceneObject.Size = new System.Drawing.Size(165, 259);
+            this.trvSceneObject.TabIndex = 1;
+            this.trvSceneObject.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvScene_AfterSelect);
             // 
             // propGrid
             // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.propGrid.Location = new System.Drawing.Point(12, 277);
             this.propGrid.Name = "propGrid";
@@ -58,14 +58,15 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(350, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
             // 
             // statusStrip1
             // 
@@ -83,6 +84,15 @@
             this.lblState.Size = new System.Drawing.Size(62, 17);
             this.lblState.Text = "state info";
             // 
+            // trvSceneGUI
+            // 
+            this.trvSceneGUI.Font = new System.Drawing.Font("宋体", 12F);
+            this.trvSceneGUI.Location = new System.Drawing.Point(179, 12);
+            this.trvSceneGUI.Name = "trvSceneGUI";
+            this.trvSceneGUI.Size = new System.Drawing.Size(165, 259);
+            this.trvSceneGUI.TabIndex = 1;
+            this.trvSceneGUI.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvScene_AfterSelect);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -90,7 +100,8 @@
             this.ClientSize = new System.Drawing.Size(1139, 610);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.propGrid);
-            this.Controls.Add(this.trvScene);
+            this.Controls.Add(this.trvSceneGUI);
+            this.Controls.Add(this.trvSceneObject);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
             this.Text = "Texture2D - CSharpGL";
@@ -105,9 +116,10 @@
         #endregion
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
-        private System.Windows.Forms.TreeView trvScene;
+        private System.Windows.Forms.TreeView trvSceneObject;
         private System.Windows.Forms.PropertyGrid propGrid;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblState;
+        private System.Windows.Forms.TreeView trvSceneGUI;
     }
 }

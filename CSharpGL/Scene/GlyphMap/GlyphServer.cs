@@ -12,7 +12,19 @@ namespace CSharpGL
     public class GlyphServer
     {
         private Dictionary<string, GlyphInfo> dictionary = new Dictionary<string, GlyphInfo>();
-        private Texture[] textures;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture GlyphTexture { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int TextureWidth { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int TextureHeight { get; private set; }
 
         private GlyphServer() { }
 
@@ -108,62 +120,44 @@ namespace CSharpGL
 
             Bitmap[] bitmaps = GenerateBitmaps(chunkList, context);
             PrintChunks(chunkList, context, bitmaps);
-            for (int i = 0; i < bitmaps.Length; i++)
-            {
-                bitmaps[i].Save(string.Format("{0}.png", i));
-            }
-            Texture[] textures = GenerateTextures(bitmaps);
-            server.textures = textures;
-            FillDictionary(chunkList, context, server.dictionary);
+            //for (int i = 0; i < bitmaps.Length; i++)
+            //{
+            //    bitmaps[i].Save(string.Format("{0}.png", i));
+            //}
+            Texture texture = GenerateTexture(bitmaps);
+            server.GlyphTexture = texture;
+            server.TextureWidth = bitmaps[0].Width;
+            server.TextureHeight = bitmaps[0].Height;
+            FillDictionary(chunkList, context, server.dictionary, bitmaps[0].Width, bitmaps[0].Height);
         }
 
-        private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary)
+        private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary, int pageWidth, int pageHeight)
         {
-            int currentIndex = 0;
-            float currentWidth = 0;
             foreach (var chunk in chunkList)
             {
-                if (currentIndex != chunk.PageIndex) // new page starts.
-                {
-                    currentIndex = chunk.PageIndex;
-                    currentWidth = 0;
-                }
-
-                if (currentIndex >= context.PageList.Count) { continue; } // not enough pages for speicifed chearacters.
-
-                Page page = context.PageList[chunk.PageIndex];
                 string characters = chunk.Text;
-                float x0 = currentWidth, x1 = currentWidth + chunk.Size.Width;
-                float y0 = 0;
-                float y1 = chunk.Size.Height;
+                float x0 = chunk.LeftTop.X; float x1 = x0 + chunk.Size.Width;
+                float y0 = chunk.LeftTop.Y;
+                float y1 = y0 + chunk.Size.Height;
+                int textureIndex = chunk.PageIndex;
                 var glyphInfo = new GlyphInfo(characters,
-                    new vec2(x0 / page.Width, y0 / page.Height), new vec2(x1 / page.Width, y1 / page.Height), currentIndex);
+                    new vec2(x0 / pageWidth, y0 / pageHeight), new vec2(x1 / pageWidth, y1 / pageHeight), textureIndex);
                 dictionary.Add(characters, glyphInfo);
-                currentWidth += chunk.Size.Width;
             }
         }
 
-        private static Texture[] GenerateTextures(Bitmap[] bitmaps)
+        private static Texture GenerateTexture(Bitmap[] bitmaps)
         {
-            var result = new Texture[bitmaps.Length];
+            var storage = new TexImageBitmaps(bitmaps);
+            var texture = new Texture(TextureTarget.Texture2DArray, storage,
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
 
-            for (int i = 0; i < bitmaps.Length; i++)
-            {
-                var bmp = bitmaps[i];
-                var storage = new TexImageBitmap(bmp);
-                var texture = new Texture(TextureTarget.Texture2D, storage,
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-
-                texture.Initialize();
-
-                result[i] = texture;
-            }
-
-            return result;
+            return texture;
         }
 
         private static void PrintChunks(List<ChunkBase> chunkList, PagesContext context, Bitmap[] bitmaps)
@@ -191,7 +185,7 @@ namespace CSharpGL
                 SizeF bigSize = g.MeasureString(bigStr, chunk.TheFont);
                 var bigChunk = new Bitmap((int)bigSize.Width, (int)bigSize.Height);
                 var bigGraphics = Graphics.FromImage(bigChunk);
-                bigGraphics.DrawString(bigStr, chunk.TheFont, Brushes.Black, 0, 0);
+                bigGraphics.DrawString(bigStr, chunk.TheFont, Brushes.White, 0, 0);
 
                 if (graphicses[index] == null) { graphicses[index] = Graphics.FromImage(bitmaps[index]); }
                 graphicses[index].DrawImage(bigChunk,

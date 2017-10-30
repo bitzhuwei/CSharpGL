@@ -9,41 +9,13 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class GLControl
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        protected ViewportState viewportState = new ViewportState();
-        /// <summary>
-        /// 
-        /// </summary>
-        protected ScissorTestState scissorState = new ScissorTestState();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void UpdateScissorViewport()
-        {
-            //GL.Instance.Enable(GL.GL_SCISSOR_TEST);
-            //GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
-            this.scissorState.X = this.absLeft;
-            this.scissorState.Y = this.absBottom;
-            this.scissorState.Width = this.width;
-            this.scissorState.Height = this.Height;
-
-            //GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
-            this.viewportState.X = this.absLeft;
-            this.viewportState.Y = this.absBottom;
-            this.viewportState.Width = this.width;
-            this.viewportState.Height = this.Height;
-        }
-
-
         #region IGUIRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public ThreeFlags EnableGUIRendering
         {
             get { return this.enableRendering; }
@@ -51,16 +23,40 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Render back ground or not?
         /// </summary>
-        /// <param name="arg"></param>
-        public abstract void RenderGUIBeforeChildren(GUIRenderEventArgs arg);
+        [Category(strGLControl)]
+        public bool RenderBackground { get; set; }
+
+        /// <summary>
+        /// Rendder background in what color?
+        /// </summary>
+        [Category(strGLControl)]
+        public vec4 BackgroundColor { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public abstract void RenderGUIAfterChildren(GUIRenderEventArgs arg);
+        public virtual void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
+        {
+            GL.Instance.Enable(GL.GL_SCISSOR_TEST);
+            GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
+            GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
+
+            if (this.RenderBackground)
+            {
+                vec4 color = this.BackgroundColor;
+                GL.Instance.ClearColor(color.x, color.y, color.z, color.w);
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public virtual void RenderGUIAfterChildren(GUIRenderEventArgs arg) { }
 
         #endregion
 

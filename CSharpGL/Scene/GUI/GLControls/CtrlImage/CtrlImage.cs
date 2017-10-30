@@ -77,20 +77,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
         {
-            this.UpdateScissorViewport();
+            base.RenderGUIBeforeChildren(arg);
 
-            viewportState.On();
-            scissorState.On();
-
-            GL.Instance.ClearColor(1, 0, 0, 0.5f);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
-
-            RenderMethod method = this.RenderUnit.Methods[0];
-
+            ModernRenderUnit unit = this.RenderUnit;
+            RenderMethod method = unit.Methods[0];
             method.Render();
-
-            viewportState.Off();
-            scissorState.Off();
         }
 
         /// <summary>

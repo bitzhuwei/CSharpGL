@@ -36,44 +36,14 @@ namespace CSharpGL
 
         unsafe private void ArrangeCharaters(string text, GlyphServer server)
         {
-            var positionArray = (QuadStruct*)this.positionBuffer.MapBuffer(MapBufferAccess.ReadWrite);
-            var uvArray = (QuadStruct*)this.uvBuffer.MapBuffer(MapBufferAccess.WriteOnly);
-            var textureIndexArray = (float*)this.textureIndexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
             float totalWidth, totalHeight;
-            FirstPass(text, server, positionArray, uvArray, textureIndexArray, this.indexBuffer, out totalWidth, out totalHeight);
-            SecondPass(positionArray, totalWidth, totalHeight, indexBuffer.RenderingVertexCount / 4);
-            this.textureIndexBuffer.UnmapBuffer();
-            this.uvBuffer.UnmapBuffer();
-            this.positionBuffer.UnmapBuffer();
+            PositionPass(text, server, out totalWidth, out totalHeight);
+            UVPass(text, server);
+            TextureIndexPass(text, server);
 
-            this.Size = new GUISize(
-                (int)(totalWidth * this.Size.Height / totalHeight), // auto size means auto width.
-                this.Size.Height);
-        }
+            this.indexBuffer.RenderingVertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
-        /// <summary>
-        /// move characters to center position.
-        /// </summary>
-        /// <param name="positionArray"></param>
-        /// <param name="totalWidth"></param>
-        /// <param name="totalHeight"></param>
-        /// <param name="quadCount"></param>
-        private unsafe void SecondPass(QuadStruct* positionArray, float totalWidth, float totalHeight, int quadCount)
-        {
-            float halfWidth = totalWidth / 2;
-            for (int i = 0; i < quadCount; i++)
-            {
-                QuadStruct position = positionArray[i];
-                var newPos = new QuadStruct(
-                    // y are already in [-1, 1], so just shrink x to [-1, 1]
-                    new vec2((position.leftTop.x - halfWidth) / totalWidth, position.leftTop.y),
-                    new vec2((position.leftBottom.x - halfWidth) / totalWidth, position.leftBottom.y),
-                    new vec2((position.rightBottom.x - halfWidth) / totalWidth, position.rightBottom.y),
-                    new vec2((position.rightTop.x - halfWidth) / totalWidth, position.rightTop.y)
-                    );
-
-                positionArray[i] = newPos;
-            }
+            this.Width = (int)(totalWidth * this.Height / totalHeight); // auto size means auto width.
         }
 
         /// <summary>
@@ -81,18 +51,64 @@ namespace CSharpGL
         /// </summary>
         /// <param name="text"></param>
         /// <param name="server"></param>
-        /// <param name="positionArray"></param>
-        /// <param name="uvArray"></param>
-        /// <param name="textureIndexArray"></param>
-        /// <param name="indexBuffer"></param>
+        unsafe private void TextureIndexPass(string text, GlyphServer server)
+        {
+            VertexBuffer buffer = this.textureIndexBuffer;
+            var textureIndexArray = (float*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
+            int index = 0;
+            foreach (var c in text)
+            {
+                GlyphInfo glyphInfo;
+                if (server.GetGlyphInfo(c, out glyphInfo))
+                {
+                    textureIndexArray[index] = glyphInfo.textureIndex;
+                }
+
+                index++;
+            }
+
+            buffer.UnmapBuffer();
+        }
+
+        /// <summary>
+        /// start from (0, 0) to the right.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="server"></param>
+        unsafe private void UVPass(string text, GlyphServer server)
+        {
+            VertexBuffer buffer = this.uvBuffer;
+            var uvArray = (QuadStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
+            int index = 0;
+            foreach (var c in text)
+            {
+                GlyphInfo glyphInfo;
+                if (server.GetGlyphInfo(c, out glyphInfo))
+                {
+                    uvArray[index] = new QuadStruct(glyphInfo.leftTop, glyphInfo.leftBottom, glyphInfo.rightBottom, glyphInfo.rightTop);
+                }
+
+                index++;
+            }
+
+            buffer.UnmapBuffer();
+        }
+
+        /// <summary>
+        /// start from (0, 0) to the right.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="server"></param>
         /// <param name="totalWidth"></param>
         /// <param name="totalHeight"></param>
-        unsafe private static void FirstPass(string text, GlyphServer server,
-            QuadStruct* positionArray, QuadStruct* uvArray, float* textureIndexArray,
-            ZeroIndexBuffer indexBuffer,
+        unsafe private void PositionPass(string text, GlyphServer server,
             out float totalWidth, out float totalHeight)
         {
-            const float height = 1.0f; // let's say height is 1.0f.
+            int textureWidth = server.TextureWidth;
+            int textureHeight = server.TextureHeight;
+            VertexBuffer buffer = this.positionBuffer;
+            var positionArray = (QuadStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
+            const float height = 2.0f; // let's say height is 2.0f.
             totalWidth = 0;
             totalHeight = height;
             int index = 0;
@@ -102,8 +118,8 @@ namespace CSharpGL
                 float wByH = 0;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
-                    float w = glyphInfo.rightBottom.x - glyphInfo.leftBottom.x;
-                    float h = glyphInfo.rightBottom.y - glyphInfo.rightTop.y;
+                    float w = (glyphInfo.rightBottom.x - glyphInfo.leftBottom.x) * textureWidth;
+                    float h = (glyphInfo.rightBottom.y - glyphInfo.rightTop.y) * textureHeight;
                     wByH = height * w / h;
                 }
                 else
@@ -112,18 +128,31 @@ namespace CSharpGL
                     wByH = height * 1.0f / 1.0f;
                 }
 
-                var leftTop = new vec2(totalWidth, 0.5f);
-                var leftBottom = new vec2(totalWidth, -0.5f);
-                var rightBottom = new vec2(totalWidth + wByH, -0.5f);
-                var rightTop = new vec2(totalWidth + wByH, 0.5f);
-                positionArray[index] = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
-                uvArray[index] = new QuadStruct(glyphInfo.leftTop, glyphInfo.leftBottom, glyphInfo.rightBottom, glyphInfo.rightTop);
-                textureIndexArray[index] = glyphInfo.textureIndex;
+                var leftTop = new vec2(totalWidth, 1f);
+                var leftBottom = new vec2(totalWidth, -1f);
+                var rightBottom = new vec2(totalWidth + wByH, -1f);
+                var rightTop = new vec2(totalWidth + wByH, 1f);
+                positionArray[index++] = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
                 totalWidth += wByH;
-                index++;
             }
 
-            indexBuffer.RenderingVertexCount = index * 4;
+            // move to center.
+            const float scale = 1f;
+            for (int i = 0; i < text.Length; i++)
+            {
+                QuadStruct quad = positionArray[i];
+                var newPos = new QuadStruct(
+                    // y is already in [-1, 1], so just shrink x to [-1, 1]
+                    new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
+                    new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,
+                    new vec2(quad.rightBottom.x / totalWidth * 2.0f - 1f, quad.rightBottom.y) * scale,
+                    new vec2(quad.rightTop.x / totalWidth * 2.0f - 1f, quad.rightTop.y) * scale
+                    );
+
+                positionArray[i] = newPos;
+            }
+
+            buffer.UnmapBuffer();
         }
 
         /// <summary>
@@ -149,15 +178,19 @@ namespace CSharpGL
 
             var model = new CtrlLabelModel(capacity);
             this.labelModel = model;
-            var vs = new VertexShader(vert, inPosition, inUV, inTextureIndex);
+            var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, CtrlLabelModel.position);
             map.Add(inUV, CtrlLabelModel.uv);
             map.Add(inTextureIndex, CtrlLabelModel.textureIndex);
-            var methodBuilder = new RenderMethodBuilder(codes, map);
+            var blend = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+            var methodBuilder = new RenderMethodBuilder(codes, map, blend);
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
+
+            this.RenderBackground = true;
+            this.BackgroundColor = new vec4(1, 0, 0, 1);
 
             this.Initialize();
         }
@@ -178,6 +211,11 @@ namespace CSharpGL
             this.uvBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.uv);
             this.textureIndexBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.textureIndex);
             this.indexBuffer = this.labelModel.GetIndexBuffer() as ZeroIndexBuffer;
+
+            GlyphServer server = GlyphServer.defaultServer;
+            Texture texture = server.GlyphTexture;
+            string name = glyphTexture;
+            this.RenderUnit.Methods[0].Program.SetUniform(name, texture);
         }
 
         /// <summary>
@@ -186,18 +224,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
         {
-            this.UpdateScissorViewport();
+            base.RenderGUIBeforeChildren(arg);
 
-            viewportState.On();
-            scissorState.On();
-
-            GL.Instance.ClearColor(1, 0, 0, 0.5f);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
-
-            this.RenderUnit.Methods[0].Render(IndexBuffer.ControlMode.Random);
-
-            viewportState.Off();
-            scissorState.Off();
+            ModernRenderUnit unit = this.RenderUnit;
+            RenderMethod method = unit.Methods[0];
+            method.Render(IndexBuffer.ControlMode.Random);
         }
 
         /// <summary>

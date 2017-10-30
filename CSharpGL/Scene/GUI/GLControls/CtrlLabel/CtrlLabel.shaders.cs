@@ -13,6 +13,7 @@ namespace CSharpGL
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
         private const string inTextureIndex = "inTextureIndex";
+        private const string glyphTexture = "glyphTexture";
 
         private const string vert =
             @"#version 330 core
@@ -36,12 +37,13 @@ void main(void) {
 in vec2 passUV;
 in float passTextureIndex;
 
-uniform sampler2DArray glyphTexture;
+uniform sampler2DArray " + glyphTexture + @";
 
 out vec4 out_Color;
 
 void main(void) {
     out_Color = texture(glyphTexture, vec3(passUV, floor(passTextureIndex)));
+    //out_Color = vec4(passUV, passTextureIndex, 1.0f);
 }
 ";
     }
