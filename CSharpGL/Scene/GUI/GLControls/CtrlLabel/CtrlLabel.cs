@@ -85,7 +85,7 @@ namespace CSharpGL
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
-                    uvArray[index] = new QuadStruct(glyphInfo.leftTop, glyphInfo.leftBottom, glyphInfo.rightBottom, glyphInfo.rightTop);
+                    uvArray[index] = glyphInfo.quad;
                 }
 
                 index++;
@@ -118,8 +118,8 @@ namespace CSharpGL
                 float wByH = 0;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
-                    float w = (glyphInfo.rightBottom.x - glyphInfo.leftBottom.x) * textureWidth;
-                    float h = (glyphInfo.rightBottom.y - glyphInfo.rightTop.y) * textureHeight;
+                    float w = (glyphInfo.quad.rightBottom.x - glyphInfo.quad.leftBottom.x) * textureWidth;
+                    float h = (glyphInfo.quad.rightBottom.y - glyphInfo.quad.rightTop.y) * textureHeight;
                     wByH = height * w / h;
                 }
                 else

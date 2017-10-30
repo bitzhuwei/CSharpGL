@@ -7,10 +7,17 @@ using System.Text;
 
 namespace CSharpGL
 {
+    //
+    // 0---------3
+    // |         |
+    // |         |
+    // |         |
+    // 1---------2
+    //
     /// <summary>
     /// A quad renders in GL_QUADS mode.
     /// </summary>
-    struct QuadStruct
+    public struct QuadStruct
     {
         /// <summary>
         /// 

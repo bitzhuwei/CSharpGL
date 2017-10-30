@@ -18,24 +18,28 @@ namespace CSharpGL
         /// </summary>
         public readonly string characters;
         /// <summary>
-        /// 此字符的字形在纹理的横向偏移量（左上角uv）
+        /// 此字符的字形在纹理的偏移量（uv）
         /// </summary>
-        public readonly vec2 leftTop;
+        public readonly QuadStruct quad;
+        ///// <summary>
+        ///// 此字符的字形在纹理的横向偏移量（左上角uv）
+        ///// </summary>
+        //public readonly vec2 leftTop;
 
-        /// <summary>
-        /// 此字符的字形在纹理的纵向偏移量（左下角uv）
-        /// </summary>
-        public readonly vec2 leftBottom;
+        ///// <summary>
+        ///// 此字符的字形在纹理的纵向偏移量（左下角uv）
+        ///// </summary>
+        //public readonly vec2 leftBottom;
 
-        /// <summary>
-        /// 此字符的字形在纹理的纵向偏移量（右下角uv）
-        /// </summary>
-        public readonly vec2 rightBottom;
+        ///// <summary>
+        ///// 此字符的字形在纹理的纵向偏移量（右下角uv）
+        ///// </summary>
+        //public readonly vec2 rightBottom;
 
-        /// <summary>
-        /// 此字符的字形在纹理的纵向偏移量（右上角uv）
-        /// </summary>
-        public readonly vec2 rightTop;
+        ///// <summary>
+        ///// 此字符的字形在纹理的纵向偏移量（右上角uv）
+        ///// </summary>
+        //public readonly vec2 rightTop;
 
         ///// <summary>
         ///// 高宽比。
@@ -57,10 +61,9 @@ namespace CSharpGL
         public GlyphInfo(string characters, vec2 leftTop, vec2 rightBottom, int textureIndex)
         {
             this.characters = characters;
-            this.leftTop = leftTop;
-            this.leftBottom = new vec2(leftTop.x, rightBottom.y);
-            this.rightBottom = rightBottom;
-            this.rightTop = new vec2(rightBottom.x, leftTop.y);
+            var leftBottom = new vec2(leftTop.x, rightBottom.y);
+            var rightTop = new vec2(rightBottom.x, leftTop.y);
+            this.quad = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
             this.textureIndex = textureIndex;
         }
 
@@ -69,7 +72,7 @@ namespace CSharpGL
         /// </summary>
         public override string ToString()
         {
-            return string.Format("left top: {0}, right bottom: {1}", leftTop, rightBottom);
+            return string.Format("[{0}], quad:[{1}], texture index:[{2}]", this.characters, this.quad, this.textureIndex);
         }
 
         /// <summary>
