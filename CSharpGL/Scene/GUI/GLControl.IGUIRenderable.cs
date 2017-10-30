@@ -9,21 +9,32 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class GLControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ViewportState viewportState = new ViewportState();
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ScissorTestState scissorState = new ScissorTestState();
 
         /// <summary>
         /// 
         /// </summary>
-        public void Scissor()
+        public void UpdateScissorViewport()
         {
-            GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
-        }
+            //GL.Instance.Enable(GL.GL_SCISSOR_TEST);
+            //GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
+            this.scissorState.X = this.absLeft;
+            this.scissorState.Y = this.absBottom;
+            this.scissorState.Width = this.width;
+            this.scissorState.Height = this.Height;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Viewport()
-        {
-            GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
+            //GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
+            this.viewportState.X = this.absLeft;
+            this.viewportState.Y = this.absBottom;
+            this.viewportState.Width = this.width;
+            this.viewportState.Height = this.Height;
         }
 
 

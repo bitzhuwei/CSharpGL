@@ -23,9 +23,9 @@ namespace CSharpGL
         /// </summary>
         public override void Act()
         {
-            int[] value = null;
-            value = new int[4];
-            GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
+            //int[] value = null;
+            //value = new int[4];
+            //GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
             vec4 clearColor = this.Scene.ClearColor;
             GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -33,7 +33,7 @@ namespace CSharpGL
             var arg = new RenderEventArgs(this.Scene, this.Scene.Camera);
             RenderAction.Render(this.Scene.RootElement, arg);
 
-            GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
+            //GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
         }
 
         /// <summary>
