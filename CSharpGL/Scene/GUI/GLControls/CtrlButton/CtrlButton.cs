@@ -16,7 +16,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         public CtrlButton()
-            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top, new GUIPadding(3, 3, 3, 3))
+            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)
         {
             var model = new CtrlButtonModel();
             var vs = new VertexShader(vert, inPosition, inColor);
@@ -67,9 +67,18 @@ namespace CSharpGL
         {
             this.RenderUnit.Initialize();
 
-            var label = new CtrlLabel(100, GUIAnchorStyles.Left | GUIAnchorStyles.Right, new GUIPadding(0, 0, 0, 0));
+            var label = new CtrlLabel(100, GUIAnchorStyles.None);
             label.Text = "Button";
+            // move label to center.
+            {
+                int diffX = this.Width - label.Width;
+                int diffY = this.Height - label.Height;
+                label.Location = new GUIPoint(diffX / 2, diffY / 2);
+            }
+            //label.RenderBackground = true;
+            label.BackgroundColor = new vec4(1, 0, 0, 1);
             label.Initialize();
+
             this.label = label;
             this.Children.Add(label);
         }

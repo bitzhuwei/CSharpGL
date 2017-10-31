@@ -14,11 +14,11 @@ namespace CSharpGL
         [Category(strGLControl)]
         public GUIAnchorStyles Anchor { get; set; }
 
-        /// <summary>
-        /// 获取或设置控件之间的空间。
-        /// </summary>
-        [Category(strGLControl)]
-        public GUIPadding Margin { get; set; }
+        ///// <summary>
+        ///// 获取或设置控件之间的空间。
+        ///// </summary>
+        //[Category(strGLControl)]
+        //public GUIPadding Margin { get; set; }
 
         /// <summary>
         /// 相对于Parent左下角的位置(Left Down location)
@@ -132,13 +132,13 @@ namespace CSharpGL
             GLControl parent = this.Parent;
             if (parent != null)
             {
-                this.absLeft = parent.Margin.Left + this.Margin.Left;
-                this.absBottom = parent.Margin.Bottom + this.Margin.Bottom;
+                this.absLeft = parent.absLeft + this.Location.X;
+                this.absBottom = parent.absBottom + this.Location.Y;
             }
             else
             {
-                this.absLeft = this.Margin.Left;
-                this.absBottom = this.Margin.Bottom;
+                this.absLeft = this.Location.X;
+                this.absBottom = this.Location.Y;
             }
         }
 
@@ -204,8 +204,7 @@ namespace CSharpGL
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                width = parent.Width - currentNode.Margin.Left - currentNode.Margin.Right;
-                //width = currentNode.Size.Width + (parent.Size.Width - currentNode.ParentLastSize.Width);
+                width = parent.width - currentNode.parentLastSize.Width + currentNode.width;
                 if (width < 0) { width = 0; }
             }
             else
@@ -215,8 +214,7 @@ namespace CSharpGL
 
             if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                height = parent.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
-                //height = currentNode.Size.Height + (parent.Size.Height - currentNode.ParentLastSize.Height);
+                height = parent.height - currentNode.parentLastSize.Height + currentNode.height;
                 if (height < 0) { height = 0; }
             }
             else
@@ -226,76 +224,45 @@ namespace CSharpGL
 
             if ((currentNode.Anchor & leftRightAnchor) == GUIAnchorStyles.None)
             {
-                if (currentNode.Margin.Left == 0)
-                {
-                    x = 0;
-                }
-                else
-                {
-                    if (currentNode.Margin.Right == 0)
-                    {
-                        x = parent.width - width;
-                    }
-                    else
-                    {
-                        x = (int)(
-                            (parent.Width - width)
-                            * ((double)currentNode.Margin.Left / (double)(currentNode.Margin.Left + currentNode.Margin.Right)));
-                    }
-                }
+                int diff = parent.width - currentNode.parentLastSize.Width;
+                x = currentNode.Location.X + diff / 2;
             }
             else if ((currentNode.Anchor & leftRightAnchor) == GUIAnchorStyles.Left)
             {
-                x = parent.Location.X + currentNode.Margin.Left;
+                x = currentNode.Location.X;
             }
             else if ((currentNode.Anchor & leftRightAnchor) == GUIAnchorStyles.Right)
             {
-                x = parent.Location.X + parent.Size.Width - currentNode.Margin.Right - width;
+                int diff = parent.width - currentNode.parentLastSize.Width;
+                x = currentNode.Location.X + diff;
             }
             else if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                x = parent.Location.X + currentNode.Margin.Left;
+                x = currentNode.Location.X;
             }
             else
-            { throw new Exception("uiRenderer should not happen!"); }
+            { throw new Exception(string.Format("Not expected Anchor:[{0}]!", currentNode.Anchor)); }
 
             if ((currentNode.Anchor & topBottomAnchor) == GUIAnchorStyles.None)
             {
-                if (currentNode.Margin.Bottom == 0)
-                {
-                    y = 0;
-                }
-                else
-                {
-                    if (currentNode.Margin.Top == 0)
-                    {
-                        y = parent.Height - height;
-                    }
-                    else
-                    {
-                        y = (int)(
-                            (parent.Height - height)
-                            * ((double)currentNode.Margin.Bottom / (double)(currentNode.Margin.Bottom + currentNode.Margin.Top)));
-                    }
-                }
+                int diff = parent.height - currentNode.parentLastSize.Height;
+                y = currentNode.Location.Y + diff / 2;
             }
             else if ((currentNode.Anchor & topBottomAnchor) == GUIAnchorStyles.Bottom)
             {
-                //y = currentNode.Margin.Bottom;
-                y = parent.Location.Y + currentNode.Margin.Bottom;
+                y = currentNode.Location.Y;
             }
             else if ((currentNode.Anchor & topBottomAnchor) == GUIAnchorStyles.Top)
             {
-                //y = parent.Size.Height - height - currentNode.Margin.Top;
-                y = parent.Location.Y + parent.Size.Height - currentNode.Margin.Top - height;
+                int diff = parent.height - currentNode.parentLastSize.Height;
+                y = currentNode.Location.Y + diff;
             }
             else if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                //y = currentNode.Margin.Top + parent.Location.Y;
-                y = parent.Location.Y + currentNode.Margin.Bottom;
+                y = currentNode.Location.Y;
             }
             else
-            { throw new Exception("This should not happen!"); }
+            { throw new Exception(string.Format("Not expected Anchor:[{0}]!", currentNode.Anchor)); }
 
             currentNode.Location = new GUIPoint(x, y);
             currentNode.Size = new GUISize(width, height);

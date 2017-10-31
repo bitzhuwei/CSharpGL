@@ -84,22 +84,22 @@ namespace Texture2D
 
             var bitmap = new Bitmap(@"particle.png");
             {
-                var control = new CtrlImage(bitmap, false);
-                control.Margin = new GUIPadding(10, 10, 10, 10);
+                var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 10);
                 control.Width = 100; control.Height = 50;
                 bitmap.Dispose();
                 root.Children.Add(control);
             }
             {
                 var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-                control.Margin = new GUIPadding(10, 10, 10, 70);
+                control.Location = new GUIPoint(10, 70);
                 control.Width = 100; control.Height = 50;
                 root.Children.Add(control);
                 control.Focused = true;
             }
             {
                 var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-                control.Margin = new GUIPadding(10, 10, 10, 130);
+                control.Location = new GUIPoint(10, 130);
                 control.Width = 100; control.Height = 30;
                 control.Text = "Hello CSharpGL!";
                 control.RenderBackground = true;

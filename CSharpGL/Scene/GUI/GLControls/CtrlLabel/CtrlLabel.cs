@@ -160,7 +160,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="capacity"></param>
         public CtrlLabel(int capacity)
-            : this(capacity, GUIAnchorStyles.Left | GUIAnchorStyles.Top, new GUIPadding(3, 3, 3, 3))
+            : this(capacity, GUIAnchorStyles.Left | GUIAnchorStyles.Top)
         { }
 
         /// <summary>
@@ -168,9 +168,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="anchor"></param>
-        /// <param name="margin"></param>
-        public CtrlLabel(int capacity, GUIAnchorStyles anchor, GUIPadding margin)
-            : base(anchor, margin)
+        public CtrlLabel(int capacity, GUIAnchorStyles anchor)
+            : base(anchor)
         {
             if (capacity < 0) { throw new ArgumentException("capacity"); }
 

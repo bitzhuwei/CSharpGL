@@ -72,14 +72,12 @@ namespace CSharpGL
         /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
         /// <param name="anchor"></param>
-        /// <param name="margin"></param>
-        public GLControl(GUIAnchorStyles anchor, GUIPadding margin)
+        public GLControl(GUIAnchorStyles anchor)
         {
             this.Id = idCounter++;
             this.Children = new GLControlChildren(this);
 
             this.Anchor = anchor;
-            this.Margin = margin;
         }
     }
 }

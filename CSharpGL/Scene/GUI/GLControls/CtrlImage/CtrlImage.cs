@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <param name="bitmap">bitmap to be displayed.</param>
         /// <param name="autoDispose">auto dispose <paramref name="bitmap"/> after this object's initialization.</param>
         public CtrlImage(Bitmap bitmap, bool autoDispose = false)
-            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top, new GUIPadding(3, 3, 3, 3))
+            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)
         {
             var model = new CtrlImageModel();
             var vs = new VertexShader(vert, inPosition, inUV);
