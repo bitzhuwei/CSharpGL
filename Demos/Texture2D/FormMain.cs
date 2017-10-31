@@ -102,6 +102,9 @@ namespace Texture2D
                 control.Margin = new GUIPadding(10, 10, 10, 130);
                 control.Width = 100; control.Height = 30;
                 control.Text = "Hello CSharpGL!";
+                control.RenderBackground = true;
+                control.BackgroundColor = new vec4(1, 0, 0, 1);
+
                 root.Children.Add(control);
             }
 

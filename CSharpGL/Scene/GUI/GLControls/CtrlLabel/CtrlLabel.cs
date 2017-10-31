@@ -189,9 +189,6 @@ namespace CSharpGL
             var methodBuilder = new RenderMethodBuilder(codes, map, blend);
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 
-            this.RenderBackground = true;
-            this.BackgroundColor = new vec4(1, 0, 0, 1);
-
             this.Initialize();
         }
 
@@ -216,6 +213,28 @@ namespace CSharpGL
             Texture texture = server.GlyphTexture;
             string name = glyphTexture;
             this.RenderUnit.Methods[0].Program.SetUniform(name, texture);
+        }
+
+        private vec3 color = new vec3(0, 0, 0);
+        public vec3 Color
+        {
+            get { return color; }
+            set
+            {
+                if (color != value)
+                {
+                    ModernRenderUnit unit = this.RenderUnit;
+                    if (unit == null) { return; }
+                    RenderMethod method = unit.Methods[0];
+                    if (method == null) { return; }
+                    ShaderProgram program = method.Program;
+                    if (program == null) { return; }
+
+                    program.SetUniform("textColor", value);
+
+                    color = value;
+                }
+            }
         }
 
         /// <summary>
