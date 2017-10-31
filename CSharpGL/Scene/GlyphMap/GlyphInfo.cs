@@ -4,60 +4,36 @@ using System.Drawing;
 namespace CSharpGL
 {
     /// <summary>
-    /// 绘制一个字符所需要的所有信息
+    /// Information of rendering a glyph.
+    /// 绘制一个字符（串）所需要的信息。
     /// </summary>
     public class GlyphInfo : ICloneable
     {
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public static readonly GlyphInfo Default = new GlyphInfo('\0', 0, 0, 0, 0, null);
-
         /// <summary>
+        /// The glyph(a character or a string).
         /// 此字符（串）。
         /// </summary>
         public readonly string characters;
         /// <summary>
-        /// 此字符的字形在纹理的偏移量（uv）
+        /// UV information.
+        /// 此字形在纹理的偏移量（uv）
         /// </summary>
         public readonly QuadStruct quad;
-        ///// <summary>
-        ///// 此字符的字形在纹理的横向偏移量（左上角uv）
-        ///// </summary>
-        //public readonly vec2 leftTop;
-
-        ///// <summary>
-        ///// 此字符的字形在纹理的纵向偏移量（左下角uv）
-        ///// </summary>
-        //public readonly vec2 leftBottom;
-
-        ///// <summary>
-        ///// 此字符的字形在纹理的纵向偏移量（右下角uv）
-        ///// </summary>
-        //public readonly vec2 rightBottom;
-
-        ///// <summary>
-        ///// 此字符的字形在纹理的纵向偏移量（右上角uv）
-        ///// </summary>
-        //public readonly vec2 rightTop;
-
-        ///// <summary>
-        ///// 高宽比。
-        ///// </summary>
-        //public float WidthByHeight { get { return (rightBottom.x - leftTop.x) / (rightBottom.y - leftTop.y); } }
 
         /// <summary>
-        /// 此字符的字形所在的纹理，在的数组中的索引。
+        /// Index of the the texture which this glyph belongs to in the 2D texture array.
+        /// 此字符所在的纹理，在二维纹理数组中的索引。
         /// </summary>
         public readonly int textureIndex;
 
         /// <summary>
-        /// 绘制一个字符所需要的所有信息
+        /// Information of rendering a glyph.
+        /// 绘制一个字符（串）所需要的信息。
         /// </summary>
-        /// <param name="characters">此字符（串）。</param>
-        /// <param name="leftTop">此字符的字形在纹理的横向偏移量（左上角uv）</param>
-        /// <param name="rightBottom">此字符的字形在纹理的纵向偏移量（右下角uv）</param>
-        /// <param name="textureIndex">此字符的字形所在的纹理，在的数组中的索引</param>
+        /// <param name="characters">The glyph(a character or a string).此字符（串）。</param>
+        /// <param name="leftTop">UV of left top.此字符的字形在纹理的横向偏移量（左上角uv）</param>
+        /// <param name="rightBottom">UV of right bottom.此字符的字形在纹理的纵向偏移量（右下角uv）</param>
+        /// <param name="textureIndex">Index of the the texture which this glyph belongs to in the 2D texture array.此字符所在的纹理，在二维纹理数组中的索引。</param>
         public GlyphInfo(string characters, vec2 leftTop, vec2 rightBottom, int textureIndex)
         {
             this.characters = characters;
@@ -72,7 +48,7 @@ namespace CSharpGL
         /// </summary>
         public override string ToString()
         {
-            return string.Format("[{0}], quad:[{1}], texture index:[{2}]", this.characters, this.quad, this.textureIndex);
+            return string.Format("glyph:[{0}], quad:[{1}], texture index:[{2}]", this.characters, this.quad, this.textureIndex);
         }
 
         /// <summary>
@@ -81,6 +57,7 @@ namespace CSharpGL
         /// <returns></returns>
         public object Clone()
         {
+            // all members are primitive type or structs, so let's simply memberwise clone.
             return this.MemberwiseClone();
         }
     }

@@ -46,24 +46,12 @@ namespace CSharpGL
         [Description("Children Nodes. Inherits this node's IWorldSpace properties.")]
         public GLControlChildren Children { get; private set; }
 
-        ///// <summary>
-        ///// Left distance to parent control.
-        ///// </summary>
-        //[Category(strGLControl)]
-        //public int Left { get; set; }
-
-        ///// <summary>
-        ///// Bottom distance to parent control.
-        ///// </summary>
-        //[Category(strGLControl)]
-        //public int Bottom { get; set; }
-
         private int width;
-
         /// <summary>
         /// Width of this control.
         /// </summary>
         [Category(strGLControl)]
+        [Description("Width of this control.")]
         public int Width
         {
             get { return width; }
@@ -75,6 +63,7 @@ namespace CSharpGL
         /// Height of this control.
         /// </summary>
         [Category(strGLControl)]
+        [Description("Height of this control.")]
         public int Height
         {
             get { return height; }
