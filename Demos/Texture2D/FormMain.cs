@@ -88,15 +88,16 @@ namespace Texture2D
                 control.Location = new GUIPoint(10, 10);
                 control.Width = 100; control.Height = 50;
                 bitmap.Dispose();
+                control.MouseUp += control_MouseUp;
                 root.Children.Add(control);
             }
             {
                 var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
                 control.Location = new GUIPoint(10, 70);
                 control.Width = 100; control.Height = 50;
-                root.Children.Add(control);
                 control.Focused = true;
                 control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
             }
             {
                 var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
@@ -105,6 +106,7 @@ namespace Texture2D
                 control.Text = "Hello CSharpGL!";
                 control.RenderBackground = true;
                 control.BackgroundColor = new vec4(1, 0, 0, 1);
+                control.MouseUp += control_MouseUp;
 
                 root.Children.Add(control);
             }
@@ -114,7 +116,7 @@ namespace Texture2D
 
         void control_MouseUp(object sender, GUIMouseEventArgs e)
         {
-            MessageBox.Show("This is a message from a GLButton!");
+            MessageBox.Show(string.Format("This is a message from {0}!", sender));
         }
 
         private SceneNodeBase GetRootElement()
