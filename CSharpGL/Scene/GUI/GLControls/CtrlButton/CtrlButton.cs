@@ -10,6 +10,7 @@ namespace CSharpGL
     /// </summary>
     public partial class CtrlButton : GLControl
     {
+        private CtrlLabel label;
 
         /// <summary>
         /// 
@@ -65,6 +66,12 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             this.RenderUnit.Initialize();
+
+            var label = new CtrlLabel(100, GUIAnchorStyles.Left | GUIAnchorStyles.Right, new GUIPadding(0, 0, 0, 0));
+            label.Text = "Button";
+            label.Initialize();
+            this.label = label;
+            this.Children.Add(label);
         }
 
         /// <summary>
@@ -81,14 +88,6 @@ namespace CSharpGL
             IndexBuffer indexBuffer = vao.IndexBuffer;
             indexBuffer.CurrentFrame = this.PressDown ? 1 : 0;
             method.Render(IndexBuffer.ControlMode.ByFrame);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="arg"></param>
-        public override void RenderGUIAfterChildren(GUIRenderEventArgs arg)
-        {
         }
     }
 }
