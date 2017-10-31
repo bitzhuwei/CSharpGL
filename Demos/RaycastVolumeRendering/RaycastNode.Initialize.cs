@@ -111,7 +111,7 @@ namespace RaycastVolumeRendering
 
         private Texture initVol3DTex(byte[] data, int width, int height, int depth)
         {
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, 0, GL.GL_INTENSITY, width, height, depth, 0, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, 1, GL.GL_INTENSITY, 0, width, height, depth, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(
                 TextureTarget.Texture3D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),

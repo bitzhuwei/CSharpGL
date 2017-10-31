@@ -218,7 +218,7 @@ namespace CSharpGL
                     break;
                 case TextureAttachment.DepthAttachment:
                     result = new Texture(TextureTarget.Texture2D,
-                    new TexImage2D(TexImage2D.Target.Texture2D, 0, (int)GL.GL_DEPTH_COMPONENT32, this.Width, this.Height, 0, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT));
+                    new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_DEPTH_COMPONENT32, 1, 0, this.Width, this.Height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT));
                     // 设置默认滤波模式
                     result.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR));
                     result.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
