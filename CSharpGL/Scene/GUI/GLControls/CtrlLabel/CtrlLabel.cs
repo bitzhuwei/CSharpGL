@@ -216,6 +216,9 @@ namespace CSharpGL
         }
 
         private vec3 color = new vec3(0, 0, 0);
+        /// <summary>
+        /// Text color.
+        /// </summary>
         public vec3 Color
         {
             get { return color; }
