@@ -16,13 +16,9 @@ namespace CSharpGL
             glTexImage3D = GL.Instance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr;
         }
 
-        private Target target;
-        private int level;
-        private uint internalFormat;
         private int width;
         private int height;
         private int depth;
-        private int border;
         private uint format;
         private uint type;
         private TexImageDataProvider<LeveledData> dataProvider;
@@ -31,21 +27,19 @@ namespace CSharpGL
         /// Set up texture's content with 'glTexImage3D()'.
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
+        /// <param name="mipmapLevelCount"></param>
+        /// <param name="internalFormat"></param>
+        /// <param name="border"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="depth"></param>
-        /// <param name="border"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage3D(Target target, int level, uint internalformat, int width, int height, int depth, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage3D(Target target, int mipmapLevelCount, uint internalFormat, int border, int width, int height, int depth, uint format, uint type, LeveledDataProvider dataProvider = null)
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
         {
-            this.target = target;
-            this.level = level; this.internalFormat = internalformat;
             this.width = width; this.height = height; this.depth = depth;
-            this.border = border;
             this.format = format;
             this.type = type;
             if (dataProvider == null)

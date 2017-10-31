@@ -10,7 +10,6 @@ namespace CSharpGL
     /// </summary>
     class TexBufferStorage : TexStorageBase, IDisposable
     {
-        private uint internalformat;
         private GLBuffer buffer;
         private bool autoDispose;
 
@@ -23,19 +22,19 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="internalformat"></param>
+        /// <param name="internalFormat"></param>
         /// <param name="buffer"></param>
         /// <param name="autoDispose">Dispose <paramref name="buffer"/> when this <see cref="TexBufferStorage"/> object is disposed?</param>
-        public TexBufferStorage(uint internalformat, GLBuffer buffer, bool autoDispose)
+        public TexBufferStorage(uint internalFormat, GLBuffer buffer, bool autoDispose)
+            : base(TextureTarget.TextureBuffer, internalFormat)
         {
-            this.internalformat = internalformat;
             this.buffer = buffer;
             this.autoDispose = autoDispose;
         }
 
         public override void Apply()
         {
-            glTexBuffer(GL.GL_TEXTURE_BUFFER, internalformat, buffer.BufferId);
+            glTexBuffer(GL.GL_TEXTURE_BUFFER, internalFormat, buffer.BufferId);
         }
 
         /// <summary>

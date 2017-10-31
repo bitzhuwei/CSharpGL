@@ -82,7 +82,7 @@ namespace ComputeShader.EdgeDetection
 
         private void InitFinalTexture()
         {
-            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 8, GL.GL_RGBA32F, width, height);
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, width, height);
             var texture = new Texture(TextureTarget.Texture2D, storage);
             texture.Initialize();
 
@@ -91,7 +91,7 @@ namespace ComputeShader.EdgeDetection
 
         private void InitIntermediateTexture()
         {
-            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, 8, GL.GL_RGBA32F, width, height);
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, width, height);
             var texture = new Texture(TextureTarget.Texture2D, storage);
             texture.Initialize();
 

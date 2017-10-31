@@ -10,8 +10,6 @@ namespace CSharpGL
     /// </summary>
     public class TexStorage1D : TexStorageBase
     {
-        private int levels;
-        private uint internalFormat;
         private int width;
 
         internal static readonly GLDelegates.void_uint_int_uint_int glTexStorage1D;
@@ -23,13 +21,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="levels"></param>
         /// <param name="internalFormat"></param>
+        /// <param name="mipmapLevelCount"></param>
         /// <param name="width"></param>
-        public TexStorage1D(int levels, uint internalFormat, int width)
+        public TexStorage1D(uint internalFormat, int mipmapLevelCount, int width)
+            : base(TextureTarget.Texture1D, internalFormat, mipmapLevelCount)
         {
-            this.levels = levels;
-            this.internalFormat = internalFormat;
             this.width = width;
         }
 
@@ -38,7 +35,7 @@ namespace CSharpGL
         /// </summary>
         public override void Apply()
         {
-            glTexStorage1D(GL.GL_TEXTURE_1D, levels, internalFormat, width);
+            glTexStorage1D(GL.GL_TEXTURE_1D, this.mipmapLevelCount, this.internalFormat, this.width);
         }
     }
 }

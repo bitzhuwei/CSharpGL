@@ -10,12 +10,8 @@ namespace CSharpGL
     /// </summary>
     public class TexImage2D : TexStorageBase
     {
-        private Target target;
-        private int level;
-        private uint internalFormat;
         private int width;
         private int height;
-        private int border;
         private uint format;
         private uint type;
         private TexImageDataProvider<LeveledData> dataProvider;
@@ -24,20 +20,18 @@ namespace CSharpGL
         /// Set up texture's content with 'glTexImage2D()'.
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
+        /// <param name="internalFormat"></param>
+        /// <param name="mipmapLevelCount"></param>
+        /// <param name="border"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="border"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage2D(Target target, int level, uint internalformat, int width, int height, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage2D(Target target, uint internalFormat, int mipmapLevelCount, int border, int width, int height, uint format, uint type, LeveledDataProvider dataProvider = null)
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
         {
-            this.target = target;
-            this.level = level; this.internalFormat = internalformat;
             this.width = width; this.height = height;
-            this.border = border;
             this.format = format;
             this.type = type;
             if (dataProvider == null)

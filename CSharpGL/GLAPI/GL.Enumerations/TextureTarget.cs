@@ -23,12 +23,22 @@
         /// <summary>
         /// 
         /// </summary>
+        Texture2DMultisample = GL.GL_TEXTURE_2D_MULTISAMPLE,
+
+        /// <summary>
+        /// 
+        /// </summary>
         Texture2DArray = GL.GL_TEXTURE_2D_ARRAY,
 
         /// <summary>
         ///
         /// </summary>
         Texture3D = GL.GL_TEXTURE_3D,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Texture2DMultisampleArray = GL.GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
 
         /// <summary>
         ///

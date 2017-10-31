@@ -10,9 +10,6 @@ namespace CSharpGL
     /// </summary>
     public class TexStorage2D : TexStorageBase
     {
-        private Target target;
-        private int levels;
-        private uint internalFormat;
         private int width;
         private int height;
 
@@ -26,15 +23,13 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="levels"></param>
         /// <param name="internalFormat"></param>
+        /// <param name="mipmapLevelCount"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public TexStorage2D(Target target, int levels, uint internalFormat, int width, int height)
+        public TexStorage2D(Target target, uint internalFormat, int mipmapLevelCount, int width, int height)
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount)
         {
-            this.target = target;
-            this.levels = levels;
-            this.internalFormat = internalFormat;
             this.width = width;
             this.height = height;
         }
@@ -44,7 +39,7 @@ namespace CSharpGL
         /// </summary>
         public override void Apply()
         {
-            glTexStorage2D((uint)target, levels, internalFormat, width, height);
+            glTexStorage2D((uint)target, mipmapLevelCount, internalFormat, width, height);
         }
 
         /// <summary>

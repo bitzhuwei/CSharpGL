@@ -14,7 +14,7 @@ namespace SimpleNoise.Sun
             this.RotateSpeed = 0.2f;
 
             var bitmap = new Bitmap(@"sunColor.png");
-            var storage = new TexImage1D(0, GL.GL_RGBA, bitmap.Width, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
+            var storage = new TexImage1D(GL.GL_RGBA, 1, 0, bitmap.Width, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
             var texture = new Texture(TextureTarget.Texture1D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),

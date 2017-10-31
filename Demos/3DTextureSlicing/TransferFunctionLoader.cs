@@ -66,7 +66,7 @@ namespace _3DTextureSlicing
                 }
             }
 
-            var storage = new TexImage1D(0, GL.GL_RGBA, 256, 0, GL.GL_RGBA, GL.GL_FLOAT, new ArrayDataProvider<vec4>(pData));
+            var storage = new TexImage1D(GL.GL_RGBA, 1, 0, 256, GL.GL_RGBA, GL.GL_FLOAT, new ArrayDataProvider<vec4>(pData));
             var texture = new Texture(TextureTarget.Texture1D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),

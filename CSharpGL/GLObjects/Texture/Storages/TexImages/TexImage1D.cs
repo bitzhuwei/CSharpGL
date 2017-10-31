@@ -10,10 +10,7 @@ namespace CSharpGL
     /// </summary>
     public class TexImage1D : TexStorageBase
     {
-        private int level;
-        private uint internalFormat;
         private int width;
-        private int border;
         private uint format;
         private uint type;
         private TexImageDataProvider<LeveledData> dataProvider;
@@ -21,18 +18,17 @@ namespace CSharpGL
         /// <summary>
         /// Set up texture's content with 'glTexImage1D()'.
         /// </summary>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
+        /// <param name="internalFormat"></param>
+        /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
+        /// <param name="width"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage1D(int level, uint internalformat, int width, int border, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage1D(uint internalFormat, int mipmapLevelCount, int border, int width, uint format, uint type, LeveledDataProvider dataProvider = null)
+            : base(TextureTarget.Texture1D, internalFormat, mipmapLevelCount, border)
         {
-            this.level = level; this.internalFormat = internalformat;
             this.width = width;
-            this.border = border;
             this.format = format;
             this.type = type;
             if (dataProvider == null)

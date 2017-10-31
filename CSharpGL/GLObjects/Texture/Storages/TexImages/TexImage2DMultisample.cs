@@ -11,7 +11,6 @@ namespace CSharpGL
     public class TexImage2DMultisample : TexStorageBase
     {
         private uint samples;
-        private uint internalFormat;
         private uint width;
         private uint height;
         private bool fixedSampleLocations;
@@ -31,9 +30,9 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="fixedSampleLocations"></param>
         public TexImage2DMultisample(uint samples, uint internalFormat, uint width, uint height, bool fixedSampleLocations)
+            : base(TextureTarget.Texture2DMultisample, internalFormat)
         {
             this.samples = samples;
-            this.internalFormat = internalFormat;
             this.width = width;
             this.height = height;
             this.fixedSampleLocations = fixedSampleLocations;

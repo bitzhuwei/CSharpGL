@@ -8,9 +8,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Texture_2D_Array.
+    /// setup 2D texture array's content with multiple Bitmap objects.
     /// </summary>
-    public class TexImageBitmaps : TexImageBase
+    public class TexImageBitmaps : TexStorageBase
     {
         /// <summary>
         /// 
@@ -28,13 +28,11 @@ namespace CSharpGL
         /// /
         /// </summary>
         public readonly int layerCount;
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly int mipmapLevelCount;
 
         internal static readonly GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr glTexImage3D;
-        //void glTexStorage3D( GLenum target​, GLint levels​, GLint internalformat​, GLsizei width​, GLsizei height​, GLsizei depth​ );
+        /// <summary>
+        /// void glTexStorage3D( GLenum target​, GLint levels​, GLint internalformat​, GLsizei width​, GLsizei height​, GLsizei depth​ );
+        /// </summary>
         internal static readonly GLDelegates.void_uint_int_uint_int_int_int glTexStorage3D;
         /// <summary>
         /// void glTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const GLvoid* pixels)
@@ -48,14 +46,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Texture_2D_Array.
+        /// setup 2D texture array's content with multiple Bitmap objects.
         /// </summary>
         /// <param name="layers"></param>
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
         public TexImageBitmaps(Bitmap[] layers, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, int border = 0)
-            : base(TextureTarget.Texture2DArray, internalFormat, border)
+            : base(TextureTarget.Texture2DArray, internalFormat, mipmapLevelCount, border)
         {
             if (layers == null || layers.Length < 1) { throw new ArgumentNullException("bitmap"); }
             if (mipmapLevelCount < 1) { throw new ArgumentException("mipmap level count must be greater than 0!"); }
@@ -71,20 +69,19 @@ namespace CSharpGL
             this.width = width;
             this.height = height;
             this.layerCount = layers.Length;
-            this.mipmapLevelCount = mipmapLevelCount;
         }
 
         /// <summary>
-        /// Texture_2D_Array.
+        /// setup 2D texture array's content with multiple Bitmap objects.
         /// </summary>
-        /// <param name="height"></param>
         /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <param name="layerCount"></param>
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
         public TexImageBitmaps(int width, int height, int layerCount, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, int border = 0)
-            : base(TextureTarget.Texture2DArray, internalFormat, border)
+            : base(TextureTarget.Texture2DArray, internalFormat, mipmapLevelCount, border)
         {
             if (width < 1) { throw new ArgumentException("width must be greater than 0!"); }
             if (height < 1) { throw new ArgumentException("height must be greater than 0!"); }
@@ -94,7 +91,6 @@ namespace CSharpGL
             this.width = width;
             this.height = height;
             this.layerCount = layerCount;
-            this.mipmapLevelCount = mipmapLevelCount;
         }
 
         /// <summary>

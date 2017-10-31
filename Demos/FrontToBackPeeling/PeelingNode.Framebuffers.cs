@@ -33,7 +33,7 @@ namespace FrontToBackPeeling
 
             for (int i = 0; i < 2; i++)
             {
-                var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, 0, GL.GL_DEPTH_COMPONENT32, width, height, 0, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT);
+                var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_DEPTH_COMPONENT32, 1, 0, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT);
                 var depthTexture = new Texture(TextureTarget.TextureRectangle, depthStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
@@ -42,7 +42,7 @@ namespace FrontToBackPeeling
                     );
                 depthTexture.Initialize();
 
-                var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, 0, GL.GL_RGBA, width, height, 0, GL.GL_RGBA, GL.GL_FLOAT);
+                var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_RGBA, 1, 0, width, height, GL.GL_RGBA, GL.GL_FLOAT);
                 var colorTexture = new Texture(TextureTarget.TextureRectangle, colorStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
@@ -66,7 +66,7 @@ namespace FrontToBackPeeling
             }
 
             {
-                var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, 0, GL.GL_RGBA, width, height, 0, GL.GL_RGBA, GL.GL_FLOAT);
+                var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_RGBA, 1, 0, width, height, GL.GL_RGBA, GL.GL_FLOAT);
                 var colorTexture = new Texture(TextureTarget.TextureRectangle, colorStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),

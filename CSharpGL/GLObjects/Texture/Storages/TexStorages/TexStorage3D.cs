@@ -10,9 +10,6 @@ namespace CSharpGL
     /// </summary>
     public class TexStorage3D : TexStorageBase
     {
-        private Target target;
-        private int levels;
-        private uint internalFormat;
         private int width;
         private int height;
         private int depth;
@@ -27,16 +24,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="levels"></param>
         /// <param name="internalFormat"></param>
+        /// <param name="mipmapLevelCount"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="depth"></param>
-        public TexStorage3D(Target target, int levels, uint internalFormat, int width, int height, int depth)
+        public TexStorage3D(Target target, uint internalFormat, int mipmapLevelCount, int width, int height, int depth)
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount)
         {
-            this.target = target;
-            this.levels = levels;
-            this.internalFormat = internalFormat;
             this.width = width;
             this.height = height;
             this.depth = depth;
@@ -47,7 +42,7 @@ namespace CSharpGL
         /// </summary>
         public override void Apply()
         {
-            glTexStorage3D((uint)target, levels, internalFormat, width, height, depth);
+            glTexStorage3D((uint)target, mipmapLevelCount, internalFormat, width, height, depth);
         }
 
         /// <summary>

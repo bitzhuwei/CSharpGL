@@ -10,11 +10,8 @@ namespace CSharpGL
     /// </summary>
     public class CubemapTexImage2D : TexStorageBase
     {
-        //private int level;
-        private uint internalFormat;
         private int width;
         private int height;
-        private int border;
         private uint format;
         private uint type;
         private CubemapDataProvider dataProvider;
@@ -22,20 +19,19 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="internalformat"></param>
+        /// <param name="internalFormat"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="border"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public CubemapTexImage2D(uint internalformat, int width, int height, int border, uint format, uint type, CubemapDataProvider dataProvider)
+        public CubemapTexImage2D(uint internalFormat, int width, int height, int border, uint format, uint type, CubemapDataProvider dataProvider)
+            : base(TextureTarget.TextureCubeMap, internalFormat)
         {
             if (dataProvider == null) { throw new ArgumentNullException("dataProvider"); }
 
-            this.internalFormat = internalformat;
             this.width = width; this.height = height;
-            this.border = border;
             this.format = format;
             this.type = type;
             this.dataProvider = dataProvider;

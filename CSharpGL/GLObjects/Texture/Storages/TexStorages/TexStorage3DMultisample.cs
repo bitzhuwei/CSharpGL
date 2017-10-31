@@ -11,7 +11,6 @@ namespace CSharpGL
     public class TexStorage3DMultisample : TexStorageBase
     {
         private uint samples;
-        private uint internalFormat;
         private uint width;
         private uint height;
         private uint depth;
@@ -33,9 +32,9 @@ namespace CSharpGL
         /// <param name="depth"></param>
         /// <param name="fixedSampleLocations"></param>
         public TexStorage3DMultisample(uint samples, uint internalFormat, uint width, uint height, uint depth, bool fixedSampleLocations)
+            : base(TextureTarget.Texture2DMultisampleArray, internalFormat)
         {
             this.samples = samples;
-            this.internalFormat = internalFormat;
             this.width = width;
             this.height = height;
             this.depth = depth;
