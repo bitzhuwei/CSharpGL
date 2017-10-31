@@ -83,13 +83,5 @@ namespace CSharpGL
             RenderMethod method = unit.Methods[0];
             method.Render();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="arg"></param>
-        public override void RenderGUIAfterChildren(GUIRenderEventArgs arg)
-        {
-        }
     }
 }
