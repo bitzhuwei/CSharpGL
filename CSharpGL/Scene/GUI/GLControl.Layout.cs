@@ -9,14 +9,13 @@ namespace CSharpGL
     public partial class GLControl
     {
         /// <summary>
-        /// the edges of the <see cref="IGLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
-        /// <para>something like AnchorStyles.Left | AnchorStyles.Bottom.</para>
+        /// 获取或设置控件绑定到的容器的边缘并确定控件如何随其父级一起调整大小。
         /// </summary>
         [Category(strGLControl)]
         public GUIAnchorStyles Anchor { get; set; }
 
         /// <summary>
-        /// Gets or sets the space between viewport and SimpleRect.
+        /// 获取或设置控件之间的空间。
         /// </summary>
         [Category(strGLControl)]
         public GUIPadding Margin { get; set; }
@@ -36,6 +35,30 @@ namespace CSharpGL
         {
             get { return new GUISize(width, height); }
             set { this.width = value.Width; this.height = value.Height; }
+        }
+
+        private int width;
+        /// <summary>
+        /// Width of this control.
+        /// </summary>
+        [Category(strGLControl)]
+        [Description("Width of this control.")]
+        public int Width
+        {
+            get { return width; }
+            set { width = value; }
+        }
+
+        private int height;
+        /// <summary>
+        /// Height of this control.
+        /// </summary>
+        [Category(strGLControl)]
+        [Description("Height of this control.")]
+        public int Height
+        {
+            get { return height; }
+            set { height = value; }
         }
 
         /// <summary>
@@ -181,31 +204,45 @@ namespace CSharpGL
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                width = parent.Size.Width - currentNode.Margin.Left - currentNode.Margin.Right;
+                width = parent.Width - currentNode.Margin.Left - currentNode.Margin.Right;
                 //width = currentNode.Size.Width + (parent.Size.Width - currentNode.ParentLastSize.Width);
                 if (width < 0) { width = 0; }
             }
             else
             {
-                width = currentNode.Size.Width;
+                width = currentNode.Width;
             }
 
             if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                height = parent.Size.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
+                height = parent.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
                 //height = currentNode.Size.Height + (parent.Size.Height - currentNode.ParentLastSize.Height);
                 if (height < 0) { height = 0; }
             }
             else
             {
-                height = currentNode.Size.Height;
+                height = currentNode.Height;
             }
 
             if ((currentNode.Anchor & leftRightAnchor) == GUIAnchorStyles.None)
             {
-                x = (int)(
-                    (parent.Size.Width - width)
-                    * ((double)currentNode.Margin.Left / (double)(currentNode.Margin.Left + currentNode.Margin.Right)));
+                if (currentNode.Margin.Left == 0)
+                {
+                    x = 0;
+                }
+                else
+                {
+                    if (currentNode.Margin.Right == 0)
+                    {
+                        x = parent.width - width;
+                    }
+                    else
+                    {
+                        x = (int)(
+                            (parent.Width - width)
+                            * ((double)currentNode.Margin.Left / (double)(currentNode.Margin.Left + currentNode.Margin.Right)));
+                    }
+                }
             }
             else if ((currentNode.Anchor & leftRightAnchor) == GUIAnchorStyles.Left)
             {
@@ -224,9 +261,23 @@ namespace CSharpGL
 
             if ((currentNode.Anchor & topBottomAnchor) == GUIAnchorStyles.None)
             {
-                y = (int)(
-                    (parent.Size.Height - height)
-                    * ((double)currentNode.Margin.Bottom / (double)(currentNode.Margin.Bottom + currentNode.Margin.Top)));
+                if (currentNode.Margin.Bottom == 0)
+                {
+                    y = 0;
+                }
+                else
+                {
+                    if (currentNode.Margin.Top == 0)
+                    {
+                        y = parent.Height - height;
+                    }
+                    else
+                    {
+                        y = (int)(
+                            (parent.Height - height)
+                            * ((double)currentNode.Margin.Bottom / (double)(currentNode.Margin.Bottom + currentNode.Margin.Top)));
+                    }
+                }
             }
             else if ((currentNode.Anchor & topBottomAnchor) == GUIAnchorStyles.Bottom)
             {

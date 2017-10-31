@@ -46,31 +46,6 @@ namespace CSharpGL
         [Description("Children Nodes. Inherits this node's IWorldSpace properties.")]
         public GLControlChildren Children { get; private set; }
 
-        private int width;
-        /// <summary>
-        /// Width of this control.
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("Width of this control.")]
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-
-        private int height;
-        /// <summary>
-        /// Height of this control.
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("Height of this control.")]
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
-
-
         private const string strGLControl = "GLControl";
 
         /// <summary>
