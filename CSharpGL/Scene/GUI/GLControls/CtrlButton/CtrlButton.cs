@@ -34,11 +34,14 @@ namespace CSharpGL
             this.MouseUp += CtrlButton_MouseUp;
         }
 
+        private GUISize originalSize;
+        private GUIPoint originalLocation;
         void CtrlButton_MouseUp(object sender, GUIMouseEventArgs e)
         {
             if (e.Button == GUIMouseButtons.Left)
             {
-                this.PressDown = false;
+                this.Location = this.originalLocation;
+                this.Size = this.originalSize;
             }
         }
 
@@ -46,14 +49,14 @@ namespace CSharpGL
         {
             if (e.Button == GUIMouseButtons.Left)
             {
-                this.PressDown = true;
+                this.originalLocation = this.Location;
+                this.originalSize = this.Size;
+                this.Size = new GUISize((int)(this.Width * 0.8f), (int)(this.Height * 0.8f));
+                this.Location = new GUIPoint(
+                    (int)(this.Location.X + this.Width * 0.1f),
+                    (int)(this.Location.Y + this.Height * 0.1f));
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool PressDown { get; set; }
 
         /// <summary>
         /// 
@@ -95,8 +98,7 @@ namespace CSharpGL
             RenderMethod method = unit.Methods[0];
             VertexArrayObject vao = method.VertexArrayObject;
             IndexBuffer indexBuffer = vao.IndexBuffer;
-            indexBuffer.CurrentFrame = this.PressDown ? 1 : 0;
-            method.Render(IndexBuffer.ControlMode.ByFrame);
+            method.Render();
         }
     }
 }

@@ -27,15 +27,9 @@ namespace CSharpGL
         private const float scaleFactor = 0.95f;
         private static readonly vec2[] positions = new vec2[] 
         {
-            // button pressed up.
             sixPositions[0], sixPositions[1],
             sixPositions[2], sixPositions[3],
             sixPositions[4], sixPositions[5],
-
-            // button pressed down.
-            sixPositions[0] * scaleFactor, sixPositions[1] * scaleFactor,
-            sixPositions[2] * scaleFactor, sixPositions[3] * scaleFactor,
-            sixPositions[4] * scaleFactor, sixPositions[5] * scaleFactor,
         };
 
         private static readonly vec3 white = new vec3(1, 1, 1);
@@ -47,11 +41,6 @@ namespace CSharpGL
         private static readonly vec3[] colors = new vec3[]
         {
             // button up.
-            sixColors[0], sixColors[1],
-            sixColors[2], sixColors[3],
-            sixColors[4], sixColors[5],
-
-            // button down.
             sixColors[0], sixColors[1],
             sixColors[2], sixColors[3],
             sixColors[4], sixColors[5],
@@ -111,9 +100,7 @@ namespace CSharpGL
         {
             if (this.indexBuffer == null)
             {
-                int primCount = 1;
-                int frameCount = 2;
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.QuadStrip, 0, positions.Length, primCount, frameCount);
+                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.QuadStrip, 0, positions.Length);
             }
 
             return this.indexBuffer;
