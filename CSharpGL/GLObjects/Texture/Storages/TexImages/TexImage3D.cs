@@ -27,8 +27,8 @@ namespace CSharpGL
         /// Set up texture's content with 'glTexImage3D()'.
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="mipmapLevelCount"></param>
         /// <param name="internalFormat"></param>
+        /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage3D(Target target, int mipmapLevelCount, uint internalFormat, int border, int width, int height, int depth, uint format, uint type, LeveledDataProvider dataProvider = null)
+        public TexImage3D(Target target, uint internalFormat, int mipmapLevelCount, int border, int width, int height, int depth, uint format, uint type, LeveledDataProvider dataProvider = null)
             : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
         {
             this.width = width; this.height = height; this.depth = depth;
