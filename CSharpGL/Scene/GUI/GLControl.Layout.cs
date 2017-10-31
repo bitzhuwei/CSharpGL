@@ -97,17 +97,17 @@ namespace CSharpGL
         /// </summary>
         private int parentLastHeight;
 
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strGLControl)]
-        public int zNear { get; set; }
+        ///// <summary>
+        /////
+        ///// </summary>
+        //[Category(strGLControl)]
+        //public int zNear { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
-        [Category(strGLControl)]
-        public int zFar { get; set; }
+        ///// <summary>
+        /////
+        ///// </summary>
+        //[Category(strGLControl)]
+        //public int zFar { get; set; }
 
         /// <summary>
         /// Do something before layout of this control and its children controls.
