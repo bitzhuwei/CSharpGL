@@ -84,12 +84,15 @@ namespace CSharpGL
             }
         }
 
+        private GLControl mouseDownControl;
+
         void winCanvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             GUIMouseEventArgs args = e.Translate();
-            foreach (var item in this.Children)
+            if (this.mouseDownControl != null)
             {
-                item.InvokeEvent(EventType.MouseUp, args);
+                this.mouseDownControl.InvokeEvent(EventType.MouseUp, args);
+                this.mouseDownControl = null;
             }
         }
 
@@ -101,6 +104,7 @@ namespace CSharpGL
                 int x = e.X, y = this.BindingCanvas.Height - e.Y;
                 if (item.ContainsPoint(x, y))
                 {
+                    this.mouseDownControl = item;
                     item.InvokeEvent(EventType.MouseDown, args);
                 }
             }

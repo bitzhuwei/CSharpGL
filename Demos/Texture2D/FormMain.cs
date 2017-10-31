@@ -96,6 +96,7 @@ namespace Texture2D
                 control.Width = 100; control.Height = 50;
                 root.Children.Add(control);
                 control.Focused = true;
+                control.MouseUp += control_MouseUp;
             }
             {
                 var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
@@ -109,6 +110,11 @@ namespace Texture2D
             }
 
             return root;
+        }
+
+        void control_MouseUp(object sender, GUIMouseEventArgs e)
+        {
+            MessageBox.Show("This is a message from a GLButton!");
         }
 
         private SceneNodeBase GetRootElement()
