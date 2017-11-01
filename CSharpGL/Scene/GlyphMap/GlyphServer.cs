@@ -63,17 +63,17 @@ namespace CSharpGL
         /// </summary>
         /// <param name="font"></param>
         /// <param name="charset"></param>
-        /// <param name="textureWidth"></param>
-        /// <param name="textureHeight"></param>
+        /// <param name="maxTextureWidth"></param>
+        /// <param name="maxTextureHeight"></param>
         /// <param name="maxTextureCount"></param>
         /// <returns></returns>
-        public static GlyphServer Create(Font font, IEnumerable<char> charset, int textureWidth, int textureHeight, int maxTextureCount)
+        public static GlyphServer Create(Font font, IEnumerable<char> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
             var server = new GlyphServer();
             if (charset == null || charset.Count() == 0) { return server; }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            Create(textureWidth, textureHeight, maxTextureCount, server, chunkList);
+            Create(maxTextureWidth, maxTextureHeight, maxTextureCount, server, chunkList);
 
             return server;
         }
@@ -95,24 +95,24 @@ namespace CSharpGL
         /// </summary>
         /// <param name="font"></param>
         /// <param name="charset"></param>
-        /// <param name="textureWidth"></param>
-        /// <param name="textureHeight"></param>
+        /// <param name="maxTextureWidth"></param>
+        /// <param name="maxTextureHeight"></param>
         /// <param name="maxTextureCount"></param>
         /// <returns></returns>
-        public static GlyphServer Create(Font font, IEnumerable<string> charset, int textureWidth, int textureHeight, int maxTextureCount)
+        public static GlyphServer Create(Font font, IEnumerable<string> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
             var server = new GlyphServer();
             if (charset == null || charset.Count() == 0) { return server; }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            Create(textureWidth, textureHeight, maxTextureCount, server, chunkList);
+            Create(maxTextureWidth, maxTextureHeight, maxTextureCount, server, chunkList);
 
             return server;
         }
 
-        private static void Create(int textureWidth, int textureHeight, int maxTextureCount, GlyphServer server, List<ChunkBase> chunkList)
+        private static void Create(int maxTextureWidth, int maxTextureHeight, int maxTextureCount, GlyphServer server, List<ChunkBase> chunkList)
         {
-            var context = new PagesContext(textureWidth, textureHeight, maxTextureCount);
+            var context = new PagesContext(maxTextureWidth, maxTextureHeight, maxTextureCount);
             foreach (var item in chunkList)
             {
                 item.Put(context);
