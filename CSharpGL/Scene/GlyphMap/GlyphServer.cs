@@ -217,12 +217,12 @@ namespace CSharpGL
             for (int i = 0; i < chunkList.Count; i++)
             {
                 ChunkBase chunk = chunkList[i];
-                if (chunk.PageIndex >= list.Count) // this happens when chunks overflows of max pages.
+                int index = chunk.PageIndex;
+                if (index >= list.Count) // this happens when chunks overflows of max pages.
                 {
-                    break;
+                    continue;
                 }
 
-                int index = chunk.PageIndex;
                 float newWidth = chunk.LeftTop.X + chunk.Size.Width;
                 float newHeight = chunk.LeftTop.Y + chunk.Size.Height;
                 if (widths[index] < newWidth) { widths[index] = newWidth; }
