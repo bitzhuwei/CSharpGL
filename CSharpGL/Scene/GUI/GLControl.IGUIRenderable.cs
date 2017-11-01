@@ -41,8 +41,8 @@ namespace CSharpGL
         public virtual void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
         {
             GL.Instance.Enable(GL.GL_SCISSOR_TEST);
-            GL.Instance.Scissor(this.absLeft, this.absBottom, this.Width, this.Height);
-            GL.Instance.Viewport(this.absLeft, this.absBottom, this.Width, this.Height);
+            GL.Instance.Scissor(this.absLeft, this.absBottom, this.width, this.height);
+            GL.Instance.Viewport(this.absLeft, this.absBottom, this.width, this.height);
 
             if (this.RenderBackground)
             {
