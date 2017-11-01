@@ -187,7 +187,7 @@
     <Compile Include="Scene\Actions\DependentActions\ActionList.cs" />
     <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
     <Compile Include="Scene\GUI\GLControl.IDisposable.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Test.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabelModel.cs" />

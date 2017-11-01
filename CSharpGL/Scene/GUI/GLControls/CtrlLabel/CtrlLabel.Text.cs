@@ -14,6 +14,15 @@ namespace CSharpGL
         private VertexBuffer textureIndexBuffer;
         private ZeroIndexBuffer indexBuffer;
 
+        public event EventHandler TextChanged;
+        protected void DoTextChanged()
+        {
+            var textChanged = this.TextChanged;
+            if (textChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -27,6 +36,7 @@ namespace CSharpGL
                 {
                     text = v;
                     ArrangeCharaters(v, GlyphServer.defaultServer);
+                    DoTextChanged();
                 }
             }
         }

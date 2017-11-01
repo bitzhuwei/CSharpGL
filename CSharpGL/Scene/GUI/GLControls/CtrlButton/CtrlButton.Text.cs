@@ -15,14 +15,7 @@ namespace CSharpGL
         public string Text
         {
             get { return this.label.Text; }
-            set
-            {
-                if (value != this.label.Text)
-                {
-                    this.label.Text = value;
-                    this.label.X = (this.Width - this.label.Width) / 2;
-                }
-            }
+            set { this.label.Text = value; }
         }
     }
 }

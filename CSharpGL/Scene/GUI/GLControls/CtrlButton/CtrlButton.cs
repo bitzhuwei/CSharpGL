@@ -70,6 +70,7 @@ namespace CSharpGL
 
             var label = new CtrlLabel(100, GUIAnchorStyles.None);
             label.Text = "Button";
+            label.TextChanged += label_TextChanged;
             // move label to center.
             {
                 int diffX = this.Width - label.Width;
@@ -82,6 +83,11 @@ namespace CSharpGL
 
             this.label = label;
             this.Children.Add(label);
+        }
+
+        void label_TextChanged(object sender, EventArgs e)
+        {
+            this.label.X = (this.Width - this.label.Width) / 2;
         }
 
         /// <summary>
