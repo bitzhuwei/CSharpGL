@@ -100,7 +100,6 @@ namespace CSharpGL
 
             ModernRenderUnit unit = this.RenderUnit;
             RenderMethod method = unit.Methods[0];
-            VertexArrayObject vao = method.VertexArrayObject;
             method.Render();
         }
     }
