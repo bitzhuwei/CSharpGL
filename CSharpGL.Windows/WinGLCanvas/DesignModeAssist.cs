@@ -12,14 +12,27 @@ namespace CSharpGL
         private ActionList actionList;
         private readonly string fullname;
 
-        public DesignModeAssist(IGLCanvas canvas)
+        public DesignModeAssist(WinGLCanvas canvas)
+            : this(canvas, true, System.ComponentModel.LicenseUsageMode.Designtime)
+        {
+        }
+
+        public DesignModeAssist(WinGLCanvas canvas, bool designMode, System.ComponentModel.LicenseUsageMode licenseUsageMode)
         {
             var camera = new Camera(new vec3(0, 0, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
             GroupNode group;
             {
-                var propeller = new PropellerRenderer() { WorldPosition = new vec3(0, -1.5f, 0) };
-                var clock = new ClockNode();
-                group = new GroupNode(propeller, clock);
+                group = new GroupNode();
+                if (designMode)
+                {
+                    var propeller = new PropellerRenderer() { WorldPosition = new vec3(0, -1.5f, 0) };
+                    group.Children.Add(propeller);
+                }
+                if (licenseUsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                {
+                    var clock = new ClockNode();
+                    group.Children.Add(clock);
+                }
             }
             var scene = new Scene(camera, canvas)
             {
