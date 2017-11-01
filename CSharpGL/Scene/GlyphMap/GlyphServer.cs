@@ -211,7 +211,9 @@ namespace CSharpGL
             var bitmaps = new Bitmap[list.Count];
             if (chunkList.Count == 0) { return bitmaps; }
 
-            var sizes = new SizeF[list.Count];
+            //var sizes = new SizeF[bitmaps.Length];
+            var widths = new float[bitmaps.Length];
+            var heights = new float[bitmaps.Length];
             for (int i = 0; i < chunkList.Count; i++)
             {
                 ChunkBase chunk = chunkList[i];
@@ -221,20 +223,22 @@ namespace CSharpGL
                 }
 
                 int index = chunk.PageIndex;
-                sizes[index].Width += chunk.Size.Width;
-                sizes[index].Height = Math.Max(sizes[index].Height, chunk.Size.Height);
+                float newWidth = chunk.LeftTop.X + chunk.Size.Width;
+                float newHeight = chunk.LeftTop.Y + chunk.Size.Height;
+                if (widths[index] < newWidth) { widths[index] = newWidth; }
+                if (heights[index] < newHeight) { heights[index] = newHeight; }
             }
 
             float maxWidth = 0.0f, maxHeight = 0.0f;
-            foreach (var size in sizes)
+            for (int i = 0; i < bitmaps.Length; i++)
             {
-                if (maxWidth < size.Width) { maxWidth = size.Width; }
-                if (maxHeight < size.Height) { maxHeight = size.Height; }
+                if (maxWidth < widths[i]) { maxWidth = widths[i]; }
+                if (maxHeight < heights[i]) { maxHeight = heights[i]; }
             }
 
             for (int i = 0; i < bitmaps.Length; i++)
             {
-                var bmp = new Bitmap((int)maxWidth, (int)maxHeight);
+                var bmp = new Bitmap((int)Math.Ceiling(maxWidth), (int)Math.Ceiling(maxHeight));
                 bitmaps[i] = bmp;
             }
 
