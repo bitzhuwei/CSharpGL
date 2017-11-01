@@ -49,10 +49,10 @@ namespace CSharpGL
             {
                 this.originalLocation = this.Location;
                 this.originalSize = this.Size;
-                this.Size = new GUISize((int)(this.Width * 0.8f), (int)(this.Height * 0.8f));
+                this.Size = new GUISize((int)(this.Width * 0.9f), (int)(this.Height * 0.9f));
                 this.Location = new GUIPoint(
-                    (int)(this.Location.X + this.Width * 0.1f),
-                    (int)(this.Location.Y + this.Height * 0.1f));
+                    (int)(this.Location.X + this.Width * 0.05f),
+                    (int)(this.Location.Y + this.Height * 0.05f));
             }
         }
 
@@ -101,7 +101,6 @@ namespace CSharpGL
             ModernRenderUnit unit = this.RenderUnit;
             RenderMethod method = unit.Methods[0];
             VertexArrayObject vao = method.VertexArrayObject;
-            IndexBuffer indexBuffer = vao.IndexBuffer;
             method.Render();
         }
     }
