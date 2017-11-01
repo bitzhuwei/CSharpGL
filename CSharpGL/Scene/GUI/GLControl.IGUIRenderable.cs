@@ -16,6 +16,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         [Category(strGLControl)]
+        [Description("Render this control or not?")]
         public ThreeFlags EnableGUIRendering
         {
             get { return this.enableRendering; }
@@ -26,13 +27,20 @@ namespace CSharpGL
         /// Render back ground or not?
         /// </summary>
         [Category(strGLControl)]
+        [Description("Render back ground or not?")]
         public bool RenderBackground { get; set; }
 
+        private vec4 backgroundColor = new vec4(1, 0, 0, 1);
         /// <summary>
         /// Rendder background in what color?
         /// </summary>
         [Category(strGLControl)]
-        public vec4 BackgroundColor { get; set; }
+        [Description("Rendder background in what color?")]
+        public vec4 BackgroundColor
+        {
+            get { return backgroundColor; }
+            set { backgroundColor = value; }
+        }
 
         /// <summary>
         /// 
