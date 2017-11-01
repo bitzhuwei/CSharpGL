@@ -10,10 +10,8 @@ namespace CSharpGL
     /// </summary>
     public partial class CtrlButton : GLControl
     {
-        private CtrlLabel label;
-
         /// <summary>
-        /// 
+        /// A rectangle control that displays an image.
         /// </summary>
         public CtrlButton()
             : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)

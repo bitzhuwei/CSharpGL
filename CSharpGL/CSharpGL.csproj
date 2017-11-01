@@ -126,6 +126,7 @@
     <Compile Include="Scene\GUI\GLControl.Layout.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.Text.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonModel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.shaders.cs" />
