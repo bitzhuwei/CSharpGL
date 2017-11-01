@@ -9,6 +9,9 @@ namespace CSharpGL
     {
         private CtrlLabel label;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Text
         {
             get { return this.label.Text; }
