@@ -36,13 +36,13 @@ namespace CSharpGL
         static GlyphServer()
         {
             var builder = new StringBuilder();
-            for (char c = (char)20; c < (char)127; c++)
+            for (char c = ' '; c < (char)127; c++)
             {
                 builder.Append(c);
             }
             string charSet = builder.ToString();
             var font = new Font("Arial", 32, GraphicsUnit.Pixel);
-            defaultServer = GlyphServer.Create(font, charSet);
+            defaultServer = GlyphServer.Create(font, charSet, 265, 265, 100);
             font.Dispose();
         }
 
@@ -120,15 +120,49 @@ namespace CSharpGL
 
             Bitmap[] bitmaps = GenerateBitmaps(chunkList, context);
             PrintChunks(chunkList, context, bitmaps);
-            //for (int i = 0; i < bitmaps.Length; i++)
-            //{
-            //    bitmaps[i].Save(string.Format("{0}.png", i));
-            //}
+
+            FillDictionary(chunkList, context, server.dictionary, bitmaps[0].Width, bitmaps[0].Height);
+
             Texture texture = GenerateTexture(bitmaps);
             server.GlyphTexture = texture;
             server.TextureWidth = bitmaps[0].Width;
             server.TextureHeight = bitmaps[0].Height;
-            FillDictionary(chunkList, context, server.dictionary, bitmaps[0].Width, bitmaps[0].Height);
+
+            // test
+            Test(server.dictionary, bitmaps);
+
+            foreach (var item in bitmaps)
+            {
+                item.Dispose();
+            }
+        }
+
+        private static void Test(Dictionary<string, GlyphInfo> dictionary, Bitmap[] bitmaps)
+        {
+            var graphicses = new Graphics[bitmaps.Length];
+            foreach (var item in dictionary)
+            {
+                GlyphInfo info = item.Value;
+                int index = info.textureIndex;
+
+                if (graphicses[index] == null) { graphicses[index] = Graphics.FromImage(bitmaps[index]); }
+
+                QuadStruct quad = info.quad;
+                float x0 = quad.leftTop.x * bitmaps[index].Width;
+                float x1 = quad.rightTop.x * bitmaps[index].Width;
+                float y0 = quad.leftTop.y * bitmaps[index].Height;
+                float y1 = quad.leftBottom.y * bitmaps[index].Height;
+                graphicses[index].DrawRectangle(info.textureIndex == 0 ? Pens.Red : Pens.Green, x0, y0, x1 - x0, y1 - y0);
+            }
+            foreach (var item in graphicses)
+            {
+                item.Dispose();
+            }
+
+            for (int i = 0; i < bitmaps.Length; i++)
+            {
+                bitmaps[i].Save(string.Format("{0}.png", i));
+            }
         }
 
         private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary, int pageWidth, int pageHeight)
@@ -168,33 +202,24 @@ namespace CSharpGL
             var bmp = new Bitmap(1, 1);
             var g = Graphics.FromImage(bmp);
 
-            int currentIndex = 0;
-            float currentWidth = 0;
             foreach (var chunk in chunkList)
             {
                 int index = chunk.PageIndex;
                 if (index >= bitmaps.Length) { continue; }
 
-                if (currentIndex != index)
-                {
-                    currentIndex = index;
-                    currentWidth = 0;
-                }
-
                 string bigStr = "丨" + chunk.Text + "丨";
                 SizeF bigSize = g.MeasureString(bigStr, chunk.TheFont);
-                var bigChunk = new Bitmap((int)bigSize.Width, (int)bigSize.Height);
-                var bigGraphics = Graphics.FromImage(bigChunk);
-                bigGraphics.DrawString(bigStr, chunk.TheFont, Brushes.White, 0, 0);
+                var bigBmp = new Bitmap((int)Math.Ceiling(bigSize.Width), (int)Math.Ceiling(bigSize.Height));
+                using (var bigGraphics = Graphics.FromImage(bigBmp))
+                { bigGraphics.DrawString(bigStr, chunk.TheFont, Brushes.Black, 0, 0); }
 
                 if (graphicses[index] == null) { graphicses[index] = Graphics.FromImage(bitmaps[index]); }
-                graphicses[index].DrawImage(bigChunk,
-                    new RectangleF(currentWidth, 0, chunk.Size.Width, chunk.Size.Height),
+                graphicses[index].DrawImage(bigBmp,
+                    new RectangleF(chunk.LeftTop, chunk.Size),
                     new RectangleF(
                         (bigSize.Width - chunk.Size.Width) / 2, 0,
                         chunk.Size.Width, chunk.Size.Height),
                     GraphicsUnit.Pixel);
-                currentWidth += chunk.Size.Width;
             }
 
             foreach (var grahpics in graphicses)
@@ -249,7 +274,8 @@ namespace CSharpGL
         {
             int[] maxTextureSize = new int[1];
             GL.Instance.GetIntegerv((uint)GetTarget.MaxTextureSize, maxTextureSize);
-            return maxTextureSize[0];
+            int result = maxTextureSize[0] > 1024 ? 1024 : maxTextureSize[0];
+            return result;
         }
 
         private static List<ChunkBase> GetChunkList(Font font, IEnumerable<char> charset)

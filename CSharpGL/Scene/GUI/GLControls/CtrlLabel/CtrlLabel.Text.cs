@@ -14,7 +14,13 @@ namespace CSharpGL
         private VertexBuffer textureIndexBuffer;
         private ZeroIndexBuffer indexBuffer;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler TextChanged;
+        /// <summary>
+        /// 
+        /// </summary>
         protected void DoTextChanged()
         {
             var textChanged = this.TextChanged;
