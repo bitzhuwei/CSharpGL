@@ -186,7 +186,10 @@ namespace Texture2D
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
-            this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+            if (this.scene != null)
+            {
+                this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+            }
         }
 
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)

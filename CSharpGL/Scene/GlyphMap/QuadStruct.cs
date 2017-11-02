@@ -59,4 +59,53 @@ namespace CSharpGL
                 this.leftTop, this.leftBottom, this.rightBottom, this.rightTop);
         }
     }
+
+    //
+    // 0---------3
+    // |         |
+    // |         |
+    // |         |
+    // 1---------2
+    //
+    /// <summary>
+    /// A quad renders in GL_QUADS mode.
+    /// </summary>
+    public struct QuadIndexStruct
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public float leftTop;
+        /// <summary>
+        /// 
+        /// </summary>
+        public float leftBottom;
+        /// <summary>
+        /// 
+        /// </summary>
+        public float rightBottom;
+        /// <summary>
+        /// 
+        /// </summary>
+        public float rightTop;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        public QuadIndexStruct(int index)
+        {
+            this.leftTop = index; this.rightTop = index;
+            this.leftBottom = index; this.rightBottom = index;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("index:{0}", this.leftTop);
+        }
+    }
 }

@@ -36,13 +36,13 @@ namespace CSharpGL
         static GlyphServer()
         {
             var builder = new StringBuilder();
-            for (char c = ' '; c < (char)127; c++)
+            for (char c = ' '; c < 128; c++)
             {
                 builder.Append(c);
             }
             string charSet = builder.ToString();
             var font = new Font("Arial", 32, GraphicsUnit.Pixel);
-            defaultServer = GlyphServer.Create(font, charSet, 265, 265, 100);
+            defaultServer = GlyphServer.Create(font, charSet, 1024, 1024, 1000);
             font.Dispose();
         }
 
@@ -139,24 +139,21 @@ namespace CSharpGL
 
         private static void Test(Dictionary<string, GlyphInfo> dictionary, Bitmap[] bitmaps)
         {
-            var graphicses = new Graphics[bitmaps.Length];
+            //var graphicses = new Graphics[bitmaps.Length];
             foreach (var item in dictionary)
             {
                 GlyphInfo info = item.Value;
                 int index = info.textureIndex;
-
-                if (graphicses[index] == null) { graphicses[index] = Graphics.FromImage(bitmaps[index]); }
 
                 QuadStruct quad = info.quad;
                 float x0 = quad.leftTop.x * bitmaps[index].Width;
                 float x1 = quad.rightTop.x * bitmaps[index].Width;
                 float y0 = quad.leftTop.y * bitmaps[index].Height;
                 float y1 = quad.leftBottom.y * bitmaps[index].Height;
-                graphicses[index].DrawRectangle(info.textureIndex == 0 ? Pens.Red : Pens.Green, x0, y0, x1 - x0, y1 - y0);
-            }
-            foreach (var item in graphicses)
-            {
-                item.Dispose();
+                using (var graphics = Graphics.FromImage(bitmaps[index]))
+                {
+                    graphics.DrawRectangle(info.textureIndex == 0 ? Pens.Red : Pens.Green, x0, y0, x1 - x0, y1 - y0);
+                }
             }
 
             for (int i = 0; i < bitmaps.Length; i++)
@@ -186,7 +183,7 @@ namespace CSharpGL
             var texture = new Texture(TextureTarget.Texture2DArray, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
+                //new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();
@@ -198,7 +195,7 @@ namespace CSharpGL
         {
             if (chunkList.Count == 0) { return; }
 
-            var graphicses = new Graphics[bitmaps.Length];
+            //var graphicses = new Graphics[bitmaps.Length];
             var bmp = new Bitmap(1, 1);
             var g = Graphics.FromImage(bmp);
 
@@ -213,19 +210,18 @@ namespace CSharpGL
                 using (var bigGraphics = Graphics.FromImage(bigBmp))
                 { bigGraphics.DrawString(bigStr, chunk.TheFont, Brushes.Black, 0, 0); }
 
-                if (graphicses[index] == null) { graphicses[index] = Graphics.FromImage(bitmaps[index]); }
-                graphicses[index].DrawImage(bigBmp,
-                    new RectangleF(chunk.LeftTop, chunk.Size),
-                    new RectangleF(
-                        (bigSize.Width - chunk.Size.Width) / 2, 0,
-                        chunk.Size.Width, chunk.Size.Height),
-                    GraphicsUnit.Pixel);
+                //if (graphicses[index] == null) { graphicses[index] = Graphics.FromImage(bitmaps[index]); }
+                using (var graphics = Graphics.FromImage(bitmaps[index]))
+                {
+                    graphics.DrawImage(bigBmp,
+                        new RectangleF(chunk.LeftTop, chunk.Size),
+                        new RectangleF(
+                            (bigSize.Width - chunk.Size.Width) / 2, 0,
+                            chunk.Size.Width, chunk.Size.Height),
+                        GraphicsUnit.Pixel);
+                }
             }
 
-            foreach (var grahpics in graphicses)
-            {
-                grahpics.Dispose();
-            }
             g.Dispose();
             bmp.Dispose();
         }

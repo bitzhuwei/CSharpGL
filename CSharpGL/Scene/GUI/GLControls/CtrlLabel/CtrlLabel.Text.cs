@@ -67,14 +67,16 @@ namespace CSharpGL
         unsafe private void TextureIndexPass(string text, GlyphServer server)
         {
             VertexBuffer buffer = this.textureIndexBuffer;
-            var textureIndexArray = (float*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
+            var textureIndexArray = (QuadIndexStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
             int index = 0;
             foreach (var c in text)
             {
+                if (index >= this.labelModel.Capacity) { break; }
+
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
-                    textureIndexArray[index] = glyphInfo.textureIndex;
+                    textureIndexArray[index] = new QuadIndexStruct(glyphInfo.textureIndex);
                 }
 
                 index++;
@@ -95,6 +97,8 @@ namespace CSharpGL
             int index = 0;
             foreach (var c in text)
             {
+                if (index >= this.labelModel.Capacity) { break; }
+
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
@@ -127,6 +131,8 @@ namespace CSharpGL
             int index = 0;
             foreach (var c in text)
             {
+                if (index >= this.labelModel.Capacity) { break; }
+
                 GlyphInfo glyphInfo;
                 float wByH = 0;
                 if (server.GetGlyphInfo(c, out glyphInfo))
@@ -153,6 +159,8 @@ namespace CSharpGL
             const float scale = 1f;
             for (int i = 0; i < text.Length; i++)
             {
+                if (i >= this.labelModel.Capacity) { break; }
+
                 QuadStruct quad = positionArray[i];
                 var newPos = new QuadStruct(
                     // y is already in [-1, 1], so just shrink x to [-1, 1]
