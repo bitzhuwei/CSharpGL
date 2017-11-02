@@ -30,7 +30,7 @@ namespace CSharpGL
                 if (texCoordIndexes.Length != vertexIndexes.Length)
                 {
                     throw new Exception(string.Format(
-                        "normalIndexes.Length [{0}] != vertexIndexes.Length [{0}]!",
+                        "texCoordIndexes.Length [{0}] != vertexIndexes.Length [{1}]!",
                     texCoordIndexes.Length, vertexIndexes.Length));
                 }
 
