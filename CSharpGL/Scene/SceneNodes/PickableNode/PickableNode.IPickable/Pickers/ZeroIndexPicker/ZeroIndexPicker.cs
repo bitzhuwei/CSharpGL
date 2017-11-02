@@ -267,14 +267,14 @@ namespace CSharpGL
                 case DrawMode.TriangleStrip:
                     if (vertexCount > 2)
                     {
-                        result = vertexCount > 2;
+                        result = true;
                     }
                     break;
 
                 case DrawMode.TriangleFan:
                     if (vertexCount > 2)
                     {
-                        result = vertexCount > 2;
+                        result = true;
                     }
                     break;
 

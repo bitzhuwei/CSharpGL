@@ -208,7 +208,7 @@ namespace CSharpGL
 
             // Translate and scale the picked region to the entire window
             Result = translate(Result, Temp);
-            return scale(Result, new vec3((viewport[2]) / delta.x, (viewport[3]) / delta.y, (1)));
+            return scale(Result, new vec3((float)(viewport[2]) / delta.x, (float)(viewport[3]) / delta.y, (1)));
         }
 
         /// <summary>

@@ -170,8 +170,8 @@ namespace CSharpGL
 
         private vec3 GetArcBallPosition(int x, int y)
         {
-            float rx = (x - _width / 2) / _length;
-            float ry = (_height / 2 - y) / _length;
+            float rx = ((float)(x - _width) / 2) / _length;
+            float ry = ((float)(_height) / 2 - y) / _length;
             float zz = _radiusRadius - rx * rx - ry * ry;
             float rz = (zz > 0 ? (float)Math.Sqrt(zz) : 0.0f);
             var result = new vec3(
@@ -190,8 +190,8 @@ namespace CSharpGL
         {
             this._width = width; this._height = height;
             _length = width > height ? width : height;
-            var rx = (width / 2) / _length;
-            var ry = (height / 2) / _length;
+            var rx = ((float)(width) / 2) / _length;
+            var ry = ((float)(height) / 2) / _length;
             _radiusRadius = (float)(rx * rx + ry * ry);
         }
 
