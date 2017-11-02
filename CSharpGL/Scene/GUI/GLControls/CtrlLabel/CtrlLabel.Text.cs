@@ -141,10 +141,10 @@ namespace CSharpGL
                     wByH = height * 1.0f / 1.0f;
                 }
 
-                var leftTop = new vec2(totalWidth, 1f);
-                var leftBottom = new vec2(totalWidth, -1f);
-                var rightBottom = new vec2(totalWidth + wByH, -1f);
-                var rightTop = new vec2(totalWidth + wByH, 1f);
+                var leftTop = new vec2(totalWidth, height / 2);
+                var leftBottom = new vec2(totalWidth, -height / 2);
+                var rightBottom = new vec2(totalWidth + wByH, -height / 2);
+                var rightTop = new vec2(totalWidth + wByH, height / 2);
                 positionArray[index++] = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
                 totalWidth += wByH;
             }
