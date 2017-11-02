@@ -60,7 +60,7 @@ namespace CSharpGL
                         this.PageIndex = context.CurrentIndex;
 
                         context.CurrentLeftTop = new PointF(width, 0);
-                        //context.MaxLineHeight = 0;
+                        context.MaxLineHeight = height;
                     }
                 }
                 else // 仅仅换行，不换页。
@@ -71,7 +71,7 @@ namespace CSharpGL
                     this.PageIndex = context.CurrentIndex;
 
                     context.CurrentLeftTop = new PointF(leftTop.X + width, leftTop.Y);
-                    //context.MaxLineHeight = 0;
+                    context.MaxLineHeight = height;
                 }
             }
             else // 当前行还可以放下此chunk。

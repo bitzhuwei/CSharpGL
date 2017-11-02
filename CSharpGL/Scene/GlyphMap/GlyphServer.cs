@@ -36,7 +36,13 @@ namespace CSharpGL
         static GlyphServer()
         {
             var builder = new StringBuilder();
+            // ascii
             for (char c = ' '; c < 128; c++)
+            {
+                builder.Append(c);
+            }
+            // Chinese characters
+            for (char c = (char)0x4E00; c <= 0x9FA5; c++)
             {
                 builder.Append(c);
             }
@@ -128,8 +134,8 @@ namespace CSharpGL
             server.TextureWidth = bitmaps[0].Width;
             server.TextureHeight = bitmaps[0].Height;
 
-            // test
-            Test(server.dictionary, bitmaps);
+            //// test: save bitmaps to disk.
+            //Test(server.dictionary, bitmaps);
 
             foreach (var item in bitmaps)
             {
