@@ -37,7 +37,7 @@ namespace CSharpGL
             if (lastIndexId == null)
             {
                 Debug.WriteLine(string.Format(
-                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
+                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}]",
                     lastVertexId, arg, stageVertexId));
                 { return null; }
             }
