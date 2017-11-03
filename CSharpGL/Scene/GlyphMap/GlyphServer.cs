@@ -7,22 +7,22 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Provides glyph information according to specified char.
+    /// Provides glyph information according to specified character(s).
     /// </summary>
     public class GlyphServer
     {
         private Dictionary<string, GlyphInfo> dictionary = new Dictionary<string, GlyphInfo>();
 
         /// <summary>
-        /// 
+        /// A GL_TEXTURE_2D_ARRAY texture that stores all glyphs in one or multiple layers.
         /// </summary>
         public Texture GlyphTexture { get; private set; }
         /// <summary>
-        /// 
+        /// <see cref="GlyphTexture"/>'s width.
         /// </summary>
         public int TextureWidth { get; private set; }
         /// <summary>
-        /// 
+        /// <see cref="GlyphTexture"/>'s height.
         /// </summary>
         public int TextureHeight { get; private set; }
 
@@ -37,15 +37,15 @@ namespace CSharpGL
         {
             var builder = new StringBuilder();
             // ascii
-            for (char c = ' '; c < 128; c++)
+            for (char c = ' '; c <= '~'; c++)
             {
                 builder.Append(c);
             }
-            // Chinese characters
-            for (char c = (char)0x4E00; c <= 0x9FA5; c++)
-            {
-                builder.Append(c);
-            }
+            //// Chinese characters
+            //for (char c = (char)0x4E00; c <= 0x9FA5; c++)
+            //{
+            //    builder.Append(c);
+            //}
             string charSet = builder.ToString();
             var font = new Font("Arial", 32, GraphicsUnit.Pixel);
             defaultServer = GlyphServer.Create(font, charSet, 1024, 1024, 1000);
@@ -143,6 +143,11 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// save bitmaps to disk.
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <param name="bitmaps"></param>
         private static void Test(Dictionary<string, GlyphInfo> dictionary, Bitmap[] bitmaps)
         {
             //var graphicses = new Graphics[bitmaps.Length];
@@ -333,7 +338,19 @@ namespace CSharpGL
     public static class _GlyphServerHelper
     {
         /// <summary>
+        /// Create a <see cref="GlyphServer"/> instance that provides glyph information according to specified character.
         /// 
+        /// </summary>
+        /// <param name="font"></param>
+        /// <param name="charset"></param>
+        /// <returns></returns>
+        public static GlyphServer CreateGlyphServer(this Font font, IEnumerable<char> charset)
+        {
+            return GlyphServer.Create(font, charset);
+        }
+
+        /// <summary>
+        /// Create a <see cref="GlyphServer"/> instance that provides glyph information according to specified characters.
         /// </summary>
         /// <param name="font"></param>
         /// <param name="charset"></param>
