@@ -154,16 +154,16 @@ namespace CSharpGL
             foreach (var item in dictionary)
             {
                 GlyphInfo info = item.Value;
-                int index = info.textureIndex;
+                QuadSTRStruct quad = info.quad;
+                int index = (int)Math.Floor(quad.leftTop.z);
 
-                QuadUVStruct quad = info.quad;
                 float x0 = quad.leftTop.x * bitmaps[index].Width;
                 float x1 = quad.rightTop.x * bitmaps[index].Width;
                 float y0 = quad.leftTop.y * bitmaps[index].Height;
                 float y1 = quad.leftBottom.y * bitmaps[index].Height;
                 using (var graphics = Graphics.FromImage(bitmaps[index]))
                 {
-                    graphics.DrawRectangle(info.textureIndex == 0 ? Pens.Red : Pens.Green, x0, y0, x1 - x0, y1 - y0);
+                    graphics.DrawRectangle(index == 0 ? Pens.Red : Pens.Green, x0, y0, x1 - x0, y1 - y0);
                 }
             }
 

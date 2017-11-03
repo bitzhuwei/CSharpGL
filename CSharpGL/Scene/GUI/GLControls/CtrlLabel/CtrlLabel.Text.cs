@@ -65,7 +65,7 @@ namespace CSharpGL
         unsafe private void UVPass(string text, GlyphServer server)
         {
             VertexBuffer buffer = this.strBuffer;
-            var textureIndexArray = (QuadTexStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
+            var textureIndexArray = (QuadSTRStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
             int index = 0;
             foreach (var c in text)
             {
@@ -74,7 +74,7 @@ namespace CSharpGL
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
-                    textureIndexArray[index] = new QuadTexStruct(glyphInfo.quad, glyphInfo.textureIndex);
+                    textureIndexArray[index] = glyphInfo.quad;
                 }
 
                 index++;
@@ -96,7 +96,7 @@ namespace CSharpGL
             int textureWidth = server.TextureWidth;
             int textureHeight = server.TextureHeight;
             VertexBuffer buffer = this.positionBuffer;
-            var positionArray = (QuadUVStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
+            var positionArray = (QuadPositionStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
             const float height = 2.0f; // let's say height is 2.0f.
             totalWidth = 0;
             totalHeight = height;
@@ -123,7 +123,7 @@ namespace CSharpGL
                 var leftBottom = new vec2(totalWidth, -height / 2);
                 var rightBottom = new vec2(totalWidth + wByH, -height / 2);
                 var rightTop = new vec2(totalWidth + wByH, height / 2);
-                positionArray[index++] = new QuadUVStruct(leftTop, leftBottom, rightBottom, rightTop);
+                positionArray[index++] = new QuadPositionStruct(leftTop, leftBottom, rightBottom, rightTop);
                 totalWidth += wByH;
             }
 
@@ -133,8 +133,8 @@ namespace CSharpGL
             {
                 if (i >= this.labelModel.Capacity) { break; }
 
-                QuadUVStruct quad = positionArray[i];
-                var newPos = new QuadUVStruct(
+                QuadPositionStruct quad = positionArray[i];
+                var newPos = new QuadPositionStruct(
                     // y is already in [-1, 1], so just shrink x to [-1, 1]
                     new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
                     new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,

@@ -16,15 +16,15 @@ namespace CSharpGL
         public readonly string characters;
         /// <summary>
         /// UV information.
-        /// 此字形在纹理的偏移量（uv）
+        /// 此字形在纹理的偏移量(s, t, r)
         /// </summary>
-        public readonly QuadUVStruct quad;
+        public readonly QuadSTRStruct quad;
 
-        /// <summary>
-        /// Index of the the texture which this glyph belongs to in the 2D texture array.
-        /// 此字符所在的纹理，在二维纹理数组中的索引。
-        /// </summary>
-        public readonly int textureIndex;
+        ///// <summary>
+        ///// Index of the the texture which this glyph belongs to in the 2D texture array.
+        ///// 此字符所在的纹理，在二维纹理数组中的索引。
+        ///// </summary>
+        //public readonly int textureIndex;
 
         /// <summary>
         /// Information of rendering a glyph.
@@ -37,10 +37,7 @@ namespace CSharpGL
         public GlyphInfo(string characters, vec2 leftTop, vec2 rightBottom, int textureIndex)
         {
             this.characters = characters;
-            var leftBottom = new vec2(leftTop.x, rightBottom.y);
-            var rightTop = new vec2(rightBottom.x, leftTop.y);
-            this.quad = new QuadUVStruct(leftTop, leftBottom, rightBottom, rightTop);
-            this.textureIndex = textureIndex;
+            this.quad = new QuadSTRStruct(leftTop, rightBottom, textureIndex);
         }
 
         /// <summary>
@@ -48,7 +45,7 @@ namespace CSharpGL
         /// </summary>
         public override string ToString()
         {
-            return string.Format("glyph:[{0}], quad:[{1}], texture index:[{2}]", this.characters, this.quad, this.textureIndex);
+            return string.Format("glyph:[{0}], quad:[{1}]", this.characters, this.quad);
         }
 
         /// <summary>

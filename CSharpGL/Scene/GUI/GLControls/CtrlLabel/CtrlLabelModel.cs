@@ -45,7 +45,7 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = VertexBuffer.Create(typeof(QuadUVStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
+                    this.positionBuffer = VertexBuffer.Create(typeof(QuadPositionStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
                 }
 
                 return this.positionBuffer;
@@ -54,7 +54,7 @@ namespace CSharpGL
             {
                 if (this.uvBuffer == null)
                 {
-                    this.uvBuffer = VertexBuffer.Create(typeof(QuadTexStruct), this.Capacity, VBOConfig.Vec3, BufferUsage.DynamicDraw);
+                    this.uvBuffer = VertexBuffer.Create(typeof(QuadSTRStruct), this.Capacity, VBOConfig.Vec3, BufferUsage.DynamicDraw);
                 }
 
                 return this.uvBuffer;
