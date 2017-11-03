@@ -19,32 +19,39 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public event GUIEventHandler<GUIKeyEventArgs> KeyDown;
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public event GUIEventHandler<GUIKeyEventArgs> KeyUp;
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public event GUIEventHandler<GUIMouseEventArgs> MouseDown;
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public event GUIEventHandler<GUIMouseEventArgs> MouseUp;
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public event GUIEventHandler<GUIMouseEventArgs> MouseMove;
 
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public int TabIndex { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Category(strGLControl)]
         public bool Focused { get; set; }
 
         /// <summary>

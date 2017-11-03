@@ -35,6 +35,7 @@ namespace CSharpGL
         /// <summary>
         /// 相对于Parent左下角的位置(Left Down location)
         /// </summary>
+        [Category(strGLControl)]
         [Description("相对于Parent左下角的位置(Left Down location)")]
         public int Y
         {
