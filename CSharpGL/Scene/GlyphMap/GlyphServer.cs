@@ -156,7 +156,7 @@ namespace CSharpGL
                 GlyphInfo info = item.Value;
                 int index = info.textureIndex;
 
-                QuadStruct quad = info.quad;
+                QuadUVStruct quad = info.quad;
                 float x0 = quad.leftTop.x * bitmaps[index].Width;
                 float x1 = quad.rightTop.x * bitmaps[index].Width;
                 float y0 = quad.leftTop.y * bitmaps[index].Height;

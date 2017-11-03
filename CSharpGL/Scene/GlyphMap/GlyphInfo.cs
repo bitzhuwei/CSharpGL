@@ -18,7 +18,7 @@ namespace CSharpGL
         /// UV information.
         /// 此字形在纹理的偏移量（uv）
         /// </summary>
-        public readonly QuadStruct quad;
+        public readonly QuadUVStruct quad;
 
         /// <summary>
         /// Index of the the texture which this glyph belongs to in the 2D texture array.
@@ -39,7 +39,7 @@ namespace CSharpGL
             this.characters = characters;
             var leftBottom = new vec2(leftTop.x, rightBottom.y);
             var rightTop = new vec2(rightBottom.x, leftTop.y);
-            this.quad = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
+            this.quad = new QuadUVStruct(leftTop, leftBottom, rightBottom, rightTop);
             this.textureIndex = textureIndex;
         }
 

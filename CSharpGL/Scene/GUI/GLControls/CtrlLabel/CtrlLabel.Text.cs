@@ -10,8 +10,7 @@ namespace CSharpGL
         private string text = string.Empty;
         private CtrlLabelModel labelModel;
         private VertexBuffer positionBuffer;
-        private VertexBuffer uvBuffer;
-        private VertexBuffer textureIndexBuffer;
+        private VertexBuffer strBuffer;
         private ZeroIndexBuffer indexBuffer;
 
         /// <summary>
@@ -52,7 +51,6 @@ namespace CSharpGL
             float totalWidth, totalHeight;
             PositionPass(text, server, out totalWidth, out totalHeight);
             UVPass(text, server);
-            TextureIndexPass(text, server);
 
             this.indexBuffer.RenderingVertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
@@ -64,36 +62,10 @@ namespace CSharpGL
         /// </summary>
         /// <param name="text"></param>
         /// <param name="server"></param>
-        unsafe private void TextureIndexPass(string text, GlyphServer server)
-        {
-            VertexBuffer buffer = this.textureIndexBuffer;
-            var textureIndexArray = (QuadIndexStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-            int index = 0;
-            foreach (var c in text)
-            {
-                if (index >= this.labelModel.Capacity) { break; }
-
-                GlyphInfo glyphInfo;
-                if (server.GetGlyphInfo(c, out glyphInfo))
-                {
-                    textureIndexArray[index] = new QuadIndexStruct(glyphInfo.textureIndex);
-                }
-
-                index++;
-            }
-
-            buffer.UnmapBuffer();
-        }
-
-        /// <summary>
-        /// start from (0, 0) to the right.
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="server"></param>
         unsafe private void UVPass(string text, GlyphServer server)
         {
-            VertexBuffer buffer = this.uvBuffer;
-            var uvArray = (QuadStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
+            VertexBuffer buffer = this.strBuffer;
+            var textureIndexArray = (QuadTexStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
             int index = 0;
             foreach (var c in text)
             {
@@ -102,7 +74,7 @@ namespace CSharpGL
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
                 {
-                    uvArray[index] = glyphInfo.quad;
+                    textureIndexArray[index] = new QuadTexStruct(glyphInfo.quad, glyphInfo.textureIndex);
                 }
 
                 index++;
@@ -124,7 +96,7 @@ namespace CSharpGL
             int textureWidth = server.TextureWidth;
             int textureHeight = server.TextureHeight;
             VertexBuffer buffer = this.positionBuffer;
-            var positionArray = (QuadStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
+            var positionArray = (QuadUVStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
             const float height = 2.0f; // let's say height is 2.0f.
             totalWidth = 0;
             totalHeight = height;
@@ -151,7 +123,7 @@ namespace CSharpGL
                 var leftBottom = new vec2(totalWidth, -height / 2);
                 var rightBottom = new vec2(totalWidth + wByH, -height / 2);
                 var rightTop = new vec2(totalWidth + wByH, height / 2);
-                positionArray[index++] = new QuadStruct(leftTop, leftBottom, rightBottom, rightTop);
+                positionArray[index++] = new QuadUVStruct(leftTop, leftBottom, rightBottom, rightTop);
                 totalWidth += wByH;
             }
 
@@ -161,8 +133,8 @@ namespace CSharpGL
             {
                 if (i >= this.labelModel.Capacity) { break; }
 
-                QuadStruct quad = positionArray[i];
-                var newPos = new QuadStruct(
+                QuadUVStruct quad = positionArray[i];
+                var newPos = new QuadUVStruct(
                     // y is already in [-1, 1], so just shrink x to [-1, 1]
                     new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
                     new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,
