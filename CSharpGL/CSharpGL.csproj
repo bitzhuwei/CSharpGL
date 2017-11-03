@@ -367,6 +367,7 @@
     <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
     <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
+    <None Include="Scene\GlyphMap\readme.md" />
     <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\readme.md" />
     <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.frag" />
     <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.vert" />
