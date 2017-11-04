@@ -201,9 +201,9 @@ namespace CSharpGL
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool DestroyWindow(IntPtr hWnd);
 
-        [DllImport(user32, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SetWindowPosFlags uFlags);
+        //[DllImport(user32, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SetWindowPosFlags uFlags);
 
         [DllImport(user32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.U2)]
