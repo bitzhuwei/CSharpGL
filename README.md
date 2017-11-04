@@ -1,59 +1,76 @@
-# Object Oriented OpenGL in C\#  
-:crystal_ball:[Wiki](https://github.com/bitzhuwei/CSharpGL/wiki) | :egg:[nuget](https://www.nuget.org/packages/CSharpGL)  
-[CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a 3D graphics library based on OpenGL in pure C#. It wraps OpenGL API(buffer, shader, state, texture, matrix etc) and demonstrates how to express high-level functions(scene, text, picking, UI etc) with CSharpGL library.  
-![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.gif?raw=true)
-## :pushpin:Color-Coded Picking
-`IColorCodedPicking` supports picking primitives in multiple vertex buffer objects using Mouse.  
-![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
-## :radio_button::ballot_box_with_check:`UIRenderer` & Text
-Rendering 'Control' at fixed position with fixed size.  
-For example, ``UIAxis`` renders an axis at left bottom corner.  
-All kinds of controls binds to specified border just like winform-control.  
-Rendering text using ``glRasterPos()`` and ``CallList()``.(Obsolete)  
-Rendering text using ``UIText``.  
-![UIText and UIAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.png?raw=true)
-
-![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
-# :gem:Some Cool Demos
-## Image Processing using Compute Shader.
-Simple edge-detection implemented by compute shader.  
-![compute-shader-image-processing](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true)
-## Raycast Volume Rendering using 3D texture.
-![raycast-volume-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/raycast-volume-render.gif?raw=true)
-## Particle Simulator using Compute Shader.
-Particle's speed and position is updated by compute shader.  
-![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true)  
-![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles2.gif?raw=true)
-## Order-Dependent Transparency VS Order-Independent Transparency.
-![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
-## Point Sprite.
-10000 particles with a sphere inside a cube.
-![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.png?raw=true)
-## Generated Klein Bottle.
-![Klein Bottle](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/KleinBottle.png?raw=true)
-## Earth.
-An earth model that singly rotates same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
-![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
-## :id::100:Billboard and `LabelRenderer`
-Billboard can be used to display health-bar, damage numbers in game application.
-``LabelRenderer`` renders a string at specified position which always faces camera.  
-![billboard-health-bar-text](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/billboard-health-bar-text.png?raw=true)
-## :high_brightness:Light
-ambient, diffuse and specular light effect from directional light.  
-![Direcional-light](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/directional-light.gif?raw=true)
-## :movie_camera:Scene Editor
-Useful tool to build a scene and feels how opengl's transform system works.
-![CSharpGL-Scene-Editor](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/CSharpGL-Scene-Editor.jpg?raw=true)
-## :fries:Renderer Generator
-RendererGenerator is a tiny console that reads an xml config file and dumps a Renderer.cs, a Model.cs, a vertex shader file(.vert) and a fragment shader file(.frag).
-A demo is shown as below:
-```
-<?xml version="1.0" encoding="utf-8"?>
-<RendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
-  <VertexAttribute NameInShader="in_Position" NameInModel="position" AttributeType="vec3" />
-  <VertexAttribute NameInShader="in_TexCoord" NameInModel="texCoord" AttributeType="vec2" />
-</RendererGenerator>
-```
-
+# Object Oriented OpenGL in C\#   
+[CSharpGL](https://github.com/bitzhuwei/CSharpGL) is an Object-Orinted OpenGL library in pure C#.  
+It abstracts concepts(buffer, shader, state, matrix, vector, scene, camera, picking, text, GUI ...) from OpenGL API and common requirements.  
+More than 25 simple demonstration projects show how to use CSharpGL. And there will be more.
+## 3DTextureSlicing.
+![3DTextureSlicing](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/3DTextureSlicing/3DTextureSlicing.png?raw=true)
+![3DTextureSlicing.classification](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/3DTextureSlicing/3DTextureSlicing.classification.png?raw=true)
+## BasicTessellationShader.
+![BasicTessellationShader](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/BasicTessellationShader/BasicTessellationShader.png?raw=true)
+![BasicTessellationShader2](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/BasicTessellationShader/BasicTessellationShader2.png?raw=true)
+![BasicTessellationShader3](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/BasicTessellationShader/BasicTessellationShader3.png?raw=true)
+![BasicTessellationShader4](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/BasicTessellationShader/BasicTessellationShader4.png?raw=true)
+## Blending.
+![Blending](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Blending/Blending.png?raw=true)
+## Color Coded Picking
+Get to know how CSharpGL\OpenGL implements picking and draging with modern OpenGL!
+![Color Coded Picking](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ColorCodedPicking/ColorCodedPicking.png?raw=true)
+## Edge detection with Compute Shader.
+![ComputeShader.EdgeDetection](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ComputeShader.EdgeDetection/ComputeShader.EdgeDetection.png?raw=true)
+## Hello Compute Shader.
+![ComputeShader.HelloComputeShader](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ComputeShader.HelloComputeShader/ComputeShader.HelloComputeShader.png?raw=true)
+## Directional Light
+![Directional Light](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/DirectionalLight/DirectionalLight.png?raw=true)
+## Environment Mapping.
+### Reflection
+![Reflection](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/EnvironmentMapping/Reflection.png?raw=true)
+### Refraction
+![Refraction](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/EnvironmentMapping/Refraction.png?raw=true)
+## GPURaycasting.
+![default](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/GPURaycasting/GPURaycasting.default.png?raw=true)
+![iso surface](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/GPURaycasting/GPURaycasting.isosurface.png?raw=true)
+## Hello CSharpGL!
+Get to know CSharpGL\OpenGL from this demo project!
+![Hello CSharpGL](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/HelloCSharpGL/HelloCSharpGL.png?raw=true)
+## ImageProcessing.GrayFilter
+![ImageProcessing.GrayFilter](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ImageProcessing.GrayFilter/ImageProcessing.GrayFilter.png?raw=true)
+## Normal.
+![Normal](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Normal/Normal.png?raw=true)
+## OpenGLHardwareDescription.
+![OpenGLHardwareDescription](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/OpenGLHardwareDescription/OpenGLHardwareDescription.png?raw=true)
+## OrderIndependentTransparency
+![OrderIndependentTransparency](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/OrderIndependentTransparency/OrderIndependentTransparency.png?raw=true)
+## Point Light.
+![Point Light](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/PointLight/PointLight.png?raw=true)
+## RaycastVolumeRendering.
+![RaycastVolumeRendering](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/RaycastVolumeRendering/RaycastVolumeRendering.png?raw=true)
+## Render To Texture
+Get to know how to render to texture!
+![Render To Texture](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/RenderToTexture/RenderToTexture.png?raw=true)
+## Shadow Mapping
+Get to know how to render shadow using Shadow-Mapping!
+![Depth Texture](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ShadowMapping/DepthTexture.png?raw=true)
+![Shadow Mapping](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ShadowMapping/ShadowMapping.png?raw=true)
+## SimpleNoise.Sun.
+![SimpleNoise.Sun](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/SimpleNoise.Sun/SimpleNoise.Sun.png?raw=true)
+## SimpleObjFile
+![nanosuit](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/SimpleObjFile/nanosuit.png?raw=true)
+## SimpleParticleSystem.
+![SimpleParticleSystem](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/SimpleParticleSystem/SimpleParticleSystem.png?raw=true)
+## Skybox
+![Skybox](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Skybox/Skybox.png?raw=true)
+## Spot Light.
+![Spot Light](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/SpotLight/SpotLight.png?raw=true)
+## TerrainLoading.
+![TerrainLoading](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/TerrainLoading/TerrainLoading.png?raw=true)
+## Texture2D
+This shows how 2D texture works.
+And now it also shows how to use GLImage, GLButton and GLLabel.
+![Texture2D](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2D/Texture2D.png?raw=true)
+## Texture2DArray
+There's not visible difference from Texture2D you can see from one single picture. Download this demo and try it!
+![Texture2DArray](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2DArray/Texture2DArray.png?raw=true)
+## ZeroAttributeInVertexShader
+![ZeroAttributeInVertexShader](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ZeroAttributeInVertexShader/ZeroAttributeInVertexShader.png?raw=true)
 # :question:Support or Contact
 Check my blog [here](http://www.cnblogs.com/bitzhuwei/) or join my QQ Group<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=98131e619f6da03b96ad2213a1278da4fdd05b42a58d053125ce6ba76cf991f9"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="CSharpGL(C#+OpenGL)" title="CSharpGL(C#+OpenGL)"></a>.
