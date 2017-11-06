@@ -114,7 +114,7 @@ namespace Texture2D
             return root;
         }
 
-        void control_MouseUp(object sender, GUIMouseEventArgs e)
+        void control_MouseUp(object sender, GLMouseEventArgs e)
         {
             MessageBox.Show(string.Format("This is a message from {0}!", sender));
         }

@@ -117,9 +117,9 @@
     <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
     <Compile Include="Scene\GlyphMap\PagesContext.cs" />
     <Compile Include="Scene\GlyphMap\StringChunk.cs" />
-    <Compile Include="Scene\GUI\EventArgs\GUIKeyEventArgs.cs" />
-    <Compile Include="Scene\GUI\EventArgs\GUIMouseEventArgs.cs" />
-    <Compile Include="Scene\GUI\EventArgs\GUIEventArgs.cs" />
+    <Compile Include="Scene\GUI\EventArgs\GLKeyEventArgs.cs" />
+    <Compile Include="Scene\GUI\EventArgs\GLMouseEventArgs.cs" />
+    <Compile Include="Scene\GUI\EventArgs\GLEventArgs.cs" />
     <Compile Include="Scene\GUI\GLControl.Events.cs" />
     <Compile Include="Scene\GUI\GLControl.Layout.cs">
       <SubType>Code</SubType>

@@ -20,27 +20,27 @@ namespace CSharpGL
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GUIKeyEventArgs> KeyDown;
+        public event GUIEventHandler<GLKeyEventArgs> KeyDown;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GUIKeyEventArgs> KeyUp;
+        public event GUIEventHandler<GLKeyEventArgs> KeyUp;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GUIMouseEventArgs> MouseDown;
+        public event GUIEventHandler<GLMouseEventArgs> MouseDown;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GUIMouseEventArgs> MouseUp;
+        public event GUIEventHandler<GLMouseEventArgs> MouseUp;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GUIMouseEventArgs> MouseMove;
+        public event GUIEventHandler<GLMouseEventArgs> MouseMove;
 
         /// <summary>
         /// 
@@ -59,7 +59,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="eventType"></param>
         /// <param name="args"></param>
-        public virtual void InvokeEvent(EventType eventType, GUIEventArgs args)
+        public virtual void InvokeEvent(EventType eventType, GLEventArgs args)
         {
             switch (eventType)
             {
@@ -69,7 +69,7 @@ namespace CSharpGL
                         var keyDown = this.KeyDown;
                         if (keyDown != null)
                         {
-                            var e = args as GUIKeyEventArgs;
+                            var e = args as GLKeyEventArgs;
                             keyDown(this, e);
                         }
                     }
@@ -80,7 +80,7 @@ namespace CSharpGL
                         var keyUp = this.KeyUp;
                         if (keyUp != null)
                         {
-                            var e = args as GUIKeyEventArgs;
+                            var e = args as GLKeyEventArgs;
                             keyUp(this, e);
                         }
                     }
@@ -90,7 +90,7 @@ namespace CSharpGL
                         var mouseDown = this.MouseDown;
                         if (mouseDown != null)
                         {
-                            var e = args as GUIMouseEventArgs;
+                            var e = args as GLMouseEventArgs;
                             mouseDown(this, e);
                         }
                     }
@@ -100,7 +100,7 @@ namespace CSharpGL
                         var mouseUp = this.MouseUp;
                         if (mouseUp != null)
                         {
-                            var e = args as GUIMouseEventArgs;
+                            var e = args as GLMouseEventArgs;
                             mouseUp(this, e);
                         }
                     }
@@ -110,7 +110,7 @@ namespace CSharpGL
                         var mouseMove = this.MouseMove;
                         if (mouseMove != null)
                         {
-                            var e = args as GUIMouseEventArgs;
+                            var e = args as GLMouseEventArgs;
                             mouseMove(this, e);
                         }
                     }

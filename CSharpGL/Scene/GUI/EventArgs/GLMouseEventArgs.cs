@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class GUIMouseEventArgs : GUIEventArgs
+    public class GLMouseEventArgs : GLEventArgs
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <param name="x">鼠标单击的 x 坐标（以像素为单位，以left为0）。相对<see cref="CtrlRoot"/>而言。</param>
         /// <param name="y">鼠标单击的 y 坐标（以像素为单位，以bottom为0）。相对<see cref="CtrlRoot"/>而言。</param>
         /// <param name="delta">鼠标轮已转动的制动器数的有符号计数。</param>
-        public GUIMouseEventArgs(GUIMouseButtons button, int clicks, int x, int y, int delta)
+        public GLMouseEventArgs(GLMouseButtons button, int clicks, int x, int y, int delta)
         {
             this.Button = button; this.Clicks = clicks; this.X = x; this.Y = y; this.Delta = delta;
         }
@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// MouseButtons 值之一。
         /// </summary>
-        public GUIMouseButtons Button { get; private set; }
+        public GLMouseButtons Button { get; private set; }
 
         /// <summary>
         /// 一个 System.Int32，包含按下并释放鼠标按钮的次数。
@@ -58,7 +58,7 @@ namespace CSharpGL
     /// 指定定义哪个鼠标按钮曾按下的常数。
     /// </summary>
     [Flags]
-    public enum GUIMouseButtons
+    public enum GLMouseButtons
     {
         /// <summary>
         /// 未曾按下鼠标按钮。

@@ -15,9 +15,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        public static GUIMouseEventArgs Translate(this System.Windows.Forms.MouseEventArgs e)
+        public static GLMouseEventArgs Translate(this System.Windows.Forms.MouseEventArgs e)
         {
-            var args = new GUIMouseEventArgs((GUIMouseButtons)e.Button, e.Clicks, e.X, e.Y, e.Delta);
+            var args = new GLMouseEventArgs((GLMouseButtons)e.Button, e.Clicks, e.X, e.Y, e.Delta);
 
             return args;
         }
@@ -27,9 +27,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        public static GUIKeyEventArgs Translate(this System.Windows.Forms.KeyEventArgs e)
+        public static GLKeyEventArgs Translate(this System.Windows.Forms.KeyEventArgs e)
         {
-            var args = new GUIKeyEventArgs((GUIKeys)e.KeyData);
+            var args = new GLKeyEventArgs((GLKeys)e.KeyData);
 
             return args;
         }

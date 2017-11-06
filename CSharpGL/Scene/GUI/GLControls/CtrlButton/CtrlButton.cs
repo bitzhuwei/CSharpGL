@@ -34,18 +34,18 @@ namespace CSharpGL
 
         private GUISize originalSize;
         private GUIPoint originalLocation;
-        void CtrlButton_MouseUp(object sender, GUIMouseEventArgs e)
+        void CtrlButton_MouseUp(object sender, GLMouseEventArgs e)
         {
-            if (e.Button == GUIMouseButtons.Left)
+            if (e.Button == GLMouseButtons.Left)
             {
                 this.Location = this.originalLocation;
                 this.Size = this.originalSize;
             }
         }
 
-        void CtrlButton_MouseDown(object sender, GUIMouseEventArgs e)
+        void CtrlButton_MouseDown(object sender, GLMouseEventArgs e)
         {
-            if (e.Button == GUIMouseButtons.Left)
+            if (e.Button == GLMouseButtons.Left)
             {
                 this.originalLocation = this.Location;
                 this.originalSize = this.Size;

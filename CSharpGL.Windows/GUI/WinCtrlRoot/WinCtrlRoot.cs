@@ -68,7 +68,7 @@ namespace CSharpGL
 
         void winCanvas_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            GUIKeyEventArgs args = e.Translate();
+            GLKeyEventArgs args = e.Translate();
             foreach (var item in this.Children)
             {
                 item.InvokeEvent(EventType.KeyUp, args);
@@ -77,7 +77,7 @@ namespace CSharpGL
 
         void winCanvas_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            GUIKeyEventArgs args = e.Translate();
+            GLKeyEventArgs args = e.Translate();
             foreach (var item in this.Children)
             {
                 item.InvokeEvent(EventType.KeyDown, args);
@@ -88,7 +88,7 @@ namespace CSharpGL
 
         void winCanvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            GUIMouseEventArgs args = e.Translate();
+            GLMouseEventArgs args = e.Translate();
             if (this.mouseDownControl != null)
             {
                 this.mouseDownControl.InvokeEvent(EventType.MouseUp, args);
@@ -98,7 +98,7 @@ namespace CSharpGL
 
         void winCanvas_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            GUIMouseEventArgs args = e.Translate();
+            GLMouseEventArgs args = e.Translate();
             foreach (var item in this.Children)
             {
                 int x = e.X, y = this.BindingCanvas.Height - e.Y;
@@ -112,7 +112,7 @@ namespace CSharpGL
 
         void winCanvas_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            GUIMouseEventArgs args = e.Translate();
+            GLMouseEventArgs args = e.Translate();
             foreach (var item in this.Children)
             {
                 item.InvokeEvent(EventType.MouseMove, args);

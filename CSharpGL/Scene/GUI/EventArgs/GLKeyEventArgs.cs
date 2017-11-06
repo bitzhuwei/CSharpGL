@@ -9,9 +9,9 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class GUIKeyEventArgs : GUIEventArgs
+    public class GLKeyEventArgs : GLEventArgs
     {
-        private readonly GUIKeys keyData;
+        private readonly GLKeys keyData;
         private bool handled;
         private bool suppressKeyPress;
 
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// 初始化 CSharpGL.GUIKeyEventArgs 类的新实例。
         /// </summary>
         /// <param name="keyData">一个 CSharpGL.GUIKeys，表示按下的键以及任何修饰符标志（指示同时按下的 Ctrl、Shift 和 Alt 键）。可通过将按位“或”(|)运算符应用于 CSharpGL.GUIKeys 枚举中的常数，来获取可能的值。</param>
-        public GUIKeyEventArgs(GUIKeys keyData)
+        public GLKeyEventArgs(GLKeys keyData)
         {
             this.keyData = keyData;
         }
@@ -27,12 +27,12 @@ namespace CSharpGL
         /// <summary>
         /// 获取一个值，该值指示是否曾按下 Alt 键。
         /// </summary>
-        public virtual bool Alt { get { return (this.keyData & GUIKeys.Alt) == GUIKeys.Alt; } }
+        public virtual bool Alt { get { return (this.keyData & GLKeys.Alt) == GLKeys.Alt; } }
 
         /// <summary>
         /// 获取一个值，该值指示是否曾按下 Ctrl 键。
         /// </summary>
-        public bool Control { get { return (this.keyData & GUIKeys.Control) == GUIKeys.Control; } }
+        public bool Control { get { return (this.keyData & GLKeys.Control) == GLKeys.Control; } }
 
         /// <summary>
         /// 获取或设置一个值，该值指示是否处理过此事件。
@@ -44,14 +44,14 @@ namespace CSharpGL
         /// 获取 System.Windows.Forms.Control.KeyDown 或 System.Windows.Forms.Control.KeyUp事件的键盘代码。
         /// 作为事件的键代码的 CSharpGL.GUIKeys 值。
         /// </summary>
-        public GUIKeys KeyCode
+        public GLKeys KeyCode
         {
             get
             {
-                GUIKeys keys = this.keyData & GUIKeys.KeyCode;
-                if (!Enum.IsDefined(typeof(GUIKeys), (int)keys))
+                GLKeys keys = this.keyData & GLKeys.KeyCode;
+                if (!Enum.IsDefined(typeof(GLKeys), (int)keys))
                 {
-                    return GUIKeys.None;
+                    return GLKeys.None;
                 }
                 return keys;
             }
@@ -61,25 +61,25 @@ namespace CSharpGL
         /// 获取 System.Windows.Forms.Control.KeyDown 或 System.Windows.Forms.Control.KeyUp事件的键数据。
         /// 返回结果: 一个 CSharpGL.GUIKeys，表示按下的键的键代码以及修饰符标志（指示同时按下的 Ctrl、Shift 和 Alt 键的组合）。
         /// </summary>
-        public GUIKeys KeyData { get { return this.keyData; } }
+        public GLKeys KeyData { get { return this.keyData; } }
 
         /// <summary>
         /// 获取 System.Windows.Forms.Control.KeyDown 或 System.Windows.Forms.Control.KeyUp事件的键盘值。
         /// 返回结果: CSharpGL.GUIKeyEventArgs.KeyCode 属性的整数表示形式。
         /// </summary>
-        public int KeyValue { get { return (int)(this.keyData & GUIKeys.KeyCode); } }
+        public int KeyValue { get { return (int)(this.keyData & GLKeys.KeyCode); } }
 
         /// <summary>
         /// 获取 System.Windows.Forms.Control.KeyDown 或 System.Windows.Forms.Control.KeyUp事件的修饰符标志。这些标志指示按下的 Ctrl、Shift 和 Alt 键的组合。
         /// 返回结果: CSharpGL.GUIKeys 值，该值表示一个或多个修饰符标志。
         /// </summary>
-        public GUIKeys Modifiers { get { return this.keyData & GUIKeys.Modifiers; } }
+        public GLKeys Modifiers { get { return this.keyData & GLKeys.Modifiers; } }
 
         /// <summary>
         /// 获取一个值，该值指示是否曾按下 Shift 键。
         /// 返回结果: 如果曾按下 Shift 键，则为 true；否则为 false。
         /// </summary>
-        public virtual bool Shift { get { return (this.keyData & GUIKeys.Shift) == GUIKeys.Shift; } }
+        public virtual bool Shift { get { return (this.keyData & GLKeys.Shift) == GLKeys.Shift; } }
 
         /// <summary>
         /// 获取或设置一个值，该值指示键事件是否应传递到基础控件。
@@ -103,7 +103,7 @@ namespace CSharpGL
     /// 指定键代码和修饰符。
     /// </summary>
     [Flags]
-    public enum GUIKeys
+    public enum GLKeys
     {
         /// <summary>
         /// 从键值提取修饰符的位屏蔽。

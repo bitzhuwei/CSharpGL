@@ -8,11 +8,11 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class GUIEventArgs
+    public class GLEventArgs
     {
         /// <summary>
         /// 
         /// </summary>
-        public static readonly GUIEventArgs Empty = new GUIEventArgs();
+        public static readonly GLEventArgs Empty = new GLEventArgs();
     }
 }
