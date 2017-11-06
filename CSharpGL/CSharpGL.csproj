@@ -76,7 +76,6 @@
     <Compile Include="BaseDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
     <Compile Include="BaseDataStructures\Utilities\AssemblyHelper.cs" />
     <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
-    <Compile Include="BaseDataStructures\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="BaseDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
     <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
     <None Include="GLCanvas\GLRenderContext\readme.md" />
@@ -85,7 +84,6 @@
     <None Include="Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
-    <Compile Include="BaseDataStructures\Utilities\RotateLeftHelper.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GL.DrawText.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
@@ -195,7 +193,6 @@
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
     <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIPadding.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
