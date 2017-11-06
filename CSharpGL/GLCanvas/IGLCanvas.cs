@@ -37,6 +37,7 @@ namespace CSharpGL
         /// </summary>
         GLRenderContext RenderContext { get; }
 
+        // TODO: use GLKeyPressEventHandler instead.
         /// <summary>
         /// 
         /// </summary>
