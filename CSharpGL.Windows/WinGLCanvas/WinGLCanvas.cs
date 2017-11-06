@@ -17,7 +17,7 @@ namespace CSharpGL
     public partial class WinGLCanvas :
         UserControl,
         ISupportInitialize,
-        IWinGLCanvas
+        IGLCanvas
     {
         private const string strWinGLCanvas = "WinGLCanvas";
 
@@ -125,7 +125,7 @@ namespace CSharpGL
             //  Create the render context.
             renderContext.Create(Width, Height, 32, null);
 
-            this.RenderContext = renderContext;
+            this.renderContext = renderContext;
 
             renderContext.MakeCurrent();
 
@@ -143,7 +143,7 @@ namespace CSharpGL
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            GLRenderContext renderContext = this.RenderContext;
+            GLRenderContext renderContext = this.renderContext;
             if (renderContext == null)
             {
                 base.OnPaint(e);
@@ -217,7 +217,7 @@ namespace CSharpGL
             int width = this.Width, height = this.Height;
             if (width > 0 && height > 0)
             {
-                GLRenderContext renderContext = this.RenderContext;
+                GLRenderContext renderContext = this.renderContext;
                 if (renderContext != null)
                 {
                     renderContext.MakeCurrent();
@@ -249,10 +249,10 @@ namespace CSharpGL
 
         private void DestroyRenderContext()
         {
-            GLRenderContext renderContext = this.RenderContext;
+            GLRenderContext renderContext = this.renderContext;
             if (renderContext != null)
             {
-                this.RenderContext = null;
+                this.renderContext = null;
                 renderContext.Dispose();
             }
         }
@@ -366,20 +366,5 @@ namespace CSharpGL
         [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
         public event GLEventHandler<PaintEventArgs> OpenGLDraw;
 
-        #region IGLCanvas 成员
-
-        /// <summary>
-        /// repaint this canvas' content.
-        /// </summary>
-        public void Repaint()
-        {
-            this.Invalidate();
-        }
-
-        [Category(strWinGLCanvas)]
-        [Description("OpenGL Render Context.")]
-        public GLRenderContext RenderContext { get; private set; }
-
-        #endregion
     }
 }

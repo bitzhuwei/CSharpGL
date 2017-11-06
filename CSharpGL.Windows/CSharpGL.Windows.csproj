@@ -57,13 +57,15 @@
     <Compile Include="Nodes\Propeller\FlabellumRenderer.cs" />
     <Compile Include="Nodes\Propeller\PropellerRenderer.cs" />
     <Compile Include="WinGLCanvas\DesignModeAssist.cs" />
+    <Compile Include="WinGLCanvas\WinGLCanvas.IGLCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="WinGLCanvas\WinGLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="WinGLCanvas\WinGLCanvas.Designer.cs">
       <DependentUpon>WinGLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinGLCanvas\IWinGLCanvas.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
     <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="RenderContexts\FBORenderContext.cs" />
