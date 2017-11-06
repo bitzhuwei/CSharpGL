@@ -46,7 +46,6 @@
     <Content Include="Nodes\ClockNode\Clock.png" />
     <Content Include="Nodes\Propeller\Propeller+4Flabellum.png" />
     <None Include="WinGLCanvas\readme.md" />
-    <None Include="RenderContexts\readme.md" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="GLAPI\WinGL.DrawText.cs" />
     <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
