@@ -72,7 +72,7 @@
     <Compile Include="WinGLCanvas\RenderTrigger.cs" />
     <Compile Include="GLAPI\FontBitmapEntry.cs" />
     <Compile Include="GLAPI\FontBitmaps.cs" />
-    <Compile Include="GLAPI\WInGL.ExtendedAPI.cs" />
+    <Compile Include="GLAPI\WiinGL.ExtendedAPI.cs" />
     <Compile Include="GLAPI\WinGL.BasicAPI.cs" />
     <Compile Include="GLAPI\WinGL.cs" />
     <Compile Include="GLAPI\WinGL.OpenGL32.DLL.cs" />
