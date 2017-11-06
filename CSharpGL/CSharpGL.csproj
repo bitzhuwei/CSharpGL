@@ -111,15 +111,16 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
+    <Compile Include="BaseDataStructures\Events\GLEventHandler`1.cs" />
     <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
     <Compile Include="Scene\GlyphMap\CharDumper.cs" />
     <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
     <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
     <Compile Include="Scene\GlyphMap\PagesContext.cs" />
     <Compile Include="Scene\GlyphMap\StringChunk.cs" />
-    <Compile Include="Scene\GUI\EventArgs\GLKeyEventArgs.cs" />
-    <Compile Include="Scene\GUI\EventArgs\GLMouseEventArgs.cs" />
-    <Compile Include="Scene\GUI\EventArgs\GLEventArgs.cs" />
+    <Compile Include="BaseDataStructures\Events\GLKeyEventArgs.cs" />
+    <Compile Include="BaseDataStructures\Events\GLMouseEventArgs.cs" />
+    <Compile Include="BaseDataStructures\Events\GLEventArgs.cs" />
     <Compile Include="Scene\GUI\GLControl.Events.cs" />
     <Compile Include="Scene\GUI\GLControl.Layout.cs">
       <SubType>Code</SubType>

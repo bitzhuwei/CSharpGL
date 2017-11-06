@@ -6,41 +6,33 @@ using System.Text;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TEventArgs"></typeparam>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    public delegate void GUIEventHandler<TEventArgs>(object sender, TEventArgs e);
-
     public abstract partial class GLControl
     {
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GLKeyEventArgs> KeyDown;
+        public event GLEventHandler<GLKeyEventArgs> KeyDown;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GLKeyEventArgs> KeyUp;
+        public event GLEventHandler<GLKeyEventArgs> KeyUp;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GLMouseEventArgs> MouseDown;
+        public event GLEventHandler<GLMouseEventArgs> MouseDown;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GLMouseEventArgs> MouseUp;
+        public event GLEventHandler<GLMouseEventArgs> MouseUp;
         /// <summary>
         /// 
         /// </summary>
         [Category(strGLControl)]
-        public event GUIEventHandler<GLMouseEventArgs> MouseMove;
+        public event GLEventHandler<GLMouseEventArgs> MouseMove;
 
         /// <summary>
         /// 
